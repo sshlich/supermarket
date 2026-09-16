@@ -1,0 +1,4234 @@
+[
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-0-0",
+      "name": "Tin Watch I",
+      "day": 1,
+      "level": 1,
+      "maxHealth": 85,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-0-0-0",
+          "defId": "rivet-lance",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-0-0-1",
+          "defId": "folding-buckler",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-0-0-2",
+          "defId": "minute-hand",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [],
+      "counters": {},
+      "difficulty": 1
+    },
+    "minDay": 1,
+    "maxDay": 3,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 3,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "rivet-lance",
+      "folding-buckler",
+      "opening-cushion"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-0-0",
+      "name": "Tin Watch I",
+      "day": 1,
+      "level": 1,
+      "maxHealth": 125,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-0-0-0",
+          "defId": "rivet-lance",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-0-0-1",
+          "defId": "folding-buckler",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-0-0-2",
+          "defId": "minute-hand",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [],
+      "counters": {},
+      "difficulty": 1
+    },
+    "minDay": 1,
+    "maxDay": 3,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 3,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "rivet-lance",
+      "folding-buckler",
+      "opening-cushion"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-0-1",
+      "name": "Lantern Keeper I",
+      "day": 1,
+      "level": 1,
+      "maxHealth": 100,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-0-1-0",
+          "defId": "ember-kettle",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-0-1-1",
+          "defId": "warm-coil",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-0-1-2",
+          "defId": "tea-tray",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [],
+      "counters": {},
+      "difficulty": 2
+    },
+    "minDay": 1,
+    "maxDay": 3,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 3,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "ember-kettle",
+      "folding-buckler",
+      "cinder-memory"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-0-1",
+      "name": "Lantern Keeper I",
+      "day": 1,
+      "level": 1,
+      "maxHealth": 140,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-0-1-0",
+          "defId": "ember-kettle",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-0-1-1",
+          "defId": "warm-coil",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-0-1-2",
+          "defId": "tea-tray",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [],
+      "counters": {},
+      "difficulty": 2
+    },
+    "minDay": 1,
+    "maxDay": 3,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 3,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "ember-kettle",
+      "folding-buckler",
+      "cinder-memory"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-0-2",
+      "name": "Marsh Runner I",
+      "day": 1,
+      "level": 1,
+      "maxHealth": 115,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-0-2-0",
+          "defId": "bitter-vial",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-0-2-1",
+          "defId": "spring-magazine",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 1,
+          "acquired": 1,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-0-2-2",
+          "defId": "velvet-leech",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [],
+      "counters": {},
+      "difficulty": 3
+    },
+    "minDay": 1,
+    "maxDay": 3,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 3,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "bitter-vial",
+      "folding-buckler",
+      "soothing-hum"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-0-2",
+      "name": "Marsh Runner I",
+      "day": 1,
+      "level": 1,
+      "maxHealth": 155,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-0-2-0",
+          "defId": "bitter-vial",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-0-2-1",
+          "defId": "spring-magazine",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 1,
+          "acquired": 1,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-0-2-2",
+          "defId": "velvet-leech",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [],
+      "counters": {},
+      "difficulty": 3
+    },
+    "minDay": 1,
+    "maxDay": 3,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 3,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "bitter-vial",
+      "folding-buckler",
+      "soothing-hum"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-0-3",
+      "name": "Gutter Sentry I",
+      "day": 1,
+      "level": 1,
+      "maxHealth": 130,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-0-3-0",
+          "defId": "velvet-leech",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-0-3-1",
+          "defId": "moss-jar",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-0-3-2",
+          "defId": "tar-roller",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [],
+      "counters": {},
+      "difficulty": 4
+    },
+    "minDay": 1,
+    "maxDay": 3,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 3,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "velvet-leech",
+      "folding-buckler",
+      "weather-eye"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-0-3",
+      "name": "Gutter Sentry I",
+      "day": 1,
+      "level": 1,
+      "maxHealth": 170,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-0-3-0",
+          "defId": "velvet-leech",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-0-3-1",
+          "defId": "moss-jar",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-0-3-2",
+          "defId": "tar-roller",
+          "tier": "bronze",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [],
+      "counters": {},
+      "difficulty": 4
+    },
+    "minDay": 1,
+    "maxDay": 3,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 3,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "velvet-leech",
+      "folding-buckler",
+      "weather-eye"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-1-0",
+      "name": "Tin Watch II",
+      "day": 4,
+      "level": 4,
+      "maxHealth": 175,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-1-0-0",
+          "defId": "rivet-lance",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-0-1",
+          "defId": "folding-buckler",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-0-2",
+          "defId": "minute-hand",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-0-3",
+          "defId": "paced-courier",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-1-0-skill-0",
+          "defId": "opening-cushion",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 1
+    },
+    "minDay": 4,
+    "maxDay": 6,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 4,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "rivet-lance",
+      "folding-buckler",
+      "opening-cushion"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-1-0",
+      "name": "Tin Watch II",
+      "day": 4,
+      "level": 4,
+      "maxHealth": 215,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-1-0-0",
+          "defId": "rivet-lance",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-0-1",
+          "defId": "folding-buckler",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-0-2",
+          "defId": "minute-hand",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-0-3",
+          "defId": "paced-courier",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-1-0-skill-0",
+          "defId": "opening-cushion",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 1
+    },
+    "minDay": 4,
+    "maxDay": 6,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 4,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "rivet-lance",
+      "folding-buckler",
+      "opening-cushion"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-1-1",
+      "name": "Lantern Keeper II",
+      "day": 4,
+      "level": 4,
+      "maxHealth": 190,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-1-1-0",
+          "defId": "ember-kettle",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-1-1",
+          "defId": "warm-coil",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-1-2",
+          "defId": "tea-tray",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-1-3",
+          "defId": "folding-buckler",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-1-1-skill-0",
+          "defId": "cinder-memory",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 2
+    },
+    "minDay": 4,
+    "maxDay": 6,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 4,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "ember-kettle",
+      "folding-buckler",
+      "cinder-memory"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-1-1",
+      "name": "Lantern Keeper II",
+      "day": 4,
+      "level": 4,
+      "maxHealth": 230,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-1-1-0",
+          "defId": "ember-kettle",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-1-1",
+          "defId": "warm-coil",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-1-2",
+          "defId": "tea-tray",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-1-3",
+          "defId": "folding-buckler",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-1-1-skill-0",
+          "defId": "cinder-memory",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 2
+    },
+    "minDay": 4,
+    "maxDay": 6,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 4,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "ember-kettle",
+      "folding-buckler",
+      "cinder-memory"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-1-2",
+      "name": "Marsh Runner II",
+      "day": 4,
+      "level": 4,
+      "maxHealth": 205,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-1-2-0",
+          "defId": "bitter-vial",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-2-1",
+          "defId": "spring-magazine",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 1,
+          "acquired": 1,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-2-2",
+          "defId": "velvet-leech",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-2-3",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-1-2-skill-0",
+          "defId": "soothing-hum",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 3
+    },
+    "minDay": 4,
+    "maxDay": 6,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 4,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "bitter-vial",
+      "folding-buckler",
+      "soothing-hum"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-1-2",
+      "name": "Marsh Runner II",
+      "day": 4,
+      "level": 4,
+      "maxHealth": 245,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-1-2-0",
+          "defId": "bitter-vial",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-2-1",
+          "defId": "spring-magazine",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 1,
+          "acquired": 1,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-2-2",
+          "defId": "velvet-leech",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-2-3",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-1-2-skill-0",
+          "defId": "soothing-hum",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 3
+    },
+    "minDay": 4,
+    "maxDay": 6,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 4,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "bitter-vial",
+      "folding-buckler",
+      "soothing-hum"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-1-3",
+      "name": "Gutter Sentry II",
+      "day": 4,
+      "level": 4,
+      "maxHealth": 220,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-1-3-0",
+          "defId": "velvet-leech",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-3-1",
+          "defId": "moss-jar",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-3-2",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-1-3-3",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-1-3-skill-0",
+          "defId": "weather-eye",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 4
+    },
+    "minDay": 4,
+    "maxDay": 6,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 4,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "velvet-leech",
+      "folding-buckler",
+      "weather-eye"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-1-3",
+      "name": "Gutter Sentry II",
+      "day": 4,
+      "level": 4,
+      "maxHealth": 260,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-1-3-0",
+          "defId": "velvet-leech",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-3-1",
+          "defId": "moss-jar",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-3-2",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-1-3-3",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-1-3-skill-0",
+          "defId": "weather-eye",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 4
+    },
+    "minDay": 4,
+    "maxDay": 6,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 4,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "velvet-leech",
+      "folding-buckler",
+      "weather-eye"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-2-0",
+      "name": "Tin Watch III",
+      "day": 7,
+      "level": 7,
+      "maxHealth": 265,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-2-0-0",
+          "defId": "rivet-lance",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-0-1",
+          "defId": "folding-buckler",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-0-2",
+          "defId": "minute-hand",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-0-3",
+          "defId": "paced-courier",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-2-0-skill-0",
+          "defId": "opening-cushion",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 1
+    },
+    "minDay": 7,
+    "maxDay": 9,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 5,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "rivet-lance",
+      "folding-buckler",
+      "opening-cushion"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-2-0",
+      "name": "Tin Watch III",
+      "day": 7,
+      "level": 7,
+      "maxHealth": 305,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-2-0-0",
+          "defId": "rivet-lance",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-0-1",
+          "defId": "folding-buckler",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-0-2",
+          "defId": "minute-hand",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-0-3",
+          "defId": "paced-courier",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-2-0-skill-0",
+          "defId": "opening-cushion",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 1
+    },
+    "minDay": 7,
+    "maxDay": 9,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 5,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "rivet-lance",
+      "folding-buckler",
+      "opening-cushion"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-2-1",
+      "name": "Lantern Keeper III",
+      "day": 7,
+      "level": 7,
+      "maxHealth": 280,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-2-1-0",
+          "defId": "ember-kettle",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-1-1",
+          "defId": "warm-coil",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-1-2",
+          "defId": "tea-tray",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-1-3",
+          "defId": "folding-buckler",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-2-1-skill-0",
+          "defId": "cinder-memory",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 2
+    },
+    "minDay": 7,
+    "maxDay": 9,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 5,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "ember-kettle",
+      "folding-buckler",
+      "cinder-memory"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-2-1",
+      "name": "Lantern Keeper III",
+      "day": 7,
+      "level": 7,
+      "maxHealth": 320,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-2-1-0",
+          "defId": "ember-kettle",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-1-1",
+          "defId": "warm-coil",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-1-2",
+          "defId": "tea-tray",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-1-3",
+          "defId": "folding-buckler",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-2-1-skill-0",
+          "defId": "cinder-memory",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 2
+    },
+    "minDay": 7,
+    "maxDay": 9,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 5,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "ember-kettle",
+      "folding-buckler",
+      "cinder-memory"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-2-2",
+      "name": "Marsh Runner III",
+      "day": 7,
+      "level": 7,
+      "maxHealth": 295,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-2-2-0",
+          "defId": "bitter-vial",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-2-1",
+          "defId": "spring-magazine",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 1,
+          "acquired": 1,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-2-2",
+          "defId": "velvet-leech",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-2-3",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-2-2-skill-0",
+          "defId": "soothing-hum",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 3
+    },
+    "minDay": 7,
+    "maxDay": 9,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 5,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "bitter-vial",
+      "folding-buckler",
+      "soothing-hum"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-2-2",
+      "name": "Marsh Runner III",
+      "day": 7,
+      "level": 7,
+      "maxHealth": 335,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-2-2-0",
+          "defId": "bitter-vial",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-2-1",
+          "defId": "spring-magazine",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 1,
+          "acquired": 1,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-2-2",
+          "defId": "velvet-leech",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-2-3",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-2-2-skill-0",
+          "defId": "soothing-hum",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 3
+    },
+    "minDay": 7,
+    "maxDay": 9,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 5,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "bitter-vial",
+      "folding-buckler",
+      "soothing-hum"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-2-3",
+      "name": "Gutter Sentry III",
+      "day": 7,
+      "level": 7,
+      "maxHealth": 310,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-2-3-0",
+          "defId": "velvet-leech",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-3-1",
+          "defId": "moss-jar",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-3-2",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-2-3-3",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-2-3-skill-0",
+          "defId": "weather-eye",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 4
+    },
+    "minDay": 7,
+    "maxDay": 9,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 5,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "velvet-leech",
+      "folding-buckler",
+      "weather-eye"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-2-3",
+      "name": "Gutter Sentry III",
+      "day": 7,
+      "level": 7,
+      "maxHealth": 350,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-2-3-0",
+          "defId": "velvet-leech",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-3-1",
+          "defId": "moss-jar",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-3-2",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-2-3-3",
+          "defId": "tar-roller",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-2-3-skill-0",
+          "defId": "weather-eye",
+          "tier": "silver",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 4
+    },
+    "minDay": 7,
+    "maxDay": 9,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 5,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "velvet-leech",
+      "folding-buckler",
+      "weather-eye"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-3-0",
+      "name": "Tin Watch IV",
+      "day": 10,
+      "level": 10,
+      "maxHealth": 355,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-3-0-0",
+          "defId": "rivet-lance",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-0-1",
+          "defId": "folding-buckler",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-0-2",
+          "defId": "minute-hand",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-0-3",
+          "defId": "paced-courier",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-0-4",
+          "defId": "minute-hand",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-3-0-skill-0",
+          "defId": "opening-cushion",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 1
+    },
+    "minDay": 10,
+    "maxDay": 12,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 6,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "rivet-lance",
+      "folding-buckler",
+      "opening-cushion"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-3-0",
+      "name": "Tin Watch IV",
+      "day": 10,
+      "level": 10,
+      "maxHealth": 395,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-3-0-0",
+          "defId": "rivet-lance",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-0-1",
+          "defId": "folding-buckler",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-0-2",
+          "defId": "minute-hand",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-0-3",
+          "defId": "paced-courier",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-0-4",
+          "defId": "minute-hand",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-3-0-skill-0",
+          "defId": "opening-cushion",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 1
+    },
+    "minDay": 10,
+    "maxDay": 12,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 6,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "rivet-lance",
+      "folding-buckler",
+      "opening-cushion"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-3-1",
+      "name": "Lantern Keeper IV",
+      "day": 10,
+      "level": 10,
+      "maxHealth": 370,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-3-1-0",
+          "defId": "ember-kettle",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-1-1",
+          "defId": "warm-coil",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-1-2",
+          "defId": "tea-tray",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-1-3",
+          "defId": "folding-buckler",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-1-4",
+          "defId": "minute-hand",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-3-1-skill-0",
+          "defId": "cinder-memory",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 2
+    },
+    "minDay": 10,
+    "maxDay": 12,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 6,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "ember-kettle",
+      "folding-buckler",
+      "cinder-memory"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-3-1",
+      "name": "Lantern Keeper IV",
+      "day": 10,
+      "level": 10,
+      "maxHealth": 410,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-3-1-0",
+          "defId": "ember-kettle",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-1-1",
+          "defId": "warm-coil",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-1-2",
+          "defId": "tea-tray",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-1-3",
+          "defId": "folding-buckler",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-1-4",
+          "defId": "minute-hand",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-3-1-skill-0",
+          "defId": "cinder-memory",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 2
+    },
+    "minDay": 10,
+    "maxDay": 12,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 6,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "ember-kettle",
+      "folding-buckler",
+      "cinder-memory"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-3-2",
+      "name": "Marsh Runner IV",
+      "day": 10,
+      "level": 10,
+      "maxHealth": 385,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-3-2-0",
+          "defId": "bitter-vial",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-2-1",
+          "defId": "spring-magazine",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 1,
+          "acquired": 1,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-2-2",
+          "defId": "velvet-leech",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-2-3",
+          "defId": "tar-roller",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-2-4",
+          "defId": "minute-hand",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-3-2-skill-0",
+          "defId": "soothing-hum",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 3
+    },
+    "minDay": 10,
+    "maxDay": 12,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 6,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "bitter-vial",
+      "folding-buckler",
+      "soothing-hum"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-3-2",
+      "name": "Marsh Runner IV",
+      "day": 10,
+      "level": 10,
+      "maxHealth": 425,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-3-2-0",
+          "defId": "bitter-vial",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-2-1",
+          "defId": "spring-magazine",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 1,
+          "acquired": 1,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-2-2",
+          "defId": "velvet-leech",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-2-3",
+          "defId": "tar-roller",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-2-4",
+          "defId": "minute-hand",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-3-2-skill-0",
+          "defId": "soothing-hum",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 3
+    },
+    "minDay": 10,
+    "maxDay": 12,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 6,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "bitter-vial",
+      "folding-buckler",
+      "soothing-hum"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-3-3",
+      "name": "Gutter Sentry IV",
+      "day": 10,
+      "level": 10,
+      "maxHealth": 400,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-3-3-0",
+          "defId": "velvet-leech",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-3-1",
+          "defId": "moss-jar",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-3-2",
+          "defId": "tar-roller",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-3-3",
+          "defId": "tar-roller",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-3-3-4",
+          "defId": "minute-hand",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 7,
+          "acquired": 7,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-3-3-skill-0",
+          "defId": "weather-eye",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 4
+    },
+    "minDay": 10,
+    "maxDay": 12,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 6,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "velvet-leech",
+      "folding-buckler",
+      "weather-eye"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-3-3",
+      "name": "Gutter Sentry IV",
+      "day": 10,
+      "level": 10,
+      "maxHealth": 440,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-3-3-0",
+          "defId": "velvet-leech",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-3-1",
+          "defId": "moss-jar",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-3-2",
+          "defId": "tar-roller",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-3-3",
+          "defId": "tar-roller",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-3-3-4",
+          "defId": "minute-hand",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "board",
+          "position": 7,
+          "acquired": 7,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-3-3-skill-0",
+          "defId": "weather-eye",
+          "tier": "gold",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 4
+    },
+    "minDay": 10,
+    "maxDay": 12,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 6,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "velvet-leech",
+      "folding-buckler",
+      "weather-eye"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-4-0",
+      "name": "Tin Watch V",
+      "day": 13,
+      "level": 13,
+      "maxHealth": 445,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-4-0-0",
+          "defId": "rivet-lance",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-0-1",
+          "defId": "folding-buckler",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-0-2",
+          "defId": "minute-hand",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-0-3",
+          "defId": "paced-courier",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-0-4",
+          "defId": "minute-hand",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-4-0-skill-0",
+          "defId": "opening-cushion",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 1
+    },
+    "minDay": 13,
+    "maxDay": 99,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 7,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "rivet-lance",
+      "folding-buckler",
+      "opening-cushion"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-4-0",
+      "name": "Tin Watch V",
+      "day": 13,
+      "level": 13,
+      "maxHealth": 485,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-4-0-0",
+          "defId": "rivet-lance",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-0-1",
+          "defId": "folding-buckler",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-0-2",
+          "defId": "minute-hand",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-0-3",
+          "defId": "paced-courier",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-0-4",
+          "defId": "minute-hand",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-4-0-skill-0",
+          "defId": "opening-cushion",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 1
+    },
+    "minDay": 13,
+    "maxDay": 99,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 7,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "rivet-lance",
+      "folding-buckler",
+      "opening-cushion"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-4-1",
+      "name": "Lantern Keeper V",
+      "day": 13,
+      "level": 13,
+      "maxHealth": 460,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-4-1-0",
+          "defId": "ember-kettle",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-1-1",
+          "defId": "warm-coil",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-1-2",
+          "defId": "tea-tray",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-1-3",
+          "defId": "folding-buckler",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-1-4",
+          "defId": "minute-hand",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-4-1-skill-0",
+          "defId": "cinder-memory",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 2
+    },
+    "minDay": 13,
+    "maxDay": 99,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 7,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "ember-kettle",
+      "folding-buckler",
+      "cinder-memory"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-4-1",
+      "name": "Lantern Keeper V",
+      "day": 13,
+      "level": 13,
+      "maxHealth": 500,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-4-1-0",
+          "defId": "ember-kettle",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-1-1",
+          "defId": "warm-coil",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-1-2",
+          "defId": "tea-tray",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-1-3",
+          "defId": "folding-buckler",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-1-4",
+          "defId": "minute-hand",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-4-1-skill-0",
+          "defId": "cinder-memory",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 2
+    },
+    "minDay": 13,
+    "maxDay": 99,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 7,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "ember-kettle",
+      "folding-buckler",
+      "cinder-memory"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-4-2",
+      "name": "Marsh Runner V",
+      "day": 13,
+      "level": 13,
+      "maxHealth": 475,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-4-2-0",
+          "defId": "bitter-vial",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-2-1",
+          "defId": "spring-magazine",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 1,
+          "acquired": 1,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-2-2",
+          "defId": "velvet-leech",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-2-3",
+          "defId": "tar-roller",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-2-4",
+          "defId": "minute-hand",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-4-2-skill-0",
+          "defId": "soothing-hum",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 3
+    },
+    "minDay": 13,
+    "maxDay": 99,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 7,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "bitter-vial",
+      "folding-buckler",
+      "soothing-hum"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-4-2",
+      "name": "Marsh Runner V",
+      "day": 13,
+      "level": 13,
+      "maxHealth": 515,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-4-2-0",
+          "defId": "bitter-vial",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-2-1",
+          "defId": "spring-magazine",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 1,
+          "acquired": 1,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-2-2",
+          "defId": "velvet-leech",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-2-3",
+          "defId": "tar-roller",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 4,
+          "acquired": 4,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-2-4",
+          "defId": "minute-hand",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 6,
+          "acquired": 6,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-4-2-skill-0",
+          "defId": "soothing-hum",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 3
+    },
+    "minDay": 13,
+    "maxDay": 99,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 7,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "bitter-vial",
+      "folding-buckler",
+      "soothing-hum"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "monster-4-3",
+      "name": "Gutter Sentry V",
+      "day": 13,
+      "level": 13,
+      "maxHealth": 490,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "monster-4-3-0",
+          "defId": "velvet-leech",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-3-1",
+          "defId": "moss-jar",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-3-2",
+          "defId": "tar-roller",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-3-3",
+          "defId": "tar-roller",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "monster-4-3-4",
+          "defId": "minute-hand",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 7,
+          "acquired": 7,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "monster-4-3-skill-0",
+          "defId": "weather-eye",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 4
+    },
+    "minDay": 13,
+    "maxDay": 99,
+    "category": "monster",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 7,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "velvet-leech",
+      "folding-buckler",
+      "weather-eye"
+    ]
+  },
+  {
+    "snapshot": {
+      "version": 1,
+      "contentVersion": "night-market-1",
+      "id": "rival-4-3",
+      "name": "Gutter Sentry V",
+      "day": 13,
+      "level": 13,
+      "maxHealth": 530,
+      "regen": 0,
+      "capacity": 10,
+      "items": [
+        {
+          "id": "rival-4-3-0",
+          "defId": "velvet-leech",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-3-1",
+          "defId": "moss-jar",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 2,
+          "acquired": 2,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-3-2",
+          "defId": "tar-roller",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 3,
+          "acquired": 3,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-3-3",
+          "defId": "tar-roller",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 5,
+          "acquired": 5,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        },
+        {
+          "id": "rival-4-3-4",
+          "defId": "minute-hand",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "board",
+          "position": 7,
+          "acquired": 7,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "skills": [
+        {
+          "id": "rival-4-3-skill-0",
+          "defId": "weather-eye",
+          "tier": "diamond",
+          "enchantment": null,
+          "location": "skills",
+          "position": 0,
+          "acquired": 0,
+          "modifiers": [],
+          "addedTypes": [],
+          "counters": {},
+          "memory": {},
+          "provenance": "content"
+        }
+      ],
+      "counters": {},
+      "difficulty": 4
+    },
+    "minDay": 13,
+    "maxDay": 99,
+    "category": "rival",
+    "rewards": [
+      {
+        "id": "spoils",
+        "label": "Spoils",
+        "text": "Guaranteed on victory",
+        "gold": 7,
+        "xp": 3
+      }
+    ],
+    "drops": [
+      "velvet-leech",
+      "folding-buckler",
+      "weather-eye"
+    ]
+  }
+]

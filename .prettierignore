@@ -1,0 +1,7 @@
+node_modules
+dist
+artifacts
+/content
+/schemas
+tests/golden
+bazaar_mechanics_dossier.md

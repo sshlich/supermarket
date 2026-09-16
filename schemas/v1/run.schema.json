@@ -1,0 +1,2916 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://night-market.invalid/schema/v1/run.json",
+  "$defs": {
+    "Numbers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": -4294967295,
+        "maximum": 4294967295
+      },
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      }
+    },
+    "Payload": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 2000
+          },
+          {
+            "type": "integer",
+            "minimum": -4294967295,
+            "maximum": 4294967295
+          },
+          {
+            "type": "boolean"
+          }
+        ]
+      },
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "__proto__",
+            "prototype",
+            "constructor"
+          ]
+        }
+      }
+    },
+    "Modifier": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "sourceId": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "attribute": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "op": {
+          "enum": [
+            "add",
+            "percent",
+            "multiply",
+            "set",
+            "min",
+            "max"
+          ]
+        },
+        "value": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "scope": {
+          "enum": [
+            "permanent",
+            "run",
+            "day",
+            "combat",
+            "timed",
+            "activation"
+          ]
+        },
+        "expires": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "castId": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        }
+      },
+      "required": [
+        "id",
+        "sourceId",
+        "attribute",
+        "op",
+        "value",
+        "scope"
+      ],
+      "additionalProperties": false
+    },
+    "Memory": {
+      "type": "object",
+      "properties": {
+        "seen": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "fired": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "last": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 100000
+        },
+        "progress": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "completed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "seen",
+        "fired",
+        "last",
+        "keys",
+        "progress",
+        "completed"
+      ],
+      "additionalProperties": false
+    },
+    "Predicate": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "enum": [
+            "type",
+            "capability",
+            "reference",
+            "size",
+            "cooldown",
+            "ammo",
+            "status",
+            "attribute",
+            "relativeSize"
+          ]
+        },
+        "key": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 2000
+            },
+            {
+              "type": "integer",
+              "minimum": -100000000,
+              "maximum": 100000000
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "compare": {
+          "enum": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte"
+          ]
+        },
+        "not": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "field"
+      ],
+      "additionalProperties": false
+    },
+    "Selector": {
+      "type": "object",
+      "properties": {
+        "side": {
+          "enum": [
+            "self",
+            "owner",
+            "enemy",
+            "allyItems",
+            "enemyItems",
+            "allItems",
+            "eventSource",
+            "eventTargets",
+            "previous"
+          ]
+        },
+        "location": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "board",
+              "stash",
+              "skills"
+            ]
+          },
+          "maxItems": 3
+        },
+        "spatial": {
+          "enum": [
+            "left",
+            "right",
+            "adjacent",
+            "leftmost",
+            "rightmost"
+          ]
+        },
+        "other": {
+          "type": "boolean"
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Predicate"
+          },
+          "maxItems": 20
+        },
+        "order": {
+          "enum": [
+            "position",
+            "random",
+            "highest",
+            "lowest"
+          ]
+        },
+        "attribute": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 30
+        },
+        "preferUnstatus": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "excludeProtected": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "side"
+      ],
+      "additionalProperties": false
+    },
+    "Expr": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        {
+          "type": "object",
+          "properties": {
+            "ref": {
+              "enum": [
+                "source",
+                "target",
+                "owner",
+                "enemy",
+                "event",
+                "counter",
+                "tier"
+              ]
+            },
+            "key": {
+              "type": "string",
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "ref",
+            "key"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "count": {
+              "$ref": "#/$defs/Selector"
+            },
+            "distinctTypes": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "count"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "op": {
+              "enum": [
+                "add",
+                "sub",
+                "mul",
+                "div",
+                "min",
+                "max"
+              ]
+            },
+            "args": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Expr"
+              },
+              "maxItems": 20,
+              "minItems": 1
+            }
+          },
+          "required": [
+            "op",
+            "args"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Condition": {
+      "type": "object",
+      "properties": {
+        "left": {
+          "$ref": "#/$defs/Expr"
+        },
+        "op": {
+          "enum": [
+            "eq",
+            "ne",
+            "lt",
+            "lte",
+            "gt",
+            "gte"
+          ]
+        },
+        "right": {
+          "$ref": "#/$defs/Expr"
+        }
+      },
+      "required": [
+        "left",
+        "op",
+        "right"
+      ],
+      "additionalProperties": false
+    },
+    "Trigger": {
+      "type": "object",
+      "properties": {
+        "event": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "relation": {
+          "enum": [
+            "any",
+            "self",
+            "other",
+            "owner",
+            "enemy"
+          ]
+        },
+        "source": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Predicate"
+          },
+          "maxItems": 20
+        },
+        "every": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "first": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "scope": {
+          "enum": [
+            "combat",
+            "day",
+            "run"
+          ]
+        },
+        "oncePer": {
+          "enum": [
+            "parent",
+            "batch"
+          ]
+        }
+      },
+      "required": [
+        "event"
+      ],
+      "additionalProperties": false
+    },
+    "Action": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "damage",
+            "shield",
+            "heal",
+            "status",
+            "cleanse",
+            "charge",
+            "reload",
+            "modify",
+            "forceUse",
+            "destroy",
+            "repair",
+            "transform",
+            "publish",
+            "flying",
+            "resource",
+            "type",
+            "meter",
+            "slot",
+            "enchant",
+            "upgrade",
+            "generate"
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/Selector"
+        },
+        "amount": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Expr"
+            },
+            {
+              "const": "full"
+            }
+          ]
+        },
+        "attribute": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "op": {
+          "enum": [
+            "add",
+            "percent",
+            "multiply",
+            "set",
+            "min",
+            "max"
+          ]
+        },
+        "scope": {
+          "enum": [
+            "permanent",
+            "run",
+            "day",
+            "combat",
+            "timed",
+            "activation"
+          ]
+        },
+        "duration": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "status": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "statuses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 20
+        },
+        "mode": {
+          "enum": [
+            "flat",
+            "percent",
+            "all"
+          ]
+        },
+        "cleanses": {
+          "type": "boolean"
+        },
+        "bypassShield": {
+          "type": "boolean"
+        },
+        "pool": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "event": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 2000
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "critEligible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "kind",
+        "target"
+      ],
+      "additionalProperties": false
+    },
+    "Ability": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "trigger": {
+          "$ref": "#/$defs/Trigger"
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "board",
+              "stash",
+              "skills"
+            ]
+          },
+          "maxItems": 3,
+          "minItems": 1
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Condition"
+          },
+          "maxItems": 20
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "internalCooldown": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Action"
+          },
+          "maxItems": 30
+        },
+        "quest": {
+          "type": "object",
+          "properties": {
+            "required": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "scope": {
+              "enum": [
+                "combat",
+                "day",
+                "run"
+              ]
+            },
+            "repeatable": {
+              "type": "boolean"
+            },
+            "overflow": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "required",
+            "scope"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "trigger",
+        "locations",
+        "actions"
+      ],
+      "additionalProperties": false
+    },
+    "Aura": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "locations": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "board",
+              "stash",
+              "skills"
+            ]
+          },
+          "maxItems": 3
+        },
+        "target": {
+          "$ref": "#/$defs/Selector"
+        },
+        "attribute": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "op": {
+          "enum": [
+            "add",
+            "percent",
+            "multiply",
+            "set",
+            "min",
+            "max"
+          ]
+        },
+        "value": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Condition"
+          },
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "id",
+        "locations",
+        "target",
+        "attribute",
+        "op",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "Enchantment": {
+      "type": "object",
+      "properties": {
+        "attributes": {
+          "$ref": "#/$defs/Numbers"
+        },
+        "abilities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ability"
+          },
+          "maxItems": 30
+        },
+        "auras": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Aura"
+          },
+          "maxItems": 30
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 50
+        },
+        "protections": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 20
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "Definition": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "pool": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "kind": {
+          "enum": [
+            "item",
+            "skill"
+          ]
+        },
+        "size": {
+          "enum": [
+            1,
+            2,
+            3
+          ]
+        },
+        "startingTier": {
+          "enum": [
+            "bronze",
+            "silver",
+            "gold",
+            "diamond",
+            "legendary"
+          ]
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 30
+        },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 60
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 60
+        },
+        "tiers": {
+          "type": "object",
+          "properties": {
+            "bronze": {
+              "$ref": "#/$defs/Numbers"
+            },
+            "silver": {
+              "$ref": "#/$defs/Numbers"
+            },
+            "gold": {
+              "$ref": "#/$defs/Numbers"
+            },
+            "diamond": {
+              "$ref": "#/$defs/Numbers"
+            },
+            "legendary": {
+              "$ref": "#/$defs/Numbers"
+            }
+          },
+          "additionalProperties": false
+        },
+        "abilities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ability"
+          },
+          "maxItems": 30
+        },
+        "auras": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Aura"
+          },
+          "maxItems": 30
+        },
+        "enchantments": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Enchantment"
+          },
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "__proto__",
+                "prototype",
+                "constructor"
+              ]
+            }
+          }
+        },
+        "shop": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "weight": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "minDay": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            }
+          },
+          "required": [
+            "enabled",
+            "weight",
+            "minDay"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "text",
+        "pool",
+        "kind",
+        "size",
+        "startingTier",
+        "types",
+        "capabilities",
+        "references",
+        "tiers",
+        "abilities",
+        "enchantments",
+        "shop"
+      ],
+      "additionalProperties": false
+    },
+    "Instance": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "defId": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "tier": {
+          "enum": [
+            "bronze",
+            "silver",
+            "gold",
+            "diamond",
+            "legendary"
+          ]
+        },
+        "enchantment": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 2000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "enum": [
+            "board",
+            "stash",
+            "skills"
+          ]
+        },
+        "position": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "acquired": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "modifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Modifier"
+          },
+          "maxItems": 1000
+        },
+        "addedTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 50
+        },
+        "counters": {
+          "$ref": "#/$defs/Numbers"
+        },
+        "memory": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Memory"
+          },
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "__proto__",
+                "prototype",
+                "constructor"
+              ]
+            }
+          }
+        },
+        "provenance": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "defId",
+        "tier",
+        "enchantment",
+        "location",
+        "position",
+        "acquired",
+        "modifiers",
+        "addedTypes",
+        "counters",
+        "memory",
+        "provenance"
+      ],
+      "additionalProperties": false
+    },
+    "Snapshot": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "contentVersion": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "id": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "day": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "maxHealth": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000000
+        },
+        "regen": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "capacity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Instance"
+          },
+          "maxItems": 20
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Instance"
+          },
+          "maxItems": 100
+        },
+        "counters": {
+          "$ref": "#/$defs/Numbers"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        }
+      },
+      "required": [
+        "version",
+        "contentVersion",
+        "id",
+        "name",
+        "day",
+        "level",
+        "maxHealth",
+        "regen",
+        "capacity",
+        "items",
+        "skills",
+        "counters",
+        "difficulty"
+      ],
+      "additionalProperties": false
+    },
+    "Reward": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "gold": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "xp": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "health": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "income": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "item": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "skill": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "tier": {
+          "enum": [
+            "bronze",
+            "silver",
+            "gold",
+            "diamond",
+            "legendary"
+          ]
+        },
+        "enchantment": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "target": {
+          "enum": [
+            "upgrade",
+            "enchant",
+            "transform"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "text"
+      ],
+      "additionalProperties": false
+    },
+    "Encounter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "category": {
+          "enum": [
+            "shop",
+            "event",
+            "free"
+          ]
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "minDay": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "maxDay": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "hours": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "maxItems": 6
+        },
+        "exclusion": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "prerequisites": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Condition"
+          },
+          "maxItems": 20
+        },
+        "pool": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "offerCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "rerollCost": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "discount": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "amount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            }
+          },
+          "required": [
+            "type",
+            "amount"
+          ],
+          "additionalProperties": false
+        },
+        "sellBonus": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "rewards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Reward"
+          },
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "text",
+        "category",
+        "weight",
+        "minDay",
+        "maxDay",
+        "hours",
+        "exclusion",
+        "rewards"
+      ],
+      "additionalProperties": false
+    },
+    "Opponent": {
+      "type": "object",
+      "properties": {
+        "snapshot": {
+          "$ref": "#/$defs/Snapshot"
+        },
+        "minDay": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "maxDay": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "category": {
+          "enum": [
+            "monster",
+            "rival"
+          ]
+        },
+        "rewards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Reward"
+          },
+          "maxItems": 20
+        },
+        "drops": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 50
+        }
+      },
+      "required": [
+        "snapshot",
+        "minDay",
+        "maxDay",
+        "category",
+        "rewards",
+        "drops"
+      ],
+      "additionalProperties": false
+    },
+    "Event": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "kind": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "sourceId": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "ownerId": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 100
+        },
+        "parent": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "batch": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "depth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "payload": {
+          "$ref": "#/$defs/Payload"
+        },
+        "hash": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "id",
+        "time",
+        "kind",
+        "sourceId",
+        "ownerId",
+        "targets",
+        "parent",
+        "batch",
+        "depth",
+        "payload",
+        "hash"
+      ],
+      "additionalProperties": false
+    },
+    "Fighter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "maxHealth": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "health": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "shield": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "burn": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "poison": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "regen": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "meters": {
+          "$ref": "#/$defs/Numbers"
+        },
+        "counters": {
+          "$ref": "#/$defs/Numbers"
+        },
+        "capacity": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "slots": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "__proto__",
+                "prototype",
+                "constructor"
+              ]
+            }
+          }
+        },
+        "modifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Modifier"
+          },
+          "maxItems": 1000
+        },
+        "baseMaxHealth": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "maxHealth",
+        "health",
+        "shield",
+        "burn",
+        "poison",
+        "regen",
+        "meters",
+        "counters",
+        "capacity",
+        "slots",
+        "modifiers",
+        "baseMaxHealth"
+      ],
+      "additionalProperties": false
+    },
+    "Offer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "defId": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "tier": {
+          "enum": [
+            "bronze",
+            "silver",
+            "gold",
+            "diamond",
+            "legendary"
+          ]
+        },
+        "enchantment": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 2000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "price": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "sold": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "defId",
+        "tier",
+        "enchantment",
+        "price",
+        "sold"
+      ],
+      "additionalProperties": false
+    },
+    "Choice": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "rewards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Reward"
+          },
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "reason",
+        "rewards"
+      ],
+      "additionalProperties": false
+    },
+    "Entity": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "defId": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "tier": {
+          "enum": [
+            "bronze",
+            "silver",
+            "gold",
+            "diamond",
+            "legendary"
+          ]
+        },
+        "enchantment": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 2000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "enum": [
+            "board",
+            "stash",
+            "skills"
+          ]
+        },
+        "position": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "acquired": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "modifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Modifier"
+          },
+          "maxItems": 1000
+        },
+        "addedTypes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 50
+        },
+        "counters": {
+          "$ref": "#/$defs/Numbers"
+        },
+        "memory": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Memory"
+          },
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "__proto__",
+                "prototype",
+                "constructor"
+              ]
+            }
+          }
+        },
+        "provenance": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "owner": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "progress": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "ammo": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "destroyed": {
+          "type": "boolean"
+        },
+        "flying": {
+          "type": "boolean"
+        },
+        "statuses": {
+          "$ref": "#/$defs/Numbers"
+        },
+        "runtime": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Modifier"
+          },
+          "maxItems": 1000
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        }
+      },
+      "required": [
+        "id",
+        "defId",
+        "tier",
+        "enchantment",
+        "location",
+        "position",
+        "acquired",
+        "modifiers",
+        "addedTypes",
+        "counters",
+        "memory",
+        "provenance",
+        "owner",
+        "progress",
+        "ammo",
+        "destroyed",
+        "flying",
+        "statuses",
+        "runtime",
+        "generation"
+      ],
+      "additionalProperties": false
+    },
+    "Task": {
+      "type": "object",
+      "properties": {
+        "seq": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "phase": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "owner": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "position": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "sourceId": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "kind": {
+          "enum": [
+            "signal",
+            "ability",
+            "questReward",
+            "cast",
+            "tick",
+            "death"
+          ]
+        },
+        "parent": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "batch": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "depth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "event": {
+          "$ref": "#/$defs/Event"
+        },
+        "ability": {
+          "$ref": "#/$defs/Ability"
+        },
+        "cast": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "totalCasts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "forced": {
+          "type": "boolean"
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "tick": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      },
+      "required": [
+        "seq",
+        "time",
+        "phase",
+        "priority",
+        "owner",
+        "position",
+        "sourceId",
+        "kind",
+        "parent",
+        "batch",
+        "depth"
+      ],
+      "additionalProperties": false
+    },
+    "CombatState": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "contentVersion": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "seed": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "time": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "players": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Fighter"
+          },
+          "maxItems": 2
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Entity"
+          },
+          "maxItems": 240
+        },
+        "rng": {
+          "$ref": "#/$defs/Numbers"
+        },
+        "queue": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Task"
+          },
+          "maxItems": 20000
+        },
+        "nextSeq": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "nextEvent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "outcome": {
+          "enum": [
+            "ongoing",
+            "p0",
+            "p1",
+            "draw",
+            "error"
+          ]
+        },
+        "error": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 2000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stormStart": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "processed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "persistent": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "owner": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "targetId": {
+                "type": "string",
+                "maxLength": 2000
+              },
+              "action": {
+                "$ref": "#/$defs/Action"
+              },
+              "amount": {
+                "type": "integer",
+                "minimum": -100000000,
+                "maximum": 100000000
+              }
+            },
+            "required": [
+              "owner",
+              "targetId",
+              "action",
+              "amount"
+            ],
+            "additionalProperties": false
+          },
+          "maxItems": 10000
+        }
+      },
+      "required": [
+        "version",
+        "contentVersion",
+        "seed",
+        "time",
+        "players",
+        "entities",
+        "rng",
+        "queue",
+        "nextSeq",
+        "nextEvent",
+        "outcome",
+        "error",
+        "stormStart",
+        "processed",
+        "persistent"
+      ],
+      "additionalProperties": false
+    },
+    "Command": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "type": {
+              "const": "start"
+            },
+            "choice": {
+              "type": "string",
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "version",
+            "revision",
+            "type",
+            "choice"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "type": {
+              "const": "select"
+            },
+            "id": {
+              "type": "string",
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "version",
+            "revision",
+            "type",
+            "id"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "type": {
+              "const": "buy"
+            },
+            "offer": {
+              "type": "string",
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "version",
+            "revision",
+            "type",
+            "offer"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "type": {
+              "const": "sell"
+            },
+            "item": {
+              "type": "string",
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "version",
+            "revision",
+            "type",
+            "item"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "type": {
+              "const": "move"
+            },
+            "item": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "location": {
+              "enum": [
+                "board",
+                "stash"
+              ]
+            },
+            "position": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9
+            }
+          },
+          "required": [
+            "version",
+            "revision",
+            "type",
+            "item",
+            "location",
+            "position"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "type": {
+              "const": "reroll"
+            }
+          },
+          "required": [
+            "version",
+            "revision",
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "type": {
+              "const": "leave"
+            }
+          },
+          "required": [
+            "version",
+            "revision",
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "type": {
+              "const": "fight"
+            }
+          },
+          "required": [
+            "version",
+            "revision",
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "type": {
+              "const": "continue"
+            }
+          },
+          "required": [
+            "version",
+            "revision",
+            "type"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "revision": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "type": {
+              "const": "choose"
+            },
+            "choice": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "target": {
+              "type": "string",
+              "maxLength": 2000
+            }
+          },
+          "required": [
+            "version",
+            "revision",
+            "type",
+            "choice"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "Run": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "contentVersion": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "seed": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "rng": {
+          "$ref": "#/$defs/Numbers"
+        },
+        "day": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "hour": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "wins": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "prestige": {
+          "type": "integer",
+          "minimum": -100000000,
+          "maximum": 100000000
+        },
+        "lastChanceUsed": {
+          "type": "boolean"
+        },
+        "gold": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "income": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "xp": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "maxHealth": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "regen": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "capacity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Instance"
+          },
+          "maxItems": 20
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Instance"
+          },
+          "maxItems": 100
+        },
+        "nextId": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        },
+        "counters": {
+          "$ref": "#/$defs/Numbers"
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 10000
+        },
+        "dayHistory": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 100
+        },
+        "phase": {
+          "enum": [
+            "start",
+            "encounter",
+            "shop",
+            "choice",
+            "combat",
+            "result",
+            "victory",
+            "defeat"
+          ]
+        },
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "maxItems": 10
+        },
+        "selected": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 2000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "offers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Offer"
+          },
+          "maxItems": 20
+        },
+        "pending": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Choice"
+          },
+          "maxItems": 100
+        },
+        "afterChoices": {
+          "enum": [
+            "advance",
+            "encounter",
+            "terminal",
+            "completeHour",
+            "shop"
+          ]
+        },
+        "activeOpponent": {
+          "anyOf": [
+            {
+              "type": "string",
+              "maxLength": 2000
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "battle": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "outcome": {
+                  "enum": [
+                    "ongoing",
+                    "p0",
+                    "p1",
+                    "draw",
+                    "error"
+                  ]
+                },
+                "finalHash": {
+                  "type": "string",
+                  "maxLength": 2000
+                },
+                "seed": {
+                  "type": "string",
+                  "maxLength": 2000
+                }
+              },
+              "required": [
+                "outcome",
+                "finalHash",
+                "seed"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "log": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Event"
+          },
+          "maxItems": 100000
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Command"
+          },
+          "maxItems": 20000
+        },
+        "nextEvent": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100000000
+        }
+      },
+      "required": [
+        "version",
+        "contentVersion",
+        "seed",
+        "revision",
+        "rng",
+        "day",
+        "hour",
+        "wins",
+        "prestige",
+        "lastChanceUsed",
+        "gold",
+        "income",
+        "xp",
+        "level",
+        "maxHealth",
+        "regen",
+        "capacity",
+        "items",
+        "skills",
+        "nextId",
+        "counters",
+        "history",
+        "dayHistory",
+        "phase",
+        "candidates",
+        "selected",
+        "offers",
+        "pending",
+        "afterChoices",
+        "activeOpponent",
+        "battle",
+        "log",
+        "commands",
+        "nextEvent"
+      ],
+      "additionalProperties": false
+    },
+    "Content": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "contentVersion": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "rules": {
+          "type": "object",
+          "properties": {
+            "minCooldown": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "multicastInterval": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "healCleansePercent": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "stormStart": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "stormInterval": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "stormBase": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "stormStep": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "stormCap": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "timeout": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "maxDepth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "maxEvents": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "maxEventsPerTime": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "wins": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "prestige": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "xpPerLevel": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "hourXp": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "startingGold": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "startingIncome": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "startingHealth": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "healthPerLevel": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "startingCapacity": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "stashCapacity": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "lastChancePrestige": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "prestigeLossBase": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "prestigeLossCap": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "shopSilverDay": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "shopSilverThreshold": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "shopGoldDay": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "shopGoldThreshold": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "shopEnchantChance": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "shopEnchantPremium": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "dropCash": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "fallbackCash": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000000
+            },
+            "stormMitigation": {
+              "enum": [
+                "bypass",
+                "shield"
+              ]
+            },
+            "timeoutPolicy": {
+              "enum": [
+                "draw",
+                "highestHealth"
+              ]
+            }
+          },
+          "required": [
+            "minCooldown",
+            "multicastInterval",
+            "healCleansePercent",
+            "stormStart",
+            "stormInterval",
+            "stormBase",
+            "stormStep",
+            "stormCap",
+            "timeout",
+            "maxDepth",
+            "maxEvents",
+            "maxEventsPerTime",
+            "wins",
+            "prestige",
+            "xpPerLevel",
+            "hourXp",
+            "startingGold",
+            "startingIncome",
+            "startingHealth",
+            "healthPerLevel",
+            "startingCapacity",
+            "stashCapacity",
+            "lastChancePrestige",
+            "prestigeLossBase",
+            "prestigeLossCap",
+            "shopSilverDay",
+            "shopSilverThreshold",
+            "shopGoldDay",
+            "shopGoldThreshold",
+            "shopEnchantChance",
+            "shopEnchantPremium",
+            "dropCash",
+            "fallbackCash",
+            "stormMitigation",
+            "timeoutPolicy"
+          ],
+          "additionalProperties": false
+        },
+        "definitions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Definition"
+          },
+          "maxItems": 1000
+        },
+        "pools": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 2000
+            },
+            "maxItems": 1000
+          },
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "__proto__",
+                "prototype",
+                "constructor"
+              ]
+            }
+          }
+        },
+        "encounters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Encounter"
+          },
+          "maxItems": 1000
+        },
+        "opponents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Opponent"
+          },
+          "maxItems": 1000
+        },
+        "starts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Reward"
+          },
+          "maxItems": 10
+        },
+        "levels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/Reward"
+            },
+            "maxItems": 20
+          },
+          "propertyNames": {
+            "not": {
+              "enum": [
+                "__proto__",
+                "prototype",
+                "constructor"
+              ]
+            }
+          }
+        },
+        "lastChance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Reward"
+          },
+          "maxItems": 10
+        }
+      },
+      "required": [
+        "version",
+        "contentVersion",
+        "rules",
+        "definitions",
+        "pools",
+        "encounters",
+        "opponents",
+        "starts",
+        "levels",
+        "lastChance"
+      ],
+      "additionalProperties": false
+    },
+    "Replay": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "contentVersion": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "seed": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "initial": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Snapshot"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Command"
+          },
+          "maxItems": 20000
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Event"
+          },
+          "maxItems": 100000
+        },
+        "finalHash": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "digest": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "final": {
+          "$ref": "#/$defs/CombatState"
+        }
+      },
+      "required": [
+        "version",
+        "contentVersion",
+        "seed",
+        "initial",
+        "commands",
+        "events",
+        "finalHash",
+        "digest",
+        "final"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$ref": "#/$defs/Run"
+}
