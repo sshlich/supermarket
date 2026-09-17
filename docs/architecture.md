@@ -3,8 +3,12 @@
 ## Boundaries
 
 ```text
-src/main.ts                  DOM menus, local storage, import/export, replay cursor
-src/board.ts                 Phaser scene: board drawing and pointer selection
+src/main.ts                  DOM board/stash, menus, details, inspector, replay cursor
+src/drag.ts                  pointer gestures, footprint/recipient previews, cancellation
+src/interactions.ts          drop validation and staged serializable commands
+src/descriptions.ts          calculated descriptions and contributing attribute discovery
+src/art.ts                   original atlas mapping; presentation only
+src/board.ts                 Phaser scene: combat particles and floating values
         │ validated JSON command
         ▼
 packages/sim/src/run.ts      pure run reducer and choice-boundary persistence
@@ -68,3 +72,13 @@ Every golden file embeds its immutable fixture content/version/hash plus a versi
 Run saves use a versioned envelope and a checksum over state, including commands and lifecycle events. Each noncombat choice is a safe persistence boundary. A result stores its winner/hash/seed and resumes reward resolution without fighting again; a full inspector transcript is a separate replay export. Oversized imports and incompatible content versions are rejected. Formats currently reject incompatible versions; migration logic will be added when a second format exists.
 
 Frames are optional client convenience snapshots captured after events. They are excluded from the replay format and hashes; importing a replay regenerates them. Local storage, files, browser clocks, playback interpolation and Phaser objects all remain in the client. A future server or Colyseus adapter can invoke the same command API, but no networking has been added.
+
+## Client interaction and inspection
+
+Items have no selection mode. Pointer capture tracks one drag gesture, with a grabbed-slot offset for multi-slot items. Geometry previews reuse the simulation's placement and upgrade rules. The gesture stores the starting revision and cancels if the scene changes; Escape, right-click, pointer cancellation, lost capture and window blur also cancel. Reward and duplicate recipients come from the run's actual eligibility helpers.
+
+`commitDrop` stages buy/reward acquisition followed by precise placement on owned state copies. The live run is replaced only when all commands succeed, so a lifecycle trigger that fills the requested space cannot leave a partially committed purchase. Rearrangement undo dispatches inverse move commands; it cannot rewind purchases, sales, rewards or RNG. The command/replay formats remain unchanged.
+
+The detailed item view uses the simulation's attribute and expression evaluators, including attributes introduced only by auras or enchantments. Event/target-dependent values remain symbolic until their event supplies the operands. The simulator's per-event calculation trace is authoritative for resolved effects. Readable descriptions supplement the original ability JSON and counters.
+
+The inspector docks beside the battle. Filter inputs and the transcript rows stay mounted during playback; only the current row and event details change. Manual transcript scrolling turns off following, and source names, IDs and payload explanations are searchable. Modal inspection and menus pause presentation time. Practice/replay state is explicitly cleared when a real run is loaded or resumed; practice displays its own snapshot skills/capacity and never persists mutations to the run.

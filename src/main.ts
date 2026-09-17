@@ -33,7 +33,7 @@ import type {
 import { art, icon } from './art';
 import { mountEffects } from './board';
 import { installDragging } from './drag';
-import { enchantmentLines } from './descriptions';
+import { abilityDescription, enchantmentLines, inspectedAttributes, statName } from './descriptions';
 import {
   commitDrop,
   dragItem,
@@ -59,9 +59,14 @@ let practice = false,
 let imported: Snapshot | undefined,
   filter = '',
   inspected: string | undefined,
-  resumeAfterInspect = false;
+  resumeAfterInspect = false,
+  resumeAfterMenu = false;
 let undo: InputCommand[] = [],
   toastTimer: ReturnType<typeof setTimeout> | undefined;
+let listedBattle: CombatResult | undefined,
+  listedFilter = '',
+  highlightedEvent: HTMLElement | undefined;
+const inspectorRows = new Map<number, HTMLElement>();
 const app = document.querySelector<HTMLDivElement>('#app')!;
 const $ = (id: string) => document.getElementById(id)!;
 const esc = (value: unknown) =>
@@ -99,9 +104,29 @@ app.innerHTML = `
   <dialog id="item-dialog" aria-labelledby="detail-name"><button class="dialog-close icon-button" data-action="close-detail" aria-label="Close item details">${icon('close')}</button><div id="item-detail"></div></dialog>
   <dialog id="menu-dialog" aria-labelledby="menu-title"><button class="dialog-close icon-button" data-action="close-menu" aria-label="Close menu">${icon('close')}</button><span class="eyebrow">YOUR EVENING</span><h2 id="menu-title">A moment at the stall</h2><p>Every decision is saved on this device.</p><div class="menu-grid"><button data-action="save">Save now</button><button data-action="resume">Resume saved run</button><button data-action="export-save">Export save</button><button data-action="export-snapshot">Export build</button><button data-action="import">Import JSON</button><button data-action="new">New run</button></div><div class="control-guide"><b>Make yourself at home</b><p>Drag objects to move, buy, upgrade or sell. Right-click any object for its detailed view. Escape cancels a drag or closes a window. Ctrl+Z undoes rearrangements. Space pauses combat.</p></div><p class="muted">Original content · local deterministic simulation</p></dialog>
   <dialog id="new-dialog" aria-labelledby="new-title"><span class="eyebrow">ANOTHER EVENING</span><h2 id="new-title">Start a new run?</h2><p>This replaces the local autosave. Export your current run first if you want to keep it.</p><label>Run seed<input id="seed" value="lantern-47" maxlength="80"></label><div class="dialog-actions"><button data-action="cancel-new">Keep playing</button><button data-action="begin" class="primary">Begin evening</button></div></dialog>
-  <aside id="inspector" hidden aria-label="Battle inspector"><div class="inspector-head"><span class="eyebrow">BATTLE INSPECTOR</span><button class="icon-button" data-action="inspector" aria-label="Close battle inspector">${icon('close')}</button></div><h2>Cause & effect</h2><label>Find an event<input id="event-filter" placeholder="damage, ammo, failed…"></label><div class="inspector-actions"><button data-action="export-replay">Export replay</button><button data-action="verify">Verify replay</button></div><div id="event-detail"></div><div id="event-list"></div></aside>
+  <aside id="inspector" hidden aria-label="Battle inspector"><div class="inspector-head"><span class="eyebrow">BATTLE INSPECTOR</span><button class="icon-button" data-action="inspector" aria-label="Close battle inspector">${icon('close')}</button></div><h2>Cause & effect</h2><label>Find an event<input id="event-filter" placeholder="Item name, damage, failed…"></label><div class="inspector-actions"><button data-action="export-replay">Export replay</button><button data-action="verify">Verify replay</button></div><div id="event-detail" tabindex="0" aria-label="Current event details"></div><div class="event-list-heading"><span id="event-count"></span><label><input id="follow-events" type="checkbox" checked> Follow playback</label></div><div id="event-list" tabindex="0" aria-label="Combat event transcript"></div></aside>
   <input type="file" id="import-file" accept=".json,application/json" hidden>`;
 const effects = mountEffects();
+function setInspector(open: boolean) {
+  $('inspector').hidden = !open;
+  app.classList.toggle('inspector-open', open);
+  const button = app.querySelector<HTMLButtonElement>('.playback-secondary [data-action="inspector"]')!;
+  button.setAttribute('aria-expanded', String(open));
+  button.setAttribute('aria-controls', 'inspector');
+  if (open) renderEvents();
+}
+function clearBattle() {
+  battle = undefined;
+  initialFrame = undefined;
+  practice = false;
+  playing = false;
+  resumeAfterMenu = false;
+  resumeAfterInspect = false;
+  listedBattle = undefined;
+  inspectorRows.clear();
+  setInspector(false);
+  effects.clear();
+}
 function notify(message: string, error = false): void {
   if (!message) return;
   clearTimeout(toastTimer);
@@ -126,6 +151,7 @@ function autoSave(): boolean {
   }
 }
 function setupBattle(result: CombatResult, isPractice = false) {
+  clearBattle();
   battle = result;
   practice = isPractice;
   cursor = -1;
@@ -141,10 +167,7 @@ function accept(result: Transition, command?: InputCommand) {
   run = result.state;
   if (result.combat) setupBattle(result.combat);
   else if (command?.type === 'continue') {
-    battle = undefined;
-    playing = false;
-    $('inspector').hidden = true;
-    effects.clear();
+    clearBattle();
   }
   autoSave();
   render();
@@ -169,13 +192,16 @@ function dropped(source: DragSource, destination: Destination) {
         : undefined;
     if (inverse && destination.location === inverse.location && destination.position === inverse.position)
       return;
+    const upgrading = source.kind === 'offer' && item ? upgradeTarget(run, item.defId) : undefined;
     const message =
       source.kind === 'owned'
         ? destination.location === 'sell'
           ? `Sold ${definition(content, item!.defId).name} for ${sellPrice(content, run, item!)} gold.`
           : ''
         : source.kind === 'offer'
-          ? `Collected ${definition(content, item!.defId).name}.`
+          ? upgrading
+            ? `Upgraded ${definition(content, item!.defId).name}.`
+            : `Collected ${definition(content, item!.defId).name}.`
           : 'Reward applied.';
     const result = commitDrop(content, run, source, destination);
     if (inverse) undo.push(inverse);
@@ -262,8 +288,9 @@ function renderHeader() {
 }
 function vitals(player?: CombatFrame['players'][number]): string {
   const current = Math.max(0, player?.health ?? run.maxHealth),
-    max = player?.maxHealth ?? run.maxHealth;
-  return `<div class="vital-heading"><strong>${player?.id === 'p1' ? esc(player.name) : 'Your caravan'}</strong><span>${icon('heart')} <b>${current}</b> / ${max}</span>${player?.id === 'p1' ? '' : `<span class="level-badge">Lv ${run.level}<small>${run.xp}/${content.rules.xpPerLevel} XP</small></span>`}</div><div class="health-track"><i style="width:${Math.min(100, (current / max) * 100)}%"></i></div><div class="vital-bottom">${
+    max = player?.maxHealth ?? run.maxHealth,
+    level = player && battle ? battle.replay.initial[0].level : run.level;
+  return `<div class="vital-heading"><strong>${player?.id === 'p1' ? esc(player.name) : 'Your caravan'}</strong><span>${icon('heart')} <b>${current}</b> / ${max}</span>${player?.id === 'p1' ? '' : `<span class="level-badge">Lv ${level}<small>${practice && battle ? 'Replay build' : `${run.xp}/${content.rules.xpPerLevel} XP`}</small></span>`}</div><div class="health-track"><i style="width:${Math.min(100, (current / max) * 100)}%"></i></div><div class="vital-bottom">${
     player
       ? ['shield', 'burn', 'poison', 'regen']
           .filter((k) => player[k as 'shield'] > 0)
@@ -277,17 +304,19 @@ function renderTable() {
   const state = context(),
     f = frame();
   $('player-vitals').innerHTML = vitals(f?.players[0]);
-  $('capacity').textContent = `${run.capacity} slots`;
-  $('board-instruction').textContent = battle
-    ? 'Board locked · Right-click any item for details'
-    : 'Drag to arrange · Right-click for details';
-  $('undo').hidden = !!battle;
+  $('capacity').textContent = `${f?.players[0].capacity ?? run.capacity} slots`;
+  $('board-instruction').textContent = canArrange()
+    ? 'Drag to arrange · Right-click for details'
+    : battle
+      ? 'Board locked · Right-click any item for details'
+      : 'Your final collection · Right-click for details';
+  $('undo').hidden = !canArrange();
   ($('undo') as HTMLButtonElement).disabled = !undo.length;
   $('player-board').innerHTML = tray(
     f
       ? f.entities.filter((e) => e.owner === 'p0' && e.location === 'board')
       : run.items.filter((i) => i.location === 'board'),
-    run.capacity,
+    f?.players[0].capacity ?? run.capacity,
     state,
     f ? 'p0' : undefined,
   );
@@ -299,8 +328,13 @@ function renderTable() {
   $('storage-line').hidden = !!battle;
   $('playback').hidden = !battle;
   $('sell-zone').classList.toggle('unavailable', !canArrange());
+  const skills = f ? f.entities.filter((e) => e.owner === 'p0' && e.location === 'skills') : run.skills;
   $('skills').innerHTML =
-    `<span class="skills-label">SKILLS</span>${run.skills.length ? run.skills.map((i) => `<div class="skill-medallion tier-${i.tier}" tabindex="0" role="img" data-inspect="skill:${i.id}" aria-label="${esc(definition(content, i.defId).name)}. Right-click for details.">${art(i.defId)}</div>`).join('') : '<small>Discover your first skill</small>'}`;
+    `<span class="skills-label">SKILLS</span>${skills.length ? skills.map((i) => skillBadge(i, f ? `combat:${i.id}` : `skill:${i.id}`)).join('') : '<small>Discover your first skill</small>'}`;
+}
+function skillBadge(item: Instance, key: string) {
+  const name = definition(content, item.defId).name;
+  return `<div class="skill-medallion tier-${item.tier}" tabindex="0" role="img" data-inspect="${esc(key)}" title="${esc(name)} · ${item.tier} · Right-click for details" aria-label="${esc(name)}. Right-click for details.">${art(item.defId)}</div>`;
 }
 function choiceArt(id: string) {
   return `<div class="choice-art">${art(id)}</div>`;
@@ -331,7 +365,10 @@ function renderStage() {
   if (battle) {
     const f = frame()!,
       state = context();
-    stage.innerHTML = `<div class="battle-stage"><div class="opponent-vitals" id="opponent-vitals" data-entity="p1">${vitals(f.players[1])}</div><div id="opponent-board" class="item-tray enemy-tray">${tray(
+    stage.innerHTML = `<div class="battle-stage"><div class="battle-identity"><div class="opponent-vitals" id="opponent-vitals" data-entity="p1">${vitals(f.players[1])}</div><div class="opponent-battle-skills" aria-label="Opponent skills">${f.entities
+      .filter((e) => e.owner === 'p1' && e.location === 'skills')
+      .map((i) => skillBadge(i, `combat:${i.id}`))
+      .join('')}</div></div><div id="opponent-board" class="item-tray enemy-tray">${tray(
       f.entities.filter((e) => e.owner === 'p1' && e.location === 'board'),
       f.players[1].capacity,
       state,
@@ -433,13 +470,7 @@ function inspect(key: string) {
     def = definition(content, item.defId),
     ctx = { content, state, source: entity },
     tags = traits(content, entity);
-  const keys = [
-    ...new Set([
-      ...Object.keys(def.tiers[item.tier] ?? {}),
-      ...entity.modifiers.map((m) => m.attribute),
-      ...entity.runtime.map((m) => m.attribute),
-    ]),
-  ].filter((k) => !['buy', 'sell'].includes(k));
+  const keys = inspectedAttributes(ctx);
   const upgrade = kind === 'offer' ? upgradeTarget(run, item.defId) : undefined;
   let comparison = '';
   if (upgrade && run.gold >= (run.offers.find((o) => o.id === id)?.price ?? Infinity)) {
@@ -478,10 +509,19 @@ function inspect(key: string) {
     )
     .join('')}${comparison}`;
   $('item-detail').innerHTML =
-    `<div class="detail-hero tier-${item.tier}">${art(item.defId)}<div><span class="eyebrow">${item.tier.toUpperCase()} ${def.kind.toUpperCase()} ${def.kind === 'item' ? `· ${def.size} SLOT${def.size > 1 ? 'S' : ''}` : ''}</span><h1 id="detail-name">${esc(def.name)}</h1><div class="detail-types">${tags.types.map((t) => `<span>${esc(t)}</span>`).join('')}</div>${item.enchantment ? `<div class="enchantment-label">✦ ${esc(item.enchantment)} enchanted</div>` : ''}</div></div><p class="detail-description">${esc(def.text)}</p>${extraDetails}${upgrade ? `<div class="detail-note">Buying this upgrades your ${upgrade.tier} copy in ${upgrade.location} slot ${upgrade.position + 1}.${item.enchantment ? ` Its enchantment becomes ${esc(item.enchantment)}.` : ''} Drag onto that copy to purchase.</div>` : ''}${kind === 'owned' ? `<div class="detail-note">${item.location === 'stash' ? 'In your stash. Only explicitly stash-enabled abilities apply.' : 'On your active board.'} Sell value: ${sellPrice(content, run, item)} gold.</div>` : ''}<div class="detail-stats">${keys
+    `<div class="detail-hero tier-${item.tier}">${art(item.defId)}<div><span class="eyebrow">${item.tier.toUpperCase()} ${def.kind.toUpperCase()} ${def.kind === 'item' ? `· ${def.size} SLOT${def.size > 1 ? 'S' : ''}` : ''}</span><h1 id="detail-name">${esc(def.name)}</h1><div class="detail-types">${tags.types.map((t) => `<span>${esc(t)}</span>`).join('')}</div>${item.enchantment ? `<div class="enchantment-label">✦ ${esc(item.enchantment)} enchanted</div>` : ''}</div></div>${
+      def.abilities.length
+        ? `<div class="detail-abilities">${def.abilities
+            .map((a) => {
+              const d = abilityDescription(ctx, a);
+              return `<section><h3>${esc(d.title)}</h3><p>${esc(d.text)}</p><small>${esc(d.notes)}</small></section>`;
+            })
+            .join('')}</div>`
+        : `<p class="detail-description">${esc(def.text)}</p>`
+    }${extraDetails}${upgrade ? `<div class="detail-note">Buying this upgrades your ${upgrade.tier} copy in ${upgrade.location} slot ${upgrade.position + 1}.${item.enchantment ? ` Its enchantment becomes ${esc(item.enchantment)}.` : ''} Drag onto that copy to purchase.</div>` : ''}${kind === 'owned' ? `<div class="detail-note">${item.location === 'stash' ? 'In your stash. Only explicitly stash-enabled abilities apply.' : 'On your active board.'} Sell value: ${sellPrice(content, run, item)} gold.</div>` : ''}<p class="stat-help">Calculated values · expand a value to see its modifiers</p><div class="detail-stats">${keys
       .map((key) => {
         const v = attribute(ctx, entity, key);
-        return `<details><summary><span>${icon(statIcon[key] ?? 'star')} ${esc(key)}</span><b>${fmt(key, v.value)}</b></summary><div class="calculation">Base ${v.base}${v.steps.map((s) => `<p>${esc(s.layer)} · ${esc(s.source)}<br>${s.op} ${s.amount}: ${s.before} → ${s.after}</p>`).join('') || '<p>No additional modifiers.</p>'}</div></details>`;
+        return `<details data-attribute="${esc(key)}"><summary><span>${icon(statIcon[key] ?? 'star')} ${esc(statName(key))}</span><b>${fmt(key, v.value)}</b></summary><div class="calculation">Base ${fmt(key, v.base)}${v.steps.map((s) => `<p>${esc(s.layer)} · ${esc(entityName(s.source, state))}<br>${s.op === 'multiply' ? `×${s.amount / 10000}` : s.op === 'percent' ? `${s.amount / 100}% modifier` : `${s.op} ${fmt(key, s.amount)}`}: ${fmt(key, s.before)} → ${fmt(key, s.after)}</p>`).join('') || '<p>No additional modifiers.</p>'}</div></details>`;
       })
       .join(
         '',
@@ -581,8 +621,19 @@ function updateCharge() {
       e.destroyed || (e.statuses.freeze ?? 0) > playTime
         ? 0
         : ((e.statuses.haste ?? 0) > playTime ? 4 : 2) / ((e.statuses.slow ?? 0) > playTime ? 2 : 1);
-    bar.style.transform = `scaleX(${cooldown ? Math.min(1, (e.progress + dt * rate) / (cooldown * 2)) : 0})`;
+    const progress = cooldown ? Math.min(1, (e.progress + dt * rate) / (cooldown * 2)) : 0;
+    bar.style.transform = `scaleX(${progress})`;
     bar.classList.toggle('empty', e.ammo === 0);
+    if (e.ammo === 0) {
+      const badge = el.querySelector<HTMLElement>('.ammo');
+      if (badge) {
+        badge.textContent = progress >= 1 ? 'EMPTY · READY' : 'EMPTY';
+        badge.title =
+          progress >= 1
+            ? 'Fully charged. Gaining Ammo makes this item eligible immediately.'
+            : 'Out of Ammo; cooldown is still charging.';
+      }
+    }
   }
 }
 function animateEvents(events: SimEvent[]) {
@@ -643,30 +694,61 @@ function seek(time: number) {
   updateCharge();
   updatePlayback();
 }
+function entityName(id: string, state: Pick<CombatState, 'entities' | 'players'> = context()): string {
+  const entity = state.entities.find((e) => e.id === id);
+  return entity
+    ? definition(content, entity.defId).name
+    : (state.players.find((p) => p.id === id)?.name ?? id);
+}
 function renderEvents() {
   if (!battle) return;
   const event = battle.replay.events[cursor];
   $('event-detail').innerHTML = event
-    ? `<div class="event-current"><span class="eyebrow">#${event.id} · ${event.time} ms · depth ${event.depth}</span><h3>${esc(event.kind)}</h3><p>Source: ${esc(event.sourceId)}<br>Owner: ${esc(event.ownerId)}<br>Targets: ${esc(event.targets.join(', ')) || 'none'}</p><p>Parent: ${event.parent ? `<button data-action="event-id" data-id="${event.parent}">#${event.parent}</button>` : 'root'} · Batch ${event.batch ?? 'none'}</p><p>Children: ${
+    ? `<div class="event-current"><span class="eyebrow">#${event.id} · ${event.time} ms · depth ${event.depth}</span><h3>${esc(event.kind)}</h3>${event.payload.reason ? `<p class="event-reason">${esc(event.payload.reason)}</p>` : ''}<p>Source: <b>${esc(entityName(event.sourceId))}</b> <small>${esc(event.sourceId)}</small><br>Owner: ${esc(event.ownerId)}<br>Targets: ${event.targets.map((id) => `${esc(entityName(id))} <small>${esc(id)}</small>`).join(', ') || 'none'}</p><p>Parent: ${event.parent ? `<button data-action="event-id" data-id="${event.parent}">#${event.parent}</button>` : 'root'} · Batch ${event.batch ?? 'none'}</p><p>Children: ${
         battle.replay.events
           .filter((e) => e.parent === event.id)
           .map((e) => `<button data-action="event-id" data-id="${e.id}">#${e.id}</button>`)
           .join(' ') || 'none'
       }</p><pre>${esc(JSON.stringify(event.payload, null, 2))}</pre><small>State hash ${event.hash}</small></div>`
     : '<p>Combat setup. Step an event to begin inspecting.</p>';
-  const all = battle.replay.events
-    .map((e, i) => ({ e, i }))
-    .filter(({ e }) => !filter || `${e.kind} ${e.sourceId}`.includes(filter));
-  const nearest = all.findIndex(({ i }) => i >= cursor),
-    start = Math.max(0, (nearest < 0 ? all.length : nearest) - 4);
-  $('event-list').innerHTML =
-    all
-      .slice(start, start + 45)
-      .map(
+  if (listedBattle !== battle || listedFilter !== filter) {
+    const all = battle.replay.events
+      .map((e, i) => ({ e, i }))
+      .filter(
         ({ e, i }) =>
-          `<button class="event-row ${i === cursor ? 'current' : ''}" data-action="event" data-id="${i}"><span>${(e.time / 1000).toFixed(2)}s · #${e.id}</span><b>${esc(e.kind)}</b><small>${esc(e.sourceId)}</small></button>`,
-      )
-      .join('') || '<p>No matching events.</p>';
+          !filter ||
+          `${e.kind} ${e.sourceId} ${entityName(e.sourceId, battle!.frames[i])} ${e.targets.join(' ')} ${JSON.stringify(e.payload)}`
+            .toLowerCase()
+            .includes(filter),
+      );
+    $('event-count').textContent = `${all.length} / ${battle.replay.events.length} events`;
+    $('event-list').innerHTML =
+      all
+        .map(
+          ({ e, i }) =>
+            `<button class="event-row" data-action="event" data-id="${i}"><span>${(e.time / 1000).toFixed(2)}s · #${e.id}</span><b>${esc(e.kind)}</b><small>${esc(entityName(e.sourceId, battle!.frames[i]))} · ${esc(e.sourceId)}</small></button>`,
+        )
+        .join('') || '<p>No matching events.</p>';
+    $('event-list').scrollTop = 0;
+    inspectorRows.clear();
+    $('event-list')
+      .querySelectorAll<HTMLElement>('.event-row')
+      .forEach((el) => inspectorRows.set(Number(el.dataset.id), el));
+    listedBattle = battle;
+    listedFilter = filter;
+  }
+  highlightedEvent?.classList.remove('current');
+  highlightedEvent?.removeAttribute('aria-current');
+  highlightedEvent = inspectorRows.get(cursor);
+  highlightedEvent?.classList.add('current');
+  highlightedEvent?.setAttribute('aria-current', 'true');
+  if (highlightedEvent && ($('follow-events') as HTMLInputElement).checked) {
+    const list = $('event-list'),
+      row = highlightedEvent.getBoundingClientRect(),
+      bounds = list.getBoundingClientRect();
+    if (row.top < bounds.top) list.scrollTop -= bounds.top - row.top;
+    else if (row.bottom > bounds.bottom) list.scrollTop += row.bottom - bounds.bottom;
+  }
 }
 function download(name: string, text: string) {
   const url = URL.createObjectURL(new Blob([text], { type: 'application/json' })),
@@ -678,6 +760,16 @@ function download(name: string, text: string) {
 }
 function closeMenu() {
   ($('menu-dialog') as HTMLDialogElement).close();
+  if (resumeAfterMenu && battle) playing = true;
+  resumeAfterMenu = false;
+  updatePlayback();
+}
+function openMenu() {
+  dragging.cancel();
+  resumeAfterMenu = playing;
+  playing = false;
+  updatePlayback();
+  ($('menu-dialog') as HTMLDialogElement).showModal();
 }
 app.addEventListener('contextmenu', (event) => {
   const target = (event.target as HTMLElement).closest<HTMLElement>('[data-inspect]');
@@ -701,29 +793,31 @@ app.addEventListener('click', (event) => {
   if (action === 'reroll' || action === 'leave') send({ type: action });
   if (action === 'continue') {
     if (practice) {
-      practice = false;
-      battle = undefined;
-      playing = false;
-      $('inspector').hidden = true;
-      effects.clear();
+      clearBattle();
       render();
     } else send({ type: 'continue' });
   }
   if (action === 'undo') undoMove();
-  if (action === 'menu') ($('menu-dialog') as HTMLDialogElement).showModal();
+  if (action === 'menu') openMenu();
   if (action === 'close-menu') closeMenu();
   if (action === 'new') {
+    const wasPlaying = resumeAfterMenu || playing;
     closeMenu();
+    resumeAfterMenu = wasPlaying;
+    playing = false;
+    updatePlayback();
     ($('new-dialog') as HTMLDialogElement).showModal();
   }
-  if (action === 'cancel-new') ($('new-dialog') as HTMLDialogElement).close();
+  if (action === 'cancel-new') {
+    ($('new-dialog') as HTMLDialogElement).close();
+    if (resumeAfterMenu && battle) playing = true;
+    resumeAfterMenu = false;
+    updatePlayback();
+  }
   if (action === 'begin') {
     run = newRun(content, ($('seed') as HTMLInputElement).value || 'lantern-47');
-    battle = undefined;
-    playing = false;
+    clearBattle();
     undo = [];
-    effects.clear();
-    $('inspector').hidden = true;
     ($('new-dialog') as HTMLDialogElement).close();
     autoSave();
     render();
@@ -736,11 +830,8 @@ app.addEventListener('click', (event) => {
   if (action === 'resume') {
     try {
       run = loadRun(content, localStorage.getItem(storageKey) ?? '');
-      battle = undefined;
-      playing = false;
+      clearBattle();
       undo = [];
-      effects.clear();
-      $('inspector').hidden = true;
       closeMenu();
       render();
       notify('Saved evening resumed.');
@@ -769,8 +860,7 @@ app.addEventListener('click', (event) => {
   if (action === 'finish-playback' && battle) jump(battle.replay.events.length - 1);
   if (action === 'restart-replay') jump(-1);
   if (action === 'inspector' && battle) {
-    $('inspector').hidden = !$('inspector').hidden;
-    if (!$('inspector').hidden) renderEvents();
+    setInspector($('inspector').hidden);
   }
   if (action === 'event') jump(Number(id));
   if (action === 'event-id' && battle) jump(battle.replay.events.findIndex((e) => e.id === Number(id)));
@@ -817,7 +907,15 @@ document.addEventListener('keydown', (event) => {
     event.preventDefault();
     undoMove();
   }
-  if (event.key === 'Escape') $('inspector').hidden = true;
+  if (event.key === 'Escape') setInspector(false);
+});
+$('menu-dialog').addEventListener('cancel', (event) => {
+  event.preventDefault();
+  closeMenu();
+});
+$('new-dialog').addEventListener('cancel', (event) => {
+  event.preventDefault();
+  app.querySelector<HTMLButtonElement>('[data-action="cancel-new"]')!.click();
 });
 $('item-dialog').addEventListener('cancel', (event) => {
   event.preventDefault();
@@ -835,9 +933,17 @@ $('speed').addEventListener('change', () => {
 });
 $('timeline').addEventListener('input', () => seek(Number(($('timeline') as HTMLInputElement).value)));
 $('event-filter').addEventListener('input', () => {
-  filter = ($('event-filter') as HTMLInputElement).value;
+  filter = ($('event-filter') as HTMLInputElement).value.trim().toLowerCase();
   renderEvents();
 });
+$('event-list').addEventListener(
+  'wheel',
+  () => {
+    ($('follow-events') as HTMLInputElement).checked = false;
+  },
+  { passive: true },
+);
+$('follow-events').addEventListener('change', renderEvents);
 $('import-file').addEventListener('change', async (event) => {
   const file = (event.target as HTMLInputElement).files?.[0];
   if (!file) return;
@@ -846,8 +952,7 @@ $('import-file').addEventListener('change', async (event) => {
       data = JSON.parse(text) as Record<string, unknown>;
     if (data.format === 'night-market-save') {
       run = loadRun(content, text);
-      battle = undefined;
-      playing = false;
+      clearBattle();
       undo = [];
       autoSave();
     } else if (data.events) setupBattle(importReplay(content, text)!, true);

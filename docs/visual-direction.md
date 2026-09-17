@@ -18,10 +18,18 @@ Original direction: a hand-painted, lantern-lit curiosity stall. Warm amber and 
 - Right-click an item, skill, reward item or opponent item to open its detailed view. Escape or the close button dismisses it. Shift+F10/Context Menu provide the keyboard equivalent, not a selection mode.
 - Escape, pointer cancellation or loss of focus cancels a drag. Geometry previews and command validation agree. No partial purchase on a failed placement.
 - Undo reverses the last rearrangement through normal move commands; purchases, sales, rewards and encounter changes clear arrangement history. It does not rewind random outcomes.
-- Targeted upgrade/enchantment/Transform rewards are dragged onto eligible owned items.
+- Targeted upgrade/enchantment/Transform rewards are dragged onto eligible owned items, highlighted before release. Their compact drag token keeps the destination visible.
 - The immediate decision, your board and stash remain visible at ordinary desktop sizes. Save/import/export live in a menu.
-- Combat controls remain mounted while events play. Space pauses, the timeline scrubs, and the optional inspector retains focus and filter text. Right-click inspection pauses playback.
+- Combat controls remain mounted while events play. Space pauses, the timeline scrubs, and the optional inspector docks beside both boards without covering controls. Its transcript retains rows, focus, filter text and manual scroll position. Right-click inspection and the run menu pause playback, then restore the prior mode on close.
+- Details show current-tier effect descriptions and attributes contributed by skills/enchantments, with expandable calculation sources. The full structured rule remains available below.
+- Dense skill collections scroll horizontally; replay/practice views show the actual snapshot's skills and capacity. Terminal boards remain inspectable and clearly indicate that arrangement has ended.
 
 ## Verification bar
 
 Browser checks must exercise real pointer drags, cancelled/invalid drops, swaps, purchase placement, duplicate upgrades, selling, right-click details, undo and focused playback controls. Screenshots must be inspected at 1440×900 and 1280×800, not just full-page captures. Existing simulation golden hashes must remain unchanged.
+
+Shop and inspector captures from the browser interaction test at 1280×800:
+
+![A full collection at the market](images/shop.png)
+
+![The docked inspector leaves both boards and playback controls visible](images/inspector.png)

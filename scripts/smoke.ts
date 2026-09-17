@@ -5,9 +5,17 @@ import { mkdir, readdir } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { resolve } from 'node:path';
 import assert from 'node:assert/strict';
-import { content, instance } from '../packages/content';
+import { content, instance, snapshot } from '../packages/content';
+import { simulate } from '../packages/sim/src/combat';
 import { clone, hash } from '../packages/sim/src/determinism';
-import { commandOptions, dispatch, newRun, rewardTargets, saveRun } from '../packages/sim/src/run';
+import {
+  commandOptions,
+  dispatch,
+  newRun,
+  rewardTargets,
+  runSnapshot,
+  saveRun,
+} from '../packages/sim/src/run';
 import type { Run } from '../packages/sim/src/model';
 
 let executablePath = process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH;
@@ -53,25 +61,46 @@ async function point(location: 'board' | 'stash', slot: number) {
   const box = (await page.locator(`[data-drop-location="${location}"]`).boundingBox())!;
   return { x: box.x + (box.width / 10) * (slot + 0.5), y: box.y + box.height / 2 };
 }
-async function drag(source: Locator, target: { x: number; y: number }, cancel = false) {
+async function drag(
+  source: Locator,
+  target: { x: number; y: number },
+  cancel = false,
+  during?: () => Promise<void>,
+) {
   const box = await source.boundingBox();
   assert.ok(box, 'Drag source visible');
   await page.mouse.move(box.x + Math.min(20, box.width / 3), box.y + box.height / 2);
   await page.mouse.down();
   await page.mouse.move(target.x, target.y, { steps: 12 });
+  await during?.();
   if (cancel) await page.keyboard.press('Escape');
   await page.mouse.up();
 }
 async function importRun(run: Run) {
+  await importJSON(saveRun(content, run));
+}
+async function importJSON(json: string) {
   await click('menu');
-  await page
-    .locator('#import-file')
-    .setInputFiles({
-      name: 'fixture.json',
-      mimeType: 'application/json',
-      buffer: Buffer.from(saveRun(content, run)),
-    });
+  await page.locator('#import-file').setInputFiles({
+    name: 'fixture.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(json),
+  });
   await page.waitForFunction(() => !document.querySelector('#menu-dialog[open]'));
+}
+async function battleFitsBesideInspector() {
+  const inspector = (await page.locator('#inspector').boundingBox())!;
+  for (const selector of ['#player-board', '#opponent-board', '#playback', '.top-resources']) {
+    const rect = (await page.locator(selector).boundingBox())!;
+    assert.ok(
+      rect.x >= 0 && rect.x + rect.width <= inspector.x,
+      `${selector} is not covered by the inspector`,
+    );
+    assert.ok(
+      rect.y >= 0 && rect.y + rect.height <= page.viewportSize()!.height,
+      `${selector} fits vertically`,
+    );
+  }
 }
 async function fitsViewport() {
   assert.ok(
@@ -105,6 +134,10 @@ try {
   assert.match(await page.locator('#detail-name').innerText(), /Rivet Lance/);
   await page.keyboard.press('Escape');
   assert.equal(await page.locator('#item-dialog[open]').count(), 0);
+  await owned(first).focus();
+  await page.keyboard.press('Shift+F10');
+  assert.match(await page.locator('#detail-name').innerText(), /Rivet Lance/);
+  await page.keyboard.press('Escape');
   await drag(owned(first), await point('stash', 3));
   assert.equal((await state()).items[0].location, 'stash');
   assert.equal((await state()).items[0].position, 3);
@@ -116,6 +149,16 @@ try {
   await drag(owned(first), await point('board', 9));
   assert.equal(hash(await state()), beforeCancel, 'Invalid drop is harmless');
   assert.equal(await page.locator('.drag-ghost').count(), 0);
+  const cancelledPoint = await point('stash', 4);
+  await drag(owned(first), cancelledPoint, false, async () => {
+    await page.mouse.click(cancelledPoint.x, cancelledPoint.y, { button: 'right' });
+  });
+  assert.equal(
+    hash(await state()),
+    beforeCancel,
+    'Right-click cancels a drag without inspecting or changing the run',
+  );
+  assert.equal(await page.locator('#item-dialog[open]').count(), 0);
   const normal = await state();
 
   // An imported deterministic test save exercises crowded and upgrade cases; the full journey below restores the ordinary run.
@@ -136,6 +179,7 @@ try {
     { id: 'courier', defId: 'paced-courier', tier: 'bronze', enchantment: null, price: 6, sold: false },
   ];
   await importRun(fixture);
+  await page.waitForFunction(() => document.getElementById('notice')!.hidden);
   await fitsViewport();
   await page.screenshot({ path: 'artifacts/redesign-shop.png' });
   await page.setViewportSize({ width: 1280, height: 800 });
@@ -156,7 +200,11 @@ try {
   const beforeBadUpgrade = hash(current);
   await drag(offer('duplicate'), await point('stash', 1));
   assert.equal(hash(await state()), beforeBadUpgrade);
-  await drag(offer('duplicate'), await point('board', 0));
+  await drag(offer('duplicate'), await point('board', 0), false, async () => {
+    assert.equal(await page.locator('.drop-eligible[data-owned-id]').count(), 1);
+    assert.equal(await page.locator('.drop-upgrade[data-owned-id]').count(), 1);
+    await page.screenshot({ path: 'artifacts/redesign-upgrade-drag.png' });
+  });
   current = await state();
   assert.equal(current.items[0].tier, 'silver');
   assert.equal(current.items[0].enchantment, 'cinder');
@@ -188,12 +236,147 @@ try {
     },
   ];
   await importRun(rewardFixture);
-  await drag(page.locator('[data-drag-kind="reward"]'), await point('board', 0));
+  await drag(page.locator('[data-drag-kind="reward"]'), await point('board', 0), false, async () => {
+    assert.equal(await page.locator('.drop-eligible[data-owned-id]').count(), 3);
+    const ghost = (await page.locator('.reward-token').boundingBox())!;
+    assert.ok(ghost.width <= 180 && ghost.height <= 110, 'Reward token leaves the board visible');
+  });
   assert.equal((await state()).items[0].enchantment, 'brisk');
+
+  // A later-run collection exercises small objects, all skills, aura calculations and practice isolation.
+  const crowded = clone(fixture);
+  crowded.capacity = 10;
+  crowded.level = 6;
+  crowded.items = [
+    instance('rivet-lance', 'full-lance', 0, 'silver'),
+    instance('tea-tray', 'full-tea', 2),
+    instance('echo-anvil', 'full-anvil', 4),
+    instance('folding-buckler', 'full-shield', 7),
+    instance('bitter-vial', 'full-vial', 8),
+    instance('spring-magazine', 'full-magazine', 9),
+  ];
+  crowded.skills = content.definitions
+    .filter((d) => d.kind === 'skill')
+    .map((d, i) => instance(d.id, `full-skill-${i}`, i, 'silver', 'skills'));
+  await importRun(crowded);
+  await page.waitForFunction(() => document.getElementById('notice')!.hidden);
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await fitsViewport();
+  await owned('full-lance').click({ button: 'right' });
+  await page.locator('[data-attribute="crit"] summary').click();
+  assert.match(await page.locator('[data-attribute="crit"]').innerText(), /15%/);
+  assert.match(await page.locator('[data-attribute="crit"]').innerText(), /Steady Aim/);
+  await page.screenshot({ path: 'artifacts/redesign-calculated-details.png' });
+  await click('close-detail');
+  await page.screenshot({ path: 'artifacts/redesign-crowded-1280.png' });
+
+  const practiceReplay = simulate(
+    content,
+    [
+      runSnapshot(content, crowded),
+      snapshot(
+        'practice-rival',
+        'The Clock Collector',
+        ['rivet-lance', 'tea-tray', 'echo-anvil', 'folding-buckler', 'bitter-vial', 'spring-magazine'],
+        650,
+        'silver',
+        crowded.skills.map((s) => s.defId),
+      ),
+    ],
+    'practice-inspector',
+  ).replay;
   await importRun(normal);
+  await importJSON(JSON.stringify(practiceReplay));
+  assert.equal(await page.locator('#skills .skill-medallion').count(), 8, 'Replay displays its own skills');
+  assert.equal(await page.locator('.opponent-battle-skills .skill-medallion').count(), 8);
+  assert.match(await page.locator('#capacity').innerText(), /10 slots/);
+  assert.match(await page.locator('.level-badge').innerText(), /Lv 6/);
+  await click('pause');
+  await page.waitForFunction(() => document.getElementById('combat-time')!.textContent !== '0.0s');
+  await page.locator('#player-board .item-card').first().click({ button: 'right' });
+  const pausedTime = await page.locator('#combat-time').innerText();
+  await page.waitForTimeout(220);
+  assert.equal(await page.locator('#combat-time').innerText(), pausedTime, 'Right-click pauses playback');
+  await page.keyboard.press('Escape');
+  assert.equal(
+    await page.getByRole('button', { name: 'Pause combat', exact: true }).count(),
+    1,
+    'Closing details resumes prior playback',
+  );
+  await click('menu');
+  const menuTime = await page.locator('#combat-time').innerText();
+  await page.waitForTimeout(220);
+  assert.equal(await page.locator('#combat-time').innerText(), menuTime, 'Run menu pauses playback');
+  await page.keyboard.press('Escape');
+  assert.equal(await page.getByRole('button', { name: 'Pause combat', exact: true }).count(), 1);
+  await click('pause');
+  await click('inspector');
+  await battleFitsBesideInspector();
+  const skill = page.locator('#skills .skill-medallion').last();
+  await skill.scrollIntoViewIfNeeded();
+  await skill.click({ button: 'right' });
+  assert.match(await page.locator('#detail-name').innerText(), /Weather Eye/);
+  await click('close-detail');
+  await page.locator('#event-filter').fill('RIVET LANCE');
+  assert.ok(
+    (await page.locator('.event-row').count()) > 0,
+    'Inspector searches names without case sensitivity',
+  );
+  await page.locator('#event-filter').fill('requires owner event');
+  assert.ok((await page.locator('.event-row').count()) > 0, 'Inspector searches failure explanations');
+  await page.locator('#event-filter').fill('');
+  await page.locator('#follow-events').uncheck();
+  const row = page.locator('.event-row').last();
+  await row.scrollIntoViewIfNeeded();
+  await row.focus();
+  await row.evaluate((el) => el.setAttribute('data-smoke-persistent', 'true'));
+  const scroll = await page.locator('#event-list').evaluate((el) => el.scrollTop);
+  await click('pause');
+  await page.waitForTimeout(350);
+  assert.equal(
+    await page.locator('#event-list').evaluate((el) => el.scrollTop),
+    scroll,
+    'Manual transcript scroll survives playback',
+  );
+  assert.equal(
+    await page.locator('[data-smoke-persistent]').count(),
+    1,
+    'Event rows are not replaced during playback',
+  );
+  await click('pause');
+  await page.locator('#event-filter').fill('failed');
+  await page.locator('.event-row').first().click();
+  await page.screenshot({ path: 'artifacts/redesign-inspector-1280.png' });
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await battleFitsBesideInspector();
+  await page.getByRole('button', { name: 'Close battle inspector' }).click();
+  await click('finish-playback');
+  await click('continue');
+  assert.equal(hash(await state()), hash(normal), 'Practice return preserves the normal run exactly');
+  const ammoReplay = simulate(
+    content,
+    [
+      snapshot('ammo-view', 'Vial keeper', ['bitter-vial'], 500),
+      snapshot('ammo-rival', 'Patient rival', ['folding-buckler'], 500),
+    ],
+    'empty-ready-ui',
+  ).replay;
+  await importJSON(JSON.stringify(ammoReplay));
+  await page.locator('#timeline').fill('10000');
+  await page.locator('#timeline').dispatchEvent('input');
+  assert.equal(await page.locator('#player-board .ammo').innerText(), 'EMPTY · READY');
+  assert.equal(
+    await page.locator('#player-board .charge-track i').evaluate((el) => (el as HTMLElement).style.transform),
+    'scaleX(1)',
+  );
+  await click('finish-playback');
+  await click('continue');
+  assert.equal(hash(await state()), hash(normal), 'Readiness playback preserves the run');
   await page.reload();
   await page.waitForLoadState('networkidle');
   assert.equal(hash(await state()), hash(normal), 'Reload resumes exact decision boundary');
+  await importJSON(JSON.stringify(practiceReplay));
+  await importRun(normal); // A save loaded from practice must restore ordinary result continuation.
   await click('menu');
   await click('save');
   await click('menu');
@@ -247,7 +430,12 @@ try {
         }
         await click('finish-playback');
       }
+      const resultRevision = run.revision;
       await click('continue');
+      assert.ok(
+        (await state()).revision > resultRevision,
+        'Real combat continues through the run reducer after practice',
+      );
     } else if (run.hour === 2 || run.hour === 5) await click('challenge', run.candidates[0]);
     else {
       const shop = run.candidates.find((id) => ['open-stalls', 'tool-cart', 'glass-stall'].includes(id));
@@ -276,6 +464,13 @@ try {
       sell: true,
       rewardDrop: true,
       filterFocus: true,
+      inspectorDock: true,
+      transcriptScroll: true,
+      calculatedDetails: true,
+      practiceIsolation: true,
+      modalPause: true,
+      keyboardInspection: true,
+      emptyAmmoReadiness: true,
       resume: true,
       outcome: final.phase,
       lastChance: final.lastChanceUsed,

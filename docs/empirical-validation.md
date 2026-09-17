@@ -35,5 +35,5 @@ Additional focused questions: whether intrinsic Flying counts as “started Flyi
 
 - Measure three or more human full runs. The desired 40–60 minutes is currently supported only by the number of decision/combat checkpoints, not by observed session lengths.
 - Tune rival difficulty, shop tier odds and reward economy across weak, balanced and optimized builds. The command-only `lantern-47` test proves ten wins are attainable; it is not evidence of balanced difficulty.
-- Test long-term inspector usability on dense trigger builds and at 1080–1440 px widths. Browser automation currently verifies the core flow at 1512 px.
+- Test long-term inspector usability and the legibility of dense builds with a human player. Browser automation covers 1280×800 and 1440×900, full boards, eight skills, scrolling/search, calculated details and the complete run flow; it does not establish that the interface feels good over a 40–60 minute session.
 - A future Godot/LÖVE implementation should run the JSON fixtures verbatim. No cross-language result has yet been measured.

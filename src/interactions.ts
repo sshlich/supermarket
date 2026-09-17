@@ -56,6 +56,14 @@ export function sellPrice(content: Content, run: Run, item: Instance): number {
     (run.phase === 'shop' ? (content.encounters.find((e) => e.id === run.selected)?.sellBonus ?? 0) : 0)
   );
 }
+export function dropRecipients(content: Content, run: Run, source: DragSource): Instance[] {
+  if (source.kind === 'owned') return [];
+  const reward = source.kind === 'reward' ? rewardFor(content, run, source.id) : undefined;
+  if (reward?.target) return rewardTargets(content, run, reward);
+  const item = dragItem(content, run, source);
+  const upgrade = item && upgradeTarget(run, item.defId);
+  return upgrade ? [upgrade] : [];
+}
 export function previewDrop(
   content: Content,
   run: Run,

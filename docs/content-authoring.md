@@ -123,3 +123,9 @@ Create monsters and rivals with the `snapshot`/`instance` helpers or equivalent 
 | `conformance.test.ts`                                  | Remaining selectors, expression operators, scope boundaries, run-only verbs, Legendary behavior and safety guards |
 
 Validate schema **and** semantics, add a small focused scenario with expected arithmetic, then regenerate the relevant golden fixture deliberately. A new enum entry without an action resolver and a behavioral test is not implemented content support.
+
+## Presentation assets and rule text
+
+`src/art.ts` maps item IDs into the original atlas in `public/art/items.png`; skills may reuse a related object illustration. Add artwork/mappings in the client without adding asset dependencies to the simulation. The visual direction and generation provenance are documented in `docs/visual-direction.md` and `docs/art-prompts.md`.
+
+Right-click effect descriptions are built from ability data, with current-tier amounts read through the evaluator. Keep the authored `text` useful as a base description, but never use it as a second source of numerical rules. New effect/selector grammar should receive readable wording in `src/descriptions.ts` as well as resolver/validation support; full structured rules and event calculation traces remain inspectable. Test enchantment/aura-only attributes so they are not silently omitted from details.

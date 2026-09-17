@@ -1,6 +1,13 @@
 import type { Content, Run } from '../packages/sim/src/model';
 import { definition } from '../packages/sim/src/geometry';
-import { dragItem, previewDrop, type Destination, type DragSource } from './interactions';
+import {
+  dragItem,
+  dropRecipients,
+  previewDrop,
+  sellPrice,
+  type Destination,
+  type DragSource,
+} from './interactions';
 
 interface Hooks {
   content: Content;
@@ -38,11 +45,16 @@ export function installDragging(
     document.getElementById('drop-footprint')?.remove();
   };
   function cancel() {
-    gesture?.element.classList.remove('being-dragged');
-    gesture?.ghost?.remove();
+    const previous = gesture;
     gesture = undefined;
+    if (previous?.element.hasPointerCapture(previous.pointer))
+      previous.element.releasePointerCapture(previous.pointer);
+    previous?.element.classList.remove('being-dragged');
+    previous?.ghost?.remove();
     clearPreview();
     root.classList.remove('dragging');
+    root.querySelectorAll('.drop-eligible').forEach((el) => el.classList.remove('drop-eligible'));
+    document.querySelector('#sell-zone strong')!.textContent = 'Sell an item';
     hint.hidden = true;
   }
   function destinationAt(x: number, y: number): Destination | undefined {
@@ -94,10 +106,15 @@ export function installDragging(
       return;
     if (!gesture.dragging) {
       gesture.dragging = true;
+      const notice = document.getElementById('notice');
+      if (notice) notice.hidden = true;
       const rect = gesture.element.getBoundingClientRect();
       gesture.ghost = gesture.element.cloneNode(true) as HTMLElement;
       gesture.ghost.removeAttribute('id');
       gesture.ghost.removeAttribute('data-drag-kind');
+      gesture.ghost.removeAttribute('data-owned-id');
+      gesture.ghost.removeAttribute('data-inspect');
+      gesture.ghost.setAttribute('aria-hidden', 'true');
       gesture.ghost.querySelectorAll('[id]').forEach((e) => e.removeAttribute('id'));
       gesture.ghost.classList.add('drag-ghost');
       Object.assign(gesture.ghost.style, {
@@ -108,8 +125,24 @@ export function installDragging(
         gridColumn: 'auto',
       });
       document.body.append(gesture.ghost);
+      if (gesture.source.kind === 'reward') {
+        const art = gesture.ghost.querySelector('.choice-art')?.cloneNode(true);
+        const label = document.createElement('strong');
+        label.textContent = gesture.element.querySelector('h3')?.textContent ?? 'Reward';
+        gesture.ghost.replaceChildren(...(art ? [art] : []), label);
+        gesture.ghost.className = 'drag-ghost reward-token';
+        Object.assign(gesture.ghost.style, { width: '160px', height: '100px' });
+        gesture.grabX = 80;
+        gesture.grabY = 50;
+      }
       gesture.element.classList.add('being-dragged');
       root.classList.add('dragging');
+      for (const item of dropRecipients(hooks.content, hooks.run(), gesture.source))
+        root.querySelector(`[data-owned-id="${CSS.escape(item.id)}"]`)?.classList.add('drop-eligible');
+      const item = dragItem(hooks.content, hooks.run(), gesture.source);
+      if (gesture.source.kind === 'owned' && item)
+        document.querySelector('#sell-zone strong')!.textContent =
+          `Sell for ${sellPrice(hooks.content, hooks.run(), item)} gold`;
     }
     gesture.ghost!.style.transform = `translate(${event.clientX - gesture.grabX}px, ${event.clientY - gesture.grabY}px) rotate(-3deg)`;
     gesture.destination = destinationAt(event.clientX, event.clientY);
@@ -159,6 +192,9 @@ export function installDragging(
     hooks.commit(current.source, destination);
   });
   document.addEventListener('pointercancel', cancel);
+  root.addEventListener('lostpointercapture', (event) => {
+    if (gesture?.pointer === event.pointerId) cancel();
+  });
   window.addEventListener('blur', cancel);
   document.addEventListener(
     'keydown',

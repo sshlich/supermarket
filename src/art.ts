@@ -43,7 +43,7 @@ const skillArt: Record<string, string> = {
 };
 export function art(id: string, extraClass = ''): string {
   const index = Math.max(0, itemArt.indexOf(skillArt[id] ?? id));
-  return `<span class="item-art ${extraClass}" aria-hidden="true" style="background-position:${(index % 6) * 20}% ${Math.floor(index / 6) * 25}%"></span>`;
+  return `<span class="item-art ${extraClass}" data-art="${itemArt[index]}" aria-hidden="true" style="background-position:${(index % 6) * 20}% ${Math.floor(index / 6) * 25}%"></span>`;
 }
 export function icon(name: string, className = ''): string {
   const paths: Record<string, string> = {
