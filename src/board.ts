@@ -114,3 +114,20 @@ export function firstFree(row: Row, size: number): number | null {
   for (let p = row.lo; p + size - 1 <= row.hi; p++) if (!row.items.some(o => o.pos < p + size && o.pos + o.size > p)) return p
   return null
 }
+
+/**
+ * Where `item` goes in `row` with the least shuffling, when the exact spot doesn't matter (the stash).
+ * Every drop spot is tried, pushing the others aside in order, and the arrangement that moves them least
+ * wins: a free gap costs nothing, otherwise the row compacts to open one. Null if it doesn't fit even then.
+ */
+export function bestFit(row: Row, item: { id: string; size: Size }): Map<string, number> | null {
+  let best: Map<string, number> | null = null
+  let cost = Infinity
+  for (let t = row.lo; t + item.size - 1 <= row.hi; t++) {
+    const out = place(row, item, t)
+    if (!out) continue
+    const moved = row.items.reduce((n, o) => n + (o.id === item.id ? 0 : Math.abs(out.get(o.id)! - o.pos)), 0)
+    if (moved < cost) [best, cost] = [out, moved]
+  }
+  return best
+}

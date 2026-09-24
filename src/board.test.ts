@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { exchange, firstFree, place, swap, type Item, type Size } from './board.ts'
+import { bestFit, exchange, firstFree, place, swap, type Item, type Size } from './board.ts'
 
 const it = (id: string, size: Size, pos: number): Item => ({ id, size, pos })
 const run = (items: Item[], id: string, target: number, same = true, lo = 0, hi = 9) => {
@@ -26,6 +26,15 @@ assert.deepEqual(run([], 'x1', 0, false, 2, 7), { x1: 2 })
 assert.deepEqual(run([], 'x3', 9, false, 2, 7), { x3: 5 })
 // No room at all.
 assert.equal(run([it('A', 2, 2), it('B', 2, 4), it('C', 2, 6)], 'x1', 4, false, 2, 7), null)
+
+// Best fit (the stash): a free gap moves nothing; otherwise the row compacts, keeping order, to open one.
+{
+  const row = { items: [it('A', 2, 0), it('B', 3, 3), it('C', 2, 7)], lo: 0, hi: 9 } // free: 2, 6, 9
+  assert.equal(bestFit(row, { id: 'x', size: 1 })!.get('x'), 2)
+  assert.deepEqual(Object.fromEntries(bestFit(row, { id: 'x', size: 3 })!), { A: 0, B: 2, x: 5, C: 8 })
+  assert.deepEqual(Object.fromEntries(bestFit(row, { id: 'x', size: 2 })!), { A: 0, x: 2, B: 4, C: 7 }) // one step for B
+  assert.equal(bestFit({ ...row, items: [...row.items, it('D', 1, 2)] }, { id: 'x', size: 3 }), null) // only 2 free
+}
 
 console.log('board: ok')
 

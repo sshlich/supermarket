@@ -142,8 +142,7 @@ body {
   z-index: 60;
   box-sizing: border-box;
   display: grid;
-  place-items: center start; /* label at the left end, clear of the card being dragged */
-  padding-left: calc(var(--u) * 0.4);
+  place-items: center;
   border-radius: calc(var(--u) * 0.08);
   border: calc(var(--u) * 0.03) dashed #f0c24a80;
   background: #1a120ac0;

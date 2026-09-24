@@ -1,7 +1,7 @@
 import './style.css'
 import { glass, sheen, type Effect } from './card-effects.ts'
 import { cardFace, cardVars, hideTooltip, itemInfo, mountTooltip, showInfo, showTooltip, skillFace, skillInfo } from './card-view.ts'
-import { exchange, firstFree, place, SOCKETS, swap, under, type Item, type Row, type Size } from './board.ts'
+import { bestFit, exchange, firstFree, place, SOCKETS, swap, under, type Item, type Row, type Size } from './board.ts'
 import { buyPrice, REROLL_COST, sellPrice, spread, START_GOLD, START_INCOME } from './economy.ts'
 import { canEnchant, ITEM_KEYS, itemAt, ITEMS, type ItemDef, type ItemKey } from './items.ts'
 import { ENCHANT_KEYS, ENCHANTS, type Enchant } from './enchant.ts'
@@ -66,10 +66,11 @@ interface Card {
   lane: Lane
   el: HTMLElement
   pose: Pose
-  tween: { from: Pose; to: Pose; t0: number; ms: number; ease: (t: number) => number } | null
+  tween: { from: Pose; to: Pose; t0: number; ms: number; ease: (t: number) => number; done?: () => void } | null
   tilt: { x: number; y: number; tx: number; ty: number }
   hovered: boolean
   nudged: boolean
+  flying: boolean // on its way into the closed stash: stays visible until it reaches the chest
   effects: Effect[]
 }
 interface Skill { key: SkillKey; def: SkillDef; id: string; el: HTMLElement }
@@ -77,7 +78,7 @@ interface Skill { key: SkillKey; def: SkillDef; id: string; el: HTMLElement }
 const scene = document.getElementById('scene')!
 let u = 100
 let press: { card: Card; x: number; y: number } | null = null
-let drag: { card: Card; ox: number; oy: number } | null = null
+let drag: { card: Card; ox: number; oy: number; sell: boolean } | null = null // sell: it's yours and selling is open
 let fighting = false
 let gold = Number(flags.get('gold') ?? START_GOLD)
 let income = START_INCOME
@@ -156,7 +157,7 @@ function makeCard(lane: Lane, key: ItemKey, pos: number, tier: Tier = ITEMS[key]
   const el = document.createElement('div')
   el.className = 'card'
   scene.append(el)
-  const c: Card = { key, tier, enchant, def, item, lane, el, pose: { x: 0, y: 0, s: 1 }, tween: null, tilt: { x: 0, y: 0, tx: 0, ty: 0 }, hovered: false, nudged: false, effects: [] }
+  const c: Card = { key, tier, enchant, def, item, lane, el, pose: { x: 0, y: 0, s: 1 }, tween: null, tilt: { x: 0, y: 0, tx: 0, ty: 0 }, hovered: false, nudged: false, flying: false, effects: [] }
   renderFace(c)
   c.pose = rest(c)
   cards.push(c)
@@ -337,14 +338,14 @@ rerollBtn.addEventListener('click', () => {
 })
 
 function refreshTop() {
-  const stashOn = stashOpen || overToy
-  const shown = (l: Lane) => (l === stash ? stashOn : l === merchant ? !stashOn && mode === 'merchant' : l === opponent ? !stashOn && mode === 'opponent' : true)
+  const shown = (l: Lane) => (l === stash ? stashOpen : l === merchant ? !stashOpen && mode === 'merchant' : l === opponent ? !stashOpen && mode === 'opponent' : true)
   for (const l of lanes) l.el.classList.toggle('hidden', !shown(l))
-  for (const c of cards) c.el.classList.toggle('hidden', !shown(c.lane) && drag?.card !== c)
-  choiceEl?.classList.toggle('hidden', stashOn)
+  for (const c of cards) c.el.classList.toggle('hidden', !shown(c.lane) && drag?.card !== c && !c.flying)
+  choiceEl?.classList.toggle('hidden', stashOpen)
+  sellZone.classList.toggle('sellable', !!drag?.sell && !stashOpen) // the sell zone covers the top row, so not while it shows your stash
   markUpgrades()
   renderStash()
-  toy.classList.toggle('open', stashOn)
+  toy.classList.toggle('open', stashOpen || overToy) // also glows while a card is held over it
   oppHp.classList.toggle('hidden', mode !== 'opponent')
   rerollBtn.classList.toggle('hidden', mode !== 'merchant')
 }
@@ -412,11 +413,19 @@ async function pick(options: Option[]) {
   return i
 }
 
-/** Add an item to the first free spot on the board, else the stash. False if there's no room. */
+/** Add an item to the first free spot on the board, else the stash (compacted to fit). False if there's no room. */
 function give(key: ItemKey, tier?: Tier, enchant?: Enchant) {
-  const dest = [board, stash].find(l => firstFree(l.row, ITEMS[key].size) !== null)
-  if (!dest) return false
-  const c = makeCard(dest, key, firstFree(dest.row, ITEMS[key].size)!, tier, enchant)
+  const size = ITEMS[key].size
+  let dest = board
+  let at = firstFree(board.row, size)
+  if (at === null) {
+    const fit = bestFit(stash.row, { id: 'new', size })
+    if (!fit) return false
+    shift(stash, fit)
+    dest = stash
+    at = fit.get('new')!
+  }
+  const c = makeCard(dest, key, at, tier, enchant)
   c.el.animate([{ opacity: 0, scale: '1.3' }, { opacity: 1, scale: '1' }], { duration: 300, easing: 'ease-out' })
   if (dest === stash && !stashOpen) flash(toy, '#f0c24a')
   refreshTop()
@@ -700,8 +709,8 @@ function rest(c: Card): Pose {
   return { x: X0 + ROW_PAD + c.item.pos + c.item.size / 2, y: c.lane.y + ROW_H / 2 + (c.nudged ? c.lane.nudge : 0), s: 1 }
 }
 
-function tweenTo(c: Card, to: Pose, ms: number, ease: (t: number) => number) {
-  c.tween = { from: { ...c.pose }, to, t0: performance.now(), ms, ease }
+function tweenTo(c: Card, to: Pose, ms: number, ease: (t: number) => number, done?: () => void) {
+  c.tween = { from: { ...c.pose }, to, t0: performance.now(), ms, ease, done }
 }
 
 function toScene(e: PointerEvent) {
@@ -718,7 +727,7 @@ const inside = (e: PointerEvent, el: HTMLElement) => {
 // picks the sockets it overlaps; if it's over nothing, it snaps to the nearest socket of its own lane.
 function target(c: Card): { lane: Lane; sockets: number[] } {
   const { x, y } = c.pose
-  const droppable = stashOpen || overToy ? [stash, board] : [board]
+  const droppable = stashOpen ? [stash, board] : [board]
   const lane = droppable
     .map(l => ({ l, d: Math.abs(y - (l.y + ROW_H / 2)) }))
     .filter(({ d }) => d < (ROW_H + CARD_H) / 2)
@@ -789,13 +798,11 @@ function beginDrag(c: Card, e: PointerEvent) {
   c.tilt.tx = c.tilt.ty = 0
   hideTooltip()
   const p = toScene(e)
-  drag = { card: c, ox: c.pose.x - p.x, oy: c.pose.y - p.y }
+  drag = { card: c, ox: c.pose.x - p.x, oy: c.pose.y - p.y, sell: c.lane.mine && mode !== 'opponent' }
   tweenTo(c, { ...c.pose, s: DRAG_SCALE }, DRAG_SCALE_MS, linear)
   c.el.classList.add('lifted', 'dragging')
-  if (c.lane.mine && mode !== 'opponent') {
-    sellZone.innerHTML = `<span>Sell for <b>${sellPrice(c.def)}g</b></span>`
-    sellZone.classList.add('sellable')
-  }
+  sellZone.innerHTML = `<span>Sell for <b>${sellPrice(c.def)}g</b></span>`
+  refreshTop()
 }
 
 function dragMove(e: PointerEvent) {
@@ -809,7 +816,7 @@ function dragMove(e: PointerEvent) {
     overToy = toyNow
     refreshTop()
   }
-  overSell = sellZone.classList.contains('sellable') && !stashOpen && !overToy && inside(e, sellZone)
+  overSell = sellZone.classList.contains('sellable') && inside(e, sellZone)
   sellZone.classList.toggle('selling', overSell)
 
   const t = target(c)
@@ -836,17 +843,19 @@ function drop() {
     renderGold()
     flash(myGold, '#f0c24a')
     removeCard(c)
+  } else if (overToy) {
+    if (from !== stash) stashIt(c)
   } else {
-    // Dropped on the chest: into the stash, pushed in from the left.
-    const t = overToy ? { lane: stash, sockets: [0] } : target(c)
+    const t = target(c)
     if (from.shop) {
       if (t.lane !== from) buy(c, t.lane, t.sockets[0])
     } else if (t.lane === from) {
-      if (!overToy) apply(from, exchange(from.row, from.row, c.item, t.sockets[0])?.to ?? place(from.row, c.item, t.sockets[0], c.item.pos))
+      apply(from, exchange(from.row, from.row, c.item, t.sockets[0])?.to ?? place(from.row, c.item, t.sockets[0], c.item.pos))
     } else {
       transfer(c, t.lane, t.sockets[0])
     }
   }
+  const intoChest = overToy && c.lane === stash && !stashOpen
   overToy = overSell = false
 
   for (const o of cards) {
@@ -854,11 +863,54 @@ function drop() {
     const moved = o.item.pos !== b.pos || o.lane !== b.lane
     const wasNudged = o.nudged
     o.nudged = false
-    if (o === c) tweenTo(o, rest(o), MOVE_MS, inOutQuint)
+    if (o === c && intoChest) flyIntoChest(o)
+    else if (o === c) tweenTo(o, rest(o), MOVE_MS, inOutQuint)
     else if (moved) tweenTo(o, rest(o), o.lane !== b.lane ? MOVE_MS : PUSH_MS, outCubic)
     else if (wasNudged) tweenTo(o, rest(o), NUDGE_BACK_MS, outQuad)
   }
   refreshTop()
+}
+
+/**
+ * Dropped on the chest: into the stash wherever it fits, compacting the stash if the free space is split up
+ * (see bestFit), or back where it came from if it doesn't fit at all. Merchant items are bought on the way.
+ */
+function stashIt(c: Card) {
+  if (c.lane.shop) {
+    if (gold < buyPrice(c.def)) return noGold()
+    if (buyUpgrade(c)) return
+  }
+  const fit = bestFit(stash.row, c.item)
+  if (!fit) return toast('No room in your stash')
+  if (c.lane.shop) {
+    gold -= buyPrice(c.def)
+    renderGold()
+  }
+  moveLane(c, stash)
+  apply(stash, fit)
+  setOwner(c)
+}
+
+const CHEST = { x: X0 + PANEL_W / 2, y: PLAYER_STRIP + STRIP_H / 2 }
+/** A card that just went into the closed stash shrinks into the chest, then waits at its stash spot, hidden. */
+function flyIntoChest(c: Card) {
+  c.flying = true
+  flash(toy, '#f0c24a')
+  tweenTo(c, { ...CHEST, s: 0.25 }, MOVE_MS, inOutQuint, () => {
+    c.flying = false
+    c.pose = rest(c)
+    refreshTop()
+  })
+}
+
+/** Move a row's cards to `positions` (ids it doesn't know are ignored), sliding the ones that moved. */
+function shift(l: Lane, positions: Map<string, number>) {
+  for (const o of cards) {
+    const to = positions.get(o.item.id)
+    if (o.lane !== l || to === undefined || to === o.item.pos) continue
+    o.item.pos = to
+    tweenTo(o, rest(o), PUSH_MS, outCubic)
+  }
 }
 
 /**
@@ -924,23 +976,24 @@ function noGold() {
   toast('Not enough gold')
 }
 
-/** Click an offer: buy it into the first free spot on the board, else the stash. */
+/** Click an offer: buy it into the first free spot on the board, else the stash (compacted to fit). */
 function quickBuy(c: Card) {
   if (gold < buyPrice(c.def)) return noGold()
   if (buyUpgrade(c)) return
-  const dest = [board, stash].find(l => firstFree(l.row, c.item.size) !== null)
-  if (!dest) return toast('No room on your board or in your stash')
-  const pos = firstFree(dest.row, c.item.size)!
+  const pos = firstFree(board.row, c.item.size)
+  const fit = pos === null ? bestFit(stash.row, c.item) : null
+  if (pos === null && !fit) return toast('No room on your board or in your stash')
   gold -= buyPrice(c.def)
   renderGold()
-  moveLane(c, dest)
-  c.item.pos = pos
+  if (fit) shift(stash, fit)
+  moveLane(c, fit ? stash : board)
+  c.item.pos = fit ? fit.get(c.item.id)! : pos!
   setOwner(c)
   c.hovered = false
   c.tilt.tx = c.tilt.ty = 0
   hideTooltip()
-  tweenTo(c, rest(c), MOVE_MS, inOutQuint)
-  if (dest === stash && !stashOpen) flash(toy, '#f0c24a')
+  if (c.lane === stash && !stashOpen) flyIntoChest(c)
+  else tweenTo(c, rest(c), MOVE_MS, inOutQuint)
   refreshTop()
 }
 
@@ -991,14 +1044,17 @@ function frame(now: number) {
   const follow = 1 - Math.exp(-TILT_SPEED * dt)
   for (const c of cards) {
     if (c.tween) {
-      const { from, to, t0, ms, ease } = c.tween
+      const { from, to, t0, ms, ease, done } = c.tween
       const k = ease(Math.min(1, (now - t0) / ms))
       c.pose.s = from.s + (to.s - from.s) * k
       if (drag?.card !== c) {
         c.pose.x = from.x + (to.x - from.x) * k
         c.pose.y = from.y + (to.y - from.y) * k
       }
-      if (now - t0 >= ms) c.tween = null
+      if (now - t0 >= ms) {
+        c.tween = null
+        done?.()
+      }
     }
     c.tilt.x += (c.tilt.tx - c.tilt.x) * follow
     c.tilt.y += (c.tilt.ty - c.tilt.y) * follow
