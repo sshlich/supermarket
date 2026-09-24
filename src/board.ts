@@ -66,8 +66,7 @@ export function place(row: Row, item: { id: string; size: Size }, target: number
  * whatever it covers goes back to `from`, starting where `item` was. Null if those don't fit either.
  */
 export function swap(to: Row, from: Row, item: Item, target: number) {
-  const t = Math.max(to.lo, Math.min(to.hi - item.size + 1, target))
-  const covered = to.items.filter(o => o.pos < t + item.size && o.pos + o.size > t).sort((a, b) => a.pos - b.pos)
+  const { t, items: covered } = under(to, item, target)
   const toPos = new Map(to.items.filter(o => !covered.includes(o)).map(o => [o.id, o.pos]))
   toPos.set(item.id, t)
 
@@ -80,4 +79,38 @@ export function swap(to: Row, from: Row, item: Item, target: number) {
     at = out.get(c.id)! + c.size
   }
   return { to: toPos, from: new Map(rest.map(o => [o.id, o.pos])), covered }
+}
+
+const clamp = (row: Row, size: number, target: number) => Math.max(row.lo, Math.min(row.hi - size + 1, target))
+
+/** Items other than `item` under it with its left edge on `target` (pulled into the unlocked range), and whether it covers all of them completely. */
+export function under(row: Row, item: { id: string; size: Size }, target: number) {
+  const t = clamp(row, item.size, target)
+  const items = row.items.filter(o => o.id !== item.id && o.pos < t + item.size && o.pos + o.size > t).sort((a, b) => a.pos - b.pos)
+  return { t, items, full: items.length > 0 && items.every(o => o.pos >= t && o.pos + o.size <= t + item.size) }
+}
+
+/**
+ * Dropped squarely over whole items: they trade places with it, landing left-aligned in the sockets it
+ * vacated in `from` (which may be `to`). Null unless the drop fully covers at least one item.
+ */
+export function exchange(to: Row, from: Row, item: Item, target: number) {
+  const { t, items: covered, full } = under(to, item, target)
+  if (!full) return null
+  const toPos = new Map(to.items.filter(o => o.id !== item.id && !covered.includes(o)).map(o => [o.id, o.pos]))
+  toPos.set(item.id, t)
+  const fromPos = to === from ? toPos : new Map(from.items.filter(o => o.id !== item.id).map(o => [o.id, o.pos]))
+  // Vacated sockets: its old spot, minus any overlap with the new one when it moved within the row.
+  let at = to === from && t < item.pos ? Math.max(item.pos, t + item.size) : item.pos
+  for (const c of covered) {
+    fromPos.set(c.id, at)
+    at += c.size
+  }
+  return { to: toPos, from: fromPos, covered }
+}
+
+/** Leftmost unlocked spot where `size` fits without moving anything, or null. */
+export function firstFree(row: Row, size: number): number | null {
+  for (let p = row.lo; p + size - 1 <= row.hi; p++) if (!row.items.some(o => o.pos < p + size && o.pos + o.size > p)) return p
+  return null
 }

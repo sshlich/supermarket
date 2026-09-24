@@ -170,3 +170,15 @@ body {
 .panel.reroll b { color: #f5d77a; }
 .panel.reroll:hover { box-shadow: 0 0 0 calc(var(--u) * 0.04) #f0c24a; }
 .panel.reroll.disabled { opacity: 0.5; cursor: default; box-shadow: none; }
+
+.toast {
+  z-index: 250;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  color: #fff;
+  font-weight: 900;
+  font-size: calc(var(--u) * 0.26);
+  text-shadow: 0 2px 4px #000, 0 0 calc(var(--u) * 0.2) #a02020;
+}

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { place, swap, type Item, type Size } from './board.ts'
+import { exchange, firstFree, place, swap, type Item, type Size } from './board.ts'
 
 const it = (id: string, size: Size, pos: number): Item => ({ id, size, pos })
 const run = (items: Item[], id: string, target: number, same = true, lo = 0, hi = 9) => {
@@ -54,3 +54,34 @@ console.log('board: ok')
 }
 
 console.log('swap: ok')
+
+const pos = (m: Map<string, number>) => Object.fromEntries([...m].sort((a, b) => a[1] - b[1]))
+// Exchange, same row: a medium dropped squarely on two smalls trades places with them, the rest stay put.
+{
+  const row = { items: [it('M', 2, 0), it('x', 1, 2), it('a', 1, 4), it('b', 1, 5)], lo: 0, hi: 9 }
+  assert.deepEqual(pos(exchange(row, row, row.items[0], 4)!.to), { a: 0, b: 1, x: 2, M: 4 })
+}
+// ...moving left: they land in its old spot.
+{
+  const row = { items: [it('a', 1, 1), it('b', 1, 2), it('M', 2, 3)], lo: 0, hi: 9 }
+  assert.deepEqual(pos(exchange(row, row, row.items[2], 1)!.to), { M: 1, a: 3, b: 4 })
+}
+// Exchange across rows, even when the board has room: covered cards go to the stash where it was.
+{
+  const board = { items: [it('a', 1, 2), it('b', 1, 3), it('c', 2, 4)], lo: 2, hi: 9 }
+  const stash = { items: [it('M', 2, 5)], lo: 0, hi: 9 }
+  const out = exchange(board, stash, stash.items[0], 2)!
+  assert.deepEqual(pos(out.to), { M: 2, c: 4 })
+  assert.deepEqual(pos(out.from), { a: 5, b: 6 })
+}
+// Partial overlap is not an exchange (it pushes instead).
+{
+  const row = { items: [it('L', 3, 2), it('M', 2, 7)], lo: 0, hi: 9 }
+  assert.equal(exchange(row, row, row.items[1], 3), null)
+}
+// First free spot.
+assert.equal(firstFree({ items: [it('a', 1, 2), it('b', 2, 4)], lo: 2, hi: 7 }, 1), 3)
+assert.equal(firstFree({ items: [it('a', 1, 2), it('b', 2, 4)], lo: 2, hi: 7 }, 2), 6)
+assert.equal(firstFree({ items: [it('a', 3, 2), it('b', 3, 5)], lo: 2, hi: 7 }, 1), null)
+
+console.log('exchange: ok')

@@ -9,7 +9,6 @@ export const sellPrice = (d: ItemDef) => Math.max(1, Math.floor(buyPrice(d) / 2)
 export const START_GOLD = 12
 export const START_INCOME = 5
 export const REROLL_COST = 1
-export const OFFERS = 4
 
 /** Left sockets that spread items of `sizes` evenly across a row, centered, in order. */
 export function spread(sizes: number[], sockets = 10): number[] {

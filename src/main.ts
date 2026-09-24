@@ -1,8 +1,8 @@
 import './style.css'
 import { glass, sheen, type Effect } from './card-effects.ts'
 import { cardFace, cardVars, hideTooltip, mountTooltip, showTooltip } from './card-view.ts'
-import { place, swap, SOCKETS, type Item, type Row, type Size } from './board.ts'
-import { buyPrice, OFFERS, REROLL_COST, sellPrice, spread, START_GOLD, START_INCOME } from './economy.ts'
+import { exchange, firstFree, place, SOCKETS, swap, under, type Item, type Row, type Size } from './board.ts'
+import { buyPrice, REROLL_COST, sellPrice, spread, START_GOLD, START_INCOME } from './economy.ts'
 import { ITEMS, type ItemDef } from './items.ts'
 import { play } from './playback.ts'
 
@@ -161,19 +161,26 @@ function renderGold() {
   rerollBtn.classList.toggle('disabled', gold < REROLL_COST)
 }
 
+const toastEl = box('toast', X0, BOARD_ROW + ROW_H / 2 - 0.3, ROW_W, 0.6)
+function toast(text: string) {
+  toastEl.textContent = text
+  toastEl.getAnimations().forEach(a => a.cancel())
+  toastEl.animate([{ opacity: 0, translate: '0 10px' }, { opacity: 1, translate: '0 0', offset: 0.12 }, { opacity: 1, offset: 0.75 }, { opacity: 0 }], { duration: 1600, easing: 'ease-out' })
+}
+
 function flash(el: HTMLElement, color: string) {
   el.animate([{ boxShadow: `0 0 0 calc(var(--u) * 0.06) ${color}, 0 0 calc(var(--u) * 0.4) ${color}` }, {}], { duration: 450, easing: 'ease-out' })
 }
 
-/** Fresh offers, spread evenly across the merchant's row. */
+/** Fresh stock filling the merchant's whole row. */
 function rollOffers() {
   for (const c of cards.filter(c => c.lane === merchant)) removeCard(c)
-  const keys = (Object.keys(ITEMS) as (keyof typeof ITEMS)[]).sort(() => Math.random() - 0.5)
+  const keys = Object.keys(ITEMS) as (keyof typeof ITEMS)[]
   const picked: (keyof typeof ITEMS)[] = []
-  let room = SOCKETS
-  for (const k of keys) {
-    if (picked.length === OFFERS) break
-    if (ITEMS[k].size > room) continue
+  // ponytail: random picks until the row is full, repeats allowed; merchant pools come with the day loop.
+  for (let room = SOCKETS; room > 0; ) {
+    const fits = keys.filter(k => ITEMS[k].size <= room)
+    const k = fits[Math.floor(Math.random() * fits.length)]
     picked.push(k)
     room -= ITEMS[k].size
   }
@@ -333,8 +340,10 @@ function bind(c: Card) {
     if (c.hovered && !drag) setHover(c, false)
   })
   const up = () => {
+    const clicked = press?.card === c && !drag
     press = null
     if (drag?.card === c) drop()
+    else if (clicked && c.lane.shop && !fighting) quickBuy(c)
   }
   el.addEventListener('pointerup', up)
   el.addEventListener('pointercancel', up)
@@ -398,7 +407,7 @@ function drop() {
     if (from.shop) {
       if (t.lane !== from) buy(c, t.lane, t.sockets[0])
     } else if (t.lane === from) {
-      if (!overToy) apply(from, place(from.row, c.item, t.sockets[0], c.item.pos))
+      if (!overToy) apply(from, exchange(from.row, from.row, c.item, t.sockets[0])?.to ?? place(from.row, c.item, t.sockets[0], c.item.pos))
     } else {
       transfer(c, t.lane, t.sockets[0])
     }
@@ -417,11 +426,15 @@ function drop() {
   refreshTop()
 }
 
-/** Your card to another of your rows: push the others aside, or swap what it covers back if it can't fit. */
+/**
+ * Your card to another of your rows. Squarely over whole cards: they trade places with it. Otherwise push the
+ * others aside, or if it can't fit, swap what it covers back to where it came from.
+ */
 function transfer(c: Card, dest: Lane, at: number) {
   const from = c.lane
-  const pushed = place(dest.row, c.item, at)
-  const swapped = pushed ? null : swap(dest.row, from.row, c.item, at)
+  const exchanged = exchange(dest.row, from.row, c.item, at)
+  const pushed = exchanged ? null : place(dest.row, c.item, at)
+  const swapped = exchanged ?? (pushed ? null : swap(dest.row, from.row, c.item, at))
   if (pushed) {
     moveLane(c, dest)
     apply(dest, pushed)
@@ -433,13 +446,18 @@ function transfer(c: Card, dest: Lane, at: number) {
   }
 }
 
-/** Merchant card onto your board or stash. On a full board, what it covers goes to the stash. */
+/**
+ * Merchant card onto your board or stash. On the board, cards it covers completely (or covers at all, when
+ * there's no room to push) go to the stash.
+ */
 function buy(c: Card, dest: Lane, at: number) {
   const price = buyPrice(c.def)
-  if (gold < price) return flash(myGold, '#e04040')
-  const pushed = place(dest.row, c.item, at)
-  const swapped = pushed || dest !== board ? null : swap(dest.row, stash.row, { ...c.item, pos: 0 }, at)
-  if (!pushed && !swapped) return
+  if (gold < price) return noGold()
+  const toStash = () => (dest === board ? swap(dest.row, stash.row, { ...c.item, pos: 0 }, at) : null)
+  const first = under(dest.row, c.item, at).full ? toStash() : null
+  const pushed = first ? null : place(dest.row, c.item, at)
+  const swapped = first ?? (pushed ? null : toStash())
+  if (!pushed && !swapped) return toast('No room there')
   gold -= price
   renderGold()
   if (pushed) {
@@ -452,6 +470,30 @@ function buy(c: Card, dest: Lane, at: number) {
     apply(stash, swapped.from)
   }
   setOwner(c)
+}
+
+function noGold() {
+  flash(myGold, '#e04040')
+  toast('Not enough gold')
+}
+
+/** Click an offer: buy it into the first free spot on the board, else the stash. */
+function quickBuy(c: Card) {
+  if (gold < buyPrice(c.def)) return noGold()
+  const dest = [board, stash].find(l => firstFree(l.row, c.item.size) !== null)
+  if (!dest) return toast('No room on your board or in your stash')
+  const pos = firstFree(dest.row, c.item.size)!
+  gold -= buyPrice(c.def)
+  renderGold()
+  moveLane(c, dest)
+  c.item.pos = pos
+  setOwner(c)
+  c.hovered = false
+  c.tilt.tx = c.tilt.ty = 0
+  hideTooltip()
+  tweenTo(c, rest(c), MOVE_MS, inOutQuint)
+  if (dest === stash && !stashOpen) flash(toy, '#f0c24a')
+  refreshTop()
 }
 
 function moveLane(c: Card, l: Lane) {
