@@ -1,0 +1,31 @@
+/* Art sits under a glass pane: faint film + bevelled rim. --glass-x/y (-1..1) shift the rim with the tilt. */
+.glass {
+  position: absolute;
+  inset: calc(var(--u) * 0.05);
+  border-radius: calc(var(--u) * 0.04);
+  pointer-events: none;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ffffff1c, #ffffff06 55%, #ffffff12);
+  box-shadow:
+    inset 0 0 0 calc(var(--u) * 0.01) #ffffff30,
+    inset calc(var(--u) * 0.05 * var(--glass-x, 0)) calc(var(--u) * 0.05 * var(--glass-y, 0)) calc(var(--u) * 0.02) #ffffff38;
+}
+
+/* --sheen-p: 0%..100% runs the band from the top-left corner to the bottom-right; --sheen-o fades it. */
+.sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: calc(var(--sheen-o, 0) * 0.8);
+  background:
+    repeating-linear-gradient(115deg, #ffffff24 0 1px, transparent 1px 4px),
+    linear-gradient(#ffffff1c, #ffffff1c);
+  mask-image: linear-gradient(
+    115deg,
+    transparent calc(var(--sheen-p, 50%) - 14%),
+    #000 calc(var(--sheen-p, 50%) - 2%),
+    #000 calc(var(--sheen-p, 50%) + 2%),
+    transparent calc(var(--sheen-p, 50%) + 14%)
+  );
+  mix-blend-mode: screen;
+}
