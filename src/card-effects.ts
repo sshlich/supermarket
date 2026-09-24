@@ -21,8 +21,8 @@ export function glass(parent: HTMLElement): Effect {
 }
 
 /**
- * Textured diagonal sheen. Like the live game, it only reacts while the cursor is in the card's top-right
- * quadrant: moving from the center toward that corner sweeps the band across, against the cursor.
+ * Textured diagonal sheen. It only reacts while the cursor is in the card's top-right quadrant: moving from
+ * the center toward that corner sweeps the band in from that corner, down the same diagonal, against the cursor.
  */
 export function sheen(parent: HTMLElement): Effect {
   const el = document.createElement('div')
