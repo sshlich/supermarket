@@ -142,7 +142,8 @@ const sellZone = box('sell', X0, OPP_ROW, ROW_W, ROW_H) // over the merchant's o
 
 const myHp = box('hp', X0 + PANEL_W + 0.05, PLAYER_STRIP + 0.04, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><b></b><span></span>')
 const myPortrait = box('portrait', midX - 0.9, PLAYER_STRIP + 0.45, 1.8, 1.45, '<span>You</span><b class="level"></b>')
-const toy = box('panel toy', X0, PLAYER_STRIP, PANEL_W, STRIP_H, '<div class="xp"></div><span>Stash</span>')
+const toy = box('panel toy', X0, PLAYER_STRIP, PANEL_W, STRIP_H, '<div class="fill"></div><span>Stash</span>')
+const myXp = box('xp', midX - 0.55, PLAYER_STRIP + 1.96, 1.45, 0.12) // under the portrait, beside the level badge
 const myGold = box('panel gold', X0 + ROW_W - PANEL_W, PLAYER_STRIP, PANEL_W, STRIP_H)
 mountTooltip(scene)
 
@@ -342,6 +343,7 @@ function refreshTop() {
   for (const c of cards) c.el.classList.toggle('hidden', !shown(c.lane) && drag?.card !== c)
   choiceEl?.classList.toggle('hidden', stashOn)
   markUpgrades()
+  renderStash()
   toy.classList.toggle('open', stashOn)
   oppHp.classList.toggle('hidden', mode !== 'opponent')
   rerollBtn.classList.toggle('hidden', mode !== 'merchant')
@@ -360,9 +362,15 @@ function renderClock() {
 }
 
 function renderLevel() {
-  toy.querySelector('.xp')!.innerHTML = Array.from({ length: XP_PER_LEVEL }, (_, i) => `<i class="${i < xp ? 'on' : ''}"></i>`).join('')
+  myXp.innerHTML = Array.from({ length: XP_PER_LEVEL }, (_, i) => `<i class="${i < xp ? 'on' : ''}"></i>`).join('')
   myPortrait.querySelector('.level')!.textContent = String(level)
   if (!fighting) resetBar(myHp, maxHp(level))
+}
+
+/** Stash pips: one per socket, lit for each one an item takes up. */
+function renderStash() {
+  const used = stash.row.items.reduce((n, it) => n + it.size, 0)
+  toy.querySelector('.fill')!.innerHTML = Array.from({ length: SOCKETS }, (_, i) => `<i class="${i < used ? 'on' : ''}"></i>`).join('')
 }
 
 toy.addEventListener('click', () => {
@@ -973,6 +981,7 @@ for (const [key, tier] of flagList('skills')) {
 }
 renderGold()
 renderLevel()
+renderStash()
 runLoop()
 
 let last = performance.now()
