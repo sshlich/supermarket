@@ -1,0 +1,60 @@
+html:has(.gallery),
+html:has(.gallery) body {
+  overflow: auto;
+  height: auto;
+}
+#scene.gallery {
+  position: relative;
+  left: 0;
+  top: 0;
+  translate: none;
+  padding: 16px 24px 200px;
+  color: #f1e4c8;
+}
+#scene.gallery > .page {
+  position: static;
+}
+.gallery .controls {
+  display: flex;
+  gap: 24px;
+  font-weight: 700;
+}
+.gallery select {
+  margin-left: 6px;
+  font: inherit;
+}
+.gallery h2 {
+  margin: 24px 0 12px;
+  font-family: Georgia, serif;
+}
+.gallery .items,
+.gallery .skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 18px;
+  align-items: end;
+}
+.gallery .cell {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+.gallery .card {
+  position: relative;
+  cursor: default;
+}
+.gallery .badge {
+  position: relative;
+  width: calc(var(--u) * 0.9);
+  height: calc(var(--u) * 0.9);
+}
+.gallery small {
+  font-size: 12px;
+  opacity: 0.75;
+}
+.gallery small em {
+  color: #ff9a8a;
+}
+.gallery .legend {
+  position: fixed;
+}

@@ -12,6 +12,10 @@ import { hourOptions, loadout, monsterOptions, rollEnchants, skillPick, type Eve
 import { boardSockets, HOURS, hourKind, levelRewards, maxHp, prestigeLoss, rival, START_PRESTIGE, WINS_TO_WIN, XP_PER_HOUR, XP_PER_LEVEL, type Reward } from './run.ts'
 import { play } from './playback.ts'
 
+// Test flags, e.g. ?gold=500&level=4&items=windupKey,rustBlade:gold:shielded&skills=quickHands:silver
+// gold and level set the start; items (key[:tier[:enchant]]) replace the starting items; skills (key[:tier]) are learned.
+const flags = new URLSearchParams(location.search)
+const flagList = (name: string) => (flags.get(name) ?? '').split(',').filter(Boolean).map(entry => entry.split(':'))
 
 // Feel. Timings are the live client's code defaults; scales are measured from recordings.
 const MOVE_MS = 300 // dropped card slides into its socket
@@ -75,13 +79,13 @@ let u = 100
 let press: { card: Card; x: number; y: number } | null = null
 let drag: { card: Card; ox: number; oy: number } | null = null
 let fighting = false
-let gold = START_GOLD
+let gold = Number(flags.get('gold') ?? START_GOLD)
 let income = START_INCOME
 let mode: 'choice' | 'merchant' | 'opponent' = 'choice' // what the top row shows
 let day = 1
 let hour = 0
 let wins = 0
-let level = 1
+let level = Number(flags.get('level') ?? 1)
 let xp = 0
 let prestige = START_PRESTIGE
 let shopTags: string[] | undefined // current merchant's stock filter
@@ -286,7 +290,7 @@ const seed: [Lane, ItemKey, number][] = [
   [board, 'fieldKit', 4],
   [stash, 'towerShield', 0],
 ]
-for (const [l, key, pos] of seed) makeCard(l, key, pos)
+if (!flags.has('items')) for (const [l, key, pos] of seed) makeCard(l, key, pos)
 
 // --- Gold and the merchant ---
 function renderGold() {
@@ -951,6 +955,22 @@ function layout() {
 }
 addEventListener('resize', layout)
 layout()
+for (const [key, tier, enchant] of flagList('items')) {
+  try {
+    if (!(key in ITEMS)) throw new Error('no such item')
+    give(key as ItemKey, (tier || undefined) as Tier | undefined, enchant as Enchant | undefined)
+  } catch (err) {
+    console.warn(`?items=${key}: ${err}`)
+  }
+}
+for (const [key, tier] of flagList('skills')) {
+  try {
+    if (!(key in SKILLS)) throw new Error('no such skill')
+    learn(key as SkillKey, (tier || SKILLS[key as SkillKey].tier) as Tier)
+  } catch (err) {
+    console.warn(`?skills=${key}: ${err}`)
+  }
+}
 renderGold()
 renderLevel()
 runLoop()
