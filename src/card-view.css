@@ -1,0 +1,246 @@
+/* ---------- Card face. All sizes in slot units via --u. ---------- */
+
+.card .art {
+  position: absolute;
+  inset: calc(var(--u) * 0.05);
+  border-radius: calc(var(--u) * 0.04);
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--c1), var(--c2));
+}
+.card .art span {
+  position: absolute;
+  inset: auto 0 22% 0;
+  text-align: center;
+  font-size: calc(var(--u) * 0.13);
+  font-weight: 700;
+  color: #ffffff80;
+}
+
+/* Metallic tier frame: a gradient ring (masked to the border) plus a dark inner line. */
+.card .frame {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  border: calc(var(--u) * 0.055) solid transparent;
+  background: linear-gradient(150deg, color-mix(in srgb, var(--tier), #fff 40%), var(--tier) 35%, color-mix(in srgb, var(--tier), #000 45%)) border-box;
+  mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0);
+  box-shadow: 0 0 0 calc(var(--u) * 0.012) #000c;
+}
+.card .frame::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--u) * -0.1);
+  width: calc(var(--u) * 0.14);
+  height: calc(var(--u) * 0.14);
+  translate: -50% 0;
+  rotate: 45deg;
+  background: var(--tier);
+}
+
+.card .gems {
+  position: absolute;
+  top: calc(var(--u) * -0.1);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: calc(var(--u) * 0.01);
+  filter: drop-shadow(0 0 calc(var(--u) * 0.012) #000);
+}
+.card .gem,
+.card .price {
+  display: grid;
+  place-items: center;
+  height: calc(var(--u) * 0.21);
+  min-width: calc(var(--u) * 0.4);
+  padding: 0 calc(var(--u) * 0.05);
+  box-sizing: border-box;
+  clip-path: polygon(14% 0, 86% 0, 100% 50%, 86% 100%, 14% 100%, 0 50%);
+  color: #fff;
+  font-weight: 900;
+  font-size: calc(var(--u) * 0.16);
+  text-shadow: 0 0 2px #000, 0 1px 1px #000;
+}
+.card .gem {
+  background: linear-gradient(color-mix(in srgb, var(--kw), #fff 25%), color-mix(in srgb, var(--kw), #000 30%));
+}
+
+.card .multicast {
+  position: absolute;
+  top: calc(var(--u) * 0.14);
+  left: 50%;
+  translate: -50% 0;
+  padding: calc(var(--u) * 0.015) calc(var(--u) * 0.05);
+  border-radius: 0 0 calc(var(--u) * 0.04) calc(var(--u) * 0.04);
+  background: #2b2b2de0;
+  color: #ddd;
+  font-weight: 700;
+  font-size: calc(var(--u) * 0.12);
+}
+
+.card .price {
+  position: absolute;
+  left: calc(var(--u) * -0.08);
+  bottom: calc(var(--u) * 0.16);
+  min-width: calc(var(--u) * 0.36);
+  background: linear-gradient(#f4a04a, #b95f18);
+  filter: drop-shadow(0 0 calc(var(--u) * 0.012) #000);
+}
+
+.card .ammo {
+  position: absolute;
+  bottom: calc(var(--u) * 0.07);
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  gap: calc(var(--u) * 0.025);
+  padding: calc(var(--u) * 0.02) calc(var(--u) * 0.05);
+  border-radius: 1em;
+  background: #000a;
+}
+.card .ammo i {
+  width: calc(var(--u) * 0.075);
+  height: calc(var(--u) * 0.075);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff3c0, #e0b440);
+}
+
+/* ---------- Tooltip + keyword legend ---------- */
+
+.ico {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: -0.12em;
+  margin-right: 0.08em;
+}
+.kw {
+  color: var(--kw);
+  font-weight: 800;
+}
+
+.tooltip,
+.legend {
+  position: absolute;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s;
+  color: #f1e4c8;
+  text-shadow: 0 1px 2px #000;
+}
+.tooltip.show,
+.legend.show {
+  opacity: 1;
+}
+
+.tooltip {
+  width: calc(var(--u) * 4.1);
+}
+.tooltip .tags {
+  display: flex;
+  gap: calc(var(--u) * 0.05);
+  margin-left: calc(var(--u) * 0.15);
+  margin-bottom: calc(var(--u) * 0.05);
+}
+.tooltip .tags span {
+  padding: calc(var(--u) * 0.03) calc(var(--u) * 0.08);
+  border-radius: calc(var(--u) * 0.06);
+  background: #2a2f55e8;
+  color: #aebcff;
+  font-size: calc(var(--u) * 0.13);
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: none;
+}
+.tooltip .title {
+  padding: calc(var(--u) * 0.13) calc(var(--u) * 0.25);
+  border: calc(var(--u) * 0.02) solid #8a6a44;
+  border-bottom: none;
+  border-radius: calc(var(--u) * 0.06) calc(var(--u) * 0.06) 0 0;
+  background: linear-gradient(#3b2a1e, #231811);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  font-size: calc(var(--u) * 0.3);
+  color: #f6e6c6;
+}
+.tooltip .body {
+  position: relative;
+  padding: calc(var(--u) * 0.16) calc(var(--u) * 0.25) calc(var(--u) * 0.16) calc(var(--u) * 0.75);
+  border: calc(var(--u) * 0.02) solid #8a6a44;
+  border-radius: 0 0 calc(var(--u) * 0.06) calc(var(--u) * 0.06);
+  background: linear-gradient(#1c1510f2, #120d0af2);
+  box-shadow: inset 0 0 0 calc(var(--u) * 0.02) #0008, 0 calc(var(--u) * 0.06) calc(var(--u) * 0.2) #000a;
+}
+.tooltip ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: calc(var(--u) * 0.2);
+  font-weight: 700;
+  line-height: 1.55;
+}
+.tooltip li::before {
+  content: '➜';
+  margin-right: 0.5em;
+  color: #9a8662;
+  font-size: 0.8em;
+}
+
+/* Cooldown dial straddling the tooltip's left edge, pointing into the text. */
+.tooltip .cooldown {
+  position: absolute;
+  left: calc(var(--u) * -0.45);
+  top: 50%;
+  translate: 0 -50%;
+  width: calc(var(--u) * 0.9);
+  height: calc(var(--u) * 0.9);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  background: radial-gradient(circle at 40% 30%, #3a3a3a, #0c0c0c 70%);
+  box-shadow: 0 0 0 calc(var(--u) * 0.04) #9a7448, 0 0 0 calc(var(--u) * 0.06) #000a;
+}
+.tooltip .cooldown::after {
+  content: '';
+  position: absolute;
+  right: calc(var(--u) * -0.13);
+  border: calc(var(--u) * 0.08) solid transparent;
+  border-left: calc(var(--u) * 0.1) solid #9a7448;
+}
+.tooltip .cooldown b {
+  font-size: calc(var(--u) * 0.32);
+  color: #fff;
+}
+.tooltip .cooldown small {
+  font-size: calc(var(--u) * 0.1);
+  font-weight: 800;
+  color: #d8c8a8;
+}
+
+.legend {
+  box-sizing: border-box;
+  left: calc(var(--u) * 0.15);
+  bottom: calc(var(--u) * 0.15);
+  width: calc(var(--u) * 2);
+  padding: calc(var(--u) * 0.1) calc(var(--u) * 0.14);
+  border-radius: calc(var(--u) * 0.06);
+  background: #1c1510e6;
+  border: calc(var(--u) * 0.015) solid #5a4630;
+}
+.legend h4 {
+  margin: calc(var(--u) * 0.06) 0 calc(var(--u) * 0.02);
+  color: var(--kw);
+  font-size: calc(var(--u) * 0.15);
+  text-transform: uppercase;
+}
+.legend p {
+  margin: 0 0 calc(var(--u) * 0.06);
+  font-size: calc(var(--u) * 0.12);
+  line-height: 1.3;
+}

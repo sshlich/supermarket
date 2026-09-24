@@ -1,0 +1,77 @@
+import './card-view.css'
+import { KEYWORDS, STAT_ORDER, TIER_COLOR, type ItemDef, type Keyword } from './items.ts'
+
+const SIZE_NAME = { 1: 'Small', 2: 'Medium', 3: 'Large' }
+
+/** Style vars a card element needs for its face. */
+export const cardVars = (def: ItemDef) => `--size:${def.size};--tier:${TIER_COLOR[def.tier]};--c1:${def.art[0]};--c2:${def.art[1]}`
+
+/** Card face, bottom to top: art, (glass goes here), frame, gems, multicast tag, price tag, ammo pips. */
+export function cardFace(def: ItemDef): string {
+  const gems = STAT_ORDER.filter(s => def.stats[s] !== undefined)
+    .map(s => `<div class="gem" style="--kw:${KEYWORDS[s].color}">${def.stats[s]}</div>`)
+    .join('')
+  return [
+    `<div class="art"><span>${def.name}</span></div>`,
+    `<div class="frame"></div>`,
+    gems && `<div class="gems">${gems}</div>`,
+    def.multicast && `<div class="multicast">x${def.multicast}</div>`,
+    `<div class="price">${def.price}</div>`,
+    def.ammo && `<div class="ammo">${'<i></i>'.repeat(def.ammo)}</div>`,
+  ]
+    .filter(Boolean)
+    .join('')
+}
+
+function rich(line: string, used: Set<Keyword>) {
+  return line.replace(/\[(\w+) ([\d.]+)\]|<(\w+)>/g, (match, kw: string | undefined, value: string, word: string | undefined) => {
+    const key = (kw ?? word!).toLowerCase() as Keyword
+    const k = KEYWORDS[key]
+    if (!k) return match
+    used.add(key)
+    return `<span class="kw" style="--kw:${k.color}">${kw ? k.icon + value : word}</span>`
+  })
+}
+
+const tip = document.createElement('div')
+tip.className = 'tooltip'
+const legend = document.createElement('div')
+legend.className = 'legend'
+
+export function mountTooltip(scene: HTMLElement) {
+  scene.append(tip, legend)
+}
+
+/**
+ * Show `def`'s tooltip above the card's box (scene units: center x/y, width, height), or below it
+ * if there's no room above. Keywords used in the text are explained in the legend.
+ */
+export function showTooltip(def: ItemDef, card: { x: number; y: number; w: number; h: number }, u: number, sceneW: number) {
+  const used = new Set<Keyword>()
+  const lines = def.text.map(l => `<li>${rich(l, used)}</li>`).join('')
+  const cooldown = def.cooldown ? `<div class="cooldown"><b>${def.cooldown.toFixed(1)}</b><small>SEC</small></div>` : ''
+  tip.innerHTML =
+    `<div class="tags">${[SIZE_NAME[def.size], ...def.tags].map(t => `<span>${t}</span>`).join('')}</div>` +
+    `<div class="title">${def.name}</div>` +
+    `<div class="body">${cooldown}<ul>${lines}</ul></div>`
+  const explained = [...used].filter(k => KEYWORDS[k].desc)
+  legend.innerHTML = explained
+    .map(k => `<div><h4 style="--kw:${KEYWORDS[k].color}">${KEYWORDS[k].icon}${KEYWORDS[k].name}</h4><p>${KEYWORDS[k].desc}</p></div>`)
+    .join('')
+
+  const tw = tip.offsetWidth / u
+  const th = tip.offsetHeight / u
+  const gemRoom = 0.2
+  let top = card.y - card.h / 2 - gemRoom - th
+  if (top < 0.05) top = card.y + card.h / 2 + 0.1
+  const left = Math.max(0.5, Math.min(sceneW - tw - 0.05, card.x - card.w / 2 - 0.13))
+  tip.style.left = `${left * u}px`
+  tip.style.top = `${top * u}px`
+  tip.classList.add('show')
+  legend.classList.toggle('show', explained.length > 0)
+}
+
+export function hideTooltip() {
+  tip.classList.remove('show')
+  legend.classList.remove('show')
+}
