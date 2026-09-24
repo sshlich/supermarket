@@ -1,0 +1,147 @@
+/* Cooldown: the uncharged part (top) is dimmed; a glowing line marks the charge level rising from the bottom. */
+.card .cd {
+  position: absolute;
+  left: calc(var(--u) * 0.05);
+  right: calc(var(--u) * 0.05);
+  top: calc(var(--u) * 0.05);
+  height: calc((1 - var(--cd, 0)) * (100% - var(--u) * 0.1));
+  background: #0a0f18a0;
+  border-bottom: calc(var(--u) * 0.02) solid #6dffae;
+  box-shadow: 0 calc(var(--u) * 0.02) calc(var(--u) * 0.12) #3dff8c;
+  pointer-events: none;
+}
+
+.card .flash {
+  position: absolute;
+  inset: calc(var(--u) * 0.05);
+  border-radius: calc(var(--u) * 0.04);
+  background: radial-gradient(circle, var(--flash, #fff), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.card .timer {
+  position: absolute;
+  top: calc(var(--u) * 0.32);
+  left: 50%;
+  translate: -50% 0;
+  padding: calc(var(--u) * 0.02) calc(var(--u) * 0.07);
+  border-radius: calc(var(--u) * 0.06);
+  font-weight: 900;
+  font-size: calc(var(--u) * 0.2);
+  color: #fff;
+  text-shadow: 0 1px 2px #000;
+  pointer-events: none;
+}
+.card .timer:empty { display: none; }
+.card .timer.haste { background: #1d6a3ae0; box-shadow: 0 0 0 calc(var(--u) * 0.02) #6dffae; }
+.card .timer.slow { background: #5a3a7ae0; box-shadow: 0 0 0 calc(var(--u) * 0.02) #c39bff; }
+.card .timer.freeze { background: #1e5a7ae0; box-shadow: 0 0 0 calc(var(--u) * 0.02) #7fdcff; }
+
+.card .ammo i.spent { background: #3a3228; }
+
+/* No dragging mid-fight. */
+.fighting .card { cursor: default; }
+
+.hp b {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(#ffe27a, #d8a520);
+  opacity: 0.85;
+}
+.hp span {
+  gap: 0.4em;
+  grid-auto-flow: column;
+  justify-content: center;
+}
+.hp em { font-style: normal; }
+.hp em.shield { color: #ffd84a; }
+.hp em.burn { color: #ff9b3a; }
+.hp em.poison { color: #58d69b; }
+
+.float {
+  position: absolute;
+  z-index: 150;
+  translate: -50% -50%;
+  font-weight: 900;
+  font-size: calc(var(--u) * (0.32 + 0.25 * var(--big, 0)));
+  text-shadow: 0 0 3px #000, 0 2px 2px #000;
+  pointer-events: none;
+  animation: float-up 0.9s ease-out forwards;
+}
+@keyframes float-up {
+  0% { transform: translateY(0) scale(0.6); opacity: 0; }
+  15% { transform: translate(calc(var(--dx, 0px) * 0.2), calc(var(--u) * -0.15)) scale(1.15); opacity: 1; }
+  100% { transform: translate(var(--dx, 0px), calc(var(--u) * -0.6)) scale(1); opacity: 0; }
+}
+
+.banner {
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  z-index: 300;
+  display: grid;
+  justify-items: center;
+  gap: calc(var(--u) * 0.2);
+  padding: calc(var(--u) * 0.3) calc(var(--u) * 0.8);
+  border-radius: calc(var(--u) * 0.15);
+  background: linear-gradient(#2a3a8a, #18205a);
+  border: calc(var(--u) * 0.05) solid #f0c24a;
+  box-shadow: 0 0 calc(var(--u) * 0.6) #000c;
+  animation: banner-in 0.35s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+.banner.loss { background: linear-gradient(#6a2020, #3a1010); }
+.banner.draw { background: linear-gradient(#4a4a4a, #262626); }
+.banner h2 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: calc(var(--u) * 0.6);
+  color: #f6e6c6;
+  text-shadow: 0 2px 4px #000;
+}
+.banner button,
+.fight-btn {
+  padding: calc(var(--u) * 0.08) calc(var(--u) * 0.3);
+  border-radius: calc(var(--u) * 0.1);
+  border: calc(var(--u) * 0.03) solid #f0c24a;
+  background: linear-gradient(#e0892a, #a0501a);
+  color: #fff;
+  font-weight: 900;
+  font-size: calc(var(--u) * 0.22);
+  cursor: pointer;
+  text-shadow: 0 1px 2px #000;
+}
+@keyframes banner-in {
+  from { scale: 0.5; opacity: 0; }
+  to { scale: 1; opacity: 1; }
+}
+
+.fight-btn {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+}
+.fighting .fight-btn { opacity: 0.4; pointer-events: none; }
+
+/* Playback speed: a native range snapping to 0.5x / 1x / 2x / 4x. */
+.speed {
+  display: grid;
+  gap: calc(var(--u) * 0.04);
+  color: #f1e4c8;
+  font-weight: 800;
+  font-size: calc(var(--u) * 0.14);
+  text-shadow: 0 1px 2px #000;
+}
+.speed input {
+  width: 100%;
+  margin: 0;
+  accent-color: #f0c24a;
+}
+.speed .ticks {
+  display: flex;
+  justify-content: space-between;
+}
+.speed .ticks span.on { color: #f0c24a; }

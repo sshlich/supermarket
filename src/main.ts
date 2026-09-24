@@ -3,6 +3,7 @@ import { glass, sheen, type Effect } from './card-effects.ts'
 import { cardFace, cardVars, hideTooltip, mountTooltip, showTooltip } from './card-view.ts'
 import { place, swap, SOCKETS, type Item, type Row, type Size } from './board.ts'
 import { ITEMS, type ItemDef } from './items.ts'
+import { play } from './playback.ts'
 
 // Feel. Timings are the live client's code defaults; scales are measured from recordings.
 const MOVE_MS = 300 // dropped card slides into its socket
@@ -60,6 +61,7 @@ const scene = document.getElementById('scene')!
 let u = 100
 let press: { card: Card; x: number; y: number } | null = null
 let drag: { card: Card; ox: number; oy: number } | null = null
+let fighting = false
 
 /** Absolutely placed element, position and size in slot units. */
 function box(cls: string, x: number, y: number, w: number, h: number, html = '') {
@@ -81,8 +83,8 @@ const midX = X0 + ROW_W / 2
 box('dial', X0 - 1.95, (OPP_ROW + BOARD_ROW + ROW_H) / 2 - 0.85, 1.7, 1.7, '<b>1</b><small>DAY</small>')
 
 box('panel', X0, OPP_STRIP, PANEL_W, STRIP_H, '<span>Skills</span>')
-box('portrait enemy', midX - 0.9, OPP_STRIP + 0.05, 1.8, 1.45, '<span>Opponent</span>')
-box('hp', X0 + PANEL_W + 0.05, OPP_STRIP + STRIP_H - 0.38, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><span>400</span>')
+const oppPortrait = box('portrait enemy', midX - 0.9, OPP_STRIP + 0.05, 1.8, 1.45, '<span>Opponent</span>')
+const oppHp = box('hp', X0 + PANEL_W + 0.05, OPP_STRIP + STRIP_H - 0.38, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><b></b><span>400</span>')
 box('panel gold', X0 + ROW_W - PANEL_W, OPP_STRIP, PANEL_W, STRIP_H, '<span>+5 » 3</span>')
 
 const opponent = lane('opponent', OPP_ROW, NUDGE, false)
@@ -90,8 +92,8 @@ const stash = lane('stash', OPP_ROW, -NUDGE, true, 0, 9) // opens over the oppon
 const board = lane('board', BOARD_ROW, NUDGE, true)
 const lanes = [opponent, stash, board]
 
-box('hp', X0 + PANEL_W + 0.05, PLAYER_STRIP + 0.04, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><span>300</span>')
-box('portrait', midX - 0.9, PLAYER_STRIP + 0.45, 1.8, 1.45, '<span>You</span>')
+const myHp = box('hp', X0 + PANEL_W + 0.05, PLAYER_STRIP + 0.04, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><b></b><span>300</span>')
+const myPortrait = box('portrait', midX - 0.9, PLAYER_STRIP + 0.45, 1.8, 1.45, '<span>You</span>')
 const toy = box('panel toy', X0, PLAYER_STRIP, PANEL_W, STRIP_H, '<span>Stash</span>')
 box('panel gold', X0 + ROW_W - PANEL_W, PLAYER_STRIP, PANEL_W, STRIP_H, '<span>+5 » 15</span>')
 mountTooltip(scene)
@@ -148,6 +150,44 @@ toy.addEventListener('click', () => {
 })
 refreshStash()
 
+// --- Fight: board vs opponent, played out on the field. ---
+const fightBtn = box('fight-btn', X0 + ROW_W + 0.35, (OPP_ROW + BOARD_ROW + ROW_H) / 2 - 0.35, 1.5, 0.7, 'Fight!')
+const SPEEDS = [0.5, 1, 2, 4]
+const speedBox = box('speed', X0 + ROW_W + 0.35, (OPP_ROW + BOARD_ROW + ROW_H) / 2 + 0.55, 1.5, 0.5,
+  `<input type="range" min="0" max="${SPEEDS.length - 1}" step="1" value="1" aria-label="Playback speed">` +
+  `<div class="ticks">${SPEEDS.map(v => `<span>${v}×</span>`).join('')}</div>`)
+const speedInput = speedBox.querySelector('input')!
+const showSpeed = () => speedBox.querySelectorAll('.ticks span').forEach((t, i) => t.classList.toggle('on', i === +speedInput.value))
+speedInput.addEventListener('input', showSpeed)
+showSpeed()
+
+fightBtn.addEventListener('click', async () => {
+  if (fighting || drag) return
+  fighting = true
+  stashOpen = false
+  refreshStash()
+  const setup = (name: string, hp: number, lane: Lane) => ({
+    name,
+    hp,
+    items: cards.filter(c => c.lane === lane).sort((a, b) => a.item.pos - b.item.pos).map(c => ({ id: c.item.id, def: c.def })),
+  })
+  await play(setup('You', 300, board), setup('Opponent', 400, opponent), (Math.random() * 2 ** 31) | 0, {
+    scene,
+    cardEl: id => cards.find(c => c.item.id === id)!.el,
+    hp: [myHp, oppHp],
+    portrait: [myPortrait, oppPortrait],
+    hovering: () => cards.some(c => c.hovered),
+    speed: () => SPEEDS[+speedInput.value],
+  })
+  // Health doesn't carry over: everyone starts each fight full, like the live game.
+  for (const [el, hp] of [[myHp, 300], [oppHp, 400]] as const) {
+    el.querySelector('i')!.style.width = '100%'
+    el.querySelector('b')!.style.width = '0'
+    el.querySelector('span')!.textContent = String(hp)
+  }
+  fighting = false
+})
+
 function rest(c: Card): Pose {
   return { x: X0 + ROW_PAD + c.item.pos + c.item.size / 2, y: c.lane.y + ROW_H / 2 + (c.nudged ? c.lane.nudge : 0), s: 1 }
 }
@@ -199,7 +239,7 @@ function setHover(c: Card, on: boolean) {
 function bind(c: Card) {
   const { el } = c
   el.addEventListener('pointerdown', e => {
-    if (e.button !== 0 || drag || !c.lane.mine) return
+    if (e.button !== 0 || drag || fighting || !c.lane.mine) return
     el.setPointerCapture(e.pointerId)
     press = { card: c, x: e.clientX, y: e.clientY }
   })
