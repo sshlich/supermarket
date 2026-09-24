@@ -208,3 +208,56 @@ body {
   text-shadow: 0 1px 2px #000;
 }
 .record b { color: #f5d77a; }
+
+/* ---------- Levels: XP pips on the stash panel, level badge, growing board, upgrade marker ---------- */
+
+.panel.toy .xp {
+  position: absolute;
+  top: calc(var(--u) * 0.12);
+  left: calc(var(--u) * 0.15);
+  right: calc(var(--u) * 0.15);
+  display: flex;
+  gap: calc(var(--u) * 0.03);
+}
+.panel.toy .xp i {
+  flex: 1;
+  height: calc(var(--u) * 0.1);
+  border-radius: calc(var(--u) * 0.02);
+  background: #1a1630;
+  box-shadow: inset 0 0 0 calc(var(--u) * 0.01) #5a8ac8;
+}
+.panel.toy .xp i.on { background: linear-gradient(#8fd0ff, #3a7ad8); }
+
+.portrait .level {
+  position: absolute;
+  left: calc(var(--u) * -0.12);
+  bottom: calc(var(--u) * -0.08);
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 0.42);
+  height: calc(var(--u) * 0.42);
+  border-radius: calc(var(--u) * 0.08);
+  background: linear-gradient(#3a7ad8, #1a3a78);
+  border: calc(var(--u) * 0.03) solid #8fd0ff;
+  font-size: calc(var(--u) * 0.24);
+}
+
+.row .unlocked { transition: left 0.5s ease-out, width 0.5s ease-out; }
+
+/* Offer that would upgrade an item you own. */
+.card.upgrades::after {
+  content: '▲';
+  position: absolute;
+  top: calc(var(--u) * 0.18);
+  right: calc(var(--u) * 0.1);
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 0.3);
+  height: calc(var(--u) * 0.3);
+  border-radius: 50%;
+  background: #2f9a4a;
+  border: calc(var(--u) * 0.025) solid #b8ffc8;
+  color: #fff;
+  font-size: calc(var(--u) * 0.15);
+  box-shadow: 0 0 calc(var(--u) * 0.15) #3dff8c;
+}

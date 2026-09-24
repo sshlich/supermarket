@@ -25,6 +25,21 @@ export const KEYWORDS: Record<Keyword, { name: string; color: string; icon: stri
   ammo: { name: 'Ammo', color: '#f2d27a', icon: svg('M6 1h4a2 3 0 0 1 2 3v11H4V4a2 3 0 0 1 2-3z'), desc: 'Uses per fight. When it runs out the item stops firing.' },
 }
 
+/** Normal upgrade path. Legendary is a separate top tier that doesn't upgrade. */
+export const TIER_ORDER: Tier[] = ['bronze', 'silver', 'gold', 'diamond']
+const TIER_STEP: Record<Tier, number> = { bronze: 1, silver: 2, gold: 3, diamond: 4, legendary: 5 }
+export const nextTier = (t: Tier): Tier | null => (TIER_ORDER.includes(t) ? (TIER_ORDER[TIER_ORDER.indexOf(t) + 1] ?? null) : null)
+
+/**
+ * The item at `tier`: stats scale by tier step relative to its starting tier (a Silver 10 is a Gold 15).
+ * ponytail: one curve for every item; per-item tier tables when balance needs them.
+ */
+export function atTier(def: ItemDef, tier: Tier): ItemDef {
+  const k = TIER_STEP[tier] / TIER_STEP[def.tier]
+  const stats = Object.fromEntries(Object.entries(def.stats).map(([s, v]) => [s, Math.round(v * k)]))
+  return { ...def, tier, stats }
+}
+
 export type Stat = 'damage' | 'shield' | 'heal' | 'burn' | 'poison'
 export const STAT_ORDER: Stat[] = ['damage', 'shield', 'heal', 'burn', 'poison']
 
@@ -40,7 +55,7 @@ export interface ItemDef {
   crit?: number // % chance
   abilities: Ability[]
   auras?: Aura[]
-  /** Lines of description. `[burn 2]` = icon + value, `<Burn>` = colored keyword. */
+  /** Lines of description. `[burn]` = icon + this tier's burn stat, `[burn 2]` = icon + a fixed value, `<Burn>` = colored keyword. */
   text: string[]
   art: [string, string] // placeholder art gradient until we have real art
 }
@@ -52,28 +67,28 @@ export const ITEMS = {
   handCannon: {
     name: 'Hand Cannon', size: 2, tier: 'gold', tags: ['Weapon'], cooldown: 7,
     stats: { damage: 8, burn: 2 }, multicast: 3,
-    text: ['Deal [damage 8] <Damage>', '<Burn> [burn 2]', '<Multicast>: [multicast 3]'],
+    text: ['Deal [damage] <Damage>', '<Burn> [burn]', '<Multicast>: [multicast 3]'],
     abilities: [onUse({ do: 'damage' }, { do: 'burn' })],
     art: ['#6f7684', '#2b2f38'],
   },
   sparkPistol: {
     name: 'Spark Pistol', size: 1, tier: 'bronze', tags: ['Weapon', 'Tech'], cooldown: 4,
     stats: { damage: 10 }, ammo: 6,
-    text: ['Deal [damage 10] <Damage>', '<Ammo> [ammo 6]'],
+    text: ['Deal [damage] <Damage>', '<Ammo> [ammo 6]'],
     abilities: [onUse({ do: 'damage' })],
     art: ['#7c6a4a', '#2c2418'],
   },
   towerShield: {
     name: 'Tower Shield', size: 2, tier: 'silver', tags: ['Armor'], cooldown: 6,
     stats: { shield: 20 },
-    text: ['Gain [shield 20] <Shield>'],
+    text: ['Gain [shield] <Shield>'],
     abilities: [onUse({ do: 'shield' })],
     art: ['#4f6282', '#1b2232'],
   },
   emberFlask: {
     name: 'Ember Flask', size: 1, tier: 'gold', tags: ['Potion'], cooldown: 5,
     stats: { burn: 4 },
-    text: ['<Burn> [burn 4]', 'Your other <Burn> items gain [burn 1]'],
+    text: ['<Burn> [burn]', 'Your other <Burn> items gain [burn 1]'],
     abilities: [onUse({ do: 'burn' })],
     auras: [{ stat: 'burn', add: 1, targets: { pick: 'mine', excludeSelf: true, where: { has: 'burn' } } }],
     art: ['#9a4a2a', '#2e140c'],
@@ -81,28 +96,28 @@ export const ITEMS = {
   fieldKit: {
     name: 'Field Kit', size: 1, tier: 'bronze', tags: ['Tool', 'Friend'], cooldown: 4,
     stats: { heal: 10 },
-    text: ['<Heal> [heal 10]', '<Haste> an item for [haste 1] second(s)'],
+    text: ['<Heal> [heal]', '<Haste> an item for [haste 1] second(s)'],
     abilities: [onUse({ do: 'heal' }, { do: 'haste', seconds: 1, targets: { pick: 'mine', excludeSelf: true, where: { has: 'cooldown' }, random: 1 } })],
     art: ['#c27a3a', '#3a2010'],
   },
   siegeAnvil: {
     name: 'Siege Anvil', size: 3, tier: 'bronze', tags: ['Tool', 'Weapon'], cooldown: 9,
     stats: { damage: 30, shield: 15 },
-    text: ['Deal [damage 30] <Damage>', 'Gain [shield 15] <Shield>'],
+    text: ['Deal [damage] <Damage>', 'Gain [shield] <Shield>'],
     abilities: [onUse({ do: 'damage' }, { do: 'shield' })],
     art: ['#6a5040', '#221812'],
   },
   venomVial: {
     name: 'Venom Vial', size: 1, tier: 'diamond', tags: ['Potion'], cooldown: 3,
     stats: { poison: 3 },
-    text: ['<Poison> [poison 3]'],
+    text: ['<Poison> [poison]'],
     abilities: [onUse({ do: 'poison' })],
     art: ['#2f7a62', '#0e2a22'],
   },
   brassBeetle: {
     name: 'Brass Beetle', size: 2, tier: 'silver', tags: ['Friend', 'Tech'], cooldown: 5,
     stats: { damage: 12 },
-    text: ['Deal [damage 12] <Damage>', 'When you use an adjacent item, <Haste> this for [haste 1] second'],
+    text: ['Deal [damage] <Damage>', 'When you use an adjacent item, <Haste> this for [haste 1] second'],
     abilities: [
       onUse({ do: 'damage' }),
       { when: { on: 'itemUsed', who: { pick: 'neighbors' } }, do: [{ do: 'haste', seconds: 1, targets: { pick: 'self' } }] },
@@ -112,14 +127,14 @@ export const ITEMS = {
   rustBlade: {
     name: 'Rust Blade', size: 1, tier: 'bronze', tags: ['Weapon'], cooldown: 3,
     stats: { damage: 5 },
-    text: ['Deal [damage 5] <Damage>'],
+    text: ['Deal [damage] <Damage>'],
     abilities: [onUse({ do: 'damage' })],
     art: ['#7a4a3a', '#2e1a14'],
   },
   ironPot: {
     name: 'Iron Pot', size: 1, tier: 'bronze', tags: ['Armor'], cooldown: 5,
     stats: { shield: 10 },
-    text: ['Gain [shield 10] <Shield>'],
+    text: ['Gain [shield] <Shield>'],
     abilities: [onUse({ do: 'shield' })],
     art: ['#5a5a62', '#1c1c22'],
   },

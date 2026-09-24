@@ -23,13 +23,14 @@ export function cardFace(def: ItemDef): string {
     .join('')
 }
 
-function rich(line: string, used: Set<Keyword>) {
-  return line.replace(/\[(\w+) ([\d.]+)\]|<(\w+)>/g, (match, kw: string | undefined, value: string, word: string | undefined) => {
+/** `[burn]` -> icon + values.burn, `[burn 2]` -> icon + 2, `<Burn>` -> colored keyword. */
+function rich(line: string, used: Set<Keyword>, values: Record<string, number> = {}) {
+  return line.replace(/\[(\w+)(?: ([\d.]+))?\]|<(\w+)>/g, (match, kw: string | undefined, value: string | undefined, word: string | undefined) => {
     const key = (kw ?? word!).toLowerCase() as Keyword
     const k = KEYWORDS[key]
     if (!k) return match
     used.add(key)
-    return `<span class="kw" style="--kw:${k.color}">${kw ? k.icon + value : word}</span>`
+    return `<span class="kw" style="--kw:${k.color}">${kw ? k.icon + (value ?? values[key] ?? '?') : word}</span>`
   })
 }
 
@@ -43,9 +44,9 @@ export function mountTooltip(scene: HTMLElement) {
 }
 
 /** Anything shown in the standard tooltip frame: items, encounters, choices. */
-export interface Info { title: string; tags?: string[]; text: string[]; cooldown?: number }
+export interface Info { title: string; tags?: string[]; text: string[]; cooldown?: number; values?: Record<string, number> }
 
-export const itemInfo = (def: ItemDef): Info => ({ title: def.name, tags: [SIZE_NAME[def.size], ...def.tags], text: def.text, cooldown: def.cooldown })
+export const itemInfo = (def: ItemDef): Info => ({ title: def.name, tags: [SIZE_NAME[def.size], ...def.tags], text: def.text, cooldown: def.cooldown, values: def.stats })
 
 export function showTooltip(def: ItemDef, card: Box, u: number, sceneW: number) {
   showInfo(itemInfo(def), card, u, sceneW)
@@ -60,7 +61,7 @@ export interface Box { x: number; y: number; w: number; h: number }
  */
 export function showInfo(info: Info, card: Box, u: number, sceneW: number) {
   const used = new Set<Keyword>()
-  const lines = info.text.map(l => `<li>${rich(l, used)}</li>`).join('')
+  const lines = info.text.map(l => `<li>${rich(l, used, info.values)}</li>`).join('')
   const cooldown = info.cooldown ? `<div class="cooldown"><b>${info.cooldown.toFixed(1)}</b><small>SEC</small></div>` : ''
   const tags = info.tags?.length ? `<div class="tags">${info.tags.map(t => `<span>${t}</span>`).join('')}</div>` : ''
   tip.innerHTML = tags + `<div class="title">${info.title}</div>` + `<div class="body${cooldown ? '' : ' plain'}">${cooldown}<ul>${lines}</ul></div>`

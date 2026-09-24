@@ -3,10 +3,10 @@ import { glass, sheen, type Effect } from './card-effects.ts'
 import { cardFace, cardVars, hideTooltip, itemInfo, mountTooltip, showTooltip } from './card-view.ts'
 import { exchange, firstFree, place, SOCKETS, swap, under, type Item, type Row, type Size } from './board.ts'
 import { buyPrice, REROLL_COST, sellPrice, spread, START_GOLD, START_INCOME } from './economy.ts'
-import { ITEMS, type ItemDef, type ItemKey } from './items.ts'
+import { atTier, ITEMS, nextTier, TIER_ORDER, type ItemDef, type ItemKey, type Tier } from './items.ts'
 import { choose, type Option } from './choice.ts'
 import { hourOptions, monsterOptions, type GameEvent, type Merchant } from './encounters.ts'
-import { HOURS, hourKind, PLAYER_HP, prestigeLoss, rival, START_PRESTIGE, WINS_TO_WIN } from './run.ts'
+import { boardSockets, HOURS, hourKind, levelRewards, maxHp, prestigeLoss, rival, START_PRESTIGE, WINS_TO_WIN, XP_PER_HOUR, XP_PER_LEVEL, type Reward } from './run.ts'
 import { play } from './playback.ts'
 
 // Feel. Timings are the live client's code defaults; scales are measured from recordings.
@@ -50,7 +50,8 @@ const linear = (t: number) => t
 interface Pose { x: number; y: number; s: number }
 interface Lane { name: string; row: Row; y: number; nudge: number; mine: boolean; shop: boolean; el: HTMLElement }
 interface Card {
-  def: ItemDef
+  key: ItemKey
+  def: ItemDef // at the card's current tier
   item: Item
   lane: Lane
   el: HTMLElement
@@ -73,6 +74,8 @@ let mode: 'choice' | 'merchant' | 'opponent' = 'choice' // what the top row show
 let day = 1
 let hour = 0
 let wins = 0
+let level = 1
+let xp = 0
 let prestige = START_PRESTIGE
 let shopTags: string[] | undefined // current merchant's stock filter
 let choiceEl: HTMLElement | null = null
@@ -92,9 +95,19 @@ function box(cls: string, x: number, y: number, w: number, h: number, html = '')
 }
 
 function lane(name: string, y: number, nudge: number, kind: 'mine' | 'theirs' | 'shop', lo = 2, hi = 7): Lane {
-  const curtain = `<div class="unlocked" style="left:calc(var(--u)*${ROW_PAD + lo - 0.1});width:calc(var(--u)*${hi - lo + 1.2})"></div>`
-  const el = box(`row ${name}`, X0, y, ROW_W, ROW_H, curtain)
-  return { name, row: { items: [], lo, hi }, y, nudge, mine: kind === 'mine', shop: kind === 'shop', el }
+  const el = box(`row ${name}`, X0, y, ROW_W, ROW_H, '<div class="unlocked"></div>')
+  const l = { name, row: { items: [], lo, hi }, y, nudge, mine: kind === 'mine', shop: kind === 'shop', el }
+  setUnlocked(l, lo, hi)
+  return l
+}
+
+/** Unlocked sockets lo..hi, and the dark curtain that shows them. */
+function setUnlocked(l: Lane, lo: number, hi: number) {
+  l.row.lo = lo
+  l.row.hi = hi
+  const curtain = l.el.querySelector<HTMLElement>('.unlocked')!
+  curtain.style.left = `calc(var(--u) * ${ROW_PAD + lo - 0.1})`
+  curtain.style.width = `calc(var(--u) * ${hi - lo + 1.2})`
 }
 
 // --- Field ---
@@ -110,35 +123,60 @@ const oppHp = box('hp', X0 + PANEL_W + 0.05, OPP_STRIP + STRIP_H - 0.38, ROW_W -
 const merchant = lane('merchant', OPP_ROW, -NUDGE, 'shop', 0, 9)
 const opponent = lane('opponent', OPP_ROW, NUDGE, 'theirs', 0, 9)
 const stash = lane('stash', OPP_ROW, -NUDGE, 'mine', 0, 9)
-const board = lane('board', BOARD_ROW, NUDGE, 'mine')
+const board = lane('board', BOARD_ROW, NUDGE, 'mine', boardSockets(1).lo, boardSockets(1).hi)
 const lanes = [merchant, opponent, stash, board]
 const sellZone = box('sell', X0, OPP_ROW, ROW_W, ROW_H) // over the merchant's offers, under the dragged card
 
-const myHp = box('hp', X0 + PANEL_W + 0.05, PLAYER_STRIP + 0.04, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><b></b><span>300</span>')
-const myPortrait = box('portrait', midX - 0.9, PLAYER_STRIP + 0.45, 1.8, 1.45, '<span>You</span>')
-const toy = box('panel toy', X0, PLAYER_STRIP, PANEL_W, STRIP_H, '<span>Stash</span>')
+const myHp = box('hp', X0 + PANEL_W + 0.05, PLAYER_STRIP + 0.04, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><b></b><span></span>')
+const myPortrait = box('portrait', midX - 0.9, PLAYER_STRIP + 0.45, 1.8, 1.45, '<span>You</span><b class="level"></b>')
+const toy = box('panel toy', X0, PLAYER_STRIP, PANEL_W, STRIP_H, '<div class="xp"></div><span>Stash</span>')
 const myGold = box('panel gold', X0 + ROW_W - PANEL_W, PLAYER_STRIP, PANEL_W, STRIP_H)
 mountTooltip(scene)
 
 // --- Cards ---
 let nextId = 0
-function makeCard(lane: Lane, key: ItemKey, pos: number): Card {
-  const def: ItemDef = ITEMS[key]
+function makeCard(lane: Lane, key: ItemKey, pos: number, tier?: Tier): Card {
+  const def = atTier(ITEMS[key], tier ?? ITEMS[key].tier)
   const item: Item = { id: String(nextId++), size: def.size, pos }
   lane.row.items.push(item)
   const el = document.createElement('div')
   el.className = 'card'
-  el.style.cssText = cardVars(def)
-  el.innerHTML = cardFace(def)
-  const pane = glass(el)
-  el.querySelector('.art')!.after(pane.el) // glass sits over the art, under the frame and badges
   scene.append(el)
-  const c: Card = { def, item, lane, el, pose: { x: 0, y: 0, s: 1 }, tween: null, tilt: { x: 0, y: 0, tx: 0, ty: 0 }, hovered: false, nudged: false, effects: [pane, sheen(pane.el)] }
+  const c: Card = { key, def, item, lane, el, pose: { x: 0, y: 0, s: 1 }, tween: null, tilt: { x: 0, y: 0, tx: 0, ty: 0 }, hovered: false, nudged: false, effects: [] }
+  renderFace(c)
   c.pose = rest(c)
   cards.push(c)
   setOwner(c)
   bind(c)
   return c
+}
+
+/** (Re)draw the card face for its current def: tier frame, gems, glass and sheen. */
+function renderFace(c: Card) {
+  for (const kv of cardVars(c.def).split(';')) c.el.style.setProperty(...(kv.split(':') as [string, string]))
+  c.el.innerHTML = cardFace(c.def)
+  const pane = glass(c.el)
+  c.el.querySelector('.art')!.after(pane.el) // glass sits over the art, under the frame and badges
+  c.effects = [pane, sheen(pane.el)]
+}
+
+/** Your oldest copy of `key` that can still go up a tier, if any. */
+const upgradeTarget = (key: ItemKey) => cards.find(o => o.key === key && o.lane.mine && nextTier(o.def.tier))
+
+/** One tier up: new stats, frame and value. */
+function upgrade(c: Card) {
+  c.def = atTier(ITEMS[c.key], nextTier(c.def.tier)!)
+  renderFace(c)
+  setOwner(c)
+  c.el.animate([{ scale: '1' }, { scale: '1.18' }, { scale: '1' }], { duration: 420, easing: 'ease-out' })
+  flash(c.el, 'var(--tier)')
+  toast(`${c.def.name} upgraded to ${c.def.tier[0].toUpperCase() + c.def.tier.slice(1)}!`)
+  refreshTop()
+}
+
+/** Offers that would upgrade something you own get an arrow. */
+function markUpgrades() {
+  for (const c of cards) if (c.lane.shop) c.el.classList.toggle('upgrades', !!upgradeTarget(c.key))
 }
 
 /** Price tag and cursor follow who owns the card: buy price at the merchant, sell value everywhere else. */
@@ -154,8 +192,8 @@ function removeCard(c: Card) {
 }
 
 const seed: [Lane, ItemKey, number][] = [
-  [board, 'sparkPistol', 2],
-  [board, 'fieldKit', 3],
+  [board, 'sparkPistol', 3],
+  [board, 'fieldKit', 4],
   [stash, 'towerShield', 0],
 ]
 for (const [l, key, pos] of seed) makeCard(l, key, pos)
@@ -210,6 +248,7 @@ function refreshTop() {
   for (const l of lanes) l.el.classList.toggle('hidden', !shown(l))
   for (const c of cards) c.el.classList.toggle('hidden', !shown(c.lane) && drag?.card !== c)
   choiceEl?.classList.toggle('hidden', stashOn)
+  markUpgrades()
   toy.classList.toggle('open', stashOn)
   oppHp.classList.toggle('hidden', mode !== 'opponent')
   rerollBtn.classList.toggle('hidden', mode !== 'merchant')
@@ -225,6 +264,12 @@ function renderClock() {
   const pips = Array.from({ length: HOURS }, (_, i) => `<i class="${i < hour ? 'done' : i === hour ? 'now' : ''}${hourKind(i) === 'choice' ? '' : ' fight'}"></i>`).join('')
   dial.innerHTML = `<small>DAY</small><b>${day}</b><div class="pips">${pips}</div>`
   record.innerHTML = `<span>Wins <b>${wins}/${WINS_TO_WIN}</b></span><span>Prestige <b>${prestige}</b></span>`
+}
+
+function renderLevel() {
+  toy.querySelector('.xp')!.innerHTML = Array.from({ length: XP_PER_LEVEL }, (_, i) => `<i class="${i < xp ? 'on' : ''}"></i>`).join('')
+  myPortrait.querySelector('.level')!.textContent = String(level)
+  if (!fighting) resetBar(myHp, maxHp(level))
 }
 
 toy.addEventListener('click', () => {
@@ -267,10 +312,10 @@ async function pick(options: Option[]) {
 }
 
 /** Add an item to the first free spot on the board, else the stash. False if there's no room. */
-function give(key: ItemKey) {
+function give(key: ItemKey, tier?: Tier) {
   const dest = [board, stash].find(l => firstFree(l.row, ITEMS[key].size) !== null)
   if (!dest) return false
-  const c = makeCard(dest, key, firstFree(dest.row, ITEMS[key].size)!)
+  const c = makeCard(dest, key, firstFree(dest.row, ITEMS[key].size)!, tier)
   c.el.animate([{ opacity: 0, scale: '1.3' }, { opacity: 1, scale: '1' }], { duration: 300, easing: 'ease-out' })
   if (dest === stash && !stashOpen) flash(toy, '#f0c24a')
   refreshTop()
@@ -301,7 +346,7 @@ async function fight(name: string, hp: number, items: ItemKey[], color?: [string
     hp: maxHp,
     items: cards.filter(c => c.lane === l).sort((a, b) => a.item.pos - b.item.pos).map(c => ({ id: c.item.id, def: c.def })),
   })
-  const winner = await play(setup('You', PLAYER_HP, board), setup(name, hp, opponent), (Math.random() * 2 ** 31) | 0, {
+  const winner = await play(setup('You', maxHp(level), board), setup(name, hp, opponent), (Math.random() * 2 ** 31) | 0, {
     scene,
     cardEl: id => cards.find(c => c.item.id === id)!.el,
     hp: [myHp, oppHp],
@@ -309,7 +354,7 @@ async function fight(name: string, hp: number, items: ItemKey[], color?: [string
     hovering: () => cards.some(c => c.hovered),
     speed: () => SPEEDS[+speedInput.value],
   })
-  resetBar(myHp, PLAYER_HP) // health doesn't carry over: everyone starts each fight full, like the live game
+  resetBar(myHp, maxHp(level)) // health doesn't carry over: everyone starts each fight full, like the live game
   fighting = false
   return winner
 }
@@ -378,7 +423,62 @@ async function monsterHour() {
     gold += m.gold
     renderGold()
     flash(myGold, '#f0c24a')
-    toast(`+${m.gold} gold`)
+    toast(`+${m.gold} gold, +${m.xp} XP`)
+    await gainXp(m.xp)
+  }
+}
+
+/** XP in; every full bar is a level: more health, a bigger board, and a reward pick. */
+async function gainXp(n: number) {
+  xp += n
+  renderLevel()
+  while (xp >= XP_PER_LEVEL) {
+    xp -= XP_PER_LEVEL
+    level++
+    const { lo, hi } = boardSockets(level)
+    setUnlocked(board, lo, hi)
+    renderLevel()
+    flash(myPortrait, '#f0c24a')
+    toast(`Level ${level}! +50 health, bigger board`)
+    await levelUp()
+  }
+}
+
+const TIER_NAME = (t: Tier) => t[0].toUpperCase() + t.slice(1)
+const LEVEL_COLOR: [string, string] = ['#c8a040', '#3c2c0c']
+
+/** The level-up reward: pick a kind of reward, and for items/upgrades, pick which one. */
+async function levelUp() {
+  mode = 'choice'
+  setTop(`Level ${level}`, LEVEL_COLOR)
+  const upgradable = cards.filter(c => c.lane.mine && nextTier(c.def.tier))
+  const rewards = levelRewards(level).filter(r => r.kind !== 'upgrade' || upgradable.length)
+  const title = (r: Reward) =>
+    r.kind === 'item' ? `${TIER_NAME(r.tier)} item` : r.kind === 'upgrade' ? 'Upgrade an item' : r.kind === 'gold' ? `${r.amount} gold` : `+${r.amount} income`
+  const text = (r: Reward) =>
+    r.kind === 'item' ? ['Choose one of three items'] : r.kind === 'upgrade' ? ['Choose one of your items to go up a tier'] : r.kind === 'gold' ? [`Gain ${r.amount} gold`] : [`Gain ${r.amount} income every day`]
+  const r = rewards[await pick(rewards.map(r => ({ info: { title: title(r), tags: ['Reward'], text: text(r) }, badge: 'Reward', color: LEVEL_COLOR })))]
+
+  if (r.kind === 'gold') gold += r.amount
+  if (r.kind === 'income') income += r.amount
+  if (r.kind === 'gold' || r.kind === 'income') {
+    renderGold()
+    flash(myGold, '#f0c24a')
+  }
+  if (r.kind === 'upgrade') {
+    const some = [...upgradable].sort(() => Math.random() - 0.5).slice(0, 4)
+    const next = (c: Card) => atTier(ITEMS[c.key], nextTier(c.def.tier)!)
+    upgrade(some[await pick(some.map(c => ({ info: itemInfo(next(c)), item: next(c) })))])
+  }
+  if (r.kind === 'item') {
+    // Items that can come at this tier (no item below its starting tier).
+    const keys = (Object.keys(ITEMS) as ItemKey[]).filter(k => TIER_ORDER.indexOf(ITEMS[k].tier) >= 0 && TIER_ORDER.indexOf(ITEMS[k].tier) <= TIER_ORDER.indexOf(r.tier))
+    const three = [...keys].sort(() => Math.random() - 0.5).slice(0, 3)
+    for (;;) {
+      const k = three[await pick(three.map(k => ({ info: itemInfo(atTier(ITEMS[k], r.tier)), item: atTier(ITEMS[k], r.tier) })))]
+      if (give(k, r.tier)) break
+      toast('No room: sell something first')
+    }
   }
 }
 
@@ -407,6 +507,7 @@ async function runLoop() {
       if (kind === 'choice') await choiceHour()
       else if (kind === 'monster') await monsterHour()
       else if (await rivalHour()) return
+      await gainXp(XP_PER_HOUR)
     }
     day++
     gold += income
@@ -609,6 +710,7 @@ function transfer(c: Card, dest: Lane, at: number) {
 function buy(c: Card, dest: Lane, at: number) {
   const price = buyPrice(c.def)
   if (gold < price) return noGold()
+  if (buyUpgrade(c)) return
   const toStash = () => (dest === board ? swap(dest.row, stash.row, { ...c.item, pos: 0 }, at) : null)
   const first = under(dest.row, c.item, at).full ? toStash() : null
   const pushed = first ? null : place(dest.row, c.item, at)
@@ -628,6 +730,17 @@ function buy(c: Card, dest: Lane, at: number) {
   setOwner(c)
 }
 
+/** Buying something you already own upgrades your copy instead (live-game rule). */
+function buyUpgrade(offer: Card) {
+  const owned = upgradeTarget(offer.key)
+  if (!owned) return false
+  gold -= buyPrice(offer.def)
+  renderGold()
+  removeCard(offer)
+  upgrade(owned)
+  return true
+}
+
 function noGold() {
   flash(myGold, '#e04040')
   toast('Not enough gold')
@@ -636,6 +749,7 @@ function noGold() {
 /** Click an offer: buy it into the first free spot on the board, else the stash. */
 function quickBuy(c: Card) {
   if (gold < buyPrice(c.def)) return noGold()
+  if (buyUpgrade(c)) return
   const dest = [board, stash].find(l => firstFree(l.row, c.item.size) !== null)
   if (!dest) return toast('No room on your board or in your stash')
   const pos = firstFree(dest.row, c.item.size)!
@@ -672,6 +786,7 @@ function layout() {
 addEventListener('resize', layout)
 layout()
 renderGold()
+renderLevel()
 runLoop()
 
 let last = performance.now()

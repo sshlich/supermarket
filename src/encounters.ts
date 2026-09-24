@@ -11,7 +11,7 @@ export interface Merchant extends Base { kind: 'merchant'; tags?: string[] }
 export interface Reward { label: string; text: string[]; gold?: number; income?: number; item?: ItemKey }
 export interface GameEvent extends Base { kind: 'event'; options: (random: () => number) => Reward[] }
 
-export interface Monster extends Base { kind: 'monster'; day: number; hp: number; items: ItemKey[]; gold: number }
+export interface Monster extends Base { kind: 'monster'; day: number; hp: number; items: ItemKey[]; gold: number; xp: number }
 
 export type Encounter = Merchant | GameEvent | Monster
 
@@ -50,13 +50,13 @@ export const EVENTS: GameEvent[] = [
 ]
 
 export const MONSTERS: Monster[] = [
-  { kind: 'monster', name: 'Scrap Rat', blurb: 'Bites.', color: ['#7a6a5a', '#2a221a'], day: 1, hp: 100, items: ['rustBlade', 'rustBlade'], gold: 2 },
-  { kind: 'monster', name: 'Bog Toad', blurb: 'Slow and toxic.', color: ['#4a7a4a', '#16261a'], day: 1, hp: 150, items: ['venomVial', 'ironPot'], gold: 2 },
-  { kind: 'monster', name: 'Ember Imp', blurb: 'Sets things on fire.', color: ['#b0502a', '#3a140a'], day: 2, hp: 200, items: ['emberFlask', 'emberFlask', 'rustBlade'], gold: 3 },
-  { kind: 'monster', name: 'Rust Golem', blurb: 'Hits once, hits hard.', color: ['#8a5a3a', '#2a1a10'], day: 2, hp: 280, items: ['siegeAnvil'], gold: 3 },
-  { kind: 'monster', name: 'Clockwork Knight', blurb: 'Armored and patient.', color: ['#6a7a8a', '#1e242a'], day: 3, hp: 350, items: ['towerShield', 'handCannon'], gold: 4 },
-  { kind: 'monster', name: 'Hive Queen', blurb: 'Never alone.', color: ['#9a8a2a', '#2e2a0c'], day: 4, hp: 450, items: ['brassBeetle', 'brassBeetle', 'venomVial', 'venomVial'], gold: 5 },
-  { kind: 'monster', name: 'Iron Warden', blurb: 'The road ends here.', color: ['#5a5a6a', '#18181e'], day: 5, hp: 600, items: ['siegeAnvil', 'towerShield', 'sparkPistol', 'ironPot', 'rustBlade'], gold: 6 },
+  { kind: 'monster', name: 'Scrap Rat', blurb: 'Bites.', color: ['#7a6a5a', '#2a221a'], day: 1, hp: 100, items: ['rustBlade', 'rustBlade'], gold: 2, xp: 3 },
+  { kind: 'monster', name: 'Bog Toad', blurb: 'Slow and toxic.', color: ['#4a7a4a', '#16261a'], day: 1, hp: 150, items: ['venomVial', 'ironPot'], gold: 2, xp: 3 },
+  { kind: 'monster', name: 'Ember Imp', blurb: 'Sets things on fire.', color: ['#b0502a', '#3a140a'], day: 2, hp: 200, items: ['emberFlask', 'emberFlask', 'rustBlade'], gold: 3, xp: 3 },
+  { kind: 'monster', name: 'Rust Golem', blurb: 'Hits once, hits hard.', color: ['#8a5a3a', '#2a1a10'], day: 2, hp: 280, items: ['siegeAnvil'], gold: 3, xp: 3 },
+  { kind: 'monster', name: 'Clockwork Knight', blurb: 'Armored and patient.', color: ['#6a7a8a', '#1e242a'], day: 3, hp: 350, items: ['towerShield', 'handCannon'], gold: 4, xp: 4 },
+  { kind: 'monster', name: 'Hive Queen', blurb: 'Never alone.', color: ['#9a8a2a', '#2e2a0c'], day: 4, hp: 450, items: ['brassBeetle', 'brassBeetle', 'venomVial', 'venomVial'], gold: 5, xp: 4 },
+  { kind: 'monster', name: 'Iron Warden', blurb: 'The road ends here.', color: ['#5a5a6a', '#18181e'], day: 5, hp: 600, items: ['siegeAnvil', 'towerShield', 'sparkPistol', 'ironPot', 'rustBlade'], gold: 6, xp: 4 },
 ]
 
 /** Three picks for a non-combat hour: always one merchant, the other two merchants or events. */
