@@ -1,3 +1,4 @@
+import type { Art } from './art.ts'
 import type { Size } from './board.ts'
 import type { Ability, Action, Aura } from './engine/combat.ts'
 
@@ -57,7 +58,7 @@ export interface ItemDef {
   auras?: Aura[]
   /** Lines of description. `[burn]` = icon + this tier's burn stat, `[burn 2]` = icon + a fixed value, `<Burn>` = colored keyword. */
   text: string[]
-  art: [string, string] // placeholder art gradient until we have real art
+  art: Art
 }
 
 /** The common case: when this item is used, do these. */
@@ -69,21 +70,21 @@ export const ITEMS = {
     stats: { damage: 8, burn: 2 }, multicast: 3,
     text: ['Deal [damage] <Damage>', '<Burn> [burn]', '<Multicast>: [multicast 3]'],
     abilities: [onUse({ do: 'damage' }, { do: 'burn' })],
-    art: ['#6f7684', '#2b2f38'],
+    art: { bg: ['#6f7684', '#2b2f38'], icons: ['cannon', { icon: 'fire', color: 'burn' }] },
   },
   sparkPistol: {
     name: 'Spark Pistol', size: 1, tier: 'bronze', tags: ['Weapon', 'Tech'], cooldown: 4,
     stats: { damage: 10 }, ammo: 6,
     text: ['Deal [damage] <Damage>', '<Ammo> [ammo 6]'],
     abilities: [onUse({ do: 'damage' })],
-    art: ['#7c6a4a', '#2c2418'],
+    art: { bg: ['#7c6a4a', '#2c2418'], icons: ['pistol-gun', { icon: 'sparkles', color: '#9ee4ff' }] },
   },
   towerShield: {
     name: 'Tower Shield', size: 2, tier: 'silver', tags: ['Armor'], cooldown: 6,
     stats: { shield: 20 },
     text: ['Gain [shield] <Shield>'],
     abilities: [onUse({ do: 'shield' })],
-    art: ['#4f6282', '#1b2232'],
+    art: { bg: ['#4f6282', '#1b2232'], icons: ['roman-shield'] },
   },
   emberFlask: {
     name: 'Ember Flask', size: 1, tier: 'gold', tags: ['Potion'], cooldown: 5,
@@ -91,28 +92,28 @@ export const ITEMS = {
     text: ['<Burn> [burn]', 'Your other <Burn> items gain [burn 1]'],
     abilities: [onUse({ do: 'burn' })],
     auras: [{ stat: 'burn', add: 1, targets: { pick: 'mine', excludeSelf: true, where: { has: 'burn' } } }],
-    art: ['#9a4a2a', '#2e140c'],
+    art: { bg: ['#9a4a2a', '#2e140c'], icons: ['round-bottom-flask', { icon: 'flame', color: 'burn' }] },
   },
   fieldKit: {
     name: 'Field Kit', size: 1, tier: 'bronze', tags: ['Tool', 'Friend'], cooldown: 4,
     stats: { heal: 10 },
     text: ['<Heal> [heal]', '<Haste> an item for [haste 1] second(s)'],
     abilities: [onUse({ do: 'heal' }, { do: 'haste', seconds: 1, targets: { pick: 'mine', excludeSelf: true, where: { has: 'cooldown' }, random: 1 } })],
-    art: ['#c27a3a', '#3a2010'],
+    art: { bg: ['#c27a3a', '#3a2010'], icons: ['medical-pack', { icon: 'heart-plus', color: 'heal' }] },
   },
   siegeAnvil: {
     name: 'Siege Anvil', size: 3, tier: 'bronze', tags: ['Tool', 'Weapon'], cooldown: 9,
     stats: { damage: 30, shield: 15 },
     text: ['Deal [damage] <Damage>', 'Gain [shield] <Shield>'],
     abilities: [onUse({ do: 'damage' }, { do: 'shield' })],
-    art: ['#6a5040', '#221812'],
+    art: { bg: ['#6a5040', '#221812'], icons: ['anvil', { icon: 'flat-hammer', rotate: -30 }] },
   },
   venomVial: {
     name: 'Venom Vial', size: 1, tier: 'diamond', tags: ['Potion'], cooldown: 3,
     stats: { poison: 3 },
     text: ['<Poison> [poison]'],
     abilities: [onUse({ do: 'poison' })],
-    art: ['#2f7a62', '#0e2a22'],
+    art: { bg: ['#2f7a62', '#0e2a22'], icons: ['vial', { icon: 'drop', color: 'poison' }] },
   },
   brassBeetle: {
     name: 'Brass Beetle', size: 2, tier: 'silver', tags: ['Friend', 'Tech'], cooldown: 5,
@@ -122,21 +123,21 @@ export const ITEMS = {
       onUse({ do: 'damage' }),
       { when: { on: 'itemUsed', who: { pick: 'neighbors' } }, do: [{ do: 'haste', seconds: 1, targets: { pick: 'self' } }] },
     ],
-    art: ['#8a6a2a', '#2a200c'],
+    art: { bg: ['#8a6a2a', '#2a200c'], icons: ['scarab-beetle', { icon: 'gears', color: '#e8b860' }] },
   },
   rustBlade: {
     name: 'Rust Blade', size: 1, tier: 'bronze', tags: ['Weapon'], cooldown: 3,
     stats: { damage: 5 },
     text: ['Deal [damage] <Damage>'],
     abilities: [onUse({ do: 'damage' })],
-    art: ['#7a4a3a', '#2e1a14'],
+    art: { bg: ['#7a4a3a', '#2e1a14'], icons: ['rusty-sword'] },
   },
   ironPot: {
     name: 'Iron Pot', size: 1, tier: 'bronze', tags: ['Armor'], cooldown: 5,
     stats: { shield: 10 },
     text: ['Gain [shield] <Shield>'],
     abilities: [onUse({ do: 'shield' })],
-    art: ['#5a5a62', '#1c1c22'],
+    art: { bg: ['#5a5a62', '#1c1c22'], icons: ['cooking-pot'] },
   },
 } satisfies Record<string, ItemDef>
 

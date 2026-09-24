@@ -1,0 +1,36 @@
+/* Icons are placed in % of their art box and sized in % of its shorter side (cqmin). */
+.art {
+  container-type: size;
+}
+.art .icon {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: calc(var(--s) * 100cqmin);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  rotate: var(--r);
+  scale: var(--f) 1;
+  filter: drop-shadow(0 0 1.5cqmin #000c) drop-shadow(0 1.5cqmin 2cqmin #0008);
+}
+.art .icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* A dark rim under each icon's fill keeps overlapping icons apart. */
+.art .icon path {
+  paint-order: stroke;
+  stroke: #000a;
+  stroke-width: 18px;
+  stroke-linejoin: round;
+}
+.art .icon.missing {
+  display: grid;
+  place-items: center;
+  font-size: 9cqmin;
+  font-weight: 800;
+  text-align: center;
+  color: #ff8080;
+  word-break: break-word;
+}

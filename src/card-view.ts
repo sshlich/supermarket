@@ -1,10 +1,12 @@
 import './card-view.css'
+import { artIcons, type Shape } from './art-view.ts'
 import { KEYWORDS, STAT_ORDER, TIER_COLOR, type ItemDef, type Keyword } from './items.ts'
 
 const SIZE_NAME = { 1: 'Small', 2: 'Medium', 3: 'Large' }
+const SHAPE: Record<1 | 2 | 3, Shape> = { 1: 'tall', 2: 'square', 3: 'wide' }
 
 /** Style vars a card element needs for its face. */
-export const cardVars = (def: ItemDef) => `--size:${def.size};--tier:${TIER_COLOR[def.tier]};--c1:${def.art[0]};--c2:${def.art[1]}`
+export const cardVars = (def: ItemDef) => `--size:${def.size};--tier:${TIER_COLOR[def.tier]};--c1:${def.art.bg[0]};--c2:${def.art.bg[1]}`
 
 /** Card face, bottom to top: art, (glass goes here), frame, gems, multicast tag, price tag, ammo pips. */
 export function cardFace(def: ItemDef): string {
@@ -12,7 +14,7 @@ export function cardFace(def: ItemDef): string {
     .map(s => `<div class="gem" style="--kw:${KEYWORDS[s].color}">${def.stats[s]}</div>`)
     .join('')
   return [
-    `<div class="art"><span>${def.name}</span></div>`,
+    `<div class="art">${def.art.icons.length ? artIcons(def.art, SHAPE[def.size]) : `<span>${def.name}</span>`}</div>`,
     `<div class="frame"></div>`,
     gems && `<div class="gems">${gems}</div>`,
     def.multicast && `<div class="multicast">x${def.multicast}</div>`,

@@ -5,7 +5,7 @@
   inset: calc(var(--u) * 0.05);
   border-radius: calc(var(--u) * 0.04);
   overflow: hidden;
-  background: linear-gradient(160deg, var(--c1), var(--c2));
+  background: radial-gradient(circle at 50% 42%, #ffffff1f, transparent 62%), linear-gradient(160deg, var(--c1), var(--c2));
 }
 .card .art span {
   position: absolute;

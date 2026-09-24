@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "test": "node src/board.test.ts && node src/economy.test.ts && node src/run.test.ts && node src/engine/combat.test.ts"
+    "test": "node src/board.test.ts && node src/economy.test.ts && node src/run.test.ts && node src/engine/combat.test.ts",
+    "icons": "node scripts/icons.ts"
   },
   "devDependencies": {
+    "@iconify-json/game-icons": "^1.2.4",
     "typescript": "^7.0.2",
     "vite": "^8.3.0"
   }
