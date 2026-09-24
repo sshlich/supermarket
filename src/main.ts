@@ -2,6 +2,7 @@ import './style.css'
 import { glass, sheen, type Effect } from './card-effects.ts'
 import { cardFace, cardVars, hideTooltip, mountTooltip, showTooltip } from './card-view.ts'
 import { place, swap, SOCKETS, type Item, type Row, type Size } from './board.ts'
+import { buyPrice, OFFERS, REROLL_COST, sellPrice, spread, START_GOLD, START_INCOME } from './economy.ts'
 import { ITEMS, type ItemDef } from './items.ts'
 import { play } from './playback.ts'
 
@@ -36,6 +37,7 @@ const BOARD_ROW = OPP_ROW + ROW_H + 0.1
 const PLAYER_STRIP = BOARD_ROW + ROW_H + 0.1
 const SCENE_W = SIDE * 2 + ROW_W
 const SCENE_H = PLAYER_STRIP + STRIP_H + 0.2
+const MID_Y = (OPP_ROW + BOARD_ROW + ROW_H) / 2
 
 const inOutQuint = (t: number) => (t < 0.5 ? 16 * t ** 5 : 1 - (-2 * t + 2) ** 5 / 2)
 const outQuad = (t: number) => 1 - (1 - t) ** 2
@@ -43,7 +45,7 @@ const outCubic = (t: number) => 1 - (1 - t) ** 3
 const linear = (t: number) => t
 
 interface Pose { x: number; y: number; s: number }
-interface Lane { name: string; row: Row; y: number; nudge: number; mine: boolean; el: HTMLElement }
+interface Lane { name: string; row: Row; y: number; nudge: number; mine: boolean; shop: boolean; el: HTMLElement }
 interface Card {
   def: ItemDef
   item: Item
@@ -62,6 +64,13 @@ let u = 100
 let press: { card: Card; x: number; y: number } | null = null
 let drag: { card: Card; ox: number; oy: number } | null = null
 let fighting = false
+let gold = START_GOLD
+let income = START_INCOME
+let mode: 'merchant' | 'opponent' = 'merchant' // what the top row shows
+let stashOpen = false
+let overToy = false // dragging over the stash chest
+let overSell = false // dragging one of your cards over the merchant's row
+const cards: Card[] = []
 
 /** Absolutely placed element, position and size in slot units. */
 function box(cls: string, x: number, y: number, w: number, h: number, html = '') {
@@ -73,51 +82,43 @@ function box(cls: string, x: number, y: number, w: number, h: number, html = '')
   return el
 }
 
-function lane(name: string, y: number, nudge: number, mine: boolean, lo = 2, hi = 7): Lane {
+function lane(name: string, y: number, nudge: number, kind: 'mine' | 'theirs' | 'shop', lo = 2, hi = 7): Lane {
   const curtain = `<div class="unlocked" style="left:calc(var(--u)*${ROW_PAD + lo - 0.1});width:calc(var(--u)*${hi - lo + 1.2})"></div>`
-  return { name, row: { items: [], lo, hi }, y, nudge, mine, el: box(`row ${name}`, X0, y, ROW_W, ROW_H, curtain) }
+  const el = box(`row ${name}`, X0, y, ROW_W, ROW_H, curtain)
+  return { name, row: { items: [], lo, hi }, y, nudge, mine: kind === 'mine', shop: kind === 'shop', el }
 }
 
 // --- Field ---
 const midX = X0 + ROW_W / 2
-box('dial', X0 - 1.95, (OPP_ROW + BOARD_ROW + ROW_H) / 2 - 0.85, 1.7, 1.7, '<b>1</b><small>DAY</small>')
+box('dial', X0 - 1.95, MID_Y - 0.85, 1.7, 1.7, '<b>1</b><small>DAY</small>')
 
-box('panel', X0, OPP_STRIP, PANEL_W, STRIP_H, '<span>Skills</span>')
-const oppPortrait = box('portrait enemy', midX - 0.9, OPP_STRIP + 0.05, 1.8, 1.45, '<span>Opponent</span>')
+const rerollBtn = box('panel reroll', X0, OPP_STRIP, PANEL_W, STRIP_H)
+const topPortrait = box('portrait', midX - 0.9, OPP_STRIP + 0.05, 1.8, 1.45, '<span></span>')
 const oppHp = box('hp', X0 + PANEL_W + 0.05, OPP_STRIP + STRIP_H - 0.38, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><b></b><span>400</span>')
-box('panel gold', X0 + ROW_W - PANEL_W, OPP_STRIP, PANEL_W, STRIP_H, '<span>+5 » 3</span>')
+const oppGold = box('panel gold', X0 + ROW_W - PANEL_W, OPP_STRIP, PANEL_W, STRIP_H, '<span>+5 » 3</span>')
 
-const opponent = lane('opponent', OPP_ROW, NUDGE, false)
-const stash = lane('stash', OPP_ROW, -NUDGE, true, 0, 9) // opens over the opponent's row
-const board = lane('board', BOARD_ROW, NUDGE, true)
-const lanes = [opponent, stash, board]
+// The top row is the merchant's, the opponent's during a fight, or your stash while it's open.
+const merchant = lane('merchant', OPP_ROW, -NUDGE, 'shop', 0, 9)
+const opponent = lane('opponent', OPP_ROW, NUDGE, 'theirs')
+const stash = lane('stash', OPP_ROW, -NUDGE, 'mine', 0, 9)
+const board = lane('board', BOARD_ROW, NUDGE, 'mine')
+const lanes = [merchant, opponent, stash, board]
+const sellZone = box('sell', X0, OPP_ROW, ROW_W, ROW_H) // over the merchant's offers, under the dragged card
 
 const myHp = box('hp', X0 + PANEL_W + 0.05, PLAYER_STRIP + 0.04, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><b></b><span>300</span>')
 const myPortrait = box('portrait', midX - 0.9, PLAYER_STRIP + 0.45, 1.8, 1.45, '<span>You</span>')
 const toy = box('panel toy', X0, PLAYER_STRIP, PANEL_W, STRIP_H, '<span>Stash</span>')
-box('panel gold', X0 + ROW_W - PANEL_W, PLAYER_STRIP, PANEL_W, STRIP_H, '<span>+5 » 15</span>')
+const myGold = box('panel gold', X0 + ROW_W - PANEL_W, PLAYER_STRIP, PANEL_W, STRIP_H)
 mountTooltip(scene)
 
 // --- Cards ---
-const seed: [Lane, keyof typeof ITEMS, number][] = [
-  [opponent, 'rustBlade', 3],
-  [opponent, 'brassBeetle', 4],
-  [opponent, 'ironPot', 6],
-  [board, 'sparkPistol', 2],
-  [board, 'handCannon', 3],
-  [board, 'fieldKit', 5],
-  [board, 'emberFlask', 6],
-  [stash, 'towerShield', 0],
-  [stash, 'siegeAnvil', 3],
-  [stash, 'venomVial', 8],
-]
-
-const cards: Card[] = seed.map(([lane, key, pos], i) => {
+let nextId = 0
+function makeCard(lane: Lane, key: keyof typeof ITEMS, pos: number): Card {
   const def: ItemDef = ITEMS[key]
-  const item: Item = { id: String(i), size: def.size, pos }
+  const item: Item = { id: String(nextId++), size: def.size, pos }
   lane.row.items.push(item)
   const el = document.createElement('div')
-  el.className = lane.mine ? 'card' : 'card theirs'
+  el.className = 'card'
   el.style.cssText = cardVars(def)
   el.innerHTML = cardFace(def)
   const pane = glass(el)
@@ -125,35 +126,92 @@ const cards: Card[] = seed.map(([lane, key, pos], i) => {
   scene.append(el)
   const c: Card = { def, item, lane, el, pose: { x: 0, y: 0, s: 1 }, tween: null, tilt: { x: 0, y: 0, tx: 0, ty: 0 }, hovered: false, nudged: false, effects: [pane, sheen(pane.el)] }
   c.pose = rest(c)
+  cards.push(c)
+  setOwner(c)
   bind(c)
   return c
+}
+
+/** Price tag and cursor follow who owns the card: buy price at the merchant, sell value everywhere else. */
+function setOwner(c: Card) {
+  c.el.querySelector('.price')!.textContent = String(c.lane.shop ? buyPrice(c.def) : sellPrice(c.def))
+  c.el.classList.toggle('theirs', !c.lane.mine && !c.lane.shop)
+}
+
+function removeCard(c: Card) {
+  c.lane.row.items.splice(c.lane.row.items.indexOf(c.item), 1)
+  cards.splice(cards.indexOf(c), 1)
+  c.el.animate([{ opacity: 1 }, { opacity: 0, scale: '0.8' }], { duration: 220, easing: 'ease-in' }).finished.then(() => c.el.remove())
+}
+
+const seed: [Lane, keyof typeof ITEMS, number][] = [
+  [opponent, 'rustBlade', 3],
+  [opponent, 'brassBeetle', 4],
+  [opponent, 'ironPot', 6],
+  [board, 'sparkPistol', 2],
+  [board, 'fieldKit', 3],
+  [stash, 'towerShield', 0],
+]
+for (const [l, key, pos] of seed) makeCard(l, key, pos)
+
+// --- Gold and the merchant ---
+function renderGold() {
+  myGold.innerHTML = `<span>+${income} » ${gold}</span>`
+  rerollBtn.innerHTML = `<span>Reroll<br><b>${REROLL_COST}g</b></span>`
+  rerollBtn.classList.toggle('disabled', gold < REROLL_COST)
+}
+
+function flash(el: HTMLElement, color: string) {
+  el.animate([{ boxShadow: `0 0 0 calc(var(--u) * 0.06) ${color}, 0 0 calc(var(--u) * 0.4) ${color}` }, {}], { duration: 450, easing: 'ease-out' })
+}
+
+/** Fresh offers, spread evenly across the merchant's row. */
+function rollOffers() {
+  for (const c of cards.filter(c => c.lane === merchant)) removeCard(c)
+  const keys = (Object.keys(ITEMS) as (keyof typeof ITEMS)[]).sort(() => Math.random() - 0.5)
+  const picked: (keyof typeof ITEMS)[] = []
+  let room = SOCKETS
+  for (const k of keys) {
+    if (picked.length === OFFERS) break
+    if (ITEMS[k].size > room) continue
+    picked.push(k)
+    room -= ITEMS[k].size
+  }
+  const at = spread(picked.map(k => ITEMS[k].size))
+  picked.forEach((k, i) => makeCard(merchant, k, at[i]).el.animate([{ opacity: 0, scale: '0.85' }, { opacity: 1, scale: '1' }], { duration: 250, delay: i * 60, fill: 'backwards', easing: 'ease-out' }))
+  refreshTop()
+}
+
+rerollBtn.addEventListener('click', () => {
+  if (fighting || mode !== 'merchant' || gold < REROLL_COST) return
+  gold -= REROLL_COST
+  renderGold()
+  rollOffers()
 })
 
-// --- Stash: click the chest to open it over the opponent's row; dragging over the chest peeks it open. ---
-let stashOpen = false
-let overToy = false
-const stashVisible = () => stashOpen || overToy
-
-function refreshStash() {
-  const open = stashVisible()
-  stash.el.classList.toggle('hidden', !open)
-  opponent.el.classList.toggle('hidden', open)
-  toy.classList.toggle('open', open)
-  for (const c of cards) {
-    const hidden = c.lane === stash ? !open : c.lane === opponent ? open : false
-    c.el.classList.toggle('hidden', hidden && drag?.card !== c)
-  }
+function refreshTop() {
+  const stashOn = stashOpen || overToy
+  const shown = (l: Lane) => (l === stash ? stashOn : l === merchant ? !stashOn && mode === 'merchant' : l === opponent ? !stashOn && mode === 'opponent' : true)
+  for (const l of lanes) l.el.classList.toggle('hidden', !shown(l))
+  for (const c of cards) c.el.classList.toggle('hidden', !shown(c.lane) && drag?.card !== c)
+  toy.classList.toggle('open', stashOn)
+  topPortrait.querySelector('span')!.textContent = mode === 'merchant' ? 'Merchant' : 'Opponent'
+  topPortrait.classList.toggle('merchant', mode === 'merchant')
+  topPortrait.classList.toggle('enemy', mode === 'opponent')
+  oppHp.classList.toggle('hidden', mode !== 'opponent')
+  oppGold.classList.toggle('hidden', mode !== 'opponent')
+  rerollBtn.classList.toggle('hidden', mode !== 'merchant')
 }
+
 toy.addEventListener('click', () => {
   stashOpen = !stashOpen
-  refreshStash()
+  refreshTop()
 })
-refreshStash()
 
 // --- Fight: board vs opponent, played out on the field. ---
-const fightBtn = box('fight-btn', X0 + ROW_W + 0.35, (OPP_ROW + BOARD_ROW + ROW_H) / 2 - 0.35, 1.5, 0.7, 'Fight!')
+const fightBtn = box('fight-btn', X0 + ROW_W + 0.35, MID_Y - 0.35, 1.5, 0.7, 'Fight!')
 const SPEEDS = [0.5, 1, 2, 4]
-const speedBox = box('speed', X0 + ROW_W + 0.35, (OPP_ROW + BOARD_ROW + ROW_H) / 2 + 0.55, 1.5, 0.5,
+const speedBox = box('speed', X0 + ROW_W + 0.35, MID_Y + 0.55, 1.5, 0.5,
   `<input type="range" min="0" max="${SPEEDS.length - 1}" step="1" value="1" aria-label="Playback speed">` +
   `<div class="ticks">${SPEEDS.map(v => `<span>${v}×</span>`).join('')}</div>`)
 const speedInput = speedBox.querySelector('input')!
@@ -165,17 +223,18 @@ fightBtn.addEventListener('click', async () => {
   if (fighting || drag) return
   fighting = true
   stashOpen = false
-  refreshStash()
-  const setup = (name: string, hp: number, lane: Lane) => ({
+  mode = 'opponent'
+  refreshTop()
+  const setup = (name: string, hp: number, l: Lane) => ({
     name,
     hp,
-    items: cards.filter(c => c.lane === lane).sort((a, b) => a.item.pos - b.item.pos).map(c => ({ id: c.item.id, def: c.def })),
+    items: cards.filter(c => c.lane === l).sort((a, b) => a.item.pos - b.item.pos).map(c => ({ id: c.item.id, def: c.def })),
   })
   await play(setup('You', 300, board), setup('Opponent', 400, opponent), (Math.random() * 2 ** 31) | 0, {
     scene,
     cardEl: id => cards.find(c => c.item.id === id)!.el,
     hp: [myHp, oppHp],
-    portrait: [myPortrait, oppPortrait],
+    portrait: [myPortrait, topPortrait],
     hovering: () => cards.some(c => c.hovered),
     speed: () => SPEEDS[+speedInput.value],
   })
@@ -185,9 +244,16 @@ fightBtn.addEventListener('click', async () => {
     el.querySelector('b')!.style.width = '0'
     el.querySelector('span')!.textContent = String(hp)
   }
+  // ponytail: income after every fight and a fresh merchant stand in for the day loop.
+  gold += income
+  renderGold()
+  flash(myGold, '#f0c24a')
+  mode = 'merchant'
+  rollOffers()
   fighting = false
 })
 
+// --- Dragging ---
 function rest(c: Card): Pose {
   return { x: X0 + ROW_PAD + c.item.pos + c.item.size / 2, y: c.lane.y + ROW_H / 2 + (c.nudged ? c.lane.nudge : 0), s: 1 }
 }
@@ -201,11 +267,16 @@ function toScene(e: PointerEvent) {
   return { x: (e.clientX - r.left) / u, y: (e.clientY - r.top) / u }
 }
 
+const inside = (e: PointerEvent, el: HTMLElement) => {
+  const r = el.getBoundingClientRect()
+  return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom
+}
+
 // Which lane and sockets the dragged card is over. Like the live game: a shrunk footprint of the card
 // picks the sockets it overlaps; if it's over nothing, it snaps to the nearest socket of its own lane.
 function target(c: Card): { lane: Lane; sockets: number[] } {
   const { x, y } = c.pose
-  const droppable = stashVisible() ? [stash, board] : [board]
+  const droppable = stashOpen || overToy ? [stash, board] : [board]
   const lane = droppable
     .map(l => ({ l, d: Math.abs(y - (l.y + ROW_H / 2)) }))
     .filter(({ d }) => d < (ROW_H + CARD_H) / 2)
@@ -239,7 +310,7 @@ function setHover(c: Card, on: boolean) {
 function bind(c: Card) {
   const { el } = c
   el.addEventListener('pointerdown', e => {
-    if (e.button !== 0 || drag || fighting || !c.lane.mine) return
+    if (e.button !== 0 || drag || fighting || !(c.lane.mine || c.lane.shop)) return
     el.setPointerCapture(e.pointerId)
     press = { card: c, x: e.clientX, y: e.clientY }
   })
@@ -277,6 +348,10 @@ function beginDrag(c: Card, e: PointerEvent) {
   drag = { card: c, ox: c.pose.x - p.x, oy: c.pose.y - p.y }
   tweenTo(c, { ...c.pose, s: DRAG_SCALE }, DRAG_SCALE_MS, linear)
   c.el.classList.add('lifted', 'dragging')
+  if (c.lane.mine && mode === 'merchant') {
+    sellZone.innerHTML = `<span>Sell for <b>${sellPrice(c.def)}g</b></span>`
+    sellZone.classList.add('sellable')
+  }
 }
 
 function dragMove(e: PointerEvent) {
@@ -285,17 +360,18 @@ function dragMove(e: PointerEvent) {
   c.pose.x = p.x + drag!.ox
   c.pose.y = p.y + drag!.oy
 
-  const r = toy.getBoundingClientRect()
-  const over = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom
-  if (over !== overToy) {
-    overToy = over
-    refreshStash()
+  const toyNow = inside(e, toy)
+  if (toyNow !== overToy) {
+    overToy = toyNow
+    refreshTop()
   }
+  overSell = sellZone.classList.contains('sellable') && !stashOpen && !overToy && inside(e, sellZone)
+  sellZone.classList.toggle('selling', overSell)
 
   const t = target(c)
   for (const o of cards) {
     if (o === c) continue
-    const want = !overToy && o.lane === t.lane && t.sockets.some(s => s >= o.item.pos && s < o.item.pos + o.item.size)
+    const want = !overToy && !overSell && o.lane === t.lane && t.sockets.some(s => s >= o.item.pos && s < o.item.pos + o.item.size)
     if (want !== o.nudged) {
       o.nudged = want
       tweenTo(o, rest(o), want ? NUDGE_MS : NUDGE_BACK_MS, outQuad)
@@ -307,38 +383,27 @@ function drop() {
   const c = drag!.card
   drag = null
   c.el.classList.remove('lifted', 'dragging')
+  sellZone.classList.remove('sellable', 'selling')
   const from = c.lane
   const before = new Map(cards.map(o => [o, { pos: o.item.pos, lane: o.lane }]))
 
-  if (overToy) {
-    // Dropped on the chest: into the stash, pushed in from the left.
-    if (from !== stash) {
-      const out = place(stash.row, c.item, 0)
-      if (out) {
-        moveLane(c, stash)
-        apply(stash, out)
-      }
-    }
-    overToy = false
+  if (overSell) {
+    gold += sellPrice(c.def)
+    renderGold()
+    flash(myGold, '#f0c24a')
+    removeCard(c)
   } else {
-    const t = target(c)
-    if (t.lane === from) {
-      apply(from, place(from.row, c.item, t.sockets[0], c.item.pos))
+    // Dropped on the chest: into the stash, pushed in from the left.
+    const t = overToy ? { lane: stash, sockets: [0] } : target(c)
+    if (from.shop) {
+      if (t.lane !== from) buy(c, t.lane, t.sockets[0])
+    } else if (t.lane === from) {
+      if (!overToy) apply(from, place(from.row, c.item, t.sockets[0], c.item.pos))
     } else {
-      const pushed = place(t.lane.row, c.item, t.sockets[0])
-      const swapped = pushed ? null : swap(t.lane.row, from.row, c.item, t.sockets[0])
-      if (pushed) {
-        moveLane(c, t.lane)
-        apply(t.lane, pushed)
-      } else if (swapped) {
-        for (const o of swapped.covered) moveLane(cards.find(k => k.item === o)!, from)
-        moveLane(c, t.lane)
-        apply(t.lane, swapped.to)
-        apply(from, swapped.from)
-      }
-      // Neither fits: the card just returns.
+      transfer(c, t.lane, t.sockets[0])
     }
   }
+  overToy = overSell = false
 
   for (const o of cards) {
     const b = before.get(o)!
@@ -349,19 +414,57 @@ function drop() {
     else if (moved) tweenTo(o, rest(o), o.lane !== b.lane ? MOVE_MS : PUSH_MS, outCubic)
     else if (wasNudged) tweenTo(o, rest(o), NUDGE_BACK_MS, outQuad)
   }
-  refreshStash()
+  refreshTop()
 }
 
-function moveLane(c: Card, lane: Lane) {
+/** Your card to another of your rows: push the others aside, or swap what it covers back if it can't fit. */
+function transfer(c: Card, dest: Lane, at: number) {
+  const from = c.lane
+  const pushed = place(dest.row, c.item, at)
+  const swapped = pushed ? null : swap(dest.row, from.row, c.item, at)
+  if (pushed) {
+    moveLane(c, dest)
+    apply(dest, pushed)
+  } else if (swapped) {
+    for (const o of swapped.covered) moveLane(cards.find(k => k.item === o)!, from)
+    moveLane(c, dest)
+    apply(dest, swapped.to)
+    apply(from, swapped.from)
+  }
+}
+
+/** Merchant card onto your board or stash. On a full board, what it covers goes to the stash. */
+function buy(c: Card, dest: Lane, at: number) {
+  const price = buyPrice(c.def)
+  if (gold < price) return flash(myGold, '#e04040')
+  const pushed = place(dest.row, c.item, at)
+  const swapped = pushed || dest !== board ? null : swap(dest.row, stash.row, { ...c.item, pos: 0 }, at)
+  if (!pushed && !swapped) return
+  gold -= price
+  renderGold()
+  if (pushed) {
+    moveLane(c, dest)
+    apply(dest, pushed)
+  } else if (swapped) {
+    for (const o of swapped.covered) moveLane(cards.find(k => k.item === o)!, stash)
+    moveLane(c, dest)
+    apply(dest, swapped.to)
+    apply(stash, swapped.from)
+  }
+  setOwner(c)
+}
+
+function moveLane(c: Card, l: Lane) {
   c.lane.row.items.splice(c.lane.row.items.indexOf(c.item), 1)
-  lane.row.items.push(c.item)
-  c.lane = lane
+  l.row.items.push(c.item)
+  c.lane = l
 }
 
-function apply(lane: Lane, positions: Map<string, number> | null) {
-  if (positions) for (const it of lane.row.items) it.pos = positions.get(it.id)!
+function apply(l: Lane, positions: Map<string, number> | null) {
+  if (positions) for (const it of l.row.items) it.pos = positions.get(it.id)!
 }
 
+// --- Frame loop ---
 function layout() {
   u = Math.min(innerWidth / SCENE_W, innerHeight / SCENE_H)
   scene.style.setProperty('--u', `${u}px`)
@@ -370,6 +473,8 @@ function layout() {
 }
 addEventListener('resize', layout)
 layout()
+renderGold()
+rollOffers()
 
 let last = performance.now()
 function frame(now: number) {

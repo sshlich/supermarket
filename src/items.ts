@@ -33,7 +33,6 @@ export interface ItemDef {
   size: Size
   tier: Tier
   tags: string[]
-  price: number
   cooldown?: number // seconds
   stats: Partial<Record<Stat, number>> // gems along the top edge
   multicast?: number
@@ -51,28 +50,28 @@ const onUse = (...actions: Action[]): Ability => ({ when: { on: 'use' }, do: act
 
 export const ITEMS = {
   handCannon: {
-    name: 'Hand Cannon', size: 2, tier: 'gold', tags: ['Weapon'], price: 16, cooldown: 7,
+    name: 'Hand Cannon', size: 2, tier: 'gold', tags: ['Weapon'], cooldown: 7,
     stats: { damage: 8, burn: 2 }, multicast: 3,
     text: ['Deal [damage 8] <Damage>', '<Burn> [burn 2]', '<Multicast>: [multicast 3]'],
     abilities: [onUse({ do: 'damage' }, { do: 'burn' })],
     art: ['#6f7684', '#2b2f38'],
   },
   sparkPistol: {
-    name: 'Spark Pistol', size: 1, tier: 'bronze', tags: ['Weapon', 'Tech'], price: 2, cooldown: 4,
+    name: 'Spark Pistol', size: 1, tier: 'bronze', tags: ['Weapon', 'Tech'], cooldown: 4,
     stats: { damage: 10 }, ammo: 6,
     text: ['Deal [damage 10] <Damage>', '<Ammo> [ammo 6]'],
     abilities: [onUse({ do: 'damage' })],
     art: ['#7c6a4a', '#2c2418'],
   },
   towerShield: {
-    name: 'Tower Shield', size: 2, tier: 'silver', tags: ['Armor'], price: 8, cooldown: 6,
+    name: 'Tower Shield', size: 2, tier: 'silver', tags: ['Armor'], cooldown: 6,
     stats: { shield: 20 },
     text: ['Gain [shield 20] <Shield>'],
     abilities: [onUse({ do: 'shield' })],
     art: ['#4f6282', '#1b2232'],
   },
   emberFlask: {
-    name: 'Ember Flask', size: 1, tier: 'gold', tags: ['Potion'], price: 8, cooldown: 5,
+    name: 'Ember Flask', size: 1, tier: 'gold', tags: ['Potion'], cooldown: 5,
     stats: { burn: 4 },
     text: ['<Burn> [burn 4]', 'Your other <Burn> items gain [burn 1]'],
     abilities: [onUse({ do: 'burn' })],
@@ -80,28 +79,28 @@ export const ITEMS = {
     art: ['#9a4a2a', '#2e140c'],
   },
   fieldKit: {
-    name: 'Field Kit', size: 1, tier: 'bronze', tags: ['Tool', 'Friend'], price: 2, cooldown: 4,
+    name: 'Field Kit', size: 1, tier: 'bronze', tags: ['Tool', 'Friend'], cooldown: 4,
     stats: { heal: 10 },
     text: ['<Heal> [heal 10]', '<Haste> an item for [haste 1] second(s)'],
     abilities: [onUse({ do: 'heal' }, { do: 'haste', seconds: 1, targets: { pick: 'mine', excludeSelf: true, where: { has: 'cooldown' }, random: 1 } })],
     art: ['#c27a3a', '#3a2010'],
   },
   siegeAnvil: {
-    name: 'Siege Anvil', size: 3, tier: 'bronze', tags: ['Tool', 'Weapon'], price: 6, cooldown: 9,
+    name: 'Siege Anvil', size: 3, tier: 'bronze', tags: ['Tool', 'Weapon'], cooldown: 9,
     stats: { damage: 30, shield: 15 },
     text: ['Deal [damage 30] <Damage>', 'Gain [shield 15] <Shield>'],
     abilities: [onUse({ do: 'damage' }, { do: 'shield' })],
     art: ['#6a5040', '#221812'],
   },
   venomVial: {
-    name: 'Venom Vial', size: 1, tier: 'diamond', tags: ['Potion'], price: 24, cooldown: 3,
+    name: 'Venom Vial', size: 1, tier: 'diamond', tags: ['Potion'], cooldown: 3,
     stats: { poison: 3 },
     text: ['<Poison> [poison 3]'],
     abilities: [onUse({ do: 'poison' })],
     art: ['#2f7a62', '#0e2a22'],
   },
   brassBeetle: {
-    name: 'Brass Beetle', size: 2, tier: 'silver', tags: ['Friend', 'Tech'], price: 8, cooldown: 5,
+    name: 'Brass Beetle', size: 2, tier: 'silver', tags: ['Friend', 'Tech'], cooldown: 5,
     stats: { damage: 12 },
     text: ['Deal [damage 12] <Damage>', 'When you use an adjacent item, <Haste> this for [haste 1] second'],
     abilities: [
@@ -111,14 +110,14 @@ export const ITEMS = {
     art: ['#8a6a2a', '#2a200c'],
   },
   rustBlade: {
-    name: 'Rust Blade', size: 1, tier: 'bronze', tags: ['Weapon'], price: 2, cooldown: 3,
+    name: 'Rust Blade', size: 1, tier: 'bronze', tags: ['Weapon'], cooldown: 3,
     stats: { damage: 5 },
     text: ['Deal [damage 5] <Damage>'],
     abilities: [onUse({ do: 'damage' })],
     art: ['#7a4a3a', '#2e1a14'],
   },
   ironPot: {
-    name: 'Iron Pot', size: 1, tier: 'bronze', tags: ['Armor'], price: 2, cooldown: 5,
+    name: 'Iron Pot', size: 1, tier: 'bronze', tags: ['Armor'], cooldown: 5,
     stats: { shield: 10 },
     text: ['Gain [shield 10] <Shield>'],
     abilities: [onUse({ do: 'shield' })],

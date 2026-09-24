@@ -16,7 +16,7 @@ export function cardFace(def: ItemDef): string {
     `<div class="frame"></div>`,
     gems && `<div class="gems">${gems}</div>`,
     def.multicast && `<div class="multicast">x${def.multicast}</div>`,
-    `<div class="price">${def.price}</div>`,
+    `<div class="price"></div>`, // text set by the page: buy price in a shop, sell value otherwise
     def.ammo && `<div class="ammo">${'<i></i>'.repeat(def.ammo)}</div>`,
   ]
     .filter(Boolean)

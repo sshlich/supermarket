@@ -134,3 +134,39 @@ body {
 .card.lifted { box-shadow: 0 calc(var(--u) * 0.25) calc(var(--u) * 0.35) #000a; }
 .card.dragging { cursor: grabbing; }
 .card.theirs { cursor: default; }
+
+/* ---------- Merchant: offers row, sell zone, reroll ---------- */
+
+.row.merchant { background: linear-gradient(#2f6a5a, #1f4a3e); }
+.row.merchant .unlocked { display: none; }
+.sell {
+  z-index: 60;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center start; /* label at the left end, clear of the card being dragged */
+  padding-left: calc(var(--u) * 0.4);
+  border-radius: calc(var(--u) * 0.08);
+  border: calc(var(--u) * 0.03) dashed #f0c24a80;
+  background: #1a120ac0;
+  color: #f5d77a;
+  font-weight: 900;
+  font-size: calc(var(--u) * 0.32);
+  text-shadow: 0 2px 3px #000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s, background 0.12s;
+}
+.sell.sellable { opacity: 0.85; }
+.sell.selling { opacity: 1; background: #6a4a10c0; border-style: solid; border-color: #f0c24a; }
+
+.portrait.merchant { background: linear-gradient(160deg, #5aa07a, #1e3c2c); }
+
+.panel.reroll {
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.3;
+  transition: box-shadow 0.15s, opacity 0.15s;
+}
+.panel.reroll b { color: #f5d77a; }
+.panel.reroll:hover { box-shadow: 0 0 0 calc(var(--u) * 0.04) #f0c24a; }
+.panel.reroll.disabled { opacity: 0.5; cursor: default; box-shadow: none; }
