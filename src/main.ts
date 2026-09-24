@@ -1,13 +1,17 @@
 import './style.css'
 import { glass, sheen, type Effect } from './card-effects.ts'
-import { cardFace, cardVars, hideTooltip, itemInfo, mountTooltip, showTooltip } from './card-view.ts'
+import { cardFace, cardVars, hideTooltip, itemInfo, mountTooltip, showInfo, showTooltip, skillFace, skillInfo } from './card-view.ts'
 import { exchange, firstFree, place, SOCKETS, swap, under, type Item, type Row, type Size } from './board.ts'
 import { buyPrice, REROLL_COST, sellPrice, spread, START_GOLD, START_INCOME } from './economy.ts'
-import { atTier, ITEMS, nextTier, TIER_ORDER, type ItemDef, type ItemKey, type Tier } from './items.ts'
+import { canEnchant, ITEM_KEYS, itemAt, ITEMS, type ItemDef, type ItemKey } from './items.ts'
+import { ENCHANT_KEYS, ENCHANTS, type Enchant } from './enchant.ts'
+import { SKILL_KEYS, skillAt, SKILLS, type SkillDef, type SkillKey } from './skills.ts'
+import { nextTier, TIER_ORDER, tierName, type Tier } from './tiers.ts'
 import { choose, type Option } from './choice.ts'
-import { hourOptions, monsterOptions, type GameEvent, type Merchant } from './encounters.ts'
+import { hourOptions, loadout, monsterOptions, rollEnchants, skillPick, type EventContext, type GameEvent, type Loadout, type Merchant, type Reward as EventReward, type SkillPick } from './encounters.ts'
 import { boardSockets, HOURS, hourKind, levelRewards, maxHp, prestigeLoss, rival, START_PRESTIGE, WINS_TO_WIN, XP_PER_HOUR, XP_PER_LEVEL, type Reward } from './run.ts'
 import { play } from './playback.ts'
+
 
 // Feel. Timings are the live client's code defaults; scales are measured from recordings.
 const MOVE_MS = 300 // dropped card slides into its socket
@@ -51,7 +55,9 @@ interface Pose { x: number; y: number; s: number }
 interface Lane { name: string; row: Row; y: number; nudge: number; mine: boolean; shop: boolean; el: HTMLElement }
 interface Card {
   key: ItemKey
-  def: ItemDef // at the card's current tier
+  tier: Tier
+  enchant?: Enchant
+  def: ItemDef // at the card's current tier, with its enchantment
   item: Item
   lane: Lane
   el: HTMLElement
@@ -62,6 +68,7 @@ interface Card {
   nudged: boolean
   effects: Effect[]
 }
+interface Skill { key: SkillKey; def: SkillDef; id: string; el: HTMLElement }
 
 const scene = document.getElementById('scene')!
 let u = 100
@@ -83,6 +90,8 @@ let stashOpen = false
 let overToy = false // dragging over the stash chest
 let overSell = false // dragging one of your cards over the sell zone (top row, outside fights)
 const cards: Card[] = []
+const mySkills: Skill[] = []
+let theirSkills: Skill[] = []
 
 /** Absolutely placed element, position and size in slot units. */
 function box(cls: string, x: number, y: number, w: number, h: number, html = '') {
@@ -123,7 +132,7 @@ const oppHp = box('hp', X0 + PANEL_W + 0.05, OPP_STRIP + STRIP_H - 0.38, ROW_W -
 const merchant = lane('merchant', OPP_ROW, -NUDGE, 'shop', 0, 9)
 const opponent = lane('opponent', OPP_ROW, NUDGE, 'theirs', 0, 9)
 const stash = lane('stash', OPP_ROW, -NUDGE, 'mine', 0, 9)
-const board = lane('board', BOARD_ROW, NUDGE, 'mine', boardSockets(1).lo, boardSockets(1).hi)
+const board = lane('board', BOARD_ROW, NUDGE, 'mine', boardSockets(level).lo, boardSockets(level).hi)
 const lanes = [merchant, opponent, stash, board]
 const sellZone = box('sell', X0, OPP_ROW, ROW_W, ROW_H) // over the merchant's offers, under the dragged card
 
@@ -135,14 +144,14 @@ mountTooltip(scene)
 
 // --- Cards ---
 let nextId = 0
-function makeCard(lane: Lane, key: ItemKey, pos: number, tier?: Tier): Card {
-  const def = atTier(ITEMS[key], tier ?? ITEMS[key].tier)
+function makeCard(lane: Lane, key: ItemKey, pos: number, tier: Tier = ITEMS[key].tier, enchant?: Enchant): Card {
+  const def = itemAt(key, tier, enchant)
   const item: Item = { id: String(nextId++), size: def.size, pos }
   lane.row.items.push(item)
   const el = document.createElement('div')
   el.className = 'card'
   scene.append(el)
-  const c: Card = { key, def, item, lane, el, pose: { x: 0, y: 0, s: 1 }, tween: null, tilt: { x: 0, y: 0, tx: 0, ty: 0 }, hovered: false, nudged: false, effects: [] }
+  const c: Card = { key, tier, enchant, def, item, lane, el, pose: { x: 0, y: 0, s: 1 }, tween: null, tilt: { x: 0, y: 0, tx: 0, ty: 0 }, hovered: false, nudged: false, effects: [] }
   renderFace(c)
   c.pose = rest(c)
   cards.push(c)
@@ -153,6 +162,7 @@ function makeCard(lane: Lane, key: ItemKey, pos: number, tier?: Tier): Card {
 
 /** (Re)draw the card face for its current def: tier frame, gems, glass and sheen. */
 function renderFace(c: Card) {
+  c.el.style.removeProperty('--ench')
   for (const kv of cardVars(c.def).split(';')) c.el.style.setProperty(...(kv.split(':') as [string, string]))
   c.el.innerHTML = cardFace(c.def)
   const pane = glass(c.el)
@@ -160,18 +170,98 @@ function renderFace(c: Card) {
   c.effects = [pane, sheen(pane.el)]
 }
 
-/** Your oldest copy of `key` that can still go up a tier, if any. */
-const upgradeTarget = (key: ItemKey) => cards.find(o => o.key === key && o.lane.mine && nextTier(o.def.tier))
+/** Your items: board and stash. */
+const mine = () => cards.filter(c => c.lane.mine)
 
-/** One tier up: new stats, frame and value. */
-function upgrade(c: Card) {
-  c.def = atTier(ITEMS[c.key], nextTier(c.def.tier)!)
+/** Your oldest copy of `key` that can still go up a tier, if any. */
+const upgradeTarget = (key: ItemKey) => mine().find(o => o.key === key && nextTier(o.tier))
+
+/** Change a card's tier and/or enchantment, with a little pop. */
+function remake(c: Card, tier: Tier, enchant: Enchant | undefined, color: string) {
+  c.tier = tier
+  c.enchant = enchant
+  c.def = itemAt(c.key, tier, enchant)
   renderFace(c)
   setOwner(c)
   c.el.animate([{ scale: '1' }, { scale: '1.18' }, { scale: '1' }], { duration: 420, easing: 'ease-out' })
-  flash(c.el, 'var(--tier)')
-  toast(`${c.def.name} upgraded to ${c.def.tier[0].toUpperCase() + c.def.tier.slice(1)}!`)
+  flash(c.el, color)
   refreshTop()
+}
+
+/** One tier up: new stats, frame and value. The enchantment comes along and grows with it. */
+function upgrade(c: Card) {
+  remake(c, nextTier(c.tier)!, c.enchant, 'var(--tier)')
+  toast(`${c.def.name} upgraded to ${tierName(c.tier)}!`)
+}
+
+/** Enchant (or re-enchant) one of your items. */
+function enchantCard(c: Card, e: Enchant) {
+  remake(c, c.tier, e, ENCHANTS[e].color)
+  toast(`${c.def.name} is now ${ENCHANTS[e].name}!`)
+}
+
+const canEnchantCard = (c: Card, e: Enchant) => c.enchant !== e && canEnchant(c.key, e)
+
+// --- Skills: badges beside the portraits. Yours below, the opponent's (during fights) above. ---
+const SKILL = 0.62 // badge size, slot units
+const SKILL_GAP = 0.08
+const SKILL_SLOTS = 12
+
+/** Slot i: alternating left and right of the portrait, nearest columns first, two rows. */
+function skillSpot(side: 0 | 1, i: number) {
+  const k = Math.floor(i / 4)
+  const right = Math.floor(i / 2) % 2 === 1
+  const x = right ? midX + 1.1 + k * (SKILL + SKILL_GAP) : midX - 1.1 - SKILL - k * (SKILL + SKILL_GAP) // clear of the level badge
+  const y = (side === 0 ? PLAYER_STRIP + 0.5 : OPP_STRIP + 0.12) + (i % 2) * (SKILL + SKILL_GAP)
+  return { x, y }
+}
+
+function makeSkill(key: SkillKey, tier: Tier): Skill {
+  const def = skillAt(key, tier)
+  const el = box('skill', 0, 0, SKILL, SKILL, skillFace(def))
+  const s: Skill = { key, def, id: `skill${nextId++}`, el }
+  el.addEventListener('mouseenter', () => {
+    const r = el.getBoundingClientRect()
+    const sr = scene.getBoundingClientRect()
+    showInfo(skillInfo(s.def), { x: (r.left + r.width / 2 - sr.left) / u, y: (r.top + r.height / 2 - sr.top) / u, w: SKILL, h: SKILL }, u, SCENE_W)
+  })
+  el.addEventListener('mouseleave', hideTooltip)
+  return s
+}
+
+function layoutSkills(list: Skill[], side: 0 | 1) {
+  list.slice(0, SKILL_SLOTS).forEach((s, i) => {
+    const { x, y } = skillSpot(side, i)
+    s.el.style.left = `calc(var(--u) * ${x})`
+    s.el.style.top = `calc(var(--u) * ${y})`
+  })
+}
+
+const ownedSkill = (key: SkillKey) => mySkills.find(s => s.key === key)
+/** A skill you can take: new, or one you have that isn't maxed. */
+const canLearn = (key: SkillKey) => !ownedSkill(key) || nextTier(ownedSkill(key)!.def.tier) !== null
+/** What taking `key` (offered at `tier`) gives you: the skill at that tier, or your copy one tier up. */
+function learnPreview(key: SkillKey, tier: Tier) {
+  const owned = ownedSkill(key)
+  return owned ? skillAt(key, nextTier(owned.def.tier)!) : skillAt(key, tier)
+}
+
+function upgradeSkill(s: Skill) {
+  s.def = skillAt(s.key, nextTier(s.def.tier)!)
+  s.el.innerHTML = skillFace(s.def)
+  s.el.animate([{ scale: '1' }, { scale: '1.3' }, { scale: '1' }], { duration: 420, easing: 'ease-out' })
+  toast(`${s.def.name} upgraded to ${tierName(s.def.tier)}!`)
+}
+
+/** Take a skill: new ones join your badges, ones you have go up a tier. */
+function learn(key: SkillKey, tier: Tier) {
+  const owned = ownedSkill(key)
+  if (owned) return upgradeSkill(owned)
+  const s = makeSkill(key, tier)
+  mySkills.push(s)
+  layoutSkills(mySkills, 0)
+  s.el.animate([{ opacity: 0, scale: '1.6' }, { opacity: 1, scale: '1' }], { duration: 320, easing: 'ease-out' })
+  toast(`Learned ${s.def.name}!`)
 }
 
 /** Offers that would upgrade something you own get an arrow. */
@@ -219,8 +309,7 @@ function flash(el: HTMLElement, color: string) {
 /** Fresh stock filling the merchant's whole row, from items with any of `tags` (everything when none). */
 function rollOffers(tags?: string[]) {
   for (const c of cards.filter(c => c.lane === merchant)) removeCard(c)
-  const all = Object.keys(ITEMS) as ItemKey[]
-  const pool = tags ? all.filter(k => ITEMS[k].tags.some(t => tags.includes(t))) : all
+  const pool = tags ? ITEM_KEYS.filter(k => ITEMS[k].tags.some(t => tags.includes(t))) : ITEM_KEYS
   const picked: ItemKey[] = []
   // ponytail: random picks until the row is full, repeats allowed.
   for (let room = SOCKETS; room > 0; ) {
@@ -312,25 +401,30 @@ async function pick(options: Option[]) {
 }
 
 /** Add an item to the first free spot on the board, else the stash. False if there's no room. */
-function give(key: ItemKey, tier?: Tier) {
+function give(key: ItemKey, tier?: Tier, enchant?: Enchant) {
   const dest = [board, stash].find(l => firstFree(l.row, ITEMS[key].size) !== null)
   if (!dest) return false
-  const c = makeCard(dest, key, firstFree(dest.row, ITEMS[key].size)!, tier)
+  const c = makeCard(dest, key, firstFree(dest.row, ITEMS[key].size)!, tier, enchant)
   c.el.animate([{ opacity: 0, scale: '1.3' }, { opacity: 1, scale: '1' }], { duration: 300, easing: 'ease-out' })
   if (dest === stash && !stashOpen) flash(toy, '#f0c24a')
   refreshTop()
   return true
 }
 
-/** Lay out a build on the opponent's row and play the fight. */
-async function fight(name: string, hp: number, items: ItemKey[], color?: [string, string]) {
+interface Foe { name: string; hp: number; items: Loadout[]; skills?: SkillPick[]; color?: [string, string] }
+
+/** Lay out a build on the opponent's row (skills by their portrait) and play the fight. */
+async function fight({ name, hp, items, skills = [], color }: Foe) {
   for (const c of cards.filter(c => c.lane === opponent)) removeCard(c)
-  const total = items.reduce((n, k) => n + ITEMS[k].size, 0)
+  const build = items.map(loadout)
+  const total = build.reduce((n, l) => n + ITEMS[l.key].size, 0)
   let at = Math.floor((SOCKETS - total) / 2)
-  for (const k of items) {
-    makeCard(opponent, k, at)
-    at += ITEMS[k].size
+  for (const l of build) {
+    makeCard(opponent, l.key, at, l.tier, l.enchant)
+    at += ITEMS[l.key].size
   }
+  theirSkills = skills.map(skillPick).map(sp => makeSkill(sp.key, sp.tier))
+  layoutSkills(theirSkills, 1)
   const curtain = opponent.el.querySelector<HTMLElement>('.unlocked')!
   curtain.style.left = `calc(var(--u) * ${ROW_PAD + Math.floor((SOCKETS - total) / 2) - 0.1})`
   curtain.style.width = `calc(var(--u) * ${total + 0.2})`
@@ -341,20 +435,24 @@ async function fight(name: string, hp: number, items: ItemKey[], color?: [string
   setTop(name, color)
   resetBar(oppHp, hp)
   refreshTop()
-  const setup = (who: string, maxHp: number, l: Lane) => ({
+  const setup = (who: string, maxHp: number, l: Lane, skills: Skill[]) => ({
     name: who,
     hp: maxHp,
     items: cards.filter(c => c.lane === l).sort((a, b) => a.item.pos - b.item.pos).map(c => ({ id: c.item.id, def: c.def })),
+    skills: skills.map(s => ({ id: s.id, def: s.def })),
   })
-  const winner = await play(setup('You', maxHp(level), board), setup(name, hp, opponent), (Math.random() * 2 ** 31) | 0, {
+  const winner = await play(setup('You', maxHp(level), board, mySkills), setup(name, hp, opponent, theirSkills), (Math.random() * 2 ** 31) | 0, {
     scene,
     cardEl: id => cards.find(c => c.item.id === id)!.el,
+    skillEl: id => [...mySkills, ...theirSkills].find(s => s.id === id)?.el,
     hp: [myHp, oppHp],
     portrait: [myPortrait, topPortrait],
     hovering: () => cards.some(c => c.hovered),
     speed: () => SPEEDS[+speedInput.value],
   })
   resetBar(myHp, maxHp(level)) // health doesn't carry over: everyone starts each fight full, like the live game
+  for (const s of theirSkills) s.el.remove()
+  theirSkills = []
   fighting = false
   return winner
 }
@@ -374,13 +472,41 @@ async function visit(m: Merchant) {
   for (const c of cards.filter(c => c.lane === merchant)) removeCard(c)
 }
 
+const eventContext = (): EventContext => ({
+  day,
+  canLearn,
+  canEnchant: e => mine().some(c => canEnchantCard(c, e)),
+})
+
+const skillOption = (key: SkillKey, tier: Tier): Option => {
+  const def = learnPreview(key, tier)
+  return { info: skillInfo(def), skill: def, upgrades: !!ownedSkill(key) }
+}
+const enchantOption = (e: Enchant): Option => ({
+  info: { title: ENCHANTS[e].name, tags: ['Enchantment', ...(ENCHANTS[e].rare ? ['Legendary rare'] : [])], text: ENCHANTS[e].text },
+  badge: 'Enchant',
+  color: [ENCHANTS[e].color, '#1a1420'],
+})
+
+/** Pick which of your items gets `e`; each option shows the item as it would be. */
+async function enchantPick(e: Enchant) {
+  const eligible = mine().filter(c => canEnchantCard(c, e))
+  if (!eligible.length) return
+  setTop(ENCHANTS[e].name, [ENCHANTS[e].color, '#1a1420'])
+  const preview = (c: Card) => itemAt(c.key, c.tier, e)
+  enchantCard(eligible[await pick(eligible.map(c => ({ info: itemInfo(preview(c)), item: preview(c) })))], e)
+}
+
 async function runEvent(e: GameEvent) {
   setTop(e.name, e.color)
-  const rewards = e.options(Math.random)
+  const rewards: EventReward[] = e.options(Math.random, eventContext())
+  if (!rewards.length) rewards.push({ label: 'Walk on', text: ['Nothing here for you'] })
   for (;;) {
-    const r = rewards[await pick(rewards.map(r => (r.item
-      ? { info: itemInfo(ITEMS[r.item]), item: ITEMS[r.item] }
-      : { info: { title: r.label, text: r.text }, badge: e.name, color: e.color })))]
+    const r = rewards[await pick(rewards.map(r =>
+      r.item ? { info: itemInfo(itemAt(r.item)), item: itemAt(r.item) }
+      : r.skill ? skillOption(r.skill, r.tier ?? SKILLS[r.skill].tier)
+      : r.enchant ? enchantOption(r.enchant)
+      : { info: { title: r.label, text: r.text }, badge: e.name, color: e.color }))]
     if (r.gold && r.gold < 0 && gold < -r.gold) {
       noGold()
       continue
@@ -389,6 +515,8 @@ async function runEvent(e: GameEvent) {
       toast('No room: sell something first')
       continue
     }
+    if (r.skill) learn(r.skill, r.tier ?? SKILLS[r.skill].tier)
+    if (r.enchant) await enchantPick(r.enchant)
     gold += r.gold ?? 0
     income += r.income ?? 0
     renderGold()
@@ -414,12 +542,20 @@ async function monsterHour() {
   mode = 'choice'
   setTop('Monsters')
   const ms = monsterOptions(day, Math.random)
+  const carried = (l: Loadout) => {
+    const { key, enchant } = loadout(l)
+    return enchant ? `${ENCHANTS[enchant].name} ${ITEMS[key].name}` : ITEMS[key].name
+  }
   const m = ms[await pick(ms.map(m => ({
-    info: { title: m.name, tags: ['Monster', `Health ${m.hp}`], text: [m.blurb, `Reward: ${m.gold} gold`, `Carries ${m.items.map(k => ITEMS[k].name).join(', ')}`] },
+    info: {
+      title: m.name,
+      tags: ['Monster', `Health ${m.hp}`],
+      text: [m.blurb, `Reward: ${m.gold} gold`, `Carries ${m.items.map(carried).join(', ')}`, ...(m.skills?.length ? [`Skills: ${m.skills.map(sp => SKILLS[skillPick(sp).key].name).join(', ')}`] : [])],
+    },
     badge: 'Monster',
     color: m.color,
   })))]
-  if ((await fight(m.name, m.hp, m.items, m.color)) === 0) {
+  if ((await fight(m)) === 0) {
     gold += m.gold
     renderGold()
     flash(myGold, '#f0c24a')
@@ -444,19 +580,32 @@ async function gainXp(n: number) {
   }
 }
 
-const TIER_NAME = (t: Tier) => t[0].toUpperCase() + t.slice(1)
 const LEVEL_COLOR: [string, string] = ['#c8a040', '#3c2c0c']
 
-/** The level-up reward: pick a kind of reward, and for items/upgrades, pick which one. */
+/** Skills you could be offered at `tier`: starting at or below it, and not maxed if you have them. */
+const learnable = (tier: Tier) => SKILL_KEYS.filter(k => TIER_ORDER.indexOf(SKILLS[k].tier) <= TIER_ORDER.indexOf(tier) && canLearn(k))
+const enchantable = () => ENCHANT_KEYS.filter(e => mine().some(c => canEnchantCard(c, e)))
+
+/** The level-up reward: pick a kind of reward, then for items, skills, upgrades and enchantments, pick which one. */
 async function levelUp() {
   mode = 'choice'
   setTop(`Level ${level}`, LEVEL_COLOR)
-  const upgradable = cards.filter(c => c.lane.mine && nextTier(c.def.tier))
-  const rewards = levelRewards(level).filter(r => r.kind !== 'upgrade' || upgradable.length)
+  const upgradable = [...mine().filter(c => nextTier(c.tier)), ...mySkills.filter(s => nextTier(s.def.tier))]
+  const rewards = levelRewards(level).filter(r =>
+    r.kind === 'upgrade' ? upgradable.length : r.kind === 'enchant' ? enchantable().length : r.kind === 'skill' ? learnable(r.tier).length : true)
+  if (!rewards.length) rewards.push({ kind: 'gold', amount: 10 })
   const title = (r: Reward) =>
-    r.kind === 'item' ? `${TIER_NAME(r.tier)} item` : r.kind === 'upgrade' ? 'Upgrade an item' : r.kind === 'gold' ? `${r.amount} gold` : `+${r.amount} income`
+    r.kind === 'item' ? `${tierName(r.tier)} item`
+    : r.kind === 'skill' ? `${tierName(r.tier)} skill`
+    : r.kind === 'upgrade' ? 'Upgrade'
+    : r.kind === 'enchant' ? 'Enchant an item'
+    : r.kind === 'gold' ? `${r.amount} gold` : `+${r.amount} income`
   const text = (r: Reward) =>
-    r.kind === 'item' ? ['Choose one of three items'] : r.kind === 'upgrade' ? ['Choose one of your items to go up a tier'] : r.kind === 'gold' ? [`Gain ${r.amount} gold`] : [`Gain ${r.amount} income every day`]
+    r.kind === 'item' ? ['Choose one of three items']
+    : r.kind === 'skill' ? ['Choose one of three skills', 'One you have goes up a tier']
+    : r.kind === 'upgrade' ? ['Choose one of your items or skills to go up a tier']
+    : r.kind === 'enchant' ? ['Choose an enchantment, then the item']
+    : r.kind === 'gold' ? [`Gain ${r.amount} gold`] : [`Gain ${r.amount} income every day`]
   const r = rewards[await pick(rewards.map(r => ({ info: { title: title(r), tags: ['Reward'], text: text(r) }, badge: 'Reward', color: LEVEL_COLOR })))]
 
   if (r.kind === 'gold') gold += r.amount
@@ -467,25 +616,42 @@ async function levelUp() {
   }
   if (r.kind === 'upgrade') {
     const some = [...upgradable].sort(() => Math.random() - 0.5).slice(0, 4)
-    const next = (c: Card) => atTier(ITEMS[c.key], nextTier(c.def.tier)!)
-    upgrade(some[await pick(some.map(c => ({ info: itemInfo(next(c)), item: next(c) })))])
+    const option = (x: Card | Skill): Option => {
+      if ('item' in x) {
+        const next = itemAt(x.key, nextTier(x.tier)!, x.enchant)
+        return { info: itemInfo(next), item: next }
+      }
+      const next = skillAt(x.key, nextTier(x.def.tier)!)
+      return { info: skillInfo(next), skill: next }
+    }
+    const x = some[await pick(some.map(option))]
+    if ('item' in x) upgrade(x)
+    else upgradeSkill(x)
   }
   if (r.kind === 'item') {
     // Items that can come at this tier (no item below its starting tier).
-    const keys = (Object.keys(ITEMS) as ItemKey[]).filter(k => TIER_ORDER.indexOf(ITEMS[k].tier) >= 0 && TIER_ORDER.indexOf(ITEMS[k].tier) <= TIER_ORDER.indexOf(r.tier))
+    const keys = ITEM_KEYS.filter(k => TIER_ORDER.indexOf(ITEMS[k].tier) >= 0 && TIER_ORDER.indexOf(ITEMS[k].tier) <= TIER_ORDER.indexOf(r.tier))
     const three = [...keys].sort(() => Math.random() - 0.5).slice(0, 3)
     for (;;) {
-      const k = three[await pick(three.map(k => ({ info: itemInfo(atTier(ITEMS[k], r.tier)), item: atTier(ITEMS[k], r.tier) })))]
+      const k = three[await pick(three.map(k => ({ info: itemInfo(itemAt(k, r.tier)), item: itemAt(k, r.tier) })))]
       if (give(k, r.tier)) break
       toast('No room: sell something first')
     }
+  }
+  if (r.kind === 'skill') {
+    const three = learnable(r.tier).sort(() => Math.random() - 0.5).slice(0, 3)
+    learn(three[await pick(three.map(k => skillOption(k, r.tier)))], r.tier)
+  }
+  if (r.kind === 'enchant') {
+    const three = rollEnchants(3, Math.random, e => enchantable().includes(e))
+    await enchantPick(three[await pick(three.map(enchantOption))])
   }
 }
 
 /** End of day. Wins count toward the run; losses and draws cost Prestige. True when the run is over. */
 async function rivalHour() {
   const r = rival(day, Math.random)
-  const won = (await fight(r.name, r.hp, r.items, ['#a05a5a', '#3c1e1e'])) === 0
+  const won = (await fight({ ...r, color: ['#a05a5a', '#3c1e1e'] })) === 0
   if (won) wins++
   else prestige -= prestigeLoss(day)
   renderClock()

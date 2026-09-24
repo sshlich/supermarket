@@ -1,22 +1,50 @@
-import { ITEMS, type ItemKey } from './items.ts'
+import { ENCHANT_KEYS, ENCHANTS, type Enchant } from './enchant.ts'
+import { ITEM_KEYS, ITEMS, type ItemKey } from './items.ts'
+import { SKILL_KEYS, SKILLS, type SkillKey } from './skills.ts'
+import { TIER_ORDER, type Tier } from './tiers.ts'
 
 // What an hour can offer. Plain data: the run loop in main.ts interprets it.
 
 interface Base { name: string; blurb: string; color: [string, string] }
 
+/** An opponent's item: its key, or a key with a tier (starting tier by default) and an enchantment. */
+export type Loadout = ItemKey | { key: ItemKey; tier?: Tier; enchant?: Enchant }
+/** An opponent's skill: its key (at its starting tier), or a key with a tier. */
+export type SkillPick = SkillKey | { key: SkillKey; tier: Tier }
+export const loadout = (l: Loadout) => (typeof l === 'string' ? { key: l } : l)
+export const skillPick = (s: SkillPick) => (typeof s === 'string' ? { key: s, tier: SKILLS[s].tier } : s)
+
 /** Stocks items with any of `tags` (all items when omitted). */
 export interface Merchant extends Base { kind: 'merchant'; tags?: string[] }
 
-/** One pick in an event. Costs are negative gold. */
-export interface Reward { label: string; text: string[]; gold?: number; income?: number; item?: ItemKey }
-export interface GameEvent extends Base { kind: 'event'; options: (random: () => number) => Reward[] }
+/** One pick in an event. Costs are negative gold. An enchantment is then applied to an item you choose. */
+export interface Reward { label: string; text: string[]; gold?: number; income?: number; item?: ItemKey; skill?: SkillKey; tier?: Tier; enchant?: Enchant }
+/** What events can ask about the run. */
+export interface EventContext { day: number; canLearn(skill: SkillKey): boolean; canEnchant(e: Enchant): boolean }
+export interface GameEvent extends Base { kind: 'event'; options: (random: () => number, ctx: EventContext) => Reward[] }
 
-export interface Monster extends Base { kind: 'monster'; day: number; hp: number; items: ItemKey[]; gold: number; xp: number }
+export interface Monster extends Base { kind: 'monster'; day: number; hp: number; items: Loadout[]; skills?: SkillPick[]; gold: number; xp: number }
 
 export type Encounter = Merchant | GameEvent | Monster
 
-const keys = Object.keys(ITEMS) as ItemKey[]
 const pick = <T,>(list: T[], random: () => number) => list[Math.floor(random() * list.length)]
+const shuffled = <T,>(list: T[], random: () => number) => [...list].sort(() => random() - 0.5)
+
+/** The tier trainers and rivals hand skills out at on `day`. */
+export const skillTier = (day: number): Tier => (day <= 2 ? 'bronze' : day <= 5 ? 'silver' : 'gold')
+
+/** Up to `n` distinct enchantments; rare ones come up a quarter as often. */
+export function rollEnchants(n: number, random: () => number, allowed: (e: Enchant) => boolean = () => true): Enchant[] {
+  const pool = ENCHANT_KEYS.filter(allowed)
+  const out: Enchant[] = []
+  while (out.length < n && pool.length) {
+    const weights = pool.map(e => (ENCHANTS[e].rare ? 1 : 4))
+    let r = random() * weights.reduce((a, b) => a + b, 0)
+    const i = weights.findIndex(w => (r -= w) < 0)
+    out.push(...pool.splice(i < 0 ? pool.length - 1 : i, 1))
+  }
+  return out
+}
 
 export const MERCHANTS: Merchant[] = [
   { kind: 'merchant', name: 'Odd Trader', blurb: 'A bit of everything.', color: ['#5aa07a', '#1e3c2c'] },
@@ -36,7 +64,7 @@ export const EVENTS: GameEvent[] = [
   {
     kind: 'event', name: 'Loot Cart', blurb: 'Take one, quickly.', color: ['#8a6a3a', '#2a1e0c'],
     options: random => [0, 1, 2].map(() => {
-      const item = pick(keys, random)
+      const item = pick(ITEM_KEYS, random)
       return { label: ITEMS[item].name, text: ['Take this for free'], item }
     }),
   },
@@ -47,27 +75,41 @@ export const EVENTS: GameEvent[] = [
       { label: 'Walk on', text: ['Nothing happens'] },
     ],
   },
+  {
+    kind: 'event', name: 'Wandering Mentor', blurb: 'Teaches one trick, then moves on.', color: ['#5a7a4a', '#1a2a14'],
+    options: (random, ctx) => {
+      const tier = skillTier(ctx.day)
+      const open = SKILL_KEYS.filter(k => TIER_ORDER.indexOf(SKILLS[k].tier) <= TIER_ORDER.indexOf(tier) && ctx.canLearn(k))
+      return shuffled(open, random).slice(0, 3).map(skill => ({ label: SKILLS[skill].name, text: ['Learn this skill'], skill, tier }))
+    },
+  },
+  {
+    kind: 'event', name: 'Enchanter', blurb: 'Picks up your things and hums at them.', color: ['#7a4a9a', '#241430'],
+    options: (random, ctx) => rollEnchants(3, random, ctx.canEnchant).map(e => ({ label: ENCHANTS[e].name, text: ENCHANTS[e].text, enchant: e })),
+  },
 ]
 
 export const MONSTERS: Monster[] = [
   { kind: 'monster', name: 'Scrap Rat', blurb: 'Bites.', color: ['#7a6a5a', '#2a221a'], day: 1, hp: 100, items: ['rustBlade', 'rustBlade'], gold: 2, xp: 3 },
   { kind: 'monster', name: 'Bog Toad', blurb: 'Slow and toxic.', color: ['#4a7a4a', '#16261a'], day: 1, hp: 150, items: ['venomVial', 'ironPot'], gold: 2, xp: 3 },
-  { kind: 'monster', name: 'Ember Imp', blurb: 'Sets things on fire.', color: ['#b0502a', '#3a140a'], day: 2, hp: 200, items: ['emberFlask', 'emberFlask', 'rustBlade'], gold: 3, xp: 3 },
+  { kind: 'monster', name: 'Ember Imp', blurb: 'Sets things on fire.', color: ['#b0502a', '#3a140a'], day: 2, hp: 200, items: ['emberFlask', 'emberFlask', 'rustBlade'], skills: ['kindling'], gold: 3, xp: 3 },
+  { kind: 'monster', name: 'Frost Wisp', blurb: 'Everything gets slow around it.', color: ['#4a7a9a', '#12222e'], day: 2, hp: 220, items: ['frostLantern', 'tarPot'], skills: ['openingGuard'], gold: 3, xp: 3 },
   { kind: 'monster', name: 'Rust Golem', blurb: 'Hits once, hits hard.', color: ['#8a5a3a', '#2a1a10'], day: 2, hp: 280, items: ['siegeAnvil'], gold: 3, xp: 3 },
-  { kind: 'monster', name: 'Clockwork Knight', blurb: 'Armored and patient.', color: ['#6a7a8a', '#1e242a'], day: 3, hp: 350, items: ['towerShield', 'handCannon'], gold: 4, xp: 4 },
-  { kind: 'monster', name: 'Hive Queen', blurb: 'Never alone.', color: ['#9a8a2a', '#2e2a0c'], day: 4, hp: 450, items: ['brassBeetle', 'brassBeetle', 'venomVial', 'venomVial'], gold: 5, xp: 4 },
-  { kind: 'monster', name: 'Iron Warden', blurb: 'The road ends here.', color: ['#5a5a6a', '#18181e'], day: 5, hp: 600, items: ['siegeAnvil', 'towerShield', 'sparkPistol', 'ironPot', 'rustBlade'], gold: 6, xp: 4 },
+  { kind: 'monster', name: 'Clockwork Knight', blurb: 'Armored and patient.', color: ['#6a7a8a', '#1e242a'], day: 3, hp: 350, items: ['towerShield', 'handCannon'], skills: ['openingGuard'], gold: 4, xp: 4 },
+  { kind: 'monster', name: 'Tinker Gnome', blurb: 'Keeps everything wound up.', color: ['#8a7a3a', '#2a2410'], day: 3, hp: 320, items: ['windupKey', 'sparkPistol', 'ammoCrate', 'signalFlare'], skills: ['quickHands'], gold: 4, xp: 4 },
+  { kind: 'monster', name: 'Hive Queen', blurb: 'Never alone.', color: ['#9a8a2a', '#2e2a0c'], day: 4, hp: 450, items: ['brassBeetle', 'brassBeetle', 'venomVial', 'venomVial'], skills: ['sharpEye'], gold: 5, xp: 4 },
+  { kind: 'monster', name: 'Blood Bat', blurb: 'Drinks deep.', color: ['#8a2a3a', '#2a0a10'], day: 4, hp: 420, items: [{ key: 'leechKnife', enchant: 'obsidian' }, 'hungrySword', 'luckyDagger'], skills: ['bloodthirst', 'coldSnap'], gold: 5, xp: 4 },
+  { kind: 'monster', name: 'Iron Warden', blurb: 'The road ends here.', color: ['#5a5a6a', '#18181e'], day: 5, hp: 600, items: [{ key: 'siegeAnvil', enchant: 'shielded' }, 'towerShield', 'sparkPistol', 'ironPot', 'rustBlade'], skills: ['ironWill'], gold: 6, xp: 4 },
 ]
 
 /** Three picks for a non-combat hour: always one merchant, the other two merchants or events. */
 export function hourOptions(random: () => number): (Merchant | GameEvent)[] {
-  const shuffled = <T,>(list: T[]) => [...list].sort(() => random() - 0.5)
-  const [first, ...merchants] = shuffled(MERCHANTS)
-  return [first, ...shuffled([...merchants, ...EVENTS]).slice(0, 2)].sort(() => random() - 0.5)
+  const [first, ...merchants] = shuffled(MERCHANTS, random)
+  return shuffled([first, ...shuffled([...merchants, ...EVENTS], random).slice(0, 2)], random)
 }
 
 /** Three monsters around today's difficulty: the toughest ones unlocked so far, shuffled. */
 export function monsterOptions(day: number, random: () => number): Monster[] {
   const open = MONSTERS.filter(m => m.day <= day).slice(-5)
-  return [...open].sort(() => random() - 0.5).slice(0, 3)
+  return shuffled(open, random).slice(0, 3)
 }

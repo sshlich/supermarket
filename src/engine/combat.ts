@@ -1,9 +1,8 @@
 import type { Size } from '../board.ts'
-import type { ItemDef } from '../items.ts'
 
 // ---------------------------------------------------------------- ability format
-// An item's abilities are trigger -> (condition) -> actions, same shape as the live game.
-// Action amounts default to the item's own stats, so the gems on the card are the numbers used.
+// An item's (or skill's) abilities are trigger -> (condition) -> actions, same shape as the live game.
+// Action amounts default to the card's own stats, so the gems on the card are the numbers used.
 
 export type CardStat = 'cooldown' | 'damage' | 'shield' | 'heal' | 'burn' | 'poison' | 'regen' | 'crit' | 'multicast' | 'ammo' | 'lifesteal'
 export type PlayerEffect = 'damage' | 'heal' | 'shield' | 'burn' | 'poison' | 'regen'
@@ -14,9 +13,10 @@ export interface Targets {
   pick: 'self' | 'source' | 'neighbors' | 'left' | 'right' | 'leftmost' | 'rightmost' | 'mine' | 'enemy' | 'all'
   where?: Filter
   excludeSelf?: boolean
-  random?: number // pick this many at random from the matches
+  random?: Value // pick this many at random from the matches
 }
-export type Value = number | { stat: CardStat; of: Targets; times?: number } | { count: Targets; times?: number }
+/** A number, one of the card's named vals (tier-resolved), a stat of another card, or a count of cards. */
+export type Value = number | { val: string; times?: number } | { stat: CardStat; of: Targets; times?: number } | { count: Targets; times?: number }
 export type Action =
   | { do: PlayerEffect; amount?: Value; to?: 'me' | 'enemy' }
   | { do: CardEffect; seconds: Value; targets: Targets }
@@ -26,8 +26,23 @@ export type Trigger =
   | { on: 'use' | 'fightStart' }
   | { on: 'itemUsed' | 'crit'; who?: Targets } // who defaults to any of my items
   | { on: 'performed'; effect: PlayerEffect | CardEffect; who?: Targets }
-export interface Ability { when: Trigger; if?: { count: Targets; atLeast: number }; do: Action[] }
+export interface Ability { when: Trigger; if?: { count: Targets; atLeast: Value }; do: Action[] }
 export interface Aura { stat: CardStat; add: Value; targets: Targets } // recomputed every tick
+
+/** What the engine reads from an item or skill, already resolved at its tier. Skills have no size or cooldown. */
+export interface UnitDef {
+  tags: string[]
+  size?: Size
+  cooldown?: number // seconds
+  stats: Partial<Record<PlayerEffect, number>>
+  vals?: Record<string, number>
+  multicast?: number
+  ammo?: number
+  crit?: number
+  lifesteal?: number
+  abilities: Ability[]
+  auras?: Aura[]
+}
 
 // ---------------------------------------------------------------- rules
 // Legacy client engine + docs/rules-decisions (archive branch) R03-R07, R19.
@@ -37,12 +52,12 @@ const STORM_AT = 30_000
 const MAX_T = 90_000 // draw
 const MAX_DEPTH = 32 // trigger chain guard
 
-export type EventKind = PlayerEffect | CardEffect | 'use' | 'reload' | 'modify' | 'end'
+export type EventKind = PlayerEffect | CardEffect | 'use' | 'skill' | 'reload' | 'modify' | 'end'
 export interface FightEvent {
   t: number
   kind: EventKind
   side?: 0 | 1 // player affected (or the owner of the affected item)
-  item?: string // item used / affected
+  item?: string // item used / affected, or the skill that fired
   from?: string // source item id, or 'burn' | 'poison' | 'regen' | 'storm'
   amount?: number
   blocked?: number // damage absorbed by Shield
@@ -51,12 +66,14 @@ export interface FightEvent {
   winner?: -1 | 0 | 1 // on 'end'; -1 = draw
 }
 
-export interface SideSetup { name: string; hp: number; items: { id: string; def: ItemDef }[] } // items in board order
+/** Items in board order. Skills listen for triggers and hold auras but are never targeted or used. */
+export interface SideSetup { name: string; hp: number; items: { id: string; def: UnitDef }[]; skills?: { id: string; def: UnitDef }[] }
 
 export interface Unit {
   id: string
-  def: ItemDef
+  def: UnitDef
   owner: Side
+  skill: boolean
   base: Record<CardStat, number> // item stats + in-fight modifications
   attrs: Record<CardStat, number> // base + auras
   progress: number // ms of cooldown charged
@@ -77,15 +94,16 @@ export interface Side {
   poison: number
   regen: number
   items: Unit[]
+  skills: Unit[]
   foe: Side
 }
 
-function statsOf(def: ItemDef): Record<CardStat, number> {
+function statsOf(def: UnitDef): Record<CardStat, number> {
   const s = def.stats
   return {
     cooldown: (def.cooldown ?? 0) * 1000,
-    damage: s.damage ?? 0, shield: s.shield ?? 0, heal: s.heal ?? 0, burn: s.burn ?? 0, poison: s.poison ?? 0,
-    regen: 0, crit: def.crit ?? 0, multicast: def.multicast ?? 1, ammo: def.ammo ?? 0, lifesteal: 0,
+    damage: s.damage ?? 0, shield: s.shield ?? 0, heal: s.heal ?? 0, burn: s.burn ?? 0, poison: s.poison ?? 0, regen: s.regen ?? 0,
+    crit: def.crit ?? 0, multicast: def.multicast ?? 1, ammo: def.ammo ?? 0, lifesteal: def.lifesteal ?? 0,
   }
 }
 
@@ -112,11 +130,13 @@ export class Fight {
   constructor(a: SideSetup, b: SideSetup, seed = 1) {
     this.random = rng(seed)
     const side = (s: SideSetup, index: 0 | 1): Side => {
-      const p: Side = { index, name: s.name, hp: s.hp, maxHp: s.hp, shield: 0, burn: 0, poison: 0, regen: 0, items: [], foe: null! }
-      p.items = s.items.map(({ id, def }) => {
+      const p: Side = { index, name: s.name, hp: s.hp, maxHp: s.hp, shield: 0, burn: 0, poison: 0, regen: 0, items: [], skills: [], foe: null! }
+      const unit = ({ id, def }: { id: string; def: UnitDef }, skill: boolean): Unit => {
         const base = statsOf(def)
-        return { id, def, owner: p, base, attrs: { ...base }, progress: 0, haste: 0, slow: 0, freeze: 0, ammo: base.ammo, crit: false }
-      })
+        return { id, def, owner: p, skill, base, attrs: { ...base }, progress: 0, haste: 0, slow: 0, freeze: 0, ammo: base.ammo, crit: false }
+      }
+      p.items = s.items.map(it => unit(it, false))
+      p.skills = (s.skills ?? []).map(sk => unit(sk, true))
       return p
     }
     this.sides = [side(a, 0), side(b, 1)]
@@ -147,8 +167,9 @@ export class Fight {
     return this.events.slice(from)
   }
 
+  /** Everything with abilities: both boards, then both sides' skills. */
   private units() {
-    return [...this.sides[0].items, ...this.sides[1].items]
+    return [...this.sides[0].items, ...this.sides[1].items, ...this.sides[0].skills, ...this.sides[1].skills]
   }
 
   private log(e: Omit<FightEvent, 't'>) {
@@ -237,7 +258,9 @@ export class Fight {
       for (const ab of u.def.abilities) {
         const w = ab.when
         if (w.on !== on || (w.on === 'performed' && w.effect !== effect)) continue
-        if (!this.resolve(('who' in w && w.who) || { pick: 'mine' }, u, src).includes(src)) continue
+        const who = 'who' in w ? w.who : undefined
+        // No `who`: any of my items. For "when you Burn" and the like, my skills count as me too.
+        if (who ? !this.resolve(who, u, src).includes(src) : on === 'performed' ? src.owner !== u.owner : !u.owner.items.includes(src)) continue
         this.ability(u, ab, src)
       }
     }
@@ -246,7 +269,8 @@ export class Fight {
 
   private ability(u: Unit, ab: Ability, src: Unit) {
     if (this.winner !== null) return
-    if (ab.if && this.resolve(ab.if.count, u, src).length < ab.if.atLeast) return
+    if (ab.if && this.resolve(ab.if.count, u, src).length < this.value(ab.if.atLeast, u, src)) return
+    if (u.skill) this.log({ kind: 'skill', side: u.owner.index, item: u.id })
     for (const a of ab.do) this.act(u, a, src)
   }
 
@@ -341,6 +365,7 @@ export class Fight {
 
   private value(v: Value, self: Unit, src: Unit): number {
     if (typeof v === 'number') return v
+    if ('val' in v) return (self.def.vals?.[v.val] ?? 0) * (v.times ?? 1)
     if ('count' in v) return this.resolve(v.count, self, src).length * (v.times ?? 1)
     const [first] = this.resolve(v.of, self, src)
     return (first ? first.attrs[v.stat] : 0) * (v.times ?? 1)
@@ -348,7 +373,8 @@ export class Fight {
 
   private resolve(tg: Targets, self: Unit, src: Unit): Unit[] {
     const mine = self.owner.items
-    const i = mine.indexOf(self)
+    const i = mine.indexOf(self) // -1 for a skill: it has no neighbors
+    const beside = (j: number) => (i < 0 ? [] : [mine[j]].filter(Boolean))
     let out: Unit[]
     switch (tg.pick) {
       case 'self': out = [self]; break
@@ -356,9 +382,9 @@ export class Fight {
       case 'mine': out = [...mine]; break
       case 'enemy': out = [...self.owner.foe.items]; break
       case 'all': out = this.units(); break
-      case 'neighbors': out = [mine[i - 1], mine[i + 1]].filter(Boolean); break // R01: adjacent items, gaps don't matter
-      case 'left': out = [mine[i - 1]].filter(Boolean); break
-      case 'right': out = [mine[i + 1]].filter(Boolean); break
+      case 'neighbors': out = [...beside(i - 1), ...beside(i + 1)]; break // R01: adjacent items, gaps don't matter
+      case 'left': out = beside(i - 1); break
+      case 'right': out = beside(i + 1); break
       case 'leftmost': out = mine.slice(0, 1); break
       case 'rightmost': out = mine.slice(-1); break
     }
@@ -370,7 +396,7 @@ export class Fight {
         const j = Math.floor(this.random() * (k + 1))
         ;[out[k], out[j]] = [out[j], out[k]]
       }
-      out = out.slice(0, tg.random)
+      out = out.slice(0, this.value(tg.random, self, src))
     }
     return out
   }

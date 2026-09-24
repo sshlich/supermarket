@@ -3,7 +3,7 @@ import { buyPrice } from './economy.ts'
 import { hourOptions, monsterOptions } from './encounters.ts'
 import { ITEMS } from './items.ts'
 import { boardSockets, hourKind, levelRewards, maxHp, prestigeLoss, rival, rivalLevel } from './run.ts'
-import { atTier, nextTier } from './items.ts'
+import { SKILLS } from './skills.ts'
 
 assert.deepEqual([0, 1, 2, 3, 4, 5].map(hourKind), ['choice', 'choice', 'monster', 'choice', 'choice', 'rival'])
 assert.equal(prestigeLoss(1), 2)
@@ -20,6 +20,9 @@ for (const day of [1, 3, 8]) {
     assert.equal(r.hp, maxHp(rivalLevel(day)))
     assert.ok(r.items.reduce((n, k) => n + buyPrice(ITEMS[k]), 0) <= 6 + 8 * day)
     assert.ok(r.items.length > 0)
+    assert.equal(r.skills.length, Math.floor(day / 2)) // a skill every other day
+    assert.equal(new Set(r.skills.map(s => s.key)).size, r.skills.length)
+    assert.ok(r.skills.every(s => SKILLS[s.key]))
   }
 }
 
@@ -39,13 +42,7 @@ assert.equal(maxHp(1), 300)
 assert.deepEqual([1, 2, 3, 4, 9].map(boardSockets), [{ lo: 3, hi: 6 }, { lo: 2, hi: 7 }, { lo: 1, hi: 8 }, { lo: 0, hi: 9 }, { lo: 0, hi: 9 }])
 assert.equal(levelRewards(2).length, 3)
 assert.ok(levelRewards(12).some(r => r.kind === 'upgrade'))
-
-// Tiers: stats scale from the starting tier; upgrades stop at Diamond.
-assert.deepEqual(atTier(ITEMS.towerShield, 'gold').stats, { shield: 30 }) // silver 20 -> gold 30
-assert.deepEqual(atTier(ITEMS.handCannon, 'diamond').stats, { damage: 11, burn: 3 }) // gold 8/2 -> diamond
-assert.equal(atTier(ITEMS.rustBlade, 'silver').tier, 'silver')
-assert.equal(nextTier('gold'), 'diamond')
-assert.equal(nextTier('diamond'), null)
-assert.equal(nextTier('legendary'), null)
+assert.ok(levelRewards(2).some(r => r.kind === 'skill'))
+assert.ok(levelRewards(3).some(r => r.kind === 'enchant'))
 
 console.log('run: ok')

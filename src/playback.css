@@ -61,6 +61,7 @@
 .hp em.shield { color: #ffd84a; }
 .hp em.burn { color: #ff9b3a; }
 .hp em.poison { color: #58d69b; }
+.hp em.regen { color: #c2e25a; }
 
 .float {
   position: absolute;

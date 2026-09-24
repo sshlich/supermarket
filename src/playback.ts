@@ -5,6 +5,7 @@ import { Fight, type FightEvent, type Side, type SideSetup } from './engine/comb
 export interface Stage {
   scene: HTMLElement
   cardEl(id: string): HTMLElement
+  skillEl(id: string): HTMLElement | undefined
   hp: [HTMLElement, HTMLElement]
   portrait: [HTMLElement, HTMLElement]
   hovering(): boolean
@@ -17,7 +18,7 @@ const TIME_EASE = 6 // per second, time scale follows its target
 const END_HOLD_MS = 1400 // real time after the last blow before the banner
 
 const COLOR: Partial<Record<FightEvent['kind'] | 'storm', string>> = {
-  damage: '#ff4b3a', heal: '#7edc5a', shield: '#f5cc3d', burn: '#ff9b3a', poison: '#58d69b', regen: '#9be27a', storm: '#e0c080',
+  damage: '#ff4b3a', heal: '#7edc5a', shield: '#f5cc3d', burn: '#ff9b3a', poison: '#58d69b', regen: '#c2e25a', storm: '#e0c080',
 }
 
 /** Play a fight on the stage in real time; resolves with the winner when the player dismisses the banner. */
@@ -72,6 +73,10 @@ export function play(a: SideSetup, b: SideSetup, seed: number, stage: Stage): Pr
   })
 
   function show(e: FightEvent) {
+    if (e.kind === 'skill') {
+      stage.skillEl(e.item!)?.animate([{ scale: '1', filter: 'brightness(1)' }, { scale: '1.25', filter: 'brightness(1.8)' }, { scale: '1', filter: 'brightness(1)' }], { duration: 320, easing: 'ease-out' })
+      return
+    }
     if (e.kind === 'use') {
       const el = stage.cardEl(e.item!)
       el.animate([{ scale: '1' }, { scale: '1.08' }, { scale: '1' }], { duration: 220, easing: 'ease-out' })
@@ -81,7 +86,8 @@ export function play(a: SideSetup, b: SideSetup, seed: number, stage: Stage): Pr
     if (e.side === undefined || !(e.kind in COLOR)) return
     const p = stage.portrait[e.side]
     const sign = e.kind === 'damage' ? '-' : '+'
-    float(p, `${sign}${e.amount}`, COLOR[e.from === 'storm' ? 'storm' : e.from === 'burn' ? 'burn' : e.from === 'poison' ? 'poison' : e.kind]!, e.amount!)
+    const from = e.from === 'storm' || e.from === 'burn' || e.from === 'poison' || e.from === 'regen' ? e.from : e.kind
+    float(p, `${sign}${e.amount}`, COLOR[from]!, e.amount!)
     if (e.kind === 'damage' && e.amount! > 0) p.animate([{ translate: '0 0' }, { translate: '-3px 2px' }, { translate: '3px -2px' }, { translate: '0 0' }], { duration: 160 })
   }
 }
@@ -124,6 +130,7 @@ function bar(el: HTMLElement, s: Side) {
   if (s.shield > 0) parts.push(`<em class="shield">${s.shield}</em>`)
   if (s.burn > 0) parts.push(`<em class="burn">${s.burn}</em>`)
   if (s.poison > 0) parts.push(`<em class="poison">${s.poison}</em>`)
+  if (s.regen > 0) parts.push(`<em class="regen">${s.regen}</em>`)
   const html = parts.join('')
   if (text.innerHTML !== html) text.innerHTML = html
 }

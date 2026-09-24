@@ -1,14 +1,17 @@
 import './choice.css'
 import { glass } from './card-effects.ts'
-import { cardFace, cardVars, hideTooltip, showInfo, type Info } from './card-view.ts'
+import { cardFace, cardVars, hideTooltip, showInfo, skillFace, type Info } from './card-view.ts'
 import type { ItemDef } from './items.ts'
+import type { SkillDef } from './skills.ts'
 
-/** One pickable option. Shown as an encounter card with a badge, or as the item card itself. */
+/** One pickable option. Shown as an encounter card with a badge, or as the item card or skill badge itself. */
 export interface Option {
   info: Info // tooltip content
   badge?: string // 'Merchant', 'Event', 'Monster'...
   color?: [string, string]
   item?: ItemDef
+  skill?: SkillDef
+  upgrades?: boolean // picking it upgrades something you have: green arrow
 }
 
 /**
@@ -30,11 +33,15 @@ export function choose(scene: HTMLElement, area: { x: number; y: number; w: numb
         card.innerHTML = cardFace(o.item)
         card.querySelector('.art')!.after(glass(card).el)
         card.querySelector('.price')!.remove()
+      } else if (o.skill) {
+        card.className = 'choice skill'
+        card.innerHTML = skillFace(o.skill)
       } else {
         card.className = 'choice encounter'
         if (o.color) card.style.cssText = `--c1:${o.color[0]};--c2:${o.color[1]}`
         card.innerHTML = `<div class="face"><span>${o.info.title}</span></div>${o.badge ? `<div class="badge">${o.badge}</div>` : ''}`
       }
+      card.classList.toggle('upgrades', !!o.upgrades)
       card.animate([{ opacity: 0, translate: '0 calc(var(--u) * 0.3)' }, { opacity: 1, translate: '0 0' }], { duration: 260, delay: i * 70, fill: 'backwards', easing: 'ease-out' })
       card.addEventListener('mouseenter', () => {
         const r = card.getBoundingClientRect()

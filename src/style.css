@@ -244,8 +244,9 @@ body {
 
 .row .unlocked { transition: left 0.5s ease-out, width 0.5s ease-out; }
 
-/* Offer that would upgrade an item you own. */
-.card.upgrades::after {
+/* Offer that would upgrade an item or skill you own. */
+.card.upgrades::after,
+.choice.upgrades::after {
   content: '▲';
   position: absolute;
   top: calc(var(--u) * 0.18);

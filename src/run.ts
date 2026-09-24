@@ -1,5 +1,8 @@
 import { buyPrice } from './economy.ts'
-import { ITEMS, type ItemKey, type Tier } from './items.ts'
+import { skillTier, type SkillPick } from './encounters.ts'
+import { ITEM_KEYS, ITEMS, type ItemKey } from './items.ts'
+import { SKILL_KEYS, SKILLS } from './skills.ts'
+import { TIER_ORDER, type Tier } from './tiers.ts'
 
 export const HOURS = 6 // per day
 export const WINS_TO_WIN = 10
@@ -17,14 +20,24 @@ export function boardSockets(level: number) {
   return { lo, hi: lo + n - 1 }
 }
 
-/** What a level-up can offer. Each level offers every entry; picking 'item' or 'upgrade' opens a second pick. */
-export type Reward = { kind: 'item'; tier: Tier } | { kind: 'upgrade' } | { kind: 'gold'; amount: number } | { kind: 'income'; amount: number }
+/**
+ * What a level-up can offer. Each level offers every entry that applies; 'item', 'skill', 'upgrade' and
+ * 'enchant' open a second pick (upgrade covers items and skills).
+ */
+export type Reward =
+  | { kind: 'item'; tier: Tier }
+  | { kind: 'skill'; tier: Tier }
+  | { kind: 'upgrade' }
+  | { kind: 'enchant' }
+  | { kind: 'gold'; amount: number }
+  | { kind: 'income'; amount: number }
 const LEVEL_REWARDS: Record<number, Reward[]> = {
-  2: [{ kind: 'item', tier: 'bronze' }, { kind: 'gold', amount: 10 }, { kind: 'income', amount: 1 }],
-  3: [{ kind: 'item', tier: 'silver' }, { kind: 'upgrade' }, { kind: 'gold', amount: 15 }],
-  4: [{ kind: 'upgrade' }, { kind: 'item', tier: 'gold' }, { kind: 'income', amount: 2 }],
+  2: [{ kind: 'skill', tier: 'bronze' }, { kind: 'item', tier: 'bronze' }, { kind: 'gold', amount: 10 }],
+  3: [{ kind: 'item', tier: 'silver' }, { kind: 'upgrade' }, { kind: 'enchant' }],
+  4: [{ kind: 'skill', tier: 'silver' }, { kind: 'upgrade' }, { kind: 'income', amount: 2 }],
+  5: [{ kind: 'enchant' }, { kind: 'item', tier: 'gold' }, { kind: 'gold', amount: 15 }],
 }
-const LATER_REWARDS: Reward[] = [{ kind: 'upgrade' }, { kind: 'item', tier: 'gold' }, { kind: 'gold', amount: 20 }]
+const LATER_REWARDS: Reward[] = [{ kind: 'skill', tier: 'gold' }, { kind: 'upgrade' }, { kind: 'enchant' }]
 export const levelRewards = (level: number) => LEVEL_REWARDS[level] ?? LATER_REWARDS
 
 /** Hours 0,1,3,4: merchants/events. Hour 2: pick a monster. Hour 5: fight a rival. */
@@ -40,21 +53,23 @@ export const rivalLevel = (day: number) => day + 1
 
 /**
  * A rival build for `day`: random items bought with a budget that grows each day, until nothing affordable
- * fits their board. ponytail: stands in for other players' snapshots.
+ * fits their board, plus a skill every other day. ponytail: a generated stand-in until rivals are designed.
  */
-export function rival(day: number, random: () => number): { name: string; hp: number; items: ItemKey[] } {
+export function rival(day: number, random: () => number): { name: string; hp: number; items: ItemKey[]; skills: SkillPick[] } {
   let budget = 6 + 8 * day
   const { lo, hi } = boardSockets(rivalLevel(day))
   let slots = hi - lo + 1
   const items: ItemKey[] = []
-  const keys = Object.keys(ITEMS) as ItemKey[]
   for (;;) {
-    const fits = keys.filter(k => ITEMS[k].size <= slots && buyPrice(ITEMS[k]) <= budget)
+    const fits = ITEM_KEYS.filter(k => ITEMS[k].size <= slots && buyPrice(ITEMS[k]) <= budget)
     if (!fits.length) break
     const k = fits[Math.floor(random() * fits.length)]
     items.push(k)
     budget -= buyPrice(ITEMS[k])
     slots -= ITEMS[k].size
   }
-  return { name: NAMES[Math.floor(random() * NAMES.length)], hp: maxHp(rivalLevel(day)), items }
+  const tier = skillTier(day)
+  const open = SKILL_KEYS.filter(k => TIER_ORDER.indexOf(SKILLS[k].tier) <= TIER_ORDER.indexOf(tier)).sort(() => random() - 0.5)
+  const skills = open.slice(0, Math.min(4, Math.floor(day / 2))).map(key => ({ key, tier }))
+  return { name: NAMES[Math.floor(random() * NAMES.length)], hp: maxHp(rivalLevel(day)), items, skills }
 }

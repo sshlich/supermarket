@@ -1,81 +1,51 @@
-import type { Art } from './art.ts'
 import type { Size } from './board.ts'
-import type { Ability, Action, Aura } from './engine/combat.ts'
+import type { Ability, Action } from './engine/combat.ts'
+import { enchantRule, type Enchant } from './enchant.ts'
+import { at, cardAt, grows, pathsOf, reachable, stepOf, steps, tiers, type CardBase, type Num, type Resolved, type Tier } from './tiers.ts'
 
-export type Tier = 'bronze' | 'silver' | 'gold' | 'diamond' | 'legendary'
-export const TIER_COLOR: Record<Tier, string> = {
-  bronze: '#c9814a',
-  silver: '#c3d0dd',
-  gold: '#f2c64e',
-  diamond: '#86ecf7',
-  legendary: '#e0609f',
-}
-
-const svg = (d: string) => `<svg class="ico" viewBox="0 0 16 16"><path d="${d}"/></svg>`
-
-export type Keyword = 'damage' | 'shield' | 'heal' | 'burn' | 'poison' | 'haste' | 'multicast' | 'ammo'
-/** Keywords color their word and value in descriptions; ones with `desc` also get a legend entry. */
-export const KEYWORDS: Record<Keyword, { name: string; color: string; icon: string; desc?: string }> = {
-  damage: { name: 'Damage', color: '#ff5a44', icon: svg('M8 0l1.8 5 5.2-1.5-4 4.5 4 4.5-5.2-1.5L8 16l-1.8-5L1 12.5l4-4.5-4-4.5L6.2 5z') },
-  shield: { name: 'Shield', color: '#f5cc3d', icon: svg('M8 1l6 2v5c0 4-3 6.5-6 7.5C5 14.5 2 12 2 8V3z'), desc: 'Blocks incoming Damage until it breaks. Poison slips past it.' },
-  heal: { name: 'Heal', color: '#7edc5a', icon: svg('M6 1h4v5h5v4h-5v5H6v-5H1V6h5z'), desc: 'Restores Health, up to your maximum.' },
-  burn: { name: 'Burn', color: '#ff9b3a', icon: svg('M8 0c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3C7 6 6 3 8 0z'), desc: 'Hurts the enemy twice a second, getting weaker with every tick.' },
-  poison: { name: 'Poison', color: '#58d69b', icon: svg('M8 0S2.5 7 2.5 10.5a5.5 5.5 0 0 0 11 0C13.5 7 8 0 8 0z'), desc: 'Hurts the enemy every second and ignores Shield.' },
-  haste: { name: 'Haste', color: '#63d2ff', icon: svg('M1 2l6 6-6 6zm7 0l6 6-6 6z'), desc: 'The item charges twice as fast.' },
-  multicast: { name: 'Multicast', color: '#f3e3c3', icon: svg('M2 3l6-2 6 2v2L8 3 2 5zm0 5l6-2 6 2v2L8 8l-6 2zm0 5l6-2 6 2v2l-6-2-6 2z'), desc: 'Each use triggers the effect this many times.' },
-  ammo: { name: 'Ammo', color: '#f2d27a', icon: svg('M6 1h4a2 3 0 0 1 2 3v11H4V4a2 3 0 0 1 2-3z'), desc: 'Uses per fight. When it runs out the item stops firing.' },
-}
-
-/** Normal upgrade path. Legendary is a separate top tier that doesn't upgrade. */
-export const TIER_ORDER: Tier[] = ['bronze', 'silver', 'gold', 'diamond']
-const TIER_STEP: Record<Tier, number> = { bronze: 1, silver: 2, gold: 3, diamond: 4, legendary: 5 }
-export const nextTier = (t: Tier): Tier | null => (TIER_ORDER.includes(t) ? (TIER_ORDER[TIER_ORDER.indexOf(t) + 1] ?? null) : null)
-
-/**
- * The item at `tier`: stats scale by tier step relative to its starting tier (a Silver 10 is a Gold 15).
- * ponytail: one curve for every item; per-item tier tables when balance needs them.
- */
-export function atTier(def: ItemDef, tier: Tier): ItemDef {
-  const k = TIER_STEP[tier] / TIER_STEP[def.tier]
-  const stats = Object.fromEntries(Object.entries(def.stats).map(([s, v]) => [s, Math.round(v * k)]))
-  return { ...def, tier, stats }
-}
-
-export type Stat = 'damage' | 'shield' | 'heal' | 'burn' | 'poison'
-export const STAT_ORDER: Stat[] = ['damage', 'shield', 'heal', 'burn', 'poison']
-
-export interface ItemDef {
-  name: string
+interface ItemBase<N> extends CardBase<N> {
   size: Size
-  tier: Tier
-  tags: string[]
-  cooldown?: number // seconds
-  stats: Partial<Record<Stat, number>> // gems along the top edge
-  multicast?: number
-  ammo?: number
-  crit?: number // % chance
-  abilities: Ability[]
-  auras?: Aura[]
-  /** Lines of description. `[burn]` = icon + this tier's burn stat, `[burn 2]` = icon + a fixed value, `<Burn>` = colored keyword. */
-  text: string[]
-  art: Art
+  cooldown?: N // seconds; none = passive
+  multicast?: N
+  ammo?: N
+}
+
+/** An item as written below: numbers may be upgrade paths (see tiers.ts). */
+export interface ItemSpec extends ItemBase<Num> {
+  /**
+   * Per-item enchantments: a function replaces the rule in enchant.ts (it gets the item at its tier and
+   * can call `enchantRule` itself to build on it), `false` means this item can't take that enchantment.
+   */
+  enchants?: Partial<Record<Enchant, false | ((def: ItemDef) => ItemDef | null)>>
+}
+
+/** An item at one tier (and maybe enchanted): plain numbers, what the engine and the card view use. */
+export interface ItemDef extends ItemBase<number>, Resolved {
+  key: ItemKey
+  enchant?: Enchant
+  enchantText?: string[] // what the enchantment added, for the tooltip
 }
 
 /** The common case: when this item is used, do these. */
 const onUse = (...actions: Action[]): Ability => ({ when: { on: 'use' }, do: actions })
 
+// ---------------------------------------------------------------------------------------------------------
+// Placeholder content. The second half is a test set: between them they use every effect, trigger,
+// target and value the engine has, several kinds of upgrade path, and every enchantment case
+// (T1/T2 items, scalers, auras, passives, items the rules can't enchant). Real items come later.
+
 export const ITEMS = {
   handCannon: {
     name: 'Hand Cannon', size: 2, tier: 'gold', tags: ['Weapon'], cooldown: 7,
     stats: { damage: 8, burn: 2 }, multicast: 3,
-    text: ['Deal [damage] <Damage>', '<Burn> [burn]', '<Multicast>: [multicast 3]'],
+    text: ['Deal [damage] <Damage>', '<Burn> [burn]', '<Multicast>: [multicast]'],
     abilities: [onUse({ do: 'damage' }, { do: 'burn' })],
     art: { bg: ['#6f7684', '#2b2f38'], icons: ['cannon', { icon: 'fire', color: 'burn' }] },
   },
   sparkPistol: {
     name: 'Spark Pistol', size: 1, tier: 'bronze', tags: ['Weapon', 'Tech'], cooldown: 4,
     stats: { damage: 10 }, ammo: 6,
-    text: ['Deal [damage] <Damage>', '<Ammo> [ammo 6]'],
+    text: ['Deal [damage] <Damage>', '<Ammo> [ammo]'],
     abilities: [onUse({ do: 'damage' })],
     art: { bg: ['#7c6a4a', '#2c2418'], icons: ['pistol-gun', { icon: 'sparkles', color: '#9ee4ff' }] },
   },
@@ -139,6 +109,190 @@ export const ITEMS = {
     abilities: [onUse({ do: 'shield' })],
     art: { bg: ['#5a5a62', '#1c1c22'], icons: ['cooking-pot'] },
   },
-} satisfies Record<string, ItemDef>
+
+  // --- Test set ---
+
+  // Freeze; the number of targets grows with tier.
+  frostLantern: {
+    name: 'Frost Lantern', size: 2, tier: 'silver', tags: ['Tech'], cooldown: 6,
+    stats: {}, vals: { targets: tiers(1, 2, 3), freeze: 1 },
+    text: ['<Freeze> {targets} enemy item(s) for [freeze] second(s)'],
+    abilities: [onUse({ do: 'freeze', seconds: { val: 'freeze' }, targets: { pick: 'enemy', where: { has: 'cooldown' }, random: { val: 'targets' } } })],
+    art: { bg: ['#4a6a8a', '#15202e'], icons: ['lantern', { icon: 'snowflake-2', color: 'freeze' }] },
+  },
+  // Slow; the cooldown drops with tier.
+  tarPot: {
+    name: 'Tar Pot', size: 1, tier: 'bronze', tags: ['Tool'], cooldown: tiers(6, 5, 4, 3),
+    stats: {}, vals: { slow: 2 },
+    text: ['<Slow> an enemy item for [slow] second(s)'],
+    abilities: [onUse({ do: 'slow', seconds: { val: 'slow' }, targets: { pick: 'enemy', where: { has: 'cooldown' }, random: 1 } })],
+    art: { bg: ['#4a3a5a', '#16101e'], icons: ['pouring-pot', { icon: 'droplets', color: 'slow' }] },
+  },
+  // Charge neighbors; an irregular path.
+  windupKey: {
+    name: 'Wind-up Key', size: 1, tier: 'bronze', tags: ['Tool'], cooldown: 4,
+    stats: {}, vals: { charge: tiers(1, 1, 2, 3) },
+    text: ['<Charge> adjacent items [charge] second(s)'],
+    abilities: [onUse({ do: 'charge', seconds: { val: 'charge' }, targets: { pick: 'neighbors', where: { has: 'cooldown' } } })],
+    art: { bg: ['#8a7a4a', '#2a2412'], icons: ['key', { icon: 'clockwise-rotation', color: 'charge' }] },
+  },
+  // Haste neighbors; +1 second per tier.
+  marchingDrum: {
+    name: 'Marching Drum', size: 2, tier: 'bronze', tags: ['Instrument'], cooldown: 5,
+    stats: {}, vals: { haste: steps(1, 1) },
+    text: ['<Haste> adjacent items for [haste] second(s)'],
+    abilities: [onUse({ do: 'haste', seconds: { val: 'haste' }, targets: { pick: 'neighbors', where: { has: 'cooldown' } } })],
+    art: { bg: ['#9a5a3a', '#2e1a10'], icons: ['drum'] },
+  },
+  // Reload, filtering by a stat.
+  ammoCrate: {
+    name: 'Ammo Crate', size: 2, tier: 'silver', tags: ['Tool'], cooldown: 7,
+    stats: { shield: 10 },
+    text: ['<Reload> your <Ammo> items', 'Gain [shield] <Shield>'],
+    abilities: [onUse({ do: 'reload', targets: { pick: 'mine', where: { has: 'ammo' } } }, { do: 'shield' })],
+    art: { bg: ['#6a5a3a', '#221c10'], icons: ['wooden-crate', { icon: 'bullets', color: 'ammo' }] },
+  },
+  // Heal and Regen.
+  herbPouch: {
+    name: 'Herb Pouch', size: 1, tier: 'bronze', tags: ['Potion'], cooldown: 5,
+    stats: { heal: 8, regen: 2 },
+    text: ['<Heal> [heal]', 'Gain [regen] <Regen>'],
+    abilities: [onUse({ do: 'heal' }, { do: 'regen' })],
+    art: { bg: ['#4a7a3a', '#142410'], icons: ['herbs-bundle'] },
+  },
+  // Crit, with its own crit path, and a crit trigger on itself.
+  luckyDagger: {
+    name: 'Lucky Dagger', size: 1, tier: 'bronze', tags: ['Weapon'], cooldown: 3,
+    stats: { damage: 4 }, crit: tiers(25, 35, 45, 55),
+    text: ['Deal [damage] <Damage>', '[crit]% <Crit> chance', 'When this crits, <Charge> it [charge 1] second(s)'],
+    abilities: [onUse({ do: 'damage' }), { when: { on: 'crit', who: { pick: 'self' } }, do: [{ do: 'charge', seconds: 1, targets: { pick: 'self' } }] }],
+    art: { bg: ['#3a6a5a', '#10221c'], icons: ['plain-dagger', { icon: 'clover', color: '#7ee07e' }] },
+  },
+  // Lifesteal.
+  leechKnife: {
+    name: 'Leech Knife', size: 1, tier: 'silver', tags: ['Weapon'], cooldown: 4,
+    stats: { damage: 8 }, lifesteal: tiers(50, 75, 100),
+    text: ['Deal [damage] <Damage>', '<Lifesteal> [lifesteal]%'],
+    abilities: [onUse({ do: 'damage' })],
+    art: { bg: ['#7a2a3a', '#240c12'], icons: ['curvy-knife', { icon: 'leeching-worm', color: 'lifesteal' }] },
+  },
+  // Passive aura on neighbors, filtered by tag.
+  whetstone: {
+    name: 'Whetstone', size: 1, tier: 'bronze', tags: ['Tool'],
+    stats: {}, vals: { bonus: grows(4) },
+    text: ['Adjacent Weapons have +[damage bonus] <Damage>'],
+    abilities: [],
+    auras: [{ stat: 'damage', add: { val: 'bonus' }, targets: { pick: 'neighbors', where: { tag: 'Weapon' } } }],
+    art: { bg: ['#6a6a72', '#202026'], icons: ['stone-block', { icon: 'broadsword', rotate: 45, x: 66, y: 34 }] },
+  },
+  // A T1 scaler: gains Damage each use.
+  hungrySword: {
+    name: 'Hungry Sword', size: 2, tier: 'bronze', tags: ['Weapon'], cooldown: 5,
+    stats: { damage: 10 }, vals: { gain: grows(5) },
+    text: ['Deal [damage] <Damage>', 'Then this gains +[damage gain] <Damage> for the fight'],
+    abilities: [onUse({ do: 'damage' }, { do: 'modify', stat: 'damage', add: { val: 'gain' }, targets: { pick: 'self' } })],
+    art: { bg: ['#8a3a3a', '#2a1010'], icons: ['broadsword', { icon: 'fangs', color: 'damage' }] },
+  },
+  // A T2 scaler on a "when you Burn" trigger.
+  kindlingTorch: {
+    name: 'Kindling Torch', size: 1, tier: 'silver', tags: ['Tool'], cooldown: 4,
+    stats: { burn: 3 }, vals: { gain: 1 },
+    text: ['<Burn> [burn]', 'When you <Burn>, this gains +[burn gain] <Burn> for the fight'],
+    abilities: [
+      onUse({ do: 'burn' }),
+      { when: { on: 'performed', effect: 'burn' }, do: [{ do: 'modify', stat: 'burn', add: { val: 'gain' }, targets: { pick: 'self' } }] },
+    ],
+    art: { bg: ['#9a5a2a', '#2e1a0a'], icons: ['torch'] },
+  },
+  // Leftmost and rightmost.
+  signalFlare: {
+    name: 'Signal Flare', size: 1, tier: 'bronze', tags: ['Tech'], cooldown: 6,
+    stats: {},
+    text: ['<Haste> your leftmost item for [haste 2] second(s)', '<Charge> your rightmost item [charge 1] second(s)'],
+    abilities: [onUse({ do: 'haste', seconds: 2, targets: { pick: 'leftmost' } }, { do: 'charge', seconds: 1, targets: { pick: 'rightmost' } })],
+    art: { bg: ['#8a3a5a', '#2a101c'], icons: ['firework-rocket'] },
+  },
+  // Amounts read from other items' stats; left and right.
+  mirrorShield: {
+    name: 'Mirror Shield', size: 2, tier: 'silver', tags: ['Armor'], cooldown: tiers(6, 5, 4),
+    stats: {},
+    text: ['Gain <Shield> equal to twice the <Damage> of the item to the left', '<Heal> equal to the <Shield> of the item to the right'],
+    abilities: [onUse(
+      { do: 'shield', amount: { stat: 'damage', of: { pick: 'left' }, times: 2 } },
+      { do: 'heal', amount: { stat: 'shield', of: { pick: 'right' } } },
+    )],
+    art: { bg: ['#5a7a9a', '#18222e'], icons: ['shield-reflect'] },
+  },
+  // Fight start, a count-based amount and a condition.
+  warBanner: {
+    name: 'War Banner', size: 3, tier: 'gold', tags: ['Tool'], cooldown: 8,
+    stats: { damage: 30 }, vals: { haste: 1 },
+    text: [
+      'At the start of each fight, <Haste> your items for [haste] second(s)',
+      'Gain [shield 10] <Shield> for each of your Weapons',
+      'If you have 3 or more Weapons, deal [damage] <Damage>',
+    ],
+    abilities: [
+      { when: { on: 'fightStart' }, do: [{ do: 'haste', seconds: { val: 'haste' }, targets: { pick: 'mine', where: { has: 'cooldown' } } }] },
+      onUse({ do: 'shield', amount: { count: { pick: 'mine', where: { tag: 'Weapon' } }, times: 10 } }),
+      { when: { on: 'use' }, if: { count: { pick: 'mine', where: { tag: 'Weapon' } }, atLeast: 3 }, do: [{ do: 'damage' }] },
+    ],
+    art: { bg: ['#7a2a2a', '#240a0a'], layout: 'row', icons: ['tattered-banner', 'crossed-swords', { icon: 'tattered-banner', flip: true }] },
+  },
+  // Legendary. Every item on both sides, a negated filter, a size filter.
+  blizzardOrb: {
+    name: 'Blizzard Orb', size: 2, tier: 'legendary', tags: ['Tech'], cooldown: 9,
+    stats: {},
+    text: ['<Slow> all items for [slow 1] second(s)', '<Freeze> enemy non-Weapon items for [freeze 1] second(s)', '<Haste> your Small items for [haste 2] second(s)'],
+    abilities: [onUse(
+      { do: 'slow', seconds: 1, targets: { pick: 'all', where: { has: 'cooldown' } } },
+      { do: 'freeze', seconds: 1, targets: { pick: 'enemy', where: { tag: 'Weapon', not: true } } },
+      { do: 'haste', seconds: 2, targets: { pick: 'mine', where: { size: 1 } } },
+    )],
+    art: { bg: ['#5a8aba', '#10203a'], icons: ['frozen-orb', { icon: 'snowflake-1', color: 'freeze' }, { icon: 'snowflake-2', color: 'freeze' }] },
+  },
+  // A passive that reacts: charges whichever neighbor was just used.
+  echoBell: {
+    name: 'Echo Bell', size: 1, tier: 'bronze', tags: ['Instrument'],
+    stats: {}, vals: { charge: tiers(0.5, 1, 1, 1.5) },
+    text: ['When you use an adjacent item, <Charge> it [charge] second(s)'],
+    abilities: [{ when: { on: 'itemUsed', who: { pick: 'neighbors' } }, do: [{ do: 'charge', seconds: { val: 'charge' }, targets: { pick: 'source' } }] }],
+    art: { bg: ['#9a8a4a', '#2e2812'], icons: ['ringing-bell'] },
+  },
+} satisfies Record<string, ItemSpec>
 
 export type ItemKey = keyof typeof ITEMS
+export const ITEM_KEYS = Object.keys(ITEMS) as ItemKey[]
+
+const spec = (key: ItemKey): ItemSpec => ITEMS[key]
+
+/** One tier of an item, before enchanting. */
+function resolve(key: ItemKey, tier: Tier): ItemDef {
+  const { enchants: _, ...s } = spec(key)
+  const step = stepOf(s.tier, tier)
+  const def: ItemDef = { ...cardAt(s, tier), key, start: s.tier, size: s.size, paths: {} }
+  for (const k of ['cooldown', 'multicast', 'ammo'] as const) if (s[k] !== undefined) def[k] = at(s[k], step)
+  return def
+}
+
+/** `def` with `e`: the item's own override if it has one, else the rule. Null if it can't take it. */
+function enchanted(def: ItemDef, e: Enchant): ItemDef | null {
+  const own = spec(def.key).enchants?.[e]
+  if (own === false) return null
+  const out = own ? own(structuredClone(def)) : enchantRule(def, e)
+  return out && { ...out, enchant: e }
+}
+
+/** An item at `tier` (its starting tier by default), optionally enchanted, with its upgrade paths filled in. */
+export function itemAt(key: ItemKey, tier: Tier = spec(key).tier, enchant?: Enchant): ItemDef {
+  const one = (t: Tier) => {
+    const d = resolve(key, t)
+    return (enchant && enchanted(d, enchant)) || d
+  }
+  const def = one(tier)
+  def.paths = pathsOf(reachable(def.start).map(one))
+  return def
+}
+
+/** Whether `key` can take enchantment `e` (checked at its starting tier). */
+export const canEnchant = (key: ItemKey, e: Enchant) => enchanted(resolve(key, spec(key).tier), e) !== null

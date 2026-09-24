@@ -1,6 +1,6 @@
 import './art-view.css'
 import { iconName, MAX_ICONS, type Art, type IconSpec, type Layout } from './art.ts'
-import { KEYWORDS, type Keyword } from './items.ts'
+import { KEYWORDS, type Keyword } from './keywords.ts'
 
 const files = import.meta.glob<string>('./icons/*.svg', { query: '?raw', import: 'default', eager: true })
 const ICONS: Record<string, string> = Object.fromEntries(Object.entries(files).map(([path, svg]) => [path.slice('./icons/'.length, -'.svg'.length), svg]))
