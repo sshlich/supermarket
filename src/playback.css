@@ -130,7 +130,7 @@
   place-items: center;
   box-sizing: border-box;
 }
-.fighting .fight-btn { opacity: 0.4; pointer-events: none; }
+.fighting .fight-btn:not(.hidden) { opacity: 0.4; pointer-events: none; }
 
 /* Playback speed: a native range snapping to 0.5x / 1x / 2x / 4x. */
 .speed {
