@@ -95,6 +95,12 @@
 }
 .banner.loss { background: linear-gradient(#6a2020, #3a1010); }
 .banner.draw { background: linear-gradient(#4a4a4a, #262626); }
+.banner p {
+  margin: 0;
+  color: #d8c8a8;
+  font-weight: 700;
+  font-size: calc(var(--u) * 0.2);
+}
 .banner h2 {
   margin: 0;
   font-family: Georgia, serif;

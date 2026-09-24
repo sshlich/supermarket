@@ -1,9 +1,12 @@
 import './style.css'
 import { glass, sheen, type Effect } from './card-effects.ts'
-import { cardFace, cardVars, hideTooltip, mountTooltip, showTooltip } from './card-view.ts'
+import { cardFace, cardVars, hideTooltip, itemInfo, mountTooltip, showTooltip } from './card-view.ts'
 import { exchange, firstFree, place, SOCKETS, swap, under, type Item, type Row, type Size } from './board.ts'
 import { buyPrice, REROLL_COST, sellPrice, spread, START_GOLD, START_INCOME } from './economy.ts'
-import { ITEMS, type ItemDef } from './items.ts'
+import { ITEMS, type ItemDef, type ItemKey } from './items.ts'
+import { choose, type Option } from './choice.ts'
+import { hourOptions, monsterOptions, type GameEvent, type Merchant } from './encounters.ts'
+import { HOURS, hourKind, PLAYER_HP, prestigeLoss, rival, START_PRESTIGE, WINS_TO_WIN } from './run.ts'
 import { play } from './playback.ts'
 
 // Feel. Timings are the live client's code defaults; scales are measured from recordings.
@@ -66,10 +69,16 @@ let drag: { card: Card; ox: number; oy: number } | null = null
 let fighting = false
 let gold = START_GOLD
 let income = START_INCOME
-let mode: 'merchant' | 'opponent' = 'merchant' // what the top row shows
+let mode: 'choice' | 'merchant' | 'opponent' = 'choice' // what the top row shows
+let day = 1
+let hour = 0
+let wins = 0
+let prestige = START_PRESTIGE
+let shopTags: string[] | undefined // current merchant's stock filter
+let choiceEl: HTMLElement | null = null
 let stashOpen = false
 let overToy = false // dragging over the stash chest
-let overSell = false // dragging one of your cards over the merchant's row
+let overSell = false // dragging one of your cards over the sell zone (top row, outside fights)
 const cards: Card[] = []
 
 /** Absolutely placed element, position and size in slot units. */
@@ -90,16 +99,16 @@ function lane(name: string, y: number, nudge: number, kind: 'mine' | 'theirs' | 
 
 // --- Field ---
 const midX = X0 + ROW_W / 2
-box('dial', X0 - 1.95, MID_Y - 0.85, 1.7, 1.7, '<b>1</b><small>DAY</small>')
+const dial = box('dial', X0 - 1.95, MID_Y - 0.85, 1.7, 1.7)
+const record = box('record', X0 - 1.95, MID_Y + 1.0, 1.7, 0.6)
 
 const rerollBtn = box('panel reroll', X0, OPP_STRIP, PANEL_W, STRIP_H)
 const topPortrait = box('portrait', midX - 0.9, OPP_STRIP + 0.05, 1.8, 1.45, '<span></span>')
 const oppHp = box('hp', X0 + PANEL_W + 0.05, OPP_STRIP + STRIP_H - 0.38, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><b></b><span>400</span>')
-const oppGold = box('panel gold', X0 + ROW_W - PANEL_W, OPP_STRIP, PANEL_W, STRIP_H, '<span>+5 » 3</span>')
 
 // The top row is the merchant's, the opponent's during a fight, or your stash while it's open.
 const merchant = lane('merchant', OPP_ROW, -NUDGE, 'shop', 0, 9)
-const opponent = lane('opponent', OPP_ROW, NUDGE, 'theirs')
+const opponent = lane('opponent', OPP_ROW, NUDGE, 'theirs', 0, 9)
 const stash = lane('stash', OPP_ROW, -NUDGE, 'mine', 0, 9)
 const board = lane('board', BOARD_ROW, NUDGE, 'mine')
 const lanes = [merchant, opponent, stash, board]
@@ -113,7 +122,7 @@ mountTooltip(scene)
 
 // --- Cards ---
 let nextId = 0
-function makeCard(lane: Lane, key: keyof typeof ITEMS, pos: number): Card {
+function makeCard(lane: Lane, key: ItemKey, pos: number): Card {
   const def: ItemDef = ITEMS[key]
   const item: Item = { id: String(nextId++), size: def.size, pos }
   lane.row.items.push(item)
@@ -144,10 +153,7 @@ function removeCard(c: Card) {
   c.el.animate([{ opacity: 1 }, { opacity: 0, scale: '0.8' }], { duration: 220, easing: 'ease-in' }).finished.then(() => c.el.remove())
 }
 
-const seed: [Lane, keyof typeof ITEMS, number][] = [
-  [opponent, 'rustBlade', 3],
-  [opponent, 'brassBeetle', 4],
-  [opponent, 'ironPot', 6],
+const seed: [Lane, ItemKey, number][] = [
   [board, 'sparkPistol', 2],
   [board, 'fieldKit', 3],
   [stash, 'towerShield', 0],
@@ -172,14 +178,16 @@ function flash(el: HTMLElement, color: string) {
   el.animate([{ boxShadow: `0 0 0 calc(var(--u) * 0.06) ${color}, 0 0 calc(var(--u) * 0.4) ${color}` }, {}], { duration: 450, easing: 'ease-out' })
 }
 
-/** Fresh stock filling the merchant's whole row. */
-function rollOffers() {
+/** Fresh stock filling the merchant's whole row, from items with any of `tags` (everything when none). */
+function rollOffers(tags?: string[]) {
   for (const c of cards.filter(c => c.lane === merchant)) removeCard(c)
-  const keys = Object.keys(ITEMS) as (keyof typeof ITEMS)[]
-  const picked: (keyof typeof ITEMS)[] = []
-  // ponytail: random picks until the row is full, repeats allowed; merchant pools come with the day loop.
+  const all = Object.keys(ITEMS) as ItemKey[]
+  const pool = tags ? all.filter(k => ITEMS[k].tags.some(t => tags.includes(t))) : all
+  const picked: ItemKey[] = []
+  // ponytail: random picks until the row is full, repeats allowed.
   for (let room = SOCKETS; room > 0; ) {
-    const fits = keys.filter(k => ITEMS[k].size <= room)
+    const fits = pool.filter(k => ITEMS[k].size <= room)
+    if (!fits.length) break
     const k = fits[Math.floor(Math.random() * fits.length)]
     picked.push(k)
     room -= ITEMS[k].size
@@ -193,7 +201,7 @@ rerollBtn.addEventListener('click', () => {
   if (fighting || mode !== 'merchant' || gold < REROLL_COST) return
   gold -= REROLL_COST
   renderGold()
-  rollOffers()
+  rollOffers(shopTags)
 })
 
 function refreshTop() {
@@ -201,13 +209,22 @@ function refreshTop() {
   const shown = (l: Lane) => (l === stash ? stashOn : l === merchant ? !stashOn && mode === 'merchant' : l === opponent ? !stashOn && mode === 'opponent' : true)
   for (const l of lanes) l.el.classList.toggle('hidden', !shown(l))
   for (const c of cards) c.el.classList.toggle('hidden', !shown(c.lane) && drag?.card !== c)
+  choiceEl?.classList.toggle('hidden', stashOn)
   toy.classList.toggle('open', stashOn)
-  topPortrait.querySelector('span')!.textContent = mode === 'merchant' ? 'Merchant' : 'Opponent'
-  topPortrait.classList.toggle('merchant', mode === 'merchant')
-  topPortrait.classList.toggle('enemy', mode === 'opponent')
   oppHp.classList.toggle('hidden', mode !== 'opponent')
-  oppGold.classList.toggle('hidden', mode !== 'opponent')
   rerollBtn.classList.toggle('hidden', mode !== 'merchant')
+}
+
+/** Who's across from you: name and portrait colors. */
+function setTop(title: string, color?: [string, string]) {
+  topPortrait.querySelector('span')!.textContent = title
+  topPortrait.style.background = color ? `linear-gradient(160deg, ${color[0]}, ${color[1]})` : ''
+}
+
+function renderClock() {
+  const pips = Array.from({ length: HOURS }, (_, i) => `<i class="${i < hour ? 'done' : i === hour ? 'now' : ''}${hourKind(i) === 'choice' ? '' : ' fight'}"></i>`).join('')
+  dial.innerHTML = `<small>DAY</small><b>${day}</b><div class="pips">${pips}</div>`
+  record.innerHTML = `<span>Wins <b>${wins}/${WINS_TO_WIN}</b></span><span>Prestige <b>${prestige}</b></span>`
 }
 
 toy.addEventListener('click', () => {
@@ -215,8 +232,19 @@ toy.addEventListener('click', () => {
   refreshTop()
 })
 
-// --- Fight: board vs opponent, played out on the field. ---
-const fightBtn = box('fight-btn', X0 + ROW_W + 0.35, MID_Y - 0.35, 1.5, 0.7, 'Fight!')
+// --- Buttons: Leave (merchants) and playback speed ---
+const actionBtn = box('fight-btn hidden', X0 + ROW_W + 0.35, MID_Y - 0.35, 1.5, 0.7)
+function waitButton(label: string) {
+  actionBtn.textContent = label
+  actionBtn.classList.remove('hidden')
+  return new Promise<void>(resolve =>
+    actionBtn.addEventListener('click', () => {
+      actionBtn.classList.add('hidden')
+      resolve()
+    }, { once: true }),
+  )
+}
+
 const SPEEDS = [0.5, 1, 2, 4]
 const speedBox = box('speed', X0 + ROW_W + 0.35, MID_Y + 0.55, 1.5, 0.5,
   `<input type="range" min="0" max="${SPEEDS.length - 1}" step="1" value="1" aria-label="Playback speed">` +
@@ -226,18 +254,54 @@ const showSpeed = () => speedBox.querySelectorAll('.ticks span').forEach((t, i) 
 speedInput.addEventListener('input', showSpeed)
 showSpeed()
 
-fightBtn.addEventListener('click', async () => {
-  if (fighting || drag) return
+// --- The run: days of six hours. Choices, a monster at hour 3, a rival at the end of the day. ---
+
+/** Show a pick-one screen over the top row; resolves with the chosen index. */
+async function pick(options: Option[]) {
+  const c = choose(scene, { x: X0, y: OPP_ROW, w: ROW_W, h: ROW_H }, options, () => u, SCENE_W)
+  choiceEl = c.el
+  refreshTop()
+  const i = await c.picked
+  choiceEl = null
+  return i
+}
+
+/** Add an item to the first free spot on the board, else the stash. False if there's no room. */
+function give(key: ItemKey) {
+  const dest = [board, stash].find(l => firstFree(l.row, ITEMS[key].size) !== null)
+  if (!dest) return false
+  const c = makeCard(dest, key, firstFree(dest.row, ITEMS[key].size)!)
+  c.el.animate([{ opacity: 0, scale: '1.3' }, { opacity: 1, scale: '1' }], { duration: 300, easing: 'ease-out' })
+  if (dest === stash && !stashOpen) flash(toy, '#f0c24a')
+  refreshTop()
+  return true
+}
+
+/** Lay out a build on the opponent's row and play the fight. */
+async function fight(name: string, hp: number, items: ItemKey[], color?: [string, string]) {
+  for (const c of cards.filter(c => c.lane === opponent)) removeCard(c)
+  const total = items.reduce((n, k) => n + ITEMS[k].size, 0)
+  let at = Math.floor((SOCKETS - total) / 2)
+  for (const k of items) {
+    makeCard(opponent, k, at)
+    at += ITEMS[k].size
+  }
+  const curtain = opponent.el.querySelector<HTMLElement>('.unlocked')!
+  curtain.style.left = `calc(var(--u) * ${ROW_PAD + Math.floor((SOCKETS - total) / 2) - 0.1})`
+  curtain.style.width = `calc(var(--u) * ${total + 0.2})`
+
   fighting = true
   stashOpen = false
   mode = 'opponent'
+  setTop(name, color)
+  resetBar(oppHp, hp)
   refreshTop()
-  const setup = (name: string, hp: number, l: Lane) => ({
-    name,
-    hp,
+  const setup = (who: string, maxHp: number, l: Lane) => ({
+    name: who,
+    hp: maxHp,
     items: cards.filter(c => c.lane === l).sort((a, b) => a.item.pos - b.item.pos).map(c => ({ id: c.item.id, def: c.def })),
   })
-  await play(setup('You', 300, board), setup('Opponent', 400, opponent), (Math.random() * 2 ** 31) | 0, {
+  const winner = await play(setup('You', PLAYER_HP, board), setup(name, hp, opponent), (Math.random() * 2 ** 31) | 0, {
     scene,
     cardEl: id => cards.find(c => c.item.id === id)!.el,
     hp: [myHp, oppHp],
@@ -245,20 +309,112 @@ fightBtn.addEventListener('click', async () => {
     hovering: () => cards.some(c => c.hovered),
     speed: () => SPEEDS[+speedInput.value],
   })
-  // Health doesn't carry over: everyone starts each fight full, like the live game.
-  for (const [el, hp] of [[myHp, 300], [oppHp, 400]] as const) {
-    el.querySelector('i')!.style.width = '100%'
-    el.querySelector('b')!.style.width = '0'
-    el.querySelector('span')!.textContent = String(hp)
-  }
-  // ponytail: income after every fight and a fresh merchant stand in for the day loop.
-  gold += income
-  renderGold()
-  flash(myGold, '#f0c24a')
-  mode = 'merchant'
-  rollOffers()
+  resetBar(myHp, PLAYER_HP) // health doesn't carry over: everyone starts each fight full, like the live game
   fighting = false
-})
+  return winner
+}
+
+function resetBar(el: HTMLElement, hp: number) {
+  el.querySelector('i')!.style.width = '100%'
+  el.querySelector('b')!.style.width = '0'
+  el.querySelector('span')!.textContent = String(hp)
+}
+
+async function visit(m: Merchant) {
+  mode = 'merchant'
+  shopTags = m.tags
+  setTop(m.name, m.color)
+  rollOffers(m.tags)
+  await waitButton('Leave')
+  for (const c of cards.filter(c => c.lane === merchant)) removeCard(c)
+}
+
+async function runEvent(e: GameEvent) {
+  setTop(e.name, e.color)
+  const rewards = e.options(Math.random)
+  for (;;) {
+    const r = rewards[await pick(rewards.map(r => (r.item
+      ? { info: itemInfo(ITEMS[r.item]), item: ITEMS[r.item] }
+      : { info: { title: r.label, text: r.text }, badge: e.name, color: e.color })))]
+    if (r.gold && r.gold < 0 && gold < -r.gold) {
+      noGold()
+      continue
+    }
+    if (r.item && !give(r.item)) {
+      toast('No room: sell something first')
+      continue
+    }
+    gold += r.gold ?? 0
+    income += r.income ?? 0
+    renderGold()
+    if (r.gold || r.income) flash(myGold, '#f0c24a')
+    return
+  }
+}
+
+async function choiceHour() {
+  mode = 'choice'
+  setTop(`Hour ${hour + 1}`)
+  const opts = hourOptions(Math.random)
+  const enc = opts[await pick(opts.map(e => ({
+    info: { title: e.name, tags: [e.kind === 'merchant' ? 'Merchant' : 'Event'], text: [e.blurb] },
+    badge: e.kind === 'merchant' ? 'Merchant' : 'Event',
+    color: e.color,
+  })))]
+  if (enc.kind === 'merchant') await visit(enc)
+  else await runEvent(enc)
+}
+
+async function monsterHour() {
+  mode = 'choice'
+  setTop('Monsters')
+  const ms = monsterOptions(day, Math.random)
+  const m = ms[await pick(ms.map(m => ({
+    info: { title: m.name, tags: ['Monster', `Health ${m.hp}`], text: [m.blurb, `Reward: ${m.gold} gold`, `Carries ${m.items.map(k => ITEMS[k].name).join(', ')}`] },
+    badge: 'Monster',
+    color: m.color,
+  })))]
+  if ((await fight(m.name, m.hp, m.items, m.color)) === 0) {
+    gold += m.gold
+    renderGold()
+    flash(myGold, '#f0c24a')
+    toast(`+${m.gold} gold`)
+  }
+}
+
+/** End of day. Wins count toward the run; losses and draws cost Prestige. True when the run is over. */
+async function rivalHour() {
+  const r = rival(day, Math.random)
+  const won = (await fight(r.name, r.hp, r.items, ['#a05a5a', '#3c1e1e'])) === 0
+  if (won) wins++
+  else prestige -= prestigeLoss(day)
+  renderClock()
+  if (!won) toast(`-${prestigeLoss(day)} prestige`)
+  if (wins < WINS_TO_WIN && prestige > 0) return false
+  const el = box(`banner ${wins >= WINS_TO_WIN ? 'win' : 'loss'}`, 0, 0, 0, 0,
+    `<h2>${wins >= WINS_TO_WIN ? 'Run complete!' : 'Out of prestige'}</h2><p>${wins} wins by day ${day}</p><button>New run</button>`)
+  el.style.cssText = '' // let the banner size itself
+  // ponytail: a reload is a full reset until runs have state worth keeping.
+  el.querySelector('button')!.addEventListener('click', () => location.reload())
+  return true
+}
+
+async function runLoop() {
+  for (;;) {
+    for (hour = 0; hour < HOURS; hour++) {
+      renderClock()
+      const kind = hourKind(hour)
+      if (kind === 'choice') await choiceHour()
+      else if (kind === 'monster') await monsterHour()
+      else if (await rivalHour()) return
+    }
+    day++
+    gold += income
+    renderGold()
+    flash(myGold, '#f0c24a')
+    toast(`Day ${day}: +${income} gold`)
+  }
+}
 
 // --- Dragging ---
 function rest(c: Card): Pose {
@@ -357,7 +513,7 @@ function beginDrag(c: Card, e: PointerEvent) {
   drag = { card: c, ox: c.pose.x - p.x, oy: c.pose.y - p.y }
   tweenTo(c, { ...c.pose, s: DRAG_SCALE }, DRAG_SCALE_MS, linear)
   c.el.classList.add('lifted', 'dragging')
-  if (c.lane.mine && mode === 'merchant') {
+  if (c.lane.mine && mode !== 'opponent') {
     sellZone.innerHTML = `<span>Sell for <b>${sellPrice(c.def)}g</b></span>`
     sellZone.classList.add('sellable')
   }
@@ -516,7 +672,7 @@ function layout() {
 addEventListener('resize', layout)
 layout()
 renderGold()
-rollOffers()
+runLoop()
 
 let last = performance.now()
 function frame(now: number) {

@@ -42,18 +42,28 @@ export function mountTooltip(scene: HTMLElement) {
   scene.append(tip, legend)
 }
 
+/** Anything shown in the standard tooltip frame: items, encounters, choices. */
+export interface Info { title: string; tags?: string[]; text: string[]; cooldown?: number }
+
+export const itemInfo = (def: ItemDef): Info => ({ title: def.name, tags: [SIZE_NAME[def.size], ...def.tags], text: def.text, cooldown: def.cooldown })
+
+export function showTooltip(def: ItemDef, card: Box, u: number, sceneW: number) {
+  showInfo(itemInfo(def), card, u, sceneW)
+}
+
+/** Scene units: center x/y, width, height. */
+export interface Box { x: number; y: number; w: number; h: number }
+
 /**
- * Show `def`'s tooltip above the card's box (scene units: center x/y, width, height), or below it
- * if there's no room above. Keywords used in the text are explained in the legend.
+ * Show the tooltip above `card`, or below it if there's no room above. Keywords used in the text are
+ * explained in the legend.
  */
-export function showTooltip(def: ItemDef, card: { x: number; y: number; w: number; h: number }, u: number, sceneW: number) {
+export function showInfo(info: Info, card: Box, u: number, sceneW: number) {
   const used = new Set<Keyword>()
-  const lines = def.text.map(l => `<li>${rich(l, used)}</li>`).join('')
-  const cooldown = def.cooldown ? `<div class="cooldown"><b>${def.cooldown.toFixed(1)}</b><small>SEC</small></div>` : ''
-  tip.innerHTML =
-    `<div class="tags">${[SIZE_NAME[def.size], ...def.tags].map(t => `<span>${t}</span>`).join('')}</div>` +
-    `<div class="title">${def.name}</div>` +
-    `<div class="body">${cooldown}<ul>${lines}</ul></div>`
+  const lines = info.text.map(l => `<li>${rich(l, used)}</li>`).join('')
+  const cooldown = info.cooldown ? `<div class="cooldown"><b>${info.cooldown.toFixed(1)}</b><small>SEC</small></div>` : ''
+  const tags = info.tags?.length ? `<div class="tags">${info.tags.map(t => `<span>${t}</span>`).join('')}</div>` : ''
+  tip.innerHTML = tags + `<div class="title">${info.title}</div>` + `<div class="body${cooldown ? '' : ' plain'}">${cooldown}<ul>${lines}</ul></div>`
   const explained = [...used].filter(k => KEYWORDS[k].desc)
   legend.innerHTML = explained
     .map(k => `<div><h4 style="--kw:${KEYWORDS[k].color}">${KEYWORDS[k].icon}${KEYWORDS[k].name}</h4><p>${KEYWORDS[k].desc}</p></div>`)

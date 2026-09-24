@@ -1,0 +1,57 @@
+.choices {
+  z-index: 40; /* under the sell zone and dragged cards */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transition: opacity 0.15s;
+}
+
+.choice {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.15s ease-out;
+}
+.choice:hover { transform: translateY(calc(var(--u) * -0.08)) scale(1.06); }
+
+.choice.encounter {
+  width: calc(var(--u) * 1.9);
+  height: calc(var(--u) * 1.6);
+}
+.choice .face {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  display: grid;
+  place-items: end center;
+  padding: 0 calc(var(--u) * 0.1) calc(var(--u) * 0.2);
+  border-radius: calc(var(--u) * 0.5) calc(var(--u) * 0.5) calc(var(--u) * 0.1) calc(var(--u) * 0.1);
+  background: linear-gradient(160deg, var(--c1, #6a5a4a), var(--c2, #221a12));
+  border: calc(var(--u) * 0.06) solid #c08850;
+  box-shadow: 0 calc(var(--u) * 0.06) calc(var(--u) * 0.15) #000a;
+  color: #f6e6c6;
+  font-weight: 800;
+  font-size: calc(var(--u) * 0.2);
+  text-align: center;
+  text-shadow: 0 1px 3px #000;
+}
+.choice .badge {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--u) * -0.2);
+  translate: -50% 0;
+  padding: calc(var(--u) * 0.04) calc(var(--u) * 0.12);
+  border-radius: calc(var(--u) * 0.06);
+  border: calc(var(--u) * 0.02) solid #6a7acc;
+  background: #2a2f55;
+  color: #aebcff;
+  font-weight: 800;
+  font-size: calc(var(--u) * 0.12);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Item options reuse the card face; the page's .card rules size them. */
+.choices .card {
+  position: relative;
+  cursor: pointer;
+}

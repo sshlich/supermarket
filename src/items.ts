@@ -124,3 +124,5 @@ export const ITEMS = {
     art: ['#5a5a62', '#1c1c22'],
   },
 } satisfies Record<string, ItemDef>
+
+export type ItemKey = keyof typeof ITEMS
