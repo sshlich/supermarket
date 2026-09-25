@@ -12,13 +12,15 @@ import { nextTier, TIER_ORDER, tierName, type Tier } from './tiers.ts'
 import { choose, type Option } from './choice.ts'
 import { rollStock } from './shop.ts'
 import { hourOptions, loadout, monsterOptions, skillPick, type EventContext, type GameEvent, type Loadout, type Merchant, type Reward as EventReward, type SkillPick } from './encounters.ts'
-import { boardSockets, HOURS, hourKind, levelRewards, maxHp, prestigeLoss, rival, START_PRESTIGE, WINS_TO_WIN, XP_PER_HOUR, XP_PER_LEVEL, type Reward } from './run.ts'
+import { boardSockets, HOURS, hourKind, lastChanceOptions, levelRewards, maxHp, prestigeLoss, rival, startPackages, START_PRESTIGE, WINS_TO_WIN, XP_PER_HOUR, XP_PER_LEVEL, type LastChance, type Reward, type StartPackage } from './run.ts'
 import { play } from './playback.ts'
 import type { UnitDef } from './engine/combat.ts'
 
 // Test flags, e.g. ?gold=500&level=4&items=windupKey,rustBlade:gold:shielded&skills=quickHands:silver
 // gold and level set the start; items (key[:tier[:enchant]]) replace the starting items; skills (key[:tier]) are learned.
+// Any of them makes a test run: no start screen.
 const flags = new URLSearchParams(location.search)
+const testRun = ['gold', 'level', 'items', 'skills'].some(f => flags.has(f))
 const flagList = (name: string) => (flags.get(name) ?? '').split(',').filter(Boolean).map(entry => entry.split(':'))
 
 // Feel. Timings are the live client's code defaults; scales are measured from recordings.
@@ -94,6 +96,7 @@ let wins = 0
 let level = Number(flags.get('level') ?? 1)
 let xp = 0
 let prestige = START_PRESTIGE
+let lastChance = false // used up: the next loss once Prestige is gone ends the run
 let shopTags: string[] | undefined // current merchant's stock filter
 let choiceEl: HTMLElement | null = null
 let stashOpen = false
@@ -297,12 +300,12 @@ function removeCard(c: Card) {
   c.el.animate([{ opacity: 1 }, { opacity: 0, scale: '0.8' }], { duration: 220, easing: 'ease-in' }).finished.then(() => c.el.remove())
 }
 
-const seed: [Lane, ItemKey, number][] = [
-  [board, 'sparkPistol', 3],
-  [board, 'fieldKit', 4],
-  [stash, 'towerShield', 0],
-]
-if (!flags.has('items')) for (const [l, key, pos] of seed) makeCard(l, key, pos)
+/** What every run starts with. */
+function starterKit() {
+  makeCard(board, 'sparkPistol', 3)
+  makeCard(board, 'fieldKit', 4)
+  makeCard(stash, 'towerShield', 0)
+}
 
 // --- Gold and the merchant ---
 function renderGold() {
@@ -365,7 +368,7 @@ function setTop(title: string, color?: [string, string]) {
 function renderClock() {
   const pips = Array.from({ length: HOURS }, (_, i) => `<i class="${i < hour ? 'done' : i === hour ? 'now' : ''}${hourKind(i) === 'choice' ? '' : ' fight'}"></i>`).join('')
   dial.innerHTML = `<small>DAY</small><b>${day}</b><div class="pips">${pips}</div>`
-  record.innerHTML = `<span>Wins <b>${wins}/${WINS_TO_WIN}</b></span><span>Prestige <b>${prestige}</b></span>`
+  record.innerHTML = `<span>Wins <b>${wins}/${WINS_TO_WIN}</b></span><span>Prestige <b>${Math.max(0, prestige)}</b></span>${lastChance ? '<span class="warn">Last chance</span>' : ''}`
 }
 
 function renderLevel() {
@@ -771,16 +774,53 @@ async function rivalHour() {
   const r = rival(day, Math.random)
   const won = (await fight({ ...r, color: ['#a05a5a', '#3c1e1e'] })) === 0
   if (won) wins++
-  else prestige -= prestigeLoss(day)
+  else {
+    const had = prestige > 0
+    prestige -= prestigeLoss(day)
+    toast(`-${prestigeLoss(day)} prestige`)
+    if (had && prestige <= 0 && !lastChance) {
+      await lastChancePick()
+      return false
+    }
+  }
   renderClock()
-  if (!won) toast(`-${prestigeLoss(day)} prestige`)
-  if (wins < WINS_TO_WIN && prestige > 0) return false
+  if (wins < WINS_TO_WIN && (won || prestige > 0)) return false // only a loss with no Prestige left ends it
   const el = box(`banner ${wins >= WINS_TO_WIN ? 'win' : 'loss'}`, 0, 0, 0, 0,
     `<h2>${wins >= WINS_TO_WIN ? 'Run complete!' : 'Out of prestige'}</h2><p>${wins} wins by day ${day}</p><button>New run</button>`)
   el.style.cssText = '' // let the banner size itself
   // ponytail: a reload is a full reset until runs have state worth keeping.
   el.querySelector('button')!.addEventListener('click', () => location.reload())
   return true
+}
+
+/** Prestige just ran out: one last chance, a pick of three. The next loss ends the run. */
+async function lastChancePick() {
+  lastChance = true
+  prestige = 0
+  renderClock()
+  mode = 'choice'
+  const color: [string, string] = ['#b03a3a', '#2e0c0c']
+  setTop('Last chance', color)
+  const options = lastChanceOptions(Math.random, e => enchantable().includes(e))
+  const option = (o: LastChance): Option =>
+    o.kind === 'diamond' ? { info: itemInfo(itemAt(o.key, 'diamond')), item: itemAt(o.key, 'diamond') }
+    : o.kind === 'enchant' ? { ...enchantOption(o.enchant), badge: 'Last chance' }
+    : { info: { title: `${o.gold} gold and ${o.xp} XP`, tags: ['Last chance'], text: [`Gain ${o.gold} gold`, `Gain ${o.xp} XP`] }, badge: 'Last chance', color }
+  for (;;) {
+    const o = options[await pick(options.map(option))]
+    if (o.kind === 'diamond' && !give(o.key, 'diamond')) {
+      toast('No room: sell something first')
+      continue
+    }
+    if (o.kind === 'enchant') await enchantPick(o.enchant)
+    if (o.kind === 'gold') {
+      gold += o.gold
+      renderGold()
+      flash(myGold, '#f0c24a')
+      await gainXp(o.xp)
+    }
+    return
+  }
 }
 
 async function runLoop() {
@@ -1120,26 +1160,62 @@ function layout() {
 }
 addEventListener('resize', layout)
 layout()
-for (const [key, tier, enchant] of flagList('items')) {
-  try {
-    if (!(key in ITEMS)) throw new Error('no such item')
-    give(key as ItemKey, (tier || undefined) as Tier | undefined, enchant as Enchant | undefined)
-  } catch (err) {
-    console.warn(`?items=${key}: ${err}`)
-  }
-}
-for (const [key, tier] of flagList('skills')) {
-  try {
-    if (!(key in SKILLS)) throw new Error('no such skill')
-    learn(key as SkillKey, (tier || SKILLS[key as SkillKey].tier) as Tier)
-  } catch (err) {
-    console.warn(`?skills=${key}: ${err}`)
-  }
-}
 renderGold()
 renderLevel()
-renderStash()
-runLoop()
+renderClock()
+startRun().then(runLoop)
+
+// --- Starting a run ---
+
+/** A new run (with its start pick), or a test run set up from the URL flags. */
+async function startRun() {
+  if (testRun) return applyFlags()
+  starterKit()
+  await startPick()
+}
+
+/** The start-of-run pick: some economy, an enchanted small item, or a skill. */
+async function startPick() {
+  mode = 'choice'
+  setTop('New run')
+  const packages = startPackages(Math.random)
+  const option = (p: StartPackage): Option =>
+    p.kind === 'economy' ? { info: { title: 'Nest egg', tags: ['Start'], text: [`Gain ${p.gold} gold`, `Gain ${p.income} income every day`] }, badge: 'Economy', color: ['#b0904a', '#3c2e14'] }
+    : p.kind === 'item' ? { info: itemInfo(itemAt(p.key, undefined, p.enchant)), item: itemAt(p.key, undefined, p.enchant) }
+    : skillOption(p.key, SKILLS[p.key].tier)
+  const p = packages[await pick(packages.map(option))]
+  if (p.kind === 'economy') {
+    gold += p.gold
+    income += p.income
+    renderGold()
+    flash(myGold, '#f0c24a')
+  }
+  if (p.kind === 'item') give(p.key, undefined, p.enchant)
+  if (p.kind === 'skill') learn(p.key, SKILLS[p.key].tier)
+}
+
+/** A test run from the URL flags (see the top of the file). */
+function applyFlags() {
+  if (!flags.has('items')) starterKit()
+  for (const [key, tier, enchant] of flagList('items')) {
+    try {
+      if (!(key in ITEMS)) throw new Error('no such item')
+      give(key as ItemKey, (tier || undefined) as Tier | undefined, enchant as Enchant | undefined)
+    } catch (err) {
+      console.warn(`?items=${key}: ${err}`)
+    }
+  }
+  for (const [key, tier] of flagList('skills')) {
+    try {
+      if (!(key in SKILLS)) throw new Error('no such skill')
+      learn(key as SkillKey, (tier || SKILLS[key as SkillKey].tier) as Tier)
+    } catch (err) {
+      console.warn(`?skills=${key}: ${err}`)
+    }
+  }
+  renderGold()
+  refreshTop()
+}
 
 let last = performance.now()
 function frame(now: number) {

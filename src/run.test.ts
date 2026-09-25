@@ -2,7 +2,8 @@ import assert from 'node:assert/strict'
 import { buyPrice } from './economy.ts'
 import { hourOptions, monsterOptions } from './encounters.ts'
 import { ITEMS } from './items.ts'
-import { boardSockets, hourKind, levelRewards, maxHp, prestigeLoss, rival, rivalLevel } from './run.ts'
+import { boardSockets, hourKind, lastChanceOptions, levelRewards, maxHp, prestigeLoss, rival, rivalLevel, startPackages } from './run.ts'
+import { canEnchant } from './items.ts'
 import { reachable } from './tiers.ts'
 import { SKILLS } from './skills.ts'
 
@@ -47,5 +48,17 @@ assert.equal(levelRewards(2).length, 3)
 assert.ok(levelRewards(12).some(r => r.kind === 'upgrade'))
 assert.ok(levelRewards(2).some(r => r.kind === 'skill'))
 assert.ok(levelRewards(3).some(r => r.kind === 'enchant'))
+
+// Start of run: economy, an enchanted small bronze item, a bronze skill.
+for (let i = 0; i < 20; i++) {
+  const [economy, item, skill] = startPackages(random)
+  assert.equal(economy.kind, 'economy')
+  assert.ok(item.kind === 'item' && ITEMS[item.key].size === 1 && ITEMS[item.key].tier === 'bronze' && canEnchant(item.key, item.enchant))
+  assert.equal(skill.kind, 'skill')
+}
+
+// Last chance: a Diamond item, an enchantment if you have something to enchant, gold and XP.
+assert.deepEqual(lastChanceOptions(random, () => true).map(o => o.kind), ['diamond', 'enchant', 'gold'])
+assert.deepEqual(lastChanceOptions(random, () => false).map(o => o.kind), ['diamond', 'gold'])
 
 console.log('run: ok')

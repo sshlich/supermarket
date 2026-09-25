@@ -1,8 +1,10 @@
 import { buyPrice } from './economy.ts'
 import { skillTier, type Loadout, type SkillPick } from './encounters.ts'
-import { ITEM_KEYS, ITEMS } from './items.ts'
+import { ENCHANT_KEYS, rollEnchants, type Enchant } from './enchant.ts'
+import { canEnchant, ITEM_KEYS, ITEMS, type ItemKey } from './items.ts'
+import { pickOne } from './random.ts'
 import { offerPrice, rollOffer } from './shop.ts'
-import { SKILL_KEYS, SKILLS } from './skills.ts'
+import { SKILL_KEYS, SKILLS, type SkillKey } from './skills.ts'
 import { TIER_ORDER, type Tier } from './tiers.ts'
 
 export const HOURS = 6 // per day
@@ -74,4 +76,36 @@ export function rival(day: number, random: () => number): { name: string; hp: nu
   const open = SKILL_KEYS.filter(k => TIER_ORDER.indexOf(SKILLS[k].tier) <= TIER_ORDER.indexOf(tier)).sort(() => random() - 0.5)
   const skills = open.slice(0, Math.min(4, Math.floor(day / 2))).map(key => ({ key, tier }))
   return { name: NAMES[Math.floor(random() * NAMES.length)], hp: maxHp(rivalLevel(day)), items, skills }
+}
+
+/** The start-of-run pick: some economy, an enchanted small item, or a skill. */
+export type StartPackage =
+  | { kind: 'economy'; gold: number; income: number }
+  | { kind: 'item'; key: ItemKey; enchant: Enchant }
+  | { kind: 'skill'; key: SkillKey }
+
+export function startPackages(random: () => number): StartPackage[] {
+  const smalls = ITEM_KEYS.filter(k => ITEMS[k].size === 1 && ITEMS[k].tier === 'bronze' && ENCHANT_KEYS.some(e => canEnchant(k, e)))
+  const key = pickOne(smalls, random)
+  return [
+    { kind: 'economy', gold: 8, income: 2 },
+    { kind: 'item', key, enchant: rollEnchants(1, random, e => canEnchant(key, e))[0] },
+    { kind: 'skill', key: pickOne(SKILL_KEYS.filter(k => SKILLS[k].tier === 'bronze'), random) },
+  ]
+}
+
+/**
+ * The one last chance when Prestige runs out: a Diamond item, a random enchantment for one of your items, or
+ * gold and XP. The next loss after it ends the run. `enchantable` says which enchantments you could use.
+ */
+export type LastChance = { kind: 'diamond'; key: ItemKey } | { kind: 'enchant'; enchant: Enchant } | { kind: 'gold'; gold: number; xp: number }
+
+export function lastChanceOptions(random: () => number, enchantable: (e: Enchant) => boolean): LastChance[] {
+  const diamonds = ITEM_KEYS.filter(k => ITEMS[k].tier !== 'legendary')
+  const [enchant] = rollEnchants(1, random, enchantable)
+  return [
+    { kind: 'diamond', key: pickOne(diamonds, random) },
+    ...(enchant ? [{ kind: 'enchant' as const, enchant }] : []),
+    { kind: 'gold', gold: 20, xp: 5 },
+  ]
 }
