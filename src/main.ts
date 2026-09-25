@@ -1,6 +1,7 @@
 import './style.css'
 import { glass, sheen, type Effect } from './card-effects.ts'
-import { cardFace, cardVars, hideTooltip, itemInfo, mountTooltip, showInfo, showTooltip, skillFace, skillInfo } from './card-view.ts'
+import { cardFace, cardVars, hideTooltip, itemInfo, markup, mountTooltip, showInfo, showTooltip, skillFace, skillInfo } from './card-view.ts'
+import { describe } from './fight-log.ts'
 import { bestFit, exchange, firstFree, place, SOCKETS, swap, under, type Item, type Row, type Size } from './board.ts'
 import { buyPrice, REROLL_COST, sellPrice, spread, START_GOLD, START_INCOME } from './economy.ts'
 import { canEnchant, ITEM_KEYS, itemAt, ITEMS, transformed, type ItemDef, type ItemKey, type RunState } from './items.ts'
@@ -16,7 +17,7 @@ import { clearSave, readSave, writeSave, type Save, type SavedItem } from './sav
 import { hourOptions, loadout, monsterOptions, skillPick, type EventContext, type GameEvent, type Loadout, type Merchant, type Reward as EventReward, type SkillPick } from './encounters.ts'
 import { boardSockets, HOURS, hourKind, lastChanceOptions, levelRewards, maxHp, prestigeLoss, rival, startPackages, START_PRESTIGE, WINS_TO_WIN, XP_PER_HOUR, XP_PER_LEVEL, type LastChance, type Reward, type StartPackage } from './run.ts'
 import { play } from './playback.ts'
-import type { UnitDef } from './engine/combat.ts'
+import type { FightEvent, UnitDef } from './engine/combat.ts'
 
 // Test flags, e.g. ?gold=500&level=4&items=windupKey,rustBlade:gold:shielded&skills=quickHands:silver
 // gold and level set the start; items (key[:tier[:enchant]]) replace the starting items; skills (key[:tier]) are learned.
@@ -410,6 +411,53 @@ const speedBox = box('speed', X0 + ROW_W + 0.35, MID_Y + 0.55, 1.5, 0.5,
   `<input type="range" min="0" max="${SPEEDS.length - 1}" step="1" value="1" aria-label="Playback speed">` +
   `<div class="ticks">${SPEEDS.map(v => `<span>${v}×</span>`).join('')}</div>`)
 const speedInput = speedBox.querySelector('input')!
+
+// --- Fight log: a panel beside the scene (the scene shrinks to make room), filled in as a fight plays ---
+const logBtn = box('log-btn', X0 + ROW_W + 0.35, MID_Y + 1.25, 1.5, 0.42, 'Fight log')
+const logPanel = document.createElement('aside')
+logPanel.className = 'log-panel'
+logPanel.innerHTML = '<header><b>Fight log</b><span></span><button aria-label="Close">×</button></header><ol></ol>'
+document.body.append(logPanel)
+const logList = logPanel.querySelector('ol')!
+let logOpen = false
+let logHover = false // reading the log pauses the fight
+
+function toggleLog(open = !logOpen) {
+  logOpen = open
+  logPanel.classList.toggle('open', open)
+  logBtn.classList.toggle('on', open)
+  layout()
+}
+logBtn.addEventListener('click', () => toggleLog())
+logPanel.querySelector('button')!.addEventListener('click', () => toggleLog(false))
+logPanel.addEventListener('mouseenter', () => (logHover = true))
+logPanel.addEventListener('mouseleave', () => (logHover = false))
+
+/** Names in log lines: yours and theirs marked apart; skills say so. */
+const logNames = {
+  card(id: string) {
+    const c = cards.find(k => k.item.id === id)
+    if (c) return `<span class="${c.lane.mine ? 'you' : 'foe'}">${c.def.name}</span>`
+    const s = mySkills.find(k => k.id === id) ?? theirSkills.find(k => k.id === id)
+    return s ? `<span class="${mySkills.includes(s) ? 'you' : 'foe'}">${s.def.name} <small>(skill)</small></span>` : id
+  },
+  side: (i: 0 | 1) => (i === 0 ? '<span class="you">You</span>' : `<span class="foe">${topPortrait.querySelector('span')!.textContent}</span>`),
+  item: (key: string) => (key in ITEMS ? ITEMS[key as ItemKey].name : key),
+}
+
+function logLine(e: FightEvent) {
+  const html = describe(e, logNames)
+  if (!html) return
+  const atEnd = logList.scrollTop + logList.clientHeight >= logList.scrollHeight - 30
+  const li = document.createElement('li')
+  li.className = e.kind
+  li.innerHTML = `<time>${(e.t / 1000).toFixed(1)}</time><span>${markup(html)}</span>`
+  const ids = [e.item, e.from, e.cause?.by].filter((id): id is string => !!id)
+  li.addEventListener('mouseenter', () => ids.forEach(id => cards.find(c => c.item.id === id)?.el.classList.add('spot')))
+  li.addEventListener('mouseleave', () => cards.forEach(c => c.el.classList.remove('spot')))
+  logList.append(li)
+  if (atEnd) logList.scrollTop = logList.scrollHeight
+}
 const showSpeed = () => speedBox.querySelectorAll('.ticks span').forEach((t, i) => t.classList.toggle('on', i === +speedInput.value))
 speedInput.addEventListener('input', showSpeed)
 showSpeed()
@@ -480,12 +528,15 @@ async function fight({ name, hp, items, skills = [], color }: Foe) {
     cardEl: (id: string) => cards.find(c => c.item.id === id)!.el,
     skillEl: (id: string) => [...mySkills, ...theirSkills].find(s => s.id === id)?.el,
     transformed: (id: string, def: UnitDef) => renderFace(cards.find(c => c.item.id === id)!, def as ItemDef),
+    log: logLine,
     hp: [myHp, oppHp] as [HTMLElement, HTMLElement],
     portrait: [myPortrait, topPortrait] as [HTMLElement, HTMLElement],
-    hovering: () => cards.some(c => c.hovered),
+    hovering: () => cards.some(c => c.hovered) || logHover,
     speed: () => SPEEDS[+speedInput.value],
   }
   const transform = (def: UnitDef, into: string | undefined, random: () => number) => transformed(def as ItemDef, into as ItemKey | undefined, random)
+  logList.innerHTML = ''
+  logPanel.querySelector('header span')!.textContent = `vs ${name}`
   const { winner, events } = await play(setup('You', maxHp(level), board, mySkills), setup(name, hp, opponent, theirSkills), seedFrom(rand), stage, { transform })
   resetBar(myHp, maxHp(level)) // health doesn't carry over: everyone starts each fight full, like the live game
   for (const s of theirSkills) s.el.remove()
@@ -1167,7 +1218,9 @@ function apply(l: Lane, positions: Map<string, number> | null) {
 
 // --- Frame loop ---
 function layout() {
-  u = Math.min(innerWidth / SCENE_W, innerHeight / SCENE_H)
+  const room = innerWidth - (logOpen ? logPanel.offsetWidth : 0) // the open fight log takes the right edge
+  u = Math.min(room / SCENE_W, innerHeight / SCENE_H)
+  scene.style.left = `${room / 2}px`
   scene.style.setProperty('--u', `${u}px`)
   scene.style.width = `${SCENE_W * u}px`
   scene.style.height = `${SCENE_H * u}px`

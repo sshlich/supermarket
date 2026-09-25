@@ -272,3 +272,82 @@ body {
   box-shadow: 0 0 calc(var(--u) * 0.15) #3dff8c;
 }
 
+/* ---------- Fight log: a panel on the right edge; the scene shrinks beside it ---------- */
+
+.log-btn {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  border-radius: calc(var(--u) * 0.08);
+  border: calc(var(--u) * 0.025) solid #9a7448;
+  background: linear-gradient(#4a3a2c, #2e241b);
+  color: #f1e4c8;
+  font-weight: 800;
+  font-size: calc(var(--u) * 0.15);
+  text-shadow: 0 1px 2px #000;
+  cursor: pointer;
+}
+.log-btn:hover,
+.log-btn.on { box-shadow: 0 0 0 calc(var(--u) * 0.03) #f0c24a; }
+
+.log-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 400;
+  display: none;
+  flex-direction: column;
+  width: min(400px, 34vw);
+  box-sizing: border-box;
+  background: #16100ce8;
+  border-left: 2px solid #5a4630;
+  color: #e8dcc4;
+  font: 13px/1.45 system-ui, sans-serif;
+}
+.log-panel.open { display: flex; }
+.log-panel header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #5a4630;
+}
+.log-panel header span { flex: 1; color: #b8a888; }
+.log-panel header button {
+  border: 0;
+  background: none;
+  color: #e8dcc4;
+  font-size: 20px;
+  cursor: pointer;
+}
+.log-panel ol {
+  flex: 1;
+  margin: 0;
+  padding: 6px 0;
+  overflow-y: auto;
+  list-style: none;
+}
+.log-panel li {
+  display: flex;
+  gap: 8px;
+  padding: 2px 12px;
+}
+.log-panel li:hover { background: #ffffff12; }
+.log-panel li time {
+  flex: none;
+  width: 34px;
+  color: #8a7a60;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.log-panel li.use { color: #9a8e78; }
+.log-panel li.end { font-weight: 800; color: #f5d77a; }
+.log-panel .you { color: #8fc8ff; font-weight: 700; }
+.log-panel .foe { color: #ff9a8a; font-weight: 700; }
+.log-panel small { opacity: 0.7; }
+.log-panel i { color: #b8a888; }
+.log-panel .kw { font-weight: 700; }
+
+/* The cards a hovered log line is about. */
+.card.spot { box-shadow: 0 0 0 calc(var(--u) * 0.05) #fff, 0 0 calc(var(--u) * 0.35) #fff; }

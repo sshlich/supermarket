@@ -7,6 +7,7 @@ export interface Stage {
   cardEl(id: string): HTMLElement
   skillEl(id: string): HTMLElement | undefined
   transformed(id: string, def: UnitDef): void // redraw a card that transformed (for the fight, or for good)
+  log(e: FightEvent): void // every event, as it plays
   hp: [HTMLElement, HTMLElement]
   portrait: [HTMLElement, HTMLElement]
   hovering(): boolean
@@ -74,6 +75,7 @@ export function play(a: SideSetup, b: SideSetup, seed: number, stage: Stage, opt
   })
 
   function show(e: FightEvent) {
+    stage.log(e)
     const unit = e.item ? units.find(u => u.id === e.item) : undefined
     if (unit && (e.kind === 'destroy' || e.kind === 'repair')) return overlays.get(unit)!.destroyed(e.kind === 'destroy')
     if (unit && e.kind === 'grow') return overlays.get(unit)!.flash('#f5d77a')

@@ -91,7 +91,10 @@ export interface FightEvent {
   into?: string // on 'transform': the new item's key
   permanent?: boolean // on 'transform': kept after the fight
   winner?: -1 | 0 | 1 // on 'end'; -1 = draw
+  cause?: Cause // why: the trigger that ran the ability behind this event
 }
+/** What set an ability off: its trigger, the card it reacted to, and for "when you <effect>", the effect. */
+export interface Cause { on: Trigger['on']; by: string; effect?: string }
 
 /** The host's content, for effects that need it: what an item transforms into (null: nothing fits). */
 export interface FightOptions { transform?(def: UnitDef, into: string | undefined, random: () => number): UnitDef | null }
@@ -148,6 +151,7 @@ export class Fight {
   private started = false
   private stormTicks = 0
   private depth = 0
+  private causes: Cause[] = [] // innermost last: abilities set off others
   private opts: FightOptions
 
   constructor(a: SideSetup, b: SideSetup, seed = 1, opts: FightOptions = {}) {
@@ -197,7 +201,8 @@ export class Fight {
   }
 
   private log(e: Omit<FightEvent, 't'>) {
-    this.events.push({ t: this.t, ...e })
+    const cause = this.causes[this.causes.length - 1]
+    this.events.push(cause ? { t: this.t, ...e, cause } : { t: this.t, ...e })
   }
 
   private end(winner: -1 | 0 | 1) {
@@ -295,8 +300,11 @@ export class Fight {
   private ability(u: Unit, ab: Ability, src: Unit) {
     if (this.winner !== null) return
     if (ab.if && this.resolve(ab.if.count, u, src).length < this.value(ab.if.atLeast, u, src)) return
+    const w = ab.when
+    this.causes.push('effect' in w ? { on: w.on, by: src.id, effect: w.effect } : { on: w.on, by: src.id })
     if (u.skill) this.log({ kind: 'skill', side: u.owner.index, item: u.id })
     for (const a of ab.do) this.act(u, a, src)
+    this.causes.pop()
   }
 
   private act(u: Unit, a: Action, src: Unit) {

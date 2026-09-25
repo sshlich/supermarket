@@ -63,6 +63,9 @@ function rich(line: string, used: Set<Keyword>, info: Info) {
   })
 }
 
+/** Keyword markup ([burn 4], <Burn>) as HTML, outside a tooltip: fixed values only. */
+export const markup = (line: string) => rich(line, new Set(), { title: '', text: [] })
+
 const tip = document.createElement('div')
 tip.className = 'tooltip'
 const legend = document.createElement('div')
