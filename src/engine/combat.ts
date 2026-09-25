@@ -1,4 +1,5 @@
 import type { Size } from '../board.ts'
+import { rng } from '../random.ts'
 import { select } from './targets.ts'
 
 // ---------------------------------------------------------------- ability format
@@ -137,16 +138,6 @@ function statsOf(def: UnitDef): Record<CardStat, number> {
   }
 }
 
-
-/** Seeded PRNG (mulberry32), so a fight replays identically from its seed. */
-function rng(seed: number) {
-  return () => {
-    seed = (seed + 0x6d2b79f5) | 0
-    let x = Math.imul(seed ^ (seed >>> 15), 1 | seed)
-    x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x
-    return ((x ^ (x >>> 14)) >>> 0) / 4294967296
-  }
-}
 
 export class Fight {
   t = 0

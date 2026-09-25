@@ -11,6 +11,8 @@ import { SKILL_KEYS, skillAt, SKILLS, type SkillDef, type SkillKey } from './ski
 import { nextTier, TIER_ORDER, tierName, type Tier } from './tiers.ts'
 import { choose, type Option } from './choice.ts'
 import { rollStock } from './shop.ts'
+import { rng, seedFrom, shuffled } from './random.ts'
+import { clearSave, readSave, writeSave, type Save, type SavedItem } from './save.ts'
 import { hourOptions, loadout, monsterOptions, skillPick, type EventContext, type GameEvent, type Loadout, type Merchant, type Reward as EventReward, type SkillPick } from './encounters.ts'
 import { boardSockets, HOURS, hourKind, lastChanceOptions, levelRewards, maxHp, prestigeLoss, rival, startPackages, START_PRESTIGE, WINS_TO_WIN, XP_PER_HOUR, XP_PER_LEVEL, type LastChance, type Reward, type StartPackage } from './run.ts'
 import { play } from './playback.ts'
@@ -18,7 +20,7 @@ import type { UnitDef } from './engine/combat.ts'
 
 // Test flags, e.g. ?gold=500&level=4&items=windupKey,rustBlade:gold:shielded&skills=quickHands:silver
 // gold and level set the start; items (key[:tier[:enchant]]) replace the starting items; skills (key[:tier]) are learned.
-// Any of them makes a test run: no start screen.
+// Any of them makes a test run: no start screen, no saving (so a real saved run is left alone).
 const flags = new URLSearchParams(location.search)
 const testRun = ['gold', 'level', 'items', 'skills'].some(f => flags.has(f))
 const flagList = (name: string) => (flags.get(name) ?? '').split(',').filter(Boolean).map(entry => entry.split(':'))
@@ -97,6 +99,8 @@ let level = Number(flags.get('level') ?? 1)
 let xp = 0
 let prestige = START_PRESTIGE
 let lastChance = false // used up: the next loss once Prestige is gone ends the run
+let rand = rng(seedFrom(Math.random)) // all of the run's randomness; reseeded (and saved) every hour
+let pendingSeed: number | null = null // the saved hour's seed, when resuming
 let shopTags: string[] | undefined // current merchant's stock filter
 let choiceEl: HTMLElement | null = null
 let stashOpen = false
@@ -333,7 +337,7 @@ function rollOffers(tags?: string[]) {
   for (const c of cards.filter(c => c.lane === merchant)) removeCard(c)
   const maxed = (k: ItemKey) => mine().some(c => c.key === k) && !upgradeTarget(k)
   const pool = ITEM_KEYS.filter(k => (!tags || ITEMS[k].tags.some(t => tags.includes(t))) && !maxed(k))
-  const stock = rollStock(day, pool, Math.random, SOCKETS)
+  const stock = rollStock(day, pool, rand, SOCKETS)
   const at = spread(stock.map(o => ITEMS[o.key].size))
   stock.forEach((o, i) => makeCard(merchant, o.key, at[i], o.tier, o.enchant).el.animate([{ opacity: 0, scale: '0.85' }, { opacity: 1, scale: '1' }], { duration: 250, delay: i * 60, fill: 'backwards', easing: 'ease-out' }))
   refreshTop()
@@ -482,7 +486,7 @@ async function fight({ name, hp, items, skills = [], color }: Foe) {
     speed: () => SPEEDS[+speedInput.value],
   }
   const transform = (def: UnitDef, into: string | undefined, random: () => number) => transformed(def as ItemDef, into as ItemKey | undefined, random)
-  const { winner, events } = await play(setup('You', maxHp(level), board, mySkills), setup(name, hp, opponent, theirSkills), (Math.random() * 2 ** 31) | 0, stage, { transform })
+  const { winner, events } = await play(setup('You', maxHp(level), board, mySkills), setup(name, hp, opponent, theirSkills), seedFrom(rand), stage, { transform })
   resetBar(myHp, maxHp(level)) // health doesn't carry over: everyone starts each fight full, like the live game
   for (const s of theirSkills) s.el.remove()
   theirSkills = []
@@ -535,7 +539,7 @@ async function enchantPick(e: Enchant) {
 
 async function runEvent(e: GameEvent) {
   setTop(e.name, e.color)
-  const rewards: EventReward[] = e.options(Math.random, eventContext())
+  const rewards: EventReward[] = e.options(rand, eventContext())
   if (!rewards.length) rewards.push({ label: 'Walk on', text: ['Nothing here for you'] })
   for (;;) {
     const r = rewards[await pick(rewards.map(r =>
@@ -564,7 +568,7 @@ async function runEvent(e: GameEvent) {
 async function choiceHour() {
   mode = 'choice'
   setTop(`Hour ${hour + 1}`)
-  const opts = hourOptions(Math.random)
+  const opts = hourOptions(rand)
   const enc = opts[await pick(opts.map(e => ({
     info: { title: e.name, tags: [e.kind === 'merchant' ? 'Merchant' : 'Event'], text: [e.blurb] },
     badge: e.kind === 'merchant' ? 'Merchant' : 'Event',
@@ -577,7 +581,7 @@ async function choiceHour() {
 async function monsterHour() {
   mode = 'choice'
   setTop('Monsters')
-  const ms = monsterOptions(day, Math.random)
+  const ms = monsterOptions(day, rand)
   const carried = (l: Loadout) => {
     const { key, enchant } = loadout(l)
     return enchant ? `${ENCHANTS[enchant].name} ${ITEMS[key].name}` : ITEMS[key].name
@@ -631,7 +635,7 @@ function runCards(): RunCard[] {
 
 /** Something happened between fights: your cards react. */
 function react(event: RunEvent) {
-  applyOutcomes(runTrigger(event, runCards(), Math.random))
+  applyOutcomes(runTrigger(event, runCards(), rand))
 }
 
 const fmtNum = (n: number) => String(Math.round(n * 100) / 100)
@@ -677,7 +681,7 @@ function completeQuest(c: Card) {
 
 /** Permanently turn a card into another item of its size; tier and enchantment carry over when they can, run state doesn't. */
 function transformCard(c: Card, into?: ItemKey) {
-  const next = transformed(c.def, into, Math.random)
+  const next = transformed(c.def, into, rand)
   if (!next || next.size !== c.item.size) return
   const name = c.def.name
   c.key = next.key
@@ -736,7 +740,7 @@ async function levelUp() {
     flash(myGold, '#f0c24a')
   }
   if (r.kind === 'upgrade') {
-    const some = [...upgradable].sort(() => Math.random() - 0.5).slice(0, 4)
+    const some = shuffled(upgradable, rand).slice(0, 4)
     const option = (x: Card | Skill): Option => {
       if ('item' in x) {
         const next = itemAt(x.key, nextTier(x.tier)!, x.enchant, x.run)
@@ -752,7 +756,7 @@ async function levelUp() {
   if (r.kind === 'item') {
     // Items that can come at this tier (no item below its starting tier).
     const keys = ITEM_KEYS.filter(k => TIER_ORDER.indexOf(ITEMS[k].tier) >= 0 && TIER_ORDER.indexOf(ITEMS[k].tier) <= TIER_ORDER.indexOf(r.tier))
-    const three = [...keys].sort(() => Math.random() - 0.5).slice(0, 3)
+    const three = shuffled(keys, rand).slice(0, 3)
     for (;;) {
       const k = three[await pick(three.map(k => ({ info: itemInfo(itemAt(k, r.tier)), item: itemAt(k, r.tier) })))]
       if (give(k, r.tier)) break
@@ -760,18 +764,18 @@ async function levelUp() {
     }
   }
   if (r.kind === 'skill') {
-    const three = learnable(r.tier).sort(() => Math.random() - 0.5).slice(0, 3)
+    const three = shuffled(learnable(r.tier), rand).slice(0, 3)
     learn(three[await pick(three.map(k => skillOption(k, r.tier)))], r.tier)
   }
   if (r.kind === 'enchant') {
-    const three = rollEnchants(3, Math.random, e => enchantable().includes(e))
+    const three = rollEnchants(3, rand, e => enchantable().includes(e))
     await enchantPick(three[await pick(three.map(enchantOption))])
   }
 }
 
 /** End of day. Wins count toward the run; losses and draws cost Prestige. True when the run is over. */
 async function rivalHour() {
-  const r = rival(day, Math.random)
+  const r = rival(day, rand)
   const won = (await fight({ ...r, color: ['#a05a5a', '#3c1e1e'] })) === 0
   if (won) wins++
   else {
@@ -785,10 +789,10 @@ async function rivalHour() {
   }
   renderClock()
   if (wins < WINS_TO_WIN && (won || prestige > 0)) return false // only a loss with no Prestige left ends it
+  clearSave()
   const el = box(`banner ${wins >= WINS_TO_WIN ? 'win' : 'loss'}`, 0, 0, 0, 0,
     `<h2>${wins >= WINS_TO_WIN ? 'Run complete!' : 'Out of prestige'}</h2><p>${wins} wins by day ${day}</p><button>New run</button>`)
   el.style.cssText = '' // let the banner size itself
-  // ponytail: a reload is a full reset until runs have state worth keeping.
   el.querySelector('button')!.addEventListener('click', () => location.reload())
   return true
 }
@@ -801,7 +805,7 @@ async function lastChancePick() {
   mode = 'choice'
   const color: [string, string] = ['#b03a3a', '#2e0c0c']
   setTop('Last chance', color)
-  const options = lastChanceOptions(Math.random, e => enchantable().includes(e))
+  const options = lastChanceOptions(rand, e => enchantable().includes(e))
   const option = (o: LastChance): Option =>
     o.kind === 'diamond' ? { info: itemInfo(itemAt(o.key, 'diamond')), item: itemAt(o.key, 'diamond') }
     : o.kind === 'enchant' ? { ...enchantOption(o.enchant), badge: 'Last chance' }
@@ -823,9 +827,18 @@ async function lastChancePick() {
   }
 }
 
+/** Each hour runs on its own seed and is saved with the run as it stood when the hour began. */
+function beginHour() {
+  const seed = pendingSeed ?? seedFrom(rand)
+  pendingSeed = null
+  rand = rng(seed)
+  if (!testRun) writeSave(snapshot(seed))
+}
+
 async function runLoop() {
   for (;;) {
-    for (hour = 0; hour < HOURS; hour++) {
+    for (; hour < HOURS; hour++) {
+      beginHour()
       renderClock()
       const kind = hourKind(hour)
       if (kind === 'choice') await choiceHour()
@@ -833,6 +846,7 @@ async function runLoop() {
       else if (await rivalHour()) return
       await gainXp(XP_PER_HOUR)
     }
+    hour = 0
     day++
     gold += income
     renderGold()
@@ -1165,11 +1179,21 @@ renderLevel()
 renderClock()
 startRun().then(runLoop)
 
-// --- Starting a run ---
+// --- Starting, saving and resuming a run ---
 
-/** A new run (with its start pick), or a test run set up from the URL flags. */
+/** A saved run to continue, a new run (with its start pick), or a test run set up from the URL flags. */
 async function startRun() {
   if (testRun) return applyFlags()
+  const saved = readSave()
+  if (saved) {
+    setTop('Welcome back')
+    const i = await pick([
+      { info: { title: 'Continue', text: [`Day ${saved.day}, hour ${saved.hour + 1}`, `${saved.wins} wins, ${Math.max(0, saved.prestige)} prestige`, 'Back at the start of that hour'] }, badge: 'Saved run', color: ['#4a7a4a', '#142414'] },
+      { info: { title: 'New run', text: ['Start over'] }, badge: 'Run', color: ['#6a5a4a', '#221a12'] },
+    ])
+    if (i === 0) return restore(saved)
+    clearSave()
+  }
   starterKit()
   await startPick()
 }
@@ -1178,7 +1202,7 @@ async function startRun() {
 async function startPick() {
   mode = 'choice'
   setTop('New run')
-  const packages = startPackages(Math.random)
+  const packages = startPackages(rand)
   const option = (p: StartPackage): Option =>
     p.kind === 'economy' ? { info: { title: 'Nest egg', tags: ['Start'], text: [`Gain ${p.gold} gold`, `Gain ${p.income} income every day`] }, badge: 'Economy', color: ['#b0904a', '#3c2e14'] }
     : p.kind === 'item' ? { info: itemInfo(itemAt(p.key, undefined, p.enchant)), item: itemAt(p.key, undefined, p.enchant) }
@@ -1192,6 +1216,39 @@ async function startPick() {
   }
   if (p.kind === 'item') give(p.key, undefined, p.enchant)
   if (p.kind === 'skill') learn(p.key, SKILLS[p.key].tier)
+}
+
+const savedItem = (c: Card): SavedItem => ({ key: c.key, tier: c.tier, enchant: c.enchant, run: c.run, pos: c.item.pos })
+
+/** The run as it stands, for the save. */
+function snapshot(seed: number): Save {
+  return {
+    v: 1, seed, day, hour, wins, prestige, lastChance, gold, income, level, xp,
+    board: cards.filter(c => c.lane === board).map(savedItem),
+    stash: cards.filter(c => c.lane === stash).map(savedItem),
+    skills: mySkills.map(s => ({ key: s.key, tier: s.def.tier })),
+  }
+}
+
+/** Put a saved run back: everything as it was at the start of the saved hour, which then replays from its seed. */
+function restore(s: Save) {
+  ;({ day, hour, wins, prestige, lastChance, gold, income, level, xp } = s)
+  const { lo, hi } = boardSockets(level)
+  setUnlocked(board, lo, hi)
+  for (const [lane, list] of [[board, s.board], [stash, s.stash]] as const) {
+    for (const it of list) {
+      const c = makeCard(lane, it.key, it.pos, it.tier, it.enchant)
+      c.run = { perm: it.run.perm ?? {}, progress: it.run.progress ?? 0, done: !!it.run.done }
+      refresh(c)
+    }
+  }
+  for (const sk of s.skills) mySkills.push(makeSkill(sk.key, sk.tier))
+  layoutSkills(mySkills, 0)
+  pendingSeed = s.seed
+  renderGold()
+  renderLevel()
+  renderClock()
+  refreshTop()
 }
 
 /** A test run from the URL flags (see the top of the file). */
