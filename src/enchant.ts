@@ -36,6 +36,19 @@ export const ENCHANTS: Record<Enchant, EnchantInfo> = {
 }
 export const ENCHANT_KEYS = Object.keys(ENCHANTS) as Enchant[]
 
+/** Up to `n` distinct enchantments; rare ones come up a quarter as often. */
+export function rollEnchants(n: number, random: () => number, allowed: (e: Enchant) => boolean = () => true): Enchant[] {
+  const pool = ENCHANT_KEYS.filter(allowed)
+  const out: Enchant[] = []
+  while (out.length < n && pool.length) {
+    const weights = pool.map(e => (ENCHANTS[e].rare ? 1 : 4))
+    let r = random() * weights.reduce((a, b) => a + b, 0)
+    const i = weights.findIndex(w => (r -= w) < 0)
+    out.push(...pool.splice(i < 0 ? pool.length - 1 : i, 1))
+  }
+  return out
+}
+
 const NAME: Record<Stat, string> = { damage: 'Damage', shield: 'Shield', heal: 'Heal', burn: 'Burn', poison: 'Poison', regen: 'Regen' }
 const ADD_LINE: Record<Stat, string> = {
   damage: 'Deal [damage] <Damage>',

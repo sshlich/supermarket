@@ -3,6 +3,7 @@ import { buyPrice } from './economy.ts'
 import { hourOptions, monsterOptions } from './encounters.ts'
 import { ITEMS } from './items.ts'
 import { boardSockets, hourKind, levelRewards, maxHp, prestigeLoss, rival, rivalLevel } from './run.ts'
+import { reachable } from './tiers.ts'
 import { SKILLS } from './skills.ts'
 
 assert.deepEqual([0, 1, 2, 3, 4, 5].map(hourKind), ['choice', 'choice', 'monster', 'choice', 'choice', 'rival'])
@@ -16,13 +17,12 @@ for (const day of [1, 3, 8]) {
   for (let i = 0; i < 50; i++) {
     const r = rival(day, random)
     const { lo, hi } = boardSockets(rivalLevel(day))
-    assert.ok(r.items.reduce((n, k) => n + ITEMS[k].size, 0) <= hi - lo + 1)
+    const items = r.items.map(l => (typeof l === 'string' ? { key: l, tier: ITEMS[l].tier, enchant: undefined } : l))
+    assert.ok(items.reduce((n, l) => n + ITEMS[l.key].size, 0) <= hi - lo + 1)
     assert.equal(r.hp, maxHp(rivalLevel(day)))
-    assert.ok(r.items.reduce((n, k) => n + buyPrice(ITEMS[k]), 0) <= 6 + 8 * day)
+    assert.ok(items.reduce((n, l) => n + buyPrice({ size: ITEMS[l.key].size, tier: l.tier ?? ITEMS[l.key].tier, enchant: l.enchant }), 0) <= 6 + 8 * day)
+    assert.ok(items.every(l => reachable(ITEMS[l.key].tier).includes(l.tier ?? ITEMS[l.key].tier)))
     assert.ok(r.items.length > 0)
-    assert.equal(r.skills.length, Math.floor(day / 2)) // a skill every other day
-    assert.equal(new Set(r.skills.map(s => s.key)).size, r.skills.length)
-    assert.ok(r.skills.every(s => SKILLS[s.key]))
     assert.equal(r.skills.length, Math.floor(day / 2)) // a skill every other day
     assert.equal(new Set(r.skills.map(s => s.key)).size, r.skills.length)
     assert.ok(r.skills.every(s => SKILLS[s.key]))

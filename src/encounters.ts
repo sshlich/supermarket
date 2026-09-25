@@ -1,5 +1,6 @@
-import { ENCHANT_KEYS, ENCHANTS, type Enchant } from './enchant.ts'
+import { ENCHANTS, rollEnchants, type Enchant } from './enchant.ts'
 import { ITEM_KEYS, ITEMS, type ItemKey } from './items.ts'
+import { rollOffer } from './shop.ts'
 import { SKILL_KEYS, SKILLS, type SkillKey } from './skills.ts'
 import { TIER_ORDER, type Tier } from './tiers.ts'
 
@@ -27,24 +28,10 @@ export interface Monster extends Base { kind: 'monster'; day: number; hp: number
 
 export type Encounter = Merchant | GameEvent | Monster
 
-const pick = <T,>(list: T[], random: () => number) => list[Math.floor(random() * list.length)]
 const shuffled = <T,>(list: T[], random: () => number) => [...list].sort(() => random() - 0.5)
 
 /** The tier trainers and rivals hand skills out at on `day`. */
 export const skillTier = (day: number): Tier => (day <= 2 ? 'bronze' : day <= 5 ? 'silver' : 'gold')
-
-/** Up to `n` distinct enchantments; rare ones come up a quarter as often. */
-export function rollEnchants(n: number, random: () => number, allowed: (e: Enchant) => boolean = () => true): Enchant[] {
-  const pool = ENCHANT_KEYS.filter(allowed)
-  const out: Enchant[] = []
-  while (out.length < n && pool.length) {
-    const weights = pool.map(e => (ENCHANTS[e].rare ? 1 : 4))
-    let r = random() * weights.reduce((a, b) => a + b, 0)
-    const i = weights.findIndex(w => (r -= w) < 0)
-    out.push(...pool.splice(i < 0 ? pool.length - 1 : i, 1))
-  }
-  return out
-}
 
 export const MERCHANTS: Merchant[] = [
   { kind: 'merchant', name: 'Odd Trader', blurb: 'A bit of everything.', color: ['#5aa07a', '#1e3c2c'] },
@@ -63,9 +50,9 @@ export const EVENTS: GameEvent[] = [
   },
   {
     kind: 'event', name: 'Loot Cart', blurb: 'Take one, quickly.', color: ['#8a6a3a', '#2a1e0c'],
-    options: random => [0, 1, 2].map(() => {
-      const item = pick(ITEM_KEYS, random)
-      return { label: ITEMS[item].name, text: ['Take this for free'], item }
+    options: (random, ctx) => [0, 1, 2].map(() => {
+      const { key, tier } = rollOffer(ctx.day, ITEM_KEYS, random)!
+      return { label: ITEMS[key].name, text: ['Take this for free'], item: key, tier }
     }),
   },
   {

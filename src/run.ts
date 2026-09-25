@@ -1,6 +1,7 @@
 import { buyPrice } from './economy.ts'
-import { skillTier, type SkillPick } from './encounters.ts'
-import { ITEM_KEYS, ITEMS, type ItemKey } from './items.ts'
+import { skillTier, type Loadout, type SkillPick } from './encounters.ts'
+import { ITEM_KEYS, ITEMS } from './items.ts'
+import { offerPrice, rollOffer } from './shop.ts'
 import { SKILL_KEYS, SKILLS } from './skills.ts'
 import { TIER_ORDER, type Tier } from './tiers.ts'
 
@@ -52,21 +53,22 @@ const NAMES = ['Vex', 'Mara', 'Old Toll', 'Brine', 'Kestrel', 'Juno', 'Sable', '
 export const rivalLevel = (day: number) => day + 1
 
 /**
- * A rival build for `day`: random items bought with a budget that grows each day, until nothing affordable
- * fits their board, plus a skill every other day. ponytail: a generated stand-in until rivals are designed.
+ * A rival build for `day`: items shopped like a merchant's offers (tiers by day) with a budget that grows each
+ * day, until nothing affordable fits their board, plus a skill every other day.
+ * ponytail: a generated stand-in until rivals are designed.
  */
-export function rival(day: number, random: () => number): { name: string; hp: number; items: ItemKey[]; skills: SkillPick[] } {
+export function rival(day: number, random: () => number): { name: string; hp: number; items: Loadout[]; skills: SkillPick[] } {
   let budget = 6 + 8 * day
   const { lo, hi } = boardSockets(rivalLevel(day))
   let slots = hi - lo + 1
-  const items: ItemKey[] = []
+  const items: Loadout[] = []
   for (;;) {
-    const fits = ITEM_KEYS.filter(k => ITEMS[k].size <= slots && buyPrice(ITEMS[k]) <= budget)
-    if (!fits.length) break
-    const k = fits[Math.floor(random() * fits.length)]
-    items.push(k)
-    budget -= buyPrice(ITEMS[k])
-    slots -= ITEMS[k].size
+    const o = rollOffer(day, ITEM_KEYS, random, (k, tier) => ITEMS[k].size <= slots && buyPrice({ size: ITEMS[k].size, tier }) <= budget)
+    if (!o) break
+    if (o.enchant && offerPrice(o) > budget) delete o.enchant // can't afford the enchanted version
+    items.push(o)
+    budget -= offerPrice(o)
+    slots -= ITEMS[o.key].size
   }
   const tier = skillTier(day)
   const open = SKILL_KEYS.filter(k => TIER_ORDER.indexOf(SKILLS[k].tier) <= TIER_ORDER.indexOf(tier)).sort(() => random() - 0.5)

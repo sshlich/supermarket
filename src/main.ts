@@ -6,11 +6,12 @@ import { buyPrice, REROLL_COST, sellPrice, spread, START_GOLD, START_INCOME } fr
 import { canEnchant, ITEM_KEYS, itemAt, ITEMS, transformed, type ItemDef, type ItemKey, type RunState } from './items.ts'
 import { fightOutcomes, runTrigger, type Outcome, type RunCard, type RunEvent } from './run-effects.ts'
 import { KEYWORDS, type Keyword } from './keywords.ts'
-import { ENCHANT_KEYS, ENCHANTS, type Enchant } from './enchant.ts'
+import { ENCHANT_KEYS, ENCHANTS, rollEnchants, type Enchant } from './enchant.ts'
 import { SKILL_KEYS, skillAt, SKILLS, type SkillDef, type SkillKey } from './skills.ts'
 import { nextTier, TIER_ORDER, tierName, type Tier } from './tiers.ts'
 import { choose, type Option } from './choice.ts'
-import { hourOptions, loadout, monsterOptions, rollEnchants, skillPick, type EventContext, type GameEvent, type Loadout, type Merchant, type Reward as EventReward, type SkillPick } from './encounters.ts'
+import { rollStock } from './shop.ts'
+import { hourOptions, loadout, monsterOptions, skillPick, type EventContext, type GameEvent, type Loadout, type Merchant, type Reward as EventReward, type SkillPick } from './encounters.ts'
 import { boardSockets, HOURS, hourKind, levelRewards, maxHp, prestigeLoss, rival, START_PRESTIGE, WINS_TO_WIN, XP_PER_HOUR, XP_PER_LEVEL, type Reward } from './run.ts'
 import { play } from './playback.ts'
 import type { UnitDef } from './engine/combat.ts'
@@ -203,9 +204,9 @@ function refresh(c: Card) {
   setOwner(c)
 }
 
-/** One tier up: new stats, frame and value. The enchantment and anything it has grown come along. */
-function upgrade(c: Card) {
-  remake(c, nextTier(c.tier)!, c.enchant, 'var(--tier)')
+/** One tier up: new stats, frame and value. Its enchantment (or a new one) and anything it has grown come along. */
+function upgrade(c: Card, enchant = c.enchant) {
+  remake(c, nextTier(c.tier)!, enchant, 'var(--tier)')
   toast(`${c.def.name} upgraded to ${tierName(c.tier)}!`)
 }
 
@@ -321,21 +322,17 @@ function flash(el: HTMLElement, color: string) {
   el.animate([{ boxShadow: `0 0 0 calc(var(--u) * 0.06) ${color}, 0 0 calc(var(--u) * 0.4) ${color}` }, {}], { duration: 450, easing: 'ease-out' })
 }
 
-/** Fresh stock filling the merchant's whole row, from items with any of `tags` (everything when none). */
+/**
+ * Fresh stock filling the merchant's whole row (tiers by day, sometimes enchanted: see shop.ts), from items with
+ * any of `tags` (everything when none). Items you own and can't upgrade any further aren't offered.
+ */
 function rollOffers(tags?: string[]) {
   for (const c of cards.filter(c => c.lane === merchant)) removeCard(c)
-  const pool = tags ? ITEM_KEYS.filter(k => ITEMS[k].tags.some(t => tags.includes(t))) : ITEM_KEYS
-  const picked: ItemKey[] = []
-  // ponytail: random picks until the row is full, repeats allowed.
-  for (let room = SOCKETS; room > 0; ) {
-    const fits = pool.filter(k => ITEMS[k].size <= room)
-    if (!fits.length) break
-    const k = fits[Math.floor(Math.random() * fits.length)]
-    picked.push(k)
-    room -= ITEMS[k].size
-  }
-  const at = spread(picked.map(k => ITEMS[k].size))
-  picked.forEach((k, i) => makeCard(merchant, k, at[i]).el.animate([{ opacity: 0, scale: '0.85' }, { opacity: 1, scale: '1' }], { duration: 250, delay: i * 60, fill: 'backwards', easing: 'ease-out' }))
+  const maxed = (k: ItemKey) => mine().some(c => c.key === k) && !upgradeTarget(k)
+  const pool = ITEM_KEYS.filter(k => (!tags || ITEMS[k].tags.some(t => tags.includes(t))) && !maxed(k))
+  const stock = rollStock(day, pool, Math.random, SOCKETS)
+  const at = spread(stock.map(o => ITEMS[o.key].size))
+  stock.forEach((o, i) => makeCard(merchant, o.key, at[i], o.tier, o.enchant).el.animate([{ opacity: 0, scale: '0.85' }, { opacity: 1, scale: '1' }], { duration: 250, delay: i * 60, fill: 'backwards', easing: 'ease-out' }))
   refreshTop()
 }
 
@@ -539,7 +536,7 @@ async function runEvent(e: GameEvent) {
   if (!rewards.length) rewards.push({ label: 'Walk on', text: ['Nothing here for you'] })
   for (;;) {
     const r = rewards[await pick(rewards.map(r =>
-      r.item ? { info: itemInfo(itemAt(r.item)), item: itemAt(r.item) }
+      r.item ? { info: itemInfo(itemAt(r.item, r.tier)), item: itemAt(r.item, r.tier) }
       : r.skill ? skillOption(r.skill, r.tier ?? SKILLS[r.skill].tier)
       : r.enchant ? enchantOption(r.enchant)
       : { info: { title: r.label, text: r.text }, badge: e.name, color: e.color }))]
@@ -547,7 +544,7 @@ async function runEvent(e: GameEvent) {
       noGold()
       continue
     }
-    if (r.item && !give(r.item)) {
+    if (r.item && !give(r.item, r.tier)) {
       toast('No room: sell something first')
       continue
     }
@@ -1072,7 +1069,7 @@ function buyUpgrade(offer: Card) {
   gold -= buyPrice(offer.def)
   renderGold()
   removeCard(offer)
-  upgrade(owned)
+  upgrade(owned, offer.enchant ?? owned.enchant) // an enchanted copy passes its enchantment on
   react({ on: 'buy', card: owned.item.id })
   return true
 }

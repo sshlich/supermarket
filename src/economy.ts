@@ -3,10 +3,10 @@ import type { Tier } from './tiers.ts'
 
 const TIER_MULT: Record<Tier, number> = { bronze: 1, silver: 2, gold: 4, diamond: 8, legendary: 12 }
 
-/** Small bronze 2, medium 4, large 6; each tier doubles (legendary x12). */
-export const buyPrice = (d: { size: Size; tier: Tier }) => d.size * 2 * TIER_MULT[d.tier]
+/** Small bronze 2, medium 4, large 6; each tier doubles (legendary x12); enchanted items cost 1.5x. */
+export const buyPrice = (d: { size: Size; tier: Tier; enchant?: string }) => Math.ceil(d.size * 2 * TIER_MULT[d.tier] * (d.enchant ? 1.5 : 1))
 /** Half the buy price, plus any Value the item has gained. */
-export const sellPrice = (d: { size: Size; tier: Tier; value?: number }) => Math.max(1, Math.floor(buyPrice(d) / 2)) + (d.value ?? 0)
+export const sellPrice = (d: { size: Size; tier: Tier; enchant?: string; value?: number }) => Math.max(1, Math.floor(buyPrice(d) / 2)) + (d.value ?? 0)
 
 export const START_GOLD = 12
 export const START_INCOME = 5
