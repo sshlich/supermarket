@@ -23,6 +23,9 @@ for (const day of [1, 3, 8]) {
     assert.equal(r.skills.length, Math.floor(day / 2)) // a skill every other day
     assert.equal(new Set(r.skills.map(s => s.key)).size, r.skills.length)
     assert.ok(r.skills.every(s => SKILLS[s.key]))
+    assert.equal(r.skills.length, Math.floor(day / 2)) // a skill every other day
+    assert.equal(new Set(r.skills.map(s => s.key)).size, r.skills.length)
+    assert.ok(r.skills.every(s => SKILLS[s.key]))
   }
 }
 

@@ -26,6 +26,7 @@ export function cardFace(def: ItemDef): string {
     def.multicast && def.multicast > 1 && `<div class="multicast">x${def.multicast}</div>`,
     `<div class="price"></div>`, // text set by the page: buy price in a shop, sell value otherwise
     def.ammo && `<div class="ammo">${'<i></i>'.repeat(def.ammo)}</div>`,
+    def.quest && !def.done && `<div class="quest">${def.progress}/${def.quest.goal}</div>`,
   ]
     .filter(Boolean)
     .join('')
@@ -82,8 +83,9 @@ export interface Info {
   paths?: Record<string, number[]> // names whose value changes with tier
   tiers?: Tier[] // the tier of each path entry
   now?: number // which path entry is current
-  extra?: { title: string; color: string; text: string[] } // e.g. what an enchantment added
+  blocks?: Block[] // sections under the main lines: a quest, permanent gains, an enchantment
 }
+export interface Block { title: string; color: string; text: string[] }
 
 const pathInfo = (def: ItemDef | SkillDef) => {
   const tiers = reachable(def.start)
@@ -97,8 +99,21 @@ export const itemInfo = (def: ItemDef): Info => ({
   text: def.text,
   cooldown: def.cooldown,
   ...pathInfo(def),
-  extra: def.enchant && { title: ENCHANTS[def.enchant].name, color: ENCHANTS[def.enchant].color, text: def.enchantText ?? [] },
+  blocks: itemBlocks(def),
 })
+
+const QUEST_COLOR = '#e8d8a8'
+const GROWN_COLOR = '#b5e86a'
+
+function itemBlocks(def: ItemDef): Block[] {
+  const out: Block[] = []
+  const q = def.quest
+  if (q && !def.done) out.push({ title: `Quest ${def.progress}/${q.goal}`, color: QUEST_COLOR, text: [q.text.replace('{goal}', String(q.goal)), ...q.reward.text.map(t => `Reward: ${t}`)] })
+  const grown = Object.entries(def.perm).filter(([, v]) => v)
+  if (grown.length) out.push({ title: 'Grown this run', color: GROWN_COLOR, text: grown.map(([k, v]) => `+${fmt(v!)} <${KEYWORDS[k as Keyword].name}>`) })
+  if (def.enchant) out.push({ title: ENCHANTS[def.enchant].name, color: ENCHANTS[def.enchant].color, text: def.enchantText ?? [] })
+  return out
+}
 
 export const skillInfo = (def: SkillDef): Info => ({ title: def.name, tier: def.tier, tags: ['Skill', ...def.tags], text: def.text, ...pathInfo(def) })
 
@@ -116,9 +131,9 @@ export interface Box { x: number; y: number; w: number; h: number }
 export function showInfo(info: Info, card: Box, u: number, sceneW: number) {
   const used = new Set<Keyword>()
   const lines = info.text.map(l => `<li>${rich(l, used, info)}</li>`).join('')
-  const extra = info.extra
-    ? `<div class="extra" style="--ench:${info.extra.color}"><h5>${info.extra.title}</h5><ul>${info.extra.text.map(l => `<li>${rich(l, used, info)}</li>`).join('')}</ul></div>`
-    : ''
+  const extra = (info.blocks ?? [])
+    .map(b => `<div class="extra" style="--ench:${b.color}"><h5>${b.title}</h5><ul>${b.text.map(l => `<li>${rich(l, used, info)}</li>`).join('')}</ul></div>`)
+    .join('')
   const cooldown = info.cooldown ? `<div class="cooldown"><b>${info.cooldown.toFixed(1)}</b><small>SEC</small></div>` : ''
   const pills = [
     info.tier && `<span class="tier" style="--t:${TIER_COLOR[info.tier]}">${tierName(info.tier)}</span>`,

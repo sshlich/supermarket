@@ -3,6 +3,7 @@ const svg = (d: string) => `<svg class="ico" viewBox="0 0 16 16"><path d="${d}"/
 export type Keyword =
   | 'damage' | 'shield' | 'heal' | 'burn' | 'poison' | 'regen'
   | 'haste' | 'slow' | 'freeze' | 'charge' | 'reload' | 'crit' | 'lifesteal' | 'multicast' | 'ammo'
+  | 'destroy' | 'repair' | 'cleanse' | 'transform' | 'value' | 'gold'
 
 /** Keywords color their word and value in descriptions; ones with `desc` also get a legend entry. */
 export const KEYWORDS: Record<Keyword, { name: string; color: string; icon: string; desc?: string }> = {
@@ -21,4 +22,10 @@ export const KEYWORDS: Record<Keyword, { name: string; color: string; icon: stri
   lifesteal: { name: 'Lifesteal', color: '#e0507a', icon: svg('M4 1h8l-1 6-3 8-3-8z'), desc: 'Heals you for that share of the Damage this deals.' },
   multicast: { name: 'Multicast', color: '#f3e3c3', icon: svg('M2 3l6-2 6 2v2L8 3 2 5zm0 5l6-2 6 2v2L8 8l-6 2zm0 5l6-2 6 2v2l-6-2-6 2z'), desc: 'Each use triggers the effect this many times.' },
   ammo: { name: 'Ammo', color: '#f2d27a', icon: svg('M6 1h4a2 3 0 0 1 2 3v11H4V4a2 3 0 0 1 2-3z'), desc: 'Uses per fight. When it runs out the item stops firing.' },
+  destroy: { name: 'Destroy', color: '#c9b8a8', icon: svg('M2 2l5 1 1 3 3-2 3 2-2 3 2 3-4 1-1 3-3-3-3 1 1-4-3-2 3-1z'), desc: 'The item stops working for the rest of the fight.' },
+  repair: { name: 'Repair', color: '#8fd8c8', icon: svg('M14 3l-3 3-2-1-1-2 3-3a4 4 0 0 0-5 5L1 10l2 2 5-5a4 4 0 0 0 5-5z'), desc: 'Brings a destroyed item back into the fight.' },
+  cleanse: { name: 'Cleanse', color: '#e6f2ff', icon: svg('M8 0l2 6 6 2-6 2-2 6-2-6-6-2 6-2z'), desc: 'Removes the effect completely.' },
+  transform: { name: 'Transform', color: '#d68cff', icon: svg('M3 6a5 5 0 0 1 9-2l1-2v5H8l2-2a3 3 0 0 0-5 1zM13 10a5 5 0 0 1-9 2l-1 2V9h5l-2 2a3 3 0 0 0 5-1z'), desc: 'Becomes a different item of the same size, keeping its tier.' },
+  value: { name: 'Value', color: '#f5d77a', icon: svg('M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm0 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z'), desc: 'Added to what the item sells for.' },
+  gold: { name: 'Gold', color: '#f5c542', icon: svg('M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1z') },
 }

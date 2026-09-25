@@ -1,11 +1,12 @@
 import './playback.css'
-import { Fight, type FightEvent, type Side, type SideSetup } from './engine/combat.ts'
+import { Fight, type FightEvent, type FightOptions, type Side, type SideSetup, type UnitDef } from './engine/combat.ts'
 
 /** What playback needs from the page. Side 0 is the player, side 1 the opponent. */
 export interface Stage {
   scene: HTMLElement
   cardEl(id: string): HTMLElement
   skillEl(id: string): HTMLElement | undefined
+  transformed(id: string, def: UnitDef): void // redraw a card that transformed (for the fight, or for good)
   hp: [HTMLElement, HTMLElement]
   portrait: [HTMLElement, HTMLElement]
   hovering(): boolean
@@ -18,13 +19,13 @@ const TIME_EASE = 6 // per second, time scale follows its target
 const END_HOLD_MS = 1400 // real time after the last blow before the banner
 
 const COLOR: Partial<Record<FightEvent['kind'] | 'storm', string>> = {
-  damage: '#ff4b3a', heal: '#7edc5a', shield: '#f5cc3d', burn: '#ff9b3a', poison: '#58d69b', regen: '#c2e25a', storm: '#e0c080',
+  damage: '#ff4b3a', heal: '#7edc5a', shield: '#f5cc3d', burn: '#ff9b3a', poison: '#58d69b', regen: '#c2e25a', storm: '#e0c080', gold: '#f5c542',
 }
 
-/** Play a fight on the stage in real time; resolves with the winner when the player dismisses the banner. */
-export function play(a: SideSetup, b: SideSetup, seed: number, stage: Stage): Promise<-1 | 0 | 1> {
-  const fight = new Fight(a, b, seed)
-  const endsAt = new Fight(a, b, seed).run().t // same seed, same fight: know when the final blow lands
+/** Play a fight on the stage in real time; resolves when the player dismisses the banner, with everything that happened. */
+export function play(a: SideSetup, b: SideSetup, seed: number, stage: Stage, opts: FightOptions = {}): Promise<{ winner: -1 | 0 | 1; events: FightEvent[] }> {
+  const fight = new Fight(a, b, seed, opts)
+  const endsAt = new Fight(a, b, seed, opts).run().t // same seed, same fight: know when the final blow lands
   const units = fight.sides.flatMap(s => s.items)
   const overlays = new Map(units.map(unit => [unit, overlay(stage.cardEl(unit.id))]))
   stage.scene.classList.add('fighting')
@@ -67,12 +68,21 @@ export function play(a: SideSetup, b: SideSetup, seed: number, stage: Stage): Pr
         el.remove()
         for (const o of overlays.values()) o.remove()
         stage.scene.classList.remove('fighting')
-        resolve(winner)
+        resolve({ winner, events: fight.events })
       })
     }
   })
 
   function show(e: FightEvent) {
+    const unit = e.item ? units.find(u => u.id === e.item) : undefined
+    if (unit && (e.kind === 'destroy' || e.kind === 'repair')) return overlays.get(unit)!.destroyed(e.kind === 'destroy')
+    if (unit && e.kind === 'grow') return overlays.get(unit)!.flash('#f5d77a')
+    if (unit && e.kind === 'transform') {
+      overlays.get(unit)!.remove()
+      stage.transformed(unit.id, unit.def)
+      overlays.set(unit, overlay(stage.cardEl(unit.id)))
+      return
+    }
     if (e.kind === 'skill') {
       stage.skillEl(e.item!)?.animate([{ scale: '1', filter: 'brightness(1)' }, { scale: '1.25', filter: 'brightness(1.8)' }, { scale: '1', filter: 'brightness(1)' }], { duration: 320, easing: 'ease-out' })
       return
@@ -153,10 +163,15 @@ function overlay(card: HTMLElement) {
       flash.style.setProperty('--flash', color)
       flash.animate([{ opacity: 0.9 }, { opacity: 0 }], { duration: 280, easing: 'ease-out' })
     },
+    destroyed(on: boolean) {
+      card.classList.toggle('destroyed', on)
+      card.animate([{ translate: '0 0' }, { translate: '-3px 2px' }, { translate: '3px -2px' }, { translate: '0 0' }], { duration: 200 })
+    },
     remove() {
       cd.remove()
       flash.remove()
       timer.remove()
+      card.classList.remove('destroyed')
       card.querySelectorAll('.ammo i').forEach(p => p.classList.remove('spent'))
     },
   }

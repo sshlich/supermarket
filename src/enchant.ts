@@ -5,7 +5,7 @@ import { T1, T2, type Stat } from './tiers.ts'
 // Enchantments are rules over an item's own numbers, so one rule covers every item and scales with its
 // tier. An item can override any enchantment (or opt out of it) in its `enchants` field.
 
-export type Enchant = 'shielded' | 'restorative' | 'obsidian' | 'fiery' | 'toxic' | 'mossy' | 'heavy' | 'turbo' | 'frozen' | 'shiny'
+export type Enchant = 'shielded' | 'restorative' | 'obsidian' | 'fiery' | 'toxic' | 'mossy' | 'heavy' | 'turbo' | 'frozen' | 'shiny' | 'radiant'
 type Effect = 'slow' | 'haste' | 'freeze'
 
 interface EnchantInfo {
@@ -32,6 +32,7 @@ export const ENCHANTS: Record<Enchant, EnchantInfo> = {
   turbo: { name: 'Turbo', color: '#63d2ff', effect: 'haste', text: EFFECT_TEXT('Haste') },
   frozen: { name: 'Frozen', color: '#7fdcff', effect: 'freeze', rare: true, text: EFFECT_TEXT('Freeze') },
   shiny: { name: 'Shiny', color: '#fff3a0', rare: true, text: ['+1 <Multicast>'] },
+  radiant: { name: 'Radiant', color: '#fffbe8', text: ['Immune to <Freeze>, <Slow> and <Destroy>'] },
 }
 export const ENCHANT_KEYS = Object.keys(ENCHANTS) as Enchant[]
 
@@ -65,12 +66,24 @@ function hostFor(def: ItemDef, stat?: Stat): Ability | undefined {
   return (stat && def.abilities.find(ab => ab.do.some(a => a.do === stat))) ?? def.abilities.find(ab => ab.when.on === 'use') ?? def.abilities[0]
 }
 
-/** Stat gains: in-fight modifications and auras that raise a T1/T2 stat. */
+/**
+ * Stat gains that raise a T1/T2 stat by an amount: in-fight modifications, permanent growth, additive auras.
+ * `set` changes the amount, `parallel` adds the same gain for another stat next to it.
+ */
 function gains(def: ItemDef) {
-  const out: ({ stat: Stat; aura: Aura } | { stat: Stat; action: Extract<Action, { do: 'modify' }>; ability: Ability })[] = []
   const isStat = (s: string): s is Stat => (T1 as string[]).includes(s) || (T2 as string[]).includes(s)
-  for (const aura of def.auras ?? []) if (isStat(aura.stat)) out.push({ stat: aura.stat, aura })
-  for (const ability of def.abilities) for (const action of ability.do) if (action.do === 'modify' && isStat(action.stat)) out.push({ stat: action.stat, action, ability })
+  const out: { stat: Stat; add: Value; aura: boolean; set(v: Value): void; parallel(stat: Stat, v: Value): void }[] = []
+  for (const aura of def.auras ?? []) {
+    if (aura.add === undefined || !isStat(aura.stat)) continue
+    out.push({ stat: aura.stat, add: aura.add, aura: true, set: v => (aura.add = v), parallel: (stat, v) => (def.auras ??= []).push({ ...aura, stat, add: v }) })
+  }
+  for (const ability of def.abilities) {
+    for (const action of ability.do) {
+      const gain = (action.do === 'modify' && action.add !== undefined && action.mul === undefined) || action.do === 'grow'
+      if (!gain || !isStat(action.stat) || action.add === undefined) continue
+      out.push({ stat: action.stat, add: action.add, aura: false, set: v => (action.add = v), parallel: (stat, v) => ability.do.push({ ...action, stat, add: v }) })
+    }
+  }
   return out
 }
 
@@ -97,10 +110,11 @@ const EFFECT_LINE: Record<Effect, (val: string) => string> = {
  * - T1 (Shielded, Restorative, Obsidian) and T2 (Fiery, Toxic, Mossy): an item that already has the stat
  *   doubles it. Otherwise it gains the stat on the ability that performs its biggest T1 stat, worth that
  *   number (T1) or 10% of it (T2). With no T1 stat, its biggest T2 stat is used the same way (T2 -> T1 is x10).
- * - Items that gain stats in a fight (scaling, auras): a matching enchantment doubles the gain, any other
- *   T1/T2 enchantment adds a parallel gain of its own stat (a Burn scaler with Mossy also gains Regen).
+ * - Items that gain stats (in-fight scaling, permanent growth, auras): a matching enchantment doubles the gain,
+ *   any other T1/T2 enchantment adds a parallel gain of its own stat (a Burn scaler with Mossy also gains Regen).
  * - Heavy, Turbo, Frozen: double the item's Slow/Haste/Freeze durations, or add one to its use.
  * - Shiny: +1 Multicast.
+ * - Radiant: immune to Freeze, Slow and Destroy.
  */
 export function enchantRule(item: ItemDef, e: Enchant): ItemDef | null {
   const def = structuredClone(item)
@@ -123,15 +137,11 @@ export function enchantRule(item: ItemDef, e: Enchant): ItemDef | null {
     }
     for (const g of gains(def)) {
       if (g.stat === s) {
-        if ('aura' in g) g.aura.add = scaled(g.aura.add, 2)
-        else g.action.add = scaled(g.action.add, 2)
+        g.set(scaled(g.add, 2))
         lines.push(`Double its <${NAME[s]}> gain`)
-      } else if ('aura' in g) {
-        ;(def.auras ??= []).push({ ...g.aura, stat: s, add: scaled(g.aura.add, worth(g.stat, s)) })
-        lines.push(`Also gives <${NAME[s]}> where it gives <${NAME[g.stat]}>`)
       } else {
-        g.ability.do.push({ ...g.action, stat: s, add: scaled(g.action.add, worth(g.stat, s)) })
-        lines.push(`Also gains <${NAME[s]}> when it gains <${NAME[g.stat]}>`)
+        g.parallel(s, scaled(g.add, worth(g.stat, s)))
+        lines.push(g.aura ? `Also gives <${NAME[s]}> where it gives <${NAME[g.stat]}>` : `Also gains <${NAME[s]}> when it gains <${NAME[g.stat]}>`)
       }
     }
   }
@@ -155,6 +165,11 @@ export function enchantRule(item: ItemDef, e: Enchant): ItemDef | null {
   if (e === 'shiny' && def.cooldown) {
     def.multicast = (def.multicast ?? 1) + 1
     lines.push('<Multicast> +1')
+  }
+
+  if (e === 'radiant') {
+    def.immune = ['freeze', 'slow', 'destroy']
+    lines.push(...info.text)
   }
 
   return lines.length ? { ...def, enchant: e, enchantText: lines } : null

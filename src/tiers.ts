@@ -57,7 +57,7 @@ export const STAT_ORDER: Stat[] = ['damage', 'shield', 'heal', 'burn', 'poison',
 export const T1: Stat[] = ['damage', 'heal', 'shield']
 export const T2: Stat[] = ['burn', 'poison', 'regen']
 /** A default stat path: T1 and T2 double per tier. */
-const statAt = (n: Num, step: number) => (typeof n === 'number' ? n * 2 ** step : at(n, step))
+export const statAt = (n: Num, step: number) => (typeof n === 'number' ? n * 2 ** step : at(n, step))
 
 // ---------------------------------------------------------------- cards
 

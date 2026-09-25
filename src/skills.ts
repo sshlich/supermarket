@@ -68,6 +68,28 @@ export const SKILLS = {
     auras: [{ stat: 'lifesteal', add: { val: 'bonus' }, targets: { pick: 'mine', where: { tag: 'Weapon' } } }],
     art: { bg: ['#8a1a3a', '#2a0610'], icons: ['fangs'] },
   },
+  // Run effects on skills.
+  goldRush: {
+    name: 'Gold Rush', tier: 'silver', tags: [],
+    stats: {}, vals: { gold: 1 },
+    text: ['When one of your items crits, gain [gold] <Gold>'],
+    abilities: [{ when: { on: 'crit' }, do: [{ do: 'gold', amount: { val: 'gold' } }] }],
+    art: { bg: ['#9a7a1a', '#2e2406'], icons: ['gold-bar'] },
+  },
+  veteran: {
+    name: 'Veteran', tier: 'bronze', tags: [],
+    stats: {}, vals: { gain: grows(2) },
+    text: ['When you win a fight, your leftmost item permanently gains +[damage gain] <Damage>'],
+    abilities: [{ when: { on: 'win' }, do: [{ do: 'grow', stat: 'damage', add: { val: 'gain' }, targets: { pick: 'leftmost' } }] }],
+    art: { bg: ['#6a4a2a', '#20140a'], icons: ['medal'] },
+  },
+  haggler: {
+    name: 'Haggler', tier: 'bronze', tags: [],
+    stats: {}, vals: { gold: 1 },
+    text: ['When you sell an item, gain [gold] <Gold>'],
+    abilities: [{ when: { on: 'sell' }, do: [{ do: 'gold', amount: { val: 'gold' } }] }],
+    art: { bg: ['#4a6a4a', '#142014'], icons: ['shaking-hands'] },
+  },
 } satisfies Record<string, SkillSpec>
 
 export type SkillKey = keyof typeof SKILLS

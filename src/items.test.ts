@@ -2,9 +2,10 @@ import assert from 'node:assert/strict'
 import { existsSync } from 'node:fs'
 import { iconName, MAX_ICONS } from './art.ts'
 import { enchantRule, ENCHANT_KEYS } from './enchant.ts'
-import { canEnchant, ITEM_KEYS, itemAt, ITEMS } from './items.ts'
+import { sellPrice } from './economy.ts'
+import { canEnchant, ITEM_KEYS, itemAt, ITEMS, transformed, type ItemKey, type ItemSpec } from './items.ts'
 import { SKILL_KEYS, skillAt, SKILLS } from './skills.ts'
-import { at, grows, nextTier, steps, tiers } from './tiers.ts'
+import { at, grows, nextTier, reachable, steps, tiers } from './tiers.ts'
 
 // ---------------------------------------------------------------- upgrade paths
 
@@ -111,6 +112,50 @@ assert.equal(ench('mirrorShield', 'shielded').enchant, undefined)
 
 // Every item can take at least one enchantment, or it's a passive with nothing to build on.
 for (const k of ITEM_KEYS) assert.ok(ENCHANT_KEYS.some(e => canEnchant(k, e)) || !ITEMS[k].abilities.length || !('cooldown' in ITEMS[k]), k)
+
+// Radiant: immune to Freeze, Slow and Destroy, on anything.
+assert.deepEqual(itemAt('echoBell', undefined, 'radiant').immune, ['freeze', 'slow', 'destroy'])
+
+// ---------------------------------------------------------------- run state
+
+// Permanent gains add flat on top of the tier (they don't double with it); value goes on the sell price.
+assert.equal(itemAt('trophyAxe', 'bronze', undefined, { perm: { damage: 8 } }).stats.damage, 20)
+assert.equal(itemAt('trophyAxe', 'silver', undefined, { perm: { damage: 8 } }).stats.damage, 32)
+assert.equal(sellPrice(itemAt('piggyBank', undefined, undefined, { perm: { value: 3 } })), 1 + 3)
+// An enchantment sees what the item has grown into: Obsidian doubles 12 + 8.
+assert.equal(itemAt('trophyAxe', 'bronze', 'obsidian', { perm: { damage: 8 } }).stats.damage, 40)
+
+// Quests: a counting ability until done, then the reward is part of the item.
+{
+  const open = itemAt('squireSword', 'bronze', undefined, { progress: 3 })
+  assert.equal(open.quest!.goal, 15)
+  assert.equal(open.progress, 3)
+  assert.ok(open.abilities.some(a => a.do.some(x => x.do === 'progress')))
+  assert.equal(open.multicast, undefined)
+  const done = itemAt('squireSword', 'bronze', undefined, { done: true })
+  assert.equal(done.multicast, 2)
+  assert.ok(!done.abilities.some(a => a.do.some(x => x.do === 'progress')))
+  assert.ok(done.text.includes('<Multicast>: [multicast 2]'))
+}
+// Upgrade and transform rewards happen once: their text doesn't stay on the item.
+assert.ok(!itemAt('wornCompass', 'bronze', undefined, { done: true }).text.includes('Goes up a tier'))
+// Quest transforms name real items of the same size.
+for (const k of ITEM_KEYS) {
+  const into = (ITEMS[k] as ItemSpec).quest?.reward.transform
+  if (!into) continue
+  assert.ok(into in ITEMS, into)
+  assert.equal(ITEMS[into as ItemKey].size, ITEMS[k].size, into)
+}
+
+// Transform: same size, the same tier if the new item can be it, the enchantment if it can take it.
+{
+  const t = transformed(itemAt('rustBlade', 'gold', 'shielded'), undefined, () => 0.3)!
+  assert.equal(t.size, 1)
+  assert.notEqual(t.key, 'rustBlade')
+  assert.equal(t.tier, reachable(ITEMS[t.key].tier).includes('gold') ? 'gold' : ITEMS[t.key].tier)
+  assert.equal(t.enchant, canEnchant(t.key, 'shielded') ? 'shielded' : undefined)
+  assert.equal(transformed(itemAt('strangeEgg'), 'brassBeetle', Math.random)!.tier, 'silver') // a bronze egg; beetles start at silver
+}
 
 // ---------------------------------------------------------------- skills
 

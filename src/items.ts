@@ -1,13 +1,49 @@
 import type { Size } from './board.ts'
-import type { Ability, Action } from './engine/combat.ts'
+import type { Ability, Action, Aura, GrowStat, Immunity, Trigger } from './engine/combat.ts'
 import { enchantRule, type Enchant } from './enchant.ts'
-import { at, cardAt, grows, pathsOf, reachable, stepOf, steps, tiers, type CardBase, type Num, type Resolved, type Tier } from './tiers.ts'
+import { at, cardAt, grows, pathsOf, reachable, statAt, stepOf, steps, tiers, type CardBase, type Num, type Resolved, type Stat, type Tier } from './tiers.ts'
 
 interface ItemBase<N> extends CardBase<N> {
   size: Size
   cooldown?: N // seconds; none = passive
   multicast?: N
   ammo?: N
+  immune?: Immunity[]
+  quest?: Quest<N>
+}
+
+/**
+ * A quest: every time `on` happens (in a fight or between fights; `stash` counts it from the stash too),
+ * progress goes up by one. At `goal` it's done, once: the reward joins the item for good.
+ */
+export interface Quest<N> {
+  on: Trigger
+  goal: N
+  text: string // what to do; {goal} reads the goal
+  stash?: boolean
+  reward: QuestReward<N>
+}
+/**
+ * Stats add to the item's, vals and multicast/crit replace, abilities/auras and text join it for good.
+ * Or it upgrades, or becomes another item (then `text` only describes the reward).
+ */
+export interface QuestReward<N> {
+  text: string[]
+  stats?: Partial<Record<Stat, N>>
+  vals?: Record<string, N>
+  multicast?: N
+  crit?: N
+  abilities?: Ability[]
+  auras?: Aura[]
+  upgrade?: boolean // goes up a tier
+  transform?: string // an item key: becomes that item, same size (keeps its tier and enchantment when it can)
+}
+
+/** What an item picks up during a run, on top of its tier and enchantment. */
+export interface RunState {
+  perm?: Partial<Record<GrowStat, number>> // permanent gains
+  progress?: number // quest progress
+  done?: boolean // quest completed
 }
 
 /** An item as written below: numbers may be upgrade paths (see tiers.ts). */
@@ -19,11 +55,15 @@ export interface ItemSpec extends ItemBase<Num> {
   enchants?: Partial<Record<Enchant, false | ((def: ItemDef) => ItemDef | null)>>
 }
 
-/** An item at one tier (and maybe enchanted): plain numbers, what the engine and the card view use. */
+/** An item at one tier (and maybe enchanted, with its run state): plain numbers, what the engine and the card view use. */
 export interface ItemDef extends ItemBase<number>, Resolved {
   key: ItemKey
   enchant?: Enchant
   enchantText?: string[] // what the enchantment added, for the tooltip
+  value: number // sell value on top of the price (grown)
+  perm: Partial<Record<GrowStat, number>> // permanent gains, for the tooltip
+  progress: number
+  done: boolean
 }
 
 /** The common case: when this item is used, do these. */
@@ -259,6 +299,125 @@ export const ITEMS = {
     abilities: [{ when: { on: 'itemUsed', who: { pick: 'neighbors' } }, do: [{ do: 'charge', seconds: { val: 'charge' }, targets: { pick: 'source' } }] }],
     art: { bg: ['#9a8a4a', '#2e2812'], icons: ['ringing-bell'] },
   },
+
+  // --- Test set: run effects, quests, destroy/repair, transform, cleanse, multipliers ---
+
+  // Permanent growth after a win.
+  trophyAxe: {
+    name: 'Trophy Axe', size: 2, tier: 'bronze', tags: ['Weapon'], cooldown: 6,
+    stats: { damage: 12 }, vals: { gain: grows(4) },
+    text: ['Deal [damage] <Damage>', 'When you win a fight, this permanently gains +[damage gain] <Damage>'],
+    abilities: [onUse({ do: 'damage' }), { when: { on: 'win' }, do: [{ do: 'grow', stat: 'damage', add: { val: 'gain' }, targets: { pick: 'self' } }] }],
+    art: { bg: ['#8a5a2a', '#2a1a0a'], icons: ['battle-axe', { icon: 'laurel-crown', color: '#f2c64e' }] },
+  },
+  // Value growth each day, working from the stash.
+  piggyBank: {
+    name: 'Piggy Bank', size: 1, tier: 'bronze', tags: ['Tool'],
+    stats: {}, vals: { gain: grows(1) },
+    text: ['At the start of each day, this gains [value gain] <Value>', 'Works from your stash'],
+    abilities: [{ when: { on: 'dayStart' }, stash: true, do: [{ do: 'grow', stat: 'value', add: { val: 'gain' }, targets: { pick: 'self' } }] }],
+    art: { bg: ['#b06a8a', '#3a1a2a'], icons: ['piggy-bank'] },
+  },
+  // Permanent growth during a fight, on another item.
+  bloodstone: {
+    name: 'Bloodstone', size: 1, tier: 'silver', tags: ['Relic'],
+    stats: {},
+    text: ['When you use an adjacent Weapon, it permanently gains +[damage 1] <Damage>'],
+    abilities: [{ when: { on: 'itemUsed', who: { pick: 'neighbors', where: { tag: 'Weapon' } } }, do: [{ do: 'grow', stat: 'damage', add: 1, targets: { pick: 'source' } }] }],
+    art: { bg: ['#7a1a2a', '#22060c'], icons: ['crystal-growth', { icon: 'drop', color: 'damage' }] },
+  },
+  // Sell trigger, from the stash too.
+  coinPurse: {
+    name: 'Coin Purse', size: 1, tier: 'bronze', tags: ['Tool'],
+    stats: {}, vals: { gain: grows(1) },
+    text: ['When you sell an item, this gains [value gain] <Value>', 'Works from your stash'],
+    abilities: [{ when: { on: 'sell' }, stash: true, do: [{ do: 'grow', stat: 'value', add: { val: 'gain' }, targets: { pick: 'self' } }] }],
+    art: { bg: ['#8a6a3a', '#2a1e0c'], icons: ['swap-bag', { icon: 'two-coins', color: 'gold' }] },
+  },
+  // Buy trigger filtered by what was bought; gold.
+  luckyCoin: {
+    name: 'Lucky Coin', size: 1, tier: 'silver', tags: ['Relic'],
+    stats: {}, vals: { gold: 1 },
+    text: ['When you buy a Weapon, gain [gold] <Gold>'],
+    abilities: [{ when: { on: 'buy', what: { tag: 'Weapon' } }, do: [{ do: 'gold', amount: { val: 'gold' } }] }],
+    art: { bg: ['#9a8a3a', '#2e2810'], icons: ['coinflip'] },
+  },
+  // Quest counted in fights, rewarded with a stat.
+  squireSword: {
+    name: 'Squire Sword', size: 2, tier: 'bronze', tags: ['Weapon'], cooldown: 5,
+    stats: { damage: 10 },
+    text: ['Deal [damage] <Damage>'],
+    quest: { on: { on: 'use' }, goal: 15, text: 'Use this {goal} times', reward: { text: ['<Multicast>: [multicast 2]'], multicast: 2 } },
+    abilities: [onUse({ do: 'damage' })],
+    art: { bg: ['#5a6a7a', '#1a2028'], icons: ['broadsword', { icon: 'scroll-unfurled', color: '#e8d8a8' }] },
+  },
+  // Quest counted between fights, rewarded with an upgrade.
+  wornCompass: {
+    name: 'Worn Compass', size: 1, tier: 'bronze', tags: ['Tool'], cooldown: 5,
+    stats: {},
+    text: ['<Charge> adjacent items [charge 1] second(s)'],
+    quest: { on: { on: 'win' }, goal: 2, text: 'Win {goal} fights', reward: { text: ['Goes up a tier'], upgrade: true } },
+    abilities: [onUse({ do: 'charge', seconds: 1, targets: { pick: 'neighbors', where: { has: 'cooldown' } } })],
+    art: { bg: ['#6a5a3a', '#201a10'], icons: ['compass'] },
+  },
+  // Quest from the stash, rewarded by turning into another item.
+  strangeEgg: {
+    name: 'Strange Egg', size: 2, tier: 'bronze', tags: ['Friend'],
+    stats: {},
+    text: ['Something is moving inside'],
+    quest: { on: { on: 'dayStart' }, goal: 2, stash: true, text: 'Keep it for {goal} days (works from your stash)', reward: { text: ['Hatches into a Brass Beetle'], transform: 'brassBeetle' } },
+    abilities: [],
+    art: { bg: ['#6a8a5a', '#1a2a14'], icons: ['egg-clutch'] },
+  },
+  // Destroy.
+  wreckingBall: {
+    name: 'Wrecking Ball', size: 3, tier: 'silver', tags: ['Weapon', 'Tool'], cooldown: 9,
+    stats: { damage: 20 },
+    text: ['Deal [damage] <Damage>', '<Destroy> an enemy Small item'],
+    abilities: [onUse({ do: 'damage' }, { do: 'destroy', targets: { pick: 'enemy', where: { size: 1 }, random: 1 } })],
+    art: { bg: ['#5a5a5a', '#1a1a1a'], icons: ['wrecking-ball'] },
+  },
+  // Repair.
+  repairKit: {
+    name: 'Repair Kit', size: 1, tier: 'bronze', tags: ['Tool'], cooldown: 5,
+    stats: { heal: 10 },
+    text: ['<Repair> one of your destroyed items', '<Heal> [heal]'],
+    abilities: [onUse({ do: 'repair', targets: { pick: 'mine', destroyed: true, random: 1 } }, { do: 'heal' })],
+    art: { bg: ['#3a7a6a', '#0e2420'], icons: ['toolbox'] },
+  },
+  // Transform for the fight.
+  trickMirror: {
+    name: 'Trick Mirror', size: 1, tier: 'silver', tags: ['Tech'], cooldown: 6,
+    stats: {},
+    text: ['<Transform> the item to the right into a random item of its size, for this fight'],
+    abilities: [onUse({ do: 'transform', targets: { pick: 'right' } })],
+    art: { bg: ['#6a3a8a', '#1e1028'], icons: ['mirror-mirror'] },
+  },
+  // Cleanse, on you and your items.
+  antidote: {
+    name: 'Antidote', size: 1, tier: 'bronze', tags: ['Potion'], cooldown: 4,
+    stats: { heal: 5 },
+    text: ['<Cleanse> your Burn and Poison', 'Your items shake off <Slow> and <Freeze>', '<Heal> [heal]'],
+    abilities: [onUse({ do: 'cleanse', what: ['burn', 'poison', 'slow', 'freeze'] }, { do: 'heal' })],
+    art: { bg: ['#4a8a8a', '#102626'], icons: ['potion-ball', { icon: 'sparkles', color: 'cleanse' }] },
+  },
+  // A multiplying aura.
+  warHorn: {
+    name: 'War Horn', size: 2, tier: 'gold', tags: ['Instrument'],
+    stats: {},
+    text: ['Your Weapons deal double <Damage>'],
+    abilities: [],
+    auras: [{ stat: 'damage', mul: 2, targets: { pick: 'mine', where: { tag: 'Weapon' } } }],
+    art: { bg: ['#8a6a2a', '#2a1e0a'], icons: ['horn-internal'] },
+  },
+  // A multiplying modification for the fight.
+  focusLens: {
+    name: 'Focus Lens', size: 1, tier: 'silver', tags: ['Tech'], cooldown: 7,
+    stats: {},
+    text: ['Double the <Damage> of the item to the right, for this fight'],
+    abilities: [onUse({ do: 'modify', stat: 'damage', mul: 2, targets: { pick: 'right' } })],
+    art: { bg: ['#3a6a9a', '#0e1e2e'], icons: ['magnifying-glass'] },
+  },
 } satisfies Record<string, ItemSpec>
 
 export type ItemKey = keyof typeof ITEMS
@@ -266,13 +425,44 @@ export const ITEM_KEYS = Object.keys(ITEMS) as ItemKey[]
 
 const spec = (key: ItemKey): ItemSpec => ITEMS[key]
 
-/** One tier of an item, before enchanting. */
-function resolve(key: ItemKey, tier: Tier): ItemDef {
-  const { enchants: _, ...s } = spec(key)
+/** One tier of an item with its quest state, before enchanting and permanent gains. */
+function resolve(key: ItemKey, tier: Tier, run: RunState = {}): ItemDef {
+  const { enchants: _, quest, ...s } = spec(key)
   const step = stepOf(s.tier, tier)
-  const def: ItemDef = { ...cardAt(s, tier), key, start: s.tier, size: s.size, paths: {} }
+  const def: ItemDef = { ...cardAt(s, tier), key, start: s.tier, size: s.size, paths: {}, value: 0, perm: {}, progress: run.progress ?? 0, done: !!run.done }
   for (const k of ['cooldown', 'multicast', 'ammo'] as const) if (s[k] !== undefined) def[k] = at(s[k], step)
+  if (!quest) return def
+  const { stats, vals, multicast, crit, ...r } = quest.reward
+  const reward: QuestReward<number> = { ...r, stats: stats && mapNums(stats, n => statAt(n, step)), vals: vals && mapNums(vals, n => at(n, step)) }
+  if (multicast !== undefined) reward.multicast = at(multicast, step)
+  if (crit !== undefined) reward.crit = at(crit, step)
+  def.quest = { ...quest, goal: at(quest.goal, step), reward }
+  if (!def.done) {
+    // Counting: a plain ability, so fights and run-effects.ts count it like any other.
+    def.abilities = [...def.abilities, { when: quest.on, stash: quest.stash, do: [{ do: 'progress' }] }]
+    return def
+  }
+  for (const [k, v] of Object.entries(reward.stats ?? {})) def.stats[k as Stat] = (def.stats[k as Stat] ?? 0) + v
+  def.vals = { ...def.vals, ...reward.vals }
+  if (reward.multicast !== undefined) def.multicast = reward.multicast
+  if (reward.crit !== undefined) def.crit = reward.crit
+  def.abilities = [...def.abilities, ...(reward.abilities ?? [])]
+  def.auras = [...(def.auras ?? []), ...(reward.auras ?? [])]
+  if (!reward.upgrade && !reward.transform) def.text = [...def.text, ...reward.text] // those rewards happen once; nothing to keep saying
   return def
+}
+
+const mapNums = <N, M>(o: Record<string, N>, f: (n: N) => M) => Object.fromEntries(Object.entries(o).map(([k, v]) => [k, f(v)])) as Record<string, M>
+
+/** Permanent gains: stats and crit/lifesteal add up, value goes on the sell price. */
+function grown(def: ItemDef, perm: RunState['perm'] = {}): ItemDef {
+  const out = { ...def, stats: { ...def.stats }, perm }
+  for (const [k, v] of Object.entries(perm) as [GrowStat, number][]) {
+    if (k === 'value') out.value += v
+    else if (k === 'crit' || k === 'lifesteal') out[k] = (out[k] ?? 0) + v
+    else out.stats[k] = (out.stats[k] ?? 0) + v
+  }
+  return out
 }
 
 /** `def` with `e`: the item's own override if it has one, else the rule. Null if it can't take it. */
@@ -283,15 +473,31 @@ function enchanted(def: ItemDef, e: Enchant): ItemDef | null {
   return out && { ...out, enchant: e }
 }
 
-/** An item at `tier` (its starting tier by default), optionally enchanted, with its upgrade paths filled in. */
-export function itemAt(key: ItemKey, tier: Tier = spec(key).tier, enchant?: Enchant): ItemDef {
+/**
+ * An item at `tier` (its starting tier by default), optionally enchanted, with what it picked up in the run,
+ * and its upgrade paths filled in. Order: tier, quest reward, permanent gains, then the enchantment (so an
+ * enchantment doubles what the item has grown into).
+ */
+export function itemAt(key: ItemKey, tier: Tier = spec(key).tier, enchant?: Enchant, run: RunState = {}): ItemDef {
   const one = (t: Tier) => {
-    const d = resolve(key, t)
+    const d = grown(resolve(key, t, run), run.perm)
     return (enchant && enchanted(d, enchant)) || d
   }
   const def = one(tier)
   def.paths = pathsOf(reachable(def.start).map(one))
   return def
+}
+
+/**
+ * `def` turned into `into`, or into a random item of the same size (never a Legendary): the same tier when
+ * the new item can be it (else its starting tier), and the enchantment if it can take it. Run state stays behind.
+ */
+export function transformed(def: ItemDef, into: ItemKey | undefined, random: () => number): ItemDef | null {
+  const pool = into ? [into] : ITEM_KEYS.filter(k => k !== def.key && ITEMS[k].size === def.size && ITEMS[k].tier !== 'legendary')
+  if (!pool.length) return null
+  const key = pool[Math.floor(random() * pool.length)]
+  const tier = reachable(ITEMS[key].tier).includes(def.tier) ? def.tier : ITEMS[key].tier
+  return itemAt(key, tier, def.enchant && canEnchant(key, def.enchant) ? def.enchant : undefined)
 }
 
 /** Whether `key` can take enchantment `e` (checked at its starting tier). */

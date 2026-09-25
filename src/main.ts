@@ -3,7 +3,9 @@ import { glass, sheen, type Effect } from './card-effects.ts'
 import { cardFace, cardVars, hideTooltip, itemInfo, mountTooltip, showInfo, showTooltip, skillFace, skillInfo } from './card-view.ts'
 import { bestFit, exchange, firstFree, place, SOCKETS, swap, under, type Item, type Row, type Size } from './board.ts'
 import { buyPrice, REROLL_COST, sellPrice, spread, START_GOLD, START_INCOME } from './economy.ts'
-import { canEnchant, ITEM_KEYS, itemAt, ITEMS, type ItemDef, type ItemKey } from './items.ts'
+import { canEnchant, ITEM_KEYS, itemAt, ITEMS, transformed, type ItemDef, type ItemKey, type RunState } from './items.ts'
+import { fightOutcomes, runTrigger, type Outcome, type RunCard, type RunEvent } from './run-effects.ts'
+import { KEYWORDS, type Keyword } from './keywords.ts'
 import { ENCHANT_KEYS, ENCHANTS, type Enchant } from './enchant.ts'
 import { SKILL_KEYS, skillAt, SKILLS, type SkillDef, type SkillKey } from './skills.ts'
 import { nextTier, TIER_ORDER, tierName, type Tier } from './tiers.ts'
@@ -11,6 +13,7 @@ import { choose, type Option } from './choice.ts'
 import { hourOptions, loadout, monsterOptions, rollEnchants, skillPick, type EventContext, type GameEvent, type Loadout, type Merchant, type Reward as EventReward, type SkillPick } from './encounters.ts'
 import { boardSockets, HOURS, hourKind, levelRewards, maxHp, prestigeLoss, rival, START_PRESTIGE, WINS_TO_WIN, XP_PER_HOUR, XP_PER_LEVEL, type Reward } from './run.ts'
 import { play } from './playback.ts'
+import type { UnitDef } from './engine/combat.ts'
 
 // Test flags, e.g. ?gold=500&level=4&items=windupKey,rustBlade:gold:shielded&skills=quickHands:silver
 // gold and level set the start; items (key[:tier[:enchant]]) replace the starting items; skills (key[:tier]) are learned.
@@ -61,7 +64,8 @@ interface Card {
   key: ItemKey
   tier: Tier
   enchant?: Enchant
-  def: ItemDef // at the card's current tier, with its enchantment
+  def: ItemDef // at the card's current tier, with its enchantment and run state
+  run: Required<RunState> // permanent gains and quest progress
   item: Item
   lane: Lane
   el: HTMLElement
@@ -157,7 +161,7 @@ function makeCard(lane: Lane, key: ItemKey, pos: number, tier: Tier = ITEMS[key]
   const el = document.createElement('div')
   el.className = 'card'
   scene.append(el)
-  const c: Card = { key, tier, enchant, def, item, lane, el, pose: { x: 0, y: 0, s: 1 }, tween: null, tilt: { x: 0, y: 0, tx: 0, ty: 0 }, hovered: false, nudged: false, flying: false, effects: [] }
+  const c: Card = { key, tier, enchant, def, run: { perm: {}, progress: 0, done: false }, item, lane, el, pose: { x: 0, y: 0, s: 1 }, tween: null, tilt: { x: 0, y: 0, tx: 0, ty: 0 }, hovered: false, nudged: false, flying: false, effects: [] }
   renderFace(c)
   c.pose = rest(c)
   cards.push(c)
@@ -166,11 +170,11 @@ function makeCard(lane: Lane, key: ItemKey, pos: number, tier: Tier = ITEMS[key]
   return c
 }
 
-/** (Re)draw the card face for its current def: tier frame, gems, glass and sheen. */
-function renderFace(c: Card) {
+/** (Re)draw the card face for its current def (or another one, while it's transformed in a fight). */
+function renderFace(c: Card, def = c.def) {
   c.el.style.removeProperty('--ench')
-  for (const kv of cardVars(c.def).split(';')) c.el.style.setProperty(...(kv.split(':') as [string, string]))
-  c.el.innerHTML = cardFace(c.def)
+  for (const kv of cardVars(def).split(';')) c.el.style.setProperty(...(kv.split(':') as [string, string]))
+  c.el.innerHTML = cardFace(def)
   const pane = glass(c.el)
   c.el.querySelector('.art')!.after(pane.el) // glass sits over the art, under the frame and badges
   c.effects = [pane, sheen(pane.el)]
@@ -186,15 +190,20 @@ const upgradeTarget = (key: ItemKey) => mine().find(o => o.key === key && nextTi
 function remake(c: Card, tier: Tier, enchant: Enchant | undefined, color: string) {
   c.tier = tier
   c.enchant = enchant
-  c.def = itemAt(c.key, tier, enchant)
-  renderFace(c)
-  setOwner(c)
+  refresh(c)
   c.el.animate([{ scale: '1' }, { scale: '1.18' }, { scale: '1' }], { duration: 420, easing: 'ease-out' })
   flash(c.el, color)
   refreshTop()
 }
 
-/** One tier up: new stats, frame and value. The enchantment comes along and grows with it. */
+/** Recompute a card from its key, tier, enchantment and run state, and redraw it. */
+function refresh(c: Card) {
+  c.def = itemAt(c.key, c.tier, c.enchant, c.run)
+  renderFace(c)
+  setOwner(c)
+}
+
+/** One tier up: new stats, frame and value. The enchantment and anything it has grown come along. */
 function upgrade(c: Card) {
   remake(c, nextTier(c.tier)!, c.enchant, 'var(--tier)')
   toast(`${c.def.name} upgraded to ${tierName(c.tier)}!`)
@@ -462,19 +471,25 @@ async function fight({ name, hp, items, skills = [], color }: Foe) {
     items: cards.filter(c => c.lane === l).sort((a, b) => a.item.pos - b.item.pos).map(c => ({ id: c.item.id, def: c.def })),
     skills: skills.map(s => ({ id: s.id, def: s.def })),
   })
-  const winner = await play(setup('You', maxHp(level), board, mySkills), setup(name, hp, opponent, theirSkills), (Math.random() * 2 ** 31) | 0, {
+  const stage = {
     scene,
-    cardEl: id => cards.find(c => c.item.id === id)!.el,
-    skillEl: id => [...mySkills, ...theirSkills].find(s => s.id === id)?.el,
-    hp: [myHp, oppHp],
-    portrait: [myPortrait, topPortrait],
+    cardEl: (id: string) => cards.find(c => c.item.id === id)!.el,
+    skillEl: (id: string) => [...mySkills, ...theirSkills].find(s => s.id === id)?.el,
+    transformed: (id: string, def: UnitDef) => renderFace(cards.find(c => c.item.id === id)!, def as ItemDef),
+    hp: [myHp, oppHp] as [HTMLElement, HTMLElement],
+    portrait: [myPortrait, topPortrait] as [HTMLElement, HTMLElement],
     hovering: () => cards.some(c => c.hovered),
     speed: () => SPEEDS[+speedInput.value],
-  })
+  }
+  const transform = (def: UnitDef, into: string | undefined, random: () => number) => transformed(def as ItemDef, into as ItemKey | undefined, random)
+  const { winner, events } = await play(setup('You', maxHp(level), board, mySkills), setup(name, hp, opponent, theirSkills), (Math.random() * 2 ** 31) | 0, stage, { transform })
   resetBar(myHp, maxHp(level)) // health doesn't carry over: everyone starts each fight full, like the live game
   for (const s of theirSkills) s.el.remove()
   theirSkills = []
+  if (events.some(e => e.kind === 'transform')) for (const c of cards.filter(c => c.lane === board)) renderFace(c) // back from fight-only transforms
   fighting = false
+  applyOutcomes(fightOutcomes(events)) // what the fight did to the run: growth, gold, quest progress...
+  react({ on: winner === 0 ? 'win' : 'lose' })
   return winner
 }
 
@@ -514,7 +529,7 @@ async function enchantPick(e: Enchant) {
   const eligible = mine().filter(c => canEnchantCard(c, e))
   if (!eligible.length) return
   setTop(ENCHANTS[e].name, [ENCHANTS[e].color, '#1a1420'])
-  const preview = (c: Card) => itemAt(c.key, c.tier, e)
+  const preview = (c: Card) => itemAt(c.key, c.tier, e, c.run)
   enchantCard(eligible[await pick(eligible.map(c => ({ info: itemInfo(preview(c)), item: preview(c) })))], e)
 }
 
@@ -597,8 +612,93 @@ async function gainXp(n: number) {
     renderLevel()
     flash(myPortrait, '#f0c24a')
     toast(`Level ${level}! +50 health, bigger board`)
+    react({ on: 'levelUp' })
     await levelUp()
   }
+}
+
+// --- Run effects: what your cards do between fights, and what fights leave behind (run-effects.ts). ---
+
+/** Your cards as run effects see them: the board in order, the stash, your skills. */
+function runCards(): RunCard[] {
+  const inOrder = (l: Lane) => cards.filter(c => c.lane === l).sort((a, b) => a.item.pos - b.item.pos)
+  return [
+    ...inOrder(board).map(c => ({ id: c.item.id, def: c.def, place: 'board' as const })),
+    ...inOrder(stash).map(c => ({ id: c.item.id, def: c.def, place: 'stash' as const })),
+    ...mySkills.map(s => ({ id: s.id, def: s.def, place: 'skill' as const })),
+  ]
+}
+
+/** Something happened between fights: your cards react. */
+function react(event: RunEvent) {
+  applyOutcomes(runTrigger(event, runCards(), Math.random))
+}
+
+const fmtNum = (n: number) => String(Math.round(n * 100) / 100)
+
+function applyOutcomes(list: Outcome[]) {
+  for (const o of list) {
+    if (o.kind === 'gold') {
+      gold += o.amount
+      renderGold()
+      flash(myGold, '#f0c24a')
+      floatOver(myGold, `+${fmtNum(o.amount)}g`, KEYWORDS.gold.color)
+      continue
+    }
+    const c = cards.find(k => k.item.id === o.card && k.lane.mine)
+    if (!c) continue // a skill, or an item that's gone (just sold)
+    if (o.kind === 'grow') {
+      c.run.perm[o.stat] = (c.run.perm[o.stat] ?? 0) + o.amount
+      refresh(c)
+      floatOver(c, `+${fmtNum(o.amount)}`, KEYWORDS[o.stat as Keyword].color)
+    } else if (o.kind === 'progress') {
+      if (!c.def.quest || c.run.done) continue
+      c.run.progress += o.amount
+      if (c.run.progress >= c.def.quest.goal) completeQuest(c)
+      else refresh(c)
+    } else if (o.kind === 'upgrade') {
+      if (nextTier(c.tier)) upgrade(c)
+    } else {
+      transformCard(c, o.into as ItemKey | undefined)
+    }
+  }
+}
+
+/** A quest's reward: the item keeps it for good, or goes up a tier, or turns into another item. */
+function completeQuest(c: Card) {
+  const reward = c.def.quest!.reward
+  const name = c.def.name
+  c.run.done = true
+  if (reward.transform) transformCard(c, reward.transform as ItemKey)
+  else if (reward.upgrade && nextTier(c.tier)) upgrade(c)
+  else remake(c, c.tier, c.enchant, '#f5d77a')
+  toast(`Quest complete: ${name}!`)
+}
+
+/** Permanently turn a card into another item of its size; tier and enchantment carry over when they can, run state doesn't. */
+function transformCard(c: Card, into?: ItemKey) {
+  const next = transformed(c.def, into, Math.random)
+  if (!next || next.size !== c.item.size) return
+  const name = c.def.name
+  c.key = next.key
+  c.run = { perm: {}, progress: 0, done: false }
+  remake(c, next.tier, next.enchant, KEYWORDS.transform.color)
+  toast(`${name} became ${c.def.name}!`)
+}
+
+/** A number rising off a card (off the chest, if the card is in the closed stash) or a panel. */
+function floatOver(target: Card | HTMLElement, text: string, color: string) {
+  const el = target instanceof HTMLElement ? target : target.el.classList.contains('hidden') ? toy : target.el
+  const r = el.getBoundingClientRect()
+  const s = scene.getBoundingClientRect()
+  const f = document.createElement('div')
+  f.className = 'float'
+  f.textContent = text
+  f.style.color = color
+  f.style.left = `${r.left + r.width / 2 - s.left}px`
+  f.style.top = `${r.top + r.height / 3 - s.top}px`
+  scene.append(f)
+  f.addEventListener('animationend', () => f.remove())
 }
 
 const LEVEL_COLOR: [string, string] = ['#c8a040', '#3c2c0c']
@@ -639,7 +739,7 @@ async function levelUp() {
     const some = [...upgradable].sort(() => Math.random() - 0.5).slice(0, 4)
     const option = (x: Card | Skill): Option => {
       if ('item' in x) {
-        const next = itemAt(x.key, nextTier(x.tier)!, x.enchant)
+        const next = itemAt(x.key, nextTier(x.tier)!, x.enchant, x.run)
         return { info: itemInfo(next), item: next }
       }
       const next = skillAt(x.key, nextTier(x.def.tier)!)
@@ -701,6 +801,7 @@ async function runLoop() {
     renderGold()
     flash(myGold, '#f0c24a')
     toast(`Day ${day}: +${income} gold`)
+    react({ on: 'dayStart' })
   }
 }
 
@@ -842,6 +943,7 @@ function drop() {
     gold += sellPrice(c.def)
     renderGold()
     flash(myGold, '#f0c24a')
+    react({ on: 'sell', card: c.item.id }) // before it goes: sell triggers can look at it
     removeCard(c)
   } else if (overToy) {
     if (from !== stash) stashIt(c)
@@ -882,13 +984,15 @@ function stashIt(c: Card) {
   }
   const fit = bestFit(stash.row, c.item)
   if (!fit) return toast('No room in your stash')
-  if (c.lane.shop) {
+  const bought = c.lane.shop
+  if (bought) {
     gold -= buyPrice(c.def)
     renderGold()
   }
   moveLane(c, stash)
   apply(stash, fit)
   setOwner(c)
+  if (bought) react({ on: 'buy', card: c.item.id })
 }
 
 const CHEST = { x: X0 + PANEL_W / 2, y: PLAYER_STRIP + STRIP_H / 2 }
@@ -958,6 +1062,7 @@ function buy(c: Card, dest: Lane, at: number) {
     apply(stash, swapped.from)
   }
   setOwner(c)
+  react({ on: 'buy', card: c.item.id })
 }
 
 /** Buying something you already own upgrades your copy instead (live-game rule). */
@@ -968,6 +1073,7 @@ function buyUpgrade(offer: Card) {
   renderGold()
   removeCard(offer)
   upgrade(owned)
+  react({ on: 'buy', card: owned.item.id })
   return true
 }
 
@@ -995,6 +1101,7 @@ function quickBuy(c: Card) {
   if (c.lane === stash && !stashOpen) flyIntoChest(c)
   else tweenTo(c, rest(c), MOVE_MS, inOutQuint)
   refreshTop()
+  react({ on: 'buy', card: c.item.id })
 }
 
 function moveLane(c: Card, l: Lane) {

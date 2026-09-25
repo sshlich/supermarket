@@ -152,3 +152,15 @@
   justify-content: space-between;
 }
 .speed .ticks span.on { color: #f0c24a; }
+
+/* Destroyed for the rest of the fight: drained of color, with a slash across it. */
+.card.destroyed .art { filter: grayscale(1) brightness(0.45); }
+.card.destroyed::before {
+  content: '';
+  position: absolute;
+  inset: 12% 8%;
+  z-index: 5;
+  pointer-events: none;
+  background: linear-gradient(62deg, transparent 46.5%, #ff5a44 47.5%, #ff9a7a 50%, #ff5a44 52.5%, transparent 53.5%);
+  filter: drop-shadow(0 0 calc(var(--u) * 0.04) #000);
+}

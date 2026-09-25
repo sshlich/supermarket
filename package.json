@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "test": "node src/board.test.ts && node src/economy.test.ts && node src/run.test.ts && node src/items.test.ts && node src/engine/combat.test.ts",
+    "test": "node src/board.test.ts && node src/economy.test.ts && node src/run.test.ts && node src/items.test.ts && node src/run-effects.test.ts && node src/engine/combat.test.ts",
     "icons": "node scripts/icons.ts"
   },
   "devDependencies": {

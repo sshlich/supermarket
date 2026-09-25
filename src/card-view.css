@@ -131,6 +131,20 @@
   border-radius: 1em;
   background: #000a;
 }
+/* Quest progress, bottom right. */
+.card .quest {
+  position: absolute;
+  right: calc(var(--u) * 0.07); /* inside the card: the next card's price tag sits just past this edge */
+  bottom: calc(var(--u) * 0.16);
+  padding: calc(var(--u) * 0.02) calc(var(--u) * 0.06);
+  border-radius: calc(var(--u) * 0.05);
+  background: linear-gradient(#f0e2b8, #b89a5a);
+  color: #2a1e0c;
+  font-weight: 900;
+  font-size: calc(var(--u) * 0.13);
+  box-shadow: 0 0 0 calc(var(--u) * 0.012) #000c;
+}
+
 .card .ammo i {
   width: calc(var(--u) * 0.075);
   height: calc(var(--u) * 0.075);

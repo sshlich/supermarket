@@ -1,4 +1,5 @@
 import type { Size } from '../board.ts'
+import { select } from './targets.ts'
 
 // ---------------------------------------------------------------- ability format
 // An item's (or skill's) abilities are trigger -> (condition) -> actions, same shape as the live game.
@@ -7,6 +8,10 @@ import type { Size } from '../board.ts'
 export type CardStat = 'cooldown' | 'damage' | 'shield' | 'heal' | 'burn' | 'poison' | 'regen' | 'crit' | 'multicast' | 'ammo' | 'lifesteal'
 export type PlayerEffect = 'damage' | 'heal' | 'shield' | 'burn' | 'poison' | 'regen'
 export type CardEffect = 'haste' | 'slow' | 'freeze' | 'charge'
+/** What an item can be immune to (Radiant). */
+export type Immunity = 'freeze' | 'slow' | 'destroy'
+/** Stats that can grow permanently: kept on the item for the rest of the run. Value raises its sell price. */
+export type GrowStat = PlayerEffect | 'crit' | 'lifesteal' | 'value'
 
 export interface Filter { tag?: string; size?: Size; has?: CardStat; not?: boolean }
 export interface Targets {
@@ -14,6 +19,7 @@ export interface Targets {
   where?: Filter
   excludeSelf?: boolean
   random?: Value // pick this many at random from the matches
+  destroyed?: boolean // pick destroyed items instead of working ones (Repair)
 }
 /** A number, one of the card's named vals (tier-resolved), a stat of another card, or a count of cards. */
 export type Value = number | { val: string; times?: number } | { stat: CardStat; of: Targets; times?: number } | { count: Targets; times?: number }
@@ -21,16 +27,31 @@ export type Action =
   | { do: PlayerEffect; amount?: Value; to?: 'me' | 'enemy' }
   | { do: CardEffect; seconds: Value; targets: Targets }
   | { do: 'reload'; targets: Targets }
-  | { do: 'modify'; stat: CardStat; add: Value; targets: Targets } // lasts for the rest of the fight
-export type Trigger =
+  | { do: 'modify'; stat: CardStat; add?: Value; mul?: number; targets: Targets } // for the rest of the fight
+  | { do: 'destroy' | 'repair'; targets: Targets } // a destroyed item stops working for the rest of the fight
+  | { do: 'cleanse'; what: ('burn' | 'poison' | 'slow' | 'freeze')[]; targets?: Targets } // Burn/Poison off you, Slow/Freeze off your items
+  | { do: 'transform'; into?: string; targets: Targets; permanent?: boolean } // into a given item, or a random one of the same size
+  // Run effects: they outlast the fight. In a fight they're logged and applied to the run afterwards
+  // (Grow also counts right away); outside fights run-effects.ts applies them directly.
+  | { do: 'grow'; stat: GrowStat; add: Value; targets: Targets }
+  | { do: 'gold'; amount: Value }
+  | { do: 'progress'; by?: Value } // this item's quest
+  | { do: 'upgrade'; targets: Targets }
+export type CombatTrigger =
   | { on: 'use' | 'fightStart' }
   | { on: 'itemUsed' | 'crit'; who?: Targets } // who defaults to any of my items
   | { on: 'performed'; effect: PlayerEffect | CardEffect; who?: Targets }
-export interface Ability { when: Trigger; if?: { count: Targets; atLeast: Value }; do: Action[] }
-export interface Aura { stat: CardStat; add: Value; targets: Targets } // recomputed every tick
+/** Between fights (run-effects.ts). Buy/sell: an item of yours matching `what` (any when omitted), or this one with `self`. */
+export type RunTrigger = { on: 'buy' | 'sell'; what?: Filter; self?: boolean } | { on: 'win' | 'lose' | 'dayStart' | 'levelUp' }
+export type Trigger = CombatTrigger | RunTrigger
+/** `stash`: this also works while the item is in your stash (run triggers; the stash doesn't fight). */
+export interface Ability { when: Trigger; if?: { count: Targets; atLeast: Value }; do: Action[]; stash?: boolean }
+/** Recomputed every tick: additive auras first, then multipliers. */
+export interface Aura { stat: CardStat; add?: Value; mul?: number; targets: Targets }
 
 /** What the engine reads from an item or skill, already resolved at its tier. Skills have no size or cooldown. */
 export interface UnitDef {
+  key?: string
   tags: string[]
   size?: Size
   cooldown?: number // seconds
@@ -40,6 +61,7 @@ export interface UnitDef {
   ammo?: number
   crit?: number
   lifesteal?: number
+  immune?: Immunity[]
   abilities: Ability[]
   auras?: Aura[]
 }
@@ -52,7 +74,9 @@ const STORM_AT = 30_000
 const MAX_T = 90_000 // draw
 const MAX_DEPTH = 32 // trigger chain guard
 
-export type EventKind = PlayerEffect | CardEffect | 'use' | 'skill' | 'reload' | 'modify' | 'end'
+export type EventKind =
+  | PlayerEffect | CardEffect | 'use' | 'skill' | 'reload' | 'modify' | 'destroy' | 'repair' | 'cleanse' | 'transform' | 'end'
+  | 'grow' | 'gold' | 'progress' | 'upgrade' // run effects, applied after the fight
 export interface FightEvent {
   t: number
   kind: EventKind
@@ -62,9 +86,14 @@ export interface FightEvent {
   amount?: number
   blocked?: number // damage absorbed by Shield
   crit?: boolean
-  stat?: CardStat
+  stat?: CardStat | GrowStat
+  into?: string // on 'transform': the new item's key
+  permanent?: boolean // on 'transform': kept after the fight
   winner?: -1 | 0 | 1 // on 'end'; -1 = draw
 }
+
+/** The host's content, for effects that need it: what an item transforms into (null: nothing fits). */
+export interface FightOptions { transform?(def: UnitDef, into: string | undefined, random: () => number): UnitDef | null }
 
 /** Items in board order. Skills listen for triggers and hold auras but are never targeted or used. */
 export interface SideSetup { name: string; hp: number; items: { id: string; def: UnitDef }[]; skills?: { id: string; def: UnitDef }[] }
@@ -82,6 +111,7 @@ export interface Unit {
   freeze: number
   ammo: number
   crit: boolean // current use crit
+  destroyed: boolean
 }
 
 export interface Side {
@@ -107,6 +137,7 @@ function statsOf(def: UnitDef): Record<CardStat, number> {
   }
 }
 
+
 /** Seeded PRNG (mulberry32), so a fight replays identically from its seed. */
 function rng(seed: number) {
   return () => {
@@ -126,14 +157,16 @@ export class Fight {
   private started = false
   private stormTicks = 0
   private depth = 0
+  private opts: FightOptions
 
-  constructor(a: SideSetup, b: SideSetup, seed = 1) {
+  constructor(a: SideSetup, b: SideSetup, seed = 1, opts: FightOptions = {}) {
     this.random = rng(seed)
+    this.opts = opts
     const side = (s: SideSetup, index: 0 | 1): Side => {
       const p: Side = { index, name: s.name, hp: s.hp, maxHp: s.hp, shield: 0, burn: 0, poison: 0, regen: 0, items: [], skills: [], foe: null! }
       const unit = ({ id, def }: { id: string; def: UnitDef }, skill: boolean): Unit => {
         const base = statsOf(def)
-        return { id, def, owner: p, skill, base, attrs: { ...base }, progress: 0, haste: 0, slow: 0, freeze: 0, ammo: base.ammo, crit: false }
+        return { id, def, owner: p, skill, base, attrs: { ...base }, progress: 0, haste: 0, slow: 0, freeze: 0, ammo: base.ammo, crit: false, destroyed: false }
       }
       p.items = s.items.map(it => unit(it, false))
       p.skills = (s.skills ?? []).map(sk => unit(sk, true))
@@ -222,7 +255,7 @@ export class Fight {
   // Frozen items don't charge. An item out of Ammo stays fully charged until reloaded (R04).
   private charge(u: Unit) {
     const cd = u.attrs.cooldown
-    if (cd <= 0 || this.winner !== null) return
+    if (cd <= 0 || u.destroyed || this.winner !== null) return
     const frozen = u.freeze > 0
     const rate = (u.haste > 0 ? 2 : 1) * (u.slow > 0 ? 0.5 : 1)
     u.haste = Math.max(0, u.haste - TICK)
@@ -255,6 +288,7 @@ export class Fight {
     if (this.depth >= MAX_DEPTH) return
     this.depth++
     for (const u of this.units()) {
+      if (u.destroyed) continue
       for (const ab of u.def.abilities) {
         const w = ab.when
         if (w.on !== on || (w.on === 'performed' && w.effect !== effect)) continue
@@ -303,7 +337,7 @@ export class Fight {
       case 'freeze':
       case 'charge': {
         const ms = this.value(a.seconds, u, src) * 1000
-        for (const t of this.resolve(a.targets, u, src)) {
+        for (const t of this.resolve(a.targets, u, src, a.do)) {
           if (a.do === 'charge') t.progress = Math.min(t.attrs.cooldown, t.progress + ms)
           else t[a.do] += ms // R03: durations stack
           this.log({ kind: a.do, side: t.owner.index, item: t.id, amount: ms, from: u.id })
@@ -319,13 +353,59 @@ export class Fight {
         }
         return
       case 'modify': {
+        const v = a.add === undefined ? 0 : this.value(a.add, u, src)
+        for (const t of this.resolve(a.targets, u, src)) {
+          const before = t.base[a.stat]
+          t.base[a.stat] = (before + v) * (a.mul ?? 1)
+          t.attrs[a.stat] += t.base[a.stat] - before
+          this.log({ kind: 'modify', side: t.owner.index, item: t.id, stat: a.stat, amount: t.base[a.stat] - before, from: u.id })
+        }
+        return
+      }
+      case 'destroy':
+      case 'repair':
+        for (const t of this.resolve(a.targets, u, src, a.do)) {
+          t.destroyed = a.do === 'destroy'
+          this.log({ kind: a.do, side: t.owner.index, item: t.id, from: u.id })
+        }
+        return
+      case 'cleanse': {
+        for (const s of ['burn', 'poison'] as const) if (a.what.includes(s)) me[s] = 0
+        for (const t of this.resolve(a.targets ?? { pick: 'mine' }, u, src)) for (const s of ['slow', 'freeze'] as const) if (a.what.includes(s)) t[s] = 0
+        this.log({ kind: 'cleanse', side: me.index, from: u.id })
+        return
+      }
+      case 'transform':
+        for (const t of this.resolve(a.targets, u, src)) {
+          const def = this.opts.transform?.(t.def, a.into, this.random)
+          if (!def) continue
+          t.def = def
+          t.base = statsOf(def)
+          t.attrs = { ...t.base }
+          t.progress = 0
+          t.ammo = t.base.ammo
+          this.log({ kind: 'transform', side: t.owner.index, item: t.id, into: def.key, permanent: a.permanent, from: u.id })
+        }
+        return
+      case 'grow': {
         const v = this.value(a.add, u, src)
         for (const t of this.resolve(a.targets, u, src)) {
-          t.base[a.stat] += v
-          t.attrs[a.stat] += v
-          this.log({ kind: 'modify', side: t.owner.index, item: t.id, stat: a.stat, amount: v, from: u.id })
+          if (a.stat !== 'value') {
+            t.base[a.stat] += v
+            t.attrs[a.stat] += v
+          }
+          this.log({ kind: 'grow', side: t.owner.index, item: t.id, stat: a.stat, amount: v, from: u.id })
         }
+        return
       }
+      case 'gold':
+        this.log({ kind: 'gold', side: me.index, amount: this.value(a.amount, u, src), from: u.id })
+        return
+      case 'progress':
+        this.log({ kind: 'progress', side: me.index, item: u.id, amount: a.by === undefined ? 1 : this.value(a.by, u, src) })
+        return
+      case 'upgrade':
+        for (const t of this.resolve(a.targets, u, src)) this.log({ kind: 'upgrade', side: t.owner.index, item: t.id, from: u.id })
     }
   }
 
@@ -347,20 +427,24 @@ export class Fight {
     this.log({ kind: 'heal', side: p.index, amount, from })
   }
 
-  // Two passes so an aura that reads another aura's result settles.
+  // Additive auras in two passes, so one that reads another's result settles; then multipliers once.
+  // A destroyed item's auras stop.
   private auras() {
     const all = this.units()
+    const live = all.filter(u => !u.destroyed)
     for (const u of all) u.attrs = { ...u.base }
     for (let pass = 0; pass < 2; pass++) {
       const next = new Map(all.map(u => [u, { ...u.base }]))
-      for (const u of all) {
+      for (const u of live) {
         for (const au of u.def.auras ?? []) {
+          if (au.add === undefined) continue
           const v = this.value(au.add, u, u)
           for (const t of this.resolve(au.targets, u, u)) next.get(t)![au.stat] += v
         }
       }
       for (const u of all) u.attrs = next.get(u)!
     }
+    for (const u of live) for (const au of u.def.auras ?? []) if (au.mul !== undefined) for (const t of this.resolve(au.targets, u, u)) t.attrs[au.stat] *= au.mul
   }
 
   private value(v: Value, self: Unit, src: Unit): number {
@@ -371,33 +455,18 @@ export class Fight {
     return (first ? first.attrs[v.stat] : 0) * (v.times ?? 1)
   }
 
-  private resolve(tg: Targets, self: Unit, src: Unit): Unit[] {
-    const mine = self.owner.items
-    const i = mine.indexOf(self) // -1 for a skill: it has no neighbors
-    const beside = (j: number) => (i < 0 ? [] : [mine[j]].filter(Boolean))
-    let out: Unit[]
-    switch (tg.pick) {
-      case 'self': out = [self]; break
-      case 'source': out = [src]; break
-      case 'mine': out = [...mine]; break
-      case 'enemy': out = [...self.owner.foe.items]; break
-      case 'all': out = this.units(); break
-      case 'neighbors': out = [...beside(i - 1), ...beside(i + 1)]; break // R01: adjacent items, gaps don't matter
-      case 'left': out = beside(i - 1); break
-      case 'right': out = beside(i + 1); break
-      case 'leftmost': out = mine.slice(0, 1); break
-      case 'rightmost': out = mine.slice(-1); break
-    }
-    if (tg.excludeSelf) out = out.filter(u => u !== self)
-    const f = tg.where
-    if (f) out = out.filter(u => (((!f.tag || u.def.tags.includes(f.tag)) && (!f.size || u.def.size === f.size) && (!f.has || u.attrs[f.has] > 0)) !== !!f.not))
-    if (tg.random !== undefined) {
-      for (let k = out.length - 1; k > 0; k--) {
-        const j = Math.floor(this.random() * (k + 1))
-        ;[out[k], out[j]] = [out[j], out[k]]
-      }
-      out = out.slice(0, this.value(tg.random, self, src))
-    }
-    return out
+  /** Targets for `self`; with `effect`, items immune to it are skipped (so random picks aren't wasted on them). */
+  private resolve(tg: Targets, self: Unit, src: Unit, effect?: string): Unit[] {
+    return select(tg, self, src, {
+      mine: self.owner.items, // a skill isn't in here: it has no neighbors
+      foe: self.owner.foe.items,
+      tags: u => u.def.tags,
+      size: u => u.def.size,
+      has: (u, stat) => u.attrs[stat] > 0,
+      destroyed: u => u.destroyed,
+      random: this.random,
+      value: v => this.value(v, self, src),
+      eligible: effect ? u => !u.def.immune?.includes(effect as Immunity) : undefined,
+    })
   }
 }

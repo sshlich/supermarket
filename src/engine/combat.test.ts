@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict'
 import type { Enchant } from '../enchant.ts'
-import { itemAt, type ItemKey } from '../items.ts'
+import { itemAt, transformed, type ItemDef, type ItemKey } from '../items.ts'
+import { fightOutcomes } from '../run-effects.ts'
 import { skillAt, type SkillKey } from '../skills.ts'
 import type { Tier } from '../tiers.ts'
-import { Fight } from './combat.ts'
+import { Fight, type UnitDef } from './combat.ts'
 
 /** An item key, or [key, tier, enchantment]. */
 type Key = ItemKey | [ItemKey, Tier?, Enchant?]
@@ -245,6 +246,89 @@ const until = (f: Fight, t: number) => {
 {
   const f = until(fight([['rustBlade', undefined, 'shielded']], []), 3000)
   assert.equal(f.sides[0].shield, 5)
+}
+
+// ---------------------------------------------------------------- destroy, repair, immunity, cleanse, multipliers
+
+/** A bare engine def, for checking one rule without content around it. */
+const raw = (over: Partial<UnitDef>): UnitDef => ({ tags: [], stats: {}, abilities: [], ...over })
+const rawSide = (who: string, hp: number, defs: UnitDef[]) => ({ name: who, hp, items: defs.map((def, i) => ({ id: `${who}${i}`, def })) })
+
+// Wrecking Ball destroys the enemy's Small item at 9 s: it stops charging (its 9 s use never comes).
+{
+  const f = until(fight(['wreckingBall'], ['rustBlade'], 100, 1000), 12_500)
+  assert.ok(f.sides[1].items[0].destroyed)
+  assert.deepEqual(uses(f, 'rustBlade'), [3000, 6000])
+}
+
+// Repair brings it back: the blade fires again after a 10 s repair.
+{
+  const repairer = raw({ size: 2, cooldown: 10, abilities: [{ when: { on: 'use' }, do: [{ do: 'repair', targets: { pick: 'mine', destroyed: true, random: 1 } }] }] })
+  const f = new Fight(side('A', 1000, ['wreckingBall']), { ...rawSide('B', 1000, [repairer]), items: [{ id: 'B:blade', def: itemAt('rustBlade') }, { id: 'B:fix', def: repairer }] }, 1)
+  until(f, 14_000)
+  assert.ok(f.events.some(e => e.kind === 'repair' && e.item === 'B:blade'))
+  assert.ok(uses(f, 'B:blade').some(t => t > 10_000))
+}
+
+// Radiant items can't be frozen, slowed or destroyed: random picks skip them.
+{
+  const frozen = until(fight(['frostLantern'], [['rustBlade', undefined, 'radiant'], 'ironPot']), 6000).events.filter(e => e.kind === 'freeze').map(e => e.item)
+  assert.deepEqual(frozen, ['B1:ironPot'])
+  assert.ok(!until(fight(['wreckingBall'], [['rustBlade', undefined, 'radiant']], 100, 1000), 9500).sides[1].items[0].destroyed)
+}
+
+// Antidote cleanses your Poison (3 s Venom Vial doses, cleansed at 4 s and 8 s) and your items' Slow.
+{
+  const f = until(fight(['antidote', 'rustBlade'], ['venomVial'], 1000, 1000), 7950)
+  assert.equal(f.sides[0].poison, 3) // the 6 s dose
+  until(f, 8000)
+  assert.equal(f.sides[0].poison, 0)
+  const slower = raw({ size: 1, cooldown: 3, abilities: [{ when: { on: 'use' }, do: [{ do: 'slow', seconds: 10, targets: { pick: 'enemy', where: { tag: 'Weapon' } } }] }] })
+  const g = until(new Fight(side('A', 1000, ['antidote', 'rustBlade']), rawSide('B', 1000, [slower])), 3500)
+  assert.ok(g.sides[0].items[1].slow > 0)
+  until(g, 4000)
+  assert.equal(g.sides[0].items[1].slow, 0)
+}
+
+// War Horn doubles your Weapons' damage after additive bonuses: (5 + 4 Whetstone) x 2.
+{
+  const f = until(fight(['rustBlade', 'whetstone', 'warHorn'], []), 100)
+  assert.equal(f.sides[0].items[0].attrs.damage, 18)
+  assert.equal(f.sides[0].items[0].base.damage, 5)
+}
+
+// Focus Lens doubles the item to its right for the rest of the fight.
+assert.equal(until(fight(['focusLens', 'rustBlade'], []), 7000).sides[0].items[1].base.damage, 10)
+
+// ---------------------------------------------------------------- run effects in a fight
+
+// Bloodstone: each use, the adjacent Weapon grows +1 for good (it counts right away), logged for the run.
+{
+  const f = until(fight(['rustBlade', 'bloodstone'], [], 100, 1000), 9000)
+  assert.deepEqual(f.events.filter(e => e.kind === 'damage' && e.side === 1).map(e => e.amount), [5, 6, 7])
+  assert.equal(f.sides[0].items[0].base.damage, 8)
+  assert.deepEqual(fightOutcomes(f.events), [1, 2, 3].map(() => ({ kind: 'grow', card: 'A0:rustBlade', stat: 'damage', amount: 1 })))
+}
+
+// Gold Rush: crits pay gold after the fight. Squire Sword: each use is quest progress.
+{
+  const f = fight([['luckyDagger', 'diamond']], [], 100, 10_000, 7, ['goldRush']).run()
+  const crits = f.events.filter(e => e.kind === 'use' && e.crit).length
+  assert.ok(crits > 0)
+  assert.equal(fightOutcomes(f.events).filter(o => o.kind === 'gold').length, crits)
+  assert.equal(until(fight(['squireSword'], [], 100, 1000), 15_000).events.filter(e => e.kind === 'progress').length, 3)
+}
+
+// Trick Mirror transforms the item to its right into another of its size, for this fight only.
+{
+  const transform = (d: UnitDef, into: string | undefined, r: () => number) => transformed(d as ItemDef, into as ItemKey | undefined, r)
+  const f = until(new Fight(side('A', 100, ['trickMirror', 'rustBlade']), side('B', 1000, []), 3, { transform }), 6000)
+  const t = f.events.find(e => e.kind === 'transform')!
+  assert.equal(t.item, 'A1:rustBlade')
+  assert.notEqual(t.into, 'rustBlade')
+  assert.equal(itemAt(t.into as ItemKey).size, 1)
+  assert.equal(f.sides[0].items[1].def.key, t.into)
+  assert.deepEqual(fightOutcomes(f.events), []) // not permanent: nothing for the run
 }
 
 console.log('combat: ok')
