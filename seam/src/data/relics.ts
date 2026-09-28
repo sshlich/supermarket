@@ -35,3 +35,16 @@ export const RELICS: Record<string, Relic> = Object.fromEntries([
 
 /** What a relic roll at a cache turns up (Appendix D), by weight. */
 export const RELIC_ROLLS: [string, number][] = [['stillCoil', 25], ['stubCandle', 25], ['wetLung', 20], ['hollowPair', 15], ['hummingKnot', 10], ['chimeShard', 5]]
+
+export type Dial = 'heat' | 'coil' | 'scale' | 'dark' | 'receiver' | 'culture'
+/** The Lab Bench's stimulus dial (10.4): each setting tests a relic for one property, overnight. */
+export const DIALS: Record<Dial, { name: string; props: ('HEAT' | 'COLD' | 'CHARGE' | 'MASS' | 'LIGHT' | 'SIGNAL' | 'ROT')[]; blurb: string }> = {
+  heat: { name: 'Heat plate', props: ['HEAT', 'COLD'], blurb: 'Warms it slowly and watches the frost: HEAT or COLD.' },
+  coil: { name: 'Coil', props: ['CHARGE'], blurb: 'Wraps it in wire and counts the sparks: CHARGE.' },
+  scale: { name: 'Scale', props: ['MASS'], blurb: 'Weighs it against a brick that never changes: MASS.' },
+  dark: { name: 'Dark box', props: ['LIGHT'], blurb: 'Shuts it away from every light: LIGHT.' },
+  receiver: { name: 'Receiver', props: ['SIGNAL'], blurb: 'Listens to it all night: SIGNAL. Loud: the Seam\'s attention rises by its SIGNAL ×5.' },
+  culture: { name: 'Culture dish', props: ['ROT'], blurb: 'Sets it beside a dish of film: ROT.' },
+}
+/** The properties the lab can test; knowing all of them shows a relic's Class. */
+export const TESTED = ['HEAT', 'COLD', 'CHARGE', 'MASS', 'LIGHT', 'SIGNAL', 'ROT'] as const

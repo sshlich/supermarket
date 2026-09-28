@@ -40,5 +40,29 @@ export function relicClass(kind: string): 'A' | 'B' | 'C' | 'D' {
   return score >= 6 ? 'A' : score >= 4 ? 'B' : score >= 2 ? 'C' : 'D'
 }
 
+/** What a thing does on the belt, read straight off its properties (10.5): no relic has special rules there. */
+export function beltEffects(p: Props): string[] {
+  const out: string[] = []
+  if (p.HEAT) out.push(`resists cold up to ${p.HEAT}`)
+  if (p.COLD) out.push(`resists heat up to ${p.COLD}`)
+  if (p.CHARGE) out.push(`+${p.CHARGE} damage against the living; draws eels`)
+  if (p.MASS) out.push(p.MASS < 0 ? `steps make no noise; resists falling up to ${-p.MASS}` : `resists falling up to ${p.MASS}`)
+  if (p.LIGHT) out.push(`shows a site's hazard as you step in; +${p.LIGHT * 10}% to evade; draws moths and crabs`)
+  if (p.SIGNAL) out.push(`${p.SIGNAL >= 2 ? 'terminals read for it; ' : ''}+${p.SIGNAL * 10}% to evade Auditors; +${p.SIGNAL} attention a step`)
+  if (p.ROT) out.push(p.ROT < 0 ? `heals 1 HP every 2 steps; resists rot up to ${-p.ROT}` : 'the food near it rots')
+  return out
+}
+/** What a thing does at home, read off its properties (10.3). */
+export function homeEffects(p: Props): string[] {
+  const out: string[] = []
+  if ((p.COLD ?? 0) >= 1 || (p.ROT ?? 0) < 0) out.push('food beside it keeps')
+  if ((p.HEAT ?? 0) >= 2) out.push('food beside it spoils faster')
+  if ((p.ROT ?? 0) > 0) out.push('food beside it rots faster')
+  if (p.CHARGE) out.push(`${Math.floor(p.CHARGE / 2) ? `${Math.floor(p.CHARGE / 2)} Cell${p.CHARGE >= 4 ? 's' : ''} a night in the Charger` : 'nothing in the Charger'}${p.CHARGE >= 3 ? '; fills an Empty Cell it touches' : ''}`)
+  if ((p.LIGHT ?? 0) >= 2) out.push(`lights the Seam: ${Math.floor(p.LIGHT! / 2)} POWER for the lamps`)
+  if (p.SIGNAL) out.push(`leaks ${p.SIGNAL * 3} attention a night unless it's in the Lead Box`)
+  return out
+}
+
 /** Drift a step on the belt costs (10.5): 1 for each relic, 2 for Class B, 3 for Class A; sealed things none. */
 export const driftPerStep = (s: State) => s.C.belt.reduce((a, it) => a + (!K[it.kind].relic || prop(it, 'SEAL') > 0 ? 0 : ({ A: 3, B: 2 } as Record<string, number>)[relicClass(it.kind)] ?? 1), 0)

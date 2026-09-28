@@ -3,6 +3,7 @@
 import { HAZARDS } from '../data/hazards.ts'
 import { LEVERS } from '../data/levers.ts'
 import { LEVELS } from '../data/levels.ts'
+import { RELICS } from '../data/relics.ts'
 import { SP } from '../data/species.ts'
 import { K } from '../model/containers.ts'
 import { fact } from '../model/knowledge.ts'
@@ -46,7 +47,14 @@ function card() {
       ${b('fight', `Fight${fight}`, 'Up to three rounds; you can evade between them. Loud: +15, and +3 a kill.')}
       ${b('backoff', 'Back off', `Back the way you came${s.run!.prev ? ` (${s.run!.prev.cost} step${s.run!.prev.cost > 1 ? 's' : ''})` : ''}. Hunters get a round on you first.`, !s.run!.prev)}
       ${b('leave', 'Let them be', 'Only if they let you.', e.hostile)}
-    </div>${lure()}</div>`
+    </div>${lure()}${uses('card')}</div>`
+}
+
+/** Relics on the belt with a Use (Appendix D): in an encounter, or (the Unbuilder) at a Mason Works. */
+function uses(where: 'card' | 'site') {
+  const list = s.C.belt.filter(it => RELICS[it.kind]?.use && (where === 'card') === (RELICS[it.kind].use !== 'fire'))
+  const verb: Record<string, string> = { flare: 'Flare the candle', present: 'Present the shard', fire: 'Fire the Unbuilder' }
+  return list.length ? `<p class="lure">${list.map(it => `<button data-on="use:${it.id}" ${tip(RELICS[it.kind].uses)}>${verb[RELICS[it.kind].use!]}</button>`).join(' ')}</p>` : ''
 }
 
 /** Lure (11.5): bait from the pack leads them away, to a site next door or out of the level. */
@@ -106,6 +114,7 @@ function run() {
     <div class="sunken-panel"><table class="ways">${ways}</table></div>
     <h3>Here</h3>
     ${levers || terminal ? `<p class="acts">${levers}${terminal}</p>` : ''}
+    ${d.type === 'works' && !busy ? uses('site') : ''}
     <p class="acts">
       <button data-on="search" ${busy || st.searched || d.type === 'nest' || left < 1 ? 'disabled' : ''} ${tip(d.type === 'nest' ? 'A nest: nothing to search. Harvest what you kill.' : 'Search the site once: 1 step.')}>Search${st.searched ? 'ed' : ''}</button>
       <button data-on="harvest" ${busy || !remains || !cutter || left < 1 ? 'disabled' : ''} ${tip(cutter ? 'Harvest the remains here with the Cutter: 1 step.' : 'Harvesting needs the Cutter on the belt.')}>Harvest${remains ? ` ${remains}` : ''}</button>
@@ -137,6 +146,7 @@ define({
     if (cmd === 'choose') act({ type: 'choose', choice: arg as Choice })
     if (cmd === 'lure') act({ type: 'choose', choice: 'lure', arg })
     if (cmd === 'lever') act({ type: 'lever', id: arg })
+    if (cmd === 'use') act({ type: 'use', id: +arg })
     if (cmd === 'terminal') { act({ type: 'terminal' }); open('terminal') }
     if (cmd === 'return') act({ type: 'returnHome' })
     if (cmd === 'camp') document.querySelector<HTMLElement>('[data-endday]')?.click()

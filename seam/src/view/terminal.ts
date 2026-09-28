@@ -1,6 +1,6 @@
 // The Terminal (DESIGN 8, 13.1): a console inside the terminal. MAINT talks; access decides what else it does.
 
-import { LEVELS } from '../data/levels.ts'
+import { CONNECTIONS, LEVELS } from '../data/levels.ts'
 import { SPECIES } from '../data/species.ts'
 import { reads, tier } from '../model/access.ts'
 import type { Action } from '../model/apply.ts'
@@ -21,6 +21,9 @@ const HELP: [string, string][] = [
   ['read', 'READ: exact tables for this stratum, and subscribe to it'],
   ['note tag <site>', 'NOTE: Scourers leave what lies there alone'],
   ['note subscribe <stratum>', 'NOTE: one more stratum on the feed'],
+  ['write hold <stratum>', 'WRITE: its Masons idle for 10 nights'],
+  ['write dispose <stratum>', 'WRITE: 20 Scourers; corpses cleared, untagged floors stripped'],
+  ['write reroute <connection>', 'WRITE: open or close a way'],
 ]
 
 /** A level's exact table as MAINT prints it. */
@@ -55,6 +58,14 @@ export function command(line: string) {
     const L = find(Object.values(LEVELS))
     if (L) say({ type: 'note', what: 'subscribe', id: L.id }, line)
     else out.push(`> ${line}`, 'no such stratum on record.')
+  } else if (verb === 'write' && (what === 'hold' || what === 'dispose')) {
+    const L = find(Object.values(LEVELS))
+    if (L) say({ type: 'write', what, target: L.id }, line)
+    else out.push(`> ${line}`, 'no such stratum on record.')
+  } else if (verb === 'write' && what === 'reroute') {
+    const c = CONNECTIONS.find(c => c.id === arg || c.type.startsWith(arg))
+    if (c) say({ type: 'write', what: 'reroute', target: c.id }, line)
+    else out.push(`> ${line}`, 'no such connection on record.')
   } else out.push(`> ${line}`, 'maint: hello? (query malformed. discarding.)')
   paint('terminal')
 }
@@ -76,6 +87,8 @@ function body() {
       <button data-on="cmd:read">read</button>
       <select id="term-tag">${sites.map(x => `<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select><button data-on="tag">note tag</button>
       <select id="term-sub">${Object.values(LEVELS).filter(l => s.levels[l.id]).map(l => `<option value="${l.id}">${esc(l.name)}</option>`).join('')}</select><button data-on="sub">note subscribe</button>
+      <button data-on="w:hold">write hold</button><button data-on="w:dispose">write dispose</button>
+      <select id="term-conn">${s.connections.filter(c => c.a !== 'seam').map(c => `<option value="${c.id}">${c.id}</option>`).join('')}</select><button data-on="reroute">write reroute</button>
     </div>
     <div class="field-row"><label for="term-in">&gt;</label><input id="term-in" type="text" autocomplete="off" spellcheck="false"></div>`
 }
@@ -95,5 +108,7 @@ define({
     if (cmd === 'cmd') command(arg)
     if (cmd === 'tag') command(`note tag ${pick('#term-tag')}`)
     if (cmd === 'sub') command(`note subscribe ${pick('#term-sub')}`)
+    if (cmd === 'w') command(`write ${arg} ${pick('#term-sub')}`)
+    if (cmd === 'reroute') command(`write reroute ${pick('#term-conn')}`)
   },
 })

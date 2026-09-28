@@ -2,6 +2,7 @@
 // people it can't feed, and makes a little; then its containers act on what's in them. MAINT is silent about all of it.
 
 import { BOXES, HOME, type Box } from '../data/items.ts'
+import { DIALS, TESTED } from '../data/relics.ts'
 import { MAINT } from '../data/text.ts'
 import { K, applyDrop, become, grab, make, planDrop, remove, stow } from './containers.ts'
 import { near, prop, total } from './items.ts'
@@ -163,6 +164,18 @@ export function homeNight(s: State, notes: Note[] = []): { lit: boolean } {
       const src = near(s, box, cell).find(o => prop(o, 'CHARGE') >= 3)
       if (src) fill(box, [cell], 1, `beside the ${name(src)}`)
     }
+  }
+
+  // ---- the lab (10.4): the dial tests the first relic on the bench for one property, overnight
+  const relic = s.C.lab.find(it => K[it.kind].relic)
+  s.lab.last = undefined
+  if (relic && s.lab.dial) {
+    const d = DIALS[s.lab.dial]
+    for (const p of d.props) learn(s, `R:${relic.kind}:${p}`, 'exact', 'lab')
+    if (s.lab.dial === 'receiver') s.seamA += prop(relic, 'SIGNAL') * 5
+    if (TESTED.every(p => s.know[`R:${relic.kind}:${p}`]?.state === 'exact')) learn(s, `R:${relic.kind}:class`, 'exact', 'lab')
+    s.lab.last = `${d.name}: ${d.props.map(p => `${p} ${prop(relic, p)}`).join(', ')}.`
+    note('lab', relic, `tested on the ${d.name.toLowerCase()} tonight`)
   }
 
   // ---- attention: lit lamps, and Signal leaking from whatever isn't sealed

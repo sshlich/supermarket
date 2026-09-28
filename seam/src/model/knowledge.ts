@@ -8,6 +8,7 @@ import { SP, SPECIES } from '../data/species.ts'
 import { MAINT, RUMOURS } from '../data/text.ts'
 import { pick, rand } from './rng.ts'
 import { K } from './containers.ts'
+import { relicClass } from './items.ts'
 import { burialDay } from './sim.ts'
 import { masons, type Cell, type LevelState, type State } from './state.ts'
 
@@ -78,6 +79,7 @@ export function truth(s: State, key: string): Value | undefined {
     if (field === 'seen') return true
     if (field === 'hazard') return st.hazard ?? 'none'
   }
+  if (t === 'R') return field === 'class' ? relicClass(id) : field === 'finder' ? undefined : K[id]?.props[field as keyof (typeof K)[string]['props']] ?? 0
   if (t === 'V') return field === 'seen' ? true : field === 'effect' ? LEVERS[id]?.effect : undefined
   if (t === 'I') {
     const k = K[id]
@@ -100,6 +102,7 @@ function roughen(key: string, v: Value): Value {
   if (t === 'L' && field === 'film') return filmBand(v)
   if (t === 'L' && field === 'scrap') return band(v)
   if (t === 'L' && field === 'attention') return attentionBand(v)
+  if (t === 'R') return v > 0 ? '≥ 1' : v < 0 ? 'below 0' : '0'
   return v
 }
 

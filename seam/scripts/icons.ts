@@ -12,7 +12,7 @@ const set: { icons: Record<string, { body: string }> } = createRequire(import.me
 const dir = new URL('../src/icons/', import.meta.url)
 rmSync(dir, { recursive: true, force: true })
 mkdirSync(dir, { recursive: true })
-const names = new Set([...SPECIES, ...Object.values(KINDS), ...Object.values(RELICS), ...Object.values(BOXES)].map(k => k.icon).concat(Object.values(UI), 'fly', 'cube', 'broom'))
+const names = new Set([...SPECIES, ...Object.values(KINDS), ...Object.values(RELICS), ...Object.values(BOXES)].map(k => k.icon).concat(Object.values(UI), 'fly', 'cube', 'broom', 'quill-ink'))
 for (const name of names) {
   const icon = set.icons[name]
   if (!icon) { console.error(`no icon "${name}"`); process.exitCode = 1; continue }

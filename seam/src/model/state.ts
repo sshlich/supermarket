@@ -22,6 +22,7 @@ export interface Item {
   runs?: number      // runs a shell lamp has been out on
   charges?: number   // shots left in it
   page?: number      // which brochure it is
+  used?: number      // the day it was last used (a flare is once a day)
 }
 
 export interface Runner { name: string; hp: number; drift: number; peak: number }
@@ -77,6 +78,7 @@ export interface State {
   pick?: string[]                             // after a death: who could take the terminal
   visits: Record<string, number[]>            // days each level was walked (a few nights of it teaches Stability)
   access: { fragments: number; subscribed: string[]; extra: number }
+  lab: { dial?: import('../data/relics.ts').Dial; last?: string } // the stimulus, and last night's reading
   end?: 'buried' | 'empty'                    // the Seam fell; the Catalog carries on into the next game
   C: Record<Box, Item[]>                      // the Seam's containers and the runner's kit
   machines: { cold: boolean; moss: boolean; condenser: boolean }
@@ -110,7 +112,7 @@ export function newGame(seed: number, know: State['know'] = {}): State {
     villagers: [...VILLAGERS], runner: { name: VILLAGERS[0], hp: HP, drift: 0, peak: 0 },
     C: Object.fromEntries(Object.keys(BOXES).map(b => [b, []])) as unknown as State['C'],
     machines: { cold: true, moss: true, condenser: true },
-    blackout: false, conduitTapped: false, seamA: 0, burial: 0, visits: {}, access: { fragments: 0, subscribed: [], extra: 0 },
+    blackout: false, conduitTapped: false, seamA: 0, burial: 0, visits: {}, access: { fragments: 0, subscribed: [], extra: 0 }, lab: {},
     levels: Object.fromEntries(Object.values(LEVELS).filter(l => !l.appears).map(l => [l.id, level(l)])),
     connections: CONNECTIONS.filter(c => !c.appears).map(connection),
     know, log: [], hist: {}, flags: {},

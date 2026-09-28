@@ -12,6 +12,7 @@ export interface SiteDef {
   lair?: string              // the species met here
   loot?: string[]            // a cache's fixed contents; 'relic' is a roll on the relic table
   requires?: 'drained'
+  kiosk?: true               // a MAINT kiosk that answers only at WRITE (Appendix F)
   links: string[]            // the sites a step away (the graph is ours: Appendix A lists sites, not paths)
   wet?: true                 // under water while the level is flooded: where eels are met
   text: string               // present tense, second person (12.4)
@@ -125,7 +126,7 @@ export const LEVELS: Record<string, LevelDef> = {
     palette: ['#0c0c0b', '#3b3b36', '#95958a', '#f2f2e6'], at: [92, 22],
     N: { crab: 5, hound: 3, scourer: 6 },
     sites: [
-      { id: 'rawFloor', name: 'Raw Floor', type: 'gallery', to: ['new'], links: ['scaffold'], text: 'No dust. No footprints. Yours are the first.' },
+      { id: 'rawFloor', name: 'Raw Floor', type: 'gallery', to: ['new'], kiosk: true, links: ['scaffold'], text: 'No dust. No footprints. Yours are the first.' },
       { id: 'scaffold', name: 'Scaffold', type: 'gallery', links: ['rawFloor', 'unlitRoom'], text: 'Scaffold climbs into dark that hasn\'t been given a ceiling yet.' },
       { id: 'unlitRoom', name: 'Unlit Room', type: 'gallery', hazard: 'gravity', links: ['scaffold', 'masonNest'], text: 'The only room the lights forgot. Things fall faster in here.' },
       { id: 'masonNest', name: 'Mason Nest', type: 'works', levers: ['mothLure', 'sabotage'], links: ['unlitRoom', 'sealedOffice'], text: 'A Mason stands in its own dust, building a wall around nothing.' },

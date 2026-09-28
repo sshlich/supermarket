@@ -5,6 +5,7 @@ import { BOXES, type Box } from '../data/items.ts'
 import { reach } from '../model/apply.ts'
 import { K, dims, grab, planDrop, where, type Held, type Plan } from '../model/containers.ts'
 import { propsOf } from '../model/items.ts'
+import { TESTED } from '../data/relics.ts'
 import { forecast, forecastDrop } from '../model/seam.ts'
 import type { Item } from '../model/state.ts'
 import { act, s } from './game.ts'
@@ -26,9 +27,11 @@ export const itemName = (it: Item) => `${it.rotten ? 'Rotten ' : ''}${K[it.kind]
 function itemTip(it: Item) {
   const k = K[it.kind]
   const unknown = k.relic && !s.know[`R:${it.kind}:class`]
-  const lines = [`${itemName(it)}${it.n > 1 ? ` ×${it.n}` : ''}`, ...(unknown ? ['Nobody knows what this does. The lab can find out.'] : k.text)]
+  const lines = [`${itemName(it)}${it.n > 1 ? ` ×${it.n}` : ''}`, ...(unknown ? ['Nobody knows what this does. The lab can find out, a property a night; so can wearing it, riskier.'] : k.text)]
   const worth = (['food', 'water', 'power'] as const).filter(v => k[v]).map(v => `${v.toUpperCase()} ${k[v]}`)
-  const props = unknown ? [] : Object.entries(propsOf(it)).filter(([, v]) => v).map(([p, v]) => `${p} ${v}`)
+  const props = unknown
+    ? TESTED.map(p => [p, s.know[`R:${it.kind}:${p}`]] as const).filter(([, c]) => c && c.value !== 0).map(([p, c]) => `${p} ${c!.state === 'rough' ? c!.value : c!.value}`)
+    : Object.entries(propsOf(it)).filter(([, v]) => v).map(([p, v]) => `${p} ${v}`)
   if (worth.length || props.length) lines.push([...worth, ...props].join(' · '))
   if (it.rotten) lines.push('Rotten: nobody will eat it, and it spreads to what it touches.')
   else if (it.fresh !== undefined) lines.push(`Fresh: ${it.fresh} night${it.fresh === 1 ? '' : 's'} left`)

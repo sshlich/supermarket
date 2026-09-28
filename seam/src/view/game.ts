@@ -20,7 +20,7 @@ export function write(key: string, v: unknown) {
 
 const seed = () => Math.floor(Math.random() * 2 ** 31)
 /** A save from an older build (missing what this one needs) starts a new game; the Catalog carries over. */
-const fits = (x: Partial<State> | null): x is Omit<State, 'know'> => x?.version === 1 && !!x.levels && !!x.hist && Array.isArray(x.log) && !!x.C && !!x.runner && !!x.access && !!x.visits
+const fits = (x: Partial<State> | null): x is Omit<State, 'know'> => x?.version === 1 && !!x.levels && !!x.hist && Array.isArray(x.log) && !!x.C && !!x.runner && !!x.access && !!x.visits && !!x.lab
 
 export let s: State = (() => {
   const know = read<State['know']>(CATALOG) ?? {}

@@ -5,7 +5,7 @@ import { HAZARDS, RESISTS } from '../data/hazards.ts'
 import { LEVERS } from '../data/levers.ts'
 import { LEVELS, type SiteDef } from '../data/levels.ts'
 import { LOOT } from '../data/loot.ts'
-import { RELIC_ROLLS } from '../data/relics.ts'
+import { RELIC_ROLLS, RELICS, TESTED } from '../data/relics.ts'
 import { SP, SPECIES, type Species } from '../data/species.ts'
 import { K, become, make, remove, stow } from './containers.ts'
 import { belt, driftPerStep, prop } from './items.ts'
@@ -34,6 +34,7 @@ export const R = {
   unstable: 3,       // nights between hazard rerolls on Unstable levels
   reroll: 0.35,      // chance each site there gets a hazard
   mason: 0.5,        // chance sabotage brings a Mason
+  feel: 0.2,         // chance a step, per unknown relic worn, of feeling what it is (10.4)
   towerLure: 10,     // attention per head, luring a group into the Audit Tower
   noise: { move: 1, bolt: 1, fight: 15, kill: 3, fail: 10 },
 }
@@ -130,7 +131,8 @@ export function pathHome(s: State): { keys: string[]; cost: number } | null {
 
 // ---------------------------------------------------------------- steps
 
-/** Spend steps out there (5): the belt's Signal calls attention, lightness hushes a move, preserving heals, relics cost Drift. */
+/** Spend steps out there (5): the belt's Signal calls attention, lightness hushes a move, preserving heals, relics cost
+ * Drift, and now and then a relic worn shows something of what it is (10.4). */
 function steps(s: State, n: number, L: LevelState, move: boolean) {
   const b = belt(s)
   for (let i = 0; i < n; i++) {
@@ -140,8 +142,23 @@ function steps(s: State, n: number, L: LevelState, move: boolean) {
     if ((b.ROT ?? 0) < 0 && s.step % 2 === 0) s.runner.hp = Math.min(HP, s.runner.hp + 1)
     s.runner.drift += driftPerStep(s)
     s.runner.peak = Math.max(s.runner.peak, s.runner.drift)
+    for (const it of s.C.belt) if (K[it.kind].relic && rand(s) < R.feel) feel(s, it.kind)
   }
   if (move && (b.MASS ?? 0) >= 0) noise(s, L, R.noise.move)
+}
+
+const FEEL: Record<string, [string, string]> = {
+  HEAT: ['The air around you warms.', ''], COLD: ['The air around you frosts.', ''], CHARGE: ['Your hair lifts, and something on your belt hums.', ''],
+  MASS: ['Your belt drags at you.', 'Your steps feel light.'], LIGHT: ['Your shadow falls the wrong way.', ''],
+  SIGNAL: ['Somewhere a terminal chirps as you pass.', ''], ROT: ['Your food smells sweeter than it should.', 'A scratch on your hand closes.'],
+}
+/** Wearing a relic, the risky way to learn it: a rough sense of one property it has. */
+function feel(s: State, kind: string) {
+  const p = TESTED.filter(p => (RELICS[kind].props[p] ?? 0) !== 0 && !s.know[`R:${kind}:${p}`])
+  if (!p.length) return
+  const which = pick(s, p)
+  learn(s, `R:${kind}:${which}`, 'rough', 'belt')
+  s.log.push({ day: s.day, kind: 'run', text: `${FEEL[which][RELICS[kind].props[which]! < 0 && FEEL[which][1] ? 1 : 0]} (${which} ${RELICS[kind].props[which]! < 0 ? 'below 0' : '≥ 1'})` })
 }
 /** Attention the runner makes on a level; it also lingers as recent noise, which makes evading harder. */
 function noise(s: State, L: LevelState, n: number) {
@@ -180,7 +197,12 @@ export function go(s: State, key: string): Ev[] {
   r.term = undefined
   steps(s, x.cost, s.levels[x.home ? r.level : x.level], true)
   if (s.runner.drift >= 100) return die(s, 'drift')
-  if (x.home) { s.run = undefined; return say(s, 'Down through the hatch. Home.') }
+  if (x.home) {
+    s.run = undefined
+    // Whoever first brings a relic home signs its entry in the Catalog (12.2).
+    for (const it of [...s.C.pack, ...s.C.belt]) if (K[it.kind].relic && !s.know[`R:${it.kind}:finder`]) s.know[`R:${it.kind}:finder`] = { state: 'exact', value: s.runner.name, day: s.day, src: 'home' }
+    return say(s, 'Down through the hatch. Home.')
+  }
   return arrive(s, x.level, x.site, prev)
 }
 
@@ -212,6 +234,7 @@ function arrive(s: State, level: string, site: string, prev?: { level: string; s
   }
   out.push(...hazard(s, level, site))
   if (s.runner.hp <= 0) return [...out, ...die(s, 'hp')]
+  if (s.runner.drift >= 100) return [...out, ...die(s, 'drift')]
   out.push(...feeding(s, level))
   out.push(...meet(s, level, site))
   return out
@@ -494,6 +517,53 @@ export function pullLever(s: State, id: string): Ev[] {
     out.push(...say(s, 'A Mason turns toward the noise. It has never seen you. It is looking anyway.'))
   }
   return out
+}
+
+// ---------------------------------------------------------------- Use (Appendix D: the only things relics do beyond their properties)
+
+export function use(s: State, id: number): Ev[] {
+  const r = s.run
+  const it = s.C.belt.find(o => o.id === id)
+  if (!it) return no(s, "Only what's on the belt can be used.")
+  const kind = RELICS[it.kind]
+  if (!kind?.use) return no(s, 'It does nothing it isn\'t already doing.')
+  if (!r) return no(s, 'Not here.')
+  const e = r.enc
+  const learnUse = () => learn(s, `I:${it.kind}:use`, 'exact', 'used')
+  if (kind.use === 'flare') {
+    // The Stub Candle's flare, once a day: moths and crabs scatter.
+    if (it.used === s.day) return no(s, 'The candle has flared once today already.')
+    if (!e || !['moth', 'crab'].includes(e.sp)) return no(s, 'Nothing here the flare would scatter.')
+    it.used = s.day
+    r.enc = undefined
+    learnUse()
+    return say(s, `The candle flares white. The ${SP[e.sp].name.toLowerCase()}s scatter into the dark.`)
+  }
+  if (kind.use === 'present') {
+    // The Chime Shard, held up to an Auditor: it pauses to listen, once; the shard cracks.
+    if (it.props?.SIGNAL === 1) return no(s, 'The shard is cracked. It only hums now.')
+    if (e?.sp !== 'auditor') return no(s, 'Nobody here is listening for it.')
+    it.props = { ...it.props, SIGNAL: 1 }
+    r.enc = undefined
+    learnUse()
+    return say(s, 'You hold up the shard. The Auditors stop, and listen, and let you pass. The shard cracks.')
+  }
+  // The Unbuilder, fired at a Mason Works: a course of building undone for good; everything there dies; the level hears.
+  const d = siteDef(r.level, r.site)
+  if (d.type !== 'works') return no(s, 'It wants a Mason Works.')
+  if (!it.charges) return no(s, 'It is spent.')
+  if (e) return no(s, 'Not with that in front of you.')
+  const L = s.levels[r.level]
+  it.charges--
+  L.M = Math.max(0, L.M - 1)
+  for (const sp of SPECIES) if (sp.mass && (L.N[sp.id] ?? 0) > 0 && !sp.sings) {
+    const k = Math.min(L.N[sp.id], sp.pack)
+    L.N[sp.id] -= k
+    L.C += k * sp.mass
+  }
+  L.A = Math.max(L.A, 100)
+  learnUse()
+  return say(s, `The Unbuilder fires. The wall at the ${d.name} was never built. Everything near it is still. The quiet is very loud.`)
 }
 
 // ---------------------------------------------------------------- search, harvest, take

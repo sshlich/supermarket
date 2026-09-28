@@ -8,6 +8,7 @@ import { SPECIES, type Species } from '../data/species.ts'
 import { fact, knownConnection, knownLevel } from '../model/knowledge.ts'
 import type { Cell } from '../model/state.ts'
 import { project, type Projection } from '../model/project.ts'
+import { terminalHere, tier } from '../model/access.ts'
 import { stock, H } from '../model/seam.ts'
 import { act, omni, s } from './game.ts'
 import { UI } from './icons.ts'
@@ -51,6 +52,10 @@ function map() {
     ${known.map(id => node(id, LEVELS[id].name, LEVELS[id].floor, LEVELS[id].palette, LEVELS[id].at)).join('')}</svg>`
 }
 
+/** Writable cells (8): at a terminal with WRITE and a write left this visit, the world's table takes a pencil. */
+const writable = () => terminalHere(s) && !!s.run?.term && s.run.term.writes < 1 && (tier(s) === 'WRITE' || tier(s) === 'ROOT')
+const pencil = (what: string, target: string, t: string) => writable() ? `<button class="pencil" data-on="write:${what}:${target}" ${tip(`WRITE: ${t} (+30 attention there; one write a visit).`)}>${icon('quill-ink')}</button>` : ''
+
 /** The Level entry (13.2): a page per level, Backrooms-style. */
 function entry(id: string) {
   const def = LEVELS[id]
@@ -64,18 +69,18 @@ function entry(id: string) {
     <div class="vista" style="background: linear-gradient(${def.palette[3]}, ${def.palette[2]} 20%, ${def.palette[1]} 55%, ${def.palette[0]})"></div>
     <p class="lore">${esc(def.text)}</p>
     <p class="stats">Film ${k('film', pct)} · Scrap ${k('scrap')} · Heat ${k('heat')} · ${k('flooded', v => v ? 'flooded' : 'dry')}
-      · Masons ${k('masons', v => blocks(v as number, 3, 3))} · Attention ${k('attention', v => typeof v === 'number' ? blocks(v, 100) : esc(String(v)))}</p>
+      · Masons ${k('masons', v => blocks(v as number, 3, 3))}${pencil('hold', id, 'a maintenance hold, the Masons idle 10 nights')} · Attention ${k('attention', v => typeof v === 'number' ? blocks(v, 100) : esc(String(v)))}</p>
     <h3>Species</h3>
     ${table(`entry-${id}`, [
       { head: 'Species', cell: sp => `${icon(sp.icon)}${esc(sp.name)}`, sort: sp => sp.name },
-      { head: 'Population', cell: sp => cell(pop(sp), s.day), sort: sp => sortOf(pop(sp)) },
+      { head: 'Population', cell: sp => `${cell(pop(sp), s.day)}${sp.id === 'scourer' ? pencil('dispose', id, 'a disposal request, 20 Scourers') : ''}`, sort: sp => sortOf(pop(sp)) },
       { head: 'Trend', cell: sp => `${spark(pop(sp)?.trail)}${trend(pop(sp)?.trail)}` },
     ] as Col<Species>[], species, 'Nothing seen here yet.')}
     <h3>Connections</h3>
     ${conns.length ? `<ul>${conns.map(x => {
       const other = x.a === id ? x.b : x.a
       const d = CONNECTIONS.find(d => d.id === x.id)!
-      return `<li>${esc(d.type)} to ${esc(other === 'seam' ? SEAM.name : knownLevel(s, other, omni) ? LEVELS[other].name : '???')}, ${x.cost} step${x.cost > 1 ? 's' : ''}${x.open ? '' : ', closed'}</li>`
+      return `<li>${esc(d.type)} to ${esc(other === 'seam' ? SEAM.name : knownLevel(s, other, omni) ? LEVELS[other].name : '???')}, ${x.cost} step${x.cost > 1 ? 's' : ''}${x.open ? '' : ', closed'}${other === 'seam' ? '' : pencil('reroute', x.id, x.open ? 'close it' : 'open it')}</li>`
     }).join('')}</ul>` : '<p class="empty">None known.</p>'}
     <h3>Sites</h3>
     ${table(`sites-${id}`, [
@@ -114,6 +119,7 @@ define({
   body: () => `<div class="atlas"><div class="pane">${map()}</div><div class="page">${entry(sel)}</div></div>`,
   on: (cmd, arg, el) => {
     if (cmd === 'level') { sel = arg; proj = null; paint('atlas') }
+    if (cmd === 'write') { const [what, target] = arg.split(':'); act({ type: 'write', what: what as 'hold' | 'dispose' | 'reroute', target }) }
     if (cmd === 'project') {
       const lever = el.closest('.window-body')!.querySelector<HTMLSelectElement>('#proj-lever')?.value ?? ''
       proj = { level: arg, lever, rows: project(s, arg, lever || undefined) }

@@ -7,9 +7,11 @@ import { SPECIES } from '../data/species.ts'
 import { MAINT } from '../data/text.ts'
 import { remove } from './containers.ts'
 import { belt } from './items.ts'
+import { EFFECTS } from './sim.ts'
 import { learn } from './knowledge.ts'
 import { siteDef } from './run.ts'
 import type { Ev } from './sim.ts'
+import { CONNECTIONS } from '../data/levels.ts'
 import type { State } from './state.ts'
 
 export type Tier = 'GUEST' | 'READ' | 'NOTE' | 'WRITE' | 'ROOT'
@@ -23,8 +25,12 @@ const say = (s: State, kind: Ev['kind'], text: string): Ev[] => [{ night: s.day,
 const maint = (s: State, text: string) => s.log.push({ day: s.day, kind: 'maint', text })
 const fill = (t: string, v: Record<string, string | number>) => t.replace(/\{(\w+)\}/g, (_, k) => String(v[k] ?? ''))
 
-/** Where the runner stands at a terminal, or nothing. */
-export const terminalHere = (s: State) => !!s.run && siteDef(s.run.level, s.run.site).type === 'terminal'
+/** Whether the runner stands at a terminal: the Pump Office, the Console, or (at WRITE) the kiosk in UNNAMED-0041. */
+export const terminalHere = (s: State) => {
+  if (!s.run) return false
+  const d = siteDef(s.run.level, s.run.site)
+  return d.type === 'terminal' || (!!d.kiosk && at(s, 'WRITE'))
+}
 
 export function present(s: State): Ev[] {
   const box = s.C.pack.some(it => it.kind === 'fragment') ? 'pack' : s.C.belt.some(it => it.kind === 'fragment') ? 'belt' : null
@@ -74,6 +80,42 @@ export function note(s: State, what: 'tag' | 'subscribe', id: string): Ev[] {
   s.access.extra++
   s.access.subscribed.push(id)
   return say(s, 'home', `Subscribed to ${LEVELS[id].name}.`)
+}
+
+export type Write = 'hold' | 'dispose' | 'reroute'
+const WRITE_NOISE = 30
+
+/** WRITE (8): one edit per terminal visit, anywhere on record, each +30 attention where it lands. A maintenance hold
+ * idles a level's Masons for 10 nights; a disposal request prints 20 Scourers, who clear the corpses and strip what
+ * lies on untagged floors; a reroute opens or closes a connection. */
+export function write(s: State, what: Write, target: string): Ev[] {
+  if (!at(s, 'WRITE')) return say(s, 'refused', 'ACCESS: WRITE required.')
+  if ((s.run?.term?.writes ?? 1) >= 1) return say(s, 'refused', 'One write a visit. Walk away and come back.')
+  const known = (id: string) => !!s.levels[id] && (!!s.know[`L:${id}:known`] || !!LEVELS[id].home)
+  let level = target
+  if (what === 'reroute') {
+    const c = s.connections.find(c => c.id === target)
+    if (!c || !s.know[`C:${target}:known`] && !CONNECTIONS.find(d => d.id === target && [d.a, d.b].every(x => x === 'seam' || LEVELS[x]?.home))) return say(s, 'refused', 'No such connection on record.')
+    if (c.a === 'seam') return say(s, 'refused', 'That one is not the city\'s to close.')
+    c.open = !c.open
+    level = c.a === s.run!.level || c.b === s.run!.level ? s.run!.level : c.a
+    maint(s, `connection ${c.id}: ${c.open ? 'open' : 'closed'}. rerouted on request. requester: [NAME NOT FOUND].`)
+  } else {
+    if (!known(target)) return say(s, 'refused', 'No such stratum on record.')
+    const L = s.levels[target]
+    if (what === 'hold') {
+      EFFECTS.hold(s, L)
+      for (const line of MAINT.hold) maint(s, line)
+    } else {
+      L.N.scourer = (L.N.scourer ?? 0) + 20
+      L.C = 0
+      for (const st of L.sites) if (!st.tagged) st.loot = []
+      maint(s, `disposal request ${LEVELS[target].floor}: 20 units printed. floor will be clean.`)
+    }
+  }
+  s.levels[level].A += WRITE_NOISE
+  s.run!.term!.writes++
+  return say(s, 'home', `${what === 'hold' ? 'Maintenance hold' : what === 'dispose' ? 'Disposal request' : 'Reroute'} accepted.`)
 }
 
 /** Nightly, for each subscribed level: the feed keeps the tables exact, and MAINT reports what changed by more than

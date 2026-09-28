@@ -3,8 +3,9 @@
 import { HOME, type Box } from '../data/items.ts'
 import { K, applyDrop, grab, planDrop, send, tidy, where } from './containers.ts'
 import { learn, talk } from './knowledge.ts'
-import { feeds, note, present, read, terminalHere } from './access.ts'
-import { choose, chooseRunner, go, harvest, nightRun, pullLever, returnHome, search, startRun, take, throwBolt, wake, type Choice } from './run.ts'
+import { feeds, note, present, read, terminalHere, write, type Write } from './access.ts'
+import type { Dial } from '../data/relics.ts'
+import { choose, chooseRunner, go, harvest, nightRun, pullLever, returnHome, search, startRun, take, throwBolt, use, wake, type Choice } from './run.ts'
 import { homeNight, type Machine } from './seam.ts'
 import { world, type Ev } from './sim.ts'
 import type { State } from './state.ts'
@@ -29,6 +30,9 @@ export type Action =
   | { type: 'present' }
   | { type: 'read' }
   | { type: 'note'; what: 'tag' | 'subscribe'; id: string }
+  | { type: 'write'; what: Write; target: string }
+  | { type: 'use'; id: number }
+  | { type: 'dial'; dial?: Dial }
   | { type: 'camp' }
   | { type: 'runner'; name: string }
 
@@ -69,6 +73,11 @@ function act(s: State, a: Action): Ev[] {
     case 'present': return atTerminal() ? present(s) : say(s, 'refused', 'Not at a terminal.')
     case 'read': return atTerminal() ? read(s) : say(s, 'refused', 'Not at a terminal.')
     case 'note': return atTerminal() ? note(s, a.what, a.id) : say(s, 'refused', 'Not at a terminal.')
+    case 'write': return atTerminal() ? write(s, a.what, a.target) : say(s, 'refused', 'Not at a terminal.')
+    case 'use': return use(s, a.id)
+    case 'dial':
+      s.lab.dial = a.dial
+      return []
     case 'runner': return chooseRunner(s, a.name)
     case 'drop': {
       const held = grab(s, a.id, a.split)
