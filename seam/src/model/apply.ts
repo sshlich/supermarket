@@ -3,7 +3,8 @@
 import { HOME, type Box } from '../data/items.ts'
 import { K, applyDrop, grab, planDrop, send, tidy, where } from './containers.ts'
 import { learn, talk } from './knowledge.ts'
-import { choose, chooseRunner, go, harvest, nightRun, returnHome, search, startRun, take, throwBolt, wake, type Choice } from './run.ts'
+import { feeds, note, present, read, terminalHere } from './access.ts'
+import { choose, chooseRunner, go, harvest, nightRun, pullLever, returnHome, search, startRun, take, throwBolt, wake, type Choice } from './run.ts'
 import { homeNight, type Machine } from './seam.ts'
 import { world, type Ev } from './sim.ts'
 import type { State } from './state.ts'
@@ -22,7 +23,12 @@ export type Action =
   | { type: 'search' }
   | { type: 'harvest' }
   | { type: 'take'; id: number }
-  | { type: 'choose'; choice: Choice }
+  | { type: 'choose'; choice: Choice; arg?: string }
+  | { type: 'lever'; id: string }
+  | { type: 'terminal' }
+  | { type: 'present' }
+  | { type: 'read' }
+  | { type: 'note'; what: 'tag' | 'subscribe'; id: string }
   | { type: 'camp' }
   | { type: 'runner'; name: string }
 
@@ -37,6 +43,8 @@ export function apply(s: State, a: Action): Ev[] {
 }
 
 function act(s: State, a: Action): Ev[] {
+  if (s.end) return say(s, 'refused', 'The Seam has fallen.')
+  const atTerminal = () => terminalHere(s) && !!s.run!.term
   switch (a.type) {
     case 'endDay': return s.run ? say(s, 'refused', 'Out on a run: camp, or come home first.') : endNight(s)
     case 'camp': return s.run ? [...endNight(s), ...wake(s)] : say(s, 'refused', 'At home: End Day instead.')
@@ -47,7 +55,20 @@ function act(s: State, a: Action): Ev[] {
     case 'search': return search(s)
     case 'harvest': return harvest(s)
     case 'take': return take(s, a.id)
-    case 'choose': return choose(s, a.choice)
+    case 'choose': return choose(s, a.choice, a.arg)
+    case 'lever': return pullLever(s, a.id)
+    case 'terminal': {
+      if (!terminalHere(s)) return say(s, 'refused', 'No terminal here.')
+      if (s.run!.enc) return say(s, 'refused', 'Not with that in front of you.')
+      if (s.run!.term) return []
+      if (s.step + 1 > 12) return say(s, 'refused', 'Not enough of the day left.')
+      s.step++
+      s.run!.term = { writes: 0 }
+      return say(s, 'home', 'The terminal wakes.')
+    }
+    case 'present': return atTerminal() ? present(s) : say(s, 'refused', 'Not at a terminal.')
+    case 'read': return atTerminal() ? read(s) : say(s, 'refused', 'Not at a terminal.')
+    case 'note': return atTerminal() ? note(s, a.what, a.id) : say(s, 'refused', 'Not at a terminal.')
     case 'runner': return chooseRunner(s, a.name)
     case 'drop': {
       const held = grab(s, a.id, a.split)
@@ -89,8 +110,18 @@ function endNight(s: State): Ev[] {
   for (const e of ev) if (e.kind === 'raid') s.log.push({ day: s.day, kind: 'event', text: `Glasshounds came through the hatch in the dark hours. ${e.lost!.join(', ')} ${e.lost!.length > 1 ? 'are' : 'is'} gone.` })
   ev.push(...nightRun(s, ev))
   talk(s, ev)
+  feeds(s)
   s.day++
   s.step = 0
+  // The long arc (4.2): buried or emptied, the Seam falls; through day 30, it holds (and play goes on).
+  if (s.flags.buried) s.end = 'buried'
+  else if (!s.villagers.length) s.end = 'empty'
+  if (s.end) ev.push({ night: s.day - 1, kind: 'fell', text: s.end })
+  else if (s.day === 31) {
+    s.flags.held = true
+    s.log.push({ day: 30, kind: 'event', text: 'The Seam holds. For now.' })
+    ev.push({ night: 30, kind: 'held', text: 'The Seam holds. For now.' })
+  }
   return ev
 }
 

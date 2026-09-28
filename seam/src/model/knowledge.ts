@@ -2,6 +2,7 @@
 // "S:grub:pop:ducts"; its cell is unknown (absent), rough (a band) or exact, with the day and the source.
 // Omniscient reads the truth instead. The night's voice lives here too: rumours, feeds and MAINT's lines.
 
+import { LEVERS } from '../data/levers.ts'
 import { CONNECTIONS, LEVELS } from '../data/levels.ts'
 import { SP, SPECIES } from '../data/species.ts'
 import { MAINT, RUMOURS } from '../data/text.ts'
@@ -77,7 +78,7 @@ export function truth(s: State, key: string): Value | undefined {
     if (field === 'seen') return true
     if (field === 'hazard') return st.hazard ?? 'none'
   }
-  if (t === 'V' && field === 'seen') return true
+  if (t === 'V') return field === 'seen' ? true : field === 'effect' ? LEVERS[id]?.effect : undefined
   if (t === 'I') {
     const k = K[id]
     switch (field) {

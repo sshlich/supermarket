@@ -1,11 +1,12 @@
 // The Run window (DESIGN 11.3): the site you're at, what's here with you, the ways on, and what you can do.
 
 import { HAZARDS } from '../data/hazards.ts'
+import { LEVERS } from '../data/levers.ts'
 import { LEVELS } from '../data/levels.ts'
 import { SP } from '../data/species.ts'
 import { K } from '../model/containers.ts'
 import { fact } from '../model/knowledge.ts'
-import { R, encounterChance, evadeOdds, exits, pathHome, siteAt, siteDef, theirHit, tool, yourHit, type Choice } from '../model/run.ts'
+import { R, baitFor, encounterChance, evadeOdds, exits, pathHome, siteAt, siteDef, theirHit, tool, yourHit, type Choice } from '../model/run.ts'
 import { HP } from '../model/state.ts'
 import { act, omni, onChange, s } from './game.ts'
 import { UI } from './icons.ts'
@@ -45,7 +46,17 @@ function card() {
       ${b('fight', `Fight${fight}`, 'Up to three rounds; you can evade between them. Loud: +15, and +3 a kill.')}
       ${b('backoff', 'Back off', `Back the way you came${s.run!.prev ? ` (${s.run!.prev.cost} step${s.run!.prev.cost > 1 ? 's' : ''})` : ''}. Hunters get a round on you first.`, !s.run!.prev)}
       ${b('leave', 'Let them be', 'Only if they let you.', e.hostile)}
-    </div></div>`
+    </div>${lure()}</div>`
+}
+
+/** Lure (11.5): bait from the pack leads them away, to a site next door or out of the level. */
+function lure() {
+  const e = s.run!.enc!
+  const bait = baitFor(s, e.sp)
+  if (!bait) return ''
+  const ways = exits(s).filter(x => x.open && !x.home)
+  return `<p class="lure">Lure them with the ${esc(K[bait.kind].name)} toward: ${ways.map(x =>
+    `<button data-on="lure:${x.key}" ${tip(x.level !== s.run!.level ? 'Out of this level entirely.' : 'Onto a hazard, some won\'t come out. Into the Audit Tower, the tower hears them.')}>${esc(siteDef(x.level, x.site).name)}</button>`).join(' ')}</p>`
 }
 
 function run() {
@@ -74,6 +85,13 @@ function run() {
   const home = pathHome(s)
   const cutter = tool(s, 'cutter')
   const remains = st.remains.map(x => `${x.n} ${SP[x.species].name}${x.n > 1 ? 's' : ''}`).join(', ')
+  const levers = (d.levers ?? []).map(id => {
+    const v = LEVERS[id]
+    const known = f(`V:${id}:effect`)
+    const needs = [v.tool && `the ${K[v.tool].name} on the belt (wears ${v.wear})`, v.spend && !(id === 'conduitTap' && s.flags.tapWired) && `${v.spend[1]} ${K[v.spend[0]].name} from the pack`, v.belt && `${v.belt[0]} ${v.belt[1]} on the belt`].filter(Boolean)
+    return `<button data-on="lever:${id}" ${busy || left < 1 ? 'disabled' : ''} ${tip(`${v.name}. ${known ? known.value : 'What it does: ???'}\nNeeds: ${needs.join(', ') || 'nothing'}. 1 step${v.attention ? `, +${v.attention} attention` : ''}.`)}>${esc(v.name)}${id === 'conduitTap' ? (s.conduitTapped ? ' (on)' : ' (off)') : ''}</button>`
+  }).join('')
+  const terminal = d.type === 'terminal' ? `<button data-on="terminal" ${busy || (!r.term && left < 1) ? 'disabled' : ''} ${tip('Wake the terminal: 1 step. MAINT, and whatever your access lets you do.')}>${icon(UI.terminal)}Terminal${r.term ? ' (awake)' : ''}</button>` : ''
   const loot = st.loot.map(it => `<li>${icon(K[it.kind].icon)}${esc(K[it.kind].relic ? 'Unknown Relic' : K[it.kind].name)}${it.n > 1 ? ` ×${it.n}` : ''} <button data-on="take:${it.id}" ${busy ? 'disabled' : ''}>Take</button></li>`).join('')
   const chance = f(`L:${r.level}:entities`) ? `<span ${tip('The chance of meeting something on arriving here, from what lives on this level.')}>meeting something: ${pct(encounterChance(s, r.level, r.site))}</span>` : ''
   return `
@@ -87,6 +105,7 @@ function run() {
     <h3>Ways on</h3>
     <div class="sunken-panel"><table class="ways">${ways}</table></div>
     <h3>Here</h3>
+    ${levers || terminal ? `<p class="acts">${levers}${terminal}</p>` : ''}
     <p class="acts">
       <button data-on="search" ${busy || st.searched || d.type === 'nest' || left < 1 ? 'disabled' : ''} ${tip(d.type === 'nest' ? 'A nest: nothing to search. Harvest what you kill.' : 'Search the site once: 1 step.')}>Search${st.searched ? 'ed' : ''}</button>
       <button data-on="harvest" ${busy || !remains || !cutter || left < 1 ? 'disabled' : ''} ${tip(cutter ? 'Harvest the remains here with the Cutter: 1 step.' : 'Harvesting needs the Cutter on the belt.')}>Harvest${remains ? ` ${remains}` : ''}</button>
@@ -116,6 +135,9 @@ define({
     if (cmd === 'harvest') act({ type: 'harvest' })
     if (cmd === 'take') act({ type: 'take', id: +arg })
     if (cmd === 'choose') act({ type: 'choose', choice: arg as Choice })
+    if (cmd === 'lure') act({ type: 'choose', choice: 'lure', arg })
+    if (cmd === 'lever') act({ type: 'lever', id: arg })
+    if (cmd === 'terminal') { act({ type: 'terminal' }); open('terminal') }
     if (cmd === 'return') act({ type: 'returnHome' })
     if (cmd === 'camp') document.querySelector<HTMLElement>('[data-endday]')?.click()
     if (cmd === 'runner') act({ type: 'runner', name: arg })

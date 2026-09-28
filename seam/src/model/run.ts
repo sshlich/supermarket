@@ -2,6 +2,7 @@
 // search and harvest; the way home; and dying out there. Everything learned on the way goes into the Catalog.
 
 import { HAZARDS, RESISTS } from '../data/hazards.ts'
+import { LEVERS } from '../data/levers.ts'
 import { LEVELS, type SiteDef } from '../data/levels.ts'
 import { LOOT } from '../data/loot.ts'
 import { RELIC_ROLLS } from '../data/relics.ts'
@@ -10,7 +11,7 @@ import { K, become, make, remove, stow } from './containers.ts'
 import { belt, driftPerStep, prop } from './items.ts'
 import { fact, learn } from './knowledge.ts'
 import { pick, rand } from './rng.ts'
-import type { Ev } from './sim.ts'
+import { EFFECTS, type Ev } from './sim.ts'
 import { HP, type Item, type LevelState, type SiteState, type State } from './state.ts'
 
 /** Section 11's numbers, in one place for tuning. */
@@ -32,6 +33,8 @@ export const R = {
   feeding: 0.2,      // chance of seeing something eat, on arriving
   unstable: 3,       // nights between hazard rerolls on Unstable levels
   reroll: 0.35,      // chance each site there gets a hazard
+  mason: 0.5,        // chance sabotage brings a Mason
+  towerLure: 10,     // attention per head, luring a group into the Audit Tower
   noise: { move: 1, bolt: 1, fight: 15, kill: 3, fail: 10 },
 }
 
@@ -174,6 +177,7 @@ export function go(s: State, key: string): Ev[] {
   if (!x.open) return no(s, `That way is ${x.why}.`)
   if (s.step + x.cost > R.day) return no(s, 'Not enough of the day left. Camp here, or go back.')
   const prev = { level: r.level, site: r.site, cost: x.cost }
+  r.term = undefined
   steps(s, x.cost, s.levels[x.home ? r.level : x.level], true)
   if (s.runner.drift >= 100) return die(s, 'drift')
   if (x.home) { s.run = undefined; return say(s, 'Down through the hatch. Home.') }
@@ -369,9 +373,16 @@ function hitBack(s: State): string {
   return dmg ? ` They hit back: HP −${dmg}.` : ''
 }
 
-export type Choice = 'evade' | 'fight' | 'backoff' | 'leave'
+export type Choice = 'evade' | 'fight' | 'backoff' | 'leave' | 'lure'
 
-export function choose(s: State, c: Choice): Ev[] {
+/** What in the pack a species would follow (C.2): its bait, and for scourers anything rotten. */
+export const baitFor = (s: State, sp: string) => s.C.pack.find(it => (!it.rotten && K[it.kind].bait?.includes(sp)) || (sp === 'scourer' && it.rotten))
+const packCount = (s: State, kind: string) => s.C.pack.filter(it => it.kind === kind).reduce((a, it) => a + it.n, 0)
+function spendPack(s: State, kind: string, n: number) {
+  for (const it of s.C.pack.filter(o => o.kind === kind)) { const k = Math.min(n, it.n); remove(s, 'pack', it, k); n -= k; if (!n) break }
+}
+
+export function choose(s: State, c: Choice, arg = ''): Ev[] {
   const r = s.run
   const e = r?.enc
   if (!r || !e) return no(s, 'Nothing to deal with.')
@@ -381,6 +392,35 @@ export function choose(s: State, c: Choice): Ev[] {
   const after = (out: Ev[]) => s.runner.hp <= 0 ? [...out, ...die(s, 'hp')] : out
 
   if (c === 'leave') return e.hostile ? no(s, "They won't let you.") : end('You let them be.')
+  if (c === 'lure') {
+    // Bait from the pack pulls the group away (11.5): to a site here, or out of the level entirely.
+    const bait = baitFor(s, sp.id)
+    const x = exits(s).find(x => x.key === arg && x.open && !x.home)
+    if (!bait) return no(s, "Nothing in the pack they'd follow.")
+    if (!x) return no(s, "They can't be led that way.")
+    const alive = e.n - e.killed
+    remove(s, 'pack', bait, 1)
+    learn(s, `I:${bait.kind}:bait`, 'exact', 'used')
+    // What following it says about their diet: film is film, scrap is scrap, grub meat is grub, rot is corpses.
+    const food = bait.rotten ? 'corpses' : ({ film: 'film', scrap: 'scrap', grubCarcass: 'grub', tallow: 'grub' } as Record<string, string>)[bait.kind]
+    if (food && sp.diet[food] !== undefined) learn(s, `S:${sp.id}:diet:${food}`, 'exact', 'used')
+    const there = siteAt(s, x.level, x.site)
+    let fate = ''
+    if (x.level !== r.level) {
+      L.N[sp.id] = Math.max(0, (L.N[sp.id] ?? 0) - alive)
+      s.levels[x.level].N[sp.id] = (s.levels[x.level].N[sp.id] ?? 0) + alive
+      fate = ` out of the ${LEVELS[r.level].name}`
+    } else if (there.hazard) {
+      const lost = Math.floor(alive / 2)
+      L.N[sp.id] = Math.max(0, (L.N[sp.id] ?? 0) - lost)
+      L.C += lost * sp.mass
+      fate = `, into the ${HAZARDS[there.hazard].name}${lost ? `: ${lost} don't come out` : ''}`
+    } else if (siteDef(x.level, x.site).type === 'tower') {
+      noise(s, L, R.towerLure * alive)
+      fate = ', and the tower wakes to the noise of them'
+    }
+    return end(`They follow the ${K[bait.kind].name} toward the ${siteDef(x.level, x.site).name}${fate}.`)
+  }
   if (c === 'evade') {
     if (rand(s) < evadeOdds(s)) return end('You slip past.')
     noise(s, L, R.noise.fail)
@@ -422,6 +462,38 @@ export function choose(s: State, c: Choice): Ev[] {
   if (e.killed >= e.n) return after(end(`${told} None are left standing.`))
   if (e.round >= R.rounds) return after(end(`${told} The rest melt away.`))
   return after(say(s, told))
+}
+
+// ---------------------------------------------------------------- levers (11.6, Appendix F)
+
+export function pullLever(s: State, id: string): Ev[] {
+  const r = s.run
+  if (!r) return no(s, 'At home.')
+  if (r.enc) return no(s, 'Not with that in front of you.')
+  const v = LEVERS[id]
+  if (!v || !siteDef(r.level, r.site).levers?.includes(id)) return no(s, 'No such lever here.')
+  if (s.step + 1 > R.day) return no(s, 'Not enough of the day left.')
+  const t = v.tool ? tool(s, v.tool) : undefined
+  if (v.tool && !t) return no(s, `The ${v.name} needs the ${K[v.tool].name} on the belt.`)
+  if (v.belt && (belt(s)[v.belt[0]] ?? 0) < v.belt[1]) return no(s, `The ${v.name} wants ${v.belt[0]} ${v.belt[1]} on the belt.`)
+  const spend = v.spend && !(id === 'conduitTap' && s.flags.tapWired) ? v.spend : undefined
+  if (spend && packCount(s, spend[0]) < spend[1]) return no(s, `The ${v.name} needs ${spend[1]} ${K[spend[0]].name} in the pack.`)
+  const L = s.levels[r.level]
+  steps(s, 1, L, false)
+  if (spend) spendPack(s, spend[0], spend[1])
+  if (id === 'conduitTap') s.flags.tapWired = true
+  const broke = t && v.wear ? wear(s, t, v.wear) : ''
+  const had = { moths: L.N.moth ?? 0 }
+  EFFECTS[id](s, L)
+  noise(s, L, v.attention)
+  learn(s, `V:${id}:effect`, 'exact', 'pulled')
+  const out = say(s, `${v.name}: ${id === 'mothLure' && !had.moths ? 'you lay out the scrap, and nothing comes. No moths here.' : v.effect}${broke}`)
+  if (id === 'sabotage' && rand(s) < R.mason) {
+    r.enc = { sp: 'mason', n: 1, killed: 0, dmg: 0, round: 0, hostile: false }
+    for (const f of ['known', 'size', 'behaviour']) learn(s, `S:mason:${f}`, 'exact', 'seen')
+    out.push(...say(s, 'A Mason turns toward the noise. It has never seen you. It is looking anyway.'))
+  }
+  return out
 }
 
 // ---------------------------------------------------------------- search, harvest, take

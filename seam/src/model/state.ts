@@ -39,7 +39,7 @@ export interface SiteState {
 
 /** A group met on a run: how many, how many are dead, the damage dealt so far, the round of a fight. */
 export interface Encounter { sp: string; n: number; killed: number; dmg: number; round: number; hostile: boolean }
-export interface Run { level: string; site: string; prev?: { level: string; site: string; cost: number }; noise: number; enc?: Encounter }
+export interface Run { level: string; site: string; prev?: { level: string; site: string; cost: number }; noise: number; enc?: Encounter; term?: { writes: number } }
 
 export interface LevelState {
   id: string
@@ -76,6 +76,8 @@ export interface State {
   run?: Run                                   // where the runner is, while out
   pick?: string[]                             // after a death: who could take the terminal
   visits: Record<string, number[]>            // days each level was walked (a few nights of it teaches Stability)
+  access: { fragments: number; subscribed: string[]; extra: number }
+  end?: 'buried' | 'empty'                    // the Seam fell; the Catalog carries on into the next game
   C: Record<Box, Item[]>                      // the Seam's containers and the runner's kit
   machines: { cold: boolean; moss: boolean; condenser: boolean }
   blackout: boolean
@@ -108,7 +110,7 @@ export function newGame(seed: number, know: State['know'] = {}): State {
     villagers: [...VILLAGERS], runner: { name: VILLAGERS[0], hp: HP, drift: 0, peak: 0 },
     C: Object.fromEntries(Object.keys(BOXES).map(b => [b, []])) as unknown as State['C'],
     machines: { cold: true, moss: true, condenser: true },
-    blackout: false, conduitTapped: false, seamA: 0, burial: 0, visits: {},
+    blackout: false, conduitTapped: false, seamA: 0, burial: 0, visits: {}, access: { fragments: 0, subscribed: [], extra: 0 },
     levels: Object.fromEntries(Object.values(LEVELS).filter(l => !l.appears).map(l => [l.id, level(l)])),
     connections: CONNECTIONS.filter(c => !c.appears).map(connection),
     know, log: [], hist: {}, flags: {},

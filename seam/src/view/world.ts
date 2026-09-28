@@ -2,10 +2,12 @@
 // Every fact goes through the knowledge filter: ??? until learned, the truth only with ?omniscient.
 
 import { HAZARDS } from '../data/hazards.ts'
+import { LEVERS } from '../data/levers.ts'
 import { CONNECTIONS, LEVELS, SEAM } from '../data/levels.ts'
 import { SPECIES, type Species } from '../data/species.ts'
 import { fact, knownConnection, knownLevel } from '../model/knowledge.ts'
 import type { Cell } from '../model/state.ts'
+import { project, type Projection } from '../model/project.ts'
 import { stock, H } from '../model/seam.ts'
 import { act, omni, s } from './game.ts'
 import { UI } from './icons.ts'
@@ -21,6 +23,7 @@ const SHORT: Record<string, string> = { galleries: 'Galleries', ducts: 'Ducts', 
 // ---------------------------------------------------------------- Atlas
 
 let sel = 'galleries'
+let proj: { level: string; lever: string; rows: Projection[] | null } | null = null
 
 function map() {
   const known = levelsKnown()
@@ -79,13 +82,44 @@ function entry(id: string) {
       { head: 'Site', cell: x => esc(x.name), sort: x => x.name },
       { head: 'Type', cell: x => esc(x.type), sort: x => x.type },
       { head: 'Hazard', cell: x => c(`T:${x.id}:hazard`, v => v === 'none' ? 'none' : `<b class="hz">${esc(HAZARDS[v as string].name)}</b>`), sort: x => sortOf(f(`T:${x.id}:hazard`)) },
-    ] as Col<(typeof def.sites)[number]>[], def.sites.filter(x => omni || s.know[`T:${x.id}:seen`]), 'Nobody has walked it yet.')}`
+    ] as Col<(typeof def.sites)[number]>[], def.sites.filter(x => omni || s.know[`T:${x.id}:seen`]), 'Nobody has walked it yet.')}
+    ${levers(id)}`
+}
+
+/** Levers seen on a level, what each is known to do, its terminals, and the week-ahead projection (11.6). */
+function levers(id: string) {
+  const def = LEVELS[id]
+  const seen = def.sites.flatMap(x => (x.levers ?? []).map(l => ({ l, site: x }))).filter(({ l }) => omni || s.know[`V:${l}:seen`])
+    .filter((x, i, a) => a.findIndex(y => y.l === x.l) === i)
+  const terms = def.sites.filter(x => x.type === 'terminal' && (omni || s.know[`T:${x.id}:seen`]))
+  const pullable = seen.filter(({ l }) => f(`V:${l}:effect`))
+  const p = proj?.level === id ? proj : null
+  const band = (n: number, rough: boolean) => rough ? `<i>${esc(['none', 'few', 'some', 'many', 'swarm'][n < 0.5 ? 0 : n < 5.5 ? 1 : n < 20.5 ? 2 : n < 80.5 ? 3 : 4])}</i>` : String(Math.round(n))
+  return `<h3>Levers</h3>
+    ${seen.length ? `<ul>${seen.map(({ l, site }) => `<li><b>${esc(LEVERS[l].name)}</b> at the ${esc(site.name)}: ${c(`V:${l}:effect`)}</li>`).join('')}</ul>` : '<p class="empty">None seen.</p>'}
+    <h3>Terminals</h3>
+    ${terms.length ? `<ul>${terms.map(x => `<li>${esc(x.name)}${s.access.subscribed.includes(id) ? ' (subscribed)' : ''}</li>`).join('')}</ul>` : '<p class="empty">None seen.</p>'}
+    <h3>What would happen…</h3>
+    <p class="field-row"><select id="proj-lever"><option value="">as things stand</option>${pullable.map(({ l }) => `<option value="${l}" ${p?.lever === l ? 'selected' : ''}>if the ${esc(LEVERS[l].name)} is pulled</option>`).join('')}</select>
+      <button data-on="project:${id}" ${tip('Runs the world a week forward on a copy made only of what you know. Unknown numbers stay unknown; rough ones stay rough.')}>Run it forward a week</button></p>
+    ${p ? p.rows?.length ? table(`proj-${id}`, [
+      { head: 'Species', cell: r => esc(SPECIES.find(x => x.id === r.species)!.name) },
+      { head: 'As known now', cell: r => band(r.now, r.rough) },
+      { head: 'In a week', cell: r => band(r.then, r.rough) },
+    ] as Col<Projection>[], p.rows) : '<p class="empty">Too little is known here to say. Unknown numbers stay ???.</p>' : ''}`
 }
 
 define({
   id: 'atlas', title: 'Atlas', icon: UI.atlas, x: 150, y: 40, w: 760, h: 540, desktop: true,
   body: () => `<div class="atlas"><div class="pane">${map()}</div><div class="page">${entry(sel)}</div></div>`,
-  on: (cmd, arg) => { if (cmd === 'level') { sel = arg; paint('atlas') } },
+  on: (cmd, arg, el) => {
+    if (cmd === 'level') { sel = arg; proj = null; paint('atlas') }
+    if (cmd === 'project') {
+      const lever = el.closest('.window-body')!.querySelector<HTMLSelectElement>('#proj-lever')?.value ?? ''
+      proj = { level: arg, lever, rows: project(s, arg, lever || undefined) }
+      paint('atlas')
+    }
+  },
 })
 
 // ---------------------------------------------------------------- Bestiary

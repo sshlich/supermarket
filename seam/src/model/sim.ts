@@ -38,12 +38,15 @@ export const T = {
   holdNights: 10,  // a WRITE maintenance hold (M = 0)
   lureNights: 10,  // a moth lure (M −1)
   lureScrap: 40,   // plating the lured moths strip off the Masons, and boom on
+  sabotageNights: 3,
+  tower: 60,       // attention the Audit Tower's lever adds to its level
+  conduit: 10,     // attention a night on the tapped conduit's level
 }
 
 /** Something that happened tonight: a line for the CLI, and the facts behind it for the voice and the view. */
 export interface Ev {
   night: number
-  kind: 'migrate' | 'extinct' | 'sweep' | 'raid' | 'buried' | 'masons' | 'level' | 'choir' | 'script' | 'refused' | 'made' | 'home' | 'run' | 'died'
+  kind: 'migrate' | 'extinct' | 'sweep' | 'raid' | 'buried' | 'masons' | 'level' | 'choir' | 'script' | 'refused' | 'made' | 'home' | 'run' | 'died' | 'tier' | 'held' | 'fell'
   text: string
   level?: string
   n?: number
@@ -100,6 +103,8 @@ export function world(s: State, dark: boolean): Ev[] {
   for (const L of Object.values(s.levels)) sat[L.id] = live(s, L, raid && L === hatch)
   sing(s, say)
   migrate(s, sat, say)
+  // The tapped conduit hums where it's tapped (11.8).
+  if (s.conduitTapped) for (const L of Object.values(s.levels)) if (LEVELS[L.id].sites.some(x => x.levers?.includes('conduitTap'))) L.A += T.conduit
   for (const L of Object.values(s.levels)) attend(s, L, say)
   if (raid) { // they came at nightfall, before tonight's building could close the gap
     const lost: string[] = []
@@ -273,6 +278,9 @@ export const EFFECTS: Record<string, (s: State, L: LevelState, value?: number) =
     L.S += T.lureScrap
   },
   hold: (s, L) => { L.mHolds.push({ until: s.day + T.holdNights, delta: -99 }) }, // WRITE maintenance hold: M = 0
+  conduitTap: s => { s.conduitTapped = !s.conduitTapped },
+  sabotage: (s, L) => { L.mHolds.push({ until: s.day + T.sabotageNights, delta: -1 }) },
+  tower: (s, L) => { L.A += T.tower },
   attention: (s, L, value = 0) => { L.A = value },                       // scenarios only
 }
 
