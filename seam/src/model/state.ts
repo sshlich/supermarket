@@ -21,10 +21,25 @@ export interface Item {
   props?: Props      // where this one differs from its kind (a cracked shard)
   runs?: number      // runs a shell lamp has been out on
   charges?: number   // shots left in it
+  page?: number      // which brochure it is
 }
 
 export interface Runner { name: string; hp: number; drift: number; peak: number }
-export interface SiteState { id: string; loot: Item[] }
+export interface SiteState {
+  id: string
+  loot: Item[]                                 // things lying here: overflow, drops, a fallen runner's kit
+  hazard?: string
+  rolled: number                               // the day its hazard was last rolled
+  remains: { species: string; n: number }[]    // kills waiting for the Cutter
+  searched?: boolean
+  bolts?: number                               // thrown here, waiting to be picked up
+  fell?: string                                // who died here
+  tagged?: boolean                             // NOTE: Scourers leave it alone
+}
+
+/** A group met on a run: how many, how many are dead, the damage dealt so far, the round of a fight. */
+export interface Encounter { sp: string; n: number; killed: number; dmg: number; round: number; hostile: boolean }
+export interface Run { level: string; site: string; prev?: { level: string; site: string; cost: number }; noise: number; enc?: Encounter }
 
 export interface LevelState {
   id: string
@@ -47,7 +62,7 @@ export interface Connection { id: string; a: string; b: string; cost: number; op
 /** A known fact: rough (a band) or exact, when it was learned and how (7.1). Absent means ???. */
 export interface Cell { state: 'rough' | 'exact'; value: string | number | boolean; day: number; src: string; trail?: [number, number][] }
 
-export interface LogLine { day: number; kind: 'maint' | 'rumour' | 'event'; text: string }
+export interface LogLine { day: number; kind: 'maint' | 'rumour' | 'event' | 'run'; text: string }
 
 export interface State {
   version: 1
@@ -58,7 +73,9 @@ export interface State {
   next: number                                // next item id
   villagers: string[]                         // everyone still alive, the runner too
   runner: Runner
-  run?: { level: string; site: string }       // where the runner is, while out
+  run?: Run                                   // where the runner is, while out
+  pick?: string[]                             // after a death: who could take the terminal
+  visits: Record<string, number[]>            // days each level was walked (a few nights of it teaches Stability)
   C: Record<Box, Item[]>                      // the Seam's containers and the runner's kit
   machines: { cold: boolean; moss: boolean; condenser: boolean }
   blackout: boolean
@@ -75,7 +92,7 @@ export interface State {
 
 export const level = (def: LevelDef): LevelState => ({
   id: def.id, F: def.F, S: def.S, C: 0, heat: def.heat, flooded: def.flooded, M: def.M, mHolds: [], A: 0,
-  N: { ...def.N }, sites: def.sites.map(x => ({ id: x.id, loot: [] })),
+  N: { ...def.N }, sites: def.sites.map(x => ({ id: x.id, loot: [], hazard: x.hazard, rolled: 0, remains: [] })),
 })
 
 export const connection = ({ id, a, b, cost, open, requires }: ConnectionDef): Connection => ({ id, a, b, cost, open, requires })
@@ -91,7 +108,7 @@ export function newGame(seed: number, know: State['know'] = {}): State {
     villagers: [...VILLAGERS], runner: { name: VILLAGERS[0], hp: HP, drift: 0, peak: 0 },
     C: Object.fromEntries(Object.keys(BOXES).map(b => [b, []])) as unknown as State['C'],
     machines: { cold: true, moss: true, condenser: true },
-    blackout: false, conduitTapped: false, seamA: 0, burial: 0,
+    blackout: false, conduitTapped: false, seamA: 0, burial: 0, visits: {},
     levels: Object.fromEntries(Object.values(LEVELS).filter(l => !l.appears).map(l => [l.id, level(l)])),
     connections: CONNECTIONS.filter(c => !c.appears).map(connection),
     know, log: [], hist: {}, flags: {},

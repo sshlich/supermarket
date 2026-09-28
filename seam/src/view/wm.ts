@@ -103,6 +103,9 @@ function renderAll() {
   tasks()
   const phase = ['dawn', 'day', 'dusk'][Math.min(2, Math.floor(s.step / 4))]
   $('.tray time').textContent = `Day ${s.day} · ${phase} · ${s.step}/12`
+  const end = $('[data-endday]')
+  end.innerHTML = s.run ? `${icon(UI.camp)}Camp` : `${icon(UI.night)}End Day`
+  end.classList.toggle('urgent', !!s.run && s.step >= 12)
 }
 
 function tasks() {
@@ -117,10 +120,11 @@ async function endDay() {
   busy = true
   hideTip()
   const veil = $('.veil')
-  veil.innerHTML = `<p>${icon(UI.night)}Night ${s.day}</p>`
+  const camping = !!s.run
+  veil.innerHTML = `<p>${icon(camping ? UI.camp : UI.night)}Night ${s.day}${camping ? `, out in the ${s.run!.level === 'u0041' ? 'new stratum' : 'dark'}` : ''}</p>`
   veil.classList.add('on')
   await wait(650)
-  const ev = act({ type: 'endDay' })
+  const ev = act({ type: camping ? 'camp' : 'endDay' })
   veil.innerHTML = `<p>Day ${s.day}</p>`
   await wait(500)
   veil.classList.remove('on')

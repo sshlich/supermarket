@@ -3,6 +3,7 @@
 import { HOME, type Box } from '../data/items.ts'
 import { K, applyDrop, grab, planDrop, send, tidy, where } from './containers.ts'
 import { learn, talk } from './knowledge.ts'
+import { choose, chooseRunner, go, harvest, nightRun, returnHome, search, startRun, take, throwBolt, wake, type Choice } from './run.ts'
 import { homeNight, type Machine } from './seam.ts'
 import { world, type Ev } from './sim.ts'
 import type { State } from './state.ts'
@@ -14,6 +15,16 @@ export type Action =
   | { type: 'tidy'; box: Box }
   | { type: 'blackout' }
   | { type: 'machine'; id: Machine }
+  | { type: 'startRun' }
+  | { type: 'go'; key: string }
+  | { type: 'returnHome' }
+  | { type: 'bolt'; key: string }
+  | { type: 'search' }
+  | { type: 'harvest' }
+  | { type: 'take'; id: number }
+  | { type: 'choose'; choice: Choice }
+  | { type: 'camp' }
+  | { type: 'runner'; name: string }
 
 const say = (s: State, kind: Ev['kind'], text: string): Ev[] => [{ night: s.day, kind, text }]
 /** Out on a run, only the pack and belt are within reach. */
@@ -27,7 +38,17 @@ export function apply(s: State, a: Action): Ev[] {
 
 function act(s: State, a: Action): Ev[] {
   switch (a.type) {
-    case 'endDay': return endNight(s)
+    case 'endDay': return s.run ? say(s, 'refused', 'Out on a run: camp, or come home first.') : endNight(s)
+    case 'camp': return s.run ? [...endNight(s), ...wake(s)] : say(s, 'refused', 'At home: End Day instead.')
+    case 'startRun': return startRun(s)
+    case 'go': return go(s, a.key)
+    case 'returnHome': return returnHome(s)
+    case 'bolt': return throwBolt(s, a.key)
+    case 'search': return search(s)
+    case 'harvest': return harvest(s)
+    case 'take': return take(s, a.id)
+    case 'choose': return choose(s, a.choice)
+    case 'runner': return chooseRunner(s, a.name)
     case 'drop': {
       const held = grab(s, a.id, a.split)
       const from = held && (held.from?.box ?? where(s, held.splitOf!)!.box)
@@ -61,11 +82,12 @@ function act(s: State, a: Action): Ev[] {
   }
 }
 
-/** The whole night (6.7): the Seam, then the world, then what the Seam hears of it and MAINT writes down. */
+/** The whole night (6.7): the Seam, then the world, the runner's night, then what the Seam hears and MAINT writes. */
 function endNight(s: State): Ev[] {
   const { lit } = homeNight(s)
   const ev = world(s, s.blackout || !lit)
   for (const e of ev) if (e.kind === 'raid') s.log.push({ day: s.day, kind: 'event', text: `Glasshounds came through the hatch in the dark hours. ${e.lost!.join(', ')} ${e.lost!.length > 1 ? 'are' : 'is'} gone.` })
+  ev.push(...nightRun(s, ev))
   talk(s, ev)
   s.day++
   s.step = 0

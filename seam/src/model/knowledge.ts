@@ -27,6 +27,11 @@ export const size = (mass: number) => cut(mass, [[0, 'tiny'], [0.5, 'small'], [1
 
 // ---------------------------------------------------------------- facts
 
+/** Which level each site is on (site ids are unique across the Accretion). */
+export const SITE_LEVEL: Record<string, string> = Object.fromEntries(Object.values(LEVELS).flatMap(l => l.sites.map(x => [x.id, l.id])))
+/** Nights hazard knowledge stays good on an Unstable level (7.3). */
+const SHELF = 3
+
 export const WHERE: Record<string, string> = { galleries: 'in the Galleries', ducts: 'in the Ducts', stair: 'on the Stair', hall: 'in the Choir Hall', u0041: 'up past the Stair' }
 
 /** The world's answer to a fact, or undefined if it doesn't exist (yet). */
@@ -59,12 +64,20 @@ export function truth(s: State, key: string): Value | undefined {
       case 'diet': return sp.diet[sub] !== undefined ? 'eats' : 'no'
       case 'threat': return sp.threat
       case 'hp': return sp.hp
-      case 'drops': return Object.keys(sp.drops).join(', ') || 'nothing'
+      case 'drops': return Object.keys(sp.drops).map(k => K[k]?.name ?? k).join(', ') || 'nothing'
       case 'props': return Object.entries(sp.props).map(([p, v]) => `${p} ${v}`).join(', ')
       case 'pop': return s.levels[sub] ? Math.round(s.levels[sub].N[id] ?? 0) : undefined
     }
   }
   if (t === 'C') return s.connections.some(c => c.id === id) || undefined
+  if (t === 'T') {
+    const L = s.levels[SITE_LEVEL[id]]
+    const st = L?.sites.find(x => x.id === id)
+    if (!st) return undefined
+    if (field === 'seen') return true
+    if (field === 'hazard') return st.hazard ?? 'none'
+  }
+  if (t === 'V' && field === 'seen') return true
   if (t === 'I') {
     const k = K[id]
     switch (field) {
@@ -110,7 +123,10 @@ export function fact(s: State, key: string, omni = false): Cell | undefined {
     const trail = t === 'S' && field === 'pop' ? (s.hist[sub]?.[id] ?? []).map((n, i, a) => [s.day - a.length + i, n] as [number, number]) : undefined
     return { state: 'exact', value: v, day: s.day, src: 'omniscient', trail }
   }
-  return s.know[key]
+  const c = s.know[key]
+  // 7.3: on Unstable levels, what you knew about a site's hazard goes stale after a few nights.
+  if (c && key.startsWith('T:') && key.endsWith(':hazard') && LEVELS[SITE_LEVEL[key.split(':')[1]]].survival.stability === 'Unstable' && s.day - c.day > SHELF) return undefined
+  return c
 }
 
 /** Levels the player knows of: home, and any they've learned about. */

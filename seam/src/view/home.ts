@@ -9,7 +9,7 @@ import { act, omni, s } from './game.ts'
 import { UI } from './icons.ts'
 import { boxHtml } from './items.ts'
 import { cell, esc, icon, sortOf, table, tip, type Col } from './ui.ts'
-import { define } from './wm.ts'
+import { define, open } from './wm.ts'
 
 const tidyOn = (cmd: string, arg: string) => { if (cmd === 'tidy') act({ type: 'tidy', box: arg as Box }) }
 
@@ -46,11 +46,15 @@ function kit() {
       <p><b>${esc(r.name)}</b> holds the terminal and the key to the hatch.</p>
       <p ${tip('Health. At 0 the runner is lost, and the pack and belt stay where they fell.')}>HP ${gauge(r.hp, HP, 'hp')} ${r.hp}/${HP}</p>
       <p ${tip('Drift: what carrying relics does to a person. It eases 2 a night at home, never below 20 under the worst it has been. At 100 the Accretion keeps them.')}>Drift ${gauge(r.drift, 100, 'drift')} ${Math.round(r.drift)}</p>
+      <p><button data-on="run">${icon(UI.run)}${s.run ? 'Out on a run…' : 'Go out…'}</button></p>
     </div>
     ${boxHtml('belt')}${boxHtml('pack')}`
 }
 
-define({ id: 'kit', title: 'Kit', icon: UI.kit, x: 738, y: 6, w: 240, h: 360, desktop: true, start: true, body: kit, on: tidyOn })
+define({
+  id: 'kit', title: 'Kit', icon: UI.kit, x: 738, y: 6, w: 240, h: 390, desktop: true, start: true, body: kit,
+  on: (cmd, arg) => { tidyOn(cmd, arg); if (cmd === 'run') open('run') },
+})
 
 // ---------------------------------------------------------------- the Catalog
 

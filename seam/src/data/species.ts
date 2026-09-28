@@ -1,7 +1,7 @@
 // Appendix B: what lives in the Accretion. The night sim reads mass, diet, r, d, vuln, migrates, habitat and the
 // rule flags (sings, printed, signed, raids); the encounter fields and text are for runs and the Bestiary.
 
-import type { Props } from '../model/state.ts'
+import type { Prop, Props } from '../model/state.ts'
 
 export type Behaviour = 'skittish' | 'territorial' | 'hunter' | 'scavenger' | 'indifferent'
 
@@ -20,6 +20,9 @@ export interface Species {
   printed?: number               // the city prints this many per unit of corpse biomass each night (6.3.6)
   signed?: true                  // carries a Signature: sweeps pass it by
   raids?: true                   // hunts people through the hatch (6.6)
+  lairOnly?: true                // met only at its lair site
+  machine?: true                 // not organic: CHARGE on the belt doesn't hurt it more
+  drawnBy?: Prop                 // this on the belt draws it to you: encounter weight ×(1 + n/2) (10.5)
   detect: number
   pack: number
   aware: number
@@ -39,20 +42,20 @@ export const SPECIES: Species[] = [
     text: 'Pale, soft, the length of a forearm. It eats the film and becomes fat. Everything eats it. You will too.',
   },
   {
-    id: 'moth', name: 'Rust Moth', icon: 'fly', mass: 0.2, diet: { scrap: 1 }, r: 0.35, d: 0.40, vuln: 0.05 /* doc 0.4 */, migrates: true,
+    id: 'moth', name: 'Rust Moth', icon: 'fly', mass: 0.2, diet: { scrap: 1 }, r: 0.35, d: 0.40, vuln: 0.05 /* doc 0.4 */, migrates: true, drawnBy: 'LIGHT',
     // A swarm is one encounter. Its threat is −10 cond to every metal tool on the belt instead of HP.
     detect: 0.05, pack: 20, aware: 1, threat: 1, hp: 1, behaviour: 'hunter', props: { ROT: 1 },
     drops: {},
     text: 'A cloud of flakes that turns out to be alive. Wherever the Masons shed metal, they come to eat it, including off your tools.',
   },
   {
-    id: 'crab', name: 'Lantern Crab', icon: 'crab', mass: 2, diet: { moth: 0.7, film: 0.3 }, r: 0.08 /* doc 0.12 */, d: 0.20, vuln: 0.1 /* doc 0.3 */, migrates: false,
+    id: 'crab', name: 'Lantern Crab', icon: 'crab', mass: 2, diet: { moth: 0.7, film: 0.3 }, r: 0.08 /* doc 0.12 */, d: 0.20, vuln: 0.1 /* doc 0.3 */, migrates: false, drawnBy: 'LIGHT',
     detect: 0.5, pack: 2, aware: 1, threat: 1, hp: 4, behaviour: 'territorial', props: { LIGHT: 2 },
     drops: { crabShell: 1 },
     text: 'Carries its light in its back like a grudge. Eats moths; hates company.',
   },
   {
-    id: 'eel', name: 'Cable Eel', icon: 'eel', mass: 4, diet: { grub: 0.6, crab: 0.4 }, r: 0.08, d: 0.15, vuln: 0.2, migrates: false, habitat: 'flooded',
+    id: 'eel', name: 'Cable Eel', icon: 'eel', mass: 4, diet: { grub: 0.6, crab: 0.4 }, r: 0.08, d: 0.15, vuln: 0.2, migrates: false, habitat: 'flooded', drawnBy: 'CHARGE',
     detect: 0.6, pack: 1, aware: 2, threat: 3, hp: 8, behaviour: 'hunter', props: { CHARGE: 2 },
     drops: { liveWire: 1 },
     text: 'Two metres of muscle that hums. It lives in the flooded ducts and anything that touches the water is its business.',
@@ -65,7 +68,7 @@ export const SPECIES: Species[] = [
   },
   {
     // Met only at the Nave (its lair). It feeds by song, not in the eating step, and has no births or deaths.
-    id: 'choir', name: 'The Choir', icon: 'sing', mass: 80, diet: { hound: 1 }, r: 0, d: 0, vuln: 0, migrates: false, sings: 0.15 /* doc 0.08 */, signed: true,
+    id: 'choir', name: 'The Choir', icon: 'sing', mass: 80, diet: { hound: 1 }, r: 0, d: 0, vuln: 0, migrates: false, sings: 0.15 /* doc 0.08 */, signed: true, lairOnly: true,
     detect: 1, pack: 1, aware: 2, threat: 8, hp: 120, behaviour: 'indifferent', props: { SIGNAL: 3, CHARGE: 3 },
     drops: { choirHeart: 1 }, // when silenced
     text: 'It does not move. It sings, and hounds walk to it from floors away, and do not walk back.',
@@ -78,14 +81,14 @@ export const SPECIES: Species[] = [
   },
   {
     // Not a population: present on a level for 2 days after a sweep, at encounter weight 5. Hunts unless authorised.
-    id: 'auditor', name: 'Auditor', icon: 'android-mask', mass: 0, diet: {}, r: 0, d: 0, vuln: 0, migrates: false,
+    id: 'auditor', name: 'Auditor', icon: 'android-mask', mass: 0, diet: {}, r: 0, d: 0, vuln: 0, migrates: false, machine: true,
     detect: 5, pack: 3, aware: 3, threat: 6, hp: 30, behaviour: 'hunter', props: { SIGNAL: 3 },
     drops: { fragment: 1 }, // only sometimes (T.huskChance); the husk itself isn't an item
     text: 'Tall, thin, polite. It asks for your Signature. It does not ask twice.',
   },
   {
     // Not a population: met at Mason Works sites. Indifferent, but hits back.
-    id: 'mason', name: 'Mason', icon: 'robot-golem', mass: 0, diet: {}, r: 0, d: 0, vuln: 0, migrates: false,
+    id: 'mason', name: 'Mason', icon: 'robot-golem', mass: 0, diet: {}, r: 0, d: 0, vuln: 0, migrates: false, machine: true,
     detect: 0, pack: 1, aware: 0, threat: 4, hp: 60, behaviour: 'indifferent', props: { MASS: 2 },
     drops: { masonPlate: 1 },
     text: 'A walking building site. It has never seen you. It never will.',

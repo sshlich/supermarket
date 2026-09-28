@@ -49,3 +49,6 @@ export function restart() {
   s = newGame(seed(), s.know)
   changed()
 }
+
+// Dev builds only: the console can look at the game (window.seam.s()) and act on it.
+if (import.meta.env.DEV) Object.assign(window, { seam: { s: () => s, act } })

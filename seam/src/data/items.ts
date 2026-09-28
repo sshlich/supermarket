@@ -21,6 +21,7 @@ export interface Kind {
   weapon?: number                // fight bonus on the belt
   bait?: string[]                // species it lures (C.2)
   relic?: true
+  dims?: number                  // runs out on the belt before its light dies
   text: [string, string]         // what it looks like; what it seems to do
   uses: string                   // its ways out, for the Catalog
 }
@@ -62,7 +63,7 @@ export const KINDS: Record<string, Kind> = Object.fromEntries([
     text: ['A rod of rebar ground to a point.', 'On the belt, it hits for 2 more. Glass teeth would edge it.'], uses: 'fighting, on the belt; the Glass Spear' }),
   K({ id: 'glassSpear', name: 'Glass Spear', icon: 'ice-spear', color: '#bfe6f2', w: 1, h: 4, stack: 1, weapon: 3, props: { COLD: 1 },
     text: ['A rebar spear edged with three glass teeth.', 'On the belt, it hits for 3 more. Cold to hold.'], uses: 'fighting, on the belt' }),
-  K({ id: 'shellLamp', name: 'Shell Lamp', icon: 'lantern', color: '#f0b86a', w: 2, h: 1, stack: 1, props: { LIGHT: 1 },
+  K({ id: 'shellLamp', name: 'Shell Lamp', icon: 'lantern', color: '#f0b86a', w: 2, h: 1, stack: 1, props: { LIGHT: 1 }, dims: 10,
     text: ['A crab shell cut into a lamp. It needs no power.', 'On the belt, it shows what waits where you step. It dims with every run.'], uses: 'light on the belt' }),
   K({ id: 'brochure', name: 'Authority Brochure', icon: 'folded-paper', color: '#7ed957', w: 1, h: 1, stack: 1, props: { SIGNAL: 0 },
     text: ['A glossy leaflet, sky-blue, bright as the day it was printed.', 'Somebody wanted you to read this, very much, a long time ago.'], uses: 'lore' }),

@@ -43,7 +43,7 @@ export const T = {
 /** Something that happened tonight: a line for the CLI, and the facts behind it for the voice and the view. */
 export interface Ev {
   night: number
-  kind: 'migrate' | 'extinct' | 'sweep' | 'raid' | 'buried' | 'masons' | 'level' | 'choir' | 'script' | 'refused' | 'made' | 'home'
+  kind: 'migrate' | 'extinct' | 'sweep' | 'raid' | 'buried' | 'masons' | 'level' | 'choir' | 'script' | 'refused' | 'made' | 'home' | 'run' | 'died'
   text: string
   level?: string
   n?: number

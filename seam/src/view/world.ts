@@ -1,6 +1,7 @@
 // Reading the world (M2): the Atlas and its Level entries, the Bestiary, the Ledger and MAINT's log.
 // Every fact goes through the knowledge filter: ??? until learned, the truth only with ?omniscient.
 
+import { HAZARDS } from '../data/hazards.ts'
 import { CONNECTIONS, LEVELS, SEAM } from '../data/levels.ts'
 import { SPECIES, type Species } from '../data/species.ts'
 import { fact, knownConnection, knownLevel } from '../model/knowledge.ts'
@@ -73,8 +74,12 @@ function entry(id: string) {
       const d = CONNECTIONS.find(d => d.id === x.id)!
       return `<li>${esc(d.type)} to ${esc(other === 'seam' ? SEAM.name : knownLevel(s, other, omni) ? LEVELS[other].name : '???')}, ${x.cost} step${x.cost > 1 ? 's' : ''}${x.open ? '' : ', closed'}</li>`
     }).join('')}</ul>` : '<p class="empty">None known.</p>'}
-    <h3>Sites · Hazards · Levers · Terminals</h3>
-    <p class="empty">Nobody has walked it yet.</p>`
+    <h3>Sites</h3>
+    ${table(`sites-${id}`, [
+      { head: 'Site', cell: x => esc(x.name), sort: x => x.name },
+      { head: 'Type', cell: x => esc(x.type), sort: x => x.type },
+      { head: 'Hazard', cell: x => c(`T:${x.id}:hazard`, v => v === 'none' ? 'none' : `<b class="hz">${esc(HAZARDS[v as string].name)}</b>`), sort: x => sortOf(f(`T:${x.id}:hazard`)) },
+    ] as Col<(typeof def.sites)[number]>[], def.sites.filter(x => omni || s.know[`T:${x.id}:seen`]), 'Nobody has walked it yet.')}`
 }
 
 define({
@@ -112,7 +117,7 @@ define({ id: 'bestiary', title: 'Bestiary', icon: UI.bestiary, x: 150, y: 70, w:
 // ---------------------------------------------------------------- Ledger
 
 function ledger() {
-  const rumours = s.log.filter(l => l.kind !== 'maint').slice(-12).reverse()
+  const rumours = s.log.filter(l => l.kind === 'rumour' || l.kind === 'event').slice(-12).reverse()
   const st = stock(s)
   const row = (name: string, x: { have: number; need: number }, what: string) => {
     const nights = x.need ? Math.floor(x.have / x.need) : Infinity
