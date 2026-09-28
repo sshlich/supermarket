@@ -5,7 +5,8 @@ import { CONNECTIONS, LEVELS, SEAM } from '../data/levels.ts'
 import { SPECIES, type Species } from '../data/species.ts'
 import { fact, knownConnection, knownLevel } from '../model/knowledge.ts'
 import type { Cell } from '../model/state.ts'
-import { omni, s } from './game.ts'
+import { stock, H } from '../model/seam.ts'
+import { act, omni, s } from './game.ts'
 import { UI } from './icons.ts'
 import { blocks, cell, esc, icon, sortOf, spark, table, tip, trend, type Col } from './ui.ts'
 import { define, paint } from './wm.ts'
@@ -77,7 +78,7 @@ function entry(id: string) {
 }
 
 define({
-  id: 'atlas', title: 'Atlas', icon: UI.atlas, x: 104, y: 14, w: 760, h: 540, desktop: true, start: true,
+  id: 'atlas', title: 'Atlas', icon: UI.atlas, x: 150, y: 40, w: 760, h: 540, desktop: true,
   body: () => `<div class="atlas"><div class="pane">${map()}</div><div class="page">${entry(sel)}</div></div>`,
   on: (cmd, arg) => { if (cmd === 'level') { sel = arg; paint('atlas') } },
 })
@@ -111,13 +112,29 @@ define({ id: 'bestiary', title: 'Bestiary', icon: UI.bestiary, x: 150, y: 70, w:
 // ---------------------------------------------------------------- Ledger
 
 function ledger() {
-  const rumours = s.log.filter(l => l.kind !== 'maint').slice(-10).reverse()
+  const rumours = s.log.filter(l => l.kind !== 'maint').slice(-12).reverse()
+  const st = stock(s)
+  const row = (name: string, x: { have: number; need: number }, what: string) => {
+    const nights = x.need ? Math.floor(x.have / x.need) : Infinity
+    return `<tr class="${nights < 2 ? 'short' : ''}"><th>${name}</th><td>${x.have}</td><td>${x.need}</td>
+      <td ${tip(what)}>${nights === Infinity ? '—' : `${nights} night${nights === 1 ? '' : 's'}`}</td></tr>`
+  }
   const known = levelsKnown()
   const attention = known.map((id, i) => `<tr>${i ? '' : `<th rowspan="${known.length}">Attention</th>`}<td>${esc(LEVELS[id].name)}
     ${c(`L:${id}:attention`, v => typeof v === 'number' ? `${blocks(v, 100)} ${v}` : esc(String(v)))}</td></tr>`).join('')
   return `
+    <div class="sunken-panel"><table class="stock">
+      <tr><th></th><th>In store</th><th>A night</th><th>Lasts</th></tr>
+      ${row('FOOD', st.food, `A unit a night for every ${H.perHead} people, from the Stores and the Cold Locker, soonest to spoil first.`)}
+      ${row('WATER', st.water, `A unit a night for every ${H.perHead} people, from the Stores.`)}
+      ${row('POWER', st.power, `Cells in the Stores. ${H.lamps} for the lamps (less any light at home), 1 for each machine switched on.`)}
+    </table></div>
+    <p class="field-row"><input type="checkbox" id="blackout" data-on="blackout" ${s.blackout ? 'checked' : ''}>
+      <label for="blackout" ${tip('Cover the lamps: no raids find the hatch and the lights draw no attention. But no lamps means no moss and no water from the condenser.')}>Blackout</label></p>
     <div class="sunken-panel"><table class="ledger">
       <tr><th>Population</th><td ${tip(s.villagers.join(', '))}>${s.villagers.length}</td></tr>
+      <tr><th>The Seam</th><td ${tip('The Seam\'s own attention: lit lamps, loud work, and Signal leaking from anything not in the Lead Box. At 100 the Auditors come between the floors.')}>
+        <div class="gauge"><i style="width:${Math.min(100, s.seamA)}%"></i></div> ${Math.round(s.seamA)}</td></tr>
       <tr><th>Burial</th><td><div class="gauge" ${tip('How close the Masons are to sealing the Seam. At 100% it is over.')}><i style="width:${s.burial}%"></i></div> ${Math.floor(s.burial)}%
         · sealed by day ${c('seam:burialDay')}</td></tr>
       ${attention}
@@ -126,7 +143,10 @@ function ledger() {
     <ul class="word">${rumours.map(l => `<li class="${l.kind}"><small>d${l.day}</small> ${esc(l.text)}</li>`).join('') || '<li class="empty">Nobody has said anything yet.</li>'}</ul>`
 }
 
-define({ id: 'ledger', title: 'Ledger', icon: UI.ledger, x: 880, y: 14, w: 440, h: 520, desktop: true, start: true, body: ledger })
+define({
+  id: 'ledger', title: 'Ledger', icon: UI.ledger, x: 984, y: 6, w: 390, h: 600, desktop: true, start: true, body: ledger,
+  on: cmd => { if (cmd === 'blackout') act({ type: 'blackout' }) },
+})
 
 // ---------------------------------------------------------------- MAINT
 
@@ -136,7 +156,7 @@ const maintLines = () => s.log.filter(l => l.kind === 'maint' && (!filter || l.t
   .map(l => `<span class="stamp">${stamp(l.day)}</span> maint: ${esc(l.text)}`).join('\n') || 'maint: (no entries.)'
 
 define({
-  id: 'maint', title: 'MAINT', icon: UI.maint, x: 104, y: 480, w: 700, h: 260, desktop: true, start: true,
+  id: 'maint', title: 'MAINT', icon: UI.maint, x: 92, y: 432, w: 640, h: 250, desktop: true, start: true,
   body: () => `<div class="field-row"><label for="maint-filter">Filter</label><input id="maint-filter" type="text" value="${esc(filter)}"></div><pre class="maint">${maintLines()}</pre>`,
   bind: body => {
     const pre = body.querySelector('pre')!

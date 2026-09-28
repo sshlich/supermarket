@@ -6,6 +6,7 @@ import { CONNECTIONS, LEVELS } from '../data/levels.ts'
 import { SP, SPECIES } from '../data/species.ts'
 import { MAINT, RUMOURS } from '../data/text.ts'
 import { pick, rand } from './rng.ts'
+import { K } from './containers.ts'
 import { burialDay } from './sim.ts'
 import { masons, type Cell, type LevelState, type State } from './state.ts'
 
@@ -64,6 +65,15 @@ export function truth(s: State, key: string): Value | undefined {
     }
   }
   if (t === 'C') return s.connections.some(c => c.id === id) || undefined
+  if (t === 'I') {
+    const k = K[id]
+    switch (field) {
+      case 'known': return true
+      case 'use': return k.uses
+      case 'spoil': return k.fresh ?? 'keeps'
+      case 'bait': return k.bait?.map(sp => SP[sp].name).join(', ') ?? 'nothing'
+    }
+  }
   if (key === 'seam:burialDay') return burialDay(s)
   return undefined
 }
@@ -152,6 +162,7 @@ export function talk(s: State, heard: Heard[]) {
       if (def.home) { rumour(L.flooded ? RUMOURS.flooded : RUMOURS.drained); learn(s, `L:${L.id}:flooded`, 'exact', 'rumour') }
     }
   }
+  if (edge('residence', s.seamA >= 50)) maint(MAINT.residence)
   const g = s.levels.galleries
   if (edge('hounds', (g.N.hound ?? 0) >= 6)) maint(fill(MAINT.hounds, { floor: LEVELS.galleries.floor, n: Math.round(g.N.hound) }))
   if (edge('claws', (g.N.hound ?? 0) >= 3)) rumour(RUMOURS.claws)

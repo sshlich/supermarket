@@ -13,7 +13,7 @@ assert.equal(fact(s, 'S:grub:pop:galleries'), undefined)
 assert.deepEqual([fact(s, 'L:galleries:film', true)?.value, fact(s, 'S:grub:pop:galleries', true)?.value], [75, 80])
 
 // Each night someone listens at the walls: after two nights both home levels have a rough Entities band from rumours,
-// and nothing else is known.
+// and nothing else about the world is known (the Seam knows its own things by name).
 apply(s, { type: 'endDay' })
 apply(s, { type: 'endDay' })
 for (const id of ['galleries', 'ducts']) {
@@ -21,7 +21,7 @@ for (const id of ['galleries', 'ducts']) {
   assert.equal(c.state, 'rough')
   assert.equal(c.src, 'rumour')
 }
-assert.deepEqual(Object.keys(s.know).sort(), ['L:ducts:entities', 'L:galleries:entities'])
+assert.deepEqual(Object.keys(s.know).filter(k => /^[LS]:/.test(k)).sort(), ['L:ducts:entities', 'L:galleries:entities'])
 assert.ok(s.log.some(l => l.kind === 'rumour') && s.log.some(l => l.kind === 'maint' && l.text.startsWith('unregistered biomass detected: 40')))
 
 // Sightings: rough is a band, exact is a number; a rough look never overwrites an exact one from the same day,

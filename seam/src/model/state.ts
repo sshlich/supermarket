@@ -1,12 +1,29 @@
 // The whole game as plain, JSON-safe data (DESIGN 14.2), and a fresh one.
 
+import { BOXES, START, type Box } from '../data/items.ts'
 import { CONNECTIONS, LEVELS, type ConnectionDef, type LevelDef } from '../data/levels.ts'
 import { VILLAGERS } from '../data/villagers.ts'
+import { make, stow } from './containers.ts'
 
 export type Prop = 'HEAT' | 'COLD' | 'CHARGE' | 'MASS' | 'LIGHT' | 'SIGNAL' | 'ROT' | 'SEAL'
 export type Props = Partial<Record<Prop, number>>
 
-export interface Item { id: number; kind: string; x: number; y: number; rot: boolean; n: number }
+export interface Item {
+  id: number
+  kind: string
+  x: number
+  y: number
+  rot: boolean
+  n: number
+  fresh?: number     // nights before it rots
+  cond?: number      // a tool's wear, 100 to 0
+  rotten?: boolean
+  props?: Props      // where this one differs from its kind (a cracked shard)
+  runs?: number      // runs a shell lamp has been out on
+  charges?: number   // shots left in it
+}
+
+export interface Runner { name: string; hp: number; drift: number; peak: number }
 export interface SiteState { id: string; loot: Item[] }
 
 export interface LevelState {
@@ -39,8 +56,14 @@ export interface State {
   day: number                                 // night `day` runs at the end of day `day`
   step: number                                // 0-11 on a run; a day has 12
   next: number                                // next item id
-  villagers: string[]                         // everyone still alive at the Seam
+  villagers: string[]                         // everyone still alive, the runner too
+  runner: Runner
+  run?: { level: string; site: string }       // where the runner is, while out
+  C: Record<Box, Item[]>                      // the Seam's containers and the runner's kit
+  machines: { cold: boolean; moss: boolean; condenser: boolean }
   blackout: boolean
+  conduitTapped: boolean
+  seamA: number                               // the Seam's own attention
   burial: number                              // 0-100; at 100 the Seam is sealed
   levels: Record<string, LevelState>
   connections: Connection[]
@@ -60,12 +83,19 @@ export const connection = ({ id, a, b, cost, open, requires }: ConnectionDef): C
 /** Mason activity after holds. */
 export const masons = (s: State, L: LevelState) => Math.max(0, L.M + L.mHolds.reduce((a, h) => a + (s.day < h.until ? h.delta : 0), 0))
 
+export const HP = 10
+
 export function newGame(seed: number, know: State['know'] = {}): State {
-  return {
+  const s: State = {
     version: 1, seed, rng: seed, day: 1, step: 0, next: 1,
-    villagers: [...VILLAGERS], blackout: false, burial: 0,
+    villagers: [...VILLAGERS], runner: { name: VILLAGERS[0], hp: HP, drift: 0, peak: 0 },
+    C: Object.fromEntries(Object.keys(BOXES).map(b => [b, []])) as unknown as State['C'],
+    machines: { cold: true, moss: true, condenser: true },
+    blackout: false, conduitTapped: false, seamA: 0, burial: 0,
     levels: Object.fromEntries(Object.values(LEVELS).filter(l => !l.appears).map(l => [l.id, level(l)])),
     connections: CONNECTIONS.filter(c => !c.appears).map(connection),
     know, log: [], hist: {}, flags: {},
   }
+  for (const { box, kind, n } of START) stow(s, box, make(s, kind, { n }))
+  return s
 }

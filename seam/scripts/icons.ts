@@ -3,6 +3,8 @@
 
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
+import { BOXES, KINDS } from '../src/data/items.ts'
+import { RELICS } from '../src/data/relics.ts'
 import { SPECIES } from '../src/data/species.ts'
 import { UI } from '../src/view/icons.ts'
 
@@ -10,7 +12,7 @@ const set: { icons: Record<string, { body: string }> } = createRequire(import.me
 const dir = new URL('../src/icons/', import.meta.url)
 rmSync(dir, { recursive: true, force: true })
 mkdirSync(dir, { recursive: true })
-const names = new Set([...SPECIES.map(sp => sp.icon), ...Object.values(UI)])
+const names = new Set([...SPECIES, ...Object.values(KINDS), ...Object.values(RELICS), ...Object.values(BOXES)].map(k => k.icon).concat(Object.values(UI), 'fly', 'cube', 'broom'))
 for (const name of names) {
   const icon = set.icons[name]
   if (!icon) { console.error(`no icon "${name}"`); process.exitCode = 1; continue }

@@ -1,22 +1,82 @@
 // The only way the view changes the game (DESIGN 14.3): apply(state, action) mutates it and says what happened.
 
-import { talk } from './knowledge.ts'
+import { HOME, type Box } from '../data/items.ts'
+import { K, applyDrop, grab, planDrop, send, tidy, where } from './containers.ts'
+import { learn, talk } from './knowledge.ts'
+import { homeNight, type Machine } from './seam.ts'
 import { world, type Ev } from './sim.ts'
 import type { State } from './state.ts'
 
-export type Action = { type: 'endDay' }
+export type Action =
+  | { type: 'endDay' }
+  | { type: 'drop'; id: number; split?: boolean; box: Box; x: number; y: number; rot: boolean }
+  | { type: 'send'; id: number; to: Box; all?: boolean }
+  | { type: 'tidy'; box: Box }
+  | { type: 'blackout' }
+  | { type: 'machine'; id: Machine }
+
+const say = (s: State, kind: Ev['kind'], text: string): Ev[] => [{ night: s.day, kind, text }]
+/** Out on a run, only the pack and belt are within reach. */
+export const reach = (s: State, box: Box) => !s.run || !HOME.includes(box)
 
 export function apply(s: State, a: Action): Ev[] {
+  const ev = act(s, a)
+  see(s)
+  return ev
+}
+
+function act(s: State, a: Action): Ev[] {
   switch (a.type) {
     case 'endDay': return endNight(s)
+    case 'drop': {
+      const held = grab(s, a.id, a.split)
+      const from = held && (held.from?.box ?? where(s, held.splitOf!)!.box)
+      if (!held || !from || !reach(s, from) || !reach(s, a.box)) return say(s, 'refused', 'Out of reach.')
+      const plan = planDrop(s, held, a.box, a.x, a.y, a.rot)
+      if (!plan) return say(s, 'refused', 'No room there.')
+      const kind = held.item.kind
+      const onto = plan.recipe !== undefined ? where(s, plan.recipe)!.it.kind : ''
+      const r = applyDrop(s, held, plan)
+      if (!r.made) return []
+      for (const k of [kind, onto]) learn(s, `I:${k}:use`, 'exact', 'used')
+      const loud = K[kind].tool && onto === 'masonPlate' ? 5 : 0
+      s.seamA += loud
+      return say(s, 'made', `${K[kind].name} on ${K[onto].name}: ${K[r.made].name}${loud ? ' (loud)' : ''}${r.broke ? `. The ${K[kind].name} broke into scrap.` : ''}`)
+    }
+    case 'send': {
+      const at = where(s, a.id)
+      if (!at || !reach(s, at.box) || !reach(s, a.to)) return say(s, 'refused', 'Out of reach.')
+      return send(s, a.id, a.to, a.all) ? [] : say(s, 'refused', `No room in the ${a.to}.`)
+    }
+    case 'tidy':
+      if (!reach(s, a.box)) return say(s, 'refused', 'Out of reach.')
+      tidy(s, a.box)
+      return []
+    case 'blackout':
+      s.blackout = !s.blackout
+      return say(s, 'home', s.blackout ? 'Blackout: the lamps are covered.' : 'The lamps are lit again.')
+    case 'machine':
+      s.machines[a.id] = !s.machines[a.id]
+      return []
   }
 }
 
-/** The whole night (6.7): the world moves, then the Seam hears about it and MAINT writes it down. */
+/** The whole night (6.7): the Seam, then the world, then what the Seam hears of it and MAINT writes down. */
 function endNight(s: State): Ev[] {
-  const ev = world(s, s.blackout)
+  const { lit } = homeNight(s)
+  const ev = world(s, s.blackout || !lit)
+  for (const e of ev) if (e.kind === 'raid') s.log.push({ day: s.day, kind: 'event', text: `Glasshounds came through the hatch in the dark hours. ${e.lost!.join(', ')} ${e.lost!.length > 1 ? 'are' : 'is'} gone.` })
   talk(s, ev)
   s.day++
   s.step = 0
   return ev
+}
+
+/** Anything in the Seam's hands is known by name (the Catalog's items table). */
+function see(s: State) {
+  for (const items of Object.values(s.C)) for (const it of items) {
+    if (s.know[`I:${it.kind}:known`]) continue
+    learn(s, `I:${it.kind}:known`, 'exact', 'home')
+    learn(s, `I:${it.kind}:spoil`, 'exact', 'home') // the village knows how long things keep
+  }
 }

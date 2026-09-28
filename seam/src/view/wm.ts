@@ -205,7 +205,8 @@ export function boot() {
       return
     }
     const el = (e.target as HTMLElement).closest?.('[data-tip]')
-    if (el) showTip(el, e)
+    if (document.body.classList.contains('dragging')) hideTip()
+    else if (el) showTip(el, e)
     else if (tipFor) hideTip()
   })
   addEventListener('pointerup', () => { if (press) { saveGeo(); press = null } })
