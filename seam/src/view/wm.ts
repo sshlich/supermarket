@@ -109,6 +109,7 @@ export function paint(id: string) {
 }
 
 function renderAll() {
+  hideTip() // what it pointed at was just redrawn; the next move shows the fresh one
   for (const id of defs.keys()) paint(id)
   tasks()
   const phase = ['dawn', 'day', 'dusk'][Math.min(2, Math.floor(s.step / 4))]
