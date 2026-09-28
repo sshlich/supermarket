@@ -12,6 +12,7 @@ import { R, baitFor, encounterChance, evadeOdds, exits, leverState, pathHome, si
 import { HP } from '../model/state.ts'
 import { act, omni, onChange, s } from './game.ts'
 import { UI } from './icons.ts'
+import { itemName } from './items.ts'
 import { esc, icon, tip } from './ui.ts'
 import { define, open } from './wm.ts'
 
@@ -55,7 +56,9 @@ function card() {
 function uses(where: 'card' | 'site') {
   const list = s.C.belt.filter(it => RELICS[it.kind]?.use && (where === 'card') === (RELICS[it.kind].use !== 'fire'))
   const verb: Record<string, string> = { flare: 'Flare the candle', present: 'Present the shard', fire: 'Fire the Unbuilder' }
-  return list.length ? `<p class="lure">${list.map(it => `<button data-on="use:${it.id}" ${tip(RELICS[it.kind].uses)}>${verb[RELICS[it.kind].use!]}</button>`).join(' ')}</p>` : ''
+  // An unidentified relic can still be tried: that's one way to learn what it does.
+  const label = (it: (typeof list)[number]) => itemName(it) === 'Unknown Relic' ? ['Try the Unknown Relic', 'Nobody knows what it does. Hold it up and see.'] : [verb[RELICS[it.kind].use!], RELICS[it.kind].uses]
+  return list.length ? `<p class="lure">${list.map(it => `<button data-on="use:${it.id}" ${tip(label(it)[1])}>${label(it)[0]}</button>`).join(' ')}</p>` : ''
 }
 
 /** Lure (11.5): bait from the pack leads them away, to a site next door or out of the level. */
@@ -103,7 +106,7 @@ function run() {
     return `<button data-on="lever:${id}" ${busy || left < 1 ? 'disabled' : ''} ${tip(`${v.name}. ${known ? known.value : 'What it does: ???'}\nNeeds: ${needs.join(', ') || 'nothing'}. 1 step${v.attention ? `, +${v.attention} attention` : ''}.`)}>${esc(v.name)}${now ? ` (${now})` : ''}</button>`
   }).join('')
   const terminal = d.type === 'terminal' ? `<button data-on="terminal" ${busy || (!r.term && left < 1) ? 'disabled' : ''} ${tip('Wake the terminal: 1 step. MAINT, and whatever your access lets you do.')}>${icon(UI.terminal)}Terminal${r.term ? ' (awake)' : ''}</button>` : ''
-  const loot = st.loot.map(it => `<li>${icon(K[it.kind].icon)}${esc(K[it.kind].relic ? 'Unknown Relic' : K[it.kind].name)}${it.n > 1 ? ` ×${it.n}` : ''} <button data-on="take:${it.id}" ${busy ? 'disabled' : ''}>Take</button></li>`).join('')
+  const loot = st.loot.map(it => `<li>${icon(itemName(it) === 'Unknown Relic' ? 'cube' : K[it.kind].icon)}${esc(itemName(it))}${it.n > 1 ? ` ×${it.n}` : ''} <button data-on="take:${it.id}" ${busy ? 'disabled' : ''}>Take</button></li>`).join('')
   const chance = f(`L:${r.level}:entities`) ? `<span ${tip('The chance of meeting something on arriving here, from what lives on this level.')}>meeting something: ${pct(encounterChance(s, r.level, r.site))}</span>` : ''
   return `
     <div class="site">

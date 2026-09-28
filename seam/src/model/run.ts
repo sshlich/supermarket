@@ -76,11 +76,13 @@ function bag(s: State, st: SiteState, found: Item[]): string {
   for (const it of found) {
     const was = it.n
     const n = stow(s, 'pack', it)
-    if (n) { st.loot.push({ ...it, n }); left.push(`${n < was ? `${n} ` : ''}${K[it.kind].name}`) }
+    if (n) { st.loot.push({ ...it, n }); left.push(`${n < was ? `${n} ` : ''}${nameOf(s, it.kind)}`) }
   }
   return left.length ? ` No room in the pack: ${left.join(', ')} left here.` : ''
 }
-const describe = (items: Item[]) => items.map(it => `${K[it.kind].relic ? 'something nobody can name' : K[it.kind].name}${it.n > 1 ? ` ×${it.n}` : ''}`).join(', ')
+/** A thing's name as the runner knows it: a relic is nameless until the lab (or the belt) has shown what it is. */
+export const nameOf = (s: State, kind: string) => K[kind].relic && !s.know[`R:${kind}:class`] ? 'something nobody can name' : K[kind].name
+const describe = (s: State, items: Item[]) => items.map(it => `${nameOf(s, it.kind)}${it.n > 1 ? ` ×${it.n}` : ''}`).join(', ')
 
 // ---------------------------------------------------------------- where you can go
 
@@ -300,7 +302,7 @@ function hazard(s: State, level: string, site: string): Ev[] {
     const heavy = [...s.C.pack].sort((a, b) => prop(b, 'MASS') * b.n - prop(a, 'MASS') * a.n || K[b.kind].w * K[b.kind].h - K[a.kind].w * K[a.kind].h)[0]
     st.loot.push({ ...heavy }) // before remove(), which empties the pile it's given
     remove(s, 'pack', heavy)
-    hurt.push(`the ${K[heavy.kind].name} is torn from the pack`)
+    hurt.push(`the ${nameOf(s, heavy.kind).replace('something', 'thing')} is torn from the pack`)
   }
   if (hz.attention) { noise(s, L, hz.attention); hurt.push('something far away hums back') }
   if (hz.drift) { s.runner.drift += hz.drift; s.runner.peak = Math.max(s.runner.peak, s.runner.drift); hurt.push(`Drift +${hz.drift}`) }
@@ -616,7 +618,7 @@ export function search(s: State): Ev[] {
   if (s.runner.drift >= 100) return die(s, 'drift')
   st.searched = true
   const got = d.loot ? d.loot.map(k => found(s, k)) : Array.from({ length: 2 + Math.floor(rand(s) * 3) }, () => { const [k, , n] = roll(s, LOOT[r.level]); return found(s, k, n) })
-  return say(s, `You search the ${d.name}: ${describe(got)}.${bag(s, st, got)}`)
+  return say(s, `You search the ${d.name}: ${describe(s, got)}.${bag(s, st, got)}`)
 }
 
 export function harvest(s: State): Ev[] {
@@ -642,7 +644,7 @@ export function harvest(s: State): Ev[] {
   st.remains = []
   learn(s, 'I:cutter:use', 'exact', 'used')
   const broke = wear(s, cutter, 1)
-  return say(s, `You harvest what's left: ${got.length ? describe(got) : 'nothing worth carrying'}.${broke}${bag(s, st, got)}`)
+  return say(s, `You harvest what's left: ${got.length ? describe(s, got) : 'nothing worth carrying'}.${broke}${bag(s, st, got)}`)
 }
 
 /** Pick up something lying here. */
@@ -657,7 +659,7 @@ export function take(s: State, id: number): Ev[] {
   if (left === was) return no(s, 'No room in the pack.')
   if (left) it.n = left
   else st.loot.splice(st.loot.indexOf(it), 1)
-  return say(s, `You take the ${K[it.kind].name}${was - left > 1 ? ` ×${was - left}` : ''}.`)
+  return say(s, `You take the ${nameOf(s, it.kind).replace('something', 'thing')}${was - left > 1 ? ` ×${was - left}` : ''}.`)
 }
 
 // ---------------------------------------------------------------- dying, and who's next (11.7)
