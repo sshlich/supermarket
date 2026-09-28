@@ -37,6 +37,12 @@ const endDay = (s: State) => apply(s, { type: 'endDay' })
   assert.equal(raided(() => {}), true)
   assert.equal(raided(s => apply(s, { type: 'blackout' })), false)
   assert.equal(raided(s => { s.C.stores = s.C.stores.filter(it => it.kind !== 'cell') }), false)
+  // Hounds take others before the runner (they used to take anyone, and a lost runner kept playing).
+  const s = newGame(7)
+  s.levels.galleries.N.hound = 12 // two taken
+  s.villagers = [s.runner.name, 'Pell', 'Kett']
+  endDay(s)
+  assert.deepEqual(s.villagers, [s.runner.name])
 }
 
 // Power: lamps first (2), then the Cold Locker, the moss racks and the condenser, one Cell each; the racks and the

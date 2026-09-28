@@ -4,6 +4,7 @@
 export const MAINT = {
   sweep: 'sweep complete. {n} units reclassified as debris. disposal requested.',
   clean: 'disposal complete. floor clean. thank you for keeping the accretion tidy.',
+  husk: 'auditor unit {unit} retired in service at {floor}, {site}. husk awaiting disposal.',
   schedule: 'accretion schedule advanced: {floor} +1 course. registered residents affected: 0.',
   stratum: 'new stratum registered: {name}. occupancy: 0. lighting: on.',
   silenced: 'choir resonance lost. {floor} acoustic profile: silent. this was not scheduled.',

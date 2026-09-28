@@ -47,6 +47,9 @@ assert.equal(fact(next, 'S:grub:pop:galleries'), undefined)
   t.levels.stair.A = 100
   for (let i = 0; i < 14; i++) apply(t, { type: 'endDay' })
   assert.ok(t.log.some(l => l.text.startsWith('disposal complete.')))
+  // The first sweep's husk, and where it lies, is in MAINT's log (it was only in the CLI's).
+  const husk = t.levels.stair.sites.find(x => x.loot.some(i => i.kind === 'fragment'))
+  assert.ok(t.log.some(l => l.text.startsWith('auditor unit') && (!husk || l.text.includes(husk.id.replace(/([A-Z])/g, ' $1').toLowerCase()))))
 }
 
 console.log('knowledge ok')

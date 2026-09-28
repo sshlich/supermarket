@@ -528,6 +528,7 @@ export function pullLever(s: State, id: string): Ev[] {
   if (spend && packCount(s, spend[0]) < spend[1]) return no(s, `The ${v.name} needs ${spend[1]} ${K[spend[0]].name} in the pack.`)
   const L = s.levels[r.level]
   steps(s, 1, L, false)
+  if (s.runner.drift >= 100) return die(s, 'drift')
   if (spend) spendPack(s, spend[0], spend[1])
   if (id === 'conduitTap') s.flags.tapWired = true
   const broke = t && v.wear ? wear(s, t, v.wear) : ''
@@ -612,6 +613,7 @@ export function search(s: State): Ev[] {
   if (st.searched) return no(s, 'Already searched.')
   if (s.step + 1 > R.day) return no(s, 'Not enough of the day left.')
   steps(s, 1, s.levels[r.level], false)
+  if (s.runner.drift >= 100) return die(s, 'drift')
   st.searched = true
   const got = d.loot ? d.loot.map(k => found(s, k)) : Array.from({ length: 2 + Math.floor(rand(s) * 3) }, () => { const [k, , n] = roll(s, LOOT[r.level]); return found(s, k, n) })
   return say(s, `You search the ${d.name}: ${describe(got)}.${bag(s, st, got)}`)
@@ -627,6 +629,7 @@ export function harvest(s: State): Ev[] {
   if (!cutter) return no(s, 'Harvesting needs the Cutter on the belt.')
   if (s.step + 1 > R.day) return no(s, 'Not enough of the day left.')
   steps(s, 1, s.levels[r.level], false)
+  if (s.runner.drift >= 100) return die(s, 'drift')
   const got: Item[] = []
   for (const rem of st.remains) {
     const sp = SP[rem.species]

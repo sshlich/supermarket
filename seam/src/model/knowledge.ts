@@ -144,7 +144,7 @@ export const knownConnection = (s: State, id: string, omni = false) => {
 
 // ---------------------------------------------------------------- the night's voice (6.7 steps 7-8)
 
-export interface Heard { kind: string; level?: string; n?: number; species?: string }
+export interface Heard { kind: string; level?: string; n?: number; species?: string; site?: string }
 const fill = (t: string, v: Record<string, string | number>) => t.replace(/\{(\w+)\}/g, (_, k) => String(v[k] ?? ''))
 
 /** Rumours, feeds and MAINT's lines from tonight's world. Also keeps the population history. */
@@ -159,7 +159,12 @@ export function talk(s: State, heard: Heard[]) {
   const edge = (flag: string, now: boolean) => { const was = !!s.flags[flag]; if (now) s.flags[flag] = true; else delete s.flags[flag]; return now && !was }
 
   for (const h of heard) {
-    if (h.kind === 'sweep') { maint(fill(MAINT.sweep, { n: h.n ?? 0 })); s.flags[`swept:${h.level}`] = true }
+    if (h.kind === 'sweep') {
+      maint(fill(MAINT.sweep, { n: h.n ?? 0 }))
+      s.flags[`swept:${h.level}`] = true
+      // Where the husk fell: MAINT logs it, and says nothing about what it carried.
+      if (h.site) maint(fill(MAINT.husk, { floor: floor(h.level!), site: LEVELS[h.level!].sites.find(x => x.id === h.site)!.name.toLowerCase(), unit: 7 + s.day * 13 % 90 }))
+    }
     if (h.kind === 'masons') {
       maint(fill(MAINT.schedule, { floor: floor(h.level!) }))
       if (LEVELS[h.level!].home) rumour(RUMOURS.warm)

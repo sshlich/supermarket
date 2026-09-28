@@ -198,6 +198,15 @@ const out = (s: State) => { act(s, { type: 'startRun' }); return s }
   assert.equal(act(s, { type: 'search' })[0].kind, 'refused')
 }
 
+// Drift that reaches 100 on a search (or a harvest, or a lever) keeps the runner then, not at their next step.
+{
+  const s = out(quiet())
+  s.C.belt.push(make(s, 'stillCoil', { x: 5 }))
+  s.runner.drift = 99.5
+  assert.equal(act(s, { type: 'search' }).at(-1)!.kind, 'died')
+  assert.equal(s.run, undefined)
+}
+
 // Two-way levers say which way they went.
 {
   const s = out(quiet())

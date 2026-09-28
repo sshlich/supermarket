@@ -51,6 +51,7 @@ export interface Ev {
   level?: string
   n?: number
   species?: string
+  site?: string
   lost?: string[]
 }
 
@@ -108,8 +109,12 @@ export function world(s: State, dark: boolean): Ev[] {
   for (const L of Object.values(s.levels)) attend(s, L, say)
   if (raid) { // they came at nightfall, before tonight's building could close the gap
     const lost: string[] = []
-    for (let i = Math.min(T.raidMax, Math.ceil(raiders / T.raidAt)); i > 0 && s.villagers.length; i--)
-      lost.push(...s.villagers.splice(Math.floor(rand(s) * s.villagers.length), 1))
+    for (let i = Math.min(T.raidMax, Math.ceil(raiders / T.raidAt)); i > 0 && s.villagers.length; i--) {
+      // Never the runner while anyone else is left: they sleep by the terminal, and they're the one who goes out.
+      const others = s.villagers.filter(v => v !== s.runner.name)
+      const who = others.length ? others[Math.floor(rand(s) * others.length)] : s.runner.name
+      lost.push(...s.villagers.splice(s.villagers.indexOf(who), 1))
+    }
     say('raid', `${Math.round(raiders)} glasshounds through the hatch: ${lost.join(', ')} lost`, { level: hatch.id, n: Math.round(raiders), lost })
   }
   build(s, say)
@@ -225,12 +230,12 @@ function attend(s: State, L: LevelState, say: Say) {
   const husk = !s.flags.swept || rand(s) < T.huskChance
   s.flags.swept = true
   let where = ''
-  if (husk) {
-    const site = pick(s, L.sites)
+  const site = husk ? pick(s, L.sites) : undefined
+  if (site) {
     site.loot.push({ id: s.next++, kind: 'fragment', x: 0, y: 0, rot: false, n: 1 })
     where = `; an Auditor Husk at the ${LEVELS[L.id].sites.find(x => x.id === site.id)!.name}`
   }
-  say('sweep', `${name(L.id)} swept: ${Math.round(killed)} reclassified as debris${where}`, { level: L.id, n: Math.round(killed) })
+  say('sweep', `${name(L.id)} swept: ${Math.round(killed)} reclassified as debris${where}`, { level: L.id, n: Math.round(killed), site: site?.id })
 }
 
 /** The Masons: Burial rises with the activity next to the Seam, the schedule advances, new strata appear (6.5). */

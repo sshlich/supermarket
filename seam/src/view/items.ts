@@ -132,7 +132,9 @@ const ghost = (box: Box, x: number, y: number, w: number, h: number, cls: string
 function move(e: PointerEvent) {
   const d = drag!
   d.el.style.transform = `translate(${e.clientX - d.gx}px, ${e.clientY - d.gy}px)`
-  const grid = document.elementsFromPoint(e.clientX, e.clientY).map(n => n.closest<HTMLElement>('.grid[data-grid]')).find(Boolean)
+  // Only a grid in the topmost window under the pointer: not one hidden beneath another window.
+  const top = document.elementFromPoint(e.clientX, e.clientY)?.closest('.win')
+  const grid = document.elementsFromPoint(e.clientX, e.clientY).map(n => n.closest<HTMLElement>('.grid[data-grid]')).find(g => g && g.closest('.win') === top)
   const box = grid?.dataset.grid as Box | undefined
   if (!grid || !box || !reach(s, box)) { if (d.at) { d.at = ''; d.plan = null; d.box = null; clearGhosts() } return }
   const r = grid.getBoundingClientRect()
