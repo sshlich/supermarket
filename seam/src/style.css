@@ -1,0 +1,25 @@
+/* The Seam's palette (DESIGN 13.3). Windows come from 98.css. */
+:root {
+  --seam-0: #0d0d0b;
+  --seam-1: #3c3a2c;
+  --seam-2: #a39f7a;
+  --seam-3: #efe9cf;
+}
+
+html, body { height: 100%; margin: 0; }
+body { overflow: hidden; background: var(--seam-0); user-select: none; -webkit-user-select: none; }
+#app { height: 100%; display: flex; flex-direction: column; }
+
+/* A 1-pixel checker of two palette colours: the desktop is already dithered. */
+.desktop { flex: 1; background: repeating-conic-gradient(var(--seam-1) 0 25%, var(--seam-0) 0 50%) 0 0 / 2px 2px; }
+
+.taskbar {
+  display: flex; align-items: center; gap: 4px; height: 30px; padding: 2px 3px; box-sizing: border-box;
+  background: silver; box-shadow: inset 0 1px #dfdfdf, inset 0 2px #fff;
+}
+.start { min-width: 0; padding: 0 10px; }
+.tray {
+  margin-left: auto; padding: 3px 10px;
+  font: 11px "Pixelated MS Sans Serif", Arial; -webkit-font-smoothing: none;
+  box-shadow: inset -1px -1px #fff, inset 1px 1px grey;
+}

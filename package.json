@@ -6,11 +6,15 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "test": "node src/board.test.ts && node src/economy.test.ts && node src/shop.test.ts && node src/save.test.ts && node src/run.test.ts && node src/items.test.ts && node src/run-effects.test.ts && node src/engine/combat.test.ts && node src/fight-log.test.ts",
-    "icons": "node scripts/icons.ts"
+    "icons": "node scripts/icons.ts",
+    "test:seam": "node --disable-warning=ExperimentalWarning --test 'seam/**/*.test.ts'"
   },
   "devDependencies": {
     "@iconify-json/game-icons": "^1.2.4",
     "typescript": "^7.0.2",
     "vite": "^8.3.0"
+  },
+  "dependencies": {
+    "98.css": "^0.1.21"
   }
 }
