@@ -1,0 +1,5 @@
+[
+  { "night": 6, "do": "hold", "level": "galleries" },
+  { "night": 10, "do": "mothLure", "level": "galleries" },
+  { "night": 16, "do": "hold", "level": "galleries" }
+]

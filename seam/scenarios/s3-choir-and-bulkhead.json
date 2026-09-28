@@ -1,0 +1,4 @@
+[
+  { "night": 5, "do": "resonancePipe", "level": "hall" },
+  { "night": 5, "do": "bulkhead", "level": "galleries" }
+]
