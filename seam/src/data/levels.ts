@@ -28,6 +28,9 @@ export interface LevelDef {
   N: Record<string, number>
   buries?: true              // its Masons build toward the Seam (6.5)
   appears?: number           // the day the Masons register it
+  home?: true                // next to the Seam: the villagers hear it through the walls
+  palette: string[]          // dithering palette, darkest first (13.3)
+  at: [number, number]       // where it sits on the Atlas, 0-100 (up is higher floors)
   sites: SiteDef[]
   text: string
 }
@@ -47,7 +50,8 @@ export const LEVELS: Record<string, LevelDef> = {
   galleries: {
     id: 'galleries', name: 'Warm Galleries', floor: '-213',
     survival: { cls: 1, safety: 'Safe', stability: 'Stable', entities: 'Many' },
-    heat: 2, flooded: false, F: 300, Fmax: 400, S: 60, M: 1, buries: true,
+    heat: 2, flooded: false, F: 300, Fmax: 400, S: 60, M: 1, buries: true, home: true,
+    palette: ['#140b07', '#7a3b1c', '#e39a55', '#f6e0b5'], at: [34, 60],
     N: { grub: 80, moth: 150, crab: 10, scourer: 5 },
     sites: [
       { id: 'hatch', name: 'Hatch', type: 'connection', to: ['hatch'] },
@@ -63,7 +67,8 @@ export const LEVELS: Record<string, LevelDef> = {
   ducts: {
     id: 'ducts', name: 'Drowned Ducts', floor: '-214',
     survival: { cls: 2, safety: 'Unsafe', stability: 'Stable', entities: 'Some' },
-    heat: 1, flooded: true, F: 120, Fmax: 200, S: 30, M: 1, buries: true,
+    heat: 1, flooded: true, F: 120, Fmax: 200, S: 30, M: 1, buries: true, home: true,
+    palette: ['#051216', '#144652', '#5fb3c4', '#d9f2f2'], at: [34, 90],
     N: { grub: 40, crab: 12, eel: 6, scourer: 3 },
     sites: [
       { id: 'stairsUp', name: 'Stairs Up', type: 'connection', to: ['stairs'] },
@@ -79,6 +84,7 @@ export const LEVELS: Record<string, LevelDef> = {
     id: 'stair', name: 'Glass Stair', floor: '-212…-189',
     survival: { cls: 3, safety: 'Unsafe', stability: 'Unstable', entities: 'Many' },
     heat: 1, flooded: false, F: 150, Fmax: 250, S: 10, M: 0,
+    palette: ['#0b0b10', '#3a3f55', '#9aa6c9', '#eef1ff'], at: [66, 40],
     N: { grub: 50, crab: 8, hound: 12, scourer: 4 },
     sites: [
       { id: 'bulkheadLanding', name: 'Bulkhead Landing', type: 'connection', to: ['bulkhead'] },
@@ -95,6 +101,7 @@ export const LEVELS: Record<string, LevelDef> = {
     id: 'hall', name: 'Choir Hall', floor: '-188',
     survival: { cls: 4, safety: 'Unsafe', stability: 'Stable', entities: 'Few (one vast)' },
     heat: 1, flooded: false, F: 60, Fmax: 120, S: 5, M: 0,
+    palette: ['#0f0a12', '#4b2240', '#c46a9a', '#f7e6f0'], at: [66, 10],
     N: { grub: 15, crab: 6, hound: 4, choir: 1, scourer: 2 },
     sites: [
       { id: 'stairHead', name: 'Stair Head', type: 'connection', to: ['stairhead'] },
@@ -111,6 +118,8 @@ export const LEVELS: Record<string, LevelDef> = {
     survival: { cls: 3, safety: 'Unsafe', stability: 'Unstable', entities: 'Some' },
     // Barren on purpose: at heat 0 its film only decays, so what arrives with it starves or leaves.
     heat: 0, flooded: false, F: 40, Fmax: 150, S: 40, M: 1, appears: 15,
+    // Not in 13.3: fresh concrete under lights that are already on.
+    palette: ['#0c0c0b', '#3b3b36', '#95958a', '#f2f2e6'], at: [92, 22],
     N: { crab: 5, hound: 3, scourer: 6 },
     sites: [
       { id: 'rawFloor', name: 'Raw Floor', type: 'gallery', to: ['new'] },
@@ -131,6 +140,9 @@ export const CONNECTIONS: ConnectionDef[] = [
   { id: 'stairhead', a: 'stair', b: 'hall', type: 'stair flight', cost: 3, open: true },
   { id: 'new', a: 'stair', b: 'u0041', type: 'fresh accretion', cost: 2, open: true, appears: 15 },
 ]
+
+/** Home, for the Atlas and its dithering. */
+export const SEAM = { name: 'The Seam', floor: '-213½', palette: ['#0d0d0b', '#3c3a2c', '#a39f7a', '#efe9cf'], at: [34, 75] as [number, number] }
 
 /** The Masons' construction schedule: on these days a level's activity rises by one. */
 export const SCHEDULE = [

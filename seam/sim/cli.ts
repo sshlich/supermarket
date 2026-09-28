@@ -5,8 +5,8 @@ import { existsSync, readFileSync } from 'node:fs'
 import { parseArgs } from 'node:util'
 import { LEVELS } from '../src/data/levels.ts'
 import { SPECIES } from '../src/data/species.ts'
-import { masons, play, type Ev, type Scripted } from '../src/model/sim.ts'
-import { newGame, type State } from '../src/model/state.ts'
+import { play, type Ev, type Scripted } from '../src/model/sim.ts'
+import { masons, newGame, type State } from '../src/model/state.ts'
 
 const { values: o } = parseArgs({
   options: {

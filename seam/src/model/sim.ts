@@ -5,7 +5,7 @@
 import { LEVELS, CONNECTIONS, SCHEDULE } from '../data/levels.ts'
 import { SP, SPECIES, type Species } from '../data/species.ts'
 import { pick, rand } from './rng.ts'
-import { connection, level, type Connection, type LevelState, type State } from './state.ts'
+import { connection, level, masons, type Connection, type LevelState, type State } from './state.ts'
 
 /** The design's numbers, in one place for tuning. Where a tuned value differs, the doc's is noted and sim.test.ts says why. */
 export const T = {
@@ -40,7 +40,16 @@ export const T = {
   lureScrap: 40,   // plating the lured moths strip off the Masons, and boom on
 }
 
-export interface Ev { night: number; kind: 'migrate' | 'extinct' | 'sweep' | 'raid' | 'buried' | 'masons' | 'level' | 'choir' | 'script'; text: string }
+/** Something that happened tonight: a line for the CLI, and the facts behind it for the voice and the view. */
+export interface Ev {
+  night: number
+  kind: 'migrate' | 'extinct' | 'sweep' | 'raid' | 'buried' | 'masons' | 'level' | 'choir' | 'script'
+  text: string
+  level?: string
+  n?: number
+  species?: string
+  lost?: string[]
+}
 
 const RES = { film: 'F', scrap: 'S', corpses: 'C' } as const
 const res = (f: string) => RES[f as keyof typeof RES] as 'F' | 'S' | 'C' | undefined
@@ -64,21 +73,27 @@ const name = (id: string) => LEVELS[id].name
 const passable = (s: State, c: Connection) => c.open && (c.requires !== 'drained' || ![c.a, c.b].some(id => s.levels[id]?.flooded))
 export const neighbours = (s: State, id: string) =>
   s.connections.filter(c => passable(s, c) && (c.a === id || c.b === id)).map(c => c.a === id ? c.b : c.a).filter(o => s.levels[o])
-/** Mason activity after holds. */
-export const masons = (s: State, L: LevelState) => Math.max(0, L.M + L.mHolds.reduce((a, h) => a + (s.day < h.until ? h.delta : 0), 0))
 const hatchLevel = (s: State) => s.connections.find(c => c.a === 'seam')!.b
 
-/** Run one night. Mutates `s`; returns what happened, for the log and the CLI. */
+/** A headless night: the world alone, as the scenarios and the CLI run it. */
 export function night(s: State): Ev[] {
+  const ev = world(s, s.blackout)
+  s.day++
+  return ev
+}
+
+type Say = (kind: Ev['kind'], text: string, more?: Partial<Ev>) => void
+
+/** Steps 3-6 of the night (6.7): species, attention, the Masons, raids. Mutates `s`, doesn't advance the day. */
+export function world(s: State, dark: boolean): Ev[] {
   const ev: Ev[] = []
-  const say = (kind: Ev['kind'], text: string) => ev.push({ night: s.day, kind, text })
-  // TODO(M3): the Seam eats, drinks and burns cells, then its containers act (6.7 steps 1-2).
+  const say: Say = (kind, text, more) => ev.push({ night: s.day, kind, text, ...more })
 
   // Hounds at the hatch at nightfall come through unless the Seam is dark; they eat there, not on the level.
   // (6.6 over 6.7's order: counted at nightfall, so the raiders can count as fed that night.)
   const hatch = s.levels[hatchLevel(s)]
   const raiders = SPECIES.filter(sp => sp.raids).reduce((a, sp) => a + (hatch.N[sp.id] ?? 0), 0)
-  const raid = raiders >= T.raidAt && !s.blackout && !s.flags.buried && s.villagers.length > 0
+  const raid = raiders >= T.raidAt && !dark && !s.flags.buried && s.villagers.length > 0
   const was = Object.fromEntries(Object.values(s.levels).map(L => [L.id, { ...L.N }]))
 
   const sat: Record<string, Record<string, number>> = {}
@@ -90,17 +105,15 @@ export function night(s: State): Ev[] {
     const lost: string[] = []
     for (let i = Math.min(T.raidMax, Math.ceil(raiders / T.raidAt)); i > 0 && s.villagers.length; i--)
       lost.push(...s.villagers.splice(Math.floor(rand(s) * s.villagers.length), 1))
-    say('raid', `${Math.round(raiders)} glasshounds through the hatch: ${lost.join(', ')} lost`)
+    say('raid', `${Math.round(raiders)} glasshounds through the hatch: ${lost.join(', ')} lost`, { level: hatch.id, n: Math.round(raiders), lost })
   }
   build(s, say)
   for (const L of Object.values(s.levels))
     for (const [id, n] of Object.entries(L.N))
       if (n > 0 && n < T.gone) {
         L.N[id] = 0
-        if ((was[L.id]?.[id] ?? 0) >= T.gone) say('extinct', `${SP[id].name} gone from ${name(L.id)}`)
+        if ((was[L.id]?.[id] ?? 0) >= T.gone) say('extinct', `${SP[id].name} gone from ${name(L.id)}`, { level: L.id, species: id })
       }
-  // TODO(M2): rumours, feeds and MAINT lines from tonight's events (6.7 steps 7-8); autosave.
-  s.day++
   return ev
 }
 
@@ -148,7 +161,7 @@ function live(s: State, L: LevelState, raided: boolean): Record<string, number> 
 }
 
 /** The Choir's song draws hounds in from its level and one open connection away (6.3.7). Silenced, it dies. */
-function sing(s: State, say: (k: Ev['kind'], t: string) => void) {
+function sing(s: State, say: Say) {
   for (const L of Object.values(s.levels)) for (const sp of SPECIES) {
     if (!sp.sings || !L.N[sp.id]) continue
     if (L.choirSilenced === undefined) {
@@ -159,13 +172,13 @@ function sing(s: State, say: (k: Ev['kind'], t: string) => void) {
       L.C += sp.mass
       const lair = LEVELS[L.id].sites.find(x => x.lair === sp.id) ?? LEVELS[L.id].sites[0]
       for (const [kind, n] of Object.entries(sp.drops)) L.sites.find(x => x.id === lair.id)!.loot.push({ id: s.next++, kind, x: 0, y: 0, rot: false, n })
-      say('choir', `${sp.name} dies; something is left at the ${lair.name}`)
+      say('choir', `${sp.name} dies; something is left at the ${lair.name}`, { level: L.id })
     }
   }
 }
 
 /** Hungry or crowded migrants move a quarter of their number to the open neighbour with the most food per head (6.3.8). */
-function migrate(s: State, sat: Record<string, Record<string, number>>, say: (k: Ev['kind'], t: string) => void) {
+function migrate(s: State, sat: Record<string, Record<string, number>>, say: Say) {
   const moves: { sp: Species; from: LevelState; to: LevelState; n: number }[] = []
   for (const L of Object.values(s.levels)) for (const sp of SPECIES) {
     const n = L.N[sp.id]
@@ -186,12 +199,12 @@ function migrate(s: State, sat: Record<string, Record<string, number>>, say: (k:
   for (const { sp, from, to, n } of moves) {
     from.N[sp.id] -= n
     to.N[sp.id] = (to.N[sp.id] ?? 0) + n
-    if (n >= 1) say('migrate', `${sp.name} ×${Math.round(n)} ${name(from.id)} → ${name(to.id)}`)
+    if (n >= 1) say('migrate', `${sp.name} ×${Math.round(n)} ${name(from.id)} → ${name(to.id)}`, { level: from.id, species: sp.id, n })
   }
 }
 
 /** Attention fades, or the Auditors sweep: everything without a Signature becomes debris (6.4). */
-function attend(s: State, L: LevelState, say: (k: Ev['kind'], t: string) => void) {
+function attend(s: State, L: LevelState, say: Say) {
   if (L.A < T.sweepAt) { L.A *= T.fade; return }
   let killed = 0
   for (const [id, n] of Object.entries(L.N)) {
@@ -212,25 +225,37 @@ function attend(s: State, L: LevelState, say: (k: Ev['kind'], t: string) => void
     site.loot.push({ id: s.next++, kind: 'fragment', x: 0, y: 0, rot: false, n: 1 })
     where = `; an Auditor Husk at the ${LEVELS[L.id].sites.find(x => x.id === site.id)!.name}`
   }
-  say('sweep', `${name(L.id)} swept: ${Math.round(killed)} reclassified as debris${where}`)
+  say('sweep', `${name(L.id)} swept: ${Math.round(killed)} reclassified as debris${where}`, { level: L.id, n: Math.round(killed) })
 }
 
 /** The Masons: Burial rises with the activity next to the Seam, the schedule advances, new strata appear (6.5). */
-function build(s: State, say: (k: Ev['kind'], t: string) => void) {
+function build(s: State, say: Say) {
   if (!s.flags.buried) {
     s.burial = Math.min(100, s.burial + T.burialPerM * Object.values(s.levels).reduce((a, L) => a + (LEVELS[L.id].buries ? masons(s, L) : 0), 0))
     if (s.burial >= 100) { s.flags.buried = true; say('buried', 'the Masons close the gap: the Seam is sealed') }
   }
   for (const e of SCHEDULE) if (e.day === s.day && s.levels[e.level]) {
     s.levels[e.level].M++
-    say('masons', `schedule: ${name(e.level)} Masons ${s.levels[e.level].M - 1} → ${s.levels[e.level].M}`)
+    say('masons', `schedule: ${name(e.level)} Masons ${s.levels[e.level].M - 1} → ${s.levels[e.level].M}`, { level: e.level })
   }
   for (const def of Object.values(LEVELS)) if (def.appears === s.day) {
     s.levels[def.id] = level(def)
     s.connections.push(...CONNECTIONS.filter(c => c.appears === s.day).map(connection))
-    say('level', `new stratum registered: ${def.name}`)
+    say('level', `new stratum registered: ${def.name}`, { level: def.id })
   }
   for (const L of Object.values(s.levels)) L.mHolds = L.mHolds.filter(h => s.day + 1 < h.until)
+}
+
+/** The night the Masons would seal the Seam if nothing changes: holds run out, the schedule keeps advancing. */
+export function burialDay(s: State): number | undefined {
+  if (s.flags.buried) return undefined
+  const M = Object.fromEntries(Object.values(s.levels).filter(L => LEVELS[L.id].buries).map(L => [L.id, L.M]))
+  let b = s.burial
+  for (let d = s.day; d < s.day + 365; d++) {
+    for (const id in M) b += T.burialPerM * Math.max(0, M[id] + s.levels[id].mHolds.reduce((a, h) => a + (d < h.until ? h.delta : 0), 0))
+    if (b >= 100) return d
+    for (const e of SCHEDULE) if (e.day === d && e.level in M) M[e.level]++
+  }
 }
 
 // ---------------------------------------------------------------- effects and scripts

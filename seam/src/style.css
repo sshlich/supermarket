@@ -1,25 +1,141 @@
-/* The Seam's palette (DESIGN 13.3). Windows come from 98.css. */
+/* STRATA/98. Windows come from 98.css; this is the desktop, the tables' knowledge cells, and the Seam's palette
+   (DESIGN 13.3). */
 :root {
   --seam-0: #0d0d0b;
   --seam-1: #3c3a2c;
   --seam-2: #a39f7a;
   --seam-3: #efe9cf;
+  --unk: #8a8a82;
+  --pixel: "Pixelated MS Sans Serif", Arial, sans-serif;
+  --mono: "Lucida Console", Monaco, "Courier New", monospace;
 }
 
 html, body { height: 100%; margin: 0; }
-body { overflow: hidden; background: var(--seam-0); user-select: none; -webkit-user-select: none; }
+body { overflow: hidden; background: var(--seam-0); user-select: none; -webkit-user-select: none; font: 11px var(--pixel); -webkit-font-smoothing: none; }
 #app { height: 100%; display: flex; flex-direction: column; }
+svg { display: block; }
+button svg, .icon svg, .title-bar-text svg, td svg, li svg { fill: currentColor; }
+/* 98.css paints button text as a shadow over transparent: icons need their own ink. */
+button svg { color: #222; }
+button:disabled svg { color: grey; }
 
-/* A 1-pixel checker of two palette colours: the desktop is already dithered. */
-.desktop { flex: 1; background: repeating-conic-gradient(var(--seam-1) 0 25%, var(--seam-0) 0 50%) 0 0 / 2px 2px; }
-
-.taskbar {
-  display: flex; align-items: center; gap: 4px; height: 30px; padding: 2px 3px; box-sizing: border-box;
-  background: silver; box-shadow: inset 0 1px #dfdfdf, inset 0 2px #fff;
+/* ------------------------------------------------------------ desktop: a 1-pixel checker of two palette colours */
+#desk { flex: 1; position: relative; overflow: hidden; background: repeating-conic-gradient(var(--seam-1) 0 25%, var(--seam-0) 0 50%) 0 0 / 2px 2px; }
+.icons { position: absolute; left: 8px; top: 8px; display: flex; flex-direction: column; gap: 6px; }
+.icon {
+  all: unset; box-sizing: border-box; width: 76px; padding: 4px 2px; display: flex; flex-direction: column; align-items: center; gap: 3px;
+  color: var(--seam-3); text-align: center; cursor: default;
 }
-.start { min-width: 0; padding: 0 10px; }
-.tray {
-  margin-left: auto; padding: 3px 10px;
-  font: 11px "Pixelated MS Sans Serif", Arial; -webkit-font-smoothing: none;
-  box-shadow: inset -1px -1px #fff, inset 1px 1px grey;
+.icon svg { width: 32px; height: 32px; color: var(--seam-3); filter: drop-shadow(1px 1px 0 #000); }
+.icon span { font: 11px var(--pixel); padding: 0 2px; text-shadow: 1px 1px 0 #000; }
+.icon:focus span { background: #000080; outline: 1px dotted #fff; text-shadow: none; }
+
+/* ------------------------------------------------------------ windows */
+.win { position: absolute; display: flex; flex-direction: column; min-width: 220px; min-height: 120px; resize: both; overflow: hidden; }
+.win .window-body { flex: 1; overflow: auto; margin: 3px; padding: 3px 5px; }
+.title-bar-text { display: flex; align-items: center; gap: 4px; }
+.title-bar-text svg { width: 14px; height: 14px; }
+.win.opening { animation: open 120ms ease-out; }
+@keyframes open { from { transform: scale(.94); opacity: .4; } }
+
+h2 { font: bold 13px var(--pixel); margin: 2px 0 4px; letter-spacing: .04em; }
+h2 small { font-weight: normal; }
+h3 { font: bold 11px var(--pixel); margin: 10px 0 4px; }
+.empty { color: #555; font-style: italic; }
+
+/* ------------------------------------------------------------ knowledge cells (13.1) */
+.unk { color: var(--unk); padding: 0 2px; background: repeating-conic-gradient(#d4d4ce 0 25%, #bcbcb4 0 50%) 0 0 / 2px 2px; }
+.rough { font-style: italic; }
+.rough small, .exact small { color: #666; font-style: normal; }
+.blocks { display: inline-flex; gap: 1px; vertical-align: -1px; }
+.blocks i { width: 6px; height: 9px; background: #c8c8c0; box-shadow: inset 1px 1px #888; }
+.blocks i.on { background: #000080; box-shadow: none; }
+.spark { display: inline-block; width: 40px; height: 12px; margin-left: 5px; vertical-align: middle; }
+.spark polyline { fill: none; stroke: #000080; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.up { color: #007000; margin-left: 3px; }
+.down { color: #a00000; margin-left: 3px; }
+
+.sunken-panel { background: #fff; }
+.sunken-panel table { width: 100%; border-collapse: collapse; }
+.sunken-panel td, .sunken-panel th { padding: 2px 6px; white-space: nowrap; text-align: left; }
+.sunken-panel th[data-sort] { cursor: pointer; }
+.sunken-panel td svg { display: inline-block; width: 14px; height: 14px; vertical-align: -3px; margin-right: 4px; }
+.sunken-panel td.empty { text-align: center; padding: 8px; }
+
+/* ------------------------------------------------------------ Atlas */
+.atlas { display: grid; grid-template-columns: minmax(220px, 42%) 1fr; gap: 8px; height: 100%; }
+.atlas .pane { background: var(--seam-0); box-shadow: inset -1px -1px #fff, inset 1px 1px grey, inset -2px -2px #dfdfdf, inset 2px 2px #0a0a0a; padding: 4px; }
+.map { width: 100%; height: 100%; }
+.map text { font: 2.9px var(--pixel); text-anchor: middle; }
+.map text.floor { font-size: 2.4px; }
+.map text.cost { fill: var(--seam-2); text-anchor: start; }
+.map .edge { stroke: var(--seam-2); stroke-width: .6; }
+.map .edge.closed { stroke-dasharray: 1.6 1.2; opacity: .7; }
+.map .edge.impassable { stroke: #c46a4a; stroke-dasharray: .5 1; }
+.map .node { cursor: pointer; }
+.map .node.sel rect { stroke-width: .9; filter: drop-shadow(0 0 1.2px #fff); }
+.map .node rect { stroke-width: .4; }
+.atlas .page { overflow: auto; padding: 0 4px 0 3px; }
+.vista { height: 90px; margin: 4px 0; box-shadow: inset 1px 1px #0a0a0a, inset -1px -1px #fff; image-rendering: pixelated; }
+.lore { font-style: italic; }
+.class, .stats { line-height: 1.6; }
+
+/* ------------------------------------------------------------ Ledger */
+.ledger th { width: 80px; vertical-align: top; }
+.gauge { display: inline-block; width: 150px; height: 12px; vertical-align: middle; background: #fff; box-shadow: inset 1px 1px grey, inset -1px -1px #fff; padding: 2px; box-sizing: border-box; }
+.gauge i { display: block; height: 100%; background: repeating-linear-gradient(90deg, #000080 0 7px, transparent 7px 9px); }
+.word { margin: 0; padding: 0 0 0 4px; list-style: none; }
+.word li { padding: 2px 0; }
+.word li.event { color: #800000; }
+.word small { color: #666; margin-right: 4px; }
+
+/* ------------------------------------------------------------ MAINT */
+.maint { margin: 4px 0 0; height: calc(100% - 30px); overflow: auto; background: #000; color: #33ff66; font: 12px/1.35 var(--mono); padding: 6px 8px; white-space: pre-wrap; user-select: text; -webkit-user-select: text; }
+.maint .stamp { color: #1f9e40; }
+
+/* ------------------------------------------------------------ taskbar */
+.taskbar { display: flex; align-items: center; gap: 4px; height: 30px; padding: 2px 3px; box-sizing: border-box; background: silver; box-shadow: inset 0 1px #dfdfdf, inset 0 2px #fff; position: relative; z-index: 1000; }
+.taskbar button { display: inline-flex; align-items: center; gap: 4px; min-width: 0; height: 24px; padding: 0 8px; }
+.taskbar button svg { width: 16px; height: 16px; }
+.tasks { display: flex; gap: 3px; flex: 1; overflow: hidden; }
+.task { width: 140px; justify-content: flex-start; }
+.task span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.task.active { box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey; background: repeating-conic-gradient(#fff 0 25%, silver 0 50%) 0 0 / 2px 2px; font-weight: bold; }
+.omni { color: #800000; font-weight: bold; padding: 0 6px; }
+.tray { display: flex; align-items: center; gap: 4px; padding: 0 8px 0 3px; height: 22px; box-shadow: inset -1px -1px #fff, inset 1px 1px grey; }
+.tray .tray-icon { all: unset; display: flex; }
+.tray .tray-icon svg { width: 16px; height: 16px; }
+
+.menu { position: absolute; left: 2px; bottom: 32px; z-index: 1001; width: 200px; }
+.menu .window-body { display: flex; flex-direction: column; margin: 2px; }
+.menu button { all: unset; display: flex; align-items: center; gap: 6px; padding: 4px 8px; }
+.menu button:hover { background: #000080; color: #fff; }
+.menu button svg { width: 16px; height: 16px; }
+.menu hr { width: 100%; }
+
+/* ------------------------------------------------------------ tooltips, balloons, the night */
+.tip {
+  position: fixed; left: 0; top: 0; z-index: 3000; max-width: 280px; padding: 2px 4px; pointer-events: none; opacity: 0;
+  background: #ffffe1; border: 1px solid #000; white-space: pre-line; font: 11px var(--pixel);
+}
+.tip.on { opacity: 1; }
+.balloon {
+  position: absolute; right: 8px; bottom: 38px; z-index: 2000; width: 320px; padding: 8px 10px; cursor: pointer;
+  background: #ffffe1; border: 1px solid #000; border-radius: 6px; box-shadow: 2px 2px 0 rgba(0, 0, 0, .35);
+}
+.balloon::after { content: ''; position: absolute; right: 40px; bottom: -10px; border: 10px solid transparent; border-bottom: 0; border-top-color: #000; }
+.balloon b { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
+.balloon b svg { width: 14px; height: 14px; }
+.balloon p { margin: 2px 0; font-family: var(--mono); font-size: 11px; }
+.balloon .more { font-style: italic; font-family: var(--pixel); }
+.balloon.in { animation: slide .35s ease-out; }
+@keyframes slide { from { transform: translateY(60px); opacity: 0; } }
+
+.veil { position: fixed; inset: 0; z-index: 2500; display: grid; place-items: center; background: rgba(0, 0, 0, .88); color: var(--seam-3); opacity: 0; pointer-events: none; transition: opacity .35s; font: 16px var(--pixel); }
+.veil.on { opacity: 1; pointer-events: all; }
+.veil p { display: flex; align-items: center; gap: 10px; }
+.veil svg { width: 28px; height: 28px; fill: currentColor; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }

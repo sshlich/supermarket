@@ -1,0 +1,150 @@
+// Reading the world (M2): the Atlas and its Level entries, the Bestiary, the Ledger and MAINT's log.
+// Every fact goes through the knowledge filter: ??? until learned, the truth only with ?omniscient.
+
+import { CONNECTIONS, LEVELS, SEAM } from '../data/levels.ts'
+import { SPECIES, type Species } from '../data/species.ts'
+import { fact, knownConnection, knownLevel } from '../model/knowledge.ts'
+import type { Cell } from '../model/state.ts'
+import { omni, s } from './game.ts'
+import { UI } from './icons.ts'
+import { blocks, cell, esc, icon, sortOf, spark, table, tip, trend, type Col } from './ui.ts'
+import { define, paint } from './wm.ts'
+
+const f = (key: string) => fact(s, key, omni)
+const c = (key: string, show?: (v: Cell['value']) => string) => cell(f(key), s.day, show)
+const pct = (v: Cell['value']) => typeof v === 'number' ? `${v}%` : esc(String(v))
+const levelsKnown = () => Object.keys(s.levels).filter(id => knownLevel(s, id, omni))
+const SHORT: Record<string, string> = { galleries: 'Galleries', ducts: 'Ducts', stair: 'Stair', hall: 'Hall', u0041: '0041' }
+
+// ---------------------------------------------------------------- Atlas
+
+let sel = 'galleries'
+
+function map() {
+  const known = levelsKnown()
+  const at = (id: string) => id === 'seam' ? SEAM.at : LEVELS[id].at
+  const shown = (id: string) => id === 'seam' || known.includes(id)
+  const edges = s.connections.filter(c => knownConnection(s, c.id, omni) && shown(c.a) && shown(c.b)).map(c => {
+    const [[x1, y1], [x2, y2]] = [at(c.a), at(c.b)]
+    const def = CONNECTIONS.find(d => d.id === c.id)!
+    const state = !c.open ? 'closed' : c.requires === 'drained' && [c.a, c.b].some(id => s.levels[id]?.flooded) ? 'impassable: flooded' : 'open'
+    return `<g ${tip(`${def.type}, ${c.cost} step${c.cost > 1 ? 's' : ''}: ${state}`)}>
+      <line class="edge ${state.split(':')[0]}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/>
+      <text class="cost" x="${(x1 + x2) / 2 + 2}" y="${(y1 + y2) / 2}">${c.cost}</text></g>`
+  }).join('')
+  const node = (id: string, name: string, floor: string, pal: string[], [x, y]: [number, number]) => `
+    <g class="node ${sel === id ? 'sel' : ''}" ${id === 'seam' ? '' : `data-on="level:${id}"`} transform="translate(${x} ${y})">
+      <rect x="-15" y="-5" width="30" height="10" fill="${pal[1]}" stroke="${pal[3]}"/>
+      <text y="-0.6" fill="${pal[3]}">${esc(name)}</text><text class="floor" y="3.2" fill="${pal[2]}">${esc(floor)}</text></g>`
+  // Fit what's known, with room for the labels; never zoom in past a third of the whole.
+  const pts = [SEAM.at, ...known.map(id => LEVELS[id].at)]
+  const [x0, x1] = [Math.min(...pts.map(p => p[0])), Math.max(...pts.map(p => p[0]))]
+  const [y0, y1] = [Math.min(...pts.map(p => p[1])), Math.max(...pts.map(p => p[1]))]
+  const [w, h] = [Math.max(x1 - x0 + 36, 64), Math.max(y1 - y0 + 16, 64)]
+  const box = `${(x0 + x1) / 2 - w / 2} ${(y0 + y1) / 2 - h / 2} ${w} ${h}`
+  return `<svg class="map" viewBox="${box}">${edges}${node('seam', SEAM.name, SEAM.floor, SEAM.palette, SEAM.at)}
+    ${known.map(id => node(id, LEVELS[id].name, LEVELS[id].floor, LEVELS[id].palette, LEVELS[id].at)).join('')}</svg>`
+}
+
+/** The Level entry (13.2): a page per level, Backrooms-style. */
+function entry(id: string) {
+  const def = LEVELS[id]
+  const k = (field: string, show?: (v: Cell['value']) => string) => c(`L:${id}:${field}`, show)
+  const conns = s.connections.filter(x => (x.a === id || x.b === id) && knownConnection(s, x.id, omni))
+  const species = SPECIES.filter(sp => sp.mass > 0 && (omni ? s.levels[id].N[sp.id] !== undefined : !!s.know[`S:${sp.id}:known`]))
+  const pop = (sp: Species) => f(`S:${sp.id}:pop:${id}`)
+  return `
+    <h2>${esc(def.name.toUpperCase())} <small>(${esc(def.floor)})</small></h2>
+    <p class="class">Survival class ${k('class')} · ${k('safety')} · ${k('stability')} · ${k('entities')} entities</p>
+    <div class="vista" style="background: linear-gradient(${def.palette[3]}, ${def.palette[2]} 20%, ${def.palette[1]} 55%, ${def.palette[0]})"></div>
+    <p class="lore">${esc(def.text)}</p>
+    <p class="stats">Film ${k('film', pct)} · Scrap ${k('scrap')} · Heat ${k('heat')} · ${k('flooded', v => v ? 'flooded' : 'dry')}
+      · Masons ${k('masons', v => blocks(v as number, 3, 3))} · Attention ${k('attention', v => typeof v === 'number' ? blocks(v, 100) : esc(String(v)))}</p>
+    <h3>Species</h3>
+    ${table(`entry-${id}`, [
+      { head: 'Species', cell: sp => `${icon(sp.icon)}${esc(sp.name)}`, sort: sp => sp.name },
+      { head: 'Population', cell: sp => cell(pop(sp), s.day), sort: sp => sortOf(pop(sp)) },
+      { head: 'Trend', cell: sp => `${spark(pop(sp)?.trail)}${trend(pop(sp)?.trail)}` },
+    ] as Col<Species>[], species, 'Nothing seen here yet.')}
+    <h3>Connections</h3>
+    ${conns.length ? `<ul>${conns.map(x => {
+      const other = x.a === id ? x.b : x.a
+      const d = CONNECTIONS.find(d => d.id === x.id)!
+      return `<li>${esc(d.type)} to ${esc(other === 'seam' ? SEAM.name : knownLevel(s, other, omni) ? LEVELS[other].name : '???')}, ${x.cost} step${x.cost > 1 ? 's' : ''}${x.open ? '' : ', closed'}</li>`
+    }).join('')}</ul>` : '<p class="empty">None known.</p>'}
+    <h3>Sites · Hazards · Levers · Terminals</h3>
+    <p class="empty">Nobody has walked it yet.</p>`
+}
+
+define({
+  id: 'atlas', title: 'Atlas', icon: UI.atlas, x: 104, y: 14, w: 760, h: 540, desktop: true, start: true,
+  body: () => `<div class="atlas"><div class="pane">${map()}</div><div class="page">${entry(sel)}</div></div>`,
+  on: (cmd, arg) => { if (cmd === 'level') { sel = arg; paint('atlas') } },
+})
+
+// ---------------------------------------------------------------- Bestiary
+
+function bestiary() {
+  const rows = SPECIES.filter(sp => sp.mass > 0 && (omni || !!s.know[`S:${sp.id}:known`]))
+  const k = (sp: Species, field: string) => f(`S:${sp.id}:${field}`)
+  const col = (head: string, field: string): Col<Species> => ({ head, cell: sp => cell(k(sp, field), s.day), sort: sp => sortOf(k(sp, field)) })
+  const diet = (sp: Species) => {
+    const foods = Object.keys(sp.diet)
+    const known = foods.filter(x => k(sp, `diet:${x}`))
+    return known.map(esc).join(', ') + (known.length < foods.length ? `${known.length ? ', ' : ''}<span class="unk">???</span>` : '')
+  }
+  return table('bestiary', [
+    { head: 'Name', cell: sp => `${icon(sp.icon)}${esc(sp.name)}`, sort: sp => sp.name },
+    col('Size', 'size'), col('Behaviour', 'behaviour'),
+    { head: 'Diet', cell: diet },
+    col('Threat', 'threat'), col('HP', 'hp'), col('Drops', 'drops'), col('Props', 'props'),
+    ...levelsKnown().map((id): Col<Species> => ({
+      head: SHORT[id], tip: `Population ${LEVELS[id].name === 'UNNAMED-0041' ? 'on' : 'in the'} ${LEVELS[id].name}`, cls: 'pop',
+      cell: sp => { const p = k(sp, `pop:${id}`); return `${cell(p, s.day)}${spark(p?.trail)}${trend(p?.trail)}` },
+      sort: sp => sortOf(k(sp, `pop:${id}`)),
+    })),
+  ], rows, 'No entries. Nothing has been seen yet.')
+}
+
+define({ id: 'bestiary', title: 'Bestiary', icon: UI.bestiary, x: 150, y: 70, w: 900, h: 330, desktop: true, body: bestiary })
+
+// ---------------------------------------------------------------- Ledger
+
+function ledger() {
+  const rumours = s.log.filter(l => l.kind !== 'maint').slice(-10).reverse()
+  const known = levelsKnown()
+  const attention = known.map((id, i) => `<tr>${i ? '' : `<th rowspan="${known.length}">Attention</th>`}<td>${esc(LEVELS[id].name)}
+    ${c(`L:${id}:attention`, v => typeof v === 'number' ? `${blocks(v, 100)} ${v}` : esc(String(v)))}</td></tr>`).join('')
+  return `
+    <div class="sunken-panel"><table class="ledger">
+      <tr><th>Population</th><td ${tip(s.villagers.join(', '))}>${s.villagers.length}</td></tr>
+      <tr><th>Burial</th><td><div class="gauge" ${tip('How close the Masons are to sealing the Seam. At 100% it is over.')}><i style="width:${s.burial}%"></i></div> ${Math.floor(s.burial)}%
+        · sealed by day ${c('seam:burialDay')}</td></tr>
+      ${attention}
+    </table></div>
+    <h3>Word in the Seam</h3>
+    <ul class="word">${rumours.map(l => `<li class="${l.kind}"><small>d${l.day}</small> ${esc(l.text)}</li>`).join('') || '<li class="empty">Nobody has said anything yet.</li>'}</ul>`
+}
+
+define({ id: 'ledger', title: 'Ledger', icon: UI.ledger, x: 880, y: 14, w: 440, h: 520, desktop: true, start: true, body: ledger })
+
+// ---------------------------------------------------------------- MAINT
+
+let filter = ''
+const stamp = (day: number) => `[c${1284017 + day * 3}·d${String(day).padStart(2, '0')} night]`
+const maintLines = () => s.log.filter(l => l.kind === 'maint' && (!filter || l.text.includes(filter.toLowerCase())))
+  .map(l => `<span class="stamp">${stamp(l.day)}</span> maint: ${esc(l.text)}`).join('\n') || 'maint: (no entries.)'
+
+define({
+  id: 'maint', title: 'MAINT', icon: UI.maint, x: 104, y: 480, w: 700, h: 260, desktop: true, start: true,
+  body: () => `<div class="field-row"><label for="maint-filter">Filter</label><input id="maint-filter" type="text" value="${esc(filter)}"></div><pre class="maint">${maintLines()}</pre>`,
+  bind: body => {
+    const pre = body.querySelector('pre')!
+    pre.scrollTop = pre.scrollHeight
+    body.querySelector('input')!.addEventListener('input', e => {
+      filter = (e.target as HTMLInputElement).value
+      pre.innerHTML = maintLines()
+      pre.scrollTop = pre.scrollHeight
+    })
+  },
+})

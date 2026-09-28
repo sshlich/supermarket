@@ -1,5 +1,4 @@
 // The whole game as plain, JSON-safe data (DESIGN 14.2), and a fresh one.
-// Milestones add what they need: containers and the village (M3), runs (M4), access (M5-M6).
 
 import { CONNECTIONS, LEVELS, type ConnectionDef, type LevelDef } from '../data/levels.ts'
 import { VILLAGERS } from '../data/villagers.ts'
@@ -28,17 +27,26 @@ export interface LevelState {
 
 export interface Connection { id: string; a: string; b: string; cost: number; open: boolean; requires?: 'drained' }
 
+/** A known fact: rough (a band) or exact, when it was learned and how (7.1). Absent means ???. */
+export interface Cell { state: 'rough' | 'exact'; value: string | number | boolean; day: number; src: string; trail?: [number, number][] }
+
+export interface LogLine { day: number; kind: 'maint' | 'rumour' | 'event'; text: string }
+
 export interface State {
   version: 1
   seed: number
   rng: number
   day: number                                 // night `day` runs at the end of day `day`
+  step: number                                // 0-11 on a run; a day has 12
   next: number                                // next item id
   villagers: string[]                         // everyone still alive at the Seam
   blackout: boolean
   burial: number                              // 0-100; at 100 the Seam is sealed
   levels: Record<string, LevelState>
   connections: Connection[]
+  know: Record<string, Cell>                  // the Catalog: saved apart from the game, kept when it ends
+  log: LogLine[]
+  hist: Record<string, Record<string, number[]>> // the last nights' populations, per level and species
   flags: Record<string, boolean>              // scripted beats
 }
 
@@ -49,12 +57,15 @@ export const level = (def: LevelDef): LevelState => ({
 
 export const connection = ({ id, a, b, cost, open, requires }: ConnectionDef): Connection => ({ id, a, b, cost, open, requires })
 
-export function newGame(seed: number): State {
+/** Mason activity after holds. */
+export const masons = (s: State, L: LevelState) => Math.max(0, L.M + L.mHolds.reduce((a, h) => a + (s.day < h.until ? h.delta : 0), 0))
+
+export function newGame(seed: number, know: State['know'] = {}): State {
   return {
-    version: 1, seed, rng: seed, day: 1, next: 1,
+    version: 1, seed, rng: seed, day: 1, step: 0, next: 1,
     villagers: [...VILLAGERS], blackout: false, burial: 0,
     levels: Object.fromEntries(Object.values(LEVELS).filter(l => !l.appears).map(l => [l.id, level(l)])),
     connections: CONNECTIONS.filter(c => !c.appears).map(connection),
-    flags: {},
+    know, log: [], hist: {}, flags: {},
   }
 }

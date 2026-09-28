@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
 import { readdirSync, readFileSync } from 'node:fs'
 import { LEVELS } from '../data/levels.ts'
-import { EFFECTS, masons, play, type Scripted } from './sim.ts'
-import { newGame, type State } from './state.ts'
+import { EFFECTS, play, type Scripted } from './sim.ts'
+import { masons, newGame, type State } from './state.ts'
 
 // Appendix J: the world headless from seed 7, each scenario against the untouched world (S1).
 // A scripted effect lands the morning after its night; "night k" means the world as night k leaves it.
