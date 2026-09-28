@@ -79,7 +79,7 @@ export const SPECIES: Species[] = [
     // Not a population: present on a level for 2 days after a sweep, at encounter weight 5. Hunts unless authorised.
     id: 'auditor', name: 'Auditor', mass: 0, diet: {}, r: 0, d: 0, vuln: 0, migrates: false,
     detect: 5, pack: 3, aware: 3, threat: 6, hp: 30, behaviour: 'hunter', props: { SIGNAL: 3 },
-    drops: { auditorHusk: 1 }, // sometimes with a fragment
+    drops: { fragment: 1 }, // only sometimes (T.huskChance); the husk itself isn't an item
     text: 'Tall, thin, polite. It asks for your Signature. It does not ask twice.',
   },
   {

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { readdirSync, readFileSync } from 'node:fs'
 import { LEVELS } from '../data/levels.ts'
-import { play, type Scripted } from './sim.ts'
+import { EFFECTS, masons, play, type Scripted } from './sim.ts'
 import { newGame, type State } from './state.ts'
 
 // Appendix J: the world headless from seed 7, each scenario against the untouched world (S1).
@@ -74,6 +74,17 @@ for (let k = 12; k <= 15; k++) assert.ok(N(S6.at[k], 'stair', 'scourer') > N(S6.
 const buried = S1.at.findIndex(x => x.flags.buried)
 assert.ok(buried >= 20 && buried <= 26, `S7: buried on night ${buried}`)
 assert.ok(run(script('s7-holds-and-lure.json'), 30).at[30].burial < 100, 'S7: holds')
+
+// The moth lure (our reading of Appendix F): the moths corrode the Masons, slowing them for 10 nights, and boom on
+// the plating they strip. The Ducts start without moths, so there the lure does nothing.
+{
+  const x = run([{ night: 10, do: 'mothLure', level: 'galleries' }], 13)
+  assert.ok(N(x.at[13], 'galleries', 'moth') >= 1.5 * N(S1.at[13], 'galleries', 'moth'), 'lure: moths boom')
+  assert.equal(masons(x.s, x.s.levels.galleries), x.s.levels.galleries.M - 1, 'lure: Masons slowed')
+  const s = newGame(7)
+  EFFECTS.mothLure(s, s.levels.ducts)
+  assert.deepEqual(s, newGame(7), 'lure: no moths, no effect')
+}
 
 // S8: every scenario run twice gives byte-identical state, and a game saved as JSON and resumed plays out the same.
 for (const f of readdirSync(new URL('../../scenarios/', import.meta.url))) {

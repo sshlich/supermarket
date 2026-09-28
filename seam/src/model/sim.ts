@@ -37,6 +37,7 @@ export const T = {
   choirDies: 10,   // nights from silence to death
   holdNights: 10,  // a WRITE maintenance hold (M = 0)
   lureNights: 10,  // a moth lure (M −1)
+  lureScrap: 40,   // plating the lured moths strip off the Masons, and boom on
 }
 
 export interface Ev { night: number; kind: 'migrate' | 'extinct' | 'sweep' | 'raid' | 'buried' | 'masons' | 'level' | 'choir' | 'script'; text: string }
@@ -74,8 +75,7 @@ export function night(s: State): Ev[] {
   // TODO(M3): the Seam eats, drinks and burns cells, then its containers act (6.7 steps 1-2).
 
   // Hounds at the hatch at nightfall come through unless the Seam is dark; they eat there, not on the level.
-  // TODO(design): 6.7 checks raids after the species update, but 6.6 has the raiders "count as fed that night".
-  // Counting them at nightfall does both; or should the count come after the night, and feeding the next?
+  // (6.6 over 6.7's order: counted at nightfall, so the raiders can count as fed that night.)
   const hatch = s.levels[hatchLevel(s)]
   const raiders = SPECIES.filter(sp => sp.raids).reduce((a, sp) => a + (hatch.N[sp.id] ?? 0), 0)
   const raid = raiders >= T.raidAt && !s.blackout && !s.flags.buried && s.villagers.length > 0
@@ -203,8 +203,7 @@ function attend(s: State, L: LevelState, say: (k: Ev['kind'], t: string) => void
   }
   L.A = T.afterSweep
   L.auditorsUntil = s.day + T.auditorDays
-  // TODO(design): where does the Husk lie, and is it an item itself (Appendix B lists it as a drop)?
-  // For now its Fragment is loot at a random site of the swept level.
+  // The husk isn't an item (nothing exists only to be tracked); its Fragment lies at a random site of the level.
   const husk = !s.flags.swept || rand(s) < T.huskChance
   s.flags.swept = true
   let where = ''
@@ -242,8 +241,12 @@ export const EFFECTS: Record<string, (s: State, L: LevelState, value?: number) =
   sluice: (s, L) => { L.flooded = !L.flooded },
   bulkhead: s => { const c = s.connections.find(c => c.id === 'bulkhead')!; c.open = !c.open },
   resonancePipe: (s, L) => { L.choirSilenced ??= s.day },
-  // TODO(design): "the moth population booms on the scrap": does the lure's Scrap ×3 feed the level, or do the moths eat the Masons?
-  mothLure: (s, L) => { L.mHolds.push({ until: s.day + T.lureNights, delta: -1 }) },
+  // The lured moths corrode the Masons and boom on the plating they strip. No moths here, nothing to corrode.
+  mothLure: (s, L) => {
+    if (!L.N.moth) return
+    L.mHolds.push({ until: s.day + T.lureNights, delta: -1 })
+    L.S += T.lureScrap
+  },
   hold: (s, L) => { L.mHolds.push({ until: s.day + T.holdNights, delta: -99 }) }, // WRITE maintenance hold: M = 0
   attention: (s, L, value = 0) => { L.A = value },                       // scenarios only
 }

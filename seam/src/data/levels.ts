@@ -109,8 +109,7 @@ export const LEVELS: Record<string, LevelDef> = {
   u0041: {
     id: 'u0041', name: 'UNNAMED-0041', floor: '?',
     survival: { cls: 3, safety: 'Unsafe', stability: 'Unstable', entities: 'Some' },
-    // TODO(design): at heat 0 its film only decays, so what arrives with it starves or leaves within ~15 nights.
-    // Barren on purpose, or should "the concrete is still warm" be heat 1?
+    // Barren on purpose: at heat 0 its film only decays, so what arrives with it starves or leaves.
     heat: 0, flooded: false, F: 40, Fmax: 150, S: 40, M: 1, appears: 15,
     N: { crab: 5, hound: 3, scourer: 6 },
     sites: [
