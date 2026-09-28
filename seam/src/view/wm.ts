@@ -46,6 +46,12 @@ export function open(id: string) {
   const d = defs.get(id)
   if (!d) return
   const g = geo[id] ??= { x: d.x, y: d.y, w: d.w, h: d.h, open: true, min: false }
+  // Whatever the screen, a window opens wholly on the desk (a smaller screen, or a size saved on a bigger one).
+  const desk = $('#desk')
+  g.w = Math.min(g.w, desk.clientWidth)
+  g.h = Math.min(g.h, desk.clientHeight)
+  g.x = Math.max(0, Math.min(g.x, desk.clientWidth - g.w))
+  g.y = Math.max(0, Math.min(g.y, desk.clientHeight - g.h))
   g.open = true
   g.min = false
   saveGeo()
@@ -69,9 +75,9 @@ export function open(id: string) {
   focus(id)
 }
 
-function close(id: string, min = false) {
+export function close(id: string, min = false) {
   const el = winEl(id)
-  if (!el) return
+  if (!el || el.hidden) return
   const fade = el.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'scale(.96)' }], { id: 'close', duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 120, fill: 'forwards' })
   fade.onfinish = () => { if (!geo[id].open || geo[id].min) el.hidden = true; fade.cancel() }
   geo[id].open = min
@@ -163,6 +169,20 @@ function showTip(el: Element, e: PointerEvent) {
 }
 function hideTip() { $('.tip').classList.remove('on'); tipFor = null }
 
+/** What the game refused, said where the player just clicked (the terminal says it in its own console). */
+let pointer = { x: 0, y: 0, el: null as Element | null }
+let noteTimer = 0
+function refusal(text: string) {
+  if (pointer.el?.closest('.win[data-win="terminal"]') || document.activeElement?.closest('.win[data-win="terminal"]')) return
+  const n = $('.note')
+  n.textContent = text
+  n.classList.add('on')
+  const r = n.getBoundingClientRect()
+  n.style.transform = `translate(${Math.min(pointer.x + 12, innerWidth - r.width - 4)}px, ${Math.max(4, pointer.y - r.height - 10)}px)`
+  clearTimeout(noteTimer)
+  noteTimer = setTimeout(() => n.classList.remove('on'), 2600)
+}
+
 // ---------------------------------------------------------------- boot
 
 export function boot() {
@@ -188,7 +208,7 @@ export function boot() {
         <hr><button data-new>${icon(UI.start)}New game…</button>
       </div>
     </div>
-    <div class="tip"></div><div class="veil"></div><div class="balloon" data-open="maint" hidden></div>`
+    <div class="tip"></div><div class="note"></div><div class="veil"></div><div class="balloon" data-open="maint" hidden></div>`
 
   const first = !Object.keys(geo).length
   for (const d of defs.values()) if (first ? d.start : geo[d.id]?.open && !geo[d.id].min) open(d.id)
@@ -196,7 +216,12 @@ export function boot() {
   renderAll()
 
   let press: { id: string; dx: number; dy: number } | null = null
+  addEventListener('seam:events', e => {
+    const no = ((e as CustomEvent).detail as { kind: string; text: string }[]).find(x => x.kind === 'refused')
+    if (no) refusal(no.text)
+  })
   addEventListener('pointerdown', e => {
+    pointer = { x: e.clientX, y: e.clientY, el: e.target as Element }
     const t = e.target as HTMLElement
     const w = t.closest<HTMLElement>('.win')
     if (w) focus(w.dataset.win!)
@@ -221,7 +246,10 @@ export function boot() {
     else if (el) showTip(el, e)
     else if (tipFor) hideTip()
   })
-  addEventListener('pointerup', () => { if (press) { saveGeo(); press = null } })
+  addEventListener('pointerup', e => {
+    pointer = { x: e.clientX, y: e.clientY, el: e.target as Element }
+    if (press) { saveGeo(); press = null }
+  })
 
   addEventListener('click', e => {
     const t = e.target as HTMLElement

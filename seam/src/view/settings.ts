@@ -29,5 +29,3 @@ define({
     apply()
   },
 })
-
-export const applySettings = apply

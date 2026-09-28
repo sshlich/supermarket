@@ -36,6 +36,8 @@ function save() {
 
 const watchers: (() => void)[] = []
 export const onChange = (f: () => void) => watchers.push(f)
+/** Every view catches up with the state as loaded (after boot). */
+export const refresh = () => { for (const f of watchers) f() }
 const changed = () => { save(); for (const f of watchers) f() }
 
 export function act(a: Action): Ev[] {

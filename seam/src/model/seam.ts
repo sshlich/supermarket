@@ -89,7 +89,11 @@ export function homeNight(s: State, notes: Note[] = []): { lit: boolean } {
     moss: s.machines.moss && lit && cellsFor(1),
     condenser: s.machines.condenser && lit && cellsFor(1),
   }
-  if (!s.blackout && !lit) event('Not enough Cells for the lamps. The Seam sat in the dark.')
+  // Machines switched on that stood idle (in a blackout, the racks and the condenser are dark on purpose). One line.
+  const idle = (Object.keys(on) as Machine[]).filter(m => s.machines[m] && !on[m] && !(s.blackout && m !== 'cold'))
+  const names = idle.map(m => `the ${MACHINES[m].name}`).join(idle.length > 2 ? ', ' : ' and ').replace(/, (?=[^,]*$)/, ', and ')
+  if (!s.blackout && !lit) event(`Not enough Cells for the lamps. The Seam sat in the dark${idle.length ? `, and ${names} stood idle` : ''}.`)
+  else if (idle.length) event(`No Cells left for ${names}. ${idle.length > 1 ? 'They' : 'It'} stood idle.`)
 
   // ---- eating and drinking, soonest to spoil first; each unit short costs someone
   const consume = (key: 'food' | 'water', need: number, boxes: Box[]) => {
@@ -213,5 +217,7 @@ export function forecast(s: State): Map<number, string[]> {
   homeNight(structuredClone(s), notes)
   const out = new Map<number, string[]>()
   for (const n of notes) out.set(n.id, [...out.get(n.id) ?? [], n.text])
+  // A pile eaten one by one reads once, with a count.
+  for (const [id, lines] of out) out.set(id, [...new Set(lines)].map(l => { const k = lines.filter(x => x === l).length; return k > 1 ? `${l} (×${k})` : l }))
   return out
 }

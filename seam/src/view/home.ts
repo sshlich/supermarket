@@ -67,7 +67,7 @@ function lab() {
     <fieldset><legend>Stimulus</legend><div class="dials">${(Object.keys(DIALS) as Dial[]).map(dial).join('')}
       <input type="radio" name="dial" id="dial-off" data-on="dial:" ${s.lab.dial ? '' : 'checked'}><label for="dial-off">Off</label></div></fieldset>
     <p><b>Last night:</b> ${esc(s.lab.last ?? 'nothing tested.')}</p>
-    <p class="empty">${relic ? `Tonight: the ${esc(itemName(relic))} on the ${s.lab.dial ? DIALS[s.lab.dial].name.toLowerCase() : 'bench, with the dial off'}.` : 'Put a relic on the bench, set the dial, and end the day. One property a night.'}</p>`
+    <p class="empty">${relic ? `Tonight: the ${esc(itemName(relic))} on the ${s.lab.dial ? DIALS[s.lab.dial].name.toLowerCase() : 'bench, with the dial off'}.${s.lab.dial && DIALS[s.lab.dial].props.every(p => s.know[`R:${relic.kind}:${p}`]?.state === 'exact') ? ' That is already known: turn the dial.' : ''}` : 'Put a relic on the bench, set the dial, and end the day. One property a night.'}</p>`
 }
 
 define({

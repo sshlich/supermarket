@@ -48,7 +48,7 @@ export function command(line: string) {
   const arg = rest.join(' ')
   const find = <T extends { id: string; name: string }>(xs: T[]) => xs.find(x => x.id.toLowerCase() === arg || x.name.toLowerCase() === arg || x.name.toLowerCase().startsWith(arg))
   if (!verb) return
-  if (verb === 'help') out.push('> help', ...HELP.map(([c, d]) => `  ${c.padEnd(26)}${d}`))
+  if (verb === 'help') out.push('> help', ...HELP.map(([c, d]) => `  ${c.padEnd(28)}${d}`))
   else if (verb === 'present') say({ type: 'present' }, line)
   else if (verb === 'read') say({ type: 'read' }, line)
   else if (verb === 'note' && what === 'tag') {

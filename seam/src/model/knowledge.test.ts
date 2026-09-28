@@ -34,9 +34,12 @@ learn(s, 'S:grub:pop:galleries', 'rough', 'seen')
 const grubs = fact(s, 'S:grub:pop:galleries')!
 assert.deepEqual([grubs.state, grubs.value, grubs.trail!.length], ['rough', band(s.levels.galleries.N.grub), 2])
 
-// The Catalog outlives the game: a new one starts knowing what the last one learned.
+// The Catalog outlives the game: a new one starts knowing what the last one learned about what things are. Its
+// head-counts and conditions are of a world years gone, so they start again as ??? (they used to show as today's).
+learn(s, 'S:grub:hp', 'exact', 'fight')
 const next = newGame(8, s.know)
-assert.equal(fact(next, 'S:grub:pop:galleries')!.value, grubs.value)
+assert.equal(fact(next, 'S:grub:hp')!.value, 2)
+assert.equal(fact(next, 'S:grub:pop:galleries'), undefined)
 
 // After a sweep, once the Scourers have eaten most of the debris, MAINT says the floor is clean.
 {

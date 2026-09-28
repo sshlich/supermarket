@@ -49,6 +49,12 @@ function say(s: State, text: string, kind: Ev['kind'] = 'run'): Ev[] {
   return [{ night: s.day, kind, text }]
 }
 const no = (s: State, text: string) => say(s, text, 'refused')
+/** A hostile group holds you where you are. Anything else you can just leave be, by getting on with things. */
+export function held(s: State): boolean {
+  const e = s.run?.enc
+  if (e && !e.hostile) s.run!.enc = undefined
+  return !!e?.hostile
+}
 
 // ---------------------------------------------------------------- the belt and the kit
 
@@ -188,7 +194,7 @@ export function startRun(s: State): Ev[] {
 export function go(s: State, key: string): Ev[] {
   const r = s.run
   if (!r) return no(s, 'At home.')
-  if (r.enc) return no(s, 'Not with that in front of you.')
+  if (held(s)) return no(s, 'Not with that in front of you.')
   const x = exits(s).find(e => e.key === key)
   if (!x) return no(s, 'No way there from here.')
   if (!x.open) return no(s, `That way is ${x.why}.`)
@@ -208,13 +214,15 @@ export function go(s: State, key: string): Ev[] {
 
 /** Walk the known way home until something stops you: a thing in the way, a hazard, the end of the day. */
 export function returnHome(s: State): Ev[] {
+  const way = pathHome(s)
+  if (s.run && way && s.step + way.cost > R.day) return no(s, `Home is ${way.cost} step${way.cost > 1 ? 's' : ''} away; ${R.day - s.step} left today. Camp, or walk part of the way.`)
   const out: Ev[] = []
   for (let guard = 0; s.run && guard < 50; guard++) {
     const p = pathHome(s)
     if (!p) return [...out, ...no(s, 'No known way home from here.')]
     const hp = s.runner.hp
     out.push(...go(s, p.keys[0]))
-    if (out.some(e => e.kind === 'refused') || s.run?.enc || s.runner.hp < hp) break
+    if (out.some(e => e.kind === 'refused') || s.run?.enc?.hostile || s.runner.hp < hp) break
   }
   return out
 }
@@ -290,8 +298,8 @@ function hazard(s: State, level: string, site: string): Ev[] {
   if (hz.spoil) hurt.push('the food in the pack turns')
   if (hz.dropHeaviest && s.C.pack.length) {
     const heavy = [...s.C.pack].sort((a, b) => prop(b, 'MASS') * b.n - prop(a, 'MASS') * a.n || K[b.kind].w * K[b.kind].h - K[a.kind].w * K[a.kind].h)[0]
+    st.loot.push({ ...heavy }) // before remove(), which empties the pile it's given
     remove(s, 'pack', heavy)
-    st.loot.push({ ...heavy })
     hurt.push(`the ${K[heavy.kind].name} is torn from the pack`)
   }
   if (hz.attention) { noise(s, L, hz.attention); hurt.push('something far away hums back') }
@@ -302,6 +310,7 @@ function hazard(s: State, level: string, site: string): Ev[] {
 export function throwBolt(s: State, key: string): Ev[] {
   const r = s.run
   if (!r) return no(s, 'At home.')
+  if (held(s)) return no(s, 'Not with that in front of you.')
   const x = exits(s).find(e => e.key === key && !e.home)
   const bolt = s.C.pack.find(it => it.kind === 'bolt') ?? s.C.belt.find(it => it.kind === 'bolt')
   if (!x) return no(s, 'Nowhere to throw it.')
@@ -489,10 +498,26 @@ export function choose(s: State, c: Choice, arg = ''): Ev[] {
 
 // ---------------------------------------------------------------- levers (11.6, Appendix F)
 
+/** Where a two-way lever stands now, as you'd see it standing there; one-shot levers have no position. */
+export function leverState(s: State, id: string): string | undefined {
+  const L = s.run && s.levels[s.run.level]
+  if (id === 'heatValve') return L?.heat ? 'heat on' : 'heat off'
+  if (id === 'conduitTap') return s.conduitTapped ? 'tapped' : 'untapped'
+  if (id === 'bulkhead') return s.connections.find(c => c.id === 'bulkhead')?.open ? 'open' : 'shut'
+  if (id === 'sluice') return L?.flooded ? 'flooded' : 'drained'
+}
+/** What pulling a two-way lever just did. */
+const PULLED: Record<string, Record<string, string>> = {
+  heatValve: { 'heat off': "The valve turns. The Galleries' heat is off; the pipes start to cool.", 'heat on': "The valve turns back. The Galleries' heat is on again." },
+  conduitTap: { tapped: 'The wire is in the socket. The Charger at home is fed while it stays there.', untapped: 'You pull the wire. The conduit is untapped.' },
+  bulkhead: { open: 'The bulkhead grinds open.', shut: 'The bulkhead grinds shut.' },
+  sluice: { drained: 'The gate lifts. The Ducts drain.', flooded: 'The gate drops. The Ducts flood again.' },
+}
+
 export function pullLever(s: State, id: string): Ev[] {
   const r = s.run
   if (!r) return no(s, 'At home.')
-  if (r.enc) return no(s, 'Not with that in front of you.')
+  if (held(s)) return no(s, 'Not with that in front of you.')
   const v = LEVERS[id]
   if (!v || !siteDef(r.level, r.site).levers?.includes(id)) return no(s, 'No such lever here.')
   if (s.step + 1 > R.day) return no(s, 'Not enough of the day left.')
@@ -510,7 +535,9 @@ export function pullLever(s: State, id: string): Ev[] {
   EFFECTS[id](s, L)
   noise(s, L, v.attention)
   learn(s, `V:${id}:effect`, 'exact', 'pulled')
-  const out = say(s, `${v.name}: ${id === 'mothLure' && !had.moths ? 'you lay out the scrap, and nothing comes. No moths here.' : v.effect}${broke}`)
+  if (v.tool) learn(s, `I:${v.tool}:use`, 'exact', 'used')
+  const now = leverState(s, id)
+  const out = say(s, `${v.name}: ${id === 'mothLure' && !had.moths ? 'you lay out the scrap, and nothing comes. No moths here.' : now ? PULLED[id][now] : v.effect}${broke}`)
   if (id === 'sabotage' && rand(s) < R.mason) {
     r.enc = { sp: 'mason', n: 1, killed: 0, dmg: 0, round: 0, hostile: false }
     for (const f of ['known', 'size', 'behaviour']) learn(s, `S:mason:${f}`, 'exact', 'seen')
@@ -552,7 +579,7 @@ export function use(s: State, id: number): Ev[] {
   const d = siteDef(r.level, r.site)
   if (d.type !== 'works') return no(s, 'It wants a Mason Works.')
   if (!it.charges) return no(s, 'It is spent.')
-  if (e) return no(s, 'Not with that in front of you.')
+  if (held(s)) return no(s, 'Not with that in front of you.')
   const L = s.levels[r.level]
   it.charges--
   L.M = Math.max(0, L.M - 1)
@@ -578,7 +605,7 @@ const found = (s: State, kind: string, n = 1) => kind === 'relic' ? relicRoll(s)
 export function search(s: State): Ev[] {
   const r = s.run
   if (!r) return no(s, 'At home.')
-  if (r.enc) return no(s, 'Not with that in front of you.')
+  if (held(s)) return no(s, 'Not with that in front of you.')
   const d: SiteDef = siteDef(r.level, r.site)
   const st = siteAt(s, r.level, r.site)
   if (d.type === 'nest') return no(s, 'Nothing here but the nest. Harvest what you kill.')
@@ -593,7 +620,7 @@ export function search(s: State): Ev[] {
 export function harvest(s: State): Ev[] {
   const r = s.run
   if (!r) return no(s, 'At home.')
-  if (r.enc) return no(s, 'Not with that in front of you.')
+  if (held(s)) return no(s, 'Not with that in front of you.')
   const st = siteAt(s, r.level, r.site)
   const cutter = tool(s, 'cutter')
   if (!st.remains.length) return no(s, 'Nothing here to harvest.')
@@ -610,6 +637,7 @@ export function harvest(s: State): Ev[] {
     for (const f of ['drops', 'props', 'hp']) learn(s, `S:${sp.id}:${f}`, 'exact', 'harvest')
   }
   st.remains = []
+  learn(s, 'I:cutter:use', 'exact', 'used')
   const broke = wear(s, cutter, 1)
   return say(s, `You harvest what's left: ${got.length ? describe(got) : 'nothing worth carrying'}.${broke}${bag(s, st, got)}`)
 }

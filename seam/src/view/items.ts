@@ -40,6 +40,7 @@ function itemTip(it: Item) {
   else if (it.fresh !== undefined) lines.push(`Fresh: ${it.fresh} night${it.fresh === 1 ? '' : 's'} left`)
   if (it.cond !== undefined) lines.push(`Condition: ${it.cond}%`)
   if (k.weapon) lines.push(`Weapon +${k.weapon} on the belt`)
+  if (it.kind === 'brochure') lines.push('Double-click to read it.')
   const fx = tonight().get(it.id)
   lines.push(fx?.length ? `Tonight: ${fx.join('; ')}.` : 'Tonight: nothing happens to it here.')
   return lines.join('\n')

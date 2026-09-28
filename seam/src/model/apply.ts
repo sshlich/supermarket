@@ -1,11 +1,11 @@
 // The only way the view changes the game (DESIGN 14.3): apply(state, action) mutates it and says what happened.
 
-import { HOME, type Box } from '../data/items.ts'
+import { HOME, RECIPES, type Box } from '../data/items.ts'
 import { K, applyDrop, grab, planDrop, send, tidy, where } from './containers.ts'
 import { learn, talk } from './knowledge.ts'
 import { feeds, note, present, read, terminalHere, write, type Write } from './access.ts'
 import type { Dial } from '../data/relics.ts'
-import { choose, chooseRunner, go, harvest, nightRun, pullLever, returnHome, search, startRun, take, throwBolt, use, wake, type Choice } from './run.ts'
+import { choose, chooseRunner, go, harvest, held, nightRun, pullLever, returnHome, search, startRun, take, throwBolt, use, wake, type Choice } from './run.ts'
 import { homeNight, type Machine } from './seam.ts'
 import { world, type Ev } from './sim.ts'
 import type { State } from './state.ts'
@@ -63,7 +63,7 @@ function act(s: State, a: Action): Ev[] {
     case 'lever': return pullLever(s, a.id)
     case 'terminal': {
       if (!terminalHere(s)) return say(s, 'refused', 'No terminal here.')
-      if (s.run!.enc) return say(s, 'refused', 'Not with that in front of you.')
+      if (held(s)) return say(s, 'refused', 'Not with that in front of you.')
       if (s.run!.term) return []
       if (s.step + 1 > 12) return say(s, 'refused', 'Not enough of the day left.')
       s.step++
@@ -90,8 +90,10 @@ function act(s: State, a: Action): Ev[] {
       const r = applyDrop(s, held, plan)
       if (!r.made) return []
       for (const k of [kind, onto]) learn(s, `I:${k}:use`, 'exact', 'used')
-      const loud = K[kind].tool && onto === 'masonPlate' ? 5 : 0
-      s.seamA += loud
+      // Loud work is heard where it's done: at the Seam, or on the level the runner stands on.
+      const loud = RECIPES.find(x => x.drag === kind && x.onto === onto)?.loud ?? 0
+      if (s.run) s.levels[s.run.level].A += loud
+      else s.seamA += loud
       return say(s, 'made', `${K[kind].name} on ${K[onto].name}: ${K[r.made].name}${loud ? ' (loud)' : ''}${r.broke ? `. The ${K[kind].name} broke into scrap.` : ''}`)
     }
     case 'send': {

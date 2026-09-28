@@ -62,14 +62,13 @@ export function stow(s: State, box: Box, it: Item): number {
   const items = s.C[box]
   const { w: W, h: H } = BOXES[box]
   for (const o of items) if (it.n > 0 && canMerge(o, it)) mergeInto(o, it, Math.min(it.n, k.stack - o.n))
-  let first = true
   while (it.n > 0) {
     let spot = firstFree(W, H, items.map(rectOf), k.w, k.h)
     if (!spot && tidy(s, box, { w: k.w, h: k.h })) spot = firstFree(W, H, items.map(rectOf), k.w, k.h)
     if (!spot) break
     const n = Math.min(it.n, k.stack)
-    items.push({ ...it, id: first ? it.id : s.next++, n, x: spot.x, y: spot.y, rot: spot.turned })
-    first = false
+    // It keeps its id only if all of it lands here: a remainder left in hand must not share an id with a pile.
+    items.push({ ...it, id: n === it.n ? it.id : s.next++, n, x: spot.x, y: spot.y, rot: spot.turned })
     it.n -= n
   }
   return it.n

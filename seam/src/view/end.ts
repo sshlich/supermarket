@@ -4,12 +4,14 @@
 import { onChange, restart, s } from './game.ts'
 import { UI } from './icons.ts'
 import { esc } from './ui.ts'
-import { define, open } from './wm.ts'
+import { close, define, open } from './wm.ts'
 
-let shown = ''
+// What's already been shown: a reload into a held or fallen Seam doesn't show it again.
+let shown = s.end ?? (s.flags.held ? 'held' : '')
 onChange(() => {
   const now = s.end ?? (s.flags.held ? 'held' : '')
   if (now && now !== shown) open('end')
+  if (!now) close('end') // a new game: nothing to announce
   shown = now
 })
 
@@ -28,6 +30,6 @@ define({
   id: 'end', title: 'STRATA/98', icon: UI.maint, x: 470, y: 220, w: 440, h: 230, body,
   on: cmd => {
     if (cmd === 'again') restart()
-    if (cmd === 'close') document.querySelector<HTMLElement>('.win[data-win="end"] [data-close]')?.click()
+    if (cmd === 'close') close('end')
   },
 })

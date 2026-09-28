@@ -106,7 +106,12 @@ export const masons = (s: State, L: LevelState) => Math.max(0, L.M + L.mHolds.re
 
 export const HP = 10
 
-export function newGame(seed: number, know: State['know'] = {}): State {
+/** Sightings of a world that has moved on: head-counts, conditions, hazards, the Burial projection. A new game keeps
+ * what things are and where (7.5), not how many there were years ago. */
+const STALE = /^(S:\w+:pop:|L:\w+:(entities|film|scrap|heat|flooded|masons|attention)$|T:\w+:hazard$|seam:burialDay$)/
+
+export function newGame(seed: number, carried: State['know'] = {}): State {
+  const know = Object.fromEntries(Object.entries(carried).filter(([k]) => !STALE.test(k)))
   const s: State = {
     version: 1, seed, rng: seed, day: 1, step: 0, next: 1,
     villagers: [...VILLAGERS], runner: { name: VILLAGERS[0], hp: HP, drift: 0, peak: 0 },

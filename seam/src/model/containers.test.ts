@@ -98,4 +98,15 @@ const drag = (s: State, id: number, box: Box, x: number, y: number, split = fals
   assert.equal(worn.kind, 'scrap')
 }
 
+// What doesn't fit keeps its id only if none of it landed: a pile and the rest in hand never share one.
+{
+  const s = newGame(7)
+  s.C.pack = []
+  for (let i = 0; i < 23; i++) s.C.pack.push(make(s, 'film', { x: i % 6, y: Math.floor(i / 6), n: 5 }))
+  const teeth = make(s, 'glassTooth', { n: 12 })
+  const left = stow(s, 'pack', teeth)
+  assert.equal(left, 4)
+  assert.equal(s.C.pack.some(o => o.id === teeth.id), false)
+}
+
 console.log('containers ok')

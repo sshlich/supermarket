@@ -121,7 +121,8 @@ const out = (s: State) => { act(s, { type: 'startRun' }); return s }
   assert.equal(s.run, undefined)
   act(s, { type: 'endDay' })
   act(twin, { type: 'endDay' })
-  assert.ok(s.levels.galleries.N.grub < twin.levels.galleries.N.grub - 3)
+  assert.equal(twin.day, s.day) // both had their night (the twin used to be stuck out behind a group of scourers)
+  assert.ok(s.levels.galleries.N.grub < twin.levels.galleries.N.grub - 2) // 4 killed; fewer grubs breed a little better
 }
 
 // The way home goes over known ground only, and costs what it costs.
@@ -159,6 +160,52 @@ const out = (s: State) => { act(s, { type: 'startRun' }); return s }
   act(s, { type: 'runner', name: s.pick![1] })
   assert.equal(s.pick, undefined)
   assert.equal(s.runner.hp, 10)
+}
+
+// A Gravity Well tears the heaviest thing from the pack and leaves it at the site, whole (it used to land as a ×0 ghost).
+{
+  const s = out(quiet())
+  const st = siteAt(s, 'galleries', 'longGallery')
+  st.hazard = 'gravity'
+  s.C.pack = [make(s, 'scrap', { n: 5, x: 0 }), make(s, 'film', { x: 1 })]
+  act(s, { type: 'go', key: 'site:longGallery' })
+  assert.deepEqual([st.loot.map(o => `${o.kind}×${o.n}`), s.C.pack.map(o => o.kind)], [['scrap×5'], ['film']])
+  assert.equal(act(s, { type: 'take', id: st.loot[0].id })[0].kind, 'run')
+  assert.equal(s.C.pack.find(o => o.kind === 'scrap')?.n, 5)
+}
+
+// Return home says so up front when the way is longer than the day, instead of walking part of it and stopping.
+{
+  const s = out(quiet())
+  act(s, { type: 'go', key: 'site:longGallery' })
+  act(s, { type: 'go', key: 'site:masonWorks' })
+  s.step = 10
+  assert.equal(act(s, { type: 'returnHome' })[0].kind, 'refused')
+  assert.equal(s.run!.site, 'masonWorks')
+  s.step = 9
+  act(s, { type: 'returnHome' })
+  assert.equal(s.run, undefined)
+}
+
+// A group that isn't coming for you doesn't hold you: walk on and you leave them be. Hunters hold you.
+{
+  const s = out(quiet())
+  s.run!.enc = { sp: 'grub', n: 6, killed: 0, dmg: 0, round: 0, hostile: false }
+  act(s, { type: 'go', key: 'site:longGallery' })
+  assert.deepEqual([s.run!.site, s.run!.enc], ['longGallery', undefined])
+  s.run!.enc = { sp: 'hound', n: 2, killed: 0, dmg: 0, round: 0, hostile: true }
+  assert.equal(act(s, { type: 'go', key: 'site:hatch' })[0].kind, 'refused')
+  assert.equal(act(s, { type: 'search' })[0].kind, 'refused')
+}
+
+// Two-way levers say which way they went.
+{
+  const s = out(quiet())
+  act(s, { type: 'go', key: 'site:longGallery' })
+  act(s, { type: 'go', key: 'site:valveGallery' })
+  s.runner.hp = 10
+  assert.match(act(s, { type: 'lever', id: 'heatValve' })[0].text, /heat is off/)
+  assert.match(act(s, { type: 'lever', id: 'heatValve' })[0].text, /heat is on/)
 }
 
 console.log('run ok')

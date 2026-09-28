@@ -8,7 +8,7 @@ import { RELICS } from '../data/relics.ts'
 import { SP } from '../data/species.ts'
 import { K } from '../model/containers.ts'
 import { fact } from '../model/knowledge.ts'
-import { R, baitFor, encounterChance, evadeOdds, exits, pathHome, siteAt, siteDef, theirHit, tool, yourHit, type Choice } from '../model/run.ts'
+import { R, baitFor, encounterChance, evadeOdds, exits, leverState, pathHome, siteAt, siteDef, theirHit, tool, yourHit, type Choice } from '../model/run.ts'
 import { HP } from '../model/state.ts'
 import { act, omni, onChange, s } from './game.ts'
 import { UI } from './icons.ts'
@@ -42,7 +42,7 @@ function card() {
   const b = (c: Choice, label: string, t: string, off = false) => `<button data-on="choose:${c}" ${off ? 'disabled' : ''} ${tip(t)}>${label}</button>`
   return `<div class="card enc ${e.hostile ? 'hostile' : ''}">
     <p>${icon(sp.icon)}<b>${alive > 1 ? `${alive} ${esc(sp.name)}s` : `A ${esc(sp.name)}`}</b> · ${esc(sp.behaviour)}${e.round ? ` · fight, round ${e.round} of ${R.rounds}` : ''}${e.killed ? ` · ${e.killed} dead` : ''}</p>
-    <p>${e.hostile ? 'They have seen you, and they are coming.' : 'They have seen you. They are not coming, yet.'}</p>
+    <p>${e.hostile ? 'They have seen you, and they are coming.' : 'They have seen you. They are not coming, yet: carry on, and you leave them be.'}</p>
     <div class="choices">
       ${b('evade', `Evade${odds}`, 'Slip past. If it fails they get a round on you, and the level hears it (+10).')}
       ${b('fight', `Fight${fight}`, 'Up to three rounds; you can evade between them. Loud: +15, and +3 a kill.')}
@@ -82,13 +82,14 @@ function run() {
   const d = siteDef(r.level, r.site)
   const st = siteAt(s, r.level, r.site)
   const left = R.day - s.step
-  const busy = !!r.enc
+  const busy = !!r.enc?.hostile // anything else you can walk away from
+  const bolts = [...s.C.pack, ...s.C.belt].some(it => it.kind === 'bolt')
   const ways = exits(s).map(x => {
     const name = x.home ? 'The Seam' : `${siteDef(x.level, x.site).name}${x.level !== r.level ? ` <small>(${esc(LEVELS[x.level].name)})</small>` : ''}`
     const via = x.via ? ` <small>by the ${esc(x.via)}</small>` : ''
     const off = busy || !x.open || x.cost > left
     return `<tr><td>${name}${via}</td><td>${x.home ? '' : hazardText(x.site)}</td><td>${x.why ? `<i>${esc(x.why)}</i>` : ''}</td>
-      <td>${x.home ? '' : `<button data-on="bolt:${x.key}" ${busy ? 'disabled' : ''} ${tip('Throw a bolt that way: it shows what waits there (+1 attention). Half the time you find it again.')}>Bolt</button>`}</td>
+      <td>${x.home ? '' : `<button data-on="bolt:${x.key}" ${busy || !bolts ? 'disabled' : ''} ${tip(bolts ? 'Throw a bolt that way: it shows what waits there (+1 attention). Half the time you find it again.' : 'No bolts left in the pack or on the belt.')}>Bolt</button>`}</td>
       <td><button data-on="go:${x.key}" ${off ? 'disabled' : ''}>Go · ${x.cost}</button></td></tr>`
   }).join('')
   const home = pathHome(s)
@@ -98,7 +99,8 @@ function run() {
     const v = LEVERS[id]
     const known = f(`V:${id}:effect`)
     const needs = [v.tool && `the ${K[v.tool].name} on the belt (wears ${v.wear})`, v.spend && !(id === 'conduitTap' && s.flags.tapWired) && `${v.spend[1]} ${K[v.spend[0]].name} from the pack`, v.belt && `${v.belt[0]} ${v.belt[1]} on the belt`].filter(Boolean)
-    return `<button data-on="lever:${id}" ${busy || left < 1 ? 'disabled' : ''} ${tip(`${v.name}. ${known ? known.value : 'What it does: ???'}\nNeeds: ${needs.join(', ') || 'nothing'}. 1 step${v.attention ? `, +${v.attention} attention` : ''}.`)}>${esc(v.name)}${id === 'conduitTap' ? (s.conduitTapped ? ' (on)' : ' (off)') : ''}</button>`
+    const now = leverState(s, id)
+    return `<button data-on="lever:${id}" ${busy || left < 1 ? 'disabled' : ''} ${tip(`${v.name}. ${known ? known.value : 'What it does: ???'}\nNeeds: ${needs.join(', ') || 'nothing'}. 1 step${v.attention ? `, +${v.attention} attention` : ''}.`)}>${esc(v.name)}${now ? ` (${now})` : ''}</button>`
   }).join('')
   const terminal = d.type === 'terminal' ? `<button data-on="terminal" ${busy || (!r.term && left < 1) ? 'disabled' : ''} ${tip('Wake the terminal: 1 step. MAINT, and whatever your access lets you do.')}>${icon(UI.terminal)}Terminal${r.term ? ' (awake)' : ''}</button>` : ''
   const loot = st.loot.map(it => `<li>${icon(K[it.kind].icon)}${esc(K[it.kind].relic ? 'Unknown Relic' : K[it.kind].name)}${it.n > 1 ? ` ×${it.n}` : ''} <button data-on="take:${it.id}" ${busy ? 'disabled' : ''}>Take</button></li>`).join('')
@@ -108,9 +110,9 @@ function run() {
       <img class="vista" src="${vista(r.site, r.level, d.type, L.palette)}" alt="">
       <h2>${esc(d.name.toUpperCase())} <small>${esc(L.name)} (${esc(L.floor)})</small></h2>
       <p class="lore">${esc(d.text)}</p>
-      <p>Hazard here: ${hazardText(r.site)} · Step ${s.step}/${R.day} · HP ${s.runner.hp}/${HP} · Drift ${Math.round(s.runner.drift)} ${chance}</p>
+      <p>Hazard here: ${hazardText(r.site)} · Step ${s.step}/${R.day} · HP ${s.runner.hp}/${HP} · Drift ${Math.round(s.runner.drift)}${chance ? ` · ${chance}` : ''}</p>
     </div>
-    ${busy ? card() : ''}
+    ${r.enc ? card() : ''}
     <h3>Ways on</h3>
     <div class="sunken-panel"><table class="ways">${ways}</table></div>
     <h3>Here</h3>
@@ -119,7 +121,7 @@ function run() {
     <p class="acts">
       <button data-on="search" ${busy || st.searched || d.type === 'nest' || left < 1 ? 'disabled' : ''} ${tip(d.type === 'nest' ? 'A nest: nothing to search. Harvest what you kill.' : 'Search the site once: 1 step.')}>Search${st.searched ? 'ed' : ''}</button>
       <button data-on="harvest" ${busy || !remains || !cutter || left < 1 ? 'disabled' : ''} ${tip(cutter ? 'Harvest the remains here with the Cutter: 1 step.' : 'Harvesting needs the Cutter on the belt.')}>Harvest${remains ? ` ${remains}` : ''}</button>
-      <button data-on="return" ${busy || !home ? 'disabled' : ''} ${tip(home ? 'Walk the known way home. Things can still happen on the way.' : 'No known way home from here.')}>Return home${home ? ` · ${home.cost} step${home.cost > 1 ? 's' : ''}` : ''}</button>
+      <button data-on="return" ${busy || !home || home.cost > left ? 'disabled' : ''} ${tip(!home ? 'No known way home from here.' : home.cost > left ? `Home is ${home.cost} steps away and ${left} ${left === 1 ? 'is' : 'are'} left today. Camp, or walk part of the way.` : 'Walk the known way home. Things can still happen on the way.')}>Return home${home ? ` · ${home.cost} step${home.cost > 1 ? 's' : ''}` : ''}</button>
       <button data-on="camp" ${busy ? 'disabled' : ''} ${tip('Sleep here. The night runs; something may find you; and the Seam has to manage without you.')}>Camp</button>
     </p>
     ${loot ? `<h3>On the floor${st.fell ? ` (${esc(st.fell)} fell here)` : ''}</h3><ul class="floor">${loot}</ul>` : ''}

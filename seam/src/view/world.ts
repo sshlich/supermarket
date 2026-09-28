@@ -88,7 +88,8 @@ function entry(id: string) {
     ${conns.length ? `<ul>${conns.map(x => {
       const other = x.a === id ? x.b : x.a
       const d = CONNECTIONS.find(d => d.id === x.id)!
-      return `<li>${esc(d.type)} to ${esc(other === 'seam' ? SEAM.name : knownLevel(s, other, omni) ? LEVELS[other].name : '???')}, ${x.cost} step${x.cost > 1 ? 's' : ''}${x.open ? '' : ', closed'}${other === 'seam' ? '' : pencil('reroute', x.id, x.open ? 'close it' : 'open it')}</li>`
+      const type = x.b === id ? d.type.replace('down', 'up') : d.type // stairs down from one end are stairs up from the other
+      return `<li>${esc(type)} to ${esc(other === 'seam' ? SEAM.name : knownLevel(s, other, omni) ? LEVELS[other].name : '???')}, ${x.cost} step${x.cost > 1 ? 's' : ''}${x.open ? '' : ', closed'}${other === 'seam' ? '' : pencil('reroute', x.id, x.open ? 'close it' : 'open it')}</li>`
     }).join('')}</ul>` : '<p class="empty">None known.</p>'}
     <h3>Sites</h3>
     ${table(`sites-${id}`, [

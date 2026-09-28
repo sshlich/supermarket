@@ -6,7 +6,8 @@ import './view/run.ts'
 import './view/terminal.ts'
 import './view/end.ts'
 import './view/world.ts'
-import { applySettings } from './view/settings.ts'
+import './view/settings.ts'
+import { refresh } from './view/game.ts'
 import { bindItems } from './view/items.ts'
 import { prepareLook } from './view/look.ts'
 import { boot } from './view/wm.ts'
@@ -16,6 +17,6 @@ const done = splash()
 prepareLook().finally(() => {
   boot()
   bindItems()
-  applySettings()
+  refresh()
   void done()
 })
