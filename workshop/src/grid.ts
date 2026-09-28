@@ -1,0 +1,139 @@
+// Where things go in a container grid when you drop, send or tidy. Pure geometry, no game rules.
+
+export interface Box { id: number; x: number; y: number; w: number; h: number }
+
+export const overlaps = (a: Box, b: Box) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h
+const inside = (W: number, H: number, b: Box) => b.x >= 0 && b.y >= 0 && b.x + b.w <= W && b.y + b.h <= H
+
+/** Share an edge (not just a corner). */
+export const touches = (a: Box, b: Box) =>
+  ((a.x + a.w === b.x || b.x + b.w === a.x) && a.y < b.y + b.h && b.y < a.y + a.h) ||
+  ((a.y + a.h === b.y || b.y + b.h === a.y) && a.x < b.x + b.w && b.x < a.x + a.w)
+
+/** Nearest free spot to where `b` is now (either way round; turning costs a step). */
+export function nearest(W: number, H: number, taken: Box[], b: Box): Box | null {
+  let best: Box | null = null
+  let bestCost = Infinity
+  for (const [w, h, turn] of b.w === b.h ? [[b.w, b.h, 0]] : [[b.w, b.h, 0], [b.h, b.w, 1]]) {
+    for (let y = 0; y + h <= H; y++) {
+      for (let x = 0; x + w <= W; x++) {
+        const c = { id: b.id, x, y, w, h }
+        const cost = Math.abs(x - b.x) + Math.abs(y - b.y) + turn
+        if (cost < bestCost && !taken.some(t => overlaps(t, c))) { best = c; bestCost = cost }
+      }
+    }
+  }
+  return best
+}
+
+/** First free spot in reading order, as-is first, then turned. */
+export function firstFree(W: number, H: number, taken: Box[], w: number, h: number): { x: number; y: number; turned: boolean } | null {
+  for (const [ww, hh, turned] of [[w, h, false], [h, w, true]] as const) {
+    if (turned && w === h) break
+    for (let y = 0; y + hh <= H; y++)
+      for (let x = 0; x + ww <= W; x++)
+        if (!taken.some(t => overlaps(t, { id: -1, x, y, w: ww, h: hh }))) return { x, y, turned }
+  }
+  return null
+}
+
+const DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]] as const
+
+/** Shove everything `m` lands on in one direction, chaining into whatever those hit. */
+function push(W: number, H: number, others: Box[], m: Box, [dx, dy]: readonly [number, number]): Box[] | null {
+  const pos = others.map(o => ({ ...o }))
+  // Pushing only ever moves things further along the axis, so one pass in that order settles it.
+  pos.sort((a, b) => dx ? (a.x - b.x) * dx : (a.y - b.y) * dy)
+  const pushers: Box[] = [m]
+  for (const o of pos) {
+    let moved = false
+    for (let hit = pushers.find(p => overlaps(o, p)); hit; hit = pushers.find(p => overlaps(o, p))) {
+      if (dx > 0) o.x = hit.x + hit.w
+      else if (dx < 0) o.x = hit.x - o.w
+      else if (dy > 0) o.y = hit.y + hit.h
+      else o.y = hit.y - o.h
+      moved = true
+    }
+    if (!moved) continue
+    if (!inside(W, H, o)) return null
+    pushers.push(o)
+  }
+  return pos.filter(p => { const o = others.find(o => o.id === p.id)!; return p.x !== o.x || p.y !== o.y })
+}
+
+/** Each thing `m` lands on hops to the nearest free spot. */
+function relocate(W: number, H: number, others: Box[], m: Box, hits: Box[]): Box[] | null {
+  const taken = [m, ...others.filter(o => !hits.includes(o))]
+  const out: Box[] = []
+  for (const h of [...hits].sort((a, b) => b.w * b.h - a.w * a.h)) {
+    const s = nearest(W, H, taken, h)
+    if (!s) return null
+    taken.push(s)
+    out.push(s)
+  }
+  return out
+}
+
+/** Last resort: everyone else re-settles around `m`, each as close to where it was as it can. */
+function reflow(W: number, H: number, others: Box[], m: Box): Box[] | null {
+  let best: Box[] | null = null
+  for (const order of [(a: Box, b: Box) => a.y - b.y || a.x - b.x, (a: Box, b: Box) => b.w * b.h - a.w * a.h]) {
+    const taken = [m]
+    let ok = true
+    for (const o of [...others].sort(order)) {
+      const s = nearest(W, H, taken, o)
+      if (!s) { ok = false; break }
+      taken.push(s)
+    }
+    if (ok && (!best || cost(others, taken.slice(1)) < cost(others, best))) best = taken.slice(1)
+  }
+  return best && best.filter(b => { const o = others.find(o => o.id === b.id)!; return b.x !== o.x || b.y !== o.y || b.w !== o.w })
+}
+
+function cost(others: Box[], moves: Box[]) {
+  let n = 0
+  for (const b of moves) {
+    const o = others.find(o => o.id === b.id)!
+    n += Math.abs(b.x - o.x) + Math.abs(b.y - o.y) + (b.w !== o.w ? 1 : 0)
+  }
+  return n
+}
+
+/**
+ * Drop `m` (already at its target spot) among `others`. Returns the new spots of `m` and of everything
+ * that has to make way, or null if it can't fit. Things move as little as possible: a straight shove,
+ * else a hop to the nearest gap, else everyone shuffles. `toward` breaks ties: shove toward that point
+ * (the spot the dragged thing left).
+ */
+export function drop(W: number, H: number, others: Box[], m: Box, toward?: { x: number; y: number }): Box[] | null {
+  m = { ...m, x: Math.max(0, Math.min(W - m.w, m.x)), y: Math.max(0, Math.min(H - m.h, m.y)) }
+  if (m.w > W || m.h > H) return null
+  const hits = others.filter(o => overlaps(o, m))
+  if (!hits.length) return [m]
+
+  let best: Box[] | null = null
+  let bestCost = Infinity
+  const consider = (moves: Box[] | null, extra: number) => {
+    if (!moves) return
+    const c = cost(others, moves) + extra
+    if (c < bestCost) { best = moves; bestCost = c }
+  }
+  const dirs = toward ? [...DIRS].sort((a, b) => lean(b, m, toward) - lean(a, m, toward)) : DIRS
+  for (const d of dirs) consider(push(W, H, others, m, d), 0)
+  consider(relocate(W, H, others, m, hits), 2 * hits.length) // hopping reads worse than shoving
+  if (!best) consider(reflow(W, H, others, m), 0)
+  return best && [m, ...best as Box[]]
+}
+
+const lean = ([dx, dy]: readonly [number, number], m: Box, t: { x: number; y: number }) => dx * Math.sign(t.x - m.x) + dy * Math.sign(t.y - m.y)
+
+/** Pack boxes (in the given order) from the top-left, turning any that only fit turned. */
+export function pack(W: number, H: number, boxes: Box[]): Box[] | null {
+  const out: Box[] = []
+  for (const b of boxes) {
+    const s = firstFree(W, H, out, b.w, b.h)
+    if (!s) return null
+    out.push(s.turned ? { id: b.id, x: s.x, y: s.y, w: b.h, h: b.w } : { id: b.id, x: s.x, y: s.y, w: b.w, h: b.h })
+  }
+  return out
+}
