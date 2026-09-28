@@ -45,3 +45,16 @@ export const RUMOURS = {
     swarm: 'Something like a flood of bodies moves',
   } as Record<string, string>,
 }
+
+/** Appendix I: the Authority's adverts. They are the lie; keep them rare. *x* is emphasis. */
+export const ADVERTS = {
+  splash: 'STRATA/98 · licensed by the ACCRETION AUTHORITY · *Building Tomorrow, Forever.*',
+  READ: 'Welcome back, Citizen! Your Signature makes the city *yours*. See more. Know more. Belong.',
+  WRITE: 'Congratulations! You are now a Contributor. Every edit makes the Accretion better.',
+  brochures: [
+    'Your stratum has been selected for *Expansion*! More space. More light. More life. Relocation is automatic.',
+    'HYDRA·LUX Film Farms: clean warmth, living walls, and a snack in every corridor.',
+    'Masons never sleep, so you can. 🌿',
+    "Lost your Signature? Don't worry! An Auditor will be with you shortly.",
+  ],
+}

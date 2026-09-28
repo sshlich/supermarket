@@ -16,7 +16,7 @@ body { overflow: hidden; background: var(--seam-0); user-select: none; -webkit-u
 svg { display: block; }
 button svg, .icon svg, .title-bar-text svg, td svg, li svg { fill: currentColor; }
 /* 98.css paints button text as a shadow over transparent: icons need their own ink. */
-button svg { color: #222; width: 14px; height: 14px; vertical-align: -3px; margin-right: 3px; }
+button svg { display: inline-block; color: #222; width: 14px; height: 14px; vertical-align: -3px; margin-right: 3px; }
 button:disabled svg { color: grey; }
 
 /* ------------------------------------------------------------ desktop: a 1-pixel checker of two palette colours */
@@ -76,7 +76,6 @@ h3 { font: bold 11px var(--pixel); margin: 10px 0 4px; }
 .map .node.sel rect { stroke-width: .9; filter: drop-shadow(0 0 1.2px #fff); }
 .map .node rect { stroke-width: .4; }
 .atlas .page { overflow: auto; padding: 0 4px 0 3px; }
-.vista { height: 90px; margin: 4px 0; box-shadow: inset 1px 1px #0a0a0a, inset -1px -1px #fff; image-rendering: pixelated; }
 .lore { font-style: italic; }
 .class, .stats { line-height: 1.6; }
 
@@ -212,8 +211,6 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .choices, .acts { display: flex; flex-wrap: wrap; gap: 4px; }
 .choices button, .acts button, .ways button { min-width: 0; padding: 0 8px; }
 .site .lore { margin: 3px 0; }
-.vista.small { height: 64px; display: flex; align-items: flex-end; justify-content: flex-end; }
-.vista.small span { color: rgba(255, 255, 255, .6); padding: 2px 6px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
 .ways td { padding: 1px 6px; vertical-align: middle; }
 .hz { color: #a00000; }
 .floor, .runlog { list-style: none; margin: 0; padding: 0 0 0 4px; }
@@ -239,3 +236,54 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 button.pencil { min-width: 0; width: 20px; height: 18px; padding: 0; margin-left: 4px; display: inline-grid; place-items: center; vertical-align: middle; }
 button.pencil svg { margin: 0; }
 .sunken-panel td.wrap { white-space: normal; min-width: 150px; }
+
+/* ------------------------------------------------------------ the reality layer: pixels (M7, 13.3) */
+.vista { display: block; width: 400px; max-width: 100%; height: auto; margin: 4px 0; image-rendering: pixelated; box-shadow: inset 1px 1px #0a0a0a, inset -1px -1px #fff; border: 1px solid grey; box-sizing: border-box; }
+.item .art { width: calc(var(--px) * 2px); aspect-ratio: 1; }
+.item .art img { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
+.item .art.shimmer { position: relative; }
+.item .art.shimmer img + img { position: absolute; inset: 0; animation: shimmer 1.2s steps(1) infinite; }
+@keyframes shimmer { 50% { opacity: 0; } }
+.icon img { width: 36px; height: 36px; image-rendering: pixelated; filter: drop-shadow(1px 1px 0 #000); }
+.map .node.static rect { animation: static .09s steps(3) infinite; }
+@keyframes static { 0% { fill: #fff; } 33% { fill: #000; } 66% { fill: #777; } }
+
+/* ------------------------------------------------------------ the CRT (13.5), off by default */
+body.crt #app { border-radius: 22px / 16px; overflow: hidden; filter: saturate(1.08) contrast(1.06); }
+body.crt::after {
+  content: ''; position: fixed; inset: 0; z-index: 4000; pointer-events: none;
+  background: repeating-linear-gradient(rgba(0, 0, 0, .16) 0 1px, transparent 1px 3px), radial-gradient(ellipse at center, transparent 58%, rgba(0, 0, 0, .6) 100%);
+}
+
+/* ------------------------------------------------------------ the Aero layer: the lie (13.4, Appendix I) */
+.aero-veil { position: fixed; inset: 0; z-index: 3500; display: grid; place-items: center; background: rgba(13, 13, 11, .45); }
+.aero-veil.splash { background: linear-gradient(#bfe8ff, #eaf8ff); z-index: 5000; transition: opacity .4s; }
+.aero-veil.out { opacity: 0; }
+.aero {
+  position: relative; overflow: hidden; text-align: center; color: #0f3f5c;
+  font: 15px/1.45 Frutiger, "Frutiger Linotype", "Segoe UI", "Myriad Pro", "Helvetica Neue", sans-serif; -webkit-font-smoothing: antialiased;
+}
+.aero h1 { font-weight: 600; font-size: 28px; margin: 0 0 8px; letter-spacing: .02em; background: linear-gradient(#1c7fb8, #0f4f7a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.aero em { color: #3d9a1e; font-style: normal; font-weight: 600; }
+.aero.panel {
+  width: 420px; padding: 26px 28px 22px; border-radius: 22px;
+  background: linear-gradient(#ffffff 0%, #e8f7ff 48%, #cdeeff 52%, #eaf8ff 100%);
+  box-shadow: 0 1px 0 #fff inset, 0 12px 40px rgba(0, 60, 110, .45), 0 0 0 1px rgba(255, 255, 255, .8);
+}
+.aero.sky { width: min(640px, 90vw); padding: 50px 30px 40px; border-radius: 28px; background: linear-gradient(#bfe8ff, #eaf8ff 70%, #d7f5c6); box-shadow: 0 1px 0 #fff inset, 0 16px 50px rgba(0, 70, 120, .35); }
+.aero.sky.saver { width: auto; margin: 0 0 6px; padding: 36px 20px; border-radius: 14px; }
+.aero .pill {
+  all: unset; cursor: pointer; margin-top: 14px; padding: 7px 26px; border-radius: 999px; color: #fff; font-weight: 600;
+  background: linear-gradient(#9be86f, #57b52f 50%, #3f9a1f 51%, #6fcf45); box-shadow: 0 1px 0 rgba(255, 255, 255, .8) inset, 0 3px 8px rgba(40, 110, 20, .45);
+  text-shadow: 0 1px 1px rgba(0, 60, 0, .6);
+}
+.aero i { position: absolute; bottom: -30px; left: calc(var(--b) * 11% + 2%); width: calc(14px + var(--b) * 3px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, .95), rgba(255, 255, 255, .15) 45%, rgba(120, 200, 255, .25) 70%, rgba(255, 255, 255, .6));
+  animation: rise calc(5s + var(--b) * .7s) linear infinite; animation-delay: calc(var(--b) * -.9s); }
+@keyframes rise { to { transform: translateY(-420px) translateX(20px); } }
+.aero .flare { position: absolute; top: -60px; right: -40px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0) 60%); pointer-events: none; }
+.aero .loading { width: 220px; height: 10px; margin: 18px auto 0; border-radius: 999px; background: rgba(255, 255, 255, .6); box-shadow: 0 1px 2px rgba(0, 60, 110, .3) inset; overflow: hidden; }
+.aero .loading b { display: block; height: 100%; width: 40%; border-radius: 999px; background: linear-gradient(#9be86f, #3f9a1f); animation: load 1.2s ease-in-out infinite alternate; }
+@keyframes load { from { margin-left: -40%; } to { margin-left: 100%; } }
+.card .vista { width: 600px; } /* 3× in the Run window, 2× elsewhere: whole pixels */
+.aero > :not(i, .flare) { position: relative; } /* the words over the bubbles */

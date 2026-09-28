@@ -159,7 +159,7 @@ export function talk(s: State, heard: Heard[]) {
   const edge = (flag: string, now: boolean) => { const was = !!s.flags[flag]; if (now) s.flags[flag] = true; else delete s.flags[flag]; return now && !was }
 
   for (const h of heard) {
-    if (h.kind === 'sweep') maint(fill(MAINT.sweep, { n: h.n ?? 0 }))
+    if (h.kind === 'sweep') { maint(fill(MAINT.sweep, { n: h.n ?? 0 })); s.flags[`swept:${h.level}`] = true }
     if (h.kind === 'masons') {
       maint(fill(MAINT.schedule, { floor: floor(h.level!) }))
       if (LEVELS[h.level!].home) rumour(RUMOURS.warm)
@@ -171,6 +171,8 @@ export function talk(s: State, heard: Heard[]) {
   }
 
   if (s.day === 1) maint(fill(MAINT.biomass, { n: s.villagers.length }))
+  // After a sweep, once the Scourers have eaten the debris: the floor is clean, and MAINT is grateful.
+  for (const L of Object.values(s.levels)) if (s.flags[`swept:${L.id}`] && L.C < 10 && !heard.some(h => h.kind === 'sweep' && h.level === L.id)) { maint(MAINT.clean); delete s.flags[`swept:${L.id}`] }
   for (const L of Object.values(s.levels)) {
     const def = LEVELS[L.id]
     if (L.choirSilenced === s.day) { maint(fill(MAINT.silenced, { floor: def.floor })); rumour(RUMOURS.silent) }

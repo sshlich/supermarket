@@ -1,5 +1,6 @@
 // The Run window (DESIGN 11.3): the site you're at, what's here with you, the ways on, and what you can do.
 
+import { vista } from '../art/vista.ts'
 import { HAZARDS } from '../data/hazards.ts'
 import { LEVERS } from '../data/levers.ts'
 import { LEVELS } from '../data/levels.ts'
@@ -104,7 +105,7 @@ function run() {
   const chance = f(`L:${r.level}:entities`) ? `<span ${tip('The chance of meeting something on arriving here, from what lives on this level.')}>meeting something: ${pct(encounterChance(s, r.level, r.site))}</span>` : ''
   return `
     <div class="site">
-      <div class="vista small" style="background: linear-gradient(${L.palette[3]}, ${L.palette[2]} 25%, ${L.palette[1]} 60%, ${L.palette[0]})"><span>${esc(d.type)}</span></div>
+      <img class="vista" src="${vista(r.site, r.level, d.type, L.palette)}" alt="">
       <h2>${esc(d.name.toUpperCase())} <small>${esc(L.name)} (${esc(L.floor)})</small></h2>
       <p class="lore">${esc(d.text)}</p>
       <p>Hazard here: ${hazardText(r.site)} · Step ${s.step}/${R.day} · HP ${s.runner.hp}/${HP} · Drift ${Math.round(s.runner.drift)} ${chance}</p>

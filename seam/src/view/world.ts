@@ -1,6 +1,7 @@
 // Reading the world (M2): the Atlas and its Level entries, the Bestiary, the Ledger and MAINT's log.
 // Every fact goes through the knowledge filter: ??? until learned, the truth only with ?omniscient.
 
+import { vista } from '../art/vista.ts'
 import { HAZARDS } from '../data/hazards.ts'
 import { LEVERS } from '../data/levers.ts'
 import { CONNECTIONS, LEVELS, SEAM } from '../data/levels.ts'
@@ -24,6 +25,13 @@ const SHORT: Record<string, string> = { galleries: 'Galleries', ducts: 'Ducts', 
 // ---------------------------------------------------------------- Atlas
 
 let sel = 'galleries'
+// A swept level's node goes to static for a second (13.5).
+const staticUntil: Record<string, number> = {}
+addEventListener('seam:events', e => {
+  const swept = ((e as CustomEvent).detail as { kind: string; level?: string }[]).filter(x => x.kind === 'sweep' && x.level)
+  for (const x of swept) staticUntil[x.level!] = Date.now() + 1000
+  if (swept.length) { paint('atlas'); setTimeout(() => paint('atlas'), 1050) }
+})
 let proj: { level: string; lever: string; rows: Projection[] | null } | null = null
 
 function map() {
@@ -39,7 +47,7 @@ function map() {
       <text class="cost" x="${(x1 + x2) / 2 + 2}" y="${(y1 + y2) / 2}">${c.cost}</text></g>`
   }).join('')
   const node = (id: string, name: string, floor: string, pal: string[], [x, y]: [number, number]) => `
-    <g class="node ${sel === id ? 'sel' : ''}" ${id === 'seam' ? '' : `data-on="level:${id}"`} transform="translate(${x} ${y})">
+    <g class="node ${sel === id ? 'sel' : ''} ${(staticUntil[id] ?? 0) > Date.now() ? 'static' : ''}" ${id === 'seam' ? '' : `data-on="level:${id}"`} transform="translate(${x} ${y})">
       <rect x="-15" y="-5" width="30" height="10" fill="${pal[1]}" stroke="${pal[3]}"/>
       <text y="-0.6" fill="${pal[3]}">${esc(name)}</text><text class="floor" y="3.2" fill="${pal[2]}">${esc(floor)}</text></g>`
   // Fit what's known, with room for the labels; never zoom in past a third of the whole.
@@ -66,7 +74,7 @@ function entry(id: string) {
   return `
     <h2>${esc(def.name.toUpperCase())} <small>(${esc(def.floor)})</small></h2>
     <p class="class">Survival class ${k('class')} · ${k('safety')} · ${k('stability')} · ${k('entities')} entities</p>
-    <div class="vista" style="background: linear-gradient(${def.palette[3]}, ${def.palette[2]} 20%, ${def.palette[1]} 55%, ${def.palette[0]})"></div>
+    <img class="vista" src="${vista(id, id, 'gallery', def.palette)}" alt="">
     <p class="lore">${esc(def.text)}</p>
     <p class="stats">Film ${k('film', pct)} · Scrap ${k('scrap')} · Heat ${k('heat')} · ${k('flooded', v => v ? 'flooded' : 'dry')}
       · Masons ${k('masons', v => blocks(v as number, 3, 3))}${pencil('hold', id, 'a maintenance hold, the Masons idle 10 nights')} · Attention ${k('attention', v => typeof v === 'number' ? blocks(v, 100) : esc(String(v)))}</p>

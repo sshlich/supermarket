@@ -41,6 +41,7 @@ const changed = () => { save(); for (const f of watchers) f() }
 export function act(a: Action): Ev[] {
   const ev = apply(s, a)
   changed()
+  dispatchEvent(new CustomEvent('seam:events', { detail: ev }))
   return ev
 }
 

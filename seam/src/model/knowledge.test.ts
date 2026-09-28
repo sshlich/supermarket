@@ -38,4 +38,12 @@ assert.deepEqual([grubs.state, grubs.value, grubs.trail!.length], ['rough', band
 const next = newGame(8, s.know)
 assert.equal(fact(next, 'S:grub:pop:galleries')!.value, grubs.value)
 
+// After a sweep, once the Scourers have eaten most of the debris, MAINT says the floor is clean.
+{
+  const t = newGame(7)
+  t.levels.stair.A = 100
+  for (let i = 0; i < 14; i++) apply(t, { type: 'endDay' })
+  assert.ok(t.log.some(l => l.text.startsWith('disposal complete.')))
+}
+
 console.log('knowledge ok')

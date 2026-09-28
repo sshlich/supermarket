@@ -5,6 +5,7 @@ import type { Cell } from '../model/state.ts'
 const files = import.meta.glob<string>('../icons/*.svg', { query: '?raw', import: 'default', eager: true })
 const ICONS: Record<string, string> = Object.fromEntries(Object.entries(files).map(([p, svg]) => [p.slice('../icons/'.length, -'.svg'.length), svg]))
 export const icon = (name: string) => ICONS[name] ?? ''
+export const svg = icon
 
 export const esc = (t: string | number) => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!)
 /** A Win98 tooltip: plain text, newlines kept. */

@@ -9,6 +9,7 @@ import { siteDef } from '../model/run.ts'
 import { burialDay } from '../model/sim.ts'
 import { act, s } from './game.ts'
 import { UI } from './icons.ts'
+import { screensaver } from './aero.ts'
 import { esc } from './ui.ts'
 import { define, paint } from './wm.ts'
 
@@ -72,7 +73,7 @@ export function command(line: string) {
 
 function body() {
   const r = s.run
-  if (!r?.term) return '<pre class="console">NO CARRIER.\n\nWalk to a terminal and wake it.</pre>'
+  if (!r?.term) return `${screensaver()}<p class="empty">No terminal awake. Walk to one and wake it.</p>`
   const here = `${s.day}:${r.site}`
   if (here !== visit) { visit = here; out = [] }
   const head = [
@@ -97,8 +98,8 @@ define({
   id: 'terminal', title: 'Terminal', icon: UI.terminal, x: 160, y: 60, w: 620, h: 460,
   body,
   bind: body => {
-    const pre = body.querySelector('pre')!
-    pre.scrollTop = pre.scrollHeight
+    const pre = body.querySelector('pre')
+    if (pre) pre.scrollTop = pre.scrollHeight
     const input = body.querySelector<HTMLInputElement>('#term-in')
     input?.addEventListener('keydown', e => { if (e.key === 'Enter') { command(input.value); body.querySelector<HTMLInputElement>('#term-in')?.focus() } })
     input?.focus()

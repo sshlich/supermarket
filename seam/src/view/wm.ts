@@ -3,6 +3,8 @@
 
 import { act, omni, onChange, read, restart, s, write } from './game.ts'
 import { UI } from './icons.ts'
+import { pixel } from '../art/icons.ts'
+import { DESK } from './look.ts'
 import { esc, icon, toggleSort } from './ui.ts'
 
 export interface WinDef {
@@ -61,6 +63,7 @@ export function open(id: string) {
     el.addEventListener('animationend', () => el!.classList.remove('opening'), { once: true })
   }
   Object.assign(el.style, { left: `${g.x}px`, top: `${g.y}px`, width: `${g.w}px`, height: `${g.h}px` })
+  for (const a of el.getAnimations()) if (a.id === 'close') a.cancel()
   el.hidden = false
   paint(id)
   focus(id)
@@ -69,7 +72,8 @@ export function open(id: string) {
 function close(id: string, min = false) {
   const el = winEl(id)
   if (!el) return
-  el.hidden = true
+  const fade = el.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'scale(.96)' }], { id: 'close', duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 120, fill: 'forwards' })
+  fade.onfinish = () => { if (!geo[id].open || geo[id].min) el.hidden = true; fade.cancel() }
   geo[id].open = min
   geo[id].min = min
   saveGeo()
@@ -123,6 +127,7 @@ async function endDay() {
   const camping = !!s.run
   veil.innerHTML = `<p>${icon(camping ? UI.camp : UI.night)}Night ${s.day}${camping ? `, out in the ${s.run!.level === 'u0041' ? 'new stratum' : 'dark'}` : ''}</p>`
   veil.classList.add('on')
+  dispatchEvent(new Event('seam:night'))
   await wait(650)
   const ev = act({ type: camping ? 'camp' : 'endDay' })
   veil.innerHTML = `<p>Day ${s.day}</p>`
@@ -164,7 +169,10 @@ export function boot() {
   const app = document.getElementById('app')!
   app.innerHTML = `
     <main id="desk">
-      <nav class="icons">${[...defs.values()].filter(d => d.desktop).map(d => `<button class="icon" data-open="${d.id}">${icon(d.icon)}<span>${esc(d.title)}</span></button>`).join('')}</nav>
+      <nav class="icons">${[...defs.values()].filter(d => d.desktop).map(d => {
+        const px = pixel(d.icon, DESK, '#efe9cf')
+        return `<button class="icon" data-open="${d.id}">${px ? `<img src="${px}" alt="">` : icon(d.icon)}<span>${esc(d.title)}</span></button>`
+      }).join('')}</nav>
     </main>
     <footer class="taskbar">
       <button class="start" data-start>${icon(UI.start)}<b>STRATA</b>/98</button>

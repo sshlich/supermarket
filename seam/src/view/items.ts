@@ -6,9 +6,12 @@ import { reach } from '../model/apply.ts'
 import { K, dims, grab, planDrop, where, type Held, type Plan } from '../model/containers.ts'
 import { propsOf } from '../model/items.ts'
 import { TESTED } from '../data/relics.ts'
+import { lift } from '../art/icons.ts'
 import { forecast, forecastDrop } from '../model/seam.ts'
 import type { Item } from '../model/state.ts'
 import { act, s } from './game.ts'
+import { pixel } from '../art/icons.ts'
+import { iconSize, UNKNOWN } from './look.ts'
 import { esc, icon } from './ui.ts'
 
 const cell = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cell')) || 34
@@ -49,8 +52,13 @@ export function itemHtml(it: Item, extra = '') {
   const bar = it.rotten ? '' : it.fresh !== undefined && k.fresh ? `<span class="bar fresh" style="--v:${it.fresh / k.fresh}"></span>`
     : it.cond !== undefined ? `<span class="bar cond" style="--v:${it.cond / 100}"></span>` : ''
   const cls = [it.rotten && 'rotten', k.relic && 'relic', extra].filter(Boolean).join(' ')
-  return `<div class="item ${cls}" data-id="${it.id}" data-tip="${esc(itemTip(it))}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${unknown ? '#b0a0d0' : k.color}">
-    <i class="art" style="--kw:${k.w};--kh:${k.h};--r:${it.rot ? 90 : 0}deg">${icon(unknown ? 'cube' : k.icon)}</i>${bar}${it.n > 1 ? `<b class="n">${it.n}</b>` : ''}${it.rotten ? `<span class="fly">${icon('fly')}</span>` : ''}</div>`
+  // Dithered pixels (13.3); a relic's two frames swap colours every 600 ms.
+  const size = iconSize(k.w, k.h)
+  const [name, a, b] = unknown ? ['cube', UNKNOWN[0], UNKNOWN[1]] : [k.icon, k.color, k.relic ? lift(k.color) : undefined]
+  const frames = k.relic ? [pixel(name, size, a, b), pixel(name, size, b!, a)] : [pixel(name, size, a)]
+  const art = frames.every(Boolean) ? frames.map(f => `<img src="${f}" alt="">`).join('') : icon(name)
+  return `<div class="item ${cls}" data-id="${it.id}" data-tip="${esc(itemTip(it))}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${unknown ? UNKNOWN[0] : k.color}">
+    <i class="art ${k.relic ? 'shimmer' : ''}" style="--px:${size + 2};--r:${it.rot ? 90 : 0}deg">${art}</i>${bar}${it.n > 1 ? `<b class="n">${it.n}</b>` : ''}${it.rotten ? `<span class="fly">${icon('fly')}</span>` : ''}</div>`
 }
 
 /** A container: its name, what it does, how full it is, and its grid. */
