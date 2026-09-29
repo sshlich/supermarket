@@ -113,7 +113,8 @@ async function save() {
     await api('/save', cur, { method: 'POST', body: draft[cur] })
     saved[cur] = draft[cur]
     try { localStorage.removeItem(`sprite-draft:${cur}`) } catch { /* private window */ }
-    status.textContent = 'saved to the game'
+    const hidden = live ? drawn(live).filter(e => e.getAttribute('display') === 'none').length : 0
+    status.textContent = hidden ? `saved · ${hidden} hidden layer${hidden > 1 ? 's are' : ' is'} saved hidden` : 'saved to the game'
     paint(false)
   } catch (e) { status.textContent = `not saved: ${(e as Error).message}` }
   setTimeout(() => { status.textContent = '' }, 2500)
@@ -360,6 +361,7 @@ function stageHtml(id: string, cell: number, pad: number, interactive: boolean) 
 
 function layerLabel(el: Element) {
   const n = (a: string) => el.getAttribute(a)
+  if (el.getAttribute('data-name')) return el.getAttribute('data-name')!
   switch (el.localName) {
     case 'rect': return `rectangle ${fmt(+(n('width') ?? 0))} × ${fmt(+(n('height') ?? 0))}`
     case 'circle': return `circle ⌀ ${fmt(+(n('r') ?? 0) * 2)}`
@@ -371,26 +373,151 @@ function layerLabel(el: Element) {
   }
 }
 
+/** The layers, front first: each row selects, moves forward or back, hides, duplicates or deletes that layer, and can be dragged to a new place. */
+function layersHtml(): string {
+  const all = drawn(live!)
+  if (!all.length) return '<li class="note">Empty. Add a shape.</li>'
+  return all.map((el, i) => {
+    const hidden = el.getAttribute('display') === 'none'
+    return `<li class="${i === sel ? 'on' : ''} ${hidden ? 'hid' : ''}" data-layer="${i}" draggable="true"><span class="ln" title="double-click to rename">${esc(layerLabel(el))}</span>
+      <button data-lop="eye" title="${hidden ? 'Show' : 'Hide'}">${hidden ? '◌' : '◉'}</button><button data-lop="up" title="Bring forward" ${i === all.length - 1 ? 'disabled' : ''}>▲</button><button data-lop="down" title="Send back" ${i === 0 ? 'disabled' : ''}>▼</button><button data-lop="dup" title="Duplicate">⧉</button><button data-lop="del" title="Delete">✕</button></li>`
+  }).reverse().join('')
+}
+
+/** Move the layer at z-index `from` to `to` (0 is the back). */
+function moveLayer(from: number, to: number) {
+  if (!live || from === to) return
+  const all = drawn(live)
+  const el = all[from]
+  const other = all[to]
+  if (!el || !other) return
+  if (to > from) other.after(el); else other.before(el)
+  sel = to
+}
+
+let previewCell = 0
+/** One item drawn on the field the way the game draws it (sprite over neutral squares), at cell x, y. */
+function previewItem(id: string, x: number, y: number, turned: boolean) {
+  const k = KINDS[id]
+  const w = turned ? k.h : k.w, h = turned ? k.w : k.h
+  const squares = Array.from({ length: w * h }, (_, i) => `<rect x="${(i % w) + 0.1}" y="${Math.floor(i / w) + 0.1}" width="0.8" height="0.8" rx="0.08"/>`).join('')
+  return { w, h, html: `<div class="item" style="--x:${x};--y:${y};--w:${w};--h:${h};--c:${color[id]}"><svg viewBox="0 0 ${w} ${h}"><g class="sq">${squares}</g></svg><div class="art" style="--kw:${k.w};--kh:${k.h};--r:${turned ? 90 : 0}deg">${draft[id] ?? ''}</div></div>` }
+}
+/** The biggest cell size at which this item, with a cell of field around it, fills the preview window. */
+function previewCellFor() {
+  const stage = root.querySelector<HTMLElement>('.stage.game')
+  const big = root.querySelector<HTMLElement>('.stage.big')
+  if (!stage || !big) return 24
+  const k = KINDS[cur]
+  const w = rot ? k.h : k.w, h = rot ? k.w : k.h
+  const availW = stage.clientWidth - 2
+  const availH = Math.max(160, big.getBoundingClientRect().height - 18)
+  return Math.max(12, Math.min(120, Math.floor(Math.min(availW / (w + 2), availH / (h + 2)))))
+}
+/** Only this item, at game look, as large as the window to the right of the big picture allows. */
+function paintPreview() {
+  const box = root.querySelector<HTMLElement>('[data-real]')
+  if (!box) return
+  const k = KINDS[cur]
+  const w = rot ? k.h : k.w, h = rot ? k.w : k.h
+  previewCell = previewCellFor()
+  box.innerHTML = `<div class="grid" style="--cell:${previewCell}px;--w:${w + 2};--h:${h + 2}">${previewItem(cur, 1, 1, rot).html}</div>`
+  const cap = root.querySelector('[data-realcap]')
+  if (cap) cap.textContent = `in game · ${k.name} at ${previewCell}px cells (the game uses about 22)`
+}
+new ResizeObserver(() => { if (previewCellFor() !== previewCell) paintPreview() }).observe(root)
+
 const swatch = (value: string, title: string, on = false) => `<button class="sw ${on ? 'on' : ''}" data-fill="${esc(value)}" title="${esc(title)}" style="--s:${value === 'currentColor' ? 'var(--c)' : value}"></button>`
 const num = (label: string, prop: string, v: number, step = 1) => `<label>${label}<input type="number" step="${step}" data-prop="${prop}" value="${fmt(v)}"></label>`
+
+const PALETTE = ['#f0ece2', '#9a9aa2', '#3a3a44', '#000000', '#c9975a', '#8f6236', '#b98552', '#ff9a3c', '#e8c56a', '#7fb069', '#3fd0c0', '#5aa8e6', '#b0517f', '#d5606c']
+/** The angle a matrix turns things by, in degrees. */
+const angleOf = (m: M) => Math.round(Math.atan2(m[1], m[0]) * 180 / Math.PI * 10) / 10
+
+/** A labelled slider with a number beside it; `key` says which property it changes. */
+const slider = (label: string, key: string, v: number, min: number, max: number, step = 1, unit = '') =>
+  `<div class="sl"><span>${label}</span><input type="range" min="${min}" max="${max}" step="${step}" value="${fmt(Math.max(min, Math.min(max, v)))}" data-sl="${key}"><input type="number" step="${step}" value="${fmt(v)}" data-slnum="${key}"><small>${unit}</small></div>`
+const swatches = (attr: 'fill' | 'stroke', cur_: string) => `<div class="swrow">${
+  [['currentColor', 'item colour'], ['none', 'none'], ...PALETTE.map(c => [c, c])].map(([c, t]) => `<button class="sw ${cur_ === c ? 'on' : ''} ${c === 'none' ? 'none' : ''}" data-set="${attr}" data-val="${c}" title="${t}" style="--s:${c === 'currentColor' ? 'var(--c)' : c === 'none' ? 'transparent' : c}"></button>`).join('')
+}<input type="color" data-colorpick="${attr}" value="${/^#[0-9a-f]{6}$/i.test(cur_) ? cur_ : '#c9975a'}" title="any colour"></div>`
 
 function propsHtml(): string {
   const el = selEl()
   if (!el) return `<p class="note">Nothing selected. Click a shape in the picture or in the layers list, or add one from the <b>Add</b> tab.</p>`
   const b = bbox(el)
-  const fill = attrOf(el, 'fill'), stroke = attrOf(el, 'stroke')
-  const mode = (v: string) => v === '' || v === 'currentColor' ? 'accent' : v === 'none' ? 'none' : v.startsWith('url(') ? 'effect' : 'custom'
-  const hex = (v: string) => /^#[0-9a-f]{6}$/i.test(v) ? v : '#888888'
+  const { w: vw, h: vh } = vbox(cur)
+  const fill = attrOf(el, 'fill') || 'currentColor', stroke = attrOf(el, 'stroke') || 'none'
+  const m = matrixOf(el)
   return `<div class="props">
-    <h3>${layerLabel(el)}</h3>
-    <div class="row"><span>Fill</span><select data-prop="fill-mode">${['accent', 'none', 'custom', 'effect'].map(m => `<option value="${m}" ${mode(fill) === m ? 'selected' : ''} ${m === 'effect' ? 'disabled' : ''}>${m === 'accent' ? 'item colour' : m}</option>`).join('')}</select><input type="color" data-prop="fill-color" value="${hex(fill)}"></div>
-    <div class="row"><span>Edge</span><select data-prop="stroke-mode">${['none', 'accent', 'custom'].map(m => `<option value="${m}" ${(stroke === '' || stroke === 'none' ? 'none' : mode(stroke)) === m ? 'selected' : ''}>${m === 'accent' ? 'item colour' : m}</option>`).join('')}</select><input type="color" data-prop="stroke-color" value="${hex(stroke)}">${num('width', 'stroke-width', +attrOf(el, 'stroke-width') || 0, 0.5)}</div>
-    <div class="row"><span>Opacity</span><input type="range" min="0" max="1" step="0.05" data-prop="opacity" value="${el.getAttribute('opacity') ?? 1}"></div>
-    <div class="row"><span>Position</span>${num('x', 'x', b.x + b.w / 2, 0.5)}${num('y', 'y', b.y + b.h / 2, 0.5)}<small>centre</small></div>
-    <div class="row"><span>Size</span>${num('w', 'w', b.w, 0.5)}${num('h', 'h', b.h, 0.5)}<label class="chk"><input type="checkbox" data-prop="lock" ${lockRatio ? 'checked' : ''}> keep ratio</label></div>
-    <div class="row quick">${['flipH', 'flipV', 'rotL', 'rotR', 'rot90', 'smaller', 'bigger'].map(o => `<button data-op="${o}">${OPS[o].label}</button>`).join('')}</div>
+    <h3>${esc(layerLabel(el))}</h3>
+    <h4>Colour</h4>
+    <div class="row col"><span>Fill</span>${swatches('fill', fill)}</div>
+    <div class="row col"><span>Edge</span>${swatches('stroke', stroke)}</div>
+    ${slider('Edge width', 'sw', +attrOf(el, 'stroke-width') || 0, 0, 16, 0.5, 'units')}
+    ${slider('Opacity', 'opacity', +(el.getAttribute('opacity') ?? 1), 0, 1, 0.05)}
+    <h4>Position <small>centre, in units (a cell is ${UNIT})</small></h4>
+    ${slider('X', 'x', b.x + b.w / 2, -vw * 0.25, vw * 1.25, 0.5)}
+    ${slider('Y', 'y', b.y + b.h / 2, -vh * 0.25, vh * 1.25, 0.5)}
+    <h4>Size and turn</h4>
+    ${slider('Width', 'w', b.w, 1, Math.max(vw, vh) * 1.6, 0.5)}
+    ${slider('Height', 'h', b.h, 1, Math.max(vw, vh) * 1.6, 0.5)}
+    <label class="chk left"><input type="checkbox" data-prop="lock" ${lockRatio ? 'checked' : ''}> keep the ratio (width and height move together)</label>
+    ${slider('Turn', 'rot', angleOf(m), -180, 180, 1, '°')}
+    <div class="row quick">${['flipH', 'flipV', 'rotL', 'rotR', 'rot90', 'smaller', 'bigger', 'hcenter', 'vcenter', 'fit'].map(o => `<button data-op="${o}">${OPS[o].label}</button>`).join('')}</div>
   </div>`
 }
+
+// ---------------------------------------------------------------- sliders: live while dragging, kept on release
+
+let start: { m: M; b: Box; rot: number } | null = null
+function sliderStart() {
+  const el = selEl()
+  if (el) start = { m: matrixOf(el), b: bbox(el), rot: angleOf(matrixOf(el)) }
+}
+/** Apply a slider's value to the selected element, measured from where the drag began. */
+function sliderApply(key: string, v: number) {
+  const el = selEl()
+  if (!el) return
+  if (key === 'opacity') { el.setAttribute('opacity', String(v)); return }
+  if (key === 'sw') { paintAttr(el, 'stroke-width', String(v)); if (v > 0 && !attrOf(el, 'stroke')) paintAttr(el, 'stroke', 'currentColor'); return }
+  if (!start) sliderStart()
+  const { m, b, rot } = start!
+  const cx = b.x + b.w / 2, cy = b.y + b.h / 2
+  if (key === 'x') setMatrix(el, mul(move(v - cx, 0), m))
+  else if (key === 'y') setMatrix(el, mul(move(0, v - cy), m))
+  else if (key === 'w') setMatrix(el, mul(about(lockRatio ? scale(Math.max(0.02, v / b.w)) : scale(Math.max(0.02, v / b.w), 1), cx, cy), m))
+  else if (key === 'h') setMatrix(el, mul(about(lockRatio ? scale(Math.max(0.02, v / b.h)) : scale(1, Math.max(0.02, v / b.h)), cx, cy), m))
+  else if (key === 'rot') setMatrix(el, mul(about(turn(v - rot), cx, cy), m))
+  drawSelection()
+  // keep the other readouts honest while dragging
+  const nb = bbox(el)
+  const set = (k: string, val: number) => { for (const i of root.querySelectorAll<HTMLInputElement>(`[data-sl="${k}"], [data-slnum="${k}"]`)) if (i !== document.activeElement && k !== key) i.value = fmt(val) }
+  set('x', nb.x + nb.w / 2); set('y', nb.y + nb.h / 2); set('w', nb.w); set('h', nb.h)
+}
+
+root.addEventListener('pointerdown', e => { if ((e.target as HTMLElement).matches?.('[data-sl]')) sliderStart() })
+root.addEventListener('input', e => {
+  const t = e.target as HTMLInputElement
+  if (!t.dataset.sl) return
+  sliderApply(t.dataset.sl, +t.value)
+  const twin = root.querySelector<HTMLInputElement>(`[data-slnum="${t.dataset.sl}"]`)
+  if (twin) twin.value = fmt(+t.value)
+})
+root.addEventListener('change', e => {
+  const t = e.target as HTMLInputElement
+  if (t.dataset.sl) { sliderApply(t.dataset.sl, +t.value); start = null; commit(); return }
+  if (t.dataset.slnum) { sliderStart(); sliderApply(t.dataset.slnum, +t.value); start = null; commit(); return }
+  if (t.dataset.colorpick) { const el = selEl(); if (el) { paintAttr(el, t.dataset.colorpick, t.value); if (t.dataset.colorpick === 'stroke' && !+attrOf(el, 'stroke-width')) paintAttr(el, 'stroke-width', '3'); commit() } }
+})
+root.addEventListener('click', e => {
+  const b = (e.target as HTMLElement).closest<HTMLElement>('button[data-set]')
+  const el = selEl()
+  if (!b || !el) return
+  const attr = b.dataset.set!, val = b.dataset.val!
+  paintAttr(el, attr, val === 'none' && attr === 'stroke' ? null : val)
+  if (attr === 'stroke' && val !== 'none' && !+attrOf(el, 'stroke-width')) paintAttr(el, 'stroke-width', '3')
+  commit()
+})
 
 function addHtml(): string {
   const s = SHAPES[shape]
@@ -438,7 +565,7 @@ function paint(withSource = true) {
   if (live) drawn(live).forEach((el, i) => el.setAttribute('data-i', String(i)))
   if (live && sel !== null && sel >= drawn(live).length) sel = drawn(live).length ? drawn(live).length - 1 : null
   if (!live) sel = null
-  $('[data-real]').innerHTML = stageHtml(cur, 22, 1, false)
+  paintPreview()
   drawSelection()
   drawPen()
   // text and titles
@@ -469,7 +596,7 @@ function paint(withSource = true) {
     t.style.setProperty('--c', color[b.dataset.kind!])
     t.innerHTML = draft[b.dataset.kind!] ?? ''
   }
-  $('[data-layers]').innerHTML = live ? drawn(live).map((el, i) => `<li class="${i === sel ? 'on' : ''}" data-layer="${i}"><span>${layerLabel(el)}</span><button data-op="dup" title="Duplicate">⧉</button><button data-op="del" title="Delete">✕</button></li>`).reverse().join('') || '<li class="note">Empty. Add a shape.</li>' : ''
+  $('[data-layers]').innerHTML = live ? layersHtml() : ''
   $<HTMLButtonElement>('[data-undo]').disabled = hist[cur].at <= 0
   $<HTMLButtonElement>('[data-redo]').disabled = hist[cur].at >= hist[cur].stack.length - 1
   $<HTMLButtonElement>('[data-save]').classList.toggle('dirty', dirty(cur))
@@ -754,6 +881,7 @@ addEventListener('keydown', e => {
   const el = selEl()
   if (mod && e.key === 'd' && el) { e.preventDefault(); duplicate(); commit(); return }
   if (!el) return
+  if (mod && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) { e.preventDefault(); zorder(e.shiftKey ? (e.key === 'ArrowUp' ? 'front' : 'back') : (e.key === 'ArrowUp' ? 'forward' : 'backward')); commit(); return }
   const step = e.shiftKey ? snap * 4 : snap
   const arrows: Record<string, [number, number]> = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }
   if (arrows[e.key]) { e.preventDefault(); setMatrix(el, mul(move(...arrows[e.key]), matrixOf(el))); commit() }
@@ -1155,6 +1283,87 @@ addEventListener('keydown', e => {
   if (e.key === 'Enter' && bSel >= 0) { e.preventDefault(); bAct(e.shiftKey ? 'addclose' : 'add') }
 }, true)
 
+// ---------------------------------------------------------------- layers: order, hide, rename
+
+/** Put a layer directly in front of or behind another one. */
+function placeLayer(from: number, target: number, front: boolean) {
+  if (!live || from === target) return
+  const all = drawn(live)
+  const el = all[from], ref = all[target]
+  if (!el || !ref) return
+  if (front) ref.after(el); else ref.before(el)
+  sel = drawn(live).indexOf(el)
+}
+
+root.addEventListener('click', e => {
+  const b = (e.target as HTMLElement).closest<HTMLElement>('[data-lop]')
+  if (!b || !live) return
+  const i = +b.closest<HTMLElement>('li[data-layer]')!.dataset.layer!
+  const el = drawn(live)[i]
+  sel = i
+  switch (b.dataset.lop) {
+    case 'eye': if (el.getAttribute('display') === 'none') el.removeAttribute('display'); else el.setAttribute('display', 'none'); break
+    case 'up': moveLayer(i, i + 1); break
+    case 'down': moveLayer(i, i - 1); break
+    case 'dup': duplicate(); break
+    case 'del': remove(); break
+  }
+  commit()
+})
+
+let dragLayer = -1
+root.addEventListener('dragstart', e => {
+  const li = (e.target as HTMLElement).closest<HTMLElement>('li[data-layer]')
+  if (!li) return
+  dragLayer = +li.dataset.layer!
+  e.dataTransfer!.effectAllowed = 'move'
+  e.dataTransfer!.setData('text/plain', `layer:${dragLayer}`)
+})
+root.addEventListener('dragover', e => {
+  const li = (e.target as HTMLElement).closest<HTMLElement>('li[data-layer]')
+  if (!li || dragLayer < 0) return
+  e.preventDefault()
+  const r = li.getBoundingClientRect()
+  for (const x of root.querySelectorAll('.layers li.over-top, .layers li.over-bottom')) x.classList.remove('over-top', 'over-bottom')
+  li.classList.add(e.clientY < r.top + r.height / 2 ? 'over-top' : 'over-bottom')
+})
+root.addEventListener('drop', e => {
+  const li = (e.target as HTMLElement).closest<HTMLElement>('li[data-layer]')
+  if (!li || dragLayer < 0) return
+  e.preventDefault()
+  const r = li.getBoundingClientRect()
+  const front = e.clientY < r.top + r.height / 2 // the list shows the front layer first, so the upper half means "in front of"
+  const from = dragLayer
+  dragLayer = -1
+  placeLayer(from, +li.dataset.layer!, front)
+  commit()
+})
+root.addEventListener('dragend', () => { dragLayer = -1; for (const x of root.querySelectorAll('.layers li.over-top, .layers li.over-bottom')) x.classList.remove('over-top', 'over-bottom') })
+
+/** Double-click a layer's name to call it something; the name is kept in the SVG as data-name. */
+root.addEventListener('dblclick', e => {
+  const ln = (e.target as HTMLElement).closest<HTMLElement>('.ln')
+  if (!ln || !live) return
+  const i = +ln.closest<HTMLElement>('li[data-layer]')!.dataset.layer!
+  const el = drawn(live)[i]
+  const input = document.createElement('input')
+  input.className = 'lnedit'
+  input.value = layerLabel(el)
+  ln.replaceWith(input)
+  input.focus(); input.select()
+  let done = false
+  const finish = (ok: boolean) => {
+    if (done) return
+    done = true
+    if (!ok) return paint()
+    const v = input.value.trim()
+    if (v) el.setAttribute('data-name', v); else el.removeAttribute('data-name')
+    commit()
+  }
+  input.addEventListener('keydown', ev => { ev.stopPropagation(); if (ev.key === 'Enter') finish(true); else if (ev.key === 'Escape') finish(false) })
+  input.addEventListener('blur', () => finish(true))
+})
+
 // ---------------------------------------------------------------- the page
 
 root.innerHTML = `
@@ -1180,9 +1389,9 @@ root.innerHTML = `
       <span class="penopts"><label>thickness <input type="number" min="1" max="30" step="0.5" data-penwidth value="${penWidth}"></label><label>detail <input type="range" min="0.3" max="6" step="0.1" data-pendetail value="${penDetail}" title="how many points freehand keeps: left = more"></label><label><input type="checkbox" data-pensmooth> smooth curve</label></span>
       <small data-penhint></small>
     </div>
-    <div class="stages"><div class="stage big"><span>click to select · drag to move · corners resize · arrows nudge</span><div data-big></div></div><div class="stage"><span>in game (22px cells)</span><div data-real></div></div></div>
+    <div class="stages"><div class="stage big"><span>click to select · drag to move · corners resize · arrows nudge</span><div data-big></div></div><div class="stage game"><span data-realcap>in game</span><div data-real></div></div></div>
     <div class="err" data-err></div>
-    <p class="note">Keys: <kbd>←↑↓→</kbd> nudge (<kbd>⇧</kbd> ×4) · <kbd>[</kbd> <kbd>]</kbd> smaller / bigger · <kbd>⌘D</kbd> duplicate · <kbd>⌫</kbd> delete · <kbd>⌘Z</kbd> undo · <kbd>⌘S</kbd> save · hold <kbd>⌥</kbd> while resizing for free stretch. Draw in the item colour and it follows the item. A sprite is plain SVG at ${UNIT} units per cell, in <code>src/sprites/</code>.</p>
+    <p class="note">Keys: <kbd>←↑↓→</kbd> nudge (<kbd>⇧</kbd> ×4) · <kbd>[</kbd> <kbd>]</kbd> smaller / bigger · <kbd>⌘D</kbd> duplicate · <kbd>⌘↑</kbd><kbd>⌘↓</kbd> forward / back (<kbd>⇧</kbd> all the way) · <kbd>⌫</kbd> delete · <kbd>⌘Z</kbd> undo · <kbd>⌘S</kbd> save · hold <kbd>⌥</kbd> while resizing for free stretch. Draw in the item colour and it follows the item. A sprite is plain SVG at ${UNIT} units per cell, in <code>src/sprites/</code>.</p>
   </main>
   <section class="panel side">
     <h2 data-title></h2>

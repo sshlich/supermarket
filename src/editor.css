@@ -174,3 +174,34 @@ code { color: #d8d5cd; }
 .browser .acts { display: flex; gap: 6px; margin: 8px 0; }
 .browser .acts .primary { background: var(--hi); color: #0c0c0e; border-color: var(--hi); font-weight: 600; }
 .browser kbd { font: 10px ui-monospace, Menlo, monospace; padding: 0 4px; border: 1px solid var(--line2); border-radius: 2px; }
+
+/* sliders and swatches */
+.props h4 { margin: 12px 0 4px; font: 600 10px ui-monospace, Menlo, monospace; letter-spacing: .1em; text-transform: uppercase; color: #86847e; }
+.props h4 small { text-transform: none; letter-spacing: 0; font-weight: 400; }
+.sl { display: grid; grid-template-columns: 62px 1fr 62px 30px; align-items: center; gap: 6px; margin: 5px 0; font: 11px ui-monospace, Menlo, monospace; color: #86847e; }
+.sl input[type=range] { width: 100%; }
+.sl input[type=number] { width: 100%; background: #0c0c0e; color: #e6e3dc; border: 1px solid var(--line2); border-radius: 2px; padding: 2px 4px; }
+.sl small { color: #66645f; font-size: 10px; }
+.row.col { align-items: flex-start; }
+.row.col > span { width: 40px; padding-top: 2px; }
+.swrow { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; align-items: center; }
+.swrow .sw { width: 18px; height: 18px; }
+.swrow .sw.none { background: repeating-linear-gradient(45deg, #2a2a30 0 3px, #0c0c0e 3px 6px); }
+.swrow input[type=color] { width: 22px; height: 18px; padding: 0; border: 1px solid var(--line2); background: none; }
+.chk.left { margin: 4px 0; display: flex; align-items: center; gap: 6px; color: #86847e; font: 11px ui-monospace, Menlo, monospace; }
+
+/* layers */
+.layers li { position: relative; }
+.layers li .ln { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.layers li.hid .ln { opacity: .4; text-decoration: line-through; }
+.layers li[draggable=true] { cursor: grab; }
+.layers li.over-top::before, .layers li.over-bottom::after { content: ''; position: absolute; left: 0; right: 0; height: 2px; background: var(--hi); }
+.layers li.over-top::before { top: -2px; }
+.layers li.over-bottom::after { bottom: -2px; }
+.layers li button:disabled { opacity: .2; }
+.lnedit { flex: 1; min-width: 0; background: #0c0c0e; color: #e6e3dc; border: 1px solid var(--hi); border-radius: 2px; padding: 1px 4px; font: 11px ui-monospace, Menlo, monospace; }
+
+/* the in-game strip fills the space to the right */
+.stage.game { flex: 1 1 170px; min-width: 0; }
+.stage.game [data-real] { overflow: hidden; }
+.stage.game .grid { max-width: 100%; }

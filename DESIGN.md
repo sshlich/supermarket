@@ -17,7 +17,13 @@ updates live when one is saved.
   (alt = free stretch), arrow keys nudge, `[` `]` scale.
 - **Add.** Shape generators with parameters (rectangle, rounded, circle, ellipse, ring, line, zigzag, triangle, diamond,
   polygon, star, cross, arrow, chevron, glyph); new shapes take the item colour by default.
-- **Properties.** Fill, edge, opacity, position and size of the selection.
+- **Properties.** Sliders (each with a number box) for edge width, opacity, X, Y, width, height and turn, colour swatches
+  for fill and edge (item colour, none, a palette, any colour), keep-ratio, quick flip/turn/centre/fit buttons. Sliders
+  show the effect live and keep it on release.
+- **Layers.** Front first; per layer: hide, bring forward, send back, duplicate, delete; drag rows to reorder;
+  double-click a name to rename it (stored as `data-name`); `⌘↑` `⌘↓` (`⇧` for all the way).
+- **In-game preview.** Only the selected item, on field squares, as large as the window beside the big picture allows
+  (it drops below the picture if there is no room to the right); follows the "turn view" toggle.
 - **Effects.** Glow, drop shadow, blur, fades, hatching, outline, dashes, a shadow copy; they write real SVG filters and
   gradients into `<defs>` and unused ones are cleaned up.
 - **Operations.** Flip, turn, scale, fit, align to the footprint, mirror copies, duplicate, z-order, ungroup, delete.
