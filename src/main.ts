@@ -11,7 +11,7 @@ const icon = (name: string) => ICON[name] ?? ''
 // Presentation only: some icons are drawn on a diagonal; turn them to lie along long items.
 const TILT: Record<string, number> = { firewood: 45, knife: 45 }
 
-const SAVE = 'inventory-v5'
+const SAVE = 'inventory-v6'
 let s: State = load() ?? start()
 let fc = forecast(s)
 let pulse = new Set<number>()
@@ -30,13 +30,31 @@ function save() {
 }
 
 function fit() {
-  cell = Math.floor(Math.max(34, Math.min(48, (innerWidth - 400) / 23)))
+  cell = Math.floor(Math.max(17, Math.min(24, (innerWidth - 400) / 46)))
   document.documentElement.style.setProperty('--cell', `${cell}px`)
 }
 
 // ---------------------------------------------------------------- drawing
 
 const PILE: [number, number, number][][] = [[[0, 0, 0.78]], [[-14, 10, 0.64], [14, -8, 0.64]], [[-17, 13, 0.58], [17, 11, 0.58], [0, -14, 0.58]]]
+
+/** Horizontal runs of filled cells, so a silhouette is a handful of rectangles, not one per cell. */
+function runs(cells: readonly (readonly [number, number])[]) {
+  const rows = new Map<number, number[]>()
+  for (const [x, y] of cells) rows.set(y, [...rows.get(y) ?? [], x])
+  const out: [number, number, number][] = []
+  for (const [y, xs] of rows) {
+    xs.sort((a, b) => a - b)
+    for (let i = 0, start = 0; i < xs.length; i++)
+      if (i === xs.length - 1 || xs[i + 1] !== xs[i] + 1) { out.push([xs[start], y, xs[i] - xs[start] + 1]); start = i + 1 }
+  }
+  return out
+}
+/** A CSS mask that keeps exactly the filled cells: one silhouette, no seams. */
+function maskOf(cells: readonly (readonly [number, number])[]) {
+  const g = runs(cells).map(([x, y, n]) => `linear-gradient(#000 0 0) calc(var(--cell) * ${x}) calc(var(--cell) * ${y}) / calc(var(--cell) * ${n}) var(--cell) no-repeat`).join(',')
+  return `-webkit-mask:${g};mask:${g}`
+}
 
 function itemHtml(it: Item, extra = '') {
   const k = KINDS[it.kind]
@@ -47,7 +65,7 @@ function itemHtml(it: Item, extra = '') {
   const copies = PILE[Math.min(k.stack > 1 ? it.n : 1, 3) - 1]
   const art = copies.map(([x, y, sc]) => `<i style="--px:${x}%;--py:${y}%;--s:${sc};--t:${tilt}deg">${icon(k.icon)}</i>`).join('')
   const cells = cellsOf(it)
-  const tiles = cells ? cells.map(([x, y]) => `<u class="cell" style="--cx:${x};--cy:${y}"></u>`).join('') : ''
+  const tiles = cells ? `<u class="body" style="${maskOf(cells)}"></u>` : ''
   return `<div class="item ${cls} ${cells ? 'shaped' : ''} ${extra}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
     ${tiles}<div class="art" style="--kw:${k.w};--kh:${k.h};--m:${m};--r:${it.rot ? 90 : 0}deg">${art}</div>${badges(it)}</div>`
 }
@@ -90,7 +108,7 @@ function boxHtml(c: Item) {
     <header data-boxtip="${c.id}">
       <div><span class="bi">${icon(k.icon)}</span><b>${k.name}</b><span class="grow"></span>
         <button class="pin ${s.target === c.id ? 'on' : ''}" data-pin="${c.id}" title="Shift-click sends things here">⇥</button><button data-close="${c.id}" title="Close">✕</button></div>
-      <div><span class="env">${f?.env ?? spec(c)!.desc}</span><span class="grow"></span><span class="fill">${used}/${w * h}</span>
+      <div><span class="env">${f?.env ?? spec(c)!.desc}</span><span class="grow"></span><span class="fill" title="How full it is">${Math.round(100 * used / (w * h))}%</span>
         <button class="tidy" data-tidy="${c.id}" title="Merge piles and pack by kind">tidy</button></div>
     </header>
     <div class="grid" data-grid="${c.id}">${items.map(it => itemHtml(it)).join('')}</div>
@@ -357,7 +375,7 @@ function clearGhosts() {
 }
 
 function ghost(box: number, x: number, y: number, w: number, h: number, cls: string, cells: ReturnType<typeof cellsOf> = null) {
-  const tiles = cells ? cells.map(([cx, cy]) => `<u class="gc" style="--cx:${cx};--cy:${cy}"></u>`).join('') : ''
+  const tiles = cells ? `<u class="gc" style="${maskOf(cells)}"></u>` : ''
   app.querySelector(`[data-grid="${box}"]`)!.insertAdjacentHTML('beforeend', `<div class="ghost ${cls} ${cells ? 'shaped' : ''}" style="--x:${x};--y:${y};--w:${w};--h:${h}">${tiles}</div>`)
 }
 

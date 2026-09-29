@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { boxOf, applyDrop, find, forage, kids, lift, make, night, planDrop, send, start, stow, accepts, env, FIELD, type Item, type State } from './world.ts'
+import { boxOf, applyDrop, find, forage, kids, lift, make, night, planDrop, send, start, stow, accepts, env, FIELD, S, type Item, type State } from './world.ts'
 
 const NAMES = { basket: 'basket', crate: 'crate', cold: 'coldBox', hearth: 'hearth', rack: 'rack', cellar: 'shelf', barrel: 'barrel' } as const
 type BoxId = keyof typeof NAMES
@@ -12,7 +12,7 @@ const empty = (): State & { b: Record<BoxId, number> } => {
   return Object.assign(s, { b })
 }
 const put = (s: ReturnType<typeof empty>, box: BoxId | number, kind: string, x: number, y: number, extra: Partial<Item> = {}) => {
-  const it = make(s, kind, { x, y, at: typeof box === 'number' ? box : s.b[box], ...extra })
+  const it = make(s, kind, { x: x * S, y: y * S, at: typeof box === 'number' ? box : s.b[box], ...extra }) // coordinates are in whole old cells
   s.items.push(it)
   return it
 }
@@ -142,7 +142,7 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   const a = put(s, 'crate', 'coal', 0, 0, { n: 2 })
   put(s, 'crate', 'coal', 3, 0, { n: 3 })
   let h = lift(s, a.id)!
-  let p = planDrop(s, h, s.b.crate, 3, 0, false)!
+  let p = planDrop(s, h, s.b.crate, 3 * S, 0, false)!
   assert.equal(p.merge !== undefined, true)
   applyDrop(s, h, p)
   assert.deepEqual(kinds(s, 'crate'), ['coalx5'])
@@ -150,7 +150,7 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   const knife = put(s, 'basket', 'knife', 0, 0)
   const jar = put(s, 'crate', 'emptyJar', 5, 2)
   h = lift(s, knife.id)!
-  p = planDrop(s, h, s.b.crate, 5, 2, false)!
+  p = planDrop(s, h, s.b.crate, 5 * S, 2 * S, false)!
   applyDrop(s, h, p)
   assert.deepEqual([knife.at, jar.at], [s.b.crate, s.b.basket])
   assert.deepEqual([jar.x, jar.y], [0, 0])
@@ -162,7 +162,7 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   const h = lift(s, a.id, true)!
   assert.equal(h.item.n, 2)
   assert.equal(a.n, 3)
-  applyDrop(s, h, planDrop(s, h, s.b.crate, 4, 4, false)!)
+  applyDrop(s, h, planDrop(s, h, s.b.crate, 4 * S, 4 * S, false)!)
   assert.deepEqual(kinds(s, 'crate'), ['coalx2', 'coalx3'])
 }
 
@@ -230,16 +230,16 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   const s = empty()
   const pick = put(s, 'crate', 'pickaxe', 0, 0)
   const coal = put(s, 'crate', 'coal', 0, 1) // under the left arm: free, the T has no cell there
-  assert.equal(boxOf(pick).cells!.length, 4)
+  assert.equal(boxOf(pick).cells!.length, 16)
   assert.equal(overlaps(boxOf(pick), boxOf(coal)), false)
   const h = lift(s, coal.id)!
-  const p = planDrop(s, h, s.b.crate, 1, 1, false)! // onto the T's handle
+  const p = planDrop(s, h, s.b.crate, 2, 2, false)! // onto the T's handle
   assert.equal(p.moves.length > 0 || p.x !== 1 || p.y !== 1, true) // something gave way
   applyDrop(s, h, p)
   const all = kids(s, s.b.crate)
   for (const a of all) for (const b of all) if (a !== b) assert.equal(overlaps(boxOf(a), boxOf(b)), false)
   // A shaped thing turns cleanly: 3x2 becomes 2x3, still four cells.
-  const q = planDrop(s, lift(s, pick.id)!, s.b.crate, 6, 0, true)!
+  const q = planDrop(s, lift(s, pick.id)!, s.b.crate, 6 * S, 0, true)!
   assert.equal(q.rot, true)
 }
 // An axe in the basket helps in the woods and gives drier wood.
@@ -257,10 +257,10 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   const s = empty()
   const coal = put(s, 'crate', 'coal', 0, 0)
   const cold = find(s, s.b.cold)!
-  Object.assign(cold, { x: 5, y: 5 })
+  Object.assign(cold, { x: 5 * S, y: 5 * S })
   const h = lift(s, coal.id)!
-  assert.equal(planDrop(s, h, FIELD, 0, 5, false), null) // bare floor
-  const p = planDrop(s, h, FIELD, 5, 5, false)!
+  assert.equal(planDrop(s, h, FIELD, 0, 5 * S, false), null) // bare floor
+  const p = planDrop(s, h, FIELD, 5 * S, 5 * S, false)!
   assert.equal(p.at, s.b.cold)
   applyDrop(s, h, p)
   assert.equal(coal.at, s.b.cold)

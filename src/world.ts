@@ -54,8 +54,8 @@ export const KINDS: Record<string, Kind> = {
   copperIngot: { name: 'Copper Ingot', icon: 'gold-bar', color: '#f09a5c', w: 1, h: 1, stack: 4, tags: ['metal'], blurb: 'Soft, warm metal. It is waiting for a better forge than this.' },
   ironIngot: { name: 'Iron Ingot', icon: 'metal-bar', color: '#b4bec9', w: 1, h: 1, stack: 4, tags: ['metal'], blurb: 'Set beside a worn tool on a lit hearth and the tool comes out mended.' },
   knife: { name: 'Knife', icon: 'bowie-knife', color: '#d3d8de', w: 1, h: 2, stack: 1, tags: ['tool'], blurb: 'In the basket for the woods: more moonleaf, cleanly cut. Rusts in the damp.' },
-  pickaxe: { name: 'Pickaxe', icon: 'mining', color: '#d3d8de', w: 3, h: 2, shape: ['###', '.#.'], stack: 1, tags: ['tool'], blurb: 'In the basket for the mine: more ore. Rusts in the damp.' },
-  axe: { name: 'Axe', icon: 'battle-axe', color: '#d3d8de', w: 2, h: 3, shape: ['##', '#.', '#.'], stack: 1, tags: ['tool'], blurb: 'In the basket for the woods: more firewood, and dry. Rusts in the damp.' },
+  pickaxe: { name: 'Pickaxe', icon: 'mining', color: '#d3d8de', w: 3, h: 2, shape: ['######', '######', '..##..', '..##..'], stack: 1, tags: ['tool'], blurb: 'In the basket for the mine: more ore. Rusts in the damp.' },
+  axe: { name: 'Axe', icon: 'battle-axe', color: '#d3d8de', w: 2, h: 3, shape: ['####', '###.', '.##.', '.##.', '.##.', '.##.'], stack: 1, tags: ['tool'], blurb: 'In the basket for the woods: more firewood, and dry. Rusts in the damp.' },
   net: { name: 'Fishing Net', icon: 'fishing-net', color: '#dccf9e', w: 2, h: 2, stack: 1, tags: ['tool'], blurb: 'In the basket for the shore: more fish.' },
   berryWine: { name: 'Berry Wine', icon: 'wine-bottle', color: '#a33a66', w: 1, h: 1, stack: 3, tags: ['drink'], ages: true, blurb: 'Gets better every night it spends in the dark of the barrel.' },
   // Containers. `w`/`h` is the footprint where it sits; `box` is what's inside.
@@ -79,7 +79,13 @@ export const KINDS: Record<string, Kind> = {
     box: { w: 3, h: 2, env: [], seals: ['damp'], accepts: ['metal'], desc: 'metal only · airtight' } },
 }
 
-for (const k of Object.values(KINDS)) if (k.shape) { k.h = k.shape.length; k.w = Math.max(...k.shape.map(r => r.length)) }
+/** Resolution of the grid: every plain footprint and container is written in whole "old" cells and scaled up; shapes are drawn at full resolution. */
+export const S = 2
+for (const k of Object.values(KINDS)) {
+  if (k.shape) { k.h = k.shape.length; k.w = Math.max(...k.shape.map(r => r.length)) }
+  else { k.w *= S; k.h *= S }
+  if (k.box) { k.box.w *= S; k.box.h *= S }
+}
 const ORDER = Object.keys(KINDS)
 
 /** A kind's footprint as the grid sees it, facing the way it is made. */
@@ -97,8 +103,8 @@ export function shapeOf(kind: string): Box {
 
 /** The field: the workshop floor containers sit on. Its id is 0. */
 export const FIELD = 0
-export const FIELD_W = 10
-export const FIELD_H = 6
+export const FIELD_W = 10 * 2
+export const FIELD_H = 6 * 2
 
 export const PLACES: Record<Place, { name: string; icon: string; blurb: string }> = {
   woods: { name: 'Woods', icon: 'forest', blurb: 'Berries, moonleaf, wet wood, sometimes spores or yeast. A knife helps.' },
@@ -448,13 +454,17 @@ export function night(s: State): Note[] {
     const cap = near(sp).find(o => o.kind === kind && !o.rotten && o.n < KINDS[kind].stack)
     if (cap) { cap.n++; cap.fresh = KINDS[kind].fresh; say(sp, `feeds the ${KINDS[kind].name.toLowerCase()}s beside it (+1)`); return }
     const b = boxOf(sp)
-    const cells: [number, number][] = []
-    for (let y = b.y; y < b.y + b.h; y++) cells.push([b.x + b.w, y], [b.x - 1, y])
-    for (let x = b.x; x < b.x + b.w; x++) cells.push([x, b.y + b.h], [x, b.y - 1])
+    const { w: gw, h: gh } = shapeOf(kind)
+    const { w: cw, h: ch } = room(s, c.id)
     const taken = kids(s, c.id).map(boxOf)
-    const free = cells.find(([x, y]) => x >= 0 && y >= 0 && x < room(s, c.id).w && y < room(s, c.id).h && !taken.some(t => overlaps(t, { id: -1, x, y, w: 1, h: 1 })))
+    let free: { x: number; y: number } | undefined
+    for (let y = b.y - gh; y <= b.y + b.h && !free; y++)
+      for (let x = b.x - gw; x <= b.x + b.w && !free; x++) {
+        const cand = { ...shapeOf(kind), id: -1, x, y }
+        if (x >= 0 && y >= 0 && x + gw <= cw && y + gh <= ch && touches(b, cand) && !taken.some(o => overlaps(o, cand))) free = { x, y }
+      }
     if (!free) { say(sp, 'needs a free spot beside it to sprout', true); return }
-    s.items.push(make(s, kind, { at: c.id, x: free[0], y: free[1] }))
+    s.items.push(make(s, kind, { at: c.id, x: free.x, y: free.y }))
     say(sp, `sprouts a ${KINDS[kind].name.toLowerCase()} beside it`)
   }
 
@@ -590,7 +600,7 @@ export function start(): State {
   // The workshop floor: where each container sits (cells of the field).
   const at: [string, number, number][] = [['basket', 0, 0], ['crate', 2, 0], ['coldBox', 5, 0], ['hearth', 0, 2], ['rack', 2, 2], ['shelf', 5, 2], ['barrel', 8, 0]]
   const id: Record<string, number> = {}
-  for (const [kind, x, y] of at) { const c = make(s, kind, { x, y }); id[kind] = c.id; s.items.push(c) }
+  for (const [kind, x, y] of at) { const c = make(s, kind, { x: x * S, y: y * S }); id[kind] = c.id; s.items.push(c) }
   s.target = id.crate
   s.open = [id.basket, id.crate]
   const put = (box: string, kind: string, extra: Partial<Item> = {}) => stow(s, id[box], make(s, kind, extra))
