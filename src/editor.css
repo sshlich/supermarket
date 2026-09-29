@@ -135,3 +135,42 @@ code { color: #d8d5cd; }
 .thumbx .tb button { padding: 2px 8px; min-width: 64px; background: none; border: 1px solid var(--line2); border-radius: 2px; color: #e6e3dc; font: 10px ui-monospace, Menlo, monospace; }
 .thumbx .tb button:hover { border-color: var(--hi); color: var(--hi); }
 .search { width: 100%; margin-bottom: 6px; background: #0c0c0e; color: #e6e3dc; border: 1px solid var(--line2); border-radius: 2px; padding: 4px 6px; }
+
+/* library tab additions */
+.bigbtn { width: 100%; margin: 4px 0 8px; padding: 6px 8px; background: none; border: 1px solid var(--hi); border-radius: 2px; color: var(--hi); }
+.bigbtn:hover { background: #1c1c21; }
+.row select { max-width: 100%; }
+
+/* the big browser */
+.browser { position: fixed; inset: 0; z-index: 200; background: #0c0c0e; display: grid; grid-template-rows: auto 1fr; font: 12px ui-monospace, Menlo, monospace; color: #e6e3dc; }
+.browser[hidden] { display: none; }
+.browser header { display: flex; align-items: center; gap: 14px; padding: 8px 14px; border-bottom: 1px solid var(--line); }
+.browser header b { letter-spacing: .12em; text-transform: uppercase; }
+.browser header input[type=search] { width: 320px; background: #131316; color: #e6e3dc; border: 1px solid var(--line2); border-radius: 2px; padding: 5px 8px; }
+.browser header label { display: inline-flex; align-items: center; gap: 6px; color: #86847e; }
+.browser header .grow { flex: 1; }
+.browser header button, .browser .acts button { padding: 4px 10px; border-radius: 2px; background: none; border: 1px solid var(--line2); color: #e6e3dc; cursor: pointer; }
+.browser header button:hover, .browser .acts button:hover { border-color: var(--hi); }
+.bcount { color: #86847e; }
+.bbody { display: grid; grid-template-columns: 220px 1fr 320px; min-height: 0; }
+.bsets { padding: 10px; border-right: 1px solid var(--line); overflow: auto; display: flex; flex-direction: column; gap: 4px; }
+.bsets h2 { margin: 8px 0 4px; font: 600 11px ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: #86847e; }
+.bsets button { text-align: left; padding: 6px 8px; background: none; border: 1px solid var(--line); border-radius: 3px; color: #e6e3dc; cursor: pointer; display: flex; flex-direction: column; gap: 2px; }
+.bsets button small { color: #86847e; font-size: 10px; }
+.bsets button.on { border-color: var(--hi); background: #1c1c21; }
+.bgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--bs, 96px), 1fr)); gap: 6px; padding: 10px; overflow: auto; align-content: start; }
+.bcell { position: relative; aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px; background: #101013; border: 1px solid var(--line); border-radius: 3px; color: #e6e3dc; cursor: pointer; }
+.bcell:hover { border-color: var(--mute); }
+.bcell.on { border-color: var(--hi); background: #1c1c21; outline: 1px solid var(--hi); }
+.bcell .btv { width: 72%; height: 72%; color: var(--c, #e6e3dc); display: block; }
+.bcell .btv svg { width: 100%; height: 100%; }
+.bcell small { position: absolute; left: 3px; right: 3px; bottom: 2px; font-size: 9px; color: #86847e; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: center; opacity: 0; }
+.bcell:hover small, .bcell.on small { opacity: 1; }
+.bmore { grid-column: 1 / -1; padding: 16px; text-align: center; color: #86847e; }
+.bdetail { padding: 12px; border-left: 1px solid var(--line); overflow: auto; }
+.bprev { width: 100%; aspect-ratio: 1; display: grid; place-items: center; background: #0f0f11; border: 1px solid var(--line); border-radius: 3px; color: var(--c); margin-bottom: 10px; }
+.bprev svg { width: 78%; height: 78%; }
+.bdetail h3 { margin: 4px 0; font-size: 13px; word-break: break-all; }
+.browser .acts { display: flex; gap: 6px; margin: 8px 0; }
+.browser .acts .primary { background: var(--hi); color: #0c0c0e; border-color: var(--hi); font-weight: 600; }
+.browser kbd { font: 10px ui-monospace, Menlo, monospace; padding: 0 4px; border: 1px solid var(--line2); border-radius: 2px; }

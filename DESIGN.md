@@ -26,8 +26,12 @@ updates live when one is saved.
   double-click a point to remove it; operations can smooth it into a curve or reduce its points.
 - **Footprint.** Pick the item's size in cells (up to 12 x 12); the drawing is moved or scaled with it, and the size is
   saved to `src/kinds.json` (item data now lives there, not in `world.ts`). Saved layouts are repaired on load.
-- **Library.** Drop or paste SVGs (they are cleaned of scripts and outside links, and kept in `src/imports/`), search the
-  4,000 game-icons, and add any of them to the sprite or replace it; "use the item colour" makes imports follow the item.
+- **Library.** Drop or paste SVGs (they are cleaned of scripts and outside links, and kept in `src/imports/`), and add
+  any of them to the sprite or replace it; "use the item colour" makes imports follow the item.
+- **Icon browser** (Library tab, "Open the big browser"): full-screen, ~60,000 icons from eight Iconify sets (game-icons,
+  Pixelarticons, Fluent Emoji outline, Material Design Icons, Material Symbols, Tabler, Lucide, Phosphor) plus your
+  imports; search by name, thumbnail size slider, endless scroll, a big tinted preview with the licence, keyboard
+  navigation, add / add and close / replace / keep.
 - **QoL.** Undo/redo, drafts kept across reloads, optional autosave to the game, snap size, copy another item's sprite as
   a starting point, "original icon" reset, the SVG source always visible in its tab.
 `npm run sprites` writes a starting sprite from the game-icons icon for any kind that has none (`-- --all` to redo all).

@@ -31,6 +31,8 @@ let penSmooth = false
 let libImports: { name: string; svg: string }[] = []
 let iconResults: { name: string; svg: string }[] = []
 let iconQuery = ''
+let iconSet = 'game-icons'
+let sets: { id: string; name: string; style: string; license: string; total: number }[] = []
 let recolor = true
 let fitPct = 80
 let autosave = false
@@ -743,6 +745,7 @@ root.addEventListener('change', e => {
 })
 
 addEventListener('keydown', e => {
+  if (bOpen) return
   const mod = e.metaKey || e.ctrlKey
   if (mod && e.key === 's') { e.preventDefault(); save(); return }
   if (mod && e.key.toLowerCase() === 'z' && !inField(e.target)) { e.preventDefault(); undo(e.shiftKey ? 1 : -1); return }
@@ -868,11 +871,19 @@ async function importFiles(files: FileList | File[], toSprite: boolean) {
   if (toSprite && list.length === 1) addImport(await list[0].text())
 }
 let iconTimer = 0
+const iconsUrl = (set: string, q: string, offset = 0, limit = 60) => `/__sprites/icons?set=${encodeURIComponent(set)}&q=${encodeURIComponent(q)}&offset=${offset}&limit=${limit}`
+async function fetchIcons(set: string, q: string, offset = 0, limit = 60): Promise<{ total: number; items: { name: string; svg: string }[] }> {
+  try { return JSON.parse(await fetch(iconsUrl(set, q, offset, limit)).then(r => r.text())) } catch { return { total: 0, items: [] } }
+}
 async function searchIcons(q: string) {
   iconQuery = q
-  try { iconResults = JSON.parse(await fetch(`/__sprites/icons?q=${encodeURIComponent(q)}`).then(r => r.text())) } catch { iconResults = [] }
+  iconResults = (await fetchIcons(iconSet, q)).items
   const box = root.querySelector('[data-iconres]')
   if (box) box.innerHTML = thumbs(iconResults, 'ico')
+}
+async function loadSets() {
+  try { sets = JSON.parse(await fetch('/__sprites/sets').then(r => r.text())) } catch { sets = [] }
+  renderLib()
 }
 
 function thumbs(list: { name: string; svg: string }[], src: 'imp' | 'ico') {
@@ -885,7 +896,11 @@ function libHtml() {
   return `<div class="drop" data-drop>Drop SVG files here, or paste SVG code anywhere (⌘V).<br><label class="filebtn">choose files…<input type="file" accept=".svg,image/svg+xml" multiple data-file hidden></label></div>
     <div class="row"><label><input type="checkbox" data-recolor ${recolor ? 'checked' : ''}> use the item colour</label><label>fit <input type="number" min="10" max="100" step="5" data-fitpct value="${fitPct}" style="width:54px">%</label></div>
     <h3>Your imports</h3><div class="thumbs" data-imps>${thumbs(libImports, 'imp')}</div>
-    <h3>game-icons library</h3><input type="search" class="search" data-iconq value="${esc(iconQuery)}" placeholder="search: axe, gear, potion…"><div class="thumbs" data-iconres>${thumbs(iconResults, 'ico')}</div>`
+    <h3>Icon sets <small>${sets.reduce((n, s) => n + s.total, 0).toLocaleString()} icons</small></h3>
+    <div class="row"><select data-set>${sets.map(s => `<option value="${s.id}" ${s.id === iconSet ? 'selected' : ''}>${esc(s.name)} · ${s.total.toLocaleString()} · ${esc(s.style)}</option>`).join('')}</select></div>
+    <input type="search" class="search" data-iconq value="${esc(iconQuery)}" placeholder="search this set: axe, gear, potion…">
+    <button class="bigbtn" data-openbrowser>⤢ Open the big browser (all sets, big thumbnails)</button>
+    <div class="thumbs" data-iconres>${thumbs(iconResults, 'ico')}</div>`
 }
 function renderLib() { const p = root.querySelector('[data-page="lib"]'); if (p && document.activeElement?.getAttribute('data-iconq') === null) p.innerHTML = libHtml() }
 
@@ -919,6 +934,7 @@ root.addEventListener('input', e => {
 root.addEventListener('change', e => {
   const t = e.target as HTMLInputElement
   if (t.matches('[data-pensmooth]')) penSmooth = t.checked
+  else if (t.matches('[data-set]')) { iconSet = t.value; searchIcons(iconQuery) }
   else if (t.matches('[data-recolor]')) recolor = t.checked
   else if (t.matches('[data-fitpct]')) fitPct = Math.max(10, Math.min(100, +t.value || 80))
   else if (t.matches('[data-fpw]')) { fpW = Math.max(1, Math.min(12, +t.value || 1)); $('[data-footprint]').innerHTML = footprintHtml() }
@@ -953,7 +969,7 @@ addEventListener('paste', e => {
 
 /** The pen's own keys, and V / P / L / F to change tool. */
 addEventListener('keydown', e => {
-  if (inField(e.target) || e.metaKey || e.ctrlKey || e.altKey) return
+  if (bOpen || inField(e.target) || e.metaKey || e.ctrlKey || e.altKey) return
   if (pen && tool !== 'free') {
     if (e.key === 'Enter') { e.preventDefault(); finishPen(tool === 'dots'); return }
     if (e.key === 'Backspace') { e.preventDefault(); pen.pts.pop(); drawPen(); return }
@@ -963,6 +979,181 @@ addEventListener('keydown', e => {
   const map: Record<string, typeof tool> = { v: 'select', p: 'dots', l: 'line', f: 'free' }
   if (e.key.length === 1 && map[e.key.toLowerCase()]) setTool(map[e.key.toLowerCase()])
 })
+
+// ---------------------------------------------------------------- the big icon browser
+
+let bOpen = false
+let bSet = 'game-icons' // an icon set id, or 'imports' for your own
+let bQuery = ''
+let bSize = 96
+let bItems: { name: string; svg: string }[] = []
+let bTotal = 0
+let bSel = -1
+let bLoading = false
+let bToken = 0
+let bTimer = 0
+let bWatch: IntersectionObserver | null = null
+
+const bEl = () => document.querySelector<HTMLElement>('.browser')
+const bq = <T extends Element>(sel: string) => bEl()!.querySelector<T>(sel)!
+
+function browserShell() {
+  const imp = libImports.length
+  return `<header>
+      <b>Icon browser</b>
+      <input type="search" data-bquery placeholder="search by name (axe, potion, gear…)" value="${esc(bQuery)}">
+      <label>size <input type="range" min="48" max="220" step="4" value="${bSize}" data-bsize></label>
+      <span class="bcount" data-bcount></span>
+      <span class="grow"></span>
+      <label><input type="checkbox" data-recolor2 ${recolor ? 'checked' : ''}> use the item colour</label>
+      <button data-bclose>✕ Close <kbd>Esc</kbd></button>
+    </header>
+    <div class="bbody">
+      <nav class="bsets">
+        <h2>Sets</h2>
+        ${sets.map(s => `<button data-bset="${s.id}" class="${s.id === bSet ? 'on' : ''}"><b>${esc(s.name)}</b><small>${s.total.toLocaleString()} · ${esc(s.style)}</small></button>`).join('')}
+        <h2>Yours</h2>
+        <button data-bset="imports" class="${bSet === 'imports' ? 'on' : ''}"><b>Your imports</b><small>${imp} in src/imports</small></button>
+        <p class="note">Hover a picture for its name. Click to select, double-click to add. Arrow keys move, <kbd>Enter</kbd> adds, <kbd>⇧Enter</kbd> adds and closes, <kbd>/</kbd> searches.</p>
+      </nav>
+      <div class="bgrid" data-bgrid style="--bs:${bSize}px"></div>
+      <aside class="bdetail" data-bdetail></aside>
+    </div>`
+}
+
+function openBrowser() {
+  if (!bEl()) { const d = document.createElement('div'); d.className = 'browser'; document.body.appendChild(d) }
+  bOpen = true
+  bEl()!.hidden = false
+  bEl()!.innerHTML = browserShell()
+  bWatch?.disconnect()
+  bReset()
+  bq<HTMLInputElement>('[data-bquery]').focus()
+}
+function closeBrowser() { bOpen = false; bWatch?.disconnect(); const e = bEl(); if (e) e.hidden = true }
+
+function bCell(x: { name: string; svg: string }, i: number) {
+  return `<button class="bcell ${i === bSel ? 'on' : ''}" data-bi="${i}" title="${esc(x.name)}"><span class="btv">${x.svg}</span><small>${esc(x.name)}</small></button>`
+}
+function bCount() {
+  const c = bq('[data-bcount]')
+  c.textContent = bLoading && !bItems.length ? 'loading…' : `${bItems.length.toLocaleString()} of ${bTotal.toLocaleString()}`
+}
+
+/** Start again from the top: a new set or a new search. */
+function bReset() {
+  bToken++
+  bItems = []; bTotal = 0; bSel = -1
+  bq('[data-bgrid]').innerHTML = ''
+  bDetail()
+  bMore()
+}
+
+/** Load the next page and add its cells to the end of the grid. */
+async function bMore() {
+  if (bLoading || (bItems.length && bItems.length >= bTotal)) return
+  bLoading = true
+  const token = bToken
+  bCount()
+  let page: { total: number; items: { name: string; svg: string }[] }
+  if (bSet === 'imports') {
+    const q = bQuery.toLowerCase().trim()
+    const all = libImports.filter(x => !q || x.name.toLowerCase().includes(q))
+    page = { total: all.length, items: all.slice(bItems.length, bItems.length + 120) }
+  } else page = await fetchIcons(bSet, bQuery, bItems.length, 120)
+  if (token !== bToken || !bOpen) { bLoading = false; return }
+  const start = bItems.length
+  bItems.push(...page.items)
+  bTotal = page.total
+  const grid = bq('[data-bgrid]')
+  grid.querySelector('.bmore')?.remove()
+  grid.insertAdjacentHTML('beforeend', page.items.map((x, i) => bCell(x, start + i)).join(''))
+  if (bItems.length < bTotal) {
+    grid.insertAdjacentHTML('beforeend', '<div class="bmore">loading more…</div>')
+    bWatch?.disconnect()
+    bWatch = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) bMore() }, { root: grid, rootMargin: '600px' })
+    bWatch.observe(grid.querySelector('.bmore')!)
+  }
+  bLoading = false
+  bCount()
+  if (!bItems.length) grid.innerHTML = '<p class="note" style="padding:20px">Nothing matches that. Try a shorter word.</p>'
+}
+
+function bSelect(i: number, scroll = false) {
+  bSel = i
+  for (const c of bEl()!.querySelectorAll('.bcell.on')) c.classList.remove('on')
+  const cell = bEl()!.querySelector<HTMLElement>(`.bcell[data-bi="${i}"]`)
+  cell?.classList.add('on')
+  if (scroll) cell?.scrollIntoView({ block: 'nearest' })
+  bDetail()
+}
+
+function bDetail() {
+  const box = bq('[data-bdetail]')
+  const x = bItems[bSel]
+  if (!x) { box.innerHTML = `<p class="note">Select a picture to see it big, then add it to <b>${esc(KINDS[cur].name)}</b> (${KINDS[cur].w} × ${KINDS[cur].h}).</p>`; return }
+  const s = sets.find(t => t.id === bSet)
+  const dims = /viewBox="0 0 (\d+) (\d+)"/.exec(x.svg)
+  box.innerHTML = `<div class="bprev" style="--c:${color[cur]}">${x.svg}</div>
+    <h3>${esc(x.name)}</h3>
+    <p class="note">${s ? `${esc(s.name)} · ${esc(s.license)}` : 'your import'}${dims ? ` · ${dims[1]} × ${dims[2]} grid` : ''}</p>
+    <label class="row"><span>fit</span><input type="number" min="10" max="100" step="5" data-fitpct2 value="${fitPct}" style="width:54px">%&nbsp;of the footprint</label>
+    <div class="acts"><button class="primary" data-badd>Add to ${esc(KINDS[cur].name)}</button><button data-baddclose>Add and close</button></div>
+    <div class="acts"><button data-breplace>Replace the sprite</button>${bSet === 'imports' ? '<button data-bdel>Delete import</button>' : '<button data-bkeep>Keep in my imports</button>'}</div>
+    <p class="note" data-bnote></p>`
+}
+
+async function bAct(what: 'add' | 'addclose' | 'replace' | 'keep' | 'del') {
+  const x = bItems[bSel]
+  if (!x) return
+  const note = () => bq<HTMLElement>('[data-bnote]')
+  if (what === 'add' || what === 'addclose') { addImport(x.svg); if (what === 'addclose') closeBrowser(); else if (note()) note().textContent = `added to ${KINDS[cur].name} ✓` }
+  else if (what === 'replace') { replaceWithImport(x.svg); closeBrowser() }
+  else if (what === 'keep') { await saveImport(slug(x.name), x.svg); await loadImports(); note().textContent = 'kept in your imports ✓' }
+  else if (what === 'del') { await fetch(`/__sprites/import-delete?name=${encodeURIComponent(x.name)}`, { method: 'POST' }); await loadImports(); bReset() }
+}
+
+const bcols = () => getComputedStyle(bq('[data-bgrid]')).gridTemplateColumns.split(' ').length
+
+bEl()?.remove()
+document.addEventListener('click', e => {
+  const t = e.target as HTMLElement
+  if (t.closest('[data-openbrowser]')) { openBrowser(); return }
+  if (!bOpen) return
+  const cell = t.closest<HTMLElement>('.bcell')
+  if (cell) { bSelect(+cell.dataset.bi!); return }
+  const set = t.closest<HTMLElement>('[data-bset]')
+  if (set) { bSet = set.dataset.bset!; for (const b of bEl()!.querySelectorAll('[data-bset]')) b.classList.toggle('on', (b as HTMLElement).dataset.bset === bSet); bReset(); return }
+  if (t.closest('[data-bclose]')) closeBrowser()
+  else if (t.closest('[data-badd]')) bAct('add')
+  else if (t.closest('[data-baddclose]')) bAct('addclose')
+  else if (t.closest('[data-breplace]')) bAct('replace')
+  else if (t.closest('[data-bkeep]')) bAct('keep')
+  else if (t.closest('[data-bdel]')) bAct('del')
+})
+document.addEventListener('dblclick', e => { const cell = (e.target as HTMLElement).closest<HTMLElement>('.bcell'); if (bOpen && cell) { bSelect(+cell.dataset.bi!); bAct('addclose') } })
+document.addEventListener('input', e => {
+  const t = e.target as HTMLInputElement
+  if (!bOpen) return
+  if (t.matches('[data-bquery]')) { clearTimeout(bTimer); bTimer = window.setTimeout(() => { bQuery = t.value; bReset() }, 250) }
+  else if (t.matches('[data-bsize]')) { bSize = +t.value; bq<HTMLElement>('[data-bgrid]').style.setProperty('--bs', `${bSize}px`) }
+})
+document.addEventListener('change', e => {
+  const t = e.target as HTMLInputElement
+  if (!bOpen) return
+  if (t.matches('[data-recolor2]')) { recolor = t.checked; bDetail() }
+  else if (t.matches('[data-fitpct2]')) fitPct = Math.max(10, Math.min(100, +t.value || 80))
+})
+addEventListener('keydown', e => {
+  if (!bOpen) return
+  const inSearch = (e.target as HTMLElement).matches?.('input[type=search]')
+  if (e.key === 'Escape') { e.preventDefault(); if (inSearch && bQuery) { (e.target as HTMLInputElement).value = ''; bQuery = ''; bReset() } else closeBrowser(); return }
+  if (e.key === '/' && !inSearch) { e.preventDefault(); bq<HTMLInputElement>('[data-bquery]').focus(); return }
+  if (inSearch && !['ArrowDown', 'Enter'].includes(e.key)) return
+  const move = ({ ArrowLeft: -1, ArrowRight: 1, ArrowUp: -bcols(), ArrowDown: bcols() } as Record<string, number>)[e.key]
+  if (move !== undefined) { e.preventDefault(); (document.activeElement as HTMLElement)?.blur(); const n = Math.max(0, Math.min(bItems.length - 1, (bSel < 0 ? 0 : bSel + move))); if (bItems.length) bSelect(n, true); return }
+  if (e.key === 'Enter' && bSel >= 0) { e.preventDefault(); bAct(e.shiftKey ? 'addclose' : 'add') }
+}, true)
 
 // ---------------------------------------------------------------- the page
 
@@ -1014,4 +1205,4 @@ Promise.all(ids.map(async id => {
   try { d = localStorage.getItem(`sprite-draft:${id}`) ?? d } catch { /* private window */ }
   draft[id] = d
   hist[id] = { stack: [d], at: 0, t: 0 }
-})).then(() => { paint(); loadImports(); searchIcons('') })
+})).then(() => { paint(); loadImports(); loadSets(); searchIcons('') })
