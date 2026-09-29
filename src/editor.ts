@@ -128,8 +128,72 @@ async function save() {
 type Box = { x: number; y: number; w: number; h: number }
 const unitsOf = (x: number, y: number): [number, number] => { const p = new DOMPoint(x, y).matrixTransform(live!.getScreenCTM()!.inverse()); return [p.x, p.y] }
 
+/** A box seen through a matrix: the smallest upright box that holds its four transformed corners. */
+function mapBox(m: M, b: Box): Box {
+  const xs: number[] = [], ys: number[] = []
+  for (const [x, y] of [[b.x, b.y], [b.x + b.w, b.y], [b.x, b.y + b.h], [b.x + b.w, b.y + b.h]] as const) { const p = point(m, x, y); xs.push(p[0]); ys.push(p[1]) }
+  const x = Math.min(...xs), y = Math.min(...ys)
+  return { x, y, w: Math.max(...xs) - x, h: Math.max(...ys) - y }
+}
+const unionBox = (a: Box, b: Box): Box => {
+  const x = Math.min(a.x, b.x), y = Math.min(a.y, b.y)
+  return { x, y, w: Math.max(a.x + a.w, b.x + b.w) - x, h: Math.max(a.y + a.h, b.y + b.h) - y }
+}
+
+const sampled = new WeakMap<Element, P[]>()
+/** Points along an element's outline, in its own coordinates. Paths are walked (the browser's bounds for curves overshoot to the control points). */
+function localPoints(el: Element): P[] | null {
+  const tag = el.localName
+  const num = (n: string) => +(el.getAttribute(n) ?? 0) || 0
+  try {
+    if (tag === 'path') {
+      const hit = sampled.get(el)
+      if (hit) return hit
+      const p = el as SVGPathElement
+      const len = p.getTotalLength()
+      const n = Math.max(64, Math.min(2000, Math.ceil(len / 1.5)))
+      const pts: P[] = []
+      for (let i = 0; i <= n; i++) { const q = p.getPointAtLength((len * i) / n); pts.push([q.x, q.y]) }
+      sampled.set(el, pts)
+      return pts
+    }
+    if (tag === 'polygon' || tag === 'polyline') return parsePoints(el.getAttribute('points') ?? '')
+    if (tag === 'line') return [[num('x1'), num('y1')], [num('x2'), num('y2')]]
+    if (tag === 'rect') { const x = num('x'), y = num('y'), w = num('width'), h = num('height'); return [[x, y], [x + w, y], [x, y + h], [x + w, y + h]] }
+    if (tag === 'circle' || tag === 'ellipse') {
+      const rx = tag === 'circle' ? num('r') : num('rx'), ry = tag === 'circle' ? num('r') : num('ry')
+      return Array.from({ length: 48 }, (_, i) => [num('cx') + rx * Math.cos((i / 48) * 2 * Math.PI), num('cy') + ry * Math.sin((i / 48) * 2 * Math.PI)] as P)
+    }
+    const g = (el as SVGGraphicsElement).getBBox()
+    return [[g.x, g.y], [g.x + g.width, g.y], [g.x, g.y + g.height], [g.x + g.width, g.y + g.height]]
+  } catch { return null }
+}
+
+/** The tight box of what an element really draws, seen through the matrix `m` (its own transform, and its parents'). Groups add up their children. */
+function inkBox(el: Element, m: M): Box | null {
+  const tag = el.localName
+  if (NOT_DRAWN.includes(tag) || el.getAttribute('display') === 'none') return null
+  if (tag === 'g' || tag === 'svg') {
+    let out: Box | null = null
+    for (const c of el.children) {
+      const cb = inkBox(c, mul(m, matrixOf(c as SVGGraphicsElement)))
+      if (cb) out = out ? unionBox(out, cb) : cb
+    }
+    return out
+  }
+  const pts = localPoints(el)
+  if (!pts || !pts.length) return null
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity
+  for (const [px, py] of pts) { const [x, y] = point(m, px, py); if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y }
+  const stroke = el.getAttribute('stroke')
+  const half = stroke && stroke !== 'none' ? ((+(el.getAttribute('stroke-width') ?? 1) || 0) / 2) * Math.sqrt(Math.abs(m[0] * m[3] - m[1] * m[2])) : 0
+  return { x: x0 - half, y: y0 - half, w: x1 - x0 + 2 * half, h: y1 - y0 + 2 * half }
+}
+
 /** An element's box in sprite units, wherever it has been moved, turned or scaled to. */
 function bbox(el: Element): Box {
+  const ink = inkBox(el, matrixOf(el as SVGGraphicsElement))
+  if (ink) return ink
   const r = el.getBoundingClientRect()
   const pts = [unitsOf(r.left, r.top), unitsOf(r.right, r.top), unitsOf(r.left, r.bottom), unitsOf(r.right, r.bottom)]
   const xs = pts.map(p => p[0]), ys = pts.map(p => p[1])
