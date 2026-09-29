@@ -212,6 +212,19 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   assert.equal(ore.kind, 'copperIngot')
   assert.equal(find(t, c2.id)!.at, t.b.hearth)
 }
+// Nesting is two deep at most: a chest in the crate is the limit, and a chest can't take a lockbox once it is in one.
+{
+  const s = empty()
+  const chest = put(s, 'crate', 'chest', 0, 0)
+  assert.equal(accepts(s, chest.id, make(s, 'coal')), true) // plain items always fit under the cap
+  assert.equal(accepts(s, chest.id, make(s, 'lockbox')), false) // crate > chest > lockbox is three
+  assert.equal(accepts(s, s.b.crate, chest), true)
+  const loose = make(s, 'chest')
+  const lock = make(s, 'lockbox')
+  s.items.push(loose)
+  stow(s, loose.id, lock) // a chest on the field takes a lockbox
+  assert.equal(accepts(s, s.b.crate, loose), false) // but then it can't go into the crate
+}
 // Sending a container carries what is in it.
 {
   const s = empty()

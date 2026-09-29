@@ -116,11 +116,19 @@ export function within(s: State, id: number, anc: number): boolean {
   return false
 }
 
+/** Containers may nest two deep (a bottle in a machine); usually one. No infinite space by chests in chests. */
+export const MAX_NEST = 2
+/** How many containers deep `cid` is, itself included: on the field = 1. */
+const depth = (s: State, cid: number): number => { const c = find(s, cid); return c && isBox(c) ? 1 + depth(s, c.at) : 0 }
+/** How many containers deep an item is: 0 for a plain item, 1 for a lockbox, 2 for a chest holding one. */
+const height = (s: State, it: Item): number => isBox(it) ? 1 + Math.max(0, ...kids(s, it.id).map(o => height(s, o))) : 0
+
 /** Would this container take that item? Not if it is closed to that kind, or is inside the item itself. */
 export function accepts(s: State, cid: number, it: Item): boolean {
   const c = find(s, cid)
   const b = c && spec(c)
   if (!b || within(s, cid, it.id)) return false
+  if (depth(s, cid) + height(s, it) > MAX_NEST) return false
   return !b.accepts || KINDS[it.kind].tags.some(t => b.accepts!.includes(t))
 }
 
