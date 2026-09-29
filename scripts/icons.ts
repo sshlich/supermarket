@@ -3,13 +3,13 @@
 
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
-import { CONTAINERS, KINDS, PLACES } from '../src/world.ts'
+import { KINDS, PLACES } from '../src/world.ts'
 
 const UI = ['night-sleep', 'fly', 'sparkles', 'water-drop']
 const set: { icons: Record<string, { body: string }> } = createRequire(import.meta.url)('@iconify-json/game-icons/icons.json')
 const dir = new URL('../src/icons/', import.meta.url)
 mkdirSync(dir, { recursive: true })
-const names = new Set([...Object.values(KINDS), ...CONTAINERS, ...Object.values(PLACES)].map(k => k.icon).concat(UI))
+const names = new Set([...Object.values(KINDS), ...Object.values(PLACES)].map(k => k.icon).concat(UI))
 for (const name of names) {
   const icon = set.icons[name]
   if (!icon) { console.error(`no icon "${name}"`); process.exitCode = 1; continue }

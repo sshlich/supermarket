@@ -1,14 +1,22 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { applyDrop, boxOf, forage, lift, make, night, planDrop, send, start, stow, where, type BoxId, type Item, type State } from './world.ts'
+import { boxOf, applyDrop, find, forage, kids, lift, make, night, planDrop, send, start, stow, accepts, env, FIELD, type Item, type State } from './world.ts'
 
-const empty = (): State => ({ day: 1, place: 'woods', target: 'crate', boxes: { basket: [], crate: [], cold: [], hearth: [], rack: [], cellar: [], barrel: [] }, seen: [], next: 1, log: [] })
-const put = (s: State, box: BoxId, kind: string, x: number, y: number, extra: Partial<Item> = {}) => {
-  const it = make(s, kind, { x, y, ...extra })
-  s.boxes[box].push(it)
+const NAMES = { basket: 'basket', crate: 'crate', cold: 'coldBox', hearth: 'hearth', rack: 'rack', cellar: 'shelf', barrel: 'barrel' } as const
+type BoxId = keyof typeof NAMES
+/** An empty workshop: the seven containers on the field, and `s.b` to find them by name. */
+const empty = (): State & { b: Record<BoxId, number> } => {
+  const s: State = { day: 1, place: 'woods', target: 0, items: [], open: [], seen: [], next: 1, log: [] }
+  const b = {} as Record<BoxId, number>
+  for (const [name, kind] of Object.entries(NAMES)) { const c = make(s, kind); s.items.push(c); b[name as BoxId] = c.id }
+  return Object.assign(s, { b })
+}
+const put = (s: ReturnType<typeof empty>, box: BoxId | number, kind: string, x: number, y: number, extra: Partial<Item> = {}) => {
+  const it = make(s, kind, { x, y, at: typeof box === 'number' ? box : s.b[box], ...extra })
+  s.items.push(it)
   return it
 }
-const kinds = (s: State, box: BoxId) => s.boxes[box].map(o => `${o.kind}${o.n > 1 ? `x${o.n}` : ''}`).sort()
+const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, typeof box === 'number' ? box : s.b[box]).map(o => `${o.kind}${o.n > 1 ? `x${o.n}` : ''}`).sort()
 
 // A lit hearth burns one fuel, smelts ore (keeping its grade), boils seawater to salt and burns herbs.
 {
@@ -105,7 +113,7 @@ const kinds = (s: State, box: BoxId) => s.boxes[box].map(o => `${o.kind}${o.n > 
 {
   const s = empty()
   put(s, 'basket', 'berries', 0, 0, { n: 4 })
-  assert.equal(stow(s, 'basket', make(s, 'berries', { n: 5 })), 0)
+  assert.equal(stow(s, s.b.basket, make(s, 'berries', { n: 5 })), 0)
   assert.deepEqual(kinds(s, 'basket'), ['berriesx3', 'berriesx6'])
 }
 // A full basket leaves finds behind; tools in the basket help and wear.
@@ -114,7 +122,7 @@ const kinds = (s: State, box: BoxId) => s.boxes[box].map(o => `${o.kind}${o.n > 
   s.place = 'mine'
   const pick = put(s, 'basket', 'pickaxe', 0, 0)
   forage(s, () => 0)
-  const ore = s.boxes.basket.find(o => o.kind === 'copperOre')!
+  const ore = kids(s, s.b.basket).find(o => o.kind === 'copperOre')!
   assert.equal(ore.n, 4) // 1 + 3 for the pickaxe
   assert.equal(pick.cond, 90)
 }
@@ -123,7 +131,7 @@ const kinds = (s: State, box: BoxId) => s.boxes[box].map(o => `${o.kind}${o.n > 
   const s = empty()
   const b = put(s, 'basket', 'berries', 0, 0, { n: 3 })
   put(s, 'crate', 'berries', 0, 0, { n: 4 })
-  assert.equal(send(s, b.id, 'crate'), true)
+  assert.equal(send(s, b.id, s.b.crate), true)
   assert.deepEqual(kinds(s, 'crate'), ['berriesx6', 'berries'].sort())
   assert.deepEqual(kinds(s, 'basket'), [])
 }
@@ -134,7 +142,7 @@ const kinds = (s: State, box: BoxId) => s.boxes[box].map(o => `${o.kind}${o.n > 
   const a = put(s, 'crate', 'coal', 0, 0, { n: 2 })
   put(s, 'crate', 'coal', 3, 0, { n: 3 })
   let h = lift(s, a.id)!
-  let p = planDrop(s, h, 'crate', 3, 0, false)!
+  let p = planDrop(s, h, s.b.crate, 3, 0, false)!
   assert.equal(p.merge !== undefined, true)
   applyDrop(s, h, p)
   assert.deepEqual(kinds(s, 'crate'), ['coalx5'])
@@ -142,9 +150,9 @@ const kinds = (s: State, box: BoxId) => s.boxes[box].map(o => `${o.kind}${o.n > 
   const knife = put(s, 'basket', 'knife', 0, 0)
   const jar = put(s, 'crate', 'emptyJar', 5, 2)
   h = lift(s, knife.id)!
-  p = planDrop(s, h, 'crate', 5, 2, false)!
+  p = planDrop(s, h, s.b.crate, 5, 2, false)!
   applyDrop(s, h, p)
-  assert.deepEqual([where(s, knife.id)!.box, where(s, jar.id)!.box], ['crate', 'basket'])
+  assert.deepEqual([knife.at, jar.at], [s.b.crate, s.b.basket])
   assert.deepEqual([jar.x, jar.y], [0, 0])
 }
 // Splitting a pile: half comes away; dropping it elsewhere makes a second pile.
@@ -154,16 +162,64 @@ const kinds = (s: State, box: BoxId) => s.boxes[box].map(o => `${o.kind}${o.n > 
   const h = lift(s, a.id, true)!
   assert.equal(h.item.n, 2)
   assert.equal(a.n, 3)
-  applyDrop(s, h, planDrop(s, h, 'crate', 4, 4, false)!)
+  applyDrop(s, h, planDrop(s, h, s.b.crate, 4, 4, false)!)
   assert.deepEqual(kinds(s, 'crate'), ['coalx2', 'coalx3'])
 }
 
-// The starting setup is valid: nothing overlaps.
+// The starting setup is valid: nothing overlaps inside any container.
 {
   const s = start()
-  for (const items of Object.values(s.boxes))
-    for (const a of items) for (const b of items) if (a !== b) assert.ok(!overlaps(boxOf(a), boxOf(b)))
-  assert.ok(s.boxes.crate.length > 5 && s.boxes.basket.length > 4)
+  for (const c of s.items.filter(o => kids(s, o.id).length))
+    for (const a of kids(s, c.id)) for (const b of kids(s, c.id)) if (a !== b) assert.ok(!overlaps(boxOf(a), boxOf(b)))
+  assert.ok(kids(s, s.target).length > 5)
+}
+
+// Containers: a lockbox takes only metal; nothing goes into itself or what it holds.
+{
+  const s = empty()
+  const box = put(s, 'crate', 'lockbox', 0, 0)
+  const chest = put(s, 'crate', 'chest', 3, 0)
+  const ingot = make(s, 'copperIngot')
+  assert.equal(accepts(s, box.id, ingot), true)
+  assert.equal(accepts(s, box.id, make(s, 'coal')), false)
+  assert.equal(stow(s, box.id, make(s, 'coal')), 1) // refused, all of it left over
+  assert.equal(accepts(s, chest.id, chest), false)
+  put(s, chest.id, 'lockbox', 0, 0)
+  assert.equal(accepts(s, kids(s, chest.id)[0].id, chest), false) // no cycles
+}
+// Nesting: what the outer container does reaches what is inside, unless a container shuts it out.
+{
+  const s = empty()
+  const chest = put(s, 'cold', 'chest', 0, 0)
+  const fish = put(s, chest.id, 'fish', 0, 0, { fresh: 2 })
+  const outside = put(s, 'crate', 'fish', 0, 0, { fresh: 2 })
+  night(s)
+  assert.equal(fish.fresh, 2) // stays cold inside a chest inside the cold box
+  assert.equal(outside.fresh, 1)
+  const damp = put(s, 'cellar', 'lockbox', 0, 0)
+  const knife = put(s, damp.id, 'ironIngot', 0, 0)
+  const tool = put(s, 'cellar', 'knife', 3, 0)
+  night(s)
+  assert.equal(env(s, damp.id).has('damp'), false)
+  assert.equal(tool.cond, 85)
+  assert.ok(knife) // metal in the lockbox is not a tool, but the point is the prop
+  // A fire lights what is inside a chest set on it.
+  const t = empty()
+  put(t, 'hearth', 'coal', 0, 0)
+  const c2 = put(t, 'hearth', 'chest', 1, 0)
+  const ore = put(t, c2.id, 'copperOre', 0, 0)
+  night(t)
+  assert.equal(ore.kind, 'copperIngot')
+  assert.equal(find(t, c2.id)!.at, t.b.hearth)
+}
+// Sending a container carries what is in it.
+{
+  const s = empty()
+  const chest = put(s, 'crate', 'chest', 0, 0)
+  put(s, chest.id, 'coal', 0, 0)
+  assert.equal(send(s, chest.id, s.b.basket), true)
+  assert.equal(find(s, chest.id)!.at, s.b.basket)
+  assert.deepEqual(kinds(s, chest.id), ['coal'])
 }
 
 console.log('world ok')

@@ -1,7 +1,7 @@
 import './style.css'
 import {
-  applyDrop, BOX, CONTAINERS, dims, forecast, forecastDrop, gradeName, has, KINDS, showsDamp, label, lift, PLACES, planDrop, putBack, send, sleep, start, tidy, where,
-  type BoxId, type Container, type Held, type Item, type Note, type Place, type Plan, type State,
+  accepts, applyDrop, dims, env, find, forecast, forecastDrop, gradeName, has, isBox, KINDS, kids, label, lift, nameOf, PLACES, planDrop, putBack, room, send, showsDamp, sleep, spec, start, tidy, tops,
+  type Held, type Item, type Note, type Place, type Plan, type State,
 } from './world.ts'
 
 const files = import.meta.glob<string>('./icons/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -11,7 +11,7 @@ const icon = (name: string) => ICON[name] ?? ''
 // Presentation only: some icons are drawn on a diagonal; turn them to lie along long items.
 const TILT: Record<string, number> = { firewood: 45, knife: 45 }
 
-const SAVE = 'workshop-v1'
+const SAVE = 'inventory-v2'
 let s: State = load() ?? start()
 let fc = forecast(s)
 let pulse = new Set<number>()
@@ -23,7 +23,7 @@ const tip = document.body.appendChild(Object.assign(document.createElement('div'
 const veil = document.body.appendChild(Object.assign(document.createElement('div'), { className: 'veil' }))
 
 function load(): State | null {
-  try { const v = JSON.parse(localStorage.getItem(SAVE) ?? 'null'); return v?.boxes ? v : null } catch { return null }
+  try { const v = JSON.parse(localStorage.getItem(SAVE) ?? 'null'); return v?.items ? v : null } catch { return null }
 }
 function save() {
   try { localStorage.setItem(SAVE, JSON.stringify(s)) } catch { /* private window: the toy still works, it just won't remember */ }
@@ -41,7 +41,7 @@ const PILE: [number, number, number][][] = [[[0, 0, 0.78]], [[-14, 10, 0.64], [1
 function itemHtml(it: Item, extra = '') {
   const k = KINDS[it.kind]
   const d = dims(it)
-  const cls = [it.rotten && 'rotten', has(it, 'light') && !it.rotten && 'glow', pulse.has(it.id) && 'pulse', born.has(it.id) && 'born', (it.cond ?? 100) < 40 && 'rusty'].filter(Boolean).join(' ')
+  const cls = [it.rotten && 'rotten', has(it, 'light') && !it.rotten && 'glow', pulse.has(it.id) && 'pulse', born.has(it.id) && 'born', (it.cond ?? 100) < 40 && 'rusty', isBox(it) && 'boxy'].filter(Boolean).join(' ')
   const tilt = TILT[it.kind] ?? 0
   const m = Math.min(k.w, k.h) * (tilt ? 1.5 : 1)
   const copies = PILE[Math.min(k.stack > 1 ? it.n : 1, 3) - 1]
@@ -62,25 +62,34 @@ function badges(it: Item) {
   if (showsDamp(it) && it.moist! > 20) out += `<span class="wet${(it.moist ?? 0) >= 50 ? ' soaked' : ''}">${icon('water-drop')}</span>`
   if (it.rotten) out += `<span class="fly">${icon('fly')}</span>`
   if (it.n > 1) out += `<b class="n">${it.n}</b>`
+  if (isBox(it)) out += `<b class="n" title="Double-click to open">${kids(s, it.id).length}</b>`
   return out
 }
 
-function hearth(): { cls: string; env: string } {
-  const h = s.boxes.hearth
-  if (h.some(o => has(o, 'fuel') && (o.moist ?? 0) <= 20)) return { cls: 'lit', env: 'lit tonight · burns 1 fuel' }
-  if (h.some(o => has(o, 'wood'))) return { cls: 'smoky', env: 'wet wood only · will smoke' }
+/** A fire's state tonight; null for anything that isn't a fire. */
+function fire(c: Item): { cls: string; env: string } | null {
+  if (!spec(c)!.env.includes('fire')) return null
+  const p = env(s, c.id)
+  if (p.has('lit')) return { cls: 'lit', env: 'lit tonight · burns 1 fuel' }
+  if (p.has('smoky')) return { cls: 'smoky', env: 'wet wood only · will smoke' }
   return { cls: 'cold', env: 'cold · needs dry fuel' }
 }
 
-function boxHtml(c: Container) {
-  const items = s.boxes[c.id]
+/** Every container shown as a panel: those on the field, then any you have opened. */
+const panels = () => [...tops(s), ...s.open.map(id => find(s, id)).filter((o): o is Item => !!o && isBox(o) && o.at !== 0)]
+
+function boxHtml(c: Item) {
+  const k = KINDS[c.kind]
+  const { w, h } = room(c)
+  const items = kids(s, c.id)
   const used = items.reduce((n, it) => n + dims(it).w * dims(it).h, 0)
-  const h = c.id === 'hearth' ? hearth() : null
-  return `<section class="box box-${c.id} ${h?.cls ?? ''}" data-box="${c.id}" style="--w:${c.w};--h:${c.h}">
+  const f = fire(c)
+  const nested = c.at !== 0
+  return `<section class="box box-${c.kind} ${f?.cls ?? ''}" data-box="${c.id}" style="--w:${w};--h:${h}">
     <header data-boxtip="${c.id}">
-      <div><span class="bi">${icon(c.icon)}</span><b>${c.name}</b><span class="grow"></span>
-        <button class="pin ${s.target === c.id ? 'on' : ''}" data-pin="${c.id}" title="Shift-click sends things here">⇥</button></div>
-      <div><span class="env">${h?.env ?? c.env}</span><span class="grow"></span><span class="fill">${used}/${c.w * c.h}</span>
+      <div><span class="bi">${icon(k.icon)}</span><b>${k.name}</b><span class="grow"></span>
+        <button class="pin ${s.target === c.id ? 'on' : ''}" data-pin="${c.id}" title="Shift-click sends things here">⇥</button>${nested ? `<button data-close="${c.id}" title="Close">✕</button>` : ''}</div>
+      <div><span class="env">${f?.env ?? spec(c)!.desc}</span><span class="grow"></span><span class="fill">${used}/${w * h}</span>
         <button class="tidy" data-tidy="${c.id}" title="Merge piles and pack by kind">tidy</button></div>
     </header>
     <div class="grid" data-grid="${c.id}">${items.map(it => itemHtml(it)).join('')}</div>
@@ -98,10 +107,10 @@ function logHtml() {
   const night = split < 0 ? [] : s.log.slice(0, split)
   const loud = night.filter(n => !n.quiet)
   const quiet = night.length - loud.length
-  const byBox = CONTAINERS.map(c => [c, loud.filter(n => n.box === c.id)] as const).filter(([, ns]) => ns.length)
+  const byBox = panels().map(c => [c, loud.filter(n => n.box === c.id)] as const).filter(([, ns]) => ns.length)
   const morning = split < 0 ? s.log : s.log.slice(split)
   return `<h2>${s.day > 1 ? 'Last night' : 'The workshop'}</h2>
-    ${byBox.map(([c, ns]) => `<h3>${icon(c.icon)}${c.name}</h3><ul>${ns.map(noteHtml).join('')}</ul>`).join('')}
+    ${byBox.map(([c, ns]) => `<h3>${icon(KINDS[c.kind].icon)}${KINDS[c.kind].name}</h3><ul>${ns.map(noteHtml).join('')}</ul>`).join('')}
     ${s.day > 1 && !loud.length ? '<p class="calm">A quiet night.</p>' : ''}
     ${quiet ? `<p class="calm">…and ${quiet} small change${quiet > 1 ? 's' : ''}. Hover things to see.</p>` : ''}
     <ul class="morning">${morning.map(noteHtml).join('')}</ul>`
@@ -109,7 +118,8 @@ function logHtml() {
 
 function html() {
   const kinds = Object.keys(KINDS).length
-  const [top, bottom] = [CONTAINERS.slice(0, 3), CONTAINERS.slice(3)]
+  const all = panels()
+  const [top, bottom] = [all.slice(0, 3), all.slice(3)]
   return `<header class="top">
       <div class="brand"><h1>The Workshop</h1><span class="day">Day ${s.day}</span></div>
       <div class="found" title="Kinds of things you've had in the workshop">${icon('sparkles')}Found ${s.seen.length} of ${kinds}</div>
@@ -128,7 +138,7 @@ function html() {
     <footer class="help">
       <span><kbd>drag</kbd> move</span><span><kbd>R</kbd> / <kbd>right-click</kbd> turn while dragging</span>
       <span><kbd>shift</kbd>-click send to ⇥</span><span><kbd>⌘/ctrl</kbd>+<kbd>shift</kbd>-click send all of a kind</span>
-      <span><kbd>alt</kbd>-drag split a pile</span><span>hover anything to see what tonight will do</span>
+      <span><kbd>alt</kbd>-drag split a pile</span><span><kbd>double-click</kbd> a chest to open it</span><span>hover anything to see what tonight will do</span>
       <button class="reset" data-reset>start over</button>
     </footer>`
 }
@@ -172,7 +182,7 @@ function place(el: Element, below = false) {
 }
 const hideTip = () => tip.classList.remove('on')
 
-function itemTip(it: Item, box: BoxId) {
+function itemTip(it: Item) {
   const k = KINDS[it.kind]
   const rows: [string, string][] = []
   if (k.stack > 1) rows.push(['Pile', `${it.n} of ${k.stack}`])
@@ -187,13 +197,15 @@ function itemTip(it: Item, box: BoxId) {
   const lines = fc.get(it.id) ?? []
   tip.innerHTML = `<h3 style="--c:${k.color}">${label(it)}</h3><p>${k.blurb}</p>
     ${rows.length ? `<dl>${rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>` : ''}
-    <h4>Tonight, in the ${BOX[box].name.toLowerCase()}</h4>
+    <h4>Tonight, in the ${nameOf(s, it.at)}</h4>
     ${lines.length ? `<ul>${lines.map(l => `<li>${l}</li>`).join('')}</ul>` : '<p class="none">Nothing happens to it here.</p>'}`
 }
 
-function boxTip(id: BoxId) {
-  const c = BOX[id]
-  tip.innerHTML = `<h3>${c.name}</h3><p>${c.blurb}</p>${id === 'hearth' ? `<p class="none">${hearth().env}</p>` : ''}${s.target === id ? '<p class="none">Shift-click sends things here.</p>' : ''}`
+function boxTip(id: number) {
+  const c = find(s, id)!
+  const k = KINDS[c.kind]
+  const f = fire(c)
+  tip.innerHTML = `<h3>${k.name}</h3><p>${k.blurb}</p>${f ? `<p class="none">${f.env}</p>` : ''}${s.target === id ? '<p class="none">Shift-click sends things here.</p>' : ''}`
 }
 
 let lit: Element | null = null
@@ -205,19 +217,19 @@ function hover(e: PointerEvent) {
   const spot = li && app.querySelector(`.wall .item[data-id="${li.dataset.id}"]`)
   if (spot !== lit) { lit?.classList.remove('spot'); spot?.classList.add('spot'); lit = spot ?? null }
   if (itemEl) {
-    const at = where(s, +(itemEl as HTMLElement).dataset.id!)
-    if (!at) return hideTip()
-    itemTip(at.it, at.box)
+    const it = find(s, +(itemEl as HTMLElement).dataset.id!)
+    if (!it) return hideTip()
+    itemTip(it)
     place(itemEl)
   } else if (head) {
-    boxTip(head.dataset.boxtip as BoxId)
+    boxTip(+head.dataset.boxtip!)
     place(head, true)
   } else hideTip()
 }
 
 // ---------------------------------------------------------------- handling
 
-interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: boolean; plan: Plan | null; key: string; box: BoxId | null }
+interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: boolean; plan: Plan | null; key: string; box: number | null }
 let press: { id: number; x: number; y: number; alt: boolean; gx: number; gy: number } | null = null
 let drag: Drag | null = null
 let last: PointerEvent | null = null
@@ -293,7 +305,7 @@ function move(e: PointerEvent) {
     if (d.key) { d.key = ''; d.plan = null; d.box = null; clearGhosts(); hideTip() }
     return
   }
-  const box = boxEl.dataset.box as BoxId
+  const box = +boxEl.dataset.box!
   const r = boxEl.querySelector('.grid')!.getBoundingClientRect()
   const x = Math.round((e.clientX - d.gx - r.left) / cell)
   const y = Math.round((e.clientY - d.gy - r.top) / cell)
@@ -313,21 +325,22 @@ function clearGhosts() {
   for (const el of app.querySelectorAll('.shoved')) el.classList.remove('shoved')
 }
 
-function ghost(box: BoxId, x: number, y: number, w: number, h: number, cls: string) {
+function ghost(box: number, x: number, y: number, w: number, h: number, cls: string) {
   app.querySelector(`[data-grid="${box}"]`)!.insertAdjacentHTML('beforeend', `<div class="ghost ${cls}" style="--x:${x};--y:${y};--w:${w};--h:${h}"></div>`)
 }
 
-function paintGhosts(box: BoxId, x: number, y: number) {
+function paintGhosts(box: number, x: number, y: number) {
   clearGhosts()
   const d = drag!
   const p = d.plan
   if (!p) {
     const dd = dims({ ...d.held.item, rot: d.rot })
-    ghost(box, Math.max(0, Math.min(BOX[box].w - dd.w, x)), Math.max(0, Math.min(BOX[box].h - dd.h, y)), dd.w, dd.h, 'bad')
+    const b = room(find(s, box)!)
+    ghost(box, Math.max(0, Math.min(b.w - dd.w, x)), Math.max(0, Math.min(b.h - dd.h, y)), dd.w, dd.h, 'bad')
     return
   }
   if (p.merge !== undefined) {
-    const pile = where(s, p.merge)!.it
+    const pile = find(s, p.merge)!
     const pd = dims(pile)
     ghost(box, pile.x, pile.y, pd.w, pd.h, 'merge')
     return
@@ -335,17 +348,17 @@ function paintGhosts(box: BoxId, x: number, y: number) {
   const dd = dims({ ...d.held.item, rot: p.rot })
   ghost(box, p.x, p.y, dd.w, dd.h, 'land')
   for (const mv of p.moves) {
-    const o = where(s, mv.id)!.it
+    const o = find(s, mv.id)!
     const md = dims({ ...o, rot: mv.rot })
-    ghost(mv.box, mv.x, mv.y, md.w, md.h, 'shove')
+    ghost(mv.at, mv.x, mv.y, md.w, md.h, 'shove')
     app.querySelector(`.item[data-id="${mv.id}"]`)?.classList.add('shoved')
   }
 }
 
-function dragTip(box: BoxId) {
+function dragTip(box: number) {
   const d = drag!
-  const where_ = BOX[box].name.toLowerCase()
-  if (!d.plan) { tip.innerHTML = `<p class="bad">No room in the ${where_}.</p>`; return }
+  const where_ = nameOf(s, box)
+  if (!d.plan) { tip.innerHTML = `<p class="bad">${accepts(s, box, d.held.item) ? `No room in the ${where_}.` : `The ${where_} won’t take that.`}</p>`; return }
   const lines = forecastDrop(s, d.held, d.plan)
   const head = d.plan.merge !== undefined ? `Joins the pile. Tonight, in the ${where_}:` : `Tonight, in the ${where_}:`
   tip.innerHTML = `<h4>${head}</h4>${lines.length ? `<ul>${lines.map(l => `<li>${l}</li>`).join('')}</ul>` : '<p class="none">Nothing happens to it here.</p>'}`
@@ -377,9 +390,10 @@ function cancel() {
 }
 
 function quickSend(id: number, all: boolean) {
-  const at = where(s, id)
-  if (!at) return
-  const to = at.box === s.target ? (s.target === 'basket' ? 'crate' : 'basket') : s.target
+  const it = find(s, id)
+  if (!it) return
+  const other = (kind: string) => s.items.find(o => o.kind === kind)!.id
+  const to = it.at === s.target ? (find(s, s.target)?.kind === 'basket' ? other('crate') : other('basket')) : s.target
   const from = rects()
   if (send(s, id, to, all)) changed(from)
   else app.querySelector(`.item[data-id="${id}"]`)?.animate(
@@ -398,10 +412,10 @@ async function night() {
   veil.innerHTML = `<div>${icon('night-sleep')}<p>Night ${s.day}</p></div>`
   veil.classList.add('on')
   await wait(700)
-  const before = new Set(Object.values(s.boxes).flat().map(o => o.id))
+  const before = new Set(s.items.map(o => o.id))
   const notes = sleep(s)
   pulse = new Set(notes.filter(n => !n.quiet && n.id !== undefined && n.mark !== 'new').map(n => n.id!))
-  born = new Set(Object.values(s.boxes).flat().map(o => o.id).filter(id => !before.has(id)))
+  born = new Set(s.items.map(o => o.id).filter(id => !before.has(id)))
   changed(new Map())
   veil.querySelector('p')!.textContent = `Day ${s.day}`
   await wait(500)
@@ -409,14 +423,23 @@ async function night() {
   busy = false
 }
 
+app.addEventListener('dblclick', e => {
+  const el = (e.target as HTMLElement).closest<HTMLElement>('.item.boxy[data-id]')
+  const id = el && +el.dataset.id!
+  if (!id) return
+  s.open = s.open.includes(id) ? s.open.filter(o => o !== id) : [...s.open, id]
+  changed()
+})
+
 let resetArmed = false
 app.addEventListener('click', e => {
   const t = e.target as HTMLElement
   const btn = t.closest<HTMLElement>('button')
   if (!btn) return
   if (btn.dataset.place) { s.place = btn.dataset.place as Place; changed() }
-  else if (btn.dataset.pin) { s.target = btn.dataset.pin as BoxId; changed() }
-  else if (btn.dataset.tidy) { const from = rects(); tidy(s, btn.dataset.tidy as BoxId); changed(from) }
+  else if (btn.dataset.pin) { s.target = +btn.dataset.pin; changed() }
+  else if (btn.dataset.close) { s.open = s.open.filter(id => id !== +btn.dataset.close!); changed() }
+  else if (btn.dataset.tidy) { const from = rects(); tidy(s, +btn.dataset.tidy); changed(from) }
   else if (btn.classList.contains('sleep')) night()
   else if (btn.dataset.reset !== undefined) {
     if (!resetArmed) { resetArmed = true; btn.textContent = 'sure? click again'; setTimeout(() => { resetArmed = false; btn.textContent = 'start over' }, 2500); return }
