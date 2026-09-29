@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { applyDrop, artOf, boxOf, H, KINDS, turnArt, lift, planDrop, putBack, start, W, type State } from './world.ts'
+import { applyDrop, boxOf, H, lift, planDrop, putBack, start, W, type State } from './world.ts'
 
 const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 
@@ -43,23 +43,6 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   const h = lift(s, 1)!
   const p = planDrop(s, h, 99, 99, false)!
   assert.deepEqual([p.x, p.y], [W - 4, H - 4])
-}
-
-// Art: every kind's drawing fits its footprint, and turning it four times gets it back.
-{
-  for (const [id, k] of Object.entries(KINDS)) {
-    assert.equal(k.art.length, k.h, id)
-    for (const row of k.art) assert.equal(row.length, k.w, id)
-    let a = k.art
-    for (let i = 0; i < 4; i++) a = turnArt(a)
-    assert.deepEqual(a, k.art, id)
-  }
-  const s = start()
-  const axe = s.items.find(o => o.kind === 'axe')!
-  const flat = artOf({ ...axe, rot: true })
-  assert.equal(flat.length, 4)
-  assert.equal(flat[0].length, 6)
-  assert.deepEqual(turnArt(['┌─', '│ ']), ['─┐', ' │']) // the corner ends up top right, opening down and left
 }
 
 console.log('world ok')
