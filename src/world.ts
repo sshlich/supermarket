@@ -5,17 +5,24 @@ import { drop, same, turn, type Box } from './grid.ts'
 export const W = 30
 export const H = 20
 
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; shape?: string[] }
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; shape?: string[]; art: string[] }
 
 /** Sizes are in field cells. A `shape` (rows, '#' filled) gives an irregular footprint and sets w and h. */
 export const KINDS: Record<string, Kind> = {
-  crate: { name: 'Crate', icon: 'wooden-crate', color: '#b98a55', w: 4, h: 4 },
-  log: { name: 'Log', icon: 'log', color: '#b98552', w: 4, h: 2 },
-  coal: { name: 'Coal', icon: 'coal-pile', color: '#7b808c', w: 2, h: 2 },
-  bottle: { name: 'Bottle', icon: 'jug', color: '#5aa0d8', w: 2, h: 4 },
-  knife: { name: 'Knife', icon: 'bowie-knife', color: '#9aa5b1', w: 2, h: 4 },
-  axe: { name: 'Axe', icon: 'battle-axe', color: '#a3aeb9', w: 4, h: 6, shape: ['####', '###.', '.##.', '.##.', '.##.', '.##.'] },
-  pickaxe: { name: 'Pickaxe', icon: 'war-pick', color: '#8f9aa6', w: 6, h: 4, shape: ['######', '######', '..##..', '..##..'] },
+  crate: { name: 'Crate', icon: 'wooden-crate', color: '#c9975a', w: 4, h: 4,
+    art: ['╔══╗', '║\\/║', '║/\\║', '╚══╝'] },
+  log: { name: 'Log', icon: 'log', color: '#b98552', w: 4, h: 2,
+    art: ['(≡≡)', '(≡≡)'] },
+  coal: { name: 'Coal', icon: 'coal-pile', color: '#8a90a0', w: 2, h: 2,
+    art: ['#*', '*#'] },
+  bottle: { name: 'Bottle', icon: 'jug', color: '#5aa8e6', w: 2, h: 4,
+    art: ['┌┐', '║║', '~~', '└┘'] },
+  knife: { name: 'Knife', icon: 'bowie-knife', color: '#b4bfcc', w: 2, h: 4,
+    art: ['║ ', '║ ', '╤═', '│ '] },
+  axe: { name: 'Axe', icon: 'battle-axe', color: '#b4bfcc', w: 4, h: 6, shape: ['####', '###.', '.##.', '.##.', '.##.', '.##.'],
+    art: ['┌──┐', '└┐▒ ', ' ││ ', ' ││ ', ' ││ ', ' └┘ '] },
+  pickaxe: { name: 'Pickaxe', icon: 'war-pick', color: '#a6b2c0', w: 6, h: 4, shape: ['######', '######', '..##..', '..##..'],
+    art: ['┌────┐', '└─┐┌─┘', '  ││  ', '  └┘  '] },
 }
 for (const k of Object.values(KINDS)) if (k.shape) { k.h = k.shape.length; k.w = Math.max(...k.shape.map(r => r.length)) }
 
@@ -36,6 +43,24 @@ export function shapeOf(kind: string): Box {
 }
 export const boxOf = (it: Item): Box => ({ ...(it.rot ? turn(shapeOf(it.kind)) : shapeOf(it.kind)), id: it.id, x: it.x, y: it.y })
 export const dims = (it: Item) => { const b = boxOf(it); return { w: b.w, h: b.h } }
+/** Quarter turn clockwise of a glyph, so drawn art turns with its item. Lines, corners and slashes change; letters stay. */
+const TURN: Record<string, string> = {}
+for (const cycle of ['┌┐┘└', '├┬┤┴', '─│', '═║', '╔╗╝╚', '╠╦╣╩', '╤╢╧╟', '╨╞╥╡', '╪╫', '/\\'])
+  for (let i = 0; i < cycle.length; i++) TURN[cycle[i]] = cycle[(i + 1) % cycle.length]
+export function turnArt(rows: string[]): string[] {
+  const h = rows.length
+  const w = Math.max(...rows.map(r => r.length))
+  const out: string[] = []
+  for (let x = 0; x < w; x++) {
+    let row = ''
+    for (let y = h - 1; y >= 0; y--) { const c = rows[y][x] ?? ' '; row += TURN[c] ?? c }
+    out.push(row)
+  }
+  return out
+}
+/** The glyph art of an item as it sits. */
+export const artOf = (it: Item) => it.rot ? turnArt(KINDS[it.kind].art) : KINDS[it.kind].art
+
 /** The filled cells of an item as it sits (relative to its top-left), or null for a plain rectangle. */
 export const cellsOf = (it: Item) => boxOf(it).cells ?? null
 

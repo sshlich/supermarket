@@ -23,22 +23,18 @@ svg { display: block; width: 100%; height: 100%; }
 }
 
 /* things: flat tiles tinted by what they are made of */
-.item {
-  position: absolute; z-index: 1; cursor: grab;
-  left: calc(var(--x) * var(--cell) + 1px); top: calc(var(--y) * var(--cell) + 1px);
-  width: calc(var(--w) * var(--cell) - 2px); height: calc(var(--h) * var(--cell) - 2px);
-  border-radius: 3px; background: color-mix(in srgb, var(--c) 60%, #131316);
-}
-.item:hover { filter: brightness(1.15); }
-
-/* shaped things: one silhouette, masked to the filled cells */
-.item.shaped { z-index: 0; background: none; border-radius: 0; }
-.item .body { position: absolute; left: -1px; top: -1px; width: calc(var(--w) * var(--cell)); height: calc(var(--h) * var(--cell)); background: color-mix(in srgb, var(--c) 60%, #131316); }
+.item { position: absolute; z-index: 1; left: calc(var(--x) * var(--cell)); top: calc(var(--y) * var(--cell)); width: calc(var(--w) * var(--cell)); height: calc(var(--h) * var(--cell)); color: var(--c); pointer-events: none; }
+.item svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 3px color-mix(in srgb, var(--c) 60%, transparent)); }
+.item .sq rect { fill: color-mix(in srgb, var(--c) 16%, #000); pointer-events: auto; cursor: grab; }
+.item path { fill: none; stroke: currentColor; stroke-width: .09; stroke-linecap: butt; pointer-events: none; }
+.item text { fill: currentColor; font: .82px ui-monospace, 'SF Mono', Menlo, Consolas, monospace; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.item:hover .sq rect { fill: color-mix(in srgb, var(--c) 28%, #000); }
 
 .lifted { opacity: .18; filter: grayscale(1); }
 .shoved { opacity: .5; }
 .floating { position: fixed; left: 0; top: 0; z-index: 40; pointer-events: none; will-change: transform; }
-.floating .item { transform: scale(1.04); filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .55)); }
+.floating .item { transform: scale(1.04); }
+.floating .item svg { filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .6)) drop-shadow(0 0 3px color-mix(in srgb, var(--c) 60%, transparent)); }
 body.dragging, body.dragging .item { cursor: grabbing; }
 
 /* where it will land, and what gives way */
@@ -48,5 +44,4 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .ghost.bad { --gb: var(--bad); --gf: rgba(213, 96, 108, .16); }
 .ghost:not(.shaped) { border: 1px solid var(--gb); background: var(--gf); border-radius: 3px; }
 .ghost.shove:not(.shaped) { border-style: dashed; }
-.ghost .gc { position: absolute; inset: 0; background: color-mix(in srgb, var(--gb) 34%, transparent); }
-.ghost.shaped { filter: drop-shadow(1px 0 0 var(--gb)) drop-shadow(-1px 0 0 var(--gb)) drop-shadow(0 1px 0 var(--gb)) drop-shadow(0 -1px 0 var(--gb)); }
+.ghost .gc { position: absolute; left: calc(var(--cx) * var(--cell) + var(--cell) * .1); top: calc(var(--cy) * var(--cell) + var(--cell) * .1); width: calc(var(--cell) * .8); height: calc(var(--cell) * .8); border-radius: calc(var(--cell) * .2); background: color-mix(in srgb, var(--gb) 34%, transparent); }

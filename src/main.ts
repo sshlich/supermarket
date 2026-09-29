@@ -1,5 +1,5 @@
 import './style.css'
-import { applyDrop, cellsOf, dims, find, H, KINDS, lift, planDrop, putBack, start, W, type Held, type Item, type Plan, type State } from './world.ts'
+import { applyDrop, artOf, cellsOf, dims, find, H, KINDS, lift, planDrop, putBack, start, W, type Held, type Item, type Plan, type State } from './world.ts'
 
 const SAVE = 'field-v1'
 let s: State = load() ?? start()
@@ -19,29 +19,68 @@ function fit() {
 
 // ---------------------------------------------------------------- drawing
 
-/** Horizontal runs of filled cells, so a silhouette is a handful of rectangles, not one per cell. */
-function runs(cells: readonly (readonly [number, number])[]) {
-  const rows = new Map<number, number[]>()
-  for (const [x, y] of cells) rows.set(y, [...rows.get(y) ?? [], x])
-  const out: [number, number, number][] = []
-  for (const [y, xs] of rows) {
-    xs.sort((a, b) => a - b)
-    for (let i = 0, from = 0; i < xs.length; i++)
-      if (i === xs.length - 1 || xs[i + 1] !== xs[i] + 1) { out.push([xs[from], y, xs[i] - xs[from] + 1]); from = i + 1 }
-  }
-  return out
+// Line glyphs as (north, east, south, west) strokes: 0 none, 1 single, 2 double. Drawn as vectors so they join across cells.
+const SEG: Record<string, [number, number, number, number]> = {
+  '─': [0, 1, 0, 1], '│': [1, 0, 1, 0], '┌': [0, 1, 1, 0], '┐': [0, 0, 1, 1], '└': [1, 1, 0, 0], '┘': [1, 0, 0, 1],
+  '├': [1, 1, 1, 0], '┤': [1, 0, 1, 1], '┬': [0, 1, 1, 1], '┴': [1, 1, 0, 1], '┼': [1, 1, 1, 1],
+  '═': [0, 2, 0, 2], '║': [2, 0, 2, 0], '╔': [0, 2, 2, 0], '╗': [0, 0, 2, 2], '╚': [2, 2, 0, 0], '╝': [2, 0, 0, 2],
+  '╠': [2, 2, 2, 0], '╣': [2, 0, 2, 2], '╦': [0, 2, 2, 2], '╩': [2, 2, 0, 2], '╬': [2, 2, 2, 2],
+  '╤': [0, 2, 1, 2], '╧': [1, 2, 0, 2], '╢': [2, 0, 2, 1], '╟': [2, 1, 2, 0], '╥': [0, 1, 2, 1], '╨': [2, 1, 0, 1],
+  '╞': [1, 2, 1, 0], '╡': [1, 0, 1, 2], '╪': [1, 2, 1, 2], '╫': [2, 1, 2, 1],
 }
-/** A CSS mask that keeps exactly the filled cells: one silhouette, no seams. */
-function maskOf(cells: readonly (readonly [number, number])[]) {
-  const g = runs(cells).map(([x, y, n]) => `linear-gradient(#000 0 0) calc(var(--cell) * ${x}) calc(var(--cell) * ${y}) / calc(var(--cell) * ${n}) calc(var(--cell) + 0.6px) no-repeat`).join(',')
-  return `-webkit-mask:${g};mask:${g}`
+const SW = 0.09 // stroke width, in cells
+const D = 0.14 // half the gap of a double line
+
+/** The path of one glyph in the cell at (x, y), in cell units; '' if it is drawn as text instead. */
+function strokes(c: string, x: number, y: number): string {
+  if (c === '/') return `M${x + 0.15} ${y + 0.85}L${x + 0.85} ${y + 0.15}`
+  if (c === '\\') return `M${x + 0.15} ${y + 0.15}L${x + 0.85} ${y + 0.85}`
+  const seg = SEG[c]
+  if (!seg) return ''
+  const [n, e, s, w] = seg
+  const cx = x + 0.5, cy = y + 0.5
+  const out: string[] = []
+  const hd = e === 2 || w === 2, vd = n === 2 || s === 2
+  if (e || w) {
+    const half = vd ? D : SW / 2
+    for (const side of hd ? [-1, 1] : [0]) {
+      const y0 = cy + side * D
+      const inner = (dir: number) => side === 0 || (dir > 0 ? (side < 0 ? n : s) : (side < 0 ? n : s)) // is the vertical on this line's side?
+      const x1 = w ? x : cx + (inner(-1) && vd ? half : -half)
+      const x2 = e ? x + 1 : cx + (inner(1) && vd ? -half : half)
+      out.push(`M${x1} ${y0}H${x2}`)
+    }
+  }
+  if (n || s) {
+    const half = hd ? D : SW / 2
+    for (const side of vd ? [-1, 1] : [0]) {
+      const x0 = cx + side * D
+      const inner = side === 0 || (side < 0 ? w : e)
+      const y1 = n ? y : cy + (inner && hd ? half : -half)
+      const y2 = s ? y + 1 : cy + (inner && hd ? -half : half)
+      out.push(`M${x0} ${y1}V${y2}`)
+    }
+  }
+  return out.join('')
 }
 
+/** One item: tinted rounded cells (like the grid's own squares) under its glyph drawing. */
 function itemHtml(it: Item) {
   const k = KINDS[it.kind]
   const d = dims(it)
-  const cells = cellsOf(it)
-  return `<div class="item ${cells ? 'shaped' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">${cells ? `<u class="body" style="${maskOf(cells)}"></u>` : ''}</div>`
+  const cells = cellsOf(it) ?? Array.from({ length: d.w * d.h }, (_, i) => [i % d.w, Math.floor(i / d.w)] as const)
+  const art = artOf(it)
+  let path = ''
+  let text = ''
+  art.forEach((row, y) => [...row].forEach((c, x) => {
+    if (c === ' ') return
+    const p = strokes(c, x, y)
+    if (p) path += p
+    else text += `<text x="${x + 0.5}" y="${y + 0.5}">${c === '<' ? '&lt;' : c === '&' ? '&amp;' : c}</text>`
+  }))
+  const squares = cells.map(([x, y]) => `<rect x="${x + 0.1}" y="${y + 0.1}" width="0.8" height="0.8" rx="0.2"/>`).join('')
+  return `<div class="item" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
+    <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><path d="${path}"/>${text}</svg></div>`
 }
 
 /** Redraw everything; things that moved glide from where they were. */
@@ -77,8 +116,8 @@ app.addEventListener('pointerdown', e => {
   const el = (e.target as HTMLElement).closest<HTMLElement>('.item[data-id]')
   if (!el) return
   const r = el.getBoundingClientRect()
-  // Grab point measured from the item's footprint (the tile sits 1px inside it).
-  press = { id: +el.dataset.id!, x: e.clientX, y: e.clientY, gx: e.clientX - r.left + 1, gy: e.clientY - r.top + 1 }
+  // Grab point measured from the item's footprint.
+  press = { id: +el.dataset.id!, x: e.clientX, y: e.clientY, gx: e.clientX - r.left, gy: e.clientY - r.top }
   e.preventDefault()
 })
 
@@ -151,7 +190,7 @@ function clearGhosts() {
 }
 
 function ghost(x: number, y: number, w: number, h: number, cls: string, cells: ReturnType<typeof cellsOf>) {
-  const tiles = cells ? `<u class="gc" style="${maskOf(cells)}"></u>` : ''
+  const tiles = cells ? cells.map(([cx, cy]) => `<u class="gc" style="--cx:${cx};--cy:${cy}"></u>`).join('') : ''
   app.querySelector('.grid')!.insertAdjacentHTML('beforeend', `<div class="ghost ${cls} ${cells ? 'shaped' : ''}" style="--x:${x};--y:${y};--w:${w};--h:${h}">${tiles}</div>`)
 }
 
