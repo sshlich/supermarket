@@ -56,6 +56,14 @@ function maskOf(cells: readonly (readonly [number, number])[]) {
   return `-webkit-mask:${g};mask:${g}`
 }
 
+/** What the container's environment is doing to this item, as looks: frost, heat, damp, smoke. */
+function effects(it: Item) {
+  const c = find(s, it.at)
+  if (!c || !isBox(c)) return ''
+  const p = env(s, c.id)
+  return [p.has('cold') && 'cold', p.has('lit') && 'lit', p.has('smoky') && 'smoky', p.has('damp') && 'damp', p.has('dark') && 'dark'].filter(Boolean).map(x => `fx-${x}`).join(' ')
+}
+
 function itemHtml(it: Item, extra = '') {
   const k = KINDS[it.kind]
   const d = dims(it)
@@ -65,9 +73,10 @@ function itemHtml(it: Item, extra = '') {
   const copies = PILE[Math.min(k.stack > 1 ? it.n : 1, 3) - 1]
   const art = copies.map(([x, y, sc]) => `<i style="--px:${x}%;--py:${y}%;--s:${sc};--t:${tilt}deg">${icon(k.icon)}</i>`).join('')
   const cells = cellsOf(it)
+  const fx = isBox(it) ? '' : effects(it)
   const tiles = cells ? `<u class="body" style="${maskOf(cells)}"></u>` : ''
   return `<div class="item ${cls} ${cells ? 'shaped' : ''} ${extra}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
-    ${tiles}<div class="art" style="--kw:${k.w};--kh:${k.h};--m:${m};--r:${it.rot ? 90 : 0}deg">${art}</div>${badges(it)}</div>`
+    ${tiles}${fx ? `<i class="fx ${fx}" style="${cells ? maskOf(cells) : ''}"></i>` : ''}<div class="art" style="--kw:${k.w};--kh:${k.h};--m:${m};--r:${it.rot ? 90 : 0}deg">${art}</div>${badges(it)}</div>`
 }
 
 function badges(it: Item) {

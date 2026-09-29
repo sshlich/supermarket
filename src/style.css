@@ -230,6 +230,34 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .ghost .gc { position: absolute; inset: 0; background: color-mix(in srgb, var(--gb) 34%, transparent); }
 .ghost.shaped { border: 0; background: none; filter: drop-shadow(1px 0 0 var(--gb)) drop-shadow(-1px 0 0 var(--gb)) drop-shadow(0 1px 0 var(--gb)) drop-shadow(0 -1px 0 var(--gb)); }
 
+/* environment effects: what the box does to what is in it */
+.item .fx { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2; }
+.item.shaped .fx { inset: auto; left: -2px; top: -2px; width: calc(var(--w) * var(--cell)); height: calc(var(--h) * var(--cell)); border-radius: 0; }
+.fx::before, .fx::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
+.fx-cold { box-shadow: inset 0 0 9px rgba(175, 228, 255, .6); }
+.fx-cold::before { background: linear-gradient(155deg, rgba(210, 240, 255, .34), transparent 60%); }
+.fx-cold::after {
+  background: radial-gradient(circle at 22% 28%, #fff 0 1px, transparent 1.6px), radial-gradient(circle at 74% 18%, #fff 0 1px, transparent 1.6px),
+    radial-gradient(circle at 60% 72%, #fff 0 1px, transparent 1.6px), radial-gradient(circle at 12% 80%, #fff 0 1px, transparent 1.6px);
+  animation: twinkle 2.8s ease-in-out infinite;
+}
+.fx-lit { box-shadow: inset 0 0 10px rgba(255, 140, 50, .6); }
+.fx-lit::before { background: radial-gradient(ellipse at 50% 130%, rgba(255, 150, 50, .65), transparent 70%); animation: flicker 1.6s ease-in-out infinite alternate; }
+.fx-lit::after {
+  background: radial-gradient(circle at 30% 90%, #ffb45a 0 1px, transparent 1.6px), radial-gradient(circle at 68% 95%, #ff9a3c 0 1px, transparent 1.6px), radial-gradient(circle at 50% 100%, #ffd08a 0 1px, transparent 1.6px);
+  animation: rise 2.2s linear infinite;
+}
+.fx-smoky::before { background: radial-gradient(ellipse at 40% 100%, rgba(190, 185, 180, .5), transparent 75%); animation: haze 3.5s ease-in-out infinite alternate; }
+.fx-damp::before { background: linear-gradient(transparent 55%, rgba(120, 185, 255, .3)); }
+.fx-damp::after {
+  background: radial-gradient(circle at 26% 20%, rgba(170, 215, 255, .9) 0 1px, transparent 1.6px), radial-gradient(circle at 70% 30%, rgba(170, 215, 255, .9) 0 1px, transparent 1.6px);
+  animation: drip 2.6s ease-in infinite;
+}
+.fx-dark { background: rgba(0, 0, 20, .18); }
+@keyframes twinkle { 0%, 100% { opacity: .15; } 50% { opacity: 1; } }
+@keyframes rise { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-70%); opacity: 0; } }
+@keyframes drip { from { transform: translateY(-10%); opacity: 0; } 20% { opacity: 1; } to { transform: translateY(85%); opacity: 0; } }
+
 /* shaped items: one silhouette, masked to the filled cells, outlined by shadows so it reads as a single object */
 .item.shaped { z-index: 0; background: none; box-shadow: none; overflow: visible; filter: drop-shadow(0 0 0.6px var(--c)) drop-shadow(0 2px 3px rgba(0, 0, 0, .55)); }
 .item.shaped:hover { box-shadow: none; filter: brightness(1.18) drop-shadow(0 0 1px var(--c)) drop-shadow(0 2px 4px rgba(0, 0, 0, .6)); }
