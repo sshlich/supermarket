@@ -79,8 +79,9 @@ function itemHtml(it: Item) {
     else text += `<text x="${x + 0.5}" y="${y + 0.5}">${c === '<' ? '&lt;' : c === '&' ? '&amp;' : c}</text>`
   }))
   const squares = cells.map(([x, y]) => `<rect x="${x + 0.1}" y="${y + 0.1}" width="0.8" height="0.8" rx="0.2"/>`).join('')
+  const hit = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('') // whole cells, so there are no dead gaps between the squares
   return `<div class="item" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
-    <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><path d="${path}"/>${text}</svg></div>`
+    <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><path d="${path}"/>${text}<g class="hit">${hit}</g></svg></div>`
 }
 
 /** Redraw everything; things that moved glide from where they were. */
