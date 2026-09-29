@@ -92,3 +92,46 @@ code { color: #d8d5cd; }
 .acts .primary.dirty::after { content: ' •'; }
 .acts label { color: #86847e; font: 11px ui-monospace, Menlo, monospace; display: inline-flex; align-items: center; gap: 4px; }
 .foot { border-top: 1px solid var(--line); padding-top: 8px; margin: 0; }
+
+/* pen tools */
+.toolrow { align-items: center; }
+.toolrow > span:first-child { color: #86847e; }
+.toolrow button { padding: 3px 8px; border-radius: 2px; background: none; border: 1px solid var(--line2); color: #e6e3dc; }
+.toolrow button.on { background: var(--hi); color: #0c0c0e; border-color: var(--hi); font-weight: 600; }
+.toolrow button.on kbd { color: #0c0c0e; border-color: #0c0c0e; }
+.toolrow input[type=number] { width: 54px; background: #0c0c0e; color: #e6e3dc; border: 1px solid var(--line2); border-radius: 2px; padding: 2px 4px; }
+.penopts { display: inline-flex; gap: 10px; align-items: center; }
+.toolrow small { flex-basis: 100%; color: #86847e; font: 10px ui-monospace, Menlo, monospace; min-height: 12px; }
+.stage.big.penning .art svg:not(.sub) { cursor: crosshair; }
+.pen .wire { fill: none; stroke: #ffe066; stroke-width: 1.4; stroke-dasharray: 4 3; vector-effect: non-scaling-stroke; }
+.pen .dot { fill: #ffe066; stroke: #221; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.pen .dot.first { fill: #8fe388; }
+.pen .close { fill: none; stroke: #8fe388; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.selg .v { fill: #6cf; stroke: #023; stroke-width: 1; vector-effect: non-scaling-stroke; pointer-events: all; cursor: move; }
+.selg .mid { fill: #fff; fill-opacity: .55; stroke: #06c; stroke-width: 1; vector-effect: non-scaling-stroke; pointer-events: all; cursor: copy; }
+
+/* footprint picker */
+.fp { display: flex; flex-direction: column; gap: 6px; font: 11px ui-monospace, Menlo, monospace; color: #86847e; }
+.fppick { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; width: 100%; max-width: 150px; }
+.fppick i { aspect-ratio: 1; background: #202024; border-radius: 1px; cursor: pointer; }
+.fppick i.now { background: #3a3a44; }
+.fppick i.on { background: var(--hi); }
+.fppick i:hover { outline: 1px solid var(--hi); }
+.fpnums { display: flex; align-items: center; gap: 6px; }
+.fpnums input { width: 44px; background: #0c0c0e; color: #e6e3dc; border: 1px solid var(--line2); border-radius: 2px; padding: 2px 4px; }
+.fp button { padding: 3px 8px; border-radius: 2px; background: none; border: 1px solid var(--line2); color: #e6e3dc; }
+.fp button:hover { border-color: var(--hi); }
+
+/* library */
+.drop { border: 1px dashed var(--line2); border-radius: 3px; padding: 12px; text-align: center; color: #86847e; font: 11px/1.5 ui-monospace, Menlo, monospace; }
+.filebtn { display: inline-block; margin-top: 4px; padding: 3px 9px; border: 1px solid var(--line2); border-radius: 2px; color: #e6e3dc; cursor: pointer; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 6px; }
+.thumbx { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 4px 4px; border: 1px solid var(--line); border-radius: 3px; background: #0f0f11; }
+.thumbx .tv { width: 56px; height: 56px; color: var(--c); }
+.thumbx .tv svg { width: 100%; height: 100%; }
+.thumbx small { font: 9px ui-monospace, Menlo, monospace; color: #86847e; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.thumbx .tb { display: none; position: absolute; inset: 0; background: rgba(12, 12, 14, .88); border-radius: 3px; flex-direction: column; align-items: center; justify-content: center; gap: 3px; }
+.thumbx:hover .tb { display: flex; }
+.thumbx .tb button { padding: 2px 8px; min-width: 64px; background: none; border: 1px solid var(--line2); border-radius: 2px; color: #e6e3dc; font: 10px ui-monospace, Menlo, monospace; }
+.thumbx .tb button:hover { border-color: var(--hi); color: var(--hi); }
+.search { width: 100%; margin-bottom: 6px; background: #0c0c0e; color: #e6e3dc; border: 1px solid var(--line2); border-radius: 2px; padding: 4px 6px; }

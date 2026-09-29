@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { applyDrop, boxOf, H, lift, planDrop, putBack, start, W, type State } from './world.ts'
+import { applyDrop, boxOf, H, settle, lift, planDrop, putBack, start, W, type State } from './world.ts'
 
 const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 
@@ -43,6 +43,20 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   const h = lift(s, 1)!
   const p = planDrop(s, h, 99, 99, false)!
   assert.deepEqual([p.x, p.y], [W - 4, H - 4])
+}
+
+// Settling a saved layout: unknown kinds go, overlaps and things off the field get re-placed.
+{
+  const s = start()
+  s.items.push({ id: 900, kind: 'gone', x: 0, y: 0, rot: false }, { id: 901, kind: 'crate', x: 3, y: 3, rot: false }, { id: 902, kind: 'crate', x: 29, y: 19, rot: false })
+  const t = settle(s)
+  assert.ok(!t.items.some(o => o.kind === 'gone'))
+  assert.equal(t.items.length, s.items.length - 1)
+  for (const a of t.items) {
+    const b = boxOf(a)
+    assert.ok(b.x >= 0 && b.y >= 0 && b.x + b.w <= W && b.y + b.h <= H)
+    for (const c of t.items) if (a !== c) assert.equal(overlaps(b, boxOf(c)), false)
+  }
 }
 
 console.log('world ok')

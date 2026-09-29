@@ -15,6 +15,10 @@ export const scale = (sx: number, sy = sx): M => [sx, 0, 0, sy, 0, 0]
 export const turn = (deg: number): M => { const r = deg * Math.PI / 180; return [Math.cos(r), Math.sin(r), -Math.sin(r), Math.cos(r), 0, 0] }
 /** Do `m` about the point (x, y) instead of the origin. */
 export const about = (m: M, x: number, y: number): M => mul(move(x, y), mul(m, move(-x, -y)))
+export const invert = (m: M): M => {
+  const det = m[0] * m[3] - m[1] * m[2] || 1e-12
+  return [m[3] / det, -m[1] / det, -m[2] / det, m[0] / det, (m[2] * m[5] - m[3] * m[4]) / det, (m[1] * m[4] - m[0] * m[5]) / det]
+}
 export const point = (m: M, x: number, y: number): [number, number] => [m[0] * x + m[2] * y + m[4], m[1] * x + m[3] * y + m[5]]
 
 /** Short numbers: at most 3 decimals, no trailing zeros, no "-0". */
@@ -74,4 +78,53 @@ export const SHAPES: Record<string, Shape> = {
   } },
   chevron: { label: 'Chevron', params: [size(28), { key: 'w', label: 'thickness', value: 6, min: 1, max: 30 }], make: (p, cx, cy, f) => `<polyline points="${pts([[cx - +p.size / 2, cy - +p.size / 2], [cx, cy], [cx - +p.size / 2, cy + +p.size / 2]])}" fill="none" stroke="${f}" stroke-width="${fmt(+p.w)}" stroke-linejoin="miter" stroke-linecap="butt"/>` },
   text: { label: 'Glyph', params: [{ key: 'ch', label: 'character', text: '#' }, size(24)], make: (p, cx, cy, f) => `<text x="${fmt(cx)}" y="${fmt(cy)}" font-family="ui-monospace, Menlo, monospace" font-size="${fmt(+p.size)}" text-anchor="middle" dominant-baseline="central" fill="${f}">${esc(String(p.ch || '#'))}</text>` },
+}
+
+// ---------------------------------------------------------------- pen tools: dots, freehand, smoothing
+
+export type P = [number, number]
+export const parsePoints = (s: string): P[] => {
+  const n = s.trim().split(/[\s,]+/).map(Number).filter(v => !Number.isNaN(v))
+  const out: P[] = []
+  for (let i = 0; i + 1 < n.length; i += 2) out.push([n[i], n[i + 1]])
+  return out
+}
+export const pointsAttr = (p: P[]) => p.map(([x, y]) => `${fmt(x)},${fmt(y)}`).join(' ')
+
+const distToSegment = ([px, py]: P, [ax, ay]: P, [bx, by]: P) => {
+  const dx = bx - ax, dy = by - ay
+  const l = dx * dx + dy * dy
+  const t = l ? Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / l)) : 0
+  return Math.hypot(px - (ax + t * dx), py - (ay + t * dy))
+}
+
+/** Ramer–Douglas–Peucker: the fewest points that keep the line within `eps` of what was drawn. */
+export function simplify(pts: P[], eps: number): P[] {
+  if (pts.length < 3) return pts
+  let far = 0, at = 0
+  for (let i = 1; i < pts.length - 1; i++) { const d = distToSegment(pts[i], pts[0], pts[pts.length - 1]); if (d > far) { far = d; at = i } }
+  if (far <= eps) return [pts[0], pts[pts.length - 1]]
+  return [...simplify(pts.slice(0, at + 1), eps).slice(0, -1), ...simplify(pts.slice(at), eps)]
+}
+
+/** A smooth curve through the points (Catmull–Rom, written as cubic Béziers), closed or open. */
+export function smoothPath(pts: P[], closed: boolean, tension = 0.5): string {
+  const n = pts.length
+  if (n < 3) return `M${pts.map(([x, y]) => `${fmt(x)} ${fmt(y)}`).join('L')}`
+  const at = (i: number): P => closed ? pts[(i + n) % n] : pts[Math.max(0, Math.min(n - 1, i))]
+  let d = `M${fmt(pts[0][0])} ${fmt(pts[0][1])}`
+  for (let i = 0; i < (closed ? n : n - 1); i++) {
+    const p0 = at(i - 1), p1 = at(i), p2 = at(i + 1), p3 = at(i + 2)
+    const k = tension / 3 * 2 // 1/3 of the way for the usual 0.5 tension
+    d += `C${fmt(p1[0] + (p2[0] - p0[0]) * k / 2)} ${fmt(p1[1] + (p2[1] - p0[1]) * k / 2)} ${fmt(p2[0] - (p3[0] - p1[0]) * k / 2)} ${fmt(p2[1] - (p3[1] - p1[1]) * k / 2)} ${fmt(p2[0])} ${fmt(p2[1])}`
+  }
+  return closed ? d + 'Z' : d
+}
+
+/** The index of the segment nearest to a point (segment i joins point i and i+1; the last joins back to the first when closed). */
+export function nearestSegment(pts: P[], p: P, closed: boolean): { i: number; d: number } {
+  let best = { i: 0, d: Infinity }
+  const n = closed ? pts.length : pts.length - 1
+  for (let i = 0; i < n; i++) { const d = distToSegment(p, pts[i], pts[(i + 1) % pts.length]); if (d < best.d) best = { i, d } }
+  return best
 }

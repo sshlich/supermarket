@@ -1,0 +1,51 @@
+{
+  "crate": {
+    "name": "Crate",
+    "icon": "wooden-crate",
+    "color": "#c9975a",
+    "w": 4,
+    "h": 4
+  },
+  "log": {
+    "name": "Log",
+    "icon": "log",
+    "color": "#b98552",
+    "w": 4,
+    "h": 2
+  },
+  "coal": {
+    "name": "Coal",
+    "icon": "coal-pile",
+    "color": "#8a90a0",
+    "w": 2,
+    "h": 2
+  },
+  "bottle": {
+    "name": "Bottle",
+    "icon": "jug",
+    "color": "#5aa8e6",
+    "w": 2,
+    "h": 4
+  },
+  "knife": {
+    "name": "Knife",
+    "icon": "bowie-knife",
+    "color": "#b4bfcc",
+    "w": 2,
+    "h": 4
+  },
+  "axe": {
+    "name": "Axe",
+    "icon": "battle-axe",
+    "color": "#b4bfcc",
+    "w": 4,
+    "h": 6
+  },
+  "pickaxe": {
+    "name": "Pickaxe",
+    "icon": "war-pick",
+    "color": "#a6b2c0",
+    "w": 6,
+    "h": 4
+  }
+}

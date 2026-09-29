@@ -1,5 +1,5 @@
 import './style.css'
-import { applyDrop, dims, find, H, KINDS, lift, planDrop, putBack, start, W, type Held, type Item, type Plan, type State } from './world.ts'
+import { applyDrop, dims, find, H, KINDS, lift, planDrop, putBack, settle, start, W, type Held, type Item, type Plan, type State } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -12,7 +12,7 @@ let cell = 28
 const app = document.getElementById('app')!
 
 function load(): State | null {
-  try { const v = JSON.parse(localStorage.getItem(SAVE) ?? 'null'); return v?.items ? v : null } catch { return null }
+  try { const v = JSON.parse(localStorage.getItem(SAVE) ?? 'null'); return v?.items ? settle(v) : null } catch { return null }
 }
 const save = () => { try { localStorage.setItem(SAVE, JSON.stringify(s)) } catch { /* private window */ } }
 

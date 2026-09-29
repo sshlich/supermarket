@@ -1,30 +1,81 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from 'node:fs'
+import { createRequire } from 'node:module'
 import { defineConfig, type Plugin } from 'vite'
-import { KINDS } from './src/world.ts'
 import { fromIcon } from './scripts/sprite.ts'
 
-/** Dev only: the sprite editor reads and writes src/sprites/<kind>.svg through here. */
+/** Dev only: the sprite editor reads and writes sprites, item sizes and imported SVGs through here. */
 function sprites(): Plugin {
   const dir = new URL('./src/sprites/', import.meta.url)
+  const imports = new URL('./src/imports/', import.meta.url)
+  const kindsFile = new URL('./src/kinds.json', import.meta.url)
+  const readKinds = (): Record<string, { name: string; icon: string; color: string; w: number; h: number }> => JSON.parse(readFileSync(kindsFile, 'utf8'))
+  let iconSet: { icons: Record<string, { body: string }> } | null = null
   return {
     name: 'sprites',
     configureServer(server) {
       server.middlewares.use('/__sprites', (req, res) => {
         const url = new URL(req.url ?? '/', 'http://x')
-        const kind = url.searchParams.get('kind') ?? ''
-        const k = KINDS[kind] // only known kinds, so no path can be smuggled in
-        if (!k) { res.statusCode = 404; return res.end('no such kind') }
+        const q = (k: string) => url.searchParams.get(k) ?? ''
+        const kinds = readKinds()
+        const say = (body: string, type = 'text/plain') => { res.setHeader('content-type', type); res.end(body) }
+        const fail = (code: number, msg: string) => { res.statusCode = code; res.end(msg) }
+        const svg = (body: string) => say(body, 'image/svg+xml')
+        const json = (v: unknown) => say(JSON.stringify(v), 'application/json')
+        const body = (then: (text: string) => void) => {
+          let text = ''
+          req.on('data', c => { text += c })
+          req.on('end', () => text.length > 2_000_000 ? fail(413, 'too big') : then(text))
+        }
+        const safe = (n: string) => /^[a-z0-9][a-z0-9_-]{0,60}$/i.test(n) ? n : ''
+
+        // imported SVGs
+        if (url.pathname === '/imports') {
+          mkdirSync(imports, { recursive: true })
+          return json(readdirSync(imports).filter(f => f.endsWith('.svg')).sort().map(f => ({ name: f.slice(0, -4), svg: readFileSync(new URL(f, imports), 'utf8') })))
+        }
+        if (url.pathname === '/import' || url.pathname === '/import-delete') {
+          const name = safe(q('name'))
+          if (!name) return fail(400, 'bad name')
+          const file = new URL(`${name}.svg`, imports)
+          if (url.pathname === '/import-delete') { if (existsSync(file)) unlinkSync(file); return say('deleted') }
+          return body(text => {
+            if (!text.includes('<svg')) return fail(400, 'not an svg')
+            mkdirSync(imports, { recursive: true })
+            writeFileSync(file, text)
+            say('imported')
+          })
+        }
+        // the game-icons set, searchable
+        if (url.pathname === '/icons') {
+          iconSet ??= createRequire(import.meta.url)('@iconify-json/game-icons/icons.json')
+          const term = q('q').toLowerCase().trim()
+          const names = Object.keys(iconSet!.icons).filter(n => !term || n.includes(term)).slice(0, 60)
+          return json(names.map(name => ({ name, svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">${iconSet!.icons[name].body}</svg>` })))
+        }
+
+        // sprites and item sizes: only known kinds, so no path can be smuggled in
+        const kind = q('kind')
+        const k = kinds[kind]
+        if (!k) return fail(404, 'no such kind')
         const file = new URL(`${kind}.svg`, dir)
-        const send = (body: string) => { res.setHeader('content-type', 'image/svg+xml'); res.end(body) }
-        if (req.method === 'GET') return send(existsSync(file) ? readFileSync(file, 'utf8') : fromIcon(k.icon, k.w, k.h))
-        if (url.pathname === '/reset') return send(fromIcon(k.icon, k.w, k.h))
-        let body = ''
-        req.on('data', c => { body += c })
-        req.on('end', () => {
-          if (body.length > 2_000_000 || !body.includes('<svg')) { res.statusCode = 400; return res.end('not an svg') }
+        if (req.method === 'GET') return svg(existsSync(file) ? readFileSync(file, 'utf8') : fromIcon(k.icon, k.w, k.h))
+        if (url.pathname === '/reset') return svg(fromIcon(k.icon, k.w, k.h))
+        if (url.pathname === '/kind') {
+          return body(text => {
+            let v: { w?: number; h?: number }
+            try { v = JSON.parse(text) } catch { return fail(400, 'not json') }
+            const ok = (n: unknown) => Number.isInteger(n) && (n as number) >= 1 && (n as number) <= 12
+            if (!ok(v.w) || !ok(v.h)) return fail(400, 'w and h must be whole numbers from 1 to 12')
+            kinds[kind] = { ...k, w: v.w!, h: v.h! }
+            writeFileSync(kindsFile, JSON.stringify(kinds, null, 2) + '\n')
+            say('saved')
+          })
+        }
+        body(text => {
+          if (!text.includes('<svg')) return fail(400, 'not an svg')
           mkdirSync(dir, { recursive: true })
-          writeFileSync(file, body)
-          res.end('saved')
+          writeFileSync(file, text)
+          say('saved')
         })
       })
     },

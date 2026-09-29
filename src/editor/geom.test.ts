@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { I, SHAPES, about, fmt, mul, move, point, scale, snapTo, transformAttr, turn } from './geom.ts'
+import { I, SHAPES, invert, about, fmt, mul, move, nearestSegment, parsePoints, pointsAttr, point, scale, simplify, smoothPath, snapTo, transformAttr, turn, type P } from './geom.ts'
 
 // Matrices: translate then scale composes the way SVG does; identity gives no attribute.
 assert.deepEqual(mul(move(10, 0), scale(2)), [2, 0, 0, 2, 10, 0])
@@ -29,5 +29,35 @@ assert.equal(hex.match(/,/g)!.length, 6)
 const star = SHAPES.star.make({ size: 30, n: 5, i: 45 }, 0, 0, 'red')
 assert.equal(star.match(/,/g)!.length, 10)
 assert.ok(SHAPES.text.make({ ch: '<', size: 10 }, 0, 0, 'red').includes('&lt;'))
+
+// Inverting undoes a transform: a point sent through m and back is where it started.
+const tm = mul(move(7, -3), mul(turn(30), scale(2, 3)))
+const [ix, iy] = point(invert(tm), ...point(tm, 4, 9))
+assert.ok(Math.abs(ix - 4) < 1e-9 && Math.abs(iy - 9) < 1e-9)
+
+// Points round-trip through the attribute text; junk is skipped.
+assert.deepEqual(parsePoints('1,2 3.5,4  5 6'), [[1, 2], [3.5, 4], [5, 6]])
+assert.equal(pointsAttr([[1, 2], [3.5, 4]]), '1,2 3.5,4')
+assert.deepEqual(parsePoints(''), [])
+
+// Simplifying a wobbly straight line leaves its two ends; a corner survives.
+const line: P[] = Array.from({ length: 21 }, (_, i) => [i * 2, (i % 2) * 0.2])
+assert.deepEqual(simplify(line, 1), [line[0], line[20]])
+const corner: P[] = [[0, 0], [10, 0], [20, 0], [20, 10], [20, 20]]
+assert.deepEqual(simplify(corner, 1), [[0, 0], [20, 0], [20, 20]])
+
+// A smooth path starts where the points start, has one curve per segment, and closes with Z when asked.
+const tri: P[] = [[0, 0], [10, 0], [5, 8]]
+assert.equal((smoothPath(tri, false).match(/C/g) ?? []).length, 2)
+assert.equal((smoothPath(tri, true).match(/C/g) ?? []).length, 3)
+assert.ok(smoothPath(tri, true).endsWith('Z') && smoothPath(tri, true).startsWith('M0 0'))
+assert.ok(!smoothPath(tri, true).includes('NaN'))
+
+// The nearest segment is the one a point sits on.
+const sq: P[] = [[0, 0], [10, 0], [10, 10], [0, 10]]
+assert.equal(nearestSegment(sq, [5, 1], true).i, 0)
+assert.equal(nearestSegment(sq, [9, 5], true).i, 1)
+assert.equal(nearestSegment(sq, [1, 5], true).i, 3) // the closing edge
+assert.equal(nearestSegment(sq, [1, 8], false).i, 2) // open: no closing edge, so the nearest real one
 
 console.log('geom ok')

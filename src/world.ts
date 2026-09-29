@@ -1,22 +1,15 @@
 // The field: a grid of cells with things on it. Nothing else yet.
 
-import { drop, same, type Box } from './grid.ts'
+import { drop, firstFree, overlaps, same, type Box } from './grid.ts'
+import DATA from './kinds.json' with { type: 'json' }
 
 export const W = 30
 export const H = 20
 
 export interface Kind { name: string; icon: string; color: string; w: number; h: number }
 
-/** Sizes are in field cells. Every footprint is a plain rectangle. */
-export const KINDS: Record<string, Kind> = {
-  crate: { name: 'Crate', icon: 'wooden-crate', color: '#c9975a', w: 4, h: 4 },
-  log: { name: 'Log', icon: 'log', color: '#b98552', w: 4, h: 2 },
-  coal: { name: 'Coal', icon: 'coal-pile', color: '#8a90a0', w: 2, h: 2 },
-  bottle: { name: 'Bottle', icon: 'jug', color: '#5aa8e6', w: 2, h: 4 },
-  knife: { name: 'Knife', icon: 'bowie-knife', color: '#b4bfcc', w: 2, h: 4 },
-  axe: { name: 'Axe', icon: 'battle-axe', color: '#b4bfcc', w: 4, h: 6 },
-  pickaxe: { name: 'Pickaxe', icon: 'war-pick', color: '#a6b2c0', w: 6, h: 4 },
-}
+/** What things are. Sizes are in field cells and every footprint is a plain rectangle; the data lives in kinds.json so the sprite editor can change it. */
+export const KINDS: Record<string, Kind> = DATA
 
 export interface Item { id: number; kind: string; x: number; y: number; rot: boolean }
 export interface State { items: Item[]; next: number }
@@ -73,6 +66,20 @@ export function applyDrop(s: State, held: Held, plan: Plan) {
 
 /** Nothing happened: the item goes back where it was. */
 export const putBack = (held: Held) => Object.assign(held.item, held.from)
+
+/** After sizes or kinds changed under a saved layout: drop things that no longer exist, and re-place anything that now overlaps or hangs off the field. */
+export function settle(s: State): State {
+  const kept: Item[] = []
+  for (const it of s.items) {
+    if (!KINDS[it.kind]) continue
+    const b = boxOf(it)
+    const fits = b.x >= 0 && b.y >= 0 && b.x + b.w <= W && b.y + b.h <= H && !kept.some(o => overlaps(boxOf(o), b))
+    if (fits) { kept.push(it); continue }
+    const spot = firstFree(W, H, kept.map(boxOf), { ...boxOf({ ...it, rot: false }), x: 0, y: 0 })
+    if (spot) kept.push({ ...it, x: spot.x, y: spot.y, rot: spot.turned })
+  }
+  return { ...s, items: kept }
+}
 
 export function start(): State {
   const s: State = { items: [], next: 1 }

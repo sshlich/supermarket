@@ -3,7 +3,7 @@
 import './style.css'
 import './editor.css'
 import { KINDS } from './world.ts'
-import { I, SHAPES, about, fmt, move, mul, scale, snapTo, transformAttr, turn, type M, type Shape } from './editor/geom.ts'
+import { I, SHAPES, about, fmt, invert, move, mul, nearestSegment, parsePoints, point, pointsAttr, scale, simplify, smoothPath, snapTo, transformAttr, turn, type M, type P, type Shape } from './editor/geom.ts'
 
 const NS = 'http://www.w3.org/2000/svg'
 const UNIT = 32 // sprite units per cell (see scripts/sprite.ts)
@@ -22,7 +22,17 @@ let rot = false
 let zoom = 56
 let snap = 4 // units; 32 is a whole cell
 let guides = { cells: true, units: false, box: true }
-let tab: 'props' | 'add' | 'fx' | 'ops' | 'src' = 'add'
+let tab: 'props' | 'add' | 'fx' | 'ops' | 'lib' | 'src' = 'add'
+let tool: 'select' | 'dots' | 'line' | 'free' = 'select'
+let pen: { pts: P[]; hover: P | null } | null = null
+let penWidth = 4
+let penDetail = 1.5
+let penSmooth = false
+let libImports: { name: string; svg: string }[] = []
+let iconResults: { name: string; svg: string }[] = []
+let iconQuery = ''
+let recolor = true
+let fitPct = 80
 let autosave = false
 let newFill = 'currentColor'
 let shape = 'rect'
@@ -251,6 +261,26 @@ function remove() {
   sel = n ? Math.min(sel!, n - 1) : null
 }
 
+/** Polygon or polyline -> a smooth curve through the same points. */
+function smoothSel() {
+  const el = selEl()
+  if (!isPoly(el)) return
+  const closed = el.localName === 'polygon'
+  const pts = parsePoints(el.getAttribute('points') ?? '')
+  const p = document.createElementNS(NS, 'path')
+  for (const a of [...el.attributes]) if (a.name !== 'points') p.setAttribute(a.name, a.value)
+  p.setAttribute('d', smoothPath(pts, closed))
+  el.replaceWith(p)
+}
+function simplifySel() {
+  const el = selEl()
+  if (!isPoly(el)) return
+  const closed = el.localName === 'polygon'
+  const pts = parsePoints(el.getAttribute('points') ?? '')
+  const s = simplify(closed ? [...pts, pts[0]] : pts, 1.2)
+  el.setAttribute('points', pointsAttr(closed ? s.slice(0, -1) : s))
+}
+
 const OPS: Record<string, { label: string; run(): void }> = {
   flipH: { label: '⇋ Flip left–right', run: () => transformSel(scale(-1, 1)) },
   flipV: { label: '⇅ Flip up–down', run: () => transformSel(scale(1, -1)) },
@@ -274,6 +304,8 @@ const OPS: Record<string, { label: string; run(): void }> = {
   backward: { label: 'Back one', run: () => zorder('backward') },
   back: { label: 'Send to back', run: () => zorder('back') },
   ungroup: { label: 'Ungroup', run: ungroup },
+  smooth: { label: '〰 Smooth into a curve', run: smoothSel },
+  simplify: { label: '◇ Fewer points', run: simplifySel },
   del: { label: '🗑 Delete', run: remove },
 }
 
@@ -320,7 +352,7 @@ function stageHtml(id: string, cell: number, pad: number, interactive: boolean) 
   return `<div class="grid" style="--cell:${cell}px;--w:${w + pad * 2};--h:${h + pad * 2}">
     <div class="item" style="--x:${pad};--y:${pad};--w:${w};--h:${h};--c:${color[id]}">
       <svg viewBox="0 0 ${w} ${h}"><g class="sq">${cells}</g></svg>
-      <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${rot ? 90 : 0}deg">${draft[id] ?? ''}${interactive ? `<svg class="sub" viewBox="0 0 ${vw} ${vh}">${lines.join('')}<g class="selg"></g></svg>` : ''}</div>
+      <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${rot ? 90 : 0}deg">${draft[id] ?? ''}${interactive ? `<svg class="sub" viewBox="0 0 ${vw} ${vh}">${lines.join('')}<g class="pen"></g><g class="selg"></g></svg>` : ''}</div>
     </div></div>`
 }
 
@@ -387,6 +419,7 @@ function opsHtml(): string {
     ['Place in the footprint', ['hcenter', 'vcenter', 'left', 'right', 'top', 'bottom']],
     ['Copies', ['dup', 'mirrorH', 'mirrorV']],
     ['Order', ['front', 'forward', 'backward', 'back']],
+    ['Points (polygons and lines)', ['smooth', 'simplify']],
     ['Other', ['ungroup', 'del']],
   ]
   return `${has ? '' : '<p class="note">Select a shape first.</p>'}${groups.map(([t, list]) => `<h3>${t}</h3><div class="opgrid">${list.map(o => `<button data-op="${o}" ${has ? '' : 'disabled'}>${OPS[o].label}</button>`).join('')}</div>`).join('')}`
@@ -405,6 +438,7 @@ function paint(withSource = true) {
   if (!live) sel = null
   $('[data-real]').innerHTML = stageHtml(cur, 22, 1, false)
   drawSelection()
+  drawPen()
   // text and titles
   $('[data-title]').textContent = `${k.name} · ${k.w} × ${k.h} cells · ${k.w * UNIT} × ${k.h * UNIT} units`
   $('[data-err]').textContent = bad
@@ -418,6 +452,13 @@ function paint(withSource = true) {
   $('[data-page="add"]').innerHTML = addHtml()
   $('[data-page="fx"]').innerHTML = fxHtml()
   $('[data-page="ops"]').innerHTML = opsHtml()
+  renderLib()
+  if (!(document.activeElement instanceof HTMLInputElement && document.activeElement.matches('[data-fpw], [data-fph]'))) { fpW = fpW || k.w; fpH = fpH || k.h; $('[data-footprint]').innerHTML = footprintHtml() }
+  for (const t of root.querySelectorAll<HTMLElement>('[data-tool]')) t.classList.toggle('on', t.dataset.tool === tool)
+  root.querySelector('.stage.big')!.classList.toggle('penning', tool !== 'select')
+  root.querySelector<HTMLElement>('.penopts')!.style.visibility = tool === 'select' ? 'hidden' : 'visible'
+  $('[data-penhint]').textContent = tool === 'dots' ? 'click to place points · click the first point or double-click to close · Enter closes · ⌫ removes the last · Esc cancels'
+    : tool === 'line' ? 'click to place points · double-click or Enter to finish · ⌫ removes the last · Esc cancels' : tool === 'free' ? 'press and drag to draw; letting go finishes (end near the start to close it)' : 'click shapes to select · double-click a point to remove it · click a + to add one'
   // items and layers
   for (const b of root.querySelectorAll<HTMLElement>('.kinds button')) {
     b.classList.toggle('on', b.dataset.kind === cur)
@@ -432,7 +473,11 @@ function paint(withSource = true) {
   $<HTMLButtonElement>('[data-save]').classList.toggle('dirty', dirty(cur))
 }
 
-/** The selection box and its four resize handles, in sprite units. */
+const isPoly = (el: Element | null): el is SVGPolygonElement | SVGPolylineElement => !!el && (el.localName === 'polygon' || el.localName === 'polyline')
+/** A polygon or polyline's points in sprite units (they are stored in the shape's own coordinates). */
+const vertices = (el: Element): P[] => { const m = matrixOf(el as SVGGraphicsElement); return parsePoints(el.getAttribute('points') ?? '').map(([x, y]) => point(m, x, y)) }
+
+/** The selection box and its four resize handles; for a polygon or polyline also a handle on every point and a "+" between them. */
 function drawSelection() {
   const g = root.querySelector('.selg')
   const el = selEl()
@@ -440,7 +485,26 @@ function drawSelection() {
   const b = bbox(el)
   const hs = 9 / (zoom / UNIT)
   const corner = (name: string, x: number, y: number) => `<rect class="h" data-handle="${name}" x="${x - hs / 2}" y="${y - hs / 2}" width="${hs}" height="${hs}"/>`
-  g.innerHTML = `<rect class="box" x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}"/>${corner('nw', b.x, b.y)}${corner('ne', b.x + b.w, b.y)}${corner('sw', b.x, b.y + b.h)}${corner('se', b.x + b.w, b.y + b.h)}`
+  let nodes = ''
+  if (isPoly(el)) {
+    const pts = vertices(el)
+    const closed = el.localName === 'polygon'
+    const n = closed ? pts.length : pts.length - 1
+    for (let i = 0; i < n; i++) { const a = pts[i], c = pts[(i + 1) % pts.length]; nodes += `<circle class="mid" data-mid="${i}" cx="${(a[0] + c[0]) / 2}" cy="${(a[1] + c[1]) / 2}" r="${hs * 0.32}"/>` }
+    pts.forEach(([x, y], i) => { nodes += `<circle class="v" data-vertex="${i}" cx="${x}" cy="${y}" r="${hs * 0.5}"/>` })
+  }
+  g.innerHTML = `<rect class="box" x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}"/>${corner('nw', b.x, b.y)}${corner('ne', b.x + b.w, b.y)}${corner('sw', b.x, b.y + b.h)}${corner('se', b.x + b.w, b.y + b.h)}${nodes}`
+}
+
+/** The pen's work in progress: the dots so far, joined, and a rubber band to the mouse. */
+function drawPen() {
+  const g = root.querySelector('.pen')
+  if (!g) return
+  if (!pen || !pen.pts.length) { g.innerHTML = ''; return }
+  const r = 5 / (zoom / UNIT)
+  const all = pen.hover ? [...pen.pts, pen.hover] : pen.pts
+  const closing = tool === 'dots' && pen.pts.length >= 3 && pen.hover && Math.hypot(pen.hover[0] - pen.pts[0][0], pen.hover[1] - pen.pts[0][1]) < r * 2
+  g.innerHTML = `<polyline class="wire" points="${pointsAttr(all)}"/>${closing ? `<circle class="close" cx="${pen.pts[0][0]}" cy="${pen.pts[0][1]}" r="${r * 1.7}"/>` : ''}${pen.pts.map(([x, y], i) => `<circle class="dot ${i === 0 ? 'first' : ''}" cx="${x}" cy="${y}" r="${r}"/>`).join('')}`
 }
 
 function select(i: number | null, goTo = false) {
@@ -452,6 +516,9 @@ function select(i: number | null, goTo = false) {
 function switchTo(id: string) {
   cur = id
   sel = null
+  fpW = 0; fpH = 0
+  pen = null
+  tool = 'select'
   paint()
 }
 
@@ -495,9 +562,91 @@ function startResize(e: PointerEvent, corner: string, el: SVGGraphicsElement) {
   }
 }
 
+const snapPt = ([x, y]: P): P => [snapTo(x, snap), snapTo(y, snap)]
+
+/** Turn the pen's dots (or freehand line) into a real shape, select it and go back to the select tool. */
+function finishPen(closed: boolean, pts = pen?.pts ?? []) {
+  if (!live || pts.length < 2) { pen = null; drawPen(); return }
+  const need = closed ? 3 : 2
+  if (pts.length < need) { pen = null; drawPen(); return }
+  const list = pointsAttr(pts)
+  const stroke = `stroke="${newFill}" stroke-width="${fmt(penWidth)}" stroke-linecap="round" stroke-linejoin="round"`
+  let markup: string
+  if (penSmooth && pts.length >= 3) markup = closed ? `<path d="${smoothPath(pts, true)}" fill="${newFill}"/>` : `<path d="${smoothPath(pts, false)}" fill="none" ${stroke}/>`
+  else markup = closed ? `<polygon points="${list}" fill="${newFill}"/>` : `<polyline points="${list}" fill="none" ${stroke}/>`
+  live.appendChild(svgNode(markup))
+  sel = drawn(live).length - 1
+  pen = null
+  tool = 'select'
+  commit()
+}
+
+function startVertexDrag(el: SVGGraphicsElement, index: number) {
+  drag = {
+    move(ev) {
+      const inv = invert(matrixOf(el))
+      const [x, y] = point(inv, ...snapPt(unitsOf(ev.clientX, ev.clientY)))
+      const pts = parsePoints(el.getAttribute('points') ?? '')
+      pts[index] = [x, y]
+      el.setAttribute('points', pointsAttr(pts))
+      drawSelection()
+    },
+    end: commit,
+  }
+}
+
 function pointerdown(e: PointerEvent) {
   if (!live || e.button !== 0) return
-  const handle = (e.target as Element).closest<HTMLElement>('[data-handle]')
+  // pen tools
+  if (tool !== 'select') {
+    const raw = unitsOf(e.clientX, e.clientY)
+    if (tool === 'free') {
+      const pts: P[] = [raw]
+      pen = { pts, hover: null }
+      drag = {
+        move(ev) { const p = unitsOf(ev.clientX, ev.clientY); const l = pts[pts.length - 1]; if (Math.hypot(p[0] - l[0], p[1] - l[1]) > 0.8) { pts.push(p); drawPen() } },
+        end() {
+          const simple = simplify(pts, penDetail).map(p => (snap > 2 ? snapPt(p) : p))
+          const closed = pts.length > 8 && Math.hypot(pts[0][0] - pts[pts.length - 1][0], pts[0][1] - pts[pts.length - 1][1]) < 8
+          finishPen(closed, closed ? simple.slice(0, -1) : simple)
+        },
+      }
+      e.preventDefault()
+      return
+    }
+    const p = snapPt(raw)
+    if (!pen) pen = { pts: [], hover: null }
+    const first = pen.pts[0]
+    const near = first && Math.hypot(p[0] - first[0], p[1] - first[1]) < 10 / (zoom / UNIT)
+    if (e.detail >= 2) { finishPen(tool === 'dots'); e.preventDefault(); return }
+    if (tool === 'dots' && pen.pts.length >= 3 && near) { finishPen(true); e.preventDefault(); return }
+    pen.pts.push(p)
+    drawPen()
+    e.preventDefault()
+    return
+  }
+  // node editing on a polygon / polyline
+  const target = e.target as Element
+  const vertex = target.closest<HTMLElement>('[data-vertex]')
+  const mid = target.closest<HTMLElement>('[data-mid]')
+  const cur1 = selEl()
+  if ((vertex || mid) && cur1 && isPoly(cur1)) {
+    const pts = parsePoints(cur1.getAttribute('points') ?? '')
+    if (vertex) {
+      const i = +vertex.dataset.vertex!
+      if (e.detail >= 2 && pts.length > (cur1.localName === 'polygon' ? 3 : 2)) { pts.splice(i, 1); cur1.setAttribute('points', pointsAttr(pts)); commit(); e.preventDefault(); return }
+      startVertexDrag(cur1, i)
+    } else {
+      const i = +mid!.dataset.mid!
+      const a = pts[i], c = pts[(i + 1) % pts.length]
+      pts.splice(i + 1, 0, [(a[0] + c[0]) / 2, (a[1] + c[1]) / 2])
+      cur1.setAttribute('points', pointsAttr(pts))
+      startVertexDrag(cur1, i + 1)
+    }
+    e.preventDefault()
+    return
+  }
+  const handle = target.closest<HTMLElement>('[data-handle]')
   const el = selEl()
   if (handle && el) { startResize(e, handle.dataset.handle!, el); e.preventDefault(); return }
   const topOf = (n: Element) => { let x: Element | null = n; while (x && x.parentElement !== live) x = x.parentElement; return x && x.hasAttribute('data-i') ? x as SVGGraphicsElement : null }
@@ -598,6 +747,7 @@ addEventListener('keydown', e => {
   if (mod && e.key === 's') { e.preventDefault(); save(); return }
   if (mod && e.key.toLowerCase() === 'z' && !inField(e.target)) { e.preventDefault(); undo(e.shiftKey ? 1 : -1); return }
   if (inField(e.target)) return
+  if (pen || (!mod && !e.altKey && 'vplf'.includes(e.key.toLowerCase()) && e.key.length === 1)) return // the pen's own keys, below
   const el = selEl()
   if (mod && e.key === 'd' && el) { e.preventDefault(); duplicate(); commit(); return }
   if (!el) return
@@ -610,12 +760,218 @@ addEventListener('keydown', e => {
   else if (e.key === 'Escape') select(null)
 })
 
+// ---------------------------------------------------------------- footprint: which squares the item takes
+
+let fpW = 0, fpH = 0
+/** Change the item's size on the field: the drawing is moved (and, if asked, scaled) with it, then both are saved. */
+async function applyFootprint() {
+  const k = KINDS[cur]
+  const w = Math.max(1, Math.min(12, Math.round(fpW))), h = Math.max(1, Math.min(12, Math.round(fpH)))
+  const status = $('[data-status]')
+  if (!live) { status.textContent = 'fix the SVG first'; return }
+  if (w === k.w && h === k.h) { status.textContent = 'that is already the size'; return }
+  const old = vbox(cur)
+  k.w = w; k.h = h
+  const nu = vbox(cur)
+  const scaleIt = $<HTMLInputElement>('[data-fpscale]').checked
+  const s = scaleIt ? Math.min(nu.w / old.w, nu.h / old.h) : 1
+  const t = mul(move(nu.w / 2, nu.h / 2), mul(scale(s), move(-old.w / 2, -old.h / 2)))
+  for (const el of drawn(live)) setMatrix(el, mul(t, matrixOf(el)))
+  live.setAttribute('viewBox', `0 0 ${nu.w} ${nu.h}`)
+  commit()
+  await save()
+  try { await api('/kind', cur, { method: 'POST', body: JSON.stringify({ w, h }) }); status.textContent = `${k.name} now takes ${w} × ${h}` } catch (e) { status.textContent = `size not saved: ${(e as Error).message}` }
+}
+
+function footprintHtml() {
+  const k = KINDS[cur]
+  fpW = fpW || k.w; fpH = fpH || k.h
+  const cells = Array.from({ length: 144 }, (_, i) => { const x = i % 12, y = Math.floor(i / 12); return `<i data-fp="${x},${y}" class="${x < fpW && y < fpH ? 'on' : ''} ${x < k.w && y < k.h ? 'now' : ''}"></i>` }).join('')
+  return `<div class="fp"><div class="fppick" data-fppick>${cells}</div>
+    <div class="fpnums"><label>w <input type="number" min="1" max="12" data-fpw value="${fpW}"></label>×<label>h <input type="number" min="1" max="12" data-fph value="${fpH}"></label></div>
+    <label class="chk"><input type="checkbox" data-fpscale checked> scale the drawing with it</label>
+    <button data-fpapply>Apply and save (${fpW} × ${fpH})</button></div>`
+}
+
+// ---------------------------------------------------------------- import: files, pasted code, the game-icons set
+
+/** Parse an SVG and strip anything that runs or reaches out. Null if it is not an SVG. */
+function cleanSvg(text: string): SVGSVGElement | null {
+  const doc = new DOMParser().parseFromString(text, 'image/svg+xml')
+  if (doc.querySelector('parsererror') || doc.documentElement.localName !== 'svg') return null
+  for (const e of doc.querySelectorAll('script, foreignObject, iframe, object, embed')) e.remove()
+  for (const e of doc.querySelectorAll('*')) for (const a of [...e.attributes]) {
+    if (/^on/i.test(a.name)) e.removeAttribute(a.name)
+    if ((a.name === 'href' || a.name === 'xlink:href') && !a.value.startsWith('#')) e.removeAttribute(a.name)
+  }
+  return doc.documentElement as unknown as SVGSVGElement
+}
+
+/** Make every fill and stroke colour the item's colour, so an imported picture follows the item like the rest. */
+function recolorAll(root_: Element) {
+  for (const e of [root_, ...root_.querySelectorAll('*')]) {
+    for (const name of ['fill', 'stroke']) { const v = e.getAttribute(name); if (v !== null && v !== 'none' && v !== 'transparent' && !v.startsWith('url(')) e.setAttribute(name, 'currentColor') }
+    const st = e.getAttribute('style')
+    if (st) e.setAttribute('style', st.replace(/(^|;)\s*(fill|stroke)\s*:\s*(?!none|url)[^;]+/gi, '$1$2:currentColor'))
+  }
+}
+
+/** An imported SVG as a <g>, scaled to fit the footprint (fitPct %) and centred; null if it will not parse. */
+function importGroup(text: string): string | null {
+  const svg = cleanSvg(text)
+  if (!svg) return null
+  let vb = (svg.getAttribute('viewBox') ?? '').split(/[\s,]+/).map(Number)
+  if (vb.length !== 4 || vb.some(Number.isNaN)) vb = [0, 0, parseFloat(svg.getAttribute('width') ?? '') || 100, parseFloat(svg.getAttribute('height') ?? '') || 100]
+  const { w, h } = vbox(cur)
+  const s = Math.min((w * fitPct) / 100 / vb[2], (h * fitPct) / 100 / vb[3])
+  const m = mul(move(w / 2, h / 2), mul(scale(s), move(-(vb[0] + vb[2] / 2), -(vb[1] + vb[3] / 2))))
+  if (recolor) recolorAll(svg)
+  const inherit = ['fill', 'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin'].filter(a => svg.hasAttribute(a) || (recolor && a === 'fill')).map(a => ` ${a}="${recolor && (a === 'fill' || a === 'stroke') ? 'currentColor' : svg.getAttribute(a) ?? 'currentColor'}"`).join('')
+  const xs = new XMLSerializer()
+  const inner = [...svg.children].map(k => xs.serializeToString(k).replace(/ xmlns="[^"]*"/g, '')).join('')
+  return `<g transform="${transformAttr(m)}"${inherit}>${inner}</g>`
+}
+
+function addImport(text: string) {
+  const g = importGroup(text)
+  const status = $('[data-status]')
+  if (!g || !live) { status.textContent = !live ? 'fix the SVG first' : 'that is not an SVG'; return }
+  live.appendChild(svgNode(g))
+  sel = drawn(live).length - 1
+  tab = 'props'
+  commit()
+}
+function replaceWithImport(text: string) {
+  const g = importGroup(text)
+  if (!g) { $('[data-status]').textContent = 'that is not an SVG'; return }
+  const { w, h } = vbox(cur)
+  setDraft(`<svg xmlns="${NS}" viewBox="0 0 ${w} ${h}">\n  ${g}\n</svg>\n`)
+  sel = null
+  paint()
+}
+
+const libKey = (key: string) => (key.startsWith('imp:') ? libImports : iconResults).find(x => x.name === key.slice(4))?.svg ?? ''
+const slug = (s: string) => s.toLowerCase().replace(/\.svg$/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 50) || 'import'
+
+async function loadImports() {
+  try { libImports = JSON.parse(await fetch('/__sprites/imports').then(r => r.text())) } catch { libImports = [] }
+  renderLib()
+}
+async function saveImport(name: string, text: string) {
+  await fetch(`/__sprites/import?name=${encodeURIComponent(name)}`, { method: 'POST', body: text })
+}
+async function importFiles(files: FileList | File[], toSprite: boolean) {
+  const list = [...files].filter(f => f.name.toLowerCase().endsWith('.svg') || f.type === 'image/svg+xml')
+  if (!list.length) { $('[data-status]').textContent = 'only .svg files'; return }
+  for (const f of list) { const text = await f.text(); if (cleanSvg(text)) await saveImport(slug(f.name), text) }
+  await loadImports()
+  if (toSprite && list.length === 1) addImport(await list[0].text())
+}
+let iconTimer = 0
+async function searchIcons(q: string) {
+  iconQuery = q
+  try { iconResults = JSON.parse(await fetch(`/__sprites/icons?q=${encodeURIComponent(q)}`).then(r => r.text())) } catch { iconResults = [] }
+  const box = root.querySelector('[data-iconres]')
+  if (box) box.innerHTML = thumbs(iconResults, 'ico')
+}
+
+function thumbs(list: { name: string; svg: string }[], src: 'imp' | 'ico') {
+  if (!list.length) return `<p class="note">${src === 'imp' ? 'Nothing imported yet.' : 'Type to search 4,000 icons.'}</p>`
+  return list.map(x => `<div class="thumbx" title="${esc(x.name)}"><span class="tv">${x.svg}</span><small>${esc(x.name)}</small>
+    <span class="tb"><button data-libadd="${src}:${esc(x.name)}">add</button><button data-libreplace="${src}:${esc(x.name)}">replace</button>${src === 'imp' ? `<button data-libdel="${esc(x.name)}" title="Delete from the library">✕</button>` : `<button data-libkeep="${esc(x.name)}" title="Keep in your imports">keep</button>`}</span></div>`).join('')
+}
+
+function libHtml() {
+  return `<div class="drop" data-drop>Drop SVG files here, or paste SVG code anywhere (⌘V).<br><label class="filebtn">choose files…<input type="file" accept=".svg,image/svg+xml" multiple data-file hidden></label></div>
+    <div class="row"><label><input type="checkbox" data-recolor ${recolor ? 'checked' : ''}> use the item colour</label><label>fit <input type="number" min="10" max="100" step="5" data-fitpct value="${fitPct}" style="width:54px">%</label></div>
+    <h3>Your imports</h3><div class="thumbs" data-imps>${thumbs(libImports, 'imp')}</div>
+    <h3>game-icons library</h3><input type="search" class="search" data-iconq value="${esc(iconQuery)}" placeholder="search: axe, gear, potion…"><div class="thumbs" data-iconres>${thumbs(iconResults, 'ico')}</div>`
+}
+function renderLib() { const p = root.querySelector('[data-page="lib"]'); if (p && document.activeElement?.getAttribute('data-iconq') === null) p.innerHTML = libHtml() }
+
+// ---------------------------------------------------------------- events for the tools, footprint and library
+
+function setTool(t: typeof tool) {
+  tool = t
+  pen = null
+  paint(false)
+}
+
+root.addEventListener('click', async e => {
+  const t = (e.target as HTMLElement).closest<HTMLElement>('button, [data-fp]')
+  if (!t) return
+  const d = t.dataset
+  if (d.tool) setTool(d.tool as typeof tool)
+  else if (d.fp) { const [x, y] = d.fp.split(',').map(Number); fpW = x + 1; fpH = y + 1; $('[data-footprint]').innerHTML = footprintHtml() }
+  else if ('fpapply' in d) applyFootprint()
+  else if (d.libadd) addImport(libKey(d.libadd))
+  else if (d.libreplace) replaceWithImport(libKey(d.libreplace))
+  else if (d.libdel) { await fetch(`/__sprites/import-delete?name=${encodeURIComponent(d.libdel)}`, { method: 'POST' }); loadImports() }
+  else if (d.libkeep) { const x = iconResults.find(i => i.name === d.libkeep); if (x) { await saveImport(slug(x.name), x.svg); loadImports() } }
+})
+
+root.addEventListener('input', e => {
+  const t = e.target as HTMLInputElement
+  if (t.matches('[data-iconq]')) { clearTimeout(iconTimer); iconTimer = window.setTimeout(() => searchIcons(t.value), 250) }
+  else if (t.matches('[data-penwidth]')) penWidth = Math.max(1, +t.value || 4)
+  else if (t.matches('[data-pendetail]')) penDetail = +t.value
+})
+root.addEventListener('change', e => {
+  const t = e.target as HTMLInputElement
+  if (t.matches('[data-pensmooth]')) penSmooth = t.checked
+  else if (t.matches('[data-recolor]')) recolor = t.checked
+  else if (t.matches('[data-fitpct]')) fitPct = Math.max(10, Math.min(100, +t.value || 80))
+  else if (t.matches('[data-fpw]')) { fpW = Math.max(1, Math.min(12, +t.value || 1)); $('[data-footprint]').innerHTML = footprintHtml() }
+  else if (t.matches('[data-fph]')) { fpH = Math.max(1, Math.min(12, +t.value || 1)); $('[data-footprint]').innerHTML = footprintHtml() }
+  else if (t.matches('[data-file]') && t.files) { importFiles(t.files, false); t.value = '' }
+})
+
+/** The rubber band from the last dot to the mouse. */
+root.addEventListener('pointermove', e => {
+  if (!pen || tool === 'free' || !(e.target as Element).closest('[data-big]')) return
+  pen.hover = snapPt(unitsOf(e.clientX, e.clientY))
+  drawPen()
+})
+
+/** Dropping SVG files: on the picture they go into the sprite (and the library); on the library page, only the library. */
+root.addEventListener('dragover', e => { if (e.dataTransfer?.types.includes('Files')) e.preventDefault() })
+root.addEventListener('drop', e => {
+  const files = e.dataTransfer?.files
+  if (!files?.length) return
+  e.preventDefault()
+  importFiles(files, !!(e.target as Element).closest('[data-big]'))
+})
+/** Pasting SVG code anywhere outside a text field adds it to the sprite and keeps a copy in the library. */
+addEventListener('paste', e => {
+  if (inField(e.target)) return
+  const text = e.clipboardData?.getData('text') ?? ''
+  if (!text.includes('<svg') || !cleanSvg(text)) return
+  e.preventDefault()
+  addImport(text)
+  saveImport(`pasted-${Date.now() % 1_000_000}`, text).then(loadImports)
+})
+
+/** The pen's own keys, and V / P / L / F to change tool. */
+addEventListener('keydown', e => {
+  if (inField(e.target) || e.metaKey || e.ctrlKey || e.altKey) return
+  if (pen && tool !== 'free') {
+    if (e.key === 'Enter') { e.preventDefault(); finishPen(tool === 'dots'); return }
+    if (e.key === 'Backspace') { e.preventDefault(); pen.pts.pop(); drawPen(); return }
+    if (e.key === 'Escape') { pen = null; drawPen(); return }
+  }
+  if (e.key === 'Escape' && tool !== 'select') { setTool('select'); return }
+  const map: Record<string, typeof tool> = { v: 'select', p: 'dots', l: 'line', f: 'free' }
+  if (e.key.length === 1 && map[e.key.toLowerCase()]) setTool(map[e.key.toLowerCase()])
+})
+
 // ---------------------------------------------------------------- the page
 
 root.innerHTML = `
   <aside class="panel left">
     <h2>Items</h2>
     <div class="kinds">${ids.map(id => `<button data-kind="${id}"><span class="thumb"></span><span><b>${KINDS[id].name}</b><small>${KINDS[id].w} × ${KINDS[id].h}</small></span></button>`).join('')}</div>
+    <h2>Footprint</h2>
+    <div data-footprint></div>
     <h2>Layers <small>(top is in front)</small></h2>
     <ul class="layers" data-layers></ul>
   </aside>
@@ -628,15 +984,20 @@ root.innerHTML = `
       <label><input type="checkbox" data-grid="cells" checked> cells</label><label><input type="checkbox" data-grid="units"> quarter-cells</label><label><input type="checkbox" data-grid="box" checked> footprint</label>
       <button data-rotview>turn view 90°</button>
     </div>
+    <div class="bar toolrow">
+      <span>tools</span>${[['select', 'Select', 'V'], ['dots', 'Connect the dots', 'P'], ['line', 'Open line', 'L'], ['free', 'Freehand', 'F']].map(([t, l, k]) => `<button data-tool="${t}">${l} <kbd>${k}</kbd></button>`).join('')}
+      <span class="penopts"><label>thickness <input type="number" min="1" max="30" step="0.5" data-penwidth value="${penWidth}"></label><label>detail <input type="range" min="0.3" max="6" step="0.1" data-pendetail value="${penDetail}" title="how many points freehand keeps: left = more"></label><label><input type="checkbox" data-pensmooth> smooth curve</label></span>
+      <small data-penhint></small>
+    </div>
     <div class="stages"><div class="stage big"><span>click to select · drag to move · corners resize · arrows nudge</span><div data-big></div></div><div class="stage"><span>in game (22px cells)</span><div data-real></div></div></div>
     <div class="err" data-err></div>
     <p class="note">Keys: <kbd>←↑↓→</kbd> nudge (<kbd>⇧</kbd> ×4) · <kbd>[</kbd> <kbd>]</kbd> smaller / bigger · <kbd>⌘D</kbd> duplicate · <kbd>⌫</kbd> delete · <kbd>⌘Z</kbd> undo · <kbd>⌘S</kbd> save · hold <kbd>⌥</kbd> while resizing for free stretch. Draw in the item colour and it follows the item. A sprite is plain SVG at ${UNIT} units per cell, in <code>src/sprites/</code>.</p>
   </main>
   <section class="panel side">
     <h2 data-title></h2>
-    <div class="tabs">${[['add', 'Add'], ['props', 'Properties'], ['fx', 'Effects'], ['ops', 'Operations'], ['src', 'SVG']].map(([t, l]) => `<button data-tab="${t}">${l}</button>`).join('')}</div>
+    <div class="tabs">${[['add', 'Add'], ['props', 'Props'], ['fx', 'Effects'], ['ops', 'Ops'], ['lib', 'Library'], ['src', 'SVG']].map(([t, l]) => `<button data-tab="${t}">${l}</button>`).join('')}</div>
     <div class="pages">
-      <div data-page="add"></div><div data-page="props"></div><div data-page="fx"></div><div data-page="ops"></div>
+      <div data-page="add"></div><div data-page="props"></div><div data-page="fx"></div><div data-page="ops"></div><div data-page="lib"></div>
       <div data-page="src"><textarea spellcheck="false" data-src></textarea><div class="acts"><button data-tidy>Tidy</button></div></div>
     </div>
     <div class="acts foot">
@@ -653,4 +1014,4 @@ Promise.all(ids.map(async id => {
   try { d = localStorage.getItem(`sprite-draft:${id}`) ?? d } catch { /* private window */ }
   draft[id] = d
   hist[id] = { stack: [d], at: 0, t: 0 }
-})).then(() => paint())
+})).then(() => { paint(); loadImports(); searchIcons('') })
