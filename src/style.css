@@ -94,15 +94,7 @@ h1, h2, h3, h4 { margin: 0; }
 }
 .grid::before { content: ''; position: absolute; inset: 0; pointer-events: none; }
 
-/* what each container is made of */
-.box-basket, .box-crate, .box-chest, .box-barrel { --c: #b98a55; }
-.box-dispatch { --c: #cbb98f; }
-.box-coldBox, .box-bottle { --c: #5aa0d8; }
-.box-hearth { --c: #d9823f; }
-.box-still { --c: #d09563; }
-.box-rack { --c: #c9b078; }
-.box-shelf { --c: #78a07a; }
-.box-lockbox { --c: #9aa5b1; }
+/* a panel's edge takes its container's colour (set inline from the kind) */
 .box-field { --c: #6f6e69; }
 .box-hearth.lit, .box-still.lit { border-top-color: #ff9a3c; }
 .box-hearth.smoky, .box-still.smoky { border-top-color: #9a9791; }
@@ -122,7 +114,7 @@ h1, h2, h3, h4 { margin: 0; }
 .art {
   position: absolute; left: 50%; top: 50%; pointer-events: none;
   width: calc(var(--kw) * var(--cell) - 2px); height: calc(var(--kh) * var(--cell) - 2px);
-  transform: translate(-50%, -50%) rotate(var(--r));
+  transform: translate(calc(var(--ox, 0) * var(--cell)), calc(var(--oy, 0) * var(--cell))) translate(-50%, -50%) rotate(var(--r));
 }
 .art i { position: absolute; left: 50%; top: 50%; aspect-ratio: 1; width: calc(var(--m) * var(--cell) * var(--s)); transform: translate(-50%, -50%) translate(var(--px), var(--py)) rotate(var(--t)); }
 

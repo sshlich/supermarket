@@ -8,13 +8,13 @@ const files = import.meta.glob<string>('./icons/*.svg', { query: '?raw', import:
 const ICON: Record<string, string> = Object.fromEntries(Object.entries(files).map(([p, svg]) => [p.slice('./icons/'.length, -'.svg'.length), svg]))
 const icon = (name: string) => ICON[name] ?? ''
 
-/** Colour is material: what a thing is made of picks its accent, first match wins. */
-const MATERIAL: [string, string][] = [
-  ['liquid', '#5aa0d8'], ['drink', '#b0517f'], ['fish', '#5fb8b0'], ['ore', '#d38a45'], ['metal', '#a9b4c0'], ['tool', '#8f9aa6'],
-  ['light', '#b7f06a'], ['living', '#86b86a'], ['herb', '#7fb069'], ['fruit', '#d0566a'], ['wood', '#b98a55'], ['fuel', '#8d8a86'],
-  ['salt', '#e6e2d4'], ['food', '#d9b26a'],
-]
-const accent = (k: { tags: string[]; color: string }) => MATERIAL.find(([t]) => k.tags.includes(t))?.[1] ?? k.color
+/** Colour is material: each kind's `color` is picked from its material family (water blues, wood browns, fish teals, ore coppers, metal steels...), varied within it. */
+const accent = (k: { color: string }) => k.color
+
+/** Icons that sit small or off-centre in their tile: scale and nudge (percent of the tile). */
+const FIT: Record<string, { s?: number; x?: number; y?: number }> = {
+  berryWine: { s: 1.6 }, lockbox: { s: 1.35 }, saltJar: { s: 1.3 }, rack: { s: 1.7, x: 6, y: 18 }, yeast: { s: 1.1 }, knife: { s: 1.15 }, bottle: { s: 1.2 },
+}
 
 // Presentation only: some icons are drawn on a diagonal; turn them to lie along long items.
 const TILT: Record<string, number> = { firewood: 45, knife: 45 }
@@ -77,14 +77,18 @@ function itemHtml(it: Item, extra = '') {
   const d = dims(it)
   const cls = [it.rotten && 'rotten', has(it, 'light') && !it.rotten && 'glow', pulse.has(it.id) && 'pulse', born.has(it.id) && 'born', (it.cond ?? 100) < 40 && 'rusty', isBox(it) && 'boxy'].filter(Boolean).join(' ')
   const tilt = TILT[it.kind] ?? 0
-  const m = Math.min(k.w, k.h) * (tilt ? 1.5 : 1) * (k.shape ? 0.85 : 1)
+  const lo = Math.min(k.w, k.h)
+  const m = lo * (1 + 0.25 * (Math.min(2, Math.max(k.w, k.h) / lo) - 1)) * (tilt ? 1.5 : 1) * (k.shape ? 0.85 : 1) // long tiles get a bigger icon
+  const fit = FIT[it.kind] ?? {}
   const copies = PILE[Math.min(k.stack > 1 ? it.n : 1, 3) - 1]
-  const art = copies.map(([x, y, sc]) => `<i style="--px:${x}%;--py:${y}%;--s:${sc};--t:${tilt}deg">${icon(k.icon)}</i>`).join('')
+  const art = copies.map(([x, y, sc]) => `<i style="--px:${x + (fit.x ?? 0)}%;--py:${y + (fit.y ?? 0)}%;--s:${sc * (fit.s ?? 1)};--t:${tilt}deg">${icon(k.icon)}</i>`).join('')
   const cells = cellsOf(it)
   const fx = isBox(it) ? '' : effects(it)
+  // a shaped thing's icon sits at the middle of its filled cells, not of its box
+  const [ox, oy] = cells ? [cells.reduce((n, [x]) => n + x + 0.5, 0) / cells.length - d.w / 2, cells.reduce((n, [, y]) => n + y + 0.5, 0) / cells.length - d.h / 2] : [0, 0]
   const tiles = cells ? `<u class="body" style="${maskOf(cells)}"></u>` : ''
   return `<div class="item ${cls} ${cells ? 'shaped' : ''} ${extra}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${accent(k)}">
-    ${tiles}${fx ? `<i class="fx ${fx}" style="${cells ? maskOf(cells) : ''}"></i>` : ''}<div class="art" style="--kw:${k.w};--kh:${k.h};--m:${m};--r:${it.rot ? 90 : 0}deg">${art}</div>${badges(it)}</div>`
+    ${tiles}${fx ? `<i class="fx ${fx}" style="${cells ? maskOf(cells) : ''}"></i>` : ''}<div class="art" style="--kw:${k.w};--kh:${k.h};--m:${m};--r:${it.rot ? 90 : 0}deg;--ox:${ox};--oy:${oy}">${art}</div>${badges(it)}</div>`
 }
 
 function badges(it: Item) {
@@ -121,7 +125,7 @@ function boxHtml(c: Item) {
   const items = kids(s, c.id)
   const used = items.reduce((n, it) => n + dims(it).w * dims(it).h, 0)
   const f = fire(c)
-  return `<section class="box box-${c.kind} ${f?.cls ?? ''}" data-box="${c.id}" style="--w:${w};--h:${h}">
+  return `<section class="box box-${c.kind} ${f?.cls ?? ''}" data-box="${c.id}" style="--w:${w};--h:${h};--c:${accent(k)}">
     <header data-boxtip="${c.id}">
       <div><span class="bi">${icon(k.icon)}</span><b>${k.name}</b><span class="grow"></span>
         <button class="pin ${s.target === c.id ? 'on' : ''}" data-pin="${c.id}" title="Shift-click sends things here">⇥</button><button data-close="${c.id}" title="Close">✕</button></div>
