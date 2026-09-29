@@ -1,6 +1,7 @@
 import './choice.css'
 import { glass } from './card-effects.ts'
 import { cardFace, cardVars, hideTooltip, showInfo, skillFace, type Info } from './card-view.ts'
+import { ramp } from './dither.ts'
 import type { ItemDef } from './items.ts'
 import type { SkillDef } from './skills.ts'
 
@@ -29,7 +30,7 @@ export function choose(scene: HTMLElement, area: { x: number; y: number; w: numb
       const card = document.createElement('div')
       if (o.item) {
         card.className = 'choice card'
-        card.style.cssText = cardVars(o.item)
+        cardVars(card, o.item)
         card.innerHTML = cardFace(o.item)
         card.querySelector('.art')!.after(glass(card).el)
         card.querySelector('.price')!.remove()
@@ -38,7 +39,7 @@ export function choose(scene: HTMLElement, area: { x: number; y: number; w: numb
         card.innerHTML = skillFace(o.skill)
       } else {
         card.className = 'choice encounter'
-        if (o.color) card.style.cssText = `--c1:${o.color[0]};--c2:${o.color[1]}`
+        card.style.setProperty('--art', ramp(...(o.color ?? ['#6a5a4a', '#221a12']), 1.9, 1.6))
         card.innerHTML = `<div class="face"><span>${o.info.title}</span></div>${o.badge ? `<div class="badge">${o.badge}</div>` : ''}`
       }
       card.classList.toggle('upgrades', !!o.upgrades)

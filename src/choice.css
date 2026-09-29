@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  transition: opacity 0.15s;
+  transition: opacity 0.16s steps(4);
 }
 
 .choice {
@@ -22,31 +22,31 @@
   inset: 0;
   box-sizing: border-box;
   display: grid;
-  place-items: end center;
-  padding: 0 calc(var(--u) * 0.1) calc(var(--u) * 0.2);
-  border-radius: calc(var(--u) * 0.5) calc(var(--u) * 0.5) calc(var(--u) * 0.1) calc(var(--u) * 0.1);
-  background: linear-gradient(160deg, var(--c1, #6a5a4a), var(--c2, #221a12));
-  border: calc(var(--u) * 0.06) solid #c08850;
-  box-shadow: 0 calc(var(--u) * 0.06) calc(var(--u) * 0.15) #000a;
-  color: #f6e6c6;
-  font-weight: 800;
-  font-size: calc(var(--u) * 0.2);
+  place-items: end stretch;
+  background: var(--art) center / 100% 100%;
+  image-rendering: pixelated;
+  outline: var(--px) solid var(--line-hi);
+  outline-offset: calc(var(--px) * -1);
+  box-shadow: calc(var(--u) * 0.05) calc(var(--u) * 0.07) 0 #0009;
+  font-size: calc(var(--u) * 0.17);
   text-align: center;
-  text-shadow: 0 1px 3px #000;
+  transition: outline-color 0.1s;
 }
+.choice .face span {
+  padding: calc(var(--u) * 0.08) calc(var(--u) * 0.06) calc(var(--u) * 0.16);
+  background: #09090bc0;
+}
+.choice.encounter:hover .face { outline-color: var(--accent); }
 .choice .badge {
   position: absolute;
   left: 50%;
-  bottom: calc(var(--u) * -0.2);
+  bottom: calc(var(--u) * -0.12);
   translate: -50% 0;
-  padding: calc(var(--u) * 0.04) calc(var(--u) * 0.12);
-  border-radius: calc(var(--u) * 0.06);
-  border: calc(var(--u) * 0.02) solid #6a7acc;
-  background: #2a2f55;
-  color: #aebcff;
-  font-weight: 800;
-  font-size: calc(var(--u) * 0.12);
-  text-transform: uppercase;
+  padding: calc(var(--u) * 0.04) calc(var(--u) * 0.1);
+  background: var(--bg);
+  outline: var(--px) solid var(--line-hi);
+  color: var(--dim);
+  font-size: calc(var(--u) * 0.11);
   white-space: nowrap;
 }
 

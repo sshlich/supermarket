@@ -1,5 +1,8 @@
 import './style.css'
 import { glass, sheen, type Effect } from './card-effects.ts'
+import { icon } from './art-view.ts'
+import { ramp } from './dither.ts'
+import { mountFx } from './fx.ts'
 import { cardFace, cardVars, hideTooltip, itemInfo, markup, mountTooltip, showInfo, showTooltip, skillFace, skillInfo } from './card-view.ts'
 import { describe } from './fight-log.ts'
 import { bestFit, exchange, firstFree, place, SOCKETS, swap, under, type Item, type Row, type Size } from './board.ts'
@@ -143,7 +146,7 @@ const dial = box('dial', X0 - 1.95, MID_Y - 0.85, 1.7, 1.7)
 const record = box('record', X0 - 1.95, MID_Y + 1.0, 1.7, 0.6)
 
 const rerollBtn = box('panel reroll', X0, OPP_STRIP, PANEL_W, STRIP_H)
-const topPortrait = box('portrait', midX - 0.9, OPP_STRIP + 0.05, 1.8, 1.45, '<span></span>')
+const topPortrait = box('portrait top', midX - 0.9, OPP_STRIP + 0.05, 1.8, 1.45, '<span></span>')
 const oppHp = box('hp', X0 + PANEL_W + 0.05, OPP_STRIP + STRIP_H - 0.38, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><b></b><span>400</span>')
 
 // The top row is the merchant's, the opponent's during a fight, or your stash while it's open.
@@ -155,11 +158,14 @@ const lanes = [merchant, opponent, stash, board]
 const sellZone = box('sell', X0, OPP_ROW, ROW_W, ROW_H) // over the merchant's offers, under the dragged card
 
 const myHp = box('hp', X0 + PANEL_W + 0.05, PLAYER_STRIP + 0.04, ROW_W - PANEL_W * 2 - 0.1, 0.34, '<i></i><b></b><span></span>')
-const myPortrait = box('portrait', midX - 0.9, PLAYER_STRIP + 0.45, 1.8, 1.45, '<span>You</span><b class="level"></b>')
-const toy = box('panel toy', X0, PLAYER_STRIP, PANEL_W, STRIP_H, '<div class="fill"></div><span>Stash</span>')
+const myPortrait = box('portrait', midX - 0.9, PLAYER_STRIP + 0.45, 1.8, 1.45, `<i class="ic">${icon('hood')}</i><span>You</span><b class="level"></b>`)
+myPortrait.style.setProperty('--art', ramp('#3c4a5c', '#0e1116', 1.8, 1.45))
+const toy = box('panel toy', X0, PLAYER_STRIP, PANEL_W, STRIP_H, `<div class="fill"></div><i class="ic">${icon('open-treasure-chest')}</i><span>Stash</span>`)
 const myXp = box('xp', midX - 0.55, PLAYER_STRIP + 1.96, 1.45, 0.12) // under the portrait, beside the level badge
 const myGold = box('panel gold', X0 + ROW_W - PANEL_W, PLAYER_STRIP, PANEL_W, STRIP_H)
+const shade = box('shade hidden', 0, 0, SCENE_W, OPP_ROW - 0.04, '<span>Stash</span>') // over the world while the stash is open
 mountTooltip(scene)
+mountFx(scene)
 
 // --- Cards ---
 let nextId = 0
@@ -181,8 +187,7 @@ function makeCard(lane: Lane, key: ItemKey, pos: number, tier: Tier = ITEMS[key]
 
 /** (Re)draw the card face for its current def (or another one, while it's transformed in a fight). */
 function renderFace(c: Card, def = c.def) {
-  c.el.style.removeProperty('--ench')
-  for (const kv of cardVars(def).split(';')) c.el.style.setProperty(...(kv.split(':') as [string, string]))
+  cardVars(c.el, def)
   c.el.innerHTML = cardFace(def)
   const pane = glass(c.el)
   c.el.querySelector('.art')!.after(pane.el) // glass sits over the art, under the frame and badges
@@ -314,14 +319,14 @@ function starterKit() {
 
 // --- Gold and the merchant ---
 function renderGold() {
-  myGold.innerHTML = `<span>+${income} » ${gold}</span>`
-  rerollBtn.innerHTML = `<span>Reroll<br><b>${REROLL_COST}g</b></span>`
+  myGold.innerHTML = `<i class="ic">${icon('two-coins')}</i><b>${gold}</b><small>+${income} a day</small>`
+  rerollBtn.innerHTML = `<i class="ic">${icon('rolling-dices')}</i><span>Reroll <b>${REROLL_COST}g</b></span>`
   rerollBtn.classList.toggle('disabled', gold < REROLL_COST)
 }
 
-const toastEl = box('toast', X0, BOARD_ROW + ROW_H / 2 - 0.3, ROW_W, 0.6)
+const toastEl = box('toast', X0, BOARD_ROW - 0.35, ROW_W, 0.6, '<span></span>')
 function toast(text: string) {
-  toastEl.textContent = text
+  toastEl.firstElementChild!.textContent = text
   toastEl.getAnimations().forEach(a => a.cancel())
   toastEl.animate([{ opacity: 0, translate: '0 10px' }, { opacity: 1, translate: '0 0', offset: 0.12 }, { opacity: 1, offset: 0.75 }, { opacity: 0 }], { duration: 1600, easing: 'ease-out' })
 }
@@ -360,6 +365,8 @@ function refreshTop() {
   markUpgrades()
   renderStash()
   toy.classList.toggle('open', stashOpen || overToy) // also glows while a card is held over it
+  shade.classList.toggle('hidden', !stashOpen)
+  scene.dataset.top = stashOpen ? 'stash' : mode
   oppHp.classList.toggle('hidden', mode !== 'opponent')
   rerollBtn.classList.toggle('hidden', mode !== 'merchant')
 }
@@ -367,7 +374,7 @@ function refreshTop() {
 /** Who's across from you: name and portrait colors. */
 function setTop(title: string, color?: [string, string]) {
   topPortrait.querySelector('span')!.textContent = title
-  topPortrait.style.background = color ? `linear-gradient(160deg, ${color[0]}, ${color[1]})` : ''
+  topPortrait.style.setProperty('--art', ramp(...(color ?? ['#3a3d46', '#111215']), 1.8, 1.45))
 }
 
 function renderClock() {
@@ -391,6 +398,8 @@ function renderStash() {
 toy.addEventListener('click', () => {
   stashOpen = !stashOpen
   refreshTop()
+  // The stash slides up out of the chest.
+  if (stashOpen) for (const el of [stash.el, ...cards.filter(c => c.lane === stash).map(c => c.el)]) el.animate([{ translate: '0 calc(var(--u) * 0.4)' }, { translate: '0 0' }], { duration: 180, easing: 'ease-out' })
 })
 
 // --- Buttons: Leave (merchants) and playback speed ---

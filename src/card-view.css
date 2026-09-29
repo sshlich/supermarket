@@ -1,73 +1,66 @@
 /* ---------- Card face. All sizes in slot units via --u. ---------- */
 
+/* Pixel-rounded corners for chips: one art pixel cut off each corner. */
+.card .gem,
+.card .price,
+.card .quest,
+.card .multicast,
+.tooltip .tags span {
+  clip-path: polygon(var(--px) 0, calc(100% - var(--px)) 0, 100% var(--px), 100% calc(100% - var(--px)), calc(100% - var(--px)) 100%, var(--px) 100%, 0 calc(100% - var(--px)), 0 var(--px));
+}
+
+/* The art is a dithered ramp of its two colors (--art, see dither.ts). */
 .card .art {
   position: absolute;
   inset: calc(var(--u) * 0.05);
-  border-radius: calc(var(--u) * 0.04);
   overflow: hidden;
-  background: radial-gradient(circle at 50% 42%, #ffffff1f, transparent 62%), linear-gradient(160deg, var(--c1), var(--c2));
+  background: var(--art, var(--panel-hi)) center / 100% 100%;
+  image-rendering: pixelated;
 }
 .card .art span {
   position: absolute;
   inset: auto 0 22% 0;
   text-align: center;
-  font-size: calc(var(--u) * 0.13);
-  font-weight: 700;
+  font-size: calc(var(--u) * 0.12);
   color: #ffffff80;
 }
 
-/* Enchanted: a slow glow in the enchantment's color inside the frame. */
+/* Enchanted: a glow in the enchantment's color inside the frame, breathing in steps. */
 .card .ench {
   position: absolute;
   inset: calc(var(--u) * 0.05);
-  border-radius: calc(var(--u) * 0.04);
   pointer-events: none;
-  box-shadow: inset 0 0 calc(var(--u) * 0.18) var(--ench), inset 0 0 0 calc(var(--u) * 0.02) var(--ench);
-  animation: ench-glow 2.4s ease-in-out infinite alternate;
+  box-shadow: inset 0 0 calc(var(--u) * 0.18) var(--ench), inset 0 0 0 calc(var(--u) * 0.03) var(--ench);
+  animation: ench-glow 2.4s steps(6) infinite alternate;
 }
 @keyframes ench-glow {
-  from { opacity: 0.55; }
+  from { opacity: 0.45; }
   to { opacity: 1; }
 }
 
-/* Skill badge: round art in a metallic tier ring. */
+/* Skill badge: art in an octagon (a pixel circle) ringed in its tier color. */
 .skill-face {
   position: absolute;
   inset: 0;
-  border-radius: 50%;
-  border: calc(var(--u) * 0.045) solid transparent;
-  background: linear-gradient(150deg, color-mix(in srgb, var(--tier), #fff 40%), var(--tier) 40%, color-mix(in srgb, var(--tier), #000 45%)) border-box;
-  box-shadow: 0 0 0 calc(var(--u) * 0.012) #000c, 0 calc(var(--u) * 0.03) calc(var(--u) * 0.08) #0009;
+  background: var(--tier);
+  clip-path: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
 }
 .skill-face .art {
   position: absolute;
-  inset: 0;
-  border-radius: 50%;
+  inset: calc(var(--u) * 0.05);
   overflow: hidden;
-  background: radial-gradient(circle at 50% 40%, #ffffff24, transparent 65%), linear-gradient(160deg, var(--c1), var(--c2));
+  background: var(--art, var(--panel-hi)) center / 100% 100%;
+  image-rendering: pixelated;
+  clip-path: inherit;
 }
 
-/* Metallic tier frame: a gradient ring (masked to the border) plus a dark inner line. */
+/* Tier frame: a flat band of the tier color with a dark line inside and out. */
 .card .frame {
   position: absolute;
   inset: 0;
-  border-radius: inherit;
   pointer-events: none;
-  border: calc(var(--u) * 0.055) solid transparent;
-  background: linear-gradient(150deg, color-mix(in srgb, var(--tier), #fff 40%), var(--tier) 35%, color-mix(in srgb, var(--tier), #000 45%)) border-box;
-  mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0);
-  box-shadow: 0 0 0 calc(var(--u) * 0.012) #000c;
-}
-.card .frame::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: calc(var(--u) * -0.1);
-  width: calc(var(--u) * 0.14);
-  height: calc(var(--u) * 0.14);
-  translate: -50% 0;
-  rotate: 45deg;
-  background: var(--tier);
+  border: calc(var(--u) * 0.05) solid var(--tier);
+  box-shadow: inset 0 0 0 var(--px) #000a, 0 0 0 var(--px) #000c;
 }
 
 .card .gems {
@@ -77,79 +70,67 @@
   right: 0;
   display: flex;
   justify-content: center;
-  gap: calc(var(--u) * 0.01);
-  filter: drop-shadow(0 0 calc(var(--u) * 0.012) #000);
+  gap: calc(var(--u) * 0.02);
+  filter: drop-shadow(0 var(--px) 0 #000);
 }
 .card .gem,
 .card .price {
   display: grid;
   place-items: center;
   height: calc(var(--u) * 0.21);
-  min-width: calc(var(--u) * 0.4);
+  min-width: calc(var(--u) * 0.36);
   padding: 0 calc(var(--u) * 0.05);
   box-sizing: border-box;
-  clip-path: polygon(14% 0, 86% 0, 100% 50%, 86% 100%, 14% 100%, 0 50%);
-  color: #fff;
-  font-weight: 900;
-  font-size: calc(var(--u) * 0.16);
-  text-shadow: 0 0 2px #000, 0 1px 1px #000;
+  color: #0a0a0c;
+  font-size: calc(var(--u) * 0.15);
 }
-.card .gem {
-  background: linear-gradient(color-mix(in srgb, var(--kw), #fff 25%), color-mix(in srgb, var(--kw), #000 30%));
-}
+.card .gem { background: var(--kw); }
 
 .card .multicast {
   position: absolute;
   top: calc(var(--u) * 0.14);
   left: 50%;
   translate: -50% 0;
-  padding: calc(var(--u) * 0.015) calc(var(--u) * 0.05);
-  border-radius: 0 0 calc(var(--u) * 0.04) calc(var(--u) * 0.04);
-  background: #2b2b2de0;
-  color: #ddd;
-  font-weight: 700;
-  font-size: calc(var(--u) * 0.12);
+  padding: calc(var(--u) * 0.02) calc(var(--u) * 0.05);
+  background: #09090be0;
+  color: var(--ink);
+  font-size: calc(var(--u) * 0.11);
 }
 
 .card .price {
   position: absolute;
   left: calc(var(--u) * -0.08);
   bottom: calc(var(--u) * 0.16);
-  min-width: calc(var(--u) * 0.36);
-  background: linear-gradient(#f4a04a, #b95f18);
-  filter: drop-shadow(0 0 calc(var(--u) * 0.012) #000);
+  min-width: calc(var(--u) * 0.34);
+  background: var(--gold);
+  filter: drop-shadow(0 var(--px) 0 #000);
 }
 
 .card .ammo {
   position: absolute;
-  bottom: calc(var(--u) * 0.07);
+  bottom: calc(var(--u) * 0.08);
   left: 50%;
   translate: -50% 0;
   display: flex;
   gap: calc(var(--u) * 0.025);
-  padding: calc(var(--u) * 0.02) calc(var(--u) * 0.05);
-  border-radius: 1em;
+  padding: calc(var(--u) * 0.025);
   background: #000a;
 }
+.card .ammo i {
+  width: calc(var(--u) * 0.07);
+  height: calc(var(--u) * 0.07);
+  background: #f2d27a;
+}
+
 /* Quest progress, bottom right. */
 .card .quest {
   position: absolute;
   right: calc(var(--u) * 0.07); /* inside the card: the next card's price tag sits just past this edge */
   bottom: calc(var(--u) * 0.16);
   padding: calc(var(--u) * 0.02) calc(var(--u) * 0.06);
-  border-radius: calc(var(--u) * 0.05);
-  background: linear-gradient(#f0e2b8, #b89a5a);
-  color: #2a1e0c;
-  font-weight: 900;
-  font-size: calc(var(--u) * 0.13);
-  box-shadow: 0 0 0 calc(var(--u) * 0.012) #000c;
-}
-
-.card .ammo i {
-  width: calc(var(--u) * 0.075);
-  height: calc(var(--u) * 0.075);
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #fff3c0, #e0b440);
+  background: var(--ink);
+  color: #0a0a0c;
+  font-size: calc(var(--u) * 0.12);
 }
 
 /* ---------- Tooltip + keyword legend ---------- */
@@ -161,10 +142,7 @@
   vertical-align: -0.12em;
   margin-right: 0.08em;
 }
-.kw {
-  color: var(--kw);
-  font-weight: 800;
-}
+.kw { color: var(--kw); }
 
 .tooltip,
 .legend {
@@ -172,9 +150,8 @@
   z-index: 200;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.1s;
-  color: #f1e4c8;
-  text-shadow: 0 1px 2px #000;
+  transition: opacity 0.1s steps(2);
+  color: var(--ink);
 }
 .tooltip.show,
 .legend.show {
@@ -189,91 +166,76 @@
 .tooltip .tags {
   display: flex;
   gap: calc(var(--u) * 0.05);
-  margin-left: calc(var(--u) * 0.15);
-  margin-bottom: calc(var(--u) * 0.05);
+  margin-left: calc(var(--u) * 0.12);
+  margin-bottom: calc(var(--u) * 0.06);
 }
 .tooltip .tags span {
-  padding: calc(var(--u) * 0.03) calc(var(--u) * 0.08);
-  border-radius: calc(var(--u) * 0.06);
-  background: #2a2f55e8;
-  color: #aebcff;
-  font-size: calc(var(--u) * 0.13);
-  font-weight: 700;
-  text-transform: uppercase;
-  text-shadow: none;
+  padding: calc(var(--u) * 0.04) calc(var(--u) * 0.08);
+  background: var(--line-hi);
+  color: var(--ink);
+  font-size: calc(var(--u) * 0.11);
 }
 .tooltip .tags span.tier {
-  background: color-mix(in srgb, var(--t), #000 55%);
-  color: color-mix(in srgb, var(--t), #fff 35%);
+  background: var(--t);
+  color: #0a0a0c;
 }
 .tooltip .title {
-  padding: calc(var(--u) * 0.13) calc(var(--u) * 0.25);
-  border: calc(var(--u) * 0.02) solid #8a6a44;
-  border-bottom: none;
-  border-radius: calc(var(--u) * 0.06) calc(var(--u) * 0.06) 0 0;
-  background: linear-gradient(#3b2a1e, #231811);
-  font-family: Georgia, 'Times New Roman', serif;
-  font-weight: 700;
-  font-size: calc(var(--u) * 0.3);
-  color: #f6e6c6;
+  padding: calc(var(--u) * 0.12) calc(var(--u) * 0.22) calc(var(--u) * 0.1);
+  background: var(--panel);
+  outline: var(--px) solid var(--line-hi);
+  outline-offset: calc(var(--px) * -1);
+  font-size: calc(var(--u) * 0.24);
+  line-height: 1.1;
 }
 .tooltip .body {
   position: relative;
-  padding: calc(var(--u) * 0.16) calc(var(--u) * 0.25) calc(var(--u) * 0.16) calc(var(--u) * 0.75);
-  border: calc(var(--u) * 0.02) solid #8a6a44;
-  border-radius: 0 0 calc(var(--u) * 0.06) calc(var(--u) * 0.06);
-  background: linear-gradient(#1c1510f2, #120d0af2);
-  box-shadow: inset 0 0 0 calc(var(--u) * 0.02) #0008, 0 calc(var(--u) * 0.06) calc(var(--u) * 0.2) #000a;
+  padding: calc(var(--u) * 0.12) calc(var(--u) * 0.22) calc(var(--u) * 0.14) calc(var(--u) * 0.72);
+  background: #0c0d0ff5;
+  outline: var(--px) solid var(--line-hi);
+  outline-offset: calc(var(--px) * -1);
+  margin-top: calc(var(--px) * -1);
+  box-shadow: calc(var(--u) * 0.06) calc(var(--u) * 0.08) 0 #0008;
 }
-/* No cooldown dial: no room reserved for it. */
-.tooltip .body.plain { padding-left: calc(var(--u) * 0.25); }
+/* No cooldown badge: no room reserved for it. */
+.tooltip .body.plain { padding-left: calc(var(--u) * 0.22); }
 .tooltip ul {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: calc(var(--u) * 0.2);
-  font-weight: 700;
-  line-height: 1.55;
+  font-family: var(--term);
+  font-size: calc(var(--u) * 0.29);
+  line-height: 1.12;
 }
 .tooltip li::before {
-  content: '➜';
-  margin-right: 0.5em;
-  color: #9a8662;
-  font-size: 0.8em;
+  content: '>';
+  margin-right: 0.45em;
+  color: var(--faint);
 }
 
-/* Cooldown dial straddling the tooltip's left edge, pointing into the text. */
+/* Cooldown badge straddling the tooltip's left edge. */
 .tooltip .cooldown {
   position: absolute;
-  left: calc(var(--u) * -0.45);
+  left: calc(var(--u) * -0.4);
   top: 50%;
   translate: 0 -50%;
-  width: calc(var(--u) * 0.9);
-  height: calc(var(--u) * 0.9);
-  border-radius: 50%;
+  width: calc(var(--u) * 0.8);
+  height: calc(var(--u) * 0.8);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: calc(var(--u) * 0.04);
   line-height: 1;
-  background: radial-gradient(circle at 40% 30%, #3a3a3a, #0c0c0c 70%);
-  box-shadow: 0 0 0 calc(var(--u) * 0.04) #9a7448, 0 0 0 calc(var(--u) * 0.06) #000a;
-}
-.tooltip .cooldown::after {
-  content: '';
-  position: absolute;
-  right: calc(var(--u) * -0.13);
-  border: calc(var(--u) * 0.08) solid transparent;
-  border-left: calc(var(--u) * 0.1) solid #9a7448;
+  background: var(--bg);
+  outline: var(--px) solid var(--line-hi);
 }
 .tooltip .cooldown b {
-  font-size: calc(var(--u) * 0.32);
-  color: #fff;
+  font-size: calc(var(--u) * 0.26);
+  color: var(--ink);
 }
 .tooltip .cooldown small {
   font-size: calc(var(--u) * 0.1);
-  font-weight: 800;
-  color: #d8c8a8;
+  color: var(--dim);
 }
 
 .legend {
@@ -281,56 +243,52 @@
   left: calc(var(--u) * 0.15);
   bottom: calc(var(--u) * 0.15);
   width: calc(var(--u) * 2);
-  padding: calc(var(--u) * 0.1) calc(var(--u) * 0.14);
-  border-radius: calc(var(--u) * 0.06);
-  background: #1c1510e6;
-  border: calc(var(--u) * 0.015) solid #5a4630;
+  padding: calc(var(--u) * 0.08) calc(var(--u) * 0.12);
+  background: #0c0d0fe8;
+  outline: var(--px) solid var(--line);
 }
 .legend h4 {
   margin: calc(var(--u) * 0.06) 0 calc(var(--u) * 0.02);
   color: var(--kw);
-  font-size: calc(var(--u) * 0.15);
-  text-transform: uppercase;
+  font-size: calc(var(--u) * 0.13);
 }
 .legend p {
   margin: 0 0 calc(var(--u) * 0.06);
-  font-size: calc(var(--u) * 0.12);
-  line-height: 1.3;
+  color: var(--dim);
+  font-family: var(--term);
+  font-size: calc(var(--u) * 0.19);
+  line-height: 1.05;
 }
 
 /* A number that changes with tier: every tier's value in its color, the current one lit. */
 .path b {
   color: var(--t);
-  opacity: 0.45;
-  font-weight: 800;
+  opacity: 0.4;
+  font-weight: 400;
 }
-.path b.now {
-  opacity: 1;
-  font-weight: 900;
-}
+.path b.now { opacity: 1; }
 .path i {
   margin: 0 0.15em;
   font-style: normal;
   opacity: 0.4;
-  color: #f1e4c8;
+  color: var(--ink);
 }
 .tooltip .tags span.cd {
-  background: #1c1510e8;
-  color: #d8c8a8;
-  text-transform: none;
+  background: var(--bg);
+  outline: var(--px) solid var(--line-hi);
+  outline-offset: calc(var(--px) * -1);
+  color: var(--dim);
 }
 
-/* What an enchantment added, under the item's own lines. */
+/* What an enchantment, a quest or growth adds, under the item's own lines. */
 .tooltip .extra {
   margin-top: calc(var(--u) * 0.08);
   padding-top: calc(var(--u) * 0.06);
-  border-top: calc(var(--u) * 0.015) solid color-mix(in srgb, var(--ench), transparent 50%);
+  border-top: var(--px) dashed color-mix(in srgb, var(--ench), transparent 50%);
 }
 .tooltip .extra h5 {
-  margin: 0;
+  margin: 0 0 calc(var(--u) * 0.02);
   color: var(--ench);
-  font-size: calc(var(--u) * 0.14);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: calc(var(--u) * 0.12);
 }
 .tooltip .extra li::before { color: var(--ench); }

@@ -5,6 +5,9 @@ import { KEYWORDS, type Keyword } from './keywords.ts'
 const files = import.meta.glob<string>('./icons/*.svg', { query: '?raw', import: 'default', eager: true })
 const ICONS: Record<string, string> = Object.fromEntries(Object.entries(files).map(([path, svg]) => [path.slice('./icons/'.length, -'.svg'.length), svg]))
 
+/** One icon's SVG by name, for the UI (panels, buttons). */
+export const icon = (name: string) => ICONS[name] ?? ''
+
 /** The art area's proportions: small cards are tall, medium cards and skills square, large cards wide. */
 export type Shape = 'tall' | 'square' | 'wide'
 /** Long side over short side for each shape (the art inside the card frame). */

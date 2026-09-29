@@ -61,7 +61,7 @@ function render() {
     cell.className = 'cell'
     const card = document.createElement('div')
     card.className = 'card'
-    card.style.cssText = cardVars(def)
+    cardVars(card, def)
     card.innerHTML = cardFace(def)
     card.querySelector('.art')!.after(glass(card).el)
     card.querySelector('.price')!.remove()

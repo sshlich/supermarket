@@ -1,5 +1,6 @@
 import './card-view.css'
 import { artIcons, type Shape } from './art-view.ts'
+import { ramp } from './dither.ts'
 import { ENCHANTS } from './enchant.ts'
 import type { ItemDef } from './items.ts'
 import { KEYWORDS, type Keyword } from './keywords.ts'
@@ -9,9 +10,14 @@ import { numbers, reachable, STAT_ORDER, TIER_COLOR, tierName, type Tier } from 
 const SIZE_NAME = { 1: 'Small', 2: 'Medium', 3: 'Large' }
 const SHAPE: Record<1 | 2 | 3, Shape> = { 1: 'tall', 2: 'square', 3: 'wide' }
 
-/** Style vars a card element needs for its face. */
-export const cardVars = (def: ItemDef) =>
-  `--size:${def.size};--tier:${TIER_COLOR[def.tier]};--c1:${def.art.bg[0]};--c2:${def.art.bg[1]}` + (def.enchant ? `;--ench:${ENCHANTS[def.enchant].color}` : '')
+/** Set the style vars a card element needs for its face. */
+export function cardVars(el: HTMLElement, def: ItemDef) {
+  el.style.setProperty('--size', String(def.size))
+  el.style.setProperty('--tier', TIER_COLOR[def.tier])
+  el.style.setProperty('--art', ramp(...def.art.bg, def.size - 0.16, 1.84))
+  if (def.enchant) el.style.setProperty('--ench', ENCHANTS[def.enchant].color)
+  else el.style.removeProperty('--ench')
+}
 
 /** Card face, bottom to top: art, (glass goes here), enchant glow, frame, gems, multicast tag, price tag, ammo pips. */
 export function cardFace(def: ItemDef): string {
@@ -34,7 +40,7 @@ export function cardFace(def: ItemDef): string {
 
 /** A skill's round badge: tier ring around its art. */
 export function skillFace(def: SkillDef): string {
-  return `<div class="skill-face" style="--tier:${TIER_COLOR[def.tier]};--c1:${def.art.bg[0]};--c2:${def.art.bg[1]}"><div class="art">${artIcons(def.art, 'square')}</div></div>`
+  return `<div class="skill-face" style="--tier:${TIER_COLOR[def.tier]};--art:${ramp(...def.art.bg, 0.52, 0.52)}"><div class="art">${artIcons(def.art, 'square')}</div></div>`
 }
 
 const fmt = (n: number) => String(Math.round(n * 100) / 100)

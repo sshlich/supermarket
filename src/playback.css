@@ -1,21 +1,20 @@
-/* Cooldown: the uncharged part (top) is dimmed; a glowing line marks the charge level rising from the bottom. */
+/* Cooldown: the uncharged part (top) is dither-shaded; a bright line marks the charge rising from the bottom. */
 .card .cd {
   position: absolute;
   left: calc(var(--u) * 0.05);
   right: calc(var(--u) * 0.05);
   top: calc(var(--u) * 0.05);
   height: calc((1 - var(--cd, 0)) * (100% - var(--u) * 0.1));
-  background: #0a0f18a0;
-  border-bottom: calc(var(--u) * 0.02) solid #6dffae;
-  box-shadow: 0 calc(var(--u) * 0.02) calc(var(--u) * 0.12) #3dff8c;
+  background: var(--shade), #0006;
+  border-bottom: var(--px) solid #6dffae;
+  box-shadow: 0 var(--px) calc(var(--u) * 0.12) #3dff8c;
   pointer-events: none;
 }
 
 .card .flash {
   position: absolute;
   inset: calc(var(--u) * 0.05);
-  border-radius: calc(var(--u) * 0.04);
-  background: radial-gradient(circle, var(--flash, #fff), transparent 70%);
+  background: var(--flash, #fff);
   opacity: 0;
   pointer-events: none;
   mix-blend-mode: screen;
@@ -26,31 +25,29 @@
   top: calc(var(--u) * 0.32);
   left: 50%;
   translate: -50% 0;
-  padding: calc(var(--u) * 0.02) calc(var(--u) * 0.07);
-  border-radius: calc(var(--u) * 0.06);
-  font-weight: 900;
-  font-size: calc(var(--u) * 0.2);
+  padding: calc(var(--u) * 0.02) calc(var(--u) * 0.06);
+  font-size: calc(var(--u) * 0.16);
   color: #fff;
-  text-shadow: 0 1px 2px #000;
   pointer-events: none;
 }
 .card .timer:empty { display: none; }
-.card .timer.haste { background: #1d6a3ae0; box-shadow: 0 0 0 calc(var(--u) * 0.02) #6dffae; }
-.card .timer.slow { background: #5a3a7ae0; box-shadow: 0 0 0 calc(var(--u) * 0.02) #c39bff; }
-.card .timer.freeze { background: #1e5a7ae0; box-shadow: 0 0 0 calc(var(--u) * 0.02) #7fdcff; }
+.card .timer.haste { background: #123a22; outline: var(--px) solid #6dffae; }
+.card .timer.slow { background: #2e1f40; outline: var(--px) solid #c39bff; }
+.card .timer.freeze { background: #0f2e40; outline: var(--px) solid #7fdcff; }
 
 .card .ammo i.spent { background: #3a3228; }
 
 /* No dragging mid-fight. */
 .fighting .card { cursor: default; }
 
+/* Shield over the health bar: gold with a stripe that crawls along it. */
 .hp b {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  background: linear-gradient(#ffe27a, #d8a520);
-  opacity: 0.85;
+  background: repeating-linear-gradient(-45deg, #ffe27a 0 calc(var(--px) * 2), #d8a520 calc(var(--px) * 2) calc(var(--px) * 4));
+  opacity: 0.9;
 }
 .hp span {
   gap: 0.4em;
@@ -63,19 +60,20 @@
 .hp em.poison { color: #58d69b; }
 .hp em.regen { color: #c2e25a; }
 
+/* Numbers: pixel type with a hard one-pixel outline. */
 .float {
   position: absolute;
   z-index: 150;
   translate: -50% -50%;
-  font-weight: 900;
-  font-size: calc(var(--u) * (0.32 + 0.25 * var(--big, 0)));
-  text-shadow: 0 0 3px #000, 0 2px 2px #000;
+  font-size: calc(var(--u) * (0.28 + 0.22 * var(--big, 0)));
+  text-shadow: var(--px) 0 #000, calc(var(--px) * -1) 0 #000, 0 var(--px) #000, 0 calc(var(--px) * -1) #000, 0 calc(var(--px) * 2) #000;
   pointer-events: none;
   animation: float-up 0.9s ease-out forwards;
 }
 @keyframes float-up {
   0% { transform: translateY(0) scale(0.6); opacity: 0; }
   15% { transform: translate(calc(var(--dx, 0px) * 0.2), calc(var(--u) * -0.15)) scale(1.15); opacity: 1; }
+  80% { opacity: 1; }
   100% { transform: translate(var(--dx, 0px), calc(var(--u) * -0.6)) scale(1); opacity: 0; }
 }
 
@@ -87,71 +85,51 @@
   display: grid;
   justify-items: center;
   gap: calc(var(--u) * 0.2);
-  padding: calc(var(--u) * 0.3) calc(var(--u) * 0.8);
-  border-radius: calc(var(--u) * 0.15);
-  background: linear-gradient(#2a3a8a, #18205a);
-  border: calc(var(--u) * 0.05) solid #f0c24a;
-  box-shadow: 0 0 calc(var(--u) * 0.6) #000c;
-  animation: banner-in 0.35s cubic-bezier(0.2, 1.4, 0.4, 1);
+  padding: calc(var(--u) * 0.35) calc(var(--u) * 0.8);
+  background: var(--bg);
+  outline: var(--px) solid var(--result, var(--accent));
+  box-shadow: 0 0 0 100vmax #0007, 0 0 calc(var(--u) * 0.8) color-mix(in srgb, var(--result, var(--accent)), transparent 60%);
+  animation: banner-in 0.3s steps(5);
 }
-.banner.loss { background: linear-gradient(#6a2020, #3a1010); }
-.banner.draw { background: linear-gradient(#4a4a4a, #262626); }
+.banner.win { --result: var(--accent); }
+.banner.loss { --result: var(--bad); }
+.banner.draw { --result: var(--dim); }
 .banner p {
   margin: 0;
-  color: #d8c8a8;
-  font-weight: 700;
-  font-size: calc(var(--u) * 0.2);
+  color: var(--dim);
+  font-size: calc(var(--u) * 0.16);
 }
+/* Title with a slight color split, like a misconverged tube. */
 .banner h2 {
   margin: 0;
-  font-family: Georgia, serif;
-  font-size: calc(var(--u) * 0.6);
-  color: #f6e6c6;
-  text-shadow: 0 2px 4px #000;
-}
-.banner button,
-.fight-btn {
-  padding: calc(var(--u) * 0.08) calc(var(--u) * 0.3);
-  border-radius: calc(var(--u) * 0.1);
-  border: calc(var(--u) * 0.03) solid #f0c24a;
-  background: linear-gradient(#e0892a, #a0501a);
-  color: #fff;
-  font-weight: 900;
-  font-size: calc(var(--u) * 0.22);
-  cursor: pointer;
-  text-shadow: 0 1px 2px #000;
+  color: var(--result);
+  font-size: calc(var(--u) * 0.56);
+  text-shadow: calc(var(--px) * -1) 0 #ff3a5a80, var(--px) 0 #3ad0ff80, 0 0 calc(var(--u) * 0.25) var(--result);
 }
 @keyframes banner-in {
-  from { scale: 0.5; opacity: 0; }
-  to { scale: 1; opacity: 1; }
+  from { scale: 1 0.05; opacity: 0.5; }
+  to { scale: 1 1; opacity: 1; }
 }
 
-.fight-btn {
-  display: grid;
-  place-items: center;
-  box-sizing: border-box;
-}
 .fighting .fight-btn:not(.hidden) { opacity: 0.4; pointer-events: none; }
 
 /* Playback speed: a native range snapping to 0.5x / 1x / 2x / 4x. */
 .speed {
   display: grid;
   gap: calc(var(--u) * 0.04);
-  color: #f1e4c8;
-  font-weight: 800;
-  font-size: calc(var(--u) * 0.14);
-  text-shadow: 0 1px 2px #000;
+  color: var(--dim);
+  font-size: calc(var(--u) * 0.12);
 }
 .speed input {
   width: 100%;
   margin: 0;
-  accent-color: #f0c24a;
+  accent-color: var(--accent);
 }
 .speed .ticks {
   display: flex;
   justify-content: space-between;
 }
-.speed .ticks span.on { color: #f0c24a; }
+.speed .ticks span.on { color: var(--accent); }
 
 /* Destroyed for the rest of the fight: drained of color, with a slash across it. */
 .card.destroyed .art { filter: grayscale(1) brightness(0.45); }
@@ -161,6 +139,75 @@
   inset: 12% 8%;
   z-index: 5;
   pointer-events: none;
-  background: linear-gradient(62deg, transparent 46.5%, #ff5a44 47.5%, #ff9a7a 50%, #ff5a44 52.5%, transparent 53.5%);
-  filter: drop-shadow(0 0 calc(var(--u) * 0.04) #000);
+  background: linear-gradient(62deg, transparent 47%, #ff5a44 47% 53%, transparent 53%);
+  filter: drop-shadow(0 0 0 #000) drop-shadow(var(--px) var(--px) 0 #000);
+}
+
+/* ---------- Status auras: --burn, --poison, --shield, --regen, --low (0..1) on each portrait, set every frame ---------- */
+
+.portrait {
+  box-shadow:
+    0 0 0 calc(var(--px) * 2) rgb(255 216 74 / calc(var(--shield, 0) * 0.9)),
+    0 0 calc(var(--u) * 0.5) rgb(255 216 74 / calc(var(--shield, 0) * 0.45)),
+    0 0 calc(var(--u) * 0.35) rgb(194 226 90 / calc(var(--regen, 0) * 0.35)),
+    inset 0 0 calc(var(--u) * 0.45) rgb(255 40 40 / calc(var(--low, 0) * 0.8));
+}
+.portrait > span { position: relative; z-index: 1; }
+.portrait > .level { z-index: 1; }
+.portrait::before,
+.portrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+/* Burn: a dithered glow licking up from the bottom. */
+.portrait::before {
+  background: linear-gradient(to top, #ff5a1a, #ff9b3a90 35%, #0000 75%);
+  mask: repeating-conic-gradient(#000 0 25%, #0008 0 50%) 0 0 / 4px 4px;
+  opacity: var(--burn, 0);
+  transform-origin: bottom;
+  animation: lick 0.45s steps(3) infinite alternate;
+}
+@keyframes lick {
+  from { scale: 1 0.8; }
+  to { scale: 1 1.05; }
+}
+/* Poison: a sickly green screen door over the portrait, breathing. */
+.portrait::after {
+  background: repeating-conic-gradient(#3ad07a 0 25%, #0000 0 50%) 0 0 / 4px 4px;
+  opacity: calc(var(--poison, 0) * 0.5);
+  animation: sick 1.2s steps(4) infinite alternate;
+}
+@keyframes sick {
+  from { filter: brightness(0.6); }
+  to { filter: brightness(1.3); }
+}
+
+/* Yours, once severe: the screen's edges go green (Poison), glow from below (Burn), throb red (low health). */
+.edge {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 16vmin rgb(58 208 122 / calc(var(--poison, 0) * 0.6)),
+    inset 0 -14vmin 14vmin -6vmin rgb(255 110 30 / calc(var(--burn, 0) * 0.55)),
+    inset 0 0 20vmin rgb(255 30 30 / calc(var(--low, 0) * 0.6));
+  mask: repeating-conic-gradient(#000 0 25%, #0009 0 50%) 0 0 / 4px 4px;
+  animation: throb 0.9s steps(4) infinite;
+}
+@keyframes throb {
+  0%, 100% { opacity: 0.75; }
+  30% { opacity: 1; }
+}
+
+/* Particles (fx.ts), over the cards and under the numbers. */
+.fx {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 145;
+  pointer-events: none;
 }
