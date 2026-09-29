@@ -1,9 +1,6 @@
 import './style.css'
 import { applyDrop, cellsOf, dims, find, H, KINDS, lift, planDrop, putBack, start, W, type Held, type Item, type Plan, type State } from './world.ts'
 
-const files = import.meta.glob<string>('./icons/*.svg', { query: '?raw', import: 'default', eager: true })
-const ICON: Record<string, string> = Object.fromEntries(Object.entries(files).map(([p, svg]) => [p.slice('./icons/'.length, -'.svg'.length), svg]))
-
 const SAVE = 'field-v1'
 let s: State = load() ?? start()
 let cell = 28
@@ -44,13 +41,7 @@ function itemHtml(it: Item) {
   const k = KINDS[it.kind]
   const d = dims(it)
   const cells = cellsOf(it)
-  // a shaped thing's icon sits at the middle of its filled cells, not of its box
-  const [ox, oy] = cells ? [cells.reduce((n, [x]) => n + x + 0.5, 0) / cells.length - d.w / 2, cells.reduce((n, [, y]) => n + y + 0.5, 0) / cells.length - d.h / 2] : [0, 0]
-  const lo = Math.min(k.w, k.h)
-  const m = lo * (1 + 0.25 * (Math.min(2, Math.max(k.w, k.h) / lo) - 1)) * (k.shape ? 0.85 : 1)
-  return `<div class="item ${cells ? 'shaped' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
-    ${cells ? `<u class="body" style="${maskOf(cells)}"></u>` : ''}
-    <div class="art" style="--kw:${k.w};--kh:${k.h};--m:${m};--r:${it.rot ? 90 : 0}deg;--ox:${ox};--oy:${oy}"><i>${ICON[k.icon] ?? ''}</i></div></div>`
+  return `<div class="item ${cells ? 'shaped' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">${cells ? `<u class="body" style="${maskOf(cells)}"></u>` : ''}</div>`
 }
 
 /** Redraw everything; things that moved glide from where they were. */
