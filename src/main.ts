@@ -8,6 +8,14 @@ const files = import.meta.glob<string>('./icons/*.svg', { query: '?raw', import:
 const ICON: Record<string, string> = Object.fromEntries(Object.entries(files).map(([p, svg]) => [p.slice('./icons/'.length, -'.svg'.length), svg]))
 const icon = (name: string) => ICON[name] ?? ''
 
+/** Colour is material: what a thing is made of picks its accent, first match wins. */
+const MATERIAL: [string, string][] = [
+  ['liquid', '#5aa0d8'], ['drink', '#b0517f'], ['fish', '#5fb8b0'], ['ore', '#d38a45'], ['metal', '#a9b4c0'], ['tool', '#8f9aa6'],
+  ['light', '#b7f06a'], ['living', '#86b86a'], ['herb', '#7fb069'], ['fruit', '#d0566a'], ['wood', '#b98a55'], ['fuel', '#8d8a86'],
+  ['salt', '#e6e2d4'], ['food', '#d9b26a'],
+]
+const accent = (k: { tags: string[]; color: string }) => MATERIAL.find(([t]) => k.tags.includes(t))?.[1] ?? k.color
+
 // Presentation only: some icons are drawn on a diagonal; turn them to lie along long items.
 const TILT: Record<string, number> = { firewood: 45, knife: 45 }
 
@@ -75,7 +83,7 @@ function itemHtml(it: Item, extra = '') {
   const cells = cellsOf(it)
   const fx = isBox(it) ? '' : effects(it)
   const tiles = cells ? `<u class="body" style="${maskOf(cells)}"></u>` : ''
-  return `<div class="item ${cls} ${cells ? 'shaped' : ''} ${extra}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
+  return `<div class="item ${cls} ${cells ? 'shaped' : ''} ${extra}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${accent(k)}">
     ${tiles}${fx ? `<i class="fx ${fx}" style="${cells ? maskOf(cells) : ''}"></i>` : ''}<div class="art" style="--kw:${k.w};--kh:${k.h};--m:${m};--r:${it.rot ? 90 : 0}deg">${art}</div>${badges(it)}</div>`
 }
 
@@ -138,7 +146,7 @@ function contractHtml(c: Contract, offer: boolean) {
   const k = KINDS[c.kind]
   const got = offer ? 0 : have(s, c)
   const left = c.due - s.day
-  return `<li class="contract ${!offer && got >= c.n ? 'ready' : ''}" style="--c:${k.color}">
+  return `<li class="contract ${!offer && got >= c.n ? 'ready' : ''}" style="--c:${accent(k)}">
     <span class="li">${icon(k.icon)}</span>
     <div><b>${c.client}</b> wants <b>${wants(c)}</b>
       <div class="meta">${offer ? `${c.days} days to do it` : `${got}/${c.n} in dispatch · ${left <= 0 ? '<em>due today</em>' : `${left} day${left === 1 ? '' : 's'} left`}`}</div></div>
@@ -158,7 +166,7 @@ function marketHtml() {
 function noteHtml(n: Note) {
   if (n.id === undefined || !n.kind) return `<li class="say">${n.text}</li>`
   const k = KINDS[n.kind]
-  return `<li data-id="${n.id}" class="${n.mark ?? ''}" style="--c:${k.color}"><span class="li">${icon(k.icon)}</span><span><b>${k.name}</b> ${n.text}</span></li>`
+  return `<li data-id="${n.id}" class="${n.mark ?? ''}" style="--c:${accent(k)}"><span class="li">${icon(k.icon)}</span><span><b>${k.name}</b> ${n.text}</span></li>`
 }
 
 function logHtml() {
@@ -255,7 +263,7 @@ function itemTip(it: Item) {
   if (it.ferment) rows.push(['Fermenting', `${it.ferment} of 3 nights`])
   if (it.age !== undefined) rows.push(['Aged', `${it.age} night${it.age === 1 ? '' : 's'}`])
   const lines = fc.get(it.id) ?? []
-  tip.innerHTML = `<h3 style="--c:${k.color}">${label(it)}</h3><p>${k.blurb}</p>
+  tip.innerHTML = `<h3 style="--c:${accent(k)}">${label(it)}</h3><p>${k.blurb}</p>
     ${rows.length ? `<dl>${rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('')}</dl>` : ''}
     <h4>Tonight, in the ${nameOf(s, it.at)}</h4>
     ${lines.length ? `<ul>${lines.map(l => `<li>${l}</li>`).join('')}</ul>` : '<p class="none">Nothing happens to it here.</p>'}`

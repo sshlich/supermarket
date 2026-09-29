@@ -44,7 +44,8 @@ right thing must survive the night in the right container until it is due.
    - Bottles in the basket come back full from the shore. On an open fire the bottled water boils away; loose on the hearth it leaves salt.
    - The **still** (fire + `still` prop) distils seawater to fresh water, through the nesting: still > bottle > water.
    - Later: more machines, upgrades, more items and contract kinds.
-5. Restyle: item art fit, material accent colours, less default UI.
+5. Restyle. (first pass done: flat near-black, monospace labels, hairlines, no textures/glows; accent = material.)
+   - Still open: the game-icons art fits poorly in some tiles; container/panel accents are hand-picked in CSS.
 
 ## Open
 
