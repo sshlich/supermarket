@@ -90,11 +90,23 @@ function sprites(): Plugin {
         if (url.pathname === '/reset') return svg(fromIcon(k.icon, k.w, k.h))
         if (url.pathname === '/kind') {
           return body(text => {
-            let v: { w?: number; h?: number }
+            let v: { w?: number; h?: number; name?: string; color?: string }
             try { v = JSON.parse(text) } catch { return fail(400, 'not json') }
             const ok = (n: unknown) => Number.isInteger(n) && (n as number) >= 1 && (n as number) <= 12
-            if (!ok(v.w) || !ok(v.h)) return fail(400, 'w and h must be whole numbers from 1 to 12')
-            kinds[kind] = { ...k, w: v.w!, h: v.h! }
+            const next = { ...k }
+            if (v.w !== undefined || v.h !== undefined) {
+              if (!ok(v.w) || !ok(v.h)) return fail(400, 'w and h must be whole numbers from 1 to 12')
+              next.w = v.w!; next.h = v.h!
+            }
+            if (v.name !== undefined) {
+              if (typeof v.name !== 'string' || !v.name.trim() || v.name.length > 40) return fail(400, 'name must be 1 to 40 characters')
+              next.name = v.name.trim()
+            }
+            if (v.color !== undefined) {
+              if (typeof v.color !== 'string' || !/^#[0-9a-f]{6}$/i.test(v.color)) return fail(400, 'colour must look like #c9975a')
+              next.color = v.color.toLowerCase()
+            }
+            kinds[kind] = next
             writeFileSync(kindsFile, JSON.stringify(kinds, null, 2) + '\n')
             say('saved')
           })

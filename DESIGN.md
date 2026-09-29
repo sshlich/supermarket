@@ -17,7 +17,10 @@ updates live when one is saved.
   (alt = free stretch), arrow keys nudge, `[` `]` scale.
 - **Add.** Shape generators with parameters (rectangle, rounded, circle, ellipse, ring, line, zigzag, triangle, diamond,
   polygon, star, cross, arrow, chevron, glyph); new shapes take the item colour by default.
-- **Properties.** Sliders (each with a number box) for edge width, opacity, X, Y, width, height and turn, colour swatches
+- **Item tab** (the game item you picked in the list, not a shape): name and accent colour (both saved to `src/kinds.json`,
+  the toolbar colour saves too), the footprint summary, and sliders that move, size and turn the *whole drawing* together
+  (X, Y, size as a share of the footprint, turn), plus centre / fit / flip / turn 90.
+- **Shape tab** (was Properties, for the selected shape). Sliders (each with a number box) for edge width, opacity, X, Y, width, height and turn, colour swatches
   for fill and edge (item colour, none, a palette, any colour), keep-ratio, quick flip/turn/centre/fit buttons. Sliders
   show the effect live and keep it on release.
 - **Layers.** Front first; per layer: hide, bring forward, send back, duplicate, delete; drag rows to reorder;

@@ -5,6 +5,9 @@ import './editor.css'
 import { KINDS } from './world.ts'
 import { I, SHAPES, about, fmt, invert, move, mul, nearestSegment, parsePoints, point, pointsAttr, scale, simplify, smoothPath, snapTo, transformAttr, turn, type M, type P, type Shape } from './editor/geom.ts'
 
+// Saving an item's size, name or colour rewrites kinds.json; the editor already holds the new values, so it should not reload.
+if (import.meta.hot) import.meta.hot.accept('./world.ts', () => {})
+
 const NS = 'http://www.w3.org/2000/svg'
 const UNIT = 32 // sprite units per cell (see scripts/sprite.ts)
 const ids = Object.keys(KINDS)
@@ -22,7 +25,7 @@ let rot = false
 let zoom = 56
 let snap = 4 // units; 32 is a whole cell
 let guides = { cells: true, units: false, box: true }
-let tab: 'props' | 'add' | 'fx' | 'ops' | 'lib' | 'src' = 'add'
+let tab: 'item' | 'props' | 'add' | 'fx' | 'ops' | 'lib' | 'src' = 'item'
 let tool: 'select' | 'dots' | 'line' | 'free' = 'select'
 let pen: { pts: P[]; hover: P | null } | null = null
 let penWidth = 4
@@ -467,6 +470,91 @@ function propsHtml(): string {
   </div>`
 }
 
+// ---------------------------------------------------------------- the item itself: name, colour, and its whole drawing
+
+const saveKind = async (patch: Record<string, unknown>) => {
+  const status = root.querySelector('[data-status]')
+  try { await api('/kind', cur, { method: 'POST', body: JSON.stringify(patch) }); if (status) status.textContent = 'item saved'; setTimeout(() => { if (status) status.textContent = '' }, 2000) } catch (e) { if (status) status.textContent = `not saved: ${(e as Error).message}` }
+}
+async function setItemColor(v: string) {
+  color[cur] = v
+  KINDS[cur].color = v
+  paint(false)
+  await saveKind({ color: v })
+}
+
+/** Every drawn element's box together: where the whole drawing is. */
+function drawingBox(): Box | null {
+  if (!live) return null
+  const els = drawn(live).filter(e => e.getAttribute('display') !== 'none')
+  if (!els.length) return null
+  const bs = els.map(bbox)
+  const x = Math.min(...bs.map(b => b.x)), y = Math.min(...bs.map(b => b.y))
+  return { x, y, w: Math.max(...bs.map(b => b.x + b.w)) - x, h: Math.max(...bs.map(b => b.y + b.h)) - y }
+}
+
+function itemHtml(): string {
+  const k = KINDS[cur]
+  const { w: vw, h: vh } = vbox(cur)
+  const b = drawingBox()
+  const layers = live ? drawn(live).length : 0
+  const sp = `<div class="swrow">${PALETTE.map(c => `<button class="sw ${k.color.toLowerCase() === c ? 'on' : ''}" data-itemcolor data-val="${c}" title="${c}" style="--s:${c}"></button>`).join('')}<input type="color" data-itemcolorpick value="${k.color}" title="any colour"></div>`
+  return `<div class="props">
+    <h3>${esc(k.name)} <small>the item, not a shape</small></h3>
+    <h4>Name</h4>
+    <div class="row"><input type="text" data-itemname value="${esc(k.name)}" maxlength="40" style="flex:1"></div>
+    <h4>Colour <small>the item's accent in the game; saved</small></h4>
+    <div class="row col"><span></span>${sp}</div>
+    <h4>What it takes on the field</h4>
+    <p class="note">${k.w} × ${k.h} squares (${vw} × ${vh} units). Change it in the <b>Footprint</b> picker on the left.</p>
+    <h4>The whole drawing <small>${layers} layer${layers === 1 ? '' : 's'}, moved together</small></h4>
+    ${b ? `${slider('X', 'wx', b.x + b.w / 2, -vw * 0.25, vw * 1.25, 0.5)}
+    ${slider('Y', 'wy', b.y + b.h / 2, -vh * 0.25, vh * 1.25, 0.5)}
+    ${slider('Size', 'ws', Math.round((Math.max(b.w / vw, b.h / vh)) * 100), 5, 250, 1, '%')}
+    ${slider('Turn', 'wr', 0, -180, 180, 1, '°')}` : '<p class="note">Nothing drawn yet.</p>'}
+    <div class="row quick"><button data-wop="centre">Centre it</button><button data-wop="fit">Fit to the footprint</button><button data-wop="flipH">⇋ Flip</button><button data-wop="flipV">⇅ Flip</button><button data-wop="rot90">⟳ 90°</button></div>
+    <p class="note">Sizes are of the whole picture's outline, as a share of the footprint.</p>
+  </div>`
+}
+
+let whole: { ms: [SVGGraphicsElement, M][]; b: Box } | null = null
+function wholeStart() {
+  const b = drawingBox()
+  if (live && b) whole = { ms: drawn(live).map(e => [e, matrixOf(e)] as [SVGGraphicsElement, M]), b }
+}
+/** Move, size or turn every layer together, measured from where the drag began. */
+function wholeApply(key: string, v: number) {
+  if (!whole) wholeStart()
+  if (!whole) return
+  const { ms, b } = whole
+  const { w: vw, h: vh } = vbox(cur)
+  const cx = b.x + b.w / 2, cy = b.y + b.h / 2
+  let t: M = I
+  if (key === 'wx') t = move(v - cx, 0)
+  else if (key === 'wy') t = move(0, v - cy)
+  else if (key === 'ws') t = about(scale(Math.max(0.02, (v / 100) / Math.max(b.w / vw, b.h / vh))), cx, cy)
+  else if (key === 'wr') t = about(turn(v), cx, cy)
+  for (const [el, m0] of ms) setMatrix(el, mul(t, m0))
+  drawSelection()
+}
+function wholeOp(op: string) {
+  if (!live) return
+  wholeStart()
+  if (!whole) return
+  const { ms, b } = whole
+  const { w: vw, h: vh } = vbox(cur)
+  const cx = b.x + b.w / 2, cy = b.y + b.h / 2
+  let t: M = I
+  if (op === 'centre') t = move(vw / 2 - cx, vh / 2 - cy)
+  else if (op === 'fit') { const s = Math.min((vw * 0.9) / b.w, (vh * 0.9) / b.h); t = mul(move(vw / 2, vh / 2), mul(scale(s), move(-cx, -cy))) }
+  else if (op === 'flipH') t = about(scale(-1, 1), cx, cy)
+  else if (op === 'flipV') t = about(scale(1, -1), cx, cy)
+  else if (op === 'rot90') t = about(turn(90), cx, cy)
+  for (const [el, m0] of ms) setMatrix(el, mul(t, m0))
+  whole = null
+  commit()
+}
+
 // ---------------------------------------------------------------- sliders: live while dragging, kept on release
 
 let start: { m: M; b: Box; rot: number } | null = null
@@ -495,19 +583,30 @@ function sliderApply(key: string, v: number) {
   set('x', nb.x + nb.w / 2); set('y', nb.y + nb.h / 2); set('w', nb.w); set('h', nb.h)
 }
 
-root.addEventListener('pointerdown', e => { if ((e.target as HTMLElement).matches?.('[data-sl]')) sliderStart() })
+root.addEventListener('pointerdown', e => { const t = e.target as HTMLElement; if (t.matches?.('[data-sl]')) { if (/^w[xysr]$/.test(t.dataset.sl!)) wholeStart(); else sliderStart() } })
 root.addEventListener('input', e => {
   const t = e.target as HTMLInputElement
   if (!t.dataset.sl) return
+  if (/^w[xysr]$/.test(t.dataset.sl)) { wholeApply(t.dataset.sl, +t.value); const tw = root.querySelector<HTMLInputElement>(`[data-slnum="${t.dataset.sl}"]`); if (tw) tw.value = fmt(+t.value); return }
   sliderApply(t.dataset.sl, +t.value)
   const twin = root.querySelector<HTMLInputElement>(`[data-slnum="${t.dataset.sl}"]`)
   if (twin) twin.value = fmt(+t.value)
 })
 root.addEventListener('change', e => {
   const t = e.target as HTMLInputElement
+  if (t.dataset.sl && /^w[xysr]$/.test(t.dataset.sl)) { wholeApply(t.dataset.sl, +t.value); whole = null; commit(); return }
+  if (t.dataset.slnum && /^w[xysr]$/.test(t.dataset.slnum)) { wholeStart(); wholeApply(t.dataset.slnum, +t.value); whole = null; commit(); return }
   if (t.dataset.sl) { sliderApply(t.dataset.sl, +t.value); start = null; commit(); return }
   if (t.dataset.slnum) { sliderStart(); sliderApply(t.dataset.slnum, +t.value); start = null; commit(); return }
+  if (t.dataset.itemname !== undefined) { const v = t.value.trim(); if (v) { KINDS[cur].name = v; saveKind({ name: v }); paint(false); for (const b of root.querySelectorAll<HTMLElement>(`.kinds button[data-kind="${cur}"] b`)) b.textContent = v } return }
+  if (t.dataset.itemcolorpick !== undefined) { setItemColor(t.value); return }
   if (t.dataset.colorpick) { const el = selEl(); if (el) { paintAttr(el, t.dataset.colorpick, t.value); if (t.dataset.colorpick === 'stroke' && !+attrOf(el, 'stroke-width')) paintAttr(el, 'stroke-width', '3'); commit() } }
+})
+root.addEventListener('click', e => {
+  const c = (e.target as HTMLElement).closest<HTMLElement>('button[data-itemcolor]')
+  if (c) { setItemColor(c.dataset.val!); return }
+  const w = (e.target as HTMLElement).closest<HTMLElement>('button[data-wop]')
+  if (w) { wholeOp(w.dataset.wop!); return }
 })
 root.addEventListener('click', e => {
   const b = (e.target as HTMLElement).closest<HTMLElement>('button[data-set]')
@@ -577,6 +676,7 @@ function paint(withSource = true) {
   // side panel
   for (const t of root.querySelectorAll<HTMLElement>('[data-tab]')) t.classList.toggle('on', t.dataset.tab === tab)
   for (const p of root.querySelectorAll<HTMLElement>('[data-page]')) p.hidden = p.dataset.page !== tab
+  $('[data-page="item"]').innerHTML = itemHtml()
   $('[data-page="props"]').innerHTML = propsHtml()
   $('[data-page="add"]').innerHTML = addHtml()
   $('[data-page="fx"]').innerHTML = fxHtml()
@@ -843,6 +943,7 @@ root.addEventListener('input', e => {
 root.addEventListener('change', e => {
   const t = e.target as HTMLInputElement | HTMLSelectElement
   const el = selEl()
+  if (t.matches('[data-color]')) { setItemColor(t.value); return }
   if (t.matches('[data-snap]')) { snap = +t.value; return }
   if (t.matches('[data-copy]')) { if (t.value) copyFrom(t.value); (t as HTMLSelectElement).value = ''; return }
   if (t.matches('[data-auto]')) { autosave = (t as HTMLInputElement).checked; if (autosave) save(); return }
@@ -1395,9 +1496,9 @@ root.innerHTML = `
   </main>
   <section class="panel side">
     <h2 data-title></h2>
-    <div class="tabs">${[['add', 'Add'], ['props', 'Props'], ['fx', 'Effects'], ['ops', 'Ops'], ['lib', 'Library'], ['src', 'SVG']].map(([t, l]) => `<button data-tab="${t}">${l}</button>`).join('')}</div>
+    <div class="tabs">${[['item', 'Item'], ['add', 'Add'], ['props', 'Shape'], ['fx', 'Effects'], ['ops', 'Ops'], ['lib', 'Library'], ['src', 'SVG']].map(([t, l]) => `<button data-tab="${t}">${l}</button>`).join('')}</div>
     <div class="pages">
-      <div data-page="add"></div><div data-page="props"></div><div data-page="fx"></div><div data-page="ops"></div><div data-page="lib"></div>
+      <div data-page="item"></div><div data-page="add"></div><div data-page="props"></div><div data-page="fx"></div><div data-page="ops"></div><div data-page="lib"></div>
       <div data-page="src"><textarea spellcheck="false" data-src></textarea><div class="acts"><button data-tidy>Tidy</button></div></div>
     </div>
     <div class="acts foot">
