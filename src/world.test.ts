@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { boxOf, applyDrop, find, forage, kids, lift, make, night, planDrop, send, start, stow, accepts, env, FIELD, S, type Item, type State } from './world.ts'
+import { accept, buy, deliver, dispatchOf, have, offer, sleep, boxOf, applyDrop, find, forage, kids, lift, make, night, planDrop, send, start, stow, accepts, env, FIELD, S, type Item, type State } from './world.ts'
 
-const NAMES = { basket: 'basket', crate: 'crate', cold: 'coldBox', hearth: 'hearth', rack: 'rack', cellar: 'shelf', barrel: 'barrel' } as const
+const NAMES = { basket: 'basket', crate: 'crate', cold: 'coldBox', hearth: 'hearth', rack: 'rack', cellar: 'shelf', barrel: 'barrel', dispatch: 'dispatch' } as const
 type BoxId = keyof typeof NAMES
 /** An empty workshop: the seven containers on the field, and `s.b` to find them by name. */
 const empty = (): State & { b: Record<BoxId, number> } => {
-  const s: State = { day: 1, place: 'woods', target: 0, items: [], open: [], seen: [], next: 1, log: [] }
+  const s: State = { day: 1, place: 'woods', target: 0, items: [], open: [], seen: [], next: 1, log: [], money: 0, rent: 30, rentDue: 8, offers: [], contracts: [] }
   const b = {} as Record<BoxId, number>
   for (const [name, kind] of Object.entries(NAMES)) { const c = make(s, kind); s.items.push(c); b[name as BoxId] = c.id }
   return Object.assign(s, { b })
@@ -273,6 +273,59 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   assert.equal(send(s, chest.id, s.b.basket), true)
   assert.equal(find(s, chest.id)!.at, s.b.basket)
   assert.deepEqual(kinds(s, chest.id), ['coal'])
+}
+
+// Contracts: offers are different goods; accept, fill the dispatch crate, deliver for pay. Rotten or too-poor goods don't count.
+{
+  const s = empty()
+  const offers = offer(s, () => 0.3)
+  assert.equal(offers.length, 3)
+  assert.equal(new Set(offers.map(o => o.kind)).size, 3)
+  s.offers = offers
+  const c = offers[0]
+  assert.equal(accept(s, c.id), true)
+  assert.equal(s.contracts[0].due, s.day + c.days)
+  assert.equal(s.offers.length, 2)
+  // Make the contract a simple one to fill.
+  Object.assign(s.contracts[0], { kind: 'copperIngot', n: 2, grade: 45, age: undefined, pay: 20 })
+  put(s, 'dispatch', 'copperIngot', 0, 0, { grade: 30 }) // too crude
+  assert.equal(have(s, s.contracts[0]), 0)
+  assert.equal(deliver(s, c.id), false)
+  put(s, 'dispatch', 'copperIngot', 1, 0, { grade: 60, n: 3 })
+  assert.equal(have(s, s.contracts[0]), 3)
+  assert.equal(deliver(s, c.id), true)
+  assert.equal(s.money, 20)
+  assert.equal(s.contracts.length, 0)
+  assert.deepEqual(kinds(s, 'dispatch'), ['copperIngot', 'copperIngot']) // the crude one and the one left over
+  assert.equal(dispatchOf(s)!.kind, 'dispatch')
+}
+// Rent falls due every week: paid from money, or the run ends. Lapsed contracts vanish.
+{
+  const s = empty()
+  s.day = 7; s.money = 40; s.rentDue = 8
+  s.contracts.push({ id: 900, client: 'x', kind: 'coal', n: 1, pay: 5, days: 3, due: 7 })
+  sleep(s, () => 0.5)
+  assert.equal(s.day, 8)
+  assert.equal(s.money, 10)
+  assert.equal(s.rentDue, 15)
+  assert.equal(s.rent, 42)
+  assert.equal(s.contracts.length, 0)
+  assert.equal(s.over, undefined)
+  s.day = 14; s.money = 5
+  sleep(s, () => 0.5)
+  assert.ok(s.over)
+  assert.deepEqual(sleep(s), []) // nothing happens once it's over
+}
+// The shop: costs money, arrives on the floor, and never shuffles what is already there.
+{
+  const s = empty()
+  s.money = 20
+  assert.equal(buy(s, 'coldBox'), false)
+  const before = s.items.filter(o => o.at === FIELD).map(o => [o.id, o.x, o.y])
+  assert.equal(buy(s, 'chest'), true)
+  assert.equal(s.money, 6)
+  assert.deepEqual(before, s.items.filter(o => o.at === FIELD).slice(0, before.length).map(o => [o.id, o.x, o.y]))
+  assert.equal(s.items.filter(o => o.kind === 'chest' && o.at === FIELD).length, 1)
 }
 
 console.log('world ok')

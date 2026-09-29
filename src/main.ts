@@ -1,7 +1,7 @@
 import './style.css'
 import {
-  accepts, applyDrop, cellsOf, dims, env, FIELD, FIELD_H, FIELD_W, find, forecast, forecastDrop, gradeName, has, isBox, KINDS, kids, label, lift, nameOf, PLACES, planDrop, putBack, room, send, showsDamp, sleep, spec, start, tidy,
-  type Held, type Item, type Note, type Place, type Plan, type State,
+  accept, accepts, applyDrop, buy, deliver, have, MAX_CONTRACTS, RENT_EVERY, SHOP, wants, cellsOf, dims, env, FIELD, FIELD_H, FIELD_W, find, forecast, forecastDrop, gradeName, has, isBox, KINDS, kids, label, lift, nameOf, PLACES, planDrop, putBack, room, send, showsDamp, sleep, spec, start, tidy,
+  type Contract, type Held, type Item, type Note, type Place, type Plan, type State,
 } from './world.ts'
 
 const files = import.meta.glob<string>('./icons/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -11,7 +11,7 @@ const icon = (name: string) => ICON[name] ?? ''
 // Presentation only: some icons are drawn on a diagonal; turn them to lie along long items.
 const TILT: Record<string, number> = { firewood: 45, knife: 45 }
 
-const SAVE = 'inventory-v6'
+const SAVE = 'inventory-v7'
 let s: State = load() ?? start()
 let fc = forecast(s)
 let pulse = new Set<number>()
@@ -30,7 +30,7 @@ function save() {
 }
 
 function fit() {
-  cell = Math.floor(Math.max(17, Math.min(24, (innerWidth - 400) / 46)))
+  cell = Math.floor(Math.max(17, Math.min(24, (innerWidth - 450) / 46)))
   document.documentElement.style.setProperty('--cell', `${cell}px`)
 }
 
@@ -134,6 +134,27 @@ function floorHtml() {
   </section>`
 }
 
+function contractHtml(c: Contract, offer: boolean) {
+  const k = KINDS[c.kind]
+  const got = offer ? 0 : have(s, c)
+  const left = c.due - s.day
+  return `<li class="contract ${!offer && got >= c.n ? 'ready' : ''}" style="--c:${k.color}">
+    <span class="li">${icon(k.icon)}</span>
+    <div><b>${c.client}</b> wants <b>${wants(c)}</b>
+      <div class="meta">${offer ? `${c.days} days to do it` : `${got}/${c.n} in dispatch · ${left <= 0 ? '<em>due today</em>' : `${left} day${left === 1 ? '' : 's'} left`}`}</div></div>
+    <button data-${offer ? 'accept' : 'deliver'}="${c.id}" ${offer ? (s.contracts.length >= MAX_CONTRACTS ? 'disabled' : '') : (got < c.n ? 'disabled' : '')}>${c.pay}g ${offer ? 'accept' : 'deliver'}</button>
+  </li>`
+}
+
+function marketHtml() {
+  return `<h2>Contracts</h2>
+    ${s.contracts.length ? `<ul class="contracts">${s.contracts.map(c => contractHtml(c, false)).join('')}</ul>` : '<p class="calm">Nothing promised. Take an offer below.</p>'}
+    <h3>Offers today</h3>
+    <ul class="contracts">${s.offers.map(c => contractHtml(c, true)).join('') || '<li class="calm">None left.</li>'}</ul>
+    <h3>Shop</h3>
+    <div class="shop">${SHOP.map(o => `<button data-buy="${o.kind}" ${s.money < o.price ? 'disabled' : ''} title="${KINDS[o.kind].blurb}"><span class="bi">${icon(KINDS[o.kind].icon)}</span>${KINDS[o.kind].name}<b>${o.price}g</b></button>`).join('')}</div>`
+}
+
 function noteHtml(n: Note) {
   if (n.id === undefined || !n.kind) return `<li class="say">${n.text}</li>`
   const k = KINDS[n.kind]
@@ -159,6 +180,7 @@ function html() {
   const kinds = Object.keys(KINDS).length
   return `<header class="top">
       <div class="brand"><h1>The Workshop</h1><span class="day">Day ${s.day}</span></div>
+      <div class="purse" title="Rent comes due every ${RENT_EVERY} days">${icon('coins')}<b>${s.money}g</b><span>rent ${s.rent}g on day ${s.rentDue}</span></div>
       <div class="found" title="Kinds of things you've had in the workshop">${icon('sparkles')}Found ${s.seen.length} of ${kinds}</div>
       <div class="go"><span>Tomorrow, go to</span>${(Object.keys(PLACES) as Place[]).map(p =>
         `<button class="place ${s.place === p ? 'on' : ''}" data-place="${p}">${icon(PLACES[p].icon)}${PLACES[p].name}</button>`).join('')}
@@ -170,8 +192,9 @@ function html() {
         ${floorHtml()}
         <div class="row">${panels().map(boxHtml).join('')}</div>
       </main>
-      <aside class="log">${logHtml()}</aside>
+      <aside class="log">${marketHtml()}${logHtml()}</aside>
     </div>
+    ${s.over ? `<div class="over"><div><h2>Evicted</h2><p>${s.over}</p><button data-reset>Start over</button></div></div>` : ''}
     <footer class="help">
       <span><kbd>drag</kbd> move</span><span><kbd>R</kbd> / <kbd>right-click</kbd> turn while dragging</span>
       <span><kbd>shift</kbd>-click send to ⇥</span><span><kbd>⌘/ctrl</kbd>+<kbd>shift</kbd>-click send all of a kind</span>
@@ -501,6 +524,9 @@ app.addEventListener('click', e => {
   if (!btn) return
   if (btn.dataset.place) { s.place = btn.dataset.place as Place; changed() }
   else if (btn.dataset.pin) { s.target = +btn.dataset.pin; changed() }
+  else if (btn.dataset.accept) { if (accept(s, +btn.dataset.accept)) changed() }
+  else if (btn.dataset.deliver) { if (deliver(s, +btn.dataset.deliver)) changed() }
+  else if (btn.dataset.buy) { if (buy(s, btn.dataset.buy)) changed() }
   else if (btn.dataset.close) { s.open = s.open.filter(id => id !== +btn.dataset.close!); changed() }
   else if (btn.dataset.tidy) { const from = rects(); tidy(s, +btn.dataset.tidy); changed(from) }
   else if (btn.classList.contains('sleep')) night()

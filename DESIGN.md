@@ -34,13 +34,17 @@ right thing must survive the night in the right container until it is due.
 
 ## Milestones (one at a time, play each)
 
-1. Container model + props-based rules + tests. The old seven boxes are now kinds; UI still shows them as panels. (done)
-2. The field: snap-to-grid surface, irregular item shapes, open and close, nest by dragging; transfer QoL.
-3. The loop: contracts, deadlines, rent, money; then upgrades and machines.
-4. Liquids, more containers (bottle, furnace, lockbox filters) and items.
-5. Restyle.
+1. Container model + props-based rules. (done)
+2. The floor, irregular shapes, drop-into and hover-to-open, finer 2x grid, environment effects. (done)
+3. Contracts, rent, shop. (done, untuned)
+   - 3 offers a day, up to 4 active; deliver from the **Dispatch** container; goods still age there.
+   - Rent every 7 days (30g, +12g each time); miss it and the run ends. Shop sells containers onto the floor.
+4. Liquids, more containers (bottle, furnace), machines and upgrades; more items and contract kinds.
+5. Restyle: item art fit, material accent colours, less default UI.
 
 ## Open
 
-- Liquids: volume on a slot, or items with an amount? (deferred to M4)
-- Whether the field scrolls or a workshop upgrade grows it.
+- Balance: prices, rent growth, offer pool. Handed to the player, not tuned.
+- Delivery as a layer (getting goods to the client) is not built; contracts are hand-over-at-the-door for now.
+- Liquids: volume on a slot, or items with an amount?
+- Whether the floor scrolls or an upgrade grows it.

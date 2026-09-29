@@ -73,6 +73,8 @@ export const KINDS: Record<string, Kind> = {
     box: { w: 6, h: 3, env: ['damp', 'dark'], desc: 'damp · dark' } },
   barrel: { name: 'Barrel', icon: 'barrel', color: '#9b6a3f', w: 2, h: 2, stack: 1, tags: ['container'], blurb: 'Fruit beside yeast ferments into wine, and wine gets better every night it stays.',
     box: { w: 3, h: 3, env: ['sealed', 'dark'], desc: 'sealed · dark' } },
+  dispatch: { name: 'Dispatch', icon: 'cardboard-box', color: '#c9b48a', w: 2, h: 2, stack: 1, tags: ['container'], blurb: 'What you put in here is what a contract is delivered from. Whatever sits here still ages overnight.',
+    box: { w: 4, h: 3, env: [], desc: 'deliveries come from here' } },
   chest: { name: 'Chest', icon: 'chest', color: '#b07c4a', w: 2, h: 2, stack: 1, tags: ['container'], blurb: 'Holds anything, and can be carried like anything else. Put it in the cold box and what is in it stays cold.',
     box: { w: 4, h: 3, env: [], desc: 'holds anything' } },
   lockbox: { name: 'Lockbox', icon: 'locked-chest', color: '#8f9aa6', w: 1, h: 1, stack: 1, tags: ['container'], blurb: 'Only metal goes in. Shuts out the damp, so nothing in it rusts.',
@@ -117,7 +119,12 @@ export interface Item {
   fresh?: number; moist?: number; grade?: number; cond?: number; age?: number; ferment?: number; uses?: number; rotten?: boolean
 }
 export interface Note { text: string; id?: number; box?: number; kind?: string; quiet?: boolean; mark?: 'find' | 'new' }
-export interface State { day: number; place: Place; target: number; items: Item[]; open: number[]; seen: string[]; next: number; log: Note[] }
+/** Someone wants `n` of `kind` (at least `grade` / `age` if set) by day `due`, and pays `pay`. Offers carry `days` to do it in instead. */
+export interface Contract { id: number; client: string; kind: string; n: number; grade?: number; age?: number; pay: number; days: number; due: number }
+export interface State {
+  day: number; place: Place; target: number; items: Item[]; open: number[]; seen: string[]; next: number; log: Note[]
+  money: number; rent: number; rentDue: number; offers: Contract[]; contracts: Contract[]; over?: string
+}
 
 export const has = (it: Item, t: Tag) => KINDS[it.kind].tags.includes(t)
 export const boxOf = (it: Item): Box => ({ ...(it.rot ? turn(shapeOf(it.kind)) : shapeOf(it.kind)), id: it.id, x: it.x, y: it.y })
@@ -237,7 +244,7 @@ export function stow(s: State, cid: number, it: Item): number {
   let first = true
   while (it.n > 0) {
     let spot = firstFree(W, H, kids(s, cid).map(boxOf), shapeOf(it.kind))
-    if (!spot && tidy(s, cid, shapeOf(it.kind))) spot = firstFree(W, H, kids(s, cid).map(boxOf), shapeOf(it.kind))
+    if (!spot && cid !== FIELD && tidy(s, cid, shapeOf(it.kind))) spot = firstFree(W, H, kids(s, cid).map(boxOf), shapeOf(it.kind))
     if (!spot) break
     const n = Math.min(it.n, k.stack)
     s.items.push({ ...it, id: first ? it.id : s.next++, at: cid, n, x: spot.x, y: spot.y, rot: spot.turned })
@@ -572,9 +579,10 @@ function discover(s: State): Note[] {
 }
 
 export function sleep(s: State, rand = Math.random): Note[] {
+  if (s.over) return []
   const notes = night(s)
   s.day++
-  notes.push({ text: `Day ${s.day}. You went to the ${PLACES[s.place].name.toLowerCase()} and brought back:` }, ...forage(s, rand), ...discover(s))
+  notes.push({ text: `Day ${s.day}. You went to the ${PLACES[s.place].name.toLowerCase()} and brought back:` }, ...forage(s, rand), ...discover(s), ...ledger(s, rand))
   s.log = notes
   return notes
 }
@@ -595,14 +603,103 @@ export function forecastDrop(s: State, held: Held, plan: Plan): string[] {
   return night(c).filter(n => n.id === id).map(n => n.text)
 }
 
+// ---------------------------------------------------------------- money: contracts, rent, shop
+
+const WANTS = [
+  { kind: 'driedMoonleaf', n: [2, 4], each: 7, days: 6 },
+  { kind: 'driedBerries', n: [3, 5], each: 5, days: 6 },
+  { kind: 'smokedFish', n: [1, 2], each: 14, days: 7 },
+  { kind: 'saltedFish', n: [1, 2], each: 13, days: 7 },
+  { kind: 'grilledFish', n: [1, 1], each: 11, days: 3 },
+  { kind: 'copperIngot', n: [2, 4], each: 9, days: 6, grade: 45 },
+  { kind: 'ironIngot', n: [1, 3], each: 16, days: 8, grade: 45 },
+  { kind: 'saltJar', n: [1, 1], each: 18, days: 6 },
+  { kind: 'berryWine', n: [1, 2], each: 30, days: 9, age: 3 },
+  { kind: 'glowcap', n: [2, 3], each: 9, days: 5 },
+]
+const CLIENTS = ['The miller', 'The innkeeper', 'The apothecary', 'A ship’s cook', 'Widow Rook', 'The mine steward', 'A tanner', 'The ferryman']
+export const MAX_CONTRACTS = 4
+export const RENT_EVERY = 7
+
+/** Three fresh offers: different goods, each with a deadline and a price that grows with how hard the ask is. */
+export function offer(s: State, rand = Math.random): Contract[] {
+  const pool = [...WANTS].sort(() => rand() - 0.5).slice(0, 3)
+  return pool.map(w => {
+    const n = w.n[0] + Math.floor(rand() * (w.n[1] - w.n[0] + 1))
+    const rush = w.days <= 4 ? 0.3 : 0
+    const pay = Math.round(n * w.each * (1 + (w.grade ? 0.2 : 0) + (w.age ? 0.3 : 0) + rush))
+    return { id: s.next++, client: CLIENTS[Math.floor(rand() * CLIENTS.length)], kind: w.kind, n, grade: w.grade, age: w.age, pay, days: w.days, due: 0 }
+  })
+}
+
+export const dispatchOf = (s: State) => s.items.find(o => o.kind === 'dispatch')
+const meets = (c: Contract, it: Item) => it.kind === c.kind && !it.rotten && (it.grade ?? 100) >= (c.grade ?? 0) && (it.age ?? 99) >= (c.age ?? 0)
+/** How many of what a contract wants are in the dispatch crate right now. */
+export function have(s: State, c: Contract) {
+  const d = dispatchOf(s)
+  return d ? kids(s, d.id).filter(o => meets(c, o)).reduce((n, o) => n + o.n, 0) : 0
+}
+export const wants = (c: Contract) => [`${c.n} × ${KINDS[c.kind].name}`, c.grade ? `Fair or better` : '', c.age ? `aged ${c.age}+ nights` : ''].filter(Boolean).join(', ')
+
+export function accept(s: State, id: number): boolean {
+  const o = s.offers.find(c => c.id === id)
+  if (!o || s.contracts.length >= MAX_CONTRACTS) return false
+  s.offers.splice(s.offers.indexOf(o), 1)
+  s.contracts.push({ ...o, due: s.day + o.days })
+  return true
+}
+
+/** Hand over what a contract asks for from the dispatch crate; pays out. */
+export function deliver(s: State, id: number): boolean {
+  const c = s.contracts.find(o => o.id === id)
+  const d = dispatchOf(s)
+  if (!c || !d || have(s, c) < c.n) return false
+  let need = c.n
+  for (const it of kids(s, d.id).filter(o => meets(c, o))) {
+    const n = Math.min(need, it.n)
+    it.n -= n; need -= n
+    if (it.n <= 0) take(s, it)
+  }
+  s.money += c.pay
+  s.contracts.splice(s.contracts.indexOf(c), 1)
+  return true
+}
+
+/** Things to buy, and what they cost. They arrive on the floor. */
+export const SHOP: { kind: string; price: number }[] = [
+  { kind: 'chest', price: 14 }, { kind: 'lockbox', price: 22 }, { kind: 'rack', price: 25 }, { kind: 'shelf', price: 30 },
+  { kind: 'barrel', price: 35 }, { kind: 'coldBox', price: 45 }, { kind: 'hearth', price: 30 },
+]
+export function buy(s: State, kind: string): boolean {
+  const price = SHOP.find(o => o.kind === kind)?.price
+  if (price === undefined || s.money < price) return false
+  const c = make(s, kind)
+  if (stow(s, FIELD, c)) return false // no room on the floor
+  s.money -= price
+  return true
+}
+
+/** The morning bookkeeping after the night: rent falls due, missed contracts lapse, new offers come in. */
+function ledger(s: State, rand: () => number): Note[] {
+  const notes: Note[] = []
+  for (const c of s.contracts.filter(o => o.due < s.day)) { notes.push({ text: `${c.client} gave up waiting for ${wants(c)}.` }); s.contracts.splice(s.contracts.indexOf(c), 1) }
+  if (s.day >= s.rentDue) {
+    if (s.money >= s.rent) { s.money -= s.rent; notes.push({ text: `Rent paid: ${s.rent}g. Next due on day ${s.rentDue + RENT_EVERY}.` }); s.rentDue += RENT_EVERY; s.rent += 12 }
+    else { s.over = `Day ${s.day}: the rent was ${s.rent}g and you had ${s.money}g.`; notes.push({ text: 'You could not pay the rent.' }) }
+  }
+  s.offers = offer(s, rand)
+  return notes
+}
+
 export function start(): State {
-  const s: State = { day: 1, place: 'woods', target: 0, items: [], open: [], seen: [], next: 1, log: [] }
+  const s: State = { day: 1, place: 'woods', target: 0, items: [], open: [], seen: [], next: 1, log: [], money: 25, rent: 30, rentDue: 1 + RENT_EVERY, offers: [], contracts: [] }
   // The workshop floor: where each container sits (cells of the field).
-  const at: [string, number, number][] = [['basket', 0, 0], ['crate', 2, 0], ['coldBox', 5, 0], ['hearth', 0, 2], ['rack', 2, 2], ['shelf', 5, 2], ['barrel', 8, 0]]
+  const at: [string, number, number][] = [['basket', 0, 0], ['crate', 2, 0], ['coldBox', 5, 0], ['hearth', 0, 2], ['rack', 2, 2], ['shelf', 5, 2], ['barrel', 8, 0], ['dispatch', 8, 2]]
   const id: Record<string, number> = {}
   for (const [kind, x, y] of at) { const c = make(s, kind, { x: x * S, y: y * S }); id[kind] = c.id; s.items.push(c) }
   s.target = id.crate
-  s.open = [id.basket, id.crate]
+  s.open = [id.basket, id.crate, id.dispatch]
+  s.offers = offer(s)
   const put = (box: string, kind: string, extra: Partial<Item> = {}) => stow(s, id[box], make(s, kind, extra))
   put('crate', 'pickaxe', { cond: 65 })
   put('crate', 'net', { cond: 90 })
