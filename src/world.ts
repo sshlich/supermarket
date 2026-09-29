@@ -7,13 +7,14 @@ import { drop, firstFree, overlaps, pack, same, touches, turn, type Box } from '
 export type Place = 'woods' | 'shore' | 'mine'
 type Tag = 'container' | 'food' | 'fruit' | 'herb' | 'fish' | 'fuel' | 'wood' | 'ore' | 'metal' | 'tool' | 'living' | 'burns' | 'preserved' | 'liquid' | 'salt' | 'light' | 'drink'
 /** What a container does to everything inside it. `lit` and `smoky` are worked out each night from what is burning. */
-export type Prop = 'cold' | 'dry' | 'airy' | 'damp' | 'dark' | 'sealed' | 'fire' | 'lit' | 'smoky'
+export type Prop = 'cold' | 'dry' | 'airy' | 'damp' | 'dark' | 'sealed' | 'fire' | 'still' | 'lit' | 'smoky'
 
 export interface Spec {
   w: number; h: number; desc: string
   env: Prop[]
   seals?: Prop[] // props of whatever this sits in that don't reach its contents
   accepts?: Tag[] // only things with one of these tags go in
+  rejects?: Tag[] // ...and nothing with one of these does
 }
 export interface Kind {
   name: string; icon: string; color: string; w: number; h: number; stack: number; tags: Tag[]; blurb: string
@@ -24,6 +25,7 @@ export interface Kind {
   box?: Spec // it is a container
   // what the night does, as data the rules read:
   onFire?: string // becomes this on a lit fire
+  distills?: string // becomes this on a lit fire in a still
   smoke?: string // becomes this in smoke
   dries?: string // becomes this once dry
   softens?: string // becomes this again in the damp
@@ -46,9 +48,13 @@ export const KINDS: Record<string, Kind> = {
   grilledFish: { name: 'Grilled Silverfin', icon: 'fish-cooked', color: '#e2a064', w: 2, h: 1, stack: 1, tags: ['food', 'fish'], fresh: 3, blurb: 'Good now. Not for long.' },
   smokedFish: { name: 'Smoked Silverfin', icon: 'fish-smoking', color: '#c08450', w: 2, h: 1, stack: 1, tags: ['food', 'fish', 'preserved'], blurb: 'Tastes of the hearth. Keeps for a long time.' },
   saltedFish: { name: 'Salted Silverfin', icon: 'double-fish', color: '#e6ecef', w: 2, h: 1, stack: 1, tags: ['food', 'fish', 'preserved'], blurb: 'Stiff with salt. Keeps for a long time.' },
-  seawater: { name: 'Jar of Seawater', icon: 'mason-jar', color: '#4aa3cc', w: 1, h: 2, stack: 1, tags: ['liquid'], onFire: 'saltJar', blurb: 'The grey sea in a jar. Boil it on a lit hearth and salt is left behind.' },
+  seawater: { name: 'Seawater', icon: 'water-drop', color: '#4aa3cc', w: 1, h: 1, stack: 4, tags: ['liquid'], onFire: 'saltJar', distills: 'freshWater', blurb: 'The grey sea, by the measure. It needs a bottle. Tipped onto a lit hearth it boils down to salt; in a still it runs clear.' },
+  freshWater: { name: 'Fresh Water', icon: 'water-drop', color: '#bfe6ff', w: 1, h: 1, stack: 4, tags: ['liquid'], blurb: 'Clean and cold. The apothecary pays for it.' },
   saltJar: { name: 'Jar of Salt', icon: 'covered-jar', color: '#efece2', w: 1, h: 2, stack: 1, tags: ['salt'], uses: 3, blurb: 'Coarse grey salt. Raw fish laid beside it gets packed and keeps.' },
-  emptyJar: { name: 'Empty Jar', icon: 'mason-jar', color: '#8b939a', w: 1, h: 2, stack: 1, tags: [], blurb: 'Pack it in the basket for the shore and it comes back full of seawater.' },
+  bottle: { name: 'Bottle', icon: 'jug', color: '#8fb8c9', w: 1, h: 2, stack: 1, tags: ['container'], blurb: 'Holds liquid and nothing else. Pack it in the basket for the shore and it comes back full. Put it in a still and what is in it changes.',
+    box: { w: 1, h: 2, env: [], accepts: ['liquid'], desc: 'liquids only' } },
+  still: { name: 'Still', icon: 'cauldron', color: '#c98a5a', w: 3, h: 2, stack: 1, tags: ['container'], blurb: 'A small copper still. Give it dry fuel and a bottle of seawater and, by morning, the bottle holds fresh water.',
+    box: { w: 3, h: 2, env: ['fire', 'still'], accepts: ['liquid', 'container', 'fuel'], desc: 'fire · needs fuel · distils' } },
   copperOre: { name: 'Copper Ore', icon: 'gold-nuggets', color: '#e08a4c', w: 1, h: 1, stack: 4, tags: ['ore'], onFire: 'copperIngot', blurb: 'Green-streaked rock. A lit hearth smelts it.' },
   ironOre: { name: 'Iron Ore', icon: 'stone-pile', color: '#c0705e', w: 1, h: 1, stack: 4, tags: ['ore'], onFire: 'ironIngot', blurb: 'Heavy and rust-red. Lies deeper in the mine, where you need light.' },
   copperIngot: { name: 'Copper Ingot', icon: 'gold-bar', color: '#f09a5c', w: 1, h: 1, stack: 4, tags: ['metal'], blurb: 'Soft, warm metal. It is waiting for a better forge than this.' },
@@ -60,23 +66,23 @@ export const KINDS: Record<string, Kind> = {
   berryWine: { name: 'Berry Wine', icon: 'wine-bottle', color: '#a33a66', w: 1, h: 1, stack: 3, tags: ['drink'], ages: true, blurb: 'Gets better every night it spends in the dark of the barrel.' },
   // Containers. `w`/`h` is the footprint where it sits; `box` is what's inside.
   basket: { name: 'Basket', icon: 'basket', color: '#c9a36a', w: 2, h: 2, stack: 1, tags: ['container'], blurb: 'Goes out with you each morning. Tools packed in it help; what you find comes home in it, if there is room.',
-    box: { w: 6, h: 4, env: [], desc: 'open air' } },
+    box: { w: 6, h: 4, env: [], rejects: ['liquid'], desc: 'open air' } },
   crate: { name: 'Crate', icon: 'wooden-crate', color: '#a98553', w: 3, h: 2, stack: 1, tags: ['container'], blurb: 'Plain storage. Nothing happens here, except food going off.',
-    box: { w: 8, h: 5, env: [], desc: 'open air' } },
+    box: { w: 8, h: 5, env: [], rejects: ['liquid'], desc: 'open air' } },
   coldBox: { name: 'Cold Box', icon: 'snowflake-2', color: '#9cc9e6', w: 2, h: 2, stack: 1, tags: ['container'], blurb: 'Spring-fed and icy. Food keeps as long as it stays in here.',
-    box: { w: 5, h: 4, env: ['cold'], desc: 'cold' } },
+    box: { w: 5, h: 4, env: ['cold'], rejects: ['liquid'], desc: 'cold' } },
   hearth: { name: 'Hearth', icon: 'campfire', color: '#e8894a', w: 2, h: 2, stack: 1, tags: ['container'], blurb: 'Burns one dry fuel a night. Lit, it smelts ore, boils jars, cooks fish, dries wood, and burns whatever burns. With only wet wood in it, it smokes instead.',
     box: { w: 4, h: 3, env: ['fire'], desc: 'fire · needs fuel' } },
   rack: { name: 'Drying Rack', icon: 'clothesline', color: '#d9c48a', w: 3, h: 1, stack: 1, tags: ['container'], blurb: 'Dries anything damp. Flies find fish here.',
-    box: { w: 6, h: 2, env: ['dry', 'airy'], desc: 'dry · airy' } },
+    box: { w: 6, h: 2, env: ['dry', 'airy'], rejects: ['liquid'], desc: 'dry · airy' } },
   shelf: { name: 'Cellar Shelf', icon: 'cellar-barrels', color: '#7a8f6a', w: 3, h: 2, stack: 1, tags: ['container'], blurb: 'Spores grow here. Iron rusts, dry things go soft.',
-    box: { w: 6, h: 3, env: ['damp', 'dark'], desc: 'damp · dark' } },
+    box: { w: 6, h: 3, env: ['damp', 'dark'], rejects: ['liquid'], desc: 'damp · dark' } },
   barrel: { name: 'Barrel', icon: 'barrel', color: '#9b6a3f', w: 2, h: 2, stack: 1, tags: ['container'], blurb: 'Fruit beside yeast ferments into wine, and wine gets better every night it stays.',
     box: { w: 3, h: 3, env: ['sealed', 'dark'], desc: 'sealed · dark' } },
   dispatch: { name: 'Dispatch', icon: 'cardboard-box', color: '#c9b48a', w: 2, h: 2, stack: 1, tags: ['container'], blurb: 'What you put in here is what a contract is delivered from. Whatever sits here still ages overnight.',
-    box: { w: 4, h: 3, env: [], desc: 'deliveries come from here' } },
+    box: { w: 4, h: 3, env: [], rejects: ['liquid'], desc: 'deliveries come from here' } },
   chest: { name: 'Chest', icon: 'chest', color: '#b07c4a', w: 2, h: 2, stack: 1, tags: ['container'], blurb: 'Holds anything, and can be carried like anything else. Put it in the cold box and what is in it stays cold.',
-    box: { w: 4, h: 3, env: [], desc: 'holds anything' } },
+    box: { w: 4, h: 3, env: [], rejects: ['liquid'], desc: 'holds anything' } },
   lockbox: { name: 'Lockbox', icon: 'locked-chest', color: '#8f9aa6', w: 1, h: 1, stack: 1, tags: ['container'], blurb: 'Only metal goes in. Shuts out the damp, so nothing in it rusts.',
     box: { w: 3, h: 2, env: [], seals: ['damp'], accepts: ['metal'], desc: 'metal only · airtight' } },
 }
@@ -110,7 +116,7 @@ export const FIELD_H = 6 * 2
 
 export const PLACES: Record<Place, { name: string; icon: string; blurb: string }> = {
   woods: { name: 'Woods', icon: 'forest', blurb: 'Berries, moonleaf, wet wood, sometimes spores or yeast. A knife helps.' },
-  shore: { name: 'Shore', icon: 'waves', blurb: 'Fish and driftwood. Empty jars come back full of seawater. A net helps.' },
+  shore: { name: 'Shore', icon: 'waves', blurb: 'Fish and driftwood. Bottles in the basket come back full of seawater. A net helps.' },
   mine: { name: 'Mine', icon: 'mine-wagon', blurb: 'Copper ore and coal. A pickaxe helps; a glowcap lights the way to iron.' },
 }
 
@@ -163,7 +169,8 @@ export function accepts(s: State, cid: number, it: Item): boolean {
   const b = c && spec(c)
   if (!b || within(s, cid, it.id)) return false
   if (depth(s, cid) + height(s, it) > MAX_NEST) return false
-  return !b.accepts || KINDS[it.kind].tags.some(t => b.accepts!.includes(t))
+  const tags = KINDS[it.kind].tags
+  return (!b.accepts || tags.some(t => b.accepts!.includes(t))) && !tags.some(t => b.rejects?.includes(t))
 }
 
 const fuelOf = (s: State, cid: number) =>
@@ -425,6 +432,8 @@ export function night(s: State): Note[] {
     if (p.has('lit')) {
       const k = KINDS[it.kind]
       if (it.rotten) { say(it, 'burns away'); take(s, it) }
+      else if (p.has('still') && k.distills) { say(it, `runs clear: ${KINDS[k.distills].name}`); become(it, k.distills, { n: it.n }) }
+      else if (k.onFire && !accepts(s, it.at, { ...it, kind: k.onFire })) { say(it, 'boils away, with nowhere for what is left'); take(s, it) }
       else if (k.onFire) { say(it, k.onFire === 'saltJar' ? 'boils down, leaving a jar of salt' : k.onFire === 'grilledFish' ? 'cooks through' : `smelts into ${KINDS[k.onFire].name}`); become(it, k.onFire) }
       else if (has(it, 'burns')) { say(it, 'catches fire and burns to ash'); take(s, it) }
       else if (has(it, 'wood') && it.moist) { const m = it.moist; it.moist = Math.max(0, m - 40); say(it, `dries by the fire (${m}% → ${it.moist}% damp)`, true) }
@@ -496,7 +505,7 @@ export function night(s: State): Note[] {
     if (!jar) return
     say(it, 'is packed in salt and will keep'); become(it, 'saltedFish')
     jar.uses = (jar.uses ?? 1) - 1
-    if (!jar.uses) { say(jar, 'is used up'); become(jar, 'emptyJar') }
+    if (!jar.uses) { say(jar, 'is used up'); take(s, jar) }
   })
 
   // Food goes off, faster beside rot, faster still with flies on the rack. The cold stops it.
@@ -544,8 +553,11 @@ export function forage(s: State, rand = Math.random): Note[] {
     const net = tool('net')
     add('fish', roll(1, 2) + (net ? 2 : 0))
     if (net) wear(net)
-    for (const jar of basket.filter(o => o.kind === 'emptyJar')) { notes.push({ id: jar.id, box: bag.id, kind: jar.kind, text: 'came back full of seawater' }); become(jar, 'seawater') }
-    if (rand() < 0.25) add('seawater', 1)
+    for (const jar of basket.filter(o => o.kind === 'bottle')) {
+      const water = make(s, 'seawater', { n: 4 })
+      const put = 4 - stow(s, jar.id, water)
+      if (put) notes.push({ id: jar.id, box: bag.id, kind: jar.kind, text: `came back with ${put} seawater in it` })
+    }
     if (rand() < 0.5) add('firewood', 1, { moist: 80 })
   } else {
     const pick = tool('pickaxe')
@@ -616,6 +628,7 @@ const WANTS = [
   { kind: 'saltJar', n: [1, 1], each: 18, days: 6 },
   { kind: 'berryWine', n: [1, 2], each: 30, days: 9, age: 3 },
   { kind: 'glowcap', n: [2, 3], each: 9, days: 5 },
+  { kind: 'freshWater', n: [2, 4], each: 8, days: 5 },
 ]
 const CLIENTS = ['The miller', 'The innkeeper', 'The apothecary', 'A ship’s cook', 'Widow Rook', 'The mine steward', 'A tanner', 'The ferryman']
 export const MAX_CONTRACTS = 4
@@ -667,8 +680,8 @@ export function deliver(s: State, id: number): boolean {
 
 /** Things to buy, and what they cost. They arrive on the floor. */
 export const SHOP: { kind: string; price: number }[] = [
-  { kind: 'chest', price: 14 }, { kind: 'lockbox', price: 22 }, { kind: 'rack', price: 25 }, { kind: 'shelf', price: 30 },
-  { kind: 'barrel', price: 35 }, { kind: 'coldBox', price: 45 }, { kind: 'hearth', price: 30 },
+  { kind: 'bottle', price: 8 }, { kind: 'chest', price: 14 }, { kind: 'lockbox', price: 22 }, { kind: 'rack', price: 25 }, { kind: 'shelf', price: 30 },
+  { kind: 'barrel', price: 35 }, { kind: 'still', price: 60 }, { kind: 'coldBox', price: 45 }, { kind: 'hearth', price: 30 },
 ]
 export function buy(s: State, kind: string): boolean {
   const price = SHOP.find(o => o.kind === kind)?.price
@@ -709,8 +722,9 @@ export function start(): State {
   put('crate', 'firewood', { n: 2 })
   put('crate', 'copperOre', { n: 3, grade: 58 })
   put('crate', 'ironIngot', { grade: 62 })
-  put('crate', 'emptyJar')
-  put('crate', 'seawater')
+  const bottle = make(s, 'bottle')
+  stow(s, id.crate, bottle)
+  stow(s, bottle.id, make(s, 'seawater', { n: 4 }))
   put('crate', 'chest')
   put('crate', 'lockbox')
   put('basket', 'fish', { fresh: 2 })

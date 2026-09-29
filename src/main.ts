@@ -11,7 +11,7 @@ const icon = (name: string) => ICON[name] ?? ''
 // Presentation only: some icons are drawn on a diagonal; turn them to lie along long items.
 const TILT: Record<string, number> = { firewood: 45, knife: 45 }
 
-const SAVE = 'inventory-v7'
+const SAVE = 'inventory-v8'
 let s: State = load() ?? start()
 let fc = forecast(s)
 let pulse = new Set<number>()

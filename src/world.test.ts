@@ -23,7 +23,7 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   const s = empty()
   put(s, 'hearth', 'coal', 0, 0, { n: 2 })
   const ore = put(s, 'hearth', 'copperOre', 1, 0, { n: 3, grade: 70 })
-  put(s, 'hearth', 'seawater', 2, 0)
+  put(s, 'hearth', 'seawater', 2, 0) // loose on the fire, not in a bottle
   put(s, 'hearth', 'moonleaf', 3, 0)
   night(s)
   assert.deepEqual(kinds(s, 'hearth'), ['coal', 'copperIngotx3', 'saltJar'])
@@ -95,8 +95,8 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   put(s, 'crate', 'fish', 0, 1)
   put(s, 'crate', 'fish', 3, 0)
   night(s)
-  assert.deepEqual(kinds(s, 'crate'), ['emptyJar', 'saltedFish', 'saltedFish', 'saltedFish'])
-  assert.equal(jar.kind, 'emptyJar')
+  assert.deepEqual(kinds(s, 'crate'), ['saltedFish', 'saltedFish', 'saltedFish'])
+  assert.equal(kids(s, s.b.crate).includes(jar), false) // used up
 }
 // Rot spreads: berries beside something rotten lose two nights instead of one. The cold box stops all of it.
 {
@@ -148,7 +148,7 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   assert.deepEqual(kinds(s, 'crate'), ['coalx5'])
 
   const knife = put(s, 'basket', 'knife', 0, 0)
-  const jar = put(s, 'crate', 'emptyJar', 5, 2)
+  const jar = put(s, 'crate', 'saltJar', 5, 2)
   h = lift(s, knife.id)!
   p = planDrop(s, h, s.b.crate, 5 * S, 2 * S, false)!
   applyDrop(s, h, p)
@@ -264,6 +264,41 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   assert.equal(p.at, s.b.cold)
   applyDrop(s, h, p)
   assert.equal(coal.at, s.b.cold)
+}
+// Liquids need a bottle: solid storage refuses them, a bottle takes only them.
+{
+  const s = empty()
+  const water = make(s, 'seawater', { n: 2 })
+  assert.equal(accepts(s, s.b.crate, water), false)
+  const bottle = put(s, 'crate', 'bottle', 0, 0)
+  assert.equal(accepts(s, bottle.id, water), true)
+  assert.equal(accepts(s, bottle.id, make(s, 'coal')), false)
+  // On an open fire the bottled water boils away; in a still it runs clear; loose on the hearth it leaves salt.
+  const s2 = empty()
+  const b2 = put(s2, 'hearth', 'bottle', 0, 0)
+  const w2 = put(s2, b2.id, 'seawater', 0, 0, { n: 3 })
+  put(s2, 'hearth', 'coal', 2, 0)
+  night(s2)
+  assert.equal(kids(s2, b2.id).length, 0)
+  assert.equal(w2.kind, 'seawater') // gone from the bottle; the object is orphaned
+  const s3 = empty()
+  const still = put(s3, FIELD, 'still', 0, 0)
+  const b3 = put(s3, still.id, 'bottle', 0, 0)
+  const w3 = put(s3, b3.id, 'seawater', 0, 0, { n: 3 })
+  put(s3, still.id, 'coal', 2, 0)
+  night(s3)
+  assert.equal(w3.kind, 'freshWater')
+  assert.equal(w3.n, 3)
+  assert.equal(w3.at, b3.id)
+}
+// Shore: a bottle in the basket comes back full.
+{
+  const s = empty()
+  s.place = 'shore'
+  const bottle = put(s, 'basket', 'bottle', 0, 0)
+  forage(s, () => 0.9)
+  assert.equal(kids(s, bottle.id)[0].kind, 'seawater')
+  assert.equal(kids(s, bottle.id)[0].n, 4)
 }
 // Sending a container carries what is in it.
 {

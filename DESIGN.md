@@ -39,7 +39,11 @@ right thing must survive the night in the right container until it is due.
 3. Contracts, rent, shop. (done, untuned)
    - 3 offers a day, up to 4 active; deliver from the **Dispatch** container; goods still age there.
    - Rent every 7 days (30g, +12g each time); miss it and the run ends. Shop sells containers onto the floor.
-4. Liquids, more containers (bottle, furnace), machines and upgrades; more items and contract kinds.
+4. Liquids and a first machine. (done)
+   - Liquids are stackable units (`seawater`, `freshWater`) and solid storage `rejects` them; a **bottle** takes only liquids.
+   - Bottles in the basket come back full from the shore. On an open fire the bottled water boils away; loose on the hearth it leaves salt.
+   - The **still** (fire + `still` prop) distils seawater to fresh water, through the nesting: still > bottle > water.
+   - Later: more machines, upgrades, more items and contract kinds.
 5. Restyle: item art fit, material accent colours, less default UI.
 
 ## Open
