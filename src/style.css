@@ -368,6 +368,16 @@ body::before {
 }
 .log-btn:hover,
 .log-btn.on { border-color: var(--accent); color: var(--accent); }
+.log-btn.mute {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--u) * 0.08);
+}
+.log-btn.mute .ic {
+  width: calc(var(--u) * 0.2);
+  height: calc(var(--u) * 0.2);
+}
 
 /* ---------- Fight log: a terminal on the right edge; the scene shrinks beside it ---------- */
 

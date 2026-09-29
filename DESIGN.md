@@ -22,6 +22,7 @@ Test flags start a test run that doesn't save and has no start screen:
 - **Tiers and upgrade paths** (`src/tiers.ts`), **enchantment rules** (`src/enchant.ts`), **skills** (`src/skills.ts`), **quests and permanent growth** (`src/items.ts`, `src/run-effects.ts`).
 - **The run:** 6-hour days (choice, choice, monster, choice, choice, rival), XP and levels, events, a start pick, a last chance, 10 wins to finish. Shops roll tiers by day (`src/shop.ts`). The run saves every hour and a resume replays that hour exactly (`src/save.ts`).
 - **Presentation:** icon art with stacking layouts (`src/art.ts`), tier paths in tooltips, a fight log panel (`src/fight-log.ts`).
+- **Look and sound:** a dark CRT screen with pixel type and ordered-dither art (`src/dither.ts`). Accent color is kept for tiers, stats, gold and focus. There's a stash-open layer and status auras on the portraits in fights, from burn, poison, shield, regen and low health (`severity` in `src/playback.ts`). Pixel particles come from `src/fx.ts`, and synthesized sounds from `src/sfx.ts` (M mutes).
 - **Content:** placeholder and test content only. It exists to exercise every mechanic; real items come later.
 
 ## Decided rules
@@ -58,7 +59,8 @@ Also worth doing, none of it needing a redesign:
 
 - **Item trigger animations:** something travels from the item to a portrait. The opponent's for Damage, Burn and Poison; yours for Heal, Shield and Regen.
 - **Shield:** an overlay on the HP bar. Above max HP the bar stays full and always shows the shield number.
-- **Status visuals** (proposal): Burn embers and a pulse per tick, a Poison tint and drips, Regen sparkles, and a shield that cracks when hit and shatters when it breaks.
+- **Status visuals:** built (auras, embers, bubbles, sparkles, shield shatter). Still to do: a pulse on each tick, and a shield that cracks when hit.
+- **Juice to add:** a lagging "lost health" strip on the bar, health numbers that roll, coins flying on buy and sell, a shine sweep on upgrade, and screen transitions between hours.
 - **Upgrade and enchant stations:** show an empty slot and drag an item into it, instead of picking from cards.
 
 ## Gameplay direction (still forming)

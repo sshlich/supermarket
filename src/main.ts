@@ -3,6 +3,7 @@ import { glass, sheen, type Effect } from './card-effects.ts'
 import { icon } from './art-view.ts'
 import { ramp } from './dither.ts'
 import { mountFx } from './fx.ts'
+import { isMuted, setMuted, sfx } from './sfx.ts'
 import { cardFace, cardVars, hideTooltip, itemInfo, markup, mountTooltip, showInfo, showTooltip, skillFace, skillInfo } from './card-view.ts'
 import { describe } from './fight-log.ts'
 import { bestFit, exchange, firstFree, place, SOCKETS, swap, under, type Item, type Row, type Size } from './board.ts'
@@ -207,6 +208,7 @@ function remake(c: Card, tier: Tier, enchant: Enchant | undefined, color: string
   refresh(c)
   c.el.animate([{ scale: '1' }, { scale: '1.18' }, { scale: '1' }], { duration: 420, easing: 'ease-out' })
   flash(c.el, color)
+  sfx.upgrade()
   refreshTop()
 }
 
@@ -279,6 +281,7 @@ function upgradeSkill(s: Skill) {
   s.def = skillAt(s.key, nextTier(s.def.tier)!)
   s.el.innerHTML = skillFace(s.def)
   s.el.animate([{ scale: '1' }, { scale: '1.3' }, { scale: '1' }], { duration: 420, easing: 'ease-out' })
+  sfx.upgrade()
   toast(`${s.def.name} upgraded to ${tierName(s.def.tier)}!`)
 }
 
@@ -290,6 +293,7 @@ function learn(key: SkillKey, tier: Tier) {
   mySkills.push(s)
   layoutSkills(mySkills, 0)
   s.el.animate([{ opacity: 0, scale: '1.6' }, { opacity: 1, scale: '1' }], { duration: 320, easing: 'ease-out' })
+  sfx.upgrade()
   toast(`Learned ${s.def.name}!`)
 }
 
@@ -318,14 +322,19 @@ function starterKit() {
 }
 
 // --- Gold and the merchant ---
+let shownGold = gold
 function renderGold() {
+  if (gold > shownGold) sfx.gold() // money in (selling, rewards, income) and out (buying, rerolling) sound from the number itself
+  else if (gold < shownGold) sfx.buy()
+  shownGold = gold
   myGold.innerHTML = `<i class="ic">${icon('two-coins')}</i><b>${gold}</b><small>+${income} a day</small>`
   rerollBtn.innerHTML = `<i class="ic">${icon('rolling-dices')}</i><span>Reroll <b>${REROLL_COST}g</b></span>`
   rerollBtn.classList.toggle('disabled', gold < REROLL_COST)
 }
 
 const toastEl = box('toast', X0, BOARD_ROW - 0.35, ROW_W, 0.6, '<span></span>')
-function toast(text: string) {
+function toast(text: string, bad = false) {
+  ;(bad ? sfx.deny : sfx.toast)()
   toastEl.firstElementChild!.textContent = text
   toastEl.getAnimations().forEach(a => a.cancel())
   toastEl.animate([{ opacity: 0, translate: '0 10px' }, { opacity: 1, translate: '0 0', offset: 0.12 }, { opacity: 1, offset: 0.75 }, { opacity: 0 }], { duration: 1600, easing: 'ease-out' })
@@ -353,6 +362,7 @@ rerollBtn.addEventListener('click', () => {
   if (fighting || mode !== 'merchant' || gold < REROLL_COST) return
   gold -= REROLL_COST
   renderGold()
+  sfx.reroll()
   rollOffers(shopTags)
 })
 
@@ -397,6 +407,7 @@ function renderStash() {
 
 toy.addEventListener('click', () => {
   stashOpen = !stashOpen
+  ;(stashOpen ? sfx.open : sfx.close)()
   refreshTop()
   // The stash slides up out of the chest.
   if (stashOpen) for (const el of [stash.el, ...cards.filter(c => c.lane === stash).map(c => c.el)]) el.animate([{ translate: '0 calc(var(--u) * 0.4)' }, { translate: '0 0' }], { duration: 180, easing: 'ease-out' })
@@ -438,6 +449,16 @@ function toggleLog(open = !logOpen) {
   layout()
 }
 logBtn.addEventListener('click', () => toggleLog())
+
+const muteBtn = box('log-btn mute', X0 + ROW_W + 0.35, MID_Y + 1.77, 1.5, 0.42)
+const renderMute = () => (muteBtn.innerHTML = `<i class="ic">${icon(isMuted() ? 'speaker-off' : 'speaker')}</i>${isMuted() ? 'Muted' : 'Sound'}`)
+const toggleMute = () => {
+  setMuted(!isMuted())
+  renderMute()
+}
+muteBtn.addEventListener('click', toggleMute)
+addEventListener('keydown', e => e.key.toLowerCase() === 'm' && !e.repeat && toggleMute())
+renderMute()
 logPanel.querySelector('button')!.addEventListener('click', () => toggleLog(false))
 logPanel.addEventListener('mouseenter', () => (logHover = true))
 logPanel.addEventListener('mouseleave', () => (logHover = false))
@@ -497,6 +518,7 @@ function give(key: ItemKey, tier?: Tier, enchant?: Enchant) {
   }
   const c = makeCard(dest, key, at, tier, enchant)
   c.el.animate([{ opacity: 0, scale: '1.3' }, { opacity: 1, scale: '1' }], { duration: 300, easing: 'ease-out' })
+  sfx.upgrade()
   if (dest === stash && !stashOpen) flash(toy, '#f0c24a')
   refreshTop()
   return true
@@ -612,7 +634,7 @@ async function runEvent(e: GameEvent) {
       continue
     }
     if (r.item && !give(r.item, r.tier)) {
-      toast('No room: sell something first')
+      toast('No room: sell something first', true)
       continue
     }
     if (r.skill) learn(r.skill, r.tier ?? SKILLS[r.skill].tier)
@@ -675,6 +697,7 @@ async function gainXp(n: number) {
     setUnlocked(board, lo, hi)
     renderLevel()
     flash(myPortrait, '#f0c24a')
+    sfx.levelUp()
     toast(`Level ${level}! +50 health, bigger board`)
     react({ on: 'levelUp' })
     await levelUp()
@@ -820,7 +843,7 @@ async function levelUp() {
     for (;;) {
       const k = three[await pick(three.map(k => ({ info: itemInfo(itemAt(k, r.tier)), item: itemAt(k, r.tier) })))]
       if (give(k, r.tier)) break
-      toast('No room: sell something first')
+      toast('No room: sell something first', true)
     }
   }
   if (r.kind === 'skill') {
@@ -873,7 +896,7 @@ async function lastChancePick() {
   for (;;) {
     const o = options[await pick(options.map(option))]
     if (o.kind === 'diamond' && !give(o.key, 'diamond')) {
-      toast('No room: sell something first')
+      toast('No room: sell something first', true)
       continue
     }
     if (o.kind === 'enchant') await enchantPick(o.enchant)
@@ -960,6 +983,7 @@ function target(c: Card): { lane: Lane; sockets: number[] } {
 function setHover(c: Card, on: boolean) {
   c.hovered = on
   if (on) {
+    sfx.hover()
     const to = { ...rest(c), s: HOVER_SCALE }
     tweenTo(c, to, HOVER_MS, outQuad)
     showTooltip(c.def, { x: to.x, y: to.y, w: (c.item.size - GAP) * HOVER_SCALE, h: CARD_H * HOVER_SCALE }, u, SCENE_W)
@@ -1013,6 +1037,7 @@ function beginDrag(c: Card, e: PointerEvent) {
   drag = { card: c, ox: c.pose.x - p.x, oy: c.pose.y - p.y, sell: c.lane.mine && mode !== 'opponent' }
   tweenTo(c, { ...c.pose, s: DRAG_SCALE }, DRAG_SCALE_MS, linear)
   c.el.classList.add('lifted', 'dragging')
+  sfx.pick()
   sellZone.innerHTML = `<span>Sell for <b>${sellPrice(c.def)}g</b></span>`
   refreshTop()
 }
@@ -1069,8 +1094,10 @@ function drop() {
     }
   }
   const intoChest = overToy && c.lane === stash && !stashOpen
+  const sold = overSell
   overToy = overSell = false
 
+  let pushed = false
   for (const o of cards) {
     const b = before.get(o)!
     const moved = o.item.pos !== b.pos || o.lane !== b.lane
@@ -1080,7 +1107,10 @@ function drop() {
     else if (o === c) tweenTo(o, rest(o), MOVE_MS, inOutQuint)
     else if (moved) tweenTo(o, rest(o), o.lane !== b.lane ? MOVE_MS : PUSH_MS, outCubic)
     else if (wasNudged) tweenTo(o, rest(o), NUDGE_BACK_MS, outQuad)
+    pushed ||= o !== c && moved
   }
+  if (!sold && !intoChest) sfx.drop()
+  if (pushed) sfx.push()
   refreshTop()
 }
 
@@ -1094,7 +1124,7 @@ function stashIt(c: Card) {
     if (buyUpgrade(c)) return
   }
   const fit = bestFit(stash.row, c.item)
-  if (!fit) return toast('No room in your stash')
+  if (!fit) return toast('No room in your stash', true)
   const bought = c.lane.shop
   if (bought) {
     gold -= buyPrice(c.def)
@@ -1110,6 +1140,7 @@ const CHEST = { x: X0 + PANEL_W / 2, y: PLAYER_STRIP + STRIP_H / 2 }
 /** A card that just went into the closed stash shrinks into the chest, then waits at its stash spot, hidden. */
 function flyIntoChest(c: Card) {
   c.flying = true
+  sfx.stow()
   flash(toy, '#f0c24a')
   tweenTo(c, { ...CHEST, s: 0.25 }, MOVE_MS, inOutQuint, () => {
     c.flying = false
@@ -1160,7 +1191,7 @@ function buy(c: Card, dest: Lane, at: number) {
   const first = under(dest.row, c.item, at).full ? toStash() : null
   const pushed = first ? null : place(dest.row, c.item, at)
   const swapped = first ?? (pushed ? null : toStash())
-  if (!pushed && !swapped) return toast('No room there')
+  if (!pushed && !swapped) return toast('No room there', true)
   gold -= price
   renderGold()
   if (pushed) {
@@ -1190,7 +1221,7 @@ function buyUpgrade(offer: Card) {
 
 function noGold() {
   flash(myGold, '#e04040')
-  toast('Not enough gold')
+  toast('Not enough gold', true)
 }
 
 /** Click an offer: buy it into the first free spot on the board, else the stash (compacted to fit). */
@@ -1199,7 +1230,7 @@ function quickBuy(c: Card) {
   if (buyUpgrade(c)) return
   const pos = firstFree(board.row, c.item.size)
   const fit = pos === null ? bestFit(stash.row, c.item) : null
-  if (pos === null && !fit) return toast('No room on your board or in your stash')
+  if (pos === null && !fit) return toast('No room on your board or in your stash', true)
   gold -= buyPrice(c.def)
   renderGold()
   if (fit) shift(stash, fit)

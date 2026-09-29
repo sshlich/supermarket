@@ -1,6 +1,7 @@
 import './playback.css'
 import { Fight, type FightEvent, type FightOptions, type Side, type SideSetup, type UnitDef } from './engine/combat.ts'
 import { emit } from './fx.ts'
+import { sfx } from './sfx.ts'
 
 /** What playback needs from the page. Side 0 is the player, side 1 the opponent. */
 export interface Stage {
@@ -71,6 +72,7 @@ export function play(a: SideSetup, b: SideSetup, seed: number, stage: Stage, opt
     function banner(winner: -1 | 0 | 1) {
       const el = document.createElement('div')
       el.className = `banner ${winner === 0 ? 'win' : winner === 1 ? 'loss' : 'draw'}`
+      ;(winner === 0 ? sfx.win : sfx.lose)()
       el.innerHTML = `<h2>${winner === 0 ? 'Victory!' : winner === 1 ? 'Defeat' : 'Draw'}</h2><button>Continue</button>`
       stage.scene.append(el)
       el.querySelector('button')!.addEventListener('click', () => {
@@ -86,7 +88,10 @@ export function play(a: SideSetup, b: SideSetup, seed: number, stage: Stage, opt
   function show(e: FightEvent) {
     stage.log(e)
     const unit = e.item ? units.find(u => u.id === e.item) : undefined
-    if (unit && (e.kind === 'destroy' || e.kind === 'repair')) return overlays.get(unit)!.destroyed(e.kind === 'destroy')
+    if (unit && (e.kind === 'destroy' || e.kind === 'repair')) {
+      ;(e.kind === 'destroy' ? sfx.destroy : sfx.upgrade)()
+      return overlays.get(unit)!.destroyed(e.kind === 'destroy')
+    }
     if (unit && e.kind === 'grow') return overlays.get(unit)!.flash('#f5d77a')
     if (unit && e.kind === 'transform') {
       overlays.get(unit)!.remove()
@@ -95,10 +100,12 @@ export function play(a: SideSetup, b: SideSetup, seed: number, stage: Stage, opt
       return
     }
     if (e.kind === 'skill') {
+      sfx.skill()
       stage.skillEl(e.item!)?.animate([{ scale: '1', filter: 'brightness(1)' }, { scale: '1.25', filter: 'brightness(1.8)' }, { scale: '1', filter: 'brightness(1)' }], { duration: 320, easing: 'ease-out' })
       return
     }
     if (e.kind === 'use') {
+      sfx.use(e.side === 1)
       const el = stage.cardEl(e.item!)
       el.animate([{ scale: '1' }, { scale: '1.08' }, { scale: '1' }], { duration: 220, easing: 'ease-out' })
       overlays.get(units.find(u => u.id === e.item)!)!.flash(e.crit ? '#ffd24a' : '#ffffff')
@@ -114,12 +121,18 @@ export function play(a: SideSetup, b: SideSetup, seed: number, stage: Stage, opt
     const share = (e.amount ?? 0) / fight.sides[e.side].maxHp
     if (e.kind === 'damage' && e.amount! > 0) {
       const tick = e.from === 'burn' || e.from === 'poison'
+      if (e.from === 'burn') sfx.burn()
+      else if (e.from === 'poison') sfx.poison()
+      else sfx.hit(share, !!e.crit)
       emit(tick ? 2 : Math.min(18, 4 + Math.round(share * 60)), { ...at, colors: tick ? [COLOR[from]!] : ['#fff', '#ffd0c0', COLOR.damage!], vx: u * 1.4, vy: -u * 0.6, vyJitter: u * 0.9, gravity: u * 3, life: 0.45, size: Math.max(2, Math.round(u * 0.05)) })
       const m = Math.min(9, 2 + share * 70) // shake grows with the hit
       p.animate([{ translate: '0 0' }, { translate: `${-m}px ${m * 0.6}px` }, { translate: `${m * 0.7}px ${-m * 0.5}px` }, { translate: '0 0' }], { duration: 170 })
       if (!tick && (e.crit || share >= BIG_HIT)) holdUntil = performance.now() + HITSTOP_MS * (e.crit ? 1.4 : 1)
       if (!tick && e.side === 0 && share >= BIG_HIT) stage.scene.animate([{ transform: 'none' }, { transform: `translate(${m * 0.5}px, ${-m * 0.4}px)` }, { transform: 'none' }], { duration: 140 })
     }
+    if (e.blocked) sfx.block()
+    if (e.kind === 'shield') sfx.shield()
+    if (e.kind === 'heal') (e.from === 'regen' ? sfx.regen : sfx.heal)()
     if (e.blocked) emit(Math.min(10, 3 + e.blocked / 5), { ...at, colors: ['#ffe27a', '#fff3b0'], vx: u * 1.2, vy: -u * 0.4, vyJitter: u * 0.6, gravity: u * 2.5, life: 0.35, size: Math.max(2, Math.round(u * 0.04)) })
     if (e.kind === 'heal' && e.from !== 'regen') emit(6, { ...at, colors: ['#7edc5a', '#c8ffb0'], vx: u * 0.2, vy: -u * 0.5, vyJitter: u * 0.2, life: 0.8, size: Math.max(2, Math.round(u * 0.045)), flicker: true })
   }
@@ -256,6 +269,7 @@ function aura(portrait: HTMLElement, mine: boolean) {
       if (shieldWas > 0 && s.shield <= 0) {
         emit(24, { x: cx, y: p.offsetTop + p.offsetHeight / 2, w: p.offsetWidth, h: p.offsetHeight, colors: ['#ffe27a', '#fff3b0', '#d8a520'], vx: u * 1.6, vy: -u * 0.8, vyJitter: u, gravity: u * 4, life: 0.7, size: size + 1 })
         p.animate([{ filter: 'brightness(2)' }, { filter: 'none' }], { duration: 250, easing: 'steps(3)' })
+        sfx.shatter()
       }
       shieldWas = s.shield
     },

@@ -2,6 +2,7 @@ import './choice.css'
 import { glass } from './card-effects.ts'
 import { cardFace, cardVars, hideTooltip, showInfo, skillFace, type Info } from './card-view.ts'
 import { ramp } from './dither.ts'
+import { sfx } from './sfx.ts'
 import type { ItemDef } from './items.ts'
 import type { SkillDef } from './skills.ts'
 
@@ -45,6 +46,7 @@ export function choose(scene: HTMLElement, area: { x: number; y: number; w: numb
       card.classList.toggle('upgrades', !!o.upgrades)
       card.animate([{ opacity: 0, translate: '0 calc(var(--u) * 0.3)' }, { opacity: 1, translate: '0 0' }], { duration: 260, delay: i * 70, fill: 'backwards', easing: 'ease-out' })
       card.addEventListener('mouseenter', () => {
+        sfx.hover()
         const r = card.getBoundingClientRect()
         const s = scene.getBoundingClientRect()
         const k = u()
@@ -52,6 +54,7 @@ export function choose(scene: HTMLElement, area: { x: number; y: number; w: numb
       })
       card.addEventListener('mouseleave', hideTooltip)
       card.addEventListener('click', () => {
+        sfx.choose()
         hideTooltip()
         el.style.pointerEvents = 'none'
         card.animate([{ scale: '1.06' }, { scale: '1.15', opacity: 0 }], { duration: 220, easing: 'ease-in', fill: 'forwards' })
