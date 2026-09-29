@@ -5,55 +5,24 @@ import { drop, same, turn, type Box } from './grid.ts'
 export const W = 30
 export const H = 20
 
-/** Which of an item's colours a layer is drawn in: its own, a secondary, or a brighter one for highlights. */
-export type Tint = 'main' | 'alt' | 'hot'
-/** glow / bloom: a blurred copy behind. blur: only the blurred copy. flicker, pulse, drift: slow movement. */
-export type Fx = 'glow' | 'bloom' | 'blur' | 'flicker' | 'pulse' | 'drift'
-/**
- * One drawing in an item's stack. `rows` is grid-aligned glyph art (one character per cell); `at` places loose glyphs
- * anywhere, in cells: [x, y, glyph, size?]. `dx`/`dy` slide the whole layer off the grid. Layers stack and brighten where they overlap.
- */
-export interface Layer { rows?: string[]; at?: [number, number, string, number?][]; tint?: Tint; fx?: Fx[]; dx?: number; dy?: number; alpha?: number }
-export interface Kind { name: string; icon: string; color: string; alt: string; w: number; h: number; shape?: string[]; art: Layer[] }
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; shape?: string[]; art: string[] }
 
 /** Sizes are in field cells. A `shape` (rows, '#' filled) gives an irregular footprint and sets w and h. */
 export const KINDS: Record<string, Kind> = {
-  crate: { name: 'Crate', icon: 'wooden-crate', color: '#c9975a', alt: '#8f6236', w: 4, h: 4, art: [
-    { rows: ['╔══╗', '║  ║', '║  ║', '╚══╝'], fx: ['glow'] },
-    { rows: ['    ', ' \\/ ', ' /\\ ', '    '], tint: 'alt', fx: ['flicker'] },
-    { at: [[0.3, 0.3, '+', 0.6], [3.7, 0.3, '+', 0.6], [0.3, 3.7, '+', 0.6], [3.7, 3.7, '+', 0.6]], tint: 'hot', fx: ['pulse'] },
-    { rows: ['╔══╗', '║  ║', '║  ║', '╚══╝'], tint: 'alt', fx: ['blur', 'drift'], dx: 0.07, dy: 0.05, alpha: 0.6 },
-  ] },
-  log: { name: 'Log', icon: 'log', color: '#b98552', alt: '#f0c890', w: 4, h: 2, art: [
-    { rows: ['(≡≡)', '(≡≡)'], fx: ['glow'] },
-    { at: [[0.5, 0.5, 'o', 0.8], [0.5, 1.5, 'o', 0.8]], tint: 'hot', fx: ['pulse'] },
-    { rows: ['(≡≡)', '(≡≡)'], tint: 'alt', fx: ['blur', 'drift'], dx: 0.06, dy: -0.05, alpha: 0.5 },
-  ] },
-  coal: { name: 'Coal', icon: 'coal-pile', color: '#8a90a0', alt: '#5a5f6b', w: 2, h: 2, art: [
-    { rows: ['#*', '*#'] },
-    { rows: ['##', '##'], tint: 'alt', fx: ['blur'], alpha: 0.7 },
-    { at: [[0.5, 0.5, '·', 1], [1.5, 1.5, '·', 1], [1.25, 0.3, '.', 0.7], [0.3, 1.4, '.', 0.7]], tint: 'hot', fx: ['flicker'] },
-  ] },
-  bottle: { name: 'Bottle', icon: 'jug', color: '#5aa8e6', alt: '#3fd0c0', w: 2, h: 4, art: [
-    { rows: ['┌┐', '║║', '  ', '└┘'], fx: ['glow'] },
-    { rows: ['  ', '  ', '~~', '  '], tint: 'alt', fx: ['bloom', 'drift'] },
-    { at: [[0.5, 2.15, 'o', 0.5], [1.5, 1.85, 'o', 0.4]], tint: 'hot', fx: ['drift'] },
-  ] },
-  knife: { name: 'Knife', icon: 'bowie-knife', color: '#b4bfcc', alt: '#c9975a', w: 2, h: 4, art: [
-    { rows: ['║ ', '║ ', '  ', '  '], fx: ['glow'] },
-    { rows: ['  ', '  ', '╤═', '│ '], tint: 'alt' },
-    { at: [[0.5, 0.3, '/', 0.8], [1.3, 0.9, '·', 0.8]], tint: 'hot', fx: ['flicker'] },
-  ] },
-  axe: { name: 'Axe', icon: 'battle-axe', color: '#b4bfcc', alt: '#a0703a', w: 4, h: 6, shape: ['####', '###.', '.##.', '.##.', '.##.', '.##.'], art: [
-    { rows: ['┌──┐', '└┐  ', ' ││ ', ' ││ ', ' ││ ', ' └┘ '], fx: ['glow'] },
-    { rows: ['    ', '  ▒ ', ' ▒▒ ', ' ▒▒ ', ' ▒▒ ', '    '], tint: 'alt', fx: ['blur'], alpha: 0.6 },
-    { at: [[1.5, 0.5, '/', 0.9], [3.6, 0.55, '·', 0.8]], tint: 'hot', fx: ['flicker'] },
-  ] },
-  pickaxe: { name: 'Pickaxe', icon: 'war-pick', color: '#a6b2c0', alt: '#a0703a', w: 6, h: 4, shape: ['######', '######', '..##..', '..##..'], art: [
-    { rows: ['┌────┐', '└─┐┌─┘', '  ││  ', '  └┘  '], fx: ['glow'] },
-    { rows: ['      ', '      ', '  ▒▒  ', '  ▒▒  '], tint: 'alt', fx: ['blur'], alpha: 0.6 },
-    { at: [[0.5, 0.5, '/', 0.8], [5.5, 0.5, '\\', 0.8]], tint: 'hot', fx: ['flicker'] },
-  ] },
+  crate: { name: 'Crate', icon: 'wooden-crate', color: '#c9975a', w: 4, h: 4,
+    art: ['╔══╗', '║\\/║', '║/\\║', '╚══╝'] },
+  log: { name: 'Log', icon: 'log', color: '#b98552', w: 4, h: 2,
+    art: ['(≡≡)', '(≡≡)'] },
+  coal: { name: 'Coal', icon: 'coal-pile', color: '#8a90a0', w: 2, h: 2,
+    art: ['#*', '*#'] },
+  bottle: { name: 'Bottle', icon: 'jug', color: '#5aa8e6', w: 2, h: 4,
+    art: ['┌┐', '║║', '~~', '└┘'] },
+  knife: { name: 'Knife', icon: 'bowie-knife', color: '#b4bfcc', w: 2, h: 4,
+    art: ['║ ', '║ ', '╤═', '│ '] },
+  axe: { name: 'Axe', icon: 'battle-axe', color: '#b4bfcc', w: 4, h: 6, shape: ['####', '###.', '.##.', '.##.', '.##.', '.##.'],
+    art: ['┌──┐', '└┐▒ ', ' ││ ', ' ││ ', ' ││ ', ' └┘ '] },
+  pickaxe: { name: 'Pickaxe', icon: 'war-pick', color: '#a6b2c0', w: 6, h: 4, shape: ['######', '######', '..##..', '..##..'],
+    art: ['┌────┐', '└─┐┌─┘', '  ││  ', '  └┘  '] },
 }
 for (const k of Object.values(KINDS)) if (k.shape) { k.h = k.shape.length; k.w = Math.max(...k.shape.map(r => r.length)) }
 
@@ -89,16 +58,8 @@ export function turnArt(rows: string[]): string[] {
   }
   return out
 }
-/** A layer as the item sits: turned a quarter clockwise when `rot`, loose glyphs and slides included. */
-function turnLayer(l: Layer, w: number, h: number): Layer {
-  const out: Layer = { ...l }
-  if (l.rows) out.rows = turnArt(l.rows)
-  if (l.at) out.at = l.at.map(([x, y, c, s]) => [h - y, x, TURN[c] ?? c, s] as [number, number, string, number?])
-  if (l.dx !== undefined || l.dy !== undefined) { out.dx = -(l.dy ?? 0); out.dy = l.dx ?? 0 }
-  return out
-}
-/** The layers of an item's drawing as it sits. */
-export const artOf = (it: Item): Layer[] => { const k = KINDS[it.kind]; return it.rot ? k.art.map(l => turnLayer(l, k.w, k.h)) : k.art }
+/** The glyph art of an item as it sits. */
+export const artOf = (it: Item) => it.rot ? turnArt(KINDS[it.kind].art) : KINDS[it.kind].art
 
 /** The filled cells of an item as it sits (relative to its top-left), or null for a plain rectangle. */
 export const cellsOf = (it: Item) => boxOf(it).cells ?? null
