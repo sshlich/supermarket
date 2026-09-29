@@ -1,0 +1,16 @@
+{
+  "name": "inventory-manager",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "node src/grid.test.ts && node src/world.test.ts",
+    "icons": "node scripts/icons.ts"
+  },
+  "devDependencies": {
+    "@iconify-json/game-icons": "^1.2.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.0"
+  }
+}
