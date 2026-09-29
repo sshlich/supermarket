@@ -18,7 +18,7 @@ svg { display: block; width: 100%; height: 100%; }
 .grid {
   position: relative; width: calc(var(--w) * var(--cell)); height: calc(var(--h) * var(--cell));
   background-color: #000;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' rx='2' fill='%23202024'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' rx='0.8' fill='%23202024'/%3E%3C/svg%3E");
   background-size: var(--cell) var(--cell);
 }
 
@@ -46,4 +46,4 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .ghost.bad { --gb: var(--bad); --gf: rgba(213, 96, 108, .16); }
 .ghost:not(.shaped) { border: 1px solid var(--gb); background: var(--gf); border-radius: 3px; }
 .ghost.shove:not(.shaped) { border-style: dashed; }
-.ghost .gc { position: absolute; left: calc(var(--cx) * var(--cell) + var(--cell) * .1); top: calc(var(--cy) * var(--cell) + var(--cell) * .1); width: calc(var(--cell) * .8); height: calc(var(--cell) * .8); border-radius: calc(var(--cell) * .2); background: color-mix(in srgb, var(--gb) 34%, transparent); }
+.ghost .gc { position: absolute; left: calc(var(--cx) * var(--cell) + var(--cell) * .1); top: calc(var(--cy) * var(--cell) + var(--cell) * .1); width: calc(var(--cell) * .8); height: calc(var(--cell) * .8); border-radius: calc(var(--cell) * .08); background: color-mix(in srgb, var(--gb) 34%, transparent); }
