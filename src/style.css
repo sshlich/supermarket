@@ -30,7 +30,7 @@ svg { display: block; width: 100%; height: 100%; }
 .item:hover .sq rect { fill: #363640; }
 .item .hit rect { fill: transparent; pointer-events: all; cursor: grab; }
 .art { position: absolute; left: 50%; top: 50%; pointer-events: none; width: calc(var(--kw) * var(--cell)); height: calc(var(--kh) * var(--cell)); transform: translate(-50%, -50%) rotate(var(--r)); }
-.art i { position: absolute; left: 50%; top: 50%; aspect-ratio: 1; width: calc(var(--m) * var(--cell) * .78); transform: translate(-50%, -50%); }
+.art svg { width: 100%; height: 100%; overflow: visible; }
 
 .lifted { opacity: .18; filter: grayscale(1); }
 .shoved { opacity: .5; }

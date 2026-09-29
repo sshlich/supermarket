@@ -1,8 +1,9 @@
 import './style.css'
 import { applyDrop, dims, find, H, KINDS, lift, planDrop, putBack, start, W, type Held, type Item, type Plan, type State } from './world.ts'
 
-const files = import.meta.glob<string>('./icons/*.svg', { query: '?raw', import: 'default', eager: true })
-const ICON: Record<string, string> = Object.fromEntries(Object.entries(files).map(([p, svg]) => [p.slice('./icons/'.length, -'.svg'.length), svg]))
+// One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
+const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
+const SPRITE: Record<string, string> = Object.fromEntries(Object.entries(files).map(([p, svg]) => [p.slice('./sprites/'.length, -'.svg'.length), svg]))
 
 const SAVE = 'field-v2'
 let s: State = load() ?? start()
@@ -22,18 +23,16 @@ function fit() {
 
 // ---------------------------------------------------------------- drawing
 
-/** One item: neutral rounded squares over its cells, its icon in the item's colour on top. */
+/** One item: neutral rounded squares over its cells, its sprite in the item's colour on top. */
 function itemHtml(it: Item) {
   const k = KINDS[it.kind]
   const d = dims(it)
   const cells = Array.from({ length: d.w * d.h }, (_, i) => [i % d.w, Math.floor(i / d.w)])
   const squares = cells.map(([x, y]) => `<rect x="${x + 0.1}" y="${y + 0.1}" width="0.8" height="0.8" rx="0.08"/>`).join('')
   const hit = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('') // whole cells, so there are no dead gaps between the squares
-  const lo = Math.min(k.w, k.h)
-  const m = lo * (1 + 0.25 * (Math.min(2, Math.max(k.w, k.h) / lo) - 1)) // long items get a bigger icon
   return `<div class="item" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
     <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><g class="hit">${hit}</g></svg>
-    <div class="art" style="--kw:${k.w};--kh:${k.h};--m:${m};--r:${it.rot ? 90 : 0}deg"><i>${ICON[k.icon] ?? ''}</i></div></div>`
+    <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${it.rot ? 90 : 0}deg">${SPRITE[it.kind] ?? ''}</div></div>`
 }
 
 /** Redraw everything; things that moved glide from where they were. */

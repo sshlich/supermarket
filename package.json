@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "test": "node src/grid.test.ts && node src/world.test.ts",
-    "icons": "node scripts/icons.ts"
+    "icons": "node scripts/icons.ts",
+    "sprites": "node scripts/sprites.ts"
   },
   "devDependencies": {
     "@iconify-json/game-icons": "^1.2.4",
