@@ -252,6 +252,19 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   assert.equal(wood.moist, 15)
   assert.equal(axe.cond, 90)
 }
+// Drop onto a container lying on the floor: it goes inside (the floor itself takes only containers).
+{
+  const s = empty()
+  const coal = put(s, 'crate', 'coal', 0, 0)
+  const cold = find(s, s.b.cold)!
+  Object.assign(cold, { x: 5, y: 5 })
+  const h = lift(s, coal.id)!
+  assert.equal(planDrop(s, h, FIELD, 0, 5, false), null) // bare floor
+  const p = planDrop(s, h, FIELD, 5, 5, false)!
+  assert.equal(p.at, s.b.cold)
+  applyDrop(s, h, p)
+  assert.equal(coal.at, s.b.cold)
+}
 // Sending a container carries what is in it.
 {
   const s = empty()

@@ -1,6 +1,6 @@
 import './style.css'
 import {
-  accepts, applyDrop, cellsOf, dims, env, find, forecast, forecastDrop, gradeName, has, isBox, KINDS, kids, label, lift, nameOf, PLACES, planDrop, putBack, room, send, showsDamp, sleep, spec, start, tidy, tops,
+  accepts, applyDrop, cellsOf, dims, env, FIELD, FIELD_H, FIELD_W, find, forecast, forecastDrop, gradeName, has, isBox, KINDS, kids, label, lift, nameOf, PLACES, planDrop, putBack, room, send, showsDamp, sleep, spec, start, tidy,
   type Held, type Item, type Note, type Place, type Plan, type State,
 } from './world.ts'
 
@@ -11,7 +11,7 @@ const icon = (name: string) => ICON[name] ?? ''
 // Presentation only: some icons are drawn on a diagonal; turn them to lie along long items.
 const TILT: Record<string, number> = { firewood: 45, knife: 45 }
 
-const SAVE = 'inventory-v3'
+const SAVE = 'inventory-v5'
 let s: State = load() ?? start()
 let fc = forecast(s)
 let pulse = new Set<number>()
@@ -30,7 +30,7 @@ function save() {
 }
 
 function fit() {
-  cell = Math.floor(Math.max(34, Math.min(58, (innerWidth - 510) / 19, (innerHeight - 250) / 8.2)))
+  cell = Math.floor(Math.max(34, Math.min(48, (innerWidth - 400) / 23)))
   document.documentElement.style.setProperty('--cell', `${cell}px`)
 }
 
@@ -77,24 +77,33 @@ function fire(c: Item): { cls: string; env: string } | null {
   return { cls: 'cold', env: 'cold · needs dry fuel' }
 }
 
-/** Every container shown as a panel: those on the field, then any you have opened. */
-const panels = () => [...tops(s), ...s.open.map(id => find(s, id)).filter((o): o is Item => !!o && isBox(o) && o.at !== 0)]
+/** The containers you have open, as panels beside the floor. */
+const panels = () => s.open.map(id => find(s, id)).filter((o): o is Item => !!o && isBox(o))
 
 function boxHtml(c: Item) {
   const k = KINDS[c.kind]
-  const { w, h } = room(c)
+  const { w, h } = room(s, c.id)
   const items = kids(s, c.id)
   const used = items.reduce((n, it) => n + dims(it).w * dims(it).h, 0)
   const f = fire(c)
-  const nested = c.at !== 0
   return `<section class="box box-${c.kind} ${f?.cls ?? ''}" data-box="${c.id}" style="--w:${w};--h:${h}">
     <header data-boxtip="${c.id}">
       <div><span class="bi">${icon(k.icon)}</span><b>${k.name}</b><span class="grow"></span>
-        <button class="pin ${s.target === c.id ? 'on' : ''}" data-pin="${c.id}" title="Shift-click sends things here">⇥</button>${nested ? `<button data-close="${c.id}" title="Close">✕</button>` : ''}</div>
+        <button class="pin ${s.target === c.id ? 'on' : ''}" data-pin="${c.id}" title="Shift-click sends things here">⇥</button><button data-close="${c.id}" title="Close">✕</button></div>
       <div><span class="env">${f?.env ?? spec(c)!.desc}</span><span class="grow"></span><span class="fill">${used}/${w * h}</span>
         <button class="tidy" data-tidy="${c.id}" title="Merge piles and pack by kind">tidy</button></div>
     </header>
     <div class="grid" data-grid="${c.id}">${items.map(it => itemHtml(it)).join('')}</div>
+  </section>`
+}
+
+/** The workshop floor: containers sit here, and you open them into panels. */
+function floorHtml() {
+  const items = kids(s, FIELD)
+  return `<section class="box box-field" data-box="${FIELD}" style="--w:${FIELD_W};--h:${FIELD_H}">
+    <header><div><b>Workshop floor</b><span class="grow"></span></div>
+      <div><span class="env">double-click a container to open it · drop things onto one to put them inside</span></div></header>
+    <div class="grid" data-grid="${FIELD}">${items.map(it => itemHtml(it)).join('')}</div>
   </section>`
 }
 
@@ -109,7 +118,8 @@ function logHtml() {
   const night = split < 0 ? [] : s.log.slice(0, split)
   const loud = night.filter(n => !n.quiet)
   const quiet = night.length - loud.length
-  const byBox = panels().map(c => [c, loud.filter(n => n.box === c.id)] as const).filter(([, ns]) => ns.length)
+  const byBox = [...new Set(loud.map(n => n.box))].map(id => find(s, id!)).filter((c): c is Item => !!c)
+    .map(c => [c, loud.filter(n => n.box === c.id)] as const)
   const morning = split < 0 ? s.log : s.log.slice(split)
   return `<h2>${s.day > 1 ? 'Last night' : 'The workshop'}</h2>
     ${byBox.map(([c, ns]) => `<h3>${icon(KINDS[c.kind].icon)}${KINDS[c.kind].name}</h3><ul>${ns.map(noteHtml).join('')}</ul>`).join('')}
@@ -120,8 +130,6 @@ function logHtml() {
 
 function html() {
   const kinds = Object.keys(KINDS).length
-  const all = panels()
-  const [top, bottom] = [all.slice(0, 3), all.slice(3)]
   return `<header class="top">
       <div class="brand"><h1>The Workshop</h1><span class="day">Day ${s.day}</span></div>
       <div class="found" title="Kinds of things you've had in the workshop">${icon('sparkles')}Found ${s.seen.length} of ${kinds}</div>
@@ -132,8 +140,8 @@ function html() {
     </header>
     <div class="room">
       <main class="wall">
-        <div class="row">${top.map(boxHtml).join('')}</div>
-        <div class="row">${bottom.map(boxHtml).join('')}</div>
+        ${floorHtml()}
+        <div class="row">${panels().map(boxHtml).join('')}</div>
       </main>
       <aside class="log">${logHtml()}</aside>
     </div>
@@ -204,7 +212,8 @@ function itemTip(it: Item) {
 }
 
 function boxTip(id: number) {
-  const c = find(s, id)!
+  const c = find(s, id)
+  if (!c) return hideTip()
   const k = KINDS[c.kind]
   const f = fire(c)
   tip.innerHTML = `<h3>${k.name}</h3><p>${k.blurb}</p>${f ? `<p class="none">${f.env}</p>` : ''}${s.target === id ? '<p class="none">Shift-click sends things here.</p>' : ''}`
@@ -299,9 +308,29 @@ function turn() {
   if (last) move(last)
 }
 
+/** Resting a dragged thing over a container opens it, so nesting never costs a click. */
+let dwell: { id: number; timer: number } | null = null
+function hoverOpen(e: PointerEvent) {
+  const el = document.elementsFromPoint(e.clientX, e.clientY).map(n => n.closest<HTMLElement>('.item.boxy[data-id]')).find(Boolean)
+  const id = el ? +el.dataset.id! : null
+  if (dwell?.id === id) return
+  if (dwell) clearTimeout(dwell.timer)
+  dwell = null
+  if (id === null || id === drag!.held.item.id || s.open.includes(id)) return
+  dwell = { id, timer: window.setTimeout(() => {
+    dwell = null
+    if (!drag || s.open.includes(id)) return
+    s.open.push(id)
+    render()
+    drag.key = ''
+    if (last) move(last)
+  }, 450) }
+}
+
 function move(e: PointerEvent) {
   const d = drag!
   d.el.style.transform = `translate(${e.clientX - d.gx}px, ${e.clientY - d.gy}px)`
+  hoverOpen(e)
   const boxEl = document.elementsFromPoint(e.clientX, e.clientY).map(n => n.closest('.box')).find(Boolean) as HTMLElement | undefined
   if (!boxEl) {
     if (d.key) { d.key = ''; d.plan = null; d.box = null; clearGhosts(); hideTip() }
@@ -338,7 +367,7 @@ function paintGhosts(box: number, x: number, y: number) {
   const p = d.plan
   if (!p) {
     const dd = dims({ ...d.held.item, rot: d.rot })
-    const b = room(find(s, box)!)
+    const b = room(s, box)
     ghost(box, Math.max(0, Math.min(b.w - dd.w, x)), Math.max(0, Math.min(b.h - dd.h, y)), dd.w, dd.h, 'bad', cellsOf({ ...d.held.item, rot: d.rot }))
     return
   }
@@ -370,6 +399,8 @@ function dragTip(box: number) {
 function finish() {
   const d = drag!
   drag = null
+  if (dwell) clearTimeout(dwell.timer)
+  dwell = null
   document.body.classList.remove('dragging')
   hideTip()
   const from = rects()
@@ -383,6 +414,8 @@ function finish() {
 function cancel() {
   const d = drag!
   drag = null
+  if (dwell) clearTimeout(dwell.timer)
+  dwell = null
   document.body.classList.remove('dragging')
   hideTip()
   const from = rects()

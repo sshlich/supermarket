@@ -95,8 +95,10 @@ export function shapeOf(kind: string): Box {
   return b
 }
 
-/** The field: what containers sit on. Its id is 0. */
+/** The field: the workshop floor containers sit on. Its id is 0. */
 export const FIELD = 0
+export const FIELD_W = 10
+export const FIELD_H = 6
 
 export const PLACES: Record<Place, { name: string; icon: string; blurb: string }> = {
   woods: { name: 'Woods', icon: 'forest', blurb: 'Berries, moonleaf, wet wood, sometimes spores or yeast. A knife helps.' },
@@ -125,8 +127,8 @@ export const isBox = (it: Item) => !!spec(it)
 export const kids = (s: State, id: number) => s.items.filter(o => o.at === id)
 /** Containers sitting on the field, in the order they were made. */
 export const tops = (s: State) => kids(s, FIELD).filter(isBox)
-/** Inside size of a container. */
-export const room = (c: Item) => spec(c)!
+/** Inside size of a container, or of the floor. */
+export const room = (s: State, id: number) => id === FIELD ? { w: FIELD_W, h: FIELD_H } : spec(find(s, id)!)!
 
 /** Is `id` the container `anc`, or somewhere inside it? */
 export function within(s: State, id: number, anc: number): boolean {
@@ -143,6 +145,7 @@ const height = (s: State, it: Item): number => isBox(it) ? 1 + Math.max(0, ...ki
 
 /** Would this container take that item? Not if it is closed to that kind, or is inside the item itself. */
 export function accepts(s: State, cid: number, it: Item): boolean {
+  if (cid === FIELD) return isBox(it) && height(s, it) <= MAX_NEST
   const c = find(s, cid)
   const b = c && spec(c)
   if (!b || within(s, cid, it.id)) return false
@@ -180,7 +183,7 @@ function become(it: Item, kind: string, extra: Partial<Item> = {}) {
 }
 
 /** The name of the thing a container sits in, for tooltips ("the crate"). */
-export const nameOf = (s: State, id: number) => find(s, id) ? KINDS[find(s, id)!.kind].name.toLowerCase() : 'the field'
+export const nameOf = (s: State, id: number) => find(s, id) ? KINDS[find(s, id)!.kind].name.toLowerCase() : 'workshop'
 
 /** Damp only matters to name for things you burn or dry for keeping: wood and herbs. */
 export const showsDamp = (it: Item) => it.moist !== undefined && (has(it, 'wood') || has(it, 'herb'))
@@ -223,7 +226,7 @@ const take = (s: State, it: Item) => { const i = s.items.indexOf(it); if (i >= 0
 export function stow(s: State, cid: number, it: Item): number {
   if (!accepts(s, cid, it)) return it.n
   const k = KINDS[it.kind]
-  const { w: W, h: H } = room(find(s, cid)!)
+  const { w: W, h: H } = room(s, cid)
   for (const o of kids(s, cid)) if (it.n > 0 && canMerge(o, it)) mergeInto(o, it, Math.min(it.n, k.stack - o.n))
   let first = true
   while (it.n > 0) {
@@ -241,7 +244,7 @@ export function stow(s: State, cid: number, it: Item): number {
 /** Merge piles and pack the container neatly by kind. `spare` also keeps a spot that size free. */
 export function tidy(s: State, cid: number, spare?: Box): boolean {
   const items = kids(s, cid)
-  const { w: W, h: H } = room(find(s, cid)!)
+  const { w: W, h: H } = room(s, cid)
   const merged: Item[] = []
   for (const it of [...items].sort((a, b) => b.n - a.n)) {
     for (const o of merged) if (it.n > 0 && canMerge(o, it)) mergeInto(o, it, Math.min(it.n, KINDS[it.kind].stack - o.n))
@@ -302,13 +305,27 @@ export function lift(s: State, id: number, split = false): Held | null {
 /** Where the held item goes if dropped with its top-left at (x, y): onto a pile, a straight swap, a shove, or turned. */
 export function planDrop(s: State, held: Held, at: number, x: number, y: number, rot: boolean, turnedOnce = false): Plan | null {
   const it = held.item
-  if (!accepts(s, at, it)) return null
-  const { w: W, h: H } = room(find(s, at)!)
+  const direct = accepts(s, at, it) // the floor takes only containers, but anything can go into one lying on it
+  const { w: W, h: H } = room(s, at)
   const d = dims({ ...it, rot })
   const others = kids(s, at).filter(o => o.id !== it.id)
   const m: Box = { ...boxOf({ ...it, rot }), x: Math.max(0, Math.min(W - d.w, x)), y: Math.max(0, Math.min(H - d.h, y)) }
   if (d.w > W || d.h > H) return turnedOnce ? null : planDrop(s, held, at, x, y, !rot, true)
   const hits = others.filter(o => overlaps(boxOf(o), m))
+
+  // Dropped onto a container that takes it: it goes inside, onto a pile or the first free spot.
+  const cx = m.x + Math.floor(m.w / 2), cy = m.y + Math.floor(m.h / 2)
+  const cell = { id: -1, x: cx, y: cy, w: 1, h: 1 }
+  const into = hits.length === 1 && isBox(hits[0]) && overlaps(boxOf(hits[0]), cell) && accepts(s, hits[0].id, it) ? hits[0] : null
+  if (into) {
+    const inner = kids(s, into.id)
+    const p = inner.find(o => canMerge(o, it))
+    if (p) return { at: into.id, x: p.x, y: p.y, rot: p.rot, moves: [], merge: p.id }
+    const { w: iw, h: ih } = room(s, into.id)
+    const spot = firstFree(iw, ih, inner.map(boxOf), boxOf({ ...it, rot }))
+    if (spot) return { at: into.id, x: spot.x, y: spot.y, rot: spot.turned ? !rot : rot, moves: [] }
+  }
+  if (!direct) return null
 
   const pile = hits.find(o => canMerge(o, it))
   if (pile) return { at, x: pile.x, y: pile.y, rot: pile.rot, moves: [], merge: pile.id }
@@ -337,7 +354,7 @@ export function planDrop(s: State, held: Held, at: number, x: number, y: number,
   if (from && hits.length === 1 && accepts(s, from.at, hits[0])) {
     const h = hits[0]
     const fromOthers = kids(s, from.at).filter(o => o.id !== it.id && o.id !== h.id).map(boxOf)
-    const fb = room(find(s, from.at)!)
+    const fb = room(s, from.at)
     for (const hr of [h.rot, !h.rot]) {
       const spot = { ...boxOf({ ...h, rot: hr }), x: from.x, y: from.y }
       const fits = spot.x + spot.w <= fb.w && spot.y + spot.h <= fb.h
@@ -435,7 +452,7 @@ export function night(s: State): Note[] {
     for (let y = b.y; y < b.y + b.h; y++) cells.push([b.x + b.w, y], [b.x - 1, y])
     for (let x = b.x; x < b.x + b.w; x++) cells.push([x, b.y + b.h], [x, b.y - 1])
     const taken = kids(s, c.id).map(boxOf)
-    const free = cells.find(([x, y]) => x >= 0 && y >= 0 && x < room(c).w && y < room(c).h && !taken.some(t => overlaps(t, { id: -1, x, y, w: 1, h: 1 })))
+    const free = cells.find(([x, y]) => x >= 0 && y >= 0 && x < room(s, c.id).w && y < room(s, c.id).h && !taken.some(t => overlaps(t, { id: -1, x, y, w: 1, h: 1 })))
     if (!free) { say(sp, 'needs a free spot beside it to sprout', true); return }
     s.items.push(make(s, kind, { at: c.id, x: free[0], y: free[1] }))
     say(sp, `sprouts a ${KINDS[kind].name.toLowerCase()} beside it`)
@@ -575,6 +592,7 @@ export function start(): State {
   const id: Record<string, number> = {}
   for (const [kind, x, y] of at) { const c = make(s, kind, { x, y }); id[kind] = c.id; s.items.push(c) }
   s.target = id.crate
+  s.open = [id.basket, id.crate]
   const put = (box: string, kind: string, extra: Partial<Item> = {}) => stow(s, id[box], make(s, kind, extra))
   put('crate', 'pickaxe', { cond: 65 })
   put('crate', 'net', { cond: 90 })
