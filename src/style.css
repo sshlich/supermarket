@@ -24,17 +24,30 @@ svg { display: block; width: 100%; height: 100%; }
 
 /* things: flat tiles tinted by what they are made of */
 .item { position: absolute; z-index: 1; left: calc(var(--x) * var(--cell)); top: calc(var(--y) * var(--cell)); width: calc(var(--w) * var(--cell)); height: calc(var(--h) * var(--cell)); color: var(--c); pointer-events: none; }
-.item svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 3px color-mix(in srgb, var(--c) 60%, transparent)); }
+.item svg { width: 100%; height: 100%; overflow: visible; }
 .item .sq rect { fill: color-mix(in srgb, var(--c) 16%, #000); pointer-events: auto; cursor: grab; }
-.item path { fill: none; stroke: currentColor; stroke-width: .09; stroke-linecap: butt; pointer-events: none; }
-.item text { fill: currentColor; font: .82px ui-monospace, 'SF Mono', Menlo, Consolas, monospace; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
 .item:hover .sq rect { fill: color-mix(in srgb, var(--c) 28%, #000); }
+.defs { position: absolute; }
+
+/* an item is a stack of drawings; where they overlap they brighten */
+.ly { mix-blend-mode: screen; pointer-events: none; }
+.t-main { color: var(--c); }
+.t-alt { color: var(--c2); }
+.t-hot { color: var(--c3); }
+.ly path { fill: none; stroke: currentColor; stroke-width: .09; stroke-linecap: butt; }
+.ly text { fill: currentColor; font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; text-anchor: middle; dominant-baseline: central; }
+.fx-flicker { animation: lyflick 2.3s linear infinite; }
+.fx-pulse { transform-box: fill-box; transform-origin: center; animation: lypulse 1.9s ease-in-out infinite alternate; }
+.fx-drift { animation: lydrift 3.4s ease-in-out infinite alternate; }
+@keyframes lyflick { 0%, 100% { opacity: 1; } 40% { opacity: .45; } 55% { opacity: .9; } 75% { opacity: .6; } }
+@keyframes lypulse { from { opacity: .55; transform: scale(.92); } to { opacity: 1; transform: scale(1.08); } }
+@keyframes lydrift { from { transform: translate(-.04px, .03px); } to { transform: translate(.05px, -.04px); } }
 
 .lifted { opacity: .18; filter: grayscale(1); }
 .shoved { opacity: .5; }
 .floating { position: fixed; left: 0; top: 0; z-index: 40; pointer-events: none; will-change: transform; }
 .floating .item { transform: scale(1.04); }
-.floating .item svg { filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .6)) drop-shadow(0 0 3px color-mix(in srgb, var(--c) 60%, transparent)); }
+.floating .item svg { filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .6)); }
 body.dragging, body.dragging .item { cursor: grabbing; }
 
 /* where it will land, and what gives way */

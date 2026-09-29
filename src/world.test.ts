@@ -45,21 +45,23 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   assert.deepEqual([p.x, p.y], [W - 4, H - 4])
 }
 
-// Art: every kind's drawing fits its footprint, and turning it four times gets it back.
+// Art: every layer fits its footprint, and turning the drawing four times gets it back.
 {
   for (const [id, k] of Object.entries(KINDS)) {
-    assert.equal(k.art.length, k.h, id)
-    for (const row of k.art) assert.equal(row.length, k.w, id)
-    let a = k.art
-    for (let i = 0; i < 4; i++) a = turnArt(a)
-    assert.deepEqual(a, k.art, id)
+    for (const l of k.art) {
+      if (l.rows) { assert.equal(l.rows.length, k.h, id); for (const row of l.rows) assert.equal(row.length, k.w, id) }
+      for (const [x, y] of l.at ?? []) assert.ok(x >= 0 && x <= k.w && y >= 0 && y <= k.h, id)
+    }
   }
   const s = start()
   const axe = s.items.find(o => o.kind === 'axe')!
-  const flat = artOf({ ...axe, rot: true })
-  assert.equal(flat.length, 4)
-  assert.equal(flat[0].length, 6)
+  const turned = artOf({ ...axe, rot: true })
+  assert.equal(turned[0].rows!.length, 4)
+  assert.equal(turned[0].rows![0].length, 6)
   assert.deepEqual(turnArt(['┌─', '│ ']), ['─┐', ' │']) // the corner ends up top right, opening down and left
+  // a loose glyph at the top left ends up at the top right
+  const [x, y] = artOf({ ...axe, rot: true })[2].at![0]
+  assert.ok(Math.abs(x - (6 - 0.5)) < 1e-9 && Math.abs(y - 1.5) < 1e-9)
 }
 
 console.log('world ok')

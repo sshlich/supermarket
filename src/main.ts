@@ -1,5 +1,5 @@
 import './style.css'
-import { applyDrop, artOf, cellsOf, dims, find, H, KINDS, lift, planDrop, putBack, start, W, type Held, type Item, type Plan, type State } from './world.ts'
+import { applyDrop, artOf, cellsOf, dims, find, H, KINDS, lift, planDrop, putBack, start, W, type Held, type Item, type Layer, type Plan, type State } from './world.ts'
 
 const SAVE = 'field-v1'
 let s: State = load() ?? start()
@@ -64,28 +64,52 @@ function strokes(c: string, x: number, y: number): string {
   return out.join('')
 }
 
-/** One item: tinted rounded cells (like the grid's own squares) under its glyph drawing. */
+const esc = (c: string) => c === '<' ? '&lt;' : c === '&' ? '&amp;' : c
+const glyphText = (x: number, y: number, c: string, size = 1) => `<text x="${x}" y="${y}" style="font-size:${(0.82 * size).toFixed(2)}px">${esc(c)}</text>`
+
+/** Blur filters, in cell units, shared by every item's layers. */
+const DEFS = `<svg class="defs" width="0" height="0"><defs>
+  ${[['glow', 0.09], ['bloom', 0.22], ['blur', 0.06]].map(([id, sd]) => `<filter id="f-${id}" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="${sd}"/></filter>`).join('')}
+</defs></svg>`
+
+/** A layer's marks: line glyphs as strokes, everything else (and every loose glyph) as text. */
+function marks(l: Layer) {
+  let path = ''
+  let text = ''
+  l.rows?.forEach((row, y) => [...row].forEach((c, x) => {
+    if (c === ' ') return
+    const p = strokes(c, x, y)
+    if (p) path += p
+    else text += glyphText(x + 0.5, y + 0.5, c)
+  }))
+  for (const [x, y, c, size] of l.at ?? []) text += glyphText(x, y, c, size)
+  return `<path d="${path}"/>${text}`
+}
+
+/** One layer of an item's drawing: a blurred copy for glow or bloom, the sharp marks on top, slid off-grid by dx, dy, and moving if asked. */
+function layerHtml(l: Layer, seed: number) {
+  const fx = l.fx ?? []
+  const body = marks(l)
+  const alpha = l.alpha ?? 1
+  const blurred = fx.includes('bloom') ? 'bloom' : fx.includes('glow') ? 'glow' : fx.includes('blur') ? 'blur' : ''
+  const move = fx.filter(f => f === 'flicker' || f === 'pulse' || f === 'drift').map(f => `fx-${f}`).join(' ')
+  return `<g transform="translate(${l.dx ?? 0} ${l.dy ?? 0})"><g class="ly t-${l.tint ?? 'main'} ${move}" style="animation-delay:-${(seed % 11) * 0.37}s">
+    ${blurred ? `<g filter="url(#f-${blurred})" opacity="${alpha * (fx.includes('blur') ? 1 : 0.9)}">${body}</g>` : ''}${fx.includes('blur') ? '' : `<g opacity="${alpha}">${body}</g>`}</g></g>`
+}
+
+/** One item: tinted rounded cells (like the grid's own squares) under its stack of glyph layers. */
 function itemHtml(it: Item) {
   const k = KINDS[it.kind]
   const d = dims(it)
   const cells = cellsOf(it) ?? Array.from({ length: d.w * d.h }, (_, i) => [i % d.w, Math.floor(i / d.w)] as const)
-  const art = artOf(it)
-  let path = ''
-  let text = ''
-  art.forEach((row, y) => [...row].forEach((c, x) => {
-    if (c === ' ') return
-    const p = strokes(c, x, y)
-    if (p) path += p
-    else text += `<text x="${x + 0.5}" y="${y + 0.5}">${c === '<' ? '&lt;' : c === '&' ? '&amp;' : c}</text>`
-  }))
   const squares = cells.map(([x, y]) => `<rect x="${x + 0.1}" y="${y + 0.1}" width="0.8" height="0.8" rx="0.2"/>`).join('')
-  return `<div class="item" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
-    <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><path d="${path}"/>${text}</svg></div>`
+  return `<div class="item" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color};--c2:${k.alt};--c3:color-mix(in srgb, ${k.color} 45%, #fff)">
+    <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g>${artOf(it).map((l, i) => layerHtml(l, it.id * 5 + i)).join('')}</svg></div>`
 }
 
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
-  app.innerHTML = `<div class="field" style="--w:${W};--h:${H}"><div class="grid" data-grid>${s.items.map(itemHtml).join('')}</div></div>`
+  app.innerHTML = `${DEFS}<div class="field" style="--w:${W};--h:${H}"><div class="grid" data-grid>${s.items.map(itemHtml).join('')}</div></div>`
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
     const was = from.get(+el.dataset.id!)
