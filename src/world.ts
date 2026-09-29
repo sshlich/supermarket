@@ -2,7 +2,7 @@
 // Everything is an item. Some items are containers: they hold other items, and can sit inside each other.
 // Each night every item reacts to the environment of what it is in, and to its neighbours.
 
-import { drop, firstFree, overlaps, pack, touches, type Box } from './grid.ts'
+import { drop, firstFree, overlaps, pack, same, touches, turn, type Box } from './grid.ts'
 
 export type Place = 'woods' | 'shore' | 'mine'
 type Tag = 'container' | 'food' | 'fruit' | 'herb' | 'fish' | 'fuel' | 'wood' | 'ore' | 'metal' | 'tool' | 'living' | 'burns' | 'preserved' | 'liquid' | 'salt' | 'light' | 'drink'
@@ -20,6 +20,7 @@ export interface Kind {
   fresh?: number // nights before it rots
   moist?: number // % damp when found
   uses?: number
+  shape?: string[] // footprint as rows, '#' filled; when set it gives w and h
   box?: Spec // it is a container
   // what the night does, as data the rules read:
   onFire?: string // becomes this on a lit fire
@@ -53,7 +54,8 @@ export const KINDS: Record<string, Kind> = {
   copperIngot: { name: 'Copper Ingot', icon: 'gold-bar', color: '#f09a5c', w: 1, h: 1, stack: 4, tags: ['metal'], blurb: 'Soft, warm metal. It is waiting for a better forge than this.' },
   ironIngot: { name: 'Iron Ingot', icon: 'metal-bar', color: '#b4bec9', w: 1, h: 1, stack: 4, tags: ['metal'], blurb: 'Set beside a worn tool on a lit hearth and the tool comes out mended.' },
   knife: { name: 'Knife', icon: 'bowie-knife', color: '#d3d8de', w: 1, h: 2, stack: 1, tags: ['tool'], blurb: 'In the basket for the woods: more moonleaf, cleanly cut. Rusts in the damp.' },
-  pickaxe: { name: 'Pickaxe', icon: 'mining', color: '#d3d8de', w: 2, h: 2, stack: 1, tags: ['tool'], blurb: 'In the basket for the mine: more ore. Rusts in the damp.' },
+  pickaxe: { name: 'Pickaxe', icon: 'mining', color: '#d3d8de', w: 3, h: 2, shape: ['###', '.#.'], stack: 1, tags: ['tool'], blurb: 'In the basket for the mine: more ore. Rusts in the damp.' },
+  axe: { name: 'Axe', icon: 'battle-axe', color: '#d3d8de', w: 2, h: 3, shape: ['##', '#.', '#.'], stack: 1, tags: ['tool'], blurb: 'In the basket for the woods: more firewood, and dry. Rusts in the damp.' },
   net: { name: 'Fishing Net', icon: 'fishing-net', color: '#dccf9e', w: 2, h: 2, stack: 1, tags: ['tool'], blurb: 'In the basket for the shore: more fish.' },
   berryWine: { name: 'Berry Wine', icon: 'wine-bottle', color: '#a33a66', w: 1, h: 1, stack: 3, tags: ['drink'], ages: true, blurb: 'Gets better every night it spends in the dark of the barrel.' },
   // Containers. `w`/`h` is the footprint where it sits; `box` is what's inside.
@@ -77,7 +79,21 @@ export const KINDS: Record<string, Kind> = {
     box: { w: 3, h: 2, env: [], seals: ['damp'], accepts: ['metal'], desc: 'metal only · airtight' } },
 }
 
+for (const k of Object.values(KINDS)) if (k.shape) { k.h = k.shape.length; k.w = Math.max(...k.shape.map(r => r.length)) }
 const ORDER = Object.keys(KINDS)
+
+/** A kind's footprint as the grid sees it, facing the way it is made. */
+const SHAPES = new Map<string, Box>()
+export function shapeOf(kind: string): Box {
+  let b = SHAPES.get(kind)
+  if (!b) {
+    const k = KINDS[kind]
+    b = { id: -1, x: 0, y: 0, w: k.w, h: k.h }
+    if (k.shape) b.cells = k.shape.flatMap((row, y) => [...row].flatMap((c, x) => c === '#' ? [[x, y] as const] : []))
+    SHAPES.set(kind, b)
+  }
+  return b
+}
 
 /** The field: what containers sit on. Its id is 0. */
 export const FIELD = 0
@@ -96,8 +112,10 @@ export interface Note { text: string; id?: number; box?: number; kind?: string; 
 export interface State { day: number; place: Place; target: number; items: Item[]; open: number[]; seen: string[]; next: number; log: Note[] }
 
 export const has = (it: Item, t: Tag) => KINDS[it.kind].tags.includes(t)
-export const dims = (it: Item) => { const k = KINDS[it.kind]; return it.rot ? { w: k.h, h: k.w } : { w: k.w, h: k.h } }
-export const boxOf = (it: Item): Box => ({ id: it.id, x: it.x, y: it.y, ...dims(it) })
+export const boxOf = (it: Item): Box => ({ ...(it.rot ? turn(shapeOf(it.kind)) : shapeOf(it.kind)), id: it.id, x: it.x, y: it.y })
+export const dims = (it: Item) => { const b = boxOf(it); return { w: b.w, h: b.h } }
+/** The filled cells of an item as it sits (relative to its top-left), or null for a plain rectangle. */
+export const cellsOf = (it: Item) => boxOf(it).cells ?? null
 
 // ---------------------------------------------------------------- containers
 
@@ -209,8 +227,8 @@ export function stow(s: State, cid: number, it: Item): number {
   for (const o of kids(s, cid)) if (it.n > 0 && canMerge(o, it)) mergeInto(o, it, Math.min(it.n, k.stack - o.n))
   let first = true
   while (it.n > 0) {
-    let spot = firstFree(W, H, kids(s, cid).map(boxOf), k.w, k.h)
-    if (!spot && tidy(s, cid, { w: k.w, h: k.h })) spot = firstFree(W, H, kids(s, cid).map(boxOf), k.w, k.h)
+    let spot = firstFree(W, H, kids(s, cid).map(boxOf), shapeOf(it.kind))
+    if (!spot && tidy(s, cid, shapeOf(it.kind))) spot = firstFree(W, H, kids(s, cid).map(boxOf), shapeOf(it.kind))
     if (!spot) break
     const n = Math.min(it.n, k.stack)
     s.items.push({ ...it, id: first ? it.id : s.next++, at: cid, n, x: spot.x, y: spot.y, rot: spot.turned })
@@ -221,7 +239,7 @@ export function stow(s: State, cid: number, it: Item): number {
 }
 
 /** Merge piles and pack the container neatly by kind. `spare` also keeps a spot that size free. */
-export function tidy(s: State, cid: number, spare?: { w: number; h: number }): boolean {
+export function tidy(s: State, cid: number, spare?: Box): boolean {
   const items = kids(s, cid)
   const { w: W, h: H } = room(find(s, cid)!)
   const merged: Item[] = []
@@ -230,15 +248,15 @@ export function tidy(s: State, cid: number, spare?: { w: number; h: number }): b
     if (it.n > 0) merged.push(it)
   }
   for (const it of items) if (!merged.includes(it)) take(s, it) // emptied by merging
-  const plain = (it: Item): Box => ({ id: it.id, x: 0, y: 0, w: KINDS[it.kind].w, h: KINDS[it.kind].h })
+  const plain = (it: Item): Box => ({ ...shapeOf(it.kind), id: it.id })
   const byKind = [...merged].sort((a, b) => ORDER.indexOf(a.kind) - ORDER.indexOf(b.kind) || (b.grade ?? 0) - (a.grade ?? 0))
-  const extra = spare ? [{ id: -1, x: 0, y: 0, ...spare }] : []
+  const extra = spare ? [{ ...spare, id: -1 }] : []
   const packed = pack(W, H, [...byKind.map(plain), ...extra]) ??
     pack(W, H, [...byKind.map(plain), ...extra].sort((a, b) => b.w * b.h - a.w * a.h))
   if (!packed) return false // merging alone still helps
   for (const p of packed) {
     const it = merged.find(o => o.id === p.id)
-    if (it) Object.assign(it, { x: p.x, y: p.y, rot: p.w !== KINDS[it.kind].w })
+    if (it) Object.assign(it, { x: p.x, y: p.y, rot: !!p.rot })
   }
   return true
 }
@@ -288,7 +306,7 @@ export function planDrop(s: State, held: Held, at: number, x: number, y: number,
   const { w: W, h: H } = room(find(s, at)!)
   const d = dims({ ...it, rot })
   const others = kids(s, at).filter(o => o.id !== it.id)
-  const m: Box = { id: it.id, x: Math.max(0, Math.min(W - d.w, x)), y: Math.max(0, Math.min(H - d.h, y)), w: d.w, h: d.h }
+  const m: Box = { ...boxOf({ ...it, rot }), x: Math.max(0, Math.min(W - d.w, x)), y: Math.max(0, Math.min(H - d.h, y)) }
   if (d.w > W || d.h > H) return turnedOnce ? null : planDrop(s, held, at, x, y, !rot, true)
   const hits = others.filter(o => overlaps(boxOf(o), m))
 
@@ -297,7 +315,7 @@ export function planDrop(s: State, held: Held, at: number, x: number, y: number,
 
   // Dropped squarely onto something the same shape: they trade places.
   const from = held.from
-  if (from && hits.length === 1 && accepts(s, from.at, hits[0])) {
+  if (from && hits.length === 1 && accepts(s, from.at, hits[0]) && !m.cells && !boxOf(hits[0]).cells) {
     const hb = boxOf(hits[0])
     if (hb.x === m.x && hb.y === m.y && hb.w === m.w && hb.h === m.h)
       return { at, x: m.x, y: m.y, rot, moves: [{ id: hits[0].id, at: from.at, x: from.x, y: from.y, rot: hits[0].rot !== (from.rot !== rot) }] }
@@ -308,10 +326,10 @@ export function planDrop(s: State, held: Held, at: number, x: number, y: number,
     const [me, ...rest] = res
     return {
       at, x: me.x, y: me.y, rot,
-      moves: rest.map(r => { const o = others.find(o => o.id === r.id)!; return { id: r.id, at, x: r.x, y: r.y, rot: r.w !== dims(o).w ? !o.rot : o.rot } }),
+      moves: rest.map(r => ({ id: r.id, at, x: r.x, y: r.y, rot: !!r.rot })),
     }
   }
-  if (!turnedOnce && d.w !== d.h) {
+  if (!turnedOnce && !same(m)) {
     const turned = planDrop(s, held, at, x, y, !rot, true)
     if (turned) return turned
   }
@@ -321,7 +339,7 @@ export function planDrop(s: State, held: Held, at: number, x: number, y: number,
     const fromOthers = kids(s, from.at).filter(o => o.id !== it.id && o.id !== h.id).map(boxOf)
     const fb = room(find(s, from.at)!)
     for (const hr of [h.rot, !h.rot]) {
-      const spot = { id: h.id, x: from.x, y: from.y, ...dims({ ...h, rot: hr }) }
+      const spot = { ...boxOf({ ...h, rot: hr }), x: from.x, y: from.y }
       const fits = spot.x + spot.w <= fb.w && spot.y + spot.h <= fb.h
       if (fits && !fromOthers.some(o => overlaps(o, spot)) && !(from.at === at && overlaps(spot, m)))
         return { at, x: m.x, y: m.y, rot, moves: [{ id: h.id, at: from.at, x: from.x, y: from.y, rot: hr }] }
@@ -482,7 +500,9 @@ export function forage(s: State, rand = Math.random): Note[] {
     const knife = tool('knife')
     add('moonleaf', roll(1, 2) + (knife ? 2 : 0))
     if (knife) wear(knife)
-    add('firewood', 1, { moist: 60 })
+    const axe = tool('axe')
+    add('firewood', 1 + (axe ? 1 : 0), { moist: axe ? 15 : 60 })
+    if (axe) wear(axe)
     if (rand() < 0.35) add('spores', 1)
     const sharp = basket.some(o => o.kind === 'driedMoonleaf')
     if (rand() < (sharp ? 0.6 : 0.15)) add('yeast', 1)
@@ -559,6 +579,7 @@ export function start(): State {
   put('crate', 'pickaxe', { cond: 65 })
   put('crate', 'net', { cond: 90 })
   put('crate', 'knife', { cond: 80 })
+  put('crate', 'axe', { cond: 90 })
   put('crate', 'coal', { n: 3 })
   put('crate', 'firewood', { n: 2 })
   put('crate', 'copperOre', { n: 3, grade: 58 })

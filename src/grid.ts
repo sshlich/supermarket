@@ -1,24 +1,47 @@
 // Where things go in a container grid when you drop, send or tidy. Pure geometry, no game rules.
 
-export interface Box { id: number; x: number; y: number; w: number; h: number }
+/** A footprint: its bounding box, and, if it isn't a plain rectangle, the filled cells inside it (relative to x, y). `rot` is which way round it currently is. */
+export interface Box { id: number; x: number; y: number; w: number; h: number; cells?: readonly (readonly [number, number])[]; rot?: boolean }
 
-export const overlaps = (a: Box, b: Box) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h
+/** The same footprint turned a quarter, about its own box. */
+export const turn = (b: Box): Box => {
+  const t: Box = { ...b, w: b.h, h: b.w, rot: !b.rot }
+  if (b.cells) t.cells = b.cells.map(([x, y]) => [b.h - 1 - y, x] as const)
+  return t
+}
+/** A footprint that looks the same turned (so there's no point trying). */
+export const same = (b: Box) => b.w === b.h && !b.cells
+
+const filled = (b: Box): [number, number][] => {
+  if (b.cells) return b.cells.map(([x, y]) => [b.x + x, b.y + y])
+  const out: [number, number][] = []
+  for (let y = 0; y < b.h; y++) for (let x = 0; x < b.w; x++) out.push([b.x + x, b.y + y])
+  return out
+}
+
+export const overlaps = (a: Box, b: Box) => {
+  if (!(a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h)) return false
+  if (!a.cells && !b.cells) return true
+  const mine = new Set(filled(a).map(([x, y]) => `${x},${y}`))
+  return filled(b).some(([x, y]) => mine.has(`${x},${y}`))
+}
 const inside = (W: number, H: number, b: Box) => b.x >= 0 && b.y >= 0 && b.x + b.w <= W && b.y + b.h <= H
 
 /** Share an edge (not just a corner). */
-export const touches = (a: Box, b: Box) =>
-  ((a.x + a.w === b.x || b.x + b.w === a.x) && a.y < b.y + b.h && b.y < a.y + a.h) ||
+export const touches = (a: Box, b: Box) => a.cells || b.cells
+  ? filled(a).some(([ax, ay]) => filled(b).some(([bx, by]) => Math.abs(ax - bx) + Math.abs(ay - by) === 1))
+  : ((a.x + a.w === b.x || b.x + b.w === a.x) && a.y < b.y + b.h && b.y < a.y + a.h) ||
   ((a.y + a.h === b.y || b.y + b.h === a.y) && a.x < b.x + b.w && b.x < a.x + a.w)
 
 /** Nearest free spot to where `b` is now (either way round; turning costs a step). */
 export function nearest(W: number, H: number, taken: Box[], b: Box): Box | null {
   let best: Box | null = null
   let bestCost = Infinity
-  for (const [w, h, turn] of b.w === b.h ? [[b.w, b.h, 0]] : [[b.w, b.h, 0], [b.h, b.w, 1]]) {
-    for (let y = 0; y + h <= H; y++) {
-      for (let x = 0; x + w <= W; x++) {
-        const c = { id: b.id, x, y, w, h }
-        const cost = Math.abs(x - b.x) + Math.abs(y - b.y) + turn
+  for (const [v, cost0] of same(b) ? [[b, 0] as const] : [[b, 0] as const, [turn(b), 1] as const]) {
+    for (let y = 0; y + v.h <= H; y++) {
+      for (let x = 0; x + v.w <= W; x++) {
+        const c = { ...v, x, y }
+        const cost = Math.abs(x - b.x) + Math.abs(y - b.y) + cost0
         if (cost < bestCost && !taken.some(t => overlaps(t, c))) { best = c; bestCost = cost }
       }
     }
@@ -26,13 +49,12 @@ export function nearest(W: number, H: number, taken: Box[], b: Box): Box | null 
   return best
 }
 
-/** First free spot in reading order, as-is first, then turned. */
-export function firstFree(W: number, H: number, taken: Box[], w: number, h: number): { x: number; y: number; turned: boolean } | null {
-  for (const [ww, hh, turned] of [[w, h, false], [h, w, true]] as const) {
-    if (turned && w === h) break
-    for (let y = 0; y + hh <= H; y++)
-      for (let x = 0; x + ww <= W; x++)
-        if (!taken.some(t => overlaps(t, { id: -1, x, y, w: ww, h: hh }))) return { x, y, turned }
+/** First free spot for a footprint in reading order, as-is first, then turned. */
+export function firstFree(W: number, H: number, taken: Box[], shape: Box): { x: number; y: number; turned: boolean } | null {
+  for (const [v, turned] of same(shape) ? [[shape, false] as const] : [[shape, false] as const, [turn(shape), true] as const]) {
+    for (let y = 0; y + v.h <= H; y++)
+      for (let x = 0; x + v.w <= W; x++)
+        if (!taken.some(t => overlaps(t, { ...v, id: -1, x, y }))) return { x, y, turned }
   }
   return null
 }
@@ -87,14 +109,14 @@ function reflow(W: number, H: number, others: Box[], m: Box): Box[] | null {
     }
     if (ok && (!best || cost(others, taken.slice(1)) < cost(others, best))) best = taken.slice(1)
   }
-  return best && best.filter(b => { const o = others.find(o => o.id === b.id)!; return b.x !== o.x || b.y !== o.y || b.w !== o.w })
+  return best && best.filter(b => { const o = others.find(o => o.id === b.id)!; return b.x !== o.x || b.y !== o.y || !!b.rot !== !!o.rot })
 }
 
 function cost(others: Box[], moves: Box[]) {
   let n = 0
   for (const b of moves) {
     const o = others.find(o => o.id === b.id)!
-    n += Math.abs(b.x - o.x) + Math.abs(b.y - o.y) + (b.w !== o.w ? 1 : 0)
+    n += Math.abs(b.x - o.x) + Math.abs(b.y - o.y) + (!!b.rot !== !!o.rot ? 1 : 0)
   }
   return n
 }
@@ -131,9 +153,9 @@ const lean = ([dx, dy]: readonly [number, number], m: Box, t: { x: number; y: nu
 export function pack(W: number, H: number, boxes: Box[]): Box[] | null {
   const out: Box[] = []
   for (const b of boxes) {
-    const s = firstFree(W, H, out, b.w, b.h)
+    const s = firstFree(W, H, out, b)
     if (!s) return null
-    out.push(s.turned ? { id: b.id, x: s.x, y: s.y, w: b.h, h: b.w } : { id: b.id, x: s.x, y: s.y, w: b.w, h: b.h })
+    out.push({ ...(s.turned ? turn(b) : b), x: s.x, y: s.y })
   }
   return out
 }

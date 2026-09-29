@@ -214,10 +214,26 @@ body.dragging, body.dragging .item { cursor: grabbing; }
   left: calc(var(--x) * var(--cell) + 1px); top: calc(var(--y) * var(--cell) + 1px);
   width: calc(var(--w) * var(--cell) - 2px); height: calc(var(--h) * var(--cell) - 2px);
 }
-.ghost.land { border: 2px solid var(--amber); background: rgba(242, 179, 91, .14); }
-.ghost.merge { border: 2px solid #9be38b; background: rgba(155, 227, 139, .16); }
-.ghost.shove { border: 1.5px dashed rgba(255, 240, 220, .65); background: rgba(255, 240, 220, .07); }
-.ghost.bad { border: 2px solid #e25a4f; background: rgba(226, 90, 79, .15); }
+.ghost.land { --gb: var(--amber); --gf: rgba(242, 179, 91, .14); }
+.ghost.merge { --gb: #9be38b; --gf: rgba(155, 227, 139, .16); }
+.ghost.shove { --gb: rgba(255, 240, 220, .65); --gf: rgba(255, 240, 220, .07); }
+.ghost.bad { --gb: #e25a4f; --gf: rgba(226, 90, 79, .15); }
+.ghost:not(.shaped), .ghost .gc { border: 2px solid var(--gb); background: var(--gf); border-radius: 8px; }
+.ghost.shove:not(.shaped), .ghost.shove .gc { border: 1.5px dashed var(--gb); }
+.ghost.shaped { border: 0; }
+.ghost .gc { position: absolute; left: calc(var(--cx) * var(--cell)); top: calc(var(--cy) * var(--cell)); width: calc(var(--cell) - 2px); height: calc(var(--cell) - 2px); }
+
+/* shaped items: one tile per filled cell, so an axe is an axe and not a rectangle */
+.item.shaped { z-index: 0; background: none; box-shadow: none; overflow: visible; pointer-events: none; filter: none; }
+.item.shaped:hover { box-shadow: none; }
+.item .cell {
+  position: absolute; pointer-events: auto; border-radius: 7px;
+  left: calc(var(--cx) * var(--cell)); top: calc(var(--cy) * var(--cell)); width: calc(var(--cell) - 4px); height: calc(var(--cell) - 4px);
+  background: linear-gradient(155deg, color-mix(in srgb, var(--c) 24%, #2b231c), color-mix(in srgb, var(--c) 7%, #15100c));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 38%, transparent), inset 0 1px 0 rgba(255, 255, 255, .13), 0 2px 5px rgba(0, 0, 0, .5);
+}
+.item.shaped:hover .cell { filter: brightness(1.18); box-shadow: inset 0 0 0 1px var(--c), 0 2px 8px rgba(0, 0, 0, .6); }
+.item.shaped .art { z-index: 1; }
 
 /* ------------------------------------------------------------ tooltip */
 

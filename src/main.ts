@@ -1,6 +1,6 @@
 import './style.css'
 import {
-  accepts, applyDrop, dims, env, find, forecast, forecastDrop, gradeName, has, isBox, KINDS, kids, label, lift, nameOf, PLACES, planDrop, putBack, room, send, showsDamp, sleep, spec, start, tidy, tops,
+  accepts, applyDrop, cellsOf, dims, env, find, forecast, forecastDrop, gradeName, has, isBox, KINDS, kids, label, lift, nameOf, PLACES, planDrop, putBack, room, send, showsDamp, sleep, spec, start, tidy, tops,
   type Held, type Item, type Note, type Place, type Plan, type State,
 } from './world.ts'
 
@@ -11,7 +11,7 @@ const icon = (name: string) => ICON[name] ?? ''
 // Presentation only: some icons are drawn on a diagonal; turn them to lie along long items.
 const TILT: Record<string, number> = { firewood: 45, knife: 45 }
 
-const SAVE = 'inventory-v2'
+const SAVE = 'inventory-v3'
 let s: State = load() ?? start()
 let fc = forecast(s)
 let pulse = new Set<number>()
@@ -43,11 +43,13 @@ function itemHtml(it: Item, extra = '') {
   const d = dims(it)
   const cls = [it.rotten && 'rotten', has(it, 'light') && !it.rotten && 'glow', pulse.has(it.id) && 'pulse', born.has(it.id) && 'born', (it.cond ?? 100) < 40 && 'rusty', isBox(it) && 'boxy'].filter(Boolean).join(' ')
   const tilt = TILT[it.kind] ?? 0
-  const m = Math.min(k.w, k.h) * (tilt ? 1.5 : 1)
+  const m = Math.min(k.w, k.h) * (tilt ? 1.5 : 1) * (k.shape ? 0.85 : 1)
   const copies = PILE[Math.min(k.stack > 1 ? it.n : 1, 3) - 1]
   const art = copies.map(([x, y, sc]) => `<i style="--px:${x}%;--py:${y}%;--s:${sc};--t:${tilt}deg">${icon(k.icon)}</i>`).join('')
-  return `<div class="item ${cls} ${extra}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
-    <div class="art" style="--kw:${k.w};--kh:${k.h};--m:${m};--r:${it.rot ? 90 : 0}deg">${art}</div>${badges(it)}</div>`
+  const cells = cellsOf(it)
+  const tiles = cells ? cells.map(([x, y]) => `<u class="cell" style="--cx:${x};--cy:${y}"></u>`).join('') : ''
+  return `<div class="item ${cls} ${cells ? 'shaped' : ''} ${extra}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
+    ${tiles}<div class="art" style="--kw:${k.w};--kh:${k.h};--m:${m};--r:${it.rot ? 90 : 0}deg">${art}</div>${badges(it)}</div>`
 }
 
 function badges(it: Item) {
@@ -325,8 +327,9 @@ function clearGhosts() {
   for (const el of app.querySelectorAll('.shoved')) el.classList.remove('shoved')
 }
 
-function ghost(box: number, x: number, y: number, w: number, h: number, cls: string) {
-  app.querySelector(`[data-grid="${box}"]`)!.insertAdjacentHTML('beforeend', `<div class="ghost ${cls}" style="--x:${x};--y:${y};--w:${w};--h:${h}"></div>`)
+function ghost(box: number, x: number, y: number, w: number, h: number, cls: string, cells: ReturnType<typeof cellsOf> = null) {
+  const tiles = cells ? cells.map(([cx, cy]) => `<u class="gc" style="--cx:${cx};--cy:${cy}"></u>`).join('') : ''
+  app.querySelector(`[data-grid="${box}"]`)!.insertAdjacentHTML('beforeend', `<div class="ghost ${cls} ${cells ? 'shaped' : ''}" style="--x:${x};--y:${y};--w:${w};--h:${h}">${tiles}</div>`)
 }
 
 function paintGhosts(box: number, x: number, y: number) {
@@ -336,7 +339,7 @@ function paintGhosts(box: number, x: number, y: number) {
   if (!p) {
     const dd = dims({ ...d.held.item, rot: d.rot })
     const b = room(find(s, box)!)
-    ghost(box, Math.max(0, Math.min(b.w - dd.w, x)), Math.max(0, Math.min(b.h - dd.h, y)), dd.w, dd.h, 'bad')
+    ghost(box, Math.max(0, Math.min(b.w - dd.w, x)), Math.max(0, Math.min(b.h - dd.h, y)), dd.w, dd.h, 'bad', cellsOf({ ...d.held.item, rot: d.rot }))
     return
   }
   if (p.merge !== undefined) {
@@ -346,11 +349,11 @@ function paintGhosts(box: number, x: number, y: number) {
     return
   }
   const dd = dims({ ...d.held.item, rot: p.rot })
-  ghost(box, p.x, p.y, dd.w, dd.h, 'land')
+  ghost(box, p.x, p.y, dd.w, dd.h, 'land', cellsOf({ ...d.held.item, rot: p.rot }))
   for (const mv of p.moves) {
     const o = find(s, mv.id)!
     const md = dims({ ...o, rot: mv.rot })
-    ghost(mv.at, mv.x, mv.y, md.w, md.h, 'shove')
+    ghost(mv.at, mv.x, mv.y, md.w, md.h, 'shove', cellsOf({ ...o, rot: mv.rot }))
     app.querySelector(`.item[data-id="${mv.id}"]`)?.classList.add('shoved')
   }
 }

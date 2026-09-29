@@ -225,6 +225,33 @@ const kinds = (s: ReturnType<typeof empty>, box: BoxId | number) => kids(s, type
   stow(s, loose.id, lock) // a chest on the field takes a lockbox
   assert.equal(accepts(s, s.b.crate, loose), false) // but then it can't go into the crate
 }
+// Shapes: a pickaxe is a T (3x2, four cells); a 1x1 fits under its arm, and it turns as a whole.
+{
+  const s = empty()
+  const pick = put(s, 'crate', 'pickaxe', 0, 0)
+  const coal = put(s, 'crate', 'coal', 0, 1) // under the left arm: free, the T has no cell there
+  assert.equal(boxOf(pick).cells!.length, 4)
+  assert.equal(overlaps(boxOf(pick), boxOf(coal)), false)
+  const h = lift(s, coal.id)!
+  const p = planDrop(s, h, s.b.crate, 1, 1, false)! // onto the T's handle
+  assert.equal(p.moves.length > 0 || p.x !== 1 || p.y !== 1, true) // something gave way
+  applyDrop(s, h, p)
+  const all = kids(s, s.b.crate)
+  for (const a of all) for (const b of all) if (a !== b) assert.equal(overlaps(boxOf(a), boxOf(b)), false)
+  // A shaped thing turns cleanly: 3x2 becomes 2x3, still four cells.
+  const q = planDrop(s, lift(s, pick.id)!, s.b.crate, 6, 0, true)!
+  assert.equal(q.rot, true)
+}
+// An axe in the basket helps in the woods and gives drier wood.
+{
+  const s = empty()
+  const axe = put(s, 'basket', 'axe', 0, 0)
+  forage(s, () => 0.99)
+  const wood = kids(s, s.b.basket).find(o => o.kind === 'firewood')!
+  assert.equal(wood.n, 2)
+  assert.equal(wood.moist, 15)
+  assert.equal(axe.cond, 90)
+}
 // Sending a container carries what is in it.
 {
   const s = empty()
