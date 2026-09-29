@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "test": "node src/grid.test.ts && node src/world.test.ts",
+    "test": "node src/grid.test.ts && node src/world.test.ts && node src/editor/geom.test.ts",
     "icons": "node scripts/icons.ts",
     "sprites": "node scripts/sprites.ts"
   },
