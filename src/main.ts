@@ -33,7 +33,7 @@ function runs(cells: readonly (readonly [number, number])[]) {
 }
 /** A CSS mask that keeps exactly the filled cells: one silhouette, no seams. */
 function maskOf(cells: readonly (readonly [number, number])[]) {
-  const g = runs(cells).map(([x, y, n]) => `linear-gradient(#000 0 0) calc(var(--cell) * ${x}) calc(var(--cell) * ${y}) / calc(var(--cell) * ${n}) var(--cell) no-repeat`).join(',')
+  const g = runs(cells).map(([x, y, n]) => `linear-gradient(#000 0 0) calc(var(--cell) * ${x}) calc(var(--cell) * ${y}) / calc(var(--cell) * ${n}) calc(var(--cell) + 0.6px) no-repeat`).join(',')
   return `-webkit-mask:${g};mask:${g}`
 }
 
