@@ -106,7 +106,7 @@ function changed(from?: Map<number, DOMRect>) {
 
 // ---------------------------------------------------------------- handling
 
-interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; targets: Item[]; hosts: Item[]; use: Item | null; into: Item | null; space: Space; over: boolean }
+interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; targets: Item[]; hosts: Item[]; blocked: Item | null; use: Item | null; into: Item | null; space: Space; over: boolean }
 let press: { id: number; x: number; y: number; gx: number; gy: number; toggle: boolean; wasGroup: boolean } | null = null
 let drag: Drag | null = null
 let last: PointerEvent | null = null
@@ -264,7 +264,7 @@ function begin() {
   if (!held) { press = null; return }
   const el = document.body.appendChild(document.createElement('div'))
   el.className = 'floating'
-  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', targets: targetsFor(s, held.items), hosts: hostsFor(s, held.items), use: null, into: null, space: null, over: false }
+  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', targets: targetsFor(s, held.items), hosts: hostsFor(s, held.items).filter(h => intoHost(s, held, h.id)), blocked: null, use: null, into: null, space: null, over: false }
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
   paintFloating()
@@ -300,7 +300,7 @@ function move(e: PointerEvent) {
   const g = gridUnder(e.clientX, e.clientY)
   if (!g) { // over no grid: nothing to drop on, it would go back
     if (d.key === 'none') return
-    Object.assign(d, { key: 'none', plan: null, use: null, into: null, over: false })
+    Object.assign(d, { key: 'none', plan: null, use: null, into: null, blocked: null, over: false })
     return paintGhosts(0, 0)
   }
   const sp = spaceAt(g)
@@ -311,7 +311,9 @@ function move(e: PointerEvent) {
   const on = (t: Item) => sameSpace(spaceOf(t), sp) && cellsOf(t).some(([cx, cy]) => t.x + cx === px && t.y + cy === py)
   const under = d.targets.find(on) ?? null
   const host = under ? null : d.hosts.find(on) ?? null // dropped onto a container: goes inside it
-  const key = `${spaceKey(sp)}:${x}:${y}:${d.rot}:${strictNow()}:${under?.id ?? ''}:${host?.id ?? ''}`
+  // over a container that will not take it (full, wrong kind, or itself a container): refused, and nothing gets shoved
+  const blocked = under || host ? null : s.items.find(o => isContainer(o.kind) && !d.held.items.includes(o) && on(o)) ?? null
+  const key = `${spaceKey(sp)}:${x}:${y}:${d.rot}:${strictNow()}:${under?.id ?? ''}:${host?.id ?? ''}:${blocked?.id ?? ''}`
   if (key === d.key) return
   d.key = key
   d.use = under
@@ -319,7 +321,8 @@ function move(e: PointerEvent) {
   d.space = sp
   d.plan = host ? intoHost(s, d.held, host.id) : null
   d.into = d.plan ? host : null
-  if (!d.plan) d.plan = planDrop(s, d.held, sp, x, y, d.rot, strictNow())
+  d.blocked = blocked
+  if (!d.plan && !blocked) d.plan = planDrop(s, d.held, sp, x, y, d.rot, strictNow())
   paintGhosts(x, y)
 }
 
@@ -357,6 +360,7 @@ function paintGhosts(x: number, y: number) {
   const out: Light[] = d.targets.map(t => ({ sp: spaceOf(t), cells: absCells(t), kind: d.use?.id === t.id ? 'usenow' : 'use' }))
   for (const h of d.hosts) out.push({ sp: spaceOf(h), cells: absCells(h), kind: d.into?.id === h.id ? 'usenow' : 'use' })
   if (d.use) { light(out); return } // using it, not placing it
+  if (d.blocked) { light([...out, { sp: spaceOf(d.blocked), cells: absCells(d.blocked), kind: 'bad' }]); return }
   if (!p) {
     // refused: red where each thing would go
     if (d.over) {
