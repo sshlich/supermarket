@@ -80,9 +80,9 @@ The save endpoint lives in `vite.config.ts`; shape maths and matrices are in `sr
   - *Relaxed mode:* no green or red. A plain outline shows where it lands, dashed outlines show what gives way, and
     only if there is truly no way to place it (even by shoving) does it go red.
   - The lights are drawn above the thing in hand, so they show through it.
-  - *Hover:* an item's footprint goes tan. *Selected:* a white outline, a little see-through, softly glowing, drawn in
-    one layer above every item.
-- **The field** is 25 x 20: dark aubergine with a slightly lighter grid and a muted copper outline; a thing's imprint is the same squares lit a lighter tone, and selected things get a white outline.
+  - Items have no backing: they sit straight on the grid. *Hover* and *selected* both tint the footprint tan (no outline,
+    no glow).
+- **The field** is 25 x 20: dark aubergine with a slightly lighter grid and a muted copper outline; things sit straight on the grid with no backing.
 
 ## Uses (interactions), the skeleton
 

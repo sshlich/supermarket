@@ -60,12 +60,6 @@ function outline(cells: [number, number][]) {
 /** Where an item's squares are on the field. */
 const absCells = (it: Item): [number, number][] => cellsOf(it).map(([cx, cy]) => [it.x + cx, it.y + cy])
 
-/** The selection's outline, drawn in one layer above every item so nothing covers it. */
-function selectionLayer() {
-  const d = s.items.filter(it => selected.has(it.id)).map(it => outline(absCells(it))).join('')
-  return `<svg class="sellayer" viewBox="0 0 ${W} ${H}"><path d="${d}"/></svg>`
-}
-
 /** A row of buttons to put any kind of thing on the field, for trying new items out. */
 function trayHtml() {
   return `<div class="tray"><span>put on the field</span>${Object.entries(KINDS).map(([id, k]) => `<button data-spawn="${id}" style="--c:${k.color}" title="${(k.desc ?? '').replace(/"/g, '&quot;')}"><i></i>${k.name}</button>`).join('')}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
@@ -73,7 +67,8 @@ function trayHtml() {
 
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
-  app.innerHTML = `<div class="field" style="--w:${W};--h:${H}"><div class="grid" data-grid>${s.items.map(itemHtml).join('')}${selectionLayer()}</div></div>${trayHtml()}<div class="toast" data-toast></div>`
+  document.querySelector('.hl')?.remove() // lights belong to a drag; none may outlive it
+  app.innerHTML = `<div class="field" style="--w:${W};--h:${H}"><div class="grid" data-grid>${s.items.map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div>`
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
     const was = from.get(+el.dataset.id!)
@@ -106,8 +101,6 @@ const gridRect = () => app.querySelector('.grid')!.getBoundingClientRect()
 /** Show what is selected without redrawing everything. */
 function paintSelection() {
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) el.classList.toggle('sel', selected.has(+el.dataset.id!))
-  const layer = app.querySelector('.sellayer')
-  if (layer) layer.outerHTML = selectionLayer()
 }
 const pick = (ids: Iterable<number>) => { selected = new Set(ids); paintSelection() }
 
@@ -320,6 +313,7 @@ function finish(drop: boolean) {
   const d = drag!
   drag = null
   document.body.classList.remove('dragging')
+  clearGhosts()
   const from = rects()
   d.el.querySelectorAll<HTMLElement>('.item').forEach((el, i) => from.set(d.held.items[i].id, el.getBoundingClientRect()))
   const use = drop && d.use ? interaction(d.held.item, d.use) : null
