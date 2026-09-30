@@ -1,12 +1,17 @@
 // The field: a grid of cells with things on it. Nothing else yet.
 
-import { drop, firstFree, overlaps, same, type Box } from './grid.ts'
+import { drop, firstFree, overlaps, same, turn, type Box } from './grid.ts'
 import DATA from './kinds.json' with { type: 'json' }
 
 export const W = 30
 export const H = 20
 
-export interface Kind { name: string; icon: string; color: string; w: number; h: number }
+/**
+ * What a kind of thing is. `w` and `h` are its footprint's bounding box in cells; `cells`, when the footprint is not a plain
+ * rectangle, says which squares inside it are taken ('#') and which are free ('.'). The rest is for people: a description
+ * (for tooltips), private notes, and tags.
+ */
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[] }
 
 /** What things are. Sizes are in field cells and every footprint is a plain rectangle; the data lives in kinds.json so the sprite editor can change it. */
 export const KINDS: Record<string, Kind> = DATA
@@ -14,12 +19,27 @@ export const KINDS: Record<string, Kind> = DATA
 export interface Item { id: number; kind: string; x: number; y: number; rot: boolean }
 export interface State { items: Item[]; next: number }
 
-/** An item's footprint as the grid sees it. */
-export const boxOf = (it: Item): Box => {
-  const k = KINDS[it.kind]
-  return { id: it.id, x: it.x, y: it.y, w: it.rot ? k.h : k.w, h: it.rot ? k.w : k.h, rot: it.rot }
+const SHAPES = new Map<string, { sig: string; box: Box }>()
+/** A kind's footprint as the grid sees it, facing the way it is made. */
+export function shapeOf(kind: string): Box {
+  const k = KINDS[kind]
+  const sig = `${k.w}x${k.h}:${k.cells?.join('/') ?? ''}`
+  const hit = SHAPES.get(kind)
+  if (hit && hit.sig === sig) return hit.box
+  const box: Box = { id: -1, x: 0, y: 0, w: k.w, h: k.h }
+  if (k.cells) box.cells = k.cells.flatMap((row, y) => [...row].flatMap((c, x) => c === '#' ? [[x, y] as const] : []))
+  SHAPES.set(kind, { sig, box })
+  return box
 }
+export const boxOf = (it: Item): Box => ({ ...(it.rot ? turn(shapeOf(it.kind)) : shapeOf(it.kind)), id: it.id, x: it.x, y: it.y })
 export const dims = (it: Item) => { const b = boxOf(it); return { w: b.w, h: b.h } }
+/** Every square an item takes, as it sits (relative to its top-left). */
+export function cellsOf(it: Item): [number, number][] {
+  const b = boxOf(it)
+  return b.cells ? b.cells.map(([x, y]) => [x, y] as [number, number]) : Array.from({ length: b.w * b.h }, (_, i) => [i % b.w, Math.floor(i / b.w)] as [number, number])
+}
+/** The squares a kind takes at rest (or turned a quarter): what the editor draws and the footprint painter edits. */
+export const kindCells = (kind: string, turned = false) => cellsOf({ id: -1, kind, x: 0, y: 0, rot: turned })
 
 export const find = (s: State, id: number) => s.items.find(o => o.id === id)
 
@@ -44,7 +64,7 @@ export function planDrop(s: State, held: Held, x: number, y: number, rot: boolea
 
   // Dropped squarely onto something of the same shape: they trade places.
   const hits = others.filter(o => { const b = boxOf(o); return b.x < m.x + m.w && m.x < b.x + b.w && b.y < m.y + m.h && m.y < b.y + b.h })
-  if (hits.length === 1) {
+  if (hits.length === 1 && !m.cells && !boxOf(hits[0]).cells) {
     const hb = boxOf(hits[0])
     if (hb.x === m.x && hb.y === m.y && hb.w === m.w && hb.h === m.h)
       return { x: m.x, y: m.y, rot, moves: [{ id: hits[0].id, x: held.from.x, y: held.from.y, rot: hits[0].rot !== (held.from.rot !== rot) }] }
@@ -79,6 +99,15 @@ export function settle(s: State): State {
     if (spot) kept.push({ ...it, x: spot.x, y: spot.y, rot: spot.turned })
   }
   return { ...s, items: kept }
+}
+
+/** Put a new thing of this kind on the first free spot of the field (turned if that is the only way it fits). Null if there is no room. */
+export function spawn(s: State, kind: string): Item | null {
+  const spot = firstFree(W, H, s.items.map(boxOf), shapeOf(kind))
+  if (!spot) return null
+  const it: Item = { id: s.next++, kind, x: spot.x, y: spot.y, rot: spot.turned }
+  s.items.push(it)
+  return it
 }
 
 export function start(): State {

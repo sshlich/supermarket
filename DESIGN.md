@@ -1,5 +1,10 @@
 # Field
 
+Irregular shapes are back (since the item manager): the grid handles a thing's real squares. Shoving moves a neighbour a
+cell at a time until its actual squares are clear (not whole boxes), so an L slides past another's empty corner; a fuzz
+test drops 300 random shapes and checks every result is a valid layout, and a stats run over 2,000 nudges found half moved
+nothing and only 5 moved anything more than 4 cells. The game has a tray under the field to put any kind of thing on it.
+
 Started over from nothing. The field is a 30 x 20 grid of cells with a few things on it. You can pick things up,
 turn them (R or right-click), drop them, and whatever is in the way gives way. No tooltips, no rules, no game yet.
 
@@ -33,8 +38,14 @@ updates live when one is saved.
 - **Pen tools.** Connect the dots (closed polygon), open line, and freehand (simplified as you let go; thickness, detail
   and an optional smooth curve). Select a polygon or line to edit its points: drag a point, click a "+" to add one,
   double-click a point to remove it; operations can smooth it into a curve or reduce its points.
-- **Footprint.** Pick the item's size in cells (up to 12 x 12); the drawing is moved or scaled with it, and the size is
-  saved to `src/kinds.json` (item data now lives there, not in `world.ts`). Saved layouts are repaired on load.
+- **Footprint painter.** A 12 x 12 patch of squares: press and drag to switch squares on or off (the first square decides
+  whether the drag paints or erases), plus clear / invert / reset / fill a rectangle. Any shape is allowed; the box, the
+  count and a warning for pieces that do not touch are shown. Apply keeps the drawing where it is (or scales it to the new
+  box) and saves to `src/kinds.json` (`w`, `h`, and `cells` rows of `#`/`.` when it is not a plain rectangle). Saved layouts
+  are repaired on load.
+- **Item manager.** New item (blank footprint outline, or a copy of another), duplicate, delete (click twice), a filter
+  box, and fields: name, description (for tooltips), private notes, tags. All in `kinds.json`; the editor checks it all
+  again on the server.
 - **Library.** Drop or paste SVGs (they are cleaned of scripts and outside links, and kept in `src/imports/`), and add
   any of them to the sprite or replace it; "use the item colour" makes imports follow the item.
 - **Speed.** Selection boxes come from exact path maths (`parsePath` / `pathBounds` in `src/editor/geom.ts`: curves parsed

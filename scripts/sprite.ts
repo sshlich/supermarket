@@ -17,3 +17,14 @@ export function fromIcon(iconName: string, w: number, h: number): string {
 </svg>
 `
 }
+
+/** The sprite a new item with no icon starts with: its footprint's outline, to be drawn over. */
+export function blank(w: number, h: number): string {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w * UNIT} ${h * UNIT}">
+  <rect x="${UNIT / 4}" y="${UNIT / 4}" width="${w * UNIT - UNIT / 2}" height="${h * UNIT - UNIT / 2}" rx="${UNIT / 4}" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4" opacity=".6"/>
+</svg>
+`
+}
+
+/** A kind's starting sprite: from its icon if it has one, else blank. */
+export const starter = (k: { icon?: string; w: number; h: number }) => k.icon ? fromIcon(k.icon, k.w, k.h) : blank(k.w, k.h)

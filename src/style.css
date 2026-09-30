@@ -12,7 +12,7 @@
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; background: var(--bg); color: #e6e3dc; user-select: none; -webkit-user-select: none; overflow: hidden; }
 svg { display: block; width: 100%; height: 100%; }
-#app { display: grid; place-items: center; min-height: 100vh; }
+#app { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 100vh; }
 
 /* the field: black, and every cell a small dark grey rounded square inside it */
 .grid {
@@ -44,5 +44,14 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .ghost.land { --gb: var(--hi); --gf: rgba(240, 236, 226, .12); }
 .ghost.shove { --gb: rgba(240, 236, 226, .5); --gf: rgba(240, 236, 226, .06); }
 .ghost.bad { --gb: var(--bad); --gf: rgba(213, 96, 108, .16); }
-.ghost { border: 1px solid var(--gb); background: var(--gf); border-radius: 3px; }
-.ghost.shove { border-style: dashed; }
+.ghost:not(.shaped) { border: 1px solid var(--gb); background: var(--gf); border-radius: 3px; }
+.ghost.shove:not(.shaped) { border-style: dashed; }
+.ghost .gc { position: absolute; left: calc(var(--cx) * var(--cell) + var(--cell) * .1); top: calc(var(--cy) * var(--cell) + var(--cell) * .1); width: calc(var(--cell) * .8); height: calc(var(--cell) * .8); border-radius: calc(var(--cell) * .08); background: color-mix(in srgb, var(--gb) 30%, transparent); box-shadow: inset 0 0 0 1px var(--gb); }
+.ghost.shove .gc { box-shadow: inset 0 0 0 1px var(--gb); opacity: .7; }
+
+/* the tray: put things on the field */
+.tray { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; width: calc(var(--w, 30) * var(--cell)); max-width: 96vw; font: 11px ui-monospace, 'SF Mono', Menlo, monospace; color: #86847e; }
+.tray .grow { flex: 1; }
+.tray button { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 2px; background: none; border: 1px solid #34343c; color: #e6e3dc; font: inherit; cursor: pointer; }
+.tray button:hover { border-color: var(--hi); }
+.tray button i { width: 9px; height: 9px; border-radius: 2px; background: var(--c, #888); }

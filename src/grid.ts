@@ -61,25 +61,27 @@ export function firstFree(W: number, H: number, taken: Box[], shape: Box): { x: 
 
 const DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]] as const
 
-/** Shove everything `m` lands on in one direction, chaining into whatever those hit. */
+/**
+ * Shove everything `m` lands on one direction, a cell at a time, chaining into whatever those hit. Cell by cell (not box by
+ * box) so an irregular thing gives way only as far as its actual shape needs, and slides past a neighbour's empty corner.
+ */
 function push(W: number, H: number, others: Box[], m: Box, [dx, dy]: readonly [number, number]): Box[] | null {
   const pos = others.map(o => ({ ...o }))
-  // Pushing only ever moves things further along the axis, so one pass in that order settles it.
+  // Things further along the push are settled after things nearer to it.
   pos.sort((a, b) => dx ? (a.x - b.x) * dx : (a.y - b.y) * dy)
   const pushers: Box[] = [m]
   for (const o of pos) {
     let moved = false
-    for (let hit = pushers.find(p => overlaps(o, p)); hit; hit = pushers.find(p => overlaps(o, p))) {
-      if (dx > 0) o.x = hit.x + hit.w
-      else if (dx < 0) o.x = hit.x - o.w
-      else if (dy > 0) o.y = hit.y + hit.h
-      else o.y = hit.y - o.h
+    while (pushers.some(p => overlaps(o, p))) {
+      o.x += dx; o.y += dy
       moved = true
+      if (!inside(W, H, o)) return null
     }
-    if (!moved) continue
-    if (!inside(W, H, o)) return null
-    pushers.push(o)
+    if (moved) pushers.push(o)
   }
+  // A shape can wrap round something that sorts later; if anything still touches, this direction does not work.
+  const all = [m, ...pos]
+  for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++) if (overlaps(all[i], all[j])) return null
   return pos.filter(p => { const o = others.find(o => o.id === p.id)!; return p.x !== o.x || p.y !== o.y })
 }
 

@@ -2,7 +2,7 @@
 // as the game draws it, save. Everything you do writes plain SVG into the source tab, so you can always read what it did.
 import './style.css'
 import './editor.css'
-import { KINDS } from './world.ts'
+import { KINDS, kindCells } from './world.ts'
 import { I, SHAPES, about, fmt, invert, move, mul, nearestSegment, parsePath, parsePoints, pathBounds, pathString, point, pointsAttr, scale, simplify, smoothPath, snapTo, splitSubpaths, transformAttr, turn, type M, type P, type Seg, type Shape } from './editor/geom.ts'
 
 // Saving an item's size, name or colour rewrites kinds.json; the editor already holds the new values, so it should not reload.
@@ -10,7 +10,7 @@ if (import.meta.hot) import.meta.hot.accept('./world.ts', () => {})
 
 const NS = 'http://www.w3.org/2000/svg'
 const UNIT = 32 // sprite units per cell (see scripts/sprite.ts)
-const ids = Object.keys(KINDS)
+let ids = Object.keys(KINDS)
 const NOT_DRAWN = ['defs', 'title', 'desc', 'style', 'metadata']
 
 // ---------------------------------------------------------------- state
@@ -435,7 +435,7 @@ function stageHtml(id: string, cell: number, pad: number, interactive: boolean) 
   const k = KINDS[id]
   const w = rot ? k.h : k.w
   const h = rot ? k.w : k.h
-  const cells = Array.from({ length: w * h }, (_, i) => `<rect x="${(i % w) + 0.1}" y="${Math.floor(i / w) + 0.1}" width="0.8" height="0.8" rx="0.08"/>`).join('')
+  const cells = kindCells(id, rot).map(([cx, cy]) => `<rect x="${cx + 0.1}" y="${cy + 0.1}" width="0.8" height="0.8" rx="0.08"/>`).join('')
   const lines: string[] = []
   if (interactive) {
     const { w: vw, h: vh } = vbox(id)
@@ -492,7 +492,7 @@ let previewCell = 0
 function previewItem(id: string, x: number, y: number, turned: boolean) {
   const k = KINDS[id]
   const w = turned ? k.h : k.w, h = turned ? k.w : k.h
-  const squares = Array.from({ length: w * h }, (_, i) => `<rect x="${(i % w) + 0.1}" y="${Math.floor(i / w) + 0.1}" width="0.8" height="0.8" rx="0.08"/>`).join('')
+  const squares = kindCells(id, turned).map(([cx, cy]) => `<rect x="${cx + 0.1}" y="${cy + 0.1}" width="0.8" height="0.8" rx="0.08"/>`).join('')
   return { w, h, html: `<div class="item" style="--x:${x};--y:${y};--w:${w};--h:${h};--c:${color[id]}"><svg viewBox="0 0 ${w} ${h}"><g class="sq">${squares}</g></svg><div class="art" style="--kw:${k.w};--kh:${k.h};--r:${turned ? 90 : 0}deg">${draft[id] ?? ''}</div></div>` }
 }
 /** The biggest cell size at which this item, with a cell of field around it, fills the preview window. */
@@ -590,12 +590,19 @@ function itemHtml(): string {
   const sp = `<div class="swrow">${PALETTE.map(c => `<button class="sw ${k.color.toLowerCase() === c ? 'on' : ''}" data-itemcolor data-val="${c}" title="${c}" style="--s:${c}"></button>`).join('')}<input type="color" data-itemcolorpick value="${k.color}" title="any colour"></div>`
   return `<div class="props">
     <h3>${esc(k.name)} <small>the item, not a shape</small></h3>
-    <h4>Name</h4>
+    <h4>Name <small>id: ${esc(cur)}</small></h4>
     <div class="row"><input type="text" data-itemname value="${esc(k.name)}" maxlength="40" style="flex:1"></div>
+    <h4>Description <small>what a tooltip will say</small></h4>
+    <textarea class="field" data-itemdesc rows="3" maxlength="2000" placeholder="A short description…">${esc(k.desc ?? '')}</textarea>
+    <h4>Notes <small>just for you: where it drops, ideas, to-dos</small></h4>
+    <textarea class="field" data-itemnotes rows="3" maxlength="2000" placeholder="Private notes…">${esc(k.notes ?? '')}</textarea>
+    <h4>Tags <small>comma separated</small></h4>
+    <div class="row"><input type="text" data-itemtags value="${esc((k.tags ?? []).join(', '))}" placeholder="drink, glass, fragile" style="flex:1"></div>
+    <div class="row quick"><button data-dupitem>⧉ Duplicate this item</button><button data-delitem class="${armed === cur ? 'danger' : ''}">${armed === cur ? 'Really delete? Click again' : '🗑 Delete this item'}</button></div>
     <h4>Colour <small>the item's accent in the game; saved</small></h4>
     <div class="row col"><span></span>${sp}</div>
     <h4>What it takes on the field</h4>
-    <p class="note">${k.w} × ${k.h} squares (${vw} × ${vh} units). Change it in the <b>Footprint</b> picker on the left.</p>
+    <p class="note">${k.w} × ${k.h} box${k.cells ? ', irregular' : ''} (${vw} × ${vh} units). Paint its squares in the <b>Footprint</b> panel on the left.</p>
     <h4>The whole drawing <small>${layers} layer${layers === 1 ? '' : 's'}, moved together</small></h4>
     ${b ? `${slider('X', 'wx', b.x + b.w / 2, -vw * 0.25, vw * 1.25, 0.5)}
     ${slider('Y', 'wy', b.y + b.h / 2, -vh * 0.25, vh * 1.25, 0.5)}
@@ -773,9 +780,8 @@ function paint(withSource = true) {
   const pages: Record<string, () => string> = { item: itemHtml, add: addHtml, props: propsHtml, fx: fxHtml, ops: opsHtml }
   if (pages[tab]) $(`[data-page="${tab}"]`).innerHTML = pages[tab]()
   else if (tab === 'lib') renderLib()
-  fpW = fpW || k.w; fpH = fpH || k.h
-  const fpSig = `${cur}:${k.w}x${k.h}:${fpW}x${fpH}`
-  if (fpSig !== lastFp && !(document.activeElement instanceof HTMLInputElement && document.activeElement.matches('[data-fpw], [data-fph]'))) { lastFp = fpSig; $('[data-footprint]').innerHTML = footprintHtml() }
+  const fpSig = `${cur}:${k.w}x${k.h}:${k.cells?.join('/') ?? ''}`
+  if (fpSig !== lastFp && !(document.activeElement instanceof HTMLInputElement && document.activeElement.matches('[data-fprw], [data-fprh]'))) { lastFp = fpSig; fpLoad(); $('[data-footprint]').innerHTML = footprintHtml() }
   for (const t of root.querySelectorAll<HTMLElement>('[data-tool]')) t.classList.toggle('on', t.dataset.tool === tool)
   root.querySelector('.stage.big')!.classList.toggle('penning', tool !== 'select')
   root.querySelector<HTMLElement>('.penopts')!.style.visibility = tool === 'select' ? 'hidden' : 'visible'
@@ -838,7 +844,7 @@ function select(i: number | null, goTo = false) {
 function switchTo(id: string) {
   cur = id
   sel = null
-  fpW = 0; fpH = 0
+  fpFor = ''
   pen = null
   tool = 'select'
   paint()
@@ -1087,35 +1093,90 @@ addEventListener('keydown', e => {
 
 // ---------------------------------------------------------------- footprint: which squares the item takes
 
-let fpW = 0, fpH = 0
-/** Change the item's size on the field: the drawing is moved (and, if asked, scaled) with it, then both are saved. */
-async function applyFootprint() {
+const FP = 12 // the painter is a 12 x 12 patch of squares
+let fpCells: boolean[] = []
+let fpOrigin: [number, number] = [0, 0] // where the saved footprint's top-left sits in the painter
+let fpFor = ''
+let painting: boolean | null = null
+
+/** Load the painter with the item's saved footprint, placed with room to grow on the left and top. */
+function fpLoad() {
   const k = KINDS[cur]
-  const w = Math.max(1, Math.min(12, Math.round(fpW))), h = Math.max(1, Math.min(12, Math.round(fpH)))
+  const ox = Math.max(0, Math.min(FP - k.w, 2)), oy = Math.max(0, Math.min(FP - k.h, 2))
+  fpCells = Array<boolean>(FP * FP).fill(false)
+  for (const [x, y] of kindCells(cur)) fpCells[(y + oy) * FP + x + ox] = true
+  fpOrigin = [ox, oy]
+  fpFor = cur
+}
+/** What is painted: its box, how many squares, whether it hangs together. Null if nothing is painted. */
+function fpInfo() {
+  const on: [number, number][] = []
+  fpCells.forEach((v, i) => { if (v) on.push([i % FP, Math.floor(i / FP)]) })
+  if (!on.length) return null
+  const x0 = Math.min(...on.map(c => c[0])), y0 = Math.min(...on.map(c => c[1]))
+  const w = Math.max(...on.map(c => c[0])) - x0 + 1, h = Math.max(...on.map(c => c[1])) - y0 + 1
+  const key = (x: number, y: number) => y * FP + x
+  const seen = new Set<number>([key(...on[0])])
+  const queue = [on[0]]
+  while (queue.length) {
+    const [x, y] = queue.pop()!
+    for (const [nx, ny] of [[x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]] as const) if (nx >= 0 && ny >= 0 && nx < FP && ny < FP && fpCells[key(nx, ny)] && !seen.has(key(nx, ny))) { seen.add(key(nx, ny)); queue.push([nx, ny]) }
+  }
+  const rows = Array.from({ length: h }, (_, y) => Array.from({ length: w }, (_, x) => fpCells[key(x0 + x, y0 + y)] ? '#' : '.').join(''))
+  return { x0, y0, w, h, count: on.length, connected: seen.size === on.length, rows, full: on.length === w * h }
+}
+const fpChanged = () => { const i = fpInfo(); const k = KINDS[cur]; if (!i) return false; const cur_ = kindCells(cur).map(c => c.join()).sort().join(';'); const now = fpCells.flatMap((v, n) => v ? [`${(n % FP) - i.x0},${Math.floor(n / FP) - i.y0}`] : []).sort().join(';'); return cur_ !== now || i.w !== k.w || i.h !== k.h }
+
+function fpInfoText() {
+  const i = fpInfo()
+  if (!i) return 'nothing painted: a footprint needs at least one square'
+  return `${i.w} × ${i.h} box · ${i.count} square${i.count === 1 ? '' : 's'}${i.connected ? '' : ' · ⚠ in separate pieces'}${i.full ? '' : ' · irregular'}`
+}
+/** Update the painter's squares and its readout without rebuilding it (so a drag keeps working). */
+function fpRefresh() {
+  const saved = new Set(kindCells(cur).map(([x, y]) => (y + fpOrigin[1]) * FP + x + fpOrigin[0]))
+  root.querySelectorAll<HTMLElement>('[data-fpc]').forEach(el => { const i = +el.dataset.fpc!; el.classList.toggle('on', fpCells[i]); el.classList.toggle('was', saved.has(i) && !fpCells[i]) })
+  const t = root.querySelector('[data-fpinfo]')
+  if (t) t.textContent = fpInfoText()
+  const b = root.querySelector<HTMLButtonElement>('[data-fpapply]')
+  if (b) b.disabled = !fpInfo() || !fpChanged()
+}
+
+/** Save the painted footprint: the item's squares change, and the drawing is kept in place (or scaled to the new box). */
+async function applyFootprint() {
+  const info = fpInfo()
   const status = $('[data-status]')
+  if (!info) return
   if (!live) { status.textContent = 'fix the SVG first'; return }
-  if (w === k.w && h === k.h) { status.textContent = 'that is already the size'; return }
-  const old = vbox(cur)
-  k.w = w; k.h = h
+  const k = KINDS[cur]
+  const oldVb = vbox(cur)
+  k.w = info.w; k.h = info.h
+  if (info.full) delete k.cells; else k.cells = info.rows
   const nu = vbox(cur)
   const scaleIt = $<HTMLInputElement>('[data-fpscale]').checked
-  const s = scaleIt ? Math.min(nu.w / old.w, nu.h / old.h) : 1
-  const t = mul(move(nu.w / 2, nu.h / 2), mul(scale(s), move(-old.w / 2, -old.h / 2)))
+  const t: M = scaleIt
+    ? (() => { const s = Math.min(nu.w / oldVb.w, nu.h / oldVb.h); return mul(move(nu.w / 2, nu.h / 2), mul(scale(s), move(-oldVb.w / 2, -oldVb.h / 2))) })()
+    : move((fpOrigin[0] - info.x0) * UNIT, (fpOrigin[1] - info.y0) * UNIT)
   for (const el of drawn(live)) setMatrix(el, mul(t, matrixOf(el)))
   live.setAttribute('viewBox', `0 0 ${nu.w} ${nu.h}`)
   commit()
   await save()
-  try { await api('/kind', cur, { method: 'POST', body: JSON.stringify({ w, h }) }); status.textContent = `${k.name} now takes ${w} × ${h}` } catch (e) { status.textContent = `size not saved: ${(e as Error).message}` }
+  try { await api('/kind', cur, { method: 'POST', body: JSON.stringify({ cells: info.rows }) }); status.textContent = `${k.name} now takes ${info.count} square${info.count === 1 ? '' : 's'}` } catch (e) { status.textContent = `footprint not saved: ${(e as Error).message}` }
+  fpLoad()
+  lastFp = ''
+  paint()
 }
 
 function footprintHtml() {
-  const k = KINDS[cur]
-  fpW = fpW || k.w; fpH = fpH || k.h
-  const cells = Array.from({ length: 144 }, (_, i) => { const x = i % 12, y = Math.floor(i / 12); return `<i data-fp="${x},${y}" class="${x < fpW && y < fpH ? 'on' : ''} ${x < k.w && y < k.h ? 'now' : ''}"></i>` }).join('')
-  return `<div class="fp"><div class="fppick" data-fppick>${cells}</div>
-    <div class="fpnums"><label>w <input type="number" min="1" max="12" data-fpw value="${fpW}"></label>×<label>h <input type="number" min="1" max="12" data-fph value="${fpH}"></label></div>
-    <label class="chk"><input type="checkbox" data-fpscale checked> scale the drawing with it</label>
-    <button data-fpapply>Apply and save (${fpW} × ${fpH})</button></div>`
+  if (fpFor !== cur || !fpCells.length) fpLoad()
+  const saved = new Set(kindCells(cur).map(([x, y]) => (y + fpOrigin[1]) * FP + x + fpOrigin[0]))
+  const cells = fpCells.map((v, i) => `<i data-fpc="${i}" class="${v ? 'on' : ''} ${saved.has(i) && !v ? 'was' : ''}"></i>`).join('')
+  return `<div class="fp"><div class="fppick" data-fppick title="Pencil: press and drag to switch squares on or off">${cells}</div>
+    <div class="fpinfo" data-fpinfo>${esc(fpInfoText())}</div>
+    <div class="fptools"><button data-fptool="clear">Clear</button><button data-fptool="invert" title="Flip every square inside the box">Invert</button><button data-fptool="reset">Reset</button>
+      <label>rectangle <input type="number" min="1" max="12" value="${KINDS[cur].w}" data-fprw>×<input type="number" min="1" max="12" value="${KINDS[cur].h}" data-fprh></label><button data-fptool="rect">Fill</button></div>
+    <label class="chk"><input type="checkbox" data-fpscale> scale the drawing to the new box (otherwise it stays where it is)</label>
+    <button class="primary" data-fpapply ${fpInfo() && fpChanged() ? '' : 'disabled'}>Apply and save</button></div>`
 }
 
 // ---------------------------------------------------------------- import: files, pasted code, the game-icons set
@@ -1235,11 +1296,10 @@ function setTool(t: typeof tool) {
 }
 
 root.addEventListener('click', async e => {
-  const t = (e.target as HTMLElement).closest<HTMLElement>('button, [data-fp]')
+  const t = (e.target as HTMLElement).closest<HTMLElement>('button')
   if (!t) return
   const d = t.dataset
   if (d.tool) setTool(d.tool as typeof tool)
-  else if (d.fp) { const [x, y] = d.fp.split(',').map(Number); fpW = x + 1; fpH = y + 1; lastFp = ''; $('[data-footprint]').innerHTML = footprintHtml() }
   else if ('fpapply' in d) applyFootprint()
   else if (d.libadd) addImport(libKey(d.libadd))
   else if (d.libreplace) replaceWithImport(libKey(d.libreplace))
@@ -1259,8 +1319,6 @@ root.addEventListener('change', e => {
   else if (t.matches('[data-set]')) { iconSet = t.value; searchIcons(iconQuery) }
   else if (t.matches('[data-recolor]')) recolor = t.checked
   else if (t.matches('[data-fitpct]')) fitPct = Math.max(10, Math.min(100, +t.value || 80))
-  else if (t.matches('[data-fpw]')) { fpW = Math.max(1, Math.min(12, +t.value || 1)); $('[data-footprint]').innerHTML = footprintHtml() }
-  else if (t.matches('[data-fph]')) { fpH = Math.max(1, Math.min(12, +t.value || 1)); $('[data-footprint]').innerHTML = footprintHtml() }
   else if (t.matches('[data-file]') && t.files) { importFiles(t.files, false); t.value = '' }
 })
 
@@ -1648,6 +1706,157 @@ root.addEventListener('toggle', e => {
 }, true)
 new ResizeObserver(() => { if (ready && autoFit && fitZoom() !== zoom) paint(false) }).observe(root)
 
+// ---------------------------------------------------------------- the item manager: make, copy, describe, remove
+
+const kindButton = (id: string) => `<button data-kind="${id}" title="${esc(KINDS[id].desc ?? '')}"><span class="thumb"></span><span><b>${esc(KINDS[id].name)}</b><small>${KINDS[id].w} × ${KINDS[id].h}${KINDS[id].cells ? ' · shaped' : ''}</small></span></button>`
+function kindsHtml() { return ids.map(kindButton).join('') }
+const copyOptions = () => `<option value="">Copy from…</option>${ids.map(id => `<option value="${id}">${esc(KINDS[id].name)}</option>`).join('')}`
+
+/** The list of items and the "copy from" menu, rebuilt after one is made or removed. */
+function renderKinds() {
+  $('.kinds').innerHTML = kindsHtml()
+  $('[data-copy]').innerHTML = copyOptions()
+  const f = root.querySelector<HTMLInputElement>('[data-kfilter]')
+  if (f?.value) filterKinds(f.value)
+}
+function filterKinds(q: string) {
+  const term = q.toLowerCase().trim()
+  for (const b of root.querySelectorAll<HTMLElement>('.kinds button')) {
+    const k = KINDS[b.dataset.kind!]
+    b.hidden = !!term && ![b.dataset.kind, k.name, k.desc, ...(k.tags ?? [])].some(s => s?.toLowerCase().includes(term))
+  }
+}
+
+const slugify = (s: string) => s.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').replace(/^[^a-z]+/, '').slice(0, 28) || 'item'
+const uniqueId = (base: string) => { let id = slugify(base), n = 2; while (KINDS[id]) id = `${slugify(base)}-${n++}`; return id }
+
+/** Bring a kind that now exists on disk into the editor: its sprite, history and place in the list. */
+async function adopt(id: string, data: typeof KINDS[string]) {
+  KINDS[id] = data
+  ids = Object.keys(KINDS)
+  saved[id] = draft[id] = await api('', id)
+  hist[id] = { stack: [draft[id]], at: 0, t: 0 }
+  color[id] = data.color
+  renderKinds()
+}
+
+async function createItem(name: string, opts: { w: number; h: number; from?: string; color?: string; desc?: string }) {
+  const status = root.querySelector('[data-status]')
+  const id = uniqueId(name)
+  const src = opts.from ? KINDS[opts.from] : null
+  try { sessionStorage.setItem('sprite-editor-open', id) } catch { /* private window */ } // Vite reloads the page when a sprite file appears; this brings you back to the new item
+  try {
+    await api('/new', id, { method: 'POST', body: JSON.stringify({ name, w: opts.w, h: opts.h, from: opts.from, color: opts.color, desc: opts.desc }) })
+  } catch (e) { if (status) status.textContent = `not created: ${(e as Error).message}`; return null }
+  const data = { name, icon: '', color: opts.color ?? src?.color ?? '#b4bfcc', w: src?.w ?? opts.w, h: src?.h ?? opts.h, ...(src?.cells ? { cells: [...src.cells] } : {}), ...(opts.desc ? { desc: opts.desc } : src?.desc ? { desc: src.desc } : {}), ...(src?.tags ? { tags: [...src.tags] } : {}) }
+  await adopt(id, data)
+  switchTo(id)
+  tab = 'item'
+  paint()
+  if (status) status.textContent = `made ${name}`
+  return id
+}
+
+let armed = ''
+async function deleteItem() {
+  const id = cur
+  if (ids.length < 2) { $('[data-status]').textContent = 'keep at least one item'; return }
+  if (armed !== id) {
+    armed = id
+    paint(false)
+    setTimeout(() => { if (armed === id) { armed = ''; paint(false) } }, 3500)
+    return
+  }
+  armed = ''
+  try { sessionStorage.setItem('sprite-editor-open', ids.find(i => i !== id) ?? '') } catch { /* private window */ }
+  try { await api('/delete', id, { method: 'POST' }) } catch (e) { $('[data-status]').textContent = `not deleted: ${(e as Error).message}`; return }
+  delete KINDS[id]; delete draft[id]; delete saved[id]; delete hist[id]
+  try { localStorage.removeItem(`sprite-draft:${id}`) } catch { /* private window */ }
+  ids = Object.keys(KINDS)
+  renderKinds()
+  switchTo(ids[0])
+  $('[data-status]').textContent = 'deleted'
+}
+
+function openNewItem() {
+  let d = document.querySelector<HTMLElement>('.modal')
+  if (!d) { d = document.createElement('div'); d.className = 'modal'; document.body.appendChild(d) }
+  d.hidden = false
+  d.innerHTML = `<form class="card" data-newform>
+      <h2>New item</h2>
+      <label>Name<input type="text" name="name" maxlength="40" placeholder="Rainbow potion" required autofocus></label>
+      <label>Start from<select name="from"><option value="">A blank sprite (outline of the footprint)</option>${ids.map(id => `<option value="${id}">A copy of ${esc(KINDS[id].name)} (drawing, size, shape, colour)</option>`).join('')}</select></label>
+      <div class="two"><label>Width<input type="number" name="w" min="1" max="12" value="2"></label><label>Height<input type="number" name="h" min="1" max="12" value="2"></label></div>
+      <p class="note">Width and height are used for a blank sprite; you can paint any shape afterwards in the Footprint panel. Then pick an icon in the Library tab or draw with the tools.</p>
+      <label>Description<textarea name="desc" rows="2" placeholder="What is it, for the tooltip"></textarea></label>
+      <div class="acts"><button class="primary" type="submit">Create</button><button type="button" data-newcancel>Cancel</button></div>
+    </form>`
+  d.querySelector<HTMLInputElement>('input[name=name]')!.focus()
+}
+const closeNewItem = () => { const d = document.querySelector<HTMLElement>('.modal'); if (d) d.hidden = true }
+document.addEventListener('submit', async e => {
+  const f = (e.target as HTMLElement).closest<HTMLFormElement>('[data-newform]')
+  if (!f) return
+  e.preventDefault()
+  const v = new FormData(f)
+  closeNewItem()
+  await createItem(String(v.get('name')).trim(), { w: +(v.get('w') ?? 2) || 2, h: +(v.get('h') ?? 2) || 2, from: String(v.get('from') || '') || undefined, desc: String(v.get('desc') || '').trim() || undefined })
+})
+document.addEventListener('click', e => { if ((e.target as HTMLElement).closest('[data-newcancel]')) closeNewItem() })
+addEventListener('keydown', e => { if (e.key === 'Escape' && document.querySelector<HTMLElement>('.modal:not([hidden])')) { closeNewItem(); e.stopPropagation() } }, true)
+
+root.addEventListener('click', e => {
+  const t = (e.target as HTMLElement).closest<HTMLElement>('button')
+  if (!t) return
+  if (t.matches('[data-newitem]')) openNewItem()
+  else if (t.matches('[data-dupitem]')) createItem(`${KINDS[cur].name} copy`, { w: KINDS[cur].w, h: KINDS[cur].h, from: cur })
+  else if (t.matches('[data-delitem]')) deleteItem()
+  else if (t.dataset.fptool) {
+    const tool_ = t.dataset.fptool
+    const info = fpInfo()
+    if (tool_ === 'clear') fpCells.fill(false)
+    else if (tool_ === 'reset') fpLoad()
+    else if (tool_ === 'invert') { const b = info ?? { x0: fpOrigin[0], y0: fpOrigin[1], w: KINDS[cur].w, h: KINDS[cur].h }; for (let y = b.y0; y < b.y0 + b.h; y++) for (let x = b.x0; x < b.x0 + b.w; x++) fpCells[y * FP + x] = !fpCells[y * FP + x] }
+    else if (tool_ === 'rect') {
+      const w = Math.max(1, Math.min(FP, +(root.querySelector<HTMLInputElement>('[data-fprw]')?.value || 1))), h = Math.max(1, Math.min(FP, +(root.querySelector<HTMLInputElement>('[data-fprh]')?.value || 1)))
+      const x0 = Math.min(info?.x0 ?? fpOrigin[0], FP - w), y0 = Math.min(info?.y0 ?? fpOrigin[1], FP - h)
+      fpCells.fill(false)
+      for (let y = y0; y < y0 + h; y++) for (let x = x0; x < x0 + w; x++) fpCells[y * FP + x] = true
+    }
+    fpRefresh()
+  }
+  else if ('fpapply' in t.dataset) applyFootprint()
+})
+root.addEventListener('input', e => { const t = e.target as HTMLInputElement; if (t.matches('[data-kfilter]')) filterKinds(t.value) })
+
+// the painter: press on a square and drag; what the first square turns into is what the drag paints
+root.addEventListener('pointerdown', e => {
+  const c = (e.target as HTMLElement).closest<HTMLElement>('[data-fpc]')
+  if (!c) return
+  e.preventDefault()
+  const i = +c.dataset.fpc!
+  painting = !fpCells[i]
+  fpCells[i] = painting
+  fpRefresh()
+})
+addEventListener('pointermove', e => {
+  if (painting === null) return
+  const el = document.elementFromPoint(e.clientX, e.clientY)?.closest<HTMLElement>('[data-fpc]')
+  if (!el) return
+  const i = +el.dataset.fpc!
+  if (fpCells[i] !== painting) { fpCells[i] = painting; fpRefresh() }
+})
+addEventListener('pointerup', () => { painting = null })
+
+/** The text fields of an item save when you leave them. */
+root.addEventListener('change', e => {
+  const t = e.target as HTMLInputElement | HTMLTextAreaElement
+  const k = KINDS[cur]
+  if (t.matches('[data-itemdesc]')) { const v = t.value.trim(); if (v) k.desc = v; else delete k.desc; saveKind({ desc: v }) }
+  else if (t.matches('[data-itemnotes]')) { const v = t.value.trim(); if (v) k.notes = v; else delete k.notes; saveKind({ notes: v }) }
+  else if (t.matches('[data-itemtags]')) { const list = t.value.split(',').map(s => s.trim()).filter(Boolean); if (list.length) k.tags = list; else delete k.tags; saveKind({ tags: list }) }
+})
+
 // ---------------------------------------------------------------- the page
 
 root.innerHTML = `
@@ -1655,7 +1864,8 @@ root.innerHTML = `
     <div class="phead"><span>Items · Layers</span><button data-collapse="left" title="Fold this panel away">‹</button></div>
     <div class="pbody">
       <details class="fold" data-fold="items" open><summary>Items</summary>
-        <div class="kinds">${ids.map(id => `<button data-kind="${id}"><span class="thumb"></span><span><b>${KINDS[id].name}</b><small>${KINDS[id].w} × ${KINDS[id].h}</small></span></button>`).join('')}</div></details>
+        <div class="kbar"><button data-newitem>＋ New item</button><input type="search" data-kfilter placeholder="filter…"></div>
+        <div class="kinds">${kindsHtml()}</div></details>
       <details class="fold" data-fold="footprint" open><summary>Footprint</summary><div data-footprint></div></details>
       <details class="fold" data-fold="layers" open><summary>Layers <small>(top is in front)</small></summary><ul class="layers" data-layers></ul></details>
     </div>
@@ -1689,7 +1899,7 @@ root.innerHTML = `
     <div class="acts foot">
       <button class="primary" data-save>Save to game (⌘S)</button><label><input type="checkbox" data-auto> autosave</label>
       <button data-revert>Revert</button><button data-reset>Original icon</button>
-      <select data-copy><option value="">Copy from…</option>${ids.map(id => `<option value="${id}">${KINDS[id].name}</option>`).join('')}</select>
+      <select data-copy>${copyOptions()}</select>
       <span class="note" data-status></span>
     </div>
     </div>
@@ -1701,4 +1911,6 @@ Promise.all(ids.map(async id => {
   try { d = localStorage.getItem(`sprite-draft:${id}`) ?? d } catch { /* private window */ }
   draft[id] = d
   hist[id] = { stack: [d], at: 0, t: 0 }
-})).then(() => { ready = true; applyUi(); paint(); loadImports(); loadSets(); searchIcons('') })
+})).then(() => {
+  try { const want = sessionStorage.getItem('sprite-editor-open'); sessionStorage.removeItem('sprite-editor-open'); if (want && KINDS[want]) { cur = want; tab = 'item' } } catch { /* private window */ }
+  ready = true; applyUi(); paint(); loadImports(); loadSets(); searchIcons('') })
