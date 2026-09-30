@@ -1,16 +1,25 @@
 // Where things go in a container grid when you drop, send or tidy. Pure geometry, no game rules.
 
-/** A footprint: its bounding box, and, if it isn't a plain rectangle, the filled cells inside it (relative to x, y). `rot` is which way round it currently is. */
-export interface Box { id: number; x: number; y: number; w: number; h: number; cells?: readonly (readonly [number, number])[]; rot?: boolean }
+/** A footprint: its bounding box, and, if it isn't a plain rectangle, the filled cells inside it (relative to x, y). `rot` is which way round it currently is, in quarter turns clockwise (0 to 3). */
+export interface Box { id: number; x: number; y: number; w: number; h: number; cells?: readonly (readonly [number, number])[]; rot?: number }
 
-/** The same footprint turned a quarter, about its own box. */
+/** The same footprint turned a quarter clockwise, about its own box. */
 export const turn = (b: Box): Box => {
-  const t: Box = { ...b, w: b.h, h: b.w, rot: !b.rot }
+  const t: Box = { ...b, w: b.h, h: b.w, rot: ((b.rot ?? 0) + 1) % 4 }
   if (b.cells) t.cells = b.cells.map(([x, y]) => [b.h - 1 - y, x] as const)
   return t
 }
 /** A footprint that looks the same turned (so there's no point trying). */
 export const same = (b: Box) => b.w === b.h && !b.cells
+
+export const footprintKey = (b: Box) => `${b.w}x${b.h}:${b.cells ? [...b.cells].map(c => c.join()).sort().join(';') : ''}`
+/** Every distinct way round a footprint can go (up to four): a rectangle has two, a square one, an odd shape up to four. */
+export function orientations(b: Box): Box[] {
+  const out = [b]
+  let t = b
+  for (let i = 0; i < 3; i++) { t = turn(t); if (!out.some(o => footprintKey(o) === footprintKey(t))) out.push(t) }
+  return out
+}
 
 const filled = (b: Box): [number, number][] => {
   if (b.cells) return b.cells.map(([x, y]) => [b.x + x, b.y + y])
@@ -33,11 +42,11 @@ export const touches = (a: Box, b: Box) => a.cells || b.cells
   : ((a.x + a.w === b.x || b.x + b.w === a.x) && a.y < b.y + b.h && b.y < a.y + a.h) ||
   ((a.y + a.h === b.y || b.y + b.h === a.y) && a.x < b.x + b.w && b.x < a.x + a.w)
 
-/** Nearest free spot to where `b` is now (either way round; turning costs a step). */
+/** Nearest free spot to where `b` is now (any way round; turning costs a step). */
 export function nearest(W: number, H: number, taken: Box[], b: Box): Box | null {
   let best: Box | null = null
   let bestCost = Infinity
-  for (const [v, cost0] of same(b) ? [[b, 0] as const] : [[b, 0] as const, [turn(b), 1] as const]) {
+  for (const [v, cost0] of orientations(b).map((o, i) => [o, i ? 1 : 0] as const)) {
     for (let y = 0; y + v.h <= H; y++) {
       for (let x = 0; x + v.w <= W; x++) {
         const c = { ...v, x, y }
@@ -49,12 +58,12 @@ export function nearest(W: number, H: number, taken: Box[], b: Box): Box | null 
   return best
 }
 
-/** First free spot for a footprint in reading order, as-is first, then turned. */
-export function firstFree(W: number, H: number, taken: Box[], shape: Box): { x: number; y: number; turned: boolean } | null {
-  for (const [v, turned] of same(shape) ? [[shape, false] as const] : [[shape, false] as const, [turn(shape), true] as const]) {
+/** First free spot for a footprint in reading order, as-is first, then turned each way. `box` is the footprint the way round it fits. */
+export function firstFree(W: number, H: number, taken: Box[], shape: Box): { x: number; y: number; turned: boolean; rot: number; box: Box } | null {
+  for (const v of orientations(shape)) {
     for (let y = 0; y + v.h <= H; y++)
       for (let x = 0; x + v.w <= W; x++)
-        if (!taken.some(t => overlaps(t, { ...v, id: -1, x, y }))) return { x, y, turned }
+        if (!taken.some(t => overlaps(t, { ...v, id: -1, x, y }))) return { x, y, turned: v !== shape, rot: v.rot ?? 0, box: v }
   }
   return null
 }
@@ -111,14 +120,14 @@ function reflow(W: number, H: number, others: Box[], ms: Box[]): Box[] | null {
     }
     if (ok && (!best || cost(others, taken.slice(ms.length)) < cost(others, best))) best = taken.slice(ms.length)
   }
-  return best && best.filter(b => { const o = others.find(o => o.id === b.id)!; return b.x !== o.x || b.y !== o.y || !!b.rot !== !!o.rot })
+  return best && best.filter(b => { const o = others.find(o => o.id === b.id)!; return b.x !== o.x || b.y !== o.y || (b.rot ?? 0) !== (o.rot ?? 0) })
 }
 
 function cost(others: Box[], moves: Box[]) {
   let n = 0
   for (const b of moves) {
     const o = others.find(o => o.id === b.id)!
-    n += Math.abs(b.x - o.x) + Math.abs(b.y - o.y) + (!!b.rot !== !!o.rot ? 1 : 0)
+    n += Math.abs(b.x - o.x) + Math.abs(b.y - o.y) + ((b.rot ?? 0) !== (o.rot ?? 0) ? 1 : 0)
   }
   return n
 }
@@ -167,7 +176,7 @@ export function pack(W: number, H: number, boxes: Box[]): Box[] | null {
   for (const b of boxes) {
     const s = firstFree(W, H, out, b)
     if (!s) return null
-    out.push({ ...(s.turned ? turn(b) : b), x: s.x, y: s.y })
+    out.push({ ...s.box, id: b.id, x: s.x, y: s.y })
   }
   return out
 }

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { drop, dropGroup, firstFree, overlaps, pack, touches, turn, type Box } from './grid.ts'
+import { drop, dropGroup, firstFree, orientations, overlaps, pack, touches, turn, type Box } from './grid.ts'
 
 const b = (id: number, x: number, y: number, w = 1, h = 1): Box => ({ id, x, y, w, h })
 const run = (W: number, H: number, others: Box[], m: Box, toward?: { x: number; y: number }) => {
@@ -38,7 +38,7 @@ assert.equal(touches(b(1, 0, 0, 2, 1), b(2, 1, 1)), true)
 
 // Packing fills from the top-left and turns what only fits turned.
 assert.deepEqual(pack(2, 3, [b(1, 0, 0, 2, 2), b(2, 0, 0, 2, 1)]), [b(1, 0, 0, 2, 2), b(2, 0, 2, 2, 1)])
-assert.deepEqual(pack(1, 3, [b(1, 0, 0, 2, 1)]), [{ ...b(1, 0, 0, 1, 2), rot: true }])
+assert.deepEqual(pack(1, 3, [b(1, 0, 0, 2, 1)]), [{ ...b(1, 0, 0, 1, 2), rot: 1 }])
 assert.equal(pack(2, 2, [b(1, 0, 0, 2, 2), b(2, 0, 0)]), null)
 
 // Irregular shapes: an L (cells 0,0 0,1 1,1) leaves its empty corner free, and turns a quarter clockwise.
@@ -47,8 +47,8 @@ assert.equal(overlaps(L, b(2, 1, 0)), false)
 assert.equal(overlaps(L, b(2, 1, 1)), true)
 assert.equal(touches(L, b(2, 1, 0)), true) // the free corner still has L on two sides
 assert.deepEqual(turn(L).cells, [[1, 0], [0, 0], [0, 1]])
-assert.deepEqual(firstFree(2, 2, [b(2, 1, 0)], L), { x: 0, y: 0, turned: false }) // fits round a 1x1 in its corner
-assert.equal(firstFree(2, 2, [b(2, 0, 0)], L), null)
+{ const f = firstFree(2, 2, [b(2, 1, 0)], L)!; assert.deepEqual([f.x, f.y, f.turned], [0, 0, false]) } // fits round a 1x1 in its corner
+{ const f = firstFree(2, 2, [b(2, 0, 0)], L)!; assert.equal(f.turned, true) } // a 1x1 in the top-left corner: turned, the L's empty corner fits round it (only a quarter turn or two work)
 // A 1x1 dropped into an L's empty corner needs no shove.
 assert.deepEqual(run(2, 2, [L], b(9, 1, 0)), { 9: [1, 0, 1, 1] })
 
@@ -84,7 +84,7 @@ assert.deepEqual(run(2, 2, [L], b(9, 1, 0)), { 9: [1, 0, 1, 1] })
     for (let i = 1; i <= 2 + Math.floor(rnd() * 6); i++) {
       const s = shape(i)
       const spot = firstFree(W, H, items, s)
-      if (spot) items.push({ ...(spot.turned ? turn(s) : s), x: spot.x, y: spot.y })
+      if (spot) items.push({ ...spot.box, id: s.id, x: spot.x, y: spot.y })
     }
     const mine = items[Math.floor(rnd() * items.length)]
     const others = items.filter(o => o.id !== mine.id)
@@ -119,7 +119,7 @@ assert.deepEqual(run(2, 2, [L], b(9, 1, 0)), { 9: [1, 0, 1, 1] })
   for (let round = 0; round < 300; round++) {
     const W = 10, H = 7
     const items: Box[] = []
-    for (let i = 1; i <= 3 + Math.floor(rnd() * 7); i++) { const s = b(i, 0, 0, 1 + Math.floor(rnd() * 3), 1 + Math.floor(rnd() * 2)); const sp = firstFree(W, H, items, s); if (sp) items.push({ ...(sp.turned ? turn(s) : s), x: sp.x, y: sp.y }) }
+    for (let i = 1; i <= 3 + Math.floor(rnd() * 7); i++) { const s = b(i, 0, 0, 1 + Math.floor(rnd() * 3), 1 + Math.floor(rnd() * 2)); const sp = firstFree(W, H, items, s); if (sp) items.push({ ...sp.box, id: s.id, x: sp.x, y: sp.y }) }
     const k = 1 + Math.floor(rnd() * Math.min(3, items.length))
     const group = items.slice(0, k), others = items.slice(k)
     const dx = Math.floor(rnd() * 5) - 2, dy = Math.floor(rnd() * 5) - 2
@@ -132,6 +132,18 @@ assert.deepEqual(run(2, 2, [L], b(9, 1, 0)), { 9: [1, 0, 1, 1] })
     for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++) assert.equal(overlaps(all[i], all[j]), false)
   }
   assert.ok(ok > 100, `most group drops work (${ok})`)
+}
+
+// Four ways round: a rectangle has two footprints, a square one, an odd shape up to four; each turn is a quarter clockwise.
+{
+  const bar: Box = { id: 1, x: 0, y: 0, w: 3, h: 1 }
+  assert.equal(orientations(bar).length, 2)
+  assert.equal(orientations({ id: 1, x: 0, y: 0, w: 2, h: 2 }).length, 1)
+  assert.equal(orientations(L).length, 4)
+  let t = L
+  for (let i = 0; i < 4; i++) t = turn(t)
+  assert.deepEqual([t.rot, t.w, t.h, JSON.stringify(t.cells)], [0, 2, 2, JSON.stringify(L.cells)]) // four quarters is where it started
+  assert.equal(turn(turn(bar)).rot, 2) // upside down is its own state, even though a bar looks the same
 }
 
 console.log('grid ok')

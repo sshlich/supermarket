@@ -1,5 +1,5 @@
 import './style.css'
-import { applyDrop, boxOf, cellsOf, dims, find, H, interaction, KINDS, lift, planDrop, putBack, remove, settle, spawn, start, targetsFor, W, type Held, type Item, type Plan, type State } from './world.ts'
+import { applyDrop, boxOf, cellsOf, dims, find, H, interaction, KINDS, lift, planDrop, putBack, quarter, remove, settle, spawn, start, targetsFor, W, type Held, type Item, type Plan, type State } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -42,7 +42,7 @@ function itemHtml(it: Item) {
   const hit = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('')
   return `<div class="item ${selected.has(it.id) ? 'sel' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
     <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><g class="hit">${hit}</g></svg>
-    <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${it.rot ? 90 : 0}deg">${SPRITE[it.kind] ?? ''}</div></div>`
+    <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${quarter(it.rot) * 90}deg">${SPRITE[it.kind] ?? ''}</div></div>`
 }
 
 /** The edge of a set of squares: a line wherever a square has no neighbour. Traces irregular shapes exactly. */
@@ -90,7 +90,7 @@ function changed(from?: Map<number, DOMRect>) {
 
 // ---------------------------------------------------------------- handling
 
-interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: boolean; plan: Plan | null; key: string; targets: Item[]; use: Item | null }
+interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; targets: Item[]; use: Item | null }
 let press: { id: number; x: number; y: number; gx: number; gy: number; toggle: boolean; wasGroup: boolean } | null = null
 let drag: Drag | null = null
 let last: PointerEvent | null = null
@@ -182,6 +182,7 @@ addEventListener('keydown', e => {
   if (typing) return
   if (drag) {
     if (e.key === 'r' || e.key === 'R') turn()
+    else if (e.key === 'q' || e.key === 'Q') turn(true)
     else if (e.key === 'Escape') finish(false)
     return
   }
@@ -222,13 +223,15 @@ function paintFloating() {
   d.el.innerHTML = d.held.items.map(it => itemHtml({ ...it, rot: it === a ? d.rot : it.rot, x: it.x - a.x, y: it.y - a.y })).join('')
 }
 
-function turn() {
+/** Turn what is in hand a quarter (clockwise, or back): four ways round, so upside down is two turns. */
+function turn(back = false) {
   const d = drag!
   if (d.held.items.length > 1) return // a group keeps its arrangement
-  const k = KINDS[d.held.item.kind]
-  if (k.w === k.h && !k.cells) return
-  d.rot = !d.rot;
-  [d.gx, d.gy] = [d.gy, d.gx]
+  const before = dims({ ...d.held.item, rot: d.rot })
+  d.rot = quarter(d.rot + (back ? 3 : 1))
+  // the point you hold it by turns with it, about its centre
+  const w = before.w * cell, h = before.h * cell;
+  [d.gx, d.gy] = back ? [d.gy, w - d.gx] : [h - d.gy, d.gx]
   d.key = ''
   paintFloating()
   if (last) move(last)

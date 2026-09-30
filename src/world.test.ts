@@ -32,10 +32,10 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   const s = start()
   const axe = at(s, 2)
   const h = lift(s, axe.id)!
-  const p = planDrop(s, h, 10, 3, true)!
-  assert.equal(p.rot, true)
+  const p = planDrop(s, h, 10, 3, 1)!
+  assert.equal(p.rot, 1)
   putBack(h)
-  assert.deepEqual([axe.x, axe.y, axe.rot], [10, 3, false])
+  assert.deepEqual([axe.x, axe.y, axe.rot], [10, 3, 0])
 }
 // Nothing goes past the edge.
 {
@@ -48,7 +48,7 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 // Settling a saved layout: unknown kinds go, overlaps and things off the field get re-placed.
 {
   const s = start()
-  s.items.push({ id: 900, kind: 'gone', x: 0, y: 0, rot: false }, { id: 901, kind: 'crate', x: 3, y: 3, rot: false }, { id: 902, kind: 'crate', x: 29, y: 19, rot: false })
+  s.items.push({ id: 900, kind: 'gone', x: 0, y: 0, rot: 0 }, { id: 901, kind: 'crate', x: 3, y: 3, rot: 0 }, { id: 902, kind: 'crate', x: 29, y: 19, rot: 0 })
   const t = settle(s)
   assert.ok(!t.items.some(o => o.kind === 'gone'))
   assert.equal(t.items.length, s.items.length - 1)
@@ -65,17 +65,17 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   Object.assign(KINDS.knife, { w: 2, h: 2, cells: ['#.', '##'] }) // an L
   const s = start()
   const knife = s.items.find(o => o.kind === 'knife')!
-  Object.assign(knife, { x: 20, y: 10, rot: false })
+  Object.assign(knife, { x: 20, y: 10, rot: 0 })
   assert.equal(cellsOf(knife).length, 3)
-  const coal = { id: 900, kind: 'coal', x: 22, y: 10, rot: false } // 2x2 would clash with the L; use a 1x1-sized spot by hand
+  const coal = { id: 900, kind: 'coal', x: 22, y: 10, rot: 0 } // 2x2 would clash with the L; use a 1x1-sized spot by hand
   assert.equal(overlaps(boxOf(knife), { id: 9, x: 21, y: 10, w: 1, h: 1 }), false) // the empty corner
   assert.equal(overlaps(boxOf(knife), { id: 9, x: 20, y: 11, w: 1, h: 1 }), true)
-  const turned = { ...knife, rot: true }
+  const turned = { ...knife, rot: 1 }
   assert.deepEqual(cellsOf(turned).map(c => c.join()).sort(), ['0,0', '0,1', '1,0'].sort()) // a quarter turn of an L is another L
   // dropping it onto the coal shoves the coal only as far as the L's real squares need
   const h = lift(s, knife.id)!
   const spot = s.items.find(o => o.kind === 'coal')!
-  const p = planDrop(s, h, spot.x - 1, spot.y, false)
+  const p = planDrop(s, h, spot.x - 1, spot.y, 0)
   assert.ok(p)
   applyDrop(s, h, p!)
   for (const a of s.items) for (const b of s.items) if (a !== b) assert.equal(overlaps(boxOf(a), boxOf(b)), false)
@@ -102,10 +102,10 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   const crate = s.items.find(o => o.kind === 'crate')!
   const axe = s.items.find(o => o.kind === 'axe')!
   const h = lift(s, crate.id)!
-  const onAxe = planDrop(s, h, axe.x, axe.y, false, true)
+  const onAxe = planDrop(s, h, axe.x, axe.y, 0, true)
   assert.equal(onAxe, null) // overlapping: refused, no shoving
-  assert.ok(planDrop(s, h, axe.x, axe.y, false, false)) // the easy way shoves the axe aside
-  const free = planDrop(s, h, 20, 15, false, true)!
+  assert.ok(planDrop(s, h, axe.x, axe.y, 0, false)) // the easy way shoves the axe aside
+  const free = planDrop(s, h, 20, 15, 0, true)!
   assert.deepEqual([free.x, free.y, free.moves.length], [20, 15, 0])
   const before = JSON.stringify(s.items)
   assert.equal(JSON.stringify(s.items), before) // planning never changes anything
@@ -118,7 +118,7 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   const h = lift(s, a.id, [a.id, b.id])!
   assert.equal(h.items.length, 2)
   const gap = b.x - a.x
-  const p = planDrop(s, h, 12, 15, false, true)!
+  const p = planDrop(s, h, 12, 15, 0, true)!
   assert.ok(p)
   const other = p.moves.find(m => m.id === b.id)!
   assert.equal(other.x - p.x, gap) // same spacing
@@ -129,8 +129,8 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   // strict onto the crate with the pair: refused
   const crate = s.items.find(o => o.kind === 'crate')!
   const h2 = lift(s, a.id, [a.id, b.id])!
-  assert.equal(planDrop(s, h2, crate.x, crate.y, false, true), null)
-  const easy = planDrop(s, h2, crate.x, crate.y, false, false)
+  assert.equal(planDrop(s, h2, crate.x, crate.y, 0, true), null)
+  const easy = planDrop(s, h2, crate.x, crate.y, 0, false)
   if (easy) { applyDrop(s, h2, easy); for (const x of s.items) for (const y of s.items) if (x !== y) assert.equal(overlaps(boxOf(x), boxOf(y)), false) }
   // put back restores every one
   const h3 = lift(s, a.id, [a.id, b.id])!
@@ -160,6 +160,28 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   KINDS.knife.uses = saved.knife; KINDS.log.tags = saved.log
   if (!saved.knife) delete KINDS.knife.uses
   if (!saved.log) delete KINDS.log.tags
+}
+
+// Turning is four-way: upside down is a real state; the same footprint, the sprite the other way up; old saves (true/false) load.
+{
+  const s = start()
+  const bar = s.items.find(o => o.kind === 'log')!
+  const at = [boxOf(bar).w, boxOf(bar).h]
+  for (const [r, wh] of [[0, at], [1, [at[1], at[0]]], [2, at], [3, [at[1], at[0]]]] as const) {
+    const b = boxOf({ ...bar, rot: r })
+    assert.deepEqual([b.w, b.h], wh, `rot ${r}`)
+    assert.equal(b.rot, r)
+  }
+  const h = lift(s, bar.id)!
+  const upside = planDrop(s, h, 3, 15, 2, true)! // strict: no auto-turning, so it stays upside down
+  assert.equal(upside.rot, 2)
+  applyDrop(s, h, upside)
+  assert.equal(bar.rot, 2)
+  const old = settle({ ...s, items: [{ id: 1, kind: 'log', x: 0, y: 0, rot: true as unknown as number }, { id: 2, kind: 'log', x: 6, y: 0, rot: false as unknown as number }] })
+  assert.deepEqual(old.items.map(o => o.rot), [1, 0])
+  // turning a square item is allowed too (it is the art that turns)
+  const crate = s.items.find(o => o.kind === 'crate')!
+  assert.equal(boxOf({ ...crate, rot: 2 }).rot, 2)
 }
 
 console.log('world ok')

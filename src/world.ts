@@ -1,6 +1,6 @@
 // The field: a grid of cells with things on it. Nothing else yet.
 
-import { drop, dropGroup, firstFree, overlaps, same, turn, type Box } from './grid.ts'
+import { drop, dropGroup, firstFree, footprintKey, overlaps, turn, type Box } from './grid.ts'
 import DATA from './kinds.json' with { type: 'json' }
 
 export const W = 25
@@ -18,7 +18,8 @@ export interface Use { on: string; verb: string }
 /** What things are. Sizes are in field cells and every footprint is a plain rectangle; the data lives in kinds.json so the sprite editor can change it. */
 export const KINDS: Record<string, Kind> = DATA
 
-export interface Item { id: number; kind: string; x: number; y: number; rot: boolean }
+/** `rot` is how many quarter turns clockwise it has been turned (0 to 3): 2 is upside down. */
+export interface Item { id: number; kind: string; x: number; y: number; rot: number }
 export interface State { items: Item[]; next: number }
 
 const SHAPES = new Map<string, { sig: string; box: Box }>()
@@ -33,7 +34,12 @@ export function shapeOf(kind: string): Box {
   SHAPES.set(kind, { sig, box })
   return box
 }
-export const boxOf = (it: Item): Box => ({ ...(it.rot ? turn(shapeOf(it.kind)) : shapeOf(it.kind)), id: it.id, x: it.x, y: it.y })
+export const quarter = (n: number) => ((Math.round(Number(n)) % 4) + 4) % 4
+export function boxOf(it: Item): Box {
+  let b = shapeOf(it.kind)
+  for (let i = 0; i < quarter(it.rot); i++) b = turn(b)
+  return { ...b, id: it.id, x: it.x, y: it.y, rot: quarter(it.rot) }
+}
 export const dims = (it: Item) => { const b = boxOf(it); return { w: b.w, h: b.h } }
 /** Every square an item takes, as it sits (relative to its top-left). */
 export function cellsOf(it: Item): [number, number][] {
@@ -41,15 +47,15 @@ export function cellsOf(it: Item): [number, number][] {
   return b.cells ? b.cells.map(([x, y]) => [x, y] as [number, number]) : Array.from({ length: b.w * b.h }, (_, i) => [i % b.w, Math.floor(i / b.w)] as [number, number])
 }
 /** The squares a kind takes at rest (or turned a quarter): what the editor draws and the footprint painter edits. */
-export const kindCells = (kind: string, turned = false) => cellsOf({ id: -1, kind, x: 0, y: 0, rot: turned })
+export const kindCells = (kind: string, turned: boolean | number = 0) => cellsOf({ id: -1, kind, x: 0, y: 0, rot: Number(turned) })
 
 export const find = (s: State, id: number) => s.items.find(o => o.id === id)
 
 // ---------------------------------------------------------------- dragging
 
 /** What's in hand: the thing you grabbed (`item`) and whatever was selected with it (`items`, the grabbed one first), and where each was lifted from. */
-export interface Held { item: Item; items: Item[]; from: { x: number; y: number; rot: boolean }; froms: { id: number; x: number; y: number; rot: boolean }[] }
-export interface Plan { x: number; y: number; rot: boolean; moves: { id: number; x: number; y: number; rot: boolean; group?: boolean }[] }
+export interface Held { item: Item; items: Item[]; from: { x: number; y: number; rot: number }; froms: { id: number; x: number; y: number; rot: number }[] }
+export interface Plan { x: number; y: number; rot: number; moves: { id: number; x: number; y: number; rot: number; group?: boolean }[] }
 
 /** Pick up an item; if it is one of several selected, the whole selection comes with it. */
 export function lift(s: State, id: number, selected: number[] = []): Held | null {
@@ -65,7 +71,7 @@ export function lift(s: State, id: number, selected: number[] = []): Held | null
  * gives way: a straight swap, a shove, a hop, or turning. In strict mode nothing else ever moves: it goes there only if the
  * squares are free, and otherwise it is refused (null).
  */
-export function planDrop(s: State, held: Held, x: number, y: number, rot: boolean, strict = false, turnedOnce = false): Plan | null {
+export function planDrop(s: State, held: Held, x: number, y: number, rot: number, strict = false, turnedOnce = false): Plan | null {
   if (held.items.length > 1) return planGroup(s, held, x, y, strict)
   const it = held.item
   const d = dims({ ...it, rot })
@@ -79,15 +85,23 @@ export function planDrop(s: State, held: Held, x: number, y: number, rot: boolea
   if (hits.length === 1 && !m.cells && !boxOf(hits[0]).cells) {
     const hb = boxOf(hits[0])
     if (hb.x === m.x && hb.y === m.y && hb.w === m.w && hb.h === m.h)
-      return { x: m.x, y: m.y, rot, moves: [{ id: hits[0].id, x: held.from.x, y: held.from.y, rot: hits[0].rot !== (held.from.rot !== rot) }] }
+      return { x: m.x, y: m.y, rot, moves: [{ id: hits[0].id, x: held.from.x, y: held.from.y, rot: quarter(hits[0].rot + held.from.rot - rot) }] }
   }
 
   const res = drop(W, H, others.map(boxOf), m, { x: held.from.x, y: held.from.y })
   if (res) {
     const [me, ...rest] = res
-    return { x: me.x, y: me.y, rot, moves: rest.map(r => ({ id: r.id, x: r.x, y: r.y, rot: !!r.rot })) }
+    return { x: me.x, y: me.y, rot, moves: rest.map(r => ({ id: r.id, x: r.x, y: r.y, rot: r.rot ?? 0 })) }
   }
-  if (!turnedOnce && !same(m)) return planDrop(s, held, x, y, !rot, false, true)
+  // Nowhere as it is: try each other way round that is a different footprint (turning a square changes nothing, so that is not tried).
+  if (!turnedOnce) {
+    for (let i = 1; i < 4; i++) {
+      const r2 = quarter(rot + i)
+      if (footprintKey(boxOf({ ...it, rot: r2 })) === footprintKey(m)) continue
+      const p = planDrop(s, held, x, y, r2, false, true)
+      if (p) return p
+    }
+  }
   return null
 }
 
@@ -101,11 +115,11 @@ function planGroup(s: State, held: Held, x: number, y: number, strict: boolean):
   if (maxDx - minDx > W || maxDy - minDy > H) return null
   const tx = Math.max(-minDx, Math.min(W - maxDx, x)), ty = Math.max(-minDy, Math.min(H - maxDy, y))
   const boxes = rel.map(r => ({ ...boxOf(r.o), x: tx + r.dx, y: ty + r.dy }))
-  const members = boxes.slice(1).map(b => ({ id: b.id, x: b.x, y: b.y, rot: !!b.rot, group: true }))
+  const members = boxes.slice(1).map(b => ({ id: b.id, x: b.x, y: b.y, rot: b.rot ?? 0, group: true }))
   if (strict) return others.some(o => boxes.some(b => overlaps(boxOf(o), b))) ? null : { x: tx, y: ty, rot: held.item.rot, moves: members }
   const res = dropGroup(W, H, others.map(boxOf), boxes, { x: held.from.x, y: held.from.y })
   if (!res) return null
-  return { x: tx, y: ty, rot: held.item.rot, moves: [...members, ...res.slice(boxes.length).map(r => ({ id: r.id, x: r.x, y: r.y, rot: !!r.rot }))] }
+  return { x: tx, y: ty, rot: held.item.rot, moves: [...members, ...res.slice(boxes.length).map(r => ({ id: r.id, x: r.x, y: r.y, rot: r.rot ?? 0 }))] }
 }
 
 export function applyDrop(s: State, held: Held, plan: Plan) {
@@ -130,13 +144,14 @@ export const targetsFor = (s: State, held: Item[]) => s.items.filter(o => !held.
 /** After sizes or kinds changed under a saved layout: drop things that no longer exist, and re-place anything that now overlaps or hangs off the field. */
 export function settle(s: State): State {
   const kept: Item[] = []
-  for (const it of s.items) {
-    if (!KINDS[it.kind]) continue
+  for (const raw of s.items) {
+    if (!KINDS[raw.kind]) continue
+    const it = { ...raw, rot: quarter(raw.rot) } // saved layouts from before four-way turning have true / false here
     const b = boxOf(it)
     const fits = b.x >= 0 && b.y >= 0 && b.x + b.w <= W && b.y + b.h <= H && !kept.some(o => overlaps(boxOf(o), b))
     if (fits) { kept.push(it); continue }
-    const spot = firstFree(W, H, kept.map(boxOf), { ...boxOf({ ...it, rot: false }), x: 0, y: 0 })
-    if (spot) kept.push({ ...it, x: spot.x, y: spot.y, rot: spot.turned })
+    const spot = firstFree(W, H, kept.map(boxOf), { ...boxOf({ ...it, rot: 0 }), x: 0, y: 0 })
+    if (spot) kept.push({ ...it, x: spot.x, y: spot.y, rot: spot.rot })
   }
   return { ...s, items: kept }
 }
@@ -145,14 +160,14 @@ export function settle(s: State): State {
 export function spawn(s: State, kind: string): Item | null {
   const spot = firstFree(W, H, s.items.map(boxOf), shapeOf(kind))
   if (!spot) return null
-  const it: Item = { id: s.next++, kind, x: spot.x, y: spot.y, rot: spot.turned }
+  const it: Item = { id: s.next++, kind, x: spot.x, y: spot.y, rot: spot.rot }
   s.items.push(it)
   return it
 }
 
 export function start(): State {
   const s: State = { items: [], next: 1 }
-  const put = (kind: string, x: number, y: number, rot = false) => s.items.push({ id: s.next++, kind, x, y, rot })
+  const put = (kind: string, x: number, y: number, rot = 0) => s.items.push({ id: s.next++, kind, x, y, rot })
   put('crate', 3, 3)
   put('axe', 10, 3)
   put('pickaxe', 16, 4)
