@@ -289,6 +289,9 @@ function turn(back = false) {
   const w = before.w * cell, h = before.h * cell
   d.gx += (after.w * cell - w) / 2
   d.gy += (after.h * cell - h) / 2
+  // a long item grabbed by its end would leave the pointer off it once turned: keep the pointer on the item
+  d.gx = Math.max(cell / 2, Math.min(after.w * cell - cell / 2, d.gx))
+  d.gy = Math.max(cell / 2, Math.min(after.h * cell - cell / 2, d.gy))
   d.key = ''
   paintFloating()
   if (last) move(last)
