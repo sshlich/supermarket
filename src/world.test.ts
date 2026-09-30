@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { applyDrop, boxOf, cellsOf, H, KINDS, remove, settle, spawn, lift, planDrop, putBack, start, W, type State } from './world.ts'
+import { applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, start, W, type State } from './world.ts'
 
 const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 
@@ -141,6 +141,25 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   const n = s.items.length
   remove(s, [a.id, b.id])
   assert.equal(s.items.length, n - 2)
+}
+
+// Uses: held things can be used on other things by kind or by tag, and only in that direction.
+{
+  const s = start()
+  const saved = { knife: KINDS.knife.uses, log: KINDS.log.tags }
+  KINDS.knife.uses = [{ on: 'log', verb: 'carve' }, { on: 'living', verb: 'slaughter' }]
+  KINDS.log.tags = ['wood']
+  const knife = s.items.find(o => o.kind === 'knife')!, log = s.items.find(o => o.kind === 'log')!, coal = s.items.find(o => o.kind === 'coal')!
+  assert.equal(interaction(knife, log)?.verb, 'carve')
+  assert.equal(interaction(knife, coal), null)
+  assert.equal(interaction(log, knife), null) // one way
+  KINDS.coal.tags = ['living']
+  assert.equal(interaction(knife, coal)?.verb, 'slaughter') // by tag
+  delete KINDS.coal.tags
+  assert.deepEqual(targetsFor(s, [knife]).map(o => o.kind).sort(), ['log'])
+  KINDS.knife.uses = saved.knife; KINDS.log.tags = saved.log
+  if (!saved.knife) delete KINDS.knife.uses
+  if (!saved.log) delete KINDS.log.tags
 }
 
 console.log('world ok')

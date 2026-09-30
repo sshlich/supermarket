@@ -20,7 +20,7 @@ function sprites(): Plugin {
   const dir = new URL('./src/sprites/', import.meta.url)
   const imports = new URL('./src/imports/', import.meta.url)
   const kindsFile = new URL('./src/kinds.json', import.meta.url)
-  type KindData = { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[] }
+  type KindData = { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; uses?: { on: string; verb: string }[] }
   const readKinds = (): Record<string, KindData> => JSON.parse(readFileSync(kindsFile, 'utf8'))
   const writeKinds = (k: Record<string, KindData>) => writeFileSync(kindsFile, JSON.stringify(k, null, 2) + '\n')
   /** A painted footprint, checked and trimmed to its box: the size it makes, and the cells if it is not a plain rectangle. */
@@ -139,7 +139,7 @@ function sprites(): Plugin {
         if (url.pathname === '/reset') return svg(starter(k))
         if (url.pathname === '/kind') {
           return body(text => {
-            let v: { w?: number; h?: number; cells?: unknown; name?: string; color?: string; desc?: string; notes?: string; tags?: unknown }
+            let v: { w?: number; h?: number; cells?: unknown; name?: string; color?: string; desc?: string; notes?: string; tags?: unknown; uses?: unknown }
             try { v = JSON.parse(text) } catch { return fail(400, 'not json') }
             const ok = (n: unknown) => Number.isInteger(n) && (n as number) >= 1 && (n as number) <= 12
             const next: KindData = { ...k }
@@ -169,6 +169,11 @@ function sprites(): Plugin {
             if (v.tags !== undefined) {
               if (!Array.isArray(v.tags) || v.tags.length > 20 || v.tags.some(t => typeof t !== 'string' || !t.trim() || t.length > 30)) return fail(400, 'tags must be up to 20 short words')
               if (v.tags.length) next.tags = (v.tags as string[]).map(t => t.trim()); else delete next.tags
+            }
+            if (v.uses !== undefined) {
+              const u = v.uses as { on?: unknown; verb?: unknown }[]
+              if (!Array.isArray(u) || u.length > 20 || u.some(x => !x || typeof x.on !== 'string' || typeof x.verb !== 'string' || !/^[a-z0-9-]{1,30}$/i.test(x.on) || !x.verb.trim() || x.verb.length > 30)) return fail(400, 'uses must be up to 20 of { on: a kind id or tag, verb: a short word }')
+              if (u.length) next.uses = u.map(x => ({ on: x.on as string, verb: (x.verb as string).trim() })); else delete next.uses
             }
             kinds[kind] = next
             writeKinds(kinds)

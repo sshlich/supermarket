@@ -32,29 +32,42 @@ svg { display: block; width: 100%; height: 100%; }
 .item svg { width: 100%; height: 100%; overflow: visible; }
 /* the squares an item sits on stay neutral, a touch lighter than the empty ones; the coloured glyph art on top is the item */
 .item .sq rect { fill: #3b3145; stroke: #3b3145; stroke-width: .03; pointer-events: none; }
-.item:hover .sq rect { fill: #483c55; stroke: #483c55; }
-.item .selline { display: none; fill: none; stroke: #f0ece2; stroke-width: .1; stroke-linecap: square; pointer-events: none; }
-.item.sel .selline { display: block; }
+body:not(.dragging) .item:hover .sq rect { fill: #62523f; stroke: #62523f; } /* hover: the footprint goes tan */
+
 .item .hit rect { fill: transparent; pointer-events: all; cursor: grab; }
 .art { position: absolute; left: 50%; top: 50%; pointer-events: none; width: calc(var(--kw) * var(--cell)); height: calc(var(--kh) * var(--cell)); transform: translate(-50%, -50%) rotate(var(--r)); }
 .art svg { width: 100%; height: 100%; overflow: visible; }
 
 .lifted { opacity: .18; filter: grayscale(1); }
-.shoved { opacity: .5; }
 .floating { position: fixed; left: 0; top: 0; z-index: 40; pointer-events: none; will-change: transform; }
 .floating .item { transform: scale(1.04); }
 .floating .item svg { filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .6)); }
 body.dragging, body.dragging .item { cursor: grabbing; }
 
-/* where it will land, and what gives way */
-.ghost { position: absolute; z-index: 3; pointer-events: none; left: calc(var(--x) * var(--cell)); top: calc(var(--y) * var(--cell)); width: calc(var(--w) * var(--cell)); height: calc(var(--h) * var(--cell)); }
-.ghost.land { --gb: #1f9d55; --gf: rgba(31, 157, 85, .22); }
-.ghost.shove { --gb: rgba(240, 236, 226, .6); --gf: rgba(240, 236, 226, .08); }
-.ghost.bad { --gb: #d5343f; --gf: rgba(213, 52, 63, .2); }
-.ghost:not(.shaped) { border: 1px solid var(--gb); background: var(--gf); border-radius: 3px; }
-.ghost.shove:not(.shaped) { border-style: dashed; }
-.ghost .gc { position: absolute; left: calc(var(--cx) * var(--cell) + var(--cell) * .1); top: calc(var(--cy) * var(--cell) + var(--cell) * .1); width: calc(var(--cell) * .8); height: calc(var(--cell) * .8); border-radius: calc(var(--cell) * .08); background: color-mix(in srgb, var(--gb) 30%, transparent); box-shadow: inset 0 0 0 1px var(--gb); }
-.ghost.shove .gc { box-shadow: inset 0 0 0 1px var(--gb); opacity: .7; }
+/* light on the field: where it lands, what gives way, what it can be used on. One filled shape per thing. */
+.sellayer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.hl { position: fixed; z-index: 45; pointer-events: none; overflow: visible; }
+.hl path { fill: none; }
+.hl path.hl-ok:not(.hl-edge) { fill: rgba(112, 160, 68, .5); }
+.hl path.hl-bad:not(.hl-edge) { fill: rgba(196, 60, 60, .52); }
+.hl path.hl-use:not(.hl-edge) { fill: rgba(64, 168, 196, .38); }
+.hl path.hl-usenow:not(.hl-edge) { fill: rgba(72, 196, 226, .62); }
+.hl-edge { stroke-width: .07; stroke-linecap: square; }
+.hl-ok.hl-edge { stroke: rgba(150, 205, 100, .9); }
+.hl-bad.hl-edge { stroke: rgba(235, 90, 90, .95); }
+.hl-use.hl-edge { stroke: rgba(110, 205, 230, .8); }
+.hl-usenow.hl-edge { stroke: rgba(150, 232, 248, 1); }
+.hl-land.hl-edge { stroke: rgba(240, 236, 226, .7); }
+.hl-shove.hl-edge { stroke: rgba(240, 236, 226, .5); stroke-dasharray: .22 .16; }
+.shoved { opacity: .55; }
+
+/* the selection: a white outline, a little see-through, softly glowing, above everything on the field */
+.sellayer { z-index: 8; filter: drop-shadow(0 0 3px rgba(255, 255, 255, .55)); }
+.sellayer path { fill: none; stroke: rgba(255, 255, 255, .7); stroke-width: .09; stroke-linecap: square; }
+body.dragging .sellayer { display: none; }
+
+.toast { min-height: 16px; width: calc(25 * var(--cell)); max-width: 96vw; font: 11px ui-monospace, 'SF Mono', Menlo, monospace; color: transparent; transition: color .2s; }
+.toast.on { color: #b9b6c0; }
 
 /* the tray: put things on the field */
 .tray { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; width: calc(25 * var(--cell)); max-width: 96vw; font: 11px ui-monospace, 'SF Mono', Menlo, monospace; color: #86847e; }

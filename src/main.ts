@@ -1,5 +1,5 @@
 import './style.css'
-import { applyDrop, boxOf, cellsOf, dims, find, H, KINDS, lift, planDrop, putBack, remove, settle, spawn, start, W, type Held, type Item, type Plan, type State } from './world.ts'
+import { applyDrop, boxOf, cellsOf, dims, find, H, interaction, KINDS, lift, planDrop, putBack, remove, settle, spawn, start, targetsFor, W, type Held, type Item, type Plan, type State } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -40,18 +40,30 @@ function itemHtml(it: Item) {
   const cells = cellsOf(it) // only the squares it takes, however odd the shape
   const squares = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('') // the imprint: the field's own squares, lit lighter
   const hit = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('')
-  // the outline of the footprint, shown when the item is selected: an edge wherever a square has no neighbour
-  const has = new Set(cells.map(([x, y]) => `${x},${y}`))
-  let edge = ''
-  for (const [x, y] of cells) {
-    if (!has.has(`${x},${y - 1}`)) edge += `M${x} ${y}h1`
-    if (!has.has(`${x},${y + 1}`)) edge += `M${x} ${y + 1}h1`
-    if (!has.has(`${x - 1},${y}`)) edge += `M${x} ${y}v1`
-    if (!has.has(`${x + 1},${y}`)) edge += `M${x + 1} ${y}v1`
-  } // whole cells, so there are no dead gaps between the squares
   return `<div class="item ${selected.has(it.id) ? 'sel' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
-    <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><path class="selline" d="${edge}"/><g class="hit">${hit}</g></svg>
+    <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><g class="hit">${hit}</g></svg>
     <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${it.rot ? 90 : 0}deg">${SPRITE[it.kind] ?? ''}</div></div>`
+}
+
+/** The edge of a set of squares: a line wherever a square has no neighbour. Traces irregular shapes exactly. */
+function outline(cells: [number, number][]) {
+  const has = new Set(cells.map(([x, y]) => `${x},${y}`))
+  let d = ''
+  for (const [x, y] of cells) {
+    if (!has.has(`${x},${y - 1}`)) d += `M${x} ${y}h1`
+    if (!has.has(`${x},${y + 1}`)) d += `M${x} ${y + 1}h1`
+    if (!has.has(`${x - 1},${y}`)) d += `M${x} ${y}v1`
+    if (!has.has(`${x + 1},${y}`)) d += `M${x + 1} ${y}v1`
+  }
+  return d
+}
+/** Where an item's squares are on the field. */
+const absCells = (it: Item): [number, number][] => cellsOf(it).map(([cx, cy]) => [it.x + cx, it.y + cy])
+
+/** The selection's outline, drawn in one layer above every item so nothing covers it. */
+function selectionLayer() {
+  const d = s.items.filter(it => selected.has(it.id)).map(it => outline(absCells(it))).join('')
+  return `<svg class="sellayer" viewBox="0 0 ${W} ${H}"><path d="${d}"/></svg>`
 }
 
 /** A row of buttons to put any kind of thing on the field, for trying new items out. */
@@ -61,7 +73,7 @@ function trayHtml() {
 
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
-  app.innerHTML = `<div class="field" style="--w:${W};--h:${H}"><div class="grid" data-grid>${s.items.map(itemHtml).join('')}</div></div>${trayHtml()}`
+  app.innerHTML = `<div class="field" style="--w:${W};--h:${H}"><div class="grid" data-grid>${s.items.map(itemHtml).join('')}${selectionLayer()}</div></div>${trayHtml()}<div class="toast" data-toast></div>`
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
     const was = from.get(+el.dataset.id!)
@@ -83,7 +95,7 @@ function changed(from?: Map<number, DOMRect>) {
 
 // ---------------------------------------------------------------- handling
 
-interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: boolean; plan: Plan | null; key: string }
+interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: boolean; plan: Plan | null; key: string; targets: Item[]; use: Item | null }
 let press: { id: number; x: number; y: number; gx: number; gy: number; toggle: boolean; wasGroup: boolean } | null = null
 let drag: Drag | null = null
 let last: PointerEvent | null = null
@@ -94,6 +106,8 @@ const gridRect = () => app.querySelector('.grid')!.getBoundingClientRect()
 /** Show what is selected without redrawing everything. */
 function paintSelection() {
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) el.classList.toggle('sel', selected.has(+el.dataset.id!))
+  const layer = app.querySelector('.sellayer')
+  if (layer) layer.outerHTML = selectionLayer()
 }
 const pick = (ids: Iterable<number>) => { selected = new Set(ids); paintSelection() }
 
@@ -201,7 +215,7 @@ function begin() {
   if (!held) { press = null; return }
   const el = document.body.appendChild(document.createElement('div'))
   el.className = 'floating'
-  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '' }
+  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', targets: targetsFor(s, held.items), use: null }
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
   paintFloating()
@@ -233,48 +247,72 @@ function move(e: PointerEvent) {
   const r = gridRect()
   const x = Math.round((e.clientX - d.gx - r.left) / cell)
   const y = Math.round((e.clientY - d.gy - r.top) / cell)
-  const key = `${x}:${y}:${d.rot}:${strictNow()}`
+  const under = d.targets.find(t => absCells(t).some(([cx, cy]) => cx === Math.floor((e.clientX - r.left) / cell) && cy === Math.floor((e.clientY - r.top) / cell))) ?? null
+  const key = `${x}:${y}:${d.rot}:${strictNow()}:${under?.id ?? ''}`
   if (key === d.key) return
   d.key = key
+  d.use = under
   d.plan = planDrop(s, d.held, x, y, d.rot, strictNow())
   paintGhosts(x, y)
 }
 
 function clearGhosts() {
-  for (const g of app.querySelectorAll('.ghost')) g.remove()
+  document.querySelector('.hl')?.remove()
   for (const el of app.querySelectorAll('.shoved')) el.classList.remove('shoved')
 }
 
-function ghost(x: number, y: number, w: number, h: number, cls: string, cells: [number, number][] | null) {
-  const tiles = cells ? cells.map(([cx, cy]) => `<u class="gc" style="--cx:${cx};--cy:${cy}"></u>`).join('') : ''
-  app.querySelector('.grid')!.insertAdjacentHTML('beforeend', `<div class="ghost ${cls} ${cells ? 'shaped' : ''}" style="--x:${x};--y:${y};--w:${w};--h:${h}">${tiles}</div>`)
+type Light = { cells: [number, number][]; kind: 'ok' | 'bad' | 'use' | 'usenow' | 'land' | 'shove' }
+/** Light up squares: each thing is one filled shape (a single path, so an irregular footprint is one piece, not a heap of squares). */
+function light(list: Light[]) {
+  const shapes = list.map(l => `<path class="hl-${l.kind}" d="${l.cells.map(([x, y]) => `M${x} ${y}h1v1h-1z`).join('')}"/><path class="hl-edge hl-${l.kind}" d="${outline(l.cells)}"/>`).join('')
+  // fixed over the field and above the thing in hand, so the tint shows through whatever is being held
+  const g = gridRect()
+  document.body.insertAdjacentHTML('beforeend', `<svg class="hl" viewBox="0 0 ${W} ${H}" style="left:${g.left}px;top:${g.top}px;width:${g.width}px;height:${g.height}px">${shapes}</svg>`)
 }
 
-/** The item's squares if it is not a plain rectangle, for the ghost to copy. */
-const shaped = (it: Item) => { const b = boxOf(it); return b.cells ? cellsOf(it) : null }
-
+/**
+ * What to show while dragging. Anything the held thing can be used on gets blue squares (bright under the pointer).
+ * In strict mode the squares it would take go green if they are all free and red if not. In the relaxed mode there is no
+ * such light: just a plain outline of where it lands (and dashed outlines for what gives way), and red only if there is
+ * truly no way to place it.
+ */
 function paintGhosts(x: number, y: number) {
   clearGhosts()
   const d = drag!
   const p = d.plan
+  const a = d.held.item
+  const out: Light[] = d.targets.map(t => ({ cells: absCells(t), kind: d.use?.id === t.id ? 'usenow' : 'use' }))
+  if (d.use) { light(out); return } // using it, not placing it
   if (!p) {
-    // refused: outline where each thing would go, in red
-    const a = d.held.item
+    // refused: red where each thing would go
     for (const it of d.held.items) {
-      const dd = dims({ ...it, rot: it === a ? d.rot : it.rot })
+      const rot = it === a ? d.rot : it.rot
+      const dd = dims({ ...it, rot })
       const rx = it === a ? x : x + (it.x - a.x), ry = it === a ? y : y + (it.y - a.y)
-      ghost(Math.max(0, Math.min(W - dd.w, rx)), Math.max(0, Math.min(H - dd.h, ry)), dd.w, dd.h, 'bad', shaped({ ...it, rot: it === a ? d.rot : it.rot }))
+      out.push({ cells: absCells({ ...it, rot, x: Math.max(0, Math.min(W - dd.w, rx)), y: Math.max(0, Math.min(H - dd.h, ry)) }), kind: 'bad' })
     }
+    light(out)
     return
   }
-  const dd = dims({ ...d.held.item, rot: p.rot })
-  ghost(p.x, p.y, dd.w, dd.h, 'land', shaped({ ...d.held.item, rot: p.rot }))
+  const landing = strictNow() ? 'ok' : 'land'
+  out.push({ cells: absCells({ ...a, x: p.x, y: p.y, rot: p.rot }), kind: landing })
   for (const mv of p.moves) {
     const o = find(s, mv.id)!
-    const md = dims({ ...o, rot: mv.rot })
-    ghost(mv.x, mv.y, md.w, md.h, mv.group ? 'land' : 'shove', shaped({ ...o, rot: mv.rot }))
+    out.push({ cells: absCells({ ...o, x: mv.x, y: mv.y, rot: mv.rot }), kind: mv.group ? landing : 'shove' })
     if (!mv.group) app.querySelector(`.item[data-id="${mv.id}"]`)?.classList.add('shoved')
   }
+  light(out)
+}
+
+/** A line under the field that says what just happened (uses have no effects yet, only this note). */
+let toastTimer = 0
+function toast(text: string) {
+  const el = app.querySelector<HTMLElement>('[data-toast]')
+  if (!el) return
+  el.textContent = text
+  el.classList.add('on')
+  clearTimeout(toastTimer)
+  toastTimer = window.setTimeout(() => el.classList.remove('on'), 2600)
 }
 
 /** Let go: `drop` puts it where the ghost says, otherwise it goes back. */
@@ -284,6 +322,8 @@ function finish(drop: boolean) {
   document.body.classList.remove('dragging')
   const from = rects()
   d.el.querySelectorAll<HTMLElement>('.item').forEach((el, i) => from.set(d.held.items[i].id, el.getBoundingClientRect()))
+  const use = drop && d.use ? interaction(d.held.item, d.use) : null
+  if (use && d.use) { putBack(d.held); changed(from); toast(`${KINDS[d.held.item.kind].name} → ${KINDS[d.use.kind].name}: ${use.verb}  (uses have no effect yet)`); d.el.remove(); return }
   if (drop && d.plan) applyDrop(s, d.held, d.plan)
   else putBack(d.held)
   d.el.remove()

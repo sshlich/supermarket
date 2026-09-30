@@ -25,21 +25,39 @@
     "icon": "jug",
     "color": "#5aa8e6",
     "w": 2,
-    "h": 4
+    "h": 4,
+    "uses": [
+      {
+        "on": "bottle",
+        "verb": "pour"
+      }
+    ]
   },
   "knife": {
     "name": "Knife",
     "icon": "bowie-knife",
     "color": "#b4bfcc",
     "w": 1,
-    "h": 4
+    "h": 4,
+    "uses": [
+      {
+        "on": "log",
+        "verb": "carve"
+      }
+    ]
   },
   "axe": {
     "name": "Axe",
     "icon": "battle-axe",
     "color": "#b4bfcc",
     "w": 4,
-    "h": 6
+    "h": 6,
+    "uses": [
+      {
+        "on": "log",
+        "verb": "chop"
+      }
+    ]
   },
   "pickaxe": {
     "name": "Pickaxe",

@@ -598,6 +598,8 @@ function itemHtml(): string {
     <textarea class="field" data-itemnotes rows="3" maxlength="2000" placeholder="Private notes…">${esc(k.notes ?? '')}</textarea>
     <h4>Tags <small>comma separated</small></h4>
     <div class="row"><input type="text" data-itemtags value="${esc((k.tags ?? []).join(', '))}" placeholder="drink, glass, fragile" style="flex:1"></div>
+    <h4>Can be used on <small>one per line, "verb: target" (a kind id or a tag): held, this lights up its targets blue</small></h4>
+    <textarea class="field" data-itemuses rows="3" maxlength="600" placeholder="pour: bottle&#10;slaughter: animal&#10;carve: wood">${esc((k.uses ?? []).map(u => `${u.verb}: ${u.on}`).join('\n'))}</textarea>
     <div class="row quick"><button data-dupitem>⧉ Duplicate this item</button><button data-delitem class="${armed === cur ? 'danger' : ''}">${armed === cur ? 'Really delete? Click again' : '🗑 Delete this item'}</button></div>
     <h4>Colour <small>the item's accent in the game; saved</small></h4>
     <div class="row col"><span></span>${sp}</div>
@@ -1854,6 +1856,11 @@ root.addEventListener('change', e => {
   const k = KINDS[cur]
   if (t.matches('[data-itemdesc]')) { const v = t.value.trim(); if (v) k.desc = v; else delete k.desc; saveKind({ desc: v }) }
   else if (t.matches('[data-itemnotes]')) { const v = t.value.trim(); if (v) k.notes = v; else delete k.notes; saveKind({ notes: v }) }
+  else if (t.matches('[data-itemuses]')) {
+    const list = t.value.split('\n').map(l => l.split(':').map(s => s.trim())).filter(p => p.length === 2 && p[0] && p[1]).map(([verb, on]) => ({ on, verb }))
+    if (list.length) k.uses = list; else delete k.uses
+    saveKind({ uses: list })
+  }
   else if (t.matches('[data-itemtags]')) { const list = t.value.split(',').map(s => s.trim()).filter(Boolean); if (list.length) k.tags = list; else delete k.tags; saveKind({ tags: list }) }
 })
 

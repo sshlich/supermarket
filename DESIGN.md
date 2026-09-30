@@ -74,6 +74,35 @@ The save endpoint lives in `vite.config.ts`; shape maths and matrices are in `sr
 - **Strict mode** (`S`, or the button under the field; remembered): a drop is accepted only if every square is free and
   nothing else ever moves. Otherwise it is refused. Hold **Shift** while dragging to do the opposite for that one move: in
   strict mode Shift lets the shuffle-to-fit happen, and outside it Shift makes one move strict.
-- **Feedback.** Ghosts (green where it lands, red if refused, dashed for what gives way)
-  show it while dragging; there is no glow.
+- **Feedback while dragging** (from the reference video; no glow, and the held thing stays opaque):
+  - *Strict mode:* the squares it would take light up green if all are free, red if not, one filled shape per thing
+    (an irregular footprint is one piece). Releasing on red sends it back where it came from.
+  - *Relaxed mode:* no green or red. A plain outline shows where it lands, dashed outlines show what gives way, and
+    only if there is truly no way to place it (even by shoving) does it go red.
+  - The lights are drawn above the thing in hand, so they show through it.
+  - *Hover:* an item's footprint goes tan. *Selected:* a white outline, a little see-through, softly glowing, drawn in
+    one layer above every item.
 - **The field** is 25 x 20: dark aubergine with a slightly lighter grid and a muted copper outline; a thing's imprint is the same squares lit a lighter tone, and selected things get a white outline.
+
+## Uses (interactions), the skeleton
+
+From the video: while holding something, everything it can be *used on* gets blue squares (brighter under the pointer),
+e.g. pouring water into another container, slaughtering a rabbit with a knife, applying one thing to another.
+- Data: a kind's `uses` in `kinds.json`: `[{ on: <kind id or tag>, verb }]`, one way (the held kind names its targets).
+  Edited in the editor's Item tab ("Can be used on", one `verb: target` per line). `interaction(held, target)` and
+  `targetsFor(state, held)` in `world.ts`. Placeholders in the data now: knife carve -> log, axe chop -> log, bottle pour -> bottle.
+- Behaviour now: targets light up blue while dragging; letting go with the pointer over a target uses it instead of
+  placing (the held thing goes back, a note under the field says what would happen). **No effects yet.**
+- Later: effects (results, consuming, changing kinds), and probably containers (put an item inside another).
+
+## Tooltip (postponed; notes, from the reference video, twice over so it is not lost)
+
+- Opens on hover, to the **right of the hovered item / beside the inventory**, top edge near the item; dark panel with a
+  muted red-brown border; clipped by the screen edge in the video, so keep it inside the viewport.
+- Content, top to bottom: **name** (bold, light); **[category]** in teal (ours: from `tags`); `Est. Value: N, Base ...` and
+  `Purchase Price: N` (needs new item fields: value, base/purchase price); a **gauge** `[      ] 0 ml / 300` for things that
+  hold an amount (containers/liquids; needs a capacity field and a current amount on the item); the **description**
+  (ours: `desc`); a blue action hint, e.g. `Double-Click To ...` (a per-kind action, tied to uses/interactions).
+- The hovered item's footprint is tinted tan while the tooltip is up.
+- Open questions for later: which fields every item has (value, price), how amounts are stored, which action a
+  double-click means, and whether the tooltip shows notes (no: notes stay private).

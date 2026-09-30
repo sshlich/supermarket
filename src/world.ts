@@ -11,7 +11,9 @@ export const H = 20
  * rectangle, says which squares inside it are taken ('#') and which are free ('.'). The rest is for people: a description
  * (for tooltips), private notes, and tags.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[] }
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; uses?: Use[] }
+/** Held, this can be used on another thing: `on` is a kind id or a tag ("pour" on a bottle, "slaughter" on anything tagged animal). */
+export interface Use { on: string; verb: string }
 
 /** What things are. Sizes are in field cells and every footprint is a plain rectangle; the data lives in kinds.json so the sprite editor can change it. */
 export const KINDS: Record<string, Kind> = DATA
@@ -116,6 +118,14 @@ export function putBack(held: Held) { held.items.forEach((o, i) => Object.assign
 
 /** Take things off the field. */
 export function remove(s: State, ids: number[]) { s.items = s.items.filter(o => !ids.includes(o.id)) }
+
+/** What holding `held` over `target` would do, if anything: the first of the held kind's `uses` that names the target's kind or one of its tags. */
+export function interaction(held: Item, target: Item): Use | null {
+  const tags = KINDS[target.kind].tags ?? []
+  return (KINDS[held.kind].uses ?? []).find(u => u.on === target.kind || tags.includes(u.on)) ?? null
+}
+/** Everything on the field the held thing can be used on. */
+export const targetsFor = (s: State, held: Item[]) => s.items.filter(o => !held.includes(o) && interaction(held[0], o))
 
 /** After sizes or kinds changed under a saved layout: drop things that no longer exist, and re-place anything that now overlaps or hangs off the field. */
 export function settle(s: State): State {
