@@ -1,9 +1,9 @@
 // The field: a grid of cells with things on it. Nothing else yet.
 
-import { drop, firstFree, overlaps, same, turn, type Box } from './grid.ts'
+import { drop, dropGroup, firstFree, overlaps, same, turn, type Box } from './grid.ts'
 import DATA from './kinds.json' with { type: 'json' }
 
-export const W = 30
+export const W = 25
 export const H = 20
 
 /**
@@ -45,22 +45,32 @@ export const find = (s: State, id: number) => s.items.find(o => o.id === id)
 
 // ---------------------------------------------------------------- dragging
 
-/** What's in hand, and where it was lifted from. */
-export interface Held { item: Item; from: { x: number; y: number; rot: boolean } }
-export interface Plan { x: number; y: number; rot: boolean; moves: { id: number; x: number; y: number; rot: boolean }[] }
+/** What's in hand: the thing you grabbed (`item`) and whatever was selected with it (`items`, the grabbed one first), and where each was lifted from. */
+export interface Held { item: Item; items: Item[]; from: { x: number; y: number; rot: boolean }; froms: { id: number; x: number; y: number; rot: boolean }[] }
+export interface Plan { x: number; y: number; rot: boolean; moves: { id: number; x: number; y: number; rot: boolean; group?: boolean }[] }
 
-export function lift(s: State, id: number): Held | null {
+/** Pick up an item; if it is one of several selected, the whole selection comes with it. */
+export function lift(s: State, id: number, selected: number[] = []): Held | null {
   const it = find(s, id)
-  return it ? { item: it, from: { x: it.x, y: it.y, rot: it.rot } } : null
+  if (!it) return null
+  const rest = selected.includes(id) ? selected.filter(i => i !== id).map(i => find(s, i)).filter((o): o is Item => !!o) : []
+  const items = [it, ...rest]
+  return { item: it, items, from: { x: it.x, y: it.y, rot: it.rot }, froms: items.map(o => ({ id: o.id, x: o.x, y: o.y, rot: o.rot })) }
 }
 
-/** Where the held item goes if dropped with its top-left at (x, y): a straight swap, a shove, a hop, or turned. Null if it can't fit. */
-export function planDrop(s: State, held: Held, x: number, y: number, rot: boolean, turnedOnce = false): Plan | null {
+/**
+ * Where the held thing goes if dropped with its top-left at (x, y). In the easy way (`strict` false) whatever is in the way
+ * gives way: a straight swap, a shove, a hop, or turning. In strict mode nothing else ever moves: it goes there only if the
+ * squares are free, and otherwise it is refused (null).
+ */
+export function planDrop(s: State, held: Held, x: number, y: number, rot: boolean, strict = false, turnedOnce = false): Plan | null {
+  if (held.items.length > 1) return planGroup(s, held, x, y, strict)
   const it = held.item
   const d = dims({ ...it, rot })
   const others = s.items.filter(o => o.id !== it.id)
   const m: Box = { ...boxOf({ ...it, rot }), x: Math.max(0, Math.min(W - d.w, x)), y: Math.max(0, Math.min(H - d.h, y)) }
   if (d.w > W || d.h > H) return null
+  if (strict) return others.some(o => overlaps(boxOf(o), m)) ? null : { x: m.x, y: m.y, rot, moves: [] }
 
   // Dropped squarely onto something of the same shape: they trade places.
   const hits = others.filter(o => { const b = boxOf(o); return b.x < m.x + m.w && m.x < b.x + b.w && b.y < m.y + m.h && m.y < b.y + b.h })
@@ -75,8 +85,25 @@ export function planDrop(s: State, held: Held, x: number, y: number, rot: boolea
     const [me, ...rest] = res
     return { x: me.x, y: me.y, rot, moves: rest.map(r => ({ id: r.id, x: r.x, y: r.y, rot: !!r.rot })) }
   }
-  if (!turnedOnce && !same(m)) return planDrop(s, held, x, y, !rot, true)
+  if (!turnedOnce && !same(m)) return planDrop(s, held, x, y, !rot, false, true)
   return null
+}
+
+/** Several selected things dropped together, keeping their places relative to each other (and their turn). */
+function planGroup(s: State, held: Held, x: number, y: number, strict: boolean): Plan | null {
+  const ids = new Set(held.items.map(o => o.id))
+  const others = s.items.filter(o => !ids.has(o.id))
+  const rel = held.items.map((o, i) => ({ o, dx: held.froms[i].x - held.from.x, dy: held.froms[i].y - held.from.y }))
+  const minDx = Math.min(...rel.map(r => r.dx)), maxDx = Math.max(...rel.map(r => r.dx + dims(r.o).w))
+  const minDy = Math.min(...rel.map(r => r.dy)), maxDy = Math.max(...rel.map(r => r.dy + dims(r.o).h))
+  if (maxDx - minDx > W || maxDy - minDy > H) return null
+  const tx = Math.max(-minDx, Math.min(W - maxDx, x)), ty = Math.max(-minDy, Math.min(H - maxDy, y))
+  const boxes = rel.map(r => ({ ...boxOf(r.o), x: tx + r.dx, y: ty + r.dy }))
+  const members = boxes.slice(1).map(b => ({ id: b.id, x: b.x, y: b.y, rot: !!b.rot, group: true }))
+  if (strict) return others.some(o => boxes.some(b => overlaps(boxOf(o), b))) ? null : { x: tx, y: ty, rot: held.item.rot, moves: members }
+  const res = dropGroup(W, H, others.map(boxOf), boxes, { x: held.from.x, y: held.from.y })
+  if (!res) return null
+  return { x: tx, y: ty, rot: held.item.rot, moves: [...members, ...res.slice(boxes.length).map(r => ({ id: r.id, x: r.x, y: r.y, rot: !!r.rot }))] }
 }
 
 export function applyDrop(s: State, held: Held, plan: Plan) {
@@ -84,8 +111,11 @@ export function applyDrop(s: State, held: Held, plan: Plan) {
   Object.assign(held.item, { x: plan.x, y: plan.y, rot: plan.rot })
 }
 
-/** Nothing happened: the item goes back where it was. */
-export const putBack = (held: Held) => Object.assign(held.item, held.from)
+/** Nothing happened: everything lifted goes back where it was. */
+export function putBack(held: Held) { held.items.forEach((o, i) => Object.assign(o, { x: held.froms[i].x, y: held.froms[i].y, rot: held.froms[i].rot })) }
+
+/** Take things off the field. */
+export function remove(s: State, ids: number[]) { s.items = s.items.filter(o => !ids.includes(o.id)) }
 
 /** After sizes or kinds changed under a saved layout: drop things that no longer exist, and re-place anything that now overlaps or hangs off the field. */
 export function settle(s: State): State {

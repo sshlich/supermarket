@@ -14,13 +14,21 @@ body { margin: 0; min-height: 100vh; background: var(--bg); color: #e6e3dc; user
 svg { display: block; width: 100%; height: 100%; }
 #app { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 100vh; }
 
-/* the field: black, and every cell a small dark grey rounded square inside it */
+/* the field (the whole inventory): dark aubergine with a slightly lighter grid, and a Schluter orange outline all round.
+   While something is dragged it glows green where it can go and red where it cannot. */
+.field { --orange: #f27a21; }
 .grid {
   position: relative; width: calc(var(--w) * var(--cell)); height: calc(var(--h) * var(--cell));
-  background-color: #000;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Crect x='1' y='1' width='8' height='8' rx='0.8' fill='%23202024'/%3E%3C/svg%3E");
+  background-color: #221b29;
+  background-image: linear-gradient(to right, #3b3045 1px, transparent 1px), linear-gradient(to bottom, #3b3045 1px, transparent 1px);
   background-size: var(--cell) var(--cell);
+  border-radius: 3px;
+  box-shadow: 0 0 0 3px var(--orange), 0 0 0 0 transparent;
+  transition: box-shadow .14s ease;
 }
+.field.can .grid { box-shadow: 0 0 0 3px var(--orange), 0 0 46px 10px rgba(46, 204, 96, .6); }
+.field.cant .grid { box-shadow: 0 0 0 3px var(--orange), 0 0 46px 10px rgba(226, 55, 68, .6); }
+.marquee { position: absolute; z-index: 5; pointer-events: none; border: 1px dashed var(--orange); background: rgba(242, 122, 33, .14); }
 
 /* things: flat tiles tinted by what they are made of */
 .item { position: absolute; z-index: 1; left: calc(var(--x) * var(--cell)); top: calc(var(--y) * var(--cell)); width: calc(var(--w) * var(--cell)); height: calc(var(--h) * var(--cell)); color: var(--c); pointer-events: none; }
@@ -28,6 +36,8 @@ svg { display: block; width: 100%; height: 100%; }
 /* the squares an item sits on stay neutral, a touch lighter than the empty ones; the coloured glyph art on top is the item */
 .item .sq rect { fill: #2c2c33; pointer-events: none; }
 .item:hover .sq rect { fill: #363640; }
+.item .selline { display: none; fill: none; stroke: #f27a21; stroke-width: .1; stroke-linecap: square; pointer-events: none; }
+.item.sel .selline { display: block; }
 .item .hit rect { fill: transparent; pointer-events: all; cursor: grab; }
 .art { position: absolute; left: 50%; top: 50%; pointer-events: none; width: calc(var(--kw) * var(--cell)); height: calc(var(--kh) * var(--cell)); transform: translate(-50%, -50%) rotate(var(--r)); }
 .art svg { width: 100%; height: 100%; overflow: visible; }
@@ -41,17 +51,18 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 
 /* where it will land, and what gives way */
 .ghost { position: absolute; z-index: 3; pointer-events: none; left: calc(var(--x) * var(--cell)); top: calc(var(--y) * var(--cell)); width: calc(var(--w) * var(--cell)); height: calc(var(--h) * var(--cell)); }
-.ghost.land { --gb: var(--hi); --gf: rgba(240, 236, 226, .12); }
-.ghost.shove { --gb: rgba(240, 236, 226, .5); --gf: rgba(240, 236, 226, .06); }
-.ghost.bad { --gb: var(--bad); --gf: rgba(213, 96, 108, .16); }
+.ghost.land { --gb: #1f9d55; --gf: rgba(31, 157, 85, .22); }
+.ghost.shove { --gb: rgba(240, 236, 226, .6); --gf: rgba(240, 236, 226, .08); }
+.ghost.bad { --gb: #d5343f; --gf: rgba(213, 52, 63, .2); }
 .ghost:not(.shaped) { border: 1px solid var(--gb); background: var(--gf); border-radius: 3px; }
 .ghost.shove:not(.shaped) { border-style: dashed; }
 .ghost .gc { position: absolute; left: calc(var(--cx) * var(--cell) + var(--cell) * .1); top: calc(var(--cy) * var(--cell) + var(--cell) * .1); width: calc(var(--cell) * .8); height: calc(var(--cell) * .8); border-radius: calc(var(--cell) * .08); background: color-mix(in srgb, var(--gb) 30%, transparent); box-shadow: inset 0 0 0 1px var(--gb); }
 .ghost.shove .gc { box-shadow: inset 0 0 0 1px var(--gb); opacity: .7; }
 
 /* the tray: put things on the field */
-.tray { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; width: calc(var(--w, 30) * var(--cell)); max-width: 96vw; font: 11px ui-monospace, 'SF Mono', Menlo, monospace; color: #86847e; }
+.tray { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; width: calc(25 * var(--cell)); max-width: 96vw; font: 11px ui-monospace, 'SF Mono', Menlo, monospace; color: #86847e; }
 .tray .grow { flex: 1; }
 .tray button { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 2px; background: none; border: 1px solid #34343c; color: #e6e3dc; font: inherit; cursor: pointer; }
 .tray button:hover { border-color: var(--hi); }
+.tray button.on { border-color: #f27a21; color: #f27a21; }
 .tray button i { width: 9px; height: 9px; border-radius: 2px; background: var(--c, #888); }

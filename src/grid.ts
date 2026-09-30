@@ -65,11 +65,11 @@ const DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]] as const
  * Shove everything `m` lands on one direction, a cell at a time, chaining into whatever those hit. Cell by cell (not box by
  * box) so an irregular thing gives way only as far as its actual shape needs, and slides past a neighbour's empty corner.
  */
-function push(W: number, H: number, others: Box[], m: Box, [dx, dy]: readonly [number, number]): Box[] | null {
+function push(W: number, H: number, others: Box[], ms: Box[], [dx, dy]: readonly [number, number]): Box[] | null {
   const pos = others.map(o => ({ ...o }))
   // Things further along the push are settled after things nearer to it.
   pos.sort((a, b) => dx ? (a.x - b.x) * dx : (a.y - b.y) * dy)
-  const pushers: Box[] = [m]
+  const pushers: Box[] = [...ms]
   for (const o of pos) {
     let moved = false
     while (pushers.some(p => overlaps(o, p))) {
@@ -80,14 +80,14 @@ function push(W: number, H: number, others: Box[], m: Box, [dx, dy]: readonly [n
     if (moved) pushers.push(o)
   }
   // A shape can wrap round something that sorts later; if anything still touches, this direction does not work.
-  const all = [m, ...pos]
+  const all = [...ms, ...pos]
   for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++) if (overlaps(all[i], all[j])) return null
   return pos.filter(p => { const o = others.find(o => o.id === p.id)!; return p.x !== o.x || p.y !== o.y })
 }
 
 /** Each thing `m` lands on hops to the nearest free spot. */
-function relocate(W: number, H: number, others: Box[], m: Box, hits: Box[]): Box[] | null {
-  const taken = [m, ...others.filter(o => !hits.includes(o))]
+function relocate(W: number, H: number, others: Box[], ms: Box[], hits: Box[]): Box[] | null {
+  const taken = [...ms, ...others.filter(o => !hits.includes(o))]
   const out: Box[] = []
   for (const h of [...hits].sort((a, b) => b.w * b.h - a.w * a.h)) {
     const s = nearest(W, H, taken, h)
@@ -99,17 +99,17 @@ function relocate(W: number, H: number, others: Box[], m: Box, hits: Box[]): Box
 }
 
 /** Last resort: everyone else re-settles around `m`, each as close to where it was as it can. */
-function reflow(W: number, H: number, others: Box[], m: Box): Box[] | null {
+function reflow(W: number, H: number, others: Box[], ms: Box[]): Box[] | null {
   let best: Box[] | null = null
   for (const order of [(a: Box, b: Box) => a.y - b.y || a.x - b.x, (a: Box, b: Box) => b.w * b.h - a.w * a.h]) {
-    const taken = [m]
+    const taken = [...ms]
     let ok = true
     for (const o of [...others].sort(order)) {
       const s = nearest(W, H, taken, o)
       if (!s) { ok = false; break }
       taken.push(s)
     }
-    if (ok && (!best || cost(others, taken.slice(1)) < cost(others, best))) best = taken.slice(1)
+    if (ok && (!best || cost(others, taken.slice(ms.length)) < cost(others, best))) best = taken.slice(ms.length)
   }
   return best && best.filter(b => { const o = others.find(o => o.id === b.id)!; return b.x !== o.x || b.y !== o.y || !!b.rot !== !!o.rot })
 }
@@ -132,8 +132,18 @@ function cost(others: Box[], moves: Box[]) {
 export function drop(W: number, H: number, others: Box[], m: Box, toward?: { x: number; y: number }): Box[] | null {
   m = { ...m, x: Math.max(0, Math.min(W - m.w, m.x)), y: Math.max(0, Math.min(H - m.h, m.y)) }
   if (m.w > W || m.h > H) return null
-  const hits = others.filter(o => overlaps(o, m))
-  if (!hits.length) return [m]
+  return dropGroup(W, H, others, [m], toward)
+}
+
+/**
+ * The same for several things moving together (already at their target spots, first one is the one held). Returns them
+ * followed by whatever had to make way, or null if the lot cannot fit. Shoving treats the whole group as one wall.
+ */
+export function dropGroup(W: number, H: number, others: Box[], ms: Box[], toward?: { x: number; y: number }): Box[] | null {
+  for (const m of ms) if (m.x < 0 || m.y < 0 || m.x + m.w > W || m.y + m.h > H) return null
+  const hits = others.filter(o => ms.some(m => overlaps(o, m)))
+  if (!hits.length) return ms
+  const m = ms[0]
 
   let best: Box[] | null = null
   let bestCost = Infinity
@@ -143,10 +153,10 @@ export function drop(W: number, H: number, others: Box[], m: Box, toward?: { x: 
     if (c < bestCost) { best = moves; bestCost = c }
   }
   const dirs = toward ? [...DIRS].sort((a, b) => lean(b, m, toward) - lean(a, m, toward)) : DIRS
-  for (const d of dirs) consider(push(W, H, others, m, d), 0)
-  consider(relocate(W, H, others, m, hits), 2 * hits.length) // hopping reads worse than shoving
-  if (!best) consider(reflow(W, H, others, m), 0)
-  return best && [m, ...best as Box[]]
+  for (const d of dirs) consider(push(W, H, others, ms, d), 0)
+  consider(relocate(W, H, others, ms, hits), 2 * hits.length) // hopping reads worse than shoving
+  if (!best) consider(reflow(W, H, others, ms), 0)
+  return best && [...ms, ...best as Box[]]
 }
 
 const lean = ([dx, dy]: readonly [number, number], m: Box, t: { x: number; y: number }) => dx * Math.sign(t.x - m.x) + dy * Math.sign(t.y - m.y)

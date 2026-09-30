@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { applyDrop, boxOf, cellsOf, H, KINDS, settle, spawn, lift, planDrop, putBack, start, W, type State } from './world.ts'
+import { applyDrop, boxOf, cellsOf, H, KINDS, remove, settle, spawn, lift, planDrop, putBack, start, W, type State } from './world.ts'
 
 const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 
@@ -94,6 +94,53 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   while (spawn(s, 'crate')) if (++more > 400) break
   assert.ok(more < 400)
   assert.equal(spawn(s, 'crate'), null)
+}
+
+// Strict mode: the held thing goes only where the squares are free, and nothing else ever moves.
+{
+  const s = start()
+  const crate = s.items.find(o => o.kind === 'crate')!
+  const axe = s.items.find(o => o.kind === 'axe')!
+  const h = lift(s, crate.id)!
+  const onAxe = planDrop(s, h, axe.x, axe.y, false, true)
+  assert.equal(onAxe, null) // overlapping: refused, no shoving
+  assert.ok(planDrop(s, h, axe.x, axe.y, false, false)) // the easy way shoves the axe aside
+  const free = planDrop(s, h, 20, 15, false, true)!
+  assert.deepEqual([free.x, free.y, free.moves.length], [20, 15, 0])
+  const before = JSON.stringify(s.items)
+  assert.equal(JSON.stringify(s.items), before) // planning never changes anything
+}
+// Selections: grabbing one of several selected takes them all along, keeping their arrangement; strict refuses if any
+// square is taken; the easy way shoves the neighbours as one wall.
+{
+  const s = start()
+  const [a, b] = s.items.filter(o => o.kind === 'coal')
+  const h = lift(s, a.id, [a.id, b.id])!
+  assert.equal(h.items.length, 2)
+  const gap = b.x - a.x
+  const p = planDrop(s, h, 12, 15, false, true)!
+  assert.ok(p)
+  const other = p.moves.find(m => m.id === b.id)!
+  assert.equal(other.x - p.x, gap) // same spacing
+  assert.equal(other.y - p.y, b.y - a.y)
+  applyDrop(s, h, p)
+  assert.deepEqual([a.x, a.y], [12, 15])
+  for (const x of s.items) for (const y of s.items) if (x !== y) assert.equal(overlaps(boxOf(x), boxOf(y)), false)
+  // strict onto the crate with the pair: refused
+  const crate = s.items.find(o => o.kind === 'crate')!
+  const h2 = lift(s, a.id, [a.id, b.id])!
+  assert.equal(planDrop(s, h2, crate.x, crate.y, false, true), null)
+  const easy = planDrop(s, h2, crate.x, crate.y, false, false)
+  if (easy) { applyDrop(s, h2, easy); for (const x of s.items) for (const y of s.items) if (x !== y) assert.equal(overlaps(boxOf(x), boxOf(y)), false) }
+  // put back restores every one
+  const h3 = lift(s, a.id, [a.id, b.id])!
+  const at = [a.x, a.y, b.x, b.y]
+  Object.assign(a, { x: 0, y: 0 }); Object.assign(b, { x: 5, y: 5 })
+  putBack(h3)
+  assert.deepEqual([a.x, a.y, b.x, b.y], at)
+  const n = s.items.length
+  remove(s, [a.id, b.id])
+  assert.equal(s.items.length, n - 2)
 }
 
 console.log('world ok')

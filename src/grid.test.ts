@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { drop, firstFree, overlaps, pack, touches, turn, type Box } from './grid.ts'
+import { drop, dropGroup, firstFree, overlaps, pack, touches, turn, type Box } from './grid.ts'
 
 const b = (id: number, x: number, y: number, w = 1, h = 1): Box => ({ id, x, y, w, h })
 const run = (W: number, H: number, others: Box[], m: Box, toward?: { x: number; y: number }) => {
@@ -100,6 +100,38 @@ assert.deepEqual(run(2, 2, [L], b(9, 1, 0)), { 9: [1, 0, 1, 1] })
     for (const o of others) { const now = all.find(x => x.id === o.id)!; assert.ok(Math.abs(now.x - o.x) + Math.abs(now.y - o.y) <= W + H, 'nothing is thrown across the field') }
   }
   assert.ok(dropped > 200, `most drops work (${dropped} of 300, ${refused} refused)`)
+}
+
+// Groups move as one wall: two things dropped together shove a neighbour aside as one, and refuse when there is no room.
+{
+  const a = b(1, 0, 0), c = b(2, 1, 0) // a pair side by side
+  const wall = dropGroup(4, 1, [b(9, 2, 0)], [{ ...a, x: 1 }, { ...c, x: 2 }])! // lands on the neighbour at x=2
+  const moved = wall.find(x => x.id === 9)!
+  assert.equal(moved.x, 3) // pushed one cell right, out of the pair's way
+  assert.equal(dropGroup(2, 1, [b(9, 1, 0)], [{ ...a, x: 0 }, { ...c, x: 1 }]), null) // the pair fills the field: no room for the neighbour
+  assert.equal(dropGroup(3, 1, [], [{ ...a, x: 0 }, { ...c, x: 3 }]), null) // one of the pair off the field
+}
+// A fuzz for groups: random groups dropped on random layouts always leave a valid layout.
+{
+  let seed = 999
+  const rnd = () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296 }
+  let ok = 0
+  for (let round = 0; round < 300; round++) {
+    const W = 10, H = 7
+    const items: Box[] = []
+    for (let i = 1; i <= 3 + Math.floor(rnd() * 7); i++) { const s = b(i, 0, 0, 1 + Math.floor(rnd() * 3), 1 + Math.floor(rnd() * 2)); const sp = firstFree(W, H, items, s); if (sp) items.push({ ...(sp.turned ? turn(s) : s), x: sp.x, y: sp.y }) }
+    const k = 1 + Math.floor(rnd() * Math.min(3, items.length))
+    const group = items.slice(0, k), others = items.slice(k)
+    const dx = Math.floor(rnd() * 5) - 2, dy = Math.floor(rnd() * 5) - 2
+    const target = group.map(g => ({ ...g, x: g.x + dx, y: g.y + dy }))
+    const out = dropGroup(W, H, others, target, { x: group[0].x, y: group[0].y })
+    if (!out) continue
+    ok++
+    const all = [...target, ...others.map(o => out.find(x => x.id === o.id) ?? o)]
+    for (const a of all) assert.ok(a.x >= 0 && a.y >= 0 && a.x + a.w <= W && a.y + a.h <= H)
+    for (let i = 0; i < all.length; i++) for (let j = i + 1; j < all.length; j++) assert.equal(overlaps(all[i], all[j]), false)
+  }
+  assert.ok(ok > 100, `most group drops work (${ok})`)
 }
 
 console.log('grid ok')
