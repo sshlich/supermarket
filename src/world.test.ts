@@ -184,7 +184,7 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   assert.equal(boxOf({ ...crate, rot: 2 }).rot, 2)
 }
 
-console.log('world ok')
+
 
 {
   // containers: filters, nesting, cascade
@@ -216,3 +216,21 @@ console.log('world ok')
   s3.items.find(o => o.in)!.in = { host: c3.id, slot: 7 }
   assert.equal(settle(s3).items.filter(o => o.in).length, 0)
 }
+
+{
+  // too big one way round, fits turned: relaxed mode turns it into the panel
+  const s = start(); const crate = s.items.find(o => o.kind === 'crate')!
+  const log = s.items.find(o => o.kind === 'log')!
+  const sp = { host: crate.id, slot: 0 }
+  const h = lift(s, log.id)!
+  const p = planDrop(s, h, sp, 0, 0, 1, false) // log turned upright is 1x5: fits 6x5 either way
+  assert.ok(p)
+  const big = spawn(s, 'log', null)!; big.rot = 0
+  // a 5x1 log fits a 6x5 slot; use a slot too narrow instead: chest 5x3 with a 1x5 upright log needs turning
+  const chest = spawn(s, 'chest')!
+  const hl = lift(s, big.id)!
+  const q = planDrop(s, hl, { host: chest.id, slot: 0 }, 0, 0, 1, false)
+  assert.ok(q && q.rot % 2 === 0, 'turned to fit')
+  assert.equal(planDrop(s, hl, { host: chest.id, slot: 0 }, 0, 0, 1, true), null, 'strict does not turn')
+}
+console.log('world ok')

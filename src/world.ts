@@ -126,8 +126,8 @@ export function planDrop(s: State, held: Held, space: Space, x: number, y: numbe
   const d = dims({ ...it, rot })
   const others = inSpace(s, space).filter(o => o.id !== it.id)
   const m: Box = { ...boxOf({ ...it, rot }), x: Math.max(0, Math.min(SW - d.w, x)), y: Math.max(0, Math.min(SH - d.h, y)) }
-  if (d.w > SW || d.h > SH) return null
-  if (strict) return others.some(o => overlaps(boxOf(o), m)) ? null : { space, x: m.x, y: m.y, rot, moves: [] }
+  const tooBig = d.w > SW || d.h > SH // too big this way round: only turning can help (relaxed mode)
+  if (strict) return tooBig || others.some(o => overlaps(boxOf(o), m)) ? null : { space, x: m.x, y: m.y, rot, moves: [] }
 
   // Dropped squarely onto something of the same shape, from the same place: they trade places.
   const hits = others.filter(o => { const b = boxOf(o); return b.x < m.x + m.w && m.x < b.x + b.w && b.y < m.y + m.h && m.y < b.y + b.h })
@@ -137,7 +137,7 @@ export function planDrop(s: State, held: Held, space: Space, x: number, y: numbe
       return { space, x: m.x, y: m.y, rot, moves: [{ id: hits[0].id, x: held.from.x, y: held.from.y, rot: quarter(hits[0].rot + held.from.rot - rot) }] }
   }
 
-  const res = drop(SW, SH, others.map(boxOf), m, sameSpace(space, held.space) ? { x: held.from.x, y: held.from.y } : undefined)
+  const res = tooBig ? null : drop(SW, SH, others.map(boxOf), m, sameSpace(space, held.space) ? { x: held.from.x, y: held.from.y } : undefined)
   if (res) {
     const [me, ...rest] = res
     return { space, x: me.x, y: me.y, rot, moves: rest.map(r => ({ id: r.id, x: r.x, y: r.y, rot: r.rot ?? 0 })) }
