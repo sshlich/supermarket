@@ -198,18 +198,22 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   assert.deepEqual(log.in, { host: chest.id, slot: 0 })
   assert.equal(intoHost(s, lift(s, axe.id)!, chest.id), null, 'chest refuses non-fuel')
   assert.equal(planDrop(s, lift(s, axe.id)!, { host: chest.id, slot: 0 }, 0, 0, 0), null)
-  // no cycles, and depth stops at 2: chest in crate is fine, crate in chest is not (and chest refuses anyway)
-  assert.equal(accepts(s, crate, { host: chest.id, slot: 0 }), false)
+  // containers do not nest, except vessels: no crate or chest in a crate, a bottle is fine
   const crate2 = spawn(s, 'crate')!
-  applyDrop(s, lift(s, chest.id)!, intoHost(s, lift(s, chest.id)!, crate.id)!)
-  assert.equal(chest.in!.host, crate.id)
-  assert.equal(accepts(s, crate, { host: crate2.id, slot: 0 }), false, 'crate holding a chest holding a log is 3 deep in another crate')
-  assert.equal(accepts(s, crate, { host: crate.id, slot: 0 }), false, 'no cycle')
+  assert.equal(accepts(s, chest, { host: crate.id, slot: 0 }), false)
+  assert.equal(accepts(s, crate2, { host: crate.id, slot: 0 }), false)
+  const bottle = s.items.find(o => o.kind === 'bottle')!
+  applyDrop(s, lift(s, bottle.id)!, intoHost(s, lift(s, bottle.id)!, crate.id)!)
+  assert.equal(bottle.in!.host, crate.id)
+  assert.equal(accepts(s, crate, { host: bottle.id, slot: 0 }), false)
+  // a vessel in a vessel would be a third level of nothing useful; and a log in the chest stays on its own
+  chest.in = undefined
+  applyDrop(s, lift(s, log.id)!, intoHost(s, lift(s, log.id)!, chest.id)!)
   // settle keeps the nest; removing the crate takes everything with it
   const s2 = settle(JSON.parse(JSON.stringify(s)))
-  assert.equal(s2.items.find(o => o.id === log.id)!.in!.host, chest.id)
+  assert.equal(s2.items.find(o => o.id === bottle.id)!.in!.host, crate.id)
   remove(s, [crate.id])
-  assert.ok(!s.items.some(o => o.id === chest.id || o.id === log.id))
+  assert.ok(!s.items.some(o => o.id === bottle.id))
   // a slot that vanished sends its items to the field
   const s3 = start(); const c3 = s3.items.find(o => o.kind === 'crate')!
   spawn(s3, 'coal', { host: c3.id, slot: 0 })

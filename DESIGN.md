@@ -114,5 +114,5 @@ e.g. pouring water into another container, slaughtering a rabbit with a knife, a
 
 ## Containers, panels, machines (agreed 2026-09-29)
 - A kind may have `slots` (each: w, h, accepts/rejects tags, optional name). Items inside carry `in: {host, slot}`; x, y are in that slot's grid.
-- Nesting max 2 (`MAX_NEST`), no cycles. Double-click a container to open it as a panel; up to 4 docks (two each side), drag a panel header onto another dock to swap. Dropping an item onto an accepting container puts it inside (blue light).
+- Containers do not go in containers, except kinds tagged `vessel` (bottle): one extra level, `MAX_NEST` 2. Double-click a container to open it as a panel; up to 4 docks (two each side), drag a panel header onto another dock to swap. Dropping an item onto an accepting container puts it inside (blue light).
 - Next: machines = kinds with several named slots (zones); a clock button advancing `advance(state, ticks)` (hearth, still); recipes hard-coded; `uses` effects; tooltips.

@@ -76,7 +76,7 @@ export const inSpace = (s: State, sp: Space) => s.items.filter(o => sameSpace(sp
 /** What is inside a container, in any of its slots. */
 export const contents = (s: State, host: number) => s.items.filter(o => o.in?.host === host)
 
-/** You can carry a container inside a container inside the field, and no deeper: no infinite space by chests in chests. */
+/** Containers do not go in containers, except kinds tagged `vessel` (bottles and the like), which take a second level and no more. */
 export const MAX_NEST = 2
 const chain = (s: State, id: number) => { const out: Item[] = []; for (let o = find(s, id); o; o = o.in ? find(s, o.in.host) : undefined) out.push(o); return out }
 /** Is `id` the item `anc`, or somewhere inside it? */
@@ -91,6 +91,7 @@ export function accepts(s: State, it: Item, sp: Space): boolean {
   const slot = host && KINDS[host.kind]?.slots?.[sp.slot]
   if (!host || !slot || within(s, sp.host, it.id)) return false
   const tags = KINDS[it.kind]?.tags ?? []
+  if (isContainer(it.kind) && !tags.includes('vessel')) return false // only specialised containers (a water bottle) go inside another
   if (slot.accepts?.length && !tags.some(t => slot.accepts!.includes(t))) return false
   if (tags.some(t => slot.rejects?.includes(t))) return false
   return chain(s, sp.host).length + height(s, it) <= MAX_NEST

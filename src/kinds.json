@@ -46,6 +46,19 @@
         "on": "bottle",
         "verb": "pour"
       }
+    ],
+    "tags": [
+      "vessel"
+    ],
+    "slots": [
+      {
+        "name": "contents",
+        "w": 1,
+        "h": 2,
+        "accepts": [
+          "liquid"
+        ]
+      }
     ]
   },
   "knife": {
