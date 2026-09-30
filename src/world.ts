@@ -11,7 +11,7 @@ export const H = 20
  * rectangle, says which squares inside it are taken ('#') and which are free ('.'). The rest is for people: a description
  * (for tooltips), private notes, and tags.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; uses?: Use[]; slots?: Slot[] }
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; uses?: Use[]; slots?: Slot[]; machine?: string }
 /**
  * A container's inside, or one named zone of a machine: a small grid with its own rules. A plain container has one slot; a
  * machine has several (input, fuel, output...). `accepts` and `rejects` are tags; nothing else is checked.
@@ -25,9 +25,9 @@ export const KINDS: Record<string, Kind> = DATA
 
 /** `rot` is how many quarter turns clockwise it has been turned (0 to 3): 2 is upside down. */
 /** `in` says which container's slot it sits in (its x, y are then inside that slot's grid); no `in` means on the field. */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number } }
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; m?: { burn: number; work: number } }
 /** `panels` are the open containers, docked to the sides: [left top, left bottom, right top, right bottom]. */
-export interface State { items: Item[]; next: number; panels?: (number | null)[] }
+export interface State { items: Item[]; next: number; panels?: (number | null)[]; tick?: number }
 
 const SHAPES = new Map<string, { sig: string; box: Box }>()
 /** A kind's footprint as the grid sees it, facing the way it is made. */
@@ -302,4 +302,38 @@ export function start(): State {
   put('bottle', 18, 11)
   put('knife', 22, 4)
   return s
+}
+
+// ---------------------------------------------------------------- time and machines
+
+/** How many ticks a piece of fuel burns. */
+const FUEL: Record<string, number> = { coal: 6, log: 3 }
+/** What the hearth turns an input into, and in how many burning ticks. Recipes are hard-coded for now. */
+const RECIPES: Record<string, { out: string; time: number }> = { log: { out: 'coal', time: 3 } }
+
+const zone = (s: State, host: Item, slot: number) => inSpace(s, { host: host.id, slot })
+
+/** Slots of a hearth: 0 fuel, 1 input, 2 output. Burns one fuel at a time; while burning, the first input with a recipe works toward its output. */
+function hearth(s: State, h: Item) {
+  const m = h.m ??= { burn: 0, work: 0 }
+  const job = zone(s, h, 1).find(o => RECIPES[o.kind])
+  if (m.burn === 0 && job) {
+    const fuel = zone(s, h, 0).find(o => FUEL[o.kind])
+    if (fuel) { m.burn = FUEL[fuel.kind]; remove(s, [fuel.id]) }
+  }
+  if (m.burn === 0) { m.work = 0; return }
+  m.burn--
+  if (!job) return
+  m.work++
+  const r = RECIPES[job.kind]
+  if (m.work >= r.time && spawn(s, r.out, { host: h.id, slot: 2 })) { remove(s, [job.id]); m.work = 0 } // no room in the output: it waits
+}
+const MACHINES: Record<string, (s: State, h: Item) => void> = { hearth }
+
+/** Let time pass: every machine takes its turn, once per tick. The one entry point, so anything can trigger it later. */
+export function advance(s: State, ticks = 1) {
+  for (let i = 0; i < ticks; i++) {
+    s.tick = (s.tick ?? 0) + 1
+    for (const it of [...s.items]) { const k = KINDS[it.kind]?.machine; if (k && MACHINES[k] && s.items.includes(it)) MACHINES[k](s, it) }
+  }
 }

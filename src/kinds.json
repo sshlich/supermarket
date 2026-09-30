@@ -22,7 +22,8 @@
     "w": 5,
     "h": 1,
     "tags": [
-      "fuel"
+      "fuel",
+      "wood"
     ]
   },
   "coal": {
@@ -125,6 +126,41 @@
         "accepts": [
           "fuel"
         ]
+      }
+    ]
+  },
+  "hearth": {
+    "name": "Hearth",
+    "icon": "campfire",
+    "color": "#c8623a",
+    "w": 4,
+    "h": 3,
+    "tags": [
+      "container"
+    ],
+    "machine": "hearth",
+    "desc": "Burns fuel; turns wood into charcoal.",
+    "slots": [
+      {
+        "name": "fuel",
+        "w": 5,
+        "h": 2,
+        "accepts": [
+          "fuel"
+        ]
+      },
+      {
+        "name": "input",
+        "w": 5,
+        "h": 1,
+        "accepts": [
+          "wood"
+        ]
+      },
+      {
+        "name": "output",
+        "w": 5,
+        "h": 2
       }
     ]
   }

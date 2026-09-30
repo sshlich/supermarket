@@ -1,5 +1,5 @@
 import './style.css'
-import { applyDrop, cellsOf, dims, find, H, hostsFor, inSpace, interaction, intoHost, isContainer, KINDS, lift, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, targetsFor, W, type Held, type Item, type Plan, type Space, type State } from './world.ts'
+import { advance, applyDrop, cellsOf, dims, find, H, hostsFor, inSpace, interaction, intoHost, isContainer, KINDS, lift, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, targetsFor, W, type Held, type Item, type Plan, type Space, type State } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -77,14 +77,14 @@ function panelHtml(dock: number, id: number | null) {
     const note = [sl.name, sl.accepts?.length ? `${sl.accepts.join(', ')} only` : '', sl.rejects?.length ? `no ${sl.rejects.join(', ')}` : ''].filter(Boolean).join(' · ')
     return `<div class="slotbox">${note ? `<div class="slotnote">${note}</div>` : ''}<div class="grid" data-grid data-space="${it.id}:${i}" data-w="${sl.w}" data-h="${sl.h}" style="--w:${sl.w};--h:${sl.h}">${inSpace(s, { host: it.id, slot: i }).map(itemHtml).join('')}</div></div>`
   }).join('')
-  return `<div class="panel" data-dock="${dock}"><div class="panel-head" data-head style="--c:${k.color}"><i></i><span>${k.name}</span><button data-close="${it.id}" title="Close">✕</button></div>${slots}</div>`
+  return `<div class="panel" data-dock="${dock}"><div class="panel-head" data-head style="--c:${k.color}"><i></i><span>${k.name}</span>${it.m ? `<em>${it.m.burn ? `burning ${it.m.burn}` : 'cold'}${it.m.work ? ` · ${it.m.work}` : ''}</em>` : ''}<button data-close="${it.id}" title="Close">✕</button></div>${slots}</div>`
 }
 
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
   const p = s.panels ?? (s.panels = [null, null, null, null])
-  app.innerHTML = `<div class="stage" style="--pw:${PW}"><div class="dock">${panelHtml(0, p[0])}${panelHtml(1, p[1])}</div><div class="center"><div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div><div class="dock">${panelHtml(2, p[2])}${panelHtml(3, p[3])}</div></div>`
+  app.innerHTML = `<div class="stage" style="--pw:${PW}"><div class="dock">${panelHtml(0, p[0])}${panelHtml(1, p[1])}</div><div class="center"><div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div><div class="dock">${panelHtml(2, p[2])}${panelHtml(3, p[3])}</div></div><button class="clock" data-tick title="Let time pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>${s.tick ?? 0}</span></button>`
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
     const was = from.get(+el.dataset.id!)
@@ -424,6 +424,7 @@ render(new Map())
 app.addEventListener('click', e => {
   const b = (e.target as HTMLElement).closest<HTMLElement>('button')
   if (!b) return
+  if ('tick' in b.dataset) { advance(s, 1); changed(); return }
   if (b.dataset.close) { s.panels = (s.panels ?? []).map(p => (p === +b.dataset.close! ? null : p)); changed(new Map()); return }
   if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
   else if ('strict' in b.dataset) toggleStrict()

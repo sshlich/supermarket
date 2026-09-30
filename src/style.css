@@ -90,3 +90,9 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .tray button:hover { border-color: var(--hi); }
 .tray button.on { border-color: #f0ece2; color: #f0ece2; }
 .tray button i { width: 9px; height: 9px; border-radius: 2px; background: var(--c, #888); }
+
+/* the clock: a corner button that lets one tick pass; the number is the ticks so far */
+.clock { position: fixed; right: 16px; bottom: 16px; display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px; border-radius: 2px; background: #15121a; border: 1px solid #34343c; color: #e6e3dc; font: 12px ui-monospace, 'SF Mono', Menlo, monospace; cursor: pointer; }
+.clock svg { width: 16px; height: 16px; }
+.clock:hover { border-color: var(--hi); }
+.panel-head em { font-style: normal; color: #c8623a; }

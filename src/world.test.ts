@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { accepts, intoHost, applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, start, W, type State } from './world.ts'
+import { advance, accepts, intoHost, applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, start, W, type State } from './world.ts'
 
 const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 
@@ -146,7 +146,7 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 // Uses: held things can be used on other things by kind or by tag, and only in that direction.
 {
   const s = start()
-  const saved = { knife: KINDS.knife.uses, log: KINDS.log.tags }
+  const saved = { knife: KINDS.knife.uses, log: KINDS.log.tags, coal: KINDS.coal.tags }
   KINDS.knife.uses = [{ on: 'log', verb: 'carve' }, { on: 'living', verb: 'slaughter' }]
   KINDS.log.tags = ['wood']
   const knife = s.items.find(o => o.kind === 'knife')!, log = s.items.find(o => o.kind === 'log')!, coal = s.items.find(o => o.kind === 'coal')!
@@ -155,7 +155,7 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   assert.equal(interaction(log, knife), null) // one way
   KINDS.coal.tags = ['living']
   assert.equal(interaction(knife, coal)?.verb, 'slaughter') // by tag
-  delete KINDS.coal.tags
+  KINDS.coal.tags = saved.coal
   assert.deepEqual(targetsFor(s, [knife]).map(o => o.kind).sort(), ['log'])
   KINDS.knife.uses = saved.knife; KINDS.log.tags = saved.log
   if (!saved.knife) delete KINDS.knife.uses
@@ -236,5 +236,20 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   const q = planDrop(s, hl, { host: chest.id, slot: 0 }, 0, 0, 1, false)
   assert.ok(q && q.rot % 2 === 0, 'turned to fit')
   assert.equal(planDrop(s, hl, { host: chest.id, slot: 0 }, 0, 0, 1, true), null, 'strict does not turn')
+}
+
+
+{
+  // hearth: fuel burns, wood becomes charcoal in the output; nothing happens without fuel
+  const s: State = { items: [], next: 1, panels: [null, null, null, null] }
+  const hearth = spawn(s, 'hearth')!
+  const wood = spawn(s, 'log', { host: hearth.id, slot: 1 })!
+  advance(s, 5)
+  assert.ok(s.items.includes(wood), 'no fuel, no work')
+  spawn(s, 'coal', { host: hearth.id, slot: 0 })
+  advance(s, 3)
+  assert.ok(!s.items.includes(wood))
+  assert.ok(s.items.some(o => o.kind === 'coal' && o.in?.slot === 2), 'charcoal made')
+  assert.equal(s.tick, 8)
 }
 console.log('world ok')
