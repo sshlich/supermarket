@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { I, SHAPES, invert, about, fmt, mul, move, nearestSegment, parsePoints, pointsAttr, point, scale, simplify, smoothPath, snapTo, transformAttr, turn, type P } from './geom.ts'
+import { I, SHAPES, invert, parsePath, pathBounds, pathString, splitSubpaths, about, fmt, mul, move, nearestSegment, parsePoints, pointsAttr, point, scale, simplify, smoothPath, snapTo, transformAttr, turn, type P } from './geom.ts'
 
 // Matrices: translate then scale composes the way SVG does; identity gives no attribute.
 assert.deepEqual(mul(move(10, 0), scale(2)), [2, 0, 0, 2, 10, 0])
@@ -59,5 +59,26 @@ assert.equal(nearestSegment(sq, [5, 1], true).i, 0)
 assert.equal(nearestSegment(sq, [9, 5], true).i, 1)
 assert.equal(nearestSegment(sq, [1, 5], true).i, 3) // the closing edge
 assert.equal(nearestSegment(sq, [1, 8], false).i, 2) // open: no closing edge, so the nearest real one
+
+// Paths: relative and absolute commands agree, and the box of a circle drawn with two arcs is its diameter.
+const same = (a: string, b: string) => assert.deepEqual(parsePath(a).map(s => s.map(v => typeof v === 'number' ? +v.toFixed(6) : v)), parsePath(b).map(s => s.map(v => typeof v === 'number' ? +v.toFixed(6) : v)))
+same('M10 10l20 0v20h-20z', 'M10 10L30 10L30 30L10 30Z')
+same('M10 10H30V30H10Z', 'M10,10 L30,10 L30,30 L10,30 z')
+const ring = pathBounds(parsePath('M0 50a50 50 0 1 0 100 0a50 50 0 1 0 -100 0z'), I)!
+assert.ok(Math.abs(ring.x) < 1e-6 && Math.abs(ring.y) < 1e-6 && Math.abs(ring.w - 100) < 1e-6 && Math.abs(ring.h - 100) < 1e-6)
+// a curve bulges past its endpoints: the box is the real curve, not the control points
+const bump = pathBounds(parsePath('M0 0C0 40 100 40 100 0'), I)!
+assert.ok(Math.abs(bump.h - 30) < 1e-6 && Math.abs(bump.w - 100) < 1e-6) // control points at 40, curve peaks at 30
+// through a quarter turn about the origin, width and height swap
+const turned = pathBounds(parsePath('M0 0L10 0L10 4L0 4Z'), turn(90))!
+assert.ok(Math.abs(turned.w - 4) < 1e-9 && Math.abs(turned.h - 10) < 1e-9)
+// compact arc flags ("a8 8 0 018 8") parse the way browsers read them
+assert.equal(parsePath('M0 0a8 8 0 018 8').length, 2)
+// smooth and quadratic shorthands become cubics; a compound path splits into its pieces
+assert.ok(parsePath('M0 0Q10 10 20 0T40 0').every(s => s[0] === 'M' || s[0] === 'C'))
+const compound = splitSubpaths(parsePath('M0 0h10v10z m20 0h10v10z M100 100l5 5'))
+assert.equal(compound.length, 3)
+assert.ok(pathString(compound[1]).startsWith('M20 0')) // the relative m was resolved against where the last piece ended
+assert.equal(pathString(parsePath('M1 2L3 4Z')), 'M1 2L3 4Z')
 
 console.log('geom ok')

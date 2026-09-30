@@ -128,3 +128,120 @@ export function nearestSegment(pts: P[], p: P, closed: boolean): { i: number; d:
   for (let i = 0; i < n; i++) { const d = distToSegment(p, pts[i], pts[(i + 1) % pts.length]); if (d < best.d) best = { i, d } }
   return best
 }
+
+// ---------------------------------------------------------------- paths: parse once, then bounds and pieces without asking the browser
+
+/** A path as absolute moves, lines and cubic curves only (everything else is converted). */
+export type Seg = ['M', number, number] | ['L', number, number] | ['C', number, number, number, number, number, number] | ['Z']
+
+const angle = (ux: number, uy: number, vx: number, vy: number) => Math.atan2(ux * vy - uy * vx, ux * vx + uy * vy)
+
+/** An SVG elliptical arc as one to four cubic curves. */
+function arcToCubics(x0: number, y0: number, rx: number, ry: number, rot: number, fa: number, fs: number, x: number, y: number): Seg[] {
+  if (!rx || !ry || (x0 === x && y0 === y)) return [['L', x, y]]
+  rx = Math.abs(rx); ry = Math.abs(ry)
+  const phi = (rot * Math.PI) / 180, cos = Math.cos(phi), sin = Math.sin(phi)
+  const dx = (x0 - x) / 2, dy = (y0 - y) / 2
+  const x1 = cos * dx + sin * dy, y1 = -sin * dx + cos * dy
+  const lam = (x1 * x1) / (rx * rx) + (y1 * y1) / (ry * ry)
+  if (lam > 1) { rx *= Math.sqrt(lam); ry *= Math.sqrt(lam) }
+  const num = rx * rx * ry * ry - rx * rx * y1 * y1 - ry * ry * x1 * x1
+  const den = rx * rx * y1 * y1 + ry * ry * x1 * x1
+  const coef = (fa === fs ? -1 : 1) * Math.sqrt(Math.max(0, num / den))
+  const cxp = (coef * rx * y1) / ry, cyp = (-coef * ry * x1) / rx
+  const cx = cos * cxp - sin * cyp + (x0 + x) / 2, cy = sin * cxp + cos * cyp + (y0 + y) / 2
+  const t1 = angle(1, 0, (x1 - cxp) / rx, (y1 - cyp) / ry)
+  let dt = angle((x1 - cxp) / rx, (y1 - cyp) / ry, (-x1 - cxp) / rx, (-y1 - cyp) / ry)
+  if (!fs && dt > 0) dt -= 2 * Math.PI
+  if (fs && dt < 0) dt += 2 * Math.PI
+  const n = Math.max(1, Math.ceil(Math.abs(dt) / (Math.PI / 2) - 1e-9))
+  const step = dt / n, k = (4 / 3) * Math.tan(step / 4)
+  const at = (t: number): [number, number, number, number] => { // point and its tangent on the unit circle, mapped through the ellipse
+    const c = Math.cos(t), s = Math.sin(t)
+    return [cx + rx * c * cos - ry * s * sin, cy + rx * c * sin + ry * s * cos, -rx * s * cos - ry * c * sin, -rx * s * sin + ry * c * cos]
+  }
+  const out: Seg[] = []
+  for (let i = 0; i < n; i++) {
+    const a = at(t1 + i * step), b = at(t1 + (i + 1) * step)
+    out.push(['C', a[0] + k * a[2], a[1] + k * a[3], b[0] - k * b[2], b[1] - k * b[3], i === n - 1 ? x : b[0], i === n - 1 ? y : b[1]])
+  }
+  return out
+}
+
+export function parsePath(d: string): Seg[] {
+  const out: Seg[] = []
+  let i = 0
+  const sep = () => { while (i < d.length && /[\s,]/.test(d[i])) i++ }
+  const num = () => { sep(); const re = /[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?/y; re.lastIndex = i; const m = re.exec(d); if (!m) throw new Error('bad path'); i = re.lastIndex; return +m[0] }
+  const flag = () => { sep(); return d[i++] === '1' ? 1 : 0 }
+  let cx = 0, cy = 0, sx = 0, sy = 0, cmd = '', c2: P | null = null, q: P | null = null
+  try {
+    for (;;) {
+      sep()
+      if (i >= d.length) break
+      if (/[A-Za-z]/.test(d[i])) cmd = d[i++]
+      else if (cmd === 'M') cmd = 'L'
+      else if (cmd === 'm') cmd = 'l'
+      const rel = cmd === cmd.toLowerCase()
+      const ox = rel ? cx : 0, oy = rel ? cy : 0
+      const U = cmd.toUpperCase()
+      let nc2: P | null = null, nq: P | null = null
+      if (U === 'Z') { out.push(['Z']); cx = sx; cy = sy }
+      else if (U === 'M') { const x = num() + ox, y = num() + oy; out.push(['M', x, y]); cx = sx = x; cy = sy = y }
+      else if (U === 'L') { const x = num() + ox, y = num() + oy; out.push(['L', x, y]); cx = x; cy = y }
+      else if (U === 'H') { const x = num() + ox; out.push(['L', x, cy]); cx = x }
+      else if (U === 'V') { const y = num() + oy; out.push(['L', cx, y]); cy = y }
+      else if (U === 'C') { const a = num() + ox, b = num() + oy, c = num() + ox, e = num() + oy, x = num() + ox, y = num() + oy; out.push(['C', a, b, c, e, x, y]); nc2 = [c, e]; cx = x; cy = y }
+      else if (U === 'S') { const c = num() + ox, e = num() + oy, x = num() + ox, y = num() + oy; const a: number = c2 ? 2 * cx - c2[0] : cx, b: number = c2 ? 2 * cy - c2[1] : cy; out.push(['C', a, b, c, e, x, y]); nc2 = [c, e]; cx = x; cy = y }
+      else if (U === 'Q') { const a = num() + ox, b = num() + oy, x = num() + ox, y = num() + oy; out.push(['C', cx + (2 / 3) * (a - cx), cy + (2 / 3) * (b - cy), x + (2 / 3) * (a - x), y + (2 / 3) * (b - y), x, y]); nq = [a, b]; cx = x; cy = y }
+      else if (U === 'T') { const x = num() + ox, y = num() + oy; const a: number = q ? 2 * cx - q[0] : cx, b: number = q ? 2 * cy - q[1] : cy; out.push(['C', cx + (2 / 3) * (a - cx), cy + (2 / 3) * (b - cy), x + (2 / 3) * (a - x), y + (2 / 3) * (b - y), x, y]); nq = [a, b]; cx = x; cy = y }
+      else if (U === 'A') { const rx = num(), ry = num(), rot = num(), fa = flag(), fs = flag(), x = num() + ox, y = num() + oy; out.push(...arcToCubics(cx, cy, rx, ry, rot, fa, fs, x, y)); cx = x; cy = y }
+      else break
+      c2 = nc2; q = nq
+    }
+  } catch { /* keep what parsed */ }
+  return out
+}
+
+export const pathString = (segs: Seg[]) => segs.map(s => s[0] === 'Z' ? 'Z' : `${s[0]}${(s.slice(1) as number[]).map(fmt).join(' ')}`).join('')
+
+/** One list of segments per subpath (each starting with its own M), so a compound path can be pulled apart. */
+export function splitSubpaths(segs: Seg[]): Seg[][] {
+  const out: Seg[][] = []
+  let cur: Seg[] = []
+  for (const s of segs) {
+    if (s[0] === 'M' && cur.length) { out.push(cur); cur = [] }
+    cur.push(s)
+  }
+  if (cur.length) out.push(cur)
+  return out.filter(p => p.length > 1)
+}
+
+/** Where the curve leaves its box: the t values in (0, 1) at which one coordinate of a cubic stops changing. */
+function cubicExtrema(p0: number, p1: number, p2: number, p3: number): number[] {
+  const u = p1 - p0, v = p2 - p1, w = p3 - p2
+  const A = u - 2 * v + w, B = 2 * (v - u), C = u
+  const ts: number[] = []
+  if (Math.abs(A) < 1e-12) { if (Math.abs(B) > 1e-12) ts.push(-C / B) }
+  else { const D = B * B - 4 * A * C; if (D >= 0) { const r = Math.sqrt(D); ts.push((-B + r) / (2 * A), (-B - r) / (2 * A)) } }
+  return ts.filter(t => t > 0 && t < 1)
+}
+
+/** The exact box of a path seen through a matrix: transform the curves (an affine map keeps them curves), then find their extremes. */
+export function pathBounds(segs: Seg[], m: M): { x: number; y: number; w: number; h: number } | null {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity
+  const add = (x: number, y: number) => { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y }
+  let cx = 0, cy = 0
+  for (const s of segs) {
+    if (s[0] === 'M' || s[0] === 'L') { [cx, cy] = point(m, s[1], s[2]); add(cx, cy) }
+    else if (s[0] === 'C') {
+      const a = point(m, s[1], s[2]), b = point(m, s[3], s[4]), e = point(m, s[5], s[6])
+      add(e[0], e[1])
+      for (const t of cubicExtrema(cx, a[0], b[0], e[0])) add(bez(cx, a[0], b[0], e[0], t), bez(cy, a[1], b[1], e[1], t))
+      for (const t of cubicExtrema(cy, a[1], b[1], e[1])) add(bez(cx, a[0], b[0], e[0], t), bez(cy, a[1], b[1], e[1], t))
+      cx = e[0]; cy = e[1]
+    }
+  }
+  return Number.isFinite(x0) ? { x: x0, y: y0, w: x1 - x0, h: y1 - y0 } : null
+}
+const bez = (p0: number, p1: number, p2: number, p3: number, t: number) => { const s = 1 - t; return s * s * s * p0 + 3 * s * s * t * p1 + 3 * s * t * t * p2 + t * t * t * p3 }

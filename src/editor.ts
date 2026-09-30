@@ -3,7 +3,7 @@
 import './style.css'
 import './editor.css'
 import { KINDS } from './world.ts'
-import { I, SHAPES, about, fmt, invert, move, mul, nearestSegment, parsePoints, point, pointsAttr, scale, simplify, smoothPath, snapTo, transformAttr, turn, type M, type P, type Shape } from './editor/geom.ts'
+import { I, SHAPES, about, fmt, invert, move, mul, nearestSegment, parsePath, parsePoints, pathBounds, pathString, point, pointsAttr, scale, simplify, smoothPath, snapTo, splitSubpaths, transformAttr, turn, type M, type P, type Seg, type Shape } from './editor/geom.ts'
 
 // Saving an item's size, name or colour rewrites kinds.json; the editor already holds the new values, so it should not reload.
 if (import.meta.hot) import.meta.hot.accept('./world.ts', () => {})
@@ -45,6 +45,12 @@ let lockRatio = true
 const shapeParams: Record<string, Record<string, number | string>> = {}
 let live: SVGSVGElement | null = null // the sprite as drawn in the big preview: the thing operations change
 let saveTimer = 0
+let ready = false // every sprite has loaded
+let autoFit = true // the big picture takes all the room there is, until you set the zoom yourself
+const ui: { left: boolean; right: boolean; folds: Record<string, boolean> } = (() => {
+  try { return { left: false, right: false, folds: {}, ...JSON.parse(localStorage.getItem('sprite-editor-ui') ?? '{}') } } catch { return { left: false, right: false, folds: {} } }
+})()
+const saveUi = () => { try { localStorage.setItem('sprite-editor-ui', JSON.stringify(ui)) } catch { /* private window */ } }
 
 const root = document.getElementById('ed')!
 const $ = <T extends Element>(sel: string) => root.querySelector<T>(sel)!
@@ -140,23 +146,19 @@ const unionBox = (a: Box, b: Box): Box => {
   return { x, y, w: Math.max(a.x + a.w, b.x + b.w) - x, h: Math.max(a.y + a.h, b.y + b.h) - y }
 }
 
-const sampled = new WeakMap<Element, P[]>()
-/** Points along an element's outline, in its own coordinates. Paths are walked (the browser's bounds for curves overshoot to the control points). */
+const parsed = new Map<string, Seg[]>()
+/** A path's `d` parsed once and remembered, so repainting never parses it again. */
+function segsOf(d: string): Seg[] {
+  let s = parsed.get(d)
+  if (!s) { s = parsePath(d); if (parsed.size > 300) parsed.clear(); parsed.set(d, s) }
+  return s
+}
+
+/** Points along a simple element's outline, in its own coordinates (paths are measured exactly, elsewhere). */
 function localPoints(el: Element): P[] | null {
   const tag = el.localName
   const num = (n: string) => +(el.getAttribute(n) ?? 0) || 0
   try {
-    if (tag === 'path') {
-      const hit = sampled.get(el)
-      if (hit) return hit
-      const p = el as SVGPathElement
-      const len = p.getTotalLength()
-      const n = Math.max(64, Math.min(2000, Math.ceil(len / 1.5)))
-      const pts: P[] = []
-      for (let i = 0; i <= n; i++) { const q = p.getPointAtLength((len * i) / n); pts.push([q.x, q.y]) }
-      sampled.set(el, pts)
-      return pts
-    }
     if (tag === 'polygon' || tag === 'polyline') return parsePoints(el.getAttribute('points') ?? '')
     if (tag === 'line') return [[num('x1'), num('y1')], [num('x2'), num('y2')]]
     if (tag === 'rect') { const x = num('x'), y = num('y'), w = num('width'), h = num('height'); return [[x, y], [x + w, y], [x, y + h], [x + w, y + h]] }
@@ -181,10 +183,16 @@ function inkBox(el: Element, m: M): Box | null {
     }
     return out
   }
-  const pts = localPoints(el)
-  if (!pts || !pts.length) return null
   let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity
-  for (const [px, py] of pts) { const [x, y] = point(m, px, py); if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y }
+  if (tag === 'path') {
+    const pb = pathBounds(segsOf(el.getAttribute('d') ?? ''), m)
+    if (!pb) return null
+    x0 = pb.x; y0 = pb.y; x1 = pb.x + pb.w; y1 = pb.y + pb.h
+  } else {
+    const pts = localPoints(el)
+    if (!pts || !pts.length) return null
+    for (const [px, py] of pts) { const [x, y] = point(m, px, py); if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y }
+  }
   const stroke = el.getAttribute('stroke')
   const half = stroke && stroke !== 'none' ? ((+(el.getAttribute('stroke-width') ?? 1) || 0) / 2) * Math.sqrt(Math.abs(m[0] * m[3] - m[1] * m[2])) : 0
   return { x: x0 - half, y: y0 - half, w: x1 - x0 + 2 * half, h: y1 - y0 + 2 * half }
@@ -351,7 +359,24 @@ function simplifySel() {
   el.setAttribute('points', pointsAttr(closed ? s.slice(0, -1) : s))
 }
 
+/** Pull a compound path (one `d` with several shapes in it) into separate paths, one per shape, so pieces can be deleted, moved or coloured on their own. */
+function breakApart() {
+  const el = selEl()
+  if (!el || !live) return
+  let first: Element | null = null
+  const split = (p: Element) => {
+    if (p.localName !== 'path') return
+    const subs = splitSubpaths(parsePath(p.getAttribute('d') ?? ''))
+    if (subs.length < 2) return
+    for (const sub of subs) { const c = p.cloneNode(false) as Element; c.setAttribute('d', pathString(sub)); p.before(c); first ??= c }
+    p.remove()
+  }
+  if (el.localName === 'path') { split(el); if (first) sel = Math.max(0, drawn(live).indexOf(first as SVGGraphicsElement)) }
+  else { for (const p of [...el.querySelectorAll('path')]) split(p); if (el.localName === 'g') ungroup() } // pieces of a group become layers of their own
+}
+
 const OPS: Record<string, { label: string; run(): void }> = {
+  breakApart: { label: '✂ Break into pieces', run: breakApart },
   flipH: { label: '⇋ Flip left–right', run: () => transformSel(scale(-1, 1)) },
   flipV: { label: '⇅ Flip up–down', run: () => transformSel(scale(1, -1)) },
   rotL: { label: '⟲ Turn left 15°', run: () => transformSel(turn(-15)) },
@@ -711,16 +736,20 @@ function opsHtml(): string {
     ['Place in the footprint', ['hcenter', 'vcenter', 'left', 'right', 'top', 'bottom']],
     ['Copies', ['dup', 'mirrorH', 'mirrorV']],
     ['Order', ['front', 'forward', 'backward', 'back']],
+    ['Cut and split', ['breakApart']],
     ['Points (polygons and lines)', ['smooth', 'simplify']],
     ['Other', ['ungroup', 'del']],
   ]
   return `${has ? '' : '<p class="note">Select a shape first.</p>'}${groups.map(([t, list]) => `<h3>${t}</h3><div class="opgrid">${list.map(o => `<button data-op="${o}" ${has ? '' : 'disabled'}>${OPS[o].label}</button>`).join('')}</div>`).join('')}`
 }
 
+let lastFp = ''
+const thumbSig = new WeakMap<Element, string>()
 function paint(withSource = true) {
   const bad = problem(draft[cur])
   const k = KINDS[cur]
   root.style.setProperty('--c', color[cur]) // the item colour, for swatches
+  if (autoFit) { zoom = fitZoom(); const zs = root.querySelector<HTMLInputElement>('[data-zoom]'); if (zs) zs.value = String(zoom) }
   // the big stage
   const big = $('[data-big]')
   big.innerHTML = stageHtml(cur, zoom, 1, true)
@@ -740,25 +769,25 @@ function paint(withSource = true) {
   // side panel
   for (const t of root.querySelectorAll<HTMLElement>('[data-tab]')) t.classList.toggle('on', t.dataset.tab === tab)
   for (const p of root.querySelectorAll<HTMLElement>('[data-page]')) p.hidden = p.dataset.page !== tab
-  $('[data-page="item"]').innerHTML = itemHtml()
-  $('[data-page="props"]').innerHTML = propsHtml()
-  $('[data-page="add"]').innerHTML = addHtml()
-  $('[data-page="fx"]').innerHTML = fxHtml()
-  $('[data-page="ops"]').innerHTML = opsHtml()
-  renderLib()
-  if (!(document.activeElement instanceof HTMLInputElement && document.activeElement.matches('[data-fpw], [data-fph]'))) { fpW = fpW || k.w; fpH = fpH || k.h; $('[data-footprint]').innerHTML = footprintHtml() }
+  // only the tab you are looking at is rebuilt; the others are drawn when you switch to them
+  const pages: Record<string, () => string> = { item: itemHtml, add: addHtml, props: propsHtml, fx: fxHtml, ops: opsHtml }
+  if (pages[tab]) $(`[data-page="${tab}"]`).innerHTML = pages[tab]()
+  else if (tab === 'lib') renderLib()
+  fpW = fpW || k.w; fpH = fpH || k.h
+  const fpSig = `${cur}:${k.w}x${k.h}:${fpW}x${fpH}`
+  if (fpSig !== lastFp && !(document.activeElement instanceof HTMLInputElement && document.activeElement.matches('[data-fpw], [data-fph]'))) { lastFp = fpSig; $('[data-footprint]').innerHTML = footprintHtml() }
   for (const t of root.querySelectorAll<HTMLElement>('[data-tool]')) t.classList.toggle('on', t.dataset.tool === tool)
   root.querySelector('.stage.big')!.classList.toggle('penning', tool !== 'select')
   root.querySelector<HTMLElement>('.penopts')!.style.visibility = tool === 'select' ? 'hidden' : 'visible'
-  $('[data-penhint]').textContent = tool === 'dots' ? 'click to place points · click the first point or double-click to close · Enter closes · ⌫ removes the last · Esc cancels'
+  $('[data-penhint]').textContent = tool === 'select' ? '' : tool === 'dots' ? 'click to place points · click the first point or double-click to close · Enter closes · ⌫ removes the last · Esc cancels'
     : tool === 'line' ? 'click to place points · double-click or Enter to finish · ⌫ removes the last · Esc cancels' : tool === 'free' ? 'press and drag to draw; letting go finishes (end near the start to close it)' : 'click shapes to select · double-click a point to remove it · click a + to add one'
   // items and layers
   for (const b of root.querySelectorAll<HTMLElement>('.kinds button')) {
     b.classList.toggle('on', b.dataset.kind === cur)
     b.classList.toggle('dirty', dirty(b.dataset.kind!))
     const t = b.querySelector<HTMLElement>('.thumb')!
-    t.style.setProperty('--c', color[b.dataset.kind!])
-    t.innerHTML = draft[b.dataset.kind!] ?? ''
+    const sig = `${color[b.dataset.kind!]}${draft[b.dataset.kind!]}`
+    if (thumbSig.get(t) !== sig) { thumbSig.set(t, sig); t.style.setProperty('--c', color[b.dataset.kind!]); t.innerHTML = draft[b.dataset.kind!] ?? '' }
   }
   $('[data-layers]').innerHTML = live ? layersHtml() : ''
   $<HTMLButtonElement>('[data-undo]').disabled = hist[cur].at <= 0
@@ -985,7 +1014,7 @@ root.addEventListener('click', async e => {
   else if ('reset' in d) { setDraft(await api('/reset', cur)); sel = null; paint() }
   else if ('tidy' in d) { if (live) commit() }
   else if ('rotview' in d) { rot = !rot; paint() }
-  else if ('fit' in d) { zoom = Math.max(24, Math.min(96, Math.floor(520 / Math.max(KINDS[cur].w, KINDS[cur].h + 0.01) / 1.15))); $<HTMLInputElement>('[data-zoom]').value = String(zoom); paint() }
+  else if ('fit' in d) { autoFit = true; paint() }
 })
 
 root.addEventListener('dblclick', e => {
@@ -997,7 +1026,7 @@ root.addEventListener('dblclick', e => {
 root.addEventListener('input', e => {
   const t = e.target as HTMLInputElement
   if (t.matches('[data-src]')) { setDraft(t.value, true); paint(false) }
-  else if (t.matches('[data-zoom]')) { zoom = +t.value; paint() }
+  else if (t.matches('[data-zoom]')) { autoFit = false; zoom = +t.value; paint() }
   else if (t.matches('[data-color]')) { color[cur] = t.value; paint(false) }
   else if (t.matches('[data-newfill]')) { newFill = t.value; paint() }
   else if (t.dataset.prop === 'opacity') { const el = selEl(); if (el) el.setAttribute('opacity', t.value) }
@@ -1195,7 +1224,7 @@ function libHtml() {
     <button class="bigbtn" data-openbrowser>⤢ Open the big browser (all sets, big thumbnails)</button>
     <div class="thumbs" data-iconres>${thumbs(iconResults, 'ico')}</div>`
 }
-function renderLib() { const p = root.querySelector('[data-page="lib"]'); if (p && document.activeElement?.getAttribute('data-iconq') === null) p.innerHTML = libHtml() }
+function renderLib() { const p = root.querySelector('[data-page="lib"]'); if (p && tab === 'lib' && document.activeElement?.getAttribute('data-iconq') === null) p.innerHTML = libHtml() }
 
 // ---------------------------------------------------------------- events for the tools, footprint and library
 
@@ -1210,7 +1239,7 @@ root.addEventListener('click', async e => {
   if (!t) return
   const d = t.dataset
   if (d.tool) setTool(d.tool as typeof tool)
-  else if (d.fp) { const [x, y] = d.fp.split(',').map(Number); fpW = x + 1; fpH = y + 1; $('[data-footprint]').innerHTML = footprintHtml() }
+  else if (d.fp) { const [x, y] = d.fp.split(',').map(Number); fpW = x + 1; fpH = y + 1; lastFp = ''; $('[data-footprint]').innerHTML = footprintHtml() }
   else if ('fpapply' in d) applyFootprint()
   else if (d.libadd) addImport(libKey(d.libadd))
   else if (d.libreplace) replaceWithImport(libKey(d.libreplace))
@@ -1273,6 +1302,45 @@ addEventListener('keydown', e => {
   if (e.key.length === 1 && map[e.key.toLowerCase()]) setTool(map[e.key.toLowerCase()])
 })
 
+// ---------------------------------------------------------------- import by parts: keep only some pieces of a picture
+
+const INHERITED = ['fill', 'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin', 'fill-rule', 'clip-rule', 'fill-opacity', 'stroke-opacity', 'opacity']
+/** An SVG cut into its pieces: every drawn shape, and every separate shape inside a compound path, with the transforms and colours it inherited written onto it. */
+function svgParts(text: string): { vb: string; parts: string[] } | null {
+  const svg = cleanSvg(text)
+  if (!svg) return null
+  const vb = svg.getAttribute('viewBox') ?? `0 0 ${parseFloat(svg.getAttribute('width') ?? '') || 100} ${parseFloat(svg.getAttribute('height') ?? '') || 100}`
+  const xs = new XMLSerializer()
+  const parts: string[] = []
+  const emit = (el: Element, chain: string[], inh: Record<string, string>) => {
+    const c = el.cloneNode(el.localName === 'path' ? false : true) as Element
+    if (el.localName === 'path') for (const a of [...el.attributes]) c.setAttribute(a.name, a.value)
+    c.removeAttribute('transform')
+    if (chain.length) c.setAttribute('transform', chain.join(' '))
+    for (const [k, v] of Object.entries(inh)) if (!c.hasAttribute(k)) c.setAttribute(k, v)
+    parts.push(xs.serializeToString(c).replace(/ xmlns="[^"]*"/g, ''))
+    return c
+  }
+  const walk = (el: Element, chain: string[], inh: Record<string, string>) => {
+    if (NOT_DRAWN.includes(el.localName)) return
+    const own = el.getAttribute('transform')
+    const next = own ? [...chain, own] : chain
+    const inh2 = { ...inh }
+    for (const k of INHERITED) { const v = el.getAttribute(k); if (v !== null) inh2[k] = v }
+    if (el.localName === 'g' || el.localName === 'svg') { for (const c of el.children) walk(c, next, inh2); return }
+    if (el.localName === 'path') {
+      const subs = splitSubpaths(parsePath(el.getAttribute('d') ?? ''))
+      if (subs.length > 1) {
+        for (const sub of subs.slice(0, 400)) { const p = document.createElementNS(NS, 'path'); for (const a of [...el.attributes]) p.setAttribute(a.name, a.value); p.setAttribute('d', pathString(sub)); emit(p, next, inh2) }
+        return
+      }
+    }
+    emit(el, next, inh2)
+  }
+  walk(svg, [], {})
+  return { vb, parts: parts.slice(0, 400) }
+}
+
 // ---------------------------------------------------------------- the big icon browser
 
 let bOpen = false
@@ -1286,6 +1354,9 @@ let bLoading = false
 let bToken = 0
 let bTimer = 0
 let bWatch: IntersectionObserver | null = null
+let bPartsOn = false
+let bParts: { markup: string; on: boolean }[] = []
+let bVb = ''
 
 const bEl = () => document.querySelector<HTMLElement>('.browser')
 const bq = <T extends Element>(sel: string) => bEl()!.querySelector<T>(sel)!
@@ -1374,6 +1445,7 @@ async function bMore() {
 
 function bSelect(i: number, scroll = false) {
   bSel = i
+  bPartsOn = false
   for (const c of bEl()!.querySelectorAll('.bcell.on')) c.classList.remove('on')
   const cell = bEl()!.querySelector<HTMLElement>(`.bcell[data-bi="${i}"]`)
   cell?.classList.add('on')
@@ -1387,9 +1459,12 @@ function bDetail() {
   if (!x) { box.innerHTML = `<p class="note">Select a picture to see it big, then add it to <b>${esc(KINDS[cur].name)}</b> (${KINDS[cur].w} × ${KINDS[cur].h}).</p>`; return }
   const s = sets.find(t => t.id === bSet)
   const dims = /viewBox="0 0 (\d+) (\d+)"/.exec(x.svg)
-  box.innerHTML = `<div class="bprev" style="--c:${color[cur]}">${x.svg}</div>
+  const kept = bParts.filter(p => p.on).length
+  const preview = bPartsOn ? `<svg viewBox="${esc(bVb)}">${bParts.map((p, i) => `<g data-part="${i}" class="${p.on ? '' : 'off'}">${p.markup}</g>`).join('')}</svg>` : x.svg
+  box.innerHTML = `<div class="bprev ${bPartsOn ? 'cutting' : ''}" style="--c:${color[cur]}">${preview}</div>
     <h3>${esc(x.name)}</h3>
     <p class="note">${s ? `${esc(s.name)} · ${esc(s.license)}` : 'your import'}${dims ? ` · ${dims[1]} × ${dims[2]} grid` : ''}</p>
+    ${bPartsOn ? `<div class="acts"><b>${kept} of ${bParts.length} parts kept</b><button data-bpall>all</button><button data-bpnone>none</button><button data-bpinv>invert</button></div><p class="note">Click a part in the picture to drop it or bring it back.</p>` : `<div class="acts"><button data-bparts>✂ Choose parts…</button></div>`}
     <label class="row"><span>fit</span><input type="number" min="10" max="100" step="5" data-fitpct2 value="${fitPct}" style="width:54px">%&nbsp;of the footprint</label>
     <div class="acts"><button class="primary" data-badd>Add to ${esc(KINDS[cur].name)}</button><button data-baddclose>Add and close</button></div>
     <div class="acts"><button data-breplace>Replace the sprite</button>${bSet === 'imports' ? '<button data-bdel>Delete import</button>' : '<button data-bkeep>Keep in my imports</button>'}</div>
@@ -1400,8 +1475,9 @@ async function bAct(what: 'add' | 'addclose' | 'replace' | 'keep' | 'del') {
   const x = bItems[bSel]
   if (!x) return
   const note = () => bq<HTMLElement>('[data-bnote]')
-  if (what === 'add' || what === 'addclose') { addImport(x.svg); if (what === 'addclose') closeBrowser(); else if (note()) note().textContent = `added to ${KINDS[cur].name} ✓` }
-  else if (what === 'replace') { replaceWithImport(x.svg); closeBrowser() }
+  const text = bPartsOn ? `<svg xmlns="${NS}" viewBox="${bVb}">${bParts.filter(p => p.on).map(p => p.markup).join('')}</svg>` : x.svg
+  if (what === 'add' || what === 'addclose') { addImport(text); if (what === 'addclose') closeBrowser(); else if (note()) note().textContent = `added to ${KINDS[cur].name} ✓` }
+  else if (what === 'replace') { replaceWithImport(text); closeBrowser() }
   else if (what === 'keep') { await saveImport(slug(x.name), x.svg); await loadImports(); note().textContent = 'kept in your imports ✓' }
   else if (what === 'del') { await fetch(`/__sprites/import-delete?name=${encodeURIComponent(x.name)}`, { method: 'POST' }); await loadImports(); bReset() }
 }
@@ -1418,6 +1494,14 @@ document.addEventListener('click', e => {
   const set = t.closest<HTMLElement>('[data-bset]')
   if (set) { bSet = set.dataset.bset!; for (const b of bEl()!.querySelectorAll('[data-bset]')) b.classList.toggle('on', (b as HTMLElement).dataset.bset === bSet); bReset(); return }
   if (t.closest('[data-bclose]')) closeBrowser()
+  else if (t.closest('[data-bparts]')) {
+    const p = svgParts(bItems[bSel]?.svg ?? '')
+    if (p && p.parts.length) { bVb = p.vb; bParts = p.parts.map(markup => ({ markup, on: true })); bPartsOn = true; bDetail() }
+  }
+  else if (t.closest('[data-bpall]')) { bParts.forEach(p => { p.on = true }); bDetail() }
+  else if (t.closest('[data-bpnone]')) { bParts.forEach(p => { p.on = false }); bDetail() }
+  else if (t.closest('[data-bpinv]')) { bParts.forEach(p => { p.on = !p.on }); bDetail() }
+  else if (t.closest('[data-part]')) { const g = t.closest<SVGElement>('[data-part]')!; const p = bParts[+g.getAttribute('data-part')!]; if (p) { p.on = !p.on; bDetail() } }
   else if (t.closest('[data-badd]')) bAct('add')
   else if (t.closest('[data-baddclose]')) bAct('addclose')
   else if (t.closest('[data-breplace]')) bAct('replace')
@@ -1529,21 +1613,57 @@ root.addEventListener('dblclick', e => {
   input.addEventListener('blur', () => finish(true))
 })
 
+// ---------------------------------------------------------------- room to work: fold panels, fit the picture to the space
+
+/** The zoom at which the big picture fills the room the middle panel has, leaving space beside it for the in-game preview. */
+function fitZoom() {
+  const view = root.querySelector<HTMLElement>('.view')
+  const stages = root.querySelector<HTMLElement>('.stages')
+  if (!view || !stages) return zoom
+  const k = KINDS[cur]
+  const w = (rot ? k.h : k.w) + 2, h = (rot ? k.w : k.h) + 2
+  const availH = view.clientHeight - stages.offsetTop - 28
+  const availW = view.clientWidth - 260
+  return Math.max(20, Math.min(160, Math.floor(Math.min(availH / h, availW / w))))
+}
+
+function applyUi() {
+  root.classList.toggle('left-off', ui.left)
+  root.classList.toggle('right-off', ui.right)
+  for (const d of root.querySelectorAll<HTMLDetailsElement>('details[data-fold]')) {
+    const want = ui.folds[d.dataset.fold!]
+    if (want !== undefined) d.open = want
+  }
+}
+root.addEventListener('click', e => {
+  const b = (e.target as HTMLElement).closest<HTMLElement>('[data-collapse]')
+  if (!b) return
+  const side = b.dataset.collapse as 'left' | 'right'
+  ui[side] = !ui[side]
+  saveUi(); applyUi()
+})
+root.addEventListener('toggle', e => {
+  const d = e.target as HTMLDetailsElement
+  if (d.matches?.('details[data-fold]')) { ui.folds[d.dataset.fold!] = d.open; saveUi() }
+}, true)
+new ResizeObserver(() => { if (ready && autoFit && fitZoom() !== zoom) paint(false) }).observe(root)
+
 // ---------------------------------------------------------------- the page
 
 root.innerHTML = `
   <aside class="panel left">
-    <h2>Items</h2>
-    <div class="kinds">${ids.map(id => `<button data-kind="${id}"><span class="thumb"></span><span><b>${KINDS[id].name}</b><small>${KINDS[id].w} × ${KINDS[id].h}</small></span></button>`).join('')}</div>
-    <h2>Footprint</h2>
-    <div data-footprint></div>
-    <h2>Layers <small>(top is in front)</small></h2>
-    <ul class="layers" data-layers></ul>
+    <div class="phead"><span>Items · Layers</span><button data-collapse="left" title="Fold this panel away">‹</button></div>
+    <div class="pbody">
+      <details class="fold" data-fold="items" open><summary>Items</summary>
+        <div class="kinds">${ids.map(id => `<button data-kind="${id}"><span class="thumb"></span><span><b>${KINDS[id].name}</b><small>${KINDS[id].w} × ${KINDS[id].h}</small></span></button>`).join('')}</div></details>
+      <details class="fold" data-fold="footprint" open><summary>Footprint</summary><div data-footprint></div></details>
+      <details class="fold" data-fold="layers" open><summary>Layers <small>(top is in front)</small></summary><ul class="layers" data-layers></ul></details>
+    </div>
   </aside>
   <main class="panel view">
     <div class="bar">
       <button data-undo title="⌘Z">↶ Undo</button><button data-redo title="⇧⌘Z">↷ Redo</button>
-      <label>zoom <input type="range" min="24" max="96" value="${zoom}" data-zoom></label><button data-fit>fit</button>
+      <label>zoom <input type="range" min="24" max="96" value="${zoom}" data-zoom></label><button data-fit title="Fill the room there is (this is on until you drag the zoom)">fit</button>
       <label>snap <select data-snap>${[[1, '1 unit'], [2, '1/16 cell'], [4, '1/8 cell'], [8, '1/4 cell'], [16, '1/2 cell'], [32, 'whole cell']].map(([v, l]) => `<option value="${v}" ${v === snap ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
       <label>colour <input type="color" data-color></label>
       <label><input type="checkbox" data-grid="cells" checked> cells</label><label><input type="checkbox" data-grid="units"> quarter-cells</label><label><input type="checkbox" data-grid="box" checked> footprint</label>
@@ -1554,12 +1674,13 @@ root.innerHTML = `
       <span class="penopts"><label>thickness <input type="number" min="1" max="30" step="0.5" data-penwidth value="${penWidth}"></label><label>detail <input type="range" min="0.3" max="6" step="0.1" data-pendetail value="${penDetail}" title="how many points freehand keeps: left = more"></label><label><input type="checkbox" data-pensmooth> smooth curve</label></span>
       <small data-penhint></small>
     </div>
-    <div class="stages"><div class="stage big"><span>click to select · drag to move · corners resize · arrows nudge</span><div data-big></div></div><div class="stage game"><span data-realcap>in game</span><div data-real></div></div></div>
+    <div class="stages"><div class="stage big"><div data-big></div></div><div class="stage game"><span data-realcap>in game</span><div data-real></div></div></div>
     <div class="err" data-err></div>
-    <p class="note">Keys: <kbd>←↑↓→</kbd> nudge (<kbd>⇧</kbd> ×4) · <kbd>[</kbd> <kbd>]</kbd> smaller / bigger · <kbd>⌘D</kbd> duplicate · <kbd>⌘↑</kbd><kbd>⌘↓</kbd> forward / back (<kbd>⇧</kbd> all the way) · <kbd>⌫</kbd> delete · <kbd>⌘Z</kbd> undo · <kbd>⌘S</kbd> save · hold <kbd>⌥</kbd> while resizing for free stretch. Draw in the item colour and it follows the item. A sprite is plain SVG at ${UNIT} units per cell, in <code>src/sprites/</code>.</p>
+    <details class="fold help" data-fold="help"><summary>Keys and tips</summary><p class="note">Keys: <kbd>←↑↓→</kbd> nudge (<kbd>⇧</kbd> ×4) · <kbd>[</kbd> <kbd>]</kbd> smaller / bigger · <kbd>⌘D</kbd> duplicate · <kbd>⌘↑</kbd><kbd>⌘↓</kbd> forward / back (<kbd>⇧</kbd> all the way) · <kbd>⌫</kbd> delete · <kbd>⌘Z</kbd> undo · <kbd>⌘S</kbd> save · hold <kbd>⌥</kbd> while resizing for free stretch. Draw in the item colour and it follows the item. A sprite is plain SVG at ${UNIT} units per cell, in <code>src/sprites/</code>.</p></details>
   </main>
   <section class="panel side">
-    <h2 data-title></h2>
+    <div class="phead"><h2 data-title></h2><button data-collapse="right" title="Fold this panel away">›</button></div>
+    <div class="pbody side-body">
     <div class="tabs">${[['item', 'Item'], ['add', 'Add'], ['props', 'Shape'], ['fx', 'Effects'], ['ops', 'Ops'], ['lib', 'Library'], ['src', 'SVG']].map(([t, l]) => `<button data-tab="${t}">${l}</button>`).join('')}</div>
     <div class="pages">
       <div data-page="item"></div><div data-page="add"></div><div data-page="props"></div><div data-page="fx"></div><div data-page="ops"></div><div data-page="lib"></div>
@@ -1571,6 +1692,7 @@ root.innerHTML = `
       <select data-copy><option value="">Copy from…</option>${ids.map(id => `<option value="${id}">${KINDS[id].name}</option>`).join('')}</select>
       <span class="note" data-status></span>
     </div>
+    </div>
   </section>`
 
 Promise.all(ids.map(async id => {
@@ -1579,4 +1701,4 @@ Promise.all(ids.map(async id => {
   try { d = localStorage.getItem(`sprite-draft:${id}`) ?? d } catch { /* private window */ }
   draft[id] = d
   hist[id] = { stack: [d], at: 0, t: 0 }
-})).then(() => { paint(); loadImports(); loadSets(); searchIcons('') })
+})).then(() => { ready = true; applyUi(); paint(); loadImports(); loadSets(); searchIcons('') })

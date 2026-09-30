@@ -1,7 +1,9 @@
 /* The sprite editor. Reuses the game's styles for the field squares and items, so a sprite looks here exactly as it will there. */
 
 body.editor { overflow: auto; }
-#ed { display: grid; grid-template-columns: 220px minmax(380px, 1fr) 400px; gap: 12px; height: 100vh; padding: 10px; }
+#ed { display: grid; grid-template-columns: var(--lw, 220px) minmax(380px, 1fr) var(--rw, 400px); gap: 12px; height: 100vh; padding: 10px; }
+#ed.left-off { --lw: 34px; }
+#ed.right-off { --rw: 34px; }
 #ed > * { min-height: 0; }
 .panel { background: #131316; border: 1px solid var(--line); border-radius: 3px; padding: 10px; }
 .panel h2 { margin: 0 0 8px; font: 600 11px ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: #86847e; }
@@ -205,3 +207,35 @@ code { color: #d8d5cd; }
 .stage.game { flex: 1 1 170px; min-width: 0; }
 .stage.game [data-real] { overflow: hidden; }
 .stage.game .grid { max-width: 100%; }
+
+/* folding: panels to a slim rail, sections to their titles */
+.phead { display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-bottom: 8px; }
+.phead h2, .phead span { margin: 0; font: 600 11px ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: #86847e; }
+.phead button { padding: 0 7px; background: none; border: 1px solid var(--line2); border-radius: 2px; color: #86847e; font: 14px/18px ui-monospace, Menlo, monospace; }
+.phead button:hover { color: var(--hi); border-color: var(--hi); }
+.pbody { display: flex; flex-direction: column; gap: 6px; min-height: 0; flex: 1; overflow: auto; }
+.side-body { overflow: hidden; }
+.left { display: flex; flex-direction: column; overflow: hidden; }
+.left .pbody { overflow: auto; }
+#ed.left-off .left .pbody, #ed.right-off .side .pbody { display: none; }
+#ed.left-off .left .phead span, #ed.right-off .side .phead h2 { display: none; }
+#ed.left-off .left, #ed.right-off .side { padding: 8px 4px; }
+#ed.left-off .phead, #ed.right-off .phead { flex-direction: column; margin: 0; }
+#ed.left-off .left::after, #ed.right-off .side::after { content: 'items · layers'; writing-mode: vertical-rl; margin: 14px auto 0; color: #66645f; font: 10px ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; }
+#ed.right-off .side::after { content: 'tools'; }
+.fold { border-top: 1px solid var(--line); padding-top: 6px; }
+.fold:first-child { border-top: 0; padding-top: 0; }
+.fold > summary { cursor: pointer; list-style: none; margin-bottom: 6px; font: 600 11px ui-monospace, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: #86847e; user-select: none; }
+.fold > summary::-webkit-details-marker { display: none; }
+.fold > summary::before { content: '▾ '; }
+.fold:not([open]) > summary::before { content: '▸ '; }
+.fold > summary:hover { color: var(--hi); }
+.fold > summary small { text-transform: none; letter-spacing: 0; font-weight: 400; }
+.view { position: relative; }
+.help { margin-top: auto; }
+
+/* pick parts on import */
+.bprev.cutting svg g[data-part] { cursor: pointer; }
+.bprev.cutting svg g[data-part]:hover { opacity: .6; }
+.bprev.cutting svg g[data-part].off { opacity: .12; }
+.bprev.cutting svg g[data-part].off:hover { opacity: .4; }

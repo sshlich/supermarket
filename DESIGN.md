@@ -37,6 +37,15 @@ updates live when one is saved.
   saved to `src/kinds.json` (item data now lives there, not in `world.ts`). Saved layouts are repaired on load.
 - **Library.** Drop or paste SVGs (they are cleaned of scripts and outside links, and kept in `src/imports/`), and add
   any of them to the sprite or replace it; "use the item colour" makes imports follow the item.
+- **Speed.** Selection boxes come from exact path maths (`parsePath` / `pathBounds` in `src/editor/geom.ts`: curves parsed
+  once, extremes solved), not from asking the browser, which was about 100x slower (a nudge on the crate went from ~1000 ms
+  to ~7 ms); only the visible tab is rebuilt on each change.
+- **Room to work.** Both side panels fold to a slim rail; the Items / Footprint / Layers sections and the key help fold
+  (remembered between visits); the big picture fits itself to the room there is until you drag the zoom (button "fit"
+  turns it back on).
+- **Cutting pieces.** In the icon browser, "Choose parts" splits a picture into its shapes (and each shape of a compound
+  path) and lets you click parts away before adding. In a sprite, "Break into pieces" (Ops) splits a compound path or a
+  whole group into separate layers you can delete, move or recolour.
 - **Icon browser** (Library tab, "Open the big browser"): full-screen, ~60,000 icons from eight Iconify sets (game-icons,
   Pixelarticons, Fluent Emoji outline, Material Design Icons, Material Symbols, Tabler, Lucide, Phosphor) plus your
   imports; search by name, thumbnail size slider, endless scroll, a big tinted preview with the licence, keyboard

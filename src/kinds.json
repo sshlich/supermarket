@@ -2,7 +2,7 @@
   "crate": {
     "name": "Crate",
     "icon": "wooden-crate",
-    "color": "#c9975a",
+    "color": "#8f6236",
     "w": 4,
     "h": 4
   },
@@ -31,7 +31,7 @@
     "name": "Knife",
     "icon": "bowie-knife",
     "color": "#b4bfcc",
-    "w": 2,
+    "w": 1,
     "h": 4
   },
   "axe": {
@@ -44,7 +44,7 @@
   "pickaxe": {
     "name": "Pickaxe",
     "icon": "war-pick",
-    "color": "#a6b2c0",
+    "color": "#f0ece2",
     "w": 3,
     "h": 3
   }
