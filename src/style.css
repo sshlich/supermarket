@@ -31,9 +31,10 @@ svg { display: block; width: 100%; height: 100%; }
 .item { position: absolute; z-index: 1; left: calc(var(--x) * var(--cell)); top: calc(var(--y) * var(--cell)); width: calc(var(--w) * var(--cell)); height: calc(var(--h) * var(--cell)); color: var(--c); pointer-events: none; }
 .item svg { width: 100%; height: 100%; overflow: visible; }
 /* the squares an item sits on stay neutral, a touch lighter than the empty ones; the coloured glyph art on top is the item */
-/* items sit straight on the grid, with no backing; their footprint goes tan when hovered or selected */
-.item .sq rect { fill: transparent; stroke: transparent; stroke-width: .03; pointer-events: none; }
-body:not(.dragging) .item:hover .sq rect, .item.sel .sq rect { fill: #62523f; stroke: #62523f; }
+/* items sit straight on the grid, with no backing; their footprint goes tan when hovered, selected, or about to be picked by the
+   sweep rectangle. The tan is see-through so the grid's lines stay visible over it. */
+.item .sq rect { fill: transparent; pointer-events: none; }
+body:not(.dragging):not(.sweeping) .item:hover .sq rect, .item.sel .sq rect, .item.pre .sq rect { fill: rgba(196, 156, 104, .42); }
 
 .item .hit rect { fill: transparent; pointer-events: all; cursor: grab; }
 .art { position: absolute; left: 50%; top: 50%; pointer-events: none; width: calc(var(--kw) * var(--cell)); height: calc(var(--kh) * var(--cell)); transform: translate(-50%, -50%) rotate(var(--r)); }

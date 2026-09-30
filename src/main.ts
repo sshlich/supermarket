@@ -118,6 +118,7 @@ app.addEventListener('pointerdown', e => {
     box.className = 'marquee'
     app.querySelector('.grid')!.appendChild(box)
     marquee = { x0: e.clientX - r0.left, y0: e.clientY - r0.top, add, el: box }
+    document.body.classList.add('sweeping')
     e.preventDefault()
     return
   }
@@ -152,21 +153,32 @@ addEventListener('pointerup', () => {
   press = null
 })
 
+/** Which things the sweep rectangle touches right now. */
+function sweepHits(): number[] {
+  const q = marquee!
+  const r = gridRect()
+  const b = q.el.getBoundingClientRect()
+  if (b.width < 3 && b.height < 3) return []
+  const x0 = Math.floor((b.left - r.left) / cell), x1 = Math.ceil((b.right - r.left) / cell), y0 = Math.floor((b.top - r.top) / cell), y1 = Math.ceil((b.bottom - r.top) / cell)
+  return s.items.filter(it => cellsOf(it).some(([cx, cy]) => it.x + cx >= x0 && it.x + cx < x1 && it.y + cy >= y0 && it.y + cy < y1)).map(it => it.id)
+}
+
 function sweep(e: PointerEvent) {
   const q = marquee!
   const r = gridRect()
   const x = Math.max(0, Math.min(r.width, e.clientX - r.left)), y = Math.max(0, Math.min(r.height, e.clientY - r.top))
   Object.assign(q.el.style, { left: `${Math.min(q.x0, x)}px`, top: `${Math.min(q.y0, y)}px`, width: `${Math.abs(x - q.x0)}px`, height: `${Math.abs(y - q.y0)}px` })
+  // show what the rectangle would pick as you sweep, and nothing else (hovering is off while sweeping)
+  const hit = new Set(sweepHits())
+  for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) el.classList.toggle('pre', hit.has(+el.dataset.id!))
 }
 function endSweep() {
   const q = marquee!
+  const hit = sweepHits()
   marquee = null
-  const r = gridRect()
-  const b = q.el.getBoundingClientRect()
   q.el.remove()
-  if (b.width < 3 && b.height < 3) return
-  const x0 = Math.floor((b.left - r.left) / cell), x1 = Math.ceil((b.right - r.left) / cell), y0 = Math.floor((b.top - r.top) / cell), y1 = Math.ceil((b.bottom - r.top) / cell)
-  const hit = s.items.filter(it => { const o = boxOf(it); return cellsOf(it).some(([cx, cy]) => o.x + cx >= x0 && o.x + cx < x1 && o.y + cy >= y0 && o.y + cy < y1) }).map(it => it.id)
+  document.body.classList.remove('sweeping')
+  for (const el of app.querySelectorAll('.item.pre')) el.classList.remove('pre')
   pick(q.add ? [...selected, ...hit] : hit)
 }
 
