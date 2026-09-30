@@ -229,9 +229,11 @@ function turn(back = false) {
   if (d.held.items.length > 1) return // a group keeps its arrangement
   const before = dims({ ...d.held.item, rot: d.rot })
   d.rot = quarter(d.rot + (back ? 3 : 1))
-  // the point you hold it by turns with it, about its centre
-  const w = before.w * cell, h = before.h * cell;
-  [d.gx, d.gy] = back ? [d.gy, w - d.gx] : [h - d.gy, d.gx]
+  // it turns about its own centre, which stays where it was on screen (the pointer keeps its place on the screen, not on the item)
+  const after = dims({ ...d.held.item, rot: d.rot })
+  const w = before.w * cell, h = before.h * cell
+  d.gx += (after.w * cell - w) / 2
+  d.gy += (after.h * cell - h) / 2
   d.key = ''
   paintFloating()
   if (last) move(last)

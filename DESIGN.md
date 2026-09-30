@@ -69,7 +69,7 @@ The save endpoint lives in `vite.config.ts`; shape maths and matrices are in `sr
 ## Handling (the game page)
 
 - **Turning is four-way.** `rot` on an item is quarter turns clockwise (0-3), so upside down is a real state. While
-  dragging: `R` turns clockwise, `Q` back, right-click clockwise. The point you hold it by turns with it. Squares can
+  dragging: `R` turns clockwise, `Q` back, right-click clockwise. It turns about its own centre, which stays where it was on screen. Squares can
   turn too (only the sprite changes). Auto-turning to fit (relaxed mode) only tries orientations with a different
   footprint. Old saves (`true`/`false`) are converted on load.
 
