@@ -1,5 +1,5 @@
 import './style.css'
-import { applyDrop, boxOf, cellsOf, dims, find, H, interaction, KINDS, lift, planDrop, putBack, quarter, remove, settle, spawn, start, targetsFor, W, type Held, type Item, type Plan, type State } from './world.ts'
+import { applyDrop, cellsOf, dims, find, H, hostsFor, inSpace, interaction, intoHost, isContainer, KINDS, lift, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, targetsFor, W, type Held, type Item, type Plan, type Space, type State } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -26,8 +26,11 @@ function load(): State | null {
 }
 const save = () => { try { localStorage.setItem(SAVE, JSON.stringify(s)) } catch { /* private window */ } }
 
+/** How wide a docked panel is, in squares: the widest inside any container can be. */
+const PW = Math.max(6, ...Object.values(KINDS).flatMap(k => (k.slots ?? []).map(sl => sl.w)))
+
 function fit() {
-  cell = Math.floor(Math.max(16, Math.min(40, (innerWidth - 48) / W, (innerHeight - 150) / H)))
+  cell = Math.floor(Math.max(14, Math.min(40, (innerWidth - 150) / (W + 2 * PW), (innerHeight - 150) / H)))
   document.documentElement.style.setProperty('--cell', `${cell}px`)
 }
 
@@ -65,10 +68,23 @@ function trayHtml() {
   return `<div class="tray"><span>put on the field</span>${Object.entries(KINDS).map(([id, k]) => `<button data-spawn="${id}" style="--c:${k.color}" title="${(k.desc ?? '').replace(/"/g, '&quot;')}"><i></i>${k.name}</button>`).join('')}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
 }
 
+/** One docked panel: the insides of a container, a small grid for each of its slots. Empty docks are drawn faintly so they can be dropped on. */
+function panelHtml(dock: number, id: number | null) {
+  const it = id === null ? undefined : find(s, id)
+  if (!it) return `<div class="panel empty" data-dock="${dock}"><span>empty dock</span></div>`
+  const k = KINDS[it.kind]
+  const slots = (k.slots ?? []).map((sl, i) => {
+    const note = [sl.name, sl.accepts?.length ? `${sl.accepts.join(', ')} only` : '', sl.rejects?.length ? `no ${sl.rejects.join(', ')}` : ''].filter(Boolean).join(' · ')
+    return `<div class="slotbox">${note ? `<div class="slotnote">${note}</div>` : ''}<div class="grid" data-grid data-space="${it.id}:${i}" data-w="${sl.w}" data-h="${sl.h}" style="--w:${sl.w};--h:${sl.h}">${inSpace(s, { host: it.id, slot: i }).map(itemHtml).join('')}</div></div>`
+  }).join('')
+  return `<div class="panel" data-dock="${dock}"><div class="panel-head" data-head style="--c:${k.color}"><i></i><span>${k.name}</span><button data-close="${it.id}" title="Close">✕</button></div>${slots}</div>`
+}
+
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
-  document.querySelector('.hl')?.remove() // lights belong to a drag; none may outlive it
-  app.innerHTML = `<div class="field" style="--w:${W};--h:${H}"><div class="grid" data-grid>${s.items.map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div>`
+  document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
+  const p = s.panels ?? (s.panels = [null, null, null, null])
+  app.innerHTML = `<div class="stage" style="--pw:${PW}"><div class="dock">${panelHtml(0, p[0])}${panelHtml(1, p[1])}</div><div class="center"><div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div><div class="dock">${panelHtml(2, p[2])}${panelHtml(3, p[3])}</div></div>`
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
     const was = from.get(+el.dataset.id!)
@@ -90,13 +106,18 @@ function changed(from?: Map<number, DOMRect>) {
 
 // ---------------------------------------------------------------- handling
 
-interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; targets: Item[]; use: Item | null }
+interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; targets: Item[]; hosts: Item[]; use: Item | null; into: Item | null; space: Space; over: boolean }
 let press: { id: number; x: number; y: number; gx: number; gy: number; toggle: boolean; wasGroup: boolean } | null = null
 let drag: Drag | null = null
 let last: PointerEvent | null = null
-let marquee: { x0: number; y0: number; add: boolean; el: HTMLElement } | null = null
+let marquee: { x0: number; y0: number; add: boolean; el: HTMLElement; grid: HTMLElement; space: Space } | null = null
+let panelDrag: { dock: number; el: HTMLElement } | null = null
 
-const gridRect = () => app.querySelector('.grid')!.getBoundingClientRect()
+const spaceAt = (g: HTMLElement): Space => { const k = g.dataset.space!; if (k === 'field') return null; const [host, slot] = k.split(':').map(Number); return { host, slot } }
+const gridOf = (sp: Space) => app.querySelector<HTMLElement>(`.grid[data-space="${spaceKey(sp)}"]`)
+/** The grid under a screen point, if any. */
+const gridUnder = (x: number, y: number) => [...app.querySelectorAll<HTMLElement>('.grid[data-space]')].find(g => { const r = g.getBoundingClientRect(); return x >= r.left && x < r.right && y >= r.top && y < r.bottom }) ?? null
+const dockUnder = (x: number, y: number) => [...app.querySelectorAll<HTMLElement>('.panel[data-dock]')].find(p => { const r = p.getBoundingClientRect(); return x >= r.left && x < r.right && y >= r.top && y < r.bottom }) ?? null
 
 /** Show what is selected without redrawing everything. */
 function paintSelection() {
@@ -108,16 +129,26 @@ app.addEventListener('pointerdown', e => {
   if (e.button !== 0 || drag) return
   const t = e.target as HTMLElement
   const el = t.closest<HTMLElement>('.item[data-id]')
-  const r0 = gridRect()
+  const head = t.closest<HTMLElement>('[data-head]')
+  if (head && !t.closest('button')) { // grab a panel by its header to move it to another dock
+    const panel = head.closest<HTMLElement>('.panel')!
+    panelDrag = { dock: +panel.dataset.dock!, el: panel }
+    panel.classList.add('grabbed')
+    document.body.classList.add('dragging')
+    e.preventDefault()
+    return
+  }
+  const grid = t.closest<HTMLElement>('.grid[data-space]')
   if (!el) {
-    if (!t.closest('.grid')) return
+    if (!grid) return
+    const r0 = grid.getBoundingClientRect()
     // empty ground: sweep out a rectangle to pick everything it touches
     const add = e.shiftKey || e.metaKey || e.ctrlKey
     if (!add) pick([])
     const box = document.createElement('div')
     box.className = 'marquee'
-    app.querySelector('.grid')!.appendChild(box)
-    marquee = { x0: e.clientX - r0.left, y0: e.clientY - r0.top, add, el: box }
+    grid.appendChild(box)
+    marquee = { x0: e.clientX - r0.left, y0: e.clientY - r0.top, add, el: box, grid, space: spaceAt(grid) }
     document.body.classList.add('sweeping')
     e.preventDefault()
     return
@@ -138,12 +169,14 @@ app.addEventListener('pointerdown', e => {
 addEventListener('pointermove', e => {
   last = e
   if (marquee) return sweep(e)
+  if (panelDrag) { app.querySelectorAll('.panel.over').forEach(p => p.classList.remove('over')); const o = dockUnder(e.clientX, e.clientY); if (o && o !== panelDrag.el) o.classList.add('over'); return }
   if (press && !drag && Math.hypot(e.clientX - press.x, e.clientY - press.y) > 4) begin()
   if (drag) move(e)
 })
 
 addEventListener('pointerup', () => {
   if (marquee) endSweep()
+  else if (panelDrag) endPanelDrag()
   else if (drag) finish(true)
   else if (press) {
     // a click, not a drag: shift-click toggles, a plain click on one of a group narrows it to that one
@@ -153,19 +186,29 @@ addEventListener('pointerup', () => {
   press = null
 })
 
+/** Let go of a panel: it swaps docks with whatever dock it is over. */
+function endPanelDrag() {
+  const pd = panelDrag!
+  panelDrag = null
+  document.body.classList.remove('dragging')
+  const o = dockUnder(last?.clientX ?? -1, last?.clientY ?? -1)
+  if (o && o !== pd.el && s.panels) { const j = +o.dataset.dock!; [s.panels[pd.dock], s.panels[j]] = [s.panels[j], s.panels[pd.dock]]; changed(new Map()) }
+  else { pd.el.classList.remove('grabbed'); app.querySelectorAll('.panel.over').forEach(p => p.classList.remove('over')) }
+}
+
 /** Which things the sweep rectangle touches right now. */
 function sweepHits(): number[] {
   const q = marquee!
-  const r = gridRect()
+  const r = q.grid.getBoundingClientRect()
   const b = q.el.getBoundingClientRect()
   if (b.width < 3 && b.height < 3) return []
   const x0 = Math.floor((b.left - r.left) / cell), x1 = Math.ceil((b.right - r.left) / cell), y0 = Math.floor((b.top - r.top) / cell), y1 = Math.ceil((b.bottom - r.top) / cell)
-  return s.items.filter(it => cellsOf(it).some(([cx, cy]) => it.x + cx >= x0 && it.x + cx < x1 && it.y + cy >= y0 && it.y + cy < y1)).map(it => it.id)
+  return inSpace(s, q.space).filter(it => cellsOf(it).some(([cx, cy]) => it.x + cx >= x0 && it.x + cx < x1 && it.y + cy >= y0 && it.y + cy < y1)).map(it => it.id)
 }
 
 function sweep(e: PointerEvent) {
   const q = marquee!
-  const r = gridRect()
+  const r = q.grid.getBoundingClientRect()
   const x = Math.max(0, Math.min(r.width, e.clientX - r.left)), y = Math.max(0, Math.min(r.height, e.clientY - r.top))
   Object.assign(q.el.style, { left: `${Math.min(q.x0, x)}px`, top: `${Math.min(q.y0, y)}px`, width: `${Math.abs(x - q.x0)}px`, height: `${Math.abs(y - q.y0)}px` })
   // show what the rectangle would pick as you sweep, and nothing else (hovering is off while sweeping)
@@ -198,7 +241,7 @@ addEventListener('keydown', e => {
     else if (e.key === 'Escape') finish(false)
     return
   }
-  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'a') { e.preventDefault(); pick(s.items.map(o => o.id)) }
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'a') { e.preventDefault(); pick(inSpace(s, null).map(o => o.id)) }
   else if (e.key === 'Escape') pick([])
   else if ((e.key === 'Delete' || e.key === 'Backspace') && selected.size) { e.preventDefault(); remove(s, [...selected]); selected = new Set(); changed(new Map()) }
   else if (e.key.toLowerCase() === 's' && !e.metaKey && !e.ctrlKey) toggleStrict()
@@ -221,7 +264,7 @@ function begin() {
   if (!held) { press = null; return }
   const el = document.body.appendChild(document.createElement('div'))
   el.className = 'floating'
-  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', targets: targetsFor(s, held.items), use: null }
+  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', targets: targetsFor(s, held.items), hosts: hostsFor(s, held.items), use: null, into: null, space: null, over: false }
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
   paintFloating()
@@ -254,61 +297,86 @@ function turn(back = false) {
 function move(e: PointerEvent) {
   const d = drag!
   d.el.style.transform = `translate(${e.clientX - d.gx}px, ${e.clientY - d.gy}px)`
-  const r = gridRect()
+  const g = gridUnder(e.clientX, e.clientY)
+  if (!g) { // over no grid: nothing to drop on, it would go back
+    if (d.key === 'none') return
+    Object.assign(d, { key: 'none', plan: null, use: null, into: null, over: false })
+    return paintGhosts(0, 0)
+  }
+  const sp = spaceAt(g)
+  const r = g.getBoundingClientRect()
   const x = Math.round((e.clientX - d.gx - r.left) / cell)
   const y = Math.round((e.clientY - d.gy - r.top) / cell)
-  const under = d.targets.find(t => absCells(t).some(([cx, cy]) => cx === Math.floor((e.clientX - r.left) / cell) && cy === Math.floor((e.clientY - r.top) / cell))) ?? null
-  const key = `${x}:${y}:${d.rot}:${strictNow()}:${under?.id ?? ''}`
+  const px = Math.floor((e.clientX - r.left) / cell), py = Math.floor((e.clientY - r.top) / cell)
+  const on = (t: Item) => sameSpace(spaceOf(t), sp) && cellsOf(t).some(([cx, cy]) => t.x + cx === px && t.y + cy === py)
+  const under = d.targets.find(on) ?? null
+  const host = under ? null : d.hosts.find(on) ?? null // dropped onto a container: goes inside it
+  const key = `${spaceKey(sp)}:${x}:${y}:${d.rot}:${strictNow()}:${under?.id ?? ''}:${host?.id ?? ''}`
   if (key === d.key) return
   d.key = key
   d.use = under
-  d.plan = planDrop(s, d.held, x, y, d.rot, strictNow())
+  d.over = true
+  d.space = sp
+  d.plan = host ? intoHost(s, d.held, host.id) : null
+  d.into = d.plan ? host : null
+  if (!d.plan) d.plan = planDrop(s, d.held, sp, x, y, d.rot, strictNow())
   paintGhosts(x, y)
 }
 
 function clearGhosts() {
-  document.querySelector('.hl')?.remove()
+  document.querySelectorAll('.hl').forEach(el => el.remove())
   for (const el of app.querySelectorAll('.shoved')) el.classList.remove('shoved')
 }
 
-type Light = { cells: [number, number][]; kind: 'ok' | 'bad' | 'use' | 'usenow' | 'land' | 'shove' }
-/** Light up squares: each thing is one filled shape (a single path, so an irregular footprint is one piece, not a heap of squares). */
+type Light = { sp: Space; cells: [number, number][]; kind: 'ok' | 'bad' | 'use' | 'usenow' | 'land' | 'shove' }
+/** Light up squares: each thing is one filled shape (a single path, so an irregular footprint is one piece, not a heap of squares). One overlay per grid. */
 function light(list: Light[]) {
-  const shapes = list.map(l => `<path class="hl-${l.kind}" d="${l.cells.map(([x, y]) => `M${x} ${y}h1v1h-1z`).join('')}"/><path class="hl-edge hl-${l.kind}" d="${outline(l.cells)}"/>`).join('')
-  // fixed over the field and above the thing in hand, so the tint shows through whatever is being held
-  const g = gridRect()
-  document.body.insertAdjacentHTML('beforeend', `<svg class="hl" viewBox="0 0 ${W} ${H}" style="left:${g.left}px;top:${g.top}px;width:${g.width}px;height:${g.height}px">${shapes}</svg>`)
+  const by = new Map<string, Light[]>()
+  for (const l of list) by.set(spaceKey(l.sp), [...(by.get(spaceKey(l.sp)) ?? []), l])
+  for (const [k, ls] of by) {
+    const grid = app.querySelector<HTMLElement>(`.grid[data-space="${k}"]`)
+    if (!grid) continue // that container is not open
+    const shapes = ls.map(l => `<path class="hl-${l.kind}" d="${l.cells.map(([x, y]) => `M${x} ${y}h1v1h-1z`).join('')}"/><path class="hl-edge hl-${l.kind}" d="${outline(l.cells)}"/>`).join('')
+    // fixed over the grid and above the thing in hand, so the tint shows through whatever is being held
+    const g = grid.getBoundingClientRect()
+    document.body.insertAdjacentHTML('beforeend', `<svg class="hl" viewBox="0 0 ${grid.dataset.w} ${grid.dataset.h}" style="left:${g.left}px;top:${g.top}px;width:${g.width}px;height:${g.height}px">${shapes}</svg>`)
+  }
 }
 
 /**
- * What to show while dragging. Anything the held thing can be used on gets blue squares (bright under the pointer).
- * In strict mode the squares it would take go green if they are all free and red if not. In the relaxed mode there is no
- * such light: just a plain outline of where it lands (and dashed outlines for what gives way), and red only if there is
- * truly no way to place it.
+ * What to show while dragging. Anything the held thing can be used on gets blue squares (bright under the pointer), and so
+ * does any container that would take it (bright when dropping onto it puts it inside). In strict mode the squares it would take
+ * go green if they are all free and red if not. In the relaxed mode there is no such light: just a plain outline of where it
+ * lands (and dashed outlines for what gives way), and red only if there is truly no way to place it.
  */
 function paintGhosts(x: number, y: number) {
   clearGhosts()
   const d = drag!
   const p = d.plan
   const a = d.held.item
-  const out: Light[] = d.targets.map(t => ({ cells: absCells(t), kind: d.use?.id === t.id ? 'usenow' : 'use' }))
+  const out: Light[] = d.targets.map(t => ({ sp: spaceOf(t), cells: absCells(t), kind: d.use?.id === t.id ? 'usenow' : 'use' }))
+  for (const h of d.hosts) out.push({ sp: spaceOf(h), cells: absCells(h), kind: d.into?.id === h.id ? 'usenow' : 'use' })
   if (d.use) { light(out); return } // using it, not placing it
   if (!p) {
     // refused: red where each thing would go
-    for (const it of d.held.items) {
-      const rot = it === a ? d.rot : it.rot
-      const dd = dims({ ...it, rot })
-      const rx = it === a ? x : x + (it.x - a.x), ry = it === a ? y : y + (it.y - a.y)
-      out.push({ cells: absCells({ ...it, rot, x: Math.max(0, Math.min(W - dd.w, rx)), y: Math.max(0, Math.min(H - dd.h, ry)) }), kind: 'bad' })
+    if (d.over) {
+      const { w: SW, h: SH } = { w: +(gridOf(d.space)?.dataset.w ?? W), h: +(gridOf(d.space)?.dataset.h ?? H) }
+      for (const it of d.held.items) {
+        const rot = it === a ? d.rot : it.rot
+        const dd = dims({ ...it, rot })
+        const rx = it === a ? x : x + (it.x - a.x), ry = it === a ? y : y + (it.y - a.y)
+        out.push({ sp: d.space, cells: absCells({ ...it, rot, x: Math.max(0, Math.min(SW - dd.w, rx)), y: Math.max(0, Math.min(SH - dd.h, ry)) }), kind: 'bad' })
+      }
     }
     light(out)
     return
   }
   const landing = strictNow() ? 'ok' : 'land'
-  out.push({ cells: absCells({ ...a, x: p.x, y: p.y, rot: p.rot }), kind: landing })
+  if (!d.into) out.push({ sp: p.space, cells: absCells({ ...a, x: p.x, y: p.y, rot: p.rot }), kind: landing })
   for (const mv of p.moves) {
     const o = find(s, mv.id)!
-    out.push({ cells: absCells({ ...o, x: mv.x, y: mv.y, rot: mv.rot }), kind: mv.group ? landing : 'shove' })
+    if (d.into && !mv.group) continue
+    out.push({ sp: p.space, cells: absCells({ ...o, x: mv.x, y: mv.y, rot: mv.rot }), kind: mv.group ? landing : 'shove' })
     if (!mv.group) app.querySelector(`.item[data-id="${mv.id}"]`)?.classList.add('shoved')
   }
   light(out)
@@ -348,8 +416,23 @@ render(new Map())
 app.addEventListener('click', e => {
   const b = (e.target as HTMLElement).closest<HTMLElement>('button')
   if (!b) return
+  if (b.dataset.close) { s.panels = (s.panels ?? []).map(p => (p === +b.dataset.close! ? null : p)); changed(new Map()); return }
   if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
   else if ('strict' in b.dataset) toggleStrict()
   else if ('clear' in b.dataset) { s.items = []; selected = new Set(); changed(new Map()) }
   else if ('reset' in b.dataset) { s = start(); selected = new Set(); changed(new Map()) }
+})
+
+/** Double-click a container to open its insides in the first free dock. */
+app.addEventListener('dblclick', e => {
+  const el = (e.target as HTMLElement).closest<HTMLElement>('.item[data-id]')
+  const it = el && find(s, +el.dataset.id!)
+  if (!it || !isContainer(it.kind)) return
+  const panels = s.panels ?? (s.panels = [null, null, null, null])
+  if (panels.includes(it.id)) { app.querySelector(`.panel[data-dock="${panels.indexOf(it.id)}"]`)?.animate([{ transform: 'scale(1.02)' }, { transform: 'none' }], { duration: 200 }); return }
+  const free = panels.indexOf(null)
+  if (free < 0) { toast('all four docks are in use: close one first'); return }
+  panels[free] = it.id
+  pick([])
+  changed()
 })

@@ -12,7 +12,25 @@
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; background: var(--bg); color: #e6e3dc; user-select: none; -webkit-user-select: none; overflow: hidden; }
 svg { display: block; width: 100%; height: 100%; }
-#app { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; min-height: 100vh; }
+#app { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+.stage { display: flex; align-items: flex-start; justify-content: center; gap: 22px; }
+.center { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+
+/* the docks: up to four open containers, two down each side of the field */
+.dock { display: flex; flex-direction: column; gap: 14px; width: calc(var(--pw) * var(--cell) + 20px); }
+.panel { padding: 8px 10px 10px; border-radius: 3px; background: #15121a; box-shadow: 0 0 0 2px #4b3a55; transition: opacity .15s; }
+.panel.empty { display: grid; place-items: center; min-height: calc(4 * var(--cell)); background: none; box-shadow: none; border: 1px dashed #2c2833; color: #4a4653; font: 11px ui-monospace, 'SF Mono', Menlo, monospace; }
+.panel.grabbed { opacity: .45; }
+.panel.over, .panel.empty.over { box-shadow: 0 0 0 2px #c49c68; border-color: #c49c68; }
+.panel-head { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; cursor: grab; font: 11px ui-monospace, 'SF Mono', Menlo, monospace; color: #cfcbd4; }
+.panel-head i { width: 9px; height: 9px; border-radius: 2px; background: var(--c); }
+.panel-head span { flex: 1; }
+.panel-head button { background: none; border: 0; color: #86847e; cursor: pointer; font: inherit; padding: 0 2px; }
+.panel-head button:hover { color: var(--hi); }
+.slotbox + .slotbox { margin-top: 8px; }
+.slotnote { margin-bottom: 4px; font: 10px ui-monospace, 'SF Mono', Menlo, monospace; color: #86847e; }
+.panel .grid { border-radius: 2px; box-shadow: none; }
+
 
 /* the field (the whole inventory): dark aubergine with a slightly lighter grid, and a Schluter orange outline all round.
    While something is dragged it glows green where it can go and red where it cannot. */

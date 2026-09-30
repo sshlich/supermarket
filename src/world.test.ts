@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, start, W, type State } from './world.ts'
+import { accepts, intoHost, applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, start, W, type State } from './world.ts'
 
 const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 
@@ -18,12 +18,12 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   const s = start()
   const crate = at(s, 1)
   const h = lift(s, crate.id)!
-  const p = planDrop(s, h, 20, 15, false)!
+  const p = planDrop(s, h, null, 20, 15, 0)!
   assert.equal(p.moves.length, 0)
   applyDrop(s, h, p)
   assert.deepEqual([crate.x, crate.y], [20, 15])
   const h2 = lift(s, crate.id)!
-  const p2 = planDrop(s, h2, 10, 3, false)! // onto the axe
+  const p2 = planDrop(s, h2, null, 10, 3, 0)! // onto the axe
   applyDrop(s, h2, p2)
   for (const a of s.items) for (const b of s.items) if (a !== b) assert.equal(overlaps(boxOf(a), boxOf(b)), false)
 }
@@ -32,7 +32,7 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   const s = start()
   const axe = at(s, 2)
   const h = lift(s, axe.id)!
-  const p = planDrop(s, h, 10, 3, 1)!
+  const p = planDrop(s, h, null, 10, 3, 1)!
   assert.equal(p.rot, 1)
   putBack(h)
   assert.deepEqual([axe.x, axe.y, axe.rot], [10, 3, 0])
@@ -41,7 +41,7 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 {
   const s = start()
   const h = lift(s, 1)!
-  const p = planDrop(s, h, 99, 99, false)!
+  const p = planDrop(s, h, null, 99, 99, 0)!
   assert.deepEqual([p.x, p.y], [W - 4, H - 4])
 }
 
@@ -75,7 +75,7 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   // dropping it onto the coal shoves the coal only as far as the L's real squares need
   const h = lift(s, knife.id)!
   const spot = s.items.find(o => o.kind === 'coal')!
-  const p = planDrop(s, h, spot.x - 1, spot.y, 0)
+  const p = planDrop(s, h, null, spot.x - 1, spot.y, 0)
   assert.ok(p)
   applyDrop(s, h, p!)
   for (const a of s.items) for (const b of s.items) if (a !== b) assert.equal(overlaps(boxOf(a), boxOf(b)), false)
@@ -102,10 +102,10 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   const crate = s.items.find(o => o.kind === 'crate')!
   const axe = s.items.find(o => o.kind === 'axe')!
   const h = lift(s, crate.id)!
-  const onAxe = planDrop(s, h, axe.x, axe.y, 0, true)
+  const onAxe = planDrop(s, h, null, axe.x, axe.y, 0, true)
   assert.equal(onAxe, null) // overlapping: refused, no shoving
-  assert.ok(planDrop(s, h, axe.x, axe.y, 0, false)) // the easy way shoves the axe aside
-  const free = planDrop(s, h, 20, 15, 0, true)!
+  assert.ok(planDrop(s, h, null, axe.x, axe.y, 0, 0)) // the easy way shoves the axe aside
+  const free = planDrop(s, h, null, 20, 15, 0, true)!
   assert.deepEqual([free.x, free.y, free.moves.length], [20, 15, 0])
   const before = JSON.stringify(s.items)
   assert.equal(JSON.stringify(s.items), before) // planning never changes anything
@@ -118,7 +118,7 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   const h = lift(s, a.id, [a.id, b.id])!
   assert.equal(h.items.length, 2)
   const gap = b.x - a.x
-  const p = planDrop(s, h, 12, 15, 0, true)!
+  const p = planDrop(s, h, null, 12, 15, 0, true)!
   assert.ok(p)
   const other = p.moves.find(m => m.id === b.id)!
   assert.equal(other.x - p.x, gap) // same spacing
@@ -129,8 +129,8 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   // strict onto the crate with the pair: refused
   const crate = s.items.find(o => o.kind === 'crate')!
   const h2 = lift(s, a.id, [a.id, b.id])!
-  assert.equal(planDrop(s, h2, crate.x, crate.y, 0, true), null)
-  const easy = planDrop(s, h2, crate.x, crate.y, 0, false)
+  assert.equal(planDrop(s, h2, null, crate.x, crate.y, 0, true), null)
+  const easy = planDrop(s, h2, null, crate.x, crate.y, 0, 0)
   if (easy) { applyDrop(s, h2, easy); for (const x of s.items) for (const y of s.items) if (x !== y) assert.equal(overlaps(boxOf(x), boxOf(y)), false) }
   // put back restores every one
   const h3 = lift(s, a.id, [a.id, b.id])!
@@ -173,7 +173,7 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
     assert.equal(b.rot, r)
   }
   const h = lift(s, bar.id)!
-  const upside = planDrop(s, h, 3, 15, 2, true)! // strict: no auto-turning, so it stays upside down
+  const upside = planDrop(s, h, null, 3, 15, 2, true)! // strict: no auto-turning, so it stays upside down
   assert.equal(upside.rot, 2)
   applyDrop(s, h, upside)
   assert.equal(bar.rot, 2)
@@ -185,3 +185,34 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 }
 
 console.log('world ok')
+
+{
+  // containers: filters, nesting, cascade
+  const s = start()
+  const chest = spawn(s, 'chest')!, crate = s.items.find(o => o.kind === 'crate')!
+  const log = s.items.find(o => o.kind === 'log')!, axe = s.items.find(o => o.kind === 'axe')!
+  const h = lift(s, log.id)!
+  const p = intoHost(s, h, chest.id)!
+  assert.deepEqual(p.space, { host: chest.id, slot: 0 })
+  applyDrop(s, h, p)
+  assert.deepEqual(log.in, { host: chest.id, slot: 0 })
+  assert.equal(intoHost(s, lift(s, axe.id)!, chest.id), null, 'chest refuses non-fuel')
+  assert.equal(planDrop(s, lift(s, axe.id)!, { host: chest.id, slot: 0 }, 0, 0, 0), null)
+  // no cycles, and depth stops at 2: chest in crate is fine, crate in chest is not (and chest refuses anyway)
+  assert.equal(accepts(s, crate, { host: chest.id, slot: 0 }), false)
+  const crate2 = spawn(s, 'crate')!
+  applyDrop(s, lift(s, chest.id)!, intoHost(s, lift(s, chest.id)!, crate.id)!)
+  assert.equal(chest.in!.host, crate.id)
+  assert.equal(accepts(s, crate, { host: crate2.id, slot: 0 }), false, 'crate holding a chest holding a log is 3 deep in another crate')
+  assert.equal(accepts(s, crate, { host: crate.id, slot: 0 }), false, 'no cycle')
+  // settle keeps the nest; removing the crate takes everything with it
+  const s2 = settle(JSON.parse(JSON.stringify(s)))
+  assert.equal(s2.items.find(o => o.id === log.id)!.in!.host, chest.id)
+  remove(s, [crate.id])
+  assert.ok(!s.items.some(o => o.id === chest.id || o.id === log.id))
+  // a slot that vanished sends its items to the field
+  const s3 = start(); const c3 = s3.items.find(o => o.kind === 'crate')!
+  spawn(s3, 'coal', { host: c3.id, slot: 0 })
+  s3.items.find(o => o.in)!.in = { host: c3.id, slot: 7 }
+  assert.equal(settle(s3).items.filter(o => o.in).length, 0)
+}

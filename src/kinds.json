@@ -4,21 +4,36 @@
     "icon": "wooden-crate",
     "color": "#8f6236",
     "w": 4,
-    "h": 4
+    "h": 4,
+    "slots": [
+      {
+        "w": 6,
+        "h": 5
+      }
+    ],
+    "tags": [
+      "container"
+    ]
   },
   "log": {
     "name": "Log",
     "icon": "log",
     "color": "#b98552",
     "w": 5,
-    "h": 1
+    "h": 1,
+    "tags": [
+      "fuel"
+    ]
   },
   "coal": {
     "name": "Coal",
     "icon": "coal-pile",
     "color": "#8a90a0",
     "w": 2,
-    "h": 2
+    "h": 2,
+    "tags": [
+      "fuel"
+    ]
   },
   "bottle": {
     "name": "Bottle",
@@ -77,6 +92,27 @@
       "###",
       ".#.",
       ".#."
+    ]
+  },
+  "chest": {
+    "name": "Fuel chest",
+    "icon": "chest",
+    "color": "#9a6a3a",
+    "w": 3,
+    "h": 2,
+    "tags": [
+      "container"
+    ],
+    "desc": "Holds fuel only.",
+    "slots": [
+      {
+        "name": "fuel",
+        "w": 5,
+        "h": 3,
+        "accepts": [
+          "fuel"
+        ]
+      }
     ]
   }
 }
