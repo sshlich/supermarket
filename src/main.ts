@@ -38,7 +38,7 @@ function itemHtml(it: Item) {
   const k = KINDS[it.kind]
   const d = dims(it)
   const cells = cellsOf(it) // only the squares it takes, however odd the shape
-  const squares = cells.map(([x, y]) => `<rect x="${x + 0.1}" y="${y + 0.1}" width="0.8" height="0.8" rx="0.08"/>`).join('')
+  const squares = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('') // the imprint: the field's own squares, lit lighter
   const hit = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('')
   // the outline of the footprint, shown when the item is selected: an edge wherever a square has no neighbour
   const has = new Set(cells.map(([x, y]) => `${x},${y}`))
@@ -89,7 +89,6 @@ let drag: Drag | null = null
 let last: PointerEvent | null = null
 let marquee: { x0: number; y0: number; add: boolean; el: HTMLElement } | null = null
 
-const field = () => app.querySelector<HTMLElement>('.field')
 const gridRect = () => app.querySelector('.grid')!.getBoundingClientRect()
 
 /** Show what is selected without redrawing everything. */
@@ -239,10 +238,6 @@ function move(e: PointerEvent) {
   d.key = key
   d.plan = planDrop(s, d.held, x, y, d.rot, strictNow())
   paintGhosts(x, y)
-  const over = e.clientX > r.left - 40 && e.clientX < r.right + 40 && e.clientY > r.top - 40 && e.clientY < r.bottom + 40
-  const f = field()
-  f?.classList.toggle('can', over && !!d.plan)
-  f?.classList.toggle('cant', over && !d.plan)
 }
 
 function clearGhosts() {
@@ -287,8 +282,6 @@ function finish(drop: boolean) {
   const d = drag!
   drag = null
   document.body.classList.remove('dragging')
-  const f = field()
-  f?.classList.remove('can', 'cant')
   const from = rects()
   d.el.querySelectorAll<HTMLElement>('.item').forEach((el, i) => from.set(d.held.items[i].id, el.getBoundingClientRect()))
   if (drop && d.plan) applyDrop(s, d.held, d.plan)

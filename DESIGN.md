@@ -74,6 +74,6 @@ The save endpoint lives in `vite.config.ts`; shape maths and matrices are in `sr
 - **Strict mode** (`S`, or the button under the field; remembered): a drop is accepted only if every square is free and
   nothing else ever moves. Otherwise it is refused. Hold **Shift** while dragging to do the opposite for that one move: in
   strict mode Shift lets the shuffle-to-fit happen, and outside it Shift makes one move strict.
-- **Feedback.** While dragging, the whole inventory glows green where the drop will work and red where it will not; ghosts
-  show where each thing lands (and, dashed, what gives way).
-- **The field** is 25 x 20: dark aubergine with a slightly lighter grid and a Schluter orange outline round the whole inventory.
+- **Feedback.** Ghosts (green where it lands, red if refused, dashed for what gives way)
+  show it while dragging; there is no glow.
+- **The field** is 25 x 20: dark aubergine with a slightly lighter grid and a muted copper outline; a thing's imprint is the same squares lit a lighter tone, and selected things get a white outline.
