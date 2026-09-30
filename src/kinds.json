@@ -44,23 +44,15 @@
     "h": 4,
     "uses": [
       {
-        "on": "bottle",
+        "on": "vessel",
         "verb": "pour"
       }
     ],
     "tags": [
       "vessel"
     ],
-    "slots": [
-      {
-        "name": "contents",
-        "w": 1,
-        "h": 2,
-        "accepts": [
-          "liquid"
-        ]
-      }
-    ]
+    "capacity": 750,
+    "desc": "A corked bottle: 750 ml, one liquid at a time."
   },
   "knife": {
     "name": "Knife",
@@ -161,6 +153,80 @@
         "name": "output",
         "w": 5,
         "h": 2
+      }
+    ]
+  },
+  "well": {
+    "name": "Well",
+    "icon": "well",
+    "color": "#5b7fa8",
+    "w": 3,
+    "h": 3,
+    "tags": [
+      "container"
+    ],
+    "machine": "well",
+    "desc": "Fills the bottle in it with water, 250 ml a tick.",
+    "slots": [
+      {
+        "name": "bottle",
+        "w": 2,
+        "h": 4,
+        "accepts": [
+          "vessel"
+        ]
+      }
+    ]
+  },
+  "vat": {
+    "name": "Mash vat",
+    "icon": "barrel",
+    "color": "#a07030",
+    "w": 3,
+    "h": 3,
+    "tags": [
+      "container"
+    ],
+    "machine": "vat",
+    "desc": "Fills the bottle in it with mash, 250 ml a tick.",
+    "slots": [
+      {
+        "name": "bottle",
+        "w": 2,
+        "h": 4,
+        "accepts": [
+          "vessel"
+        ]
+      }
+    ]
+  },
+  "still": {
+    "name": "Still",
+    "icon": "alembic",
+    "color": "#b0785a",
+    "w": 3,
+    "h": 3,
+    "tags": [
+      "container"
+    ],
+    "machine": "still",
+    "desc": "Distils mash into spirit: 100 ml a tick in, half that out.",
+    "slots": [
+      {
+        "name": "mash in",
+        "w": 2,
+        "h": 4,
+        "accepts": [
+          "vessel"
+        ]
+      },
+      {
+        "name": "spirit out",
+        "w": 2,
+        "h": 4,
+        "accepts": [
+          "vessel"
+        ]
       }
     ]
   }

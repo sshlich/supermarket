@@ -116,3 +116,7 @@ e.g. pouring water into another container, slaughtering a rabbit with a knife, a
 - A kind may have `slots` (each: w, h, accepts/rejects tags, optional name). Items inside carry `in: {host, slot}`; x, y are in that slot's grid.
 - Containers do not go in containers, except kinds tagged `vessel` (bottle): one extra level, `MAX_NEST` 2. Double-click a container to open it as a panel; up to 4 docks (two each side), drag a panel header onto another dock to swap. Dropping an item onto an accepting container puts it inside (blue light).
 - Next: machines = kinds with several named slots (zones); a clock button advancing `advance(state, ticks)` (hearth, still); recipes hard-coded; `uses` effects; tooltips.
+
+## Liquids (2026-09-29)
+- A liquid is a property of a vessel (kind `capacity`, in ml; item `liquid: {type, ml}`), not an item. Corked: nothing spills. One liquid per vessel; pouring a different one is refused. Pour = a `uses` verb on `vessel`, moves as much as fits.
+- Machines take liquid through vessels put in a slot accepting `vessel` (the flex slot); they read and write the vessel, at a per-tick rate (well/vat 250 ml, still 100 ml in, 2:1). Mixing table: later, one lookup in `pour`.

@@ -1,5 +1,5 @@
 import './style.css'
-import { advance, applyDrop, cellsOf, dims, find, H, hostsFor, inSpace, interaction, intoHost, isContainer, KINDS, lift, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, targetsFor, W, type Held, type Item, type Plan, type Space, type State } from './world.ts'
+import { advance, applyDrop, cellsOf, dims, find, H, hostsFor, inSpace, interaction, intoHost, isContainer, KINDS, LIQUIDS, capacityOf, pour, lift, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, targetsFor, W, type Held, type Item, type Plan, type Space, type State } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -45,6 +45,7 @@ function itemHtml(it: Item) {
   const hit = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('')
   return `<div class="item ${selected.has(it.id) ? 'sel' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
     <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><g class="hit">${hit}</g></svg>
+    ${it.liquid ? `<i class="gauge" style="--f:${it.liquid.ml / (capacityOf(it) || 1)};--lc:${LIQUIDS[it.liquid.type]?.color ?? '#888'}" title="${LIQUIDS[it.liquid.type]?.name ?? it.liquid.type}: ${it.liquid.ml} ml"></i>` : ''}
     <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${quarter(it.rot) * 90}deg">${SPRITE[it.kind] ?? ''}</div></div>`
 }
 
@@ -410,6 +411,7 @@ function finish(drop: boolean) {
   const from = rects()
   d.el.querySelectorAll<HTMLElement>('.item').forEach((el, i) => from.set(d.held.items[i].id, el.getBoundingClientRect()))
   const use = drop && d.use ? interaction(d.held.item, d.use) : null
+  if (use && d.use && use.verb === 'pour') { const type = LIQUIDS[d.held.item.liquid!.type]?.name, n = pour(d.held.item, d.use); putBack(d.held); changed(from); toast(`poured ${n} ml of ${type}`); d.el.remove(); return }
   if (use && d.use) { putBack(d.held); changed(from); toast(`${KINDS[d.held.item.kind].name} → ${KINDS[d.use.kind].name}: ${use.verb}  (uses have no effect yet)`); d.el.remove(); return }
   if (drop && d.plan) applyDrop(s, d.held, d.plan)
   else putBack(d.held)

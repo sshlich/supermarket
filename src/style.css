@@ -96,3 +96,5 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .clock svg { width: 16px; height: 16px; }
 .clock:hover { border-color: var(--hi); }
 .panel-head em { font-style: normal; color: #c8623a; }
+/* how full a vessel is: a strip up its left edge in the liquid's colour */
+.gauge { position: absolute; left: 1px; bottom: 1px; width: 4px; height: calc(var(--f) * (100% - 2px)); background: var(--lc); border-radius: 1px; pointer-events: none; }

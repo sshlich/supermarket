@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { advance, accepts, intoHost, applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, start, W, type State } from './world.ts'
+import { pour, advance, accepts, intoHost, applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, start, W, type State } from './world.ts'
 
 const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 
@@ -251,5 +251,31 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   assert.ok(!s.items.includes(wood))
   assert.ok(s.items.some(o => o.kind === 'coal' && o.in?.slot === 2), 'charcoal made')
   assert.equal(s.tick, 8)
+}
+{
+  // liquids: pouring keeps one liquid per vessel and never overfills; the still is limited by its rate
+  const s: State = { items: [], next: 1, panels: [] }
+  const a = spawn(s, 'bottle')!, b = spawn(s, 'bottle')!
+  a.liquid = { type: 'water', ml: 500 }
+  assert.equal(interaction(a, b)?.verb, 'pour')
+  assert.equal(pour(a, b), 500); assert.equal(a.liquid, undefined)
+  a.liquid = { type: 'brew', ml: 300 }
+  assert.equal(interaction(a, b), null, 'different liquid refused')
+  b.liquid = { type: 'water', ml: 700 }
+  assert.equal(pour(b, a), 0)
+  const c = spawn(s, 'bottle')!; c.liquid = { type: 'water', ml: 750 }
+  const d = spawn(s, 'bottle')!; d.liquid = { type: 'water', ml: 100 }
+  assert.equal(pour(c, d), 650); assert.equal(c.liquid!.ml, 100)
+  // still: 100 ml of mash a tick in, half out
+  const st = spawn(s, 'still')!, vat = spawn(s, 'vat')!
+  const i = spawn(s, 'bottle', { host: st.id, slot: 0 })!, o = spawn(s, 'bottle', { host: st.id, slot: 1 })!
+  i.liquid = { type: 'brew', ml: 250 }
+  advance(s, 2)
+  assert.equal(i.liquid!.ml, 50); assert.equal(o.liquid!.ml, 100)
+  advance(s, 3)
+  assert.equal(i.liquid, undefined); assert.equal(o.liquid!.ml, 125)
+  const v = spawn(s, 'bottle', { host: vat.id, slot: 0 })!
+  advance(s, 4)
+  assert.equal(v.liquid!.ml, 750)
 }
 console.log('world ok')

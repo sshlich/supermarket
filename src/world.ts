@@ -11,7 +11,7 @@ export const H = 20
  * rectangle, says which squares inside it are taken ('#') and which are free ('.'). The rest is for people: a description
  * (for tooltips), private notes, and tags.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; uses?: Use[]; slots?: Slot[]; machine?: string }
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; uses?: Use[]; slots?: Slot[]; machine?: string; capacity?: number }
 /**
  * A container's inside, or one named zone of a machine: a small grid with its own rules. A plain container has one slot; a
  * machine has several (input, fuel, output...). `accepts` and `rejects` are tags; nothing else is checked.
@@ -25,7 +25,7 @@ export const KINDS: Record<string, Kind> = DATA
 
 /** `rot` is how many quarter turns clockwise it has been turned (0 to 3): 2 is upside down. */
 /** `in` says which container's slot it sits in (its x, y are then inside that slot's grid); no `in` means on the field. */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; m?: { burn: number; work: number } }
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; m?: { burn: number; work: number }; liquid?: { type: string; ml: number } }
 /** `panels` are the open containers, docked to the sides: [left top, left bottom, right top, right bottom]. */
 export interface State { items: Item[]; next: number; panels?: (number | null)[]; tick?: number }
 
@@ -223,7 +223,7 @@ export function remove(s: State, ids: number[]) {
 /** What holding `held` over `target` would do, if anything: the first of the held kind's `uses` that names the target's kind or one of its tags. */
 export function interaction(held: Item, target: Item): Use | null {
   const tags = KINDS[target.kind].tags ?? []
-  return (KINDS[held.kind].uses ?? []).find(u => u.on === target.kind || tags.includes(u.on)) ?? null
+  return (KINDS[held.kind].uses ?? []).find(u => (u.on === target.kind || tags.includes(u.on)) && (u.verb !== 'pour' || canPour(held, target))) ?? null
 }
 /** Everything the held thing can be used on (anywhere; what is on screen is the page's business). */
 export const targetsFor = (s: State, held: Item[]) => s.items.filter(o => !held.includes(o) && interaction(held[0], o))
@@ -300,9 +300,38 @@ export function start(): State {
   put('coal', 10, 12)
   put('coal', 13, 12)
   put('bottle', 18, 11)
+  s.items[s.items.length - 1].liquid = { type: 'water', ml: 500 }
+  put('bottle', 21, 11)
   put('knife', 22, 4)
   return s
 }
+
+// ---------------------------------------------------------------- liquids
+// A liquid is a property of a vessel (a kind with a `capacity`), in millilitres. Vessels are corked: nothing spills. One liquid per vessel.
+
+export const LIQUIDS: Record<string, { name: string; color: string }> = {
+  water: { name: 'Water', color: '#5aa8e6' },
+  brew: { name: 'Mash', color: '#b07a2a' },
+  spirit: { name: 'Spirit', color: '#d8e4c0' },
+}
+export const capacityOf = (it: Item) => KINDS[it.kind]?.capacity ?? 0
+const amount = (it: Item) => it.liquid?.ml ?? 0
+/** Can something of `from` go into `to`: it has liquid, `to` is a vessel with room, and holds nothing or the same liquid. */
+export function canPour(from: Item, to: Item): boolean {
+  if (!from.liquid || from.id === to.id || !capacityOf(to)) return false
+  if (to.liquid && to.liquid.type !== from.liquid.type) return false
+  return amount(to) < capacityOf(to)
+}
+/** Move as much as fits; returns how many ml moved. */
+export function pour(from: Item, to: Item): number {
+  if (!canPour(from, to)) return 0
+  const n = Math.min(amount(from), capacityOf(to) - amount(to))
+  give(to, from.liquid!.type, n)
+  take(from, n)
+  return n
+}
+const give = (it: Item, type: string, ml: number) => { it.liquid = { type, ml: amount(it) + ml } }
+const take = (it: Item, ml: number) => { it.liquid!.ml -= ml; if (it.liquid!.ml <= 0) delete it.liquid }
 
 // ---------------------------------------------------------------- time and machines
 
@@ -328,7 +357,28 @@ function hearth(s: State, h: Item) {
   const r = RECIPES[job.kind]
   if (m.work >= r.time && spawn(s, r.out, { host: h.id, slot: 2 })) { remove(s, [job.id]); m.work = 0 } // no room in the output: it waits
 }
-const MACHINES: Record<string, (s: State, h: Item) => void> = { hearth }
+/** The vessel in a machine's slot, if any. Machines work through vessels you put in: the slot is the flex slot for liquid containers. */
+const vesselIn = (s: State, h: Item, slot: number) => zone(s, h, slot).find(o => capacityOf(o))
+
+/** A source (well, vat): tops up the vessel in slot 0 by `rate` ml a tick with one liquid. */
+const source = (liquid: string, rate: number) => (s: State, h: Item) => {
+  const v = vesselIn(s, h, 0)
+  if (!v || (v.liquid && v.liquid.type !== liquid)) return
+  const n = Math.min(rate, capacityOf(v) - amount(v))
+  if (n > 0) give(v, liquid, n)
+}
+
+/** The still: at most STILL_RATE ml of mash a tick from the vessel in slot 0 into the vessel in slot 1, two ml of mash for one of spirit. */
+const STILL_RATE = 100
+function still(s: State, h: Item) {
+  const a = vesselIn(s, h, 0), b = vesselIn(s, h, 1)
+  if (a?.liquid?.type !== 'brew' || !b || (b.liquid && b.liquid.type !== 'spirit')) return
+  const n = Math.min(STILL_RATE, amount(a), (capacityOf(b) - amount(b)) * 2) & ~1
+  if (n < 2) return
+  take(a, n)
+  give(b, 'spirit', n / 2)
+}
+const MACHINES: Record<string, (s: State, h: Item) => void> = { hearth, well: source('water', 250), vat: source('brew', 250), still }
 
 /** Let time pass: every machine takes its turn, once per tick. The one entry point, so anything can trigger it later. */
 export function advance(s: State, ticks = 1) {
