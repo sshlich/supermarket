@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 96">
+  <defs>
+    <radialGradient id="lantern-glow" cx=".5" cy=".55" r=".55">
+      <stop offset="0" stop-color="#ffd27a" stop-opacity=".75"/>
+      <stop offset=".6" stop-color="#ff9a3c" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#ff9a3c" stop-opacity=".05"/>
+    </radialGradient>
+  </defs>
+  <path data-name="ring" fill="none" stroke="currentColor" stroke-width="3.6" d="M32 3.4A7.6 7.6 0 1 1 31.9 3.4Z"/>
+  <path data-name="cap" fill="currentColor" d="M24 18.6H40L50 29.4H14Z"/>
+  <path data-name="cap, in shade" fill="#000" fill-opacity=".26" d="M32 18.6H40L50 29.4H32Z"/>
+  <rect data-name="cap rim" x="10" y="28.4" width="44" height="5.2" rx="1.6" fill="currentColor"/>
+  <path data-name="glass" fill="url(#lantern-glow)" d="M16.4 33.6H47.6V73H16.4Z"/>
+  <path data-name="flame, outer" fill="#ff9a3c" d="M32 41C35.6 46 38.4 50.4 38.4 55.6C38.4 60.4 35.6 63.6 32 63.6C28.4 63.6 25.6 60.4 25.6 55.6C25.6 50.4 28.4 46 32 41Z"/>
+  <path data-name="flame, inner" fill="#ffe08a" d="M32 48.6C34 51.4 35 53.6 35 56.4C35 59.4 33.6 61.2 32 61.2C30.4 61.2 29 59.4 29 56.4C29 53.6 30 51.4 32 48.6Z"/>
+  <rect data-name="wick holder" x="28.6" y="63" width="6.8" height="4" rx="1" fill="#3a3a44"/>
+  <path data-name="glass, sheen" fill="#fff" fill-opacity=".3" d="M19.4 36H23V70.6H19.4Z"/>
+  <path data-name="frame bars" fill="currentColor" d="M14.4 33.6H18V73H14.4ZM46 33.6H49.6V73H46ZM30.2 33.6H33.8V40H30.2Z"/>
+  <path data-name="frame bars, in shade" fill="#000" fill-opacity=".25" d="M46 33.6H49.6V73H46Z"/>
+  <rect data-name="fount" x="10" y="72.4" width="44" height="7" rx="1.6" fill="currentColor"/>
+  <path data-name="base" fill="currentColor" d="M13 79.4H51L54 90.6Q54 92.6 52 92.6H12Q10 92.6 10 90.6Z"/>
+  <path data-name="base, in shade" fill="#000" fill-opacity=".26" d="M38 79.4H51L54 90.6Q54 92.6 52 92.6H38Z"/>
+  <path data-name="lit edges" fill="#fff" fill-opacity=".3" d="M10 28.4H54V30.2H10ZM10 72.4H54V74.2H10ZM13 79.4H51V81H13Z"/>
+  <rect data-name="key" x="52" y="83" width="6" height="3.6" rx="1.2" fill="#3a3a44"/>
+</svg>

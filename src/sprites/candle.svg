@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <ellipse data-name="glow" cx="16" cy="13" rx="9" ry="11" fill="#ffb44a" fill-opacity=".16"/>
+  <path data-name="flame, outer" fill="#ff9a3c" d="M16 3.4C19 7.6 21 11 21 14.4C21 18.2 18.8 20.6 16 20.6C13.2 20.6 11 18.2 11 14.4C11 11 13 7.6 16 3.4Z"/>
+  <path data-name="flame, inner" fill="#ffe08a" d="M16 9.6C17.6 11.8 18.4 13.4 18.4 15.4C18.4 17.6 17.4 19 16 19C14.6 19 13.6 17.6 13.6 15.4C13.6 13.4 14.4 11.8 16 9.6Z"/>
+  <path data-name="wick" fill="none" stroke="#2a2226" stroke-width="1.6" stroke-linecap="round" d="M16 18.4V23.4"/>
+  <path data-name="candle" fill="currentColor" d="M9.6 24.6C9.6 23.6 12.6 23 16 23C19.4 23 22.4 23.6 22.4 24.6V54H9.6Z"/>
+  <path data-name="candle, in shade" fill="#000" fill-opacity=".14" d="M17.6 23.1C20.4 23.3 22.4 23.8 22.4 24.6V54H17.6Z"/>
+  <path data-name="drips" fill="currentColor" d="M9.6 24.4C8.6 28 8.6 31 9.6 33.4C10.6 31 10.6 27.6 11 24.6ZM20.6 24.8C21.6 26.6 23.4 29 23 33C22.6 35.6 21 35.2 20.6 33Z"/>
+  <path data-name="drips, lit" fill="#fff" fill-opacity=".45" d="M10 24.6C9.4 27.4 9.4 30 9.8 31.4C10.2 29.6 10.4 27 10.6 24.6Z"/>
+  <path data-name="top, molten" fill="#fff" fill-opacity=".35" d="M10.6 24.4C11.8 23.6 14 23.4 16 23.4C18 23.4 20.4 23.6 21.4 24.4C19.6 25.2 12.4 25.2 10.6 24.4Z"/>
+  <path data-name="dish" fill="#c9975a" d="M2.6 54.2H29.4C29.4 58.6 24 61.4 16 61.4C8 61.4 2.6 58.6 2.6 54.2Z"/>
+  <path data-name="dish, in shade" fill="#000" fill-opacity=".24" d="M16 54.2H29.4C29.4 58.6 24 61.4 16 61.4Z"/>
+  <ellipse data-name="dish rim" cx="16" cy="54.2" rx="13.4" ry="2.6" fill="#e2b877"/>
+</svg>

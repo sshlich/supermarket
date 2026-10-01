@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <path data-name="egg" fill="currentColor" d="M16 2.5C23 2.5 28 13 28 19.5C28 26.5 22.6 30.5 16 30.5C9.4 30.5 4 26.5 4 19.5C4 13 9 2.5 16 2.5Z"/>
+  <path data-name="in shade" fill="#000" fill-opacity=".2" d="M23.6 7.4C26.4 11.6 28 16.4 28 19.5C28 26.5 22.6 30.5 16 30.5C11 30.5 7 28.2 5.2 24.2C9.4 27.2 15.4 27.6 19.6 25C25.2 21.6 26.2 14 23.6 7.4Z"/>
+  <ellipse data-name="shine" cx="11.6" cy="11.4" rx="2.6" ry="4.4" fill="#fff" fill-opacity=".5" transform="rotate(24 11.6 11.4)"/>
+  <circle data-name="glint" cx="9.4" cy="17.6" r="1" fill="#fff" fill-opacity=".4"/>
+  <path data-name="speckles" fill="#000" fill-opacity=".2" d="M19 9.6a.7.7 0 1 0 .1 0zM22 14a.6.6 0 1 0 .1 0zM17.4 16a.5.5 0 1 0 .1 0zM13.6 23a.6.6 0 1 0 .1 0zM20.4 21.4a.7.7 0 1 0 .1 0zM9 21.6a.5.5 0 1 0 .1 0zM24.2 19a.5.5 0 1 0 .1 0z"/>
+</svg>

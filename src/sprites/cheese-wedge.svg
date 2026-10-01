@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <path data-name="wedge" fill="currentColor" d="M8 62L16 50L92 21.5V50L84 62Z"/>
+  <path data-name="rind" fill="#9c5a14" fill-opacity=".55" d="M84 33.5L92 21.5V50L84 62Z"/>
+  <path data-name="rind, in shade" fill="#000" fill-opacity=".14" d="M88 27.5L92 21.5V50L88 56Z"/>
+  <path data-name="rind, rounded" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="2" d="M87.4 30V56.6"/>
+  <path data-name="cut top, lit" fill="#fff" fill-opacity=".3" d="M8 62L16 50L92 21.5L84 33.5Z"/>
+  <path data-name="front edge" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.6" stroke-linejoin="round" d="M9.5 61.2L83.6 33.8"/>
+  <path data-name="holes, front" fill="#000" fill-opacity=".24" d="M66 47.2a6 4.8 0 1 0 .1 0zM76 39.5a3.8 3 0 1 0 .1 0zM46 53.3a4.2 3.2 0 1 0 .1 0zM31 56.5a2.6 2 0 1 0 .1 0zM70.5 56.3a2.2 1.8 0 1 0 .1 0z"/>
+  <path data-name="hole lips" fill="none" stroke="#fff" stroke-opacity=".32" stroke-width="1.3" stroke-linecap="round" d="M60.6 53.4q5.4 3.4 11 .6M73 44.4q3 1.8 6.2.3M42.4 58q3.6 2 7.4.2"/>
+  <path data-name="holes, top" fill="#000" fill-opacity=".2" d="M38.5 44.4a4.6 1.7-21 1 0 .1 0zM66 34.6a3.4 1.3-21 1 0 .1 0zM54.8 41.5a2.6 1-21 1 0 .1 0z"/>
+  <path data-name="hole, through the edge" fill="#000" fill-opacity=".24" d="M54.2 44.6c0-2.4 1.8-4 4-4s3.8 1.6 3.6 3.8L54.4 47z"/>
+</svg>

@@ -229,5 +229,351 @@
         ]
       }
     ]
+  },
+  "cheese-wheel": {
+    "name": "Cheese wheel",
+    "icon": "",
+    "color": "#e2ad48",
+    "w": 4,
+    "h": 3,
+    "desc": "A whole hard cheese, rind stamped and pin-dotted. Only gets better with time.",
+    "tags": [
+      "food",
+      "dairy"
+    ]
+  },
+  "sausage": {
+    "name": "Ring sausage",
+    "icon": "",
+    "color": "#a8452f",
+    "w": 3,
+    "h": 3,
+    "cells": [
+      "###",
+      "#.#",
+      "#.#"
+    ],
+    "desc": "Smoked, glossy, tied off with twine at both ends.",
+    "tags": [
+      "food",
+      "meat"
+    ]
+  },
+  "coin-stacks": {
+    "name": "Coin stacks",
+    "icon": "",
+    "color": "#e0b443",
+    "w": 3,
+    "h": 3,
+    "cells": [
+      "#..",
+      "##.",
+      "###"
+    ],
+    "desc": "Three stacks of coins, counted and squared away.",
+    "tags": [
+      "money"
+    ]
+  },
+  "cheese-wedge": {
+    "name": "Cheese wedge",
+    "icon": "",
+    "color": "#f1c95f",
+    "w": 3,
+    "h": 2,
+    "cells": [
+      "..#",
+      "###"
+    ],
+    "desc": "A wedge cut from the wheel, rind on the broad end.",
+    "tags": [
+      "food",
+      "dairy"
+    ]
+  },
+  "ham": {
+    "name": "Cured ham",
+    "icon": "",
+    "color": "#b5574a",
+    "w": 3,
+    "h": 3,
+    "cells": [
+      ".##",
+      "###",
+      "##."
+    ],
+    "desc": "A whole leg, salted and hung, netted in twine.",
+    "tags": [
+      "food",
+      "meat"
+    ]
+  },
+  "loaf": {
+    "name": "Loaf",
+    "icon": "",
+    "color": "#c98a48",
+    "w": 4,
+    "h": 2,
+    "desc": "A crusty loaf, scored four times and dusted with flour.",
+    "tags": [
+      "food",
+      "bread"
+    ]
+  },
+  "bread-slice": {
+    "name": "Slice of bread",
+    "icon": "",
+    "color": "#c98a48",
+    "w": 2,
+    "h": 2,
+    "desc": "One slice off the loaf.",
+    "tags": [
+      "food",
+      "bread"
+    ]
+  },
+  "egg": {
+    "name": "Egg",
+    "icon": "",
+    "color": "#dcae84",
+    "w": 1,
+    "h": 1,
+    "desc": "A brown hen egg.",
+    "tags": [
+      "food"
+    ]
+  },
+  "apple": {
+    "name": "Apple",
+    "icon": "",
+    "color": "#d0443a",
+    "w": 1,
+    "h": 1,
+    "desc": "Red, crisp, with a leaf still on.",
+    "tags": [
+      "food",
+      "fruit"
+    ]
+  },
+  "hen": {
+    "name": "Hen",
+    "icon": "",
+    "color": "#b9652f",
+    "w": 3,
+    "h": 3,
+    "cells": [
+      "#.#",
+      "###",
+      ".##"
+    ],
+    "desc": "A brown laying hen. Pecks at whatever is near.",
+    "tags": [
+      "animal"
+    ]
+  },
+  "coop": {
+    "name": "Chicken coop",
+    "icon": "",
+    "color": "#a8453a",
+    "w": 5,
+    "h": 4,
+    "cells": [
+      ".###.",
+      "#####",
+      "#####",
+      "#####"
+    ],
+    "desc": "A little red coop on skids, with a ramp, a wire window and a hatch for the eggs.",
+    "tags": [
+      "building"
+    ]
+  },
+  "sack": {
+    "name": "Flour sack",
+    "icon": "",
+    "color": "#cdb58a",
+    "w": 3,
+    "h": 3,
+    "cells": [
+      ".#.",
+      "###",
+      "###"
+    ],
+    "desc": "A burlap sack of flour, tied off at the neck and stamped with a wheat ear.",
+    "tags": [
+      "food"
+    ]
+  },
+  "seedling": {
+    "name": "Seedling",
+    "icon": "",
+    "color": "#c8623a",
+    "w": 2,
+    "h": 2,
+    "desc": "A first sprout in a terracotta pot.",
+    "tags": [
+      "plant"
+    ]
+  },
+  "bellows": {
+    "name": "Bellows",
+    "icon": "",
+    "color": "#9a6a3a",
+    "w": 4,
+    "h": 2,
+    "cells": [
+      "###.",
+      ".###"
+    ],
+    "desc": "Carved boards, leather sides and a brass nozzle. Wakes a dying fire.",
+    "tags": [
+      "tool",
+      "fire"
+    ]
+  },
+  "kindling": {
+    "name": "Kindling",
+    "icon": "",
+    "color": "#a77746",
+    "w": 3,
+    "h": 2,
+    "desc": "Split sticks tied in a bundle: catches where a log will not.",
+    "tags": [
+      "fuel",
+      "wood"
+    ]
+  },
+  "split-log": {
+    "name": "Split log",
+    "icon": "",
+    "color": "#a9773f",
+    "w": 4,
+    "h": 1,
+    "desc": "Half a log, split with the grain.",
+    "tags": [
+      "fuel",
+      "wood"
+    ]
+  },
+  "matchbox": {
+    "name": "Matchbox",
+    "icon": "",
+    "color": "#c0473b",
+    "w": 2,
+    "h": 1,
+    "desc": "Safety matches, the drawer half open.",
+    "tags": [
+      "fire"
+    ]
+  },
+  "lantern": {
+    "name": "Lantern",
+    "icon": "",
+    "color": "#c79a4a",
+    "w": 2,
+    "h": 3,
+    "desc": "A brass hurricane lantern, lit.",
+    "tags": [
+      "light"
+    ]
+  },
+  "candle": {
+    "name": "Candle",
+    "icon": "",
+    "color": "#efe4c8",
+    "w": 1,
+    "h": 2,
+    "desc": "A tallow candle in a brass dish, burning down.",
+    "tags": [
+      "light"
+    ]
+  },
+  "bucket": {
+    "name": "Wooden bucket",
+    "icon": "",
+    "color": "#b07a45",
+    "w": 3,
+    "h": 3,
+    "desc": "Coopered staves, two iron hoops and a rope handle.",
+    "tags": [
+      "container"
+    ]
+  },
+  "honey-jar": {
+    "name": "Honey jar",
+    "icon": "",
+    "color": "#e3a32f",
+    "w": 2,
+    "h": 2,
+    "desc": "Clear honey under a gingham cloth, tied with a bow.",
+    "tags": [
+      "food"
+    ]
+  },
+  "hourglass": {
+    "name": "Hourglass",
+    "icon": "",
+    "color": "#8f6236",
+    "w": 2,
+    "h": 3,
+    "desc": "Turned posts, two glass bulbs and running sand.",
+    "tags": [
+      "time"
+    ]
+  },
+  "coin": {
+    "name": "Coin",
+    "icon": "",
+    "color": "#e0b443",
+    "w": 1,
+    "h": 1,
+    "desc": "One gold coin with a crown on it.",
+    "tags": [
+      "money"
+    ]
+  },
+  "price-tag": {
+    "name": "Price tag",
+    "icon": "",
+    "color": "#efe2c4",
+    "w": 2,
+    "h": 1,
+    "desc": "A card tag on a red string, priced in coins.",
+    "tags": [
+      "shop"
+    ]
+  },
+  "strongbox": {
+    "name": "Strongbox",
+    "icon": "",
+    "color": "#6f737e",
+    "w": 3,
+    "h": 2,
+    "desc": "Iron, strapped and riveted, with a brass lock plate.",
+    "tags": [
+      "money"
+    ]
+  },
+  "key": {
+    "name": "Key",
+    "icon": "",
+    "color": "#d0a24e",
+    "w": 3,
+    "h": 1,
+    "desc": "A heavy brass key with a ring bow.",
+    "tags": [
+      "tool"
+    ]
+  },
+  "padlock": {
+    "name": "Padlock",
+    "icon": "",
+    "color": "#c79a4a",
+    "w": 2,
+    "h": 2,
+    "desc": "A brass padlock with a steel shackle.",
+    "tags": [
+      "tool"
+    ]
   }
 }

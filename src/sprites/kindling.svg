@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <path data-name="sticks" fill="currentColor" d="M5 7.4L8 6.4L82 5V14.6L7 16L5 14ZM11 17.4L14 16.4L88 15.4V24.6L13 25.6L11 23.6ZM3 27.2L6 26.2L78 25.6V35.4L5 36L3 34ZM9 37.4L12 36.4L86 35.2V44.6L11 45.8L9 43.8ZM5 47.6L8 46.6L81 45.8V55.6L7 56.4L5 54.4Z"/>
+  <path data-name="split faces" fill="#e7c991" d="M8 7L81.6 5.6V9.03L6.4 10.43ZM14 17L87.6 16V19.26L12.4 20.26ZM6 26.8L77.6 26.2V29.72L4.4 30.32ZM12 37L85.6 35.8V39.15L10.4 40.35ZM8 47.2L80.6 46.4V49.92L6.4 50.72Z"/>
+  <path data-name="grain" fill="none" stroke="#000" stroke-opacity=".16" stroke-width="1" stroke-linecap="round" d="M19 9L51 8.37M25 19L57 18.55M17 28.8L49 28.53M23 39L55 38.46M19 49.2L51 48.84"/>
+  <path data-name="bark, in shade" fill="#000" fill-opacity=".26" d="M6 13.89L82 12.49V14.6L7 16ZM12 23.58L88 22.58V24.6L13 25.6ZM4 33.84L78 33.24V35.4L5 36ZM10 43.73L86 42.53V44.6L11 45.8ZM6 54.24L81 53.44V55.6L7 56.4Z"/>
+  <path data-name="sawn ends" fill="#e7c991" d="M82 5L86.4 6.8V16.2L82 14.6ZM88 15.4L92.4 17.2V26.2L88 24.6ZM78 25.6L82.4 27.4V37L78 35.4ZM86 35.2L90.4 37V46.2L86 44.6ZM81 45.8L85.4 47.6V57.2L81 55.6Z"/>
+  <path data-name="sawn ends, in shade" fill="#000" fill-opacity=".14" d="M82 5L86.4 6.8V16.2L82 14.6ZM88 15.4L92.4 17.2V26.2L88 24.6ZM78 25.6L82.4 27.4V37L78 35.4ZM86 35.2L90.4 37V46.2L86 44.6ZM81 45.8L85.4 47.6V57.2L81 55.6Z"/>
+  <path data-name="end grain rings" fill="none" stroke="#000" stroke-opacity=".25" stroke-width=".9" stroke-linecap="round" d="M83.4 7.6Q85.2 10.6 83.4 13.6M89.4 18Q91.2 20.8 89.4 23.6M79.4 28.2Q81.2 31.3 79.4 34.4M87.4 37.8Q89.2 40.7 87.4 43.6M82.4 48.4Q84.2 51.5 82.4 54.6"/>
+  <path data-name="split ends" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="1" stroke-linecap="round" d="M5 11.2l2.4 -1.2l-1 2.4M11 21l2.4 -1.2l-1 2.4M3 31.1l2.4 -1.2l-1 2.4M9 41.1l2.4 -1.2l-1 2.4M5 51.5l2.4 -1.2l-1 2.4"/>
+  <path data-name="twine" fill="#c9975a" d="M26 3.6H33.4V60.4H26ZM60 3.2H67.4V60H60Z"/>
+  <path data-name="twine turns" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="1" d="M26 9.4L33.4 11.4M26 19.4L33.4 21.4M26 29.4L33.4 31.4M26 39.4L33.4 41.4M26 49.4L33.4 51.4M60 9L67.4 11M60 19L67.4 21M60 29L67.4 31M60 39L67.4 41M60 49L67.4 51"/>
+  <path data-name="twine, lit" fill="#fff" fill-opacity=".22" d="M26 3.6H27.8V60.4H26ZM60 3.2H61.8V60H60Z"/>
+</svg>

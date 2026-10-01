@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path data-name="shackle" fill="none" stroke="#b4bfcc" stroke-width="7" d="M19.6 30V19.6C19.6 12.4 25 7.4 32 7.4C39 7.4 44.4 12.4 44.4 19.6V30"/>
+  <path data-name="shackle, in shade" fill="none" stroke="#000" stroke-opacity=".26" stroke-width="2.6" d="M41.8 30V19.6C41.8 15.4 39.4 12 36 10.6"/>
+  <path data-name="shackle, lit" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round" d="M17.4 26V19.6C17.4 13.6 21.4 8.4 27.4 6.6"/>
+  <rect data-name="body" x="8" y="26" width="48" height="34" rx="6" fill="currentColor"/>
+  <rect data-name="body, in shade" x="32" y="26" width="24" height="34" rx="6" fill="#000" fill-opacity=".18"/>
+  <rect data-name="body, top lit" x="8" y="26" width="48" height="4" rx="2" fill="#fff" fill-opacity=".3"/>
+  <path data-name="seams" fill="none" stroke="#000" stroke-opacity=".22" stroke-width="1.4" d="M10 35H54M10 51H54"/>
+  <path data-name="keyhole" fill="#1c1418" d="M32 37.4a3.6 3.6 0 0 1 1.9 6.7L35.2 50H28.8L30.1 44.1A3.6 3.6 0 0 1 32 37.4Z"/>
+  <path data-name="keyhole rim" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1.2" d="M27.2 41A4.8 4.8 0 0 1 36.8 41"/>
+</svg>

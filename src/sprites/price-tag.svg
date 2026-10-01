@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <path data-name="string" fill="none" stroke="#d5606c" stroke-width="1.6" stroke-linecap="round" d="M14.4 16C10 12.6 6.6 9.6 3.4 11.6C1.4 13 2.4 15.4 4.6 15.2"/>
+  <path data-name="tag" fill="currentColor" fill-rule="evenodd" d="M4.6 16L16.4 5H58Q61 5 61 8V24Q61 27 58 27H16.4ZM16.8 16a2.4 2.4 0 1 0-4.8 0a2.4 2.4 0 1 0 4.8 0Z"/>
+  <path data-name="tag, in shade" fill="#000" fill-opacity=".16" d="M4.6 16L16.4 27H58Q61 27 61 24V21.6Q61 24 58 24H17.6Z"/>
+  <path data-name="eyelet" fill="none" stroke="#9a9aa2" stroke-width="1.6" d="M17.4 16a3 3 0 1 0-6 0a3 3 0 1 0 6 0Z"/>
+  <path data-name="string through" fill="none" stroke="#d5606c" stroke-width="1.6" stroke-linecap="round" d="M14.4 16.2L12.6 15"/>
+  <path data-name="rule" fill="none" stroke="#000" stroke-opacity=".18" stroke-width="1" d="M24 10H56"/>
+  <circle data-name="coin mark" cx="29" cy="18.4" r="4.4" fill="#e0b443"/>
+  <circle data-name="coin mark rim" cx="29" cy="18.4" r="2.6" fill="none" stroke="#000" stroke-opacity=".25" stroke-width="1"/>
+  <path data-name="price" fill="none" stroke="#3a3a44" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M38.6 15.6L41 13.6V23M45.6 16.2C45.6 13.4 51.6 13.2 51.6 16.6C51.6 19 45.4 20.6 45.4 23H52"/>
+</svg>
