@@ -18,6 +18,50 @@ Nothing here is built. `DESIGN.md` stays the record of what is.
   steeping, curing, growing, hatching). Things that take minutes (a still's cuts) would need a real-time clock and an
   animation so that pressing the time button feels tactile.
 
+## Shop and expeditions (the user's pitch, 2026-10-01; not judged yet)
+
+Drawn from Probably Stolen's loop (the shopkeeper game the handling reference comes from), to iterate on, not to copy.
+
+- **Expeditions** (liked from the day-scale set): go somewhere; the gear you carry decides what can happen; several rolls of
+  random encounters; you can find things. A mountain: wander long enough and you find a collapsed entrance; work it with the
+  pickaxe three times and it opens, with more encounters inside. Battle encounters could come later; out of scope now.
+- **The shop:** zones customers use: an outside and an inside counter (sell, buy arriving goods, put things down for a deal,
+  maybe other interactions) and a show window (its own container).
+- **Customers** arrive each day in a random number, set by the day's events, the shop's reputation/popularity, and what is in
+  the show window.
+- **Goal:** pay the rent, eventually buy the shop. Later maybe buy other shops with different benefits, clients and amenities
+  (leans incremental; a point for later).
+- **Money:** buy from suppliers (scavengers, thieves...), sell to consumers (average joes, workers, security, nobles...) at a
+  markup. Prices move with events (water or food shortage).
+- **Machines** are bought only from special vendors; you never build them.
+- **Night expeditions,** after the last customer and closing; three kinds. On each you see your inventory: a back slot (flex:
+  any container that can go on a back; backpacks come in tiers) and a flex slot per hand (for what does not fit the
+  backpack). Every expedition screen has a ground container (a vendor has two counters instead, buy and sell).
+  - **Commissary:** buy with commissary-ticket points; redeem lottery.
+  - **Junkyard:** a ground field and a Scavenge button, N times; each is a loot-table roll: junk (smelts into low-quality
+    ingots), microschemes (material to upgrade some devices), modules (their own mechanic: change machines' stats), backpacks...
+    On top: a **Walk** that fills the ground with random items and materials, and tools from the backpack gather or change
+    them, up to hunting (a boar, with a gun or a spear). Equipment and carried things modify the rolls; potions used out there
+    change rolls or give more; rolls could be stamina (another layer; character stats and equipment beyond that).
+  - **Dr. Jackson:** sells modules, machines, gadgets, batteries; buys materials such as ingots.
+- **Worry:** a forced customer loop every day is repetitive, if somewhat meditative. Is there a better way?
+
+First reactions (not decided):
+- Every place in the pitch is a grid: counters, window, ground, back, hands. Make them **zones**, named spaces that are not
+  items, so they do not count for nesting (a crate can ride in a hand). A location = which zones are on screen + a loot table.
+- **Encounters are things on the ground and gear is used on them;** blue squares show which of your gear works (pickaxe
+  `dig` x3 on the rubble, spear on the boar). Needs `uses` effects (hits, becomes, gives), the same piece as cutting cheese.
+- **Gear opens encounters** (a lantern gets you into the dark mine) rather than adding +% to rolls: visible, no hidden maths.
+- **Stamina is the clock inside a night;** a day stays one tick. Food and potions are items you pack, so every extra roll
+  costs backpack room.
+- **Customers:** routine ones are simulated from what you put out (window, counters, price tags) when you open; one or two
+  special visitors a day are played by hand (a supplier with goods, a commission, a customer's own bag to pack).
+- Modules are items slotted into a machine's module bay; microschemes as a second upgrade currency could go.
+- Bought machines are bulky: carrying one home takes both hands.
+- Setting: the drawn items are rustic (cheese, hearth, hens); the pitch's vendors are scrap-tech (modules, batteries, guns).
+  Pick one, or make the blend deliberate.
+- Smallest first test: the junkyard night alone (zones, scavenge/walk, stamina, pack out, haul value).
+
 ## Liked
 
 - **Ageing that only gains value** (cheese). No peak and decline.
