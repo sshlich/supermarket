@@ -95,8 +95,44 @@ Setting (proposal, being argued):
   can make; each an original, so stats differ), night (the company works the shafts by day), deeper (older layers), shortages
   (the rush outgrows the road), shipping (relics pay best in the old cities), rustic items (the frontier town's daily life;
   the tech comes out of the ground).
-- The rush is the structure; the look stays open (Qud-weird, techno-fantasy). Nearest existing: Moonlighter (merchant village
-  by dungeon gates), SteamWorld Dig (western mining town over ancient tech), so no cowboy look.
+- The rush is the structure. Nearest existing: Moonlighter (merchant village by dungeon gates), SteamWorld Dig (western mining
+  town over ancient tech), so no cowboy look.
+- 2026-10-02: liked ("not bad"). **Look:** keep the current one; practical, just enough to get the message across.
+- **Worry: it all turns on digging; where is the variety?** Digging is why the town exists, not what everyone does:
+  - Below is a city, not a mine: districts are different nights with their own goods, dangers and buyers (homes: tableware,
+    clocks; a hospital: instruments, medicine; the works: machines, ore; an archive: records, maps; gardens gone wild: seeds,
+    plants, animals; a drowned quarter: bail it out, fish in it).
+  - Not every night goes down: the wilds (hunting, foraging, the river), the road (a caravan), your traps.
+  - A boom town is full of trades: cooks, launderers, saloon keepers, freighters, surveyors, collectors from the old cities,
+    doctors, preachers, con men, families. Each wants different things.
+  - The rush has an arc: tents and shortages, then the boom (company money, luxury), then it settles (families, everyday
+    needs) or busts (the upper layers run dry). Mine trouble (cave-ins, floods, bad air) varies the days.
+- **Name** for what is buried (what it is stays open): **Godsink** (favourite; shaft diggers really are "sinkers"), the Hum,
+  Gravewell, Mainspring, Old Thunder.
+
+Day and night (2026-10-02):
+- **12 hour steps** a day (8 to 20), with a skip to the next thing that needs you. Agreed.
+- The user's point: machines then split into what they do by day and by night, with outcomes of different value.
+  - By day machines are attended: fast, skilled work done hour by hand (the still's cuts, smelting, cooking); better output.
+  - At night they run unattended while you are out; the house's night passes in one block. Slow, patient processes belong
+    there (dough proving, mash fermenting, curing, smoking, ageing, charging, a banked fire burning down to embers). Some
+    machines will not run alone (a still is a fire risk); others do bulk-grade work.
+  - So goods get tiers: tended work is fine (nobles), overnight batches are bulk (workers).
+  - The evening is the hinge: two packing jobs, the kit for the night out and the house for the night in.
+
+Asks to be added (proposed 2026-10-02, not judged):
+1. **Light is a product.** Boar fat rendered in the hearth into tallow: candles and lamp oil. It is the next night's fuse and a
+   staple every digger buys (miners bought their own candles).
+2. **Wounds take space.** A monster puts a wound item in your kit (a 2x1 gash in the pack, a sprained wrist blocking a hand);
+   it pushes loot out; a bandage or salve used on it shrinks it (honey is a real antiseptic). Risk in the same currency as
+   the reward, no battle system.
+3. **Your claim.** A claim deed makes one place below yours: its ground and traps persist, shoring timber (a hand per beam)
+   lets you go deeper there safely, a lamp post holds the dark back; claim jumpers when you are away.
+4. **The counter is where you hear things.** Shelves pay in money, the counter in information: rumours, a hand-drawn map, a
+   commission. A map in the pack is gear that tilts the night's rolls toward its landmark.
+5. **Tables in the world:** a price board at the company office, your ledger (what sold, at what hour, to whom).
+- Skipped on purpose: unidentified relics (close to Probably Stolen's hidden features found with tools) and send-a-hireling
+  expeditions (also theirs).
 
 ## Liked
 
