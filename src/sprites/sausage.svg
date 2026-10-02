@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <path data-name="sausage" fill="none" stroke="currentColor" stroke-width="22" stroke-linecap="round" d="M15 81V47A33 32 0 0 1 81 47V81"/>
+  <path data-name="inner curve, in shade" fill="none" stroke="#000" stroke-opacity=".26" stroke-width="7" stroke-linecap="round" d="M22.5 83V47A25.5 24.5 0 0 1 73.5 47V83"/>
+  <path data-name="right side, in shade" fill="none" stroke="#000" stroke-opacity=".2" stroke-width="9" stroke-linecap="round" d="M85 80V47A37 36 0 0 0 64 14.5"/>
+  <path data-name="shine" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width="3.5" stroke-linecap="round" d="M9.5 70V47A38.5 37.5 0 0 1 44 9.6"/>
+  <path data-name="shine, small" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="2.5" stroke-linecap="round" d="M53 9.8A38.5 37.5 0 0 1 66 12.6"/>
+  <path data-name="wrinkles" fill="none" stroke="#000" stroke-opacity=".22" stroke-width="1.8" stroke-linecap="round" d="M7 39.5q4.5 1.8 8 4.6M10 31q4 2.6 7 5.8M85 31.5q-3.6 2.5-6.6 5.6M88.6 40q-4.2 1.6-7.6 4.2"/>
+  <path data-name="smoke marks" fill="#000" fill-opacity=".14" d="M20 60c3-1 6 0 6 3s-3 5-6 4-3-6 0-7zM73 56c3-1 6 1 5 4s-4 4-6 2-2-5 1-6zM40 12c3-1 7-1 7 1s-4 3-7 2-2-2 0-3z"/>
+  <path data-name="twine, left" fill="none" stroke="#e6d3a8" stroke-width="3" stroke-linecap="round" d="M5.2 76.5L24.8 79M5.4 81.2L24.6 83.6"/>
+  <path data-name="twine, right" fill="none" stroke="#e6d3a8" stroke-width="3" stroke-linecap="round" d="M71.2 79L90.8 76.5M71.4 83.6L90.6 81.2"/>
+  <path data-name="twine ends" fill="none" stroke="#e6d3a8" stroke-width="2.2" stroke-linecap="round" d="M15 92.5q-3 1.6-7 1M81 92.5q3 1.6 7 1"/>
+</svg>

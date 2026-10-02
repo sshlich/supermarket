@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <defs>
+    <clipPath id="ham-body"><ellipse cx="41" cy="56" rx="40" ry="26.5" transform="rotate(-45 41 56)"/></clipPath>
+  </defs>
+  <path data-name="bone" fill="#f0ece2" d="M64.6 26.4L80.4 10.6a7 7 0 1 1 8.8 5.8a6.4 6.4 0 1 1-4.6 9.4L69.6 31.4Z"/>
+  <path data-name="bone, in shade" fill="#000" fill-opacity=".18" d="M67 29L82.6 13.4a6.4 6.4 0 0 0 6.6 3a6.4 6.4 0 1 1-4.6 9.4L69.6 31.4Z"/>
+  <ellipse data-name="leg" cx="41" cy="56" rx="40" ry="26.5" fill="currentColor" transform="rotate(-45 41 56)"/>
+  <path data-name="shank" fill="currentColor" d="M54 30.6L66.6 22.6L74.4 30.4L66.4 43Z"/>
+  <g data-name="shading" clip-path="url(#ham-body)">
+    <ellipse data-name="underside" cx="56" cy="71" rx="36" ry="12" fill="#000" fill-opacity=".24" transform="rotate(-45 56 71)"/>
+    <ellipse data-name="skin, lit" cx="30" cy="45" rx="30" ry="9" fill="#fff" fill-opacity=".16" transform="rotate(-45 30 45)"/>
+    <path data-name="netting" fill="none" stroke="#efd9ad" stroke-opacity=".55" stroke-width="1.6" d="M2 66L46 22M8 80L60 28M20 90L72 38M36 96L80 52M10 40L56 86M20 28L68 76M36 20L78 62M52 16L86 50"/>
+  </g>
+  <path data-name="shank, in shade" fill="#000" fill-opacity=".24" d="M62 36.6L71.8 27.8L74.4 30.4L66.4 43Z"/>
+  <ellipse data-name="cut face, fat" cx="14.2" cy="81.8" rx="15" ry="9.4" fill="#f2dcc6" transform="rotate(45 14.2 81.8)"/>
+  <ellipse data-name="cut face, meat" cx="15" cy="81" rx="12.2" ry="6.8" fill="#cf5f62" transform="rotate(45 15 81)"/>
+  <path data-name="marbling" fill="none" stroke="#f2dcc6" stroke-opacity=".75" stroke-width="1.2" stroke-linecap="round" d="M8.6 77.4q5 .4 8.6 4.6M12.6 86.6q2.4-3.6 7.8-3.6"/>
+  <circle data-name="bone, cut" cx="18.6" cy="78" r="2.6" fill="#f0ece2"/>
+</svg>

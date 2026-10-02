@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path data-name="pot" fill="currentColor" d="M12.4 40H51.6L47.4 61C47.2 62 46.6 62.4 45.6 62.4H18.4C17.4 62.4 16.8 62 16.6 61Z"/>
+  <path data-name="pot, in shade" fill="#000" fill-opacity=".24" d="M40 40H51.6L47.4 61C47.2 62 46.6 62.4 45.6 62.4H38.4Z"/>
+  <path data-name="pot, lit" fill="#fff" fill-opacity=".16" d="M15 40H21L22 62.4H18.4C17.4 62.4 16.8 62 16.6 61Z"/>
+  <ellipse data-name="soil" cx="32" cy="33.6" rx="22" ry="4" fill="#3b2a22"/>
+  <rect data-name="rim" x="8" y="33.6" width="48" height="7.6" rx="1.6" fill="currentColor"/>
+  <rect data-name="rim, lit" x="8" y="33.6" width="48" height="2.2" rx="1.1" fill="#fff" fill-opacity=".22"/>
+  <rect data-name="rim, underside" x="10" y="40" width="44" height="1.6" fill="#000" fill-opacity=".3"/>
+  <path data-name="stem" fill="none" stroke="#6f9a52" stroke-width="2.6" stroke-linecap="round" d="M32 34C32 28 31 24 32.6 17"/>
+  <path data-name="leaf, left" fill="#7fb069" d="M31.4 21.4C26 13 17 9 7.4 10.6C10 19.6 20.6 24.6 31.4 21.4Z"/>
+  <path data-name="leaf, right" fill="#7fb069" d="M33 18.4C38.6 9.6 47 5.2 57 6.2C54.6 15.6 44.4 21.2 33 18.4Z"/>
+  <path data-name="leaves, in shade" fill="#000" fill-opacity=".2" d="M31.4 21.4C20.6 24.6 10 19.6 7.4 10.6C14.6 17 23 20 31.4 21.4ZM33 18.4C44.4 21.2 54.6 15.6 57 6.2C51 13.4 42.4 17.4 33 18.4Z"/>
+  <path data-name="veins" fill="none" stroke="#000" stroke-opacity=".22" stroke-width="1" stroke-linecap="round" d="M30 20.6Q20 14.6 10.6 12M34.4 17.6Q44 11.4 54.4 8"/>
+  <path data-name="new leaf" fill="#9cc77f" d="M32.6 17.2C31.2 13 32.4 9.4 35.4 7.2C36.6 11.2 35.4 15 32.6 17.2Z"/>
+</svg>

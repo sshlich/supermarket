@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 32">
+  <path data-name="bow" fill="currentColor" fill-rule="evenodd" d="M15.4 2.6C22.8 2.6 28.6 8.6 28.6 16C28.6 23.4 22.8 29.4 15.4 29.4C8 29.4 2.2 23.4 2.2 16C2.2 8.6 8 2.6 15.4 2.6ZM15.4 9.6C11.8 9.6 8.8 12.4 8.8 16C8.8 19.6 11.8 22.4 15.4 22.4C19 22.4 22 19.6 22 16C22 12.4 19 9.6 15.4 9.6Z"/>
+  <path data-name="bow, in shade" fill="#000" fill-opacity=".24" d="M26 8.4C27.6 10.6 28.6 13.2 28.6 16C28.6 23.4 22.8 29.4 15.4 29.4C12.4 29.4 9.6 28.4 7.4 26.6C16.6 29.2 27.4 22.2 26 8.4Z"/>
+  <path data-name="bow, lit" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="1.6" stroke-linecap="round" d="M5.4 12.4C6.8 8.4 10.4 5.4 15 5.2"/>
+  <path data-name="shaft" fill="currentColor" d="M27.4 13.2H88V18.8H27.4Z"/>
+  <path data-name="collars" fill="currentColor" d="M30 10.4H35V21.6H30ZM38 11.4H41V20.6H38Z"/>
+  <path data-name="bit" fill="currentColor" fill-rule="evenodd" d="M72 18H92V28.6H87.6V24.4H84.4V28.6H79.2V22.6H76V28.6H72ZM82 18h-2.6v2.6h2.6z"/>
+  <path data-name="shaft, in shade" fill="#000" fill-opacity=".26" d="M27.4 16.4H88V18.8H27.4ZM30 18H35V21.6H30ZM38 18H41V20.6H38ZM72 24.4H92V28.6H87.6V24.4H84.4V28.6H79.2V24.4H76V28.6H72Z"/>
+  <path data-name="shaft, lit" fill="#fff" fill-opacity=".35" d="M41 13.6H88V14.8H41Z"/>
+  <path data-name="tip" fill="currentColor" d="M88 13.2H90.6A2.8 2.8 0 0 1 90.6 18.8H88Z"/>
+</svg>

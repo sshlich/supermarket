@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="honey-cloth"><path d="M10.4 22.4C8 19.6 8.6 14.4 14 12.4C20 10.2 26 9.4 32 9.4C38 9.4 44 10.2 50 12.4C55.4 14.4 56 19.6 53.6 22.4C53 25.4 50.6 27.6 48.4 25.6C46.6 28 43.6 28.2 42 25.8C40 28.4 36.4 28.4 34.6 26C32.8 28.4 29.2 28.4 27.4 26C25.6 28.4 22 28.4 20.4 25.8C18.6 28.2 15.6 28 13.8 25.6C11.6 27.4 10.6 25 10.4 22.4Z"/></clipPath>
+  </defs>
+  <path data-name="jar" fill="currentColor" d="M18 22H46V25.4C51.4 27 54.6 31 54.6 37V55.4C54.6 59 52 61.6 48.4 61.6H15.6C12 61.6 9.4 59 9.4 55.4V37C9.4 31 12.6 27 18 25.4Z"/>
+  <path data-name="honey, deep" fill="#000" fill-opacity=".2" d="M40 26.4C47 27.6 54.6 30.4 54.6 37V55.4C54.6 59 52 61.6 48.4 61.6H38C44 58 46 46 40 26.4Z"/>
+  <path data-name="glass, sheen" fill="#fff" fill-opacity=".42" d="M13.4 34C13.4 30.6 15 29.2 17 28.6V56.4C14.6 56 13.4 55 13.4 53.4Z"/>
+  <path data-name="glass, glint" fill="#fff" fill-opacity=".5" d="M47.6 31.6a1.6 1.6 0 1 0 .1 0z"/>
+  <rect data-name="label" x="17.6" y="37" width="28.8" height="15.2" rx="2" fill="#f0ece2"/>
+  <path data-name="label honeycomb" fill="#e3a32f" stroke="#a8661c" stroke-width="1.1" stroke-linejoin="round" d="M28.88 38.80L31.57 40.35L31.57 43.45L28.88 45.00L26.20 43.45L26.20 40.35ZM35.12 38.80L37.80 40.35L37.80 43.45L35.12 45.00L32.43 43.45L32.43 40.35ZM32.00 44.20L34.68 45.75L34.68 48.85L32.00 50.40L29.32 48.85L29.32 45.75Z"/>
+  <path data-name="label honeycomb, lit" fill="#fff" fill-opacity=".35" d="M28.28 39.90L29.23 40.45L29.23 41.55L28.28 42.10L27.33 41.55L27.33 40.45ZM34.52 39.90L35.47 40.45L35.47 41.55L34.52 42.10L33.57 41.55L33.57 40.45ZM31.40 45.30L32.35 45.85L32.35 46.95L31.40 47.50L30.45 46.95L30.45 45.85Z"/>
+  <path data-name="cloth" fill="#d5606c" d="M10.4 22.4C8 19.6 8.6 14.4 14 12.4C20 10.2 26 9.4 32 9.4C38 9.4 44 10.2 50 12.4C55.4 14.4 56 19.6 53.6 22.4C53 25.4 50.6 27.6 48.4 25.6C46.6 28 43.6 28.2 42 25.8C40 28.4 36.4 28.4 34.6 26C32.8 28.4 29.2 28.4 27.4 26C25.6 28.4 22 28.4 20.4 25.8C18.6 28.2 15.6 28 13.8 25.6C11.6 27.4 10.6 25 10.4 22.4Z"/>
+  <g data-name="gingham" clip-path="url(#honey-cloth)">
+    <path data-name="checks" fill="#fff" fill-opacity=".42" d="M8 8H64V12H8ZM8 17H64V21H8ZM8 26H64V30H8ZM10 8H14V30H10ZM19 8H23V30H19ZM28 8H32V30H28ZM37 8H41V30H37ZM46 8H50V30H46ZM55 8H59V30H55Z"/>
+    <path data-name="cloth, in shade" fill="#000" fill-opacity=".2" d="M8 19.4C24 23.4 40 23.4 64 19.4V30H8Z"/>
+  </g>
+  <path data-name="string" fill="none" stroke="#f0ece2" stroke-width="2.2" stroke-linecap="round" d="M14.8 21.4Q32 25.6 49.2 21.4"/>
+  <path data-name="bow" fill="none" stroke="#f0ece2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M40.6 23.2C42.6 18.6 47 19.2 45.4 22.4C44.4 24.4 41.6 23.6 40.6 23.2C43 24 45 27.4 43 28.8M40.6 23.2C40.4 26 39 28.4 37.6 28.6"/>
+</svg>

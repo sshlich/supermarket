@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 32">
+  <path data-name="half log" fill="currentColor" d="M4 9.6L10 7L112 6.4C118 6.4 123.6 9 123.6 15C123.6 23 117 28 110 28H14C8 28 4 23 4 17Z"/>
+  <path data-name="bark, in shade" fill="#000" fill-opacity=".22" d="M4 19C6 24 10 28 14 28H110C114 28 118 26.6 120.6 23.6C100 25.4 30 25.4 4 19Z"/>
+  <path data-name="bark furrows" fill="none" stroke="#000" stroke-opacity=".26" stroke-width="1.4" stroke-linecap="round" d="M18 18.4L44 19M52 21.6L82 22M90 18.6L106 18.8M26 23.6L40 24M64 17.8L80 18M12 21L20 21.4"/>
+  <path data-name="split face" fill="#e9cf9c" d="M6 9.8L10.4 8L112 7.4C114 7.4 115.8 8 117 9.2C116 11.4 113.6 12.6 111 12.6H8Z"/>
+  <path data-name="grain" fill="none" stroke="#000" stroke-opacity=".16" stroke-width="1" d="M16 10.2Q40 9.2 64 10.2T108 9.8M28 11.6Q52 10.6 80 11.6"/>
+  <path data-name="end face" fill="#e9cf9c" d="M112 7.4C118 7.4 123.6 10 123.6 15.4C123.6 21 118.6 26 112.4 26C109.6 26 108 23 108.4 16.6C108.8 10.4 110 7.4 112 7.4Z"/>
+  <path data-name="rings" fill="none" stroke="#000" stroke-opacity=".24" stroke-width="1" d="M112 10.6C116 10.6 120 12.4 120 15.6C120 19.4 116.4 22.4 112.6 22.4M112.2 14C114 14 116.2 14.6 116.2 16C116.2 17.8 114.4 19 112.6 19"/>
+  <path data-name="split edge, lit" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width="1.2" stroke-linecap="round" d="M10 8L111 7.4"/>
+</svg>

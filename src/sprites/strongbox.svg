@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <path data-name="lid" fill="currentColor" d="M8 13L14 5H82L88 13Z"/>
+  <path data-name="lid, lit" fill="#fff" fill-opacity=".22" d="M8 13L14 5H82L88 13Z"/>
+  <rect data-name="box" x="6" y="12.4" width="84" height="47" rx="2.4" fill="currentColor"/>
+  <rect data-name="lid edge" x="5" y="12" width="86" height="7.6" rx="2" fill="currentColor"/>
+  <rect data-name="lid edge, in shade" x="5" y="17.4" width="86" height="2.2" fill="#000" fill-opacity=".34"/>
+  <rect data-name="box, in shade" x="6" y="40" width="84" height="19.4" rx="2.4" fill="#000" fill-opacity=".18"/>
+  <path data-name="straps" fill="#3a3a44" d="M20 5.4H29V59.4H20ZM67 5.4H76V59.4H67Z"/>
+  <path data-name="straps, lit" fill="#fff" fill-opacity=".14" d="M20 5.4H22V59.4H20ZM67 5.4H69V59.4H67Z"/>
+  <path data-name="corner irons" fill="#3a3a44" d="M5 50V57A3 3 0 0 0 8 60H15V56H9V50ZM91 50V57A3 3 0 0 1 88 60H81V56H87V50Z"/>
+  <path data-name="rivets" fill="#c6c9d0" d="M24.5 8.6a1.5 1.5 0 1 0 .1 0zM24.5 24a1.5 1.5 0 1 0 .1 0zM24.5 38a1.5 1.5 0 1 0 .1 0zM24.5 52a1.5 1.5 0 1 0 .1 0zM71.5 8.6a1.5 1.5 0 1 0 .1 0zM71.5 24a1.5 1.5 0 1 0 .1 0zM71.5 38a1.5 1.5 0 1 0 .1 0zM71.5 52a1.5 1.5 0 1 0 .1 0z"/>
+  <rect data-name="lock plate" x="38" y="20" width="20" height="24" rx="2.6" fill="#c9975a"/>
+  <rect data-name="lock plate, in shade" x="48" y="20" width="10" height="24" rx="2.6" fill="#000" fill-opacity=".2"/>
+  <path data-name="hasp" fill="#c9975a" d="M43 12.6H53V22.4H43Z"/>
+  <path data-name="hasp, in shade" fill="#000" fill-opacity=".3" d="M43 19.6H53V22.4H43Z"/>
+  <path data-name="keyhole" fill="#1c1418" d="M48 27.4a3 3 0 0 1 1.6 5.6L50.8 38.8H45.2L46.4 33A3 3 0 0 1 48 27.4Z"/>
+  <path data-name="plate screws" fill="#5a3a26" d="M41 23a1.2 1.2 0 1 0 .1 0zM55 23a1.2 1.2 0 1 0 .1 0zM41 39.6a1.2 1.2 0 1 0 .1 0zM55 39.6a1.2 1.2 0 1 0 .1 0z"/>
+  <path data-name="handles" fill="none" stroke="#3a3a44" stroke-width="2.6" stroke-linecap="round" d="M9.4 28.6V36.4M86.6 28.6V36.4"/>
+</svg>

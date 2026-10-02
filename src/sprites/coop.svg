@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 128">
+  <defs>
+    <clipPath id="coop-wall"><path d="M16 50L80 15L144 50V114H16Z"/></clipPath>
+  </defs>
+  <path data-name="walls" fill="currentColor" d="M16 50L80 15L144 50V114H16Z"/>
+  <g data-name="boards" clip-path="url(#coop-wall)">
+    <path data-name="board seams" fill="none" stroke="#000" stroke-opacity=".22" stroke-width="1.6" d="M30 0V128M44 0V128M58 0V128M72 0V128M88 0V128M102 0V128M116 0V128M130 0V128"/>
+    <path data-name="under the eaves" fill="#000" fill-opacity=".3" d="M10 50L80 12L150 50V60L80 22L10 60Z"/>
+    <rect data-name="right side, in shade" x="118" y="0" width="30" height="128" fill="#000" fill-opacity=".12"/>
+  </g>
+  <rect data-name="corner board, left" x="16" y="52" width="6" height="62" fill="#f0ece2"/>
+  <rect data-name="corner board, right" x="138" y="52" width="6" height="62" fill="#f0ece2" fill-opacity=".8"/>
+  <path data-name="roof" fill="#3f3742" d="M2 46L80 2L158 46L148 51.6L80 13.4L12 51.6Z"/>
+  <path data-name="roof, lit" fill="#fff" fill-opacity=".14" d="M2 46L80 2L80 7.6L7 48.8Z"/>
+  <path data-name="shingle rows" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="1.3" d="M8 48.2L80 7.6L152 48.2M18 37.8L20.6 42.2M30 31L32.6 35.4M42 24.2L44.6 28.6M54 17.4L56.6 21.8M66 10.6L68.6 15M142 37.8L139.4 42.2M130 31L127.4 35.4M118 24.2L115.4 28.6M106 17.4L103.4 21.8M94 10.6L91.4 15"/>
+  <path data-name="ridge cap" fill="#2a242c" d="M72 6.6L80 2L88 6.6L80 9.4Z"/>
+  <circle data-name="vent" cx="80" cy="33" r="6.5" fill="#1c1418"/>
+  <path data-name="vent frame" fill="none" stroke="#f0ece2" stroke-width="2" d="M80 26.5A6.5 6.5 0 1 1 79.9 26.5ZM80 27V39M74 33H86"/>
+  <rect data-name="window" x="100" y="56" width="30" height="26" rx="2" fill="#f0ece2"/>
+  <rect data-name="window, inside" x="103.4" y="59.4" width="23.2" height="19.2" fill="#1c1418"/>
+  <path data-name="wire mesh" fill="none" stroke="#c9c4ba" stroke-opacity=".55" stroke-width=".9" d="M103.4 63.4L107.4 59.4M103.4 67.4L111.4 59.4M103.4 71.4L115.4 59.4M103.4 75.4L119.4 59.4M104.6 78.6L123.8 59.4M108.6 78.6L126.6 60.6M112.6 78.6L126.6 64.6M116.6 78.6L126.6 68.6M120.6 78.6L126.6 72.6M107.4 78.6L103.4 74.6M111.4 78.6L103.4 70.6M115.4 78.6L103.4 66.6M119.4 78.6L103.4 62.6M123.4 78.6L104.2 59.4M126.6 77.8L108.2 59.4M126.6 73.8L112.2 59.4M126.6 69.8L116.2 59.4M126.6 65.8L120.2 59.4"/>
+  <rect data-name="egg hatch" x="98" y="90" width="34" height="20" rx="1.5" fill="none" stroke="#f0ece2" stroke-width="2.4"/>
+  <path data-name="hatch hinges" fill="#2a242c" d="M101 91.6h5v2.6h-5zM124 91.6h5v2.6h-5z"/>
+  <rect data-name="hatch latch" x="112.6" y="104" width="5" height="4.4" rx="1" fill="#c9975a"/>
+  <path data-name="pop hole" fill="#1c1418" d="M38 114V93A12 12 0 0 1 62 93V114Z"/>
+  <path data-name="pop hole frame" fill="none" stroke="#f0ece2" stroke-width="2.4" d="M36.6 114V93A13.4 13.4 0 0 1 63.4 93V114"/>
+  <g data-name="hen in the door">
+    <circle data-name="head" cx="51" cy="102" r="5.4" fill="#b9652f"/>
+    <path data-name="comb" fill="#d5606c" d="M47.4 97.6C47.2 95.4 49 94.2 50.4 95.4C51 93.4 53.8 93.6 54.2 95.6C55.6 96 55.6 97.6 54.6 98.4C52.4 97.2 49.6 97 47.4 97.6Z"/>
+    <path data-name="beak" fill="#e8c56a" d="M46 101L42.2 102.8L46 104.4Z"/>
+    <circle data-name="eye" cx="49.4" cy="101" r="1.1" fill="#1c1418"/>
+  </g>
+  <rect data-name="skid" x="12" y="114" width="136" height="5.6" fill="#5a3a26"/>
+  <path data-name="feet" fill="#4a2e1e" d="M18 119.6h12v4.6h-12zM130 119.6h12v4.6h-12z"/>
+  <path data-name="ramp" fill="#b98552" d="M38.6 113L61 113L32 126.4L9.6 126.4Z"/>
+  <path data-name="ramp, in shade" fill="#000" fill-opacity=".22" d="M9.6 126.4L32 126.4L33.6 125.6L11.4 125.6Z"/>
+  <path data-name="ramp cleats" fill="none" stroke="#5a3a26" stroke-width="2" stroke-linecap="round" d="M50 116.2L30.8 116.2M42.6 119.6L23.2 119.6M35.4 123L16 123"/>
+</svg>

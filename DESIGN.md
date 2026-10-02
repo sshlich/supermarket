@@ -120,3 +120,33 @@ e.g. pouring water into another container, slaughtering a rabbit with a knife, a
 ## Liquids (2026-09-29)
 - A liquid is a property of a vessel (kind `capacity`, in ml; item `liquid: {type, ml}`), not an item. Corked: nothing spills. One liquid per vessel; pouring a different one is refused. Pour = a `uses` verb on `vessel`, moves as much as fits.
 - Machines take liquid through vessels put in a slot accepting `vessel` (the flex slot); they read and write the vessel, at a per-tick rate (well/vat 250 ml, still 100 ml in, 2:1). Mixing table: later, one lookup in `pour`.
+
+## New items, drawn by hand (2026-10-01, branch `inventory-v2-items`)
+27 kinds, art and footprints only (no slots, uses or machines yet). Footprints follow the drawing, so odd shapes interlock:
+an egg fits in the ring sausage's hole, coins in the steps of the coin stacks, a price tag over the cheese wedge.
+- **Food:** cheese wheel 4x3, cheese wedge 3x2 `..#/###`, cured ham 3x3 `.##/###/##.`, ring sausage 3x3 `###/#.#/#.#`,
+  loaf 4x2, slice of bread 2x2, egg 1x1, apple 1x1, honey jar 2x2, flour sack 3x3 `.#./###/###`.
+- **Farm:** hen 3x3 `#.#/###/.##`, chicken coop 5x4 `.###./#####/#####/#####`, seedling 2x2.
+- **Fire and light:** bellows 4x2 `###./.###` (drawn at a slant), kindling 3x2, split log 4x1, matchbox 2x1, lantern 2x3,
+  candle 1x2.
+- **Vessels, time, money:** wooden bucket 3x3, hourglass 2x3, coin 1x1, coin stacks 3x3 `#../##./###`, price tag 2x1,
+  strongbox 3x2, key 3x1, padlock 2x2.
+- Tags are descriptive (food, meat, money...), except kindling and split log, which carry `fuel` and `wood`. The fuel chest
+  and the hearth's slots accept them, but they do not burn yet (`FUEL` only knows coal and log).
+
+How they are drawn, so more can match:
+- A three-quarter view, light from the top left. The silhouette is one shape in `currentColor` (the item's accent). Form
+  comes from see-through overlays on top: black at .14 to .3 for shade, white at .14 to .5 for light. So an item can be
+  recoloured and keeps its shading.
+- Other materials use fixed colours, mostly the editor's palette: iron `#3a3a44`, brass `#c9975a`, flame `#ff9a3c` and
+  `#ffe08a`, leaf `#7fb069`, bone and trim `#f0ece2`, rope `#c9975a` / `#e6d3a8`.
+- Gaps are real transparency (`fill-rule="evenodd"`), so the grid and the hover tan show through them. Shading that
+  could run past the outline is clipped to it with a `clipPath`.
+- Every layer has a `data-name` ("rind", "netting", "wing feathers"...), so the editor lists them by name. Repeated parts
+  (coins, staves, sticks) are a single path per layer.
+- Footprints were checked by rasterising each sprite and measuring each square. Every square in a footprint is covered
+  at least 15% (the thin parts: a handle, a nozzle, a wedge's tip; most squares are over 25%). Squares outside the
+  footprint get under 2%.
+
+Side effect: the "put on the field" tray now wraps to five rows. `fit()` keeps a fixed 150px for it, so at 1280x720 its last
+row is cut off by about 10px (2px at 1366x768).

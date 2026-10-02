@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <defs>
+    <clipPath id="sack-body"><path d="M38 33C31 34 22 35 16 42C8 50 5 62 6 74C7 84 10 90 20 92C30 94 66 94 76 92C86 90 89 84 90 74C91 62 88 50 80 42C74 35 65 34 58 33Z"/></clipPath>
+  </defs>
+  <path data-name="gathered top" fill="currentColor" d="M40 33C38 27 34 22 33.6 15C33.2 11 36 8 40 9C42 6 46 5 48 7.5C51 5 55 5.5 57 8.5C61 8 63.4 11 62.6 15.5C62 22 58 27 56 33Z"/>
+  <path data-name="top folds" fill="none" stroke="#000" stroke-opacity=".26" stroke-width="1.5" stroke-linecap="round" d="M42.6 30Q39.6 20 40.6 11.6M48 30Q46.6 19 48 9.6M53.4 30Q56 20 55.6 11.4"/>
+  <path data-name="top, in shade" fill="#000" fill-opacity=".2" d="M57 8.5C61 8 63.4 11 62.6 15.5C62 22 58 27 56 33H53C55.6 26 57.6 18 57 8.5Z"/>
+  <path data-name="sack" fill="currentColor" d="M38 33C31 34 22 35 16 42C8 50 5 62 6 74C7 84 10 90 20 92C30 94 66 94 76 92C86 90 89 84 90 74C91 62 88 50 80 42C74 35 65 34 58 33Z"/>
+  <g data-name="shading" clip-path="url(#sack-body)">
+    <ellipse data-name="right side, in shade" cx="86" cy="70" rx="22" ry="34" fill="#000" fill-opacity=".2"/>
+    <ellipse data-name="bottom, in shade" cx="48" cy="96" rx="48" ry="8" fill="#000" fill-opacity=".22"/>
+    <ellipse data-name="left side, lit" cx="16" cy="62" rx="9" ry="20" fill="#fff" fill-opacity=".14"/>
+    <path data-name="folds" fill="none" stroke="#000" stroke-opacity=".2" stroke-width="1.7" stroke-linecap="round" d="M36 36Q24 44 20 56M60 36Q72 42 78 52M44 36Q38 40 34 46"/>
+    <path data-name="seam" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="1.6" stroke-dasharray="3 2.4" d="M10 84Q48 90 86 84"/>
+  </g>
+  <circle data-name="stamp ring" cx="48" cy="64" r="15.6" fill="none" stroke="#5a3a26" stroke-opacity=".6" stroke-width="2"/>
+  <path data-name="wheat, stalk" fill="none" stroke="#5a3a26" stroke-opacity=".7" stroke-width="1.8" stroke-linecap="round" d="M48 76V52"/>
+  <path data-name="wheat, grains" fill="#5a3a26" fill-opacity=".7" d="M48 51.4c-2.4-2-2.4-5 0-7.4 2.4 2.4 2.4 5.4 0 7.4zM47.6 57.4c-3.4.4-5.4-1.6-5.8-4.8 3.2.2 5.4 1.8 5.8 4.8zM48.4 57.4c3.4.4 5.4-1.6 5.8-4.8-3.2.2-5.4 1.8-5.8 4.8zM47.6 63.4c-3.4.4-5.4-1.6-5.8-4.8 3.2.2 5.4 1.8 5.8 4.8zM48.4 63.4c3.4.4 5.4-1.6 5.8-4.8-3.2.2-5.4 1.8-5.8 4.8zM47.6 69.4c-3.4.4-5.4-1.6-5.8-4.8 3.2.2 5.4 1.8 5.8 4.8zM48.4 69.4c3.4.4 5.4-1.6 5.8-4.8-3.2.2-5.4 1.8-5.8 4.8z"/>
+  <path data-name="twine" fill="#8f6236" d="M36.6 30.4C44 32.6 52 32.6 59.4 30.4L60 35.4C52 37.6 44 37.6 36 35.4Z"/>
+  <path data-name="twine turns" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="1" d="M37 32.9C44 35 52 35 59.6 32.9"/>
+  <path data-name="twine ends" fill="none" stroke="#8f6236" stroke-width="2.2" stroke-linecap="round" d="M56.6 35.6Q58.6 41 57 47M57.6 35.4Q62.6 39.6 63 45.4"/>
+</svg>
