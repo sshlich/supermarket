@@ -131,8 +131,20 @@ Asks to be added (proposed 2026-10-02, not judged):
 4. **The counter is where you hear things.** Shelves pay in money, the counter in information: rumours, a hand-drawn map, a
    commission. A map in the pack is gear that tilts the night's rolls toward its landmark.
 5. **Tables in the world:** a price board at the company office, your ledger (what sold, at what hour, to whom).
-- Skipped on purpose: unidentified relics (close to Probably Stolen's hidden features found with tools) and send-a-hireling
-  expeditions (also theirs).
+6. **Hirelings as plans** (the user: "hirelings are just plans"). Pack their kit (their own back and two hands) and give a
+   plan: where, how deep, when to turn back (lamp at half, first wound), what to keep (value per square, or tags). Same rolls
+   as yours, but they choose by the plan, so they are worse at greed. They go when you cannot (by day while you keep shop, or
+   to a second place at night): the scaling layer. They return with their kit packed and a **left-behind list** ("brass
+   clock: no room"), which teaches you to pack for them. A map from the counter steers them too; wounds come back in their
+   kit; they eat from your stock and want wages. Picking = `pack()` over the ground in the plan's order.
+7. **The analyser** (the user: hidden features are "just another instrument"). A machine with a slot: a relic goes in and its
+   hidden features are revealed one at a time over hours (charges left, what it is tuned for, a defect, a maker's mark).
+   Unknown features show as "?" on the item: hidden, but visible and steerable. Analysers differ like any machine, including
+   in what they can reveal (scale: metal and weight; lens: marks; test bench: function). Analysed sells at full price,
+   blind at a discount; a relic machine's own stats can be hidden too (a night digger's unanalysed still is a cheap gamble).
+   A quick scan by day, a deep scan overnight.
+- Calibration: a mechanic is not a copy; only a specific build and presentation would be (the user, 2026-10-02).
+- **Name:** Godsink stays. The diggers are not "sinkers": one T away from "stinkers". They stay diggers.
 
 ## Liked
 
