@@ -7,8 +7,9 @@ Nothing here is built. `DESIGN.md` stays the record of what is.
 
 - **No proximity rules outside machines and special containers.** Nothing happens because two things sit near each other on the
   field. Heat, cold, ageing, growth, rot all live in a machine's slots or a special container (cellar, salt box, coop...).
-- **Deep, not wide.** A few items with many layers, not long chains of new items. Every system has to touch others and give a
-  real benefit for engaging with it.
+- **Width is good when it interweaves** (was "deep, not wide"; changed 2026-10-01). Every system has to touch others and give
+  a real benefit for engaging with it; a new thing comes from one system and feeds another. Long chains of new items that
+  touch nothing else are still out.
 - **No DIY crafting trees** (build the machines from crafted parts). Leftovers pile up and play ends once everything is made.
   It stays one possible angle, on hold.
 - **Realism.** "A lamp next to a plant makes it grow" was rejected as unrealistic.
@@ -16,9 +17,10 @@ Nothing here is built. `DESIGN.md` stays the record of what is.
   purpose (salt it, or use it for something else before it is useless).
 - **Time:** a step currently means a day (not intended, but that is how it plays). Things that take days fit (ageing,
   steeping, curing, growing, hatching). Things that take minutes (a still's cuts) would need a real-time clock and an
-  animation so that pressing the time button feels tactile.
+  animation so that pressing the time button feels tactile. Proposed 2026-10-01: **hours**. A day is a run of hour steps
+  that move machines, shelves and deliveries; the night is measured in light and stamina, not steps.
 
-## Shop and expeditions (the user's pitch, 2026-10-01; not judged yet)
+## Shop and expeditions (the user's pitch, 2026-10-01; in discussion)
 
 Drawn from Probably Stolen's loop (the shopkeeper game the handling reference comes from), to iterate on, not to copy.
 
@@ -46,21 +48,55 @@ Drawn from Probably Stolen's loop (the shopkeeper game the handling reference co
   - **Dr. Jackson:** sells modules, machines, gadgets, batteries; buys materials such as ingots.
 - **Worry:** a forced customer loop every day is repetitive, if somewhat meditative. Is there a better way?
 
-First reactions (not decided):
-- Every place in the pitch is a grid: counters, window, ground, back, hands. Make them **zones**, named spaces that are not
-  items, so they do not count for nesting (a crate can ride in a hand). A location = which zones are on screen + a loot table.
-- **Encounters are things on the ground and gear is used on them;** blue squares show which of your gear works (pickaxe
-  `dig` x3 on the rubble, spear on the boar). Needs `uses` effects (hits, becomes, gives), the same piece as cutting cheese.
-- **Gear opens encounters** (a lantern gets you into the dark mine) rather than adding +% to rolls: visible, no hidden maths.
-- **Stamina is the clock inside a night;** a day stays one tick. Food and potions are items you pack, so every extra roll
-  costs backpack room.
-- **Customers:** routine ones are simulated from what you put out (window, counters, price tags) when you open; one or two
-  special visitors a day are played by hand (a supplier with goods, a commission, a customer's own bag to pack).
-- Modules are items slotted into a machine's module bay; microschemes as a second upgrade currency could go.
-- Bought machines are bulky: carrying one home takes both hands.
-- Setting: the drawn items are rustic (cheese, hearth, hens); the pitch's vendors are scrap-tech (modules, batteries, guns).
-  Pick one, or make the blend deliberate.
-- Smallest first test: the junkyard night alone (zones, scavenge/walk, stamina, pack out, haul value).
+The pitch is a baseline to condense, not a build list. Where it stands after the first round:
+- **Out:** modules (machines simply differ in stats instead) and microschemes. Junkyard specifics: still cooking, not copied yet.
+- **Hands** are two flex slots; a bulky thing (a bought machine, a big tool) takes one whole hand.
+- **Tools work from wherever you carry them** (needing one in hand is fiddly). The limit is backpack room, so bulky tools ride
+  in hands. Worn gear can add tagged slots: a belt or sheath with a knife slot (bought from a leatherworker).
+- **Gear** decides which encounters are possible and tilts the ground rolls toward them.
+- **Go deeper:** better tables (minerals, ore), a chance of monsters.
+- **Lantern:** lit, better finds; when it goes out, monsters and mobs come. Hunting is done without one.
+- **The ground is lost when you leave,** unless something is meant to stay overnight (traps).
+- **Stamina** is a character stat (there may be others); food and potions modify stats. A separate discussion.
+- **Customers:** no fixed counter routine. Shelves you stock sell on their own; restock mid-day when something sells out;
+  shelf space to upgrade; ads and promotions raise appeal; serving at the counter stays a free choice; shipping packages is a
+  route alongside. The danger is a day with nothing to do, hence hours (see Time above).
+- **Dropped:** a guard spotting stolen goods at the counter (that is Probably Stolen's heat and inspection system; see
+  `research/probably-stolen`). Handling (relaxed as in the Bazaar, strict as in Probably Stolen) and pouring are universal.
+
+Condensed:
+1. Space is the constraint everywhere; each half has its own clock (day: hours; night: light and stamina). Most progression
+   is more or better space: shelves, backpack tiers, belt slots, a bigger shop.
+2. By day the shop sells in the background and the workshop is the foreground. The counter is a choice, never a duty. Each
+   hour should offer something worth doing, or let you skip to the next thing that does.
+3. Three ways to sell, each paid with a different resource: shelves cost space, the counter costs your hours, shipping costs
+   packing and lead time. So they coexist as styles; none is the solved best.
+4. Shop furniture is containers (shelf, glass case, cold case, bargain bin): special containers with their own rules. Upgrading
+   the shop is buying and arranging them.
+5. The night is push-your-luck and your pack is its build: gear opens encounters, light is the fuse, deeper is richer and
+   worse. (Darkest Dungeon's torch is the reverse, darker is richer; here you find more when you can see, and the dark is
+   for hunting.)
+6. Machines are relics, not recipes: bought, each one different (speed, capacity, fuel, quality), the depth in their
+   interfaces (a setting you choose, e.g. the still's heat: faster or finer). Hours make the parked still work: swap the
+   receiving bottle at the right hour.
+7. Everything comes from one half and feeds the other. A boar from the dark is butchered, smoked and shelved; its hide goes to
+   the leatherworker and comes back as a sheath (a knife slot). Cheese from the shop baits an overnight trap.
+
+Setting (proposal, being argued):
+- The user leans to a ruined techno world (Caves of Qud's traders), but an organised society (rent, nobles, security, a
+  commissary) is hard to picture in one. Medieval lacks exciting machines; techno uses more of the sprites, and machine
+  interfaces are the exciting part; generic things (crates, chests) fit anywhere.
+- **A rush town over a buried machine city.** Ruin one place, not the world. An old city is uncovered; a boom town grows at its
+  rim within a year (a company on the main shafts, prospectors, tinkers who wake relics, merchants). You sell the shovels and
+  dig a little at night. Boom towns organise fast (Dawson City in the Klondike; company towns paying in scrip at the company
+  store = the commissary and its tickets).
+- Every rule gets a reason: rent (gouged lots; own yours), nobles (claim barons, buyers from the old cities), security (company
+  guards, the marshal), workers (diggers), suppliers (independents, night diggers), machines bought not built (relics nobody
+  can make; each an original, so stats differ), night (the company works the shafts by day), deeper (older layers), shortages
+  (the rush outgrows the road), shipping (relics pay best in the old cities), rustic items (the frontier town's daily life;
+  the tech comes out of the ground).
+- The rush is the structure; the look stays open (Qud-weird, techno-fantasy). Nearest existing: Moonlighter (merchant village
+  by dungeon gates), SteamWorld Dig (western mining town over ancient tech), so no cowboy look.
 
 ## Liked
 
