@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <path data-name="stacks" fill="currentColor" d="M4 9H30V91Q30 94 27 94H7Q4 94 4 91ZM35 41H61V91Q61 94 58 94H38Q35 94 35 91ZM66 73H92V91Q92 94 89 94H69Q66 94 66 91Z"/>
+  <path data-name="seams" fill="#000" fill-opacity=".34" d="M4 83.9H30V85.3H4ZM4 74.5H30V75.9H4ZM4 65.1H30V66.5H4ZM4 55.7H30V57.1H4ZM4 46.3H30V47.7H4ZM4 36.9H30V38.3H4ZM4 27.5H30V28.9H4ZM4 18.1H30V19.5H4ZM35 83.9H61V85.3H35ZM35 74.5H61V75.9H35ZM35 65.1H61V66.5H35ZM35 55.7H61V57.1H35ZM35 46.3H61V47.7H35ZM66 83.9H92V85.3H66ZM66 74.5H92V75.9H66Z"/>
+  <path data-name="right sides, in shade" fill="#000" fill-opacity=".22" d="M21.16 9H30V91Q30 94 27 94H21.16ZM52.16 41H61V91Q61 94 58 94H52.16ZM83.16 73H92V91Q92 94 89 94H83.16Z"/>
+  <path data-name="left sides, lit" fill="#fff" fill-opacity=".32" d="M7 12H11V91H7ZM38 44H42V91H38ZM69 76H73V91H69Z"/>
+  <path data-name="top coins" fill="currentColor" d="M4 9A13 4.6 0 1 0 30 9A13 4.6 0 1 0 4 9ZM35 41A13 4.6 0 1 0 61 41A13 4.6 0 1 0 35 41ZM66 73A13 4.6 0 1 0 92 73A13 4.6 0 1 0 66 73Z"/>
+  <path data-name="top coins, lit" fill="#fff" fill-opacity=".32" d="M4 9A13 4.6 0 1 0 30 9A13 4.6 0 1 0 4 9ZM35 41A13 4.6 0 1 0 61 41A13 4.6 0 1 0 35 41ZM66 73A13 4.6 0 1 0 92 73A13 4.6 0 1 0 66 73Z"/>
+  <path data-name="rims" fill="none" stroke="#000" stroke-opacity=".22" stroke-width="1.4" d="M8 9A9 2.6 0 1 0 26 9A9 2.6 0 1 0 8 9ZM39 41A9 2.6 0 1 0 57 41A9 2.6 0 1 0 39 41ZM70 73A9 2.6 0 1 0 88 73A9 2.6 0 1 0 70 73Z"/>
+</svg>

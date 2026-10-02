@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 160">
+  <defs>
+    <clipPath id="f-pack-bag"><path d="M40 30C27 44 10 70 10 104V140Q10 154 24 155Q64 159 104 155Q118 154 118 140V104C118 70 101 44 88 30Z"/></clipPath>
+    <mask id="f-pack-gaps" maskUnits="userSpaceOnUse" x="0" y="0" width="128" height="160">
+      <rect width="128" height="160" fill="#fff"/>
+      <path fill="none" stroke="#000" stroke-width="2.8" d="M18 86.6Q64 94 110 86.6M46 120.4H82"/>
+    </mask>
+  </defs>
+  <path data-name="shoulder straps" fill="none" stroke="#5a3a26" stroke-width="7" stroke-linecap="round" d="M26 44C12 64 6 92 8 118C9 132 12 142 16 148M102 44C116 64 122 92 120 118C119 132 116 142 112 148"/>
+  <g data-name="bag and flap" mask="url(#f-pack-gaps)">
+    <path data-name="bag" fill="currentColor" d="M40 30C27 44 10 70 10 104V140Q10 154 24 155Q64 159 104 155Q118 154 118 140V104C118 70 101 44 88 30Z"/>
+    <path data-name="bag, in shade" fill="#000" fill-opacity=".22" clip-path="url(#f-pack-bag)" d="M88 0H130V160H96C106 130 108 70 88 0Z"/>
+    <path data-name="pocket" fill="#000" fill-opacity=".16" d="M47 104H81V136Q81 141 76 141H52Q47 141 47 136Z"/>
+    <path data-name="flap" fill="currentColor" d="M41 7H87Q95 7 95 15C95 30 106 52 109 73Q110 84 99 86Q64 92 29 86Q18 84 19 73C22 52 33 30 33 15Q33 7 41 7Z"/>
+    <path data-name="flap, in shade" fill="#000" fill-opacity=".16" d="M80 7H87Q95 7 95 15C95 30 106 52 109 73Q110 84 99 86Q92 87 86 87.6C92 60 88 30 80 7Z"/>
+  </g>
+  <path data-name="straps" fill="#6b4529" d="M38 6H46V124Q46 128 42 128Q38 128 38 124ZM82 6H90V124Q90 128 86 128Q82 128 82 124Z"/>
+  <path data-name="buckles" fill="#c9975a" fill-rule="evenodd" d="M35 80H49V92H35ZM38.4 83.4V88.6H45.6V83.4ZM79 80H93V92H79ZM82.4 83.4V88.6H89.6V83.4Z"/>
+  <path data-name="grab loop" fill="none" stroke="#5a3a26" stroke-width="4.6" stroke-linecap="round" d="M55 9C55 1 73 1 73 9"/>
+</svg>

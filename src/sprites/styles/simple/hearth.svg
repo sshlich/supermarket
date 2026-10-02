@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 96">
+  <path data-name="surround" fill="currentColor" d="M8 16H120V90H8Z"/>
+  <path data-name="surround, in shade" fill="#000" fill-opacity=".2" d="M104 16H120V90H104Z"/>
+  <path data-name="stone joints" fill="none" stroke="#000" stroke-opacity=".22" stroke-width="2" d="M8 40H28M100 40H120M8 64H28M100 64H120M18 16V40M110 16V40M18 64V90M110 64V90"/>
+  <path data-name="opening" fill="#1c1418" d="M30 90V58A34 26 0 0 1 98 58V90Z"/>
+  <path data-name="keystone" fill="currentColor" stroke="#000" stroke-opacity=".22" stroke-width="2" d="M57 26H71L69 36H59Z"/>
+  <path data-name="logs" fill="#7a4e2c" d="M38 82L86 76L88 82L40 88ZM44 76L90 84L88 89L42 81Z"/>
+  <path data-name="flame" fill="#ff9a3c" d="M64 44C72 54 82 60 82 70C82 78 74 82 64 82C54 82 46 78 46 70C46 62 52 58 56 50C58 56 60 58 62 58C62 52 62 48 64 44Z"/>
+  <path data-name="flame, inner" fill="#ffe08a" d="M64 58C69 64 72 67 72 72C72 77 68 79 64 79C60 79 56 77 56 72C56 68 60 64 64 58Z"/>
+  <rect data-name="mantel" x="2" y="8" width="124" height="10" rx="2" fill="#5a3a26"/>
+  <rect data-name="mantel, lit" x="2" y="8" width="124" height="3" rx="1.5" fill="#fff" fill-opacity=".2"/>
+  <rect data-name="hearthstone" x="4" y="88" width="120" height="6" rx="1.5" fill="#3a3a44"/>
+</svg>

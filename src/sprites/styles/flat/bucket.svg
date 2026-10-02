@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <defs>
+    <clipPath id="f-bucket-body"><path d="M8 30L17 86A31 6.5 0 0 0 79 86L88 30A40 8.5 0 0 1 8 30Z"/></clipPath>
+    <mask id="f-bucket-gaps" maskUnits="userSpaceOnUse" x="0" y="0" width="96" height="96">
+      <rect width="96" height="96" fill="#fff"/>
+      <path fill="none" stroke="#000" stroke-width="2.4" d="M24 38.3L29.4 95.2M40 39.83L41.8 96.37M56 39.83L54.2 96.37M72 38.3L66.6 95.2"/>
+    </mask>
+  </defs>
+  <path data-name="bail" fill="none" stroke="#3a3a44" stroke-width="4" stroke-linecap="round" d="M10.4 30C10.4 2.6 85.6 2.6 85.6 30"/>
+  <ellipse data-name="rim" cx="48" cy="30" rx="40" ry="8.5" fill="currentColor"/>
+  <ellipse data-name="inside" cx="48" cy="30.6" rx="35.4" ry="6.6" fill="#1c1418"/>
+  <g data-name="staves" mask="url(#f-bucket-gaps)">
+    <path data-name="body" fill="currentColor" d="M8 30L17 86A31 6.5 0 0 0 79 86L88 30A40 8.5 0 0 1 8 30Z"/>
+    <path data-name="right side, in shade" fill="#000" fill-opacity=".24" clip-path="url(#f-bucket-body)" d="M64 0H96V96H60Z"/>
+  </g>
+  <path data-name="hoops" fill="none" stroke="#3a3a44" stroke-width="5.4" d="M8.8 41.2A39.2 8.1 0 0 0 87.2 41.2M14.38 75.92A33.62 6.86 0 0 0 81.62 75.92"/>
+  <path data-name="lugs" fill="#3a3a44" d="M5.6 25.4h7v10.4h-7zM83.4 25.4h7v10.4h-7z"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <path data-name="slats" fill="currentColor" d="M18 20H110V40H18ZM18 43.4H110V63.4H18ZM18 66.6H110V86.6H18ZM18 90H110V110H18Z"/>
+  <path data-name="slats, in shade" fill="#000" fill-opacity=".2" d="M18 35H110V40H18ZM18 58.4H110V63.4H18ZM18 81.6H110V86.6H18ZM18 105H110V110H18Z"/>
+  <path data-name="brace" fill="none" stroke="currentColor" stroke-width="15" d="M22 106L106 24"/>
+  <path data-name="brace, in shade" fill="none" stroke="#000" stroke-opacity=".16" stroke-width="15" d="M22 106L106 24"/>
+  <path data-name="brace, lit edge" fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="2" d="M17.4 101.4L101.4 19.4"/>
+  <path data-name="frame" fill="currentColor" fill-rule="evenodd" d="M7 6H121Q124 6 124 9V121Q124 124 121 124H7Q4 124 4 121V9Q4 6 7 6ZM18 20V110H110V20Z"/>
+  <path data-name="frame, lit" fill="#fff" fill-opacity=".16" d="M7 6H121Q124 6 124 9V12H4V9Q4 6 7 6ZM4 12H10V118H4Z"/>
+  <path data-name="frame, in shade" fill="#000" fill-opacity=".22" d="M110 20H124V121Q124 124 121 124H7Q4 124 4 121V110H110Z"/>
+  <path data-name="nails" fill="#3a3a44" d="M11 13a2 2 0 1 0 .1 0zM117 13a2 2 0 1 0 .1 0zM11 113a2 2 0 1 0 .1 0zM117 113a2 2 0 1 0 .1 0z"/>
+</svg>

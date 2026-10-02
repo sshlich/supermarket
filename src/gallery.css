@@ -1,0 +1,43 @@
+/* The gallery (/gallery.html, dev server only). Reuses the game's styles for the field and the items, so things look here as they do in play. */
+
+body.gallery { overflow: auto; font: 11px ui-monospace, 'SF Mono', Menlo, monospace; }
+#gal { padding: 0 18px 40px; }
+#gal header { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; padding: 12px 0; margin-bottom: 18px; background: var(--bg); border-bottom: 1px solid var(--line); }
+#gal h1 { margin: 0; font: 600 12px ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: #cfcbd4; }
+#gal h1 small { margin-left: 6px; font-weight: 400; letter-spacing: 0; text-transform: none; color: #86847e; }
+.tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; color: #b9b6ad; }
+.tools button, .tools input[type=search] { font: inherit; color: #e6e3dc; background: #15121a; border: 1px solid #2c2833; border-radius: 3px; padding: 4px 9px; }
+.tools button { cursor: pointer; }
+.tools button:hover { border-color: #4b3a55; }
+.tools button.on { border-color: #c49c68; color: var(--hi); }
+.tools .seg { display: inline-flex; }
+.tools .seg button + button { margin-left: -1px; }
+.tools label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.tools input[type=range] { width: 110px; accent-color: #c49c68; }
+.tools input[type=checkbox] { margin: 0; accent-color: #c49c68; }
+.tools input[type=search] { width: 200px; }
+.tools output { min-width: 34px; color: #86847e; }
+
+#gal section + section { margin-top: 26px; }
+#gal h2 { margin: 0 0 12px; font: 600 11px ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; color: #86847e; }
+#gal h2 small { letter-spacing: 0; font-weight: 400; color: #5d5a63; }
+.cards { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 22px 18px; }
+.card { margin: 0; display: flex; flex-direction: column; gap: 7px; width: max(150px, calc(var(--gw) * var(--cell))); }
+.card .grid, .one .grid { --rim: #3b3045; box-shadow: 0 0 0 1px var(--rim); }
+.card figcaption { display: flex; flex-direction: column; gap: 2px; line-height: 1.35; color: #e6e3dc; }
+.card figcaption b { font-weight: 600; }
+.card figcaption b i { display: inline-block; width: 9px; height: 9px; margin-right: 6px; border-radius: 2px; }
+.card figcaption small { font-size: 10px; color: #86847e; overflow-wrap: anywhere; }
+.card figcaption .tags { color: #5fb3c2; }
+.fit.ok { color: var(--good); }
+.fit.off { color: var(--bad); }
+.nocheck .fit { display: none; }
+/* footprints on: every thing's squares tinted the way the game tints what is picked */
+.prints .item .sq rect { fill: rgba(196, 156, 104, .42); }
+.empty { color: #86847e; }
+/* compare: every version of a kind in a row */
+.versions h2 { display: flex; align-items: center; gap: 0; }
+.versions h2 i { display: inline-block; width: 9px; height: 9px; margin-right: 8px; border-radius: 2px; }
+.versions h2 small { margin-left: 8px; }
+.card.none .grid { opacity: .35; }
+.tools button:disabled { opacity: .4; cursor: default; }

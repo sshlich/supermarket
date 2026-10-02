@@ -66,6 +66,36 @@ updates live when one is saved.
 `npm run sprites` writes a starting sprite from the game-icons icon for any kind that has none (`-- --all` to redo all).
 The save endpoint lives in `vite.config.ts`; shape maths and matrices are in `src/editor/geom.ts` (tested).
 
+`/gallery.html` (dev server only, `src/gallery.ts`) shows every kind at once, drawn with the game's own item markup and styles.
+- **One by one:** each kind sits on a patch of field one square bigger all round. Under it: its id, size, footprint, slots,
+  machine and tags, and a fit line.
+- **One field:** everything is packed onto one field as wide as the window, biggest first, each in the first free spot, the
+  way `spawn` places things.
+- **Controls:** square size, turn everything (`R`), tint the footprints, group by tag, and filter by name, id or tag. The
+  view is remembered between visits, and the page reloads when a sprite or an item changes.
+- **The fit line** is the rule from `npm run footprints` (taken squares 15%+ drawn, free ones under 2%), measured in the
+  browser, so nothing needs installing. Hover the line for the coverage of every square. It agrees with the script.
+- **Compare styles:** other versions of a sprite live in `src/sprites/styles/<style>/<kind>.svg`. The game never loads
+  them. This view puts every version of a kind side by side, each with its own fit line. The style buttons draw
+  "one by one" and "one field" in that style, falling back to the drawn sprite where a kind has no version.
+
+Two less realistic styles, being compared (2026-10-02, 10 kinds each: crate, axe, hearth, still, coin stacks, ham, hen,
+coop, bucket, knapsack). Same footprints and silhouettes as the drawn ones:
+- **simple:** one shade and one light per part, no textures (no dots, netting, stitches, grain, mesh or rivets), essential
+  features only, about half the layers.
+- **flat:** solid shapes and one hard-edged tone, no light at all. Parts are separated by real gaps, cut with a `<mask>`
+  so the grid shows through. Closest to icon art.
+
+Verdict on the sprites so far (the user, 2026-10-02; to fix next, nothing changed yet):
+- Some liked, some hated. The **ham at 45°** is awkward: it should lie flat. It was tilted to fill a 3x3 square with a
+  staircase footprint, copying the diagonal pose of the game-icons reference.
+- **Hens** should take a square and be rounder, not a letter-shaped footprint with empty squares (`#.#/###/.##`).
+- Some sprites are still **placeholders**: log, coal, bottle, knife, fuel chest, well, mash vat (crate, axe, hearth and
+  still have new versions in `styles/`).
+- Some things are **too big**: the pickaxe (5x6) and the shovel (3x7).
+- **Shapes are all over the place.** The footprints followed every outline literally, and items sit in whatever pose
+  fitted the grid.
+
 ## Handling (the game page)
 
 - **Turning is four-way.** `rot` on an item is quarter turns clockwise (0-3), so upside down is a real state. While

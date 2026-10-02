@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 192">
+  <defs>
+    <mask id="f-axe-gaps" maskUnits="userSpaceOnUse" x="0" y="0" width="128" height="192">
+      <rect width="128" height="192" fill="#fff"/>
+      <path fill="none" stroke="#000" stroke-width="2.8" d="M50.6 26V70M77.4 26V70M52 69.4H76"/>
+    </mask>
+  </defs>
+  <g data-name="axe" mask="url(#f-axe-gaps)">
+    <path data-name="haft" fill="#b98552" d="M56 50H72V176Q72 184 68 186H60Q56 184 56 176Z"/>
+    <path data-name="haft, in shade" fill="#000" fill-opacity=".22" d="M66 70H72V176Q72 184 68 186H66Z"/>
+    <path data-name="knob" fill="#b98552" d="M54 176H74Q76 184 70 188H58Q52 184 54 176Z"/>
+    <path data-name="head" fill="#b3bbc5" d="M56 30C42 28 28 18 14 4C2 30 2 64 14 92C28 76 42 66 56 64ZM72 30C86 28 100 18 114 4C126 30 126 64 114 92C100 76 86 66 72 64ZM52 26H76V68H52Z"/>
+    <path data-name="head, in shade" fill="#000" fill-opacity=".22" d="M64 47H76V68H64ZM72 47H118.6C118 64 116.4 79 114 92C100 76 86 66 72 64ZM9.4 47H56V64C42 66 28 76 14 92C11.6 79 10 64 9.4 47Z"/>
+  </g>
+</svg>

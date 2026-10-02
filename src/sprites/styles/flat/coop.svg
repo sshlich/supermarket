@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 128">
+  <defs>
+    <mask id="f-coop-gaps" maskUnits="userSpaceOnUse" x="0" y="0" width="160" height="128">
+      <rect width="160" height="128" fill="#fff"/>
+      <path fill="none" stroke="#000" stroke-width="2.8" d="M8 53L80 14.6L152 53M12 113.4H148"/>
+    </mask>
+  </defs>
+  <g data-name="coop" mask="url(#f-coop-gaps)">
+    <path data-name="walls" fill="currentColor" d="M16 50L80 15L144 50V114H16Z"/>
+    <path data-name="right side, in shade" fill="#000" fill-opacity=".2" d="M118 36.8L144 50V114H118Z"/>
+    <path data-name="corner boards" fill="#f0ece2" d="M16 54H22V114H16ZM138 54H144V114H138Z"/>
+    <path data-name="roof" fill="#3f3742" d="M2 46L80 2L158 46L148 51.6L80 13.4L12 51.6Z"/>
+    <rect data-name="skid" x="12" y="114" width="136" height="6" fill="#5a3a26"/>
+  </g>
+  <circle data-name="vent" cx="80" cy="33" r="6.5" fill="#1c1418"/>
+  <rect data-name="window" x="100" y="56" width="30" height="26" rx="2" fill="#f0ece2"/>
+  <path data-name="window panes" fill="#1c1418" d="M103.6 59.6H113.6V69.4H103.6ZM116.4 59.6H126.4V69.4H116.4ZM103.6 72H113.6V78.4H103.6ZM116.4 72H126.4V78.4H116.4Z"/>
+  <path data-name="egg hatch" fill="#000" fill-opacity=".22" d="M98 90H132V110H98Z"/>
+  <path data-name="pop hole" fill="#1c1418" d="M38 114V93A12 12 0 0 1 62 93V114Z"/>
+  <circle data-name="hen in the door" cx="51" cy="102" r="5.6" fill="#b9652f"/>
+  <path data-name="hen's comb" fill="#d5606c" d="M47.4 97.6C47.2 95.4 49 94.2 50.4 95.4C51 93.4 53.8 93.6 54.2 95.6C55.6 96 55.6 97.6 54.6 98.4C52.4 97.2 49.6 97 47.4 97.6Z"/>
+  <path data-name="ramp" fill="#b98552" d="M38.6 113L61 113L32 126.4L9.6 126.4Z"/>
+</svg>

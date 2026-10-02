@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <defs>
+    <mask id="f-coins-gaps" maskUnits="userSpaceOnUse" x="0" y="0" width="96" height="96">
+      <rect width="96" height="96" fill="#fff"/>
+      <path fill="none" stroke="#000" stroke-width="2.2" d="M3 83.4H31M3 72.8H31M3 62.2H31M3 51.6H31M3 41H31M3 30.4H31M3 19.8H31M34 83.4H62M34 72.8H62M34 62.2H62M34 51.6H62M65 83.4H93"/>
+    </mask>
+  </defs>
+  <g data-name="stacks" mask="url(#f-coins-gaps)">
+    <path data-name="coins" fill="currentColor" d="M4 9H30V91Q30 94 27 94H7Q4 94 4 91ZM35 41H61V91Q61 94 58 94H38Q35 94 35 91ZM66 73H92V91Q92 94 89 94H69Q66 94 66 91Z"/>
+    <path data-name="right sides, in shade" fill="#000" fill-opacity=".24" d="M21.16 9H30V91Q30 94 27 94H21.16ZM52.16 41H61V91Q61 94 58 94H52.16ZM83.16 73H92V91Q92 94 89 94H83.16Z"/>
+  </g>
+  <path data-name="top coins" fill="currentColor" d="M4 9A13 4.6 0 1 0 30 9A13 4.6 0 1 0 4 9ZM35 41A13 4.6 0 1 0 61 41A13 4.6 0 1 0 35 41ZM66 73A13 4.6 0 1 0 92 73A13 4.6 0 1 0 66 73Z"/>
+  <path data-name="top coins, lit" fill="#fff" fill-opacity=".34" d="M4 9A13 4.6 0 1 0 30 9A13 4.6 0 1 0 4 9ZM35 41A13 4.6 0 1 0 61 41A13 4.6 0 1 0 35 41ZM66 73A13 4.6 0 1 0 92 73A13 4.6 0 1 0 66 73Z"/>
+</svg>

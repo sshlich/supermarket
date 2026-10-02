@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <mask id="f-crate-gaps" maskUnits="userSpaceOnUse" x="0" y="0" width="128" height="128">
+      <rect width="128" height="128" fill="#fff"/>
+      <path fill="none" stroke="#000" stroke-width="3" d="M18 41.7H110M18 65H110M18 88.3H110M18 18H110V110H18Z"/>
+      <path fill="none" stroke="#000" stroke-width="3.4" d="M15.3 104.3L104.3 15.3M23.7 112.7L112.7 23.7"/>
+      <path fill="#000" d="M11 9.6a2.4 2.4 0 1 0 .1 0zM117 9.6a2.4 2.4 0 1 0 .1 0zM11 113.6a2.4 2.4 0 1 0 .1 0zM117 113.6a2.4 2.4 0 1 0 .1 0z"/>
+    </mask>
+  </defs>
+  <g data-name="frame and slats" mask="url(#f-crate-gaps)">
+    <path data-name="boards" fill="currentColor" d="M7 6H121Q124 6 124 9V121Q124 124 121 124H7Q4 124 4 121V9Q4 6 7 6Z"/>
+    <path data-name="frame, in shade" fill="#000" fill-opacity=".24" d="M110 18H124V121Q124 124 121 124H7Q4 124 4 121V110H110Z"/>
+    <path data-name="slats, in shade" fill="#000" fill-opacity=".14" d="M18 18H110V110H18Z"/>
+  </g>
+  <path data-name="brace" fill="currentColor" d="M18 103L103 18H110V25L25 110H18Z"/>
+</svg>

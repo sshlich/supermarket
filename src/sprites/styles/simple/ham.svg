@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <defs>
+    <clipPath id="s-ham-meat"><ellipse cx="41" cy="56" rx="40" ry="26.5" transform="rotate(-45 41 56)"/><path d="M54 30.6L66.6 22.6L74.4 30.4L66.4 43Z"/></clipPath>
+  </defs>
+  <path data-name="bone" fill="none" stroke="#f0ece2" stroke-width="8" stroke-linecap="round" d="M66 30L84 12"/>
+  <path data-name="bone knobs" fill="#f0ece2" d="M83.5 2a6 6 0 1 1-.1 0zM89.5 8.7a5.8 5.8 0 1 1-.1 0z"/>
+  <ellipse data-name="leg" cx="41" cy="56" rx="40" ry="26.5" fill="currentColor" transform="rotate(-45 41 56)"/>
+  <path data-name="shank" fill="currentColor" d="M54 30.6L66.6 22.6L74.4 30.4L66.4 43Z"/>
+  <g data-name="light and shade" clip-path="url(#s-ham-meat)">
+    <path data-name="in shade" fill="#000" fill-opacity=".22" d="M7 96L96 7V96Z"/>
+    <path data-name="lit" fill="#fff" fill-opacity=".18" d="M0 62L62 0H73L0 73Z"/>
+  </g>
+  <ellipse data-name="cut face, fat" cx="14.2" cy="81.8" rx="15" ry="9.4" fill="#f2dcc6" transform="rotate(45 14.2 81.8)"/>
+  <ellipse data-name="cut face, meat" cx="15" cy="81" rx="12.2" ry="6.8" fill="#cf5f62" transform="rotate(45 15 81)"/>
+  <circle data-name="bone, cut" cx="18.6" cy="78" r="2.8" fill="#f0ece2"/>
+</svg>

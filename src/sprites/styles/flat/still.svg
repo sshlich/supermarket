@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <defs>
+    <mask id="f-still-gaps" maskUnits="userSpaceOnUse" x="0" y="0" width="96" height="96">
+      <rect width="96" height="96" fill="#fff"/>
+      <path fill="none" stroke="#000" stroke-width="2.6" d="M14 41.4C20 43.6 42 43.6 48 41.4M10 71.6H54M62 40H90M62 72H90"/>
+    </mask>
+  </defs>
+  <path data-name="swan neck" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" d="M37 17C41 6 56 5 66 15L78 30"/>
+  <g data-name="still" mask="url(#f-still-gaps)">
+    <path data-name="condenser" fill="#8f6236" d="M62 30H90V84Q90 88 86 88H66Q62 88 62 84Z"/>
+    <path data-name="condenser, in shade" fill="#000" fill-opacity=".24" d="M80 30H90V84Q90 88 86 88H80Z"/>
+    <rect data-name="firebox" x="10" y="72" width="44" height="20" rx="2" fill="#3a3a44"/>
+    <ellipse data-name="pot" cx="32" cy="58" rx="24" ry="18" fill="currentColor"/>
+    <path data-name="helmet" fill="currentColor" d="M16.6 32C16.6 20.6 23 13 31 13C39 13 45.4 20.6 45.4 32C45.4 39 40 42.4 31 42.4C22 42.4 16.6 39 16.6 32Z"/>
+    <path data-name="pot, in shade" fill="#000" fill-opacity=".24" d="M32 13C39.6 13.4 45.4 21 45.4 32C45.4 37 43.4 40.4 40 41.6C48.4 44.4 56 50.4 56 58C56 68 46 76 32 76Z"/>
+  </g>
+  <rect data-name="fire" x="22" y="78" width="20" height="9" rx="2" fill="#ff9a3c"/>
+  <path data-name="spout" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" d="M88 80H93"/>
+</svg>

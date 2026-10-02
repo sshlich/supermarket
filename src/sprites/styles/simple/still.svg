@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <path data-name="swan neck" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" d="M37 17C41 6 56 5 66 15L78 30"/>
+  <path data-name="condenser" fill="#8f6236" d="M62 30H90V84Q90 88 86 88H66Q62 88 62 84Z"/>
+  <path data-name="condenser hoops" fill="#3a3a44" d="M62 40H90V44H62ZM62 72H90V76H62Z"/>
+  <path data-name="condenser, in shade" fill="#000" fill-opacity=".22" d="M80 30H90V84Q90 88 86 88H80Z"/>
+  <path data-name="spout" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" d="M88 80H93"/>
+  <rect data-name="firebox" x="10" y="72" width="44" height="20" rx="2" fill="#3a3a44"/>
+  <rect data-name="fire" x="22" y="78" width="20" height="9" rx="2" fill="#ff9a3c"/>
+  <ellipse data-name="pot" cx="32" cy="58" rx="24" ry="18" fill="currentColor"/>
+  <path data-name="helmet" fill="currentColor" d="M16.6 32C16.6 20.6 23 13 31 13C39 13 45.4 20.6 45.4 32C45.4 39 40 42.4 31 42.4C22 42.4 16.6 39 16.6 32Z"/>
+  <path data-name="pot, in shade" fill="#000" fill-opacity=".22" d="M40 41.2C49 44 56 50 56 58C56 68 46 76 32 76C29 76 26 75.6 23 74.6C37 72 44 62 40 41.2ZM36 14C42 16 45.4 23 45.4 32C45.4 37 43 40.4 38.4 41.6C40.6 33 39.6 22 36 14Z"/>
+  <path data-name="pot, lit" fill="#fff" fill-opacity=".26" d="M14 52C16 46 21 43 26 42C22 47 20 52 20 58C17 58 14 56 14 52ZM20.4 28C20.6 22 23.6 17.6 28 16.6C25.6 20.4 24.6 25 24.6 30Z"/>
+</svg>

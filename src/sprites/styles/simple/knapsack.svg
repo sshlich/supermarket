@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 160">
+  <defs>
+    <clipPath id="s-pack-bag"><path d="M40 30C27 44 10 70 10 104V140Q10 154 24 155Q64 159 104 155Q118 154 118 140V104C118 70 101 44 88 30Z"/></clipPath>
+  </defs>
+  <path data-name="shoulder straps" fill="none" stroke="#5a3a26" stroke-width="7" stroke-linecap="round" d="M26 44C12 64 6 92 8 118C9 132 12 142 16 148M102 44C116 64 122 92 120 118C119 132 116 142 112 148"/>
+  <path data-name="bag" fill="currentColor" d="M40 30C27 44 10 70 10 104V140Q10 154 24 155Q64 159 104 155Q118 154 118 140V104C118 70 101 44 88 30Z"/>
+  <path data-name="bag, in shade" fill="#000" fill-opacity=".2" clip-path="url(#s-pack-bag)" d="M84 40C104 64 112 96 110 130C109 144 106 152 100 160H130V40Z"/>
+  <path data-name="pocket" fill="currentColor" d="M49 108H79V136Q79 141 74 141H54Q49 141 49 136Z"/>
+  <path data-name="pocket, in shade" fill="#000" fill-opacity=".16" d="M66 108H79V136Q79 141 74 141H66Z"/>
+  <path data-name="pocket flap" fill="#000" fill-opacity=".14" d="M47 104H81V113Q81 118 76 118H52Q47 118 47 113Z"/>
+  <path data-name="flap" fill="currentColor" d="M41 7H87Q95 7 95 15C95 30 106 52 109 73Q110 84 99 86Q64 92 29 86Q18 84 19 73C22 52 33 30 33 15Q33 7 41 7Z"/>
+  <path data-name="flap, lit" fill="#fff" fill-opacity=".14" d="M41 7H64C60 30 50 60 44 87Q36 87 29 86Q18 84 19 73C22 52 33 30 33 15Q33 7 41 7Z"/>
+  <path data-name="flap rim, in shade" fill="#000" fill-opacity=".2" d="M19.2 76Q64 90 108.8 76Q110 84 99 86Q64 92 29 86Q18 84 19.2 76Z"/>
+  <path data-name="straps" fill="#6b4529" d="M38 6H46V124Q46 128 42 128Q38 128 38 124ZM82 6H90V124Q90 128 86 128Q82 128 82 124Z"/>
+  <path data-name="buckles" fill="none" stroke="#c9975a" stroke-width="2.8" d="M37.4 80.4H46.6Q48.6 80.4 48.6 82.4V89.6Q48.6 91.6 46.6 91.6H37.4Q35.4 91.6 35.4 89.6V82.4Q35.4 80.4 37.4 80.4ZM81.4 80.4H90.6Q92.6 80.4 92.6 82.4V89.6Q92.6 91.6 90.6 91.6H81.4Q79.4 91.6 79.4 89.6V82.4Q79.4 80.4 81.4 80.4Z"/>
+  <path data-name="grab loop" fill="none" stroke="#5a3a26" stroke-width="4.4" stroke-linecap="round" d="M55 9C55 1 73 1 73 9"/>
+</svg>
