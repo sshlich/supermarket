@@ -113,7 +113,7 @@ Setting (proposal, being argued):
 Day and night (2026-10-02):
 - **12 hour steps** a day (8 to 20), with a skip to the next thing that needs you. Agreed.
 - The user's point: machines then split into what they do by day and by night, with outcomes of different value.
-  - By day machines are attended: fast, skilled work done hour by hand (the still's cuts, smelting, cooking); better output.
+  - By day machines are attended: fast, skilled work done by hand, hour by hour (the still's cuts, smelting, cooking); better output.
   - At night they run unattended while you are out; the house's night passes in one block. Slow, patient processes belong
     there (dough proving, mash fermenting, curing, smoking, ageing, charging, a banked fire burning down to embers). Some
     machines will not run alone (a still is a fire risk); others do bulk-grade work.
