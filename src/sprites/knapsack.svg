@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 160">
+  <defs>
+    <clipPath id="knapsack-body"><path d="M40 30C27 44 10 70 10 104V140Q10 154 24 155Q64 159 104 155Q118 154 118 140V104C118 70 101 44 88 30Z"/></clipPath>
+    <clipPath id="knapsack-flap"><path d="M41 7H87Q95 7 95 15C95 30 106 52 109 73Q110 84 99 86Q64 92 29 86Q18 84 19 73C22 52 33 30 33 15Q33 7 41 7Z"/></clipPath>
+  </defs>
+  <g data-name="shoulder straps" fill="none" stroke="#5a3a26" stroke-width="7" stroke-linecap="round">
+    <path data-name="left strap" d="M26 44C12 64 6 92 8 118C9 132 12 142 16 148"/>
+    <path data-name="right strap" d="M102 44C116 64 122 92 120 118C119 132 116 142 112 148"/>
+  </g>
+  <path data-name="straps, in shade" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="2" d="M122 92C123 110 120 130 113 146M10 70C7 84 6 100 7 112"/>
+  <path data-name="bag" fill="currentColor" d="M40 30C27 44 10 70 10 104V140Q10 154 24 155Q64 159 104 155Q118 154 118 140V104C118 70 101 44 88 30Z"/>
+  <g data-name="bag shading" clip-path="url(#knapsack-body)">
+    <ellipse data-name="right side, in shade" cx="122" cy="108" rx="30" ry="62" fill="#000" fill-opacity=".2"/>
+    <ellipse data-name="bottom, in shade" cx="64" cy="162" rx="66" ry="13" fill="#000" fill-opacity=".22"/>
+    <ellipse data-name="left side, lit" cx="15" cy="108" rx="7" ry="34" fill="#fff" fill-opacity=".14"/>
+    <path data-name="folds" fill="none" stroke="#000" stroke-opacity=".18" stroke-width="1.6" stroke-linecap="round" d="M22 118Q20 132 24 146M106 116Q109 130 105 146M30 96Q26 104 26 114"/>
+    <path data-name="flap shadow" fill="#000" fill-opacity=".3" d="M14 80Q64 98 114 80V92Q64 104 14 92Z"/>
+    <path data-name="bottom seam" fill="none" stroke="#000" stroke-opacity=".28" stroke-width="1.5" stroke-dasharray="3 2.4" d="M14 146Q64 152 114 146"/>
+  </g>
+  <path data-name="pocket" fill="currentColor" d="M49 108H79V136Q79 141 74 141H54Q49 141 49 136Z"/>
+  <path data-name="pocket, in shade" fill="#000" fill-opacity=".14" d="M66 108H79V136Q79 141 74 141H66Z"/>
+  <path data-name="pocket stitches" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="1.2" stroke-dasharray="2.4 2" d="M52 114V135Q52 138 55 138H73Q76 138 76 135V114"/>
+  <path data-name="pocket flap shadow" fill="#000" fill-opacity=".25" d="M48 117H80V121Q64 124 48 121Z"/>
+  <path data-name="pocket flap" fill="currentColor" d="M47 104H81V113Q81 118 76 118H52Q47 118 47 113Z"/>
+  <path data-name="pocket flap, lit edge" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.4" stroke-linecap="round" d="M49 106H78"/>
+  <circle data-name="pocket button" cx="64" cy="113" r="3" fill="#c9975a"/>
+  <circle data-name="button, lit" cx="63" cy="112" r="1.1" fill="#fff" fill-opacity=".5"/>
+  <path data-name="flap" fill="currentColor" d="M41 7H87Q95 7 95 15C95 30 106 52 109 73Q110 84 99 86Q64 92 29 86Q18 84 19 73C22 52 33 30 33 15Q33 7 41 7Z"/>
+  <g data-name="flap shading" clip-path="url(#knapsack-flap)">
+    <ellipse data-name="flap top, lit" cx="56" cy="12" rx="34" ry="9" fill="#fff" fill-opacity=".14"/>
+    <ellipse data-name="flap right, in shade" cx="112" cy="58" rx="24" ry="40" fill="#000" fill-opacity=".2"/>
+    <path data-name="flap rim, in shade" fill="#000" fill-opacity=".22" d="M14 78Q64 94 114 78V96H14Z"/>
+    <path data-name="flap stitches" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="1.3" stroke-dasharray="3 2.4" d="M37 13C37 28 28 50 24 72Q23 80 30 81Q64 86 98 81Q105 80 104 72C100 50 91 28 91 13"/>
+  </g>
+  <path data-name="outfitter&apos;s stencil (Fluent Emoji hammer and pick)" fill="#000" fill-opacity=".28" transform="translate(51 35) scale(.8125)" d="M30.176 8.295a1.49 1.49 0 0 0-.109-1.939c-.207-.217-1.321-1.323-1.466-1.467a1.49 1.49 0 0 0-1.722-.273l-2.1-2.1a1.775 1.775 0 0 0-2.5 0l-3.989 3.99a1.77 1.77 0 0 0 0 2.5l2.023 2.023c-3.239 3.2-3.11 3.193-3.393 3.3l-2.949-2.949l2.373-2.373a1.79 1.79 0 0 0 .01-2.5l-3.99-3.99a1.77 1.77 0 0 0-2.5 0L7.418 4.962a1.5 1.5 0 0 0-1.716.257c-.176.167-.974.978-1.468 1.477a1.49 1.49 0 0 0-.273 1.723l-2.438 2.439a1.776 1.776 0 0 0 0 2.5l3.981 3.991a1.776 1.776 0 0 0 2.5 0l2.368-2.368l2.267 2.267l-7.949 7.956a1.773 1.773 0 0 0 0 2.505l2.54 2.541a1.773 1.773 0 0 0 2.5 0l7.223-7.222l7.213 7.212a1.77 1.77 0 0 0 2.5 0l2.541-2.541a1.775 1.775 0 0 0 0-2.5l-7.938-7.938l2.63-2.631l2.163 2.163a2.54 2.54 0 0 0 1.808.748h.011a2.53 2.53 0 0 0 1.8-.759c.37-.372.617-.848.709-1.364l.5-2.851a6.53 6.53 0 0 0-.714-4.272M6.749 15.777l-3.657-3.665l8.017-8.017l3.66 3.661zm1.73 12.9l-2.216-2.216l7.492-7.5a2.8 2.8 0 0 0 .782 1.652l1 1zm16.94-.01l-9.468-9.468a.8.8 0 0 1-.227-.553a2.74 2.74 0 0 0-.793-1.927l-3.148-3.148l.771-.771l3.142 3.143a2.8 2.8 0 0 0 1.918.813a.8.8 0 0 1 .553.227l9.468 9.468zm-5.56-12.821a3.8 3.8 0 0 0-.836-.695l2.7-2.7l.765.766zm9.07-3.623l-.5 2.837a.6.6 0 0 1-.162.315a.55.55 0 0 1-.393.167a.56.56 0 0 1-.395-.164L19.862 7.76l3.666-3.666l4.138 4.138a4.54 4.54 0 0 1 1.263 3.99"/>
+  <g data-name="straps">
+    <path data-name="left strap" fill="#6b4529" d="M38 6H46V124Q46 128 42 128Q38 128 38 124Z"/>
+    <path data-name="right strap" fill="#6b4529" d="M82 6H90V124Q90 128 86 128Q82 128 82 124Z"/>
+    <path data-name="straps, lit edge" fill="#fff" fill-opacity=".2" d="M38 6H39.6V124H38ZM82 6H83.6V124H82Z"/>
+    <path data-name="straps, in shade" fill="#000" fill-opacity=".28" d="M44.2 6H46V124H44.2ZM88.2 6H90V124H88.2Z"/>
+    <path data-name="strap holes" fill="#000" fill-opacity=".45" d="M42 101a1.3 1.3 0 1 0 .1 0zM42 108a1.3 1.3 0 1 0 .1 0zM86 101a1.3 1.3 0 1 0 .1 0zM86 108a1.3 1.3 0 1 0 .1 0z"/>
+    <path data-name="strap tabs" fill="#5a3a26" d="M36 118H48V124H36ZM80 118H92V124H80Z"/>
+    <path data-name="tab stitches" fill="none" stroke="#e6d3a8" stroke-opacity=".45" stroke-width="1" stroke-dasharray="1.6 1.6" d="M37 121H47M81 121H91"/>
+  </g>
+  <g data-name="buckles" fill="none" stroke="#c9975a" stroke-width="2.6">
+    <rect data-name="left buckle" x="35.3" y="80.3" width="13.4" height="11.4" rx="2"/>
+    <rect data-name="right buckle" x="79.3" y="80.3" width="13.4" height="11.4" rx="2"/>
+  </g>
+  <path data-name="buckle prongs" fill="none" stroke="#c9975a" stroke-width="1.8" stroke-linecap="round" d="M42 81V91M86 81V91"/>
+  <path data-name="buckles, lit" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width="1" d="M36.6 81.6H47.4M80.6 81.6H91.4"/>
+  <path data-name="grab loop" fill="none" stroke="#5a3a26" stroke-width="4.2" stroke-linecap="round" d="M55 9C55 1 73 1 73 9"/>
+  <path data-name="loop, lit" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.2" stroke-linecap="round" d="M56.4 6C57.6 2.6 62 2 64 2"/>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 224">
+  <defs>
+    <clipPath id="shovel-blade"><path d="M10 133H86Q88 133 88 136V170C88 182 74 190 64 193C58 196 52 206 48 219C44 206 38 196 32 193C22 190 8 182 8 170V136Q8 133 10 133Z"/></clipPath>
+    <clipPath id="shovel-haft"><path d="M43 36H53L54 126H42Z"/></clipPath>
+  </defs>
+  <path data-name="grip arms" fill="none" stroke="#a9773f" stroke-width="5" stroke-linecap="round" d="M38.6 11C35.4 22 37.6 31 45 38M57.4 11C60.6 22 58.4 31 51 38"/>
+  <path data-name="right arm, in shade" fill="none" stroke="#000" stroke-opacity=".24" stroke-width="2.2" d="M59.6 14C61 23 59 30.6 52.6 37"/>
+  <path data-name="left arm, lit" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1.2" d="M36.8 15C35.8 23 38 30 43 35"/>
+  <path data-name="grip" fill="#a9773f" d="M38 4H58Q62 4 62 8V10Q62 14 58 14H38Q34 14 34 10V8Q34 4 38 4Z"/>
+  <path data-name="grip, in shade" fill="#000" fill-opacity=".24" d="M34 9.6H62V10Q62 14 58 14H38Q34 14 34 10Z"/>
+  <path data-name="grip, lit" fill="#fff" fill-opacity=".25" d="M38 5.4H58V7H38Z"/>
+  <path data-name="haft" fill="#a9773f" d="M43 36H53L54 126H42Z"/>
+  <g data-name="haft shading" clip-path="url(#shovel-haft)">
+    <path data-name="haft, lit" fill="#fff" fill-opacity=".2" d="M40 30H46.4V130H40Z"/>
+    <path data-name="haft, in shade" fill="#000" fill-opacity=".24" d="M50 30H56V130H50Z"/>
+    <path data-name="grain" fill="none" stroke="#000" stroke-opacity=".2" stroke-width="1" d="M47.6 44Q47 70 48.4 92T47.6 120"/>
+  </g>
+  <path data-name="ferrule" fill="#3a3a44" d="M42 34H54V40H42Z"/>
+  <path data-name="socket" fill="currentColor" d="M42.6 104H53.4L57 134H39Z"/>
+  <path data-name="socket, in shade" fill="#000" fill-opacity=".24" d="M48.6 104H53.4L57 134H48.6Z"/>
+  <path data-name="rivets" fill="#000" fill-opacity=".4" d="M48 112a1.5 1.5 0 1 0 .1 0zM48 124a1.5 1.5 0 1 0 .1 0z"/>
+  <path data-name="blade" fill="currentColor" d="M10 133H86Q88 133 88 136V170C88 182 74 190 64 193C58 196 52 206 48 219C44 206 38 196 32 193C22 190 8 182 8 170V136Q8 133 10 133Z"/>
+  <g data-name="blade shading" clip-path="url(#shovel-blade)">
+    <path data-name="right half, in shade" fill="#000" fill-opacity=".2" d="M50 128H96V224H50Q52 180 50 128Z"/>
+    <ellipse data-name="left half, lit" cx="20" cy="162" rx="8" ry="24" fill="#fff" fill-opacity=".14"/>
+    <path data-name="spine" fill="#000" fill-opacity=".14" d="M45 133H51L50 178Q48 182 46 178Z"/>
+    <path data-name="spine, lit" fill="#fff" fill-opacity=".2" d="M45 134H46.4L46.2 176H45.4Z"/>
+    <path data-name="tread" fill="#fff" fill-opacity=".22" d="M8 133H88V139H8Z"/>
+    <path data-name="tread, in shade" fill="#000" fill-opacity=".26" d="M8 139H88V141H8Z"/>
+    <path data-name="worn edge" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="2" d="M9 172C10 182 22 190 32 193C38 196 44 206 48 218C52 206 58 196 64 193C74 190 86 182 87 172"/>
+  </g>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <defs>
+    <clipPath id="rope-coil"><ellipse cx="48" cy="29.5" rx="44.4" ry="26"/></clipPath>
+  </defs>
+  <g data-name="coil">
+    <g data-name="lower turn">
+      <path data-name="outline" fill="none" stroke="#000" stroke-opacity=".38" stroke-width="8.200000000000001" d="M7 32A41 20.5 0 0 0 89 32"/>
+      <path data-name="rope" fill="none" stroke="currentColor" stroke-width="6.4" d="M7 32A41 20.5 0 0 0 89 32"/>
+      <path data-name="twist" fill="none" stroke="#000" stroke-opacity=".26" stroke-width="6.4" stroke-dasharray="1.5 3.1" d="M7 32A41 20.5 0 0 0 89 32"/>
+    </g>
+    <g data-name="far side of the turns">
+      <path data-name="outline" fill="none" stroke="#000" stroke-opacity=".38" stroke-width="8.200000000000001" d="M7 27A41 20.5 0 0 1 89 27M14 27A34 17 0 0 1 82 27M21 27A27 13.5 0 0 1 75 27M28 27A20 10 0 0 1 68 27M35 27A13 6.5 0 0 1 61 27"/>
+      <path data-name="rope" fill="none" stroke="currentColor" stroke-width="6.4" d="M7 27A41 20.5 0 0 1 89 27M14 27A34 17 0 0 1 82 27M21 27A27 13.5 0 0 1 75 27M28 27A20 10 0 0 1 68 27M35 27A13 6.5 0 0 1 61 27"/>
+      <path data-name="twist" fill="none" stroke="#000" stroke-opacity=".26" stroke-width="6.4" stroke-dasharray="1.5 3.1" d="M7 27A41 20.5 0 0 1 89 27M14 27A34 17 0 0 1 82 27M21 27A27 13.5 0 0 1 75 27M28 27A20 10 0 0 1 68 27M35 27A13 6.5 0 0 1 61 27"/>
+    </g>
+    <g data-name="near side of the turns">
+      <path data-name="outline" fill="none" stroke="#000" stroke-opacity=".38" stroke-width="8.200000000000001" d="M35 27A13 6.5 0 0 0 61 27M28 27A20 10 0 0 0 68 27M21 27A27 13.5 0 0 0 75 27M14 27A34 17 0 0 0 82 27M7 27A41 20.5 0 0 0 89 27"/>
+      <path data-name="rope" fill="none" stroke="currentColor" stroke-width="6.4" d="M35 27A13 6.5 0 0 0 61 27M28 27A20 10 0 0 0 68 27M21 27A27 13.5 0 0 0 75 27M14 27A34 17 0 0 0 82 27M7 27A41 20.5 0 0 0 89 27"/>
+      <path data-name="twist" fill="none" stroke="#000" stroke-opacity=".26" stroke-width="6.4" stroke-dasharray="1.5 3.1" d="M35 27A13 6.5 0 0 0 61 27M28 27A20 10 0 0 0 68 27M21 27A27 13.5 0 0 0 75 27M14 27A34 17 0 0 0 82 27M7 27A41 20.5 0 0 0 89 27"/>
+    </g>
+  </g>
+  <path data-name="strands, lit" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1.3" d="M9 25.4A39 19.5 0 0 1 87 25.4M16 25.4A32 16 0 0 1 80 25.4M23 25.4A25 12.5 0 0 1 73 25.4M30 25.4A18 9 0 0 1 66 25.4M37 25.4A11 5.5 0 0 1 59 25.4M10 28A38 19 0 0 0 34.333333333333336 44.82608695652174M17 28A31 15.5 0 0 0 36.666666666666664 41.78260869565217M24 28A24 12 0 0 0 39 38.73913043478261M31 28A17 8.5 0 0 0 41.333333333333336 35.69565217391305M38 28A10 5 0 0 0 43.666666666666664 32.65217391304348"/>
+  <ellipse data-name="right side, in shade" clip-path="url(#rope-coil)" cx="98" cy="34" rx="22" ry="30" fill="#000" fill-opacity=".18"/>
+  <g data-name="loose end">
+    <path data-name="outline" fill="none" stroke="#000" stroke-opacity=".38" stroke-width="7" stroke-linecap="round" d="M27 53C19 57 13 59 9 61"/>
+    <path data-name="rope" fill="none" stroke="currentColor" stroke-width="5.4" stroke-linecap="round" d="M27 53C19 57 13 59 9 61"/>
+    <path data-name="twist" fill="none" stroke="#000" stroke-opacity=".26" stroke-width="5.4" stroke-dasharray="1.4 2.8" d="M27 53C19 57 13 59 9 61"/>
+  </g>
+  <path data-name="whipping" fill="none" stroke="#8f6236" stroke-width="5.6" d="M13.4 57.8L11.6 62.2"/>
+  <path data-name="frayed end" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" d="M9.4 59.2L5.6 57.6M9.2 60.6L5.2 60.6M9.8 61.8L6.2 63.2"/>
+</svg>

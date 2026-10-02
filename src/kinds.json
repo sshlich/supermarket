@@ -65,6 +65,10 @@
         "on": "log",
         "verb": "carve"
       }
+    ],
+    "tags": [
+      "tool",
+      "blade"
     ]
   },
   "axe": {
@@ -90,14 +94,21 @@
   },
   "pickaxe": {
     "name": "Pickaxe",
-    "icon": "war-pick",
-    "color": "#f0ece2",
-    "w": 3,
-    "h": 3,
+    "icon": "",
+    "color": "#9aa3ad",
+    "w": 5,
+    "h": 6,
     "cells": [
-      "###",
-      ".#.",
-      ".#."
+      "#####",
+      "..#..",
+      "..#..",
+      "..#..",
+      "..#..",
+      "..#.."
+    ],
+    "desc": "A drawn-iron head on a hickory haft: the point breaks rock, the chisel end pries it loose.",
+    "tags": [
+      "tool"
     ]
   },
   "chest": {
@@ -574,6 +585,96 @@
     "desc": "A brass padlock with a steel shackle.",
     "tags": [
       "tool"
+    ]
+  },
+  "knapsack": {
+    "name": "Knapsack",
+    "icon": "",
+    "color": "#878055",
+    "w": 4,
+    "h": 5,
+    "cells": [
+      ".##.",
+      "####",
+      "####",
+      "####",
+      "####"
+    ],
+    "desc": "Duck canvas on a leather harness. Two buckles hold the flap; a front pocket keeps small things where you can find them.",
+    "tags": [
+      "container",
+      "back"
+    ],
+    "slots": [
+      {
+        "name": "pack",
+        "w": 5,
+        "h": 4
+      },
+      {
+        "name": "pocket",
+        "w": 2,
+        "h": 2
+      }
+    ]
+  },
+  "shovel": {
+    "name": "Shovel",
+    "icon": "",
+    "color": "#8f98a3",
+    "w": 3,
+    "h": 7,
+    "cells": [
+      ".#.",
+      ".#.",
+      ".#.",
+      ".#.",
+      "###",
+      "###",
+      ".#."
+    ],
+    "desc": "A round-point shovel with a D grip. The rolled tread takes your boot; the blade takes the rest.",
+    "tags": [
+      "tool"
+    ]
+  },
+  "rope": {
+    "name": "Rope",
+    "icon": "",
+    "color": "#c9a46b",
+    "w": 3,
+    "h": 2,
+    "desc": "A coil of hemp rope, the end whipped against fraying. Long enough for most shafts.",
+    "tags": [
+      "tool"
+    ]
+  },
+  "belt": {
+    "name": "Knife belt",
+    "icon": "",
+    "color": "#8a5a34",
+    "w": 5,
+    "h": 4,
+    "cells": [
+      "#####",
+      "#####",
+      "...#.",
+      "...#."
+    ],
+    "desc": "A leather belt with a sheath sewn on, so a knife rides at your hip instead of in the pack.",
+    "tags": [
+      "container",
+      "waist"
+    ],
+    "slots": [
+      {
+        "name": "sheath",
+        "w": 1,
+        "h": 4,
+        "accepts": [
+          "blade"
+        ]
+      }
     ]
   }
 }

@@ -146,7 +146,30 @@ How they are drawn, so more can match:
   (coins, staves, sticks) are a single path per layer.
 - Footprints were checked by rasterising each sprite and measuring each square. Every square in a footprint is covered
   at least 15% (the thin parts: a handle, a nozzle, a wedge's tip; most squares are over 25%). Squares outside the
-  footprint get under 2%.
+  footprint get under 2%. `npm run footprints -- [kind...]` runs that check (needs `rsvg-convert`) and prints a
+  coverage map for whatever fails, or for the kinds named. It currently fails the old placeholders (coal, axe, hearth,
+  well, still) and the cheese wedge, whose tip square is 14% covered.
 
-Side effect: the "put on the field" tray now wraps to five rows. `fit()` keeps a fixed 150px for it, so at 1280x720 its last
-row is cut off by about 10px (2px at 1366x768).
+The "put on the field" tray wraps to more rows as kinds are added; `fitTray()` shrinks the squares after drawing until all
+of it is on screen (at 1280x720 they go from 28px to 24px).
+
+## The night kit (2026-10-02)
+Five things for going out at night, drawn to the rules above. Sizes keep relative order rather than true scale: small things
+near true size, big ones compressed, but the order holds within a family (knife < pickaxe < shovel; rope < bucket < knapsack).
+- **Knapsack** 4x5 `.##./####/####/####/####`: olive duck canvas, a flap held by two buckled straps, a grab loop, shoulder
+  straps showing at the sides, a front pocket, and an outfitter's stencil on the flap (Fluent Emoji's hammer and pick, the
+  map symbol for a mine). The narrow top leaves both top corners free. Slots `pack` 5x4 and `pocket` 2x2; tags
+  `container`, `back`.
+- **Pickaxe** 5x6, a T (`#####` over a one-square haft): redrawn from the flat 3x3 glyph. The whole head stays in the top row,
+  so every square is clearly in or out.
+- **Shovel** 3x7 `.#.` x4, `###` x2, `.#.`: D grip and haft in the middle column, then the blade three wide and its point.
+- **Rope** 3x2: a flat coil of turns with twisted strands and a whipped end.
+- **Knife belt** 5x4 `#####/#####/...#./...#.`: a buckled belt standing as a loop, a sheath hanging from it. Slot `sheath`
+  1x4, accepts `blade` (the knife now carries `tool` and `blade`); tags `container`, `waist`.
+- Containers still do not nest, so the belt cannot go in the knapsack; it is meant to be worn (zones, later).
+- Checked in the game (headless Chrome): saved contents load in the pack and the pocket, the knife dropped on the belt goes
+  into the sheath, a log or the belt itself is refused as contents, the pickaxe turns while held. `world.test.ts` covers the
+  sheath and the pocket.
+- Off in scale or style, left for later: the axe (4x6, an old flat glyph, as tall as the pickaxe), a chicken coop barely bigger
+  than a hen, and the other old placeholders (crate, log, coal, bottle, knife, fuel chest, hearth, well, vat, still).
+- Tried and dropped: game-icons' rope coil as the rope's body. It stacks into a dome and reads as a basket at game size.

@@ -33,6 +33,14 @@ function fit() {
   cell = Math.floor(Math.max(14, Math.min(40, (innerWidth - 150) / (W + 2 * PW), (innerHeight - 150) / H)))
   document.documentElement.style.setProperty('--cell', `${cell}px`)
 }
+/** The tray wraps to more rows as kinds are added: after drawing, shrink the squares until all of it is on screen. */
+function fitTray() {
+  const tray = app.querySelector('.tray')
+  while (tray && cell > 14 && tray.getBoundingClientRect().bottom > innerHeight - 4) {
+    cell--
+    document.documentElement.style.setProperty('--cell', `${cell}px`)
+  }
+}
 
 // ---------------------------------------------------------------- drawing
 
@@ -419,9 +427,10 @@ function finish(drop: boolean) {
   changed(from)
 }
 
-addEventListener('resize', () => { fit(); render(new Map()) })
+addEventListener('resize', () => { fit(); render(new Map()); fitTray() })
 fit()
 render(new Map())
+fitTray()
 
 app.addEventListener('click', e => {
   const b = (e.target as HTMLElement).closest<HTMLElement>('button')

@@ -7,7 +7,8 @@
     "build": "tsc && vite build",
     "test": "node src/grid.test.ts && node src/world.test.ts && node src/editor/geom.test.ts",
     "icons": "node scripts/icons.ts",
-    "sprites": "node scripts/sprites.ts"
+    "sprites": "node scripts/sprites.ts",
+    "footprints": "node scripts/footprints.ts"
   },
   "devDependencies": {
     "@iconify-json/fluent-emoji-high-contrast": "^1.2.6",

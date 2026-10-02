@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 128">
+  <defs>
+    <linearGradient id="belt-light" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity=".14"/>
+      <stop offset=".22" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".62" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".26"/>
+    </linearGradient>
+    <clipPath id="belt-band"><path fill-rule="evenodd" d="M6 22A74 17 0 0 1 154 22V34A74 17 0 0 1 6 34ZM10.8 28A74 17 0 0 1 149.2 28A74 17 0 0 1 10.8 28Z"/></clipPath>
+    <clipPath id="belt-sheath"><path d="M100 50H124L123 98C122 108 120 114 117 119Q112 125 107 119C104 114 102 108 101 98Z"/></clipPath>
+  </defs>
+  <path data-name="belt" fill="currentColor" fill-rule="evenodd" d="M6 22A74 17 0 0 1 154 22V34A74 17 0 0 1 6 34ZM10.8 28A74 17 0 0 1 149.2 28A74 17 0 0 1 10.8 28Z"/>
+  <g data-name="belt shading" clip-path="url(#belt-band)">
+    <path data-name="far side, inside, in shade" fill="#000" fill-opacity=".32" d="M6 22A74 17 0 0 1 154 22L149.2 28A74 17 0 0 0 10.8 28Z"/>
+    <rect data-name="light, left to right" x="0" y="0" width="160" height="64" fill="url(#belt-light)"/>
+    <path data-name="front rim, lit" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1.6" d="M14 29.7A74 17 0 0 0 146 29.7"/>
+    <path data-name="front, lower edge" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="2" d="M8 37A74 17 0 0 0 152 37"/>
+    <path data-name="stitches" fill="none" stroke="#e6d3a8" stroke-opacity=".38" stroke-width="1" stroke-dasharray="2.4 2" d="M12 34.7A74 17 0 0 0 148 34.7"/>
+  </g>
+  <path data-name="tail" fill="currentColor" d="M47 41.6Q48 40.8 50 40.6L76 40.2V50.2L50 49.8Q48 49.6 47 48.8Q44 45.2 47 41.6Z"/>
+  <path data-name="tail, in shade" fill="#000" fill-opacity=".22" d="M44.8 45.4H76V50.2L50 49.8Q48 49.6 47 48.8Z"/>
+  <path data-name="tail edge" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="1" d="M47 41.6Q48 40.8 50 40.6L76 40.2M47 48.8Q48 49.6 50 49.8L76 50.2"/>
+  <path data-name="holes" fill="#000" fill-opacity=".5" d="M56 45.3a1.6 1.6 0 1 0 .1 0zM64 45.2a1.6 1.6 0 1 0 .1 0z"/>
+  <path data-name="buckle" fill="none" stroke="#c9975a" stroke-width="3" stroke-linejoin="round" d="M73.5 36.5H88.5V55.5H73.5Z"/>
+  <path data-name="buckle, in shade" fill="none" stroke="#000" stroke-opacity=".28" stroke-width="3" d="M88.5 36.5V55.5H73.5"/>
+  <path data-name="buckle, lit" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1" d="M72.6 35.6H89.4"/>
+  <path data-name="prong" fill="none" stroke="#c9975a" stroke-width="2" stroke-linecap="round" d="M74 45.6H84"/>
+  <path data-name="sheath loop" fill="#5a3a26" d="M101 34.6H123V53H101Z"/>
+  <path data-name="loop, lit" fill="#fff" fill-opacity=".18" d="M101 34.6H123V36.4H101Z"/>
+  <path data-name="sheath" fill="#6b4226" d="M100 50H124L123 98C122 108 120 114 117 119Q112 125 107 119C104 114 102 108 101 98Z"/>
+  <g data-name="sheath shading" clip-path="url(#belt-sheath)">
+    <path data-name="right side, in shade" fill="#000" fill-opacity=".26" d="M113 48H126V126H113Q114 90 113 48Z"/>
+    <path data-name="left edge, lit" fill="#fff" fill-opacity=".16" d="M100 48H103.6L104.6 104L101 100Z"/>
+    <path data-name="stitches" fill="none" stroke="#e6d3a8" stroke-opacity=".42" stroke-width="1" stroke-dasharray="2.2 1.8" d="M120 56L119.4 98C118.8 106 117 112 114.6 116"/>
+    <path data-name="tooling" fill="none" stroke="#000" stroke-opacity=".3" stroke-width="1.2" d="M108 64L112 70L116 64M108 74L112 80L116 74"/>
+  </g>
+  <path data-name="throat" fill="#000" fill-opacity=".55" d="M102.6 53H121.4Q120 57 112 57Q104 57 102.6 53Z"/>
+  <path data-name="chape" fill="#c9975a" d="M104.6 110H119.4C118.6 113.6 117.6 116.4 116.6 118.6Q112 124.6 107.4 118.6C106.4 116.4 105.4 113.6 104.6 110Z"/>
+  <path data-name="chape, in shade" fill="#000" fill-opacity=".24" d="M112 110H119.4C118.6 113.6 117.6 116.4 116.6 118.6Q114.4 121.6 112 122Z"/>
+  <path data-name="chape, lit" fill="#fff" fill-opacity=".4" d="M105.6 111.2H110V112.4H106Z"/>
+</svg>

@@ -8,3 +8,6 @@ The sprite editor's icon browser (dev only) can pull from these Iconify sets; an
 carries its licence: game-icons (CC BY 3.0, as above), Pixelarticons (MIT), Fluent Emoji outline (MIT), Material Design
 Icons (Apache 2.0), Material Symbols (Apache 2.0), Tabler (MIT), Lucide (ISC), Phosphor (MIT). The browser shows each
 set's licence next to the icon.
+
+The stencil on the knapsack's flap (`src/sprites/knapsack.svg`) is the hammer and pick from Fluent Emoji High Contrast by
+Microsoft (MIT).

@@ -278,4 +278,13 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   advance(s, 4)
   assert.equal(v.liquid!.ml, 750)
 }
+// The night kit: the belt's sheath takes a knife and nothing else; the knapsack has a pack and a pocket; containers still do not nest.
+{
+  const s: State = { items: [], next: 1 }
+  const belt = spawn(s, 'belt')!, sack = spawn(s, 'knapsack')!, knife = spawn(s, 'knife')!, log = spawn(s, 'log')!
+  assert.ok(intoHost(s, lift(s, knife.id)!, belt.id), 'the sheath takes a knife')
+  assert.equal(intoHost(s, lift(s, log.id)!, belt.id), null, 'the sheath takes nothing else')
+  assert.equal(accepts(s, belt, { host: sack.id, slot: 0 }), false, 'a belt does not go in a knapsack')
+  assert.ok(spawn(s, 'matchbox', { host: sack.id, slot: 1 }), 'small things fit the pocket')
+}
 console.log('world ok')
