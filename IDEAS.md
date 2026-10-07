@@ -65,6 +65,36 @@ Ideas for showing it through mechanics, not only flavour (proposed, not judged):
 - Looks: contract slips styled by origin (embossed card from above, crumpled print from below); the field's backdrop shows
   your floor; light gets better as you rise.
 
+Food, and how the divide works as mechanics (2026-10-07; the user: no forests or foraging in a tower, fresh food is only
+grown, with precious water; protein blocks are ground insects and food waste from the upper floors):
+- **Real food (sells up):** a grow bed is a machine. Seed in, water drawn every hour (ml from the vessel in its slot), the
+  plant grows and its footprint grows inside the bed (shoving the others in the slot); harvest gives real produce. Costs water
+  and time, pays well up top.
+- **Synthetic food (sells down):** food waste into an insect bin (a machine: needs warmth and a little water, grows insects over
+  hours), a grinder makes paste, a press makes protein blocks. Cheap, bulk.
+- **Rent per square:** the field is no longer a fixed 25x20. You rent a block of squares at a rate per square, due every N
+  days; renting more rows means more room and a bigger bill. The game's constraint becomes the thing you pay for.
+- **Rent climbs:** the rate rises on a schedule, faster near the rich floors (they expand downward). Moving down is the way
+  out: cheaper rent, worse trash, worse routes.
+- **Trash flows down:** a garbage chute is a special container on your field that fills every morning from a table set by who
+  lives above you (better floors throw out better things). Left full, it stops filling: you pay in space or lose supply.
+  Sorting it is a packing job, and it feeds the insect bin and the salvage chains.
+- **Metering:** water and power (maybe air) come from the tower through a tap and a socket, machines on your field; every ml
+  or unit drawn goes on your bill. Your own air-well and charged cells run free but take squares, which cost rent. Always
+  pay the tower or spend space. Grow beds and insect bins draw every hour, so production has a running cost.
+- **Grades:** an item can carry a grade (real or synthetic) that changes its value. Contracts name the grade they accept:
+  upper floors real only, lower floors either but pay little. Shown on the item as a mark (see the effects idea).
+- **Height is class:** each contract has a destination floor. The floor difference sets flight time; pay rises with height,
+  and so do the requirements: a drone needs enough clearance, or a permit packed in its bay, past a given floor.
+- **Routes:** at launch, a licensed lane (costs a fee or a permit, safe) or a free shaft (costs nothing, rolls for trouble on
+  landing: a toll off the pay, or one item from the bay lost to looters). Packing decides what is worth risking.
+- **Company money:** credits (a plain number) and scrip (some contracts pay in it; it only spends at the company store, which
+  sells drones, machines and parts). Buying the shop is a loan with daily interest. A credit rating, one number, rises with
+  on-time deliveries and falls with late ones or missed rent; each contract on the board has a minimum rating.
+- **Looks follow the data:** a slip's style from its origin floor, the field's backdrop and light from your floor.
+- Smallest version that shows the divide: rent per square, the garbage chute, the two food chains, and contracts with a
+  destination floor.
+
 ## Shop and expeditions (the user's pitch, 2026-10-01; in discussion)
 
 Drawn from Probably Stolen's loop (the shopkeeper game the handling reference comes from), to iterate on, not to copy.
