@@ -20,6 +20,51 @@ Nothing here is built. `DESIGN.md` stays the record of what is.
   animation so that pressing the time button feels tactile. Proposed 2026-10-01: **hours**. A day is a run of hour steps
   that move machines, shelves and deliveries; the night is measured in light and stamina, not steps.
 
+## Drones and contracts (the user's idea, 2026-10-07; liked, the current direction)
+
+Orders are contracts, and you fulfil them by sending drones. A drone is a container: you pack it with the goods and launch it;
+it is gone for some hours and comes back with the pay and a reward in its bay (something to upgrade, to buy, or late on to
+fit yourself). Night trips and hunting are parked; this is the loop for now.
+
+Why it fits:
+- Packing becomes the core action. Space is the constraint everywhere, and fitting a whole contract into one bay is a new
+  puzzle each time, played with the handling already built.
+- It answers the worry about a forced daily customer routine: you choose which contracts to take, and the hours fill with
+  making, packing and launching. It is also the delivery layer `inventory-manager` never had, and it replaces the shipping route.
+- Progression stays about space: bigger bays, odd-shaped bays, cold or sealed bays, more range.
+- The return trip carries the reward, so unpacking it is a small mystery box played with the same handling.
+- Tension to settle: machines are bought, never built (rule above). "Make your own drone late in the game" should mean fitting
+  salvaged or bought parts to a frame, not a crafting tree.
+
+How it could be built in the current code (proposal, nothing built):
+- **Drone:** a kind with a cargo slot (like the knapsack), and stats in `kinds.json`: range, speed, special bays (cold, sealed).
+- **Contract:** a physical manifest slip. Packing the slip into the drone assigns the contract, so no extra screen is needed.
+  It lists the goods wanted (kind or tag, count, maybe quality), destination and distance, deadline in hours, pay and reward.
+- **Launch pad:** a machine in `advance()`. A launched drone leaves the field for distance / speed hours; on landing the game
+  checks the cargo against the slip, pays, removes what was delivered, puts the reward in the bay and returns the drone.
+- **Contract board:** a few slips each morning; you pick which to take.
+- Later, if more pressure is wanted: weight, partial deliveries, lost or looted drones.
+- `world.test.ts` covers the delivery check, like the sheath and pocket.
+
+Setting (2026-10-07): drones do not force a change, but the user now leans to a **vertical slum**: gritty and bad, not an
+arcology (an arcology sounds utopian, people caring about ecology). Wanted: show dystopian capitalism, inequality, the divide.
+Ideas for showing it through mechanics, not only flavour (proposed, not judged):
+- **Height is class.** The tower (working name: the Stack) has floors; the higher, the richer. Contracts going up pay more but
+  need clearance: a licence, a permit, a better drone. Going down pays little and risks tolls, jamming or looting.
+- **Everything is metered:** water, air, power, light. The water-from-air machine is a lower-floor necessity; upper floors
+  get rain collectors and real daylight. Rent is charged per square of your floor, so space, the game's constraint, is
+  literally what you pay for.
+- **The same order, two worlds.** Upper floors order real things (fresh fruit, real wood, natural fibre); lower floors order
+  water filters, medicine, protein blocks, spare parts. Same kinds in "real" and "synthetic" grades. Who you serve is your call.
+- **Trash flows down.** Your raw material is what the floors above throw away: garbage chutes and scrap are the suppliers. The
+  poor live off the rich's waste, and the production chains start there.
+- **Company money:** wages in tower scrip, spendable only at company stores; buying your shop is a loan with interest;
+  a credit rating gates which contracts you see.
+- **Rent climbs** as the upper floors expand downward (gentrification): the pressure that keeps the loop moving.
+- **Airspace is owned:** licensed lanes up top, tolled or contested shafts below; drone routes as a vertical map of the divide.
+- Looks: contract slips styled by origin (embossed card from above, crumpled print from below); the field's backdrop shows
+  your floor; light gets better as you rise.
+
 ## Shop and expeditions (the user's pitch, 2026-10-01; in discussion)
 
 Drawn from Probably Stolen's loop (the shopkeeper game the handling reference comes from), to iterate on, not to copy.
