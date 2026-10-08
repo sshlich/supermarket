@@ -191,7 +191,7 @@ Trusted, Kin) kept on a ledger page, and **tokens**, credentials you pack into a
 closing sections are the best part: a relations web, "pressure points" where one choice moves many ledgers at once (the strike
 week, the Wall Book auction, the Font in the laundry, weigh day, the Red Binder), a faction calendar, a table of endings, and
 a sketch of a new tenant's first fortnight on 17. **Best in it:** the Bench as an analyser made of people (Old Hands reveal
-hidden features, one per hand who looks), manuals as tools that reveal a machine's hidden setting permanently, rat-chalk,
+hidden features, one per hand who looks), manuals as tools that reveal a machine's hidden setting permanently, the Drop's route cards,
 the Co-op's greens chits as a third money, the Fade counter on licensed insect stock against wild lines, and badge 0001
 clocking in at 02:00.
 
@@ -220,8 +220,8 @@ small electronics, how founding-era systems fail (four patterns), repair culture
 features, and a full machine catalogue with prices and slots. It closes with a day on Stores Run told by the machines,
 cross-chain notes and starting kit by past. **Best in it:** plugged versus celled (slack hour kills one and spares the
 other), the "missing part" as the nearest thing to crafting that still respects "machines are bought", three buyers for
-every first-fit part, the electret film that links the Lung plates, the Four's charge eye and rat-chalk, and route cards in
-the controller slot.
+every first-fit part, the electret film that links the Lung plates, the Four's charge eye and the Drop's route cards, and the
+hoppers that make drones everyday kit.
 
 ### 11. `10-items-and-chains.md`: the catalogue
 
@@ -516,7 +516,7 @@ continuity pass, not yet applied to the files, still yours to confirm".
 117. **The Dark Floors' default truth.** Upkeep (14's main), the Contract, the Tenant, the Empty Room or the House, or a hidden truth seed per run? 01 kept three readings open (still making cells; a cooling plant on a timer; making the tower's own chips), and 02 four for the requisitions (automated procurement, a person inside, a Company engineer, nothing). Should the mystery end with one answer at all? (01, 02, 14)
 118. **Seeing inside.** Even through one drone's bay? 14 says once, late, optional, never on foot. (14)
 119. **The requisitions' reach.** Should filling them have visible world effects (fewer air days, fewer lift failures), and is the Core a client with standing or outside the client system? Is the requisition that asks for a person too far? (14, 12)
-120. **The nineteen minutes.** Which explanation does tech lean on: electret film (plates, charge eyes, chalk, lease studs), Kessin drive chips, or open? How many Dark Floor threads should run through the factions (Old Hands, Lift Guild, Co-op, ranchers)? (09, 06a, 06b)
+120. **The nineteen minutes.** Which explanation does tech lean on: electret film (plates, charge eyes, route cards, lease studs), Kessin drive chips, or open? How many Dark Floor threads should run through the factions (Old Hands, Lift Guild, Co-op, ranchers)? (09, 06a, 06b)
 121. **The Foreman.** One founding-era mind running everything is tidy for clues and edges toward an AI story. Right glue, or wrong tone? (14)
 122. **The Arbiter.** A secret panel, the old lawyer Ambrose Hale-Fennick, or the founding-era Grievance Box (combinable with the panel)? If it is a machine, are scarce Y0 forms too exploitable? 12's A/86/0377 already leans toward the machine. (05, 12, 14)
 123. **The Return column.** A debt to tenants, a fund paid to Holdings, or both? A visible reverse tick on the meter? Is a whole-floor claim a Co-op ending or too big? (14)

@@ -1163,7 +1163,7 @@ Along with the risers, the free world includes:
 
 **The Combs.** In Y58 the Company welded grilles across the risers at 30 and 60, to stop drone traffic bypassing the lanes. Shaft
 rats cut **rat holes** through them, the Lift Guild reports the holes, Halden rewelds them, the rats cut new ones; at any moment
-each comb has two or three working holes, and rat-chalk marks on the riser wall say which. At 89 every riser is closed by **the
+each comb has two or three working holes, and the Drop board and the notes on the grates say which. At 89 every riser is closed by **the
 Crown Comb**, a solid plate with no hole anyone has ever cut. Nothing reaches the Crown through a free shaft.
 
 ### The risers, one by one
@@ -1180,7 +1180,7 @@ Crown Comb**, a solid plate with no hole anyone has ever cut. Nothing reaches th
 | R8 | 4 to 89 | Quiet. A Rain Church route: Fontkeepers fly rain down it from the Crown Comb. |
 
 **In play:** the free route is not one roll but a **route choice** at launch: which riser (each with its own trouble table) and
-whether to pack a **rat-chalk** token (see 06a) to soften it.
+whether to slot a fresh **Drop card** (see 06a) to soften it.
 
 ### What trouble means
 

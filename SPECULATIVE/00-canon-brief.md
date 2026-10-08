@@ -53,6 +53,11 @@ are **out of scope** for now; do not build lore that requires them.
 - **Other drowned towers** exist and trade between towers is a late-game unlock (decided): it needs strong batteries and a
   stable frame to survive the crossing and the **poachers**, or a slow wind/solar alternative that does the job painfully slowly.
 - **Society is not just the Company and the tenants** (decided): many groups formed under pressure (factions below).
+- **Drones** (decided that they exist; the rest are working assumptions): a drone flies itself on a route loaded before launch,
+  because radio does not reach through the steel; only the licensed Tube lanes carry a feeder cable that lets the Company talk
+  to a drone. People set routes, load cards, launch and land by hand, but never pilot in a free shaft. Drones are everyday kit:
+  cheap **hoppers** (one box, about eight floors) are as common as bicycles, and a courier frame with a real bay and range is
+  the first serious investment.
 - **Tech** (decided): everyday tech is near-future and believable (cells, drones, grow lights, filters, cheap screens). The
   tower itself was built with more advanced founding-era tech that is now failing; nobody can make it anymore, only repair it.
   A working founding-era part is worth more than anything new.

@@ -369,8 +369,8 @@ frames at the peak and a name at the Drop. Then a **Turn draught** at the 30 com
 (a Kitty claim the Kitty could not pay that week), and you were grounded: no frame worth flying, a debt to the pot, and a
 landlady who wanted rent in credits.
 
-**Skill: chalk.** You read rat-chalk without paying for it. Free-shaft trouble rolls are one step softer for your drones on R1 and
-R3, and you know which comb holes are open each week (a free version of the rat-chalk token in 06a). You also fly by ear: a drone
+**Skill: the board.** You read the Drop board without paying for a card. Free-shaft trouble rolls are one step softer for your drones on R1 and
+R3, and you know which comb holes are open each week (a free version of the Drop card in 06a). You also know a drone by ear: one
 that comes back with an odd sound shows what failed before you open it.
 
 **Contacts.** **Yusuf Haddad**, the Drop warden, and **Ama Duarte, "Kestrel"**, who taught you, start at *Trusted*. The Kitty takes
@@ -1299,7 +1299,7 @@ These two are one arc with two ends. The Guild runs the lifts and sides with the
 free shafts.
 
 1. **Starts:** the Three Grate (free) or a Lane Permit (licensed, Guild-issued).
-2. **Deepens:** the Kitty, rat-chalk, a frame from the Drop; or a Guild freight account, a favour from Nell Pradesh (C-7).
+2. **Deepens:** the Kitty, Drop cards, a frame from the Drop; or a Guild freight account, a favour from Nell Pradesh (C-7).
 3. **The fork:** the Shaft Safety Ordinance vote (06a). Report hatches or chalk the Shaft Schedule on the Drop wall.
 4. **Leads to:** Free Shafts (the Open Map), the Fleet, A Car of Your Own, the Last Car.
 

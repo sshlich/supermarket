@@ -62,6 +62,9 @@ Each point is marked **decided** (the user said so), **proposed** (to confirm or
 
 ## Drones
 
+- **Proposed:** drones are everyday kit, not a specialist trade: cheap short-hop **hoppers** are as common as bicycles, and
+  a courier frame with a real bay is the first big purchase. A drone flies itself on a route loaded before launch (no signal
+  reaches through the steel); only the licensed lanes can be talked to.
 - **Proposed:** the lifts and stairs are slow, owned and tolled, so goods move by drone through the shafts. Licensed lanes
   (Halden transponders, permits) are safe and paid. Free shafts are free and dangerous.
 

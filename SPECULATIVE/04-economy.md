@@ -1184,6 +1184,8 @@ the store), and **pays more at the top** when it comes from the bottom (anything
 
 | Item | Mark | Sump | Mills | Middle | Up | L/G | Note |
 |---|---|---|---|---|---|---|---|
+| Grey hopper (1x1 bay, about 8 floors) | Rc | 25 | 30 | 35 | — | G | every other lease has one; dummy disc 1 cr |
+| Halden "Finch" hopper frame (2x1 bay) | — | — | 140 | 140 | — | L | Middle shops; cannot arm a lane |
 | Halden "Wren" frame, 3x2 bay | — | — | 380 | 380 | — | L | the starter drone |
 | Halden "Kestrel" frame, 4x3 bay | — | — | 820 | 800 | — | L | mid-game |
 | Halden "Heron" frame, 5x4 bay, cold liner fitted | — | — | — | 1,900 | — | L | Standing 600 to buy |
@@ -1270,7 +1272,7 @@ Day rates in cr for a 10-hour shift unless marked. "sc" is scrip. Pay by the pie
 | Meter reader | any | 45 | cr | walks the floors with a slate |
 | Fitter (meters, licensed machines) | any | 60 | cr | + tuning on the side |
 | HPS officer, Essential tier | Mills/Middle | 60 | cr | |
-| Licensed lane pilot (Halden Lane Services) | Middle | 65 | cr | flies the Company's own deliveries |
+| Licensed lane pilot (Halden Lane Services) | Middle | 65 | cr | hand-steers and hand-lands the Company's lane drones from the lane desk on 47 |
 | Lift Guild operator | any | 55 | cr | + family rides free; Guild seats are inherited |
 | Chalker (Survey and Allocation) | any | 70 | cr | + "fees" |
 | Disposal valet | Terraces | 70 + tips | cr | + a cut from the Voided |

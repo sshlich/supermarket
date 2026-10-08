@@ -47,7 +47,7 @@ exactly as the Company's permits do. This ties faction standing to the core acti
 | Old Hands | **clock badge** (a brass works badge with a number) | 1x1 | An Old Hand accepts a repair job by drone |
 | Archivists | **reader's card** (index card, punched per visit) | 1x1 | Archive slips appear; documents ship to you unsealed |
 | Lift Guild | **freight chit** (punched card, single use) | 1x1 | The drone rides a lift car: slow, safe, no shaft rolls |
-| Shaft rats | **rat-chalk** (a stub of yellow chalk) | 1x1 | The free shaft's trouble roll is softened for that flight |
+| Shaft rats | **Drop card** (a strip of charged film, stamped with the day) | 1x1 | The free shaft's trouble roll is softened while the card is fresh |
 | Stinkers | **taster** (a stoppered sample vial) | 1x1 | Proves your water is drinkable; Stinker buyers pay full |
 | Seed savers | **lending packet** (a paper seed envelope with a family name) | 1x1 | A saver slip appears; returning it raises standing |
 | Insect ranchers | **herd ticket** (a carbon-copy delivery ticket) | 1x1 | Orrin depots or wild-stock buyers accept bulk insects |
@@ -1151,7 +1151,7 @@ Outsiders can buy a car right when a family sells one, which happens once a deca
   stops), but it is the only route with no risk at all, and the only route the insurance syndicate considers "certified
   carriage" (see 06b). A good choice for one irreplaceable item.
 - **Spotters.** Guild operators watch the shaft hatches near car stops. Each time you launch into a free shaft, there's a
-  small chance a spotter logs it, and Guild standing drops one step. Use rat-chalk hatches (away from car stops) and the
+  small chance a spotter logs it, and Guild standing drops one step. Launch from hatches the Drop's notes mark clear of car stops and the
   chance drops.
 - **The band-crossing fee** is a visible, physical cost of class: a chit that crosses from the Mills to the Middle costs
   twice what a chit within the Mills does, and Terraces chits require a pass item in the bay.
@@ -1258,13 +1258,20 @@ free shaft there is. Rats call it **the Deep**.
 - **Jams.** Debris, stuck dampers, a dead drone wedged in a riser.
 - **The Turn.** The air plant switches its big fans twice a day, at 06:00 and 18:00, and every ventilation riser reverses draught
   for a few minutes. A light drone caught in the Turn is slammed into a wall. Rats time every flight around it.
-- **Drips.** Condensation in the lower risers shorts motors. A wet shaft is chalked with a wave.
+- **Drips.** Condensation in the lower risers shorts motors. A wet shaft gets a wave on the hatch note.
 - **HPS sweeps.** Sometimes HPS flies a clearance drone down a shaft and confiscates anything without a transponder. Sometimes
   HPS uses the same shafts for its own drones, unlogged, which is why the sweeps are rare.
 
-### Rat-chalk
+### Hatch notes, the Drop board and Drop cards
 
-The shafts are marked. Every hatch a rat uses carries chalk on its inside lip, in yellow, the colour that shows best in a lamp:
+**No drone reads a wall.** What the shafts have is a paper trail kept by people, and a card in the drone's controller.
+
+**What a drone brings back.** Every drone keeps a **flight log** of what it met: pressure spikes (a Turn draught, a netted
+stop), ring miscounts, wet flags, how long it hovered at a comb. The pad copies it on landing. A rat reads it at the hatch in
+a minute and knows more about the riser than any sign could tell.
+
+**Hatch notes.** The rat then chalks what the log said on the frame of the grate they launched from, with today's number
+beside it, for the next rat who uses that grate. The marks are a rat's shorthand, not a standard:
 
 | Mark | Meaning |
 |---|---|
@@ -1278,27 +1285,46 @@ The shafts are marked. Every hatch a rat uses carries chalk on its inside lip, i
 | ↻ | Turn draught strong here; don't fly near the hour |
 | a number in a box | A ledge, with a downed drone on it, floor number |
 
-Chalk is renewed daily by whoever flies past. Old chalk is worse than none. Looters have been known to chalk a false ○.
+A note with no day number is ignored. A note more than two days old is history, not advice. Looters write false ones, with
+day numbers, and the Drop warden's deputies walk the Mills hatches once a week and rub out whatever the board contradicts.
+That is the whole of the policing: wipe it, and write the day.
+
+**The Drop board.** Rats carry the headlines of their logs to the Drop on 20, where the board has a column for each riser and
+a dated line for each report: who flew it, what they met, how long ago. Nobody can add a line without a call sign. Yusuf
+Haddad's deputies sort it every morning.
+
+**Drop cards.** At 05:00 the deputies charge the day's cards: strips of electret film (stripped from spent Lung plates, see
+09) charged on the Drop's plate charger with the board's picture of one riser: open comb holes, known nets and drips, the
+hour of the Turn. A card slots into the controller and the controller trusts it. It costs a rat 3 cr and an outsider 8. The
+film leaks, so a card is good for about six days (four in the wet R4). A stale card is not blank: it still says the comb
+hole at 30 is open after Halden rewelded it on day three, and the drone flies at it with total confidence. Rats bin their
+cards on the fifth day.
 
 ### Structure
+
+**What "flying" means.** Nobody pilots a drone in a free shaft; there is no signal to pilot it on. A rat "flies" a drone the
+way a drover "drives" cattle: reads the board, loads a card, sets the route, launches, meets the drone at the other end,
+reads its log, and knows what to do when it does not come back. The skill is in the preparation and in the reading afterwards,
+and in the one moment that is done by hand: landing a drone at a hatch with no pad.
 
 There isn't much. Rats fly alone or in **nests** of two to six who share a hatch and a repair bench. They meet at **the Drop**,
 on floor 20: an old ventilation plenum where four risers and the Deep meet, a big echoing steel room with a chalk wall
 (the **Drop board**) where jobs, warnings and debts are written. A **Drop warden**, chosen by whoever turns up, keeps the board
 honest. Rats talk on a short-range radio channel everyone calls **Nine**.
 
-The code is short and enforced by reputation: don't open a sealed parcel; don't false-chalk; if you see a drone go down, chalk
-it; pay a relay rat their half.
+The code is short and enforced by reputation: don't open a sealed parcel; don't write a false note; if you recover a downed
+drone, put it on the board the same day; pay a relay rat their half.
 
 ### People
 
-- **Ama Duarte, "Kestrel."** Thirty-four. The best rat in the Mills: flies three drones at once by ear, has the whole Deep in
-  her head, has crashed eleven drones in fourteen years and never lost a parcel. She charges more than anyone and is booked
+- **Ama Duarte, "Kestrel."** Thirty-four. The best rat in the Mills: keeps three drones in the air at once and times each by the
+  note of its rotors down the riser, has the whole Deep in her head, has crashed eleven drones in fourteen years and never lost a parcel. She charges more than anyone and is booked
   three days ahead. She lost a brother to the Gullet and won't fly below 10 without being paid double.
-- **Sixpence.** Fourteen, real name unknown. Half vent kid, half rat. Flies a palm-sized drone through the Pneu, which is too
+- **Sixpence.** Fourteen, real name unknown. Half vent kid, half rat. Runs a palm-sized drone through the Pneu, which is too
   small for anyone else's. Carries keys, notes, seed packets, pills. Hates being called a kid.
-- **Conall Brannigan.** Fifty. Flew for twenty years until a Turn draught broke both his hands. Now runs **Brannigan's
-  Bench** at the Drop: motor rewinding, prop balancing, cell swaps, in the open, by lamp. Sells used drone parts and buys
+- **Conall Brannigan.** Fifty. Ran drones for twenty years, until the 18:00 Turn reversed the draught while he was
+  hand-catching a landing at an open hatch (no pad, no call box) and slammed the drone into both his hands. They set
+  wrong. Now he runs **Brannigan's Bench** at the Drop: motor rewinding, prop balancing, cell swaps, in the open, by lamp. Sells used drone parts and buys
   downed drones from ledge recoverers.
 - **Yusuf Haddad, Drop warden.** Forty-four. Neutral to the point of rudeness. Settles disputes "by chalk": both parties write
   their side on the board, and everyone who passes for a week can add a mark. The side with more marks wins. It is the closest
@@ -1316,10 +1342,10 @@ it; pay a relay rat their half.
 - **Offer:**
   - **Subcontracting**: hand a slip to a rat, and they fly it with their drone. They take a cut (a third, usually more for
     risky routes), and you don't tie up your own drone.
-  - **Route intelligence**: rat-chalk, Nine, Drop board warnings.
+  - **Route intelligence**: Drop cards, Nine, Drop board warnings.
   - **Ledge recovery**: retrieving downed drones (and their cargo) from shaft ledges.
   - **Parts and repairs** at Brannigan's Bench.
-- **Buy:** drone parts (props, motors, frames, cells), chalk, lamp cells, food, water. And **transponder spoofers**: illegal boards
+- **Buy:** drone parts (props, motors, frames, cells), spent Lung-plate film, lamp cells, food, water. And **transponder spoofers**: illegal boards
   that make a free-shaft drone read as licensed to a lane beacon, which lets a rat cut through a licensed lane without paying.
   Spoofers are founding-era chips reflashed; a working one is worth a month's rent.
 
@@ -1327,8 +1353,9 @@ it; pay a relay rat their half.
 - **You are a rat whenever you fly free.** The player's free-shaft launches already roll for trouble on landing: a toll off the
   pay, or one item from the bay lost. Rat standing modifies those rolls. At *Known* the rolls soften; at *Kin* you get the Nine
   warnings before you launch (the shaft's current marks appear on the launch screen).
-- **Rat-chalk as an item.** A stub of chalk packed with a slip means the drone uses a chalked hatch, and the trouble roll is
-  softened for that flight. Chalk is consumable: a stub lasts a few flights.
+- **Drop cards as an item.** A fresh card slotted in the controller (the item rides the controller, not the bay) softens the
+  free-shaft trouble roll. It lasts about a week of launches and shows its age as a fading strip; a card past its fifth day
+  hardens the roll by a step instead, because the drone trusts a closed comb.
 - **Subcontract board.** At *Known*, a second board appears: a rat rota. You can hand any slip you've taken to a rat. The rat's
   chance of trouble depends on who they are (Kestrel almost never loses anything; Lantern's friends always do). The pay is cut,
   but your drone stays home for a contract it fits better.
@@ -1349,14 +1376,14 @@ it; pay a relay rat their half.
    cargo. Requires: a grab.
 3. **Relay.** "Half a run: Landing to the Drop. I'll do the Drop to 52. — Sixpence." Pay: half the job's pay. The Gullet stretch,
    which is the dangerous half.
-4. **Chalk the new hatch.** "Fly riser 7 from 14 to 21, chalk what you find." Pay: 10 cr and standing. Your drone returns with a
-   report of the riser's current marks, which then appear on your launch screen for that riser.
+4. **Map the new riser.** "Fly riser 7 from 14 to 21 and bring back the log." Pay: 10 cr and standing. Your drone returns with
+   its flight log of what it met, which goes on the Drop board and then appears on your launch screen for that riser.
 5. **A spoofer.** "Anyone with a reflashable drive chip, Brannigan pays 300." Pay: 300 cr. The chip is founding-era: from salvage,
    the Old Hands, or the Voided. Selling it makes you complicit in every lane theft it enables.
 
 ### How they treat the player
 
-As a colleague or a competitor. If you fly free and chalk what you see, you're one of them. If you take the Guild's
+As a colleague or a competitor. If you fly free and post what your drone logs, you're one of them. If you take the Guild's
 last-door contracts, you're a cabby's helper, and the Drop gets a little cooler. If you report a hatch to the Guild, the Drop
 board gets your name, which every rat in the Mills reads. At *Kin*, rats will carry your slips for less than a third, and
 Kestrel will tell you the one stretch of the Deep she won't fly.
@@ -2084,8 +2111,8 @@ A sketch of the order in which the ten might reach a new player, so they arrive 
   is on the board, pay in chits.
 - **Day 2.** **Grubber's sorted wet** slip: someone will pay for the rotting part of your chute. Sabine's **foam for the worms**:
   someone will pay for the white foam.
-- **Day 3.** A free-shaft launch costs you an item. Next morning there's a stub of yellow chalk in the returning bay, and a
-  chalked ○ on the hatch nearest your shop.
+- **Day 3.** A free-shaft launch costs you an item. Next morning there's a fresh film card on your pad, and a ○
+  with the day's number chalked on the hatch nearest your shop.
 - **Day 4.** The Sounding forecasts rain. A slip on the back of a Skywater label: **Vessels for the Catching**.
 - **Day 5.** Wet Sabbath. Raw rain in your catch pan; your grow bed likes it.
 - **Day 6.** A bought machine arrives by Old Two (core F), with a Guild delivery charge and a printed form in triplicate.

@@ -2090,7 +2090,7 @@ written in, what it says.*
 19. **Floor 8, Bale Hall gantry, painted:** ONE LOOK. *(The pickers' rule: you get one look before the Jaws close.)*
 20. **Floor 13, the blue door, chalk, above a hatch:** CLEANER THAN THE PIPE.
 21. **Floor 17, Three Grate (the free shaft grille into R3), chalk inside the frame:** ✓ ✓ ✗ ✓ · a skull · 02:00 OK.
-    *(Rat-chalk: the shaft is good, one bad level, clear after 2 a.m. See `06a-factions.md`.)*
+    *(A rat's note for the next rat: the shaft is good, one bad level, clear after 2 a.m. See `06a-factions.md`.)*
 22. **Floor 10, band gate, felt pen, on the inside of the Turnstile:** MOVEMENT DOWNWARD IS UNRESTRICTED.
     *(Quoting Bylaw 64.)*
 23. **Floor 7, Gutter Row, on a fixer's shutter:** NO VOID QUESTIONS.
@@ -2117,7 +2117,7 @@ written in, what it says.*
 
 **In play:** graffiti is the floor's **mood**, painted on the backdrop of the field. `01-history.md` suggests chalked numerals
 as a measure of sympathy; this list gives the vocabulary. The game can add marks to the player's own floor as events
-happen (a 5 on the stair after a raid; a cup on a wall when a Font opens nearby; rat-chalk on the Three Grate when the shaft
+happen (a 5 on the stair after a raid; a cup on a wall when a Font opens nearby; a new note on the Three Grate when the shaft
 changes), so the walls tell the player what the slips do not. The player can also **chalk**: a mark on the frontage is a
 free ad or a free warning, and a Bylaw 84 standards charge if the warden's regard is low.
 
@@ -2757,22 +2757,22 @@ Mills HPS officers are posted to the Mills.
 > PICKERS WANTED 5AM. ONE LOOK. KEEP WHAT'S IN YOUR HANDS WHEN THE JAWS SHUT. NOTHING ELSE. NO GLOVES THAT
 > SLOW YOU DOWN. ASK HOOK MARIE.
 
-### 14.9 Halden Lane Services: test pilot
+### 14.9 Halden Lane Services: test runner
 
 *Posting, Lane Services, floor 47.*
 
-> **LANE TEST PILOT · TEMPORARY**
+> **LANE TEST RUNNER · TEMPORARY**
 >
-> Halden Lane Services is testing a new lane through riser R6 between floors 20 and 30. We need experienced pilots to fly
-> unladen drones through the new lane at intervals and report conditions.
+> Halden Lane Services is testing a new lane through riser R6 between floors 20 and 30. We need experienced runners to launch
+> unladen drones through the new lane at intervals and report what the flight logs show.
 >
 > **Pay:** 35 cr a run. Drone provided. **Experience** of the free shafts is an advantage.
 >
-> *Pilots should not fly below floor 21 or above floor 27 except in transit.*
+> *Routes must not hover below floor 21 or above floor 27. Set them to pass through.*
 
 **Hook:** R6 between 20 and 30 runs past the Dark Floors (22–26). Halden wants the shaft rats' knowledge and is willing to
 pay them for it, once. The instruction not to hover between 21 and 27 is the most interesting line in the posting. A rat
-who takes the job is a contract for the player too: "Fly the R6 test runs for me tomorrow, I'll be busy. Don't stop."
+who takes the job is a contract for the player too: "Launch the R6 test runs for me tomorrow, I'll be busy. Don't let them stop."
 
 ### 14.10 Membrane Week volunteers
 

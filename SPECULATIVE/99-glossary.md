@@ -59,7 +59,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **air line at zero** — The air charge on every statement, billed at zero since the Breath Riots. *01, 14*
 - **Aldo Moyle** — Hester Moyle's brother; reads clocks for sync-node serials and keeps a pencil sync-node map. *02, 05, 11, 13, 14*
 - **Allocation, the** — Marrow Teague's founding building-management system; the Old Hands call it the Foreman. *14*
-- **Ama Duarte, "Kestrel"** — The best shaft rat in the Mills; flies three drones by ear. *04, 06a, 13*
+- **Ama Duarte, "Kestrel"** — The best shaft rat in the Mills; keeps three drones in the air at once and times each by the note of its rotors. *04, 06a, 13*
 - **Ama Fenwright** — Plant diver under Widows' permit (tag 41), Tobiah Fenwright's granddaughter. *06b, 12, 13*
 - **Ambler & Daughters** — Grocers and Middle produce broker on floor 44 (Rosa Ambler). *11, 13*
 - **Ambrose Hale-Fennick** — In one version of the Arbiter, the single old lawyer who has held the post since Y61. *05*
@@ -740,7 +740,9 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Rainmark** — Blue enamel cap from a dead rain tap: "NOT MADE". *06a, 06b, 08, 11, 12*
 - **Ranchers' Association** — Licensed insect ranchers, Orrin-sponsored (hall on 20). *06a*
 - **Rate Review** — Every 30 days, a new Floor Rate Card. *04, 08, 12, 13, 14*
-- **rat-chalk** — Shaft rats' signs on risers. *02, 06a, 09, 12, 13*
+- **rat-chalk** — Retired variant: see **Drop card** and **hatch note**.
+- **Drop card** — Strip of charged electret film that carries one riser's route into a drone's controller; good about six days. *02, 06a, 09, 13*
+- **hatch note** — Dated chalk shorthand a rat leaves on a grate frame for the next rat; read by people, never by drones. *06a, 12*
 - **Reader in Grey** — Archive reader who reads only Seawall papers. *06a, 07, 14*
 - **Real grade** — See R✓.
 - **Receipt, the** — Transfer deck on 30. *14*

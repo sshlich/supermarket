@@ -274,7 +274,7 @@ Light in the Mills is a power cost, so people are careful with it:
 A drone in the Stack is a **flying box**: a frame, four (sometimes six) ducted rotors, a controller, a cell mount, a cargo
 bay, and, if it flies the lanes, a transponder. It carries goods up and down the inside of a concrete tower where there is no
 sky, no satellite, no radio signal that reaches more than two floors through the steel, and in most places no light. It flies
-itself on a route set before launch, because nobody can talk to it once it is in the shaft.
+itself on a route set before launch, because in a free shaft nobody can talk to it. (The licensed lanes are different; see 3.6.)
 
 The parts, as a buyer meets them:
 
@@ -306,6 +306,7 @@ The Stack's shafts sort drones into classes by what they can fit through, and th
 | **Empty class** | Freight One's dead well (4 to 60) | 8x6 and up | almost nobody; slow, power-hungry, one bad cell from the water |
 | **Skin frames** | outside the facade | sealed, small | licensed outside couriers, Crown craft, Flats runners |
 | **Pocket drones** | crawlspaces, Lung trunks | 1x2 or 2x2 | vent kids, informants, the Rain Church |
+| **Hoppers** | grille to grille, stairwells and riser stubs, about eight floors at most | 1x1 to 2x1 | everyone: shops, halls, households, kids (3.9) |
 
 The Company's frames are all Tube gauge, because a Tube-gauge frame can fly anywhere and a riser-class frame can only fly free
 (04 has Wren, Kestrel and Heron). Bigger bays are a **free-shaft privilege**: the most a Mills worker can move in one launch, she
@@ -410,17 +411,27 @@ riser. A drone flies a **route** loaded before launch and checks itself against 
 - **Beacon ribs.** The Tube lanes have founding-era position strips at every station and spur: a pattern of raised ribs in the
   tube wall that a lane drone reads like a barcode as it passes. They are why lane drones never get lost. Some ribs are worn
   smooth; Halden paints the pattern on with conductive paint, which flakes.
-- **Rat-chalk.** Shaft rats chalk marks on the riser walls with a reflective chalk (ground Lung-plate film in clay, see 06a for
-  the token): arrows, floor numbers, hole marks at the Combs. A rat-built drone's cheap camera reads chalk. Kids sometimes
-  re-chalk a riser for a joke, or a toll. A mis-chalked riser sends drones to the wrong floor all morning.
+- **The route card.** A strip of electret film (the same stuff as a Lung plate, section 6), charged at the Drop's plate charger
+  with the Drop board's picture of one riser: which comb holes are open this week, where the nets and drips are, when the Turn
+  falls. It slots into the controller and the controller trusts it. The film leaks, so a card is good for about six days (four
+  in the wet R4). A stale card is not blank; it still says the comb hole at 30 is open, after Halden rewelded it on day three,
+  and the drone flies at it with total confidence. That is why rats bin their cards after five days (06a).
+- **The flight log.** Every drone keeps a log of what it met: pressure spikes (a Turn draught, a netted stop), ring miscounts,
+  wet flags, how long it hovered at a comb. The pad copies it on landing. It is what a rat reads at the hatch, and where all
+  the Drop's knowledge about the shafts comes from.
+- **The feeder (lanes only).** The Tube lanes carry a leaky-feeder cable along the bore, founding-era, the kind mines use: a
+  coax that radiates a short-range signal along its length. It is why a lane drone can be talked to and a free-shaft drone
+  cannot. It is why Halden Lane Services employs **lane pilots**, who sit at the lane desk on 47 and hand-steer lane drones
+  through spurs, hand-land them where there is no call box, and recall them when a gate fails. It is why a lane is also a
+  leash: the same cable carries the Company's recalls.
 - **The landing call.** At the destination, the pad (or the Perch, or the client's hatch) chirps a call tone on a short-range
   frequency. The drone homes on the call for the last few metres. No call, no landing: the drone hovers until its reserve cell
   says go home.
 
-**In play:** most of this stays under the hood as **route trouble tables**, but three pieces surface as items:
-- a **route card** (1x1, a punched card or a chip, fitted in the controller slot) that holds a riser route; cheap ones for
-  well-known routes, dear ones for odd floors; a drone without the right card cannot fly free to that floor;
-- **rat-chalk** (the token from 06a) that softens the trouble roll;
+**In play:** most of this stays under the hood as **route trouble tables**, but two pieces surface as items:
+- a **route card** (1x1, charged film, fitted in the controller slot; the **Drop card** of 06a is the same item) that holds a
+  riser route; cheap ones for well-known routes, dear ones for odd floors; a drone without the right card cannot fly free to
+  that floor; a fresh card softens the trouble roll, a stale one hardens it;
 - the **pad's call**, which is why the destination needs a pad: contracts to floors without one need the client to have a **call
   box** (some low-floor slips include "we have no call; the drone must be landed by hand", which means a longer hover and a
   bigger chance of trouble).
@@ -430,7 +441,7 @@ riser. A drone flies a **route** loaded before launch and checks itself against 
 Drones fail in ways people have names for. Each is a trouble result, a wear state, or a story.
 
 - **Bounced:** turned back at a spur or gate for a permit, rotor or transponder mismatch. No loss but time.
-- **Miscount:** landed on the wrong floor (ring or chalk error). The cargo is now on somebody else's floor; their honesty decides
+- **Miscount:** landed on the wrong floor (a ring miscount, or a stale card). The cargo is now on somebody else's floor; their honesty decides
   what comes back.
 - **Sag-out:** the cell ran low on the climb and the drone turned for home early (cold cell, old cell, overloaded bay). A
   drone that sags out in the Empty does not turn for home. It falls to 4.
@@ -457,6 +468,36 @@ a landing-call beacon. On the Mills floors, pads face the spur hatch (lanes) or 
 
 Pad types are in the catalogue (Halden LP-2, rat pad, Tube station cradle). Every pad has a **launch draw** (spin-up, 1 to 3 hu)
 and a **capacity** (how many drones can rest on it, usually one). A second pad is the way to fly two contracts at once.
+
+### 3.9 How common drones are
+
+Drones are not a trade in the Stack. They are an appliance, the way bicycles are in a flat city. The lifts are slow, owned and
+tolled, the stairs are long, and the Works left Calder Bay drowning in cells and rotor motors, so a **hopper** (a box, four
+small ducted rotors, a cell, a cheap controller and a hook) costs a day or two of Mills wages and does the job of a
+runner. On floor 17, with its three thousand people and 430 leases, about one lease in three owns one; in the Middle, nearly
+every shop does; the Terraces own them by the dozen and never say so.
+
+- **What a hopper carries on a Tuesday:** a hot lunch from the crust hall on 16 to a shop on 17; a spare cell between neighbours;
+  a rent slip to the warden's box (the caged slot on every landing); a note to the mender; a child's pocket-money errand at
+  1 cr a hop; the day's mail for a hot-bunk house; a screw, a fuse, a cup of sugar.
+- **Where they live:** a **hopper rail** at the stairwell hatch on each landing, a charging strip along a pipe, where drones
+  perch like pigeons. A hall with forty leases has thirty drones and one rail with a queue for the strip.
+- **What they cannot do:** climb more than eight floors or so on a cell; fly a lane (it carries a tin dummy disc, not a transponder;
+  see below); cross a band gate (the gates are netted, and the Company says so out loud); carry more than two kilos.
+  Anything that needs a longer reach, a bigger bay, a lane permit or a sealed liner needs a courier frame, which is the
+  price jump (a Wren is 380 cr, about twelve days of a labourer's pay) that makes the player's drone a business and not a
+  toy.
+- **Why the Guild tolerates them:** it taxes what climbs, and a hopper does not climb far enough to be noticed. The Guild's
+  anger is for the boxes that go forty floors without paying, and the people who build them.
+- **Trouble:** a hopper stolen from the air in a stairwell by a kid with a net; a hopper that fails and falls, which in a
+  stairwell is a brick on a head and is why landings have a bell; a neighbour who 'borrows' yours. Bylaw 61 says every drone
+  from a lease below 30 must display a lane transponder 'whether or not it uses a lane', so every hopper carries a **dummy
+  disc**, a tin tag stamped with the lease number, 1 cr at any hatch. The warden counts discs when bored. Nobody has ever
+  tested whether the Company can read one.
+
+**In play:** hoppers are the world's background and the player's first tutorial. Early slips on the board are hopper-sized
+errands within the player's own floor ('Spare cell, 17 to 14, 2 cr'); the player's Wren is what turns those into long-haul
+contracts. Neighbours' hoppers appear on screen as small shapes moving between hatches, so the tower looks inhabited.
 
 ---
 
@@ -643,7 +684,7 @@ What bad air does in a workshop (if the designer wants air as a mechanic at all;
   vent have the cleanest air below 30.
 
 **Hook:** the Lung plates are made of an electret film that the Works also used, cut small, in the charge eye of the No. 4
-cell and in rat-chalk. A shaft rat who grinds a spent plate for chalk is grinding the same stuff that tells a Four's charge.
+cell and in the Drop's route cards. A shaft rat who strips a spent plate for card film is stripping the same stuff that tells a Four's charge.
 Somebody on 6 has noticed that a pinch of plate film mixed into fake eye paint makes a counterfeit Four's eye move a little.
 
 ### 6.3 The Lungs as a system (summary from 02, for the catalogue)
@@ -769,7 +810,7 @@ dawn slack). The Bus itself has never failed, and nobody alive knows what its sh
 self-cleaning, spares on hand, a supply of ultrapure water (Process Line 3, 02), power (the Bus at night), raw materials (the
 unanswered question), and somebody, somewhere, who replaces the parts that robots cannot. Ruth Amadi's clue (06a): the
 cycle in there is nineteen minutes, not the forty of cell formation. Things with a nineteen-minute cycle in a cell-and-chip
-works: wafer exposure in lithography; the electret charging of film (Lung plates, charge eyes, rat-chalk all share it); a
+works: wafer exposure in lithography; the electret charging of film (Lung plates, charge eyes, route cards all share it); a
 Kessin drive chip's burn-in. **Hook:** not one of those is a cell.
 
 ---
@@ -1210,7 +1251,7 @@ self-harvest), leachate (a liquid outlet) · **Draw** 0.1 hu · **Speed** fastes
 - **Tended:** washing the plate (an hour, 10 litres) is the first step and must be done by day.
 - **Overnight:** recharges a washed plate. A recharged plate fitted over the shop's vent (no stack needed) lowers damp and dust two
   steps for about 60 days.
-- **Quirks:** charges electret film of any kind: a pinch of plate film for **rat-chalk**, and, with the right card, the charge
+- **Quirks:** charges electret film of any kind: a strip of plate film for a **Drop card**, and, with the right card, the charge
   eye film of a No. 4 cell. A Four with a faded eye comes out readable again.
 - **Lore:** a Lung maintenance unit from the 30 Lung's plate room, HW-2. The Company crew has three and denies a fourth existed.
 - **Price:** 1,600 cr; the Co-op would give a great deal of standing for one.
@@ -1396,7 +1437,7 @@ The tech in this file touches every other system. The crossings worth keeping:
 - **Insects → frass → beds → spent medium → mushrooms → spent substrate → insects.** The two food chains joined at the waste end.
 - **Chute paper → pulper → pulp → frass mix / mushroom substrate / Archive paper repair.**
 - **Voided devices → flash rig / Fenn's plate → Rc devices → grey clients; rewards from low-floor drones are often more of them.**
-- **Lung plates → plate charger → clean air (shop damp down), reconditioned plates (Company scrip), rat-chalk (shaft rats).**
+- **Lung plates → plate charger → clean air (shop damp down), reconditioned plates (Company scrip), Drop cards (shaft rats).**
 - **First-fit parts → three buyers** (Company, Old Hands/Co-op, penthouse fixer), each a different future for the tower.
 - **Drones → wear → rotor bench; pads → which routes; inserts → which contracts.**
 - **Instruments → hidden features → price.** Analysed sells full, blind sells cheap, and the analyser is a machine competing for
@@ -1431,7 +1472,7 @@ Slips that come out of this file, in the voice of their origin (06a's convention
     Dark Floors keeps a Rack 40 too.
 11. **The Mills Co-op, Two Hall** (sprout stamp): "Tide bank for the Glove Run tank pump. Loan us yours for the next tap drought; we return it
     charged and pay 40 litre-chits." A machine as a loan.
-12. **A shaft rat, R3 at 17** (rat-chalk on your grate): an arrow, a 9, a circle. Means: R1's comb hole at 30 is closed; use the
+12. **A shaft rat, R3 at 17** (a note on your grate): an arrow, a 9, a circle. Means: R1's comb hole at 30 is closed; use the
     Nine (R8) tonight. Not a contract; a gift, to be returned.
 13. **Vey Clinic, floor 64** (sterile form, sealed): "Cold chain delivery. Coldsafe-charged packs, sealed liner, 12 vials." Requires two
     pieces of tech the player must own.
