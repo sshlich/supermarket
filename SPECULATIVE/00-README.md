@@ -1,6 +1,6 @@
 # 00. Reading guide
 
-This folder is a pile of ore. It is about **383,000 words across seventeen files**: roughly 25 hours of reading at an
+This folder is a pile of ore. It is about **395,000 words across eighteen files**: roughly 25 hours of reading at an
 easy pace, or a few weeks of evenings. None of it is decided. It was written to be panned: you read, you keep the
 nuggets, you throw the rest back, and what you keep moves into `../LORE.md` or `../IDEAS.md`, where decisions live.
 
@@ -22,6 +22,64 @@ then found 172 contradictions (dates, names used twice, floor numbers, prices) a
 records the resolved forms and marks the losers "retired variant". Some drift is bound to remain. Where you see two
 versions of the same fact, check the glossary for the proposed winner, then treat it as your call. Dates after Y86 are
 projections (things scheduled or promised), not history.
+
+---
+
+**Revised 2026-10-08.** Three changes since the first pass. (1) Drones now fly themselves on a route loaded before launch;
+nobody pilots them in a free shaft, and the licensed lanes alone carry a feeder cable that lets the Company talk to a drone
+(09 §3.1, §3.6). (2) Rat-chalk is gone: drones never read walls. They keep a flight log; rats leave dated hatch notes for each
+other; the Drop charges film **route cards** that go stale in about six days (06a, 09). (3) Drones are everyday kit: cheap
+**hoppers** (09 §3.9). File **15** is new.
+
+## The Stack in plain words
+
+If the names get in the way, read this first. Everything else in the folder is this, in more detail.
+
+**What it is.** A tower, 104 floors high, standing in poisoned water in a drowned city. It was built to house the workers of a
+factory that made batteries and computer chips. About forty-five years ago the factory stopped needing workers, and the
+company that owns it now lives off being a landlord. The people who stayed pay rent for floor space, by the square, and
+buy their water, power and medicine from that landlord. The poor live at the bottom and the rich at the top. The lifts are
+slow and cost money, and the stairs are long and dark.
+
+**Who owns what.** One company, **Halden**, owns the building, the lifts, the water, the meters and the company store. Three
+brands under it sell the basics: **Orrin** (food, including the protein block), **Vey** (medicine) and **Skywater** (bottled
+rain). Nobody else is allowed to clean water or treat the sick. People do it anyway, and that is most of the story.
+
+**Who keeps order.** Not police. **HPS** is a subscription security service; you pay for a faster response, and it mostly
+arrives to fill in a form. In the working floors (the **Mills**, 10 to 29) neighbours keep order themselves, with walking
+patrols, floor meetings and "pay it back in kind". On the lowest floors (the **Sump**) gangs run the pumps and the rubbish
+drops, because someone must.
+
+**Money.** Credits (**cr**) are real money. **Scrip** is store vouchers that only spend at Halden's shop. A labourer earns about
+30 cr a day; a protein block costs 3.
+
+**The player.** Runs a small shop on floor 17: mends, grows, sorts, packs. Goods go to customers in small flying boxes called
+**drones**, which fly themselves along a route set before launch.
+
+| In the files | In plain words |
+|---|---|
+| the Company, Halden | the landlord, utility and shop in one |
+| the Ledger | the landlord's account book; every payment passes through it |
+| scrip | company-store vouchers |
+| Standing | how far the landlord (and your neighbours) trust you; a credit score with a face |
+| the chute, the Fall | the rubbish chute; the morning landing of what the rich threw away |
+| VOID | slashing or stamping goods before they are thrown out, so the poor can't use them |
+| first-fit | built when the tower was new: better than anything made since, and failing |
+| grey | unlicensed, rebuilt or home-made: it works, but the Company hasn't approved it |
+| Company-new | modern, licensed, and set to stop working on a date |
+| the Retirement Signal | the date a licensed device is told to die |
+| lane / free shaft | a paid, licensed air-route for drones / a free, dangerous one |
+| shaft rat | an independent drone courier who uses the free shafts |
+| hopper | a cheap little errand drone; most households have one |
+| the Old Hands | retired factory workers who still know how the old machinery works |
+| the Round | the Mills's neighbourhood patrol: whistle, don't fight |
+| hu | a unit of electrical energy; a charged cell holds 2 |
+| R✓, R, Rc, S, H, F | goods grades: certified real, real, reclaimed, synthetic, heirloom, founding |
+| In play | how a piece of lore shows up in the game |
+
+The folder is long, and a lot of it is lists. The best cuts are the people and the days (**08**, **12**) and the places
+(**02**). The worst are the long item and price tables (**10**, parts of **04** and **09**); read those only when you are
+looking for something.
 
 ---
 
@@ -58,6 +116,7 @@ grep -n -i 'requisition' *.md
 | 12-voices | 31,100 | 100 | 13 | 2 |
 | 13-player-and-endings | 26,500 | 40 | 16 | 5 |
 | 14-hooks-and-mysteries | 22,800 | 20 | 21 | 29 |
+| 15-the-underside | 11,000 | 17 | 7 | 1 |
 | 99-glossary | 15,300 | | | |
 
 (The 06 files put most of their gameplay inside per-faction "What they want, offer, buy and sell" and "Example slips"
@@ -309,7 +368,19 @@ longest list of open questions. **Best in it:** the collation as a packing job, 
 claim through the Grievance Box, the Roll Call night, and the line about the requisitions: "the player is keeping the
 building alive and nobody will ever thank them, which is the most Mills thing in the game".
 
-### 17. `99-glossary.md`: the reference
+### 17. `15-the-underside.md`: crime, weapons and drugs
+
+Added after the first read, because the other files had the Company's crimes and the gangs' laws and almost nothing on the
+ordinary ones. It starts from four things worth stealing (water, cells, medicine, the right to be on another floor), then covers
+how people actually get hurt (stair landings, debt, a knife in a quarrel, fire), what they carry (a dead cell in a sock, a mill
+knife, an HPS wand that runs flat; no guns, with a reason), crime as a trade (sock-lifters, stair crews, the pass trade, fences,
+pooling, tin lenders, the Company's own habits), and what people take: Vey's Lull, Rouse and Easement, the cracked, counterfeit
+and wrack-washed pills, bed-leaf and pale and trike, hum-caps and the low breath from the drowned floors, and the Crown's
+glass vials. Ten people, a slang list, eleven slips, twelve events and five hooks. The rule is the canon brief's: no combat
+as content, only aftermath. **Best in it:** "the Company licenses, it does not ban", Tea Lorna's three rules, Edda Quaile's
+tin of samples, and the pass in the dead man's boot.
+
+### 18. `99-glossary.md`: the reference
 
 Not for reading through. Every proper name and coined term in the corpus, one line each, with the files it appears in, plus a
 timeline from before the founding to the projected future. Its most useful job is continuity: where files disagree, it gives
@@ -546,6 +617,17 @@ continuity pass, not yet applied to the files, still yours to confirm".
 141. **The months.** Twelve numbered months of thirty days, northern seasons (midsummer in VI to VII, Lamp Night in XII): acceptable? (08)
 142. **Where the game starts in the year.** Wall Night (19.III), Resilience Day (22.III) and Founding Day (1.IV) early, so the player meets the history in their first season, or late, so they have something at stake? (01, 14)
 143. **Rhythms.** The seven-day week, the fortnightly tide, the thirty-day month, the Period card every 90 days, and a nine-day ninth-night cycle that lines up with the week every 63 days (a "long Seventh"): one rhythm too many? (14)
+
+### P. Crime, weapons and drugs
+
+144. **How dark?** Is the underside background (a sock, a twist, a bad week) enough, or does the game ever show a death? File 15's rule: aftermath only, never the act. (15)
+145. **Any firearms at all?** File 15 says none, plus a rumour with a price. One hook (a pistol in a Crown drawer, a Bastion guard's sidearm) would cost little and change the tone a lot. (15)
+146. **Does the player's body get hurt?** There is a worker-injury event and a free mender's treatment. Does an injury cost hours, or something worse? (15, 08)
+147. **Is dependence a stat?** File 15 makes it a texture: the world remembers, the screen does not score it. Right, or does the cracked-dose economy need a mechanic? (15)
+148. **Hoppers and hot parcels.** With drones everywhere, net grilles are the only checkpoint. How easy should it be for the player's hopper to carry contraband? (15, 09)
+149. **The hum-cap.** An Old Hand's joke with a nineteen-minute hook. Part of the Dark Floors mystery, or one hook too many? (15, 14)
+150. **Sex work and exploitation.** Left out on purpose. The Stack has hot-bunks, debt and a Pier, so it exists; does the game say it out loud or let the structure imply it? (15)
+151. **The Company's own hands.** HPS, Vey and the Recovery Store do much of what looks like crime here. Can the player act on that (a leaked incident book, a counterfeit proven to be Vey's own), or only know it? (15, 05)
 
 ---
 

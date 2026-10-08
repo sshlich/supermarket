@@ -938,6 +938,9 @@ Band multipliers: Sump 0.5, Mills 1, Middle 2, Terraces 5, Crown "by referral".
 | Frustration of recovery | moving the lemon | B | 25% of the debt | credit −10 |
 | Salvage levy evasion (B95) | | B | the levy ×2 | salvage retained |
 
+*The schedule has no line for assault, theft between tenants, weapons or drugs. HPS protects subscribers and Company property;
+the rest is dealt with on the floor (§12) or not at all. File 15 covers what that leaves.*
+
 ### Credit notes
 
 The credit rating (file 04 owns the mechanics) is where the law bites longest. A standards charge is paid once; a credit note

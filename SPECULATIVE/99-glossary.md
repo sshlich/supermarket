@@ -86,6 +86,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Atmos Mk I** — The Works' founding-era clean-room humidity unit; 300 were made. *03, 09*
 - **Atmosphere Levy** — Flat air charge below 30 (0.25 cr a square a week) paying for the 30 Lung. *02, 04, 13*
 - **Augustin Moreau** — Lift Guild chief mechanic, keeping the Kessin drives alive. *06a, 06b*
+- **Aurel Voss** — HPS Attendant at Post Nineteen; sells incident numbers for 10 cr. *15*
 - **Aurelio Spenk** — Foundation Director of Outreach. *06b*
 - **Aurelio Tallis** — Orrin Provisions' field agent for the Mills. *06a, 13*
 
@@ -104,6 +105,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Bay Cover** — The Mutual's cargo cover: 4% on a licensed lane, 12% on a free shaft. *04, 06b, 12*
 - **Bay's share** — Tide Folk rule: the first find of each ebb goes back to the water. *06a, 06b, 08, 12*
 - **bay slip** — An addressed contract that never touches the board. *11, 13*
+- **bed-leaf** — Dried grow-bed trimmings rolled in blotter scrap; smoked in designated squares (Bylaw 86). *15*
 - **bed-watching** — Sitting up with someone's beds or bins overnight. *08, 13*
 - **Ben Books (Benedek Sato)** — The Co-op's treasurer; pencil ledgers. *06a, 13*
 - **Benedek Sarr** — Meter reader whose six-year Common Load notebook is a prize trace. *02, 04, 13, 14*
@@ -114,6 +116,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Benno Ruiz** — The only Roll member in the Mills, on 19. *06b*
 - **Bett Corrin** — Widow and soft tapper on 19. *03*
 - **Bettany Roe** — Elected Foreman of the Frame (Esplanade Heights). *07*
+- **Bev Sandling** — Roundsman on 21 with a bell and a bad knee. *15*
 - **BIDS (Brand Integrity Disposal Standard)** — The rule that branded goods must be voided before disposal. *04, 10, 12, 13*
 - **Big Lou (Louisa Fennimore)** — Orrin's top producer: forty bins on 21 against the Dark Floors. *06a, 13*
 - **Bilge, the** — The Pumpmen's floor-6 crew. *06a*
@@ -264,6 +267,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Dorota Kell** — Filed open the dead rain tap on 30 in Y63: the Dry Font. *01, 06a*
 - **Dorrit Vance** — Chalker who resurveys the twelve squares on 16 under the stores hoist every quarter. *02, 04, 06b, 12, 13, 14*
 - **Dov Kettering** — Foundation Treasurer; keeps a second ledger of officers' "gifts". *06b, 12, 13*
+- **Drop card** — Strip of charged electret film that carries one riser's route into a drone's controller; good about six days. *02, 06a, 09, 13*
 - **Drop, the** — The shaft rats' plenum and meeting room on floor 20 (Drop board, Drop warden). Not a chute term: the daily release of refuse is the Morning Fall. *04, 06a, 11, 13*
 - **drops** — People released from Vantage under No Idle Residency; a player past. *07, 13*
 - **Drowning, the** — The flood of 19–20.III.Y57 (Tide Folk: Wall Night; Mills: Drowning Night). *all files*
@@ -275,13 +279,16 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **dry / wet** — Broke / flush; also unbaptised / baptised; tower / Flats people. *03, 08*
 - **dry-born / wet-born** — Born after / before the Drowning. *01*
 - **Ducklings of Twenty** — Vent crew on 20. *06b*
+- **dummy disc** — Tin tag stamped with a lease number that a hopper displays to satisfy Bylaw 61; 1 cr. *09*
 - **Dunstan Hale, "Grubber"** — Runs the Pits (soldier-fly grubs) on floor 7. *06a*
 - **Dusty Kerrigan** — Runs the Fall book (betting on the count) on 16. *08*
 
 ## E
 
+- **Easement** — Vey's strong painkiller, 35 cr for ten; the grey market's biggest seller; also "an easer". *15*
 - **East Collar** — Vent crew working the East Chute collar on 12–15. *06b*
 - **Ebbe Lindahl** — Old Hand from the Waterhouse fitters (Clock 3210). *12*
+- **Edda Quaile** — Counts doses for Sister Odette; keeps a tin of samples from every overdose. *15*
 - **Edmund Varne** — Director of Halden Civil Y48–Y57; "E.V." in the Harrow Memo margin (main version). *14*
 - **Eight Squares, the** — Gus Tanaka-Breen's hot-bunk house at the end of Glove Run on 17, keeper Tobin Saar. Retired variant: "Seventeen Rest". *02, 12, 13*
 - **Elders of the Downpipe** — Rain Church tappers' elders. *06a*
@@ -295,6 +302,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Esplanade** — Old Calder's grand seafront, drowned. *01, 06b, 07, 12, 14*
 - **Esplanade Heights ("the Frame")** — Unfinished luxury tower by Lysander Property, squatted by turbine crews. *07*
 - **etch-tooth** — A Mills accent. *03, 08*
+- **Even** — Vey evening tablet for the anxious Middle, 22 cr for ten, on a clinic slip. *15*
 - **Exchange, the** — Floor 28, the Mills' market for parts, seed and produce. *06a, 06b, 07, 08, 09, 11, 12, 13*
 - **Exchange steps** — The Flats' dry-ground market at Great Ebb. *06a, 06b, 07, 08, 11, 12, 13*
 
@@ -304,6 +312,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Fall, the (Morning Fall)** — The 06:00 release of the night's refuse (held overnight at Reclaim on 59) down the four chutes. *02, 08, 09, 11, 12, 13*
 - **Fall book / Fall count** — Bets on the bang count. *08*
 - **Fan Room Three** — The dead fan room of the 30 Lung (dead since Y79). *01, 02, 08, 09, 11, 14*
+- **feeder cable** — Leaky-feeder cable along the Tube lanes; lets the Company talk to a lane drone, and recall it. *09*
 - **Felix Strand-Esker** — The Scholar past's classmate on 77. *13*
 - **Fenwick Adair, "Old Fen"** — Crib keeper, Clock 1880. *06a, 06b, 13, 14*
 - **Ferris Dunmore** — Guild quartermaster for the Locals. *11*
@@ -316,6 +325,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Five Hall** — Floor 18, Line Five, with the Hatch. *02, 09*
 - **flasher** — Unbricks slates (Odalys Brannock). *06b, 13*
 - **Flats, the** — The tidal mudflats and the drowned town; their people. *all files*
+- **flight log** — What a drone met on a flight (pressure spikes, ring miscounts, wet flags); the pad copies it on landing. *06a, 09*
 - **Floor Rate Card** — Rent card reprinted every Period (30 days). *02, 04, 06b, 12, 13, 14*
 - **Fonts / Fontkeepers** — Rain Church water points and their keepers. *01, 02, 06a, 06b, 07, 11, 12, 13, 14*
 - **Food Standards Delegation** — Y61: food inspection delegated to Orrin. *01, 05, 10*
@@ -335,6 +345,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **free shaft** — A cold riser or dead well nobody charges to fly. *throughout*
 - **Freight One** — Old Two's twin freight car (core F); died Y71; its well is the Empty. *01, 02, 08, 09, 11, 14*
 - **freight chit** — Lift Guild ticket to send a drone or goods up a car. *01, 02, 06a, 06b, 09, 11*
+- **Friday fifth** — A tin lender's interest: a fifth a week. *15*
 - **Fringe, the** — The board's wooden surround where neighbours post. *11, 13*
 - **frontage** — Corridor-facing squares (x1.5); showing off. *04, 08, 13*
 - **Fund, the** — Local 9's strike fund, released to its members as a mutual fund in Y41. Retired variant: "the Mutual" (clashed with the insurer). *06a*
@@ -425,6 +436,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Harbour Concession** — Y44 purchase of the harbour, quays and ferry pier. *01*
 - **Harriet Soames** — Greenhold Line Inspector in the Mills. *06a*
 - **Harrow Memo** — Sefton Harrow's Y53 memo on the Shared Bank's breach point, initialled "Noted. No budget this cycle. Monitor." *01, 06b, 07, 13, 14*
+- **hatch note** — Dated chalk shorthand a rat leaves on a grate frame for the next rat; read by people, never by drones. *06a, 12*
 - **Hatch, the** — The Mills store branch behind a grille (18, 27 and 11). *02, 04, 08–13*
 - **Heritage Week** — Y76 Company exhibition on 30 (the first cell, chalked 5). *01, 07, 11, 14*
 - **herd ticket** — Carbon delivery ticket for insects; Orrin advances. *02, 06a, 10, 11, 13*
@@ -437,10 +449,13 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Hollis Pole** — Heirloom bean. *10*
 - **Hooks, the** — Sump crew that decides "first hook" at the drops in the Bale Hall. *05, 06b, 07, 08, 10, 12*
 - **Hope Desk / Hope Voucher** — The Foundation's voucher desk on 12; vouchers spend only at the store, valid 30 days. *04, 06b, 12, 13*
+- **hopper** — Cheap one-box errand drone with a range of about eight floors; most Mills households own one. *04, 09, 15*
+- **hopper rail** — A charging strip along a pipe at a stairwell hatch where hoppers perch. *09*
 - **hot-bunk / hot-bunk house** — Bunks rented by the shift. *throughout*
 - **HPS** — See Halden Protective Services.
 - **Hulk, the** — The leaning dead Civic Tower; Hulkers, crews, the Plumb. *00, 01, 07, 10, 11, 12, 13, 14*
 - **Hum, the** — The Dark Floors' night sound. *throughout*
+- **hum-cap** — Pale mushroom grown in dark cabinets near the Dark Floors; eaters say the Hum speaks; 4 cr. *15*
 
 ## I
 
@@ -477,6 +492,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Jory Malloch** — Diver; Static's Flats voice (Saltlick). *06a, 06b*
 - **Joseph Arlen** — One of the three missing of the Forty. *14*
 - **Joss Arkady** — Recorded Y80: his father heard "the H-series" through the door on 24. *01, 14*
+- **Joss Penhale** — Lad at the Long Shift hot-bunk house on 12. *15*
 - **jug** — A water IOU. *03, 04, 08, 12*
 - **Justice Corin Vance** — Chair of the Vance Inquiry. *01, 12*
 
@@ -506,6 +522,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Landing, the** — The steel platform at the floor 4 loading doors where Flats salvage comes up (Ruben Vass). *02, 06a, 06b, 07, 08, 11, 12, 13*
 - **Lane Desk** — Lift Guild counter at Thirty Station. *02*
 - **Lane Permit** — Licence for a drone to use licensed lanes. *01, 04, 05, 10, 12, 13*
+- **lane pilot** — Halden Lane Services staff who hand-steer and hand-land lane drones from the lane desk on 47. *04, 09*
 - **Lantern, the** — Halden's top floors (101–104); "Lantern says" = the official line. Founding name: the Glasshouse. *02, 08, 11, 12, 13, 14*
 - **Lantern cough** — The Halden family's private illness from the leaking riser cap. *14*
 - **Lantern Row** — The Terraces' restaurants on 75. *01, 02, 06b, 08, 11, 12, 13, 14*
@@ -545,13 +562,17 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Long Stair** — The public stair from 4 to 89. *02, 06b, 08*
 - **Long Table** — The Crown's Founders' Night dinner. *11*
 - **Lorca Venn** — Founder of Static (Y57), Clock 2391; died Y80. *06b, 12, 14*
+- **Lorna Quist ("Tea Lorna")** — Keeps the urn at the Coater; sells Lull from the drawer; three rules. *15*
 - **Lorne Abbiss, "the Half-Square King"** — Baron on 12 who invented half-squares. *06b*
+- **low breath** — The chemical breath from the drowned halls, taken at grates on 4 to 6 at low tide; kills the young. *15*
 - **Low Calder** — The largest stretch of Flats. *01, 06b, 07, 14*
 - **Lowell Ibsen** — Station Chief of the Sounding. *07*
 - **Lowering, a** — When the Glass Line drops and a band's rents follow. *01, 14*
 - **LR-2** — Lagoon Six's landward relief valve, opened at 20:31 on Wall Night. *14*
+- **Lucan Ashby-Reed** — Wellness steward on 93; delivers Reverie by hand to six Crown households. *15*
 - **Lucan Ferrabee, "the Novelist"** — Fixer who writes fictional story cards. *06b*
 - **Lucan Pryor** — Terraces junior who grows orchids on 61. *11*
+- **Lull** — Vey sleeping tablet, 8 cr for ten; cracked Lull is a steady grey good. *08, 15*
 - **Lunch Tin Months** — The eleven weeks of Y41 when clerks smuggled drawings out in lunch tins. *06a, 08*
 - **Lungs, the** — The three founding air plants on 30, 60 and 90. *01, 02, 08, 09, 14*
 - **Lyle Penhallow** — Penthouse fixer recruiting clean-room Old Hands for the Lantern. *14*
@@ -632,9 +653,11 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Ninefold** — Nine families who hold floor 9 and its toll since Y58. *05, 06b, 07, 08, 10, 11, 12*
 - **Nineteen** — Floor 19, the Mills' civic floor: Post Nineteen, the Register board, the Old Hands' hall. *02, 05, 13*
 - **Ninety Gate** — The way into the Crown at 90. *02, 08, 11*
+- **Ninety-Nines** — Stair crew holding the Corner Stairs from 15 to 19; leader Tobin Hallett. *15*
 - **No Idle Residency** — Vantage's rule that residency depends on employment. *07, 13*
 - **nobody** — A non-party: unregistered, untallied. *05, 08*
 - **noon tin** — Midday meal. *08, 13*
+- **Noor Aldous** — Pass forger on floor 29 (the Chalk); never forges for the Crown. *15*
 - **Noor Halvorsen** — HCS Pinner for floors 14–19. *11, 13*
 - **North Well Field ("the Pans")** — The Works' outlying well field in the old salt-pans. *01, 07*
 
@@ -703,6 +726,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Philippa Strand-Esker** — Foundation board member; chair of the Amenity. *06b, 12, 13*
 - **Pick, the** — Day-labour hiring at the Turnstile. *08, 12, 13*
 - **Pier, the (Pleasure Pier)** — The rich of every tower's resort, run by Brightwater Leisure for the Pier Trust. *04, 07, 08, 12, 13*
+- **Pim Garrity** — Fourteen; goes for a breath at the 5 grate; hauled out twice by the Widows. *15*
 - **Pim Lund** — Seed-saver carrier, nine. *06a*
 - **Pim Okafor** — Alternative warden of 17; a "Pim floor" reports everyone. *05, 06b, 11, 13*
 - **Pinner** — HCS clerk who pins the board. *11, 13*
@@ -714,6 +738,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Plumb, the** — The Hulk's lead weight on a wire; its reading is the Hulk's clock. *07, 13, 14*
 - **Pneu** — Small-bore branch of the Tube. *06a*
 - **Pool, the** — The Co-op's shared water. *06a, 06b, 13*
+- **pooling** — A warden's shakedown: pay the pool and nothing is filed; about 10% of a week's rent. *15*
 - **Post Forty-Four / Post Nineteen** — HPS posts in the Middle and the Mills. *02, 05, 13*
 - **Postern, the** — The Crown's goods entrance on 93 (Assay, reject bench). *02, 08, 09, 11, 13, 14*
 - **pressed** — Middle people. *08*
@@ -741,8 +766,6 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Ranchers' Association** — Licensed insect ranchers, Orrin-sponsored (hall on 20). *06a*
 - **Rate Review** — Every 30 days, a new Floor Rate Card. *04, 08, 12, 13, 14*
 - **rat-chalk** — Retired variant: see **Drop card** and **hatch note**.
-- **Drop card** — Strip of charged electret film that carries one riser's route into a drone's controller; good about six days. *02, 06a, 09, 13*
-- **hatch note** — Dated chalk shorthand a rat leaves on a grate frame for the next rat; read by people, never by drones. *06a, 12*
 - **Reader in Grey** — Archive reader who reads only Seawall papers. *06a, 07, 14*
 - **Real grade** — See R✓.
 - **Receipt, the** — Transfer deck on 30. *14*
@@ -762,6 +785,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Retirement Ordinance** — Y63 law on the Retirement of Branded Goods. *05, 06b, 12*
 - **Retirement Signal** — Code that bricks electronics at end of life. *04, 06b, 09, 10, 12, 13*
 - **Return, the** — The seed savers' rule (two packets back); also the meters' hidden Return column. *06a, 14*
+- **Reverie** — Vey Private Line vial for the Crown, 400 cr, delivered by hand. *15*
 - **Ride Book** — The Lift Guild's record of every ride, at Car House. *02, 06a, 06b, 11, 13*
 - **Roll, the (Roll of Certified Refurbishers)** — Licensed restorers, floor 66. *06b, 14*
 - **Roll Call** — Night of 30.III: founding-era lights flicker floor by floor. *14*
@@ -770,6 +794,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Rosalind Venn-Achebe, "Mother Tongue"** — Static's voice of the Names. *06b, 12*
 - **Rosamund Fry, "the Pit"** — Stillcars cell-swapper. *06b*
 - **Round, the** — The Co-op's floor patrol of roundsmen; captain Rook Okafor. Retired variant: "the Walk". *05, 08*
+- **Rouse** — Vey stay-awake tablet, 7 cr for ten; "Shift-Ready". *15*
 - **Roz Achebe** — Cook at the Pantry. *08, 13*
 - **Ruben Vass** — Runs the Landing. *06a, 06b, 07, 08, 11, 13*
 - **Rudolf Kasza** — Master of Cars, car right C-1. *06a, 06b*
@@ -821,6 +846,8 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **sleepers** — Hot-bunk tenants. *06b, 13*
 - **slip** — A contract card. *throughout*
 - **Sobriety Standard** — Vantage's alcohol ban. *07, 13*
+- **sock** — A dead H-cell in a sock: a club, and the pouch cells are worn in. *15*
+- **sock-lifter** — A cell thief, usually a child. *15*
 - **soft tap / soft tapper** — Tap drawing grey water from a failing line. *03*
 - **Soldiers** — Soldier-fly larvae. *06a, 09*
 - **Sorrel meter / Sorrel key** — The founding brass two-way meters and the trefoil key to their flaps. *01, 02, 06b, 07, 09, 13, 14*
@@ -830,6 +857,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Split, the** — Co-op rule: chute waste half to bins, half to beds (Y71). *06a, 11*
 - **St. Ober's Spire** — Hospital tower run by a charity that charges like a bank. *throughout*
 - **Stack, the** — The tower. *all files*
+- **stair money** — Credit paid to a stair crew to pass a landing after dark. *15*
 - **Standing** — Tenant Standing, 0–1,000. *all files*
 - **Static** — Pirate radio since Y57 (Lorca Venn). *all files*
 - **Station Sixty-One** — HPS headquarters on 61. *02, 05*
@@ -881,9 +909,11 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Tide Folk** — The Flats' people, descendants of the wall gangs. *throughout*
 - **Tide Shut** — The Tide Folk refuse to sell to the tower. *14*
 - **Tin** — A vent crew's keeper of sweets and cells; also the lunch tin. *06b, 08, 14*
+- **tin / tin lender** — A biscuit-tin lender at a Friday fifth. *15*
 - **Title Maintenance Charge** — 0.5 cr a square a week on held title. *04, 13*
 - **Tobiah Fenwright** — Wellside survivor, early Flats diver. *01, 06b*
 - **Tobias Wen** — One of the Eleven of 27, Clock 0117, wrote the Daylight code. *14*
+- **Tobin Hallett** — Nineteen; leads the Ninety-Nines stair crew. *15*
 - **Tobin Saar** — Keeper of the Eight Squares. *06b, 11*
 - **Toller's Pre-Loved** — Voided front shop on 36. *06b*
 - **Tomas Reyes, "Tap"** — Elder of the Downpipe. *06a*

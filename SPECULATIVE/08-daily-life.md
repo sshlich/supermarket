@@ -928,7 +928,7 @@ The water diseases (the shakes, blue gums, stone-belly, etch-teeth, the slows, s
 Vey's pricing rule, **Continuity**, means the first inhaler is cheap and every refill is dear (8 cr, then 22 every month, in the
 Mills). Every Vey product with a dispenser (DoseLock antibiotics, inhalers, Lull) has a counter or a lock, and dispensers go down
 the chute when they lock, and the Mills chisel them open. Cracked medicine is the largest single grey good in the Mills after
-water.
+water. What people take when the medicine is for sleep, pain or staying awake, and what that does to them, is in file 15.
 
 **In play:**
 - **Medicine demand is permanent and seasonal.** Gut tabs and cough candy all year; inhaler refills monthly; Fall fever in summer
