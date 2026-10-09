@@ -1,6 +1,6 @@
 # 00. Reading guide
 
-This folder is a pile of ore. It is about **395,000 words across eighteen files**: roughly 25 hours of reading at an
+This folder is a pile of ore. It is about **375,000 words across eighteen files**: roughly 25 hours of reading at an
 easy pace, or a few weeks of evenings. None of it is decided. It was written to be panned: you read, you keep the
 nuggets, you throw the rest back, and what you keep moves into `../LORE.md` or `../IDEAS.md`, where decisions live.
 
@@ -114,7 +114,7 @@ grep -n -i 'requisition' *.md
 | 07-outside | 24,400 | 41 | 19 | 5 |
 | 08-daily-life | 24,800 | 25 | 9 | 2 |
 | 09-tech | 19,900 | 31 | 17 | 5 |
-| 10-items-and-chains | 21,600 | 34 | 10 | 5 |
+| 10-items-and-chains | 6,200 | 5 | 1 | 1 |
 | 11-contracts-and-clients | 28,400 | 103 | 18 | 4 |
 | 12-voices | 31,100 | 100 | 13 | 2 |
 | 13-player-and-endings | 26,500 | 40 | 16 | 5 |
@@ -285,19 +285,17 @@ other), the "missing part" as the nearest thing to crafting that still respects 
 every first-fit part, the electret film that links the Lung plates, the Four's charge eye and the Drop's route cards, and the
 hoppers that make drones everyday kit.
 
-### 11. `10-items-and-chains.md`: the catalogue
+### 11. `10-items-and-chains.md`: items and chains, as the game has them
 
-What a thing is when it sits on your grid. Part one is the item model: kind families, origin and grade, condition,
-handling tags (upright, fragile, perishable, snug), legal status, age as **three** clocks (real age, printed date, counter),
-hidden features, and how contracts, bays and machines read all that. Section 1.9 states the scale problem plainly (24 squares
-cannot hold the three starting machines at one cell per square) and recommends a 2x2 of item cells per rented square. (Superseded by the 2026-10-09 revision: a square is a square of the board, and file 10 was rewritten; see the revision note above.) Part
-two is the catalogue by family. Part three is sixteen production chains: the catch, three insect lines, fat (render, candle,
-soap, salve), cells, grow beds, the dark box and the spent-medium loop, seed, water reclamation, ferments, undoing the void,
-screens, drone parts, filters, medicine, packing. Part four is what each band buys. **Best in it:** "the tags do the work"
-(the same tomato is three items by grade, condition and who is checking), the Grow Certificate in a bed's paper slot as the
-difference between a 240 cr crop and a 672 cr crop, the insect lines chosen by which waste your chute gives you, the dark
-box that makes waste valuable twice, "bay-true" crates, and the buzz wand (Terraces toothbrushes pollinating the tomatoes that
-go back up to the Terraces).
+Rewritten 2026-10-09 (the first pass is in `archive/10-items-and-chains-v1.md`: grades and marks, VOID, condition, legal status,
+age clocks, 170 numbered items; it described a game with a lot of tags and no board). The new file starts from what exists: the
+25 x 20 board, the 46 kinds in `kinds.json`, properties, slots, rules in hours. Part one is how an item works (footprints in
+squares, properties, containers, liquids, machines and the clock, uses) and a table of what is **shelved** and where its lore lives.
+Part two gives each group of today's kinds a job in the Stack. Part three tells the designer's **first item batch** in the world:
+the catch, cells, salvage, the insect bin to the slab, the tap, the buyer hatch, and **one worked day** that adds up to 18 cr
+against 19 cr of rent. Part four sketches later batches (fat and light, the grow bed, store goods, drones and contracts); part
+five is who buys what; part six is twelve open questions. **Best in it:** the worked day, and its two findings (eight idle hours,
+and a loop that breaks even on purpose).
 
 ### 12. `11-contracts-and-clients.md`: the board, the slip and who sends it
 
@@ -393,7 +391,7 @@ a resolved form and marks the other as a "retired variant". Keep it open in a se
 
 ## Richest veins
 
-Twenty-five of the strongest ideas, chosen for how well they tie the world to the game. One line each, with where to find them.
+Twenty-five of the strongest ideas, chosen for how well they tie the world to the game. One line each, with where to find them. Items cited to file 10 (the Grow Certificate, the dark box loop) live in the archived first pass, `archive/10-items-and-chains-v1.md`; they are shelved, not lost.
 
 1. **The requisitions.** The Dark Floors send Works requisition slips to STORES 17-C, your cage; fill them for strange pay, refuse three and something founding-era on 17 breaks. (02, 14, 13)
 2. **Fall-downs.** Unclaimed Grid slips are repinned one band lower at 75% pay; work falls down the tower like everything else. (11)
