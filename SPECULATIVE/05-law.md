@@ -2,7 +2,7 @@
 
 > Speculative. Raw material to pan through. Plain text is the main version; **Alternative:** is another version of the
 > same thing; **Hook:** is a story seed; **In play:** is how it surfaces in the game. Numbers in credits ("cr") are
-> scaled to a working-assumption Mills day wage of about 30 cr and a rent of about 5 cr per square per week on floor 17;
+> scaled to a working-assumption Mills day wage of about 30 cr and a rent of a quarter of a credit per square per week on floor 17 (about 125 cr for the 500-square board);
 > file 04 (economy) may rescale them, and the ratios matter more than the figures.
 
 ---
@@ -167,10 +167,9 @@ small commission to fill.
 
 HPS does not arrest. It takes people into **protective custody**, for their protection, and the protected person pays for it.
 
-Custody is held in **the Pen** on floor 61: a hall of cells measured in squares, as everything in the Stack is. The
-detainee is charged **custody rental** at the floor 61 per-square rate, which is a Terraces rate, for the squares of their
-cell (a standard cell is 2x3: six squares), plus a "board charge" for Vitabrick and water. A night in the Pen costs about
-what a Mills worker earns in a week. The bill goes to the detainee's lease, or, for nobodies, to whoever comes to collect
+Custody is held in **the Pen** on floor 61: a hall of cells, let by the night like everything else in the Stack. The
+detainee is charged **custody rental** at the floor 61 rate, which is a Terraces rate, for the cell (180 cr a night), plus a
+"board charge" for Vitabrick and water (3 cr). A night in the Pen costs about what a Mills worker earns in a week. The bill goes to the detainee's lease, or, for nobodies, to whoever comes to collect
 them, who must pay it before release.
 
 People who cannot pay are released anyway after the "custody period" (three days) with the debt on their name, and the
@@ -178,8 +177,8 @@ debt is sold to a collector (§6).
 
 **In play:** if hirelings exist, a hireling can be taken into custody: they vanish from your roster for a set number of
 hours and come back with a custody bill pinned to them, a slip item you must pay at the board. Or not: an unpaid custody
-slip becomes a debt that drops your credit rating a little every day until settled. The bill shows the squares: "Cell
-61-C-14, 6 sq. at 4.10 = 24.60 cr. Board: 3.00 cr."
+slip becomes a debt that drops your credit rating a little every day until settled. The bill shows the arithmetic: "Cell
+61-C-14, 1 night at the Terraces custody rate: 180.00 cr. Board: 3.00 cr."
 
 ### Recovery
 
@@ -463,7 +462,7 @@ appointment and not enough to be hated. Floors talk about a good warden the way 
 **Hester Moyle**, sixty-one, warden of 17 for nineteen years. Former line inspector at the Works (cells, quality control),
 laid off in the last round of the automation, at sixteen, and, she says, "never stopped inspecting things". Lives in a two-row lease by the lift
 lobby with her brother **Aldo**, who doesn't speak and fixes clocks. She files about four reports a month, almost all against
-the same sublet baron, **Gus Tanaka-Breen**, whose hot-bunk house at the far end of 17 sleeps twenty in eight squares. She
+the same sublet baron, **Gus Tanaka-Breen**, whose hot-bunk house at the far end of 17 sleeps twenty. She
 has never reported a still. She has, twice, knocked on a door at seven in the morning and said "Tasters are on fifteen,"
 and walked on.
 
@@ -1401,7 +1400,7 @@ buying a marked line. A marker swab (1x1, consumable) is the analyser for this.
 ### The Eleventh Floor Adjustment (Y83)
 
 In Y83 the Company decided that the residential half of floor 11 would be rebuilt as **storage leases** for the Middle (households above 30 renting
-squares below to keep what they don't have room for). Every lease on 11 was given a **reassignment notice** in the same week.
+space below to keep what they don't have room for). Every lease on 11 was given a **reassignment notice** in the same week.
 Some went down to 6 to 9. Some went to hot-bunks on 12. A few refused, petitioned, and lost (A/83/0400 to A/83/0471, seventy-one
 determinations, identical text). The storage leases on 11 are now full of Middle furniture, Middle winter clothing, and
 Middle children's outgrown toys, behind roller doors, while the people who lived there sleep two floors down in hot-bunks.

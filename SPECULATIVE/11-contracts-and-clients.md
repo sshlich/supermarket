@@ -1722,7 +1722,7 @@ the school places Mills children "with suitable housing".
 
 #### C-21. The Eight Squares, floor 17 (Tobin Saar, keeper; Gus Tanaka-Breen, owner)
 
-*Hot-bunk tags.* Gus's hot-bunk house sleeps twenty in eight squares at the far end of Glove Run (02, 06b). **Tobin Saar**,
+*Hot-bunk tags.* Gus's hot-bunk house sleeps twenty at the far end of Glove Run (02, 06b). **Tobin Saar**,
 twenty-four, keeper, sleeps in the hatch cupboard and is paid 20 cr a week and a bed. Gus pays the house's bills on Fridays.
 
 - **Likes:** laundry, cells for the bunk lamps, cheap food in bulk, bedbug powder, earplugs (the hum on 21 does not reach 17,
@@ -1737,7 +1737,7 @@ twenty-four, keeper, sleeps in the hatch cupboard and is paid 20 cr a week and a
   2. **The collector.** Brisk & Lowe's informing slip about Tobin (S-27) appears on the board. Whatever the player does, Tobin
      finds out.
   3. **Hester's reports.** Hester's quota-week choice (C-17) is Gus or the player. If Gus, an occupancy count closes six bunks
-     and Tobin asks the player to sleep three of the displaced on the shop floor for a week (three squares of the player's lease,
+     and Tobin asks the player to sleep three of the displaced on the shop floor for a week (a corner of the player's board,
      taken by sleepers at night).
   4. **Tobin's own house.** At *Trusted*, Tobin asks for a loan to open a house of his own on 15. The player becomes a backer
      of a hot-bunk house, which is how sublet barons start (06b).

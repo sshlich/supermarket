@@ -67,8 +67,8 @@ in `04-economy.md`; this is the letter that comes with it.*
 > As part of the Company's commitment to transparent and predictable occupancy costs, rates for every floor are reviewed
 > each Period in line with the cost of services.
 >
-> On your floor (17), the base rate per square per rent week will move from **5.00 cr** to **5.10 cr**. For a typical
-> Commercial lease of 24 squares with 4 frontage squares, this represents an adjustment of **2.60 cr** per rent week.
+> On your floor (17), the base rate per square per rent week will move from **0.25 cr** to **0.26 cr** (rounded to the next hundredth). For a typical
+> Commercial lease of 500 squares with 50 frontage squares, this represents an adjustment of **5.25 cr** per rent week.
 >
 > **What your rate pays for**
 > - Structural integrity of a founding-era building designed to last
@@ -377,17 +377,17 @@ regard. The rate card is why they take the stairs.
 >
 > | | cr |
 > |---|---|
-> | Principal at start of week | 5,031.40 |
-> | Daily service charge (7 days at 0.15%) | 52.84 |
+> | Principal at start of week | 5,191.40 |
+> | Daily service charge (7 days at 0.15%) | 54.51 |
 > | Payments received | −105.00 |
 > | Shortfall capitalised | 0.00 |
 > | Prepayment adjustment | 0.00 |
-> | **Principal at end of week** | **4,979.24** |
+> | **Principal at end of week** | **5,140.91** |
 >
-> **You are 4.2% of the way to owning your future!**
+> **You are 4.1% of the way to owning your future!**
 >
-> At your current rate of payment, your squares will convert to Held Title in **412 days**.
-> Pay just 10 cr more each day and you could own your squares **187 days sooner**.*
+> At your current rate of payment, your squares will convert to Held Title in **481 days**.
+> Pay just 10 cr more each day and you could own your squares **235 days sooner**.*
 >
 > *\*Lump-sum prepayments over 100 cr carry a 3% prepayment adjustment to compensate the Company for income foregone.*
 
@@ -820,7 +820,7 @@ floors 26 to 28 the same week.*
 > Reclassification recognises the improvement in your floor's character and amenity. It will bring:
 > - a **band pass** for the Middle, at no charge, for registered occupants of floor 29;
 > - eligibility for **Standard** HPS cover;
-> - a revised Floor Rate Card for floor 29 reflecting Middle rates (base rate from 9.00 to **14.00 cr** per square).
+> - a revised Floor Rate Card for floor 29 reflecting Middle rates (base rate from 0.45 to **0.70 cr** per square).
 >
 > Leaseholders who do not wish to continue at the revised rate may surrender their lease without penalty within 14 days.
 > Surrendered squares will be **re-cut** into larger units for Middle tenancy.
@@ -911,15 +911,15 @@ classes as lesson one.*
 > **PROPRIETOR PATHWAY · REVALUATION NOTICE**
 >
 > Your floor has been reclassified. Under the terms of your Proprietor Pathway Advance (Schedule 2, paragraph 4: *title
-> price fixed at the Period of signing, subject to revaluation on reclassification*), the **title price** of your 20
+> price fixed at the Period of signing, subject to revaluation on reclassification*), the **title price** of your 500
 > Pathway squares has been revalued at the Middle (Transitional) rate.
 >
 > | | Previous | Revalued |
 > |---|---|---|
-> | Title price per square | 100 cr | 260 cr |
-> | Title price, 20 squares | 2,000 cr | 5,200 cr |
+> | Title price per square | 5 cr | 13 cr |
+> | Title price, 500 squares | 2,500 cr | 6,500 cr |
 > | Paid towards title to date | 1,840 cr | 1,840 cr |
-> | **Remaining** | **160 cr** | **3,360 cr** |
+> | **Remaining** | **660 cr** | **4,660 cr** |
 >
 > Your daily service charge has been adjusted accordingly.
 >
@@ -939,8 +939,8 @@ own paper.
 > Following repeated standards matters on your lease, the Company has decided to offer you **reassignment** to a lease
 > better suited to your circumstances.
 >
-> **Your new lease:** floor 11, sector A (Bin Run), squares A-40 to A-55 (16 squares, 2 frontage, vent-adjacent).
-> **Your new rate:** 3.00 cr per square per rent week (condition multiplier 0.8 applies).
+> **Your new lease:** floor 11, sector A (Bin Run), squares A-01 to A-25 across R-01 to R-20 (500 squares, 50 frontage, vent-adjacent).
+> **Your new rate:** 0.15 cr per square per rent week (condition multiplier 0.8 applies).
 > **Your move date:** day 18.
 >
 > A **removal service** is available (Tolliver Shutter & Seal, 4 cr per item). Goods not moved by day 18 will be treated as
@@ -1296,7 +1296,7 @@ frame needs 70 cr more before it can fly a lane.
 > **"Stinker water, the blue door, floor 13, point six a litre. Cleaner than the pipe. Not as clean as Pure. Honest about
 > it."** *(read on Static, 21:00 notices, 2 cr)*
 
-> **HOUR SQUARES AT THE NIGHT RATE. Lie flat, two squares, 0.80 an hour, wake-up included. Gus, 17, Glove Run.**
+> **HOUR SQUARES AT THE NIGHT RATE. Lie flat, 0.80 an hour, wake-up included. Gus, 17, Glove Run.**
 > *(Static, 21:00)*
 
 > **REPAIRS. ANYTHING THAT HUMS. NO VOID QUESTIONS, NO VOID ANSWERS.** *(stencil on a shutter, Four Hall, Litho Run)*

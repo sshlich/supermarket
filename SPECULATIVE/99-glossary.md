@@ -13,7 +13,7 @@ of fixes that brings each file in line is kept with the continuity notes, not he
 **Fixed reference points used throughout:** the Stack has 104 floors: drowned 0–3, Sump 4–9, Mills 10–29 (player on 17),
 Middle 30–59, Terraces 60–89, Crown 90–104 (the Lantern 101–104 on top). The Dark Floors are 22–26. Y0 is the founding;
 ~Y41 automation; Y57 the Drowning (19.III); the present is Y86. Mills labourer about 30 cr a day; a Vitabrick 3 cr;
-Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a square (lease tile) is 80 cm across.
+Halden Pure at the Mills tap 1.20 cr a litre; a square of the board on 17 is a quarter of a credit a week (the 25 x 20 board is 500 squares, about 125 cr a week). A square is a square of the board, not a size in metres.
 
 ---
 
@@ -84,7 +84,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Assembly Squash** — Heirloom squash variety in the Library. *06a*
 - **Assisted** — Account flag set by taking Foundation help; blocks a Proprietor Pathway. *04, 08*
 - **Atmos Mk I** — The Works' founding-era clean-room humidity unit; 300 were made. *03, 09*
-- **Atmosphere Levy** — Flat air charge below 30 (0.25 cr a square a week) paying for the 30 Lung. *02, 04, 13*
+- **Atmosphere Levy** — Flat air charge below 30 (about 6 cr a week for a 500-square board) paying for the 30 Lung. *02, 04, 13*
 - **Augustin Moreau** — Lift Guild chief mechanic, keeping the Kessin drives alive. *06a, 06b*
 - **Aurel Voss** — HPS Attendant at Post Nineteen; sells incident numbers for 10 cr. *15*
 - **Aurelio Spenk** — Foundation Director of Outreach. *06b*
@@ -136,7 +136,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Brick a Day** — Foundation campaign: buy a brick for a Mills child (Y71). *06b, 12*
 - **Brightline** — Licensed grow-lamp brand; needs a 90-day spectrum key per crop. *04, 07, 09, 10, 11, 12*
 - **Brightwater Leisure** — Provincial leisure firm that runs the Pleasure Pier and caters the Gala. *07, 12*
-- **Brightwell Habitation** — Baron firm holding most of the Sump's dry squares. *06b*
+- **Brightwell Habitation** — Baron firm holding most of the Sump's dry halls. *06b*
 - **Brisk & Lowe Recoveries** — Biggest debt-collection firm, floor 48: cream cards, yellow tags. *02, 05, 06b, 07, 11, 12, 13*
 - **Bronwyn Stoatley, "Mama Stoat"** — Runs the Kettle on Six. *06a*
 - **Brother Mattias Grell** — Young Rain Church Catcher who talks of "the Burst". *06a*
@@ -252,7 +252,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Danuta Ostrowski** — The Tagger past's cousin on Wet Run. *13*
 - **Dark Floors** — Floors 22–26, the welded Clean Core that still hums at night. *all files*
 - **dawn slack** — Mornings when Mills sockets stay dead until 09:00 after a long Core night. *02, 11, 14*
-- **dead tile** — A lease tile whose sensor stopped; prized by barons. *14*
+- **dead tile** — A service tile whose stud sensor stopped, leaving its square unbillable; prized by barons. *14*
 - **Dee (Kasprzak)** — Insect keeper and slab maker; sells wild-line starter colonies. *08, 12*
 - **Deep, the** — The dead Core D well (cars stopped Y70), the biggest free shaft. *06a, 07*
 - **Delphine Okoro** — The only Mills contestant to reach the top step of *Ascension* (Y77). *08*
@@ -530,7 +530,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Last Shift Night** — Its anniversary. *08, 14*
 - **Laundry Run** — A Rain Church contract. *06a, 06b*
 - **Lease Office** — The Company's lease desk (Tenancy House on 70). *02, 05, 06b, 07, 08, 11, 12, 13, 14*
-- **lease tiles** — The 80 cm floor tiles with stud sensors that define squares. *02, 04, 06b, 14*
+- **lease tiles** — Lift-out service tiles with a brass stud and sensor under each leased square. The Company bills by the stud; it has never published how big a square is. *02, 04, 06b, 14*
 - **Leaning Row** — Eleven terraced houses on Ferrybank that tilted from Y21. *01, 07*
 - **Ledge, the** — Outer ledges; ledge stills; ledge recovery; the Ledge market. *02, 04, 08*
 - **lemoned** — Yellow-tagged by collectors. *02, 03, 05, 08, 11, 13*
@@ -547,7 +547,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Lift Strike** — Y78 Guild strike. *01, 14*
 - **Lift Zero (the Blind Lift)** — Sealed freight car in its own doorless well behind core E, serving the Dark Floors; call plate on 21. *02, 14*
 - **Line Four** — Floor 17's chip line; also the clean-room women's song. *01, 02, 08, 09, 11, 12, 13, 14*
-- **Line Four stores cage** — The player's 24-square lease. *02, 13, 14*
+- **Line Four stores cage** — The player's starting lease: the 25 x 20 board. *02, 13, 14*
 - **Line Nine** — The Clean Core line (Y26). *01, 02, 09, 11, 12, 13, 14*
 - **Line, the (Bastion)** — Bastion's cell line. *07*
 - **Linnet** — Crown child of the Aubrey household, a client. *08*
@@ -619,7 +619,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Mira Tallow-Nkem** — Floor 15, a clerk-truncated name. *01*
 - **Mission Chapel** — Wellside's leaning chapel where the Tally began. *07*
 - **Moorhen** — The craft that lands on the Crown Pad every ninth night. *14*
-- **Moss Underhill** — The Mills' biggest baron (900 squares on 11–14). *04*
+- **Moss Underhill** — The Mills' biggest baron (about thirty halls' worth of lease on 11–14). *04*
 - **Morning Fall** — See Fall. Retired variants: "the Drop" (as the daily release), "the Crown Drop", any 04:00 time. *02, 08, 09, 11, 12, 13*
 - **Moth** — Shouldered vent kid living in the Core's sub-fab (main version). *14*
 - **Mother Ivy Okonkwo** — Keeper of the Long Shift. *06b, 11, 13*
@@ -910,7 +910,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square on 17 is 5 cr a week; a s
 - **Tide Shut** — The Tide Folk refuse to sell to the tower. *14*
 - **Tin** — A vent crew's keeper of sweets and cells; also the lunch tin. *06b, 08, 14*
 - **tin / tin lender** — A biscuit-tin lender at a Friday fifth. *15*
-- **Title Maintenance Charge** — 0.5 cr a square a week on held title. *04, 13*
+- **Title Maintenance Charge** — 0.025 cr a square a week on held title (12.50 cr for a 500-square board). *04, 13*
 - **Tobiah Fenwright** — Wellside survivor, early Flats diver. *01, 06b*
 - **Tobias Wen** — One of the Eleven of 27, Clock 0117, wrote the Daylight code. *14*
 - **Tobin Hallett** — Nineteen; leads the Ninety-Nines stair crew. *15*

@@ -138,7 +138,7 @@ The sign on the door says **DRAY & DAUGHTER. LICENSED REPAIRS. Repair Licence RL
 at the Halden School on 50, on a fee that costs the Drays a year's rent each year. The "& Daughter" went on the sign the week
 she passed the exam. Anselm painted it himself at night, so nobody on the corridor would see him crying.
 
-He opens at 08:00. His shop is twelve squares on a corridor front on 46, at 26 cr a square, plus a Repair Licence fee of 30 cr
+He opens at 08:00. His shop is a narrow corridor front on 46, at the Middle rate, plus a Repair Licence fee of 30 cr
 a month and a register of every third-party item on his premises, which an inspector reads twice a year. He repairs small
 appliances: lamps, hotplates, radios, kettles, the cheap screens Middle families buy to watch *Climb*. Halden goods only, and
 only "within licence", which means he may replace a fuse and re-solder a joint but may not open a sealed unit, and almost
@@ -191,7 +191,7 @@ book saves the licence, the second saves the lease, and the third is the one he 
 
 Dee's day begins at 04:30, before the Whistle, with her hand flat on the side of a bin.
 
-She runs **Kasprzak's**, fourteen insect bins in a forty-square pen of Hall Twelve-East, on the old cell line between Coater Run
+She runs **Kasprzak's**, fourteen insect bins in a pen of Hall Twelve-East, on the old cell line between Coater Run
 and the core, a pen that smells of warm nuts, ammonia and wet cardboard, and that you can find with your eyes closed from the
 lift lobby. The bins are steel cabinets on legs, each a grid of trays, each tray a colony of crickets on egg-flats. The first
 thing she does every morning is touch each bin and read the warmth with her palm. Thirty-one degrees is right. Twenty-eight
@@ -250,7 +250,7 @@ a bin that is dying, and she will wake from a sound sleep at the silence.
 ### 5. Mikkel Arno, twenty-six, night crew, sleeps on floor 17 (the Mills and the Terraces)
 
 Mikkel sleeps First: 06:00 to 14:00, bunk nine, **Tanaka-Breen's**, the hot-bunk house at the far end of 17 that sleeps twenty in
-eight squares, three shifts a day. He pays the aired-bunk rate, 3 cr, because he will not lie down in someone else's warmth. He
+three shifts a day. He pays the aired-bunk rate, 3 cr, because he will not lie down in someone else's warmth. He
 has never seen the face of the man who sleeps in bunk nine on Graveyard. He knows him only by his smell (Kof and solder) and by
 the fact that he leaves the sheet turned down and the pillow flipped, which, in a hot-bunk house, is a kind of love.
 
@@ -494,7 +494,7 @@ Oona introduces herself the way they all do: "Fairweather, twenty fifty-one." Bu
 nineteen into the 30 Lung's fan rooms, worked them for ten years until the Shift, and has spent the forty-five years
 since then listening to them fail.
 
-She wakes at 05:30 on 14 in a two-square sleeping cube above the Canteen, in a room of Old Hands' cubes that the Co-op lets them
+She wakes at 05:30 on 14 in a sleeping cube above the Canteen, in a room of Old Hands' cubes that the Co-op lets them
 have for nothing, and she coughs for ten minutes. She has the **dust**, the dry Mills cough from the Works' old line dust, which
 is the joke of her life: forty years keeping the air of the Plinth clean, and the air of the Plinth has filled her lungs with
 the plant she worked for. She takes her Vey inhaler (refill 22 cr, every month, forever: the **Continuity** price) and goes down
@@ -543,7 +543,7 @@ Night**, and at no other time.
 
 ### 10. Roz Achebe, forty-one, cook, the Pantry, floor 90 (the Crown's back door)
 
-Roz has cooked for the Aubrey household for nine years and slept in the Pantry for all of them: a two-square bunk on a steel
+Roz has cooked for the Aubrey household for nine years and slept in the Pantry for all of them: a bunk on a steel
 mezzanine wedged between the roof cisterns and the Lung ducts, ten bunks to a bay, three hundred staff in all, paying rent to
 their employers at a Crown rate prorated for "shared amenity". The Pantry has the best water in the tower (cistern overflow,
 real rain, dripping on the mezzanine so steadily that the staff keep cups on the bunk rails) and the worst air in the Crown,
@@ -777,7 +777,7 @@ by them. Day labour is hired by them. Old Hands still wake at whichever whistle 
   Lung's hum ("Vey Lull Tone", 90 cr).
 - **Middle:** family flats, often with the children in one room and the parents on a fold-down in the living room. Inner flats
   are dark all day. The Middle sleeps 23:00 to 06:00, in step with the Locals' first car.
-- **Mills:** mezzanines above workshops, reached by ladders; **sleeping cubes** (two squares, curtained) stacked three high in
+- **Mills:** mezzanines above workshops, reached by ladders; **sleeping cubes** (curtained) stacked three high in
   dormitory halls; hot-bunks; the back of a lease behind a curtain (illegal on a Commercial lease, which most workshops are, and
   done by almost everyone). Mills families commonly **shift-share** a bed: a parent who works nights sleeps in the day in the
   bed the children sleep in at night. "We share a bed but we've never been in it at the same time" is a Mills joke about
@@ -788,12 +788,12 @@ by them. Day labour is hired by them. Old Hands still wake at whichever whistle 
 
 ### Sleep as money
 
-Every square a bed takes is a square paying rent and not producing. That one fact explains most Mills sleeping arrangements:
-the hot-bunk (a bed that earns three times a day), the mezzanine (a bed that takes no floor squares, because the Lease Office
-measures squares on the floor), the shift-shared family bed, and the cube stacks (six beds on two squares). A Mills person asked
-where they live will often answer with the number of squares, not the floor: "I'm on two and a half."
+Every bed on the floor is floor paying rent and not producing. That one fact explains most Mills sleeping arrangements:
+the hot-bunk (a bed that earns three times a day), the mezzanine (a bed that takes no floor, because the Lease Office
+measures the floor), the shift-shared family bed, and the cube stacks (six beds on the footprint of two). A Mills person asked
+where they live will often answer with the size of their lease, not the floor: "I'm on four hundred."
 
-**Mezzanines and the rule of the floor.** The Lease Office leases floor squares. Anything built above them (a mezzanine, a
+**Mezzanines and the rule of the floor.** The Lease Office leases squares of floor. Anything built above them (a mezzanine, a
 shelf bunk, a hammock) is, legally, an **alteration** (a reportable irregularity), but it does not add to the rent. Every Mills
 hall is therefore two storeys inside one, and a warden who wanted to could report every one of them. None do, because they
 sleep on one too.
@@ -836,7 +836,7 @@ Everyone in the Mills dresses for the Pick even if they don't intend to go: it i
 Lift Guild (Guild seats are inherited), a Pantry cook who puts you on a steward's list. "Who's your stair?" means who do you know
 above you.
 
-**Your own pen.** The Mills dream: a workshop of your own. Most Mills workshops are one person and a few squares, with family
+**Your own pen.** The Mills dream: a workshop of your own. Most Mills workshops are one person and a small lease, with family
 working for food and a kid on the chute.
 
 ### Kinds of work in the Mills
@@ -1409,7 +1409,7 @@ and the Old Hands call it (because they remember the Wall). Either way, the two 
 - **Middle** speech is careful, polite, full of numbers (Standing, niche numbers, the water book) and of brand names said in full
   ("a Vitabrick Savoury", never "a brick"). A Middle person who says "brick" is slipping.
 - **Mills** speech is fast, loud (halls are noisy), full of manual-speak, Works words and numbers used as names. Floors, clocks,
-  pillars and squares: "I'm seventeen, four pillars in, on six squares." Terraces people call it **etch-tooth**.
+  pillars and squares: "I'm seventeen, four pillars in, on four hundred." Terraces people call it **etch-tooth**.
 - **Sump** speech is Mills speech wet: slower, with tide words for time ("by flood", "at slack") and Ninefold terms for money
   ("a ninth", "a load").
 - **Flats** speech counts in tides and calls the tower **the Nail**, its people **drys**. Flats-born names are often truncated by
@@ -1496,7 +1496,7 @@ Terms marked (03), (04), (05), (06a) come from those files and are listed here s
 | **shavings** | Thin-fried brick (Middle food). | "Brick shavings and an onion." |
 | **slab** | Unbranded insect block (04). | "Kasprzak egg slab, two cr." |
 | **slack** | Slack hour; a power cut. "Going slack" = losing power, tiring. | "Grinder before slack." |
-| **squares** | Your lease size; your life. "A two-square life." | "How many squares are you on?" |
+| **squares** | Your lease size; your life. "A small-squares life." | "How many squares are you on?" |
 | **stair, your** | Whoever you know above you. | "Who's your stair in the Glasshouses?" |
 | **sunned** | Terraces people. | "Sunned lady at the counter." |
 | **tap supper** | The evening meal, cooked in tap hours. | "Come for tap supper." |

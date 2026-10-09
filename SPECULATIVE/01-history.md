@@ -197,11 +197,12 @@ a copy?"); the Company calls them "heritage infrastructure".
 - **The lattice.** The tower's frame is a cast composite lattice around the core, poured on site in a process Marrow's notes
   call "slow casting". It flexes in wind and is meant to; old residents can feel the tower lean on storm nights. Nobody has
   poured lattice since Y0. Cracked lattice members are bracketed with steel, which the lattice does not like.
-- **Lease tiles.** Every floor in the Stack is laid in square lift-out tiles, **eighty centimetres** a side, grey composite,
-  each a lid on the services underneath (water, power, data, air, drain) and each with a coin-sized sensor that reported
-  load and use to the engineers. Marrow's rule that "every lid opens" made the building maintainable. It also made it
-  measurable. The engineers called them service tiles. After the Drowning the Company started calling them lease tiles,
-  and a tile became a **square** of rent. Your shop's grid is the floor of an old fab hall. (See The Partition, below.)
+- **Lease tiles.** Every floor in the Stack is laid in lift-out tiles, grey composite, each a lid on the services underneath
+  (water, power, data, air, drain) and each with a brass stud and a coin-sized sensor that reported load and use to the
+  engineers. Marrow's rule that "every lid opens" made the building maintainable. It also made it countable. The engineers
+  called them service tiles. After the Drowning the Company started calling them lease tiles, and what it bills for under
+  each one is a **square** of rent: the cell of your board, with no size the Company will put in writing. Your shop's grid is
+  the floor of an old fab hall. (See The Partition, below.)
 - **The Lung.** The air plants on the three mechanical floors (30, 60 and 90), each with four fan rooms around the core, founding-era electrostatic **plates**, supply and
   return trunks to every floor, fresh air drawn through the Gills on 60 to 62. Built to clean-room standard for the Works
   and generously for the Residences. Fan Room Three of the 30 Lung died in Y79. The air you breathe in the Mills has been breathed by the
@@ -592,8 +593,8 @@ of Y58 turned the billets into leases by the square. Then:
 - **Workshops** of every kind, in blocks of squares, run by anyone who could pay the first month.
 - **Dormitories**: sublet barons leasing whole halls and partitioning them into bunks by the shift.
 
-**In play:** this is the player's world. Your shop is a block of squares in an old Works hall on 17; your squares are lease
-tiles; your drains are industrial drains; the light is what the hall's founding-era fittings give, plus whatever lamps you
+**In play:** this is the player's world. Your shop is a block of squares in an old Works hall on 17; each of your squares stands on a tile
+with its own stud; your drains are industrial drains; the light is what the hall's founding-era fittings give, plus whatever lamps you
 buy. The **lease history** of your own squares is something an Archivist can look up for you (a small paid contract): who
 rented them before, what they made, why they left. Some of those answers are items in your chute.
 
@@ -956,7 +957,7 @@ Pure, from the Waterhouse, the first time it was ever served to the public) and 
    thereafter at "the prevailing rate", the lease signed on the barge.
 
 About twenty-two thousand signed. The phrase for it, in the Mills, is **signed on the water**. Their leases were the first
-in the Stack to be priced per square: the barge clerks had a form with a box for "squares allocated", usually six (a bed
+in the Stack to be priced per square: the barge clerks had a form with a box for "squares allocated", usually a few (a bed
 and a strip of floor beside it), because the halls they were going to were the empty Works halls on 10 to 29, already
 tiled, already counted, tile by tile, by sensors nobody had read in sixteen years.
 

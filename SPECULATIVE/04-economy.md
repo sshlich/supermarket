@@ -5,9 +5,10 @@ of the same thing, **Hook:** is a story seed, **In play:** is how it surfaces in
 follow `00-canon-brief.md`. Prices are in credits (cr) unless marked as scrip (sc).
 
 A note on scale, so every number below agrees with every other: a Mills labourer earns **about 30 cr a day**. A Vitabrick
-costs **3 cr** at the company store. A litre of Halden Pure from a Mills tap costs **1.20 cr**. A square of shop floor on floor
-17 costs **5 cr a week**. The player's starting lease is **24 squares** (a 6 x 4 block with one dead square around a pillar).
-If a number elsewhere in this file looks wrong against those four, the four win.
+costs **3 cr** at the company store. A litre of Halden Pure from a Mills tap costs **1.20 cr**. A square of your
+board on floor 17 costs **a quarter of a credit a week**. The player's starting lease is the board as the game draws it, **25 x 20 =
+500 squares**, so about **125 cr a week**. (A square is a square of the board, the cell an item sits on; see 3.1.) If a number
+elsewhere in this file looks wrong against those four, the four win.
 
 ---
 
@@ -207,22 +208,27 @@ floor in scrip she buys back cheap.
 
 ### 3.1 What a square is
 
-The Stack was built on a grid. Every floor of the founding design was cast with **lease studs**: flush brass buttons set into
-the floor at the corners of each square, eighty centimetres apart (a worker's bunk was two squares by three). The grid runs
-through every floor in the tower, corridor and flat alike, and it is still the unit everything is measured, sold and taxed in.
-A shop is so many squares. A bunk is six. A grow bed takes four. A corridor is "common squares".
+A **square** is a square of your board: the cell an item sits on. A cell is 1x1, a charger rack 3x3, a crate 4x4; your lease is
+a block of them, and the rent is so much per square. The game draws your shop as that block, 25 squares across and 20 down
+(500 squares) to start, and renting more rows makes the board bigger and the bill too. Nothing in this folder gives a square a
+size in metres. What a square is *on the floor* is the Company's business.
 
+In the fiction the Company's side of it is a brass **lease stud** set in a lift-out service tile under every leased square.
 The studs carry a faint founding-era signal, read by a surveyor's wand, that tells the Ledger which squares belong to which
-lease. Nobody can install new studs. When a stud is pried out (they are brass, and brass sells) the square goes dark on the
+lease. Nobody can install new studs. When a stud is pried out (they are brass, and brass sells) the square goes **dark** on the
 Ledger, and dark squares are a whole small economy: a square the Ledger cannot see cannot be billed, and also cannot be
 leased, so the Company sends **chalkers** to mark it by hand, which the Ledger does not trust, so it bills the neighbouring
-lease for it "pending survey".
+lease for it "pending survey". The Company has never published how big a square is, and nobody has ever needed it to.
 
-**In play:** your shop floor is a grid of leased squares; the grid is the game's field and the rent is per square. Squares can
-have **features** that come from the building, not from you: a **pillar** (dead square, cannot hold anything, still billed at
-a discount), a **pipe run** (holds only flat items, 1-high), a **drain** (anything liquid spilled there is lost; also the only
-square where a still or a bin can legally vent), a **chute hatch** (your garbage chute's square), a **frontage** square on the
+**In play:** your shop is a block of leased squares; the block is the game's field and the rent is per square. Squares can
+have **features** that come from the building, not from you: a **pillar** (dead squares that cannot hold anything, billed at
+half), a **pipe run** (a row where only flat items, 1-high, fit), a **drain** (anything liquid spilled there is lost; also the
+only place a still or a bin can legally vent), a **chute hatch** (where your garbage chute lands), a **frontage** edge on the
 corridor (see 3.4). A lease is a shape on the grid, not always a rectangle, so a cheap lease is often an awkward one.
+
+*The starting board (working assumption, a proposal for the layout):* the two rows nearest the corridor are frontage (50
+squares); a 2x2 pillar stands near the back wall with the socket board on its face; the catch lands in a 3x3 apron beside it;
+a Company **Works Bench** (3x2) stands against the left wall. Everything else is open floor.
 
 ### 3.2 The lease
 
@@ -231,7 +237,7 @@ HSTA" or "your paper"), in one of three versions: **Domestic** (a bunk or a flat
 **Mixed** (both, at the commercial rate). The form is founding-era in wording and has been amended 140 times. Clauses tenants
 know by number:
 
-- **Clause 3 (Demised Squares):** the lease is a list of stud coordinates. Your squares are, for example, `F17/C-14..C-19/R-6..R-9`.
+- **Clause 3 (Demised Squares):** the lease is a list of stud coordinates. Your squares are, for example, `F17/C-01..C-25/R-01..R-20`.
   Anything outside them is not yours, including the air above your squares higher than 2.4 m, which is "Common Overhead"
   and may be used by the Company for "services" (pipes, cable, drone lanes).
 - **Clause 7 (Rate):** "the Rate per Square shall be as published in the Floor Rate Card for the Floor and Period, as amended."
@@ -255,28 +261,28 @@ whenever it wants the squares. A tenant can give notice only on rent day, in per
 squares "broom clean", which a warden inspects, for a fee.
 
 **In play:** the lease is a physical slip you can read (it is also funny to read). Its practical content is three numbers and a
-shape: your squares, your rate, your rent day. Taking more squares is signing a **lease extension slip** at the pay post: the
-squares appear on your field (if the adjacent squares are free) and the rent rises. Giving squares back is free but takes a
+shape: your squares, your rate, your rent day. Taking more squares is signing a **lease extension slip** at the pay post: new
+rows appear on your field (if the adjacent squares are free) and the rent rises. Giving squares back is free but takes a
 day ("broom clean inspection"), and the warden may find something.
 
 ### 3.3 The Floor Rate Card
 
 Rent is **base rate for the floor x condition x frontage**, charged per square per rent week. The base rates, from the current
-card (Period 86/3):
+card (Period 86/3). The Ledger rounds the quoted rate up to the next hundredth of a credit, visibly:
 
-| Floors | Band | Base rate (cr per square per week) | A 24-square shop costs per week |
+| Floors | Band | Base rate (cr per square per week) | A 500-square board costs per week |
 |---|---|---|---|
-| 4–5 | Sump (tidal) | 1 | 24 |
-| 6–9 | Sump | 2 | 48 |
-| 10–13 | Mills (low) | 3 | 72 |
-| 14–19 | Mills | 4–6 (floor 17: 5) | 120 on floor 17 |
-| 20–21, 27–29 | Mills (high) | 7–9 | 168–216 |
+| 4–5 | Sump (tidal) | 0.05 | 25 |
+| 6–9 | Sump | 0.10 | 50 |
+| 10–13 | Mills (low) | 0.15 | 75 |
+| 14–19 | Mills | 0.20–0.30 (floor 17: 0.25) | 125 on floor 17 |
+| 20–21, 27–29 | Mills (high) | 0.35–0.45 | 175–225 |
 | 22–26 | Dark Floors | not leased | — |
-| 30–39 | Middle | 12–18 | 288–432 |
-| 40–49 | Middle | 20–28 | 480–672 |
-| 50–59 | Middle (high) | 30–44 | 720–1,056 |
-| 60–74 | Terraces | 60–110 | 1,440–2,640 |
-| 75–89 | Terraces | 120–190 | 2,880–4,560 |
+| 30–39 | Middle | 0.60–0.90 | 300–450 |
+| 40–49 | Middle | 1.00–1.40 | 500–700 |
+| 50–59 | Middle (high) | 1.50–2.20 | 750–1,100 |
+| 60–74 | Terraces | 3.00–5.50 | 1,500–2,750 |
+| 75–89 | Terraces | 6.00–9.50 | 3,000–4,750 |
 | 90–104 | Crown | not leased; held as **title** | (a title on 92 last changed hands for 1.4 million cr) |
 
 Condition multipliers (applied per square, printed in small type below the card):
@@ -291,16 +297,17 @@ Condition multipliers (applied per square, printed in small type below the card)
 
 ### 3.4 Frontage
 
-A frontage square is a square of your lease that touches a public corridor. Customers walking past see what is on it. That is
-where your show window goes, where your shelves sell themselves, where the counter faces out. Frontage is billed at x1.5.
+A frontage square is a square of your lease on the corridor edge: on the board, the rows along the front. Customers walking past
+see what is on it. That is where your show window goes, where your shelves sell themselves, where the counter faces out.
+Frontage is billed at x1.5.
 
-A Mills shop lease is usually cut so that a third of it is frontage. A shop with no frontage is a workshop: it can make, it
+A Mills shop lease is usually cut so that a tenth to a fifth of it is frontage. A shop with no frontage is a workshop: it can make, it
 can launch drones, but nothing on its shelves sells to passers-by. Sublet barons buy frontage in long strips and rent single
 frontage squares to hawkers by the day.
 
 **In play:** this is where the IDEAS shop-and-shelves line meets the rent line. Shelves and the show window only sell when
-they stand on frontage squares; a frontage square costs half again as much. The player's starting lease has **4 frontage
-squares** out of 24. Taking more frontage is the "grow the shop" path; taking back-squares is the "grow the workshop" path.
+they stand on frontage squares; a frontage square costs half again as much. The player's starting lease has **50 frontage
+squares** (the two front rows) out of 500. Taking more frontage is the "grow the shop" path; taking back rows is the "grow the workshop" path.
 Both cost rent; one costs more.
 
 ### 3.5 Cutting leases
@@ -311,7 +318,7 @@ wand, a chalk line, a stamp, and the authority to "rationalise" a floor: take tw
 its frontage to the lease next door.
 
 Rules the chalkers work by:
-- **Minimum lease:** 4 squares (a 2x2). Below that it is "a locker", leased on a different form at a higher rate.
+- **Minimum lease:** a 4 x 4 block (16 squares). Below that it is "a locker", leased on a different form at a higher rate.
 - **Contiguity:** a lease should be contiguous, but "should" is a word chalkers know the weight of. An L, a U, or a lease
   with a common corridor cutting through it are all legal.
 - **Offcuts:** squares left over after a re-cut, often around pillars and pipes, are let as **offcut leases** at x0.7. Offcuts
@@ -370,8 +377,8 @@ Rate Review schedule (working numbers for the game):
 - **Pull:** floors within 3 of a reclassified floor rise a further 10–20% on the next card.
 - **Reclassification events:** the Glass Line moves down one floor roughly every **year** of game time; the Chalk moves down one
   floor roughly every **90 days**. Both are announced 14 days ahead by notice slip.
-- At this pace, floor 17's base rate goes from 5 to about 6.3 in a year of baseline alone, and if the Chalk reaches floor 20
-  it jumps to 7+.
+- At this pace, floor 17's base rate goes from 0.25 to about 0.32 in a year of baseline alone, and if the Chalk reaches floor 20
+  it jumps to 0.35 or more.
 
 **In play:** the Creep is the long clock. The rate card is a slip you can pin to the wall; each Period's card arrives on day
 30, 60, 90, with the new number circled. It is the pressure the IDEAS notes asked for ("rent climbs as the upper floors expand
@@ -462,7 +469,7 @@ of hour-step tending the IDEAS still asked for.
 ### 4.4 Air
 
 Air is metered on a sliding scale of honesty.
-- **Below floor 30**, air is billed as a flat **Atmosphere Levy**: 0.25 cr per square per week, added to rent. It pays for the
+- **Below floor 30**, air is billed as a flat **Atmosphere Levy**: 0.012 cr per square per week (about 6 cr for a 500-square board), added to rent. It pays for the
   founding-era 30 Lung, which pulls outside air through salt and dust filters and pushes it up the vents. In
   the Mills the plant runs at about 40% of its rated capacity. In the Sump it does not reach.
 - **From floor 30 up**, air is metered by the vent: each flat has a **vent register** that counts the volume of filtered air
@@ -624,15 +631,15 @@ The player's Pathway at the start (working numbers):
 
 | Line | cr |
 |---|---|
-| Lease premium, 24 Commercial squares, floor 17 | 1,440 (60 per square) |
-| Title price of those squares, fixed at signing | 2,400 (100 per square) |
+| Lease premium, 500 Commercial squares, floor 17 | 1,500 (3 per square) |
+| Title price of those squares, fixed at signing | 2,500 (5 per square) |
 | Starter machines (one insect bin, one grow bed, a grinder) | 620 |
 | Starter drone (Halden "Wren" frame, 3x2 bay) and launch pad | 540 |
 | Licences, first month | 80 |
 | Arrangement fee | 120 |
-| **Principal** | **5,200** |
+| **Principal** | **5,360** |
 
-- **Daily service charge:** 0.15% of the outstanding principal, added at midnight. On 5,200 that is 7.80 cr a day at the
+- **Daily service charge:** 0.15% of the outstanding principal, added at midnight. On 5,360 that is 8.04 cr a day at the
   start.
 - **Minimum daily payment:** 15 cr, taken at 20:00. If the payment is less than the day's charge plus 1 cr, the shortfall is
   added to the principal ("capitalised").
@@ -644,23 +651,23 @@ The player's Pathway at the start (working numbers):
   be paid, Halden "restructures" it (a new Pathway with a new arrangement fee and a higher charge) or ends it, in which case
   everything paid is "applied to rent and services", and the shop is yours on a plain tenancy with no equity.
 
-Paying only the minimum, the Pathway is repaid in about **430 days**. Paying 40 cr a day, about 150 days. A good player can do
+Paying only the minimum, the Pathway is repaid in about **500 days**. Paying 40 cr a day, about 150 days. A good player can do
 it in under 100.
 
 ### 6.2 Held title
 
 When the Pathway closes, the squares are yours as **held title**. You no longer pay rent on them, only a **Title Maintenance
-Charge** of 0.5 cr per square per week (subject to Rate Review), and the meters and levies as before. You cannot be locked out
+Charge** of 0.025 cr per square per week, 12.50 for a 500-square board (subject to Rate Review), and the meters and levies as before. You cannot be locked out
 for arrears on titled squares (only on any leased squares you added later). You can sell titled squares to anyone with the
 Standing to hold title on that floor, which on floor 17 is anyone at Standard.
 
 Squares added after signing are not in the Pathway. They are rented at the current card. You can buy them into title later
-at the **current title price**, which moves with the Creep: a title on floor 17 costs 100 cr a square today, and about 10% more
+at the **current title price**, which moves with the Creep: a title on floor 17 costs 5 cr a square today, and about 10% more
 every time the Chalk moves a floor closer.
 
 **In play:** the Pathway is the clearest numeric spine the game has: a balance that goes down, a daily charge that shrinks as
 it does, a big "Title" stamp when it ends. It is one of the canon endings ("own your squares") and also a mid-game turning
-point, because rent stopping on 24 squares is a large, permanent change to the weekly maths, which then makes expansion
+point, because rent stopping on 500 squares is a large, permanent change to the weekly maths, which then makes expansion
 (more rented squares) the new pressure. A **Pathway statement** slip arrives weekly with the balance, the charge, and a
 brochure line ("You are 18% of the way to owning your future!"). Moving floors while the Pathway is open is allowed, but the
 title squares stay on floor 17: you can end up owning a shop on a floor you have left, which you can then sublet, which is
@@ -1292,7 +1299,7 @@ What a Mills labourer's 30 cr a day must cover (a single adult, a rent week):
 
 | Line | cr / week |
 |---|---|
-| Bunk, Domestic lease share (6 squares on floor 15 at 4.5, split with one other) | 14 |
+| Bunk, Domestic lease share (a bunk on floor 15, split with one other) | 14 |
 | Atmosphere Levy, water and power standing charges, share | 13 |
 | Water: 3 L a day Lifeline, 2 L Domestic | 34 |
 | Food: two Vitabricks a day, noodles twice a week | 46 |
@@ -1430,8 +1437,8 @@ borrow, and complain to the warden. Neighbours change when a re-cut or the Creep
 
 ### 14.7 Sublets and hot-bunks
 
-Sublet barons exist because of one sum. A baron on floor 13 leases **200 squares** at 3 cr a week (600 cr a week), cuts them into
-33 bunks of six squares, and lets each bunk by the shift: three 8-hour shifts a day, seven days, 3 cr a shift. A full bunk earns
+Sublet barons exist because of one sum. A baron on floor 13 leases **a whole hall** from Halden for 600 cr a week, cuts it into
+33 bunks, and lets each bunk by the shift: three 8-hour shifts a day, seven days, 3 cr a shift. A full bunk earns
 63 cr a week on 18 cr of rent. Thirty-three bunks earn over 2,000 cr a week. The baron pays wardens to not report, a fixer to
 keep order, and Halden its rent on time, every time, which is why Halden calls him a "valued Commercial tenant" and has never
 once read Clause 31 to him.
@@ -1443,15 +1450,15 @@ The **hot-bunk house** rules, posted on every door:
 - **Locker** for your things while you work: 1 cr a day. Things not in a locker belong to the next shift.
 - No cooking. No water on the bunk. No visitors. No refunds after the first hour.
 
-Barons also sublet **frontage**: a single frontage square on a busy corridor for a hawker's day, 3 cr; a strip of four for a
-week, 60. And **squares by the hour** for workshops without space: a 2x2 corner with a socket for four hours to run a grinder,
-1.20 cr plus whatever the socket draws.
+Barons also sublet **frontage**: a stall's width of busy corridor for a hawker's day, 3 cr; a strip of four for a week, 60. And
+**squares by the hour** for workshops without space: a 3x3 patch next to your board with a socket, for four hours to run a
+grinder, 1.20 cr plus whatever the socket draws.
 
-The biggest baron in the Mills is **Moss Underhill**, who holds about 900 squares across floors 11 to 14 through eleven
+The biggest baron in the Mills is **Moss Underhill**, who holds some thirty halls across floors 11 to 14 through eleven
 different names. He started with a dead uncle's bunk on floor 12 and a tally nobody cancelled.
 
 **In play:** sublets work in both directions:
-- **Renting from a baron:** take a few extra squares for a day or a week at a higher rate than Halden's but **without a lease
+- **Renting from a baron:** take a few extra squares (a patch beside your board) for a day or a week at a higher rate than Halden's but **without a lease
   extension**, without an inquiry hit on your Standing, and without a broom-clean inspection when you leave. Expensive,
   flexible, and illegal for both of you, so a warden event might find it.
 - **Being a baron:** once you hold title (section 6) or more squares than you use, you can let them by the shift or the day. A
@@ -1539,10 +1546,10 @@ this file; they are meant to be tuned.
 | Scrip | 0 |
 | Prepay units on the meters | 20 cr worth |
 | Standing | 300 (Probationary, amber tally) |
-| Pathway principal | 5,200 cr, 0.15% a day, minimum 15 cr a day |
-| Lease | 24 squares on floor 17, East Chute catch (one-in-twelve) |
-| Rent | 19 squares x 5 + 4 frontage x 7.50 + 1 pillar x 2.50 = 127.50, rounded by the Ledger to **128 cr a week** |
-| Atmosphere Levy | 24 x 0.25 = **6 cr a week** |
+| Pathway principal | 5,360 cr, 0.15% a day, minimum 15 cr a day |
+| Lease | the 25 x 20 board on floor 17, East Chute catch (one-in-twelve) |
+| Rent | 440 squares x 0.25 + 50 frontage x 0.375 + 4 pillar x 0.125 + 6 under the Works Bench x 0.30 = 131.05, rounded by the Ledger to **132 cr a week** |
+| Atmosphere Levy | 500 x 0.012 = **6 cr a week** |
 | Machines | insect bin, grow bed, grinder (all store, all under service contract at 5 cr a week each) |
 | Drone | Halden Wren, 3x2 bay, licensed rotors, transponder fitted, no Lane Permit |
 
@@ -1633,7 +1640,7 @@ The economic ladder, roughly in order:
 5. **A second drone** or a bigger bay (Kestrel, 820 cr): two launches at once.
 6. **Kitty membership** or a shaft-rat's frame: cheap risky routes as a second line.
 7. **Preferred** (600): Terrace contracts visible; Middle squares leasable.
-8. **The Pathway closes:** title on floor 17; rent stops on 24 squares. The ending "own your squares", or a midpoint.
+8. **The Pathway closes:** title on floor 17; rent stops on 500 squares. The ending "own your squares", or a midpoint.
 9. **Expansion or a move:** more squares at the current card, a second lease on another chute, or a Middle lease.
 10. **Trusted** (800) and a sponsor: Crown Lane clearance; the ending "reach the Crown" becomes a price, not a dream.
 11. **Tower trade** (late; file 07): contracts to Vantage, Greenhold, St. Ober's, the Pier; batteries and frames to cross the

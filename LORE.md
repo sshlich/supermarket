@@ -40,6 +40,9 @@ Each point is marked **decided** (the user said so), **proposed** (to confirm or
 ## Money
 
 - **Proposed:** credits (a plain number), and scrip that only spends at the company store.
+- **Decided:** a **square** is a square of the board, the same cell items sit on (a cell is 1x1, a charger rack 3x3). Your lease
+  is a block of squares, drawn as the field (25 x 20 now), and rent is per square. It is a game unit, not a size in metres or
+  feet: nothing in the world is counted in squares except the player's board.
 - **Proposed:** rent per leased square, metered utilities, a credit rating that decides which contracts you are offered, and
   your own shop held on a company loan.
 

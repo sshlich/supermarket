@@ -47,11 +47,11 @@ insect farms and repair shops, people came in from the dying town each day to wo
 (the Company bought the Calder bus company in Y48 and closed it). A handful of operators leased whole halls and partitioned
 them into bunks. They called themselves **dormitory providers**. The Mills called them landlords' landlords.
 
-Then came the Drowning and the Lifeline. Twenty-two thousand people **signed on the water**: six squares each, rent-free for
+Then came the Drowning and the Lifeline. Twenty-two thousand people **signed on the water**: a bed and a strip of floor each, rent-free for
 ninety days, then "the prevailing rate". When the ninety days ended, thousands fell into arrears at once. Halden assigned the
-debts; the debtors faced forfeiture of the lease. The dormitory providers did the arithmetic. A forfeited four-square lease
+debts; the debtors faced forfeiture of the lease. The dormitory providers did the arithmetic. A forfeited bunk lease
 was worth nothing to Halden except the rent. So they offered Halden the rent, in advance, for blocks of forfeited leases, and
-offered the debtors the right to stay on the same four squares for a nightly fee. The debtor kept a bed. Halden kept its
+offered the debtors the right to stay in the same bunk for a nightly fee. The debtor kept a bed. Halden kept its
 rent. The provider kept the difference. Everybody signed.
 
 Clause 31 of the Halden Standard Tenancy Agreement forbids subletting. In **Y61** a provider called **Ambrose Tallis** paid a
@@ -95,10 +95,10 @@ How one square of floor 17 is paid for, top to bottom, on a busy day:
 | Who | Pays whom | For what | Per week, one square |
 |---|---|---|---|
 | Halden | (nobody) | owns the stud | — |
-| Mezzanine Living | Halden | the lease, frontage, x1.5 | 7.50 cr |
-| Gus Tanaka-Breen (under-baron) | Mezzanine Living | a block of frontage on a weekly "service agreement" | 14 cr |
-| A hawker | Gus | the square from 08:00 to 20:00, by the hour at 0.25 | 21 cr |
-| A half-hawker | the hawker | the left half of the square, 12:00 to 16:00 | 4 cr of that 21 |
+| Mezzanine Living | Halden | the lease, frontage, x1.5 | 0.375 cr |
+| Gus Tanaka-Breen (under-baron) | Mezzanine Living | a block of frontage on a weekly "service agreement" | 0.70 cr |
+| A hawker | Gus | the square from 08:00 to 20:00, by the hour at 0.0125 | 1.05 cr |
+| A half-hawker | the hawker | the left half of the square, 12:00 to 16:00 | 0.20 cr of that 1.05 |
 
 Every rung is legal, or is A/61/0007, which is the same thing.
 
@@ -122,8 +122,8 @@ There is no baron guild. There are three kinds of baron, and they know each othe
   Foundation Reading Room's donor list. She is not cruel and would be hurt to be told she was. She thinks a square left empty
   overnight is a moral failure.
 - **Gus Tanaka-Breen, under-baron of floor 17.** Forty-four. Grew up in a hot-bunk on 12, worked as a sitter for Mezzanine at
-  nineteen, and now runs eight squares at the far end of 17 as a hot-bunk house (see below) and a frontage strip of fourteen
-  squares along the east corridor as hour stalls. Warden Hester Moyle files about four reports a month, nearly all against
+  nineteen, and now runs a hot-bunk house at the far end of 17 (see below) and a frontage strip along the east corridor as hour
+  stalls. Warden Hester Moyle files about four reports a month, nearly all against
   him. He pays the fines, pays the recovered rent, and keeps going, because the fines are smaller than the margin. He sends
   Hester a clock at midwinter. She sends it back.
 - **Lorne Abbiss, "the Half-Square King".** Sixty-two, floor 12. Invented halves. Now in a long dispute with the Lease
@@ -153,7 +153,7 @@ There is no baron guild. There are three kinds of baron, and they know each othe
   a big packing day (you need room to lay out a Kestrel's whole cargo), a drying run, or a Great Ebb stall. No Standing check,
   no rent day, a high hourly price. Space as a thing you can rent for an afternoon is the purest form of the game's constraint.
 - **The offer.** When your rent falls behind (the arrears ladder in file 05), a baron's slip arrives within a day: "We will
-  clear your arrears in full. You remain on your squares under licence at 0.6 cr per square per hour. No further obligation."
+  clear your arrears in full. You remain on your squares under licence at 0.004 cr per square per hour. No further obligation."
   Accepting ends the lease game and turns you into a licensee: no rent day, no eviction ladder, no Standing, but you pay by the
   hour forever and can be moved at any hour. A soft fail state the player chooses, with its own way back (buy the lease back
   at a price the baron sets).
@@ -259,10 +259,11 @@ alone in hot-bunks.
 
 ### How a house works
 
-- **The rack.** Bunks are steel racks, **boxes** (a closed coffin bunk 1x3 squares, stacked three high, with a sliding panel
-  and a hook for boots), or **mats** (a pad on the floor, cheapest, no lid). A Mills house sleeps about **seven per shift on
-  eight squares**: two columns of three boxes and a mat in the aisle, twenty-one beds a day. That is how Gus Tanaka-Breen
-  sleeps "twenty in eight squares" on floor 17.
+- **The rack.** Bunks are steel racks, **boxes** (a closed coffin bunk, stacked three high, with a sliding panel
+  and a hook for boots), or **mats** (a pad on the floor, cheapest, no lid). A Mills house sleeps about **seven per shift in
+  one small room**: two columns of three boxes and a mat in the aisle, twenty-one beds a day. That is how Gus Tanaka-Breen
+  sleeps twenty on floor 17, in a room the Company's plan shows as eight beds' worth: hence the house's name, **the Eight
+  Squares**.
 - **The rail.** Above each box, a chalk rail: three names (or three numbers, for people who'd rather not), one per shift.
   Rail-mates share a bed and often never meet. They leave things for each other: a sweet, a note, a warning about a loose
   panel. Some marry. The Mills phrase for a couple who met this way is **rail-wed**.

@@ -29,7 +29,10 @@ projections (things scheduled or promised), not history.
 nobody pilots them in a free shaft, and the licensed lanes alone carry a feeder cable that lets the Company talk to a drone
 (09 §3.1, §3.6). (2) Rat-chalk is gone: drones never read walls. They keep a flight log; rats leave dated hatch notes for each
 other; the Drop charges film **route cards** that go stale in about six days (06a, 09). (3) Drones are everyday kit: cheap
-**hoppers** (09 §3.9). File **15** is new.
+**hoppers** (09 §3.9). File **15** is new. A fourth change, from the game itself: **a square is a square of the board**, the
+cell items sit on, not a floor area in metres; rent is a quarter of a credit a square on 17 and your first lease is the 25 x 20
+board (500 squares). Every number that counted squares of floors, flats or beds was rewritten (canon brief, 01, 02, 04, 05, 06b, 08,
+11, 12, 13). File **10** was rewritten to match the items the game actually has (see its header).
 
 ## The Stack in plain words
 
@@ -212,11 +215,11 @@ of the tower's clean water up to the Dark Floors.
 ### 6. `04-economy.md`: money, rent and the Ledger
 
 The spine of the systems side, and the file whose numbers every other file was told to obey: **a Mills labourer earns about
-30 cr a day, a Vitabrick is 3 cr, a litre of Halden Pure at a Mills tap is 1.20 cr, a square on 17 is 5 cr a week, and the
-starting lease is 24 squares.** It covers credits and the Ledger, chits (physical credits, so "coins as items" has a reason),
+30 cr a day, a Vitabrick is 3 cr, a litre of Halden Pure at a Mills tap is 1.20 cr, a square of the board on 17 is a quarter of a credit a week, and the
+starting lease is the 25 x 20 board (500 squares).** It covers credits and the Ledger, chits (physical credits, so "coins as items" has a reason),
 scrip and the street rate, the company store, rent per square with frontage and pillars and pipe runs, re-cut events, rent day
 and the Creep (the long clock of rising rent), meters and the bill, Standing (the credit rating) and what it gates, the
-Proprietor Pathway (the shop loan, 5,200 cr, which ends in held title), the Mutual (insurance that never pays), fees and
+Proprietor Pathway (the shop loan, 5,360 cr, which ends in held title), the Mutual (insurance that never pays), fees and
 licences, the chute economy and VOID, planned obsolescence, real and synthetic grades, a full price list, wages by band, and
 the informal economy (cells as currency, jug tickets, markers, favours called "turns", the hock, sublets, Foundation vouchers,
 blood). Section 15 pulls it all into one system: the player's books on day 1, the calendar, pressures and levers, events,
@@ -287,7 +290,7 @@ hoppers that make drones everyday kit.
 What a thing is when it sits on your grid. Part one is the item model: kind families, origin and grade, condition,
 handling tags (upright, fragile, perishable, snug), legal status, age as **three** clocks (real age, printed date, counter),
 hidden features, and how contracts, bays and machines read all that. Section 1.9 states the scale problem plainly (24 squares
-cannot hold the three starting machines at one cell per square) and recommends a 2x2 of item cells per rented square. Part
+cannot hold the three starting machines at one cell per square) and recommends a 2x2 of item cells per rented square. (Superseded by the 2026-10-09 revision: a square is a square of the board, and file 10 was rewritten; see the revision note above.) Part
 two is the catalogue by family. Part three is sixteen production chains: the catch, three insect lines, fat (render, candle,
 soap, salve), cells, grow beds, the dark box and the spent-medium loop, seed, water reclamation, ferments, undoing the void,
 screens, drone parts, filters, medicine, packing. Part four is what each band buys. **Best in it:** "the tags do the work"
@@ -432,15 +435,15 @@ continuity pass, not yet applied to the files, still yours to confirm".
 
 ### A. Scale and numbers
 
-1. **Square size.** 01 has 1.2 m service tiles, 02 used 1.2 m tiles with a brass stud at a corner, 04 has lease studs 80 cm apart. **Glossary:** 80 cm.
-2. **Cells per square.** The 24-square starting lease cannot hold a 3x3 bin, a 4x3 bed and a 3x3 grinder at one item cell per square. Options: a rented square is 2x2 item cells (lease = 12x8 field; 10 recommends this), machines shrink to 2x2 and 1x2, or the lease doubles to 48 squares at half the rate. (10, 04, 01)
+1. **Square size.** *Answered 2026-10-09:* a square is a square of the board, the cell items sit on, with no size in metres. The service tile and the lease stud under each leased square stay as fiction; no file measures them.
+2. **The starting block.** *Answered by the board:* one square is one item cell, so the starting lease is the 25 x 20 board (500 squares) and rent is a quarter of a credit a square on floor 17, about 125 cr a week. Still open: whether the game starts on that much or on a smaller block you grow by renting rows, and what a row should cost. (04, 13)
 3. **The money scale.** 04 fixes a 30 cr labourer's day, a 3 cr Vitabrick, 1.20 cr a litre and 5 cr a square a week. 03 was written near this; 05 drifted to about 15 cr a day ("60 cr is four days' wages"). Confirm 04's four numbers win, and whether these feel right (about 30 cr a day for a labourer, 380 cr for a Wren, relics at 900 to 3,000 cr). (03, 04, 05, 09, 12)
 4. **An inverted water tariff?** Should tap water cost more per litre lower down the tower, or is that too on the nose? (03)
 5. **Historical prices.** Is a Works-era currency scale wanted (Y20 wages of 1,900 cr a month, about four times today's in real terms), or should old prices stay vague? (01)
 6. **Population.** No file fixes the tower's population; 03 used litres per person by band instead. Do you want a number? (03)
 7. **Time compression.** Crickets in 48 hours and tomatoes fruiting in six days, or slower chains so one crop spans a rent week? (10)
 8. **Tide constants.** Fix a tide range as a game constant (about 5.5 m at springs, 2.5 m at neaps, Gate Floor 3 always under, floor 4 wet at springs)? (07)
-9. **Lease tile scale.** A Y57 Lifeline bed was "six squares". Does that match a 24-square starting shop? (01)
+9. **Lease tile scale.** *Dissolved:* homes and beds are no longer counted in squares. (01)
 
 ### B. Collisions between files (mostly decisions of fact, not taste)
 

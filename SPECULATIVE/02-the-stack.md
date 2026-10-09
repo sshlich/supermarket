@@ -6,7 +6,7 @@ another version of the same thing; **Hook:** is a mystery or story seed; **In pl
 
 This file builds on the founding design in `01-history.md` (the Plinth and the Shaft, the mechanical floors, the Kessin
 lifts, the Tube, the risers, the Sorrel meters), the plumbing in `03-water.md` (the Waterhouse, the three lines, the break
-tanks) and the prices in `04-economy.md` (floor 17 at 5 cr a square a week, the rate card, the Creep). Where it adds a
+tanks) and the prices in `04-economy.md` (floor 17 at a quarter of a credit a square a week, the rate card, the Creep). Where it adds a
 number of its own, the number is a working one chosen to sit beside theirs.
 
 ---
@@ -29,13 +29,13 @@ full storey of plant (a Lung, cisterns and break tanks, lift machinery, the tran
 the tower narrows. The bands of the Stack break at exactly these floors because the founders built walls of machinery there,
 and the Company later found the walls useful.
 
-| Section | Floors | Footprint (approx.) | Squares per floor | Slab to slab |
-|---|---|---|---|---|
-| Plinth (the Works) | 0–29 | 180 × 140 m | ~39,000 | 6 m |
-| Lower Shaft | 30–59 | 60 × 60 m | ~5,600 | 3.5 m |
-| Upper Shaft | 60–89 | 45 × 45 m | ~3,150 | 3.5 m |
-| Crown | 90–100 | 34 × 34 m, stepping in | ~1,800 | 4 m and up |
-| The Lantern | 101–104 | glass, 24 × 24 m | ~900 | 5 m |
+| Section | Floors | Footprint (approx.) | Slab to slab |
+|---|---|---|---|
+| Plinth (the Works) | 0–29 | 180 × 140 m | 6 m |
+| Lower Shaft | 30–59 | 60 × 60 m | 3.5 m |
+| Upper Shaft | 60–89 | 45 × 45 m | 3.5 m |
+| Crown | 90–100 | 34 × 34 m, stepping in | 4 m and up |
+| The Lantern | 101–104 | glass, 24 × 24 m | 5 m |
 
 The ledges:
 - **The Shelf** (floor 30, the Plinth's roof). In the founding years this was **the Common**: trees in planters, a running
@@ -46,9 +46,9 @@ The ledges:
 - **The Crown Ring** (floor 90) and the Crown's terraced gardens above it, which step in floor by floor "like a wedding
   cake". Nobody below 90 has stood on them.
 
-The line every Mills tenant knows, because the Co-op prints it on its flyers: **floor 17 alone has more squares than the
-whole Crown and the Lantern together.** Eleven Crown floors and four Lantern floors make about 23,400 squares for some forty
-households. Floor 17 has about 39,000 squares, three thousand people, and one Glove Wall.
+The line every Mills tenant knows, because the Co-op prints it on its flyers: **floor 17 alone has more people than the
+whole Crown and the Lantern together.** Eleven Crown floors and four Lantern floors hold some forty households. Floor 17 has
+three thousand people, and one Glove Wall.
 
 The Stack stands about 450 metres. The Company census says 141,000 residents. The Co-op's count, which includes
 people who sleep in shifts, under stairs and inside old process tanks, says nearer 190,000.
@@ -86,11 +86,12 @@ recipe is not. The Archivists have a page that might be it, water-damaged at the
 
 #### Service tiles and lease studs
 
-Every floor in the Stack is laid in founding-era **service tiles**, 80 centimetres square, each a lift-out lid over the services
-beneath: water, power, data, air, drain. Each tile carries a flush brass **lease stud** at its north-west corner, stamped with
-floor, sector and number (`17-C-04411`), which answers a surveyor's wand with a faint founding-era signal. Since the Square
-Survey of Y58, the tile has been the **square**, and the square is the unit of everything: rent, fines ("obstruction of
-common squares, 2 cr per square per hour"), stalls ("a twelve-square stall"), beds ("a six-square bunk").
+Every floor in the Stack is laid in founding-era **service tiles**, each a lift-out lid over the services beneath: water, power,
+data, air, drain. Under every leased square sits a tile with a flush brass **lease stud**, stamped with floor, sector and
+number (`17-C-04411`), which answers a surveyor's wand with a faint founding-era signal. Since the Square Survey of Y58 the
+Company has billed by the stud, and the **square** is what it bills: the unit of rent, and of fines ("obstruction of common
+squares, 2 cr per square per hour"). On the player's board it is simply the cell an item sits on. The Company has never said how
+big a square is.
 
 When a stud is pried out (brass sells) the square goes **dark** on the Ledger: it cannot be billed, and it cannot be leased.
 Dark squares are a small economy of their own; `04-economy.md` has the chalkers and the "pending survey" billing.
@@ -464,10 +465,10 @@ A table to keep in mind while reading, because it is the divide in one glance:
 | Band | Rent / square / week | Tap hours (see 03) | Power | Air | Light |
 |---|---|---|---|---|---|
 | Crown 90–104 | not leased; held as title | always | own skin + never shed | 90 Lung, roof air | daylight; full-spectrum at night |
-| Terraces 60–89 | 60–190 | always | never shed | 60 Lung, the Gills, metered | windows, self-dimming glass |
-| Middle 30–59 | 12–44 | always; low pressure 13:00–17:00 | shed last, in rotation | 30 Lung up-feed, metered | outer ring windows (brownglass); inner flats lamp-lit |
-| Mills 10–29 | 3–9 (17: 5) | 06:00–09:00 and 18:00–21:00 | shed at slack hour | 30 Lung down-feed + return air; flat levy | lamps; cut windows |
-| Sump 4–9 | 1–2 | standpipes 07:00–08:00 | shed first; mostly stolen | what's left | lamps, luminous paint, the glow of the Waterhouse |
+| Terraces 60–89 | 3.00–9.50 | always | never shed | 60 Lung, the Gills, metered | windows, self-dimming glass |
+| Middle 30–59 | 0.60–2.20 | always; low pressure 13:00–17:00 | shed last, in rotation | 30 Lung up-feed, metered | outer ring windows (brownglass); inner flats lamp-lit |
+| Mills 10–29 | 0.15–0.45 (17: 0.25) | 06:00–09:00 and 18:00–21:00 | shed at slack hour | 30 Lung down-feed + return air; flat levy | lamps; cut windows |
+| Sump 4–9 | 0.05–0.10 | standpipes 07:00–08:00 | shed first; mostly stolen | what's left | lamps, luminous paint, the glow of the Waterhouse |
 | Drowned 0–3 | not leased; "salvage rights" | — | the Race turns here | none | none |
 
 ---
@@ -501,7 +502,7 @@ decontamination arch that blows a mist of something floral over you, an HPS Crow
 wait to be collected. There is no public stair to 90.
 
 **2. The Pantry (a half-floor inside 90).** Between the cisterns and the Lung's ducts, on a steel mezzanine nobody in the
-Crown has seen, about three hundred of the Crown's staff sleep in two-square bunks, ten to a bay, under the drip of the cistern
+Crown has seen, about three hundred of the Crown's staff sleep in stacked bunks, ten to a bay, under the drip of the cistern
 overflow. They pay rent to their employers out of their wages at a Crown rate, prorated for "shared amenity". The Pantry has
 the best water and the worst air in the Crown, and the staff joke that they live inside the Crown's lungs.
 
@@ -569,9 +570,9 @@ Ledger. Many of them grew up in the Middle and keep a small, specific fear of it
 **For sale.** Services more than things: clinics, lawyers, grading, restaurants, tutors, the plant service. Goods come by
 order or from **Halden Select** on 70, the store branch that does not take scrip.
 
-**Squares and utilities.** 60 to 110 cr a square on 60–74, 120 to 190 on 75–89. Water a flat 140 cr a week, "unlimited".
-Air metered by vent register in tiers. Power never shed. A Terraces flat of 60 squares runs to something like 6,000 cr a
-week, which is two hundred days of a Mills labourer's wage.
+**Squares and utilities.** 3 to 5.50 cr a square on 60–74, 6 to 9.50 on 75–89. Water a flat 140 cr a week, "unlimited".
+Air metered by vent register in tiers. Power never shed. A Terraces flat runs to something like 6,000 cr a week, which is two
+hundred days of a Mills labourer's wage.
 
 #### Places in the Terraces
 
@@ -673,7 +674,7 @@ in how carefully they dress.
 Orrin outlets; licensed water kiosks run by certified providers with brass plaques; licensed repair shops; tutors; small
 cafés; a lot of things that are the Mills' things, cleaned, relabelled and sold at three times the price.
 
-**Squares and utilities.** 12 to 18 cr a square on 30–39, 20 to 28 on 40–49, 30 to 44 on 50–59. Everything metered at the
+**Squares and utilities.** 0.60 to 0.90 cr a square on 30–39, 1 to 1.40 on 40–49, 1.50 to 2.20 on 50–59. Everything metered at the
 door: tap, socket, vent register. Water always on, at low pressure in the afternoon. Power shed in rotation at slack hour,
 an hour at a time by building-quarter, announced on the corridor lights by a blink.
 
@@ -757,7 +758,7 @@ Sublet barons who hold whole aisles. People who came up from the Sump and people
 negotiable, and paid in credits, scrip, Co-op produce chits, cells or favours. **The Hatch**, the store branch behind its
 grille, is on 11, 18 and 27.
 
-**Squares and utilities.** 3 cr a square on 10–13, 4 to 6 on 14–19 (17: 5), 7 to 9 on 20, 21 and 27–29. The Atmosphere Levy on
+**Squares and utilities.** 0.15 cr a square on 10–13, 0.20 to 0.30 on 14–19 (17: 0.25), 0.35 to 0.45 on 20, 21 and 27–29. The Atmosphere Levy on
 top. A shared **tap post** per aisle with a key-meter per lease, tap hours twice a day; a **socket board** per lease, shed at
 slack hour. Salt-line outlets in most halls for flushing, free and poisonous.
 
@@ -787,7 +788,7 @@ and the Waterhouse's own few Company staff, who do not live here and come and go
 **For sale.** Salvage from the drowned floors and the Flats (first-fit parts, if you know who to ask), chute bales, stinker
 water, cells charged off stolen lines at half the store price, plasma money, gin, and labour by the hour.
 
-**Squares and utilities.** 1 cr a square on 4–5 (wet), 2 on 6–9. Halden barely collects; sublet barons and the gangs collect
+**Squares and utilities.** 0.05 cr a square on 4–5 (wet), 0.10 on 6–9. Halden barely collects; sublet barons and the gangs collect
 instead, as "floor dues". Water from standpipes, one hour a day, in a queue, or from a stinker. Power shed first; most of it
 is drawn from tapped cables that run up from the Race, paid for to whichever gang holds that cable.
 
@@ -982,18 +983,18 @@ routes:
 - **Wet Run** (sector B): the old wet benches where wafers were etched and rinsed. Every lease has a founding-era drain trough,
   so this is where the hall's growers, washers, dyers and stinkers cluster.
 - **Stores Run** (sector C): the old line stores and the issuing counter, the tool cribs, the lift lobby, the lobby board. The
-  player is here, in what was the **Line Four stores cage**: a fenced corner of twenty-four squares, now the player's starting
-  lease, 6 x 4 inside the original mesh, with a column in one corner (the dead square in `04-economy.md`) and the old
-  issuing counter still bolted to the frontage.
+  player is here, in what was the **Line Four stores cage**: a fenced corner of the old stores, now the player's starting
+  lease, the 25 x 20 board inside the original mesh, with a column near the back wall (the pillar in `04-economy.md`) and the
+  old issuing counter still bolted to the frontage.
 - **Glove Run** (sector D): along the west wall, where the **Glove Wall** is. Leases backing onto it are cheaper; the gloves have
   been grey for forty years and still move a little when the Lung's air comes through.
 
 **Alternative:** the stores cage is a neighbour's lease, not the player's, and the requisition slips arrive for a tenant who
 left in a hurry. Taking over the cage (a lease extension when it falls vacant) is how the player inherits the requisitions.
 
-**Numbers.** About 39,000 squares; about 430 leases; about three thousand people, of whom some eleven hundred sleep on the floor
-and the rest come in to work. Base rate 5 cr a square, frontage x1.5. Catch rights on all four trunks; the player's starting
-catch is a one-in-twelve on the East Chute (the Kitchen), in the hatch square at the back of the cage.
+**Numbers.** About 430 leases; about three thousand people, of whom some eleven hundred sleep on the floor
+and the rest come in to work. Base rate a quarter of a credit a square, frontage x1.5. Catch rights on all four trunks; the player's starting
+catch is a one-in-twelve on the East Chute (the Kitchen), on the catch apron at the back of the cage.
 
 **What 17 has.**
 - **The lobby board** at the lift lobby, where contract slips are pinned at 07:00 and drones' returning slips are posted, with
@@ -1008,7 +1009,7 @@ catch is a one-in-twelve on the East Chute (the Kitchen), in the hatch square at
 - **The Three Grate**: a rusted grille in the core wall of sector C into riser R3, cut open by vent kids in Y70 and
   officially "scheduled for repair" ever since. It is the floor's free shaft.
 - **The Works Benches**: founding-era ESD benches bolted to the floor in about a hundred leases, black-topped, grounded, with
-  built-in magnifier arms. Under Clause 11 they are Company property. Repairers lease the squares they stand on at x1.2 and
+  built-in magnifier arms. Under Clause 11 they are Company property. Repairers lease the squares under them at x1.2 and
   consider it cheap.
 - **The Glove Wall.**
 
@@ -1017,7 +1018,7 @@ catch is a one-in-twelve on the East Chute (the Kitchen), in the hatch square at
 - **Hester Moyle**, the warden, sixty-one, and her brother **Aldo**, in a two-row lease by the lift lobby (see 05). Hester
   takes clocks. Aldo reads them.
 - **Gus Tanaka-Breen**, sublet baron, whose hot-bunk house **the Eight Squares** at the far end of Glove Run sleeps twenty in
-  eight squares in three shifts timed to the Works Whistle. His sleepers buy from the player's shelves at 06:00, 14:00 and 22:00,
+  three shifts timed to the Works Whistle. (The name is the Company's: its plan shows eight beds.) His sleepers buy from the player's shelves at 06:00, 14:00 and 22:00,
   and only then.
 - **Mattias Orme**, ninety, an Old Hand, lithographer on Line Four from Y12 to the Last Shift. Lives on Litho Run with a
   founding-era microscope he will not sell. Repairs chips for the Middle at a tenth of a licensed shop's price and sends half his
@@ -1113,7 +1114,7 @@ empire of curtained bays. **Twenty Station**, the Tube's second station, makes 2
 couriers both keep lockers here. Common Load is high and nobody knows whose it is.
 
 **50. Underhum (floor 21).** Line Eight's floor, directly under the Clean Core. The ceiling is warm at night. Insect ranchers pay
-8 cr a square and a thermal amenity line for it, and sleep beside their bins in winter. The call plate on Lift Zero's well is here,
+0.40 cr a square and a thermal amenity line for it, and sleep beside their bins in winter. The call plate on Lift Zero's well is here,
 behind a bunk partition. The cracks in the ceiling show the yellow.
 
 **51. Overhum (floor 27).** Above the Clean Core. Warm floor. The old **Line Nine control room**, now part of a lease (a

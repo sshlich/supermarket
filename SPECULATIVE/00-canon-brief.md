@@ -16,6 +16,17 @@ everything: the bays, your shop floor, the shelves. Rent is charged per square y
 a day. Machines are bought (often old, failing, one-of-a-kind), never crafted from parts. Night trips, hunting and combat
 are **out of scope** for now; do not build lore that requires them.
 
+## Squares (decided, 2026-10-09)
+
+A **square** is a square of the board: the cell items sit on, the unit of every footprint (a cell is 1x1, a charger rack 3x3,
+a pickaxe 5x6) and the unit of rent. Your lease is a block of squares, drawn as the game's field (25 across and 20 down in
+the game today: 500 squares). Renting more rows makes the board bigger and the bill too.
+
+A square is a game unit, not a measurement. No file gives it a size in metres or feet, counts the squares of a floor, a flat
+or a bed, or asks how many people fit in one. Homes, shops and floors that are not the player's are described in words (a hall,
+a rack of bunks, a corridor), never in squares. In the fiction, each leased square is pinned to the floor by a brass **lease
+stud** on a lift-out service tile; the Company bills by the stud and has never published how big a square is.
+
 ## Tone (decided)
 
 - Gritty and bad, not utopian. Dystopian capitalism, inequality, the divide between top and bottom, shown through how
@@ -96,7 +107,7 @@ are **out of scope** for now; do not build lore that requires them.
     floors are cut into smaller leases and sold; the rich move up.
   - ~Y86: the present. Founding-era tech failing, rent climbing, nobody alive who knows how half of it was built.
 - **Money:** credits (written "cr", a plain number) and **Halden scrip** (spends only at the company store). Rent per leased
-  square. Metered water and power. A **credit rating** gates which contracts you see. Owning your shop is a Company loan.
+  square (working number: a quarter of a credit a square a week on floor 17, so about 125 cr a week for the 500-square board). Metered water and power. A **credit rating** gates which contracts you see. Owning your shop is a Company loan.
 - **Law:** **Halden Protective Services (HPS)**, by subscription (response time by tier). **Licensing inspectors** (water,
   food, brands). **Brand protection agents**. **Floor wardens** (tenants paid to report). **Debt collectors** (contracted).
   **The Arbiter** (Company arbitration; no courts). Gangs keep order in the Sump; the Mills Co-op runs unofficial patrols.
