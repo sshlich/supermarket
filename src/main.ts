@@ -1,5 +1,5 @@
 import './style.css'
-import { advance, applyDrop, cellsOf, dims, find, H, hostsFor, inSpace, interaction, intoHost, isContainer, KINDS, LIQUIDS, capacityOf, pour, lift, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, targetsFor, W, type Held, type Item, type Plan, type Space, type State } from './world.ts'
+import { advance, applyDrop, applyUse, cellsOf, clock, dims, find, H, hostsFor, inSpace, interaction, intoHost, isContainer, isHidden, KINDS, LIQUIDS, capacityOf, lift, machineStatus, propDefs, propOf, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, targetsFor, W, type Held, type Item, type Plan, type Space, type State } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -53,8 +53,17 @@ function itemHtml(it: Item) {
   const hit = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('')
   return `<div class="item ${selected.has(it.id) ? 'sel' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
     <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><g class="hit">${hit}</g></svg>
-    ${it.liquid ? `<i class="gauge" style="--f:${it.liquid.ml / (capacityOf(it) || 1)};--lc:${LIQUIDS[it.liquid.type]?.color ?? '#888'}" title="${LIQUIDS[it.liquid.type]?.name ?? it.liquid.type}: ${it.liquid.ml} ml"></i>` : ''}
+    ${it.liquid ? `<i class="gauge" style="--f:${it.liquid.ml / (capacityOf(it) || 1)};--lc:${LIQUIDS[it.liquid.type]?.color ?? '#888'}"></i>` : ''}${propMark(it)}
     <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${quarter(it.rot) * 90}deg">${SPRITE[it.kind] ?? ''}</div></div>`
+}
+
+/** An item's first "strip" property, drawn on it: a strip up the right edge, or a "?" while nobody has read it. */
+function propMark(it: Item) {
+  const g = Object.entries(propDefs(it.kind)).find(([, d]) => d.show === 'strip')
+  if (!g) return ''
+  const [name, d] = g
+  if (isHidden(it, name)) return '<i class="unknown">?</i>'
+  return `<i class="gauge right" style="--f:${Math.min(1, propOf(it, name) / (d.max || 1))};--lc:${d.color ?? '#e6e3dc'}"></i>`
 }
 
 /** The edge of a set of squares: a line wherever a square has no neighbour. Traces irregular shapes exactly. */
@@ -74,7 +83,7 @@ const absCells = (it: Item): [number, number][] => cellsOf(it).map(([cx, cy]) =>
 
 /** A row of buttons to put any kind of thing on the field, for trying new items out. */
 function trayHtml() {
-  return `<div class="tray"><span>put on the field</span>${Object.entries(KINDS).map(([id, k]) => `<button data-spawn="${id}" style="--c:${k.color}" title="${(k.desc ?? '').replace(/"/g, '&quot;')}"><i></i>${k.name}</button>`).join('')}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
+  return `<div class="tray"><span>put on the field</span>${Object.entries(KINDS).filter(([, k]) => !k.legacy).map(([id, k]) => `<button data-spawn="${id}" style="--c:${k.color}" title="${(k.desc ?? '').replace(/"/g, '&quot;')}"><i></i>${k.name}</button>`).join('')}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
 }
 
 /** One docked panel: the insides of a container, a small grid for each of its slots. Empty docks are drawn faintly so they can be dropped on. */
@@ -86,14 +95,17 @@ function panelHtml(dock: number, id: number | null) {
     const note = [sl.name, sl.accepts?.length ? `${sl.accepts.join(', ')} only` : '', sl.rejects?.length ? `no ${sl.rejects.join(', ')}` : ''].filter(Boolean).join(' · ')
     return `<div class="slotbox">${note ? `<div class="slotnote">${note}</div>` : ''}<div class="grid" data-grid data-space="${it.id}:${i}" data-w="${sl.w}" data-h="${sl.h}" style="--w:${sl.w};--h:${sl.h}">${inSpace(s, { host: it.id, slot: i }).map(itemHtml).join('')}</div></div>`
   }).join('')
-  return `<div class="panel" data-dock="${dock}"><div class="panel-head" data-head style="--c:${k.color}"><i></i><span>${k.name}</span>${it.m ? `<em>${it.m.burn ? `burning ${it.m.burn}` : 'cold'}${it.m.work ? ` · ${it.m.work}` : ''}</em>` : ''}<button data-close="${it.id}" title="Close">✕</button></div>${slots}</div>`
+  return `<div class="panel" data-dock="${dock}"><div class="panel-head" data-head style="--c:${k.color}"><i></i><span>${k.name}</span>${k.machine ? `<em>${machineStatus(s, it).join(' · ') || 'idle'}</em>` : ''}<button data-close="${it.id}" title="Close">✕</button></div>${slots}</div>`
 }
+
+const clockText = () => { const c = clock(s.tick); return `day ${c.day} · ${String(c.hour).padStart(2, '0')}:00${s.power ? ` · ${s.power} hu` : ''}` }
 
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
   const p = s.panels ?? (s.panels = [null, null, null, null])
-  app.innerHTML = `<div class="stage" style="--pw:${PW}"><div class="dock">${panelHtml(0, p[0])}${panelHtml(1, p[1])}</div><div class="center"><div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div><div class="dock">${panelHtml(2, p[2])}${panelHtml(3, p[3])}</div></div><button class="clock" data-tick title="Let time pass"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>${s.tick ?? 0}</span></button>`
+  app.innerHTML = `<div class="stage" style="--pw:${PW}"><div class="dock">${panelHtml(0, p[0])}${panelHtml(1, p[1])}</div><div class="center"><div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div><div class="dock">${panelHtml(2, p[2])}${panelHtml(3, p[3])}</div></div><button class="clock" data-tick title="Let an hour pass${s.power ? ` · machines have drawn ${s.power} hu of power` : ''}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>${clockText()}</span></button>`
+  if (hoverId !== null) showTip()
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
     const was = from.get(+el.dataset.id!)
@@ -158,6 +170,7 @@ app.addEventListener('pointerdown', e => {
     box.className = 'marquee'
     grid.appendChild(box)
     marquee = { x0: e.clientX - r0.left, y0: e.clientY - r0.top, add, el: box, grid, space: spaceAt(grid) }
+    hideTip()
     document.body.classList.add('sweeping')
     e.preventDefault()
     return
@@ -278,6 +291,7 @@ function begin() {
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
   paintFloating()
+  hideTip()
   document.body.classList.add('dragging')
 }
 
@@ -399,7 +413,7 @@ function paintGhosts(x: number, y: number) {
   light(out)
 }
 
-/** A line under the field that says what just happened (uses have no effects yet, only this note). */
+/** A line under the field that says what just happened. */
 let toastTimer = 0
 function toast(text: string) {
   const el = app.querySelector<HTMLElement>('[data-toast]')
@@ -419,13 +433,61 @@ function finish(drop: boolean) {
   const from = rects()
   d.el.querySelectorAll<HTMLElement>('.item').forEach((el, i) => from.set(d.held.items[i].id, el.getBoundingClientRect()))
   const use = drop && d.use ? interaction(d.held.item, d.use) : null
-  if (use && d.use && use.verb === 'pour') { const type = LIQUIDS[d.held.item.liquid!.type]?.name, n = pour(d.held.item, d.use); putBack(d.held); changed(from); toast(`poured ${n} ml of ${type}`); d.el.remove(); return }
-  if (use && d.use) { putBack(d.held); changed(from); toast(`${KINDS[d.held.item.kind].name} → ${KINDS[d.use.kind].name}: ${use.verb}  (uses have no effect yet)`); d.el.remove(); return }
+  if (use && d.use) { putBack(d.held); const said = applyUse(s, d.held.item, d.use, use); changed(from); toast(said); d.el.remove(); return }
   if (drop && d.plan) applyDrop(s, d.held, d.plan)
   else putBack(d.held)
   d.el.remove()
   changed(from)
 }
+
+// ---------------------------------------------------------------- tooltip
+
+const tip = document.body.appendChild(document.createElement('div'))
+tip.className = 'tip'
+let hoverId: number | null = null
+const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
+const meter = (label: string, f: number, text: string, color = '#e6e3dc') => `<div class="row"><span>${esc(label)}</span><i class="bar"><i style="width:${Math.round(Math.min(1, f) * 100)}%;background:${color}"></i></i><em>${esc(text)}</em></div>`
+
+/** Name, [tags], how full it is, its shown properties ("?" while hidden), what a machine is doing, the description, and what can be done with it. */
+function tipHtml(it: Item) {
+  const k = KINDS[it.kind]
+  const rows = [`<b>${esc(k.name)}</b>`]
+  if (k.tags?.length) rows.push(`<div class="tags">[${esc(k.tags.join(', '))}]</div>`)
+  if (capacityOf(it)) { const ml = it.liquid?.ml ?? 0, l = it.liquid && LIQUIDS[it.liquid.type]; rows.push(meter(it.liquid ? l?.name ?? it.liquid.type : 'empty', ml / capacityOf(it), `${ml} / ${capacityOf(it)} ml`, l?.color)) }
+  for (const [name, d] of Object.entries(propDefs(it.kind))) {
+    if (!d.show) continue
+    const v = propOf(it, name)
+    if (isHidden(it, name)) rows.push(`<div class="row"><span>${esc(name)}</span><em>?</em></div>`)
+    else rows.push(d.show !== 'number' && d.max ? meter(name, v / d.max, `${v} / ${d.max}`, d.color) : `<div class="row"><span>${esc(name)}</span><em>${v}</em></div>`)
+  }
+  if (k.machine) rows.push(`<div class="status">${machineStatus(s, it).map(esc).join('<br>') || 'idle'}</div>`)
+  if (k.desc) rows.push(`<p>${esc(k.desc)}</p>`)
+  const hints = (k.uses ?? []).map(u => `drop onto a ${KINDS[u.on]?.name.toLowerCase() ?? u.on}: ${u.verb}`)
+  if (isContainer(it.kind)) hints.push('double-click to open')
+  return rows.join('') + hints.map(h => `<div class="hint">${esc(h)}</div>`).join('')
+}
+/** Show the tooltip beside the hovered item (to its right, or its left if there is no room), kept on screen. */
+function showTip() {
+  const it = hoverId === null || drag || marquee || panelDrag ? undefined : find(s, hoverId)
+  const el = it && app.querySelector<HTMLElement>(`.item[data-id="${it.id}"]`)
+  if (!it || !el) { hideTip(); return }
+  tip.innerHTML = tipHtml(it)
+  tip.classList.add('on')
+  const r = el.getBoundingClientRect(), t = tip.getBoundingClientRect()
+  const left = r.right + 10 + t.width < innerWidth - 8 ? r.right + 10 : Math.max(8, r.left - 10 - t.width)
+  tip.style.transform = `translate(${left}px, ${Math.max(8, Math.min(innerHeight - t.height - 8, r.top))}px)`
+}
+function hideTip() { hoverId = null; tip.classList.remove('on') }
+app.addEventListener('pointerover', e => {
+  const el = (e.target as HTMLElement).closest<HTMLElement>('.item[data-id]')
+  if (!el || drag || marquee || panelDrag || +el.dataset.id! === hoverId) return
+  hoverId = +el.dataset.id!
+  showTip()
+})
+app.addEventListener('pointerout', e => {
+  const el = (e.target as HTMLElement).closest('.item[data-id]')
+  if (el && (e.relatedTarget as HTMLElement | null)?.closest?.('.item[data-id]') !== el) hideTip()
+})
 
 addEventListener('resize', () => { fit(); render(new Map()); fitTray() })
 fit()

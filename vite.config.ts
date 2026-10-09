@@ -173,7 +173,8 @@ function sprites(): Plugin {
             if (v.uses !== undefined) {
               const u = v.uses as { on?: unknown; verb?: unknown }[]
               if (!Array.isArray(u) || u.length > 20 || u.some(x => !x || typeof x.on !== 'string' || typeof x.verb !== 'string' || !/^[a-z0-9-]{1,30}$/i.test(x.on) || !x.verb.trim() || x.verb.length > 30)) return fail(400, 'uses must be up to 20 of { on: a kind id or tag, verb: a short word }')
-              if (u.length) next.uses = u.map(x => ({ on: x.on as string, verb: (x.verb as string).trim() })); else delete next.uses
+              // effects written in kinds.json by hand stay with their use (matched by verb and target)
+              if (u.length) next.uses = u.map(x => ({ ...k.uses?.find(o => o.on === x.on && o.verb === (x.verb as string).trim()), on: x.on as string, verb: (x.verb as string).trim() })); else delete next.uses
             }
             kinds[kind] = next
             writeKinds(kinds)

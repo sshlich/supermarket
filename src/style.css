@@ -98,3 +98,20 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .panel-head em { font-style: normal; color: #c8623a; }
 /* how full a vessel is: a strip up its left edge in the liquid's colour */
 .gauge { position: absolute; left: 1px; bottom: 1px; width: 4px; height: calc(var(--f) * (100% - 2px)); background: var(--lc); border-radius: 1px; pointer-events: none; }
+/* a property drawn on its item: a strip up the right edge (the left is the liquid's), or a "?" while nobody has read it */
+.gauge.right { left: auto; right: 1px; }
+.unknown { position: absolute; right: 1px; top: 0; font: bold 10px ui-monospace, 'SF Mono', Menlo, monospace; line-height: 1; color: #f0ece2; text-shadow: 0 0 2px #000; pointer-events: none; }
+
+/* the tooltip: beside the hovered item, a dark panel with a muted red-brown border */
+.tip { position: fixed; left: 0; top: 0; z-index: 60; width: 230px; padding: 8px 10px; border-radius: 3px; background: #15121a; border: 1px solid #7a4a3e; font: 11px/1.45 ui-monospace, 'SF Mono', Menlo, monospace; color: #cfcbd4; pointer-events: none; opacity: 0; }
+.tip.on { opacity: 1; }
+.tip b { display: block; color: #f0ece2; font-size: 12px; }
+.tip .tags { color: #5fb3a8; }
+.tip .row { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
+.tip .row span { min-width: 52px; }
+.tip .row em { font-style: normal; color: #f0ece2; margin-left: auto; }
+.tip .bar { flex: 1; height: 5px; background: #2a2530; border-radius: 1px; overflow: hidden; }
+.tip .bar i { display: block; height: 100%; }
+.tip .status { margin-top: 4px; color: #c8623a; }
+.tip p { margin: 5px 0 0; color: #a9a5b0; }
+.tip .hint { margin-top: 3px; color: #6aa8dc; }

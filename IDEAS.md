@@ -3,6 +3,66 @@
 Where the brainstorm stands: rules that came out of it, what was liked, parked or turned down, and what to pick up next.
 Nothing here is built. `DESIGN.md` stays the record of what is.
 
+## Items: the plan (agreed 2026-10-09)
+
+Before more items: one small loop that plays. Stuff comes in, you work it, it goes out for money, and something pushes back.
+Sprites are game-icons glyphs until an item has proven itself.
+
+- **Step A, the base (built; see `DESIGN.md`, "Properties and rules"):** properties on items (a value on the item, changed by
+  machines and uses, not a different kind per state); the tooltip; one rule format for machines and uses; the clock in hours;
+  tested on the cell chain (cell, cell gauge, charger rack).
+- **Step B, the loop (next):** the catch (a bin that fills each morning from a table), the insect chain (food waste, insect bin
+  with a cell as its heat, chirps, press, slab), a value on every item, a buyer hatch that pays at the end of the day (until
+  contracts and drones replace it), credits and rent.
+- **Then:** contract slips, a hopper drone and a launch pad (the drones-and-contracts section below).
+- **Decided:** a job missing an input pauses and keeps its progress; running costs are taken every hour and the main input
+  at the end; no machine settings for now (slow/fast charging waits); no wear (friction without depth); rules and properties
+  are edited as JSON until the format settles; the farm and food kinds stay in the data but leave the tray.
+- **Left out for now:** grades and marks, VOID, legality, brands, condition, the day/night split, metered bills. Good material
+  in `SPECULATIVE/`, to add one at a time once the loop plays.
+
+## First item batch (proposal, 2026-10-09; not built, waiting for answers)
+
+Pulled from `SPECULATIVE/10-items-and-chains.md`, filtered by the rules: practical, interwoven, salvage at the core, no farm.
+Prices are the speculative file's Mills prices, as placeholders.
+
+```
+the catch (each morning) ─┬─ food waste ──► insect bin ──► chirps ─(hand grinder)─► paste ─(press)─► slabs
+                          │                  ▲  ▲   └──► frass
+                          │      cell (heat) ┘  └ jerrycan (water) ◄── tap
+                          ├─ ? / clipped cells ─(gauge, soldering iron)─► charger ─► cells: bin heat, or sell
+                          ├─ old kettle / desk fan ─(driver kit)─► element, motor, cable ─► copper, scrap
+                          └─ ballast ─► costs money to get rid of
+everything ─► buyer hatch (pays at the end of the day)
+```
+
+- **Input:** the catch (3x3, fills at 08:00 from a random table; left full, it skips the next fill); food waste sack 2x2 (2);
+  ballast sack 1x1 (the hatch charges 2 to take it); clipped cell 1x1 (0, 10 once re-terminated); old kettle 2x2 (1);
+  desk fan 2x2 (1).
+- **Cells:** soldering iron 1x3 (25): re-terminates a clipped cell in an hour. A cell's value follows its charge (1 to 3).
+- **Salvage:** driver kit 1x2 (8): strips an appliance in an hour. Heating element 1x2 (2), small motor 1x1 (3), cable coil
+  1x1 (4; strips to copper), copper bundle 1x1 (3), scrap sack 2x2 (1).
+- **Protein:** insect bin 3x3 (colony + feed + water + a cell for heat → chirps, plus frass); chirp colony 1x2 (15, stays in
+  the bin); chirps tub 2x2 (6); hand grinder 2x2 (30; a tool, chirps → paste, costs your hour); paste tub 2x2 (4); press 3x3
+  (paste → 4 slabs in 2 hours); slab 1x1 (2); frass sack 2x2 (2).
+- **Water and selling:** tap 2x2 (fills its vessel 1 L an hour and counts the litres); jerrycan 2x2 (10 L, 6); buyer hatch
+  3x3 (what is in it at the end of the day is sold for its value).
+
+Engine additions it needs: `value` on kinds (can follow a property); a rule that runs at a given hour and fills from a
+weighted random table (the catch); a yes/no property shown as a mark (`clipped`, a small stand-in for VOID); water counted at
+the tap like power; the hatch and a credits counter (step B).
+
+Later batches, as options: fat and light (render pot, chirp fat, candle mould, tallow candles, strip lights from dead lamp
+bars); the grow bed (seed, greens, tomatoes; uses the frass; needs plants that grow inside the bed's slot); store goods
+(Vitabrick, Halden Pure, gut tabs, kof), only once contracts ask for them.
+
+Open questions:
+1. Scope: this batch as listed, or swap something in from the later ones?
+2. Clipped cell as a yes/no property with a mark?
+3. The grinder as a hand tool that costs your hour (proposed), or a powered machine?
+4. Stripping: fixed yields (proposed for now), or a chance (some motors are dead)?
+5. Build the hatch with this batch, so things can be traded?
+
 ## Rules for new systems (from the discussion)
 
 - **No proximity rules outside machines and special containers.** Nothing happens because two things sit near each other on the

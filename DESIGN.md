@@ -127,8 +127,8 @@ e.g. pouring water into another container, slaughtering a rabbit with a knife, a
   Edited in the editor's Item tab ("Can be used on", one `verb: target` per line). `interaction(held, target)` and
   `targetsFor(state, held)` in `world.ts`. Placeholders in the data now: knife carve -> log, axe chop -> log, bottle pour -> bottle.
 - Behaviour now: targets light up blue while dragging; letting go with the pointer over a target uses it instead of
-  placing (the held thing goes back, a note under the field says what would happen). **No effects yet.**
-- Later: effects (results, consuming, changing kinds), and probably containers (put an item inside another).
+  placing (the held thing goes back, a note under the field says what happened). Uses can now have effects: see
+  "Properties and rules" below.
 
 ## Tooltip (postponed; notes, from the reference video, twice over so it is not lost)
 
@@ -145,11 +145,11 @@ e.g. pouring water into another container, slaughtering a rabbit with a knife, a
 ## Containers, panels, machines (agreed 2026-09-29)
 - A kind may have `slots` (each: w, h, accepts/rejects tags, optional name). Items inside carry `in: {host, slot}`; x, y are in that slot's grid.
 - Containers do not go in containers, except kinds tagged `vessel` (bottle): one extra level, `MAX_NEST` 2. Double-click a container to open it as a panel; up to 4 docks (two each side), drag a panel header onto another dock to swap. Dropping an item onto an accepting container puts it inside (blue light).
-- Next: machines = kinds with several named slots (zones); a clock button advancing `advance(state, ticks)` (hearth, still); recipes hard-coded; `uses` effects; tooltips.
+- Machines are kinds with several named slots and `machine.rules` (see "Properties and rules" below); the clock button runs `advance(state, ticks)`.
 
 ## Liquids (2026-09-29)
 - A liquid is a property of a vessel (kind `capacity`, in ml; item `liquid: {type, ml}`), not an item. Corked: nothing spills. One liquid per vessel; pouring a different one is refused. Pour = a `uses` verb on `vessel`, moves as much as fits.
-- Machines take liquid through vessels put in a slot accepting `vessel` (the flex slot); they read and write the vessel, at a per-tick rate (well/vat 250 ml, still 100 ml in, 2:1). Mixing table: later, one lookup in `pour`.
+- Machines take liquid through vessels put in a slot accepting `vessel` (the flex slot); they read and write the vessel, at an hourly rate (well/vat 250 ml, still 100 ml in, 2:1), written as rules. Mixing table: later, one lookup in `pour`.
 
 ## New items, drawn by hand (2026-10-01, branch `inventory-v2-items`)
 27 kinds, art and footprints only (no slots, uses or machines yet). Footprints follow the drawing, so odd shapes interlock:
@@ -203,3 +203,41 @@ near true size, big ones compressed, but the order holds within a family (knife 
 - Off in scale or style, left for later: the axe (4x6, an old flat glyph, as tall as the pickaxe), a chicken coop barely bigger
   than a hen, and the other old placeholders (crate, log, coal, bottle, knife, fuel chest, hearth, well, vat, still).
 - Tried and dropped: game-icons' rope coil as the rope's body. It stacks into a dome and reads as a basket at game size.
+
+## Properties and rules (2026-10-09)
+
+Step A of the items plan (`IDEAS.md`, "Items: the plan"). Items carry properties, and machines and uses are data in
+`kinds.json`, edited as JSON for now. The hard-coded hearth, well, vat and still are gone: they are rules too.
+
+- **Properties.** A kind declares them (`props`); an item carries the values (`p`) and which are still unread (`hidden`).
+  `{ "max": 100, "start": [0, 100], "show": "strip", "hidden": true, "color": "#7fb069" }`: `start` is a number or a range to
+  roll in; `show` is `number`, `gauge` (a bar in the tooltip) or `strip` (the bar, and a strip up the item's right edge on the
+  field, or a "?" while hidden); `gone` means the item is used up at 0. Values stay between 0 and `max`. Old saves get the
+  properties their kinds gained on load.
+- **Matching** (rules and uses): `kind` or `tag`; `where: { "charge": "<100" }` (`<`, `<=`, `>`, `>=`, `=`; `"?"` means
+  still hidden); for vessels `liquid` (one or several; `"none"` is empty), `ml` and `free` (room left).
+- **Effects** on one item: a property by `"+17"`, `"-4"` or `"=0"`; `ml` the same for its liquid (`liquid` names what fills an
+  empty vessel); `reveal: ["charge"]`.
+- **Machine rules,** every hour (`machine.rules`; slots are named by their `name`):
+  - `forEach: { slot, ...match }` + `hourly: { slot: effects }`: every match in the slot, every hour (the charger rack).
+  - `needs: { slot: match }` + `hours` + `hourly: { slot: effects }` + `flow` + `done: { useUp: [slots], make: { slot: kind } }`:
+    a job. It runs only while every slot holds a match. Missing an input pauses it and **keeps the progress**; running costs
+    are paid every hour and the main input is taken at the end; a full output waits. No `hours` means it just runs (the well).
+  - `flow: { from, to, ml, ratio, liquid }` moves liquid between two slots' vessels (the still: 100 ml in, half out as spirit).
+  - `power` is counted per running hour (per item for `forEach`) in `state.power`, shown on the clock. Nothing bills it yet.
+  - `label` names what it is doing; the panel head and the tooltip show each rule's state: "charging 2", "burning 1/3 h",
+    "waiting: fuel (1/3 h done)", "output full", or "idle".
+- **Uses:** `{ verb, on, where, target: effects, held: effects, useUp: ["target" | "held"], make: { kind: n }, hours }`.
+  Made things go beside the target; no room means nothing happens. A use with none of these says it "does nothing yet".
+  `pour` stays a built-in verb. The editor's "Can be used on" box and the server keep a use's effects when it saves.
+- **Clock:** a tick is an hour; a day is twelve, 08:00 to 19:00, and the next tick is the next morning (`clock(tick)`).
+- **Tooltip:** beside the hovered item (left of it if there is no room), never while dragging or sweeping. Name, [tags] in
+  teal, the liquid and the shown properties ("?" while hidden), a machine's state, the description, then hints in blue
+  (`drop onto a cell: read`, `double-click to open`). Value and price wait for step B.
+- **Legacy kinds:** `"legacy": true` keeps a kind in the data and in old saves but out of the tray. Set on the farm and
+  food kinds (cheese, ham, sausage, loaf, slice, egg, apple, hen, coop, flour sack, seedling, honey jar).
+- **New kinds** (game-icons glyphs for now): **cell** 1x1 (`charge` 0-100, rolled, hidden), **cell gauge** 1x1 (`read` on a
+  hidden cell reveals it), **charger rack** 3x3 (one 2x2 bay slot; +17 charge an hour, 0.5 hu per cell). Fuel burns down:
+  coal 6 hours, log 3, split log 2, kindling 1. The starting field has the rack, four cells and the gauge along the bottom.
+- `world.test.ts` covers rolling and reading, the charger and its power, a job that stalls and resumes, a full output, the
+  clock, and old saves.

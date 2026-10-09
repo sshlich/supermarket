@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { pour, advance, accepts, intoHost, applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, start, W, type State } from './world.ts'
+import { applyUse, clock, initProps, machineStatus, matches, pour, advance, accepts, intoHost, applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, start, W, type State } from './world.ts'
 
 const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 
@@ -286,5 +286,76 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   assert.equal(intoHost(s, lift(s, log.id)!, belt.id), null, 'the sheath takes nothing else')
   assert.equal(accepts(s, belt, { host: sack.id, slot: 0 }), false, 'a belt does not go in a knapsack')
   assert.ok(spawn(s, 'matchbox', { host: sack.id, slot: 1 }), 'small things fit the pocket')
+}
+// Properties: a new cell rolls its charge and hides it; the gauge reads only hidden cells and reveals the number.
+{
+  const s: State = { items: [], next: 1 }
+  const cell = spawn(s, 'cell')!, gauge = spawn(s, 'cell-gauge')!
+  assert.ok(cell.p!.charge >= 0 && cell.p!.charge <= 100)
+  assert.deepEqual(cell.hidden, ['charge'])
+  const read = interaction(gauge, cell)!
+  assert.equal(read.verb, 'read')
+  cell.p!.charge = 37
+  assert.match(applyUse(s, gauge, cell, read), /charge 37 \/ 100/)
+  assert.equal(cell.hidden, undefined)
+  assert.equal(interaction(gauge, cell), null, 'a read cell is no longer a target')
+  assert.ok(s.items.includes(gauge), 'the gauge is not used up')
+  const fixed: { id: number; kind: string; x: number; y: number; rot: number; p?: Record<string, number> } = { id: 99, kind: 'cell', x: 0, y: 0, rot: 0 }
+  initProps(fixed, () => 0.5)
+  assert.equal(fixed.p!.charge, 50, 'a range rolls inside it')
+  initProps(fixed, () => 0)
+  assert.equal(fixed.p!.charge, 50, 'what it has is kept')
+  assert.ok(matches(cell, { tag: 'cell', where: { charge: '>=37' } }) && !matches(cell, { where: { charge: '<37' } }))
+}
+// A forEach rule: the charger tops up every cell in its bays, stops at the max, and counts the power it draws.
+{
+  const s: State = { items: [], next: 1 }
+  const rack = spawn(s, 'charger')!
+  const a = spawn(s, 'cell', { host: rack.id, slot: 0 })!, b = spawn(s, 'cell', { host: rack.id, slot: 0 })!
+  a.p!.charge = 0; b.p!.charge = 90
+  advance(s, 1)
+  assert.deepEqual([a.p!.charge, b.p!.charge], [17, 100])
+  assert.equal(s.power, 1)
+  assert.deepEqual(machineStatus(s, rack), ['charging 1'])
+  advance(s, 5)
+  assert.equal(a.p!.charge, 100)
+  assert.equal(s.power, 3.5)
+  assert.deepEqual(machineStatus(s, rack), [])
+  assert.ok(a.hidden, 'charging does not read the cell')
+}
+// A job pauses without an input and keeps its progress; burnt-out fuel is gone; a full output waits.
+{
+  const s: State = { items: [], next: 1 }
+  const hearth = spawn(s, 'hearth')!
+  const wood = spawn(s, 'log', { host: hearth.id, slot: 1 })!
+  const coal = spawn(s, 'coal', { host: hearth.id, slot: 0 })!
+  coal.p!.burn = 1
+  advance(s, 1)
+  assert.ok(!s.items.includes(coal), 'burnt out')
+  assert.equal(hearth.m!.work[0], 1)
+  advance(s, 4)
+  assert.equal(hearth.m!.work[0], 1, 'kept while waiting')
+  assert.match(machineStatus(s, hearth)[0], /waiting: fuel \(1\/3 h done\)/)
+  spawn(s, 'coal', { host: hearth.id, slot: 0 })
+  advance(s, 2)
+  assert.ok(!s.items.includes(wood) && s.items.some(o => o.kind === 'coal' && o.in?.slot === 2))
+  // fill the output, then a second log finishes but waits for room
+  while (spawn(s, 'coal', { host: hearth.id, slot: 2 }));
+  const log2 = spawn(s, 'log', { host: hearth.id, slot: 1 })!
+  advance(s, 4)
+  assert.ok(s.items.includes(log2), 'not used up while the output is full')
+  assert.deepEqual(machineStatus(s, hearth), ['output full'])
+}
+// The clock: twelve hours a day from 08:00.
+{
+  assert.deepEqual(clock(0), { day: 1, hour: 8 })
+  assert.deepEqual(clock(11), { day: 1, hour: 19 })
+  assert.deepEqual(clock(12), { day: 2, hour: 8 })
+}
+// Old saves: the old hearth state goes, and items get the properties their kind has since gained.
+{
+  const t = settle({ items: [{ id: 1, kind: 'hearth', x: 0, y: 0, rot: 0, m: { burn: 2, work: 1 } as never }, { id: 2, kind: 'coal', x: 5, y: 0, rot: 0 }], next: 3 })
+  assert.equal(t.items[0].m, undefined)
+  assert.equal(t.items[1].p!.burn, 6)
 }
 console.log('world ok')

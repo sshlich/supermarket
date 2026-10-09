@@ -1857,7 +1857,7 @@ root.addEventListener('change', e => {
   if (t.matches('[data-itemdesc]')) { const v = t.value.trim(); if (v) k.desc = v; else delete k.desc; saveKind({ desc: v }) }
   else if (t.matches('[data-itemnotes]')) { const v = t.value.trim(); if (v) k.notes = v; else delete k.notes; saveKind({ notes: v }) }
   else if (t.matches('[data-itemuses]')) {
-    const list = t.value.split('\n').map(l => l.split(':').map(s => s.trim())).filter(p => p.length === 2 && p[0] && p[1]).map(([verb, on]) => ({ on, verb }))
+    const list = t.value.split('\n').map(l => l.split(':').map(s => s.trim())).filter(p => p.length === 2 && p[0] && p[1]).map(([verb, on]) => ({ ...k.uses?.find(u => u.on === on && u.verb === verb), on, verb })) // keeps a use's effects
     if (list.length) k.uses = list; else delete k.uses
     saveKind({ uses: list })
   }

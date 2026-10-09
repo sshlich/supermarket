@@ -11,23 +11,53 @@ export const H = 20
  * rectangle, says which squares inside it are taken ('#') and which are free ('.'). The rest is for people: a description
  * (for tooltips), private notes, and tags.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; uses?: Use[]; slots?: Slot[]; machine?: string; capacity?: number }
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; uses?: Use[]; slots?: Slot[]; machine?: { rules: Rule[] }; capacity?: number; props?: Record<string, PropDef>; legacy?: boolean }
 /**
  * A container's inside, or one named zone of a machine: a small grid with its own rules. A plain container has one slot; a
  * machine has several (input, fuel, output...). `accepts` and `rejects` are tags; nothing else is checked.
  */
 export interface Slot { name?: string; w: number; h: number; accepts?: string[]; rejects?: string[] }
-/** Held, this can be used on another thing: `on` is a kind id or a tag ("pour" on a bottle, "slaughter" on anything tagged animal). */
-export interface Use { on: string; verb: string }
+/**
+ * Held, this can be used on another thing: `on` is a kind id or a tag ("pour" on a bottle, "read" on anything tagged cell),
+ * `where` narrows it to targets whose properties pass. The rest is what it does: effects on the target and on the held thing,
+ * what is used up, what is made (beside the target), and how many hours it takes. With none of those it does nothing yet.
+ */
+export interface Use { on: string; verb: string; where?: Record<string, string>; target?: Effects; held?: Effects; useUp?: ('target' | 'held')[]; make?: Record<string, number>; hours?: number }
+
+/**
+ * A property a kind's items carry (charge, burn...): a number from 0 to `max`. `start` is where a new one begins, or a range it
+ * rolls in. `show` puts it in the tooltip: "number", "gauge" (a bar, in `color`), or "strip" (the bar, and a strip up the item's edge on the field). `hidden` ones read "?" until
+ * something reveals them. `gone`: the item is used up when it reaches 0 (fuel burnt out).
+ */
+export interface PropDef { max?: number; start?: number | number[]; show?: string; hidden?: boolean; gone?: boolean; color?: string }
+/**
+ * What a rule or use looks for in an item: a kind or a tag, property tests (`where: { charge: "<100" }`, "?" for hidden),
+ * and for vessels the liquid ("none" is empty; several allowed), how much is in it (`ml`) and how much room is left (`free`).
+ */
+export interface Match { kind?: string; tag?: string; where?: Record<string, string>; liquid?: string | string[]; ml?: string; free?: string }
+/** Changes to one item: a property by "+n", "-n" or "=n"; `ml` the same for its liquid (`liquid` names what fills an empty vessel); `reveal` uncovers hidden properties. */
+export type Effects = Record<string, string | string[]>
+/**
+ * One thing a machine does every hour. Two shapes:
+ * - `forEach`: every item in that slot that matches gets the slot's `hourly` effects (a charger topping up each cell).
+ * - `needs`: a job. It runs only while every named slot holds a match; each running hour applies `hourly` (keyed by slot)
+ *   and `flow`, and after `hours` it is `done`: the listed slots' items are used up and `make` puts new ones in slots.
+ *   Missing an input pauses it and keeps the progress; a full output makes it wait. Without `hours` it just runs.
+ * `power` is counted per running hour (per item for `forEach`); nothing bills it yet.
+ */
+export interface Rule { label?: string; forEach?: Match & { slot: string }; needs?: Record<string, Match>; hours?: number; hourly?: Record<string, Effects>; flow?: Flow; done?: { useUp?: string[]; make?: Record<string, string | string[]> }; power?: number }
+/** Liquid moved each hour from one slot's vessel to another's, at most `ml` taken; `ratio` of it arrives (as `liquid`, if it changes). */
+export interface Flow { from: string; to: string; ml: number; ratio?: number; liquid?: string }
 
 /** What things are. Sizes are in field cells and every footprint is a plain rectangle; the data lives in kinds.json so the sprite editor can change it. */
 export const KINDS: Record<string, Kind> = DATA
 
 /** `rot` is how many quarter turns clockwise it has been turned (0 to 3): 2 is upside down. */
 /** `in` says which container's slot it sits in (its x, y are then inside that slot's grid); no `in` means on the field. */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; m?: { burn: number; work: number }; liquid?: { type: string; ml: number } }
-/** `panels` are the open containers, docked to the sides: [left top, left bottom, right top, right bottom]. */
-export interface State { items: Item[]; next: number; panels?: (number | null)[]; tick?: number }
+/** `p` holds its properties' values, `hidden` the ones nobody has read yet; `m` is a machine's progress on each job rule (by rule index). */
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; m?: { work: Record<number, number> }; liquid?: { type: string; ml: number }; p?: Record<string, number>; hidden?: string[] }
+/** `panels` are the open containers, docked to the sides: [left top, left bottom, right top, right bottom]. `tick` counts hours; `power` is what machines have drawn. */
+export interface State { items: Item[]; next: number; panels?: (number | null)[]; tick?: number; power?: number }
 
 const SHAPES = new Map<string, { sig: string; box: Box }>()
 /** A kind's footprint as the grid sees it, facing the way it is made. */
@@ -223,7 +253,7 @@ export function remove(s: State, ids: number[]) {
 /** What holding `held` over `target` would do, if anything: the first of the held kind's `uses` that names the target's kind or one of its tags. */
 export function interaction(held: Item, target: Item): Use | null {
   const tags = KINDS[target.kind].tags ?? []
-  return (KINDS[held.kind].uses ?? []).find(u => (u.on === target.kind || tags.includes(u.on)) && (u.verb !== 'pour' || canPour(held, target))) ?? null
+  return (KINDS[held.kind].uses ?? []).find(u => (u.on === target.kind || tags.includes(u.on)) && matches(target, { where: u.where }) && (u.verb !== 'pour' || canPour(held, target))) ?? null
 }
 /** Everything the held thing can be used on (anywhere; what is on screen is the page's business). */
 export const targetsFor = (s: State, held: Item[]) => s.items.filter(o => !held.includes(o) && interaction(held[0], o))
@@ -249,6 +279,10 @@ function layout(items: Item[], w: number, h: number): { kept: Item[]; lost: Item
  */
 export function settle(s: State): State {
   let items = s.items.filter(o => KINDS[o.kind]).map(o => ({ ...o, rot: quarter(o.rot) }))
+  for (const o of items) {
+    if (o.m && typeof o.m.work !== 'object') delete o.m // the old hearth's { burn, work }
+    initProps(o) // properties a kind gained since this was saved
+  }
   const state: State = { ...s, items }
   // pass 1: anything in a slot that does not exist, or that its slot now refuses, goes back out to the field
   const evict = (o: Item) => { delete o.in }
@@ -286,13 +320,14 @@ export function spawn(s: State, kind: string, space: Space = null): Item | null 
   if (!spot) return null
   s.next++
   Object.assign(it, { x: spot.x, y: spot.y, rot: spot.rot })
+  initProps(it)
   s.items.push(it)
   return it
 }
 
 export function start(): State {
   const s: State = { items: [], next: 1, panels: [null, null, null, null] }
-  const put = (kind: string, x: number, y: number, rot = 0) => s.items.push({ id: s.next++, kind, x, y, rot })
+  const put = (kind: string, x: number, y: number, rot = 0) => { const it: Item = { id: s.next++, kind, x, y, rot }; initProps(it); s.items.push(it) }
   put('crate', 3, 3)
   put('axe', 10, 3)
   put('pickaxe', 16, 4)
@@ -303,6 +338,9 @@ export function start(): State {
   s.items[s.items.length - 1].liquid = { type: 'water', ml: 500 }
   put('bottle', 21, 11)
   put('knife', 22, 4)
+  put('charger', 2, 16)
+  for (const x of [6, 7, 8, 9]) put('cell', x, 17)
+  put('cell-gauge', 11, 17)
   return s
 }
 
@@ -333,57 +371,176 @@ export function pour(from: Item, to: Item): number {
 const give = (it: Item, type: string, ml: number) => { it.liquid = { type, ml: amount(it) + ml } }
 const take = (it: Item, ml: number) => { it.liquid!.ml -= ml; if (it.liquid!.ml <= 0) delete it.liquid }
 
+// ---------------------------------------------------------------- properties
+
+export const propDefs = (kind: string): Record<string, PropDef> => KINDS[kind]?.props ?? {}
+export const propOf = (it: Item, name: string) => it.p?.[name] ?? 0
+export const isHidden = (it: Item, name: string) => !!it.hidden?.includes(name)
+
+/** Give an item the properties its kind has and it lacks: each starts at its kind's value or rolls one in its range; hidden ones start hidden. */
+export function initProps(it: Item, roll = Math.random) {
+  for (const [name, d] of Object.entries(propDefs(it.kind))) {
+    if (it.p?.[name] !== undefined) continue
+    const [lo, hi] = Array.isArray(d.start) ? d.start : [d.start ?? 0, d.start ?? 0]
+    ;(it.p ??= {})[name] = lo + Math.round(roll() * (hi - lo))
+    if (d.hidden && !isHidden(it, name)) (it.hidden ??= []).push(name)
+  }
+}
+
+/** Does a value pass a test: "<100", "<=5", ">0", ">=50", "=0" (a bare number means equal)? "?" passes only while it is hidden. */
+function test(cond: string, v: number, hidden = false): boolean {
+  if (cond === '?') return hidden
+  const m = /^(<=|>=|<|>|=)?\s*(-?\d+(?:\.\d+)?)$/.exec(cond.trim())
+  if (!m) return false
+  const n = +m[2]
+  return m[1] === '<' ? v < n : m[1] === '<=' ? v <= n : m[1] === '>' ? v > n : m[1] === '>=' ? v >= n : v === n
+}
+/** A value after "+17", "-4" or "=0". */
+function change(v: number, op: string): number {
+  const m = /^([+=-])\s*(\d+(?:\.\d+)?)$/.exec(op.trim())
+  return !m ? v : m[1] === '=' ? +m[2] : v + (m[1] === '+' ? +m[2] : -m[2])
+}
+
+/** Is this item what a rule or a use is looking for? */
+export function matches(it: Item, m: Match): boolean {
+  if (m.kind && it.kind !== m.kind) return false
+  if (m.tag && !(KINDS[it.kind]?.tags ?? []).includes(m.tag)) return false
+  if (m.liquid !== undefined && ![m.liquid].flat().includes(it.liquid?.type ?? 'none')) return false
+  if (m.ml && !test(m.ml, amount(it))) return false
+  if (m.free && !test(m.free, capacityOf(it) - amount(it))) return false
+  return Object.entries(m.where ?? {}).every(([k, c]) => test(c, propOf(it, k), isHidden(it, k)))
+}
+
+/** Change one item (see `Effects`). Properties stay between 0 and their max; one marked `gone` takes the item away at 0. */
+function affect(s: State, it: Item, fx: Effects) {
+  for (const [k, v] of Object.entries(fx)) {
+    if (k === 'liquid') continue
+    if (k === 'reveal') {
+      it.hidden = it.hidden?.filter(h => !(v as string[]).includes(h))
+      if (!it.hidden?.length) delete it.hidden
+    } else if (k === 'ml') {
+      const n = change(amount(it), v as string) - amount(it)
+      const type = (fx.liquid as string | undefined) ?? it.liquid?.type
+      if (n > 0 && type && (!it.liquid || it.liquid.type === type)) { const room = Math.min(n, capacityOf(it) - amount(it)); if (room > 0) give(it, type, room) }
+      if (n < 0 && it.liquid) take(it, Math.min(-n, amount(it)))
+    } else {
+      const d = propDefs(it.kind)[k]
+      const next = Math.max(0, Math.min(d?.max ?? Infinity, change(propOf(it, k), v as string)))
+      ;(it.p ??= {})[k] = next
+      if (d?.gone && next <= 0) remove(s, [it.id])
+    }
+  }
+}
+
+// ---------------------------------------------------------------- uses
+
+/** Do what a use says to the target and the held thing; returns a line saying what happened. Made things go beside the target; if there is no room, nothing happens. */
+export function applyUse(s: State, held: Item, target: Item, u: Use): string {
+  const name = (it: Item) => KINDS[it.kind].name
+  if (u.verb === 'pour') { const type = LIQUIDS[held.liquid?.type ?? '']?.name ?? held.liquid?.type, n = pour(held, target); return `poured ${n} ml of ${type}` }
+  if (!u.target && !u.held && !u.useUp?.length && !u.make && !u.hours) return `${name(held)} → ${name(target)}: ${u.verb} (does nothing yet)`
+  const made: Item[] = []
+  for (const [kind, n] of Object.entries(u.make ?? {})) for (let i = 0; i < n; i++) {
+    const o = spawn(s, kind, spaceOf(target))
+    if (!o) { remove(s, made.map(m => m.id)); return `${u.verb}: no room for the ${KINDS[kind]?.name ?? kind}` }
+    made.push(o)
+  }
+  if (u.target) affect(s, target, u.target)
+  if (u.held) affect(s, held, u.held)
+  const gone = [u.useUp?.includes('target') && target.id, u.useUp?.includes('held') && held.id].filter((x): x is number => typeof x === 'number')
+  if (gone.length) remove(s, gone)
+  if (u.hours) advance(s, u.hours)
+  const shown = [u.target?.reveal ?? []].flat().map(k => `${k} ${propOf(target, k)}${propDefs(target.kind)[k]?.max !== undefined ? ` / ${propDefs(target.kind)[k].max}` : ''}`)
+  return [`${u.verb} ${name(target)}`, ...shown, ...made.map(name)].join(' · ')
+}
+
 // ---------------------------------------------------------------- time and machines
 
-/** How many ticks a piece of fuel burns. */
-const FUEL: Record<string, number> = { coal: 6, log: 3 }
-/** What the hearth turns an input into, and in how many burning ticks. Recipes are hard-coded for now. */
-const RECIPES: Record<string, { out: string; time: number }> = { log: { out: 'coal', time: 3 } }
-
-const zone = (s: State, host: Item, slot: number) => inSpace(s, { host: host.id, slot })
-
-/** Slots of a hearth: 0 fuel, 1 input, 2 output. Burns one fuel at a time; while burning, the first input with a recipe works toward its output. */
-function hearth(s: State, h: Item) {
-  const m = h.m ??= { burn: 0, work: 0 }
-  const job = zone(s, h, 1).find(o => RECIPES[o.kind])
-  if (m.burn === 0 && job) {
-    const fuel = zone(s, h, 0).find(o => FUEL[o.kind])
-    if (fuel) { m.burn = FUEL[fuel.kind]; remove(s, [fuel.id]) }
+/** Slot index by name (rules name slots, so they read like the panel does). */
+const slotNamed = (kind: string, name: string) => (KINDS[kind]?.slots ?? []).findIndex(sl => sl.name === name)
+const zone = (s: State, host: Item, slot: number) => slot < 0 ? [] : inSpace(s, { host: host.id, slot })
+const inSlot = (s: State, h: Item, name: string) => zone(s, h, slotNamed(h.kind, name))
+/** What each of a job's slots holds that it needs, or the name of the first slot that holds nothing it needs. */
+function gather(s: State, h: Item, r: Rule): Record<string, Item> | string {
+  const got: Record<string, Item> = {}
+  for (const [slot, m] of Object.entries(r.needs ?? {})) {
+    const o = inSlot(s, h, slot).find(x => matches(x, m))
+    if (!o) return slot
+    got[slot] = o
   }
-  if (m.burn === 0) { m.work = 0; return }
-  m.burn--
-  if (!job) return
-  m.work++
-  const r = RECIPES[job.kind]
-  if (m.work >= r.time && spawn(s, r.out, { host: h.id, slot: 2 })) { remove(s, [job.id]); m.work = 0 } // no room in the output: it waits
-}
-/** The vessel in a machine's slot, if any. Machines work through vessels you put in: the slot is the flex slot for liquid containers. */
-const vesselIn = (s: State, h: Item, slot: number) => zone(s, h, slot).find(o => capacityOf(o))
-
-/** A source (well, vat): tops up the vessel in slot 0 by `rate` ml a tick with one liquid. */
-const source = (liquid: string, rate: number) => (s: State, h: Item) => {
-  const v = vesselIn(s, h, 0)
-  if (!v || (v.liquid && v.liquid.type !== liquid)) return
-  const n = Math.min(rate, capacityOf(v) - amount(v))
-  if (n > 0) give(v, liquid, n)
+  return got
 }
 
-/** The still: at most STILL_RATE ml of mash a tick from the vessel in slot 0 into the vessel in slot 1, two ml of mash for one of spirit. */
-const STILL_RATE = 100
-function still(s: State, h: Item) {
-  const a = vesselIn(s, h, 0), b = vesselIn(s, h, 1)
-  if (a?.liquid?.type !== 'brew' || !b || (b.liquid && b.liquid.type !== 'spirit')) return
-  const n = Math.min(STILL_RATE, amount(a), (capacityOf(b) - amount(b)) * 2) & ~1
-  if (n < 2) return
-  take(a, n)
-  give(b, 'spirit', n / 2)
+/** Move liquid from one vessel to another, as much as the source has, the cap allows and the receiver has room for. */
+function flow(from: Item, to: Item, f: Flow) {
+  const type = f.liquid ?? from.liquid?.type
+  const ratio = f.ratio ?? 1
+  if (!type || (to.liquid && to.liquid.type !== type)) return
+  const out = Math.min(Math.floor(Math.min(f.ml, amount(from)) * ratio), capacityOf(to) - amount(to))
+  if (out <= 0) return
+  take(from, Math.min(amount(from), Math.ceil(out / ratio)))
+  give(to, type, out)
 }
-const MACHINES: Record<string, (s: State, h: Item) => void> = { hearth, well: source('water', 250), vat: source('brew', 250), still }
 
-/** Let time pass: every machine takes its turn, once per tick. The one entry point, so anything can trigger it later. */
+/** Make a job's outputs; if any does not fit, none are made. */
+function make(s: State, h: Item, what: Record<string, string | string[]>): boolean {
+  const made: Item[] = []
+  for (const [slot, kinds] of Object.entries(what)) for (const kind of [kinds].flat()) {
+    const o = spawn(s, kind, { host: h.id, slot: slotNamed(h.kind, slot) })
+    if (!o) { remove(s, made.map(m => m.id)); return false }
+    made.push(o)
+  }
+  return true
+}
+
+/** One hour of one rule on one machine. */
+function run(s: State, h: Item, r: Rule, i: number) {
+  const draw = (n: number) => { if (r.power) s.power = Math.round(((s.power ?? 0) + r.power * n) * 100) / 100 }
+  if (r.forEach) {
+    const { slot, ...m } = r.forEach
+    const list = inSlot(s, h, slot).filter(o => matches(o, m))
+    for (const o of list) if (r.hourly?.[slot]) affect(s, o, r.hourly[slot])
+    draw(list.length)
+    return
+  }
+  const got = gather(s, h, r)
+  if (typeof got === 'string') return // waiting for an input: progress is kept
+  const work = (h.m ??= { work: {} }).work
+  const finish = () => {
+    if (!make(s, h, r.done?.make ?? {})) return // the output is full: it waits, done
+    remove(s, (r.done?.useUp ?? []).map(sl => got[sl]?.id).filter((x): x is number => x !== undefined))
+    work[i] = 0
+  }
+  if (r.hours && (work[i] ?? 0) >= r.hours) return finish()
+  for (const [slot, fx] of Object.entries(r.hourly ?? {})) if (got[slot]) affect(s, got[slot], fx)
+  if (r.flow && got[r.flow.from] && got[r.flow.to]) flow(got[r.flow.from], got[r.flow.to], r.flow)
+  draw(1)
+  if (!r.hours) return
+  work[i] = (work[i] ?? 0) + 1
+  if (work[i] >= r.hours) finish()
+}
+
+/** What a machine is doing, for its panel and tooltip: each rule's state ("charging 2", "burning 1/3 h", "waiting: fuel", "output full"). */
+export function machineStatus(s: State, h: Item): string[] {
+  return (KINDS[h.kind]?.machine?.rules ?? []).flatMap((r, i) => {
+    const label = r.label ?? 'working'
+    if (r.forEach) { const { slot, ...m } = r.forEach; const n = inSlot(s, h, slot).filter(o => matches(o, m)).length; return n ? [`${label} ${n}`] : [] }
+    const work = h.m?.work[i] ?? 0
+    if (r.hours && work >= r.hours) return ['output full']
+    const got = gather(s, h, r)
+    if (typeof got === 'string') return [`waiting: ${got}${work ? ` (${work}/${r.hours} h done)` : ''}`]
+    return [r.hours ? `${label} ${work}/${r.hours} h` : label]
+  })
+}
+
+/** Let time pass, an hour a tick: every machine runs each of its rules once per tick. The one entry point, so anything can trigger it later. */
 export function advance(s: State, ticks = 1) {
-  for (let i = 0; i < ticks; i++) {
+  for (let t = 0; t < ticks; t++) {
     s.tick = (s.tick ?? 0) + 1
-    for (const it of [...s.items]) { const k = KINDS[it.kind]?.machine; if (k && MACHINES[k] && s.items.includes(it)) MACHINES[k](s, it) }
+    for (const it of [...s.items]) (KINDS[it.kind]?.machine?.rules ?? []).forEach((r, i) => { if (s.items.includes(it)) run(s, it, r, i) })
   }
 }
+
+/** The clock: a day is twelve hours, 08:00 to 19:00, and the next tick is the next morning. */
+export const HOURS_A_DAY = 12
+export const clock = (tick = 0) => ({ day: Math.floor(tick / HOURS_A_DAY) + 1, hour: 8 + (tick % HOURS_A_DAY) })

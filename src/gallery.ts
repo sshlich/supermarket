@@ -59,7 +59,7 @@ function card(id: string) {
   const lines = [
     `${id} · ${k.w}×${k.h}${k.cells ? ` · ${k.cells.join('/')}` : ''}`,
     k.slots?.length ? `holds ${k.slots.map(s => `${s.name ? s.name + ' ' : ''}${s.w}×${s.h}${s.accepts?.length ? ` (${s.accepts.join(', ')})` : ''}`).join(', ')}` : '',
-    k.machine ? `machine: ${k.machine}` : '',
+    k.machine ? `machine: ${k.machine.rules.map(r => r.label ?? 'working').join(', ')}` : '',
   ].filter(Boolean)
   return `<figure class="card" style="--gw:${d.w + 2}" title="${esc(k.desc ?? '')}">
     <div class="grid" style="--w:${d.w + 2};--h:${d.h + 2}">${itemHtml(it)}</div>
