@@ -6,7 +6,7 @@ another version of the same thing; **Hook:** is a mystery or story seed; **In pl
 
 This file builds on the founding design in `01-history.md` (the Plinth and the Shaft, the mechanical floors, the Kessin
 lifts, the Tube, the risers, the Sorrel meters), the plumbing in `03-water.md` (the Waterhouse, the three lines, the break
-tanks) and the prices in `04-economy.md` (floor 17 at a quarter of a credit a square a week, the rate card, the Creep). Where it adds a
+tanks) and the prices in `04-economy.md` (floor 17 at 125 cr a week, the rate card, the Creep). Where it adds a
 number of its own, the number is a working one chosen to sit beside theirs.
 
 ---
@@ -457,18 +457,18 @@ from the Lantern's service lift, and leaves. Nobody on the Crown staff loads it.
 ## Part two: band by band
 
 Each band below gets the same treatment: what it is like to stand there, who lives there, what is for sale, what the squares,
-water, power and light cost, and its named places. Rent figures are the base rates from the Floor Rate Card in
-`04-economy.md` (Period 86/3), per square per week.
+water, power and light cost, and its named places. Rent figures are the numbers on the Floor Rate Card in
+`04-economy.md` (Period 86/3): a standard board, per rent week.
 
 A table to keep in mind while reading, because it is the divide in one glance:
 
-| Band | Rent / square / week | Tap hours (see 03) | Power | Air | Light |
+| Band | Rent / board / week | Tap hours (see 03) | Power | Air | Light |
 |---|---|---|---|---|---|
 | Crown 90–104 | not leased; held as title | always | own skin + never shed | 90 Lung, roof air | daylight; full-spectrum at night |
-| Terraces 60–89 | 3.00–9.50 | always | never shed | 60 Lung, the Gills, metered | windows, self-dimming glass |
-| Middle 30–59 | 0.60–2.20 | always; low pressure 13:00–17:00 | shed last, in rotation | 30 Lung up-feed, metered | outer ring windows (brownglass); inner flats lamp-lit |
-| Mills 10–29 | 0.15–0.45 (17: 0.25) | 06:00–09:00 and 18:00–21:00 | shed at slack hour | 30 Lung down-feed + return air; flat levy | lamps; cut windows |
-| Sump 4–9 | 0.05–0.10 | standpipes 07:00–08:00 | shed first; mostly stolen | what's left | lamps, luminous paint, the glow of the Waterhouse |
+| Terraces 60–89 | 1,500–4,750 | always | never shed | 60 Lung, the Gills, metered | windows, self-dimming glass |
+| Middle 30–59 | 300–1,100 | always; low pressure 13:00–17:00 | shed last, in rotation | 30 Lung up-feed, metered | outer ring windows (brownglass); inner flats lamp-lit |
+| Mills 10–29 | 75–225 (17: 125) | 06:00–09:00 and 18:00–21:00 | shed at slack hour | 30 Lung down-feed + return air; flat levy | lamps; cut windows |
+| Sump 4–9 | 25–50 | standpipes 07:00–08:00 | shed first; mostly stolen | what's left | lamps, luminous paint, the glow of the Waterhouse |
 | Drowned 0–3 | not leased; "salvage rights" | — | the Race turns here | none | none |
 
 ---
@@ -570,7 +570,7 @@ Ledger. Many of them grew up in the Middle and keep a small, specific fear of it
 **For sale.** Services more than things: clinics, lawyers, grading, restaurants, tutors, the plant service. Goods come by
 order or from **Halden Select** on 70, the store branch that does not take scrip.
 
-**Squares and utilities.** 3 to 5.50 cr a square on 60–74, 6 to 9.50 on 75–89. Water a flat 140 cr a week, "unlimited".
+**Rent and utilities.** A standard board is 1,500 to 2,750 cr a week on 60–74, 3,000 to 4,750 on 75–89. Water a flat 140 cr a week, "unlimited".
 Air metered by vent register in tiers. Power never shed. A Terraces flat runs to something like 6,000 cr a week, which is two
 hundred days of a Mills labourer's wage.
 
@@ -674,7 +674,7 @@ in how carefully they dress.
 Orrin outlets; licensed water kiosks run by certified providers with brass plaques; licensed repair shops; tutors; small
 cafés; a lot of things that are the Mills' things, cleaned, relabelled and sold at three times the price.
 
-**Squares and utilities.** 0.60 to 0.90 cr a square on 30–39, 1 to 1.40 on 40–49, 1.50 to 2.20 on 50–59. Everything metered at the
+**Rent and utilities.** A standard board is 300 to 450 cr a week on 30–39, 500 to 700 on 40–49, 750 to 1,100 on 50–59. Everything metered at the
 door: tap, socket, vent register. Water always on, at low pressure in the afternoon. Power shed in rotation at slack hour,
 an hour at a time by building-quarter, announced on the corridor lights by a blink.
 
@@ -758,7 +758,7 @@ Sublet barons who hold whole aisles. People who came up from the Sump and people
 negotiable, and paid in credits, scrip, Co-op produce chits, cells or favours. **The Hatch**, the store branch behind its
 grille, is on 11, 18 and 27.
 
-**Squares and utilities.** 0.15 cr a square on 10–13, 0.20 to 0.30 on 14–19 (17: 0.25), 0.35 to 0.45 on 20, 21 and 27–29. The Atmosphere Levy on
+**Rent and utilities.** A standard board is 75 cr a week on 10–13, 100 to 150 on 14–19 (17: 125), 175 to 225 on 20, 21 and 27–29. The Atmosphere Levy on
 top. A shared **tap post** per aisle with a key-meter per lease, tap hours twice a day; a **socket board** per lease, shed at
 slack hour. Salt-line outlets in most halls for flushing, free and poisonous.
 
@@ -788,7 +788,7 @@ and the Waterhouse's own few Company staff, who do not live here and come and go
 **For sale.** Salvage from the drowned floors and the Flats (first-fit parts, if you know who to ask), chute bales, stinker
 water, cells charged off stolen lines at half the store price, plasma money, gin, and labour by the hour.
 
-**Squares and utilities.** 0.05 cr a square on 4–5 (wet), 0.10 on 6–9. Halden barely collects; sublet barons and the gangs collect
+**Rent and utilities.** A standard board is 25 cr a week on 4–5 (wet), 50 on 6–9. Halden barely collects; sublet barons and the gangs collect
 instead, as "floor dues". Water from standpipes, one hour a day, in a queue, or from a stinker. Power shed first; most of it
 is drawn from tapped cables that run up from the Race, paid for to whichever gang holds that cable.
 
@@ -993,7 +993,7 @@ routes:
 left in a hurry. Taking over the cage (a lease extension when it falls vacant) is how the player inherits the requisitions.
 
 **Numbers.** About 430 leases; about three thousand people, of whom some eleven hundred sleep on the floor
-and the rest come in to work. Base rate a quarter of a credit a square, frontage x1.5. Catch rights on all four trunks; the player's starting
+and the rest come in to work. Rent 125 cr a week for a standard board. Catch rights on all four trunks; the player's starting
 catch is a one-in-twelve on the East Chute (the Kitchen), on the catch apron at the back of the cage.
 
 **What 17 has.**
@@ -1009,7 +1009,7 @@ catch is a one-in-twelve on the East Chute (the Kitchen), on the catch apron at 
 - **The Three Grate**: a rusted grille in the core wall of sector C into riser R3, cut open by vent kids in Y70 and
   officially "scheduled for repair" ever since. It is the floor's free shaft.
 - **The Works Benches**: founding-era ESD benches bolted to the floor in about a hundred leases, black-topped, grounded, with
-  built-in magnifier arms. Under Clause 11 they are Company property. Repairers lease the squares under them at x1.2 and
+  built-in magnifier arms. Under Clause 11 they are Company property. Repairers pay a fixture charge for the bench and
   consider it cheap.
 - **The Glove Wall.**
 
@@ -1114,7 +1114,7 @@ empire of curtained bays. **Twenty Station**, the Tube's second station, makes 2
 couriers both keep lockers here. Common Load is high and nobody knows whose it is.
 
 **50. Underhum (floor 21).** Line Eight's floor, directly under the Clean Core. The ceiling is warm at night. Insect ranchers pay
-0.40 cr a square and a thermal amenity line for it, and sleep beside their bins in winter. The call plate on Lift Zero's well is here,
+200 cr a week for a board here, with a thermal amenity line on top, and sleep beside their bins in winter. The call plate on Lift Zero's well is here,
 behind a bunk partition. The cracks in the ceiling show the yellow.
 
 **51. Overhum (floor 27).** Above the Clean Core. Warm floor. The old **Line Nine control room**, now part of a lease (a

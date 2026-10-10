@@ -3,7 +3,7 @@
 *Speculative. Rocks and soil. Plain text is the main version; **Alternative:** is another version of the same thing;
 **Hook:** is a story seed; **In play:** is how it surfaces in the game. Names, numbers, floors and dates follow
 `00-canon-brief.md`. Money numbers follow `04-economy.md` (a Mills labourer earns about 30 cr a day; a Vitabrick is 3 cr;
-a square of the board on 17 is a quarter of a credit a week; the starting lease is the 25 x 20 board). Faction standing uses the five steps from `06a`
+rent on 17 is a fixed 125 cr a week, rising every month; the starting lease is the 25 x 20 board). Faction standing uses the five steps from `06a`
 (Hostile, Wary, Known, Trusted, Kin).*
 
 This file is about you: who you were before the stores cage on 17, what you were handed on the first morning, how you
@@ -654,10 +654,10 @@ features sit; the game can move any of them.)
   row 20 FFFFFFFFFFFFFFFFFFFFFFFFF
           Stores Run (corridor, along the bottom)
 
-  F  frontage (x1.5): the two rows along the corridor; the issuing counter is bolted along row 20
-  P  the pillar (2x2): dead squares, billed at half, the socket board on its face
+  F  frontage: the two rows along the corridor; the issuing counter is bolted along row 20
+  P  the pillar (2x2): dead squares, the socket board on its face
   C  the catch (3x3): where the East Chute lands, the Kitchen, one-in-twelve
-  B  Works Bench (3x2): bolted down, Company property, leased at x1.2
+  B  Works Bench (3x2): bolted down, Company property, a fixture charge on the rent
   L  launch pad (3x3): where the Wren sits
   I  insect bin (3x3)   G  grow bed (4x3)   D  grinder (2x2): arrive in place on day one
   .  open floor
@@ -665,17 +665,15 @@ features sit; the game can move any of them.)
 
 - **The frontage (50 squares).** The old **issuing counter** is bolted along the front: a steel counter with a brass edge worn
   silver by forty years of elbows, and a hatch in its top where the Works stores clerk pushed out gloves and wafers. The counter
-  is your shop's face. Shelves and the show window only sell from frontage squares (file 04), so every square in these two rows
-  is worth half again.
+  is your shop's face. Shelves and the show window only sell from frontage squares (file 04), so these two rows are the ones that earn.
 - **The pillar (4 squares).** A founding-era round column with the lease's **socket board** clamped to it: four sockets and a
-  meter with drums. Dead squares, billed at half. The only power on your lease comes from it, which makes the pillar the most
+  meter with drums. Dead squares. The only power on your lease comes from it, which makes the pillar the most
   important block you cannot use.
 - **The catch (9 squares).** At the back, in the corner: a steel flap in the floor and a **diverter bin** under it, your
   one-in-twelve share of the East Chute, which the Mills call **the Kitchen** because it falls past Lantern Row's restaurants on 75
   and Orrin's test kitchen on 80. At 06:00 the Morning Fall comes down and the catch bangs. By 08:00 the bin is full. If you leave
   it full it stops filling ("a full catch catches nothing"), and floor 16 gets your share.
-- **The Works Bench (6 squares).** Black-topped, grounded, with a built-in magnifier arm. Company property. You lease the six
-  squares it stands on at x1.2. Cas Lenk's old one (in some pasts) or just the cage's own.
+- **The Works Bench (6 squares).** Black-topped, grounded, with a built-in magnifier arm. Company property, on the rent as a 2 cr fixture charge. Cas Lenk's old one (in some pasts) or just the cage's own.
 - **The launch pad (9 squares).** Where the Wren sits. A drone leaves the cage through the mesh roof hatch over the pad and goes
   along the core wall to the **17-C spur** (Halden's lane door) or to the **Three Grate** (the free shaft).
 - **The rest (about 400 squares).** Open floor. On day one the insect bin, the grow bed and the grinder arrive in place, on
@@ -846,9 +844,9 @@ his. That lease was Tamar Lisowski's. She lives in the offcut now.
 
 ### The first week
 
-**Rent day** is the night of day 7. On floor 17, the board's 500 squares: 440 at 0.25, 50 frontage at 0.375, 4 pillar at 0.125, 6
-under the Works Bench at 0.30: 131.05, rounded by the Ledger to **132 cr**. Atmosphere Levy 6 cr. Machine service contracts 15 cr. The Pathway minimums over the week, 105 cr. About
-**280 cr a week** before a litre is drawn. Draw adds 60 to 90.
+**Rent day** is the night of day 7. On floor 17 the rent is **125 cr**, one number, the same every week this month (it is 128 next
+month). Works Bench fixture charge 2 cr. Atmosphere Levy 6 cr. Machine service contracts 15 cr. The Pathway minimums over the week,
+105 cr. About **255 cr a week** before a litre is drawn. Draw adds 60 to 90.
 
 The night before is **Thumb Night** (file 08): debts settle between neighbours, slips are posted on the Fringe by everyone selling
 whatever they can, the hock on 11 does its best trade. Benno Kask comes round again.
@@ -872,8 +870,8 @@ A player who sits on the board waiting for a good slip does not.
 - **Day 21.** The Kasks' squares fall vacant.
 - **Day 25 to 30.** **Quota week.** Hester is short of reports. She comes to the counter in the morning with the Book under her arm
   and a choice for you (see Part four).
-- **Day 30.** **Rate Review.** The new Floor Rate Card arrives; 17's base rate goes from 5 to 5.10. The Ledger rounds your rent up to
-  131. A **Pathway statement** reads "You are 3% of the way to owning your future!"
+- **Day 30.** **Rate Review.** The new Floor Rate Card arrives; 17's rent goes from 125 to 128, rounded up to the
+  next whole credit. A **Pathway statement** reads "You are 3% of the way to owning your future!"
 
 **In play:** the first month introduces each long system once: supply (the catch, the Kitchen), money (the statement), rent (the
 first rent day), law (Hester's registration, the Kasks' tags), Standing (the ghost slips), the neighbourhood (the Kasks, Yusra,
@@ -907,7 +905,7 @@ holding a Lane Permit; a warden's report hits the Ledger for something the Co-op
 
 The first and most physical axis. Every square is space on the field and a line on the rent.
 
-- **Offcuts.** Squares left over after a re-cut (file 04), around pillars and pipe runs, let at x0.7. Awkward shapes: an L around a
+- **Offcuts.** Squares left over after a re-cut (file 04), around pillars and pipe runs, let at about seven-tenths of the rent. Awkward shapes: an L around a
   pillar, a 1-wide strip along a pipe run (holds only flat items). The cheap way to grow, and every offcut is a packing puzzle.
 - **Lease extension.** When an adjacent lease falls vacant (the Kasks, or anyone who is lemoned), sign a lease extension slip at the
   pay post: the squares appear on your field, the rent rises next rent day. −5 Standing for the inquiry, approved or not.
@@ -915,7 +913,7 @@ The first and most physical axis. Every square is space on the field and a line 
   a shelf square on another stretch of corridor: a remote shelf, restocked by hand or by a one-floor drone hop, that sells to
   whoever walks there (a frontage square on Glove Run sells to Gus's sleepers; one at the lift lobby sells to everyone).
 - **Buying into title.** Squares added after the Pathway are rented at the current card; they can be bought into held title at the
-  current title price (5 cr a square on 17 today, up about 10% each time the Chalk moves a floor closer).
+  current title price (2,500 cr for a board on 17 today, up about 10% each time the Chalk moves a floor closer).
 - **The re-cut.** Survey and Allocation will "rationalise" your sector every so often; your lease can lose a frontage square or gain a
   pillar offcut overnight. A chalker paid 30 to 60 cr "surveys favourably". A player with a big lease is a target for re-cuts; a
   player with a friendly chalker is not.
@@ -997,17 +995,17 @@ have left, and can only sublet them (illegal, which is how barons start).
 
 Where a player might go, and why:
 
-| Floor | Rent (cr/sq/wk) | Gain | Lose |
+| Floor | Rent (cr/wk, standard board) | Gain | Lose |
 |---|---|---|---|
-| **12** (the Chirp, Two Hall) | 0.15 | cheap squares; the insect trade next door; the Co-op hall on 13 | the chirp all night; worse catch (lower on the trunks) |
-| **16** (the Ovens) | 0.28 | open flame tolerated: stills, smoking, baking, kilns | the catch after 17's; heat; oven-sleepers' noise |
-| **21** (Underhum) | 0.40 + thermal line | **warm floor**: bins run the night block without heaters | the dawn slack; the hum; the Dark Floors through the ceiling |
-| **27** (Overhum) | 0.40 | warm floor; the Hatch | the bricked window; the mushroom grower's questions |
-| **28** (the Exchange) | 0.45 | the best market in the Mills; brokers; founding-era part dealers | rent; competitors who used to be Middle |
-| **29** (the Chalk) | 0.45, rising | Middle clients at Mills prices, for a while | the Creep arrives here first; title revaluation risk |
-| **33 to 44** (the Middle) | 0.60 to 1.40 | Middle row as home row; a Supply counter; clean water pressure | everything metered, wardens who file everything, Std. 500 to lease |
-| **6** (the Sump) | 0.10 | Crown sacks from the Spill; the Kettle on Six; chits | wet floors at spring tides; gang tolls; no Grid slips ("service ends at Ten") |
-| **60+** (the Terraces) | 3 to 9.50 | glass, daylight through cut windows, Terrace clients as neighbours | Std. 750; a 500-square shop costs 1,500 cr a week at the bottom of the band |
+| **12** (the Chirp, Two Hall) | 75 | cheap squares; the insect trade next door; the Co-op hall on 13 | the chirp all night; worse catch (lower on the trunks) |
+| **16** (the Ovens) | 140 | open flame tolerated: stills, smoking, baking, kilns | the catch after 17's; heat; oven-sleepers' noise |
+| **21** (Underhum) | 200 + thermal line | **warm floor**: bins run the night block without heaters | the dawn slack; the hum; the Dark Floors through the ceiling |
+| **27** (Overhum) | 200 | warm floor; the Hatch | the bricked window; the mushroom grower's questions |
+| **28** (the Exchange) | 225 | the best market in the Mills; brokers; founding-era part dealers | rent; competitors who used to be Middle |
+| **29** (the Chalk) | 225, rising | Middle clients at Mills prices, for a while | the Creep arrives here first; title revaluation risk |
+| **33 to 44** (the Middle) | 300 to 700 | Middle row as home row; a Supply counter; clean water pressure | everything metered, wardens who file everything, Std. 500 to lease |
+| **6** (the Sump) | 50 | Crown sacks from the Spill; the Kettle on Six; chits | wet floors at spring tides; gang tolls; no Grid slips ("service ends at Ten") |
+| **60+** (the Terraces) | 1,500 to 4,750 | glass, daylight through cut windows, Terrace clients as neighbours | Std. 750; a Terraces board costs 1,500 cr a week at the bottom of the band |
 
 **In play:** a move is a large, deliberate choice that changes the catch table (better floors throw better rubbish; file 04), the
 board's mix (more slips from your new band), the routes (shorter up, longer down), the neighbours, and the floor features (warm,
@@ -1422,7 +1420,7 @@ Nobody can evict you from them. You are, in the language of the paper, a **Propr
 
 **What it costs.**
 - Everything the Pathway took: a year or more of 15+ cr a day, the 3% on lumps, rent paid twice the whole time.
-- Rent stops; the **Title Maintenance Charge** starts: 0.025 cr a square a week (12.50 for the whole board), "subject to Rate Review". The meters run as before.
+- Rent stops; the **Title Maintenance Charge** starts: 12.50 cr a week, "subject to Rate Review". The meters run as before.
   The Creep moves to the TMC.
 - The squares are yours, the floor is not. The Chalk still moves. When it reaches 17, your neighbours are priced out one by one and
   replaced by Middle families, and you are a Proprietor of 500 squares in a Middle (Transitional) hall, the last Fourer on Stores Run.
@@ -1434,7 +1432,7 @@ stud coordinates in a column, and the Count House seal. Clipped to it, the first
 ```
 HALDEN LEDGER : WEEKLY STATEMENT                 F17/C : PROPRIETOR
 RENT (HELD TITLE, 500 SQ)                                    0.00
-TITLE MAINTENANCE CHARGE (500 @ 0.025)                      12.50
+TITLE MAINTENANCE CHARGE                                    12.50
 ATMOSPHERE LEVY                                              6.00
 METERED SERVICES                                            71.40   ROUNDED 72
 CONGRATULATIONS. YOU OWN YOUR FUTURE.
@@ -1497,7 +1495,7 @@ lawyer's office. Daylight through a cut window. You are "glass" (file 08: "Her d
 **What leads there.**
 - Standing 750 (Terraces lease gate), held for 30 days.
 - A licensed trade in good order (Reseller, Grow Certificate, food handling, or the Preferred Supplier Programme).
-- Enough money to carry Terraces rent for eight weeks: a 500-square workshop at the bottom of the band is 1,500 cr a week, so about
+- Enough money to carry Terraces rent for eight weeks: a Terraces workshop at the bottom of the band is 1,500 cr a week, so about
   11,500 cr in hand, or a sponsor.
 - A Terrace client willing to write a **character reference** (the Terraces lease form has a box for one; the Scholar's past
   starts with a classmate who might).

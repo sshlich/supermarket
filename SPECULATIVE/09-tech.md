@@ -1268,7 +1268,7 @@ self-harvest), leachate (a liquid outlet) · **Draw** 0.1 hu · **Speed** fastes
 - **Tended:** board and chip repair is one hour faster here than anywhere else, and grounded work never "pops" a chip (a static
   death that Company benches occasionally cause).
 - **Overnight:** n/a.
-- **Quirks:** it cannot be bought or moved. It belongs to the Company (Clause 11). A lease with one rents at x1.2 (02).
+- **Quirks:** it cannot be bought or moved. It belongs to the Company (Clause 11). A lease with one pays a fixture charge (02).
 - **Lore:** the ESD benches of Line Four. About a hundred remain on 17.
 - **In play:** a reason to choose a lease, not a purchase: "bench rights".
 

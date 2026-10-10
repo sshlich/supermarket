@@ -12,20 +12,20 @@ out later, and files may offer alternatives to them as long as they say so.
 An inventory game. You run a small workshop-shop on a low floor of a vertical slum. You make, grow, sort, repair and
 refurbish goods, and you fulfil **contracts** by packing goods into **drones** (containers with cargo bays) and launching
 them up or down the tower. Drones come back with pay and a reward in the bay. Space on a grid is the constraint of
-everything: the bays, your shop floor, the shelves. Rent is charged per square you lease. Time runs in hour steps through
+everything: the bays, your shop floor, the shelves. Rent is one fixed number for the lease, and it goes up every month. Time runs in hour steps through
 a day. Machines are bought (often old, failing, one-of-a-kind), never crafted from parts. Night trips, hunting and combat
 are **out of scope** for now; do not build lore that requires them.
 
 ## Squares (decided, 2026-10-09)
 
 A **square** is a square of the board: the cell items sit on, the unit of every footprint (a cell is 1x1, a charger rack 3x3,
-a pickaxe 5x6) and the unit of rent. Your lease is a block of squares, drawn as the game's field (25 across and 20 down in
-the game today: 500 squares). Renting more rows makes the board bigger and the bill too.
+a pickaxe 5x6). Your lease is a block of squares, drawn as the game's field (25 across and 20 down in the game today: 500
+squares). Renting more rows makes the board bigger and the rent higher by a flat sum a row.
 
 A square is a game unit, not a measurement. No file gives it a size in metres or feet, counts the squares of a floor, a flat
 or a bed, or asks how many people fit in one. Homes, shops and floors that are not the player's are described in words (a hall,
 a rack of bunks, a corridor), never in squares. In the fiction, each leased square is pinned to the floor by a brass **lease
-stud** on a lift-out service tile; the Company bills by the stud and has never published how big a square is.
+stud** on a lift-out service tile; the Company bills the lease as one number and has never published how big a square is.
 
 ## Tone (decided)
 
@@ -106,8 +106,8 @@ stud** on a lift-out service tile; the Company bills by the stud and has never p
   - ~Y57: the Drowning (the storm, the seawall and the slurry reservoir). Old Calder floods. The lowest floors fill. The upper
     floors are cut into smaller leases and sold; the rich move up.
   - ~Y86: the present. Founding-era tech failing, rent climbing, nobody alive who knows how half of it was built.
-- **Money:** credits (written "cr", a plain number) and **Halden scrip** (spends only at the company store). Rent per leased
-  square (working number: a quarter of a credit a square a week on floor 17, so about 125 cr a week for the 500-square board). Metered water and power. A **credit rating** gates which contracts you see. Owning your shop is a Company loan.
+- **Money:** credits (written "cr", a plain number) and **Halden scrip** (spends only at the company store). Rent is **one fixed number per lease**, due every rent week, and **it rises every month** (working number: 125 cr a week on
+  floor 17, then 128, 131, 134: 2% a month, rounded up to a whole credit). Metered water and power. A **credit rating** gates which contracts you see. Owning your shop is a Company loan.
 - **Law:** **Halden Protective Services (HPS)**, by subscription (response time by tier). **Licensing inspectors** (water,
   food, brands). **Brand protection agents**. **Floor wardens** (tenants paid to report). **Debt collectors** (contracted).
   **The Arbiter** (Company arbitration; no courts). Gangs keep order in the Sump; the Mills Co-op runs unofficial patrols.
@@ -139,7 +139,7 @@ stud** on a lift-out service tile; the Company bills by the stud and has never p
   station on stilts that sells forecasts).
 - **Food chains (decided):** grow beds (seed + water every hour → real produce, sells up); insect bins (food waste + warmth +
   a little water → insects → grinder → paste → press → protein blocks, sells down).
-- **Mechanics already proposed** (from `IDEAS.md`; lore should explain and use them): rent per square; rent climbing as the
+- **Mechanics already proposed** (from `IDEAS.md`; lore should explain and use them): rent as one fixed number; rent climbing every month as the
   upper floors expand downward; the **garbage chute** (a container that fills each morning with what the floors above throw
   out); metering (tap and socket); real vs synthetic grades; destination floor = height = class; licensed lanes vs free
   shafts (tolls, looting); credits, scrip, loans, credit rating; contract slips styled by origin.

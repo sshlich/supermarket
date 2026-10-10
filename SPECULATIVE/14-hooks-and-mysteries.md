@@ -1289,7 +1289,7 @@ the shelves or the field.
 | Day | What | In play |
 |---|---|---|
 | Day 6 evening | **Thumb Night** | Debts settle, slates wiped, the plasma cart comes up. Good night to collect a marker. |
-| Day 7 (Seventh) | **Rent day** at midnight | Rent per square; seventh supper; the hock next morning. |
+| Day 7 (Seventh) | **Rent day** at midnight | Rent: one number, up a little every month; seventh supper; the hock next morning. |
 | Every 7th day | **The Swap** (Co-op) | Chute-trade table: swap catch for catch. |
 | Weekly | **Weigh day** (insect ranchers / Orrin) | Orrin buys; brick prices set. |
 | Weekly | **Static's Stinker report** | Kettle prices shift. |

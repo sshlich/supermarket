@@ -74,8 +74,8 @@ the part of their business inspectors can see, and run the rest on A/61/0007.
 - **Halves.** On floor 12, a baron called Lorne Abbiss discovered that nothing in the HSTA defines a square as indivisible.
   He runs a strip of tape down the middle of each frontage square and rents each half by the hour. A **half** is too narrow
   for a shelf, wide enough for a tray. Hawkers selling chillies, matches, single cells and cigarettes work halves.
-- **Frontage strips.** Barons buy frontage in long runs along the busiest corridors (frontage is billed x1.5 by Halden, and
-  rented on by the baron at about three times that). The Shelf on floor 30 is almost entirely baron-held frontage now.
+- **Frontage strips.** Barons buy frontage in long runs along the busiest corridors (Halden prices a shop front dear, and the
+  baron rents it on at about three times that). The Shelf on floor 30 is almost entirely baron-held frontage now.
 - **Catch squares.** On rain days, barons rent window ledges and light-well squares by the hour to anyone with a pan.
   The Rain Church hates this and pays it.
 - **Dead leases.** When an old tenant dies (the Old Hands notice this most), the lease ends, and the squares go back to the
@@ -88,17 +88,17 @@ the part of their business inspectors can see, and run the rest on A/61/0007.
   (arrears flags, old tenants, single occupants), so the baron knows where to buy next. Their marks are small yellow ticks on
   the door frame, below the lease stud, and most tenants don't know what they mean.
 
-### The ladder of a square
+### The ladder of a stall
 
-How one square of floor 17 is paid for, top to bottom, on a busy day:
+How one stall of floor 17 (a hawker's strip of frontage) is paid for, top to bottom, on a busy day:
 
-| Who | Pays whom | For what | Per week, one square |
+| Who | Pays whom | For what | Per week, one stall |
 |---|---|---|---|
 | Halden | (nobody) | owns the stud | — |
-| Mezzanine Living | Halden | the lease, frontage, x1.5 | 0.375 cr |
-| Gus Tanaka-Breen (under-baron) | Mezzanine Living | a block of frontage on a weekly "service agreement" | 0.70 cr |
-| A hawker | Gus | the square from 08:00 to 20:00, by the hour at 0.0125 | 1.05 cr |
-| A half-hawker | the hawker | the left half of the square, 12:00 to 16:00 | 0.20 cr of that 1.05 |
+| Mezzanine Living | Halden | its share of the lease for the stall | 7.50 cr |
+| Gus Tanaka-Breen (under-baron) | Mezzanine Living | the stall on a weekly "service agreement" | 14 cr |
+| A hawker | Gus | the stall from 08:00 to 20:00, by the hour at 0.25 | 21 cr |
+| A half-hawker | the hawker | the left half of the stall, 12:00 to 16:00 | 4 cr of that 21 |
 
 Every rung is legal, or is A/61/0007, which is the same thing.
 
@@ -153,7 +153,7 @@ There is no baron guild. There are three kinds of baron, and they know each othe
   a big packing day (you need room to lay out a Kestrel's whole cargo), a drying run, or a Great Ebb stall. No Standing check,
   no rent day, a high hourly price. Space as a thing you can rent for an afternoon is the purest form of the game's constraint.
 - **The offer.** When your rent falls behind (the arrears ladder in file 05), a baron's slip arrives within a day: "We will
-  clear your arrears in full. You remain on your squares under licence at 0.004 cr per square per hour. No further obligation."
+  clear your arrears in full. You remain on your squares under licence at 2 cr an hour. No further obligation."
   Accepting ends the lease game and turns you into a licensee: no rent day, no eviction ladder, no Standing, but you pay by the
   hour forever and can be moved at any hour. A soft fail state the player chooses, with its own way back (buy the lease back
   at a price the baron sets).

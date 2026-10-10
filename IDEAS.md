@@ -134,6 +134,8 @@ grown, with precious water; protein blocks are ground insects and food waste fro
   hours), a grinder makes paste, a press makes protein blocks. Cheap, bulk.
 - **Rent per square:** the field is no longer a fixed 25x20. You rent a block of squares at a rate per square, due every N
   days; renting more rows means more room and a bigger bill. The game's constraint becomes the thing you pay for.
+  *Decided 2026-10-10 (the user): rent is a fixed number that increases each month, not a sum worked out per square. Rows can still
+  add a flat step to the number. See `LORE.md`, "Money", and `SPECULATIVE/04-economy.md` section 3.*
 - **Rent climbs:** the rate rises on a schedule, faster near the rich floors (they expand downward). Moving down is the way
   out: cheaper rent, worse trash, worse routes.
 - **Trash flows down:** a garbage chute is a special container on your field that fills every morning from a table set by who

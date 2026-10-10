@@ -357,7 +357,7 @@ two full cells from yesterday. The jerrycan has 7.6 L left. Nothing here is buil
 | Before the last hour | Put the 4 slabs, the frass sack, the element, the copper, the scrap sack and the two charged cells in the hatch. Keep the other full cell for the bin. | the hatch pays at the end of the day |
 
 The takings: 4 slabs (8), frass (2), element (2), copper (3), scrap sack (1), two cells (6), less the ballast (4): about **18 cr**.
-Rent on the 500-square board is about 130 cr a week, 19 a day. A good day pays the rent of that day and nothing more.
+Rent on floor 17 is 125 cr a week, 18 a day. A good day pays the rent of that day and nothing more.
 
 Two things this shows the designer. The loop leaves **eight idle hours** on a day like this one: the answer is a second bin, and
 a reason to want it. And it is **break-even on purpose**: the floor above throws out enough to live on, and the rent is
@@ -495,7 +495,7 @@ Raised by this rewrite:
 9. **Eight idle hours.** The worked day (3.7) has four hours of work and eight of waiting. Is the answer a second bin, a reason to
    fetch and carry, or a shorter cycle?
 10. **Tap hours.** Water all day (proposed) or twice a day (the lore)? The second makes water the first reason to want a well.
-11. **The starting block.** The board is 25 x 20 and rent a quarter of a credit a square; is that where the game starts, or on a
-    smaller block you grow by renting rows? (README, A.2.)
+11. **The starting block.** The board is 25 x 20 and rent is a fixed 125 cr a week, rising each month; is that where the game
+    starts, or on a smaller block you grow by renting rows? (README, A.2.)
 12. **The hearth.** The lore treats open flame as a risk. Does the hearth stay in the starting loop, or does it move to a later
     floor (16, the Ovens)?

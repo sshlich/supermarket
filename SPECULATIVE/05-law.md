@@ -2,7 +2,7 @@
 
 > Speculative. Raw material to pan through. Plain text is the main version; **Alternative:** is another version of the
 > same thing; **Hook:** is a story seed; **In play:** is how it surfaces in the game. Numbers in credits ("cr") are
-> scaled to a working-assumption Mills day wage of about 30 cr and a rent of a quarter of a credit per square per week on floor 17 (about 125 cr for the 500-square board);
+> scaled to a working-assumption Mills day wage of about 30 cr and a rent of 125 cr a week on floor 17;
 > file 04 (economy) may rescale them, and the ratios matter more than the figures.
 
 ---
@@ -51,8 +51,8 @@ The important parts, the ones the Arbiter cites:
 - **Clause 4 (Bylaws):** the tenant agrees to observe the Bylaws "as amended from time to time". The Company can amend the
   Bylaws by posting the amendment in the lift lobby of the tenant's floor. If the lift lobby notice board is full, the
   amendment is "deemed posted".
-- **Clause 9 (Rate):** the per-square rate is "subject to periodic review". Review happens every Period (thirty days). It has gone down
-  once, in Y72, by a fraction of a credit, on one floor, for one quarter, after which the Company cited it for eleven years
+- **Clause 9 (Rate):** the rent is "subject to periodic review". Review happens every Period (thirty days). It has gone down
+  once, in Y72, by a single credit, on one floor, for one quarter, after which the Company cited it for eleven years
   as evidence that review "operates in both directions".
 - **Clause 17 (Metering):** all water and power drawn on the leased squares is the tenant's, whoever draws it. If a
   neighbour taps your line, you pay.
@@ -686,9 +686,9 @@ No costs. (This determination is cited by Mills counsel in every daylight petiti
 appears only in Terraces Charters.)
 
 **A/85/0007. Petitioner: T. Akerlund, lease 12-C. Respondent: Halden Company.**
-Finding: the petitioner contends that the per-square rate on floor 12 increased by 40% in three years while the floor's
+Finding: the petitioner contends that the rent on floor 12 increased by 40% in three years while the floor's
 services declined, and that the Charter's "periodic review" requires the rate to reflect services. The Charter does not
-say what the review reviews. Order: petition dismissed. The Office notes that the rate on floor 12 remains below the rate
+say what the review reviews. Order: petition dismissed. The Office notes that the rent on floor 12 remains below the rent
 on floor 13. Costs to the respondent.
 
 **A/85/0291. Petitioner: lease 19-D. Respondent: lease 20-D.**
@@ -954,7 +954,7 @@ and the date each falls off. This is information, not punishment. Bylaw 103 says
 ### Reassignment
 
 The ultimate penalty below termination is **reassignment** (Bylaw 105): the Company moves a repeatedly-charged lease to a lower
-floor. Same number of squares, a lower rate, a worse chute, worse routes. It is presented as a kindness ("a more affordable
+floor. Same board, a lower rent, a worse chute, worse routes. It is presented as a kindness ("a more affordable
 environment"), and it is a real kindness to the tenant's bills, which is why it hurts.
 
 **In play:** reassignment is a canon-friendly fail-forward. Instead of game over for a chronically indebted or law-breaking

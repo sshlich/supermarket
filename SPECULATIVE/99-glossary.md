@@ -13,7 +13,7 @@ of fixes that brings each file in line is kept with the continuity notes, not he
 **Fixed reference points used throughout:** the Stack has 104 floors: drowned 0–3, Sump 4–9, Mills 10–29 (player on 17),
 Middle 30–59, Terraces 60–89, Crown 90–104 (the Lantern 101–104 on top). The Dark Floors are 22–26. Y0 is the founding;
 ~Y41 automation; Y57 the Drowning (19.III); the present is Y86. Mills labourer about 30 cr a day; a Vitabrick 3 cr;
-Halden Pure at the Mills tap 1.20 cr a litre; a square of the board on 17 is a quarter of a credit a week (the 25 x 20 board is 500 squares, about 125 cr a week). A square is a square of the board, not a size in metres.
+Halden Pure at the Mills tap 1.20 cr a litre; rent on 17 is one fixed number, 125 cr a week, rising about 3 cr every month. A square is a square of the board (the starting board is 25 x 20), not a size in metres.
 
 ---
 
@@ -84,7 +84,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square of the board on 17 is a q
 - **Assembly Squash** — Heirloom squash variety in the Library. *06a*
 - **Assisted** — Account flag set by taking Foundation help; blocks a Proprietor Pathway. *04, 08*
 - **Atmos Mk I** — The Works' founding-era clean-room humidity unit; 300 were made. *03, 09*
-- **Atmosphere Levy** — Flat air charge below 30 (about 6 cr a week for a 500-square board) paying for the 30 Lung. *02, 04, 13*
+- **Atmosphere Levy** — Flat air charge below 30 (6 cr a week) paying for the 30 Lung. *02, 04, 13*
 - **Augustin Moreau** — Lift Guild chief mechanic, keeping the Kessin drives alive. *06a, 06b*
 - **Aurel Voss** — HPS Attendant at Post Nineteen; sells incident numbers for 10 cr. *15*
 - **Aurelio Spenk** — Foundation Director of Outreach. *06b*
@@ -326,7 +326,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square of the board on 17 is a q
 - **flasher** — Unbricks slates (Odalys Brannock). *06b, 13*
 - **Flats, the** — The tidal mudflats and the drowned town; their people. *all files*
 - **flight log** — What a drone met on a flight (pressure spikes, ring miscounts, wet flags); the pad copies it on landing. *06a, 09*
-- **Floor Rate Card** — Rent card reprinted every Period (30 days). *02, 04, 06b, 12, 13, 14*
+- **Floor Rate Card** — Card of rent numbers by floor, reprinted every Period (30 days); each number is a little higher than last month's. *02, 04, 06b, 12, 13, 14*
 - **Fonts / Fontkeepers** — Rain Church water points and their keepers. *01, 02, 06a, 06b, 07, 11, 12, 13, 14*
 - **Food Standards Delegation** — Y61: food inspection delegated to Orrin. *01, 05, 10*
 - **Foreman, the** — The Old Hands' name for the founding Allocation system, still keeping Works time. *14*
@@ -347,7 +347,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square of the board on 17 is a q
 - **freight chit** — Lift Guild ticket to send a drone or goods up a car. *01, 02, 06a, 06b, 09, 11*
 - **Friday fifth** — A tin lender's interest: a fifth a week. *15*
 - **Fringe, the** — The board's wooden surround where neighbours post. *11, 13*
-- **frontage** — Corridor-facing squares (x1.5); showing off. *04, 08, 13*
+- **frontage** — Corridor-facing squares, where shelves sell; showing off. *04, 08, 13*
 - **Fund, the** — Local 9's strike fund, released to its members as a mutual fund in Y41. Retired variant: "the Mutual" (clashed with the insurer). *06a*
 
 ## G
@@ -764,7 +764,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square of the board on 17 is a q
 - **rain taps** — Founding brass taps on every tenth landing, capped Y61. *01, 03, 06a, 14*
 - **Rainmark** — Blue enamel cap from a dead rain tap: "NOT MADE". *06a, 06b, 08, 11, 12*
 - **Ranchers' Association** — Licensed insect ranchers, Orrin-sponsored (hall on 20). *06a*
-- **Rate Review** — Every 30 days, a new Floor Rate Card. *04, 08, 12, 13, 14*
+- **Rate Review** — Every 30 days, a new Floor Rate Card; rents rise about 2%, rounded up to a whole credit (17: 125, 128, 131...). *04, 08, 12, 13, 14*
 - **rat-chalk** — Retired variant: see **Drop card** and **hatch note**.
 - **Reader in Grey** — Archive reader who reads only Seawall papers. *06a, 07, 14*
 - **Real grade** — See R✓.
@@ -910,7 +910,7 @@ Halden Pure at the Mills tap 1.20 cr a litre; a square of the board on 17 is a q
 - **Tide Shut** — The Tide Folk refuse to sell to the tower. *14*
 - **Tin** — A vent crew's keeper of sweets and cells; also the lunch tin. *06b, 08, 14*
 - **tin / tin lender** — A biscuit-tin lender at a Friday fifth. *15*
-- **Title Maintenance Charge** — 0.025 cr a square a week on held title (12.50 cr for a 500-square board). *04, 13*
+- **Title Maintenance Charge** — 12.50 cr a week on held title. *04, 13*
 - **Tobiah Fenwright** — Wellside survivor, early Flats diver. *01, 06b*
 - **Tobias Wen** — One of the Eleven of 27, Clock 0117, wrote the Daylight code. *14*
 - **Tobin Hallett** — Nineteen; leads the Ninety-Nines stair crew. *15*

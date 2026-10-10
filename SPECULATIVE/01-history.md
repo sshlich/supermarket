@@ -504,7 +504,7 @@ hall became workshop leases in Y58 and the wall became the back of someone's lea
 stairs saw the glow under the welded doors. It has been on, at night, ever since. In the day it is dark. Nobody has a good
 explanation for why a lights-out hall would turn on its lights only after its human neighbours stopped working.
 
-**In play:** the Glove Wall is a landmark in the Mills (a lease that contains it is cheaper per square: people do not like
+**In play:** the Glove Wall is a landmark in the Mills (a lease that contains it rents cheaper: people do not like
 working with the wall at their backs). A single **Line Four glove** is a curio. A Works hand might ask you, as a contract,
 to get "her mother's glove" back from the wall, where the leaseholder wants a fee for it.
 
@@ -957,7 +957,7 @@ Pure, from the Waterhouse, the first time it was ever served to the public) and 
    thereafter at "the prevailing rate", the lease signed on the barge.
 
 About twenty-two thousand signed. The phrase for it, in the Mills, is **signed on the water**. Their leases were the first
-in the Stack to be priced per square: the barge clerks had a form with a box for "squares allocated", usually a few (a bed
+in the Stack to be priced by allocation: the barge clerks had a form with a box for "squares allocated", usually a few (a bed
 and a strip of floor beside it), because the halls they were going to were the empty Works halls on 10 to 29, already
 tiled, already counted, tile by tile, by sensors nobody had read in sixteen years.
 
@@ -1181,9 +1181,9 @@ re-let by the tile. Flats were split: a two-room flat on 44 became two one-room 
 into blocks. Corridors became lease-able "circulation squares" with a right of way. A lease, which had been a home, became a
 list of tile numbers.
 
-The rate per square was set by floor: the higher the floor, the higher the rate, rising in steps at 30 and at the Terraces
+The rent was set by floor: the higher the floor, the higher the number, rising in steps at 30 and at the Terraces
 line. The steps were designed by the same Company planners who had run the Works' clean-room allocation models; they used
-the old Sorrel meter data to estimate what each floor could bear, and set the rate there.
+the old Sorrel meter data to estimate what each floor could bear, and set the number there.
 
 **In play:** the Partition is why your shop is measured in squares, why your lease is a list of tile numbers, and why a
 **dead tile** (one whose sensor stopped reporting) is a quiet fortune (file 02). The Partition's maps, printed on blue

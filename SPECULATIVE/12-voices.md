@@ -67,8 +67,8 @@ in `04-economy.md`; this is the letter that comes with it.*
 > As part of the Company's commitment to transparent and predictable occupancy costs, rates for every floor are reviewed
 > each Period in line with the cost of services.
 >
-> On your floor (17), the base rate per square per rent week will move from **0.25 cr** to **0.26 cr** (rounded to the next hundredth). For a typical
-> Commercial lease of 500 squares with 50 frontage squares, this represents an adjustment of **5.25 cr** per rent week.
+> On your floor (17), the rent will move from **125 cr** to **128 cr** per rent week (rounded up to the next whole credit). This
+> represents an adjustment of **3 cr** per rent week.
 >
 > **What your rate pays for**
 > - Structural integrity of a founding-era building designed to last
@@ -87,7 +87,7 @@ in `04-economy.md`; this is the letter that comes with it.*
 > With thanks for your continued tenancy,
 > **Halden Survey and Allocation**
 >
-> *Rate Reviews are carried out under Clause 7 of the Halden Standard Tenancy Agreement. The Rate per Square is as
+> *Rate Reviews are carried out under Clause 7 of the Halden Standard Tenancy Agreement. The Rent is as
 > published in the Floor Rate Card for the Floor and Period, as amended.*
 
 **In play:** this letter is the Creep's monthly tick, seen as paper instead of a number change. Make it a 1x1 slip that
@@ -105,7 +105,7 @@ put down the evening before.*
 >
 > To make the best use of the Structure for all residents, the squares listed above will be **rationalised on day 32**.
 >
-> Rationalisation may change the shape, frontage or extent of your lease. It does not change your Rate per Square.
+> Rationalisation may change the shape, frontage or extent of your lease. It does not change your Rent.
 > Leaseholders will receive a revised Schedule of Demised Squares on the day.
 >
 > Goods standing on squares that leave your lease will be placed in a **Displaced Goods Crate** at your door. Displaced
@@ -820,7 +820,7 @@ floors 26 to 28 the same week.*
 > Reclassification recognises the improvement in your floor's character and amenity. It will bring:
 > - a **band pass** for the Middle, at no charge, for registered occupants of floor 29;
 > - eligibility for **Standard** HPS cover;
-> - a revised Floor Rate Card for floor 29 reflecting Middle rates (base rate from 0.45 to **0.70 cr** per square).
+> - a revised Floor Rate Card for floor 29 reflecting Middle rates (rent for a standard board from 225 to **350 cr** a week).
 >
 > Leaseholders who do not wish to continue at the revised rate may surrender their lease without penalty within 14 days.
 > Surrendered squares will be **re-cut** into larger units for Middle tenancy.
@@ -916,8 +916,7 @@ classes as lesson one.*
 >
 > | | Previous | Revalued |
 > |---|---|---|
-> | Title price per square | 5 cr | 13 cr |
-> | Title price, 500 squares | 2,500 cr | 6,500 cr |
+> | Title price, your board | 2,500 cr | 6,500 cr |
 > | Paid towards title to date | 1,840 cr | 1,840 cr |
 > | **Remaining** | **660 cr** | **4,660 cr** |
 >
@@ -940,7 +939,7 @@ own paper.
 > better suited to your circumstances.
 >
 > **Your new lease:** floor 11, sector A (Bin Run), squares A-01 to A-25 across R-01 to R-20 (500 squares, 50 frontage, vent-adjacent).
-> **Your new rate:** 0.15 cr per square per rent week (condition multiplier 0.8 applies).
+> **Your new rent:** 60 cr per rent week (floor 11 is 75; 20% off for vent-adjacency).
 > **Your move date:** day 18.
 >
 > A **removal service** is available (Tolliver Shutter & Seal, 4 cr per item). Goods not moved by day 18 will be treated as
