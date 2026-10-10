@@ -67,6 +67,21 @@ Each point is marked **decided** (the user said so), **proposed** (to confirm or
 
 ## Drones
 
+- **Open (the user, 2026-10-10):** the setting should be built around drones, even where that makes no sense in a world like the
+  Stack. The feel is right. What follows is a recommendation to confirm or change.
+- **Proposed:** **drones cross the divide that people cannot.** Movement downward is free; upward needs a band pass, and Bylaw 68
+  makes the stairs "for emergencies". A licensed drone needs only a lane permit. So the poor serve the rich through boxes with
+  rotors, and the whole game is about who gets to send one.
+- **Proposed:** **the Stack was a drone town before it was a slum.** The Works made the guts of drones (cells and control chips;
+  the "drone cells" off Lines Seven and Eight), and the tower's service layer was cut for automated carriers: ring-ribbed risers,
+  beacon ribs, the pneumatic Tube, the cart controllers. Housing was bolted onto a building that already had an air layer, and
+  after the Drowning the Mills inherited it, with a mountain of surplus parts.
+- **Proposed:** **feel before logic.** Do not explain batteries or radio. Give the world the sound and the ritual: pad chimes, hatch
+  clacks, a cradle on every landing, rotor pitch that tells you the wear, the packed bay, the mystery of what comes back.
+- **Alternative, not recommended now:** open the air. The Stack becomes one tower among several in a drowned bay, with a real
+  sky and drones flying between them. It suits drones better and costs the claustrophobic risers, the free shafts and the rats.
+  It is already the late game (outside couriers, the other towers).
+
 - **Proposed:** drones are everyday kit, not a specialist trade: cheap short-hop **hoppers** are as common as bicycles, and
   a courier frame with a real bay is the first big purchase. A drone flies itself on a route loaded before launch (no signal
   reaches through the steel); only the licensed lanes can be talked to.

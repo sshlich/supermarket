@@ -630,6 +630,13 @@ continuity pass, not yet applied to the files, still yours to confirm".
 150. **Sex work and exploitation.** Left out on purpose. The Stack has hot-bunks, debt and a Pier, so it exists; does the game say it out loud or let the structure imply it? (15)
 151. **The Company's own hands.** HPS, Vey and the Recovery Store do much of what looks like crime here. Can the player act on that (a leaked incident book, a counterfeit proven to be Vey's own), or only know it? (15, 05)
 
+### Q. A world built around drones
+
+152. **Drone-first setting.** The recommendation (`LORE.md`, "Drones"): keep the Stack, and make it a drone town on purpose. Drones cross
+the divide that people cannot; the Works made drone guts and cut the building for automated carriers; the feel (sound, ritual,
+hatches and cradles on every landing) comes before the logic. Confirm, or pick the alternative (open the air: a cluster of towers
+over a drowned bay). (LORE, 09, 07)
+
 ---
 
 ## What to do with what you keep
