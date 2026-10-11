@@ -7,14 +7,17 @@ Each point is marked **decided** (the user said so), **proposed** (to confirm or
 
 ## Premise
 
-- **Decided:** a vertical slum, gritty and bad, not an arcology (no utopian ecology). It should show dystopian capitalism,
+- **Decided (2026-10-11):** **drop the tower.** No storms either. The setting becomes a civilisation built on the remnants
+  of a previous one, which means something ended the previous one; the pitch for what ("the Lockout") is in `IDEAS.md`,
+  waiting for an answer. The tower points below are kept for the record and no longer hold.
+- **Decided:** gritty and bad, not an arcology (no utopian ecology). It should show dystopian capitalism,
   inequality and the divide between the top and the bottom.
 - **Decided:** no forests and no foraging. Fresh food is only grown, with precious water. Protein blocks are ground insects
   and food waste from the upper floors.
 - **Decided:** orders are contracts, fulfilled by packing and launching drones.
-- **Decided:** the Stack was a **factory town**: one tower, about a hundred floors, built by a company to house the workers of a
+- *(Superseded 2026-10-11.)* The Stack was a **factory town**: one tower, about a hundred floors, built by a company to house the workers of a
   plant on its lower floors. The plant closed long ago; the Mills are its old halls.
-- **Decided:** **the city outside drowned.** The Stack stands in the water. Leaving is possible, but **there is nothing to go
+- *(Superseded 2026-10-11.)* **The city outside drowned.** The Stack stands in the water. Leaving is possible, but **there is nothing to go
   to**: ruins, no work, no water rights. Surrounded by water nobody can drink.
 - **Proposed:** the flood took the plant's lowest floors, so the Sump is the flooded remains of the factory: wet, rusted,
   half underwater.
@@ -67,6 +70,7 @@ Each point is marked **decided** (the user said so), **proposed** (to confirm or
 
 ## Drones
 
+- *(Superseded 2026-10-11: the tower is dropped; see `IDEAS.md`, "the Lockout".)*
 - **Open (the user, 2026-10-10):** the setting should be built around drones, even where that makes no sense in a world like the
   Stack. The feel is right. What follows is a recommendation to confirm or change.
 - **Proposed:** **drones cross the divide that people cannot.** Movement downward is free; upward needs a band pass, and Bylaw 68

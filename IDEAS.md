@@ -159,6 +159,9 @@ grown, with precious water; protein blocks are ground insects and food waste fro
 
 ## Drones as the core (proposal, 2026-10-11; the user: "it's good, at least for the ideas")
 
+*Written while the setting was still the tower: the mechanics stand; the places (shafts, lanes, the Spill, the Flats, the
+Dark Floors) change with the setting below.*
+
 Make the drone the main object you work on, and let the rest feed it. Every new system below is the same verb the game
 already has: put things on a grid of squares and let rules read the grid (the board, a drone frame, a robot chassis, a
 part's ports and cables, a card strip, a terminal's chip slots). Placeholder numbers throughout.
@@ -283,32 +286,46 @@ One idea, several bodies: a grid with sockets and ports.
 
 Open: how much of the shop survives; whether the counter stays; how fast the layers arrive; whether battles belong at all.
 
-## Setting pitch: the Grounding (2026-10-11, for discussion)
+## Setting pitch: the Grounding (2026-10-11, rejected)
 
-The user: the Stack as written is not logical for this many drones and parts. Something like Fulgora (Factorio): a world made
-of the ruins of a machine civilisation, where scrap is the resource and sorting it is the game. The pitch, in full in chat
-and summarised here:
+Rejected by the user the same day: the storms copied Fulgora; a company would recall a fleet to its depots before switching
+it off, not let it fall; and "the Dark Floors still build drones for a network that never answers" made no sense (a factory
+needs orders, inputs and power, and nobody pays for output that goes nowhere). Also decided: **drop the tower**, **no storms**.
 
-- **The swarm.** Calder drowned first; a drowned city has no roads, so the Company built the **swarm**: millions of drones,
-  relay masts, charging spires and depots on stilts that carried everything. The Works made its cells and chips; the Stack
-  was its depot.
-- **The Grounding.** When the swarm stopped paying, the Company cut the signal. In one night the swarm fell into the bay and
-  onto the roofs. Official story: a solar storm. Everyone knows the truth (the same shape as the Drowning in the canon).
-- **The Shoals.** The bay floor is a wreck field of drones; leaking cells make the water caustic and conductive. Boats shred
-  on it. **The only roads are in the air**, between the ruin islands: the Stack, other depots, mast stubs, rooftops.
-- **Storms.** The spires used to draw the lightning. Now storms rake the bay every night: they kill anything flying and burn
-  what is left out, and lightning rods fill cells for free. Day is for flying; night is for the bench and the rods.
-- **Signal is the divide.** A few spires still run, owned by the Company. Coverage means live control, licensed lanes and
-  safety, sold by subscription; the rich live inside it. Outside it, drones fly blind on cards, and the poor build relays.
-- **Scrap is the resource** (Fulgora): parts are cheap and everywhere; signal, power by day, clean water and food are dear.
-  Fishing the Shoals and stripping wrecks gives random parts; sorting and filters are the gameplay.
-- **Kept:** Halden, the Works, the Stack as a vertical depot with the same bands, the Dark Floors (which still build drones every
-  night and launch them into a network that never answers; they circle and fall into the Shoals), rent, the factions
-  (recast), the poisoned water. **Changed:** drones fly outside between islands, not mainly in shafts; the Grounding becomes the
-  central catastrophe; salvage replaces the garbage chute as the main input. **Gone:** "no radio reaches through the steel" as
-  an absolute (replaced by coverage).
-- **Alternative:** full Fulgora: no tower, a scrap archipelago, the player a salvage outfit on a wreck island, the Company an
-  offshore buyer. Cleaner, but drops most of the lore.
+## Setting pitch: the Lockout (2026-10-11, for discussion)
+
+A civilisation built on the remnants of the previous one. Each link has to hold on its own:
+
+- **The machines were rented, not owned.** The old economy ran on fleets: delivery drones, warehouse crawlers, farm machines,
+  security units, cars. Almost all of it was leased and checked its licence with its owner's servers every few days (the old
+  lore's Retirement Signal, made universal).
+- **The owners failed slowly.** A long collapse: defaults, mergers, services cut, regions written off. Winding down a region,
+  an operator does what any operator does: **recalls the fleet to its depots** and parks it. Then the servers went dark.
+- **The Lockout.** At its next licence check every parked machine locked itself. Nothing was broken. Depots, warehouses,
+  car parks and farms are full of intact machines that will not start. Homes too: locked appliances, locked doors.
+- **Nobody can make new ones.** Chips and cells needed fabs and a world-wide supply chain; that went with the old economy.
+  The old stock is the only stock. Repair and cannibalise, like the old lore's founding-era parts, but for everything.
+- **So the new civilisation is crackers and fitters.** Local controllers are simple boards built from salvaged simple chips,
+  programmed with physical card strips because there is no cloud and no app store. Cracking an original controller (better,
+  but locked) is slow and skilled. Fitting old frames with local parts is everyday work.
+- **Drones carry things because the ground is bad.** Roads and bridges went unmaintained, fuel went with the supply chains,
+  electricity is local (salvaged panels and cells). Drones need no road and no fuel. Heavy things go by crawler or cart.
+- **The network is a mesh of salvaged radios.** The old internet is gone; settlements run store-and-forward relays: text only,
+  low bandwidth, delayed by hops. That is why the deals interface is mail (the Wire), and why signal strength is real:
+  relays you place, relays you lose.
+- **The divide: the Keyholders.** Whoever ended up with the licence keys (bought in the bankruptcy sales, or seized with a
+  working licence server) can unlock machines legally, and sells unlocks, re-licences and network access. They call cracking
+  theft and hunt crackers. The IP outlived the companies, so the rent-seeking did too.
+- **Home is a dead fulfilment depot.** A huge warehouse turned town: people live in the racks, trade on the dock floor, work
+  in the old charging bays; the original fleet sits locked in sealed bays nobody has cracked. The player rents a bay on the
+  floor (the board, 25 x 20), rent fixed and rising monthly, from whoever holds the depot.
+- **Places to go:** other depots and towns, a data centre (cold, sealed, chips), a port of container stacks, solar farms,
+  dead suburbs, highways and car parks of locked cars, farms with locked harvesters, a Keyholder enclave.
+- **Carries over** from `SPECULATIVE/`: Halden (as one of the dead fleet owners), the Retirement Signal and VOID (now
+  central), the rats' courier culture, the Old Hands (now the people who remember how the old machines worked), the Co-op,
+  insect protein, rent, scrip, the Wire. **Does not:** the tower, its floors and shafts, the drowned city, the Dark Floors.
+- Open: what ended the old economy (a slow collapse is the default; a war or a deliberate exit are options); how long ago (a
+  generation, so some people remember); what the depot town is called.
 
 ## Shop and expeditions (the user's pitch, 2026-10-01; in discussion)
 

@@ -1,5 +1,9 @@
 # 00. Reading guide
 
+> **2026-10-11: the designer dropped the tower.** Everything in this folder is set in the Stack, so it now describes a
+> setting that will not be used. Treat it as parts to strip: people, factions, institutions, items and jokes can move to
+> the new setting; floors, shafts and the drowned city cannot. The new direction is in `../IDEAS.md` ("the Lockout").
+
 This folder is a pile of ore. It is about **375,000 words across eighteen files**: roughly 25 hours of reading at an
 easy pace, or a few weeks of evenings. None of it is decided. It was written to be panned: you read, you keep the
 nuggets, you throw the rest back, and what you keep moves into `../LORE.md` or `../IDEAS.md`, where decisions live.
