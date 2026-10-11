@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <path data-name="plate" fill="currentColor" fill-rule="evenodd" d="M10 4h108a6 6 0 0 1 6 6v108a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6V10a6 6 0 0 1 6-6zm54 16a44 44 0 1 0 0 88a44 44 0 1 0 0-88zm0 5a39 39 0 1 1 0 78a39 39 0 1 1 0-78zM46 44h8v16h20V44h8v40h-8V68H54v16h-8z"/>
+  <path data-name="bolts" fill="#000" fill-opacity=".3" d="M14 10a4 4 0 1 1 0 8a4 4 0 1 1 0-8zm100 0a4 4 0 1 1 0 8a4 4 0 1 1 0-8zM14 110a4 4 0 1 1 0 8a4 4 0 1 1 0-8zm100 0a4 4 0 1 1 0 8a4 4 0 1 1 0-8z"/>
+  <path data-name="hazard edge" fill="#000" fill-opacity=".18" d="M4 112h120v6a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6zM118 4a6 6 0 0 1 6 6v102h-4V8z"/>
+  <path data-name="light" fill="#fff" fill-opacity=".22" d="M10 4h104v4H8V10a6 6 0 0 1 2-6z"/>
+</svg>

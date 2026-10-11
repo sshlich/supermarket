@@ -25,6 +25,7 @@
 .term .msg .type.offer { color: var(--t-offer); }
 .term .msg .type.bill { color: var(--t-bill); }
 .term .msg .type.notice { color: var(--t-notice); }
+.term .msg .type.log { color: var(--t-dim); }
 .term .msg .from { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .term .msg .at { color: var(--t-dim); white-space: nowrap; }
 .term .msg .subj { grid-column: 3 / 5; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

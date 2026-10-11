@@ -32,6 +32,7 @@
 .paper .have { float: right; margin-left: 8px; font-weight: bold; }
 .paper .have.full { color: #2f6b2a; }
 .paper .slip-foot { margin-top: 8px; padding-top: 6px; border-top: 1px dashed color-mix(in srgb, var(--ink) 35%, transparent); font-size: 11px; opacity: .8; }
+.paper .stamp.paid { border-color: #2f6b2a; color: #2f6b2a; }
 .paper .stamp { display: inline-block; margin-top: 4px; padding: 2px 8px; border: 2px solid #b0302a; border-radius: 2px; color: #b0302a; font-weight: bold; text-transform: uppercase; letter-spacing: .06em; rotate: -5deg; opacity: .85; text-shadow: none; }
 /* pinned: a pushpin at the top */
 .paper .pushpin { position: absolute; z-index: 2; left: 50%; top: -6px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ff9a8a, #c0392b 55%, #6e180f); box-shadow: 0 2px 2px rgba(0, 0, 0, .45); }

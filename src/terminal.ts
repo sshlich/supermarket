@@ -1,8 +1,9 @@
 // The terminal: mail in its own view, beside the board (IDEAS.md, "Mail and drones: the first version"). Folders, a list
 // of messages, and a reading pane where offers are accepted or declined and anything can be pulled out as a paper.
 
+import { flightOf } from './fleet.ts'
 import { isOpen, left, slipFor, when, type Mail } from './mail.ts'
-import { type State } from './world.ts'
+import { find, KINDS, type State } from './world.ts'
 
 export type Folder = 'inbox' | 'jobs' | 'archive'
 export const FOLDERS: Record<Folder, string> = { inbox: 'Inbox', jobs: 'Jobs', archive: 'Archive' }
@@ -33,6 +34,8 @@ function meta(s: State, m: Mail): string {
   if (m.type === 'offer' && m.terms) {
     const pay = `${m.terms.pay} cr`
     if (isOpen(m)) return `${pay} · ${left(s, m.expires!) ?? 'closing'} to answer`
+    const f = flightOf(s, m.id)
+    if (f) return `${pay} · out, back in ${left(s, f.back) ?? 'under an hour'}`
     if (m.state === 'accepted') return `${pay} · ${left(s, m.terms.due) ? `due in ${left(s, m.terms.due)}` : 'overdue'}`
     return `${pay} · ${m.state}`
   }
@@ -62,10 +65,21 @@ function readHtml(s: State, m: Mail | undefined) {
   let note = '', acts = ''
   if (m.type === 'offer') {
     if (isOpen(m)) { note = `Open for ${left(s, m.expires!) ?? 'less than an hour'} more.`; acts = btn('data-accept', 'Accept', 'Its slip prints onto a free square of the board') + btn('data-decline', 'Decline') + pull }
-    else if (m.state === 'accepted') { note = slipFor(s, m.id) ? 'Accepted. The slip is on your board.' : 'Accepted. The slip is gone.'; acts = (slipFor(s, m.id) ? btn('data-showslip', 'Show the slip') : '') + pull }
+    else if (flightOf(s, m.id)) {
+      const f = flightOf(s, m.id)!
+      note = f.done ? `${m.note ? `${m.note[0].toUpperCase()}${m.note.slice(1)}. ` : ''}The drone is on its way back: ${when(f.back)}.` : `Out with the drone: there ${when(f.arrives)}, back ${when(f.back)}.`
+      acts = pull
+    } else if (m.state === 'accepted') {
+      const slip = slipFor(s, m.id)
+      note = !slip ? 'Accepted. The slip is gone.' : slip.in ? `Accepted. The slip is in the ${KINDS[find(s, slip.in.host)?.kind ?? '']?.name.toLowerCase() ?? 'container'}.` : 'Accepted. The slip is on your board.'
+      if (m.note) note += ` Last try: ${m.note}.`
+      acts = (slip ? btn('data-showslip', 'Show the slip') : '') + pull
+    }
+    else if (m.state === 'delivered') { note = `Delivered: ${m.note}.`; acts = pull }
+    else if (m.state === 'failed') { note = `Failed: ${m.note}.`; acts = pull }
     else { note = m.state === 'expired' ? 'It closed before you answered.' : 'Declined.'; acts = pull }
   } else {
-    if (m.type === 'bill') note = 'Credits come later: nothing can be paid yet.'
+    if (m.type === 'bill') note = 'Paying bills comes next: for now rent is only counted.'
     acts = pull + (m.archived ? '' : btn('data-archive', 'Archive'))
   }
   const where = m.terms && m.terms.to !== m.from ? ` <span class="dim">(${esc(m.terms.to)})</span>` : ''

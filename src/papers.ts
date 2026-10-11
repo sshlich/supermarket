@@ -1,9 +1,10 @@
 // Papers: slips and messages pulled out of the terminal, floating over the views (IDEAS.md, "Floating windows"). A paper has
 // three controls: close, pin (it stays in every view and in a save), fold (down to its top line, in the rack along the top edge).
 
+import { flightOf } from './fleet.ts'
 import { jobOf, left, mailById, packed, when, type Mail } from './mail.ts'
 import { termsHtml } from './terminal.ts'
-import { find, type Paper, type State } from './world.ts'
+import { findAnywhere, type Paper, type State } from './world.ts'
 
 export type View = 'board' | 'terminal'
 export const paperKey = (p: Paper) => p.item !== undefined ? `i${p.item}` : `m${p.mail}`
@@ -15,7 +16,7 @@ const paras = (t: string) => t.split('\n\n').map(p => `<p>${esc(p)}</p>`).join('
 /** The offer or message a paper shows, if any (a blank slip shows none). */
 export function mailOf(s: State, p: Paper): Mail | undefined {
   if (p.mail !== undefined) return mailById(s, p.mail)
-  const slip = p.item === undefined ? undefined : find(s, p.item)
+  const slip = p.item === undefined ? undefined : findAnywhere(s, p.item)
   return slip && jobOf(s, slip)
 }
 
@@ -23,23 +24,30 @@ export function mailOf(s: State, p: Paper): Mail | undefined {
 function content(s: State, p: Paper): { material: 'card' | 'carbon' | 'print'; top: string; body: string } {
   const m = mailOf(s, p)
   if (p.item !== undefined) {
-    const slip = find(s, p.item)!
+    const slip = findAnywhere(s, p.item)!
     if (!m?.terms) return { material: 'card', top: 'blank slip', body: '<p>Nothing is printed on it.</p>' }
     const t = m.terms
     const pk = packed(s, slip)!
     const count = pk.lines.map(l => pk.packed ? `${l.want.short} ${l.have}/${l.want.n}` : `${l.want.short} ×${l.want.n}`).join(', ')
     const due = left(s, t.due)
     const done = pk.lines.every(l => l.have >= l.want.n)
+    const f = flightOf(s, m.id)
+    // where it stands: out with a drone, stamped paid or failed, or still to pack
+    const state = m.state === 'delivered' ? `paid ${t.pay} cr` : m.state === 'failed' ? 'failed' : f ? `out, back ${when(f.back, true)}` : `${count} · due ${when(t.due, true)}`
+    const foot = f && !f.done ? `Out with the drone: there ${when(f.arrives)}, back ${when(f.back)}.`
+      : f ? `On its way back: ${when(f.back)}.`
+      : m.state !== 'accepted' ? '' : m.note ? `Last try ${m.note}.` : !pk.packed ? 'Not packed: put it in with the goods.' : done ? 'Packed: everything is here.' : 'Packed: some of it is still missing.'
+    const stamp = m.state === 'delivered' ? `<div class="stamp paid">paid ${t.pay} cr</div>` : m.state === 'failed' ? `<div class="stamp">${esc(m.note ?? 'failed')}</div>` : ''
     return {
       material: 'card',
-      top: `${esc(t.to)} · ${count} · due ${when(t.due, true)}`,
+      top: `${esc(t.to)} · ${state}`,
       body: `<div class="slip-head"><b>JOB SLIP</b><span>№ ${m.id}</span></div>
         <table class="terms"><tr><th>for</th><td>${esc(m.from)}</td></tr>
         <tr><th>to</th><td>${esc(t.to)} · ${t.dist} h away</td></tr>
-        ${pk.lines.map((l, i) => `<tr><th>${i ? '' : 'want'}</th><td>${l.want.n} × ${esc(l.want.label)}<span class="have ${l.have >= l.want.n ? 'full' : ''}">${pk.packed ? `${l.have}/${l.want.n}` : ''}</span></td></tr>`).join('')}
-        <tr><th>by</th><td>${when(t.due)} <em class="${due ? '' : 'late'}">(${due ? `in ${due}` : 'overdue'})</em></td></tr>
+        ${pk.lines.map((l, i) => `<tr><th>${i ? '' : 'want'}</th><td>${l.want.n} × ${esc(l.want.label)}<span class="have ${l.have >= l.want.n ? 'full' : ''}">${pk.packed && m.state === 'accepted' ? `${l.have}/${l.want.n}` : ''}</span></td></tr>`).join('')}
+        <tr><th>by</th><td>${when(t.due)}${m.state === 'accepted' ? ` <em class="${due ? '' : 'late'}">(${due ? `in ${due}` : 'overdue'})</em>` : ''}</td></tr>
         <tr><th>pay</th><td>${t.pay} cr</td></tr></table>
-        <div class="slip-foot">${!pk.packed ? 'Not packed: put it in with the goods.' : done ? 'Packed: everything is here.' : 'Packed: some of it is still missing.'}</div>`,
+        ${foot ? `<div class="slip-foot">${esc(foot)}</div>` : ''}${stamp}`,
     }
   }
   if (!m) return { material: 'print', top: 'a lost message', body: '' }

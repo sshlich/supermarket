@@ -274,3 +274,30 @@ yet (drones and credits are the next steps). Placeholder people, places, goods a
   thin printed sheet. A paper goes when its slip does.
 - `mail.test.ts` covers the first morning, expiry and the next batch, rent rising, accepting (and no room for the slip),
   declining, and counting what is packed with a slip.
+
+## Drones and the launch pad (2026-10-11)
+
+Step 2 of "Mail and drones: the first version" (`IDEAS.md`), with credits and pay on delivery from step 3. One drone kind,
+fixed stats, a timer (no map). The logic is `src/fleet.ts`.
+
+- **Drone** 3x3 (`kinds.json`: `"drone": { "speed": 1, "drain": 8 }`): a **cargo** slot 4x3 and a **cell** slot 1x1 (cells
+  only). Speed 1 means a place listed as 2 h away is 2 hours out; drain is charge per hour in the air, there and back, so a
+  full cell flies 6 h out at most. Its tooltip shows speed, drain and the range its cell allows.
+- **Launch pad** 4x4: one 3x3 **cradle** that takes a drone. Containers still do not go in containers, except vessels and,
+  new, a container whose tag the slot names in `accepts` (the cradle names `drone`); the nesting limit (2) still holds. Its
+  panel has a **launch** button and a line saying whether the drone can go ("ready: the Rail Depot, 2 h out, needs 32
+  charge"), or why not (no drone, no slip, one slip per trip, a finished job, no cell, not enough charge), or when the
+  drone is back.
+- **Launch:** the drone reads its cell, the charge for the whole trip is taken, and the drone and everything in it leave the
+  board (`state.flights`). Its panel closes; the slip's paper stays and shows the times.
+- **At the place** (after the distance): late, the job **fails**; anything missing, it is **refused** (the note says what)
+  and the job stays open to try again before its deadline; otherwise the wanted goods are handed over, the pay goes to
+  **credits** (shown in the corner) and the job is **delivered**. Each arrival writes a flight **log** to the terminal.
+- **Back** (after as long again): into the pad's cradle if it is there and free, otherwise on the first free squares of
+  the board, with the slip (stamped **paid** or the reason it failed) and whatever was not handed over.
+- A job left on the board past its deadline fails (the mail's hourly check); one in the air is left to the drone.
+- `place(state, item, space)` (new in `world.ts`) puts an item that is not on the board yet on the first free spot of a
+  place; `spawn` uses it. `everything(state)` and `findAnywhere` include items out in drones.
+- The starting board has a pad (top right of centre) and a drone beside it.
+- `fleet.test.ts` covers the cradle, the checks before launch, a delivery there and back, a refusal and a second try, a late
+  arrival, a deadline passing on the board, and landing on the board when the pad is taken.

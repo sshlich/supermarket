@@ -924,5 +924,56 @@
       "paper"
     ],
     "desc": "A job slip from the terminal: what is wanted, where, by when, for how much. Pack it with the goods."
+  },
+  "drone": {
+    "name": "Drone",
+    "icon": "",
+    "color": "#9fb4c8",
+    "w": 3,
+    "h": 3,
+    "tags": [
+      "drone"
+    ],
+    "desc": "A small cargo drone: a 4x3 bay and a cell. Put a slip and the goods in the bay, set it on a launch pad, and launch from the pad. Burns 8 charge an hour in the air, there and back.",
+    "slots": [
+      {
+        "name": "cargo",
+        "w": 4,
+        "h": 3
+      },
+      {
+        "name": "cell",
+        "w": 1,
+        "h": 1,
+        "accepts": [
+          "cell"
+        ]
+      }
+    ],
+    "drone": {
+      "speed": 1,
+      "drain": 8
+    }
+  },
+  "launch-pad": {
+    "name": "Launch pad",
+    "icon": "",
+    "color": "#8a8f99",
+    "w": 4,
+    "h": 4,
+    "tags": [
+      "pad"
+    ],
+    "desc": "A steel plate with a drone cradle. Put a drone in it, open the pad and press launch.",
+    "slots": [
+      {
+        "name": "cradle",
+        "w": 3,
+        "h": 3,
+        "accepts": [
+          "drone"
+        ]
+      }
+    ]
   }
 }

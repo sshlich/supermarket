@@ -119,8 +119,9 @@ comes from, drones are how it gets done. Placeholder numbers; the fuller version
 **Build order:**
 1. The terminal view: an inbox with offers, bills and notices; accepting prints a slip. **Built 2026-10-11** with the
    papers (`DESIGN.md`, "Mail, the terminal and papers"). Looks kept: text mode and dark 98 (classic 98 dropped).
-2. One drone kind with fixed stats, one launch pad, the timer.
-3. Credits; pay on return; rent as a bill.
+2. One drone kind with fixed stats, one launch pad, the timer. **Built 2026-10-11** (`DESIGN.md`, "Drones and the launch
+   pad"), with credits and pay on delivery pulled in from step 3, since a delivery that pays nothing reads as broken.
+3. Credits; pay on return; rent as a bill. (Credits and pay done with step 2; paying rent is what is left.)
 4. Sort and filter; then the frame grid.
 
 **Open:** none yet.

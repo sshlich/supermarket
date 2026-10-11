@@ -2,17 +2,18 @@
 // Placeholder people, places, goods and prices (IDEAS.md, "Mail and drones: the first version"). Nothing is delivered yet:
 // drones come next.
 
-import { clock, HOURS_A_DAY, matches, spawn, type Item, type Match, type State } from './world.ts'
+import { clock, everything, HOURS_A_DAY, matches, spawn, type Item, type Match, type State } from './world.ts'
 
-export type MailType = 'offer' | 'bill' | 'notice'
+export type MailType = 'offer' | 'bill' | 'notice' | 'log'
 /** One line of what a job wants: `n` things that match (a kind, a tag, property tests, a liquid), and how it reads: in full, and short (one word, for a paper's top line). */
 export interface Want extends Match { n: number; label: string; short: string }
 /** A job's terms: what, where (a name, and how many hours away it is), by when (a tick), and the pay in credits. */
 export interface Terms { want: Want[]; to: string; dist: number; due: number; pay: number }
 /**
  * One message. `at` is the tick it arrived. An offer has `terms` and stays open until `expires`; a bill has an `amount`
- * due by `due`. `state` moves from new to read when it is opened, and an offer ends accepted, declined or expired.
- * `archived` moves it out of the inbox.
+ * due by `due`. A log is a drone's report. `state` moves from new to read when it is opened; an offer is accepted,
+ * declined or expired, and an accepted one ends delivered or failed (`note` says how the last try went). `archived` moves
+ * it out of the inbox.
  */
 export interface Mail {
   id: number
@@ -25,7 +26,8 @@ export interface Mail {
   terms?: Terms
   amount?: number
   due?: number
-  state: 'new' | 'read' | 'accepted' | 'declined' | 'expired'
+  state: 'new' | 'read' | 'accepted' | 'declined' | 'expired' | 'delivered' | 'failed'
+  note?: string
   archived?: boolean
 }
 
@@ -79,7 +81,7 @@ type Roll = () => number
 const pick = <T>(list: T[], roll: Roll) => list[Math.floor(roll() * list.length) % list.length]
 const between = (lo: number, hi: number, roll: Roll) => lo + Math.floor(roll() * (hi - lo + 1))
 
-function post(s: State, m: Omit<Mail, 'id' | 'state'>): Mail {
+export function post(s: State, m: Omit<Mail, 'id' | 'state'>): Mail {
   const mail: Mail = { id: s.mailNext ?? 1, state: 'new', ...m }
   s.mailNext = mail.id + 1
   ;(s.mail ??= []).push(mail)
@@ -118,9 +120,16 @@ function rent(s: State, t: number, day: number) {
   post(s, { type: 'bill', from: 'Rent office', at: t, amount, due, subject: `Rent, week ${week}: ${amount} cr`, body: `Rent for your bay, week ${week}: ${amount} cr, due by ${when(due)}.\n\nRent goes up 2% at the start of every month.` })
 }
 
-/** One hour of mail: open offers past their time expire; each morning brings a batch (and the rent bill once a week); some come during the day. */
+/**
+ * One hour of mail: open offers past their time expire, and accepted jobs past their deadline fail (unless a drone is on
+ * its way with them: the drone finds out when it gets there). Each morning brings a batch (and the rent bill once a week);
+ * some come during the day.
+ */
 function hour(s: State, t: number, roll: Roll, first: boolean) {
-  for (const m of s.mail ?? []) if (m.type === 'offer' && (m.state === 'new' || m.state === 'read') && m.expires !== undefined && m.expires <= t) m.state = 'expired'
+  for (const m of s.mail ?? []) {
+    if (m.type === 'offer' && (m.state === 'new' || m.state === 'read') && m.expires !== undefined && m.expires <= t) m.state = 'expired'
+    if (m.state === 'accepted' && m.terms && m.terms.due < t && !s.flights?.some(f => f.job === m.id && !f.done)) { m.state = 'failed'; m.note = 'not delivered in time' }
+  }
   const { day } = clock(t)
   const morning = t % HOURS_A_DAY === 0
   if (first) post(s, { type: 'notice', from: 'Terminal', at: t, subject: 'How mail works', body: 'Offers come in every morning, and a few during the day. Each stays open for some hours.\n\nAccept one and its slip prints onto a free square of your board. Double-click the slip to read it; pin it to keep it in view while you work, fold it to keep just its top line.\n\nPack the goods with the slip. Drones come next: until then nothing is delivered and nothing is paid.' })
@@ -162,8 +171,8 @@ export function archive(s: State, id: number) { const m = mailById(s, id); if (m
 
 /** The offer a slip was printed for. */
 export const jobOf = (s: State, it: Item) => it.job === undefined ? undefined : mailById(s, it.job)
-/** The slip printed for an offer, if it is still about. */
-export const slipFor = (s: State, mailId: number) => s.items.find(o => o.job === mailId)
+/** The slip printed for an offer, if it is still about (on the board, or out in a drone). */
+export const slipFor = (s: State, mailId: number) => everything(s).find(o => o.job === mailId)
 
 /**
  * How much of a job is packed with its slip: the things in the same container slot as the slip that match each line (a
@@ -172,7 +181,7 @@ export const slipFor = (s: State, mailId: number) => s.items.find(o => o.job ===
 export function packed(s: State, slip: Item): { packed: boolean; lines: { want: Want; have: number }[] } | null {
   const terms = jobOf(s, slip)?.terms
   if (!terms) return null
-  const beside = slip.in ? s.items.filter(o => o.id !== slip.id && o.in?.host === slip.in!.host && o.in.slot === slip.in!.slot) : []
+  const beside = slip.in ? everything(s).filter(o => o.id !== slip.id && o.in?.host === slip.in!.host && o.in.slot === slip.in!.slot) : []
   const used = new Set<number>()
   const lines = terms.want.map(want => {
     let have = 0
