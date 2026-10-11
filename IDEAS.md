@@ -14,7 +14,7 @@ Sprites are game-icons glyphs until an item has proven itself.
 - **Step B, the loop (next):** the catch (a bin that fills each morning from a table), the insect chain (food waste, insect bin
   with a cell as its heat, chirps, press, slab), a value on every item, a buyer hatch that pays at the end of the day (until
   contracts and drones replace it), credits and rent.
-- **Then:** contract slips, a hopper drone and a launch pad (the drones-and-contracts section below).
+- **Then:** the mail view and the first drone ("Mail and drones: the first version" below).
 - **Decided:** a job missing an input pauses and keeps its progress; running costs are taken every hour and the main input
   at the end; no machine settings for now (slow/fast charging waits); no wear (friction without depth); rules and properties
   are edited as JSON until the format settles; the farm and food kinds stay in the data but leave the tray.
@@ -79,6 +79,49 @@ Open questions:
   steeping, curing, growing, hatching). Things that take minutes (a still's cuts) would need a real-time clock and an
   animation so that pressing the time button feels tactile. Proposed 2026-10-01: **hours**. A day is a run of hour steps
   that move machines, shelves and deliveries; the night is measured in light and stamina, not steps.
+
+## Mail and drones: the first version (agreed 2026-10-11)
+
+The setting is paused ("let's focus on concrete stuff"). These are the two systems with no world attached: mail is where work
+comes from, drones are how it gets done. Placeholder numbers; the fuller versions are in "Drones as the core" below.
+
+**Decided:**
+- **The terminal is a separate view:** its own menu or screen beside the board, not an item on the board. (This replaces the
+  Wire's "machine on the board with a printer tray and chip slots" below.)
+- **A drone that is out is a timer** for now. A map where you watch it fly comes later.
+- **One slip per trip** for now; several slips in one drone later.
+- **The slip stays a physical 1x1 item** on the board, so the job lives where you pack it. (Proposed; not objected to.)
+
+**Mail:**
+- A message has a sender, a type, text and an expiry in hours. A job also has terms: what, where, by when, and the pay.
+- Types: **offer** (a job for pay), **order** (someone wants to buy something you have), **bill** (rent, due on a day),
+  **notice** (information, no action).
+- Accept, decline, or let it expire. Accepting a job prints its slip onto the board.
+- New messages come with the clock: a batch each morning, a few during the day, drawn from tables. More than you can take,
+  on purpose.
+- Tools, in the order they are needed: sort (pay, deadline, distance); filter (type, sender); mark and archive. Later: a "can
+  I do this" column worked out from your drones and stock, and inbox rules.
+- An address is a name and a distance for now.
+- The view can also list the drones that are out, with the hours left, since the timer has to show somewhere.
+
+**Drones:**
+- A drone is a container kind with a cargo slot and a cell slot. Stats: capacity (the cargo slot's size), range, speed.
+- The **launch pad** is a machine. Put the slip and the goods in the cargo, the drone on the pad, launch. It leaves the board
+  for distance / speed hours. On landing the job is checked: the right goods on time are paid (credits, or items left in the
+  cargo); wrong or late is not paid.
+- Distance costs charge from the cell, which ties drones to the cell chain.
+- Jobs: **deliver** (take goods out), **fetch** (bring goods back); then **scavenge** (go to a place, come back with random
+  finds: the fishing drone).
+- Later: the frame as a grid of parts, program cards, other chassis.
+
+**Build order:**
+1. The terminal view: an inbox with offers, bills and notices; accepting prints a slip.
+2. One drone kind with fixed stats, one launch pad, the timer.
+3. Credits; pay on return; rent as a bill.
+4. Sort and filter; then the frame grid.
+
+**Open:** where a printed slip lands now that the terminal is not on the board: a small tray container on the board
+(proposed; if it is full the slip waits in the terminal), or the first free squares.
 
 ## Drones and contracts (the user's idea, 2026-10-07; liked, the current direction)
 
@@ -292,7 +335,10 @@ Rejected by the user the same day: the storms copied Fulgora; a company would re
 it off, not let it fall; and "the Dark Floors still build drones for a network that never answers" made no sense (a factory
 needs orders, inputs and power, and nobody pays for output that goes nowhere). Also decided: **drop the tower**, **no storms**.
 
-## Setting pitch: the Lockout (2026-10-11, for discussion)
+## Setting pitch: the Lockout (2026-10-11, rejected)
+
+Rejected by the user the same day, and so was a broad brainstorm of other settings that followed. Setting work is paused;
+see "Mail and drones: the first version".
 
 A civilisation built on the remnants of the previous one. Each link has to hold on its own:
 
