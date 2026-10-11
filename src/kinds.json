@@ -913,5 +913,16 @@
         }
       ]
     }
+  },
+  "slip": {
+    "name": "Slip",
+    "icon": "",
+    "color": "#e6dcc4",
+    "w": 1,
+    "h": 1,
+    "tags": [
+      "paper"
+    ],
+    "desc": "A job slip from the terminal: what is wanted, where, by when, for how much. Pack it with the goods."
   }
 }

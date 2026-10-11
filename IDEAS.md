@@ -117,7 +117,8 @@ comes from, drones are how it gets done. Placeholder numbers; the fuller version
 - Later: the frame as a grid of parts, program cards, other chassis.
 
 **Build order:**
-1. The terminal view: an inbox with offers, bills and notices; accepting prints a slip.
+1. The terminal view: an inbox with offers, bills and notices; accepting prints a slip. **Built 2026-10-11** with the
+   papers (`DESIGN.md`, "Mail, the terminal and papers"), and three looks to choose from: text mode, dark 98, classic 98.
 2. One drone kind with fixed stats, one launch pad, the timer.
 3. Credits; pay on return; rent as a bill.
 4. Sort and filter; then the frame grid.

@@ -2,6 +2,7 @@
 
 import { drop, dropGroup, firstFree, footprintKey, overlaps, turn, type Box } from './grid.ts'
 import DATA from './kinds.json' with { type: 'json' }
+import type { Mail } from './mail.ts'
 
 export const W = 25
 export const H = 20
@@ -55,9 +56,17 @@ export const KINDS: Record<string, Kind> = DATA
 /** `rot` is how many quarter turns clockwise it has been turned (0 to 3): 2 is upside down. */
 /** `in` says which container's slot it sits in (its x, y are then inside that slot's grid); no `in` means on the field. */
 /** `p` holds its properties' values, `hidden` the ones nobody has read yet; `m` is a machine's progress on each job rule (by rule index). */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; m?: { work: Record<number, number> }; liquid?: { type: string; ml: number }; p?: Record<string, number>; hidden?: string[] }
+/** `job` is on a slip: the id of the offer (in `mail`) it was printed for. */
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; m?: { work: Record<number, number> }; liquid?: { type: string; ml: number }; p?: Record<string, number>; hidden?: string[]; job?: number }
+/**
+ * A paper floating over the views: a slip on the board (`item`) or a message pulled out of the terminal (`mail`). `x`, `y` are
+ * screen pixels. A pinned paper shows in every view and keeps its place in a save; an unpinned one belongs to the view that
+ * opened it. A folded one shows only its top line, in the rack along the top edge.
+ */
+export interface Paper { item?: number; mail?: number; x: number; y: number; pinned?: boolean; folded?: boolean; view: 'board' | 'terminal' }
 /** `panels` are the open containers, docked to the sides: [left top, left bottom, right top, right bottom]. `tick` counts hours; `power` is what machines have drawn. */
-export interface State { items: Item[]; next: number; panels?: (number | null)[]; tick?: number; power?: number }
+/** `mail` is every message so far (`mailNext` the next id, `mailAt` the last hour it was brought up to); `papers` the open papers, last on top. */
+export interface State { items: Item[]; next: number; panels?: (number | null)[]; tick?: number; power?: number; mail?: Mail[]; mailNext?: number; mailAt?: number; papers?: Paper[] }
 
 const SHAPES = new Map<string, { sig: string; box: Box }>()
 /** A kind's footprint as the grid sees it, facing the way it is made. */

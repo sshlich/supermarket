@@ -241,3 +241,36 @@ Step A of the items plan (`IDEAS.md`, "Items: the plan"). Items carry properties
   coal 6 hours, log 3, split log 2, kindling 1. The starting field has the rack, four cells and the gauge along the bottom.
 - `world.test.ts` covers rolling and reading, the charger and its power, a job that stalls and resumes, a full output, the
   clock, and old saves.
+
+## Mail, the terminal and papers (2026-10-11)
+
+Step 1 of "Mail and drones: the first version" (`IDEAS.md`). Mail is where work comes from; nothing is delivered or paid
+yet (drones and credits are the next steps). Placeholder people, places, goods and prices, all in `src/mail.ts`.
+
+- **Messages** (`state.mail`): an **offer** (terms: what is wanted as lines of `Match` + `n`, where to and how many hours
+  away, due by a tick, pay in credits; open until `expires`), a **bill** (rent: `amount`, `due`), a **notice**. A message is
+  new, then read; an offer ends accepted, declined or expired. Bills and notices can be archived.
+- **Arrival** (`catchUp(state)`, run after every change): every hour since the last, in order. Open offers past their time
+  expire; each morning brings two to four offers (and a notice now and then); the rent bill comes on days 1, 8, 15...
+  (125 cr a week, up 2% every 28 days, rounded up); during the day an offer comes one hour in five. A new game (or an old
+  save without mail) starts with a how-to notice, the rent and a batch of offers.
+- **Accepting** an offer prints a **slip** (a 1x1 kind tagged `paper`; `item.job` is the offer's id) onto the first free
+  squares of the board; no room, no slip, and the offer stays open. What is packed with a slip is what sits in the same
+  container slot as it: each thing counts once, toward the first line of the job it fits.
+- **The terminal** is its own view: the **mail** button by the clock (with the unread count) or `M`; `Esc`, `M` or the
+  window's ✕ go back. Folders: Inbox (open offers, bills, notices), Jobs (accepted), Archive (closed offers, archived
+  mail). The list is newest first; the reading pane has the terms and the answers (Accept, Decline, Pull out, Archive, Show
+  the slip). Up and down arrows move through the list.
+- **Three looks** for the terminal, to choose from (the "look" button in its status bar, remembered per browser): **text
+  mode** (the board's own: monospace, thin lines, the copper rim), **dark 98** (Windows 98's bevels and title bar in the
+  board's colours), **classic 98** (plain Windows 98 grey and navy).
+- **Papers** (`state.papers`; IDEAS, "Floating windows"): double-click a slip, or Pull out a message, and it opens as a
+  paper over the view. Drag it anywhere but its buttons; the one touched last is on top. **✕** closes it (the slip stays);
+  **pin** keeps it in every view and in a save (a pushpin on top; unpinned papers are dropped on load and belong to the view
+  that opened them); **fold** puts it in the rack, tabs hanging from the top edge with just the top line ("Pell's Bakery ·
+  coal 1/2 · due d1 14:00"); click a tab to unfold. A slip's paper shows the terms and, once packed, a count per line;
+  hovering a slip or an offer (or its tab) lights up everything on the board that would do for it. The material says what
+  it is: a slip is card with a punched hole (a real hole), a bill a carbon copy with a red stamp, a notice or an offer a
+  thin printed sheet. A paper goes when its slip does.
+- `mail.test.ts` covers the first morning, expiry and the next batch, rent rising, accepting (and no room for the slip),
+  declining, and counting what is packed with a slip.
