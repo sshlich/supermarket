@@ -1,5 +1,5 @@
-/* The terminal: mail in its own view. Three looks to compare, switched by the button in the status bar:
-   tui (the board's own text-mode look), dark98 (Windows 98's bevels in the board's colours), 98 (plain Windows 98). */
+/* The terminal: mail in its own view. Two looks, switched by the button in the status bar (kept 2026-10-11; classic grey
+   Windows 98 was tried and dropped): tui (the board's own text-mode look), dark98 (Windows 98's bevels in the board's colours). */
 
 .term {
   --t-font: 12px/1.45 ui-monospace, 'SF Mono', Menlo, monospace;
@@ -61,31 +61,25 @@
 .term[data-skin="tui"] .msg:hover { background: #19151e; }
 .term[data-skin="tui"] .msg.on { box-shadow: inset 2px 0 #c49c68; }
 
-/* dark98 and 98: Windows 98's raised and sunken bevels (two lines of light and two of shadow), its title bar and its
-   sans-serif. Only the colours differ. */
-.term[data-skin$="98"] { --t-font: 12px/1.4 Tahoma, Verdana, 'Segoe UI', Arial, sans-serif; }
+/* dark98: Windows 98's raised and sunken bevels (two lines of light and two of shadow), its title bar and its sans-serif,
+   in the board's colours */
 .term[data-skin="dark98"] {
+  --t-font: 12px/1.4 Tahoma, Verdana, 'Segoe UI', Arial, sans-serif;
   --t-face: #2b2331; --t-well: #17131b; --t-text: #e6e3dc; --t-dim: #9a8fa3; --t-line: #3b3045;
   --b-hi1: #7a6888; --b-hi2: #4a3d55; --b-lo1: #050406; --b-lo2: #17121b;
   --t-sel: #a06f4b; --t-selfg: #fff; --t-title1: #4a2a1c; --t-title2: #a06f4b; --t-titlefg: #f0ece2;
 }
-.term[data-skin="98"] {
-  --t-face: #c0c0c0; --t-well: #fff; --t-text: #000; --t-dim: #555; --t-line: #c0c0c0;
-  --b-hi1: #fff; --b-hi2: #dfdfdf; --b-lo1: #0a0a0a; --b-lo2: #808080;
-  --t-sel: #000080; --t-selfg: #fff; --t-title1: #000080; --t-title2: #1084d0; --t-titlefg: #fff;
-  --t-accent: #000080; --t-offer: #7a4a00; --t-bill: #a00000; --t-notice: #006b6b; --t-late: #a00000;
-}
-.term[data-skin$="98"] .win { padding: 3px; box-shadow: inset -1px -1px var(--b-lo1), inset 1px 1px var(--b-hi2), inset -2px -2px var(--b-lo2), inset 2px 2px var(--b-hi1); }
-.term[data-skin$="98"] .title { margin-bottom: 4px; padding: 3px 3px 3px 6px; background: linear-gradient(90deg, var(--t-title1), var(--t-title2)); color: var(--t-titlefg); font-weight: bold; }
-.term[data-skin$="98"] .title .x { width: 18px; height: 16px; padding: 0; display: grid; place-items: center; font: bold 11px/1 Tahoma, sans-serif; color: var(--t-text); background: var(--t-face); }
-.term[data-skin$="98"] button:not(.msg) { background: var(--t-face); border: 0; border-radius: 0; box-shadow: inset -1px -1px var(--b-lo1), inset 1px 1px var(--b-hi1), inset -2px -2px var(--b-lo2), inset 2px 2px var(--b-hi2); }
-.term[data-skin$="98"] button:not(.msg):active, .term[data-skin$="98"] .tabs button.on { box-shadow: inset -1px -1px var(--b-hi1), inset 1px 1px var(--b-lo1), inset -2px -2px var(--b-hi2), inset 2px 2px var(--b-lo2); }
-.term[data-skin$="98"] .acts button, .term[data-skin$="98"] .tabs button { min-width: 75px; }
-.term[data-skin$="98"] .tabs { padding: 2px 4px 6px; }
-.term[data-skin$="98"] .main { gap: 4px; padding: 0 4px; }
-.term[data-skin$="98"] .list, .term[data-skin$="98"] .read { box-shadow: inset -1px -1px var(--b-hi1), inset 1px 1px var(--b-lo2), inset -2px -2px var(--b-hi2), inset 2px 2px var(--b-lo1); padding: 2px; }
-.term[data-skin$="98"] .read { padding: 12px 14px; }
-.term[data-skin$="98"] .read .head { border-bottom-color: var(--b-lo2); }
-.term[data-skin$="98"] .msg { padding: 5px 8px; }
-.term[data-skin$="98"] .status { margin-top: 4px; padding: 3px 4px; color: var(--t-text); }
-.term[data-skin$="98"] .status > span:first-child { padding: 2px 8px; box-shadow: inset -1px -1px var(--b-hi1), inset 1px 1px var(--b-lo2); }
+.term[data-skin="dark98"] .win { padding: 3px; box-shadow: inset -1px -1px var(--b-lo1), inset 1px 1px var(--b-hi2), inset -2px -2px var(--b-lo2), inset 2px 2px var(--b-hi1); }
+.term[data-skin="dark98"] .title { margin-bottom: 4px; padding: 3px 3px 3px 6px; background: linear-gradient(90deg, var(--t-title1), var(--t-title2)); color: var(--t-titlefg); font-weight: bold; }
+.term[data-skin="dark98"] .title .x { width: 18px; height: 16px; padding: 0; display: grid; place-items: center; font: bold 11px/1 Tahoma, sans-serif; color: var(--t-text); background: var(--t-face); }
+.term[data-skin="dark98"] button:not(.msg) { background: var(--t-face); border: 0; border-radius: 0; box-shadow: inset -1px -1px var(--b-lo1), inset 1px 1px var(--b-hi1), inset -2px -2px var(--b-lo2), inset 2px 2px var(--b-hi2); }
+.term[data-skin="dark98"] button:not(.msg):active, .term[data-skin="dark98"] .tabs button.on { box-shadow: inset -1px -1px var(--b-hi1), inset 1px 1px var(--b-lo1), inset -2px -2px var(--b-hi2), inset 2px 2px var(--b-lo2); }
+.term[data-skin="dark98"] .acts button, .term[data-skin="dark98"] .tabs button { min-width: 75px; }
+.term[data-skin="dark98"] .tabs { padding: 2px 4px 6px; }
+.term[data-skin="dark98"] .main { gap: 4px; padding: 0 4px; }
+.term[data-skin="dark98"] .list, .term[data-skin="dark98"] .read { box-shadow: inset -1px -1px var(--b-hi1), inset 1px 1px var(--b-lo2), inset -2px -2px var(--b-hi2), inset 2px 2px var(--b-lo1); padding: 2px; }
+.term[data-skin="dark98"] .read { padding: 12px 14px; }
+.term[data-skin="dark98"] .read .head { border-bottom-color: var(--b-lo2); }
+.term[data-skin="dark98"] .msg { padding: 5px 8px; }
+.term[data-skin="dark98"] .status { margin-top: 4px; padding: 3px 4px; color: var(--t-text); }
+.term[data-skin="dark98"] .status > span:first-child { padding: 2px 8px; box-shadow: inset -1px -1px var(--b-hi1), inset 1px 1px var(--b-lo2); }

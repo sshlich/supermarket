@@ -118,7 +118,7 @@ comes from, drones are how it gets done. Placeholder numbers; the fuller version
 
 **Build order:**
 1. The terminal view: an inbox with offers, bills and notices; accepting prints a slip. **Built 2026-10-11** with the
-   papers (`DESIGN.md`, "Mail, the terminal and papers"), and three looks to choose from: text mode, dark 98, classic 98.
+   papers (`DESIGN.md`, "Mail, the terminal and papers"). Looks kept: text mode and dark 98 (classic 98 dropped).
 2. One drone kind with fixed stats, one launch pad, the timer.
 3. Credits; pay on return; rent as a bill.
 4. Sort and filter; then the frame grid.
@@ -147,6 +147,23 @@ thin printed sheet, a flight log a thermal strip that curls. Later, your own not
 
 Also settled: container panels stay docked (grids need room and line up with the board); no cap on open papers (folding
 handles it); pinned papers keep their place in a save.
+
+**The terminal as a desktop (the user's note, 2026-10-11; for later).** Visuals in the mail, more than mail, maybe a whole
+desktop with programs: another layer. Starting points, nothing decided:
+- **Visuals in messages:** a picture of what is wanted (the item's own sprite), a sender's letterhead or stamp, a scrap of the
+  route once there is a map, attachments (a price list, a part's spec sheet, a drone frame's plan) that pull out as papers.
+  Small, low-colour, dithered pictures would suit a terminal.
+- **A desktop with programs,** each one the screen of a system: **Mail** (built); **Fleet** (drones out, their timers,
+  flight logs: where the drone timer lives, step 2); **Ledger** (credits, rent, what was paid, step 3); **Boards** (public
+  posts: wanted, for sale, first come first served, not addressed to you); **Prices** (a list that moves); **Contacts**
+  (who you have worked with, and how they rate you); **Map** (later, with the flying map); **Cards** (drone programs);
+  **Notes** (your own, printed out as papers); **Files** (what is on chips found in salvage: manuals, plans, old logs).
+- **Programs as things you get:** the desktop starts with Mail alone and fills as you find, buy or are sent programs (on a
+  chip, by mail). That is progression in the layer itself, and it ties to the Wire's chips below.
+- The two looks may split along this line: **dark 98** suits a desktop of windows, icons and a taskbar; **text mode** suits
+  one program at a time, switched like tabs.
+- Open: program windows on a desktop or one screen at a time; how windows on the screen and papers on the desk differ (papers
+  are physical and float over both views; windows live only in the terminal).
 
 ## Drones and contracts (the user's idea, 2026-10-07; liked, the current direction)
 

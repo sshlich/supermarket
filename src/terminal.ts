@@ -7,10 +7,10 @@ import { type State } from './world.ts'
 export type Folder = 'inbox' | 'jobs' | 'archive'
 export const FOLDERS: Record<Folder, string> = { inbox: 'Inbox', jobs: 'Jobs', archive: 'Archive' }
 
-/** Looks to try the terminal in: the board's own text-mode look, Windows 98 in the board's colours, and plain Windows 98. */
-export const SKINS = ['tui', 'dark98', '98'] as const
+/** The terminal's looks: the board's own text mode, and Windows 98 in the board's colours. */
+export const SKINS = ['tui', 'dark98'] as const
 export type Skin = typeof SKINS[number]
-const SKIN_NAMES: Record<Skin, string> = { tui: 'text mode', dark98: 'dark 98', '98': 'classic 98' }
+const SKIN_NAMES: Record<Skin, string> = { tui: 'text mode', dark98: 'dark 98' }
 
 export interface TermUi { folder: Folder; open: number | null; skin: Skin }
 

@@ -261,9 +261,9 @@ yet (drones and credits are the next steps). Placeholder people, places, goods a
   window's ✕ go back. Folders: Inbox (open offers, bills, notices), Jobs (accepted), Archive (closed offers, archived
   mail). The list is newest first; the reading pane has the terms and the answers (Accept, Decline, Pull out, Archive, Show
   the slip). Up and down arrows move through the list.
-- **Three looks** for the terminal, to choose from (the "look" button in its status bar, remembered per browser): **text
-  mode** (the board's own: monospace, thin lines, the copper rim), **dark 98** (Windows 98's bevels and title bar in the
-  board's colours), **classic 98** (plain Windows 98 grey and navy).
+- **Two looks** for the terminal (the "look" button in its status bar, remembered per browser): **text mode** (the board's
+  own: monospace, thin lines, the copper rim) and **dark 98** (Windows 98's bevels and title bar in the board's colours).
+  Classic grey-and-navy Windows 98 was tried and dropped: it clashes with the board.
 - **Papers** (`state.papers`; IDEAS, "Floating windows"): double-click a slip, or Pull out a message, and it opens as a
   paper over the view. Drag it anywhere but its buttons; the one touched last is on top. **✕** closes it (the slip stays);
   **pin** keeps it in every view and in a save (a pushpin on top; unpinned papers are dropped on load and belong to the view
