@@ -90,7 +90,9 @@ comes from, drones are how it gets done. Placeholder numbers; the fuller version
   Wire's "machine on the board with a printer tray and chip slots" below.)
 - **A drone that is out is a timer** for now. A map where you watch it fly comes later.
 - **One slip per trip** for now; several slips in one drone later.
-- **The slip stays a physical 1x1 item** on the board, so the job lives where you pack it. (Proposed; not objected to.)
+- **The slip stays a physical 1x1 item** on the board, so the job lives where you pack it. Considered and dropped the same
+  day: no slips, with the job picked on the drone's panel.
+- **A printed slip lands on the first free squares** of the board.
 
 **Mail:**
 - A message has a sender, a type, text and an expiry in hours. A job also has terms: what, where, by when, and the pay.
@@ -120,8 +122,30 @@ comes from, drones are how it gets done. Placeholder numbers; the fuller version
 3. Credits; pay on return; rent as a bill.
 4. Sort and filter; then the frame grid.
 
-**Open:** where a printed slip lands now that the terminal is not on the board: a small tray container on the board
-(proposed; if it is full the slip waits in the terminal), or the first free squares.
+**Open:** none yet.
+
+**Floating windows (the user's idea, 2026-10-11; in discussion).** Slips and other notes open as papers floating over the
+view, not as docked panels. A paper has no grid and no docking, and is dragged by its edge. Its controls:
+- **Close (x).** The paper closes; the slip item stays where it is on the board.
+- **Pin.** The paper stays open and on top when you switch views. Unpinned papers belong to the view that opened them.
+- **Fold** (the user was unsure; proposed). The paper collapses to its top line ("Dock 4 · cells 2/4 · due 14:00"), which is
+  what you want to see while packing. Folded papers stack along the edge like tabs.
+
+What opens one:
+- Double-click a slip on the board. The paper is a view of the item, not a second thing.
+- From the terminal, pull out a message (a bill, a notice, a long offer) as a paper to keep in view. These are only papers,
+  not items, because nothing packs them.
+
+What an open slip paper does (proposed):
+- It shows the terms and a live count of the goods packed with it.
+- Hovering it lights up the matching goods on the board.
+- After launch it shows the drone's countdown ("back 14:00"). On landing it is stamped paid or refused.
+
+The material shows the type: a job slip is card with a punched hole, a bill a carbon copy with a stamped due date, a notice a
+thin printed sheet, a flight log a thermal strip that curls. Later, your own note is a torn scrap you write on.
+
+Open: do container panels stay docked (proposed: yes, because grids need room and line up with the board), or float too? Is
+there a cap on open papers (proposed: none, because folding handles it)? Pinned papers keep their place in a save (proposed).
 
 ## Drones and contracts (the user's idea, 2026-10-07; liked, the current direction)
 
