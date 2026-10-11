@@ -157,6 +157,159 @@ grown, with precious water; protein blocks are ground insects and food waste fro
 - Smallest version that shows the divide: rent per square, the garbage chute, the two food chains, and contracts with a
   destination floor.
 
+## Drones as the core (proposal, 2026-10-11; the user: "it's good, at least for the ideas")
+
+Make the drone the main object you work on, and let the rest feed it. Every new system below is the same verb the game
+already has: put things on a grid of squares and let rules read the grid (the board, a drone frame, a robot chassis, a
+part's ports and cables, a card strip, a terminal's chip slots). Placeholder numbers throughout.
+
+### The loop: fit, pack, route, fly, unpack
+
+- **Fit.** A drone is a frame: a container with rotor sockets (arms, outside the grid) and one grid. Controller, cells,
+  transponder, sensors and inserts are items in that grid; what is left is the bay. More cells, more range, less cargo.
+- **Pack.** The contract slip (1x1 paper) is the address: no slip, no launch. Permits, route cards, insurance notes and
+  faction tokens take squares too. Bay rules (a bay is a special container, so they are allowed): liquids ride upright,
+  fragile things want an empty or padded neighbour, tollers take what sits nearest the **hatch edge**.
+- **Route.** Lane (transponder and a permit or a ticket; safe, logged, recallable), free shaft (pick a riser, each with its
+  own trouble table), lift freight (a chit; slow, insured), the outside face (weather). Hours, cost and odds shown before launch.
+- **Fly.** The drone leaves the board; a **sky strip** beside the board shows it climb hour by hour. Charge drains each hour;
+  several drones in the air turn the day into a schedule (this fills the idle hours file 10's worked day found). Events only
+  blink on the strip; the details wait for the log.
+- **Unpack.** The bay comes back as a panel: pay, a reward from the destination's table, back-haul, what went wrong (a missing
+  item, wet goods, a cracked rotor), and the **flight log** (1x1 paper). Full, partial, late or failed; a lost drone opens a
+  recovery contract.
+
+### The Wire: making and viewing deals
+
+The deals interface is an in-world network on a terminal (a machine on the board with a printer tray and chip slots) or a
+slate. It is the one big screen that is not a grid, and it should feel like a dirty old terminal.
+
+- **Layers:** Ledger Mail (the Company: licensed offers, bills, notices; logged and read), the Underwire (grey, anonymous,
+  scams and stings; costs chits), Nine (the rats' radio; only near a hatch or a relay), Static (pirate broadcast feed), boards
+  (floors, the Co-op, the Drop). Signal is geography: strong above 30, patchy in the Mills, dead in the Sump unless you place
+  relays.
+- **Message types:** offers, standing orders, subcontracts, auctions, board posts, personal mail, notices and bills, flight
+  logs (auto-filed), feeds, spam, scams, stings.
+- **Deals:** accept (the slip prints at the terminal: deals are made in the Wire and fulfilled on the grid), counter (a few
+  moves: +20%, an advance, a later deadline, another route; clients answer by personality), subcontract to a rat, post your
+  own offers, bid in auctions, arbitrage between floors.
+- **Populating it:** a roster of senders (floor, faction, voice, needs table, reliability, a relationship meter; 06a, 06b
+  and 11 already hold about 60 named people), templates filled from needs and world events (fever season, the Chalk moving, a
+  storm), threads that reply and follow up, noise that grows with your reputation, a look per origin (crested and formal from
+  the Crown, all caps from Nine, voice-transcribed from the Sump).
+- **Taming the chaos, as progression:** folders, sort, search, pin; a **FIT** column computed from your fleet (can do / can do
+  if refitted / cannot); views (offers on the tower strip by floor, accepted jobs and flights on a timeline, threads);
+  **inbox rules written as the same cards drones use** (`IF type = log` → folder; `IF grey AND unknown` → Spam?); **chips**
+  (sorter, spam, auto-reply, decrypt) in the terminal's slots; a hired **Pinner** who triages by hand; reading costs a little
+  of the day. Early you read everything; mid game you drown; late game your rules and chips run the inbox.
+
+### Drone depth
+
+- **Frame grid:** typed squares: **core** (the controller goes here), **hatch edge**, **bottom row** (nets and water reach it
+  first); rotor sockets on arms; the controller has a fixed number of **ports**.
+- **Parts:** rotor (grey 1.2 kg thrust, licensed 1.5, founding-era 1.8), controller (program slots, ports, stops, nav, packing
+  smarts), cell, transponder, rangefinder (riser nav), camera (reads kind and tag), gauge sensor (reads hidden properties),
+  grab arm (1x2, finds 2x2 and up), winch and magnet (2x1, fishing), cold liner, crash foam, plating, relay, cable segments.
+- **Stats, all derived:** mass (needs a `kg` on kinds: slab 0.3, cell 0.5, paste tub 1.2, full jerrycan 10.5); thrust;
+  **lift margin** = thrust / mass (under 1.25 will not launch; 1.25 to 1.5 sluggish); drain = 4 + 1.5 × mass an hour (a cell is
+  100); range = charge / drain; speed by frame, margin and route; stability; profile (how often looters and spotters notice).
+- **Balance:** a centre-of-mass dot against the frame's centre; off-centre costs drain and stability, far off-centre will not
+  launch or tips the hatch-edge item out. Heavy in the middle, slips at the edges.
+- **Ports and cables:** a sensor needs a port; adjacent connects, otherwise lay cable segments (each takes a square). Signal
+  weakens per segment and per join (a weak camera misreads tags); motors next to a cable add noise (the one proximity rule,
+  inside a frame); amplifiers and shielding are parts.
+- **Damage by side:** nets hit the bottom row, wall scrapes a side column, tollers the hatch edge, drips the top row, hard
+  landings everything except what sits beside foam. Plating soaks a side. Damaged parts work worse until swapped at the bench
+  (salvage feeds it). No passive wear, per the rule above.
+- **Provenance:** licensed (known stats, retires on a date, needed for lanes), grey (cheap, loud, cannot arm a transponder),
+  founding-era (better, with **hidden traits** shown as `?`, revealed by a gauge, a test stand or an Old Hand).
+- **Frames as roles:** hopper 2x2, Wren 4x3, Kestrel 5x4, Ell (L), Strut-through (a dead column), Bucket (liquids need no
+  upright rule), Capsule (sealed), Heron 6x5 (cold, heavy), rat frames (random grey shapes).
+
+### Programs: cards on a strip
+
+- The controller has a strip of card slots (5 on a Wren). Cards are items; the strip runs left to right.
+  `[GO: the Spill] [KEEP: cell] [KEEP: metal] [UNTIL: full or charge 30] [HOME]` is a fishing drone.
+- **Cards:** GO, SEARCH (one find an hour from the site's table, like the catch), FISH, KEEP and SKIP (a kind, a tag, or a
+  hidden value if a sensor can read it; a KEEP card is the rule matcher's `Match`), UNTIL (full, charge, hour, found), DROP
+  (multi-stop), WAIT, HOME, IF tolled: HOME. Later: IF, ELSE, LOOP, counters, sensor inputs; a **card punch** sets numbers and
+  copies strips; **chips** burn a whole strip into one tradeable item.
+- **The drone packs dumbly:** first free spot, no turning; a better controller packs tighter. You repack on return.
+- **The flight log is the debugger:** every find, what was kept, what was skipped and why, when it turned home.
+- **Sites:** the Spill and the Bale Hall, the Hooks' drops (a fee per item), riser ledges (downed drones), the Flats at low
+  tide (fishing, tide hours), the drowned floors (sealed frames), the Hulk (late).
+- **Routines:** a hawker hopper that sells breakfast at the Whistle, milk runs between neighbours' hatches, standing orders
+  launched on their own.
+
+### The chassis family
+
+One idea, several bodies: a grid with sockets and ports.
+
+| Chassis | Moves | Reaches | Good at | Bad at |
+|---|---|---|---|---|
+| Drone | air | shafts, lanes, outside | fast, vertical | mass, noise |
+| Roach | legs or tracks | vents, crawlspaces, pipes | heavy loads, quiet, opens hatches | slow, no shafts |
+| Rail crawler | lift guide rails | between floors | quiet, cheap | the Guild owns the rails |
+| Swimmer | tethered, sealed | the drowned floors, the Flats | where nothing else goes | slow, tether length |
+| Arm | none | your board | moves items between machines on a program | its reach |
+
+- **Signal:** three ways to talk to a machine. **Program** (cards; works anywhere), **tether** (a cable on a reel: live control
+  each hour within its length; snags), **relay** (boxes on hatches make a mesh you build and maintain; they draw power and get
+  stolen). Signal strength exists inside a chassis (cables) and across the tower (relay hops).
+- **Assembly, not crafting** (the rules above stand): chassis + parts + cables + cards, at the **bench**; a **test stand** shows
+  live stats and reveals hidden traits. Production chains supply parts and cargo.
+- The roach answers file 14's "seeing inside the Dark Floors, never on foot": a roach with a relay goes in; you read its log.
+- **Robot battles (optional, last):** machine against machine on programs, auto-resolved (Gladiabots-like). The Pit in the
+  Sump as gambling, the Pleasure Pier's duels, looters' hunter drones in the shafts. The canon brief has combat out of scope,
+  so this is the designer's call.
+
+### What changes, and what stays
+
+- The player becomes a mover more than a merchant: reads the world through the Wire, makes deals, builds the means, moves
+  things, learns from logs, automates what is solved, builds relays. The board stays the home (hangar and workshop), rent
+  still pushes, the catch, salvage and insect chains supply cargo and parts, the counter is optional.
+- Grades, VOID and brands return later as **cargo properties** that routes and clients read.
+
+### Build order (each step playable)
+
+1. The Wire, minimal (offers; accept prints a slip; FIT) + one drone, one pad, one route.
+2. Drone depth: mass, thrust, range, balance, rotor sockets, three frames.
+3. Routes and events; damage by side; repair at the bench.
+4. Cards: GO, SEARCH, KEEP, UNTIL, HOME; one scavenging site; flight logs.
+5. Wire tools: views, inbox rules as cards, the first chip.
+6. Ports and cables inside frames; signal strength; sensors.
+7. The roach; tethers and relays; the Dark Floors.
+8. The Pit, optional.
+
+Open: how much of the shop survives; whether the counter stays; how fast the layers arrive; whether battles belong at all.
+
+## Setting pitch: the Grounding (2026-10-11, for discussion)
+
+The user: the Stack as written is not logical for this many drones and parts. Something like Fulgora (Factorio): a world made
+of the ruins of a machine civilisation, where scrap is the resource and sorting it is the game. The pitch, in full in chat
+and summarised here:
+
+- **The swarm.** Calder drowned first; a drowned city has no roads, so the Company built the **swarm**: millions of drones,
+  relay masts, charging spires and depots on stilts that carried everything. The Works made its cells and chips; the Stack
+  was its depot.
+- **The Grounding.** When the swarm stopped paying, the Company cut the signal. In one night the swarm fell into the bay and
+  onto the roofs. Official story: a solar storm. Everyone knows the truth (the same shape as the Drowning in the canon).
+- **The Shoals.** The bay floor is a wreck field of drones; leaking cells make the water caustic and conductive. Boats shred
+  on it. **The only roads are in the air**, between the ruin islands: the Stack, other depots, mast stubs, rooftops.
+- **Storms.** The spires used to draw the lightning. Now storms rake the bay every night: they kill anything flying and burn
+  what is left out, and lightning rods fill cells for free. Day is for flying; night is for the bench and the rods.
+- **Signal is the divide.** A few spires still run, owned by the Company. Coverage means live control, licensed lanes and
+  safety, sold by subscription; the rich live inside it. Outside it, drones fly blind on cards, and the poor build relays.
+- **Scrap is the resource** (Fulgora): parts are cheap and everywhere; signal, power by day, clean water and food are dear.
+  Fishing the Shoals and stripping wrecks gives random parts; sorting and filters are the gameplay.
+- **Kept:** Halden, the Works, the Stack as a vertical depot with the same bands, the Dark Floors (which still build drones every
+  night and launch them into a network that never answers; they circle and fall into the Shoals), rent, the factions
+  (recast), the poisoned water. **Changed:** drones fly outside between islands, not mainly in shafts; the Grounding becomes the
+  central catastrophe; salvage replaces the garbage chute as the main input. **Gone:** "no radio reaches through the steel" as
+  an absolute (replaced by coverage).
+- **Alternative:** full Fulgora: no tower, a scrap archipelago, the player a salvage outfit on a wreck island, the Company an
+  offshore buyer. Cleaner, but drops most of the lore.
+
 ## Shop and expeditions (the user's pitch, 2026-10-01; in discussion)
 
 Drawn from Probably Stolen's loop (the shopkeeper game the handling reference comes from), to iterate on, not to copy.
