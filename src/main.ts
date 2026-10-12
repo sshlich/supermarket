@@ -627,7 +627,7 @@ app.addEventListener('click', e => {
   if (b.dataset.launch) { const f = launch(s, +b.dataset.launch); changed(new Map()); toast(typeof f === 'string' ? f : `launched: there ${when(f.arrives)}, back ${when(f.back)}`); return }
   if (clickTerminal(b) || clickPaper(b)) return
   if (b.dataset.close) { s.panels = (s.panels ?? []).map(p => (p === +b.dataset.close! ? null : p)); changed(new Map()); return }
-  if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
+  if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn); if (it) { for (const [n, d] of Object.entries(propDefs(it.kind))) if (d.hidden && d.max !== undefined) { it.p![n] = d.max; it.hidden = it.hidden?.filter(h => h !== n) } /* tray ones come full and read */ changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
   else if ('strict' in b.dataset) toggleStrict()
   else if ('clear' in b.dataset) { s.items = []; selected = new Set(); changed(new Map()) }
   else if ('reset' in b.dataset) { s = start(); selected = new Set(); ui.open = null; changed(new Map()) }
@@ -687,7 +687,7 @@ app.addEventListener('dblclick', e => {
   if (it && KINDS[it.kind].tags?.includes('paper')) { openPaper({ item: it.id }); return }
   if (!it || !isContainer(it.kind)) return
   const panels = s.panels ?? (s.panels = [null, null, null, null])
-  if (panels.includes(it.id)) { app.querySelector(`.panel[data-dock="${panels.indexOf(it.id)}"]`)?.animate([{ transform: 'scale(1.02)' }, { transform: 'none' }], { duration: 200 }); return }
+  if (panels.includes(it.id)) { app.querySelector(`.panel[data-dock="${panels.indexOf(it.id)}"]`)?.animate([{ transform: 'scale(1.04)', boxShadow: '0 0 0 3px #c49c68' }, { transform: 'none' }], { duration: 450 }); return }
   const free = panels.indexOf(null)
   if (free < 0) { toast('all four docks are in use: close one first'); return }
   panels[free] = it.id
