@@ -1,7 +1,7 @@
 # The Workshop (`inventory-v3`)
 
-What is built. Since 2026-10-13 this branch is a clean slate: **the field, the handling, containers in floating windows and
-the tooltip**, plus the dev tools to make items (the sprite editor and the gallery). There are **no items**: `src/kinds.json` is
+What is built. Since 2026-10-13 this branch is a clean slate: **the field, two counters above it, the handling, containers in
+floating windows and the tooltip**, plus the dev tools to make items (the sprite editor and the gallery). There are **no items**: `src/kinds.json` is
 empty, there are no sprites, the field starts empty and the tray says so. No rules, machines, properties, liquids, uses, clock
 or money: those were cut, along with the design notes (`IDEAS.md`, `LORE.md`, `SPECULATIVE/`).
 
@@ -43,6 +43,18 @@ notes). The code here started from `12a606f` ("Items step A") with those systems
   - The lights are drawn above the thing in hand, so they show through it.
   - Items have no backing: they sit straight on the grid. *Hover* and *selected* both tint the footprint tan (no outline,
     no glow).
+
+## Counters (2026-10-13)
+
+Two counters above the field, for trading with customers (nothing trades yet: they are places to put things). Each is the
+width of the field and four squares deep, with a brass rim and its name to the left.
+- **Outside** (top): what a customer wants to sell you will be unloaded here.
+- **Inside** (below it, nearer the field): what you want to sell to the customer goes here.
+- The two sit close together (they belong to each other) and further from the field.
+- They are places like the field: anything goes on them (containers too), and dragging, shoving, turning, strict mode,
+  sweeping and dropping into containers work there the same. An item on one carries `at: 'outside' | 'inside'` (`COUNTERS` in
+  `world.ts` holds their sizes). A save keeps them; anything that no longer fits a counter goes to the field.
+- The page shrinks its squares until everything from the outside counter to the tray is on screen.
 
 ## Containers and windows (2026-10-13)
 
@@ -144,5 +156,5 @@ The save endpoint lives in `vite.config.ts`; shape maths and matrices are in `sr
 
 `npm test` runs `grid.test.ts`, `world.test.ts` and `editor/geom.test.ts`. The game ships no items, so `world.test.ts` brings
 its own: the old kinds as a fixture (`src/test/kinds.json`) and the old starting field. It covers dropping, shoving, turning,
-strict mode, groups, irregular shapes, spawning, containers (filters, nesting, cascade, turning to fit), settling old saves,
+strict mode, groups, irregular shapes, spawning, the counters, containers (filters, nesting, cascade, turning to fit), settling old saves,
 and windows (closing with their container, settling, the cap).

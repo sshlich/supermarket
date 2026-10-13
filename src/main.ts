@@ -1,5 +1,5 @@
 import './style.css'
-import { applyDrop, cellsOf, dims, find, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Space, type State, type Win } from './world.ts'
+import { applyDrop, cellsOf, COUNTERS, dims, find, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -27,14 +27,16 @@ function load(): State | null {
 const save = () => { try { localStorage.setItem(SAVE, JSON.stringify(s)) } catch { /* private window */ } }
 
 function fit() {
-  // room for windows beside the field: about six squares each side
-  cell = Math.floor(Math.max(14, Math.min(40, (innerWidth - 150) / (W + 12), (innerHeight - 150) / H)))
+  // room for windows beside the field (about six squares each side), and for the counters above it
+  const deep = H + Object.values(COUNTERS).reduce((n, c) => n + c.h, 0)
+  cell = Math.floor(Math.max(14, Math.min(40, (innerWidth - 150) / (W + 12), (innerHeight - 190) / deep)))
   document.documentElement.style.setProperty('--cell', `${cell}px`)
 }
-/** The tray wraps to more rows as kinds are added: after drawing, shrink the squares until all of it is on screen. */
+/** The tray wraps to more rows as kinds are added: after drawing, shrink the squares until all of it (counters to tray) is on screen. */
 function fitTray() {
-  const tray = app.querySelector('.tray')
-  while (tray && cell > 14 && tray.getBoundingClientRect().bottom > innerHeight - 4) {
+  const stage = app.querySelector('.stage')
+  const off = () => { const r = stage!.getBoundingClientRect(); return r.top < 6 || r.bottom > innerHeight - 4 }
+  while (stage && cell > 14 && off()) {
     cell--
     document.documentElement.style.setProperty('--cell', `${cell}px`)
   }
@@ -73,6 +75,11 @@ const absCells = (it: Item): [number, number][] => cellsOf(it).map(([cx, cy]) =>
 function trayHtml() {
   const kinds = Object.entries(KINDS)
   return `<div class="tray"><span>put on the field</span>${kinds.length ? '' : '<span class="none">no items yet: <a href="/editor.html">make one in the editor</a></span>'}${kinds.map(([id, k]) => `<button data-spawn="${id}" style="--c:${k.color}" title="${(k.desc ?? '').replace(/"/g, '&quot;')}"><i></i>${k.name}</button>`).join('')}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
+}
+
+/** The two counters above the field: the outside one (what customers bring), then the inside one (what you sell), close together. */
+function countersHtml() {
+  return `<div class="counters">${(Object.keys(COUNTERS) as Counter[]).map(c => `<div class="counter" data-label="${c}"><div class="grid" data-grid data-space="${c}" data-w="${COUNTERS[c].w}" data-h="${COUNTERS[c].h}" style="--w:${COUNTERS[c].w};--h:${COUNTERS[c].h}">${inSpace(s, { at: c }).map(itemHtml).join('')}</div></div>`).join('')}</div>`
 }
 
 /** One open container: a window floating over the page, its insides a small grid for each of its slots. */
@@ -142,7 +149,7 @@ function openWindow(it: Item) {
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
-  app.innerHTML = `<div class="stage"><div class="center"><div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div></div>${windowsHtml()}`
+  app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div></div>${windowsHtml()}`
   if (hoverId !== null) showTip()
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
@@ -172,7 +179,7 @@ let last: PointerEvent | null = null
 let marquee: { x0: number; y0: number; add: boolean; el: HTMLElement; grid: HTMLElement; space: Space } | null = null
 let winDrag: { win: Win; el: HTMLElement; dx: number; dy: number } | null = null
 
-const spaceAt = (g: HTMLElement): Space => { const k = g.dataset.space!; if (k === 'field') return null; const [host, slot] = k.split(':').map(Number); return { host, slot } }
+const spaceAt = (g: HTMLElement): Space => spaceFromKey(g.dataset.space!)
 const gridOf = (sp: Space) => app.querySelector<HTMLElement>(`.grid[data-space="${spaceKey(sp)}"]`)
 /** The grid under a screen point, if any: only the topmost thing there counts, so a window covers the field (or another window) behind it. */
 const gridUnder = (x: number, y: number) => document.elementFromPoint(x, y)?.closest<HTMLElement>('.grid[data-space]') ?? null

@@ -1,10 +1,19 @@
-// The field: a grid of cells with things on it, and containers with grids of their own. Nothing else yet.
+// The field: a grid of cells with things on it; two counters above it (outside and inside, for trading with customers); and
+// containers with grids of their own. Nothing else yet.
 
 import { drop, dropGroup, firstFree, footprintKey, overlaps, turn, type Box } from './grid.ts'
 import DATA from './kinds.json' with { type: 'json' }
 
 export const W = 25
 export const H = 20
+
+/**
+ * The counters, the width of the field and four squares deep. What a customer wants to sell you is unloaded on the outside
+ * one; what you want to sell them goes on the inside one, nearer the field.
+ */
+export type Counter = 'outside' | 'inside'
+export const COUNTERS: Record<Counter, { w: number; h: number }> = { outside: { w: W, h: 4 }, inside: { w: W, h: 4 } }
+const isCounter = (c: unknown): c is Counter => typeof c === 'string' && c in COUNTERS
 
 /**
  * What a kind of thing is. `w` and `h` are its footprint's bounding box in cells; `cells`, when the footprint is not a plain
@@ -19,8 +28,8 @@ export interface Slot { name?: string; w: number; h: number; accepts?: string[];
 export const KINDS: Record<string, Kind> = DATA
 
 /** `rot` is how many quarter turns clockwise it has been turned (0 to 3): 2 is upside down. */
-/** `in` says which container's slot it sits in (its x, y are then inside that slot's grid); no `in` means on the field. */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number } }
+/** `in` says which container's slot it sits in (its x, y are then inside that slot's grid), `at` which counter it is on; neither means on the field. */
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter }
 /**
  * An open container: a window floating over the page, showing the container's insides. `id` is the container item; `x`, `y`
  * are screen pixels (its top-left); a folded one shows only as a tab in the rack along the top edge.
@@ -63,14 +72,25 @@ export const find = (s: State, id: number) => s.items.find(o => o.id === id)
 
 // ---------------------------------------------------------------- places: the field, and the insides of containers
 
-/** Somewhere things can sit: the field (null), or one slot of a container item. */
-export type Space = { host: number; slot: number } | null
-export const spaceOf = (it: Item): Space => it.in ?? null
-export const sameSpace = (a: Space, b: Space) => (a?.host ?? 0) === (b?.host ?? 0) && (a?.slot ?? -1) === (b?.slot ?? -1)
-export const spaceKey = (sp: Space) => sp ? `${sp.host}:${sp.slot}` : 'field'
+/** Somewhere things can sit: the field (null), a counter, or one slot of a container item. */
+export type Space = { host: number; slot: number } | { at: Counter } | null
+export type SlotSpace = { host: number; slot: number }
+/** Is this place inside a container (not the field or a counter)? */
+export const isSlot = (sp: Space): sp is SlotSpace => !!sp && 'host' in sp
+export const spaceOf = (it: Item): Space => it.in ?? (it.at ? { at: it.at } : null)
+export const spaceKey = (sp: Space) => !sp ? 'field' : isSlot(sp) ? `${sp.host}:${sp.slot}` : sp.at
+export const sameSpace = (a: Space, b: Space) => spaceKey(a) === spaceKey(b)
+/** The place a grid's key names: "field", a counter, or "host:slot". */
+export function spaceFromKey(k: string): Space {
+  if (k === 'field') return null
+  if (isCounter(k)) return { at: k }
+  const [host, slot] = k.split(':').map(Number)
+  return { host, slot }
+}
 export const isContainer = (kind: string) => !!KINDS[kind]?.slots?.length
 export function spaceSize(s: State, sp: Space): { w: number; h: number } {
   if (!sp) return { w: W, h: H }
+  if (!isSlot(sp)) return COUNTERS[sp.at]
   const host = find(s, sp.host)
   const slot = host && KINDS[host.kind]?.slots?.[sp.slot]
   return slot ? { w: slot.w, h: slot.h } : { w: 0, h: 0 }
@@ -87,9 +107,9 @@ const within = (s: State, id: number, anc: number) => chain(s, id).some(o => o.i
 /** How many containers deep this item goes, itself included (0 for something that holds nothing). */
 const height = (s: State, it: Item): number => isContainer(it.kind) ? 1 + Math.max(0, ...contents(s, it.id).map(o => height(s, o))) : 0
 
-/** Would this space take that item? The field takes anything; a slot checks its tag rules, refuses cycles, and keeps the nesting limit. */
+/** Would this space take that item? The field and the counters take anything; a slot checks its tag rules, refuses cycles, and keeps the nesting limit. */
 export function accepts(s: State, it: Item, sp: Space): boolean {
-  if (!sp) return true
+  if (!isSlot(sp)) return true
   const host = find(s, sp.host)
   const slot = host && KINDS[host.kind]?.slots?.[sp.slot]
   if (!host || !slot || within(s, sp.host, it.id)) return false
@@ -103,7 +123,7 @@ export function accepts(s: State, it: Item, sp: Space): boolean {
 // ---------------------------------------------------------------- dragging
 
 /** What's in hand: the thing you grabbed (`item`) and whatever was selected with it in the same place (`items`, the grabbed one first), and where each was lifted from. */
-export interface Held { item: Item; items: Item[]; space: Space; from: { x: number; y: number; rot: number }; froms: { id: number; x: number; y: number; rot: number; in?: { host: number; slot: number } }[] }
+export interface Held { item: Item; items: Item[]; space: Space; from: { x: number; y: number; rot: number }; froms: { id: number; x: number; y: number; rot: number; space: Space }[] }
 export interface Plan { space: Space; x: number; y: number; rot: number; moves: { id: number; x: number; y: number; rot: number; group?: boolean }[] }
 
 /** Pick up an item; if it is one of several selected in the same place, they all come with it. */
@@ -113,7 +133,7 @@ export function lift(s: State, id: number, selected: number[] = []): Held | null
   const here = spaceOf(it)
   const rest = selected.includes(id) ? selected.filter(i => i !== id).map(i => find(s, i)).filter((o): o is Item => !!o && sameSpace(spaceOf(o), here)) : []
   const items = [it, ...rest]
-  return { item: it, items, space: here, from: { x: it.x, y: it.y, rot: it.rot }, froms: items.map(o => ({ id: o.id, x: o.x, y: o.y, rot: o.rot, in: o.in ? { ...o.in } : undefined })) }
+  return { item: it, items, space: here, from: { x: it.x, y: it.y, rot: it.rot }, froms: items.map(o => ({ id: o.id, x: o.x, y: o.y, rot: o.rot, space: spaceOf(o) })) }
 }
 
 /**
@@ -198,7 +218,12 @@ export function intoHost(s: State, held: Held, hostId: number): Plan | null {
   return null
 }
 
-const setIn = (o: Item, sp: Space) => { if (sp) o.in = { host: sp.host, slot: sp.slot }; else delete o.in }
+/** Put an item in a place (its x, y are then in that place's grid). */
+const setIn = (o: Item, sp: Space) => {
+  delete o.in; delete o.at
+  if (isSlot(sp)) o.in = { host: sp.host, slot: sp.slot }
+  else if (sp) o.at = sp.at
+}
 
 export function applyDrop(s: State, held: Held, plan: Plan) {
   for (const mv of plan.moves) {
@@ -212,7 +237,7 @@ export function applyDrop(s: State, held: Held, plan: Plan) {
 
 /** Nothing happened: everything lifted goes back where it was. */
 export function putBack(held: Held) {
-  held.items.forEach((o, i) => { const f = held.froms[i]; Object.assign(o, { x: f.x, y: f.y, rot: f.rot }); setIn(o, f.in ?? null) })
+  held.items.forEach((o, i) => { const f = held.froms[i]; Object.assign(o, { x: f.x, y: f.y, rot: f.rot }); setIn(o, f.space) })
 }
 
 /** Take things off the field, and whatever was inside them. */
@@ -243,7 +268,8 @@ function layout(items: Item[], w: number, h: number): { kept: Item[]; lost: Item
  * (or now refuses them) out to the field, and re-place anything that now overlaps or hangs off its grid.
  */
 export function settle(s: State): State {
-  const items: Item[] = s.items.filter(o => KINDS[o.kind]).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : {}) })) // only what an item still is: no old properties, liquids or machine state
+  // only what an item still is: no old properties, liquids or machine state (and nothing on a counter that does not exist)
+  const items: Item[] = s.items.filter(o => KINDS[o.kind]).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isCounter(o.at) ? { at: o.at } : {}) }))
   const state: State = { items, next: s.next }
   // pass 1: anything in a slot that does not exist, or that its slot now refuses, goes back out to the field
   const evict = (o: Item) => { delete o.in }
@@ -262,11 +288,11 @@ export function settle(s: State): State {
     const { w, h } = spaceSize(state, sp)
     const { kept, lost } = layout(list, w, h)
     out.push(...kept)
-    if (sp) stray.push(...lost.map(o => ({ ...o, in: undefined }))); // lost from a slot: to the field
+    if (sp) stray.push(...lost) // lost from a slot or a counter: to the field
   }
   // whatever did not fit its slot lands on the field, in the first free spots
-  const field = out.filter(o => !o.in)
-  for (const o of stray) { const spot = firstFree(W, H, field.map(boxOf), { ...boxOf({ ...o, rot: 0 }), x: 0, y: 0 }); if (spot) { const put = { ...o, x: spot.x, y: spot.y, rot: spot.rot }; delete put.in; out.push(put); field.push(put) } }
+  const field = out.filter(o => !spaceOf(o))
+  for (const o of stray) { const spot = firstFree(W, H, field.map(boxOf), { ...boxOf({ ...o, rot: 0 }), x: 0, y: 0 }); if (spot) { const put = { ...o, x: spot.x, y: spot.y, rot: spot.rot }; setIn(put, null); out.push(put); field.push(put) } }
   const ids = new Set(out.map(o => o.id))
   // windows of containers that are gone (or no longer containers) close; old saves' docked panels are not carried over
   const windows = (s.windows ?? []).filter(w => ids.has(w.id) && isContainer(out.find(o => o.id === w.id)!.kind)).slice(-MAX_WINDOWS)
@@ -277,7 +303,7 @@ export function settle(s: State): State {
 export function spawn(s: State, kind: string, space: Space = null): Item | null {
   const { w, h } = spaceSize(s, space)
   const it: Item = { id: s.next, kind, x: 0, y: 0, rot: 0 }
-  if (space) it.in = { host: space.host, slot: space.slot }
+  setIn(it, space)
   if (!accepts(s, it, space)) return null
   const spot = firstFree(w, h, inSpace(s, space).map(boxOf), shapeOf(kind))
   if (!spot) return null

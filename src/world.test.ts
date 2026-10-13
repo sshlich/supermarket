@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { accepts, intoHost, applyDrop, boxOf, cellsOf, H, KINDS, MAX_WINDOWS, remove, settle, spawn, lift, planDrop, putBack, W, type Item, type State } from './world.ts'
+import { accepts, intoHost, applyDrop, boxOf, cellsOf, COUNTERS, H, inSpace, KINDS, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, type Item, type State } from './world.ts'
 import FIXTURE from './test/kinds.json' with { type: 'json' }
 
 // The game ships no items for now, so the tests bring their own kinds and the old starting field.
@@ -266,5 +266,45 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   s.windows = [{ id: crate.id, x: 10, y: 10 }, { id: belt.id, x: 40, y: 40, folded: true }]
   remove(s, [crate.id])
   assert.deepEqual(s.windows, [{ id: belt.id, x: 40, y: 40, folded: true }])
+}
+// Counters: two places the width of the field and four deep. Things go on and off them like anywhere else, shove there, come
+// back there when a drop is cancelled, and stay there in a save; whatever no longer fits a counter goes to the field.
+{
+  assert.deepEqual(COUNTERS, { outside: { w: W, h: 4 }, inside: { w: W, h: 4 } })
+  const s = start()
+  const log = s.items.find(o => o.kind === 'log')!, knife = s.items.find(o => o.kind === 'knife')!
+  applyDrop(s, lift(s, log.id)!, planDrop(s, lift(s, log.id)!, { at: 'inside' }, 3, 1, 0)!)
+  assert.deepEqual([log.at, log.in, log.x, log.y], ['inside', undefined, 3, 1])
+  assert.deepEqual(spaceOf(log), { at: 'inside' })
+  // the pickaxe (5x6) is too deep for a counter either way round, even in the easy mode
+  const pick = s.items.find(o => o.kind === 'pickaxe')!
+  assert.equal(planDrop(s, lift(s, pick.id)!, { at: 'inside' }, 0, 0, 0), null)
+  // the knife dropped on the log on the counter: the log gives way, and stays on the counter
+  const h = lift(s, knife.id)!
+  const p = planDrop(s, h, { at: 'inside' }, 3, 0, 0)!
+  assert.ok(p.moves.some(m => m.id === log.id))
+  applyDrop(s, h, p)
+  assert.equal(knife.at, 'inside')
+  for (const a of inSpace(s, { at: 'inside' })) for (const b of inSpace(s, { at: 'inside' })) if (a !== b) assert.equal(overlaps(boxOf(a), boxOf(b)), false)
+  // a cancelled lift from a counter goes back to it
+  const h2 = lift(s, log.id)!
+  log.at = undefined; log.x = 0
+  putBack(h2)
+  assert.equal(log.at, 'inside')
+  // spawning straight onto the outside counter; the two counters are separate places
+  const sold = spawn(s, 'coal', { at: 'outside' })!
+  assert.equal(sold.at, 'outside')
+  assert.equal(inSpace(s, { at: 'outside' }).length, 1)
+  // a save keeps the counters; a thing hanging off one, or on a counter that does not exist, goes to the field
+  const t = settle(JSON.parse(JSON.stringify({ ...s, items: [...s.items, { id: 90, kind: 'coal', x: 0, y: 3, rot: 0, at: 'outside' }, { id: 91, kind: 'pickaxe', x: 12, y: 0, rot: 0, at: 'outside' }, { id: 92, kind: 'coal', x: 0, y: 0, rot: 0, at: 'roof' }] })))
+  assert.equal(t.items.find(o => o.id === sold.id)!.at, 'outside')
+  assert.equal(t.items.find(o => o.id === 90)!.at, 'outside', 'a small thing fits')
+  assert.equal(t.items.find(o => o.id === 91)!.at, undefined, 'too deep for a counter')
+  assert.equal(t.items.find(o => o.id === 92)!.at, undefined)
+  // a container on a counter still takes things
+  const crate = s.items.find(o => o.kind === 'crate')!
+  const c2 = lift(s, crate.id)!
+  applyDrop(s, c2, planDrop(s, c2, { at: 'outside' }, 10, 0, 0)!)
+  assert.ok(intoHost(s, lift(s, s.items.find(o => o.kind === 'coal' && !o.at)!.id)!, crate.id))
 }
 console.log('world ok')
