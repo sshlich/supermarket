@@ -122,7 +122,6 @@ function sprites(): Plugin {
         if (url.pathname === '/delete') {
           const gone = q('kind')
           if (!kinds[gone]) return fail(404, 'no such kind')
-          if (Object.keys(kinds).length < 2) return fail(400, 'keep at least one')
           delete kinds[gone]
           writeKinds(kinds)
           const f = new URL(`${gone}.svg`, dir)

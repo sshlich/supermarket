@@ -3,6 +3,10 @@
 Where the brainstorm stands: rules that came out of it, what was liked, parked or turned down, and what to pick up next.
 Nothing here is built. `DESIGN.md` stays the record of what is.
 
+**2026-10-13: clean slate.** On `inventory-v3` the game has no items and everything is to be revamped. The drone and contract
+direction below is parked on the `drones` branch (with `DRONES.md`). What follows is the earlier brainstorm, kept as material,
+not as the plan.
+
 ## Items: the plan (agreed 2026-10-09)
 
 Before more items: one small loop that plays. Stuff comes in, you work it, it goes out for money, and something pushes back.

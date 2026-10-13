@@ -1,11 +1,5 @@
 import './style.css'
-import './terminal.css'
-import './papers.css'
-import { advance, applyDrop, applyUse, cellsOf, clock, contents, dims, find, findAnywhere, H, hostsFor, inSpace, interaction, intoHost, isContainer, isHidden, KINDS, LIQUIDS, capacityOf, lift, machineStatus, propDefs, propOf, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, targetsFor, W, type Held, type Item, type Paper, type Plan, type Space, type State } from './world.ts'
-import { accept, archive, catchUp, decline, jobOf, mailById, markRead, slipFor, wanted, when } from './mail.ts'
-import { listOf, SKINS, terminalHtml, unread, type Folder, type Skin, type TermUi } from './terminal.ts'
-import { mailOf, paperKey, papersHtml, shows, type View } from './papers.ts'
-import { fly, launch, padStatus, statsOf } from './fleet.ts'
+import { advance, applyDrop, applyUse, cellsOf, clock, dims, find, H, hostsFor, inSpace, interaction, intoHost, isContainer, isHidden, KINDS, LIQUIDS, capacityOf, lift, machineStatus, propDefs, propOf, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, targetsFor, W, type Held, type Item, type Plan, type Space, type State } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -19,8 +13,6 @@ if (import.meta.hot) {
 
 const SAVE = 'field-v3'
 let s: State = load() ?? start()
-catchUp(s)
-fly(s)
 let cell = 28
 let selected = new Set<number>() // what is picked, to be moved or removed together
 let strict = ((): boolean => { try { return localStorage.getItem('field-strict') === '1' } catch { return false } })()
@@ -29,23 +21,10 @@ const strictNow = () => strict !== shiftHeld
 
 const app = document.getElementById('app')!
 
-/** A saved game; only pinned papers keep their place in it. */
 function load(): State | null {
-  try {
-    const v = JSON.parse(localStorage.getItem(SAVE) ?? 'null')
-    if (!v?.items) return null
-    const st = settle(v)
-    st.papers = (st.papers ?? []).filter(p => p.pinned)
-    return st
-  } catch { return null }
+  try { const v = JSON.parse(localStorage.getItem(SAVE) ?? 'null'); return v?.items ? settle(v) : null } catch { return null }
 }
 const save = () => { try { localStorage.setItem(SAVE, JSON.stringify(s)) } catch { /* private window */ } }
-const stored = (k: string) => { try { return localStorage.getItem(k) } catch { return null } }
-const store = (k: string, v: string) => { try { localStorage.setItem(k, v) } catch { /* private window */ } }
-
-/** Which view is up: the board, or the terminal (mail); and where the terminal was left. */
-let view: View = stored('view') === 'terminal' ? 'terminal' : 'board'
-const ui: TermUi = { folder: 'inbox', open: null, skin: (SKINS as readonly string[]).includes(stored('term-skin') ?? '') ? stored('term-skin') as Skin : 'tui' }
 
 /** How wide a docked panel is, in squares: the widest inside any container can be. */
 const PW = Math.max(6, ...Object.values(KINDS).flatMap(k => (k.slots ?? []).map(sl => sl.w)))
@@ -116,42 +95,16 @@ function panelHtml(dock: number, id: number | null) {
     const note = [sl.name, sl.accepts?.length ? `${sl.accepts.join(', ')} only` : '', sl.rejects?.length ? `no ${sl.rejects.join(', ')}` : ''].filter(Boolean).join(' · ')
     return `<div class="slotbox">${note ? `<div class="slotnote">${note}</div>` : ''}<div class="grid" data-grid data-space="${it.id}:${i}" data-w="${sl.w}" data-h="${sl.h}" style="--w:${sl.w};--h:${sl.h}">${inSpace(s, { host: it.id, slot: i }).map(itemHtml).join('')}</div></div>`
   }).join('')
-  // a launch pad: a launch button, and a line under the head saying whether its drone can go (or when it is back)
-  const pad = k.tags?.includes('pad')
-  const launchBtn = pad ? `<button class="launch" data-launch="${it.id}" title="Send the drone on this pad with the job in its cargo">launch</button>` : ''
-  const padNote = pad ? `<div class="padnote">${esc(padStatus(s, it))}</div>` : ''
-  return `<div class="panel" data-dock="${dock}"><div class="panel-head" data-head style="--c:${k.color}"><i></i><span>${k.name}</span>${k.machine ? `<em>${machineStatus(s, it).join(' · ') || 'idle'}</em>` : ''}${launchBtn}<button data-close="${it.id}" title="Close">✕</button></div>${padNote}${slots}</div>`
+  return `<div class="panel" data-dock="${dock}"><div class="panel-head" data-head style="--c:${k.color}"><i></i><span>${k.name}</span>${k.machine ? `<em>${machineStatus(s, it).join(' · ') || 'idle'}</em>` : ''}<button data-close="${it.id}" title="Close">✕</button></div>${slots}</div>`
 }
 
 const clockText = () => { const c = clock(s.tick); return `day ${c.day} · ${String(c.hour).padStart(2, '0')}:00${s.power ? ` · ${s.power} hu` : ''}` }
 
-const ICON_MAIL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg>'
-const ICON_BOARD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>'
-
-/** The corner: the way to the other view (with the unread count), and the clock. */
-function cornerHtml() {
-  const n = unread(s)
-  const toggle = view === 'board'
-    ? `<button class="viewbtn" data-view title="The terminal: mail (M)">${ICON_MAIL}<span>mail</span>${n ? `<b>${n}</b>` : ''}</button>`
-    : `<button class="viewbtn" data-view title="Back to the board (M or Esc)">${ICON_BOARD}<span>board</span></button>`
-  return `<div class="corner"><span class="credits" title="Credits: what the jobs have paid">${s.credits ?? 0} cr</span>${toggle}<button class="clock" data-tick title="Let an hour pass${s.power ? ` · machines have drawn ${s.power} hu of power` : ''}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>${clockText()}</span></button></div>`
-}
-
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
-  paperLit = null
-  s.papers = (s.papers ?? []).filter(p => p.item !== undefined ? !!findAnywhere(s, p.item) : !!mailById(s, p.mail!)) // a paper goes with its slip (which may be out in a drone)
-  if (view === 'terminal') {
-    hideTip()
-    const scroll = app.querySelector('.term .list')?.scrollTop ?? 0
-    app.innerHTML = terminalHtml(s, ui) + cornerHtml() + papersHtml(s, view)
-    const list = app.querySelector('.term .list')
-    if (list) list.scrollTop = scroll
-    return
-  }
   const p = s.panels ?? (s.panels = [null, null, null, null])
-  app.innerHTML = `<div class="stage" style="--pw:${PW}"><div class="dock">${panelHtml(0, p[0])}${panelHtml(1, p[1])}</div><div class="center"><div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div><div class="dock">${panelHtml(2, p[2])}${panelHtml(3, p[3])}</div></div>${cornerHtml()}${papersHtml(s, view)}`
+  app.innerHTML = `<div class="stage" style="--pw:${PW}"><div class="dock">${panelHtml(0, p[0])}${panelHtml(1, p[1])}</div><div class="center"><div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div><div class="dock">${panelHtml(2, p[2])}${panelHtml(3, p[3])}</div></div><button class="clock" data-tick title="Let an hour pass${s.power ? ` · machines have drawn ${s.power} hu of power` : ''}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>${clockText()}</span></button>`
   if (hoverId !== null) showTip()
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
@@ -168,40 +121,9 @@ const rects = () => new Map([...app.querySelectorAll<HTMLElement>('.item[data-id
 
 function changed(from?: Map<number, DOMRect>) {
   selected = new Set([...selected].filter(id => find(s, id))) // things that are gone are no longer picked
-  const before = unread(s)
-  catchUp(s) // mail arrives with the hours
-  const flown = fly(s) // and drones get there and back
-  const fresh = unread(s) - before
   save()
   render(from)
-  const said = [...flown, fresh > 0 ? `${fresh} new message${fresh === 1 ? '' : 's'}` : ''].filter(Boolean)
-  if (said.length) toast(said.join(' · '))
 }
-
-/** Go to the board or the terminal. The terminal opens on the newest message of its folder if none is open. */
-function setView(v: View) {
-  view = v
-  store('view', v)
-  if (v === 'terminal' && ui.open === null) { ui.open = listOf(s, ui.folder)[0]?.id ?? null; if (ui.open !== null) markRead(s, ui.open) }
-  hideTip()
-  save()
-  render(new Map())
-  if (v === 'board') fitTray()
-}
-
-/** Open a paper (a slip on the board, or a message pulled out of the terminal) on top of the others; one paper per thing. */
-function openPaper(ref: { item?: number; mail?: number }) {
-  const ps = s.papers ?? (s.papers = [])
-  const key = paperKey(ref as Paper)
-  let p = ps.find(q => paperKey(q) === key)
-  if (p) { ps.splice(ps.indexOf(p), 1); p.folded = false; if (!p.pinned) p.view = view }
-  else { const n = ps.filter(q => shows(q, view) && !q.folded).length % 8; p = { ...ref, x: Math.round(innerWidth / 2 - 150 + n * 26), y: Math.round(innerHeight * 0.16 + n * 26), view } }
-  ps.push(p)
-  save()
-  render(new Map())
-  app.querySelector(`.paper[data-paper="${key}"]`)?.animate([{ opacity: 0, translate: '0 -10px' }, { opacity: 1, translate: '0 0' }], { duration: 170, easing: 'ease-out' })
-}
-const paperAt = (key: string) => (s.papers ?? []).find(p => paperKey(p) === key)
 
 // ---------------------------------------------------------------- handling
 
@@ -211,8 +133,6 @@ let drag: Drag | null = null
 let last: PointerEvent | null = null
 let marquee: { x0: number; y0: number; add: boolean; el: HTMLElement; grid: HTMLElement; space: Space } | null = null
 let panelDrag: { dock: number; el: HTMLElement } | null = null
-let paperDrag: { p: Paper; el: HTMLElement; dx: number; dy: number } | null = null
-let paperLit: string | null = null // the paper whose wanted goods are lit on the board
 
 const spaceAt = (g: HTMLElement): Space => { const k = g.dataset.space!; if (k === 'field') return null; const [host, slot] = k.split(':').map(Number); return { host, slot } }
 const gridOf = (sp: Space) => app.querySelector<HTMLElement>(`.grid[data-space="${spaceKey(sp)}"]`)
@@ -229,21 +149,6 @@ const pick = (ids: Iterable<number>) => { selected = new Set(ids); paintSelectio
 app.addEventListener('pointerdown', e => {
   if (e.button !== 0 || drag) return
   const t = e.target as HTMLElement
-  const paper = t.closest<HTMLElement>('.paper[data-paper]')
-  if (paper) { // grab a paper anywhere but its buttons to move it; it comes to the top
-    const p = paperAt(paper.dataset.paper!)
-    if (!p || t.closest('button')) return
-    const ps = s.papers!
-    ps.splice(ps.indexOf(p), 1)
-    ps.push(p)
-    paper.style.zIndex = String(100 + ps.length)
-    paperDrag = { p, el: paper, dx: e.clientX - parseFloat(paper.style.left), dy: e.clientY - parseFloat(paper.style.top) }
-    paper.classList.add('held')
-    document.body.classList.add('dragging')
-    hideTip()
-    e.preventDefault()
-    return
-  }
   const el = t.closest<HTMLElement>('.item[data-id]')
   const head = t.closest<HTMLElement>('[data-head]')
   if (head && !t.closest('button')) { // grab a panel by its header to move it to another dock
@@ -285,7 +190,6 @@ app.addEventListener('pointerdown', e => {
 
 addEventListener('pointermove', e => {
   last = e
-  if (paperDrag) { paperDrag.el.style.left = `${e.clientX - paperDrag.dx}px`; paperDrag.el.style.top = `${e.clientY - paperDrag.dy}px`; return }
   if (marquee) return sweep(e)
   if (panelDrag) { app.querySelectorAll('.panel.over').forEach(p => p.classList.remove('over')); const o = dockUnder(e.clientX, e.clientY); if (o && o !== panelDrag.el) o.classList.add('over'); return }
   if (press && !drag && Math.hypot(e.clientX - press.x, e.clientY - press.y) > 4) begin()
@@ -293,14 +197,7 @@ addEventListener('pointermove', e => {
 })
 
 addEventListener('pointerup', () => {
-  if (paperDrag) {
-    const d = paperDrag
-    paperDrag = null
-    Object.assign(d.p, { x: Math.round(parseFloat(d.el.style.left)), y: Math.round(parseFloat(d.el.style.top)) })
-    d.el.classList.remove('held')
-    document.body.classList.remove('dragging')
-    save()
-  } else if (marquee) endSweep()
+  if (marquee) endSweep()
   else if (panelDrag) endPanelDrag()
   else if (drag) finish(true)
   else if (press) {
@@ -364,18 +261,6 @@ addEventListener('keydown', e => {
     if (e.key === 'r' || e.key === 'R') turn()
     else if (e.key === 'q' || e.key === 'Q') turn(true)
     else if (e.key === 'Escape') finish(false)
-    return
-  }
-  if (e.key.toLowerCase() === 'm' && !e.metaKey && !e.ctrlKey && !e.altKey) { setView(view === 'board' ? 'terminal' : 'board'); return }
-  if (view === 'terminal') { // the terminal's keys: up and down through the list, Esc back to the board
-    if (e.key === 'Escape') setView('board')
-    else if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-      e.preventDefault()
-      const list = listOf(s, ui.folder)
-      const i = list.findIndex(m => m.id === ui.open)
-      const next = list[Math.max(0, Math.min(list.length - 1, i < 0 ? 0 : i + (e.key === 'ArrowDown' ? 1 : -1)))]
-      if (next) { ui.open = next.id; markRead(s, next.id); changed(new Map()); app.querySelector('.term .msg.on')?.scrollIntoView({ block: 'nearest' }) }
-    }
     return
   }
   if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'a') { e.preventDefault(); pick(inSpace(s, null).map(o => o.id)) }
@@ -576,20 +461,9 @@ function tipHtml(it: Item) {
     else rows.push(d.show !== 'number' && d.max ? meter(name, v / d.max, `${v} / ${d.max}`, d.color) : `<div class="row"><span>${esc(name)}</span><em>${v}</em></div>`)
   }
   if (k.machine) rows.push(`<div class="status">${machineStatus(s, it).map(esc).join('<br>') || 'idle'}</div>`)
-  const st = statsOf(it.kind)
-  if (st) {
-    const cellSlot = (k.slots ?? []).findIndex(sl => sl.name === 'cell')
-    const cell = contents(s, it.id).find(o => o.in?.slot === cellSlot)
-    const range = !cell ? 'no cell' : isHidden(cell, 'charge') ? 'cell unread' : `${Math.floor(propOf(cell, 'charge') / (2 * st.drain)) * st.speed} h out and back`
-    rows.push(`<div class="row"><span>speed</span><em>${st.speed} (hours = distance)</em></div><div class="row"><span>burns</span><em>${st.drain} charge an hour</em></div><div class="row"><span>range</span><em>${range}</em></div>`)
-  }
-  if (k.tags?.includes('pad')) rows.push(`<div class="status">${esc(padStatus(s, it))}</div>`)
-  const job = jobOf(s, it)?.terms
-  if (job) rows.push(`<div class="row"><span>to</span><em>${esc(job.to)}</em></div><div class="row"><span>due</span><em>${when(job.due)}</em></div><div class="row"><span>pay</span><em>${job.pay} cr</em></div>`)
   if (k.desc) rows.push(`<p>${esc(k.desc)}</p>`)
   const hints = (k.uses ?? []).map(u => `drop onto a ${KINDS[u.on]?.name.toLowerCase() ?? u.on}: ${u.verb}`)
-  if (isContainer(it.kind)) hints.push(k.tags?.includes('pad') ? 'double-click to open, and launch from there' : 'double-click to open')
-  if (k.tags?.includes('paper')) hints.push('double-click to read')
+  if (isContainer(it.kind)) hints.push('double-click to open')
   return rows.join('') + hints.map(h => `<div class="hint">${esc(h)}</div>`).join('')
 }
 /** Show the tooltip beside the hovered item (to its right, or its left if there is no room), kept on screen. */
@@ -617,74 +491,24 @@ app.addEventListener('pointerout', e => {
 
 addEventListener('resize', () => { fit(); render(new Map()); fitTray() })
 fit()
-setView(view) // draws whichever view was up, and saves the mail that just arrived
+render(new Map())
+fitTray()
 
 app.addEventListener('click', e => {
   const b = (e.target as HTMLElement).closest<HTMLElement>('button')
   if (!b) return
   if ('tick' in b.dataset) { advance(s, 1); changed(); return }
-  if ('view' in b.dataset) { setView(view === 'board' ? 'terminal' : 'board'); return }
-  if (b.dataset.launch) { const f = launch(s, +b.dataset.launch); changed(new Map()); toast(typeof f === 'string' ? f : `launched: there ${when(f.arrives)}, back ${when(f.back)}`); return }
-  if (clickTerminal(b) || clickPaper(b)) return
   if (b.dataset.close) { s.panels = (s.panels ?? []).map(p => (p === +b.dataset.close! ? null : p)); changed(new Map()); return }
   if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn); if (it) { for (const [n, d] of Object.entries(propDefs(it.kind))) if (d.hidden && d.max !== undefined) { it.p![n] = d.max; it.hidden = it.hidden?.filter(h => h !== n) } /* tray ones come full and read */ changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
   else if ('strict' in b.dataset) toggleStrict()
   else if ('clear' in b.dataset) { s.items = []; selected = new Set(); changed(new Map()) }
-  else if ('reset' in b.dataset) { s = start(); selected = new Set(); ui.open = null; changed(new Map()) }
-})
-
-/** The terminal's buttons: folders, messages, answering, pulling out, the look. True if it was one of them. */
-function clickTerminal(b: HTMLElement): boolean {
-  const d = b.dataset
-  if (d.folder) { ui.folder = d.folder as Folder; ui.open = listOf(s, ui.folder)[0]?.id ?? null; if (ui.open !== null) markRead(s, ui.open); changed(new Map()); app.querySelector('.term .list')?.scrollTo(0, 0) }
-  else if (d.msg) { ui.open = +d.msg; markRead(s, ui.open); changed(new Map()) }
-  else if (d.accept) { const r = accept(s, +d.accept); changed(new Map()); toast(typeof r === 'string' ? r : 'accepted: the slip is on your board') }
-  else if (d.decline) { decline(s, +d.decline); changed(new Map()) }
-  else if (d.archive) { archive(s, +d.archive); changed(new Map()) }
-  else if (d.pull) openPaper({ mail: +d.pull })
-  else if (d.showslip) {
-    const slip = slipFor(s, +d.showslip)
-    if (!slip) return true
-    setView('board')
-    if (slip.in) { const host = find(s, slip.in.host); toast(`the slip is in the ${host ? KINDS[host.kind].name.toLowerCase() : 'container'}`) }
-    else { pick([slip.id]); app.querySelector(`.item[data-id="${slip.id}"]`)?.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.6)' }, { transform: 'scale(1)' }], { duration: 380, iterations: 2 }) }
-  }
-  else if ('look' in d) { ui.skin = SKINS[(SKINS.indexOf(ui.skin) + 1) % SKINS.length]; store('term-skin', ui.skin); render(new Map()) }
-  else return false
-  return true
-}
-
-/** A paper's buttons, and the rack's tabs: close, pin, fold, unfold. True if it was one of them. */
-function clickPaper(b: HTMLElement): boolean {
-  const d = b.dataset
-  const key = d.pclose ?? d.ppin ?? d.pfold ?? d.unfold
-  const p = key === undefined ? undefined : paperAt(key)
-  if (!p) return false
-  if (d.pclose) s.papers = s.papers!.filter(q => q !== p)
-  else if (d.ppin) { p.pinned = !p.pinned; if (!p.pinned) p.view = view }
-  else if (d.pfold) p.folded = true
-  else { p.folded = false; if (!p.pinned) p.view = view; s.papers = [...s.papers!.filter(q => q !== p), p] }
-  changed(new Map())
-  return true
-}
-
-/** Hovering a slip or an offer lights up everything on the board that would do for it. */
-app.addEventListener('pointerover', e => {
-  const el = (e.target as HTMLElement).closest<HTMLElement>('.paper[data-paper], .tab[data-unfold]')
-  const key = el?.dataset.paper ?? el?.dataset.unfold ?? null
-  if (key === paperLit || drag || marquee || paperDrag) return
-  paperLit = key
-  clearGhosts()
-  const p = key === null ? undefined : paperAt(key)
-  const m = p && mailOf(s, p)
-  if (view === 'board' && m?.terms) light(wanted(s, m).map(o => ({ sp: spaceOf(o), cells: absCells(o), kind: 'use' as const })))
+  else if ('reset' in b.dataset) { s = start(); selected = new Set(); changed(new Map()) }
 })
 
 /** Double-click a container to open its insides in the first free dock. */
 app.addEventListener('dblclick', e => {
   const el = (e.target as HTMLElement).closest<HTMLElement>('.item[data-id]')
   const it = el && find(s, +el.dataset.id!)
-  if (it && KINDS[it.kind].tags?.includes('paper')) { openPaper({ item: it.id }); return }
   if (!it || !isContainer(it.kind)) return
   const panels = s.panels ?? (s.panels = [null, null, null, null])
   if (panels.includes(it.id)) { app.querySelector(`.panel[data-dock="${panels.indexOf(it.id)}"]`)?.animate([{ transform: 'scale(1.04)', boxShadow: '0 0 0 3px #c49c68' }, { transform: 'none' }], { duration: 450 }); return }

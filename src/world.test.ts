@@ -1,6 +1,28 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { applyUse, clock, initProps, machineStatus, matches, pour, advance, accepts, intoHost, applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, start, W, type State } from './world.ts'
+import { applyUse, clock, initProps, machineStatus, matches, pour, advance, accepts, intoHost, applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, W, type Item, type State } from './world.ts'
+import FIXTURE from './test/kinds.json' with { type: 'json' }
+
+// The game ships no items for now, so the tests bring their own kinds and the old starting field.
+Object.assign(KINDS, FIXTURE)
+function start(): State {
+  const s: State = { items: [], next: 1, panels: [null, null, null, null] }
+  const put = (kind: string, x: number, y: number, rot = 0) => { const it: Item = { id: s.next++, kind, x, y, rot }; initProps(it); s.items.push(it) }
+  put('crate', 3, 3)
+  put('axe', 10, 3)
+  put('pickaxe', 16, 4)
+  put('log', 4, 10)
+  put('coal', 10, 12)
+  put('coal', 13, 12)
+  put('bottle', 18, 11)
+  s.items[s.items.length - 1].liquid = { type: 'water', ml: 500 }
+  put('bottle', 21, 11)
+  put('knife', 22, 4)
+  put('charger', 2, 16)
+  for (const x of [6, 7, 8, 9]) put('cell', x, 17)
+  put('cell-gauge', 11, 17)
+  return s
+}
 
 const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 

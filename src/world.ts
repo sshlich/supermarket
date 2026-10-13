@@ -2,8 +2,6 @@
 
 import { drop, dropGroup, firstFree, footprintKey, overlaps, turn, type Box } from './grid.ts'
 import DATA from './kinds.json' with { type: 'json' }
-import type { Flight } from './fleet.ts'
-import type { Mail } from './mail.ts'
 
 export const W = 25
 export const H = 20
@@ -13,9 +11,7 @@ export const H = 20
  * rectangle, says which squares inside it are taken ('#') and which are free ('.'). The rest is for people: a description
  * (for tooltips), private notes, and tags.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; uses?: Use[]; slots?: Slot[]; machine?: { rules: Rule[] }; capacity?: number; props?: Record<string, PropDef>; legacy?: boolean; drone?: DroneStats }
-/** What makes a kind a drone: `speed` (places a hour; a place 3 h away at speed 1 is 3 hours out) and `drain` (charge an hour in the air, from the cell in its `cell` slot). It carries what is in its `cargo` slot. */
-export interface DroneStats { speed: number; drain: number }
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; uses?: Use[]; slots?: Slot[]; machine?: { rules: Rule[] }; capacity?: number; props?: Record<string, PropDef>; legacy?: boolean }
 /**
  * A container's inside, or one named zone of a machine: a small grid with its own rules. A plain container has one slot; a
  * machine has several (input, fuel, output...). `accepts` and `rejects` are tags; nothing else is checked.
@@ -59,18 +55,9 @@ export const KINDS: Record<string, Kind> = DATA
 /** `rot` is how many quarter turns clockwise it has been turned (0 to 3): 2 is upside down. */
 /** `in` says which container's slot it sits in (its x, y are then inside that slot's grid); no `in` means on the field. */
 /** `p` holds its properties' values, `hidden` the ones nobody has read yet; `m` is a machine's progress on each job rule (by rule index). */
-/** `job` is on a slip: the id of the offer (in `mail`) it was printed for. */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; m?: { work: Record<number, number> }; liquid?: { type: string; ml: number }; p?: Record<string, number>; hidden?: string[]; job?: number }
-/**
- * A paper floating over the views: a slip on the board (`item`) or a message pulled out of the terminal (`mail`). `x`, `y` are
- * screen pixels. A pinned paper shows in every view and keeps its place in a save; an unpinned one belongs to the view that
- * opened it. A folded one shows only its top line, in the rack along the top edge.
- */
-export interface Paper { item?: number; mail?: number; x: number; y: number; pinned?: boolean; folded?: boolean; view: 'board' | 'terminal' }
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; m?: { work: Record<number, number> }; liquid?: { type: string; ml: number }; p?: Record<string, number>; hidden?: string[] }
 /** `panels` are the open containers, docked to the sides: [left top, left bottom, right top, right bottom]. `tick` counts hours; `power` is what machines have drawn. */
-/** `mail` is every message so far (`mailNext` the next id, `mailAt` the last hour it was brought up to); `papers` the open papers, last on top. */
-/** `flights` are drones that are out, with everything in them (off the board until they land); `credits` what has been paid. */
-export interface State { items: Item[]; next: number; panels?: (number | null)[]; tick?: number; power?: number; mail?: Mail[]; mailNext?: number; mailAt?: number; papers?: Paper[]; flights?: Flight[]; credits?: number }
+export interface State { items: Item[]; next: number; panels?: (number | null)[]; tick?: number; power?: number }
 
 const SHAPES = new Map<string, { sig: string; box: Box }>()
 /** A kind's footprint as the grid sees it, facing the way it is made. */
@@ -100,9 +87,6 @@ export function cellsOf(it: Item): [number, number][] {
 export const kindCells = (kind: string, turned: boolean | number = 0) => cellsOf({ id: -1, kind, x: 0, y: 0, rot: Number(turned) })
 
 export const find = (s: State, id: number) => s.items.find(o => o.id === id)
-/** Every item: on the board, in containers, and in drones that are out. */
-export const everything = (s: State) => s.flights?.length ? [...s.items, ...s.flights.flatMap(f => f.items)] : s.items
-export const findAnywhere = (s: State, id: number) => everything(s).find(o => o.id === id)
 
 // ---------------------------------------------------------------- places: the field, and the insides of containers
 
@@ -122,10 +106,7 @@ export const inSpace = (s: State, sp: Space) => s.items.filter(o => sameSpace(sp
 /** What is inside a container, in any of its slots. */
 export const contents = (s: State, host: number) => s.items.filter(o => o.in?.host === host)
 
-/**
- * Containers do not go in containers, except kinds tagged `vessel` (bottles and the like), or into a slot whose `accepts`
- * names one of their tags (a launch pad's cradle takes a drone). Either way a second level and no more.
- */
+/** Containers do not go in containers, except kinds tagged `vessel` (bottles and the like), which take a second level and no more. */
 export const MAX_NEST = 2
 const chain = (s: State, id: number) => { const out: Item[] = []; for (let o = find(s, id); o; o = o.in ? find(s, o.in.host) : undefined) out.push(o); return out }
 /** Is `id` the item `anc`, or somewhere inside it? */
@@ -140,9 +121,8 @@ export function accepts(s: State, it: Item, sp: Space): boolean {
   const slot = host && KINDS[host.kind]?.slots?.[sp.slot]
   if (!host || !slot || within(s, sp.host, it.id)) return false
   const tags = KINDS[it.kind]?.tags ?? []
-  const named = !!slot.accepts?.some(t => tags.includes(t))
-  if (isContainer(it.kind) && !tags.includes('vessel') && !named) return false // only specialised containers (a water bottle) go inside another, or ones a slot is made for
-  if (slot.accepts?.length && !named) return false
+  if (isContainer(it.kind) && !tags.includes('vessel')) return false // only specialised containers (a water bottle) go inside another
+  if (slot.accepts?.length && !tags.some(t => slot.accepts!.includes(t))) return false
   if (tags.some(t => slot.rejects?.includes(t))) return false
   return chain(s, sp.host).length + height(s, it) <= MAX_NEST
 }
@@ -330,46 +310,24 @@ export function settle(s: State): State {
   return { ...s, items: out, panels: (s.panels ?? [null, null, null, null]).map(p => (p !== null && ids.has(p) && isContainer(out.find(o => o.id === p)!.kind) ? p : null)) }
 }
 
-/** Put an item that is not on the board yet (new, or back from a flight) on the first free spot of a place (the field unless told otherwise), turned if that is the only way it fits. False if the place refuses it or has no room. */
-export function place(s: State, it: Item, space: Space = null): boolean {
-  if (space) it.in = { host: space.host, slot: space.slot }; else delete it.in
-  if (!accepts(s, it, space)) return false
-  const { w, h } = spaceSize(s, space)
-  const spot = firstFree(w, h, inSpace(s, space).map(boxOf), shapeOf(it.kind))
-  if (!spot) return false
-  Object.assign(it, { x: spot.x, y: spot.y, rot: spot.rot })
-  s.items.push(it)
-  return true
-}
-
-/** Put a new thing of this kind on the first free spot of a place (see `place`). Null if there is no room. */
+/** Put a new thing of this kind on the first free spot of a place (the field unless told otherwise), turned if that is the only way it fits. Null if there is no room. */
 export function spawn(s: State, kind: string, space: Space = null): Item | null {
+  const { w, h } = spaceSize(s, space)
   const it: Item = { id: s.next, kind, x: 0, y: 0, rot: 0 }
-  if (!place(s, it, space)) return null
+  if (space) it.in = { host: space.host, slot: space.slot }
+  if (!accepts(s, it, space)) return null
+  const spot = firstFree(w, h, inSpace(s, space).map(boxOf), shapeOf(kind))
+  if (!spot) return null
   s.next++
+  Object.assign(it, { x: spot.x, y: spot.y, rot: spot.rot })
   initProps(it)
+  s.items.push(it)
   return it
 }
 
+/** A new game: an empty field. There are no items yet (2026-10-13: everything is being redone). */
 export function start(): State {
-  const s: State = { items: [], next: 1, panels: [null, null, null, null] }
-  const put = (kind: string, x: number, y: number, rot = 0) => { const it: Item = { id: s.next++, kind, x, y, rot }; initProps(it); s.items.push(it) }
-  put('crate', 3, 3)
-  put('axe', 10, 3)
-  put('pickaxe', 16, 4)
-  put('log', 4, 10)
-  put('coal', 10, 12)
-  put('coal', 13, 12)
-  put('bottle', 18, 11)
-  s.items[s.items.length - 1].liquid = { type: 'water', ml: 500 }
-  put('bottle', 21, 11)
-  put('knife', 22, 4)
-  put('charger', 2, 16)
-  for (const x of [6, 7, 8, 9]) put('cell', x, 17)
-  put('cell-gauge', 11, 17)
-  put('launch-pad', 16, 0)
-  put('drone', 20, 0)
-  return s
+  return { items: [], next: 1, panels: [null, null, null, null] }
 }
 
 // ---------------------------------------------------------------- liquids

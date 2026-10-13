@@ -1,3 +1,16 @@
+# Clean start (2026-10-13)
+
+Branch `inventory-v3`: the engine without any items, ready for a revamp. `src/kinds.json` is empty, there are no sprites,
+the field starts empty and the tray has nothing in it. Everything below that is about the engine still holds (handling,
+containers, liquids, properties and rules, the clock, the tooltip, the editor and the gallery); the items it mentions are
+gone from the game. The editor shows an empty state with "New item" until the first item exists, and can delete the last one.
+
+- The old kinds live on as the tests' fixture, `src/test/kinds.json`, with the old starting field in `world.test.ts`.
+- The code is the "Items step A" state (`12a606f`), plus the two handling touches from `4672512` (items from the tray come full
+  and read; a double-click on an open container flashes its dock). The mail, job slips, papers, drone and launch pad are not
+  here: they are on the `drones` branch (and on `inventory-v2`), with `DRONES.md`, the real-life drone notes.
+- The old sprites, the drawn items and the night kit are on `inventory-v2` and `drones`.
+
 # Field
 
 Irregular shapes are back (since the item manager): the grid handles a thing's real squares. Shoving moves a neighbour a
@@ -79,23 +92,6 @@ The save endpoint lives in `vite.config.ts`; shape maths and matrices are in `sr
   them. This view puts every version of a kind side by side, each with its own fit line. The style buttons draw
   "one by one" and "one field" in that style, falling back to the drawn sprite where a kind has no version.
 
-Two less realistic styles, being compared (2026-10-02, 10 kinds each: crate, axe, hearth, still, coin stacks, ham, hen,
-coop, bucket, knapsack). Same footprints and silhouettes as the drawn ones:
-- **simple:** one shade and one light per part, no textures (no dots, netting, stitches, grain, mesh or rivets), essential
-  features only, about half the layers.
-- **flat:** solid shapes and one hard-edged tone, no light at all. Parts are separated by real gaps, cut with a `<mask>`
-  so the grid shows through. Closest to icon art.
-
-Verdict on the sprites so far (the user, 2026-10-02; to fix next, nothing changed yet):
-- Some liked, some hated. The **ham at 45°** is awkward: it should lie flat. It was tilted to fill a 3x3 square with a
-  staircase footprint, copying the diagonal pose of the game-icons reference.
-- **Hens** should take a square and be rounder, not a letter-shaped footprint with empty squares (`#.#/###/.##`).
-- Some sprites are still **placeholders**: log, coal, bottle, knife, fuel chest, well, mash vat (crate, axe, hearth and
-  still have new versions in `styles/`).
-- Some things are **too big**: the pickaxe (5x6) and the shovel (3x7).
-- **Shapes are all over the place.** The footprints followed every outline literally, and items sit in whatever pose
-  fitted the grid.
-
 ## Handling (the game page)
 
 - **Turning is four-way.** `rot` on an item is quarter turns clockwise (0-3), so upside down is a real state. While
@@ -125,7 +121,7 @@ From the video: while holding something, everything it can be *used on* gets blu
 e.g. pouring water into another container, slaughtering a rabbit with a knife, applying one thing to another.
 - Data: a kind's `uses` in `kinds.json`: `[{ on: <kind id or tag>, verb }]`, one way (the held kind names its targets).
   Edited in the editor's Item tab ("Can be used on", one `verb: target` per line). `interaction(held, target)` and
-  `targetsFor(state, held)` in `world.ts`. Placeholders in the data now: knife carve -> log, axe chop -> log, bottle pour -> bottle.
+  `targetsFor(state, held)` in `world.ts`.
 - Behaviour now: targets light up blue while dragging; letting go with the pointer over a target uses it instead of
   placing (the held thing goes back, a note under the field says what happened). Uses can now have effects: see
   "Properties and rules" below.
@@ -150,59 +146,6 @@ e.g. pouring water into another container, slaughtering a rabbit with a knife, a
 ## Liquids (2026-09-29)
 - A liquid is a property of a vessel (kind `capacity`, in ml; item `liquid: {type, ml}`), not an item. Corked: nothing spills. One liquid per vessel; pouring a different one is refused. Pour = a `uses` verb on `vessel`, moves as much as fits.
 - Machines take liquid through vessels put in a slot accepting `vessel` (the flex slot); they read and write the vessel, at an hourly rate (well/vat 250 ml, still 100 ml in, 2:1), written as rules. Mixing table: later, one lookup in `pour`.
-
-## New items, drawn by hand (2026-10-01, branch `inventory-v2-items`)
-27 kinds, art and footprints only (no slots, uses or machines yet). Footprints follow the drawing, so odd shapes interlock:
-an egg fits in the ring sausage's hole, coins in the steps of the coin stacks, a price tag over the cheese wedge.
-- **Food:** cheese wheel 4x3, cheese wedge 3x2 `..#/###`, cured ham 3x3 `.##/###/##.`, ring sausage 3x3 `###/#.#/#.#`,
-  loaf 4x2, slice of bread 2x2, egg 1x1, apple 1x1, honey jar 2x2, flour sack 3x3 `.#./###/###`.
-- **Farm:** hen 3x3 `#.#/###/.##`, chicken coop 5x4 `.###./#####/#####/#####`, seedling 2x2.
-- **Fire and light:** bellows 4x2 `###./.###` (drawn at a slant), kindling 3x2, split log 4x1, matchbox 2x1, lantern 2x3,
-  candle 1x2.
-- **Vessels, time, money:** wooden bucket 3x3, hourglass 2x3, coin 1x1, coin stacks 3x3 `#../##./###`, price tag 2x1,
-  strongbox 3x2, key 3x1, padlock 2x2.
-- Tags are descriptive (food, meat, money...), except kindling and split log, which carry `fuel` and `wood`. The fuel chest
-  and the hearth's slots accept them, but they do not burn yet (`FUEL` only knows coal and log).
-
-How they are drawn, so more can match:
-- A three-quarter view, light from the top left. The silhouette is one shape in `currentColor` (the item's accent). Form
-  comes from see-through overlays on top: black at .14 to .3 for shade, white at .14 to .5 for light. So an item can be
-  recoloured and keeps its shading.
-- Other materials use fixed colours, mostly the editor's palette: iron `#3a3a44`, brass `#c9975a`, flame `#ff9a3c` and
-  `#ffe08a`, leaf `#7fb069`, bone and trim `#f0ece2`, rope `#c9975a` / `#e6d3a8`.
-- Gaps are real transparency (`fill-rule="evenodd"`), so the grid and the hover tan show through them. Shading that
-  could run past the outline is clipped to it with a `clipPath`.
-- Every layer has a `data-name` ("rind", "netting", "wing feathers"...), so the editor lists them by name. Repeated parts
-  (coins, staves, sticks) are a single path per layer.
-- Footprints were checked by rasterising each sprite and measuring each square. Every square in a footprint is covered
-  at least 15% (the thin parts: a handle, a nozzle, a wedge's tip; most squares are over 25%). Squares outside the
-  footprint get under 2%. `npm run footprints -- [kind...]` runs that check (needs `rsvg-convert`) and prints a
-  coverage map for whatever fails, or for the kinds named. It currently fails the old placeholders (coal, axe, hearth,
-  well, still) and the cheese wedge, whose tip square is 14% covered.
-
-The "put on the field" tray wraps to more rows as kinds are added; `fitTray()` shrinks the squares after drawing until all
-of it is on screen (at 1280x720 they go from 28px to 24px).
-
-## The night kit (2026-10-02)
-Five things for going out at night, drawn to the rules above. Sizes keep relative order rather than true scale: small things
-near true size, big ones compressed, but the order holds within a family (knife < pickaxe < shovel; rope < bucket < knapsack).
-- **Knapsack** 4x5 `.##./####/####/####/####`: olive duck canvas, a flap held by two buckled straps, a grab loop, shoulder
-  straps showing at the sides, a front pocket, and an outfitter's stencil on the flap (Fluent Emoji's hammer and pick, the
-  map symbol for a mine). The narrow top leaves both top corners free. Slots `pack` 5x4 and `pocket` 2x2; tags
-  `container`, `back`.
-- **Pickaxe** 5x6, a T (`#####` over a one-square haft): redrawn from the flat 3x3 glyph. The whole head stays in the top row,
-  so every square is clearly in or out.
-- **Shovel** 3x7 `.#.` x4, `###` x2, `.#.`: D grip and haft in the middle column, then the blade three wide and its point.
-- **Rope** 3x2: a flat coil of turns with twisted strands and a whipped end.
-- **Knife belt** 5x4 `#####/#####/...#./...#.`: a buckled belt standing as a loop, a sheath hanging from it. Slot `sheath`
-  1x4, accepts `blade` (the knife now carries `tool` and `blade`); tags `container`, `waist`.
-- Containers still do not nest, so the belt cannot go in the knapsack; it is meant to be worn (zones, later).
-- Checked in the game (headless Chrome): saved contents load in the pack and the pocket, the knife dropped on the belt goes
-  into the sheath, a log or the belt itself is refused as contents, the pickaxe turns while held. `world.test.ts` covers the
-  sheath and the pocket.
-- Off in scale or style, left for later: the axe (4x6, an old flat glyph, as tall as the pickaxe), a chicken coop barely bigger
-  than a hen, and the other old placeholders (crate, log, coal, bottle, knife, fuel chest, hearth, well, vat, still).
-- Tried and dropped: game-icons' rope coil as the rope's body. It stacks into a dome and reads as a basket at game size.
 
 ## Properties and rules (2026-10-09)
 
@@ -234,70 +177,5 @@ Step A of the items plan (`IDEAS.md`, "Items: the plan"). Items carry properties
 - **Tooltip:** beside the hovered item (left of it if there is no room), never while dragging or sweeping. Name, [tags] in
   teal, the liquid and the shown properties ("?" while hidden), a machine's state, the description, then hints in blue
   (`drop onto a cell: read`, `double-click to open`). Value and price wait for step B.
-- **Legacy kinds:** `"legacy": true` keeps a kind in the data and in old saves but out of the tray. Set on the farm and
-  food kinds (cheese, ham, sausage, loaf, slice, egg, apple, hen, coop, flour sack, seedling, honey jar).
-- **New kinds** (game-icons glyphs for now): **cell** 1x1 (`charge` 0-100, rolled, hidden), **cell gauge** 1x1 (`read` on a
-  hidden cell reveals it), **charger rack** 3x3 (one 2x2 bay slot; +17 charge an hour, 0.5 hu per cell). Fuel burns down:
-  coal 6 hours, log 3, split log 2, kindling 1. The starting field has the rack, four cells and the gauge along the bottom.
 - `world.test.ts` covers rolling and reading, the charger and its power, a job that stalls and resumes, a full output, the
-  clock, and old saves.
-
-## Mail, the terminal and papers (2026-10-11)
-
-Step 1 of "Mail and drones: the first version" (`IDEAS.md`). Mail is where work comes from; nothing is delivered or paid
-yet (drones and credits are the next steps). Placeholder people, places, goods and prices, all in `src/mail.ts`.
-
-- **Messages** (`state.mail`): an **offer** (terms: what is wanted as lines of `Match` + `n`, where to and how many hours
-  away, due by a tick, pay in credits; open until `expires`), a **bill** (rent: `amount`, `due`), a **notice**. A message is
-  new, then read; an offer ends accepted, declined or expired. Bills and notices can be archived.
-- **Arrival** (`catchUp(state)`, run after every change): every hour since the last, in order. Open offers past their time
-  expire; each morning brings two to four offers (and a notice now and then); the rent bill comes on days 1, 8, 15...
-  (125 cr a week, up 2% every 28 days, rounded up); during the day an offer comes one hour in five. A new game (or an old
-  save without mail) starts with a how-to notice, the rent and a batch of offers.
-- **Accepting** an offer prints a **slip** (a 1x1 kind tagged `paper`; `item.job` is the offer's id) onto the first free
-  squares of the board; no room, no slip, and the offer stays open. What is packed with a slip is what sits in the same
-  container slot as it: each thing counts once, toward the first line of the job it fits.
-- **The terminal** is its own view: the **mail** button by the clock (with the unread count) or `M`; `Esc`, `M` or the
-  window's ✕ go back. Folders: Inbox (open offers, bills, notices), Jobs (accepted), Archive (closed offers, archived
-  mail). The list is newest first; the reading pane has the terms and the answers (Accept, Decline, Pull out, Archive, Show
-  the slip). Up and down arrows move through the list.
-- **Two looks** for the terminal (the "look" button in its status bar, remembered per browser): **text mode** (the board's
-  own: monospace, thin lines, the copper rim) and **dark 98** (Windows 98's bevels and title bar in the board's colours).
-  Classic grey-and-navy Windows 98 was tried and dropped: it clashes with the board.
-- **Papers** (`state.papers`; IDEAS, "Floating windows"): double-click a slip, or Pull out a message, and it opens as a
-  paper over the view. Drag it anywhere but its buttons; the one touched last is on top. **✕** closes it (the slip stays);
-  **pin** keeps it in every view and in a save (a pushpin on top; unpinned papers are dropped on load and belong to the view
-  that opened them); **fold** puts it in the rack, tabs hanging from the top edge with just the top line ("Pell's Bakery ·
-  coal 1/2 · due d1 14:00"); click a tab to unfold. A slip's paper shows the terms and, once packed, a count per line;
-  hovering a slip or an offer (or its tab) lights up everything on the board that would do for it. The material says what
-  it is: a slip is card with a punched hole (a real hole), a bill a carbon copy with a red stamp, a notice or an offer a
-  thin printed sheet. A paper goes when its slip does.
-- `mail.test.ts` covers the first morning, expiry and the next batch, rent rising, accepting (and no room for the slip),
-  declining, and counting what is packed with a slip.
-
-## Drones and the launch pad (2026-10-11)
-
-Step 2 of "Mail and drones: the first version" (`IDEAS.md`), with credits and pay on delivery from step 3. One drone kind,
-fixed stats, a timer (no map). The logic is `src/fleet.ts`.
-
-- **Drone** 3x3 (`kinds.json`: `"drone": { "speed": 1, "drain": 8 }`): a **cargo** slot 4x3 and a **cell** slot 1x1 (cells
-  only). Speed 1 means a place listed as 2 h away is 2 hours out; drain is charge per hour in the air, there and back, so a
-  full cell flies 6 h out at most. Its tooltip shows speed, drain and the range its cell allows.
-- **Launch pad** 4x4: one 3x3 **cradle** that takes a drone. Containers still do not go in containers, except vessels and,
-  new, a container whose tag the slot names in `accepts` (the cradle names `drone`); the nesting limit (2) still holds. Its
-  panel has a **launch** button and a line saying whether the drone can go ("ready: the Rail Depot, 2 h out, needs 32
-  charge"), or why not (no drone, no slip, one slip per trip, a finished job, no cell, not enough charge), or when the
-  drone is back.
-- **Launch:** the drone reads its cell, the charge for the whole trip is taken, and the drone and everything in it leave the
-  board (`state.flights`). Its panel closes; the slip's paper stays and shows the times.
-- **At the place** (after the distance): late, the job **fails**; anything missing, it is **refused** (the note says what)
-  and the job stays open to try again before its deadline; otherwise the wanted goods are handed over, the pay goes to
-  **credits** (shown in the corner) and the job is **delivered**. Each arrival writes a flight **log** to the terminal.
-- **Back** (after as long again): into the pad's cradle if it is there and free, otherwise on the first free squares of
-  the board, with the slip (stamped **paid** or the reason it failed) and whatever was not handed over.
-- A job left on the board past its deadline fails (the mail's hourly check); one in the air is left to the drone.
-- `place(state, item, space)` (new in `world.ts`) puts an item that is not on the board yet on the first free spot of a
-  place; `spawn` uses it. `everything(state)` and `findAnywhere` include items out in drones.
-- The starting board has a pad (top right of centre) and a drone beside it.
-- `fleet.test.ts` covers the cradle, the checks before launch, a delivery there and back, a refusal and a second try, a late
-  arrival, a deadline passing on the board, and landing on the board when the pad is taken.
+  clock, and old saves, using the old kinds kept as a test fixture (`src/test/kinds.json`).

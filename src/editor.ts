@@ -1750,6 +1750,7 @@ async function createItem(name: string, opts: { w: number; h: number; from?: str
   try {
     await api('/new', id, { method: 'POST', body: JSON.stringify({ name, w: opts.w, h: opts.h, from: opts.from, color: opts.color, desc: opts.desc }) })
   } catch (e) { if (status) status.textContent = `not created: ${(e as Error).message}`; return null }
+  if (!ids.length) { location.reload(); return id } // the first item: the page was only the empty state, so build it properly
   const data = { name, icon: '', color: opts.color ?? src?.color ?? '#b4bfcc', w: src?.w ?? opts.w, h: src?.h ?? opts.h, ...(src?.cells ? { cells: [...src.cells] } : {}), ...(opts.desc ? { desc: opts.desc } : src?.desc ? { desc: src.desc } : {}), ...(src?.tags ? { tags: [...src.tags] } : {}) }
   await adopt(id, data)
   switchTo(id)
@@ -1762,7 +1763,6 @@ async function createItem(name: string, opts: { w: number; h: number; from?: str
 let armed = ''
 async function deleteItem() {
   const id = cur
-  if (ids.length < 2) { $('[data-status]').textContent = 'keep at least one item'; return }
   if (armed !== id) {
     armed = id
     paint(false)
@@ -1775,6 +1775,7 @@ async function deleteItem() {
   delete KINDS[id]; delete draft[id]; delete saved[id]; delete hist[id]
   try { localStorage.removeItem(`sprite-draft:${id}`) } catch { /* private window */ }
   ids = Object.keys(KINDS)
+  if (!ids.length) { location.reload(); return } // that was the last one: back to the empty state
   renderKinds()
   switchTo(ids[0])
   $('[data-status]').textContent = 'deleted'
@@ -1866,6 +1867,9 @@ root.addEventListener('change', e => {
 
 // ---------------------------------------------------------------- the page
 
+// No items at all (a clean start): only the way to make the first one.
+if (!ids.length) root.innerHTML = `<main class="panel view"><p class="note">No items yet.</p><div class="kbar"><button data-newitem>＋ New item</button></div></main>`
+else {
 root.innerHTML = `
   <aside class="panel left">
     <div class="phead"><span>Items · Layers</span><button data-collapse="left" title="Fold this panel away">‹</button></div>
@@ -1921,3 +1925,4 @@ Promise.all(ids.map(async id => {
 })).then(() => {
   try { const want = sessionStorage.getItem('sprite-editor-open'); sessionStorage.removeItem('sprite-editor-open'); if (want && KINDS[want]) { cur = want; tab = 'item' } } catch { /* private window */ }
   ready = true; applyUi(); paint(); loadImports(); loadSets(); searchIcons('') })
+}
