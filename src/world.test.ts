@@ -1,13 +1,13 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { applyUse, clock, initProps, machineStatus, matches, pour, advance, accepts, intoHost, applyDrop, boxOf, cellsOf, H, interaction, KINDS, remove, settle, spawn, targetsFor, lift, planDrop, putBack, W, type Item, type State } from './world.ts'
+import { accepts, intoHost, applyDrop, boxOf, cellsOf, H, KINDS, MAX_WINDOWS, remove, settle, spawn, lift, planDrop, putBack, W, type Item, type State } from './world.ts'
 import FIXTURE from './test/kinds.json' with { type: 'json' }
 
 // The game ships no items for now, so the tests bring their own kinds and the old starting field.
 Object.assign(KINDS, FIXTURE)
 function start(): State {
-  const s: State = { items: [], next: 1, panels: [null, null, null, null] }
-  const put = (kind: string, x: number, y: number, rot = 0) => { const it: Item = { id: s.next++, kind, x, y, rot }; initProps(it); s.items.push(it) }
+  const s: State = { items: [], next: 1, windows: [] }
+  const put = (kind: string, x: number, y: number, rot = 0) => { const it: Item = { id: s.next++, kind, x, y, rot }; s.items.push(it) }
   put('crate', 3, 3)
   put('axe', 10, 3)
   put('pickaxe', 16, 4)
@@ -15,7 +15,6 @@ function start(): State {
   put('coal', 10, 12)
   put('coal', 13, 12)
   put('bottle', 18, 11)
-  s.items[s.items.length - 1].liquid = { type: 'water', ml: 500 }
   put('bottle', 21, 11)
   put('knife', 22, 4)
   put('charger', 2, 16)
@@ -165,25 +164,6 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   assert.equal(s.items.length, n - 2)
 }
 
-// Uses: held things can be used on other things by kind or by tag, and only in that direction.
-{
-  const s = start()
-  const saved = { knife: KINDS.knife.uses, log: KINDS.log.tags, coal: KINDS.coal.tags }
-  KINDS.knife.uses = [{ on: 'log', verb: 'carve' }, { on: 'living', verb: 'slaughter' }]
-  KINDS.log.tags = ['wood']
-  const knife = s.items.find(o => o.kind === 'knife')!, log = s.items.find(o => o.kind === 'log')!, coal = s.items.find(o => o.kind === 'coal')!
-  assert.equal(interaction(knife, log)?.verb, 'carve')
-  assert.equal(interaction(knife, coal), null)
-  assert.equal(interaction(log, knife), null) // one way
-  KINDS.coal.tags = ['living']
-  assert.equal(interaction(knife, coal)?.verb, 'slaughter') // by tag
-  KINDS.coal.tags = saved.coal
-  assert.deepEqual(targetsFor(s, [knife]).map(o => o.kind).sort(), ['log'])
-  KINDS.knife.uses = saved.knife; KINDS.log.tags = saved.log
-  if (!saved.knife) delete KINDS.knife.uses
-  if (!saved.log) delete KINDS.log.tags
-}
-
 // Turning is four-way: upside down is a real state; the same footprint, the sprite the other way up; old saves (true/false) load.
 {
   const s = start()
@@ -261,45 +241,6 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
 }
 
 
-{
-  // hearth: fuel burns, wood becomes charcoal in the output; nothing happens without fuel
-  const s: State = { items: [], next: 1, panels: [null, null, null, null] }
-  const hearth = spawn(s, 'hearth')!
-  const wood = spawn(s, 'log', { host: hearth.id, slot: 1 })!
-  advance(s, 5)
-  assert.ok(s.items.includes(wood), 'no fuel, no work')
-  spawn(s, 'coal', { host: hearth.id, slot: 0 })
-  advance(s, 3)
-  assert.ok(!s.items.includes(wood))
-  assert.ok(s.items.some(o => o.kind === 'coal' && o.in?.slot === 2), 'charcoal made')
-  assert.equal(s.tick, 8)
-}
-{
-  // liquids: pouring keeps one liquid per vessel and never overfills; the still is limited by its rate
-  const s: State = { items: [], next: 1, panels: [] }
-  const a = spawn(s, 'bottle')!, b = spawn(s, 'bottle')!
-  a.liquid = { type: 'water', ml: 500 }
-  assert.equal(interaction(a, b)?.verb, 'pour')
-  assert.equal(pour(a, b), 500); assert.equal(a.liquid, undefined)
-  a.liquid = { type: 'brew', ml: 300 }
-  assert.equal(interaction(a, b), null, 'different liquid refused')
-  b.liquid = { type: 'water', ml: 700 }
-  assert.equal(pour(b, a), 0)
-  const c = spawn(s, 'bottle')!; c.liquid = { type: 'water', ml: 750 }
-  const d = spawn(s, 'bottle')!; d.liquid = { type: 'water', ml: 100 }
-  assert.equal(pour(c, d), 650); assert.equal(c.liquid!.ml, 100)
-  // still: 100 ml of mash a tick in, half out
-  const st = spawn(s, 'still')!, vat = spawn(s, 'vat')!
-  const i = spawn(s, 'bottle', { host: st.id, slot: 0 })!, o = spawn(s, 'bottle', { host: st.id, slot: 1 })!
-  i.liquid = { type: 'brew', ml: 250 }
-  advance(s, 2)
-  assert.equal(i.liquid!.ml, 50); assert.equal(o.liquid!.ml, 100)
-  advance(s, 3)
-  assert.equal(i.liquid, undefined); assert.equal(o.liquid!.ml, 125)
-  const v = spawn(s, 'bottle', { host: vat.id, slot: 0 })!
-  advance(s, 4)
-  assert.equal(v.liquid!.ml, 750)
-}
 // The night kit: the belt's sheath takes a knife and nothing else; the knapsack has a pack and a pocket; containers still do not nest.
 {
   const s: State = { items: [], next: 1 }
@@ -309,75 +250,21 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   assert.equal(accepts(s, belt, { host: sack.id, slot: 0 }), false, 'a belt does not go in a knapsack')
   assert.ok(spawn(s, 'matchbox', { host: sack.id, slot: 1 }), 'small things fit the pocket')
 }
-// Properties: a new cell rolls its charge and hides it; the gauge reads only hidden cells and reveals the number.
+// Windows: removing a container closes its window; settling drops windows of things that are gone or are not containers,
+// keeps the newest few, and leaves old saves' docked panels behind.
 {
-  const s: State = { items: [], next: 1 }
-  const cell = spawn(s, 'cell')!, gauge = spawn(s, 'cell-gauge')!
-  assert.ok(cell.p!.charge >= 0 && cell.p!.charge <= 100)
-  assert.deepEqual(cell.hidden, ['charge'])
-  const read = interaction(gauge, cell)!
-  assert.equal(read.verb, 'read')
-  cell.p!.charge = 37
-  assert.match(applyUse(s, gauge, cell, read), /charge 37 \/ 100/)
-  assert.equal(cell.hidden, undefined)
-  assert.equal(interaction(gauge, cell), null, 'a read cell is no longer a target')
-  assert.ok(s.items.includes(gauge), 'the gauge is not used up')
-  const fixed: { id: number; kind: string; x: number; y: number; rot: number; p?: Record<string, number> } = { id: 99, kind: 'cell', x: 0, y: 0, rot: 0 }
-  initProps(fixed, () => 0.5)
-  assert.equal(fixed.p!.charge, 50, 'a range rolls inside it')
-  initProps(fixed, () => 0)
-  assert.equal(fixed.p!.charge, 50, 'what it has is kept')
-  assert.ok(matches(cell, { tag: 'cell', where: { charge: '>=37' } }) && !matches(cell, { where: { charge: '<37' } }))
-}
-// A forEach rule: the charger tops up every cell in its bays, stops at the max, and counts the power it draws.
-{
-  const s: State = { items: [], next: 1 }
-  const rack = spawn(s, 'charger')!
-  const a = spawn(s, 'cell', { host: rack.id, slot: 0 })!, b = spawn(s, 'cell', { host: rack.id, slot: 0 })!
-  a.p!.charge = 0; b.p!.charge = 90
-  advance(s, 1)
-  assert.deepEqual([a.p!.charge, b.p!.charge], [17, 100])
-  assert.equal(s.power, 1)
-  assert.deepEqual(machineStatus(s, rack), ['charging 1'])
-  advance(s, 5)
-  assert.equal(a.p!.charge, 100)
-  assert.equal(s.power, 3.5)
-  assert.deepEqual(machineStatus(s, rack), [])
-  assert.ok(a.hidden, 'charging does not read the cell')
-}
-// A job pauses without an input and keeps its progress; burnt-out fuel is gone; a full output waits.
-{
-  const s: State = { items: [], next: 1 }
-  const hearth = spawn(s, 'hearth')!
-  const wood = spawn(s, 'log', { host: hearth.id, slot: 1 })!
-  const coal = spawn(s, 'coal', { host: hearth.id, slot: 0 })!
-  coal.p!.burn = 1
-  advance(s, 1)
-  assert.ok(!s.items.includes(coal), 'burnt out')
-  assert.equal(hearth.m!.work[0], 1)
-  advance(s, 4)
-  assert.equal(hearth.m!.work[0], 1, 'kept while waiting')
-  assert.match(machineStatus(s, hearth)[0], /waiting: fuel \(1\/3 h done\)/)
-  spawn(s, 'coal', { host: hearth.id, slot: 0 })
-  advance(s, 2)
-  assert.ok(!s.items.includes(wood) && s.items.some(o => o.kind === 'coal' && o.in?.slot === 2))
-  // fill the output, then a second log finishes but waits for room
-  while (spawn(s, 'coal', { host: hearth.id, slot: 2 }));
-  const log2 = spawn(s, 'log', { host: hearth.id, slot: 1 })!
-  advance(s, 4)
-  assert.ok(s.items.includes(log2), 'not used up while the output is full')
-  assert.deepEqual(machineStatus(s, hearth), ['output full'])
-}
-// The clock: twelve hours a day from 08:00.
-{
-  assert.deepEqual(clock(0), { day: 1, hour: 8 })
-  assert.deepEqual(clock(11), { day: 1, hour: 19 })
-  assert.deepEqual(clock(12), { day: 2, hour: 8 })
-}
-// Old saves: the old hearth state goes, and items get the properties their kind has since gained.
-{
-  const t = settle({ items: [{ id: 1, kind: 'hearth', x: 0, y: 0, rot: 0, m: { burn: 2, work: 1 } as never }, { id: 2, kind: 'coal', x: 5, y: 0, rot: 0 }], next: 3 })
-  assert.equal(t.items[0].m, undefined)
-  assert.equal(t.items[1].p!.burn, 6)
+  const s = start()
+  const crate = s.items.find(o => o.kind === 'crate')!, knife = s.items.find(o => o.kind === 'knife')!
+  const belt = spawn(s, 'belt')!
+  s.windows = [{ id: crate.id, x: 10, y: 10 }, { id: belt.id, x: 40, y: 40, folded: true }]
+  const kept = settle({ ...JSON.parse(JSON.stringify(s)), panels: [crate.id, null, null, null] })
+  assert.deepEqual(kept.windows, s.windows)
+  assert.equal('panels' in kept, false)
+  assert.deepEqual(settle({ ...s, windows: [{ id: knife.id, x: 0, y: 0 }, { id: 999, x: 0, y: 0 }] }).windows, [], 'not a container, or gone')
+  const many = Array.from({ length: MAX_WINDOWS + 2 }, () => spawn(s, 'crate')).filter((o): o is Item => !!o)
+  assert.equal(settle({ ...s, windows: many.map(o => ({ id: o.id, x: 0, y: 0 })) }).windows!.length, MAX_WINDOWS)
+  s.windows = [{ id: crate.id, x: 10, y: 10 }, { id: belt.id, x: 40, y: 40, folded: true }]
+  remove(s, [crate.id])
+  assert.deepEqual(s.windows, [{ id: belt.id, x: 40, y: 40, folded: true }])
 }
 console.log('world ok')

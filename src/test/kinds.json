@@ -24,16 +24,7 @@
     "tags": [
       "fuel",
       "wood"
-    ],
-    "props": {
-      "burn": {
-        "max": 3,
-        "start": 3,
-        "show": "gauge",
-        "gone": true,
-        "color": "#ff9a3c"
-      }
-    }
+    ]
   },
   "coal": {
     "name": "Coal",
@@ -43,16 +34,7 @@
     "h": 2,
     "tags": [
       "fuel"
-    ],
-    "props": {
-      "burn": {
-        "max": 6,
-        "start": 6,
-        "show": "gauge",
-        "gone": true,
-        "color": "#ff9a3c"
-      }
-    }
+    ]
   },
   "bottle": {
     "name": "Bottle",
@@ -60,16 +42,9 @@
     "color": "#5aa8e6",
     "w": 2,
     "h": 4,
-    "uses": [
-      {
-        "on": "vessel",
-        "verb": "pour"
-      }
-    ],
     "tags": [
       "vessel"
     ],
-    "capacity": 750,
     "desc": "A corked bottle: 750 ml, one liquid at a time."
   },
   "knife": {
@@ -78,12 +53,6 @@
     "color": "#b4bfcc",
     "w": 1,
     "h": 4,
-    "uses": [
-      {
-        "on": "log",
-        "verb": "carve"
-      }
-    ],
     "tags": [
       "tool",
       "blade"
@@ -95,12 +64,6 @@
     "color": "#f5f9ff",
     "w": 4,
     "h": 6,
-    "uses": [
-      {
-        "on": "log",
-        "verb": "chop"
-      }
-    ],
     "cells": [
       "####",
       "####",
@@ -159,35 +122,6 @@
     "tags": [
       "container"
     ],
-    "machine": {
-      "rules": [
-        {
-          "label": "burning",
-          "needs": {
-            "input": {
-              "tag": "wood"
-            },
-            "fuel": {
-              "tag": "fuel"
-            }
-          },
-          "hours": 3,
-          "hourly": {
-            "fuel": {
-              "burn": "-1"
-            }
-          },
-          "done": {
-            "useUp": [
-              "input"
-            ],
-            "make": {
-              "output": "coal"
-            }
-          }
-        }
-      ]
-    },
     "desc": "Burns fuel; turns wood into charcoal in 3 hours.",
     "slots": [
       {
@@ -222,29 +156,6 @@
     "tags": [
       "container"
     ],
-    "machine": {
-      "rules": [
-        {
-          "label": "filling",
-          "needs": {
-            "bottle": {
-              "tag": "vessel",
-              "liquid": [
-                "water",
-                "none"
-              ],
-              "free": ">0"
-            }
-          },
-          "hourly": {
-            "bottle": {
-              "ml": "+250",
-              "liquid": "water"
-            }
-          }
-        }
-      ]
-    },
     "desc": "Fills the bottle in it with water, 250 ml an hour.",
     "slots": [
       {
@@ -266,29 +177,6 @@
     "tags": [
       "container"
     ],
-    "machine": {
-      "rules": [
-        {
-          "label": "filling",
-          "needs": {
-            "bottle": {
-              "tag": "vessel",
-              "liquid": [
-                "brew",
-                "none"
-              ],
-              "free": ">0"
-            }
-          },
-          "hourly": {
-            "bottle": {
-              "ml": "+250",
-              "liquid": "brew"
-            }
-          }
-        }
-      ]
-    },
     "desc": "Fills the bottle in it with mash, 250 ml an hour.",
     "slots": [
       {
@@ -310,35 +198,6 @@
     "tags": [
       "container"
     ],
-    "machine": {
-      "rules": [
-        {
-          "label": "distilling",
-          "needs": {
-            "mash in": {
-              "tag": "vessel",
-              "liquid": "brew",
-              "ml": ">0"
-            },
-            "spirit out": {
-              "tag": "vessel",
-              "liquid": [
-                "spirit",
-                "none"
-              ],
-              "free": ">0"
-            }
-          },
-          "flow": {
-            "from": "mash in",
-            "to": "spirit out",
-            "ml": 100,
-            "ratio": 0.5,
-            "liquid": "spirit"
-          }
-        }
-      ]
-    },
     "desc": "Distils mash into spirit: 100 ml an hour in, half that out.",
     "slots": [
       {
@@ -369,8 +228,7 @@
     "tags": [
       "food",
       "dairy"
-    ],
-    "legacy": true
+    ]
   },
   "sausage": {
     "name": "Ring sausage",
@@ -387,8 +245,7 @@
     "tags": [
       "food",
       "meat"
-    ],
-    "legacy": true
+    ]
   },
   "coin-stacks": {
     "name": "Coin stacks",
@@ -420,8 +277,7 @@
     "tags": [
       "food",
       "dairy"
-    ],
-    "legacy": true
+    ]
   },
   "ham": {
     "name": "Cured ham",
@@ -438,8 +294,7 @@
     "tags": [
       "food",
       "meat"
-    ],
-    "legacy": true
+    ]
   },
   "loaf": {
     "name": "Loaf",
@@ -451,8 +306,7 @@
     "tags": [
       "food",
       "bread"
-    ],
-    "legacy": true
+    ]
   },
   "bread-slice": {
     "name": "Slice of bread",
@@ -464,8 +318,7 @@
     "tags": [
       "food",
       "bread"
-    ],
-    "legacy": true
+    ]
   },
   "egg": {
     "name": "Egg",
@@ -476,8 +329,7 @@
     "desc": "A brown hen egg.",
     "tags": [
       "food"
-    ],
-    "legacy": true
+    ]
   },
   "apple": {
     "name": "Apple",
@@ -489,8 +341,7 @@
     "tags": [
       "food",
       "fruit"
-    ],
-    "legacy": true
+    ]
   },
   "hen": {
     "name": "Hen",
@@ -506,8 +357,7 @@
     "desc": "A brown laying hen. Pecks at whatever is near.",
     "tags": [
       "animal"
-    ],
-    "legacy": true
+    ]
   },
   "coop": {
     "name": "Chicken coop",
@@ -524,8 +374,7 @@
     "desc": "A little red coop on skids, with a ramp, a wire window and a hatch for the eggs.",
     "tags": [
       "building"
-    ],
-    "legacy": true
+    ]
   },
   "sack": {
     "name": "Flour sack",
@@ -541,8 +390,7 @@
     "desc": "A burlap sack of flour, tied off at the neck and stamped with a wheat ear.",
     "tags": [
       "food"
-    ],
-    "legacy": true
+    ]
   },
   "seedling": {
     "name": "Seedling",
@@ -553,8 +401,7 @@
     "desc": "A first sprout in a terracotta pot.",
     "tags": [
       "plant"
-    ],
-    "legacy": true
+    ]
   },
   "bellows": {
     "name": "Bellows",
@@ -582,16 +429,7 @@
     "tags": [
       "fuel",
       "wood"
-    ],
-    "props": {
-      "burn": {
-        "max": 1,
-        "start": 1,
-        "show": "gauge",
-        "gone": true,
-        "color": "#ff9a3c"
-      }
-    }
+    ]
   },
   "split-log": {
     "name": "Split log",
@@ -603,16 +441,7 @@
     "tags": [
       "fuel",
       "wood"
-    ],
-    "props": {
-      "burn": {
-        "max": 2,
-        "start": 2,
-        "show": "gauge",
-        "gone": true,
-        "color": "#ff9a3c"
-      }
-    }
+    ]
   },
   "matchbox": {
     "name": "Matchbox",
@@ -667,8 +496,7 @@
     "desc": "Clear honey under a gingham cloth, tied with a bow.",
     "tags": [
       "food"
-    ],
-    "legacy": true
+    ]
   },
   "hourglass": {
     "name": "Hourglass",
@@ -835,19 +663,7 @@
     "tags": [
       "cell"
     ],
-    "desc": "A power cell. How much charge is left is anyone's guess until it is read.",
-    "props": {
-      "charge": {
-        "max": 100,
-        "start": [
-          0,
-          100
-        ],
-        "show": "strip",
-        "hidden": true,
-        "color": "#7fb069"
-      }
-    }
+    "desc": "A power cell. How much charge is left is anyone's guess until it is read."
   },
   "cell-gauge": {
     "name": "Cell gauge",
@@ -858,21 +674,7 @@
     "tags": [
       "tool"
     ],
-    "desc": "A thumb-sized needle dial. Turns a ? cell into a number.",
-    "uses": [
-      {
-        "on": "cell",
-        "verb": "read",
-        "where": {
-          "charge": "?"
-        },
-        "target": {
-          "reveal": [
-            "charge"
-          ]
-        }
-      }
-    ]
+    "desc": "A thumb-sized needle dial. Turns a ? cell into a number."
   },
   "charger": {
     "name": "Charger rack",
@@ -893,25 +695,6 @@
           "cell"
         ]
       }
-    ],
-    "machine": {
-      "rules": [
-        {
-          "label": "charging",
-          "forEach": {
-            "slot": "cells",
-            "where": {
-              "charge": "<100"
-            }
-          },
-          "hourly": {
-            "cells": {
-              "charge": "+17"
-            }
-          },
-          "power": 0.5
-        }
-      ]
-    }
+    ]
   }
 }

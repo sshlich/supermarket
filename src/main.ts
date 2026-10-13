@@ -1,5 +1,5 @@
 import './style.css'
-import { advance, applyDrop, applyUse, cellsOf, clock, dims, find, H, hostsFor, inSpace, interaction, intoHost, isContainer, isHidden, KINDS, LIQUIDS, capacityOf, lift, machineStatus, propDefs, propOf, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, targetsFor, W, type Held, type Item, type Plan, type Space, type State } from './world.ts'
+import { applyDrop, cellsOf, dims, find, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -26,11 +26,9 @@ function load(): State | null {
 }
 const save = () => { try { localStorage.setItem(SAVE, JSON.stringify(s)) } catch { /* private window */ } }
 
-/** How wide a docked panel is, in squares: the widest inside any container can be. */
-const PW = Math.max(6, ...Object.values(KINDS).flatMap(k => (k.slots ?? []).map(sl => sl.w)))
-
 function fit() {
-  cell = Math.floor(Math.max(14, Math.min(40, (innerWidth - 150) / (W + 2 * PW), (innerHeight - 150) / H)))
+  // room for windows beside the field: about six squares each side
+  cell = Math.floor(Math.max(14, Math.min(40, (innerWidth - 150) / (W + 12), (innerHeight - 150) / H)))
   document.documentElement.style.setProperty('--cell', `${cell}px`)
 }
 /** The tray wraps to more rows as kinds are added: after drawing, shrink the squares until all of it is on screen. */
@@ -53,17 +51,7 @@ function itemHtml(it: Item) {
   const hit = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('')
   return `<div class="item ${selected.has(it.id) ? 'sel' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
     <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><g class="hit">${hit}</g></svg>
-    ${it.liquid ? `<i class="gauge" style="--f:${it.liquid.ml / (capacityOf(it) || 1)};--lc:${LIQUIDS[it.liquid.type]?.color ?? '#888'}"></i>` : ''}${propMark(it)}
     <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${quarter(it.rot) * 90}deg">${SPRITE[it.kind] ?? ''}</div></div>`
-}
-
-/** An item's first "strip" property, drawn on it: a strip up the right edge, or a "?" while nobody has read it. */
-function propMark(it: Item) {
-  const g = Object.entries(propDefs(it.kind)).find(([, d]) => d.show === 'strip')
-  if (!g) return ''
-  const [name, d] = g
-  if (isHidden(it, name)) return '<i class="unknown">?</i>'
-  return `<i class="gauge right" style="--f:${Math.min(1, propOf(it, name) / (d.max || 1))};--lc:${d.color ?? '#e6e3dc'}"></i>`
 }
 
 /** The edge of a set of squares: a line wherever a square has no neighbour. Traces irregular shapes exactly. */
@@ -83,28 +71,78 @@ const absCells = (it: Item): [number, number][] => cellsOf(it).map(([cx, cy]) =>
 
 /** A row of buttons to put any kind of thing on the field, for trying new items out. */
 function trayHtml() {
-  return `<div class="tray"><span>put on the field</span>${Object.entries(KINDS).filter(([, k]) => !k.legacy).map(([id, k]) => `<button data-spawn="${id}" style="--c:${k.color}" title="${(k.desc ?? '').replace(/"/g, '&quot;')}"><i></i>${k.name}</button>`).join('')}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
+  const kinds = Object.entries(KINDS)
+  return `<div class="tray"><span>put on the field</span>${kinds.length ? '' : '<span class="none">no items yet: <a href="/editor.html">make one in the editor</a></span>'}${kinds.map(([id, k]) => `<button data-spawn="${id}" style="--c:${k.color}" title="${(k.desc ?? '').replace(/"/g, '&quot;')}"><i></i>${k.name}</button>`).join('')}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
 }
 
-/** One docked panel: the insides of a container, a small grid for each of its slots. Empty docks are drawn faintly so they can be dropped on. */
-function panelHtml(dock: number, id: number | null) {
-  const it = id === null ? undefined : find(s, id)
-  if (!it) return `<div class="panel empty" data-dock="${dock}"><span>empty dock</span></div>`
+/** One open container: a window floating over the page, its insides a small grid for each of its slots. */
+function winHtml(w: Win, z: number) {
+  const it = find(s, w.id)!
   const k = KINDS[it.kind]
   const slots = (k.slots ?? []).map((sl, i) => {
     const note = [sl.name, sl.accepts?.length ? `${sl.accepts.join(', ')} only` : '', sl.rejects?.length ? `no ${sl.rejects.join(', ')}` : ''].filter(Boolean).join(' · ')
     return `<div class="slotbox">${note ? `<div class="slotnote">${note}</div>` : ''}<div class="grid" data-grid data-space="${it.id}:${i}" data-w="${sl.w}" data-h="${sl.h}" style="--w:${sl.w};--h:${sl.h}">${inSpace(s, { host: it.id, slot: i }).map(itemHtml).join('')}</div></div>`
   }).join('')
-  return `<div class="panel" data-dock="${dock}"><div class="panel-head" data-head style="--c:${k.color}"><i></i><span>${k.name}</span>${k.machine ? `<em>${machineStatus(s, it).join(' · ') || 'idle'}</em>` : ''}<button data-close="${it.id}" title="Close">✕</button></div>${slots}</div>`
+  return `<div class="win" data-win="${it.id}" style="left:${w.x}px;top:${w.y}px;z-index:${10 + z}"><div class="win-head" data-whead style="--c:${k.color}"><i></i><span>${k.name}</span><button data-wfold="${it.id}" title="Fold: keep just a tab along the top">–</button><button data-wclose="${it.id}" title="Close">✕</button></div>${slots}</div>`
 }
 
-const clockText = () => { const c = clock(s.tick); return `day ${c.day} · ${String(c.hour).padStart(2, '0')}:00${s.power ? ` · ${s.power} hu` : ''}` }
+/** The open windows where they were left, and the folded ones as tabs in the rack along the top edge. */
+function windowsHtml() {
+  const ws = s.windows ?? []
+  const tabs = ws.filter(w => w.folded).map(w => { const k = KINDS[find(s, w.id)!.kind]; return `<button class="tab" data-wopen="${w.id}" style="--c:${k.color}" title="Unfold"><i></i>${k.name}</button>` }).join('')
+  return ws.map((w, z) => (w.folded ? '' : winHtml(w, z))).join('') + (tabs ? `<div class="rack">${tabs}</div>` : '')
+}
+
+/** Keep every open window on screen (after a resize, or a window that opened near an edge): its header always stays reachable. */
+function keepOnScreen() {
+  for (const el of app.querySelectorAll<HTMLElement>('.win[data-win]')) {
+    const w = winOf(+el.dataset.win!)
+    if (!w) continue
+    const r = el.getBoundingClientRect()
+    const x = Math.round(Math.max(8, Math.min(innerWidth - r.width - 8, w.x))), y = Math.round(Math.max(8, Math.min(innerHeight - r.height - 8, w.y)))
+    if (x === w.x && y === w.y) continue
+    Object.assign(w, { x, y })
+    Object.assign(el.style, { left: `${x}px`, top: `${y}px` })
+  }
+}
+const winOf = (id: number) => s.windows?.find(w => w.id === id)
+
+/** Bring a window to the front (the last one is on top), without redrawing. */
+function raise(id: number) {
+  const ws = s.windows ?? []
+  const w = winOf(id)
+  if (!w || ws[ws.length - 1] === w) return
+  s.windows = [...ws.filter(o => o !== w), w]
+  s.windows.forEach((o, z) => { const el = app.querySelector<HTMLElement>(`.win[data-win="${o.id}"]`); if (el) el.style.zIndex = String(10 + z) })
+  save()
+}
+
+/** Open a container in a new window beside it (right of it, or left if there is no room), or bring its window back if it is open already. */
+function openWindow(it: Item) {
+  const ws = s.windows ?? (s.windows = [])
+  const open = winOf(it.id)
+  if (open) {
+    open.folded = false
+    s.windows = [...ws.filter(o => o !== open), open]
+    changed(new Map())
+    app.querySelector(`.win[data-win="${it.id}"]`)?.animate([{ transform: 'scale(1.04)', boxShadow: '0 0 0 3px #c49c68' }, { transform: 'none' }], { duration: 450 })
+    return
+  }
+  if (ws.length >= MAX_WINDOWS) { toast(`${MAX_WINDOWS} containers are open: close one first`); return }
+  const r = app.querySelector(`.item[data-id="${it.id}"]`)!.getBoundingClientRect()
+  const slots = KINDS[it.kind].slots ?? []
+  const ww = Math.max(...slots.map(sl => sl.w)) * cell + 20 // a guess at its size; keepOnScreen corrects it once drawn
+  ws.push({ id: it.id, x: Math.round(r.right + 12 + ww < innerWidth ? r.right + 12 : r.left - 12 - ww), y: Math.round(r.top) })
+  pick([])
+  changed()
+  keepOnScreen()
+  save()
+}
 
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
-  const p = s.panels ?? (s.panels = [null, null, null, null])
-  app.innerHTML = `<div class="stage" style="--pw:${PW}"><div class="dock">${panelHtml(0, p[0])}${panelHtml(1, p[1])}</div><div class="center"><div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div><div class="dock">${panelHtml(2, p[2])}${panelHtml(3, p[3])}</div></div><button class="clock" data-tick title="Let an hour pass${s.power ? ` · machines have drawn ${s.power} hu of power` : ''}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>${clockText()}</span></button>`
+  app.innerHTML = `<div class="stage"><div class="center"><div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div></div>${windowsHtml()}`
   if (hoverId !== null) showTip()
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
@@ -127,18 +165,17 @@ function changed(from?: Map<number, DOMRect>) {
 
 // ---------------------------------------------------------------- handling
 
-interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; targets: Item[]; hosts: Item[]; full: Item[]; blocked: Item | null; use: Item | null; into: Item | null; space: Space; over: boolean }
+interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; hosts: Item[]; full: Item[]; blocked: Item | null; into: Item | null; space: Space; over: boolean }
 let press: { id: number; x: number; y: number; gx: number; gy: number; toggle: boolean; wasGroup: boolean } | null = null
 let drag: Drag | null = null
 let last: PointerEvent | null = null
 let marquee: { x0: number; y0: number; add: boolean; el: HTMLElement; grid: HTMLElement; space: Space } | null = null
-let panelDrag: { dock: number; el: HTMLElement } | null = null
+let winDrag: { win: Win; el: HTMLElement; dx: number; dy: number } | null = null
 
 const spaceAt = (g: HTMLElement): Space => { const k = g.dataset.space!; if (k === 'field') return null; const [host, slot] = k.split(':').map(Number); return { host, slot } }
 const gridOf = (sp: Space) => app.querySelector<HTMLElement>(`.grid[data-space="${spaceKey(sp)}"]`)
-/** The grid under a screen point, if any. */
-const gridUnder = (x: number, y: number) => [...app.querySelectorAll<HTMLElement>('.grid[data-space]')].find(g => { const r = g.getBoundingClientRect(); return x >= r.left && x < r.right && y >= r.top && y < r.bottom }) ?? null
-const dockUnder = (x: number, y: number) => [...app.querySelectorAll<HTMLElement>('.panel[data-dock]')].find(p => { const r = p.getBoundingClientRect(); return x >= r.left && x < r.right && y >= r.top && y < r.bottom }) ?? null
+/** The grid under a screen point, if any: only the topmost thing there counts, so a window covers the field (or another window) behind it. */
+const gridUnder = (x: number, y: number) => document.elementFromPoint(x, y)?.closest<HTMLElement>('.grid[data-space]') ?? null
 
 /** Show what is selected without redrawing everything. */
 function paintSelection() {
@@ -150,12 +187,14 @@ app.addEventListener('pointerdown', e => {
   if (e.button !== 0 || drag) return
   const t = e.target as HTMLElement
   const el = t.closest<HTMLElement>('.item[data-id]')
-  const head = t.closest<HTMLElement>('[data-head]')
-  if (head && !t.closest('button')) { // grab a panel by its header to move it to another dock
-    const panel = head.closest<HTMLElement>('.panel')!
-    panelDrag = { dock: +panel.dataset.dock!, el: panel }
-    panel.classList.add('grabbed')
+  const winEl = t.closest<HTMLElement>('.win[data-win]')
+  if (winEl) raise(+winEl.dataset.win!) // touching a window brings it to the front
+  const w = winEl && winOf(+winEl.dataset.win!)
+  if (w && t.closest('[data-whead]') && !t.closest('button')) { // grab a window by its header to move it anywhere
+    winDrag = { win: w, el: winEl, dx: e.clientX - w.x, dy: e.clientY - w.y }
+    winEl.classList.add('grabbed')
     document.body.classList.add('dragging')
+    hideTip()
     e.preventDefault()
     return
   }
@@ -191,14 +230,14 @@ app.addEventListener('pointerdown', e => {
 addEventListener('pointermove', e => {
   last = e
   if (marquee) return sweep(e)
-  if (panelDrag) { app.querySelectorAll('.panel.over').forEach(p => p.classList.remove('over')); const o = dockUnder(e.clientX, e.clientY); if (o && o !== panelDrag.el) o.classList.add('over'); return }
+  if (winDrag) return moveWindow(e)
   if (press && !drag && Math.hypot(e.clientX - press.x, e.clientY - press.y) > 4) begin()
   if (drag) move(e)
 })
 
 addEventListener('pointerup', () => {
   if (marquee) endSweep()
-  else if (panelDrag) endPanelDrag()
+  else if (winDrag) endWindowDrag()
   else if (drag) finish(true)
   else if (press) {
     // a click, not a drag: shift-click toggles, a plain click on one of a group narrows it to that one
@@ -208,14 +247,19 @@ addEventListener('pointerup', () => {
   press = null
 })
 
-/** Let go of a panel: it swaps docks with whatever dock it is over. */
-function endPanelDrag() {
-  const pd = panelDrag!
-  panelDrag = null
+/** A window follows the pointer by its header; part of it always stays on screen, so it can be grabbed again. */
+function moveWindow(e: PointerEvent) {
+  const d = winDrag!
+  const r = d.el.getBoundingClientRect()
+  d.win.x = Math.round(Math.max(60 - r.width, Math.min(innerWidth - 60, e.clientX - d.dx)))
+  d.win.y = Math.round(Math.max(0, Math.min(innerHeight - 30, e.clientY - d.dy)))
+  Object.assign(d.el.style, { left: `${d.win.x}px`, top: `${d.win.y}px` })
+}
+function endWindowDrag() {
+  winDrag!.el.classList.remove('grabbed')
+  winDrag = null
   document.body.classList.remove('dragging')
-  const o = dockUnder(last?.clientX ?? -1, last?.clientY ?? -1)
-  if (o && o !== pd.el && s.panels) { const j = +o.dataset.dock!; [s.panels[pd.dock], s.panels[j]] = [s.panels[j], s.panels[pd.dock]]; changed(new Map()) }
-  else { pd.el.classList.remove('grabbed'); app.querySelectorAll('.panel.over').forEach(p => p.classList.remove('over')) }
+  save()
 }
 
 /** Which things the sweep rectangle touches right now. */
@@ -286,7 +330,7 @@ function begin() {
   if (!held) { press = null; return }
   const el = document.body.appendChild(document.createElement('div'))
   el.className = 'floating'
-  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', targets: targetsFor(s, held.items), hosts: [], full: [], blocked: null, use: null, into: null, space: null, over: false }
+  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', hosts: [], full: [], blocked: null, into: null, space: null, over: false }
   for (const h of hostsFor(s, held.items)) (intoHost(s, held, h.id) ? drag.hosts : drag.full).push(h)
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
@@ -327,7 +371,7 @@ function move(e: PointerEvent) {
   const g = gridUnder(e.clientX, e.clientY)
   if (!g) { // over no grid: nothing to drop on, it would go back
     if (d.key === 'none') return
-    Object.assign(d, { key: 'none', plan: null, use: null, into: null, blocked: null, over: false })
+    Object.assign(d, { key: 'none', plan: null, into: null, blocked: null, over: false })
     return paintGhosts(0, 0)
   }
   const sp = spaceAt(g)
@@ -336,14 +380,12 @@ function move(e: PointerEvent) {
   const y = Math.round((e.clientY - d.gy - r.top) / cell)
   const px = Math.floor((e.clientX - r.left) / cell), py = Math.floor((e.clientY - r.top) / cell)
   const on = (t: Item) => sameSpace(spaceOf(t), sp) && cellsOf(t).some(([cx, cy]) => t.x + cx === px && t.y + cy === py)
-  const under = d.targets.find(on) ?? null
-  const host = under ? null : d.hosts.find(on) ?? null // dropped onto a container: goes inside it
+  const host = d.hosts.find(on) ?? null // dropped onto a container: goes inside it
   // over a container that would take it but is full: refused, and nothing gets shoved (one that never takes it is just another thing to rearrange)
-  const blocked = under || host ? null : d.full.find(on) ?? null
-  const key = `${spaceKey(sp)}:${x}:${y}:${d.rot}:${strictNow()}:${under?.id ?? ''}:${host?.id ?? ''}:${blocked?.id ?? ''}`
+  const blocked = host ? null : d.full.find(on) ?? null
+  const key = `${spaceKey(sp)}:${x}:${y}:${d.rot}:${strictNow()}:${host?.id ?? ''}:${blocked?.id ?? ''}`
   if (key === d.key) return
   d.key = key
-  d.use = under
   d.over = true
   d.space = sp
   d.plan = host ? intoHost(s, d.held, host.id) : null
@@ -374,8 +416,8 @@ function light(list: Light[]) {
 }
 
 /**
- * What to show while dragging. Anything the held thing can be used on gets blue squares (bright under the pointer), and so
- * does any container that would take it (bright when dropping onto it puts it inside). In strict mode the squares it would take
+ * What to show while dragging. Any container that would take the held thing gets blue squares (bright when dropping onto it
+ * puts it inside). In strict mode the squares it would take
  * go green if they are all free and red if not. In the relaxed mode there is no such light: just a plain outline of where it
  * lands (and dashed outlines for what gives way), and red only if there is truly no way to place it.
  */
@@ -384,9 +426,7 @@ function paintGhosts(x: number, y: number) {
   const d = drag!
   const p = d.plan
   const a = d.held.item
-  const out: Light[] = d.targets.map(t => ({ sp: spaceOf(t), cells: absCells(t), kind: d.use?.id === t.id ? 'usenow' : 'use' }))
-  for (const h of d.hosts) out.push({ sp: spaceOf(h), cells: absCells(h), kind: d.into?.id === h.id ? 'usenow' : 'use' })
-  if (d.use) { light(out); return } // using it, not placing it
+  const out: Light[] = d.hosts.map(h => ({ sp: spaceOf(h), cells: absCells(h), kind: d.into?.id === h.id ? 'usenow' : 'use' }))
   if (d.blocked) { light([...out, { sp: spaceOf(d.blocked), cells: absCells(d.blocked), kind: 'bad' }]); return }
   if (!p) {
     // refused: red where each thing would go
@@ -432,8 +472,6 @@ function finish(drop: boolean) {
   clearGhosts()
   const from = rects()
   d.el.querySelectorAll<HTMLElement>('.item').forEach((el, i) => from.set(d.held.items[i].id, el.getBoundingClientRect()))
-  const use = drop && d.use ? interaction(d.held.item, d.use) : null
-  if (use && d.use) { putBack(d.held); const said = applyUse(s, d.held.item, d.use, use); changed(from); toast(said); d.el.remove(); return }
   if (drop && d.plan) applyDrop(s, d.held, d.plan)
   else putBack(d.held)
   d.el.remove()
@@ -446,29 +484,19 @@ const tip = document.body.appendChild(document.createElement('div'))
 tip.className = 'tip'
 let hoverId: number | null = null
 const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
-const meter = (label: string, f: number, text: string, color = '#e6e3dc') => `<div class="row"><span>${esc(label)}</span><i class="bar"><i style="width:${Math.round(Math.min(1, f) * 100)}%;background:${color}"></i></i><em>${esc(text)}</em></div>`
 
-/** Name, [tags], how full it is, its shown properties ("?" while hidden), what a machine is doing, the description, and what can be done with it. */
+/** Name, [tags], the description, and what can be done with it. */
 function tipHtml(it: Item) {
   const k = KINDS[it.kind]
   const rows = [`<b>${esc(k.name)}</b>`]
   if (k.tags?.length) rows.push(`<div class="tags">[${esc(k.tags.join(', '))}]</div>`)
-  if (capacityOf(it)) { const ml = it.liquid?.ml ?? 0, l = it.liquid && LIQUIDS[it.liquid.type]; rows.push(meter(it.liquid ? l?.name ?? it.liquid.type : 'empty', ml / capacityOf(it), `${ml} / ${capacityOf(it)} ml`, l?.color)) }
-  for (const [name, d] of Object.entries(propDefs(it.kind))) {
-    if (!d.show) continue
-    const v = propOf(it, name)
-    if (isHidden(it, name)) rows.push(`<div class="row"><span>${esc(name)}</span><em>?</em></div>`)
-    else rows.push(d.show !== 'number' && d.max ? meter(name, v / d.max, `${v} / ${d.max}`, d.color) : `<div class="row"><span>${esc(name)}</span><em>${v}</em></div>`)
-  }
-  if (k.machine) rows.push(`<div class="status">${machineStatus(s, it).map(esc).join('<br>') || 'idle'}</div>`)
   if (k.desc) rows.push(`<p>${esc(k.desc)}</p>`)
-  const hints = (k.uses ?? []).map(u => `drop onto a ${KINDS[u.on]?.name.toLowerCase() ?? u.on}: ${u.verb}`)
-  if (isContainer(it.kind)) hints.push('double-click to open')
-  return rows.join('') + hints.map(h => `<div class="hint">${esc(h)}</div>`).join('')
+  if (isContainer(it.kind)) rows.push(`<div class="hint">double-click to open</div>`)
+  return rows.join('')
 }
 /** Show the tooltip beside the hovered item (to its right, or its left if there is no room), kept on screen. */
 function showTip() {
-  const it = hoverId === null || drag || marquee || panelDrag ? undefined : find(s, hoverId)
+  const it = hoverId === null || drag || marquee || winDrag ? undefined : find(s, hoverId)
   const el = it && app.querySelector<HTMLElement>(`.item[data-id="${it.id}"]`)
   if (!it || !el) { hideTip(); return }
   tip.innerHTML = tipHtml(it)
@@ -480,7 +508,7 @@ function showTip() {
 function hideTip() { hoverId = null; tip.classList.remove('on') }
 app.addEventListener('pointerover', e => {
   const el = (e.target as HTMLElement).closest<HTMLElement>('.item[data-id]')
-  if (!el || drag || marquee || panelDrag || +el.dataset.id! === hoverId) return
+  if (!el || drag || marquee || winDrag || +el.dataset.id! === hoverId) return
   hoverId = +el.dataset.id!
   showTip()
 })
@@ -489,32 +517,27 @@ app.addEventListener('pointerout', e => {
   if (el && (e.relatedTarget as HTMLElement | null)?.closest?.('.item[data-id]') !== el) hideTip()
 })
 
-addEventListener('resize', () => { fit(); render(new Map()); fitTray() })
+addEventListener('resize', () => { fit(); render(new Map()); fitTray(); keepOnScreen() })
 fit()
 render(new Map())
 fitTray()
+keepOnScreen()
 
 app.addEventListener('click', e => {
   const b = (e.target as HTMLElement).closest<HTMLElement>('button')
   if (!b) return
-  if ('tick' in b.dataset) { advance(s, 1); changed(); return }
-  if (b.dataset.close) { s.panels = (s.panels ?? []).map(p => (p === +b.dataset.close! ? null : p)); changed(new Map()); return }
-  if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn); if (it) { for (const [n, d] of Object.entries(propDefs(it.kind))) if (d.hidden && d.max !== undefined) { it.p![n] = d.max; it.hidden = it.hidden?.filter(h => h !== n) } /* tray ones come full and read */ changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
+  if (b.dataset.wclose) { s.windows = (s.windows ?? []).filter(w => w.id !== +b.dataset.wclose!); changed(new Map()); return }
+  if (b.dataset.wfold) { const w = winOf(+b.dataset.wfold); if (w) w.folded = true; changed(new Map()); return }
+  if (b.dataset.wopen) { const it = find(s, +b.dataset.wopen); if (it) openWindow(it); return }
+  if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
   else if ('strict' in b.dataset) toggleStrict()
-  else if ('clear' in b.dataset) { s.items = []; selected = new Set(); changed(new Map()) }
+  else if ('clear' in b.dataset) { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) }
   else if ('reset' in b.dataset) { s = start(); selected = new Set(); changed(new Map()) }
 })
 
-/** Double-click a container to open its insides in the first free dock. */
+/** Double-click a container to open its insides in a window beside it. */
 app.addEventListener('dblclick', e => {
   const el = (e.target as HTMLElement).closest<HTMLElement>('.item[data-id]')
   const it = el && find(s, +el.dataset.id!)
-  if (!it || !isContainer(it.kind)) return
-  const panels = s.panels ?? (s.panels = [null, null, null, null])
-  if (panels.includes(it.id)) { app.querySelector(`.panel[data-dock="${panels.indexOf(it.id)}"]`)?.animate([{ transform: 'scale(1.04)', boxShadow: '0 0 0 3px #c49c68' }, { transform: 'none' }], { duration: 450 }); return }
-  const free = panels.indexOf(null)
-  if (free < 0) { toast('all four docks are in use: close one first'); return }
-  panels[free] = it.id
-  pick([])
-  changed()
+  if (it && isContainer(it.kind)) openWindow(it)
 })

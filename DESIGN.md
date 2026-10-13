@@ -1,28 +1,76 @@
-# Clean start (2026-10-13)
+# The Workshop (`inventory-v3`)
 
-Branch `inventory-v3`: the engine without any items, ready for a revamp. `src/kinds.json` is empty, there are no sprites,
-the field starts empty and the tray has nothing in it. Everything below that is about the engine still holds (handling,
-containers, liquids, properties and rules, the clock, the tooltip, the editor and the gallery); the items it mentions are
-gone from the game. The editor shows an empty state with "New item" until the first item exists, and can delete the last one.
+What is built. Since 2026-10-13 this branch is a clean slate: **the field, the handling, containers in floating windows and
+the tooltip**, plus the dev tools to make items (the sprite editor and the gallery). There are **no items**: `src/kinds.json` is
+empty, there are no sprites, the field starts empty and the tray says so. No rules, machines, properties, liquids, uses, clock
+or money: those were cut, along with the design notes (`IDEAS.md`, `LORE.md`, `SPECULATIVE/`).
 
-- The old kinds live on as the tests' fixture, `src/test/kinds.json`, with the old starting field in `world.test.ts`.
-- The code is the "Items step A" state (`12a606f`), plus the two handling touches from `4672512` (items from the tray come full
-  and read; a double-click on an open container flashes its dock). The mail, job slips, papers, drone and launch pad are not
-  here: they are on the `drones` branch (and on `inventory-v2`), with `DRONES.md`, the real-life drone notes.
-- The old sprites, the drawn items and the night kit are on `inventory-v2` and `drones`.
+Where the rest went: `inventory-v2` holds everything up to the drone work (items, sprites, the rules engine, the brainstorm
+and the lore); `drones` is the same plus mail, job slips, papers, a drone and a launch pad, and `DRONES.md` (real-life drone
+notes). The code here started from `12a606f` ("Items step A") with those systems taken out.
 
-# Field
+## Field
 
-Irregular shapes are back (since the item manager): the grid handles a thing's real squares. Shoving moves a neighbour a
-cell at a time until its actual squares are clear (not whole boxes), so an L slides past another's empty corner; a fuzz
-test drops 300 random shapes and checks every result is a valid layout, and a stats run over 2,000 nudges found half moved
-nothing and only 5 moved anything more than 4 cells. The game has a tray under the field to put any kind of thing on it.
+- A 25 x 20 grid: dark aubergine with a slightly lighter grid and a muted copper outline. Things sit straight on the grid
+  with no backing.
+- Irregular shapes: the grid handles a thing's real squares (a kind's `cells`, rows of `#` and `.`). Shoving moves a
+  neighbour a cell at a time until its actual squares are clear (not whole boxes), so an L slides past another's empty
+  corner. A fuzz test drops 300 random shapes and checks every result is a valid layout; a stats run over 2,000 nudges found
+  half moved nothing and only 5 moved anything more than 4 cells. The geometry is `src/grid.ts`.
+- The tray under the field puts any kind on it (first free spot, turned if that is the only way it fits), plus strict mode,
+  "clear the field" and "start over". With no kinds it points to the editor.
+- The layout is saved in the browser (`field-v3`); `settle` repairs a saved layout when kinds change (unknown kinds go,
+  things whose slot is gone go to the field, overlaps get re-placed).
 
-Started over from nothing. The field is a 30 x 20 grid of cells with a few things on it. You can pick things up,
-turn them (R or right-click), drop them, and whatever is in the way gives way. No tooltips, no rules, no game yet.
+## Handling (the game page)
 
-Kept from before: the geometry in `src/grid.ts` (shove, hop, reflow, irregular shapes) and the flat, dark look.
-Everything else (containers, nightly rules, contracts, money) is on the `inventory-manager` branch if it is wanted back.
+- **Turning is four-way.** `rot` on an item is quarter turns clockwise (0-3), so upside down is a real state. While
+  dragging: `R` turns clockwise, `Q` back, right-click clockwise. It turns about its own centre, which stays where it was on screen. Squares can
+  turn too (only the sprite changes). Auto-turning to fit (relaxed mode) only tries orientations with a different
+  footprint. Old saves (`true`/`false`) are converted on load.
+
+- **Selection.** Sweep a rectangle on empty ground to pick everything it touches (Shift or Cmd/Ctrl adds), Cmd/Ctrl-click
+  toggles one, Shift-click toggles on release, `Cmd/Ctrl+A` picks all, `Esc` clears, `Delete` removes the picked. Grabbing
+  one of several picked things moves them all, keeping their arrangement (a group cannot be turned).
+- **Strict mode** (`S`, or the button under the field; remembered): a drop is accepted only if every square is free and
+  nothing else ever moves. Otherwise it is refused. Hold **Shift** while dragging to do the opposite for that one move: in
+  strict mode Shift lets the shuffle-to-fit happen, and outside it Shift makes one move strict.
+- **Feedback while dragging** (from the reference video; no glow, and the held thing stays opaque):
+  - *Strict mode:* the squares it would take light up green if all are free, red if not, one filled shape per thing
+    (an irregular footprint is one piece). Releasing on red sends it back where it came from.
+  - *Relaxed mode:* no green or red. A plain outline shows where it lands, dashed outlines show what gives way, and
+    only if there is truly no way to place it (even by shoving) does it go red.
+  - The lights are drawn above the thing in hand, so they show through it.
+  - Items have no backing: they sit straight on the grid. *Hover* and *selected* both tint the footprint tan (no outline,
+    no glow).
+
+## Containers and windows (2026-10-13)
+
+- A kind with `slots` is a container. Each slot is a small grid (`w`, `h`, optional `name`, `accepts` / `rejects` tags).
+  Items inside carry `in: { host, slot }`, and their x, y are in that slot's grid.
+- Containers do not go in containers, except kinds tagged `vessel`, and never more than two levels (`MAX_NEST`).
+- Dropping a thing onto a container that would take it puts it inside (blue light, brighter under the pointer); a full one
+  refuses it (red) and nothing gets shoved; one that never takes it is just another thing to rearrange.
+- **Double-click a container to open it in a window.** The window floats over the page beside the container (right of it, or
+  left if there is no room). Its body is the container's insides: one grid per slot, with the slot's name and tag rules
+  above it. Everything the field does works inside it (drag in and out, between windows, shove, sweep, strict mode).
+- **Windows float freely:** drag one by its header anywhere (part of it always stays on screen); touching a window brings it to
+  the front. Where windows overlap each other or the field, only the topmost counts for dropping.
+- **Fold** (–) shrinks a window to a tab in the rack along the top edge; clicking the tab brings it back where it was.
+  **Close** (✕) shuts it. Double-clicking a container whose window is open brings that window to the front (and unfolds it)
+  with a flash.
+- **At most four windows** are open at once (`MAX_WINDOWS`); a fifth is refused with a note under the field.
+- A window **stays open** when its container is moved, even into another container. It closes only when you close it or
+  the container is deleted. Windows that are kept off the screen by a resize are moved back onto it.
+- State: `windows: [{ id, x, y, folded }]` (screen pixels, the last one on top), saved with the layout. Old saves' docked
+  panels are dropped.
+- Known small thing: while dragging, the blue light on a container that sits under a window still shows through that window
+  (the lights are drawn above everything, so they show through the held thing).
+
+## Tooltip
+
+Beside the hovered item (left of it if there is no room), never while dragging, sweeping or moving a window: the name,
+[tags] in teal, the description, and "double-click to open" for containers. A dark panel with a muted red-brown border.
 
 ## Sprites and the editor
 
@@ -80,8 +128,8 @@ updates live when one is saved.
 The save endpoint lives in `vite.config.ts`; shape maths and matrices are in `src/editor/geom.ts` (tested).
 
 `/gallery.html` (dev server only, `src/gallery.ts`) shows every kind at once, drawn with the game's own item markup and styles.
-- **One by one:** each kind sits on a patch of field one square bigger all round. Under it: its id, size, footprint, slots,
-  machine and tags, and a fit line.
+- **One by one:** each kind sits on a patch of field one square bigger all round. Under it: its id, size, footprint, slots
+  and tags, and a fit line.
 - **One field:** everything is packed onto one field as wide as the window, biggest first, each in the first free spot, the
   way `spawn` places things.
 - **Controls:** square size, turn everything (`R`), tint the footprints, group by tag, and filter by name, id or tag. The
@@ -92,90 +140,9 @@ The save endpoint lives in `vite.config.ts`; shape maths and matrices are in `sr
   them. This view puts every version of a kind side by side, each with its own fit line. The style buttons draw
   "one by one" and "one field" in that style, falling back to the drawn sprite where a kind has no version.
 
-## Handling (the game page)
+## Tests
 
-- **Turning is four-way.** `rot` on an item is quarter turns clockwise (0-3), so upside down is a real state. While
-  dragging: `R` turns clockwise, `Q` back, right-click clockwise. It turns about its own centre, which stays where it was on screen. Squares can
-  turn too (only the sprite changes). Auto-turning to fit (relaxed mode) only tries orientations with a different
-  footprint. Old saves (`true`/`false`) are converted on load.
-
-- **Selection.** Sweep a rectangle on empty ground to pick everything it touches (Shift or Cmd/Ctrl adds), Cmd/Ctrl-click
-  toggles one, Shift-click toggles on release, `Cmd/Ctrl+A` picks all, `Esc` clears, `Delete` removes the picked. Grabbing
-  one of several picked things moves them all, keeping their arrangement (a group cannot be turned).
-- **Strict mode** (`S`, or the button under the field; remembered): a drop is accepted only if every square is free and
-  nothing else ever moves. Otherwise it is refused. Hold **Shift** while dragging to do the opposite for that one move: in
-  strict mode Shift lets the shuffle-to-fit happen, and outside it Shift makes one move strict.
-- **Feedback while dragging** (from the reference video; no glow, and the held thing stays opaque):
-  - *Strict mode:* the squares it would take light up green if all are free, red if not, one filled shape per thing
-    (an irregular footprint is one piece). Releasing on red sends it back where it came from.
-  - *Relaxed mode:* no green or red. A plain outline shows where it lands, dashed outlines show what gives way, and
-    only if there is truly no way to place it (even by shoving) does it go red.
-  - The lights are drawn above the thing in hand, so they show through it.
-  - Items have no backing: they sit straight on the grid. *Hover* and *selected* both tint the footprint tan (no outline,
-    no glow).
-- **The field** is 25 x 20: dark aubergine with a slightly lighter grid and a muted copper outline; things sit straight on the grid with no backing.
-
-## Uses (interactions), the skeleton
-
-From the video: while holding something, everything it can be *used on* gets blue squares (brighter under the pointer),
-e.g. pouring water into another container, slaughtering a rabbit with a knife, applying one thing to another.
-- Data: a kind's `uses` in `kinds.json`: `[{ on: <kind id or tag>, verb }]`, one way (the held kind names its targets).
-  Edited in the editor's Item tab ("Can be used on", one `verb: target` per line). `interaction(held, target)` and
-  `targetsFor(state, held)` in `world.ts`.
-- Behaviour now: targets light up blue while dragging; letting go with the pointer over a target uses it instead of
-  placing (the held thing goes back, a note under the field says what happened). Uses can now have effects: see
-  "Properties and rules" below.
-
-## Tooltip (postponed; notes, from the reference video, twice over so it is not lost)
-
-- Opens on hover, to the **right of the hovered item / beside the inventory**, top edge near the item; dark panel with a
-  muted red-brown border; clipped by the screen edge in the video, so keep it inside the viewport.
-- Content, top to bottom: **name** (bold, light); **[category]** in teal (ours: from `tags`); `Est. Value: N, Base ...` and
-  `Purchase Price: N` (needs new item fields: value, base/purchase price); a **gauge** `[      ] 0 ml / 300` for things that
-  hold an amount (containers/liquids; needs a capacity field and a current amount on the item); the **description**
-  (ours: `desc`); a blue action hint, e.g. `Double-Click To ...` (a per-kind action, tied to uses/interactions).
-- The hovered item's footprint is tinted tan while the tooltip is up.
-- Open questions for later: which fields every item has (value, price), how amounts are stored, which action a
-  double-click means, and whether the tooltip shows notes (no: notes stay private).
-
-## Containers, panels, machines (agreed 2026-09-29)
-- A kind may have `slots` (each: w, h, accepts/rejects tags, optional name). Items inside carry `in: {host, slot}`; x, y are in that slot's grid.
-- Containers do not go in containers, except kinds tagged `vessel` (bottle): one extra level, `MAX_NEST` 2. Double-click a container to open it as a panel; up to 4 docks (two each side), drag a panel header onto another dock to swap. Dropping an item onto an accepting container puts it inside (blue light).
-- Machines are kinds with several named slots and `machine.rules` (see "Properties and rules" below); the clock button runs `advance(state, ticks)`.
-
-## Liquids (2026-09-29)
-- A liquid is a property of a vessel (kind `capacity`, in ml; item `liquid: {type, ml}`), not an item. Corked: nothing spills. One liquid per vessel; pouring a different one is refused. Pour = a `uses` verb on `vessel`, moves as much as fits.
-- Machines take liquid through vessels put in a slot accepting `vessel` (the flex slot); they read and write the vessel, at an hourly rate (well/vat 250 ml, still 100 ml in, 2:1), written as rules. Mixing table: later, one lookup in `pour`.
-
-## Properties and rules (2026-10-09)
-
-Step A of the items plan (`IDEAS.md`, "Items: the plan"). Items carry properties, and machines and uses are data in
-`kinds.json`, edited as JSON for now. The hard-coded hearth, well, vat and still are gone: they are rules too.
-
-- **Properties.** A kind declares them (`props`); an item carries the values (`p`) and which are still unread (`hidden`).
-  `{ "max": 100, "start": [0, 100], "show": "strip", "hidden": true, "color": "#7fb069" }`: `start` is a number or a range to
-  roll in; `show` is `number`, `gauge` (a bar in the tooltip) or `strip` (the bar, and a strip up the item's right edge on the
-  field, or a "?" while hidden); `gone` means the item is used up at 0. Values stay between 0 and `max`. Old saves get the
-  properties their kinds gained on load.
-- **Matching** (rules and uses): `kind` or `tag`; `where: { "charge": "<100" }` (`<`, `<=`, `>`, `>=`, `=`; `"?"` means
-  still hidden); for vessels `liquid` (one or several; `"none"` is empty), `ml` and `free` (room left).
-- **Effects** on one item: a property by `"+17"`, `"-4"` or `"=0"`; `ml` the same for its liquid (`liquid` names what fills an
-  empty vessel); `reveal: ["charge"]`.
-- **Machine rules,** every hour (`machine.rules`; slots are named by their `name`):
-  - `forEach: { slot, ...match }` + `hourly: { slot: effects }`: every match in the slot, every hour (the charger rack).
-  - `needs: { slot: match }` + `hours` + `hourly: { slot: effects }` + `flow` + `done: { useUp: [slots], make: { slot: kind } }`:
-    a job. It runs only while every slot holds a match. Missing an input pauses it and **keeps the progress**; running costs
-    are paid every hour and the main input is taken at the end; a full output waits. No `hours` means it just runs (the well).
-  - `flow: { from, to, ml, ratio, liquid }` moves liquid between two slots' vessels (the still: 100 ml in, half out as spirit).
-  - `power` is counted per running hour (per item for `forEach`) in `state.power`, shown on the clock. Nothing bills it yet.
-  - `label` names what it is doing; the panel head and the tooltip show each rule's state: "charging 2", "burning 1/3 h",
-    "waiting: fuel (1/3 h done)", "output full", or "idle".
-- **Uses:** `{ verb, on, where, target: effects, held: effects, useUp: ["target" | "held"], make: { kind: n }, hours }`.
-  Made things go beside the target; no room means nothing happens. A use with none of these says it "does nothing yet".
-  `pour` stays a built-in verb. The editor's "Can be used on" box and the server keep a use's effects when it saves.
-- **Clock:** a tick is an hour; a day is twelve, 08:00 to 19:00, and the next tick is the next morning (`clock(tick)`).
-- **Tooltip:** beside the hovered item (left of it if there is no room), never while dragging or sweeping. Name, [tags] in
-  teal, the liquid and the shown properties ("?" while hidden), a machine's state, the description, then hints in blue
-  (`drop onto a cell: read`, `double-click to open`). Value and price wait for step B.
-- `world.test.ts` covers rolling and reading, the charger and its power, a job that stalls and resumes, a full output, the
-  clock, and old saves, using the old kinds kept as a test fixture (`src/test/kinds.json`).
+`npm test` runs `grid.test.ts`, `world.test.ts` and `editor/geom.test.ts`. The game ships no items, so `world.test.ts` brings
+its own: the old kinds as a fixture (`src/test/kinds.json`) and the old starting field. It covers dropping, shoving, turning,
+strict mode, groups, irregular shapes, spawning, containers (filters, nesting, cascade, turning to fit), settling old saves,
+and windows (closing with their container, settling, the cap).
