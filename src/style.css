@@ -266,11 +266,11 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .glass::before { background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, .22) 0 1px, transparent 1px 3px); opacity: .55; }
 .glass::after { background: radial-gradient(ellipse at 28% 18%, rgba(255, 255, 255, .09), transparent 38%), radial-gradient(ellipse at center, transparent 58%, rgba(0, 0, 0, .6) 100%); box-shadow: inset 0 0 34px rgba(0, 0, 0, .7); }
 .display { position: absolute; left: 0; top: 0; width: 320px; height: 240px; transform: scale(var(--s)); transform-origin: 0 0; overflow: hidden; font: 10px/1.35 ui-monospace, 'SF Mono', Menlo, monospace; }
-.glass.on .display { animation: flicker 4s infinite steps(1); }
+.glass.on .display { animation: flicker 4s infinite steps(1); animation-delay: var(--clock, 0ms); }
 @keyframes flicker { 0%, 100% { opacity: 1; } 47% { opacity: .985; } 48% { opacity: 1; } 81% { opacity: .99; } }
 .display.off { background: #0b0e0d; }
 .display.boot { padding: 16px 18px; background: #050807; color: #8fe0a6; font-size: 11px; line-height: 1.5; text-shadow: 0 0 4px rgba(143, 224, 166, .6); }
-.display .cur { animation: blink 1s steps(1) infinite; }
+.display .cur { animation: blink 1s steps(1) infinite; animation-delay: var(--clock, 0ms); }
 /* the desktop, dark 98: a dark teal desk, bevelled windows in the board's colours */
 .display.desk { background: #10292a; color: #e6e3dc; text-shadow: 0 0 2px rgba(230, 227, 220, .25); }
 .d-icon { position: absolute; left: 10px; top: 10px; width: 46px; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 3px 0; background: none; border: 0; color: inherit; font: inherit; cursor: pointer; }
@@ -309,3 +309,11 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .crt-base .tray { margin-left: auto; display: flex; align-items: center; gap: 6px; padding: 3px 5px; border-radius: 3px; background: #a39a83; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .35); }
 .crt-base .tray small { font: 600 9px ui-monospace, Menlo, monospace; color: #4a4436; }
 .crt-base .tray .grid { background-color: #2a2822; background-image: none; }
+
+/* One clock for every looping animation: each animated thing starts its loop at minus the time since the page loaded (the
+   --clock that main.ts sets on whatever it draws), so a thing drawn again, or the copy in hand while dragging, carries on
+   exactly where it was instead of starting over. */
+.pc-scroll { animation: pc-scroll 12.8s steps(8, end) infinite; animation-delay: var(--clock, 0ms); }
+@keyframes pc-scroll { from { transform: translateY(0); } to { transform: translateY(-40px); } }
+.pc-type { transform-box: fill-box; transform-origin: right center; animation: pc-type 1.6s infinite; animation-delay: var(--clock, 0ms); }
+@keyframes pc-type { 0% { transform: scaleX(1); animation-timing-function: steps(9, end); } 75%, 100% { transform: scaleX(0); } }

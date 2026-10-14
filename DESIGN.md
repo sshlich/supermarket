@@ -287,8 +287,8 @@ The bottom of the field is clean: only the note line. `src/menu.ts` holds the re
 
 A first, small version of the computer idea (`IDEAS.md`): the feel, the CRT, the power switch, and a disc tray.
 - **The wired terminal** (`computer` kind, 3x3, 60$, tech; sellable, tagged valuable): an all-in-one CRT in a beige case.
-  Its `power` property swaps the sprite's colours, so on the field it shows a green screen with lines of text and a lit
-  light when it is on. Double-click opens its **window**: the CRT in its bezel, and under it the power switch, the light,
+  Its `power` property swaps the sprite's colours, so on the field it shows a green screen and a lit light when it is on,
+  and lines of text that slowly step up the screen while the bottom one types itself out (one line every 1.6 s). Double-click opens its **window**: the CRT in its bezel, and under it the power switch, the light,
   the maker's name and the **disc tray**, the machine's one slot (1x1, takes things tagged `disc`), handled like any place.
   The window can **fill the page** (⤢ in its header; everything else dims around it) and back (⤡).
 - **The screen** (`src/computer.ts`): off, dark glass. Switched on, a soft thunk and the tube's hum, then a few lines of BIOS
@@ -305,3 +305,18 @@ A first, small version of the computer idea (`IDEAS.md`): the feel, the CRT, the
   complaint), and an unlabelled disc (a shopkeeper's diary, a corrupted file, a price list). Customers bring discs
   (they are cheap, so they come often); a seller never brings a machine switched on.
 - Later (`IDEAS.md`): parts, a case and configuration, screens; more programs; files as things.
+
+## Shelves that show what is on them, and one clock (2026-10-14)
+
+- **Furniture** (a category): a **disc holder** (2x3, black plastic, 12$) and a **bookshelf** (4x4, wood, 24$). Their
+  sprites are drawn from what is in them (`src/fill.ts`: a kind with a painter has an empty `<g class="fill"></g>` in its
+  sprite, filled from its contents by where each thing sits and its colour):
+  - the disc holder's inside is 2x6: twelve shallow shelves, square n (left to right, top row first) is shelf n. A disc
+    lies flat on its shelf, so the front shows only its thin edge, in the disc's own colour.
+  - the bookshelf has two shelves, each 12x3 inside (six books standing). A standing book shows its spine where it stands,
+    in its cover colour, with gilt bands, a little taller or shorter than its neighbours; a book turned to lie down shows
+    as a flat block where it lies.
+- **One clock for looping animations.** Everything that loops (the terminal's lines, the screen's flicker, the cursor)
+  starts its loop at minus the time since the page loaded: main.ts sets `--clock` on whatever it draws (the page, the copy
+  in hand while dragging, a machine's screen) and the animations use it as their delay. A redraw or a drag carries on in
+  step instead of starting over.

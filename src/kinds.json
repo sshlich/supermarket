@@ -296,5 +296,55 @@
       "disc"
     ],
     "desc": "A 3.5-inch floppy. Whatever is on it needs a computer to read."
+  },
+  "discrack": {
+    "name": "Disc holder",
+    "icon": "",
+    "color": "#1d1e22",
+    "sound": "plastic",
+    "w": 2,
+    "h": 3,
+    "cat": "furniture",
+    "price": 12,
+    "desc": "A tower of shallow black plastic shelves. The discs lie flat, so a dozen fit, edge out.",
+    "slots": [
+      {
+        "name": "shelves",
+        "w": 2,
+        "h": 6,
+        "accepts": [
+          "disc"
+        ]
+      }
+    ]
+  },
+  "bookshelf": {
+    "name": "Bookshelf",
+    "icon": "",
+    "color": "#4a3424",
+    "sound": "wood",
+    "w": 4,
+    "h": 4,
+    "cat": "furniture",
+    "price": 24,
+    "desc": "Two plain wooden shelves. Books stand where you put them, spines out.",
+    "slots": [
+      {
+        "name": "top shelf",
+        "w": 12,
+        "h": 3,
+        "accepts": [
+          "book"
+        ]
+      },
+      {
+        "name": "bottom shelf",
+        "w": 12,
+        "h": 3,
+        "accepts": [
+          "book"
+        ]
+      }
+    ]
   }
 }

@@ -73,7 +73,7 @@ addEventListener('keydown', e => {
 // ---------------------------------------------------------------- the debug panel
 
 /** Category order; anything else comes after, by name. */
-const CATS = ['food', 'sundries', 'medicine', 'storage']
+const CATS = ['food', 'sundries', 'medicine', 'storage', 'furniture', 'tech']
 let debug: HTMLElement | null = null
 const pos = stored('debug-pos', { x: 16, y: 56 })
 

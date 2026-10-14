@@ -132,6 +132,14 @@ const MATERIALS: Record<string, Partial<Record<Action, () => void>>> = {
     lift: () => { noise(vary(400), { d: 0.08, g: 0.06, type: 'lowpass' }); tone(vary(220), { type: 'triangle', d: 0.06, g: 0.015 }) },
     drop: () => { tone(vary(85), { d: 0.18, g: 0.2, to: 55 }); noise(380, { d: 0.09, g: 0.09, type: 'lowpass' }); noise(vary(1400), { d: 0.03, g: 0.03, q: 2, at: 0.05 }) },
   },
+  plastic: { // something light and hollow in plastic
+    lift: () => noise(vary(1100), { d: 0.04, g: 0.04, q: 1.5 }),
+    drop: () => { tone(vary(240), { type: 'triangle', d: 0.07, g: 0.06, to: 170 }); noise(vary(900), { d: 0.04, g: 0.05, q: 1.2 }) },
+  },
+  wood: { // a soft knock
+    lift: () => noise(vary(700), { d: 0.05, g: 0.05, q: 0.8 }),
+    drop: () => { tone(vary(170), { type: 'triangle', d: 0.12, g: 0.1, to: 120 }); noise(500, { d: 0.07, g: 0.07, type: 'lowpass' }); tone(vary(340), { type: 'triangle', d: 0.05, g: 0.02, at: 0.09 }) },
+  },
   disc: { // a floppy: a light plastic tick, its shutter
     lift: () => noise(vary(2200), { d: 0.02, g: 0.03, q: 2 }),
     drop: () => { noise(vary(1800), { d: 0.025, g: 0.05, q: 2 }); tone(vary(600), { type: 'triangle', d: 0.03, g: 0.015, at: 0.03 }) },

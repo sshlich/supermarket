@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5e4330"/>
+      <stop offset="0.5" stop-color="#4a3424"/>
+      <stop offset="1" stop-color="#3a281b"/>
+    </linearGradient>
+    <linearGradient id="back" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1c130d"/>
+      <stop offset="1" stop-color="#2a1c13"/>
+    </linearGradient>
+  </defs>
+  <!-- a plain wooden bookshelf with two shelves; the books on them are drawn where they stand (fill.ts) -->
+  <rect x="3" y="3" width="122" height="122" rx="2" fill="url(#wood)" stroke="#1a110b" stroke-width="1.2"/>
+  <rect x="9" y="9" width="110" height="51" fill="url(#back)"/>
+  <rect x="9" y="68" width="110" height="51" fill="url(#back)"/>
+  <g stroke="#3a281b" stroke-width="0.6" opacity="0.6"><path d="M9 22H119M9 38H119M9 81H119M9 97H119"/></g>
+  <g class="fill"></g>
+  <!-- the boards in front: the books stand on them -->
+  <rect x="9" y="59" width="110" height="9" fill="url(#wood)" stroke="#1a110b" stroke-width="0.6"/>
+  <rect x="9" y="118" width="110" height="7" fill="url(#wood)" stroke="#1a110b" stroke-width="0.6"/>
+  <g fill="none" stroke="#7a5a40" stroke-width="0.8" opacity="0.7"><path d="M9 59.6H119"/><path d="M9 118.6H119"/><path d="M4.5 5H123"/></g>
+  <g stroke="#2c1d13" stroke-width="0.6" opacity="0.6" fill="none"><path d="M20 62C40 63 70 61.5 100 63"/><path d="M15 121C45 122 80 120.5 112 122"/></g>
+</svg>

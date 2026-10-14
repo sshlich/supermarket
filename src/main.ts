@@ -2,6 +2,7 @@ import './style.css'
 import { BOOKS } from './books.ts'
 import { act as screenAct, power as screenPower, screenHtml } from './computer.ts'
 import { DISCS } from './discs.ts'
+import { paintFill } from './fill.ts'
 import { arrive, deal, dealt, greeting, open as canDeal, priceFor, stillWants, TAGS, type Customer, type Role } from './customers.ts'
 import { openReader } from './reader.ts'
 import { initMenu, toggleMenu } from './menu.ts'
@@ -67,6 +68,12 @@ function fitStage() {
 // ---------------------------------------------------------------- drawing
 
 
+/**
+ * The page's one clock for looping animations (style.css): whatever is drawn into `el` starts its loops at minus the time
+ * since the page loaded, so it is in step with everything else and with what it replaces.
+ */
+const setClock = (el: HTMLElement) => el.style.setProperty('--clock', `${-Math.round(performance.now())}ms`)
+
 let uid = 0
 /**
  * A thing's sprite as this one looks: its properties' colours swapped in, its own ids (two apples on the page must not share
@@ -77,6 +84,7 @@ function spriteHtml(it: Item) {
   for (const [from, to] of Object.entries(look(it).colors)) svg = svg.replaceAll(new RegExp(from, 'gi'), to) // hex colours: nothing in them is special to a RegExp
   const u = `u${++uid}`
   svg = svg.replace(/id="([^"]+)"/g, `id="$1-${u}"`).replace(/url\(#([^)]+)\)/g, `url(#$1-${u})`).replace(/href="#([^"]+)"/g, `href="#$1-${u}"`)
+  svg = paintFill(it.kind, svg, slot => inSpace(s, { host: it.id, slot }))
   const vars: string[] = []
   const slot = KINDS[it.kind].slots?.[0]
   if (slot && svg.includes('var(--in')) {
@@ -195,7 +203,7 @@ function pcHtml(w: Win, z: number) {
 function paintScreen(id: number) {
   const el = app.querySelector(`[data-screen="${id}"]`)
   const it = find(s, id)
-  if (el && it) el.innerHTML = screenHtml(id, isOn(it), discIn(id))
+  if (el && it) { setClock(el as HTMLElement); el.innerHTML = screenHtml(id, isOn(it), discIn(id)) }
 }
 /** The power switch: the property changes (the sprite on the field glows or goes dark), and the screen boots or goes black. */
 function pressPower(id: number) {
@@ -259,6 +267,7 @@ function openWindow(it: Item) {
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
+  setClock(app)
   app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside>${cashHtml()}</div></div>${windowsHtml()}`
   if (hoverId !== null) showTip()
   if (document.hidden) return // background tabs freeze animations on their first frame
@@ -467,6 +476,7 @@ function begin() {
 function paintFloating() {
   const d = drag!
   const a = d.held.item
+  setClock(d.el)
   d.el.innerHTML = d.held.items.map(it => itemHtml({ ...it, rot: it === a ? d.rot : it.rot, x: it.x - a.x, y: it.y - a.y })).join('')
 }
 
