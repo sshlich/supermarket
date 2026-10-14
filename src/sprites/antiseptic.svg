@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <defs>
+    <linearGradient id="amber" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4f2810"/>
+      <stop offset="0.33" stop-color="#8a4b1e"/>
+      <stop offset="0.7" stop-color="#6b3816"/>
+      <stop offset="1" stop-color="#40200b"/>
+    </linearGradient>
+    <linearGradient id="rubber" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4a4441"/>
+      <stop offset="0.4" stop-color="#3a3533"/>
+      <stop offset="1" stop-color="#1e1b1a"/>
+    </linearGradient>
+  </defs>
+  <path d="M12 21L20 21L20 23C20 26 27 27 27 32L27 59C27 61 25.5 62 23.5 62L8.5 62C6.5 62 5 61 5 59L5 32C5 27 12 26 12 23Z" fill="url(#amber)" stroke="#24120a" stroke-width="1"/>
+  <path d="M11.5 15C10.5 7 12 2 16 2C20 2 21.5 7 20.5 15Z" fill="url(#rubber)" stroke="#141110" stroke-width="0.8"/>
+  <path d="M13.5 5C14 3.8 15 3.3 16 3.3" fill="none" stroke="#8a827d" stroke-width="0.9" stroke-linecap="round"/>
+  <rect x="9.5" y="13.5" width="13" height="8" rx="1.5" fill="#d9d4c8" stroke="#6e6a60" stroke-width="0.8"/>
+  <g stroke="#a39e92" stroke-width="0.6"><path d="M12 14.5L12 20.5"/><path d="M14.7 14.5L14.7 20.5"/><path d="M17.3 14.5L17.3 20.5"/><path d="M20 14.5L20 20.5"/></g>
+  <!-- the label: a plain cross on paper -->
+  <rect x="5.8" y="37" width="20.4" height="17" fill="#e8e3d6"/>
+  <rect x="13.6" y="40" width="4.8" height="11" fill="#3c8a73"/>
+  <rect x="10.5" y="43.1" width="11" height="4.8" fill="#3c8a73"/>
+  <rect x="5.8" y="52" width="20.4" height="0.9" fill="#3c8a73" opacity="0.7"/>
+  <path d="M8 31L8 58" stroke="#e8b48a" stroke-opacity="0.35" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M8.2 28.5C9 27 10.5 26.2 12 25.6" fill="none" stroke="#e8b48a" stroke-opacity="0.4" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

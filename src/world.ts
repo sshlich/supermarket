@@ -18,18 +18,26 @@ const isCounter = (c: unknown): c is Counter => typeof c === 'string' && c in CO
 /**
  * What a kind of thing is. `w` and `h` are its footprint's bounding box in cells; `cells`, when the footprint is not a plain
  * rectangle, says which squares inside it are taken ('#') and which are free ('.'). The rest is for people: a description
- * (for tooltips), private notes, and tags.
+ * (for tooltips), private notes, tags (what customers ask for), a category (`cat`) and a price in coins.
+ * `props` are what one thing of the kind can be on top of that: each property has values, the first one the default.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[] }
-/** A container's inside: a small grid with its own rules. Most containers have one slot; some have several, named. `accepts` and `rejects` are tags; nothing else is checked. */
-export interface Slot { name?: string; w: number; h: number; accepts?: string[]; rejects?: string[] }
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>> }
+/** What a property's value does to a thing: another name, description or price, more tags, and colours swapped in its sprite (hex to hex; "none" hides whatever had that colour). */
+export interface Effect { name?: string; desc?: string; tags?: string[]; price?: number; colors?: Record<string, string> }
+/**
+ * A container's inside: a small grid with its own rules. Most containers have one slot; some have several, named. `accepts`
+ * and `rejects` are tags; nothing else is checked. `out`: things can only be taken out of it (a blister); `fill`: a new one
+ * comes full of this kind, which takes on the container's properties (a blister of antibiotics holds antibiotics).
+ */
+export interface Slot { name?: string; w: number; h: number; accepts?: string[]; rejects?: string[]; out?: boolean; fill?: string }
 
 /** What things are. Sizes are in field cells and every footprint is a plain rectangle; the data lives in kinds.json so the sprite editor can change it. */
 export const KINDS: Record<string, Kind> = DATA
 
 /** `rot` is how many quarter turns clockwise it has been turned (0 to 3): 2 is upside down. */
 /** `in` says which container's slot it sits in (its x, y are then inside that slot's grid), `at` which counter it is on; neither means on the field. */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter }
+/** `props` are its property values where they are not the default (`{ origin: 'synthetic' }`). */
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter; props?: Record<string, string> }
 /**
  * An open container: a window floating over the page, showing the container's insides. `id` is the container item; `x`, `y`
  * are screen pixels (its top-left); a folded one shows only as a tab in the rack along the top edge.
@@ -70,6 +78,28 @@ export const kindCells = (kind: string, turned: boolean | number = 0) => cellsOf
 
 export const find = (s: State, id: number) => s.items.find(o => o.id === id)
 
+/** A thing's property values, the defaults filled in. */
+export function propsOf(it: Item): Record<string, string> {
+  const defs = KINDS[it.kind]?.props ?? {}
+  return Object.fromEntries(Object.entries(defs).map(([p, vals]) => [p, it.props?.[p] && it.props[p] in vals ? it.props[p] : Object.keys(vals)[0]]))
+}
+/** What a thing is with its properties applied: its name, description, tags, price and the colours swapped in its sprite. */
+export function look(it: Item): { name: string; desc?: string; tags: string[]; price: number; colors: Record<string, string> } {
+  const k = KINDS[it.kind]
+  const out = { name: k.name, desc: k.desc, tags: [...k.tags ?? []], price: k.price ?? 0, colors: {} as Record<string, string> }
+  for (const [p, v] of Object.entries(propsOf(it))) {
+    const e = k.props![p][v]
+    if (e.name) out.name = e.name
+    if (e.desc) out.desc = e.desc
+    if (e.tags) out.tags.push(...e.tags)
+    if (e.price !== undefined) out.price = e.price
+    Object.assign(out.colors, e.colors)
+  }
+  return out
+}
+/** What a thing is worth: its own price and everything inside it. */
+export const worth = (s: State, it: Item): number => look(it).price + contents(s, it.id).reduce((n, o) => n + worth(s, o), 0)
+
 // ---------------------------------------------------------------- places: the field, and the insides of containers
 
 /** Somewhere things can sit: the field (null), a counter, or one slot of a container item. */
@@ -88,6 +118,7 @@ export function spaceFromKey(k: string): Space {
   return { host, slot }
 }
 export const isContainer = (kind: string) => !!KINDS[kind]?.slots?.length
+const slotOf = (s: State, sp: SlotSpace) => { const host = find(s, sp.host); return host ? KINDS[host.kind]?.slots?.[sp.slot] : undefined }
 export function spaceSize(s: State, sp: Space): { w: number; h: number } {
   if (!sp) return { w: W, h: H }
   if (!isSlot(sp)) return COUNTERS[sp.at]
@@ -107,13 +138,14 @@ const within = (s: State, id: number, anc: number) => chain(s, id).some(o => o.i
 /** How many containers deep this item goes, itself included (0 for something that holds nothing). */
 const height = (s: State, it: Item): number => isContainer(it.kind) ? 1 + Math.max(0, ...contents(s, it.id).map(o => height(s, o))) : 0
 
-/** Would this space take that item? The field and the counters take anything; a slot checks its tag rules, refuses cycles, and keeps the nesting limit. */
+/** Would this space take that item? The field and the counters take anything; a slot checks its tag rules, refuses cycles, and keeps the nesting limit. A take-out-only slot keeps only what is already in it. */
 export function accepts(s: State, it: Item, sp: Space): boolean {
   if (!isSlot(sp)) return true
   const host = find(s, sp.host)
   const slot = host && KINDS[host.kind]?.slots?.[sp.slot]
   if (!host || !slot || within(s, sp.host, it.id)) return false
-  const tags = KINDS[it.kind]?.tags ?? []
+  if (slot.out && !sameSpace(spaceOf(it), sp)) return false
+  const tags = look(it).tags
   if (isContainer(it.kind) && !tags.includes('vessel')) return false // only specialised containers (a water bottle) go inside another
   if (slot.accepts?.length && !tags.some(t => slot.accepts!.includes(t))) return false
   if (tags.some(t => slot.rejects?.includes(t))) return false
@@ -142,6 +174,7 @@ export function lift(s: State, id: number, selected: number[] = []): Held | null
  * squares are free, and is otherwise refused (null). A space that will not take it (wrong kind, too deep, no room) refuses too.
  */
 export function planDrop(s: State, held: Held, space: Space, x: number, y: number, rot: number, strict = false, turnedOnce = false): Plan | null {
+  if (isSlot(space) && slotOf(s, space)?.out) return null // nothing goes into a take-out-only slot, not even back to another spot in it
   if (held.items.some(o => !accepts(s, o, space))) return null
   const { w: SW, h: SH } = spaceSize(s, space)
   if (!SW || !SH) return null
@@ -263,13 +296,20 @@ function layout(items: Item[], w: number, h: number): { kept: Item[]; lost: Item
   return { kept, lost }
 }
 
+/** Only properties the kind still has, with values it still knows, and none that are the default. */
+function cleanProps(o: Item): { props?: Record<string, string> } {
+  const defs = KINDS[o.kind]?.props ?? {}
+  const kept = Object.entries(o.props ?? {}).filter(([p, v]) => defs[p] && v in defs[p] && Object.keys(defs[p])[0] !== v)
+  return kept.length ? { props: Object.fromEntries(kept) } : {}
+}
+
 /**
  * After sizes or kinds changed under a saved layout: drop things that no longer exist, send things whose container is gone
  * (or now refuses them) out to the field, and re-place anything that now overlaps or hangs off its grid.
  */
 export function settle(s: State): State {
   // only what an item still is: no old properties, liquids or machine state (and nothing on a counter that does not exist)
-  const items: Item[] = s.items.filter(o => KINDS[o.kind]).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isCounter(o.at) ? { at: o.at } : {}) }))
+  const items: Item[] = s.items.filter(o => KINDS[o.kind]).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isCounter(o.at) ? { at: o.at } : {}), ...cleanProps(o) }))
   const state: State = { items, next: s.next }
   // pass 1: anything in a slot that does not exist, or that its slot now refuses, goes back out to the field
   const evict = (o: Item) => { delete o.in }
@@ -299,17 +339,21 @@ export function settle(s: State): State {
   return { items: out, next: s.next, windows }
 }
 
-/** Put a new thing of this kind on the first free spot of a place (the field unless told otherwise), turned if that is the only way it fits. Null if there is no room. */
-export function spawn(s: State, kind: string, space: Space = null): Item | null {
+/**
+ * Put a new thing of this kind, with these properties, on the first free spot of a place (the field unless told otherwise),
+ * turned if that is the only way it fits. Null if there is no room. A container whose slot has `fill` comes full of it.
+ */
+export function spawn(s: State, kind: string, space: Space = null, props: Record<string, string> = {}, fill = false): Item | null {
   const { w, h } = spaceSize(s, space)
-  const it: Item = { id: s.next, kind, x: 0, y: 0, rot: 0 }
+  const it: Item = { id: s.next, kind, x: 0, y: 0, rot: 0, ...cleanProps({ id: 0, kind, x: 0, y: 0, rot: 0, props }) }
   setIn(it, space)
-  if (!accepts(s, it, space)) return null
+  if (!fill && !accepts(s, it, space)) return null
   const spot = firstFree(w, h, inSpace(s, space).map(boxOf), shapeOf(kind))
   if (!spot) return null
   s.next++
   Object.assign(it, { x: spot.x, y: spot.y, rot: spot.rot })
   s.items.push(it)
+  KINDS[kind].slots?.forEach((sl, slot) => { if (sl.fill && KINDS[sl.fill]) while (spawn(s, sl.fill, { host: it.id, slot }, propsOf(it), true)); })
   return it
 }
 

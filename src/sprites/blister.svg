@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <defs>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#bfc3c8"/>
+      <stop offset="0.5" stop-color="#9ca1a8"/>
+      <stop offset="1" stop-color="#83888f"/>
+    </linearGradient>
+    <linearGradient id="round" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.3"/>
+    </linearGradient>
+    <!-- one bubble: a pill under a clear dome. The two pill colours are what the type of pill changes. -->
+    <g id="bubble">
+      <ellipse cx="0" cy="0" rx="12.5" ry="8.2" fill="#e9eef2" fill-opacity="0.3" stroke="#f2f5f7" stroke-opacity="0.75" stroke-width="0.9"/>
+      <path d="M0 -4.6L-5.4 -4.6A4.6 4.6 0 0 0 -5.4 4.6L0 4.6Z" fill="#e8e4d8"/>
+      <path d="M0 -4.6L5.4 -4.6A4.6 4.6 0 0 1 5.4 4.6L0 4.6Z" fill="#b4473c"/>
+      <path d="M-5.4 -4.6L5.4 -4.6A4.6 4.6 0 0 1 5.4 4.6L-5.4 4.6A4.6 4.6 0 0 1 -5.4 -4.6Z" fill="url(#round)" stroke="#2b2622" stroke-width="0.7"/>
+      <path d="M-8.5 -3.5C-6 -6.6 2 -7.2 7.5 -5.5" fill="none" stroke="#ffffff" stroke-opacity="0.8" stroke-width="1.1" stroke-linecap="round"/>
+    </g>
+    <!-- where a pill was pushed through: a dark hole and torn foil -->
+    <g id="hole">
+      <ellipse cx="0" cy="0" rx="10.5" ry="6.6" fill="#2b2e33"/>
+      <path d="M-10 -1L-7 -3L-5 0L-2 -4L1 -1L4 -5L6 -1L9 -3L10.5 0" fill="none" stroke="#d3d7db" stroke-width="0.9"/>
+    </g>
+  </defs>
+  <rect x="2" y="2" width="92" height="60" rx="4" fill="url(#foil)" stroke="#4a4e54" stroke-width="1"/>
+  <path d="M4 50L50 4L66 4L18 60L6 60Z" fill="#ffffff" fill-opacity="0.1"/>
+  <g stroke="#6e737a" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.7"><path d="M32.5 4L32.5 60"/><path d="M63.5 4L63.5 60"/><path d="M4 32L92 32"/></g>
+  <!-- the six pockets, numbered like the inside of the blister (left to right, top row first): an empty one shows its hole -->
+  <use href="#hole" x="17" y="17"/><use href="#hole" x="48" y="17"/><use href="#hole" x="79" y="17"/>
+  <use href="#hole" x="17" y="47"/><use href="#hole" x="48" y="47"/><use href="#hole" x="79" y="47"/>
+  <use href="#bubble" x="17" y="17" style="opacity: var(--in0, 1)"/><use href="#bubble" x="48" y="17" style="opacity: var(--in1, 1)"/><use href="#bubble" x="79" y="17" style="opacity: var(--in2, 1)"/>
+  <use href="#bubble" x="17" y="47" style="opacity: var(--in3, 1)"/><use href="#bubble" x="48" y="47" style="opacity: var(--in4, 1)"/><use href="#bubble" x="79" y="47" style="opacity: var(--in5, 1)"/>
+</svg>

@@ -1,6 +1,6 @@
 import './style.css'
 import { arrive, greeting, judge, TAGS, type Customer } from './customers.ts'
-import { applyDrop, cellsOf, contents, COUNTERS, dims, find, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { applyDrop, cellsOf, contents, COUNTERS, dims, find, look, propsOf, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -29,7 +29,7 @@ interface Line { who: 'them' | 'you' | 'note'; text: string; name?: string }
 interface Talk { open: boolean; n: number; customer: Customer | null; met: string[]; log: Line[] }
 const TALK = 'field-v3-terminal'
 const blankTalk = (open = false): Talk => ({ open, n: 0, customer: null, met: [], log: [] })
-let talk: Talk = ((): Talk => { try { const v = JSON.parse(localStorage.getItem(TALK) ?? 'null'); return v && Array.isArray(v.log) ? { ...blankTalk(), ...v } : blankTalk() } catch { return blankTalk() } })()
+let talk: Talk = ((): Talk => { try { const v = JSON.parse(localStorage.getItem(TALK) ?? 'null'); return v && Array.isArray(v.log) ? (v.customer?.wants.some((t: string) => !(t in TAGS)) ? { ...blankTalk(v.open), n: v.n } : { ...blankTalk(), ...v }) : blankTalk() } catch { return blankTalk() } })()
 const saveTalk = () => { try { localStorage.setItem(TALK, JSON.stringify(talk)) } catch { /* private window */ } }
 
 function load(): State | null {
@@ -55,7 +55,27 @@ function fitTray() {
 
 // ---------------------------------------------------------------- drawing
 
-/** One item: neutral rounded squares over its cells, its sprite in the item's colour on top. */
+/** A thing's colour swatch (tray, window headers): its kind's colour, or what its properties turn that colour into. */
+const swatch = (it: Item) => { const c = KINDS[it.kind].color; return look(it).colors[c.toLowerCase()] ?? c }
+
+let uid = 0
+/**
+ * A thing's sprite as this one looks: its properties' colours swapped in, its own ids (two apples on the page must not share
+ * a gradient), and for a container, `--in<n>` set to 0 for each empty square of its first slot (a blister shows its gaps).
+ */
+function spriteHtml(it: Item) {
+  let svg = SPRITE[it.kind] ?? ''
+  for (const [from, to] of Object.entries(look(it).colors)) svg = svg.replaceAll(new RegExp(from, 'gi'), to) // hex colours: nothing in them is special to a RegExp
+  const u = `u${++uid}`
+  svg = svg.replace(/id="([^"]+)"/g, `id="$1-${u}"`).replace(/url\(#([^)]+)\)/g, `url(#$1-${u})`).replace(/href="#([^"]+)"/g, `href="#$1-${u}"`)
+  const slot = KINDS[it.kind].slots?.[0]
+  if (!slot || !svg.includes('var(--in')) return svg
+  const full = new Set(inSpace(s, { host: it.id, slot: 0 }).flatMap(o => cellsOf(o).map(([x, y]) => (o.y + y) * slot.w + o.x + x)))
+  const empty = Array.from({ length: slot.w * slot.h }, (_, i) => i).filter(i => !full.has(i))
+  return svg.replace('<svg ', `<svg style="${empty.map(i => `--in${i}:0`).join(';')}" `)
+}
+
+/** One item: neutral rounded squares over its cells, its sprite on top. */
 function itemHtml(it: Item) {
   const k = KINDS[it.kind]
   const d = dims(it)
@@ -64,7 +84,7 @@ function itemHtml(it: Item) {
   const hit = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('')
   return `<div class="item ${selected.has(it.id) ? 'sel' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
     <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><g class="hit">${hit}</g></svg>
-    <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${quarter(it.rot) * 90}deg">${SPRITE[it.kind] ?? ''}</div></div>`
+    <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${quarter(it.rot) * 90}deg">${spriteHtml(it)}</div></div>`
 }
 
 /** The edge of a set of squares: a line wherever a square has no neighbour. Traces irregular shapes exactly. */
@@ -82,10 +102,20 @@ function outline(cells: [number, number][]) {
 /** Where an item's squares are on the field. */
 const absCells = (it: Item): [number, number][] => cellsOf(it).map(([cx, cy]) => [it.x + cx, it.y + cy])
 
-/** A row of buttons to put any kind of thing on the field, for trying new items out. */
+/** Category order in the tray; anything else comes after, by name. */
+const CATS = ['food', 'sundries', 'medicine', 'storage']
+/** Buttons to put any kind of thing on the field, for trying new items out: grouped by category, one per value of a kind's first property (an apple, a synthetic apple). */
 function trayHtml() {
   const kinds = Object.entries(KINDS)
-  return `<div class="tray"><span>put on the field</span>${kinds.length ? '' : '<span class="none">no items yet: <a href="/editor.html">make one in the editor</a></span>'}${kinds.map(([id, k]) => `<button data-spawn="${id}" style="--c:${k.color}" title="${(k.desc ?? '').replace(/"/g, '&quot;')}"><i></i>${k.name}</button>`).join('')}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
+  const cats = [...new Set(kinds.map(([, k]) => k.cat ?? 'other'))].sort((a, b) => ((CATS.indexOf(a) + 1) || 99) - ((CATS.indexOf(b) + 1) || 99) || a.localeCompare(b))
+  const buttons = (id: string) => {
+    const k = KINDS[id]
+    const [prop, vals] = Object.entries(k.props ?? {})[0] ?? []
+    const variants = prop ? Object.keys(vals).map(v => ({ props: { [prop]: v }, label: look({ id: 0, kind: id, x: 0, y: 0, rot: 0, props: { [prop]: v } }).name + (vals[v].name || v === Object.keys(vals)[0] ? '' : ` · ${v}`) })) : [{ props: {}, label: k.name }]
+    return variants.map(o => `<button data-spawn="${id}" data-props="${esc(JSON.stringify(o.props))}" style="--c:${swatch({ id: 0, kind: id, x: 0, y: 0, rot: 0, props: o.props })}" title="${esc(k.desc ?? '')}"><i></i>${esc(o.label)}</button>`).join('')
+  }
+  const groups = cats.map(c => `<span class="cat">${esc(c)}</span>${kinds.filter(([, k]) => (k.cat ?? 'other') === c).map(([id]) => buttons(id)).join('')}`).join('')
+  return `<div class="tray">${kinds.length ? groups : '<span>put on the field</span><span class="none">no items yet: <a href="/editor.html">make one in the editor</a></span>'}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
 }
 
 /** The two counters above the field: the outside one (what customers bring), then the inside one (what you sell), close together. */
@@ -98,16 +128,16 @@ function winHtml(w: Win, z: number) {
   const it = find(s, w.id)!
   const k = KINDS[it.kind]
   const slots = (k.slots ?? []).map((sl, i) => {
-    const note = [sl.name, sl.accepts?.length ? `${sl.accepts.join(', ')} only` : '', sl.rejects?.length ? `no ${sl.rejects.join(', ')}` : ''].filter(Boolean).join(' · ')
+    const note = [sl.name, sl.accepts?.length ? `${sl.accepts.join(', ')} only` : '', sl.rejects?.length ? `no ${sl.rejects.join(', ')}` : '', sl.out ? 'take out only' : ''].filter(Boolean).join(' · ')
     return `<div class="slotbox">${note ? `<div class="slotnote">${note}</div>` : ''}<div class="grid" data-grid data-space="${it.id}:${i}" data-w="${sl.w}" data-h="${sl.h}" style="--w:${sl.w};--h:${sl.h}">${inSpace(s, { host: it.id, slot: i }).map(itemHtml).join('')}</div></div>`
   }).join('')
-  return `<div class="win" data-win="${it.id}" style="left:${w.x}px;top:${w.y}px;z-index:${10 + z}"><div class="win-head" data-whead style="--c:${k.color}"><i></i><span>${k.name}</span><button data-wfold="${it.id}" title="Fold: keep just a tab along the top">–</button><button data-wclose="${it.id}" title="Close">✕</button></div>${slots}</div>`
+  return `<div class="win" data-win="${it.id}" style="left:${w.x}px;top:${w.y}px;z-index:${10 + z}"><div class="win-head" data-whead style="--c:${swatch(it)}"><i></i><span>${esc(look(it).name)}</span><button data-wfold="${it.id}" title="Fold: keep just a tab along the top">–</button><button data-wclose="${it.id}" title="Close">✕</button></div>${slots}</div>`
 }
 
 /** The open windows where they were left, and the folded ones as tabs in the rack along the top edge. */
 function windowsHtml() {
   const ws = s.windows ?? []
-  const tabs = ws.filter(w => w.folded).map(w => { const k = KINDS[find(s, w.id)!.kind]; return `<button class="tab" data-wopen="${w.id}" style="--c:${k.color}" title="Unfold"><i></i>${k.name}</button>` }).join('')
+  const tabs = ws.filter(w => w.folded).map(w => { const it = find(s, w.id)!; return `<button class="tab" data-wopen="${w.id}" style="--c:${swatch(it)}" title="Unfold"><i></i>${esc(look(it).name)}</button>` }).join('')
   return ws.map((w, z) => (w.folded ? '' : winHtml(w, z))).join('') + (tabs ? `<div class="rack">${tabs}</div>` : '')
 }
 
@@ -247,6 +277,10 @@ app.addEventListener('pointerdown', e => {
 
 addEventListener('pointermove', e => {
   last = e
+  // a redraw can swap the hovered thing for a new element the pointer never "enters", so no pointerout comes: check here
+  const t = e.target as HTMLElement
+  if (hoverId !== null && !t.closest?.(`.item[data-id="${hoverId}"]`)) hideTip()
+  else if (hoverId === null && tip.classList.contains('on') && !t.closest?.('[data-tag]')) tip.classList.remove('on')
   if (marquee) return sweep(e)
   if (winDrag) return moveWindow(e)
   if (press && !drag && Math.hypot(e.clientX - press.x, e.clientY - press.y) > 4) begin()
@@ -528,7 +562,7 @@ function renderTerm(o: { fresh?: boolean; type?: boolean } = {}) {
 }
 /** Every tag of what is on the inside counter, and of whatever is inside containers there. */
 function offeredTags(): string[][] {
-  const tags = (it: Item): string[][] => [KINDS[it.kind]?.tags ?? [], ...contents(s, it.id).flatMap(tags)]
+  const tags = (it: Item): string[][] => [look(it).tags, ...contents(s, it.id).flatMap(tags)]
   return inSpace(s, { at: 'inside' }).flatMap(tags)
 }
 const typeTime = (text: string) => text.length * 16
@@ -601,12 +635,18 @@ tip.className = 'tip'
 let hoverId: number | null = null
 const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
 
-/** Name, [tags], the description, and what can be done with it. */
+/** Name, its properties where they are not the default, [tags], what it is worth, the description, and what can be done with it. */
 function tipHtml(it: Item) {
   const k = KINDS[it.kind]
-  const rows = [`<b>${esc(k.name)}</b>`]
-  if (k.tags?.length) rows.push(`<div class="tags">[${esc(k.tags.join(', '))}]</div>`)
-  if (k.desc) rows.push(`<p>${esc(k.desc)}</p>`)
+  const l = look(it)
+  const rows = [`<b>${esc(l.name)}</b>`]
+  const odd = Object.entries(propsOf(it)).filter(([p, v]) => !k.props![p][v].name && v !== Object.keys(k.props![p])[0]).map(([, v]) => v)
+  if (odd.length) rows.push(`<div class="prop">${esc(odd.join(', '))}</div>`)
+  const tags = l.tags.filter(t => t !== 'vessel' && !odd.includes(t))
+  if (tags.length) rows.push(`<div class="tags">[${esc(tags.join(', '))}]</div>`)
+  const value = worth(s, it)
+  if (value) rows.push(`<div class="worth">worth ${value}${value !== l.price ? ` (${l.price} + what is inside)` : ''}</div>`)
+  if (l.desc) rows.push(`<p>${esc(l.desc)}</p>`)
   if (isContainer(it.kind)) rows.push(`<div class="hint">double-click to open</div>`)
   return rows.join('')
 }
@@ -657,7 +697,7 @@ app.addEventListener('click', e => {
   if (b.dataset.wopen) { const it = find(s, +b.dataset.wopen); if (it) openWindow(it); return }
   if ('term' in b.dataset) { toggleTerm(); return }
   if (b.dataset.say) { say(b.dataset.say); return }
-  if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
+  if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn, null, JSON.parse(b.dataset.props || '{}')); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
   else if ('strict' in b.dataset) toggleStrict()
   else if ('clear' in b.dataset) { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) }
   else if ('reset' in b.dataset) { s = start(); selected = new Set(); seq++; talk = blankTalk(talk.open); changed(new Map()); if (talk.open) callNext() }

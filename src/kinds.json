@@ -1,1 +1,162 @@
-{}
+{
+  "apple": {
+    "name": "Apple",
+    "icon": "",
+    "color": "#9c4535",
+    "w": 2,
+    "h": 2,
+    "cat": "food",
+    "price": 4,
+    "tags": ["food"],
+    "desc": "Grown on a tree somewhere. Bruised, speckled, real.",
+    "props": {
+      "origin": {
+        "real": {},
+        "synthetic": {
+          "desc": "Grown in a vat. Perfectly red, perfectly round, nothing wrong with it at all.",
+          "tags": ["synthetic"],
+          "price": 2,
+          "colors": {
+            "#7e3229": "#c21d22",
+            "#9c4535": "#d6252a",
+            "#aa6a3e": "#dc2a2c",
+            "#a39150": "#d02427",
+            "#4a1d17": "#6e1214",
+            "#a65040": "#ffffff",
+            "#efe2c4": "#ffffff",
+            "#6e5232": "none",
+            "#7a5a36": "none",
+            "#5b3524": "none",
+            "#6b7440": "#3f9a37",
+            "#4f5730": "#2c7426"
+          }
+        }
+      }
+    }
+  },
+  "bread": {
+    "name": "Sliced bread",
+    "icon": "",
+    "color": "#d2aa72",
+    "w": 4,
+    "h": 2,
+    "cat": "food",
+    "price": 3,
+    "tags": ["food"],
+    "desc": "Sliced white in cling film. Keeps a week, if nobody opens it."
+  },
+  "wine": {
+    "name": "Wine",
+    "icon": "",
+    "color": "#2c4a35",
+    "w": 1,
+    "h": 3,
+    "cat": "food",
+    "price": 8,
+    "tags": ["drink", "alcohol"],
+    "desc": "Red, no year on it. Somebody will pay for a night off."
+  },
+  "candle": {
+    "name": "Candle",
+    "icon": "",
+    "color": "#e9e0c6",
+    "w": 1,
+    "h": 2,
+    "cat": "sundries",
+    "price": 2,
+    "tags": ["light"],
+    "desc": "Wax and a wick: light when the power is out."
+  },
+  "book": {
+    "name": "Book",
+    "icon": "",
+    "color": "#5e3a2c",
+    "w": 2,
+    "h": 3,
+    "cat": "sundries",
+    "price": 7,
+    "tags": ["book"],
+    "desc": "Leather-bound, the title worn off. Paper is getting rare."
+  },
+  "locket": {
+    "name": "Locket",
+    "icon": "",
+    "color": "#c49a48",
+    "w": 1,
+    "h": 2,
+    "cat": "sundries",
+    "price": 15,
+    "tags": ["valuable"],
+    "desc": "Gold, and the hinge still closes. What is inside was someone else's."
+  },
+  "pill": {
+    "name": "Pill",
+    "icon": "",
+    "color": "#b4473c",
+    "w": 1,
+    "h": 1,
+    "cat": "medicine",
+    "price": 2,
+    "tags": ["medicine"],
+    "desc": "One pill.",
+    "props": {
+      "type": {
+        "painkiller": { "name": "Painkiller" },
+        "antibiotic": { "name": "Antibiotic", "price": 5, "colors": { "#e8e4d8": "#e6dcbc", "#b4473c": "#c38a2e" } },
+        "sleeping": { "name": "Sleeping pill", "price": 3, "colors": { "#e8e4d8": "#dde4ec", "#b4473c": "#5a78a4" } }
+      }
+    }
+  },
+  "blister": {
+    "name": "Blister",
+    "icon": "",
+    "color": "#9ca1a8",
+    "w": 3,
+    "h": 2,
+    "cat": "medicine",
+    "price": 1,
+    "tags": ["vessel"],
+    "desc": "Six pills in a foil card. They only come out.",
+    "slots": [{ "w": 3, "h": 2, "out": true, "fill": "pill" }],
+    "props": {
+      "type": {
+        "painkiller": { "name": "Painkiller blister" },
+        "antibiotic": { "name": "Antibiotic blister", "colors": { "#e8e4d8": "#e6dcbc", "#b4473c": "#c38a2e" } },
+        "sleeping": { "name": "Sleeping pill blister", "colors": { "#e8e4d8": "#dde4ec", "#b4473c": "#5a78a4" } }
+      }
+    }
+  },
+  "bandage": {
+    "name": "Bandage",
+    "icon": "",
+    "color": "#e3ddcf",
+    "w": 1,
+    "h": 2,
+    "cat": "medicine",
+    "price": 4,
+    "tags": ["medicine"],
+    "desc": "A roll of gauze and a clip."
+  },
+  "antiseptic": {
+    "name": "Antiseptic",
+    "icon": "",
+    "color": "#8a4b1e",
+    "w": 1,
+    "h": 2,
+    "cat": "medicine",
+    "price": 6,
+    "tags": ["medicine"],
+    "desc": "A dropper bottle. Clean a wound before it turns."
+  },
+  "cabinet": {
+    "name": "Steel cabinet",
+    "icon": "",
+    "color": "#8c949b",
+    "w": 3,
+    "h": 3,
+    "cat": "storage",
+    "price": 25,
+    "desc": "Steel, a roller grate and a ring pull. Holds a lot more than it looks.",
+    "slots": [{ "w": 5, "h": 8 }]
+  }
+}

@@ -96,6 +96,8 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .tray button.on { border-color: #f0ece2; color: #f0ece2; }
 .tray button i { width: 9px; height: 9px; border-radius: 2px; background: var(--c, #888); }
 .tray .none a { color: #c49c68; }
+.tray .cat { margin-left: 4px; color: #6b6872; }
+.tray .cat:first-child { margin-left: 0; }
 
 
 /* the tooltip: beside the hovered item, a dark panel with a muted red-brown border */
@@ -103,6 +105,8 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .tip.on { opacity: 1; }
 .tip b { display: block; color: #f0ece2; font-size: 12px; }
 .tip .tags { color: #5fb3a8; }
+.tip .prop { color: #d0a24e; }
+.tip .worth { color: #c9b88f; }
 .tip p { margin: 5px 0 0; color: #a9a5b0; }
 .tip .hint { margin-top: 3px; color: #6aa8dc; }
 

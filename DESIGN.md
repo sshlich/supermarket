@@ -1,9 +1,9 @@
 # The Workshop (`inventory-v3`)
 
 What is built. Since 2026-10-13 this branch is a clean slate: **the field, two counters above it, the handling, containers in
-floating windows and the tooltip**, plus the dev tools to make items (the sprite editor and the gallery). There are **no items**: `src/kinds.json` is
-empty, there are no sprites, the field starts empty and the tray says so. No rules, machines, properties, liquids, uses, clock
-or money: those were cut, along with the design notes (`IDEAS.md`, `LORE.md`, `SPECULATIVE/`).
+floating windows and the tooltip**, plus the dev tools to make items (the sprite editor and the gallery). The old items, rules,
+machines, liquids, uses, clock and money were cut, along with the design notes (`IDEAS.md`, `LORE.md`, `SPECULATIVE/`). Since
+then: a customer terminal and a first seed of items (below). The field starts empty.
 
 Where the rest went: `inventory-v2` holds everything up to the drone work (items, sprites, the rules engine, the brainstorm
 and the lore); `drones` is the same plus mail, job slips, papers, a drone and a launch pad, and `DRONES.md` (real-life drone
@@ -154,8 +154,8 @@ The save endpoint lives in `vite.config.ts`; shape maths and matrices are in `sr
 
 ## Tests
 
-`npm test` runs `grid.test.ts`, `world.test.ts` and `editor/geom.test.ts`. The game ships no items, so `world.test.ts` brings
-its own: the old kinds as a fixture (`src/test/kinds.json`) and the old starting field. It covers dropping, shoving, turning,
+`npm test` runs `grid.test.ts`, `world.test.ts`, `editor/geom.test.ts` and `customers.test.ts`. `world.test.ts` brings
+its own kinds rather than the game's: the old kinds as a fixture (`src/test/kinds.json`) and the old starting field. It covers dropping, shoving, turning,
 strict mode, groups, irregular shapes, spawning, the counters, containers (filters, nesting, cascade, turning to fit), settling old saves,
 and windows (closing with their container, settling, the cap).
 
@@ -164,7 +164,8 @@ and windows (closing with their container, settling, the cap).
 A `>_ customers` button on the side of the field opens a terminal beside it (`src/customers.ts` holds the data and rules,
 `main.ts` draws it; the terminal's state is saved apart from the field, as `field-v3-terminal`).
 - One customer at the counter at a time. Opening it with nobody there calls the first. The header shows what they want as
-  **text tags** (hover one for its meaning; `TAGS` in `customers.ts`). The screen is the conversation from their side: a
+  **text tags** (hover one for its meaning; `TAGS` in `customers.ts`): survival needs (food, drink, alcohol, medicine, light,
+  book, valuable), not how things feel. The screen is the conversation from their side: a
   dim "customer N at the counter..." line, then their words typed out a letter at a time.
 - **Controls** under the screen: on the left *dismiss* and *next customer*, on the right a big **SELL**. Sell judges the tags
   of what is on the **inside** counter (containers' contents included): wants that are met light up green and they say how it
@@ -175,3 +176,36 @@ A `>_ customers` button on the side of the field opens a terminal beside it (`sr
   (`seq` in `main.ts`: a slower one still going gives up when something newer happened).
 - A special customer would be a `Customer` with its own behaviour; for now everybody is the same sort. "Start over" clears the
   terminal too. (The icons were dropped: game-icons, `src/icons/` and their script wiring are gone.)
+
+## Items, the first seed (2026-10-13)
+
+Eleven kinds in three categories plus storage, in `src/kinds.json`; the tray under the field is grouped by category. Each kind
+has a `cat` and a `price` (coins); the tooltip shows what a thing is worth (its price plus whatever is inside it).
+
+| Category | Item | Size | Tags | Price |
+|---|---|---|---|---|
+| food | Apple (property `origin`: real, or synthetic) | 2x2 | food (+ synthetic) | 4 (synthetic 2) |
+| food | Sliced bread | 4x2 | food | 3 |
+| food | Wine | 1x3 | drink, alcohol | 8 |
+| sundries | Candle | 1x2 | light | 2 |
+| sundries | Book | 2x3 | book | 7 |
+| sundries | Locket | 1x2 | valuable | 15 |
+| medicine | Pill (property `type`: painkiller, antibiotic, sleeping) | 1x1 | medicine | 2 / 5 / 3 |
+| medicine | Blister (property `type`), a container | 3x2, holds 3x2 | | 1 + its pills |
+| medicine | Bandage | 1x2 | medicine | 4 |
+| medicine | Antiseptic | 1x2 | medicine | 6 |
+| storage | Steel cabinet, a container | 3x3, holds 5x8 | | 25 |
+
+- **Properties.** A kind can list `props`: each property has values, the first the default, and each value an `Effect` (another
+  name, description or price, more tags, and colours swapped in the sprite: hex to hex, or `none` to hide what had that colour).
+  An item stores only the values that are not the default (`props: { origin: 'synthetic' }`). The synthetic apple is the
+  same item as the apple: the property turns the muted, speckled, bruised skin into a flawless artificial red, hides the
+  imperfections and makes the sheen a hard white gloss. A pill's type sets its two capsule colours (and its name and price).
+- **The blister** spawns full: its slot has `fill: 'pill'`, so a new blister comes with six pills, which take on its `type`.
+  The slot is `out` (take out only): nothing goes in, not even a pill back to another pocket of it. Its sprite shows each
+  pocket as it is: a pill under a clear dome, or a torn hole where one was pushed out (the sprite reads `--in<n>` per square
+  of the slot, which the game sets to 0 for empty ones). It is tagged `vessel`, so it goes into the cabinet.
+- **Sprites** are drawn by hand as SVG (no icon silhouettes): muted colours, gradients, small imperfections, light from the
+  top left, one cell = 32 units. Every gradient id is made unique per thing on the page, since two apples of different
+  properties must not share one.
+- Selling is unchanged: SELL judges tags (a thing's own and its properties'), and nothing is taken or paid yet.

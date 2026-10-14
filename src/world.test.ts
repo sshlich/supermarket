@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { accepts, intoHost, applyDrop, boxOf, cellsOf, COUNTERS, H, inSpace, KINDS, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, type Item, type State } from './world.ts'
+import { accepts, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, look, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
 import FIXTURE from './test/kinds.json' with { type: 'json' }
 
 // The game ships no items for now, so the tests bring their own kinds and the old starting field.
@@ -308,3 +308,41 @@ const at = (s: State, id: number) => s.items.find(o => o.id === id)!
   assert.ok(intoHost(s, lift(s, s.items.find(o => o.kind === 'coal' && !o.at)!.id)!, crate.id))
 }
 console.log('world ok')
+
+// Properties, take-out-only slots and slots that come full: an apple that can be synthetic, pills of a type, and a blister of them.
+{
+  Object.assign(KINDS, {
+    apple: { name: 'Apple', icon: '', color: '#000', w: 2, h: 2, tags: ['food'], price: 4, props: { origin: { real: {}, synthetic: { tags: ['synthetic'], price: 2, colors: { '#111111': '#ff0000' } } } } },
+    pill: { name: 'Pill', icon: '', color: '#000', w: 1, h: 1, tags: ['medicine'], price: 2, props: { type: { painkiller: { name: 'Painkiller' }, antibiotic: { name: 'Antibiotic', price: 5 } } } },
+    blister: { name: 'Blister', icon: '', color: '#000', w: 3, h: 2, price: 1, tags: ['vessel'], slots: [{ w: 3, h: 2, out: true, fill: 'pill' }], props: { type: { painkiller: {}, antibiotic: {} } } },
+    cabinet: { name: 'Cabinet', icon: '', color: '#000', w: 3, h: 3, slots: [{ w: 5, h: 8 }] },
+  })
+  const s: State = { items: [], next: 1, windows: [] }
+  const apple = spawn(s, 'apple', null, { origin: 'synthetic' })!
+  assert.deepEqual(look(apple), { name: 'Apple', desc: undefined, tags: ['food', 'synthetic'], price: 2, colors: { '#111111': '#ff0000' } })
+  assert.equal(look(spawn(s, 'apple')!).price, 4)
+  assert.equal(spawn(s, 'apple', null, { origin: 'real' })!.props, undefined) // the default is not stored
+
+  const b = spawn(s, 'blister', null, { type: 'antibiotic' })!
+  const pills = contents(s, b.id)
+  assert.equal(pills.length, 6)
+  assert.ok(pills.every(p => p.kind === 'pill' && p.props?.type === 'antibiotic' && look(p).name === 'Antibiotic'))
+  assert.equal(worth(s, b), 1 + 6 * 5)
+  // pills only come out: one taken out goes to the field; nothing goes back in, not even to another spot inside
+  const p = pills[0]
+  assert.ok(planDrop(s, lift(s, p.id)!, null, 20, 15, 0))
+  assert.equal(planDrop(s, lift(s, p.id)!, { host: b.id, slot: 0 }, 0, 0, 0), null)
+  applyDrop(s, lift(s, p.id)!, planDrop(s, lift(s, p.id)!, null, 20, 15, 0)!)
+  assert.equal(contents(s, b.id).length, 5)
+  assert.equal(accepts(s, p, { host: b.id, slot: 0 }), false)
+  assert.equal(planDrop(s, lift(s, p.id)!, { host: b.id, slot: 0 }, 0, 0, 0), null)
+  // a blister (with its pills) goes into a cabinet
+  const c = spawn(s, 'cabinet')!
+  assert.ok(accepts(s, b, { host: c.id, slot: 0 }))
+  // a save keeps properties and the pills in their blister; unknown values are dropped
+  const kept = settle(JSON.parse(JSON.stringify({ ...s, items: [...s.items, { id: 99, kind: 'pill', x: 0, y: 0, rot: 0, props: { type: 'nope', colour: 'x' } }] })))
+  assert.equal(contents(kept, b.id).length, 5)
+  assert.equal(kept.items.find(o => o.id === apple.id)!.props!.origin, 'synthetic')
+  assert.equal(kept.items.find(o => o.id === 99)!.props, undefined)
+  console.log('props ok')
+}

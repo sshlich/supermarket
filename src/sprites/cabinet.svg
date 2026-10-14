@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <defs>
+    <linearGradient id="front" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a2a9b0"/>
+      <stop offset="1" stop-color="#7f868d"/>
+    </linearGradient>
+    <linearGradient id="top" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#bfc5ca"/>
+      <stop offset="1" stop-color="#a7aeb4"/>
+    </linearGradient>
+    <linearGradient id="side" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#666d74"/>
+      <stop offset="1" stop-color="#4b5158"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000000" stop-opacity="0.45"/>
+      <stop offset="0.3" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+    <!-- the roller grate: steel links in a brick pattern, the dark inside showing through -->
+    <pattern id="grate" width="10" height="12" patternUnits="userSpaceOnUse" x="11" y="35">
+      <rect width="10" height="2.2" fill="#aab1b7"/>
+      <rect y="6" width="10" height="2.2" fill="#aab1b7"/>
+      <rect y="2.2" width="2" height="3.8" fill="#8f969c"/>
+      <rect x="5" y="8.2" width="2" height="3.8" fill="#8f969c"/>
+    </pattern>
+  </defs>
+  <!-- three faces, seen from the front and a little from above and to the right -->
+  <path d="M6 24L26 6L92 6L72 24Z" fill="url(#top)" stroke="#2c3035" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M72 24L92 6L92 74L72 92Z" fill="url(#side)" stroke="#2c3035" stroke-width="1.1" stroke-linejoin="round"/>
+  <rect x="6" y="24" width="66" height="68" fill="url(#front)" stroke="#2c3035" stroke-width="1.2"/>
+  <path d="M7 24.8L71 24.8" stroke="#e1e5e8" stroke-opacity="0.6" stroke-width="1"/>
+  <path d="M27 7.5L90 7.5" stroke="#e1e5e8" stroke-opacity="0.5" stroke-width="0.8"/>
+  <g stroke="#3d4248" stroke-width="1" stroke-linecap="round" opacity="0.8"><path d="M77 32L87 23"/><path d="M77 36L87 27"/><path d="M77 40L87 31"/></g>
+  <!-- the box the grate rolls into, the grate, its bottom rail and the ring pull -->
+  <rect x="9" y="27" width="60" height="8" rx="1" fill="#b2b9bf" stroke="#3a3f44" stroke-width="0.8"/>
+  <path d="M10 33.5L68 33.5" stroke="#6b7278" stroke-width="0.8"/>
+  <rect x="11" y="35" width="56" height="47" fill="#1d2125"/>
+  <rect x="11" y="35" width="56" height="47" fill="url(#grate)"/>
+  <rect x="11" y="35" width="56" height="47" fill="url(#dark)"/>
+  <rect x="10" y="82" width="58" height="5" rx="1" fill="#949ba1" stroke="#3a3f44" stroke-width="0.8"/>
+  <circle cx="39" cy="84.5" r="2" fill="#3a3f44"/>
+  <circle cx="39" cy="88" r="4.4" fill="none" stroke="#d4d8dc" stroke-width="1.8"/>
+  <path d="M36 85.5C37 84.6 38 84.3 39 84.3" fill="none" stroke="#ffffff" stroke-opacity="0.7" stroke-width="0.8"/>
+  <g fill="#c6ccd1"><circle cx="9" cy="27.5" r="0.9"/><circle cx="69" cy="27.5" r="0.9"/><circle cx="9" cy="89.5" r="0.9"/><circle cx="69" cy="89.5" r="0.9"/></g>
+  <g fill="#24282c"><rect x="9" y="92" width="6" height="3"/><rect x="63" y="92" width="6" height="3"/><path d="M86 79L90 75.5L90 78L86 81.5Z"/></g>
+</svg>

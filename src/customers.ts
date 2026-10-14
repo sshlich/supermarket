@@ -2,16 +2,15 @@
 // rules, no page; the terminal in main.ts draws it. A special customer would be a Customer with its own `choices` and
 // `react`; for now everybody is the same simple sort.
 
-/** The tags a customer can want (the same tags kinds carry), each with a word for the tooltip and what a customer says about it. */
+/** The tags a customer can want (the same tags kinds carry): what people need to get by, not what things feel like. Each has a word for the tooltip and what a customer says about it. */
 export const TAGS: Record<string, { label: string; desc: string; say: string }> = {
-  drink: { label: 'drink', desc: 'Something to drink.', say: 'something to drink' },
   food: { label: 'food', desc: 'Something to eat.', say: 'something to eat' },
-  tool: { label: 'tool', desc: 'A tool, for making or mending.', say: 'a tool for a job' },
-  fragile: { label: 'fragile', desc: 'Breaks easily: glass, china, eggs.', say: 'something delicate' },
-  shiny: { label: 'shiny', desc: 'Bright and pretty, worth a look.', say: 'something shiny' },
+  drink: { label: 'drink', desc: 'Something to drink.', say: 'something to drink' },
+  alcohol: { label: 'alcohol', desc: 'A drink with alcohol in it.', say: 'something with alcohol in it' },
+  medicine: { label: 'medicine', desc: 'Pills, dressings, anything that treats.', say: 'medicine' },
+  light: { label: 'light', desc: 'Something to see by in the dark.', say: 'a light for the dark' },
   book: { label: 'book', desc: 'Something to read.', say: 'something to read' },
-  warm: { label: 'warm', desc: 'Keeps the cold off.', say: 'something to keep warm' },
-  soft: { label: 'soft', desc: 'Soft to the touch.', say: 'something soft' },
+  valuable: { label: 'valuable', desc: 'Worth something to someone: to keep, or to trade on.', say: 'something of value' },
 }
 
 export interface Customer { id: number; name: string; wants: string[]; mood: number }

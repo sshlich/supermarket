@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="skin" x1="0.12" y1="0.92" x2="0.88" y2="0.08">
+      <stop offset="0" stop-color="#7e3229"/>
+      <stop offset="0.42" stop-color="#9c4535"/>
+      <stop offset="0.74" stop-color="#aa6a3e"/>
+      <stop offset="1" stop-color="#a39150"/>
+    </linearGradient>
+    <radialGradient id="round" cx="0.36" cy="0.3" r="0.78">
+      <stop offset="0.5" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.42"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.4"/></filter>
+  </defs>
+  <path d="M32 17C27 11 15 10 9 19C3 28 5 43 12 52C17 59 24 61 32 58C40 61 47 59 52 52C59 43 61 28 55 19C49 10 37 11 32 17Z" fill="url(#skin)"/>
+  <path d="M32 17C27 11 15 10 9 19C3 28 5 43 12 52C17 59 24 61 32 58C40 61 47 59 52 52C59 43 61 28 55 19C49 10 37 11 32 17Z" fill="url(#round)"/>
+  <!-- imperfections: russet round the stem, speckles, a bruise (a synthetic apple has none) -->
+  <ellipse cx="32.5" cy="19.5" rx="7" ry="4" fill="#7a5a36" opacity="0.55" filter="url(#soft)"/>
+  <g fill="#6e5232" opacity="0.75">
+    <circle cx="26" cy="22" r="0.9"/><circle cx="29" cy="25" r="0.7"/><circle cx="38" cy="23" r="1"/><circle cx="41" cy="27" r="0.7"/>
+    <circle cx="35" cy="27" r="0.6"/><circle cx="23" cy="27" r="0.7"/><circle cx="45" cy="21" r="0.8"/><circle cx="33" cy="31" r="0.6"/>
+    <circle cx="47" cy="33" r="0.7"/><circle cx="18" cy="35" r="0.6"/>
+  </g>
+  <ellipse cx="44" cy="45" rx="6" ry="4.5" transform="rotate(30 44 45)" fill="#5b3524" opacity="0.55" filter="url(#soft)"/>
+  <!-- light from the top left: a soft sheen, and a spot that is gloss only on a synthetic one -->
+  <ellipse cx="20" cy="27" rx="6" ry="9" transform="rotate(25 20 27)" fill="#efe2c4" opacity="0.2"/>
+  <ellipse cx="18.5" cy="23" rx="2.6" ry="4" transform="rotate(25 18.5 23)" fill="#a65040" opacity="0.7"/>
+  <path d="M32 17C27 11 15 10 9 19C3 28 5 43 12 52C17 59 24 61 32 58C40 61 47 59 52 52C59 43 61 28 55 19C49 10 37 11 32 17Z" fill="none" stroke="#4a1d17" stroke-width="1.4"/>
+  <path d="M32 19C32 13 33 9 36 5" fill="none" stroke="#4e3420" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M35.5 10C40 4 48 3.5 53 6.5C48 12 41 13 35.5 10Z" fill="#6b7440" stroke="#4f5730" stroke-width="0.9"/>
+  <path d="M36 9.8C42 8 47 7 52.5 6.6" fill="none" stroke="#4f5730" stroke-width="0.8"/>
+</svg>
