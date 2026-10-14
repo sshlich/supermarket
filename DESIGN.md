@@ -291,7 +291,8 @@ A first, small version of the computer idea (`IDEAS.md`): the feel, the CRT, the
   and lines of text that step up the screen while the bottom one types itself out: in bursts and pauses, each line its
   own length and its own while (eight lines a loop, generated from a fixed rhythm), a small cursor riding the typing. Double-click opens its **window**: the CRT in its bezel, and under it the power switch, the light,
   the maker's name and the **disc tray**, the machine's one slot (2x2, takes things tagged `disc`), handled like any place.
-  The window can **fill the page** (⤢ in its header; everything else dims around it) and back (⤡).
+  The window can **fill the page** (⤢ in its header; everything else dims around it) and back (⤡); filling the page,
+  the switch, the light, the maker's name and the drive grow with the screen, and the whole machine fits the window.
 - **The screen** (`src/computer.ts`): off, dark glass. Switched on, a soft thunk and the tube's hum, then a few lines of BIOS
   typed out, a check of the drive, and a small desktop in the dark-98 look: one icon, A:, and a taskbar ("A: ready" or
   "empty"). Opening A: makes the drive click and whirr for a moment and lists the disc's files with their sizes; with no
@@ -299,8 +300,9 @@ A first, small version of the computer idea (`IDEAS.md`): the feel, the CRT, the
   320x240 display scaled up; the glass is curved at the corners, darker at the edges, with scanlines, a soft glare and a
   faint flicker, so it reads as a tube without bending where clicks land. What the screen is doing is kept by machine in
   memory, so the field redrawing does not reset it; a machine left on comes back at its desktop after a reload.
-- **Discs** (`disc` kind, a 2x2 floppy, 3$: a sliding metal shutter with the disc behind its window, a ruled label
-  written on in ink, the write-protect tab): each one is a Markdown file in `src/discs/` (copy `_template.md`): its label, the
+- **Discs** (`disc` kind, a 2x2 floppy, 3$: drawn as a real 3.5-inch disk, label side: a cut corner, the insert arrow,
+  a brushed shutter in its channel with the brown disc behind its window, a paper label with a printed band, ruled and
+  written on in pen, the write-protect window and the density hole): each one is a Markdown file in `src/discs/` (copy `_template.md`): its label, the
   colour of its plastic, a line for the tooltip, then its files, each under `# NAME.TXT`. `src/discs.ts` makes each one a
   value of the disc kind's `content` property (its name, blurb and plastic colour). Three to start, shards of the world:
   *SYNTH-AG / BATCH QC* (a synthetic-food plant's last records), *MERROW ST. LIGHTING* (the town's lamp schedule, and a
@@ -344,10 +346,18 @@ item's ids are made its own, so they can use the sprite's gradients. A slot's `f
   a touch domed. What is left is the part to the right (wedges come off the left): one sector of top and wall for each
   wedge left, a notch in the top where the back is gone, the pale cut face where one faces you. Size: 8 to 6 left 4x3, 5
   left 3x3, 4 to 2 left 2x3.
-- **Cheddar wedge** (3x2) of six slices: a tall pizza slice in profile, a little from above. Its cut face is a true
-  rectangle of paste, the top a sliver tapering to the thin end, the rind at the back. Slices come off the thin end: 6 and
-  5 left 3x2, 4 and 3 left 2x2, 2 left 1x2.
-- **Ham** (4x2) of eight slices, cut off its right end: 8 to 6 left 4x2, 5 and 4 left 3x2, 3 and 2 left 2x2.
+- **Cheddar wedge** (3x2) of six slices, drawn after a photo of a good wedge: a little from above and in front, its front
+  (a cut face) a rectangle the full height of the wheel, its top the wheel's top tapering to the thin end at the left, the
+  rind a narrow band along the back and down the right. Smooth golden paste with a soft lit edge, a few round holes shaded
+  inside with a lit lower lip (one usually breaking the front edge), faint knife-scrape arcs on top; the holes and scrapes
+  are each wedge's own (from its id). Slices come off the thin end: 6 and 5 left 3x2, 4 and 3 left 2x2, 2 left 1x2.
+- **Slices are generated, every one its own** (from its id, `src/fill.ts`): a **slice of cheese** is a slightly uneven
+  square with three to seven holes right through it (the field shows through; a mask, not paint), varied in size, some
+  biting into its edge, each with a darker rim and a lit lip. A **slice of salami** is deep red, darker toward its edge,
+  flecked with fat (up to 46 flecks, mostly small, a few large, never touching, each an uneven little shape) and a few
+  peppercorns, inside a rim of casing that is the same on every slice; its outline wanders slightly, never a perfect circle.
+- **Salami** (4x2, was the ham) of eight slices, cut off its right end: dark cured casing dusted with white bloom, string
+  round it and tied at its ends; cut, its end shows a dotted face. 8 to 6 left 4x2, 5 and 4 left 3x2, 3 and 2 left 2x2.
 - **Age** (for later): cheese carries an `age` in days; its colours mix from pale cheddar to orange with it (`aged()`),
   and from `AGE_DAYS` (10) on it is called aged and is worth half as much again. Nothing counts days yet; the debug panel
   spawns cheese fresh or aged.
@@ -358,3 +368,7 @@ item's ids are made its own, so they can use the sprite's gradients. A slot's `f
 - **Refillable lighter** (2x2, brushed chrome, a lid that clicks): a vessel of 2 that takes only lamp oil or spirit, comes
   full of lamp oil, and has no window, so how much is in it is only in the tooltip.
 - Sounds: a matchbox's matches shift inside it; the refillable lighter clicks and rings faintly.
+
+Overlays (the menu, a book) are taken away reliably: closing one stops it catching clicks at once and removes it when its
+fade ends or shortly after anyway (a tab in the background never finishes its animations, and an invisible menu left on
+top used to swallow every click).

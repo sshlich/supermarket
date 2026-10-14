@@ -3,6 +3,7 @@
 // over the spine. Click the right page or press → to go on, the left page or ← to go back, Esc or outside to close.
 
 import type { Book } from './books.ts'
+import { gone } from './menu.ts'
 import { handle } from './sound.ts'
 
 type Page = { t: 'end' } | { t: 'title' } | { t: 'text'; html: string; n: number }
@@ -101,7 +102,7 @@ function close() {
   const o = open
   if (!o) return
   open = null
-  o.el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160 }).onfinish = () => o.el.remove()
+  gone(o.el)
 }
 
 /**

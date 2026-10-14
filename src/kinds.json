@@ -463,56 +463,6 @@
     "desc": "One slice. Goes on bread.",
     "ages": true
   },
-  "ham": {
-    "name": "Ham",
-    "icon": "",
-    "color": "#c66e68",
-    "sound": "food",
-    "w": 4,
-    "h": 2,
-    "cat": "food",
-    "price": 16,
-    "tags": [
-      "food"
-    ],
-    "desc": "A boned ham in its netting, eight slices of it. Cut them with a knife.",
-    "cut": {
-      "into": "hamslice",
-      "count": 8,
-      "from": "right",
-      "sizes": [
-        [
-          6,
-          4,
-          2
-        ],
-        [
-          4,
-          3,
-          2
-        ],
-        [
-          2,
-          2,
-          2
-        ]
-      ]
-    }
-  },
-  "hamslice": {
-    "name": "Slice of ham",
-    "icon": "",
-    "color": "#e39a94",
-    "sound": "food",
-    "w": 2,
-    "h": 2,
-    "cat": "food",
-    "price": 2,
-    "tags": [
-      "food"
-    ],
-    "desc": "Pink, round, a rim of fat."
-  },
   "matchbox": {
     "name": "Matchbox",
     "icon": "",
@@ -601,5 +551,55 @@
     ],
     "cuts": true,
     "desc": "Your first tool. Drop it on cheese or ham to cut a piece off."
+  },
+  "salami": {
+    "name": "Salami",
+    "icon": "",
+    "color": "#6e2420",
+    "sound": "food",
+    "w": 4,
+    "h": 2,
+    "cat": "food",
+    "price": 16,
+    "tags": [
+      "food"
+    ],
+    "desc": "A cured salami, tied with string, dusted white. Eight slices of it; cut them with a knife.",
+    "cut": {
+      "into": "salamislice",
+      "count": 8,
+      "from": "right",
+      "sizes": [
+        [
+          6,
+          4,
+          2
+        ],
+        [
+          4,
+          3,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ]
+    }
+  },
+  "salamislice": {
+    "name": "Slice of salami",
+    "icon": "",
+    "color": "#9b2d33",
+    "sound": "food",
+    "w": 2,
+    "h": 2,
+    "cat": "food",
+    "price": 2,
+    "tags": [
+      "food"
+    ],
+    "desc": "Deep red, flecked with fat, a darker rim of casing. No two slices are the same."
   }
 }

@@ -1,31 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
-    <linearGradient id="shutter" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#d2d5d9"/>
-      <stop offset="0.55" stop-color="#b3b8be"/>
-      <stop offset="1" stop-color="#8f959c"/>
-    </linearGradient>
     <linearGradient id="shade" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.12"/>
-      <stop offset="0.6" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="1" stop-color="#000000" stop-opacity="0.25"/>
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.16"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0.02"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.28"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9aa1a8"/>
+      <stop offset="0.12" stop-color="#e2e5e9"/>
+      <stop offset="0.5" stop-color="#b6bcc3"/>
+      <stop offset="0.82" stop-color="#d6dade"/>
+      <stop offset="1" stop-color="#8d949b"/>
+    </linearGradient>
+    <linearGradient id="media" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f3e2c"/>
+      <stop offset="1" stop-color="#241b14"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1ece0"/>
+      <stop offset="1" stop-color="#e1d9c6"/>
     </linearGradient>
   </defs>
-  <!-- a 3.5-inch floppy: its plastic is the disc's colour; a sliding metal shutter with the disc behind its window, a paper
-       label ruled and written on in ink, the write-protect tab, the arrow for which way it goes in -->
-  <path d="M7 5L53 5L59 11L59 57C59 58.2 58.2 59 57 59L7 59C5.8 59 5 58.2 5 57L5 7C5 5.8 5.8 5 7 5Z" fill="#3a3d44" stroke="#17181b" stroke-width="1.2"/>
-  <path d="M7 5L53 5L59 11L59 57C59 58.2 58.2 59 57 59L7 59C5.8 59 5 58.2 5 57L5 7C5 5.8 5.8 5 7 5Z" fill="url(#shade)"/>
-  <rect x="17" y="5" width="30" height="21" rx="0.8" fill="#1e2024"/>
-  <rect x="18" y="5" width="25" height="20" rx="0.8" fill="url(#shutter)" stroke="#55595f" stroke-width="0.7"/>
-  <rect x="33.5" y="8" width="6" height="14" rx="0.6" fill="#2a2c30"/>
-  <path d="M35 9.5L35 20.5" stroke="#4a4e56" stroke-width="1.4"/>
-  <g stroke="#ffffff" stroke-width="0.5" opacity="0.35"><path d="M20 7V23"/><path d="M23 7V23"/><path d="M26 7V23"/></g>
-  <path d="M8 10L11 7.5L11 12.5Z" fill="#17181b" opacity="0.7"/>
-  <rect x="11" y="31" width="42" height="26" rx="1.5" fill="#e8e2d2"/>
-  <rect x="11" y="31" width="42" height="4" fill="#c9b38a"/>
-  <g stroke="#b9c4d6" stroke-width="0.5"><path d="M13 40H51"/><path d="M13 45H51"/><path d="M13 50H51"/><path d="M13 55H51"/></g>
-  <g fill="none" stroke="#3c4a7a" stroke-width="0.9" stroke-linecap="round" opacity="0.85"><path d="M14 39C16 37 18 39.5 21 38C24 36.5 25 39 28 37.8C30 37 32 38.6 34 38"/><path d="M14 44C17 43.2 20 44.6 24 43.6S29 43 31 44"/><path d="M14 49.2C16 48.4 18.5 49.6 21 48.8"/></g>
-  <rect x="7.5" y="51" width="3" height="5" rx="0.4" fill="#17181b"/>
-  <rect x="7.8" y="51.3" width="2.4" height="2" fill="#6a6e76"/>
-  <rect x="54" y="52" width="3" height="5" rx="0.4" fill="#17181b"/>
+  <!-- a 3.5-inch floppy, label side: the plastic is the disc's own colour (a cut corner top right, the arrow for which way it
+       goes in); a brushed metal shutter sliding in its channel, the brown disc showing through its window; a paper label with
+       a printed band, ruled and written on in pen; the write-protect window bottom left, the density hole bottom right -->
+  <path d="M6.5 4L52 4L60 12L60 57.5C60 59 59 60 57.5 60L6.5 60C5 60 4 59 4 57.5L4 6.5C4 5 5 4 6.5 4Z" fill="#3a3d44"/>
+  <path d="M6.5 4L52 4L60 12L60 57.5C60 59 59 60 57.5 60L6.5 60C5 60 4 59 4 57.5L4 6.5C4 5 5 4 6.5 4Z" fill="url(#shade)" stroke="#121316" stroke-width="1"/>
+  <path d="M6.5 5.2L51.5 5.2L58.8 12.4" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.18"/>
+  <rect x="13" y="4" width="41" height="23" fill="#000000" opacity="0.2"/>
+  <path d="M13 27L54 27" stroke="#ffffff" stroke-width="0.5" opacity="0.15"/>
+  <rect x="16.5" y="4" width="27" height="22" rx="0.6" fill="url(#metal)" stroke="#5a6067" stroke-width="0.6"/>
+  <g stroke="#ffffff" stroke-width="0.35" opacity="0.35"><path d="M17.5 7H42.5"/><path d="M17.5 10H42.5"/><path d="M17.5 13H31"/><path d="M17.5 16H31"/><path d="M17.5 19H31"/><path d="M17.5 22H42.5"/></g>
+  <rect x="32" y="7" width="7.5" height="15.5" rx="1" fill="url(#media)" stroke="#3e434a" stroke-width="0.6"/>
+  <path d="M33.3 8.5L33.3 21" stroke="#8a6a48" stroke-width="0.8" opacity="0.55"/>
+  <path d="M17.2 4.5L17.2 25.5" stroke="#5a6067" stroke-width="0.8" opacity="0.6"/>
+  <path d="M7.5 9L10.5 6.6L10.5 11.4Z" fill="#121316" opacity="0.65"/>
+  <rect x="4" y="13" width="1.4" height="3.5" fill="#121316" opacity="0.7"/>
+  <rect x="9" y="30" width="46" height="27" rx="1.4" fill="url(#paper)"/>
+  <rect x="9" y="30" width="46" height="5" rx="1.4" fill="#b5432f"/>
+  <rect x="9" y="33.5" width="46" height="1.5" fill="#b5432f"/>
+  <path d="M10.5 33H53.5" stroke="#f1ece0" stroke-width="0.5" opacity="0.7"/>
+  <g stroke="#a9b8cf" stroke-width="0.45"><path d="M11 40H53"/><path d="M11 45H53"/><path d="M11 50H53"/><path d="M11 55H53"/></g>
+  <g fill="none" stroke="#2e3f72" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+    <path d="M12.5 39C13.4 36.6 14.6 36.4 14.9 38.8C15.1 40.2 16 37.4 17.2 37.6C18.3 37.8 17.8 39.4 19 39.2C20.4 38.9 20.2 36.9 21.6 37.4C22.8 37.8 22 39.6 23.4 39.2C25 38.6 24.6 36.8 26.2 37.5C27.4 38 27 39.5 28.6 39"/>
+    <path d="M31 39C31.6 37.6 32.8 37.4 33.2 38.6C33.6 39.6 34.6 37.8 35.8 38.2C37.2 38.6 36.4 39.4 38 39"/>
+    <path d="M12.5 44.2C14 42.8 15.6 43 16.2 44C16.8 45 18.2 42.6 19.6 43.4C21 44.2 21.4 44.4 23 43.8C24.4 43.2 25 44.2 26.6 44"/>
+    <path d="M12.6 49.3C13.8 48.4 15 48.6 15.8 49.2C16.8 49.8 18 48.4 19.4 48.9"/>
+  </g>
+  <rect x="6.6" y="52" width="3.6" height="5" rx="0.4" fill="#0e0f11"/>
+  <rect x="6.9" y="52.3" width="3" height="2.3" rx="0.3" fill="#6c7178"/>
+  <rect x="54" y="52" width="3.6" height="5" rx="0.4" fill="#0e0f11"/>
 </svg>

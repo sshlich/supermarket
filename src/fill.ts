@@ -17,7 +17,35 @@ const mix = (a: string, b: string, t: number) => '#' + [1, 3, 5].map(i => Math.r
 /** Cheddar's colours for its age: pale yellow paste and a golden rind when new, orange paste and a brown rind aged. */
 const cheddar = (it: Item) => {
   const t = aged(it)
-  return { paste: mix('#f3d77a', '#ee9636', t), light: mix('#f9e7a6', '#f6b866', t), rind: mix('#d6a446', '#a85e1c', t), dark: mix('#9a6c22', '#6e3a0e', t), line: mix('#8f6a1c', '#6a3510', t) }
+  return { paste: mix('#f5c458', '#ec8a2a', t), light: mix('#fbdb8c', '#f4ad5c', t), rind: mix('#e09c38', '#bf621c', t), dark: mix('#b5701e', '#86410e', t), line: mix('#9a6418', '#6a3510', t) }
+}
+/** A closed smooth path through points (Catmull-Rom, as cubic Béziers): organic outlines. */
+function smooth(pts: number[][]) {
+  const n = pts.length
+  let d = `M${f(pts[0][0])} ${f(pts[0][1])}`
+  for (let i = 0; i < n; i++) {
+    const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n]
+    d += `C${f(p1[0] + (p2[0] - p0[0]) / 6)} ${f(p1[1] + (p2[1] - p0[1]) / 6)} ${f(p2[0] - (p3[0] - p1[0]) / 6)} ${f(p2[1] - (p3[1] - p1[1]) / 6)} ${f(p2[0])} ${f(p2[1])}`
+  }
+  return d + 'Z'
+}
+/** A round thing that is not quite round: radius `rad` around (cx, cy), its edge wandering by `w`, the same way all round. */
+function roundish(r: () => number, cx: number, cy: number, rad: number, w: number, squash = 1) {
+  const ph = [r() * 6.3, r() * 6.3, r() * 6.3]
+  return (radius: number) => smooth(Array.from({ length: 28 }, (_, i) => {
+    const a = i / 28 * 2 * Math.PI, k = 1 + w * (0.55 * Math.sin(2 * a + ph[0]) + 0.3 * Math.sin(3 * a + ph[1]) + 0.15 * Math.sin(5 * a + ph[2]))
+    return [cx + radius * k * Math.cos(a), cy + radius * k * Math.sin(a) * squash]
+  }))
+}
+/** Bits scattered over a disc of radius `rad` (fat in salami, holes in cheese), mostly small, a few large, never touching. */
+function scatter(r: () => number, n: number, rad: number, small: number, big: number, gap = 1.25) {
+  const out: number[][] = []
+  for (let t = 0; t < 600 && out.length < n; t++) {
+    const s = small + Math.pow(r(), 2.2) * (big - small), d = Math.sqrt(r()) * Math.max(0, rad - s), a = r() * 2 * Math.PI
+    const x = d * Math.cos(a), y = d * Math.sin(a)
+    if (out.every(([fx, fy, fs]) => Math.hypot(fx - x, fy - y) > (fs + s) * gap)) out.push([x, y, s])
+  }
+  return out
 }
 const specks = (seed: number, n: number, x0: number, x1: number, y0: number, y1: number, c: string) => { const r = seeded(seed); let out = ''; for (let i = 0; i < n; i++) out += `<circle cx="${f(x0 + r() * (x1 - x0))}" cy="${f(y0 + r() * (y1 - y0))}" r="${f(0.5 + r() * 0.8)}" fill="${c}" opacity="0.5"/>`; return out }
 
@@ -48,21 +76,38 @@ function wheel(host: Item) {
 }
 
 /**
- * A cheddar wedge in profile, a little from above: a tall pizza slice. Its cut face is a true rectangle of paste, the top
- * a sliver tapering to the thin end, the rind at the back. Slices come off the thin end, so it shortens from the left.
+ * A cheese wedge, a little from above and in front, like a cut of good cheese on a board: its front (one cut face) a
+ * rectangle the full height of the wheel, its top the wheel's own top tapering to the thin end at the left, the rind a
+ * narrow band along the back and down the right. Smooth golden paste, a few round holes (one breaking the front edge),
+ * knife-scrape marks on top, all its own from its id. Slices come off the thin end, so it shortens from the left.
  */
 function wedge(host: Item) {
-  const n = leftOf(host) || 6, c = cheddar(host)
-  const xr = 87, dx = 4, dy = 11, top = 20, bottom = 60, xl = xr - 78 * n / 6, tip = xr - 78
-  const fr = (xl - tip) / (xr - tip) // how deep the top is at the left end: none at the thin end itself
-  const tx = sizeOf(host).w * 32 - 92
-  let out = `<defs><linearGradient id="rind" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${c.rind}"/><stop offset="1" stop-color="${c.dark}"/></linearGradient></defs><g transform="translate(${f(tx)} 0)">`
-  out += `<rect x="${f(xl)}" y="${top}" width="${f(xr - xl)}" height="${bottom - top}" fill="${c.paste}" stroke="${c.line}" stroke-width="1"/>`
-  out += specks(host.id % 97 + 3, Math.round(4 + 6 * n / 6), xl + 3, xr - 3, top + 4, bottom - 3, c.dark)
-  out += `<path d="M${f(xl)} ${top}L${xr} ${top}L${xr + dx} ${top - dy}L${f(xl + dx * fr)} ${f(top - dy * fr)}Z" fill="${c.light}" stroke="${c.line}" stroke-width="1" stroke-linejoin="round"/>`
-  out += `<path d="M${xr} ${top}L${xr + dx} ${top - dy}L${xr + dx} ${bottom - dy}L${xr} ${bottom}Z" fill="url(#rind)" stroke="${c.line}" stroke-width="1" stroke-linejoin="round"/>`
-  out += `<path d="M${f(xl + 2)} ${top + 1.5}L${xr - 2} ${top + 1.5}" stroke="#ffffff" stroke-width="1" opacity="0.4"/>`
-  if (n < 6) out += `<path d="M${f(xl)} ${bottom}L${f(xl)} ${top}" stroke="${c.light}" stroke-width="1.6"/>`
+  const n = leftOf(host) || 6, c = cheddar(host), r = seeded(host.id, 31), id = `wg${host.id}`
+  const T = [4, 31], FR = 87, B = [64, 5], bottom = 60, top = 31
+  const xl = FR - (FR - T[0]) * n / 6, fr = (xl - T[0]) / (FR - T[0])
+  const Q = [T[0] + (B[0] - T[0]) * fr, T[1] + (B[1] - T[1]) * fr]
+  const W = sizeOf(host).w * 32, sx = Math.min(1, (W - 2) / (93 - xl + 1)), tx = W - 1 - 93 * sx
+  const arc = `C91 22 80 8 ${B[0]} ${B[1]}`
+  const topFace = `M${f(xl)} ${top}L${FR} ${top}${arc}L${f(Q[0])} ${f(Q[1])}Z`
+  let out = `<defs><linearGradient id="${id}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.light}"/><stop offset="0.18" stop-color="${c.paste}"/><stop offset="1" stop-color="${mix(c.paste, c.dark, 0.28)}"/></linearGradient>`
+    + `<linearGradient id="${id}t" x1="0" y1="1" x2="0.6" y2="0"><stop offset="0" stop-color="${c.light}"/><stop offset="1" stop-color="${mix(c.light, c.paste, 0.5)}"/></linearGradient>`
+    + `<linearGradient id="${id}r" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${c.rind}"/><stop offset="1" stop-color="${c.dark}"/></linearGradient>`
+    + `<clipPath id="${id}c"><path d="${topFace}"/></clipPath></defs><g transform="translate(${f(tx)} 0) scale(${f(sx)} 1)">`
+  // the rind down the right side, then the top, then the front over both
+  out += `<path d="M${FR} ${top}C89 28 90.5 25 90.6 23L90.6 54C90.6 57 89.6 59 87.5 ${bottom}Z" fill="url(#${id}r)" stroke="${c.line}" stroke-width="0.7"/>`
+  out += `<path d="${topFace}" fill="url(#${id}t)" stroke="${c.line}" stroke-width="0.7" stroke-linejoin="round"/>`
+  out += `<g clip-path="url(#${id}c)" fill="none">` // knife scrapes: faint arcs round the thin end
+  for (let i = 0; i < 9; i++) { const rad = 22 + i * 7.5 + r() * 4, a0 = -0.15 - r() * 0.15, a1 = -0.62 - r() * 0.25; out += `<path d="M${f(T[0] + rad * Math.cos(a0))} ${f(T[1] + rad * Math.sin(a0))}A${f(rad)} ${f(rad)} 0 0 0 ${f(T[0] + rad * Math.cos(a1))} ${f(T[1] + rad * Math.sin(a1))}" stroke="${i % 3 ? '#ffffff' : c.dark}" stroke-width="${f(0.4 + r() * 0.5)}" opacity="${i % 3 ? 0.22 : 0.08}"/>` }
+  out += `<path d="${topFace}" stroke="${c.rind}" stroke-width="0" /></g>`
+  out += `<path d="M${FR} ${top}${arc}" fill="none" stroke="${c.rind}" stroke-width="2.4" stroke-linecap="round"/>`
+  out += `<path d="M${f(xl + 1.5)} ${top}L${FR - 1.5} ${top}Q${FR + 1.6} ${top} ${FR + 1.6} ${top + 2}L${FR + 1.6} ${bottom - 2}Q${FR + 1.6} ${bottom} ${FR - 1} ${bottom}L${f(xl + 1.5)} ${bottom}Q${f(xl)} ${bottom} ${f(xl)} ${bottom - 2}L${f(xl)} ${top + 1.5}Q${f(xl)} ${top} ${f(xl + 1.5)} ${top}Z" fill="url(#${id}f)" stroke="${c.line}" stroke-width="0.7"/>`
+  out += `<path d="M${f(xl + 2)} ${top + 0.8}L${FR - 2} ${top + 0.8}" stroke="#ffffff" stroke-width="1.3" opacity="0.45" stroke-linecap="round"/>`
+  // holes: round, shaded inside, lit on their lower lip; their places are this wedge's own
+  const hole = (x: number, y: number, rx: number, ry: number) => `<ellipse cx="${f(x)}" cy="${f(y)}" rx="${f(rx)}" ry="${f(ry)}" fill="${mix(c.paste, c.dark, 0.55)}"/><ellipse cx="${f(x + rx * 0.18)}" cy="${f(y + ry * 0.22)}" rx="${f(rx * 0.72)}" ry="${f(ry * 0.68)}" fill="${mix(c.paste, c.dark, 0.25)}"/><path d="M${f(x - rx * 0.8)} ${f(y + ry * 0.55)}Q${f(x)} ${f(y + ry * 1.25)} ${f(x + rx * 0.85)} ${f(y + ry * 0.45)}" fill="none" stroke="${c.light}" stroke-width="0.8" opacity="0.8"/>`
+  for (let i = 0, k = 2 + Math.floor(r() * 3); i < k; i++) { const rr = 2.1 + r() * 2.8, x = xl + 5 + r() * (FR - xl - 10), y = top + 7 + r() * (bottom - top - 12); if (FR - xl > 12) out += hole(x, y, rr, rr * 0.92) }
+  if (r() < 0.75 && FR - xl > 16) { const x = xl + 6 + r() * (FR - xl - 14); out += hole(x, top + 0.6, 3 + r() * 1.4, 2.4) } // one breaking the edge
+  if (r() < 0.5 && FR - xl > 20) { const u = 0.35 + r() * 0.4, x = xl + (FR - xl) * u * 0.8, y = top - (top - B[1]) * u * 0.45; out += hole(x, y, 2.2, 1.1) }
+  if (n < 6) out += `<path d="M${f(xl)} ${bottom - 1}L${f(xl)} ${top}L${f(Q[0])} ${f(Q[1])}" fill="none" stroke="${c.light}" stroke-width="1.2" stroke-linejoin="round" opacity="0.9"/>`
   return out + '</g>'
 }
 
@@ -134,21 +179,72 @@ const PAINTERS: Record<string, Painter> = {
   },
   cheesewheel: host => wheel(host),
   cheesewedge: host => wedge(host),
-  /** A slice of cheddar, its colour from its age, a thin edge of rind along one side. */
+  /**
+   * A slice of cheese, its colour from its age: a slightly uneven square with its own holes, right through it (the field
+   * shows through), some of them biting into its edge; each hole with a darker rim and a lit lower lip.
+   */
   cheeseslice: host => {
-    const c = cheddar(host)
-    return `<path d="M8 10L56 8.5L57 55L9 57Z" fill="${c.paste}" stroke="${c.line}" stroke-width="1" stroke-linejoin="round"/><path d="M8 10L56 8.5" stroke="${c.rind}" stroke-width="3" stroke-linecap="round"/>`
-      + specks(host.id % 89 + 5, 8, 12, 52, 14, 52, c.dark) + `<path d="M12 14L52 13" stroke="#ffffff" stroke-width="1" opacity="0.35"/>`
+    const c = cheddar(host), r = seeded(host.id, 21), id = `cs${host.id}`
+    const j = () => (r() * 2 - 1) * 1.3
+    const edge = `M${f(7 + j())} ${f(8 + j())}L${f(57 + j())} ${f(7 + j())}L${f(57.5 + j())} ${f(56.5 + j())}L${f(7 + j())} ${f(57 + j())}Z`
+    const holes: number[][] = []
+    for (let t = 0, k = 3 + Math.floor(r() * 5); t < 300 && holes.length < k; t++) {
+      const s = 1.6 + Math.pow(r(), 1.8) * 6.2, nearEdge = r() < 0.3
+      const x = nearEdge ? (r() < 0.5 ? 6 + r() * 3 : 55 + r() * 3) : 12 + r() * 40, y = nearEdge && r() < 0.5 ? (r() < 0.5 ? 7 + r() * 2 : 55 + r() * 2) : 12 + r() * 40
+      if (holes.every(([hx, hy, hs]) => Math.hypot(hx - x, hy - y) > hs + s + 2)) holes.push([x, y, s, 0.8 + r() * 0.3, r() * 180])
+    }
+    const ell = (x: number, y: number, s: number, q: number, a: number, grow = 0) => `cx="${f(x)}" cy="${f(y)}" rx="${f(s + grow)}" ry="${f(s * q + grow)}" transform="rotate(${f(a)} ${f(x)} ${f(y)})"`
+    let out = `<defs><linearGradient id="${id}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c.light}"/><stop offset="0.4" stop-color="${c.paste}"/><stop offset="1" stop-color="${mix(c.paste, c.dark, 0.2)}"/></linearGradient>`
+      + `<mask id="${id}m"><path d="${edge}" fill="#ffffff" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round"/>${holes.map(([x, y, s, q, a]) => `<ellipse ${ell(x, y, s, q, a)} fill="#000000"/>`).join('')}</mask></defs>`
+    out += `<g mask="url(#${id}m)"><path d="${edge}" fill="url(#${id}g)" stroke="${c.line}" stroke-width="1.6" stroke-linejoin="round"/>`
+    for (const [x, y, s, q, a] of holes) out += `<ellipse ${ell(x, y, s, q, a, 0.9)} fill="none" stroke="${c.dark}" stroke-width="1.4" opacity="0.4"/><path d="M${f(x - s * 0.9)} ${f(y + s * q * 0.5)}Q${f(x)} ${f(y + s * q * 1.5)} ${f(x + s * 0.9)} ${f(y + s * q * 0.4)}" fill="none" stroke="${c.light}" stroke-width="0.9" opacity="0.85"/>`
+    out += `<path d="M10 22L30 9" stroke="#ffffff" stroke-width="5" opacity="0.07" stroke-linecap="round"/></g>`
+    return out
   },
-  /** A ham: the log is as long as the slices left in it; its cut end shows the pink face, its netting goes on round what is left. */
-  ham: host => {
-    const n = leftOf(host) || 8, L = 110 * n / 8, x1 = 9 + L
-    if (!n) return `<path d="M10 40C16 34 22 46 28 40" fill="none" stroke="#e8d8c8" stroke-width="1.2"/>`
-    let out = `<rect x="9" y="10" width="${f(L)}" height="46" rx="${f(Math.min(16, L / 2))}" ry="20" fill="url(#ham)" stroke="#7a3a36" stroke-width="1"/>`
-    out += `<g fill="none" stroke="#f3dccc" stroke-width="0.8" opacity="0.55">`
-    for (let x = 16; x < x1 - 4; x += 9) out += `<path d="M${x} 11L${f(x + 8)} 55"/><path d="M${f(x + 8)} 11L${x} 55"/>`
-    out += `</g><path d="M14 22C${f(14 + L * 0.3)} 18 ${f(14 + L * 0.6)} 26 ${f(x1 - 6)} 20" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.25"/>`
-    if (n < 8) out += `<ellipse cx="${f(x1 - 4)}" cy="33" rx="5" ry="22" fill="#e9a29c" stroke="#f6e0d4" stroke-width="2"/><path d="M${f(x1 - 6)} 22Q${f(x1 - 2)} 30 ${f(x1 - 5)} 40" fill="none" stroke="#f8e4dc" stroke-width="0.8"/>`
+  /**
+   * A slice of salami: deep red, darker toward its edge, flecked with fat (many small flecks, a few large, never touching)
+   * and a few peppercorns, inside a rim of casing that is the same on every slice. Every slice is its own, from its id.
+   */
+  salamislice: host => {
+    const r = seeded(host.id, 11), id = `sl${host.id}`, cx = 32, cy = 32, R = 27.5
+    const ring = roundish(r, cx, cy, R, 0.035, 0.97)
+    let out = `<defs><radialGradient id="${id}m" cx="0.46" cy="0.42" r="0.6"><stop offset="0" stop-color="#b8404a"/><stop offset="0.72" stop-color="#9b2d36"/><stop offset="1" stop-color="#7a2029"/></radialGradient></defs>`
+    out += `<path d="${ring(R)}" fill="#4b1714" stroke="#2e0d0b" stroke-width="0.8"/><path d="${ring(R - 0.9)}" fill="none" stroke="#6e2a24" stroke-width="0.6"/>`
+    out += `<path d="${ring(R - 2.7)}" fill="url(#${id}m)"/>`
+    for (const [x, y, sz] of scatter(r, 46, R - 4.4, 0.55, 2.9)) {
+      const k = 5 + Math.floor(r() * 3), rot = r() * 6.3, sq = 0.7 + r() * 0.3
+      const pts = Array.from({ length: k }, (_, i) => { const a = rot + i / k * 2 * Math.PI, q = sz * (0.72 + r() * 0.56); return [cx + x + q * Math.cos(a), cy + y + q * Math.sin(a) * sq] })
+      out += `<path d="${smooth(pts)}" fill="#f2e3d8" stroke="#d6b0a2" stroke-width="0.35"/>`
+    }
+    for (let i = 0, n = 2 + Math.floor(r() * 5); i < n; i++) { const d = Math.sqrt(r()) * (R - 7), a = r() * 6.3; out += `<circle cx="${f(cx + d * Math.cos(a))}" cy="${f(cy + d * Math.sin(a))}" r="${f(0.65 + r() * 0.4)}" fill="#261010"/>` }
+    out += `<path d="M${cx - 17} ${cy - 14}Q${cx - 8} ${cy - 23} ${cx + 6} ${cy - 22}" fill="none" stroke="#ffffff" stroke-width="1.3" opacity="0.16" stroke-linecap="round"/>`
+    return out
+  },
+  /**
+   * A salami: a cured sausage in its dark casing, dusted with white bloom, string round it, tied at its ends; cut, its end
+   * shows a face like its slices. It shortens from the cut end as slices come off.
+   */
+  salami: host => {
+    const n = leftOf(host) || 8, L = 112 * n / 8, x0 = 6, x1 = x0 + L, top = 9, bot = 55, R = (bot - top) / 2, mid = (top + bot) / 2
+    const r = seeded(host.id, 5), id = `sa${host.id}`
+    const body = n >= 8 ? `M${x0 + R} ${top}L${f(x1 - R)} ${top}A${R} ${R} 0 0 1 ${f(x1 - R)} ${bot}L${x0 + R} ${bot}A${R} ${R} 0 0 1 ${x0 + R} ${top}Z`
+      : `M${x0 + R} ${top}L${f(x1)} ${top}L${f(x1)} ${bot}L${x0 + R} ${bot}A${R} ${R} 0 0 1 ${x0 + R} ${top}Z`
+    let out = `<defs><linearGradient id="${id}c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a3430"/><stop offset="0.3" stop-color="#6a2420"/><stop offset="1" stop-color="#3e110f"/></linearGradient><clipPath id="${id}k"><path d="${body}"/></clipPath></defs>`
+    out += `<path d="${body}" fill="url(#${id}c)"/>`
+    out += `<g clip-path="url(#${id}k)">`
+    for (let i = 0; i < Math.round(22 * n / 8) + 4; i++) out += `<ellipse cx="${f(x0 + r() * L)}" cy="${f(top + r() * (bot - top))}" rx="${f(1.5 + r() * 5)}" ry="${f(0.8 + r() * 2.2)}" fill="#efe6dc" opacity="${f(0.08 + r() * 0.16)}"/>`
+    for (let i = 0; i < 5; i++) { const y = top + 6 + r() * (bot - top - 12); out += `<path d="M${x0 + 4} ${f(y)}C${f(x0 + L * 0.3)} ${f(y + (r() * 2 - 1) * 3)} ${f(x0 + L * 0.7)} ${f(y + (r() * 2 - 1) * 3)} ${f(x1)} ${f(y)}" fill="none" stroke="#2a0b0a" stroke-width="0.5" opacity="0.4"/>` }
+    for (let x = x0 + 14; x < x1 - 4; x += 15) out += `<path d="M${x} ${top - 1}Q${x + 4} ${mid} ${x + 1} ${bot + 1}" fill="none" stroke="#d9c8a2" stroke-width="0.9" opacity="0.85"/>`
+    out += `<path d="M${x0 + 8} ${top + 7}L${f(x1 - 6)} ${top + 7}" stroke="#ffffff" stroke-width="2" opacity="0.12" stroke-linecap="round"/></g>`
+    out += `<path d="${body}" fill="none" stroke="#2a0b0a" stroke-width="0.9"/>`
+    out += `<path d="M${x0 + 1} ${mid - 3}Q${x0 - 3} ${mid} ${x0 + 1} ${mid + 3}M${x0 + 1} ${mid}L${x0 - 2.5} ${mid + 6}" fill="none" stroke="#d9c8a2" stroke-width="1.1" stroke-linecap="round"/>` // the knot at its far end
+    if (n >= 8) out += `<path d="M${f(x1 - 1)} ${mid - 3}Q${f(x1 + 3)} ${mid} ${f(x1 - 1)} ${mid + 3}" fill="none" stroke="#d9c8a2" stroke-width="1.1" stroke-linecap="round"/>`
+    else {
+      const face = roundish(seeded(host.id, 77), x1, mid, R, 0.02, 1)
+      out += `<g transform="translate(${f(x1)} ${mid}) scale(0.22 1) translate(${f(-x1)} ${-mid})"><path d="${face(R)}" fill="#4b1714"/><path d="${face(R - 2.4)}" fill="#a3343c"/>`
+      for (const [x, y, sz] of scatter(seeded(host.id, 78), 26, R - 4, 0.7, 2.6)) out += `<circle cx="${f(x1 + x)}" cy="${f(mid + y)}" r="${f(sz)}" fill="#f2e3d8"/>`
+      out += '</g>'
+    }
     return out
   },
   /** A matchbox, its drawer slid half out: one match for each in it (ten when new), lying side by side, heads to the right. */

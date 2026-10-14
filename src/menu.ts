@@ -22,6 +22,16 @@ const stored = <T>(key: string, fallback: T): T => { try { return JSON.parse(loc
 
 // ---------------------------------------------------------------- the menu
 
+/**
+ * Take an overlay away: it stops catching clicks at once and fades; it is removed when the fade ends or shortly after
+ * anyway (a tab in the background never finishes its animations, and an invisible overlay must not be left on top).
+ */
+export function gone(el: HTMLElement) {
+  el.style.pointerEvents = 'none'
+  el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 120, fill: 'forwards' }).onfinish = () => el.remove()
+  setTimeout(() => el.remove(), 200)
+}
+
 let menu: HTMLElement | null = null
 let sure = 0 // a new game needs a second click within a few seconds
 
@@ -40,7 +50,7 @@ const redrawMenu = () => { if (menu) menu.innerHTML = menuHtml() }
 export const menuOpen = () => !!menu
 export function toggleMenu() {
   shop('menu')
-  if (menu) { const m = menu; menu = null; m.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 120 }).onfinish = () => m.remove(); return }
+  if (menu) { const m = menu; menu = null; gone(m); return }
   sure = 0
   menu = document.body.appendChild(document.createElement('div'))
   menu.className = 'menu'

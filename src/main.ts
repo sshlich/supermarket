@@ -186,7 +186,8 @@ function discIn(id: number) {
   return d ? DISCS[propsOf(d).content] ?? null : null
 }
 /** How big the screen is drawn: a little over its own size in a window, as big as fits filling the page. */
-const screenScale = (full?: boolean) => full ? Math.max(1.2, Math.min((innerWidth - 120) / 320, (innerHeight - 190) / 240)) : 1.15
+// (filling the page, everything grows with it: per unit of scale the machine is about 352 wide and 320 tall with its bezel, base and drive)
+const screenScale = (full?: boolean) => full ? Math.max(1.2, Math.min((innerWidth - 60) / 352, (innerHeight - 80) / 320)) : 1.15
 /**
  * A computer's window: the curved glass of a CRT in its beige bezel (the screen is computer.ts's), and under it the power
  * switch, its light, and the disc tray: a one-square slot that takes a floppy, handled like any other place.
@@ -194,10 +195,12 @@ const screenScale = (full?: boolean) => full ? Math.max(1.2, Math.min((innerWidt
 function pcHtml(w: Win, z: number) {
   const it = find(s, w.id)!
   const on = isOn(it)
-  return `<div class="win pc${w.full ? ' full' : ''}" data-win="${it.id}" style="left:${w.x}px;top:${w.y}px;z-index:${10 + z};--s:${screenScale(w.full).toFixed(3)}"><div class="win-head" data-whead style="--c:${swatch(it)}"><i></i><span>${esc(look(it).name)}</span><button data-wfull="${it.id}" title="${w.full ? 'Back to a window' : 'Fill the page'}">${w.full ? '⤡' : '⤢'}</button><button data-wfold="${it.id}" title="Fold: keep just a tab along the top">–</button><button data-wclose="${it.id}" title="Close">✕</button></div>
+  const tray = KINDS[it.kind].slots?.[0] ?? { w: 2, h: 2 }
+  const k = screenScale(w.full) / screenScale(false) // the bezel's switch, light, name and drive grow with the screen
+  return `<div class="win pc${w.full ? ' full' : ''}" data-win="${it.id}" style="left:${w.x}px;top:${w.y}px;z-index:${10 + z};--s:${screenScale(w.full).toFixed(3)};--k:${k.toFixed(3)}"><div class="win-head" data-whead style="--c:${swatch(it)}"><i></i><span>${esc(look(it).name)}</span><button data-wfull="${it.id}" title="${w.full ? 'Back to a window' : 'Fill the page'}">${w.full ? '⤡' : '⤢'}</button><button data-wfold="${it.id}" title="Fold: keep just a tab along the top">–</button><button data-wclose="${it.id}" title="Close">✕</button></div>
     <div class="crt"><div class="glass${on ? ' on' : ''}" data-screen="${it.id}">${screenHtml(it.id, on, discIn(it.id))}</div>
     <div class="crt-base"><button class="power${on ? ' on' : ''}" data-power="${it.id}" title="Power">&#9211;</button><i class="led${on ? ' on' : ''}"></i><span class="brand">WT-2</span>
-    <div class="tray"><small>A:</small><div class="grid" data-grid data-space="${it.id}:0" data-w="1" data-h="1" style="--w:1;--h:1">${inSpace(s, { host: it.id, slot: 0 }).map(itemHtml).join('')}</div></div></div></div></div>`
+    <div class="tray"><small>A:</small><div class="grid" data-grid data-space="${it.id}:0" data-w="${tray.w}" data-h="${tray.h}" style="--w:${tray.w};--h:${tray.h};--cell:${Math.round(cell * k)}px">${inSpace(s, { host: it.id, slot: 0 }).map(itemHtml).join('')}</div></div></div></div></div>`
 }
 /** Draw one machine's screen again, alone. */
 function paintScreen(id: number) {

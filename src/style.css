@@ -300,14 +300,14 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .taskbar .start { padding: 0 6px; height: 13px; line-height: 12px; border: 1px solid; border-color: #6a6474 #0c0b0f #0c0b0f #6a6474; font-weight: 600; font-size: 9px; }
 .taskbar .tb-tray { padding: 0 6px; height: 13px; line-height: 12px; border: 1px solid; border-color: #0c0b0f #5d5766 #5d5766 #0c0b0f; font-size: 9px; color: #b9b3c4; }
 /* the bezel's base: the switch, its light, the maker's name, the drive */
-.crt-base { display: flex; align-items: center; gap: 8px; margin-top: calc(9px * var(--s)); }
-.crt-base .power { width: 20px; height: 20px; padding: 0; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #ddd5bf, #a89f88); border: 1px solid #5a5444; color: #5a5444; font-size: 11px; line-height: 1; cursor: pointer; box-shadow: 0 1px 0 #ece6d4 inset; }
+.crt-base { display: flex; align-items: center; gap: calc(8px * var(--k, 1)); margin-top: calc(9px * var(--s)); }
+.crt-base .power { width: calc(20px * var(--k, 1)); height: calc(20px * var(--k, 1)); padding: 0; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #ddd5bf, #a89f88); border: 1px solid #5a5444; color: #5a5444; font-size: calc(11px * var(--k, 1)); line-height: 1; cursor: pointer; box-shadow: 0 1px 0 #ece6d4 inset; }
 .crt-base .power:active { transform: translateY(1px); }
-.crt-base .led { width: 6px; height: 6px; border-radius: 50%; background: #3b3a30; box-shadow: inset 0 1px 1px rgba(0, 0, 0, .5); }
+.crt-base .led { width: calc(6px * var(--k, 1)); height: calc(6px * var(--k, 1)); border-radius: 50%; background: #3b3a30; box-shadow: inset 0 1px 1px rgba(0, 0, 0, .5); }
 .crt-base .led.on { background: #5fd36c; box-shadow: 0 0 6px #5fd36c; }
-.crt-base .brand { font: 600 9px ui-monospace, Menlo, monospace; letter-spacing: .2em; color: #8a826c; text-shadow: 0 1px 0 #e6dfcb; }
-.crt-base .tray { margin-left: auto; display: flex; align-items: center; gap: 6px; padding: 3px 5px; border-radius: 3px; background: #a39a83; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .35); }
-.crt-base .tray small { font: 600 9px ui-monospace, Menlo, monospace; color: #4a4436; }
+.crt-base .brand { font: 600 calc(9px * var(--k, 1)) ui-monospace, Menlo, monospace; letter-spacing: .2em; color: #8a826c; text-shadow: 0 1px 0 #e6dfcb; }
+.crt-base .tray { margin-left: auto; display: flex; align-items: center; gap: calc(6px * var(--k, 1)); padding: calc(3px * var(--k, 1)) calc(5px * var(--k, 1)); border-radius: 3px; background: #a39a83; box-shadow: inset 0 1px 2px rgba(0, 0, 0, .35); }
+.crt-base .tray small { font: 600 calc(9px * var(--k, 1)) ui-monospace, Menlo, monospace; color: #4a4436; }
 .crt-base .tray .grid { background-color: #2a2822; background-image: none; }
 
 /* One clock for every looping animation: each animated thing starts its loop at minus the time since the page loaded (the
