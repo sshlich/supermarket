@@ -334,12 +334,23 @@ item's ids are made its own, so they can use the sprite's gradients. A slot's `f
   in it, cut lines between them, its heel rounded and its cut end square and pale. The bag keeps its full shape: where the
   loaf has gone it sags a little and creases, with crumbs in the bottom (an earlier bag that hugged the loaf and narrowed
   to the twist read badly). Its printed label stays where it is.
-- **Cheese**: a **wheel** (4x4) of eight **wedges** (3x2, lying on their side), each wedge eight 2x2 **slices**. Neither
-  goes back together (take out only). The wheel from above shows one sector per wedge left, on its paper, pale where it was
-  cut. A wedge is seen from the front and a little above, thin end to the left and rind at the back; slices come off the
-  thin end, so it gets shorter and taller at its pale cut end, and at last only the rind is left. (Round and triangle
-  footprints were tried first and dropped: plain rectangles.) A wedge can sit inside the wheel because it is tagged `vessel` (two levels deep).
-- **Ham** (4x2, in its netting) of eight round 2x2 slices: the log is as long as the slices left, its pink cut face showing.
+- **The knife, the first tool** (tools; 1x3, a kitchen knife, `cuts`): while you hold it, everything it can cut lights blue
+  (bright under the pointer); drop it on one and a piece comes off, with a soft slicing sound, and the knife goes back.
+  Things cut with it (`cut` on the kind) are not containers: they hold a count (`left` on the item) and shrink as it
+  goes, from the side the pieces come off, the rest staying where it was. The last cut splits the two that are left, and
+  the thing is gone. Pieces go on the first free spots of the same place (or the field), as old as what they came from; no
+  room, no cut. Worth goes down with what is left.
+- **Cheddar wheel** (4x3) of eight wedges: a squat cylinder seen a little from above, its sides bulging out a touch, its top
+  a touch domed. What is left is the part to the right (wedges come off the left): one sector of top and wall for each
+  wedge left, a notch in the top where the back is gone, the pale cut face where one faces you. Size: 8 to 6 left 4x3, 5
+  left 3x3, 4 to 2 left 2x3.
+- **Cheddar wedge** (3x2) of six slices: a tall pizza slice in profile, a little from above. Its cut face is a true
+  rectangle of paste, the top a sliver tapering to the thin end, the rind at the back. Slices come off the thin end: 6 and
+  5 left 3x2, 4 and 3 left 2x2, 2 left 1x2.
+- **Ham** (4x2) of eight slices, cut off its right end: 8 to 6 left 4x2, 5 and 4 left 3x2, 3 and 2 left 2x2.
+- **Age** (for later): cheese carries an `age` in days; its colours mix from pale cheddar to orange with it (`aged()`),
+  and from `AGE_DAYS` (10) on it is called aged and is worth half as much again. Nothing counts days yet; the debug panel
+  spawns cheese fresh or aged.
 - Slices are 2x2 so that later they can stack: sandwiches.
 - **Matchbox** (2x1) of ten matches (1x1): its drawer is slid half out from the printed sleeve, one match for each in it.
 - **Disposable lighter** (1x2, standing): every one is its own, picked from its id (a test drive for seeded looks): one of

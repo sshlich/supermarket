@@ -144,6 +144,10 @@ const MATERIALS: Record<string, Partial<Record<Action, () => void>>> = {
     lift: () => noise(vary(2200), { d: 0.02, g: 0.03, q: 2 }),
     drop: () => { noise(vary(1800), { d: 0.025, g: 0.05, q: 2 }); tone(vary(600), { type: 'triangle', d: 0.03, g: 0.015, at: 0.03 }) },
   },
+  blade: { // a knife: a faint ring of steel
+    lift: () => { noise(vary(4200), { d: 0.03, g: 0.02, q: 2 }); tone(vary(1900, 0.03), { d: 0.12, g: 0.008, at: 0.01 }) },
+    drop: () => { tone(vary(1200, 0.05), { d: 0.1, g: 0.018 }); noise(vary(1500), { d: 0.03, g: 0.04, q: 2 }) },
+  },
   card: { // a matchbox: its matches shift inside it
     lift: () => times(4, 0.025, (_, at) => noise(vary(2400, 0.2), { d: 0.015, g: 0.025, q: 2, at })),
     drop: () => { noise(vary(700), { d: 0.05, g: 0.05, q: 0.8 }); times(3, 0.02, (_, at) => noise(vary(2600, 0.2), { d: 0.012, g: 0.02, q: 2, at: at + 0.03 })) },
@@ -192,6 +196,8 @@ const SHOP = {
   wipe: () => noise(450, { d: 0.45, g: 0.02, q: 0.6, to: 3200, a: 0.15 }),
   leave: () => noise(vary(800), { d: 0.25, g: 0.02, q: 0.5, to: 300, a: 0.05 }),
   menu: () => tone(660, { type: 'triangle', d: 0.06, g: 0.02 }),
+  // a knife going through cheese or ham: a soft drawn slice and the board under it
+  cut: () => { noise(2200, { d: 0.16, g: 0.035, q: 1.2, to: 900, a: 0.04 }); tone(140, { type: 'triangle', d: 0.07, g: 0.05, at: 0.13, to: 100 }) },
   // a machine's switch: a soft thunk, the tube's low hum coming up (or dying away)
   powerOn: () => { noise(300, { d: 0.08, g: 0.08, type: 'lowpass' }); tone(55, { d: 1.1, g: 0.05, a: 0.4 }); tone(110, { type: 'triangle', d: 0.9, g: 0.012, a: 0.5, at: 0.1 }) },
   powerOff: () => { noise(300, { d: 0.08, g: 0.07, type: 'lowpass' }); tone(110, { type: 'triangle', d: 0.5, g: 0.015, to: 60 }) },

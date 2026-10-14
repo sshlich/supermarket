@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { accepts, canPour, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
+import { accepts, canPour, cut, dims, leftOf, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
 import FIXTURE from './test/kinds.json' with { type: 'json' }
 
 // The game ships no items for now, so the tests bring their own kinds and the old starting field.
@@ -407,4 +407,36 @@ console.log('world ok')
   fillWith(z, 'water')
   assert.equal(z.fill, undefined) // not a liquid it takes
   console.log('counts and fuels ok')
+}
+
+// cutting: one piece at a time, the last cut splitting the two left; the thing shrinks from its cut side
+{
+  Object.assign(KINDS, {
+    wedgeT: { name: 'Wedge', icon: '', color: '#000', w: 3, h: 2, price: 6, cut: { into: 'sliceT', count: 6, from: 'left', sizes: [[5, 3, 2], [3, 2, 2], [2, 1, 2]] } },
+    sliceT: { name: 'Slice', icon: '', color: '#000', w: 2, h: 2, price: 1 },
+  })
+  const s: State = { items: [], next: 1, windows: [] }
+  const w = spawn(s, 'wedgeT')!
+  w.x = 10; w.y = 5; w.age = 4
+  assert.deepEqual([leftOf(w), dims(w).w], [6, 3])
+  assert.equal(cut(s, w)!.length, 1)
+  assert.deepEqual([leftOf(w), dims(w).w, w.x], [5, 3, 10])
+  cut(s, w)
+  assert.deepEqual([leftOf(w), dims(w).w, w.x], [4, 2, 11]) // shrank from the left: the right edge stays at 13
+  assert.equal(look(w).price, 4)
+  cut(s, w); cut(s, w)
+  assert.deepEqual([leftOf(w), dims(w).w, w.x], [2, 1, 12])
+  const last = cut(s, w)!
+  assert.equal(last.length, 2) // the last cut splits the two left
+  assert.ok(!s.items.includes(w))
+  assert.equal(s.items.filter(o => o.kind === 'sliceT').length, 6)
+  assert.ok(s.items.filter(o => o.kind === 'sliceT').every(o => o.age === 4)) // pieces are as old as what they came from
+  // no room for a piece: nothing changes
+  const t: State = { items: [], next: 1, windows: [] }
+  const big = { id: 1, kind: 'wedgeT', x: 0, y: 0, rot: 0 }
+  t.items.push(big); t.next = 2
+  for (let x = 0; x < 25; x++) for (let y = 0; y < 20; y++) if (!(x < 3 && y < 2)) t.items.push({ id: t.next++, kind: 'crumb', x, y, rot: 0 })
+  assert.equal(cut(t, big), null)
+  assert.deepEqual([leftOf(big), big.x], [6, 0])
+  console.log('cutting ok')
 }

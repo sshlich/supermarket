@@ -375,56 +375,81 @@
     "desc": "One slice. Two make the start of a sandwich."
   },
   "cheesewheel": {
-    "name": "Cheese wheel",
+    "name": "Cheddar wheel",
     "icon": "",
-    "color": "#cf9a3e",
+    "color": "#d6a446",
     "sound": "food",
     "w": 4,
-    "h": 4,
+    "h": 3,
     "cat": "food",
-    "price": 2,
+    "price": 48,
     "tags": [
       "food"
     ],
-    "desc": "A whole wheel, eight wedges of it. Cut a wedge out and the wheel shows it.",
-    "slots": [
-      {
-        "name": "wedges",
-        "w": 12,
-        "h": 6,
-        "out": true,
-        "fill": "cheesewedge",
-        "count": 8
-      }
-    ]
+    "ages": true,
+    "desc": "A whole wheel of cheddar, eight wedges of it. Cut one off with a knife.",
+    "cut": {
+      "into": "cheesewedge",
+      "count": 8,
+      "from": "left",
+      "sizes": [
+        [
+          6,
+          4,
+          3
+        ],
+        [
+          5,
+          3,
+          3
+        ],
+        [
+          2,
+          2,
+          3
+        ]
+      ]
+    }
   },
   "cheesewedge": {
-    "name": "Cheese wedge",
+    "name": "Cheddar wedge",
     "icon": "",
-    "color": "#efcf6c",
+    "color": "#f3d77a",
     "sound": "food",
     "w": 3,
     "h": 2,
     "cat": "food",
-    "price": 1,
+    "price": 6,
     "tags": [
-      "food",
-      "vessel"
+      "food"
     ],
-    "desc": "An eighth of a wheel, lying on its side. Slices come off its thin end until only the rind is left.",
-    "slots": [
-      {
-        "name": "slices",
-        "w": 8,
-        "h": 4,
-        "out": true,
-        "fill": "cheeseslice",
-        "count": 8
-      }
-    ]
+    "ages": true,
+    "desc": "An eighth of a wheel: six slices, cut off its thin end with a knife.",
+    "cut": {
+      "into": "cheeseslice",
+      "count": 6,
+      "from": "left",
+      "sizes": [
+        [
+          5,
+          3,
+          2
+        ],
+        [
+          3,
+          2,
+          2
+        ],
+        [
+          2,
+          1,
+          2
+        ]
+      ]
+    }
   },
   "cheeseslice": {
-    "name": "Slice of cheese",
+    "name": "Slice of cheddar",
     "icon": "",
     "color": "#f2d272",
     "sound": "food",
@@ -435,7 +460,8 @@
     "tags": [
       "food"
     ],
-    "desc": "Thin, with holes. Goes on bread."
+    "desc": "One slice. Goes on bread.",
+    "ages": true
   },
   "ham": {
     "name": "Ham",
@@ -445,21 +471,33 @@
     "w": 4,
     "h": 2,
     "cat": "food",
-    "price": 2,
+    "price": 16,
     "tags": [
       "food"
     ],
-    "desc": "A boned ham in its netting, eight slices of it.",
-    "slots": [
-      {
-        "name": "slices",
-        "w": 8,
-        "h": 4,
-        "out": true,
-        "fill": "hamslice",
-        "count": 8
-      }
-    ]
+    "desc": "A boned ham in its netting, eight slices of it. Cut them with a knife.",
+    "cut": {
+      "into": "hamslice",
+      "count": 8,
+      "from": "right",
+      "sizes": [
+        [
+          6,
+          4,
+          2
+        ],
+        [
+          4,
+          3,
+          2
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ]
+    }
   },
   "hamslice": {
     "name": "Slice of ham",
@@ -548,5 +586,20 @@
       "spirit"
     ],
     "desc": "Brushed chrome, a lid that clicks. Fill it with lamp oil or spirit."
+  },
+  "knife": {
+    "name": "Kitchen knife",
+    "icon": "",
+    "color": "#b9bfc6",
+    "sound": "blade",
+    "w": 1,
+    "h": 3,
+    "cat": "tools",
+    "price": 6,
+    "tags": [
+      "tool"
+    ],
+    "cuts": true,
+    "desc": "Your first tool. Drop it on cheese or ham to cut a piece off."
   }
 }

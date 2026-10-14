@@ -7,7 +7,7 @@ import { arrive, deal, dealt, greeting, open as canDeal, priceFor, stillWants, T
 import { openReader } from './reader.ts'
 import { initMenu, toggleMenu } from './menu.ts'
 import { handle, handleMany, shop } from './sound.ts'
-import { applyDrop, canPour, cellsOf, contents, COUNTERS, dims, fillWith, find, LIQUIDS, look, moveInto, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { applyDrop, canPour, cellsOf, contents, COUNTERS, cut, dims, sizeOf, fillWith, find, LIQUIDS, look, moveInto, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -81,6 +81,7 @@ let uid = 0
  */
 function spriteHtml(it: Item) {
   let svg = paintFill(it, SPRITE[it.kind] ?? '', slot => inSpace(s, { host: it.id, slot })) // drawn from what is in it, before ids are made its own
+  if (KINDS[it.kind].cut) { const { w, h } = sizeOf(it); svg = svg.replace(/viewBox="[^"]*"/, `viewBox="0 0 ${w * 32} ${h * 32}"`) } // drawn to the size it is now
   for (const [from, to] of Object.entries(look(it).colors)) svg = svg.replaceAll(new RegExp(from, 'gi'), to) // hex colours: nothing in them is special to a RegExp
   const u = `u${++uid}`
   svg = svg.replace(/id="([^"]+)"/g, `id="$1-${u}"`).replace(/url\(#([^)]+)\)/g, `url(#$1-${u})`).replace(/href="#([^"]+)"/g, `href="#$1-${u}"`)
@@ -109,7 +110,7 @@ function itemHtml(it: Item) {
   const hit = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('')
   return `<div class="item ${selected.has(it.id) ? 'sel' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
     <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><g class="hit">${hit}</g></svg>
-    <div class="art" style="--kw:${k.w};--kh:${k.h};--r:${quarter(it.rot) * 90}deg">${spriteHtml(it)}</div></div>`
+    <div class="art" style="--kw:${sizeOf(it).w};--kh:${sizeOf(it).h};--r:${quarter(it.rot) * 90}deg">${spriteHtml(it)}</div></div>`
 }
 
 /** The edge of a set of squares: a line wherever a square has no neighbour. Traces irregular shapes exactly. */
@@ -290,8 +291,11 @@ function changed(from?: Map<number, DOMRect>) {
 
 // ---------------------------------------------------------------- handling
 
-/** `pours` are the vessels the held one would pour into; `pourInto` the one under the pointer now. */
-interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; hosts: Item[]; full: Item[]; blocked: Item | null; into: Item | null; space: Space; over: boolean; pours: Item[]; pourInto: Item | null }
+/**
+ * `uses` are the things the held one can be used on (`verb`: a vessel pours into them, a knife cuts them); `useOn` the one
+ * under the pointer now.
+ */
+interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; hosts: Item[]; full: Item[]; blocked: Item | null; into: Item | null; space: Space; over: boolean; uses: Item[]; useOn: Item | null; verb: 'pour' | 'cut' | null }
 let press: { id: number; x: number; y: number; gx: number; gy: number; toggle: boolean; wasGroup: boolean } | null = null
 let drag: Drag | null = null
 let last: PointerEvent | null = null
@@ -460,9 +464,10 @@ function begin() {
   if (!held) { press = null; return }
   const el = document.body.appendChild(document.createElement('div'))
   el.className = 'floating'
-  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', hosts: [], full: [], blocked: null, into: null, space: null, over: false, pours: [], pourInto: null }
+  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', hosts: [], full: [], blocked: null, into: null, space: null, over: false, uses: [], useOn: null, verb: null }
   for (const h of hostsFor(s, held.items)) (intoHost(s, held, h.id) ? drag.hosts : drag.full).push(h)
-  if (held.items.length === 1) drag.pours = s.items.filter(o => canPour(held.item, o) > 0)
+  if (held.items.length === 1 && held.item.fill) Object.assign(drag, { verb: 'pour', uses: s.items.filter(o => canPour(held.item, o) > 0) })
+  else if (held.items.length === 1 && KINDS[held.item.kind].cuts) Object.assign(drag, { verb: 'cut', uses: s.items.filter(o => KINDS[o.kind].cut && o.id !== held.item.id) })
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
   sounds(held.items, 'lift')
@@ -513,11 +518,11 @@ function move(e: PointerEvent) {
   const y = Math.round((e.clientY - d.gy - r.top) / cell)
   const px = Math.floor((e.clientX - r.left) / cell), py = Math.floor((e.clientY - r.top) / cell)
   const on = (t: Item) => sameSpace(spaceOf(t), sp) && cellsOf(t).some(([cx, cy]) => t.x + cx === px && t.y + cy === py)
-  const pourInto = d.pours.find(on) ?? null // a vessel dropped onto another pours into it, and goes back where it was
-  const host = pourInto ? null : d.hosts.find(on) ?? null // dropped onto a container: goes inside it
+  const useOn = d.uses.find(on) ?? null // a vessel dropped onto another pours into it, a knife onto cheese cuts it; either goes back where it was
+  const host = useOn ? null : d.hosts.find(on) ?? null // dropped onto a container: goes inside it
   // over a container that would take it but is full: refused, and nothing gets shoved (one that never takes it is just another thing to rearrange)
-  const blocked = host || pourInto ? null : d.full.find(on) ?? null
-  const key = `${spaceKey(sp)}:${x}:${y}:${d.rot}:${strictNow()}:${host?.id ?? ''}:${blocked?.id ?? ''}:${pourInto?.id ?? ''}`
+  const blocked = host || useOn ? null : d.full.find(on) ?? null
+  const key = `${spaceKey(sp)}:${x}:${y}:${d.rot}:${strictNow()}:${host?.id ?? ''}:${blocked?.id ?? ''}:${useOn?.id ?? ''}`
   if (key === d.key) return
   d.key = key
   d.over = true
@@ -525,8 +530,8 @@ function move(e: PointerEvent) {
   d.plan = host ? intoHost(s, d.held, host.id) : null
   d.into = d.plan ? host : null
   d.blocked = blocked
-  d.pourInto = pourInto
-  if (!d.plan && !blocked && !pourInto) d.plan = planDrop(s, d.held, sp, x, y, d.rot, strictNow())
+  d.useOn = useOn
+  if (!d.plan && !blocked && !useOn) d.plan = planDrop(s, d.held, sp, x, y, d.rot, strictNow())
   paintGhosts(x, y)
 }
 
@@ -561,8 +566,8 @@ function paintGhosts(x: number, y: number) {
   const d = drag!
   const p = d.plan
   const a = d.held.item
-  const out: Light[] = [...d.hosts, ...d.pours].map(h => ({ sp: spaceOf(h), cells: absCells(h), kind: d.into?.id === h.id || d.pourInto?.id === h.id ? 'usenow' : 'use' }))
-  if (d.pourInto) { light(out); return }
+  const out: Light[] = [...d.hosts, ...d.uses].map(h => ({ sp: spaceOf(h), cells: absCells(h), kind: d.into?.id === h.id || d.useOn?.id === h.id ? 'usenow' : 'use' }))
+  if (d.useOn) { light(out); return }
   if (d.blocked) { light([...out, { sp: spaceOf(d.blocked), cells: absCells(d.blocked), kind: 'bad' }]); return }
   if (!p) {
     // refused: red where each thing would go
@@ -709,6 +714,7 @@ function unload(c: Customer) {
     if (!it) continue // no room left on the counter
     if (g.fill !== undefined) { if (g.fill) it.fill = { ...g.fill }; else delete it.fill }
     if (g.missing) remove(s, contents(s, it.id).sort(() => Math.random() - 0.5).slice(0, g.missing).map(o => o.id))
+    if (g.left && g.left < (KINDS[g.kind].cut?.count ?? 0)) it.left = g.left
     c.brought.push(it.id)
   }
   if (c.role === 'seller') c.ask = Math.max(1, Math.round(c.brought.reduce((n, id) => n + worth(s, find(s, id)!), 0) * c.rate))
@@ -817,13 +823,17 @@ function finish(drop: boolean) {
   clearGhosts()
   const from = rects()
   d.el.querySelectorAll<HTMLElement>('.item').forEach((el, i) => from.set(d.held.items[i].id, el.getBoundingClientRect()))
-  const a = d.held.item, b = d.pourInto
-  const was = b && drop ? { liquid: a.fill!.liquid, a: level(a), b: level(b), n: 0 } : null
+  const a = d.held.item, b = d.useOn
+  const was = b && drop && d.verb === 'pour' ? { liquid: a.fill!.liquid, a: level(a), b: level(b), n: 0 } : null
+  let made: Item[] | null = null
   if (was && b) { was.n = pour(a, b); putBack(d.held); sound(a, 'use') }
+  else if (b && drop && d.verb === 'cut') { made = cut(s, b); putBack(d.held); if (made) shop('cut'); else shop('bad') }
   else if (drop && d.plan) { applyDrop(s, d.held, d.plan); sounds(d.held.items, 'drop') }
   else { putBack(d.held); if (drop && d.over) shop('bad'); else sounds(d.held.items, 'drop') }
   d.el.remove()
   changed(from)
+  if (made) for (const p of made) app.querySelector(`.item[data-id="${p.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.7)' }, { opacity: 1, transform: 'none' }], { duration: 220, easing: 'ease-out' })
+  if (b && drop && d.verb === 'cut' && !made) toast('no room for the piece')
   if (was && b) {
     slosh(a, was.a, was.liquid)
     slosh(b, was.b, was.liquid)
@@ -923,10 +933,11 @@ app.addEventListener('pointerout', e => {
 initMenu({
   strict: () => strict,
   toggleStrict,
-  spawn(kind, props, liquid) {
+  spawn(kind, props, liquid, age) {
     const it = spawn(s, kind, null, props)
     if (!it) return false
     if (liquid !== undefined) fillWith(it, liquid || null)
+    if (age) it.age = age
     sound(it, 'drop')
     changed()
     app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 })

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 96">
+  <defs>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#e3e6ea"/>
+      <stop offset="0.45" stop-color="#b9bfc6"/>
+      <stop offset="1" stop-color="#8a9098"/>
+    </linearGradient>
+    <linearGradient id="grip" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4a3a32"/>
+      <stop offset="0.4" stop-color="#3a2c26"/>
+      <stop offset="1" stop-color="#211915"/>
+    </linearGradient>
+  </defs>
+  <!-- a kitchen knife, point up: a straight spine on the left, the edge curving to the point, a steel bolster, a riveted handle -->
+  <path d="M11 61L11 14C11 9 12.5 5.5 14 3C18 9 23 22 24 38L24.5 61Z" fill="url(#steel)" stroke="#4a4e54" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M14.5 5C18 11 22.4 23 23.4 38L23.8 60" fill="none" stroke="#f4f6f8" stroke-width="0.9" opacity="0.8"/>
+  <path d="M12.6 14L12.6 59" stroke="#ffffff" stroke-width="0.8" opacity="0.5"/>
+  <rect x="9.5" y="60" width="16.5" height="5" rx="1.2" fill="#9aa0a7" stroke="#4a4e54" stroke-width="0.8"/>
+  <rect x="10.5" y="64.5" width="14.5" height="28.5" rx="3.5" fill="url(#grip)" stroke="#120e0c" stroke-width="0.9"/>
+  <g fill="#c9cdd2" stroke="#55595f" stroke-width="0.5"><circle cx="17.75" cy="70.5" r="1.4"/><circle cx="17.75" cy="78.5" r="1.4"/><circle cx="17.75" cy="86.5" r="1.4"/></g>
+  <path d="M12.5 67L12.5 90" stroke="#ffffff" stroke-width="0.8" opacity="0.18"/>
+</svg>

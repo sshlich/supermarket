@@ -21,7 +21,7 @@ export const TAGS: Record<string, { label: string; desc: string; say: string }> 
  */
 export type Role = 'buyer' | 'seller' | 'trader'
 /** One thing a customer brings, as it should be made: its kind, its properties, its liquid, and pills already gone from a blister. */
-export interface Goods { kind: string; props?: Record<string, string>; fill?: Fill | null; missing?: number }
+export interface Goods { kind: string; props?: Record<string, string>; fill?: Fill | null; missing?: number; left?: number }
 /**
  * `rate` is how they price: what a buyer pays (over what things are worth) or a seller asks (under it). `brought` are the
  * ids of what they unloaded, still theirs until a deal; `ask` is a seller's price for all of it. A buyer's `budget` is the
@@ -60,6 +60,7 @@ export function bring(rand: () => number = Math.random): Goods {
   if (props.length) g.props = Object.fromEntries(props.filter(([p]) => p !== 'power').map(([p, vals]) => [p, pick(Object.keys(vals), rand)]))
   if (k.holds) { const liquid = k.liquid ?? pick(Object.keys(LIQUIDS), rand); g.fill = { liquid, amount: 1 + Math.floor(rand() * k.holds) } }
   if (k.slots?.some(sl => sl.fill)) g.missing = Math.floor(rand() * 4)
+  if (k.cut) g.left = 2 + Math.floor(rand() * (k.cut.count - 1)) // something already cut into, or whole
   return g
 }
 

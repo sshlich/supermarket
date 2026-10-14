@@ -3,7 +3,7 @@
 // footprint check see, and the game paints it over from the item itself: its contents (where each thing sits, how many,
 // what colour) or its own seed. The blister does the same with CSS variables; this is for drawings that need more.
 
-import { dims, swatch, type Item } from './world.ts'
+import { aged, dims, leftOf, sizeOf, swatch, type Item } from './world.ts'
 
 /** A painter gets the item and its contents by slot, and returns SVG in the sprite's own units (32 to a square). */
 type Painter = (host: Item, inside: (slot: number) => Item[]) => string
@@ -12,26 +12,58 @@ const f = (n: number) => +n.toFixed(2)
 /** A small, stable number from a thing's id: books are not all the same height, lighters not all the same colour. */
 const seeded = (id: number, salt = 0) => { let x = (id * 2654435761 + salt * 40503) >>> 0; return () => { x = (x ^ (x << 13)) >>> 0; x = (x ^ (x >>> 17)) >>> 0; x = (x ^ (x << 5)) >>> 0; return x / 4294967296 } }
 
+/** Two colours mixed: `t` of the way from a to b. */
+const mix = (a: string, b: string, t: number) => '#' + [1, 3, 5].map(i => Math.round(parseInt(a.slice(i, i + 2), 16) * (1 - t) + parseInt(b.slice(i, i + 2), 16) * t).toString(16).padStart(2, '0')).join('')
+/** Cheddar's colours for its age: pale yellow paste and a golden rind when new, orange paste and a brown rind aged. */
+const cheddar = (it: Item) => {
+  const t = aged(it)
+  return { paste: mix('#f3d77a', '#ee9636', t), light: mix('#f9e7a6', '#f6b866', t), rind: mix('#d6a446', '#a85e1c', t), dark: mix('#9a6c22', '#6e3a0e', t), line: mix('#8f6a1c', '#6a3510', t) }
+}
+const specks = (seed: number, n: number, x0: number, x1: number, y0: number, y1: number, c: string) => { const r = seeded(seed); let out = ''; for (let i = 0; i < n; i++) out += `<circle cx="${f(x0 + r() * (x1 - x0))}" cy="${f(y0 + r() * (y1 - y0))}" r="${f(0.5 + r() * 0.8)}" fill="${c}" opacity="0.5"/>`; return out }
+
 /**
- * A wedge lying on its side, seen from the front and a little above: the thin end to the left, the rind at the back right.
- * Slices come off the thin end, so with fewer left it is shorter and taller at its cut end, pale where it was cut; at last
- * only the rind is left.
+ * A cheddar wheel: a squat cylinder seen a little from above, its sides bulging out a touch and its top a touch domed.
+ * What is left of it is the part to the right (wedges come off the left), so it narrows from the left as it goes: one
+ * sector of top, wall and paste for each wedge left; a cut face shows where it faces you.
  */
-function wedge(n: number) {
-  const k = n / 8, xl = n ? 4 + 74 * (1 - k) : 84, back = 86, dx = 6, dy = -11
-  const top = (x: number) => 36 - (x - 4) * (21 / 82) // the top edge of the front face
-  const r = seeded(7)
-  let out = ''
-  if (n) {
-    out += `<polygon points="${f(xl)},58 ${back},58 ${back},${f(top(back))} ${f(xl)},${f(top(xl))}" fill="#efcf6c" stroke="#8f6a1c" stroke-width="1" stroke-linejoin="round"/>`
-    for (let i = 0; i < 9; i++) { const x = xl + 4 + r() * (back - xl - 8), y = top(x) + 4 + r() * (54 - top(x) - 4), rr = 1.6 + r() * 3; if (x > xl + 3 && back - xl > 10) out += `<ellipse cx="${f(x)}" cy="${f(y)}" rx="${f(rr)}" ry="${f(rr * 0.8)}" fill="#d8a83c"/>` }
-    out += `<polygon points="${f(xl)},${f(top(xl))} ${back},${f(top(back))} ${back + dx},${f(top(back) + dy)} ${f(xl + dx)},${f(top(xl) + dy)}" fill="#f7e08e" stroke="#8f6a1c" stroke-width="1" stroke-linejoin="round"/>`
-    out += `<path d="M${f(xl + 8)} ${f(top(xl + 8) - 4)}L${back - 6} ${f(top(back - 6) - 4)}" stroke="#fff6cc" stroke-width="1.2" opacity="0.7" stroke-linecap="round"/>`
-    if (n < 8) out += `<path d="M${f(xl)} 58L${f(xl)} ${f(top(xl))}L${f(xl + dx)} ${f(top(xl) + dy)}" fill="none" stroke="#fbeaa8" stroke-width="1.8" stroke-linejoin="round"/>`
-  }
-  out += `<polygon points="${back},${f(top(back))} ${back + dx},${f(top(back) + dy)} ${back + dx},${58 + dy} ${back},58" fill="#b07a26" stroke="#6e4a14" stroke-width="1" stroke-linejoin="round"/>`
-  out += `<path d="M${back + 1.5} ${f(top(back) + 2)}L${back + 1.5} 55" stroke="#d29a44" stroke-width="1" opacity="0.6"/>`
-  return out
+function wheel(host: Item) {
+  const n = leftOf(host) || 8, a = n * 22.5, c = cheddar(host)
+  const cx = 64, cy = 30, rx = 58, ry = 18, h = 40, R = Math.PI / 180
+  const P = (t: number, dy = 0) => `${f(cx + rx * Math.cos(t * R))} ${f(cy + dy + ry * Math.sin(t * R))}`
+  const tx = sizeOf(host).w * 32 - 128 + (n <= 4 ? 2 : 0)
+  let out = `<defs><linearGradient id="wall" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${c.rind}"/><stop offset="0.35" stop-color="${mix(c.rind, '#ffffff', 0.12)}"/><stop offset="1" stop-color="${c.dark}"/></linearGradient>`
+    + `<radialGradient id="top" cx="0.45" cy="0.4" r="0.7"><stop offset="0" stop-color="${mix(c.rind, '#ffffff', 0.25)}"/><stop offset="1" stop-color="${c.rind}"/></radialGradient></defs><g transform="translate(${tx} 0)">`
+  const face = (t: number, fill: string) => `<path d="M${cx} ${cy}L${P(t)}L${P(t, h)}L${cx} ${cy + h}Z" fill="${fill}" stroke="${c.line}" stroke-width="0.9" stroke-linejoin="round"/>` + specks(t + 50, 6, cx + Math.min(0, rx * Math.cos(t * R)) + 3, cx + Math.max(0, rx * Math.cos(t * R)) - 3, cy + 4, cy + h - 2, c.dark)
+  if (n < 8 && a > 90) out += face(-a, c.paste) // the back cut faces you once more than half is left
+  const w1 = Math.min(a, 180)
+  out += `<path d="M${P(0)}A${rx} ${ry} 0 0 1 ${P(w1)}${w1 >= 180 ? `Q${cx - rx - 5} ${cy + h / 2} ${P(180, h)}` : `L${P(w1, h)}`}A${rx} ${ry} 0 0 0 ${P(0, h)}Q${cx + rx + 5} ${cy + h / 2} ${P(0)}Z" fill="url(#wall)" stroke="${c.line}" stroke-width="1" stroke-linejoin="round"/>`
+  out += `<path d="M${P(4, h * 0.55)}A${rx} ${ry} 0 0 1 ${P(Math.min(w1, 176), h * 0.55)}" fill="none" stroke="${c.dark}" stroke-width="0.8" opacity="0.35"/>`
+  if (n < 8 && a < 90) out += face(a, c.light) // the front cut faces you while less than half is left
+  out += n >= 8 ? `<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="url(#top)" stroke="${c.line}" stroke-width="1"/>`
+    : `<path d="M${cx} ${cy}L${P(-a)}A${rx} ${ry} 0 ${2 * a > 180 ? 1 : 0} 1 ${P(a)}Z" fill="url(#top)" stroke="${c.line}" stroke-width="1" stroke-linejoin="round"/><path d="M${P(-a)}L${cx} ${cy}L${P(a)}" fill="none" stroke="${c.light}" stroke-width="1.4" stroke-linejoin="round"/>`
+  out += n >= 8 ? `<ellipse cx="${cx}" cy="${cy}" rx="${rx - 7}" ry="${ry - 2.5}" fill="none" stroke="${c.dark}" stroke-width="0.8" opacity="0.3"/>`
+    : `<path d="M${f(cx + (rx - 7) * Math.cos(-a * R))} ${f(cy + (ry - 2.5) * Math.sin(-a * R))}A${rx - 7} ${ry - 2.5} 0 ${2 * a > 180 ? 1 : 0} 1 ${f(cx + (rx - 7) * Math.cos(a * R))} ${f(cy + (ry - 2.5) * Math.sin(a * R))}" fill="none" stroke="${c.dark}" stroke-width="0.8" opacity="0.3"/>`
+  if (n >= 8) out += `<path d="M${P(200)}A${rx} ${ry} 0 0 1 ${P(250)}" fill="none" stroke="#ffffff" stroke-width="1.4" opacity="0.35" stroke-linecap="round"/>` // the light on the back rim, while there is a back
+  return out + '</g>'
+}
+
+/**
+ * A cheddar wedge in profile, a little from above: a tall pizza slice. Its cut face is a true rectangle of paste, the top
+ * a sliver tapering to the thin end, the rind at the back. Slices come off the thin end, so it shortens from the left.
+ */
+function wedge(host: Item) {
+  const n = leftOf(host) || 6, c = cheddar(host)
+  const xr = 87, dx = 4, dy = 11, top = 20, bottom = 60, xl = xr - 78 * n / 6, tip = xr - 78
+  const fr = (xl - tip) / (xr - tip) // how deep the top is at the left end: none at the thin end itself
+  const tx = sizeOf(host).w * 32 - 92
+  let out = `<defs><linearGradient id="rind" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${c.rind}"/><stop offset="1" stop-color="${c.dark}"/></linearGradient></defs><g transform="translate(${f(tx)} 0)">`
+  out += `<rect x="${f(xl)}" y="${top}" width="${f(xr - xl)}" height="${bottom - top}" fill="${c.paste}" stroke="${c.line}" stroke-width="1"/>`
+  out += specks(host.id % 97 + 3, Math.round(4 + 6 * n / 6), xl + 3, xr - 3, top + 4, bottom - 3, c.dark)
+  out += `<path d="M${f(xl)} ${top}L${xr} ${top}L${xr + dx} ${top - dy}L${f(xl + dx * fr)} ${f(top - dy * fr)}Z" fill="${c.light}" stroke="${c.line}" stroke-width="1" stroke-linejoin="round"/>`
+  out += `<path d="M${xr} ${top}L${xr + dx} ${top - dy}L${xr + dx} ${bottom - dy}L${xr} ${bottom}Z" fill="url(#rind)" stroke="${c.line}" stroke-width="1" stroke-linejoin="round"/>`
+  out += `<path d="M${f(xl + 2)} ${top + 1.5}L${xr - 2} ${top + 1.5}" stroke="#ffffff" stroke-width="1" opacity="0.4"/>`
+  if (n < 6) out += `<path d="M${f(xl)} ${bottom}L${f(xl)} ${top}" stroke="${c.light}" stroke-width="1.6"/>`
+  return out + '</g>'
 }
 
 const PAINTERS: Record<string, Painter> = {
@@ -100,26 +132,17 @@ const PAINTERS: Record<string, Painter> = {
     out += `<path d="M14 14C30 11.5 ${full ? '60 11.5 84 12.5' : `${f(Math.max(30, x1 - 20))} 11.5 ${f(Math.max(32, x1 - 4))} 12.5`}" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.6" stroke-linecap="round"/><path d="M20 53L44 53" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round"/>`
     return out
   },
-  /** A cheese wheel from above: one sector for each wedge still in it (eight when new), the pale paste where it was cut, on its paper. */
-  cheesewheel: (_, inside) => {
-    const n = inside(0).length, cx = 64, cy = 64, R = 56
-    const pt = (a: number, r = R) => `${f(cx + r * Math.cos(a))} ${f(cy + r * Math.sin(a))}`
-    let out = `<circle cx="64" cy="64" r="60" fill="#d8cfb8" opacity="0.55"/>`
-    for (let k = 0; k < n; k++) {
-      const a0 = -Math.PI / 2 + k * Math.PI / 4, a1 = a0 + Math.PI / 4
-      out += `<path d="M${cx} ${cy}L${pt(a0)}A${R} ${R} 0 0 1 ${pt(a1)}Z" fill="url(#rind)"/><path d="M${pt(a0)}A${R} ${R} 0 0 1 ${pt(a1)}" fill="none" stroke="#8f5f1c" stroke-width="4"/><path d="M${pt(a0, 46)}A46 46 0 0 1 ${pt(a1, 46)}" fill="none" stroke="#8f5f1c" stroke-width="0.8" opacity="0.4"/>`
-    }
-    if (n && n < 8) {
-      const a0 = -Math.PI / 2, a1 = a0 + n * Math.PI / 4
-      out += `<path d="M${cx} ${cy}L${pt(a0, R - 1)}M${cx} ${cy}L${pt(a1, R - 1)}" stroke="#fbeaa8" stroke-width="2.5" stroke-linecap="round"/>`
-    }
-    return out
+  cheesewheel: host => wheel(host),
+  cheesewedge: host => wedge(host),
+  /** A slice of cheddar, its colour from its age, a thin edge of rind along one side. */
+  cheeseslice: host => {
+    const c = cheddar(host)
+    return `<path d="M8 10L56 8.5L57 55L9 57Z" fill="${c.paste}" stroke="${c.line}" stroke-width="1" stroke-linejoin="round"/><path d="M8 10L56 8.5" stroke="${c.rind}" stroke-width="3" stroke-linecap="round"/>`
+      + specks(host.id % 89 + 5, 8, 12, 52, 14, 52, c.dark) + `<path d="M12 14L52 13" stroke="#ffffff" stroke-width="1" opacity="0.35"/>`
   },
-  /** A wedge: slices come off its thin end, so what is left is closer and closer to its rind (the rind is what is left at last). */
-  cheesewedge: (_, inside) => wedge(inside(0).length),
   /** A ham: the log is as long as the slices left in it; its cut end shows the pink face, its netting goes on round what is left. */
-  ham: (_, inside) => {
-    const n = inside(0).length, L = 110 * n / 8, x1 = 9 + L
+  ham: host => {
+    const n = leftOf(host) || 8, L = 110 * n / 8, x1 = 9 + L
     if (!n) return `<path d="M10 40C16 34 22 46 28 40" fill="none" stroke="#e8d8c8" stroke-width="1.2"/>`
     let out = `<rect x="9" y="10" width="${f(L)}" height="46" rx="${f(Math.min(16, L / 2))}" ry="20" fill="url(#ham)" stroke="#7a3a36" stroke-width="1"/>`
     out += `<g fill="none" stroke="#f3dccc" stroke-width="0.8" opacity="0.55">`

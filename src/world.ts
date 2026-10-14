@@ -21,8 +21,14 @@ const isCounter = (c: unknown): c is Counter => typeof c === 'string' && c in CO
  * (for tooltips), private notes, tags (what customers ask for), a category (`cat`) and a price in coins.
  * `props` are what one thing of the kind can be on top of that: each property has values, the first one the default.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; liquids?: string[]; read?: boolean; sound?: string; computer?: boolean }
-/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `liquids`: the only liquids it takes (a lighter: fuel); `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts); `computer`: its window is a screen (see computer.ts). */
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; liquids?: string[]; read?: boolean; sound?: string; computer?: boolean; cut?: Cut; cuts?: boolean; ages?: boolean }
+/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `liquids`: the only liquids it takes (a lighter: fuel); `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts); `computer`: its window is a screen (see computer.ts); `cut`: a knife cuts pieces off it; `cuts`: it is a knife; `ages`: it ages (cheese, see AGE_DAYS). */
+/**
+ * Something cut with a knife (a cheese wheel into wedges; a wedge, a ham into slices): `into` is what comes off, `count` how
+ * many it starts with, `from` the side the pieces come off, 'left' or 'right' (it shrinks from there), `sizes` its footprint as it goes: a list
+ * of [at least this many left, w, h], biggest first.
+ */
+export interface Cut { into: string; count: number; from: string; sizes: number[][] }
 /** What a property's value does to a thing: another name, description or price, more tags, and colours swapped in its sprite (hex to hex; "none" hides whatever had that colour). */
 export interface Effect { name?: string; desc?: string; tags?: string[]; price?: number; colors?: Record<string, string> }
 /**
@@ -38,8 +44,11 @@ export const KINDS: Record<string, Kind> = DATA
 
 /** `rot` is how many quarter turns clockwise it has been turned (0 to 3): 2 is upside down. */
 /** `in` says which container's slot it sits in (its x, y are then inside that slot's grid), `at` which counter it is on; neither means on the field. */
-/** `props` are its property values where they are not the default (`{ origin: 'synthetic' }`); `fill` is the liquid in a vessel. */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter; props?: Record<string, string>; fill?: Fill }
+/**
+ * `props` are its property values where they are not the default (`{ origin: 'synthetic' }`); `fill` is the liquid in a
+ * vessel; `left` how many pieces are left in something cut (all of them when missing); `age` how many days old it is.
+ */
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter; props?: Record<string, string>; fill?: Fill; left?: number; age?: number }
 export interface Fill { liquid: string; amount: number }
 
 /**
@@ -103,9 +112,19 @@ export function shapeOf(kind: string): Box {
   SHAPES.set(kind, { sig, box })
   return box
 }
+/** How many pieces are left in something cut (0 for anything else). */
+export const leftOf = (it: Item) => { const c = KINDS[it.kind]?.cut; return c ? Math.max(1, Math.min(c.count, Math.round(Number(it.left ?? c.count)) || c.count)) : 0 }
+/** A thing's footprint before turning: its kind's, or for something being cut, the size for what is left of it. */
+export function sizeOf(it: Item): { w: number; h: number } {
+  const k = KINDS[it.kind], c = k.cut
+  if (!c) return { w: k.w, h: k.h }
+  const n = leftOf(it), size = c.sizes.find(([min]) => n >= min) ?? c.sizes[c.sizes.length - 1]
+  return { w: size[1], h: size[2] }
+}
+const shapeOfItem = (it: Item): Box => KINDS[it.kind]?.cut ? { id: -1, x: 0, y: 0, ...sizeOf(it) } : shapeOf(it.kind)
 export const quarter = (n: number) => ((Math.round(Number(n)) % 4) + 4) % 4
 export function boxOf(it: Item): Box {
-  let b = shapeOf(it.kind)
+  let b = shapeOfItem(it)
   for (let i = 0; i < quarter(it.rot); i++) b = turn(b)
   return { ...b, id: it.id, x: it.x, y: it.y, rot: quarter(it.rot) }
 }
@@ -138,8 +157,17 @@ export function look(it: Item): { name: string; desc?: string; tags: string[]; p
     Object.assign(out.colors, e.colors)
   }
   if (it.fill) out.tags.push(...LIQUIDS[it.fill.liquid]?.tags ?? [])
+  if (k.cut) out.price = Math.round(out.price * leftOf(it) / k.cut.count)
+  if (k.ages && (it.age ?? 0) >= AGE_DAYS) { out.name = `Aged ${out.name[0].toLowerCase()}${out.name.slice(1)}`; out.price = Math.round(out.price * 1.5) }
   return out
 }
+/**
+ * How many days a cheese takes to age: on the way it turns from pale cheddar to orange (`aged` is how far along, 0 to 1),
+ * and after it is called aged and is worth more. Nothing counts days yet: a thing's `age` is set where it comes from (the
+ * debug panel), for later.
+ */
+export const AGE_DAYS = 10
+export const aged = (it: Item) => Math.max(0, Math.min(1, (it.age ?? 0) / AGE_DAYS))
 /** A thing's colour swatch (menu rows, window headers): its kind's colour, or what its properties turn that colour into. */
 export const swatch = (it: Item) => { const c = KINDS[it.kind].color; return look(it).colors[c.toLowerCase()] ?? c }
 /** What a thing is worth: its own price, its liquid, and everything inside it. */
@@ -347,6 +375,11 @@ function cleanFill(o: Item): { fill?: Fill } {
   const n = Math.min(cap, Math.floor(Number(o.fill?.amount) || 0))
   return o.fill && LIQUIDS[o.fill.liquid] && n > 0 ? { fill: { liquid: o.fill.liquid, amount: n } } : {}
 }
+/** How much is left of something cut, and how old a thing that ages is, where it makes sense. */
+function cleanCut(o: Item): { left?: number; age?: number } {
+  const c = KINDS[o.kind]?.cut, n = Math.round(Number(o.left))
+  return { ...(c && n >= 1 && n < c.count ? { left: n } : {}), ...(KINDS[o.kind]?.ages && Number(o.age) > 0 ? { age: Number(o.age) } : {}) }
+}
 /** Only properties the kind still has, with values it still knows, and none that are the default. */
 function cleanProps(o: Item): { props?: Record<string, string> } {
   const defs = KINDS[o.kind]?.props ?? {}
@@ -360,7 +393,7 @@ function cleanProps(o: Item): { props?: Record<string, string> } {
  */
 export function settle(s: State): State {
   // only what an item still is: no old properties, liquids or machine state (and nothing on a counter that does not exist)
-  const items: Item[] = s.items.filter(o => KINDS[o.kind]).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isCounter(o.at) ? { at: o.at } : {}), ...cleanProps(o), ...cleanFill(o) }))
+  const items: Item[] = s.items.filter(o => KINDS[o.kind]).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isCounter(o.at) ? { at: o.at } : {}), ...cleanProps(o), ...cleanFill(o), ...cleanCut(o) }))
   const state: State = { items, next: s.next }
   // pass 1: anything in a slot that does not exist, or that its slot now refuses, goes back out to the field
   const evict = (o: Item) => { delete o.in }
@@ -390,10 +423,37 @@ export function settle(s: State): State {
   return { items: out, next: s.next, windows, cash: Math.max(0, Math.round(Number(s.cash ?? START_CASH)) || 0) }
 }
 
+/**
+ * Cut a piece off with a knife: one comes off, or, when two are left, the last cut splits them and the thing is gone. It
+ * shrinks from its cut side, its other side staying where it was; the pieces (as old as it is) go on the first free spots
+ * of the same place, or of the field. Null, with nothing changed, if there is no room for them.
+ */
+export function cut(s: State, it: Item): Item[] | null {
+  const c = KINDS[it.kind]?.cut
+  if (!c || !KINDS[c.into]) return null
+  const n = leftOf(it), pieces = n <= 2 ? n : 1, gone = n - pieces <= 0
+  const space = spaceOf(it), was = { x: it.x, left: it.left }, before = dims(it)
+  const at = s.items.indexOf(it)
+  if (gone) s.items.splice(at, 1)
+  else { it.left = n - pieces; if (c.from !== 'right') it.x += before.w - dims(it).w }
+  const made: Item[] = []
+  for (let i = 0; i < pieces; i++) {
+    const p = spawn(s, c.into, space) ?? spawn(s, c.into, null)
+    if (!p) break
+    if (it.age !== undefined) p.age = it.age
+    made.push(p)
+  }
+  if (made.length === pieces) return made
+  remove(s, made.map(p => p.id)) // no room: everything as it was
+  if (gone) s.items.splice(at, 0, it)
+  else { it.x = was.x; if (was.left === undefined) delete it.left; else it.left = was.left }
+  return null
+}
+
 /** Move a thing (and whatever is inside it) to the first free spot of a place, turned if that is the only way it fits. False if there is no room. */
 export function moveInto(s: State, it: Item, space: Space): boolean {
   const { w, h } = spaceSize(s, space)
-  const spot = firstFree(w, h, inSpace(s, space).filter(o => o.id !== it.id).map(boxOf), shapeOf(it.kind))
+  const spot = firstFree(w, h, inSpace(s, space).filter(o => o.id !== it.id).map(boxOf), shapeOfItem(it))
   if (!spot || !accepts(s, it, space)) return false
   Object.assign(it, { x: spot.x, y: spot.y, rot: spot.rot })
   setIn(it, space)

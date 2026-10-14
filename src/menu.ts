@@ -4,14 +4,14 @@
 // by category, one row each, with a button per variant (an apple or a synthetic one, a bottle empty or full of something).
 // main.ts hands in what the controls do.
 
-import { KINDS, LIQUIDS, look, swatch } from './world.ts'
+import { AGE_DAYS, KINDS, LIQUIDS, look, swatch } from './world.ts'
 import { setVolume, shop, soundOn, toggleSound, volume } from './sound.ts'
 
 export interface Hooks {
   strict(): boolean
   toggleStrict(): void
   /** Put a new thing on the field; false if there is no room. `liquid`: a vessel filled with it, or `''` empty. */
-  spawn(kind: string, props: Record<string, string>, liquid?: string): boolean
+  spawn(kind: string, props: Record<string, string>, liquid?: string, age?: number): boolean
   addCash(n: number): void
   clearField(): void
   newGame(): void
@@ -73,7 +73,7 @@ addEventListener('keydown', e => {
 // ---------------------------------------------------------------- the debug panel
 
 /** Category order; anything else comes after, by name. */
-const CATS = ['food', 'sundries', 'medicine', 'storage', 'furniture', 'tech']
+const CATS = ['food', 'sundries', 'medicine', 'tools', 'storage', 'furniture', 'tech']
 let debug: HTMLElement | null = null
 const pos = stored('debug-pos', { x: 16, y: 56 })
 
@@ -84,11 +84,12 @@ function debugHtml() {
   const rows = (id: string) => {
     const k = KINDS[id]
     const [prop, vals] = Object.entries(k.props ?? {})[0] ?? []
-    const variants: { label: string; props: Record<string, string>; liquid?: string; c: string }[] =
+    const variants: { label: string; props: Record<string, string>; liquid?: string; age?: number; c: string }[] =
       prop ? Object.keys(vals).map(v => { const it = { id: 0, kind: id, x: 0, y: 0, rot: 0, props: { [prop]: v } }; return { label: vals[v].name ?? v, props: { [prop]: v }, c: swatch(it) } })
-      : k.holds && !k.liquid ? ['', ...Object.keys(LIQUIDS)].map(l => ({ label: l ? LIQUIDS[l].name : 'empty', props: {}, liquid: l, c: l ? LIQUIDS[l].color : k.color }))
+      : k.holds && !k.liquid ? ['', ...(k.liquids ?? Object.keys(LIQUIDS))].map(l => ({ label: l ? LIQUIDS[l].name : 'empty', props: {}, liquid: l, c: l ? LIQUIDS[l].color : k.color }))
+      : k.ages ? [{ label: 'fresh', props: {}, c: k.color }, { label: 'aged', props: {}, age: AGE_DAYS + 2, c: '#e8932e' }]
       : [{ label: 'spawn', props: {}, c: k.color }]
-    const buttons = variants.map(v => `<button data-kind="${id}" data-props="${esc(JSON.stringify(v.props))}"${v.liquid !== undefined ? ` data-liquid="${v.liquid}"` : ''} style="--c:${v.c}"><i></i>${esc(v.label)}</button>`).join('')
+    const buttons = variants.map(v => `<button data-kind="${id}" data-props="${esc(JSON.stringify(v.props))}"${v.liquid !== undefined ? ` data-liquid="${v.liquid}"` : ''}${v.age ? ` data-age="${v.age}"` : ''} style="--c:${v.c}"><i></i>${esc(v.label)}</button>`).join('')
     return `<div class="drow"><i style="background:${look({ id: 0, kind: id, x: 0, y: 0, rot: 0 }).colors[k.color.toLowerCase()] ?? k.color}"></i><b title="${esc(k.desc ?? '')}">${esc(k.name)}</b><small>${k.w}×${k.h}</small><small>${k.price ?? 0}$</small><span class="dvars">${buttons}</span></div>`
   }
   const spawn = kinds.length ? cats.map(c => `<div class="dcat">${esc(c)}</div>${kinds.filter(([, k]) => (k.cat ?? 'other') === c).map(([id]) => rows(id)).join('')}`).join('')
@@ -119,7 +120,7 @@ export function openDebug() {
     if (b.dataset.d === 'close') { debug!.remove(); debug = null; return }
     if (b.dataset.d === 'cash') return hooks.addCash(100)
     if (b.dataset.d === 'clear') return hooks.clearField()
-    if (b.dataset.kind && !hooks.spawn(b.dataset.kind, JSON.parse(b.dataset.props || '{}'), b.dataset.liquid)) b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 })
+    if (b.dataset.kind && !hooks.spawn(b.dataset.kind, JSON.parse(b.dataset.props || '{}'), b.dataset.liquid, Number(b.dataset.age) || undefined)) b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 })
   })
   debug.addEventListener('pointerdown', e => {
     const t = e.target as HTMLElement
