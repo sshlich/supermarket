@@ -1,28 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
   <defs>
     <linearGradient id="gauze" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#bdb4a0"/>
-      <stop offset="0.32" stop-color="#ece6d9"/>
+      <stop offset="0.3" stop-color="#ece6d9"/>
       <stop offset="0.65" stop-color="#e0d9ca"/>
       <stop offset="1" stop-color="#ada48f"/>
     </linearGradient>
-    <clipPath id="body"><path d="M4.5 8L27.5 8L27.5 25.5A11.5 3.8 0 0 1 4.5 25.5Z"/></clipPath>
+    <clipPath id="body"><path d="M6 9.5L58 9.5L58 23.5A26 6.5 0 0 1 6 23.5Z"/></clipPath>
   </defs>
-  <!-- a short roll of gauze standing on its end -->
-  <path d="M4.5 8L27.5 8L27.5 25.5A11.5 3.8 0 0 1 4.5 25.5Z" fill="url(#gauze)"/>
-  <g clip-path="url(#body)" stroke-width="0.45">
-    <g stroke="#cbc3b0" opacity="0.6"><path d="M4 12H28M4 15H28M4 18H28M4 21H28M4 24H28M4 27H28"/></g>
-    <g stroke="#cbc3b0" opacity="0.35"><path d="M8 8V30M11.5 8V30M15 8V30M18.5 8V30M22 8V30M25.5 8V30"/></g>
+  <!-- a wide, squat roll of gauze standing on its end -->
+  <path d="M6 9.5L58 9.5L58 23.5A26 6.5 0 0 1 6 23.5Z" fill="url(#gauze)"/>
+  <g clip-path="url(#body)" stroke-width="0.45" fill="none">
+    <g stroke="#cbc3b0" opacity="0.6"><path d="M6 13A26 6.5 0 0 0 58 13"/><path d="M6 16.5A26 6.5 0 0 0 58 16.5"/><path d="M6 20A26 6.5 0 0 0 58 20"/><path d="M6 23.5A26 6.5 0 0 0 58 23.5"/></g>
+    <g stroke="#cbc3b0" opacity="0.3"><path d="M11 9V32M16 9V32M21 9V32M26 9V32M31 9V32M36 9V32M41 9V32M46 9V32M51 9V32"/></g>
     <!-- the loose end of the outer layer, and its shadow -->
-    <path d="M20 8.5C19.6 15 20.4 22 19.8 30" fill="none" stroke="#9c937f" stroke-width="0.8"/>
-    <path d="M20.6 8.5C20.2 15 21 22 20.4 30L22.2 30C22.8 22 22 15 22.4 8.5Z" fill="#000" opacity="0.08"/>
+    <path d="M44 10C43.6 17 44.4 24 43.8 31" stroke="#9c937f" stroke-width="0.8"/>
+    <path d="M44.6 10C44.2 17 45 24 44.4 31L46.6 31C47.2 24 46.4 17 46.8 10Z" fill="#000" opacity="0.08" stroke="none"/>
   </g>
-  <path d="M4.5 8L27.5 8L27.5 25.5A11.5 3.8 0 0 1 4.5 25.5Z" fill="none" stroke="#8f8672" stroke-width="0.9"/>
-  <ellipse cx="16" cy="8" rx="11.5" ry="3.8" fill="#f3efe6" stroke="#8f8672" stroke-width="0.9"/>
-  <ellipse cx="16" cy="8" rx="7" ry="2.3" fill="none" stroke="#d6cfbf" stroke-width="0.5"/>
-  <ellipse cx="16" cy="8" rx="2.8" ry="1" fill="#a39a86"/>
+  <path d="M6 9.5L58 9.5L58 23.5A26 6.5 0 0 1 6 23.5Z" fill="none" stroke="#8f8672" stroke-width="0.9"/>
+  <ellipse cx="32" cy="9.5" rx="26" ry="6.5" fill="#f3efe6" stroke="#8f8672" stroke-width="0.9"/>
+  <ellipse cx="32" cy="9.5" rx="17" ry="4.2" fill="none" stroke="#d6cfbf" stroke-width="0.5"/>
+  <ellipse cx="32" cy="9.5" rx="9" ry="2.2" fill="none" stroke="#d6cfbf" stroke-width="0.5"/>
+  <ellipse cx="32" cy="9.5" rx="4" ry="1" fill="#a39a86"/>
   <!-- a metal clip across the loose end -->
-  <path d="M15 16.5L16.8 15.3L18.4 17L20 15.3L21.6 17L23.2 15.3L25 16.5L25 20L15 20Z" fill="#9aa0a6" stroke="#4e5358" stroke-width="0.6"/>
-  <path d="M16 18.2H24" stroke="#d4d8dc" stroke-width="0.5" opacity="0.8"/>
-  <path d="M7.5 12L7.5 25" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M39 16.8L40.8 15.6L42.4 17.3L44 15.6L45.6 17.3L47.2 15.6L49 16.8L49 20.4L39 20.4Z" fill="#9aa0a6" stroke="#4e5358" stroke-width="0.6"/>
+  <path d="M40 18.6H48" stroke="#d4d8dc" stroke-width="0.5" opacity="0.8"/>
+  <path d="M10.5 13.5L10.5 24" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1.5" stroke-linecap="round"/>
 </svg>
