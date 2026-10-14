@@ -1,6 +1,7 @@
-// Customers at the counter: who they are, what kinds of thing they are after (as tags), and what they say. Pure data and
-// rules, no page; the terminal in main.ts draws it. A special customer would be a Customer with its own `choices` and
-// `react`; for now everybody is the same simple sort.
+// Customers at the counter: who they are, what they want (as tags), what they bring, and how a deal with them goes. Pure
+// data and rules, no page; the terminal in main.ts draws it and moves the things.
+
+import { KINDS, LIQUIDS, type Fill } from './world.ts'
 
 /** The tags a customer can want (the same tags kinds carry): what people need to get by, not what things feel like. Each has a word for the tooltip and what a customer says about it. */
 export const TAGS: Record<string, { label: string; desc: string; say: string }> = {
@@ -14,30 +15,87 @@ export const TAGS: Record<string, { label: string; desc: string; say: string }> 
   valuable: { label: 'valuable', desc: 'Worth something to someone: to keep, or to trade on.', say: 'something of value' },
 }
 
-export interface Customer { id: number; name: string; wants: string[]; mood: number }
+/**
+ * Three sorts. A buyer wants things and pays for them; a seller brings things (unloaded on the outside counter) and asks a
+ * price for the lot; a trader brings things and wants things, and swaps.
+ */
+export type Role = 'buyer' | 'seller' | 'trader'
+/** One thing a customer brings, as it should be made: its kind, its properties, its liquid, and pills already gone from a blister. */
+export interface Goods { kind: string; props?: Record<string, string>; fill?: Fill | null; missing?: number }
+/**
+ * `rate` is how they price: what a buyer pays (over what things are worth) or a seller asks (under it). `brought` are the
+ * ids of what they unloaded, still theirs until a deal; `ask` is a seller's price for all of it.
+ */
+export interface Customer { id: number; name: string; role: Role; wants: string[]; rate: number; goods: Goods[]; brought: number[]; ask: number }
 
 const NAMES = ['Mara', 'Odell', 'Pim', 'Ines', 'Tobias', 'Wren', 'Hollis', 'Bea', 'Corvin', 'Dot', 'Ansel', 'Yuki']
+const pick = <T>(list: T[], rand: () => number) => list[Math.floor(rand() * list.length)]
 
-/** A new customer: one to three different wants. */
+/** A new customer: a buyer half the time, else a seller or (less often) a trader. */
 export function arrive(id: number, rand: () => number = Math.random): Customer {
-  const pool = Object.keys(TAGS)
+  const r = rand()
+  const role: Role = r < 0.5 ? 'buyer' : r < 0.8 ? 'seller' : 'trader'
   const wants: string[] = []
-  for (let n = 1 + Math.floor(rand() * 3); n > 0; n--) wants.push(...pool.splice(Math.floor(rand() * pool.length), 1))
-  return { id, name: NAMES[Math.floor(rand() * NAMES.length)], wants, mood: 0 }
+  if (role !== 'seller') { const pool = Object.keys(TAGS); for (let n = 1 + Math.floor(rand() * (role === 'buyer' ? 3 : 2)); n > 0; n--) wants.push(...pool.splice(Math.floor(rand() * pool.length), 1)) }
+  const goods = role === 'buyer' ? [] : Array.from({ length: 1 + Math.floor(rand() * 3) }, () => bring(rand))
+  const rate = role === 'buyer' ? 1.2 + rand() * 0.4 : role === 'seller' ? 0.5 + rand() * 0.4 : 1
+  return { id, name: pick(NAMES, rand), role, wants, rate, goods, brought: [], ask: 0 }
 }
 
-/** Their first words: they say what they are after. */
+/**
+ * Something a seller or trader brings: cheaper kinds more often (a cabinet rarely), any of its property values, a vessel
+ * part full of something, a blister with some pills already gone. What people bring is never quite new.
+ */
+export function bring(rand: () => number = Math.random): Goods {
+  const pool = Object.entries(KINDS).filter(([, k]) => k.price)
+  let r = rand() * pool.reduce((n, [, k]) => n + 1 / k.price!, 0)
+  const [kind, k] = pool.find(([, k]) => (r -= 1 / k.price!) <= 0) ?? pool[0]
+  const g: Goods = { kind }
+  const props = Object.entries(k.props ?? {})
+  if (props.length) g.props = Object.fromEntries(props.map(([p, vals]) => [p, pick(Object.keys(vals), rand)]))
+  if (k.holds) { const liquid = k.liquid ?? pick(Object.keys(LIQUIDS), rand); g.fill = { liquid, amount: 1 + Math.floor(rand() * k.holds) } }
+  if (k.slots?.some(sl => sl.fill)) g.missing = Math.floor(rand() * 4)
+  return g
+}
+
+const list = (words: string[]) => words.length > 1 ? `${words.slice(0, -1).join(', ')} and ${words[words.length - 1]}` : words[0]
+const wanted = (c: Customer) => list(c.wants.map(t => TAGS[t]?.say ?? t))
+
+/** Their first words. A seller names the price for everything they unloaded. */
 export function greeting(c: Customer): string {
-  const w = c.wants.map(t => TAGS[t]?.say ?? t)
-  return `Hello. I'm looking for ${w.length > 1 ? `${w.slice(0, -1).join(', ')} and ${w[w.length - 1]}` : w[0]}.`
+  if (c.role === 'seller') return c.brought.length ? `I've got a few things to sell. ${c.ask}$ for the lot.` : 'No room on your counter for my things.'
+  if (c.role === 'trader') return c.brought.length ? `I'll swap these for ${wanted(c)}.` : 'No room on your counter for my things.'
+  return `Hello. I'm looking for ${wanted(c)}.`
 }
 
-/** What is offered (the tags of each thing on the inside counter) against what they want: which wants are met, what they say, and whether they buy (everything they want is there). */
-export function judge(c: Customer, offered: string[][]): { met: string[]; say: string; sold: boolean } {
-  if (!offered.length) return { met: [], say: 'The counter is empty. Is this a joke?', sold: false }
-  const have = new Set(offered.flat())
-  const met = c.wants.filter(t => have.has(t))
-  if (met.length === c.wants.length) return { met, say: 'Yes, that is just what I wanted. I will take it.', sold: true }
-  if (met.length) return { met, say: `Some of it. I still want ${c.wants.filter(t => !met.includes(t)).map(t => TAGS[t]?.say ?? t).join(' and ')}.`, sold: false }
-  return { met, say: 'None of this is what I came for.', sold: false }
+/** A thing on the inside counter, as a customer sees it: its tags (and those of whatever is inside it) and what it is worth. */
+export interface Offer { id: number; tags: string[]; worth: number }
+
+/**
+ * Press the deal button. What is on the inside counter (`offered`), the cash you have, and what the customer's own goods
+ * are worth (`theirs`) decide it: `done` if it goes through, `take` what they take off the inside counter, `pay` what
+ * changes hands (positive to you), `met` which wants are covered, `say` their answer. A buyer takes what has a tag they
+ * want and pays over its worth; a seller wants their price; a trader takes what they want if it is worth most of what they
+ * brought, and no money moves.
+ */
+export function deal(c: Customer, offered: Offer[], cash: number, theirs: number): { done: boolean; take: number[]; pay: number; met: string[]; say: string } {
+  const take = offered.filter(o => o.tags.some(t => c.wants.includes(t)))
+  const met = c.wants.filter(w => take.some(o => o.tags.includes(w)))
+  const no = (say: string) => ({ done: false, take: [], pay: 0, met, say })
+  const value = take.reduce((n, o) => n + o.worth, 0)
+  if (c.role === 'seller') {
+    if (!c.brought.length) return no('No room on your counter for my things.')
+    if (cash < c.ask) return no(`You can't afford it. ${c.ask}$, not a coin less.`)
+    return { done: true, take: [], pay: -c.ask, met, say: 'Pleasure doing business.' }
+  }
+  if (c.role === 'trader' && !c.brought.length) return no('No room on your counter for my things.')
+  if (!offered.length) return no('The counter is empty. Is this a joke?')
+  if (!take.length) return no('None of this is what I came for.')
+  const missing = c.wants.filter(w => !met.includes(w)).map(t => TAGS[t]?.say ?? t)
+  if (c.role === 'trader') {
+    if (value < theirs * 0.8) return no(`That's not worth what I brought.${missing.length ? ` And I still want ${list(missing)}.` : ''}`)
+    return { done: true, take: take.map(o => o.id), pay: 0, met, say: 'Fair trade.' }
+  }
+  const pay = Math.max(1, Math.round(value * c.rate))
+  return { done: true, take: take.map(o => o.id), pay, met, say: missing.length ? `I'll take these. Here's ${pay}$, but I still need ${list(missing)}.` : `That's just it. Here's ${pay}$.` }
 }

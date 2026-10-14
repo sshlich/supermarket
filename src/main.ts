@@ -1,6 +1,6 @@
 import './style.css'
-import { arrive, greeting, judge, TAGS, type Customer } from './customers.ts'
-import { applyDrop, canPour, cellsOf, contents, COUNTERS, dims, fillWith, find, LIQUIDS, look, pour, propsOf, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { arrive, deal, greeting, TAGS, type Customer, type Role } from './customers.ts'
+import { applyDrop, canPour, cellsOf, contents, COUNTERS, dims, fillWith, find, LIQUIDS, look, pour, propsOf, START_CASH, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -24,12 +24,17 @@ const app = document.getElementById('app')!
 
 // ---------------------------------------------------------------- the customer terminal
 
-/** The terminal beside the field: one customer at the counter, what they want (tags with icons), and what has been said. Saved apart from the field. */
+/**
+ * The terminal beside the field: the customer at the counter, the line of those still waiting, which of their wants are
+ * met, and what has been said. Saved apart from the field.
+ */
 interface Line { who: 'them' | 'you' | 'note'; text: string; name?: string }
-interface Talk { open: boolean; n: number; customer: Customer | null; met: string[]; log: Line[] }
+interface Talk { open: boolean; n: number; customer: Customer | null; line: Customer[]; met: string[]; log: Line[] }
 const TALK = 'field-v3-terminal'
-const blankTalk = (open = false): Talk => ({ open, n: 0, customer: null, met: [], log: [] })
-let talk: Talk = ((): Talk => { try { const v = JSON.parse(localStorage.getItem(TALK) ?? 'null'); return v && Array.isArray(v.log) ? (v.customer?.wants.some((t: string) => !(t in TAGS)) ? { ...blankTalk(v.open), n: v.n } : { ...blankTalk(), ...v }) : blankTalk() } catch { return blankTalk() } })()
+const blankTalk = (open = false): Talk => ({ open, n: 0, customer: null, line: [], met: [], log: [] })
+/** A saved customer from an older version (no role, or wants that no longer exist) is dropped, with the line. */
+const current = (c: Customer | null | undefined) => !!c?.role && c.wants.every(t => t in TAGS)
+let talk: Talk = ((): Talk => { try { const v = JSON.parse(localStorage.getItem(TALK) ?? 'null'); return v && Array.isArray(v.log) ? (current(v.customer) || !v.customer ? { ...blankTalk(), ...v, line: (v.line ?? []).filter(current) } : { ...blankTalk(v.open), n: v.n }) : blankTalk() } catch { return blankTalk() } })()
 const saveTalk = () => { try { localStorage.setItem(TALK, JSON.stringify(talk)) } catch { /* private window */ } }
 
 function load(): State | null {
@@ -202,7 +207,7 @@ function openWindow(it: Item) {
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
-  app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside></div></div>${windowsHtml()}`
+  app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside>${cashHtml()}</div></div>${windowsHtml()}`
   if (hoverId !== null) showTip()
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
@@ -538,16 +543,28 @@ function toast(text: string) {
 /** A wanted tag as a short word; hovering it says what it is. Lit when what is on the counter meets it. */
 const tagChip = (t: string, met: boolean, i: number) => `<span class="tag${met ? ' met' : ''}" data-tag="${esc(t)}" style="--i:${i}">${esc(TAGS[t]?.label ?? t)}</span>`
 
-/** The button on the side of the field and, when it is open, the terminal under it: the conversation, and below it the controls (dismiss and next on the left, the big sell on the right). */
+/** What the big button says for each sort of customer. */
+const DEAL: Record<Role, { label: string; title: string }> = {
+  buyer: { label: 'SELL', title: 'Sell them what they want from the inside counter' },
+  seller: { label: 'BUY', title: 'Buy what they unloaded on the outside counter, at their price' },
+  trader: { label: 'SWAP', title: 'Swap what they want from the inside counter for what they brought' },
+}
+
+/** The button on the side of the field and, when it is open, the terminal under it: the conversation, and below it the controls (dismiss and next on the left, the big deal button on the right). */
 function sideHtml(fresh = false) {
   const c = talk.customer
   const button = `<button class="term-btn${talk.open ? ' on' : ''}" data-term title="Talk to the customer">&gt;_ customers</button>`
   if (!talk.open) return button
   const lines = talk.log.map((l, i) => l.who === 'them' ? `<div class="them" data-line="${i}"><b>${esc(l.name ?? '')}</b> <span>${esc(l.text)}</span></div>` : `<div class="${l.who}">${l.who === 'you' ? '$ ' : ''}${esc(l.text)}</div>`).join('')
   const off = c ? '' : ' disabled'
-  return `${button}<div class="term"><div class="term-head${fresh ? ' fresh' : ''}"><span>${c ? `customer ${c.id}: ${esc(c.name)}` : 'nobody at the counter'}</span>${c ? `<span class="wants">${c.wants.map((t, i) => tagChip(t, talk.met.includes(t), i)).join('')}</span>` : ''}</div>
+  const waiting = talk.line.length ? `${talk.line.length} waiting` : 'nobody else waiting'
+  const head = c ? `<span>customer ${c.id}: ${esc(c.name)} <small>· ${waiting}</small></span><span class="wants">${c.role === 'seller' ? (c.ask ? `<span class="tag ask" style="--i:0">asks ${c.ask}$</span>` : '') : c.wants.map((t, i) => tagChip(t, talk.met.includes(t), i)).join('')}</span>`
+    : `<span>nobody at the counter <small>· ${talk.line.length ? waiting : 'the line is empty'}</small></span>`
+  const next = c || talk.line.length ? 'next customer' : 'let them in'
+  const big = c ? DEAL[c.role] : DEAL.buyer
+  return `${button}<div class="term"><div class="term-head${fresh ? ' fresh' : ''}">${head}</div>
     <div class="term-screen"><div class="term-log" data-termlog>${lines}</div></div>
-    <div class="term-ask"><div class="ask-side"><button data-say="dismiss"${off} title="Send them away">dismiss</button><button data-say="next" title="Call the next customer">next customer</button></div><button class="sell" data-say="sell"${off} title="Sell them what is on the inside counter">SELL</button></div></div>`
+    <div class="term-ask"><div class="ask-side"><button data-say="dismiss"${off} title="Send them away, with whatever they brought">dismiss</button><button data-say="next" title="${c || talk.line.length ? 'Call the next one in line' : 'Open the door: a new line forms'}">${next}</button></div><button class="sell" data-say="deal"${off} title="${big.title}">${big.label}</button></div></div>`
 }
 
 let seq = 0 // bumped by every move that changes who is at the counter: a slower one still going notices and gives up
@@ -577,14 +594,29 @@ function renderTerm(o: { fresh?: boolean; type?: boolean } = {}) {
   }
   saveTalk()
 }
-/** Every tag of what is on the inside counter, and of whatever is inside containers there. */
-function offeredTags(): string[][] {
-  const tags = (it: Item): string[][] => [look(it).tags, ...contents(s, it.id).flatMap(tags)]
-  return inSpace(s, { at: 'inside' }).flatMap(tags)
-}
 const typeTime = (text: string) => text.length * 16
 
-/** A customer goes: a scan line sweeps down the screen and the conversation fades behind it, then the screen is blank and nobody is there. False if something else happened meanwhile. */
+/** Things leave the shop: they lift off and fade where they were, and are gone. */
+function vanish(ids: number[]) {
+  ids = ids.filter(id => find(s, id))
+  if (!ids.length) return
+  for (const id of ids) {
+    const el = app.querySelector<HTMLElement>(`.item[data-id="${id}"]`)
+    if (!el) continue
+    const r = el.getBoundingClientRect()
+    const ghost = document.body.appendChild(el.cloneNode(true) as HTMLElement)
+    Object.assign(ghost.style, { position: 'fixed', left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px`, zIndex: '40', pointerEvents: 'none' })
+    ghost.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-24px) scale(.9)' }], { duration: 320, easing: 'ease-in' }).onfinish = () => ghost.remove()
+  }
+  remove(s, ids)
+  changed(new Map())
+}
+/** The customer goes, taking back whatever they brought and you did not deal for, wherever it got to. */
+function leave() {
+  const c = talk.customer
+  if (c?.brought.length) vanish(c.brought)
+}
+/** The screen is wiped: a scan line sweeps down and the conversation fades behind it, then nobody is at the counter. False if something else happened meanwhile. */
 async function wipe(): Promise<boolean> {
   const my = ++seq
   const screen = app.querySelector('.term-screen')
@@ -594,41 +626,108 @@ async function wipe(): Promise<boolean> {
   renderTerm()
   return true
 }
-/** The next customer: the last one is wiped, then the new one shows up (their wants fade in) and starts talking. */
+/** A new line forms when the door opens. */
+// ponytail: line length is random (3 to 7) for now; it should come from something in the game later (reputation, stock, the street)
+const newLine = () => Array.from({ length: 3 + Math.floor(Math.random() * 5) }, () => arrive(++talk.n))
+/** A seller or trader puts down what they brought on the outside counter, one thing after another; a seller then names a price for the lot. */
+function unload(c: Customer) {
+  for (const g of c.goods) {
+    const it = spawn(s, g.kind, { at: 'outside' }, g.props ?? {})
+    if (!it) continue // no room left on the counter
+    if (g.fill !== undefined) { if (g.fill) it.fill = { ...g.fill }; else delete it.fill }
+    if (g.missing) remove(s, contents(s, it.id).sort(() => Math.random() - 0.5).slice(0, g.missing).map(o => o.id))
+    c.brought.push(it.id)
+  }
+  if (c.role === 'seller') c.ask = Math.max(1, Math.round(c.brought.reduce((n, id) => n + worth(s, find(s, id)!), 0) * c.rate))
+  if (!c.brought.length) return
+  changed(new Map())
+  c.brought.forEach((id, i) => app.querySelector(`.item[data-id="${id}"]`)?.animate([{ opacity: 0, transform: 'translateY(-60%)' }, { opacity: 1, transform: 'none' }], { duration: 260, delay: i * 110, easing: 'ease-out', fill: 'backwards' }))
+}
+/**
+ * The next one in line steps up (whoever was there leaves first, with their things). With nobody there and nobody waiting,
+ * the door opens and a new line forms. A newcomer's wants fade in, a seller or trader unloads, and they start talking.
+ */
 async function callNext() {
+  const had = !!talk.customer
+  leave()
   if (!(await wipe())) return
+  if (!talk.line.length) { if (had) return; talk.line = newLine() }
   const my = seq
-  const c = talk.customer = arrive(++talk.n)
+  const c = talk.customer = talk.line.shift()!
   talk.log.push({ who: 'note', text: `customer ${c.id} at the counter...` })
   renderTerm({ fresh: true })
   await wait(420)
   if (my !== seq) return
+  unload(c)
   talk.log.push({ who: 'them', name: c.name, text: greeting(c) })
   renderTerm({ type: true })
 }
-/** Sell what is on the inside counter. They say how it looks; if it is everything they wanted they buy, finish their sentence and go. */
-async function sell() {
+/** Send the one at the counter away, with what they brought. */
+async function dismiss() {
+  leave()
+  await wipe()
+}
+/** The tags of a thing on the counter as a customer sees them: its own, and those of whatever is inside it. */
+const tagsIn = (it: Item): string[] => [...look(it).tags, ...contents(s, it.id).flatMap(tagsIn)]
+/**
+ * The big button: SELL to a buyer, BUY from a seller, SWAP with a trader (see `deal` in customers.ts). What is yours on the
+ * inside counter is offered; their own things are not yours to offer. If it goes through, money moves, what they take
+ * leaves, what they brought is yours, and they finish their sentence and go.
+ */
+async function doDeal() {
   const c = talk.customer
   if (!c) return
   const my = ++seq
-  const r = judge(c, offeredTags())
+  c.brought = c.brought.filter(id => find(s, id))
+  const offered = inSpace(s, { at: 'inside' }).filter(it => !c.brought.includes(it.id)).map(it => ({ id: it.id, tags: tagsIn(it), worth: worth(s, it) }))
+  const theirs = c.brought.reduce((n, id) => n + worth(s, find(s, id)!), 0)
+  const r = deal(c, offered, s.cash ?? 0, theirs)
   talk.met = r.met
-  talk.log.push({ who: 'you', text: 'SELL' }, { who: 'them', name: c.name, text: r.say })
+  talk.log.push({ who: 'you', text: DEAL[c.role].label }, { who: 'them', name: c.name, text: r.say })
   renderTerm({ type: true })
-  if (!r.sold) return
+  if (!r.done) return
+  c.brought = []
+  if (r.pay) setCash((s.cash ?? 0) + r.pay)
+  vanish(r.take)
   await wait(typeTime(r.say) + 1100)
   if (my === seq) await wipe()
 }
 function say(what: string) {
   if (what === 'next') callNext()
-  else if (what === 'dismiss') wipe()
-  else if (what === 'sell') sell()
+  else if (what === 'dismiss') dismiss()
+  else if (what === 'deal') doDeal()
 }
-/** Open or close the terminal; opening it with nobody there calls the first customer. */
+/** Open or close the terminal; opening it with nobody there calls the next one (or lets a line in). */
 function toggleTerm() {
   talk.open = !talk.open
   if (talk.open && !talk.customer) return void callNext()
   renderTerm()
+}
+
+// ---------------------------------------------------------------- money: a black dial with green digits, on the main screen
+
+let cashShown = s.cash ?? START_CASH
+/** Six digits, the leading zeros dim, then $. */
+function cashText(n: number) {
+  const t = String(Math.max(0, Math.round(n))).padStart(6, '0')
+  const lead = t.match(/^0*(?=\d)/)![0]
+  return `<span class="lead">${lead}</span>${t.slice(lead.length)}<b>$</b>`
+}
+const cashHtml = () => `<div class="cash" data-cash title="Your money">${cashText(cashShown)}</div>`
+/** Money changes: the dial counts to the new sum, and glows. */
+function setCash(v: number) {
+  const from = cashShown, t0 = performance.now()
+  s.cash = v
+  save()
+  const step = (t: number) => {
+    const k = Math.min(1, (t - t0) / 700)
+    cashShown = k < 1 ? from + (v - from) * (1 - (1 - k) ** 3) : v
+    const el = app.querySelector('[data-cash]')
+    if (el) el.innerHTML = cashText(cashShown)
+    if (k < 1) requestAnimationFrame(step)
+  }
+  requestAnimationFrame(step)
+  app.querySelector('[data-cash]')?.animate([{ boxShadow: `inset 0 0 0 1px #1d2a20, 0 0 18px ${v >= from ? 'rgba(74, 224, 122, .55)' : 'rgba(224, 96, 74, .55)'}` }, { boxShadow: 'inset 0 0 0 1px #1d2a20, 0 0 0 transparent' }], { duration: 900 })
 }
 
 /** Let go: `drop` puts it where the ghost says, otherwise it goes back. */
@@ -680,6 +779,7 @@ function tipHtml(it: Item) {
   const value = worth(s, it)
   if (value) rows.push(`<div class="worth">worth ${value}${value !== l.price ? ` (${l.price} + what is inside)` : ''}</div>`)
   if (l.desc) rows.push(`<p>${esc(l.desc)}</p>`)
+  if (talk.customer?.brought.includes(it.id)) rows.push(`<div class="prop">${esc(talk.customer.name)}'s, until you deal</div>`)
   if (isContainer(it.kind)) rows.push(`<div class="hint">double-click to open</div>`)
   if (it.fill) rows.push(`<div class="hint">drop it on another bottle to pour</div>`)
   return rows.join('')
@@ -734,7 +834,7 @@ app.addEventListener('click', e => {
   if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn, null, JSON.parse(b.dataset.props || '{}')); if (it && b.dataset.liquid !== undefined) fillWith(it, b.dataset.liquid || null); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
   else if ('strict' in b.dataset) toggleStrict()
   else if ('clear' in b.dataset) { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) }
-  else if ('reset' in b.dataset) { s = start(); selected = new Set(); seq++; talk = blankTalk(talk.open); changed(new Map()); if (talk.open) callNext() }
+  else if ('reset' in b.dataset) { s = start(); cashShown = s.cash!; selected = new Set(); seq++; talk = blankTalk(talk.open); changed(new Map()); if (talk.open) callNext() }
 })
 
 /** Double-click a container to open its insides in a window beside it. */

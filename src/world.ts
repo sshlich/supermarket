@@ -80,8 +80,10 @@ export function fillWith(it: Item, liquid: string | null) {
  * are screen pixels (its top-left); a folded one shows only as a tab in the rack along the top edge.
  */
 export interface Win { id: number; x: number; y: number; folded?: boolean }
-/** `windows` are the open containers, the last one on top. */
-export interface State { items: Item[]; next: number; windows?: Win[] }
+/** `windows` are the open containers, the last one on top; `cash` is the money you have. */
+export interface State { items: Item[]; next: number; windows?: Win[]; cash?: number }
+/** What a new game starts with. */
+export const START_CASH = 50
 
 /** How many containers can be open at once. */
 export const MAX_WINDOWS = 4
@@ -380,7 +382,7 @@ export function settle(s: State): State {
   const ids = new Set(out.map(o => o.id))
   // windows of containers that are gone (or no longer containers) close; old saves' docked panels are not carried over
   const windows = (s.windows ?? []).filter(w => ids.has(w.id) && isContainer(out.find(o => o.id === w.id)!.kind)).slice(-MAX_WINDOWS)
-  return { items: out, next: s.next, windows }
+  return { items: out, next: s.next, windows, cash: Math.max(0, Math.round(Number(s.cash ?? START_CASH)) || 0) }
 }
 
 /**
@@ -403,7 +405,7 @@ export function spawn(s: State, kind: string, space: Space = null, props: Record
   return it
 }
 
-/** A new game: an empty field. There are no items yet (2026-10-13: everything is being redone). */
+/** A new game: an empty field and a little money. */
 export function start(): State {
-  return { items: [], next: 1, windows: [] }
+  return { items: [], next: 1, windows: [], cash: START_CASH }
 }

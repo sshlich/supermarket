@@ -3,7 +3,7 @@
 What is built. Since 2026-10-13 this branch is a clean slate: **the field, two counters above it, the handling, containers in
 floating windows and the tooltip**, plus the dev tools to make items (the sprite editor and the gallery). The old items, rules,
 machines, liquids, uses, clock and money were cut, along with the design notes (`IDEAS.md`, `LORE.md`, `SPECULATIVE/`). Since
-then: a customer terminal and a first seed of items (below). The field starts empty.
+then: customers in a line who buy, sell and swap, money, a first seed of items and liquids (below). The field starts empty.
 
 Where the rest went: `inventory-v2` holds everything up to the drone work (items, sprites, the rules engine, the brainstorm
 and the lore); `drones` is the same plus mail, job slips, papers, a drone and a launch pad, and `DRONES.md` (real-life drone
@@ -159,23 +159,31 @@ its own kinds rather than the game's: the old kinds as a fixture (`src/test/kind
 strict mode, groups, irregular shapes, spawning, the counters, containers (filters, nesting, cascade, turning to fit), settling old saves,
 and windows (closing with their container, settling, the cap).
 
-## Customer terminal (2026-10-13)
+## Customers, the line and money (2026-10-14)
 
-A `>_ customers` button on the side of the field opens a terminal beside it (`src/customers.ts` holds the data and rules,
-`main.ts` draws it; the terminal's state is saved apart from the field, as `field-v3-terminal`).
-- One customer at the counter at a time. Opening it with nobody there calls the first. The header shows what they want as
-  **text tags** (hover one for its meaning; `TAGS` in `customers.ts`): survival needs (food, drink, alcohol, medicine, light,
-  fuel, book, valuable), not how things feel. The screen is the conversation from their side: a
-  dim "customer N at the counter..." line, then their words typed out a letter at a time.
-- **Controls** under the screen: on the left *dismiss* and *next customer*, on the right a big **SELL**. Sell judges the tags
-  of what is on the **inside** counter (containers' contents included): wants that are met light up green and they say how it
-  went. If everything they want is there they buy: they finish speaking, then go. Otherwise they stay and say what is
-  missing. Nothing is taken from the counter yet (there is no money).
-- **The screen is wiped after every customer** (dismiss, a sale, or next): a scan line sweeps down and the words fade behind
-  it, then it is blank ("nobody at the counter"). The next customer's wants fade in one by one. Moves overlap safely
-  (`seq` in `main.ts`: a slower one still going gives up when something newer happened).
-- A special customer would be a `Customer` with its own behaviour; for now everybody is the same sort. "Start over" clears the
-  terminal too. (The icons were dropped: game-icons, `src/icons/` and their script wiring are gone.)
+A `>_ customers` button on the side of the field opens a terminal beside it (`src/customers.ts` holds the customers and the
+rules of a deal, `main.ts` draws it and moves the things; the terminal's state is saved apart from the field, as
+`field-v3-terminal`).
+- **The line.** Customers wait in a line and are served one by one; there is no clock. "let them in" opens the door when
+  nobody is waiting, and a line of 3 to 7 forms (random for now: later something in the game should decide it). The header
+  shows who is at the counter and how many are waiting. *next customer* calls the next one (whoever was there leaves);
+  *dismiss* sends them away.
+- **Three sorts of customer**, one big button that changes its word:
+  - a **buyer** wants tags (survival needs: food, drink, alcohol, medicine, light, fuel, book, valuable). **SELL**: they
+    take everything on the inside counter with a tag they want (a container counts its contents) and pay its worth times
+    their rate (1.2 to 1.6), even if some wants are left; nothing they want there, no sale.
+  - a **seller** unloads one to three things on the outside counter and asks for the lot (worth times 0.5 to 0.9).
+    **BUY**: if you have the money, it is yours.
+  - a **trader** unloads things and wants tags. **SWAP**: they take what they want from the inside counter if it is worth
+    at least 80% of what they brought, and no money moves.
+- **What they bring is never quite new**: cheaper kinds more often (a cabinet rarely), any property (synthetic apples, any
+  pill), vessels part full of any liquid, blisters with pills already gone. Their things stay theirs until a deal (the
+  tooltip says so, and they cannot be offered back to them); dismissed or sent off with *next*, they take them back from
+  wherever you moved them.
+- The screen types their words, lights the wants that are met, and is wiped after every customer (a scan line sweeps down).
+- **Money** is a number on the main screen, left of the counters: a black dial, green terminal digits with the leading
+  zeros dim, and a `$` at the end. It counts to the new sum after a deal and glows (green up, red down). Saved with the
+  field as `cash`; a new game starts with 50.
 
 ## Items, the first seed (2026-10-13)
 
@@ -220,4 +228,3 @@ has a `cat` and a `price` (coins); the tooltip shows what a thing is worth (its 
   top. The clear bottle shows the liquid plainly; the dark wine bottle shows it darkly, and a light line marks the level.
   `--fill` is a registered CSS property, so after a pour both bottles' levels glide to their new height. A vessel turned on
   its side keeps its level drawn along the bottle (the liquid does not settle yet).
-- Selling is unchanged: SELL judges tags (a thing's own and its properties'), and nothing is taken or paid yet.
