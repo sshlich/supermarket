@@ -56,7 +56,8 @@ export function bring(rand: () => number = Math.random): Goods {
   const [kind, k] = pool.find(([, k]) => (r -= 1 / k.price!) <= 0) ?? pool[0]
   const g: Goods = { kind }
   const props = Object.entries(k.props ?? {})
-  if (props.length) g.props = Object.fromEntries(props.map(([p, vals]) => [p, pick(Object.keys(vals), rand)]))
+  // ponytail: a property that is a state, not what the thing is (a machine's power), is left at its default; a list of one for now
+  if (props.length) g.props = Object.fromEntries(props.filter(([p]) => p !== 'power').map(([p, vals]) => [p, pick(Object.keys(vals), rand)]))
   if (k.holds) { const liquid = k.liquid ?? pick(Object.keys(LIQUIDS), rand); g.fill = { liquid, amount: 1 + Math.floor(rand() * k.holds) } }
   if (k.slots?.some(sl => sl.fill)) g.missing = Math.floor(rand() * 4)
   return g

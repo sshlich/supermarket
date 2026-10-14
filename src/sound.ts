@@ -128,6 +128,14 @@ const MATERIALS: Record<string, Partial<Record<Action, () => void>>> = {
     lift: () => tone(vary(480), { type: 'triangle', d: 0.05, g: 0.025 }),
     drop: () => { tone(vary(300), { type: 'triangle', d: 0.08, g: 0.06 }); tone(vary(200), { d: 0.08, g: 0.06 }) },
   },
+  machine: { // a heavy plastic case
+    lift: () => { noise(vary(400), { d: 0.08, g: 0.06, type: 'lowpass' }); tone(vary(220), { type: 'triangle', d: 0.06, g: 0.015 }) },
+    drop: () => { tone(vary(85), { d: 0.18, g: 0.2, to: 55 }); noise(380, { d: 0.09, g: 0.09, type: 'lowpass' }); noise(vary(1400), { d: 0.03, g: 0.03, q: 2, at: 0.05 }) },
+  },
+  disc: { // a floppy: a light plastic tick, its shutter
+    lift: () => noise(vary(2200), { d: 0.02, g: 0.03, q: 2 }),
+    drop: () => { noise(vary(1800), { d: 0.025, g: 0.05, q: 2 }); tone(vary(600), { type: 'triangle', d: 0.03, g: 0.015, at: 0.03 }) },
+  },
   gold: {
     lift: () => times(3, 0.035, (_, at) => tone(vary(2900, 0.12), { d: 0.05, g: 0.012, at })),
     drop: () => { tone(vary(1760, 0.02), { d: 0.35, g: 0.03 }); tone(vary(2640, 0.02), { d: 0.22, g: 0.012 }) },
@@ -168,6 +176,11 @@ const SHOP = {
   wipe: () => noise(450, { d: 0.45, g: 0.02, q: 0.6, to: 3200, a: 0.15 }),
   leave: () => noise(vary(800), { d: 0.25, g: 0.02, q: 0.5, to: 300, a: 0.05 }),
   menu: () => tone(660, { type: 'triangle', d: 0.06, g: 0.02 }),
+  // a machine's switch: a soft thunk, the tube's low hum coming up (or dying away)
+  powerOn: () => { noise(300, { d: 0.08, g: 0.08, type: 'lowpass' }); tone(55, { d: 1.1, g: 0.05, a: 0.4 }); tone(110, { type: 'triangle', d: 0.9, g: 0.012, a: 0.5, at: 0.1 }) },
+  powerOff: () => { noise(300, { d: 0.08, g: 0.07, type: 'lowpass' }); tone(110, { type: 'triangle', d: 0.5, g: 0.015, to: 60 }) },
+  // the drive reading: a few soft head clicks over a short whirr
+  seek: () => { tone(160, { type: 'triangle', d: 0.6, g: 0.012, a: 0.08 }); times(5, 0.09, (_, at) => noise(vary(1300, 0.15), { d: 0.02, g: 0.035, q: 4, at: at + 0.05 })) },
 }
 export function shop(name: keyof typeof SHOP) {
   if (soundOn && volume) SHOP[name]()

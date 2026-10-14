@@ -44,8 +44,12 @@ What to watch:
    one clear rule. Proposed: computer windows live inside the screen. Dragging a file off the screen onto the field
    **prints** it, as a paper or a slip (drones had printed slips). That is the bridge between the two worlds.
 
+**Decided (2026-10-14):** an item, sellable; later maybe customised (part slots, the case and configuration, even
+screens). First, a small version to feel it out: CRT-styled, a power switch, a disc tray you put floppies into and read
+on the screen, discs being shards of information worth finding, things introduced a little at a time. Built: see
+`DESIGN.md`, "The wired terminal".
+
 Open questions:
-- An item that can be sold, stolen or broken, or a fixture of the shop?
 - Is "wired" a resource (power, a connection) or just flavour?
 - Which first program earns its place: Mail (orders from outside) or Files (with a virus to deal with)?
 - Could the computer bring the line in (a notice posted on a board brings more customers)?

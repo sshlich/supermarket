@@ -186,11 +186,12 @@ rules of a deal, `main.ts` draws it and moves the things; the terminal's state i
   big button greys out when they have nothing more to deal (a buyer with everything, a seller or trader after their deal).
 - The screen types their words (with soft key clicks), lights the wants that are met, and is wiped when they go (a scan line
   sweeps down).
-- **Tooltips that do the sums** (show what a decision needs, on hover): an item's tooltip has its worth in green with what
-  it is made of (`7$ · 1 + 6 lamp oil · storage · 1×3`) and what the customer at the counter makes of it ("Wren would pay
-  11$", "does not want this", "theirs: part of a 20$ lot"). Hovering a counter's empty squares shows its own tooltip: the
-  total worth on it, how many things, whose, and what the customer would pay for (or take of) what is there.
-- **Money** is a number on the main screen, left of the counters: a black dial, green terminal digits with the leading
+- **Numbers where a decision needs them.** An item's tooltip has its worth in green with what it is made of (`7$ · 1 + 6
+  lamp oil · storage · 1×3`) and what the customer at the counter makes of it ("Wren would pay 11$", "does not want this",
+  "theirs: part of a 20$ lot"). Each counter has a **dial** to its left (black, green digits, like the money's): the total
+  worth on it, and under that what the customer makes of it ("Hollis asks 20$" outside; "Wren pays 14$" inside, with a `!`
+  if that is over their budget). (A hover tooltip on the counters was tried first and dropped: it fought the items' own.)
+- **Money** is a number on the main screen, left of the field: a black dial, green terminal digits with the leading
   zeros dim, and a `$` at the end. It counts to the new sum after a deal and glows (green up, red down). Saved with the
   field as `cash`; a new game starts with 50.
 
@@ -281,3 +282,26 @@ The bottom of the field is clean: only the note line. `src/menu.ts` holds the re
   (**+100$**), the field (clear it), and every kind of thing to spawn, by category: one row each with its colour, name,
   size and price, and a button per variant (real or synthetic apple, each pill type and blister, each book, a bottle empty
   or full of each liquid). New things go on the field, on the first free spot.
+
+## The wired terminal: a computer, and discs (2026-10-14)
+
+A first, small version of the computer idea (`IDEAS.md`): the feel, the CRT, the power switch, and a disc tray.
+- **The wired terminal** (`computer` kind, 3x3, 60$, tech; sellable, tagged valuable): an all-in-one CRT in a beige case.
+  Its `power` property swaps the sprite's colours, so on the field it shows a green screen with lines of text and a lit
+  light when it is on. Double-click opens its **window**: the CRT in its bezel, and under it the power switch, the light,
+  the maker's name and the **disc tray**, the machine's one slot (1x1, takes things tagged `disc`), handled like any place.
+  The window can **fill the page** (⤢ in its header; everything else dims around it) and back (⤡).
+- **The screen** (`src/computer.ts`): off, dark glass. Switched on, a soft thunk and the tube's hum, then a few lines of BIOS
+  typed out, a check of the drive, and a small desktop in the dark-98 look: one icon, A:, and a taskbar ("A: ready" or
+  "empty"). Opening A: makes the drive click and whirr for a moment and lists the disc's files with their sizes; with no
+  disc it is the old "A:\ is not accessible. The device is not ready." A file opens in Notepad. The picture is a fixed
+  320x240 display scaled up; the glass is curved at the corners, darker at the edges, with scanlines, a soft glare and a
+  faint flicker, so it reads as a tube without bending where clicks land. What the screen is doing is kept by machine in
+  memory, so the field redrawing does not reset it; a machine left on comes back at its desktop after a reload.
+- **Discs** (`disc` kind, 1x1 floppy, 3$): each one is a Markdown file in `src/discs/` (copy `_template.md`): its label, the
+  colour of its plastic, a line for the tooltip, then its files, each under `# NAME.TXT`. `src/discs.ts` makes each one a
+  value of the disc kind's `content` property (its name, blurb and plastic colour). Three to start, shards of the world:
+  *SYNTH-AG / BATCH QC* (a synthetic-food plant's last records), *MERROW ST. LIGHTING* (the town's lamp schedule, and a
+  complaint), and an unlabelled disc (a shopkeeper's diary, a corrupted file, a price list). Customers bring discs
+  (they are cheap, so they come often); a seller never brings a machine switched on.
+- Later (`IDEAS.md`): parts, a case and configuration, screens; more programs; files as things.

@@ -1,5 +1,7 @@
 import './style.css'
 import { BOOKS } from './books.ts'
+import { act as screenAct, power as screenPower, screenHtml } from './computer.ts'
+import { DISCS } from './discs.ts'
 import { arrive, deal, dealt, greeting, open as canDeal, priceFor, stillWants, TAGS, type Customer, type Role } from './customers.ts'
 import { openReader } from './reader.ts'
 import { initMenu, toggleMenu } from './menu.ts'
@@ -118,15 +120,41 @@ function outline(cells: [number, number][]) {
 /** Where an item's squares are on the field. */
 const absCells = (it: Item): [number, number][] => cellsOf(it).map(([cx, cy]) => [it.x + cx, it.y + cy])
 
+/**
+ * A counter's dial, beside it: what is on it altogether, and under that what the customer at the counter makes of it (what
+ * a seller asks for their things outside; what a buyer would pay for what they want inside, or what a trader would take).
+ */
+function dialHtml(at: Counter) {
+  const here = inSpace(s, { at })
+  const sum = (list: Item[]) => list.reduce((n, it) => n + worth(s, it), 0)
+  const c = talk.customer
+  let note = ''
+  if (c && at === 'outside' && c.role === 'seller' && !c.dealt && c.brought.length) note = `${c.name} asks ${c.ask}$`
+  else if (c && at === 'inside' && canDeal(c) && c.role !== 'seller') {
+    const wants = c.role === 'buyer' ? stillWants(c) : c.wants
+    const wanted = here.filter(it => !c.brought.includes(it.id) && tagsIn(it).some(t => wants.includes(t)))
+    if (wanted.length) {
+      const pay = priceFor(c, sum(wanted))
+      note = c.role === 'buyer' ? `${c.name} pays ${pay}$${c.budget !== null && pay > c.budget ? '!' : ''}` : `${c.name} takes ${sum(wanted)}$`
+    }
+  }
+  return `<div class="dial" data-dial="${at}" title="${at === 'outside' ? 'Outside counter' : 'Inside counter'}: what is on it is worth"><small>${at}</small>${cashText(sum(here))}${note ? `<em>${esc(note)}</em>` : ''}</div>`
+}
+/** Redraw the counters' dials alone (the customer changed, not the things). */
+function paintDials() {
+  for (const at of Object.keys(COUNTERS) as Counter[]) app.querySelector(`[data-dial="${at}"]`)?.replaceWith(Object.assign(document.createElement('template'), { innerHTML: dialHtml(at) }).content)
+}
+
 /** The two counters above the field: the outside one (what customers bring), then the inside one (what you sell), close together. */
 function countersHtml() {
-  return `<div class="counters">${(Object.keys(COUNTERS) as Counter[]).map(c => `<div class="counter"><div class="grid" data-grid data-space="${c}" data-w="${COUNTERS[c].w}" data-h="${COUNTERS[c].h}" style="--w:${COUNTERS[c].w};--h:${COUNTERS[c].h}">${inSpace(s, { at: c }).map(itemHtml).join('')}</div></div>`).join('')}</div>`
+  return `<div class="counters">${(Object.keys(COUNTERS) as Counter[]).map(c => `<div class="counter">${dialHtml(c)}<div class="grid" data-grid data-space="${c}" data-w="${COUNTERS[c].w}" data-h="${COUNTERS[c].h}" style="--w:${COUNTERS[c].w};--h:${COUNTERS[c].h}">${inSpace(s, { at: c }).map(itemHtml).join('')}</div></div>`).join('')}</div>`
 }
 
 /** One open container: a window floating over the page, its insides a small grid for each of its slots. */
 function winHtml(w: Win, z: number) {
   const it = find(s, w.id)!
   const k = KINDS[it.kind]
+  if (k.computer) return pcHtml(w, z)
   const slots = (k.slots ?? []).map((sl, i) => {
     const note = [sl.name, sl.accepts?.length ? `${sl.accepts.join(', ')} only` : '', sl.rejects?.length ? `no ${sl.rejects.join(', ')}` : '', sl.out ? 'take out only' : ''].filter(Boolean).join(' · ')
     return `<div class="slotbox">${note ? `<div class="slotnote">${note}</div>` : ''}<div class="grid" data-grid data-space="${it.id}:${i}" data-w="${sl.w}" data-h="${sl.h}" style="--w:${sl.w};--h:${sl.h}">${inSpace(s, { host: it.id, slot: i }).map(itemHtml).join('')}</div></div>`
@@ -141,11 +169,51 @@ function windowsHtml() {
   return ws.map((w, z) => (w.folded ? '' : winHtml(w, z))).join('') + (tabs ? `<div class="rack">${tabs}</div>` : '')
 }
 
+// ---------------------------------------------------------------- the wired terminal's window: a CRT, its power and its disc tray
+
+const isOn = (it: Item) => propsOf(it).power === 'on'
+/** The disc in a machine's tray, if any, as what is written on it. */
+function discIn(id: number) {
+  const d = inSpace(s, { host: id, slot: 0 })[0]
+  return d ? DISCS[propsOf(d).content] ?? null : null
+}
+/** How big the screen is drawn: a little over its own size in a window, as big as fits filling the page. */
+const screenScale = (full?: boolean) => full ? Math.max(1.2, Math.min((innerWidth - 120) / 320, (innerHeight - 190) / 240)) : 1.15
+/**
+ * A computer's window: the curved glass of a CRT in its beige bezel (the screen is computer.ts's), and under it the power
+ * switch, its light, and the disc tray: a one-square slot that takes a floppy, handled like any other place.
+ */
+function pcHtml(w: Win, z: number) {
+  const it = find(s, w.id)!
+  const on = isOn(it)
+  return `<div class="win pc${w.full ? ' full' : ''}" data-win="${it.id}" style="left:${w.x}px;top:${w.y}px;z-index:${10 + z};--s:${screenScale(w.full).toFixed(3)}"><div class="win-head" data-whead style="--c:${swatch(it)}"><i></i><span>${esc(look(it).name)}</span><button data-wfull="${it.id}" title="${w.full ? 'Back to a window' : 'Fill the page'}">${w.full ? '⤡' : '⤢'}</button><button data-wfold="${it.id}" title="Fold: keep just a tab along the top">–</button><button data-wclose="${it.id}" title="Close">✕</button></div>
+    <div class="crt"><div class="glass${on ? ' on' : ''}" data-screen="${it.id}">${screenHtml(it.id, on, discIn(it.id))}</div>
+    <div class="crt-base"><button class="power${on ? ' on' : ''}" data-power="${it.id}" title="Power">&#9211;</button><i class="led${on ? ' on' : ''}"></i><span class="brand">WT-2</span>
+    <div class="tray"><small>A:</small><div class="grid" data-grid data-space="${it.id}:0" data-w="1" data-h="1" style="--w:1;--h:1">${inSpace(s, { host: it.id, slot: 0 }).map(itemHtml).join('')}</div></div></div></div></div>`
+}
+/** Draw one machine's screen again, alone. */
+function paintScreen(id: number) {
+  const el = app.querySelector(`[data-screen="${id}"]`)
+  const it = find(s, id)
+  if (el && it) el.innerHTML = screenHtml(id, isOn(it), discIn(id))
+}
+/** The power switch: the property changes (the sprite on the field glows or goes dark), and the screen boots or goes black. */
+function pressPower(id: number) {
+  const it = find(s, id)
+  if (!it) return
+  const on = !isOn(it)
+  if (on) it.props = { ...it.props, power: 'on' }
+  else { delete it.props?.power; if (it.props && !Object.keys(it.props).length) delete it.props }
+  shop(on ? 'powerOn' : 'powerOff')
+  screenPower(id, on, discIn(id), () => paintScreen(id), () => shop('key'))
+  changed(new Map())
+}
+
 /** Keep every open window on screen (after a resize, or a window that opened near an edge): its header always stays reachable. */
 function keepOnScreen() {
   for (const el of app.querySelectorAll<HTMLElement>('.win[data-win]')) {
     const w = winOf(+el.dataset.win!)
-    if (!w) continue
+    if (!w || w.full) continue // a window filling the page is placed by its style
     const r = el.getBoundingClientRect()
     const x = Math.round(Math.max(8, Math.min(innerWidth - r.width - 8, w.x))), y = Math.round(Math.max(8, Math.min(innerHeight - r.height - 8, w.y)))
     if (x === w.x && y === w.y) continue
@@ -193,7 +261,6 @@ function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
   app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside>${cashHtml()}</div></div>${windowsHtml()}`
   if (hoverId !== null) showTip()
-  else if (hoverCounter && last) { const at = hoverCounter; hoverCounter = null; showCounterTip(at, last.clientX, last.clientY) }
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
     const was = from.get(+el.dataset.id!)
@@ -241,7 +308,7 @@ app.addEventListener('pointerdown', e => {
   const winEl = t.closest<HTMLElement>('.win[data-win]')
   if (winEl) raise(+winEl.dataset.win!) // touching a window brings it to the front
   const w = winEl && winOf(+winEl.dataset.win!)
-  if (w && t.closest('[data-whead]') && !t.closest('button')) { // grab a window by its header to move it anywhere
+  if (w && !w.full && t.closest('[data-whead]') && !t.closest('button')) { // grab a window by its header to move it anywhere
     winDrag = { win: w, el: winEl, dx: e.clientX - w.x, dy: e.clientY - w.y }
     winEl.classList.add('grabbed')
     document.body.classList.add('dragging')
@@ -283,11 +350,7 @@ addEventListener('pointermove', e => {
   // a redraw can swap the hovered thing for a new element the pointer never "enters", so no pointerout comes: check here
   const t = e.target as HTMLElement
   if (hoverId !== null && !t.closest?.(`.item[data-id="${hoverId}"]`)) hideTip()
-  // over a counter's empty squares: its tooltip follows the pointer
-  const counter = hoverId === null && !drag && !marquee && !winDrag && !press ? t.closest?.<HTMLElement>('.grid[data-space="outside"], .grid[data-space="inside"]') : null
-  if (counter && !t.closest('.item[data-id]')) showCounterTip(counter.dataset.space as Counter, e.clientX, e.clientY)
-  else if (hoverCounter) { hoverCounter = null; tip.classList.remove('on') }
-  else if (hoverId === null && tip.classList.contains('on') && !t.closest?.('[data-tag]')) tip.classList.remove('on')
+  if (hoverId === null && tip.classList.contains('on') && !t.closest?.('[data-tag]')) tip.classList.remove('on')
   if (marquee) return sweep(e)
   if (winDrag) return moveWindow(e)
   if (press && !drag && Math.hypot(e.clientX - press.x, e.clientY - press.y) > 4) begin()
@@ -572,6 +635,7 @@ function renderTerm(o: { fresh?: boolean; type?: boolean } = {}) {
   side.innerHTML = sideHtml(o.fresh)
   const log = side.querySelector<HTMLElement>('[data-termlog]')
   if (log) log.scrollTop = log.scrollHeight
+  paintDials()
   const line = o.type && talk.log.length ? side.querySelector<HTMLElement>(`[data-line="${talk.log.length - 1}"]`) : null
   const span = line?.querySelector('span')
   if (line && span) {
@@ -806,37 +870,6 @@ function customerSays(it: Item, value: number): string {
   return `${name} would pay ${pay}$${c.budget !== null && pay > c.budget ? ` (has ${c.budget}$)` : ''}`
 }
 
-/**
- * A counter's tooltip, shown by the pointer over its empty squares: what is on it altogether, whose, and what the customer
- * at the counter would make of it. Easier to gauge a deal at a glance than adding up tooltips.
- */
-function counterTipHtml(at: Counter): string {
-  const here = inSpace(s, { at })
-  const c = talk.customer
-  const sum = (list: Item[]) => list.reduce((n, it) => n + worth(s, it), 0)
-  const rows = [`<b>${at === 'outside' ? 'Outside counter' : 'Inside counter'}</b>`, `<div class="meta">${at === 'outside' ? 'where customers put down what they bring' : 'what you offer the customer'}</div>`]
-  rows.push(`<div class="price"><span class="dollars">${sum(here)}$</span><small>${here.length ? `${here.length} thing${here.length > 1 ? 's' : ''} on it` : 'empty'}</small></div>`)
-  if (!c) return rows.join('')
-  const name = esc(c.name)
-  const theirs = here.filter(it => c.brought.includes(it.id)), yours = here.filter(it => !c.brought.includes(it.id))
-  if (theirs.length) rows.push(`<div class="who">${name}'s: worth ${sum(theirs)}$${c.role === 'seller' && !c.dealt ? `, asking ${c.ask}$` : ''}</div>`)
-  if (at !== 'inside' || !canDeal(c) || c.role === 'seller') return rows.join('')
-  const wants = c.role === 'buyer' ? stillWants(c) : c.wants
-  const wanted = yours.filter(it => tagsIn(it).some(t => wants.includes(t)))
-  if (!wanted.length) rows.push(`<div class="who">nothing here ${name} wants</div>`)
-  else if (c.role === 'buyer') { const pay = priceFor(c, sum(wanted)); rows.push(`<div class="who">${name} would pay ${pay}$ for ${wanted.length} of them${c.budget !== null && pay > c.budget ? `: has only ${c.budget}$` : ''}</div>`) }
-  else { const need = Math.ceil(c.brought.reduce((n, id) => n + (find(s, id) ? worth(s, find(s, id)!) : 0), 0) * 0.8); rows.push(`<div class="who">${name} would take ${sum(wanted)}$ of it, and wants ${need}$</div>`) }
-  return rows.join('')
-}
-let hoverCounter: Counter | null = null
-/** Show a counter's tooltip by the pointer. */
-function showCounterTip(at: Counter, x: number, y: number) {
-  if (hoverCounter !== at || !tip.classList.contains('on')) { tip.innerHTML = counterTipHtml(at); tip.classList.add('on') }
-  hoverCounter = at
-  const t = tip.getBoundingClientRect()
-  tip.style.transform = `translate(${Math.min(innerWidth - t.width - 8, x + 16)}px, ${Math.min(innerHeight - t.height - 8, y + 16)}px)`
-}
-
 /** Show the tooltip beside the hovered item (to its right, or its left if there is no room), kept on screen. */
 function showTip() {
   const it = hoverId === null || drag || marquee || winDrag ? undefined : find(s, hoverId)
@@ -900,6 +933,9 @@ app.addEventListener('click', e => {
   if (b.dataset.wclose) { s.windows = (s.windows ?? []).filter(w => w.id !== +b.dataset.wclose!); changed(new Map()); return }
   if (b.dataset.wfold) { const w = winOf(+b.dataset.wfold); if (w) w.folded = true; changed(new Map()); return }
   if (b.dataset.wopen) { const it = find(s, +b.dataset.wopen); if (it) openWindow(it); return }
+  if (b.dataset.wfull) { const w = winOf(+b.dataset.wfull); if (w) w.full = !w.full; shop('menu'); changed(new Map()); keepOnScreen(); return }
+  if (b.dataset.power) { pressPower(+b.dataset.power); return }
+  if (b.dataset.pc) { const id = +b.dataset.pc; screenAct(id, b.dataset.act!, discIn(id), () => paintScreen(id), () => shop('seek')); return }
   if ('term' in b.dataset) { toggleTerm(); return }
   if (b.dataset.say) { say(b.dataset.say); return }
 })
