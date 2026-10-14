@@ -192,7 +192,7 @@ has a `cat` and a `price` (coins); the tooltip shows what a thing is worth (its 
 | sundries | Locket | 1x2 | valuable | 15 |
 | medicine | Pill (property `type`: painkiller, antibiotic, sleeping) | 1x1 | medicine | 2 / 5 / 3 |
 | medicine | Blister (property `type`), a container | 2x1, holds 3x2 (six pills) | | 1 + its pills |
-| medicine | Bandage (a wide, squat roll standing on its end) | 2x1 | medicine | 4 |
+| medicine | Bandage (a fat roll standing on its end) | 1x2 | medicine | 4 |
 | medicine | Antiseptic | 1x2 | medicine | 6 |
 | storage | Bottle (clear glass, cork) | 1x3, holds 3 | from its liquid | 1 + liquid |
 | storage | Steel cabinet, a container (front view: roller grate, ring pull) | 3x3, holds 5x8 | | 25 |
