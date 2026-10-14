@@ -350,7 +350,8 @@ item's ids are made its own, so they can use the sprite's gradients. A slot's `f
   (a cut face) a rectangle the full height of the wheel, its top the wheel's top tapering to the thin end at the right, the
   rind a narrow band along the back and down the left. Smooth golden paste with a soft lit edge, a few round holes shaded
   inside with a lit lower lip (one usually breaking the front edge), faint knife-scrape arcs on top; the holes and scrapes
-  are each wedge's own (from its seed). Slices come off the thin end: 6 and 5 left 3x2, 4 and 3 left 2x2, 2 left 1x2.
+  are each wedge's own (from its seed). Slices come off the thin end: 6 and 5 left 3x2, 4 and 3 left 2x2, 2 left 1x2 (drawn narrower, still
+  the full two squares tall).
   Once cut, the thin end is a face of paste with the next slice's holes on it, as hollows, in perspective.
 - **The cut face is the next slice.** A thing cut with the knife shows, on its cut end, exactly the slice that will come
   off next: the face is drawn from `faceSeed(item, left)` and the knife gives that seed to the slice it cuts, so the slice
@@ -365,7 +366,16 @@ item's ids are made its own, so they can use the sprite's gradients. A slot's `f
 - **Age** (for later): cheese carries an `age` in days; its colours mix from pale cheddar to orange with it (`aged()`),
   and from `AGE_DAYS` (10) on it is called aged and is worth half as much again. Nothing counts days yet; the debug panel
   spawns cheese fresh or aged.
-- Slices are 2x2 so that later they can stack: sandwiches.
+- **Sandwiches.** Drag a slice of cheese or salami onto a slice of bread (on the field or a counter, not in its bag): the
+  bread turns blue like anything the held thing can be used on, and dropped there the slice is laid on it and the bread is
+  an open sandwich. Up to four fillings, in the order laid; a second slice of bread on top finishes it (it needs at least
+  one filling: bread on bread is not a sandwich). Double-click an open one to take the top off: it lands beside it, the very
+  slice that went on (its seed and age are kept on the sandwich, `layers`). Finished, it stays as it is. Worth its makings
+  a fifth more open and half again finished (`stack` on the kind; rounded up, so the making always shows), and its tooltip
+  says how much of that is the making. Drawn from its layers: a little from above, its bread at the bottom and each slice on
+  it as itself (cheese holes show what is under them), lying a little loose so the edges below show; the top one whole.
+  Sandwiches are made, not spawned (not in the debug panel).
+- Pieces cut off, and a slice taken off a sandwich, land on the free spot nearest the thing's right side.
 - **Matchbox** (2x1) of ten matches (1x1): its drawer is slid half out from the printed sleeve, one match for each in it.
 - **Disposable lighter** (1x2, standing): every one is its own, picked from its id (a test drive for seeded looks): one of
   twelve plastic colours and solid, two-toned, striped, spotted, banded or swirled. Same hood, wheel and button on all.

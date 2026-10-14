@@ -455,7 +455,7 @@ console.log('world ok')
   assert.equal(look(bread).price, Math.ceil((1 + 2) * 1.2)) // bread 1, aged cheddar 2, a fifth more open
   stack(s, bread, salami)
   const back = unstack(s, bread)! // the top comes off as it went on
-  assert.deepEqual([back.kind, back.seed, bread.layers!.length], ['salamislice', salami.id, 1])
+  assert.deepEqual([back.kind, back.seed, bread.layers!.length, back.x, back.y], ['salamislice', salami.id, 1, 4, 0]) // beside it (the lid is right next to it)
   const off = unstack(s, bread)!
   assert.deepEqual([off.seed, off.age, bread.kind, bread.layers], [77, 12, 'breadslice', undefined]) // the last one off leaves the bread
   stack(s, bread, off); stack(s, bread, back)

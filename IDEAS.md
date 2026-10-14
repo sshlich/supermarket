@@ -2,6 +2,18 @@
 
 Notes for later, with an evaluation each. Nothing here is built; `DESIGN.md` is what is.
 
+## Sandwiches, further (the user's, 2026-10-14)
+
+- **Sauces and processing**: butter or mustard poured onto bread (the pour that bottles already do), toasting.
+- **Other breads**: a sub, where you just dump the fillings in (no order, no lid), next to sliced bread's careful stack.
+- **Taller**: four fillings for now; one day a hundred-layer sandwich (the cap is `max` on the kind; the drawing would
+  need to grow or squash past a dozen).
+- **Customers asking for one**: "cheese and salami", a named sandwich, rather than just food.
+
+Evaluation: this is where the shop turns into a kitchen and the player into a restaurant: buy whole things, cut them,
+make something worth more than its parts. Sauces fit the vessels already there; a sub is a second way to build the same
+thing, worth having once the first one is played with.
+
 ## A wired terminal: a computer you can sit at (the user's idea, 2026-10-14)
 
 **The note.** A wired terminal is an item: a computer. Double-click it and it opens in a panel that can go full screen (like

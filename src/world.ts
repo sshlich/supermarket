@@ -1,7 +1,7 @@
 // The field: a grid of cells with things on it; two counters above it (outside and inside, for trading with customers); and
 // containers with grids of their own. Nothing else yet.
 
-import { drop, dropGroup, firstFree, footprintKey, overlaps, turn, type Box } from './grid.ts'
+import { drop, dropGroup, firstFree, footprintKey, nearest, overlaps, turn, type Box } from './grid.ts'
 import DATA from './kinds.json' with { type: 'json' }
 
 export const W = 25
@@ -453,20 +453,20 @@ export function settle(s: State): State {
 
 /**
  * Cut a piece off with a knife: one comes off, or, when two are left, the last cut splits them and the thing is gone. It
- * shrinks from its cut side, its other side staying where it was; the pieces (as old as it is) go on the first free spots
- * of the same place, or of the field. Null, with nothing changed, if there is no room for them.
+ * shrinks from its cut side, its other side staying where it was; the pieces (as old as it is) go on the nearest free spots
+ * beside it, or the field. Null, with nothing changed, if there is no room for them.
  */
 export function cut(s: State, it: Item): Item[] | null {
   const c = KINDS[it.kind]?.cut
   if (!c || !KINDS[c.into]) return null
   const n = leftOf(it), pieces = n <= 2 ? n : 1, gone = n - pieces <= 0
-  const space = spaceOf(it), was = { x: it.x, left: it.left }, before = dims(it)
+  const was = { x: it.x, left: it.left }, before = dims(it)
   const at = s.items.indexOf(it)
   if (gone) s.items.splice(at, 1)
   else { it.left = n - pieces; if (c.from !== 'right') it.x += before.w - dims(it).w }
   const made: Item[] = []
   for (let i = 0; i < pieces; i++) {
-    const p = spawn(s, c.into, space) ?? spawn(s, c.into, null)
+    const p = pieceOf(s, c.into, it)
     if (!p) break
     if (it.age !== undefined) p.age = it.age
     p.seed = faceSeed(it, n - i) // the slice that comes off is the face that was showing
@@ -477,6 +477,16 @@ export function cut(s: State, it: Item): Item[] | null {
   if (gone) s.items.splice(at, 0, it)
   else { it.x = was.x; if (was.left === undefined) delete it.left; else it.left = was.left }
   return null
+}
+
+/** A new piece of something (cut off it, taken off it): on the free spot nearest its right side, or anywhere on the field. */
+function pieceOf(s: State, kind: string, from: Item): Item | null {
+  const p = spawn(s, kind, spaceOf(from)) ?? spawn(s, kind, null)
+  if (!p || !sameSpace(spaceOf(p), spaceOf(from))) return p
+  const { w, h } = spaceSize(s, spaceOf(p))
+  const b = nearest(w, h, inSpace(s, spaceOf(p)).filter(o => o.id !== p.id).map(boxOf), { ...boxOf({ ...p, rot: 0 }), x: from.x + dims(from).w, y: from.y })
+  if (b) Object.assign(p, { x: b.x, y: b.y, rot: b.rot ?? 0 })
+  return p
 }
 
 // ---------------------------------------------------------------- sandwiches
@@ -498,11 +508,11 @@ export function stack(s: State, base: Item, top: Item): boolean {
   remove(s, [top.id])
   return true
 }
-/** Take the top layer off an unfinished sandwich, onto the first free spot beside it (or the field); the last one off leaves the bread. */
+/** Take the top layer off an unfinished sandwich, onto the nearest free spot beside it (or the field); the last one off leaves the bread. */
 export function unstack(s: State, it: Item): Item | null {
   const st = KINDS[it.kind]?.stack, top = it.layers?.[it.layers.length - 1]
   if (!st || !top || closed(it)) return null
-  const p = spawn(s, top.kind, spaceOf(it)) ?? spawn(s, top.kind, null)
+  const p = pieceOf(s, top.kind, it)
   if (!p) return null
   if (top.seed !== undefined) p.seed = top.seed
   if (top.age) p.age = top.age
