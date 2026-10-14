@@ -164,11 +164,14 @@ and windows (closing with their container, settling, the cap).
 A `>_ customers` button on the side of the field opens a terminal beside it (`src/customers.ts` holds the data and rules,
 `main.ts` draws it; the terminal's state is saved apart from the field, as `field-v3-terminal`).
 - One customer at the counter at a time. Opening it with nobody there calls the first. The header shows what they want as
-  **tags with icons** (hover one for its name and meaning; the icons are game-icons, copied by `npm run icons`, tags are
-  in `TAGS`). The log is the conversation from their side: what they say, a dim line when they arrive or leave, and your
-  replies as `$` lines.
-- Three replies, as buttons: *what do you want again?* (they repeat it), *here, take a look* (judges the tags of what is on
-  the **inside** counter, containers' contents included: wants that are met light up green, and they say how it went; nothing
-  is taken yet, there is no money) and *next, please*.
-- A special customer would be a `Customer` with its own replies; for now everybody is the same sort. "Start over" clears the
-  conversation too.
+  **text tags** (hover one for its meaning; `TAGS` in `customers.ts`). The screen is the conversation from their side: a
+  dim "customer N at the counter..." line, then their words typed out a letter at a time.
+- **Controls** under the screen: on the left *dismiss* and *next customer*, on the right a big **SELL**. Sell judges the tags
+  of what is on the **inside** counter (containers' contents included): wants that are met light up green and they say how it
+  went. If everything they want is there they buy: they finish speaking, then go. Otherwise they stay and say what is
+  missing. Nothing is taken from the counter yet (there is no money).
+- **The screen is wiped after every customer** (dismiss, a sale, or next): a scan line sweeps down and the words fade behind
+  it, then it is blank ("nobody at the counter"). The next customer's wants fade in one by one. Moves overlap safely
+  (`seq` in `main.ts`: a slower one still going gives up when something newer happened).
+- A special customer would be a `Customer` with its own behaviour; for now everybody is the same sort. "Start over" clears the
+  terminal too. (The icons were dropped: game-icons, `src/icons/` and their script wiring are gone.)

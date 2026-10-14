@@ -6,10 +6,6 @@ import { applyDrop, cellsOf, contents, COUNTERS, dims, find, H, hostsFor, inSpac
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
 const SPRITE: Record<string, string> = Object.fromEntries(Object.entries(files).map(([p, svg]) => [p.slice('./sprites/'.length, -'.svg'.length), svg]))
 
-// The wanted-tag icons the customers' tags use (src/icons/, copied by `npm run icons`).
-const iconFiles = import.meta.glob<string>('./icons/*.svg', { query: '?raw', import: 'default', eager: true })
-const ICON: Record<string, string> = Object.fromEntries(Object.entries(iconFiles).map(([p, svg]) => [p.slice('./icons/'.length, -'.svg'.length), svg]))
-
 // When an item's data or a sprite changes, the game reloads itself; the sprite editor, which shares the files, is left alone.
 if (import.meta.hot) {
   import.meta.hot.accept('./world.ts', () => location.reload())
@@ -488,27 +484,46 @@ function toast(text: string) {
 
 // ---------------------------------------------------------------- the terminal, drawn and played
 
-/** A wanted tag as an icon; hovering it says what it is. Lit when what is on the counter meets it. */
-const tagChip = (t: string, met: boolean) => `<span class="tag${met ? ' met' : ''}" data-tag="${esc(t)}" aria-label="${esc(TAGS[t]?.label ?? t)}">${ICON[TAGS[t]?.icon] ?? esc(t[0] ?? '?')}</span>`
+/** A wanted tag as a short word; hovering it says what it is. Lit when what is on the counter meets it. */
+const tagChip = (t: string, met: boolean, i: number) => `<span class="tag${met ? ' met' : ''}" data-tag="${esc(t)}" style="--i:${i}">${esc(TAGS[t]?.label ?? t)}</span>`
 
-/** The button on the side of the field and, when it is open, the terminal under it. */
-function sideHtml() {
+/** The button on the side of the field and, when it is open, the terminal under it: the conversation, and below it the controls (dismiss and next on the left, the big sell on the right). */
+function sideHtml(fresh = false) {
   const c = talk.customer
   const button = `<button class="term-btn${talk.open ? ' on' : ''}" data-term title="Talk to the customer">&gt;_ customers</button>`
   if (!talk.open) return button
-  const lines = talk.log.map(l => l.who === 'them' ? `<div class="them"><b>${esc(l.name ?? '')}</b> ${esc(l.text)}</div>` : `<div class="${l.who}">${l.who === 'you' ? '$ ' : ''}${esc(l.text)}</div>`).join('')
-  return `${button}<div class="term"><div class="term-head"><span>${c ? `customer ${c.id}: ${esc(c.name)}` : 'nobody at the counter'}</span>${c ? `<span class="wants">${c.wants.map(t => tagChip(t, talk.met.includes(t))).join('')}</span>` : ''}</div>
-    <div class="term-log" data-termlog>${lines}</div>
-    <div class="term-ask">${c ? `<button data-say="ask">what do you want again?</button><button data-say="offer" title="Show them what is on the inside counter">here, take a look</button><button data-say="next">next, please</button>` : '<button data-say="next">call the next customer</button>'}</div></div>`
+  const lines = talk.log.map((l, i) => l.who === 'them' ? `<div class="them" data-line="${i}"><b>${esc(l.name ?? '')}</b> <span>${esc(l.text)}</span></div>` : `<div class="${l.who}">${l.who === 'you' ? '$ ' : ''}${esc(l.text)}</div>`).join('')
+  const off = c ? '' : ' disabled'
+  return `${button}<div class="term"><div class="term-head${fresh ? ' fresh' : ''}"><span>${c ? `customer ${c.id}: ${esc(c.name)}` : 'nobody at the counter'}</span>${c ? `<span class="wants">${c.wants.map((t, i) => tagChip(t, talk.met.includes(t), i)).join('')}</span>` : ''}</div>
+    <div class="term-screen"><div class="term-log" data-termlog>${lines}</div></div>
+    <div class="term-ask"><div class="ask-side"><button data-say="dismiss"${off} title="Send them away">dismiss</button><button data-say="next" title="Call the next customer">next customer</button></div><button class="sell" data-say="sell"${off} title="Sell them what is on the inside counter">SELL</button></div></div>`
 }
-/** Redraw just the terminal (the field is left alone), scrolled to the latest line. */
-function renderTerm() {
+
+let seq = 0 // bumped by every move that changes who is at the counter: a slower one still going notices and gives up
+let typer = 0
+const wait = (ms: number) => new Promise<void>(r => setTimeout(r, ms))
+/** Redraw just the terminal (the field is left alone), scrolled to the latest line. `type` types out the newest line of the customer's, a letter at a time. */
+function renderTerm(o: { fresh?: boolean; type?: boolean } = {}) {
   const side = app.querySelector('.side')
   if (!side) return
-  tip.classList.remove('on') // the icon under the pointer may be gone: no pointerout will come for it
-  side.innerHTML = sideHtml()
-  const log = side.querySelector('[data-termlog]')
+  clearInterval(typer)
+  tip.classList.remove('on') // the tag under the pointer may be gone: no pointerout will come for it
+  side.innerHTML = sideHtml(o.fresh)
+  const log = side.querySelector<HTMLElement>('[data-termlog]')
   if (log) log.scrollTop = log.scrollHeight
+  const line = o.type && talk.log.length ? side.querySelector<HTMLElement>(`[data-line="${talk.log.length - 1}"]`) : null
+  const span = line?.querySelector('span')
+  if (line && span) {
+    const full = span.textContent ?? ''
+    let n = 0
+    span.textContent = ''
+    line.classList.add('typing')
+    typer = window.setInterval(() => {
+      span.textContent = full.slice(0, ++n)
+      if (log) log.scrollTop = log.scrollHeight
+      if (n >= full.length || !line.isConnected) { clearInterval(typer); line.classList.remove('typing') }
+    }, 16)
+  }
   saveTalk()
 }
 /** Every tag of what is on the inside counter, and of whatever is inside containers there. */
@@ -516,25 +531,52 @@ function offeredTags(): string[][] {
   const tags = (it: Item): string[][] => [KINDS[it.kind]?.tags ?? [], ...contents(s, it.id).flatMap(tags)]
   return inSpace(s, { at: 'inside' }).flatMap(tags)
 }
-function say(what: string) {
-  if (what === 'next' || !talk.customer) {
-    if (talk.customer) talk.log.push({ who: 'note', text: `${talk.customer.name} leaves.` })
-    const c = talk.customer = arrive(++talk.n)
-    talk.met = []
-    talk.log.push({ who: 'note', text: `${c.name} steps up to the counter.` }, { who: 'them', name: c.name, text: greeting(c) })
-    talk.log = talk.log.slice(-60)
-  } else if (what === 'ask') talk.log.push({ who: 'you', text: 'What do you want again?' }, { who: 'them', name: talk.customer.name, text: greeting(talk.customer) })
-  else if (what === 'offer') {
-    const r = judge(talk.customer, offeredTags())
-    talk.met = r.met
-    talk.log.push({ who: 'you', text: 'Here, take a look.' }, { who: 'them', name: talk.customer.name, text: r.say })
-  }
+const typeTime = (text: string) => text.length * 16
+
+/** A customer goes: a scan line sweeps down the screen and the conversation fades behind it, then the screen is blank and nobody is there. False if something else happened meanwhile. */
+async function wipe(): Promise<boolean> {
+  const my = ++seq
+  const screen = app.querySelector('.term-screen')
+  if (screen && talk.open && talk.log.length) { screen.classList.add('wipe'); await wait(480) }
+  if (my !== seq) return false
+  Object.assign(talk, { customer: null, met: [], log: [] })
   renderTerm()
+  return true
+}
+/** The next customer: the last one is wiped, then the new one shows up (their wants fade in) and starts talking. */
+async function callNext() {
+  if (!(await wipe())) return
+  const my = seq
+  const c = talk.customer = arrive(++talk.n)
+  talk.log.push({ who: 'note', text: `customer ${c.id} at the counter...` })
+  renderTerm({ fresh: true })
+  await wait(420)
+  if (my !== seq) return
+  talk.log.push({ who: 'them', name: c.name, text: greeting(c) })
+  renderTerm({ type: true })
+}
+/** Sell what is on the inside counter. They say how it looks; if it is everything they wanted they buy, finish their sentence and go. */
+async function sell() {
+  const c = talk.customer
+  if (!c) return
+  const my = ++seq
+  const r = judge(c, offeredTags())
+  talk.met = r.met
+  talk.log.push({ who: 'you', text: 'SELL' }, { who: 'them', name: c.name, text: r.say })
+  renderTerm({ type: true })
+  if (!r.sold) return
+  await wait(typeTime(r.say) + 1100)
+  if (my === seq) await wipe()
+}
+function say(what: string) {
+  if (what === 'next') callNext()
+  else if (what === 'dismiss') wipe()
+  else if (what === 'sell') sell()
 }
 /** Open or close the terminal; opening it with nobody there calls the first customer. */
 function toggleTerm() {
   talk.open = !talk.open
-  if (talk.open && !talk.customer) return say('next')
+  if (talk.open && !talk.customer) return void callNext()
   renderTerm()
 }
 
@@ -618,7 +660,7 @@ app.addEventListener('click', e => {
   if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
   else if ('strict' in b.dataset) toggleStrict()
   else if ('clear' in b.dataset) { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) }
-  else if ('reset' in b.dataset) { s = start(); selected = new Set(); talk = blankTalk(talk.open); if (talk.open) say('next'); changed(new Map()) }
+  else if ('reset' in b.dataset) { s = start(); selected = new Set(); seq++; talk = blankTalk(talk.open); changed(new Map()); if (talk.open) callNext() }
 })
 
 /** Double-click a container to open its insides in a window beside it. */
