@@ -15,7 +15,7 @@
   <rect x="9" y="9" width="110" height="51" fill="url(#back)"/>
   <rect x="9" y="68" width="110" height="51" fill="url(#back)"/>
   <g stroke="#3a281b" stroke-width="0.6" opacity="0.6"><path d="M9 22H119M9 38H119M9 81H119M9 97H119"/></g>
-  <g class="fill"></g>
+  <!--fill--><!--/fill-->
   <!-- the boards in front: the books stand on them -->
   <rect x="9" y="59" width="110" height="9" fill="url(#wood)" stroke="#1a110b" stroke-width="0.6"/>
   <rect x="9" y="118" width="110" height="7" fill="url(#wood)" stroke="#1a110b" stroke-width="0.6"/>

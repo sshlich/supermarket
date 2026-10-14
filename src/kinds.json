@@ -47,11 +47,23 @@
     "w": 4,
     "h": 2,
     "cat": "food",
-    "price": 3,
+    "price": 1,
     "tags": [
       "food"
     ],
-    "desc": "Sliced white in cling film. Keeps a week, if nobody opens it."
+    "desc": "Sliced white in cling film, eight slices when new. Keeps a week, if nobody opens it.",
+    "slots": [
+      {
+        "name": "slices",
+        "w": 8,
+        "h": 4,
+        "accepts": [
+          "bread"
+        ],
+        "fill": "breadslice",
+        "count": 8
+      }
+    ]
   },
   "wine": {
     "name": "Wine bottle",
@@ -263,8 +275,8 @@
     "slots": [
       {
         "name": "disc tray",
-        "w": 1,
-        "h": 1,
+        "w": 2,
+        "h": 2,
         "accepts": [
           "disc"
         ]
@@ -288,8 +300,8 @@
     "icon": "",
     "color": "#3a3d44",
     "sound": "disc",
-    "w": 1,
-    "h": 1,
+    "w": 2,
+    "h": 2,
     "cat": "tech",
     "price": 3,
     "tags": [
@@ -306,12 +318,12 @@
     "h": 3,
     "cat": "furniture",
     "price": 12,
-    "desc": "A tower of shallow black plastic shelves. The discs lie flat, so a dozen fit, edge out.",
+    "desc": "A tower of shallow black plastic shelves. The discs lie flat, so eight fit, edge out.",
     "slots": [
       {
         "name": "shelves",
-        "w": 2,
-        "h": 6,
+        "w": 4,
+        "h": 8,
         "accepts": [
           "disc"
         ]
@@ -346,5 +358,206 @@
         ]
       }
     ]
+  },
+  "breadslice": {
+    "name": "Slice of bread",
+    "icon": "",
+    "color": "#e2cb98",
+    "sound": "food",
+    "w": 2,
+    "h": 2,
+    "cat": "food",
+    "price": 1,
+    "tags": [
+      "food",
+      "bread"
+    ],
+    "desc": "One slice. Two make the start of a sandwich."
+  },
+  "cheesewheel": {
+    "name": "Cheese wheel",
+    "icon": "",
+    "color": "#cf9a3e",
+    "sound": "food",
+    "w": 4,
+    "h": 4,
+    "cells": [
+      ".##.",
+      "####",
+      "####",
+      ".##."
+    ],
+    "cat": "food",
+    "price": 2,
+    "tags": [
+      "food"
+    ],
+    "desc": "A whole wheel, eight wedges of it. Cut a wedge out and the wheel shows it.",
+    "slots": [
+      {
+        "name": "wedges",
+        "w": 12,
+        "h": 6,
+        "out": true,
+        "fill": "cheesewedge",
+        "count": 8
+      }
+    ]
+  },
+  "cheesewedge": {
+    "name": "Cheese wedge",
+    "icon": "",
+    "color": "#efcf6c",
+    "sound": "food",
+    "w": 3,
+    "h": 3,
+    "cells": [
+      "#..",
+      "##.",
+      "###"
+    ],
+    "cat": "food",
+    "price": 1,
+    "tags": [
+      "food",
+      "vessel"
+    ],
+    "desc": "An eighth of a wheel. Slices come off its thin end until only the rind is left.",
+    "slots": [
+      {
+        "name": "slices",
+        "w": 8,
+        "h": 4,
+        "out": true,
+        "fill": "cheeseslice",
+        "count": 8
+      }
+    ]
+  },
+  "cheeseslice": {
+    "name": "Slice of cheese",
+    "icon": "",
+    "color": "#f2d272",
+    "sound": "food",
+    "w": 2,
+    "h": 2,
+    "cat": "food",
+    "price": 1,
+    "tags": [
+      "food"
+    ],
+    "desc": "Thin, with holes. Goes on bread."
+  },
+  "ham": {
+    "name": "Ham",
+    "icon": "",
+    "color": "#c66e68",
+    "sound": "food",
+    "w": 4,
+    "h": 2,
+    "cat": "food",
+    "price": 2,
+    "tags": [
+      "food"
+    ],
+    "desc": "A boned ham in its netting, eight slices of it.",
+    "slots": [
+      {
+        "name": "slices",
+        "w": 8,
+        "h": 4,
+        "out": true,
+        "fill": "hamslice",
+        "count": 8
+      }
+    ]
+  },
+  "hamslice": {
+    "name": "Slice of ham",
+    "icon": "",
+    "color": "#e39a94",
+    "sound": "food",
+    "w": 2,
+    "h": 2,
+    "cat": "food",
+    "price": 2,
+    "tags": [
+      "food"
+    ],
+    "desc": "Pink, round, a rim of fat."
+  },
+  "matchbox": {
+    "name": "Matchbox",
+    "icon": "",
+    "color": "#b8402f",
+    "sound": "card",
+    "w": 2,
+    "h": 1,
+    "cat": "sundries",
+    "price": 1,
+    "tags": [
+      "light"
+    ],
+    "desc": "Ten matches when new. The drawer shows how many are left.",
+    "slots": [
+      {
+        "name": "drawer",
+        "w": 5,
+        "h": 2,
+        "accepts": [
+          "match"
+        ],
+        "fill": "match",
+        "count": 10
+      }
+    ]
+  },
+  "match": {
+    "name": "Match",
+    "icon": "",
+    "color": "#ecd7a6",
+    "sound": "wax",
+    "w": 1,
+    "h": 1,
+    "cat": "sundries",
+    "price": 0,
+    "tags": [
+      "match"
+    ],
+    "desc": "One strike's worth of light."
+  },
+  "lighter": {
+    "name": "Disposable lighter",
+    "icon": "",
+    "color": "#c8322e",
+    "sound": "plastic",
+    "w": 1,
+    "h": 2,
+    "cat": "sundries",
+    "price": 2,
+    "tags": [
+      "light"
+    ],
+    "desc": "Cheap plastic, every one a different colour. When it runs out, it is rubbish."
+  },
+  "zippo": {
+    "name": "Refillable lighter",
+    "icon": "",
+    "color": "#b9bfc5",
+    "sound": "zippo",
+    "w": 2,
+    "h": 2,
+    "cat": "sundries",
+    "price": 14,
+    "tags": [
+      "light"
+    ],
+    "holds": 2,
+    "liquid": "oil",
+    "liquids": [
+      "oil",
+      "spirit"
+    ],
+    "desc": "Brushed chrome, a lid that clicks. Fill it with lamp oil or spirit."
   }
 }

@@ -288,8 +288,9 @@ The bottom of the field is clean: only the note line. `src/menu.ts` holds the re
 A first, small version of the computer idea (`IDEAS.md`): the feel, the CRT, the power switch, and a disc tray.
 - **The wired terminal** (`computer` kind, 3x3, 60$, tech; sellable, tagged valuable): an all-in-one CRT in a beige case.
   Its `power` property swaps the sprite's colours, so on the field it shows a green screen and a lit light when it is on,
-  and lines of text that slowly step up the screen while the bottom one types itself out (one line every 1.6 s). Double-click opens its **window**: the CRT in its bezel, and under it the power switch, the light,
-  the maker's name and the **disc tray**, the machine's one slot (1x1, takes things tagged `disc`), handled like any place.
+  and lines of text that step up the screen while the bottom one types itself out: in bursts and pauses, each line its
+  own length and its own while (eight lines a loop, generated from a fixed rhythm), a small cursor riding the typing. Double-click opens its **window**: the CRT in its bezel, and under it the power switch, the light,
+  the maker's name and the **disc tray**, the machine's one slot (2x2, takes things tagged `disc`), handled like any place.
   The window can **fill the page** (⤢ in its header; everything else dims around it) and back (⤡).
 - **The screen** (`src/computer.ts`): off, dark glass. Switched on, a soft thunk and the tube's hum, then a few lines of BIOS
   typed out, a check of the drive, and a small desktop in the dark-98 look: one icon, A:, and a taskbar ("A: ready" or
@@ -298,7 +299,8 @@ A first, small version of the computer idea (`IDEAS.md`): the feel, the CRT, the
   320x240 display scaled up; the glass is curved at the corners, darker at the edges, with scanlines, a soft glare and a
   faint flicker, so it reads as a tube without bending where clicks land. What the screen is doing is kept by machine in
   memory, so the field redrawing does not reset it; a machine left on comes back at its desktop after a reload.
-- **Discs** (`disc` kind, 1x1 floppy, 3$): each one is a Markdown file in `src/discs/` (copy `_template.md`): its label, the
+- **Discs** (`disc` kind, a 2x2 floppy, 3$: a sliding metal shutter with the disc behind its window, a ruled label
+  written on in ink, the write-protect tab): each one is a Markdown file in `src/discs/` (copy `_template.md`): its label, the
   colour of its plastic, a line for the tooltip, then its files, each under `# NAME.TXT`. `src/discs.ts` makes each one a
   value of the disc kind's `content` property (its name, blurb and plastic colour). Three to start, shards of the world:
   *SYNTH-AG / BATCH QC* (a synthetic-food plant's last records), *MERROW ST. LIGHTING* (the town's lamp schedule, and a
@@ -311,8 +313,8 @@ A first, small version of the computer idea (`IDEAS.md`): the feel, the CRT, the
 - **Furniture** (a category): a **disc holder** (2x3, black plastic, 12$) and a **bookshelf** (4x4, wood, 24$). Their
   sprites are drawn from what is in them (`src/fill.ts`: a kind with a painter has an empty `<g class="fill"></g>` in its
   sprite, filled from its contents by where each thing sits and its colour):
-  - the disc holder's inside is 2x6: twelve shallow shelves, square n (left to right, top row first) is shelf n. A disc
-    lies flat on its shelf, so the front shows only its thin edge, in the disc's own colour.
+  - the disc holder's inside is 4x8: eight shallow shelves, one 2x2 disc each (row by row, left to right). A disc lies flat
+    on its shelf, so the front shows only its thin edge, in the disc's own colour, with the label wrapped over it.
   - the bookshelf has two shelves, each 12x3 inside (six books standing). A standing book shows its spine where it stands,
     in its cover colour, with gilt bands, a little taller or shorter than its neighbours; a book turned to lie down shows
     as a flat block where it lies.
@@ -320,3 +322,26 @@ A first, small version of the computer idea (`IDEAS.md`): the feel, the CRT, the
   starts its loop at minus the time since the page loaded: main.ts sets `--clock` on whatever it draws (the page, the copy
   in hand while dragging, a machine's screen) and the animations use it as their delay. A redraw or a drag carries on in
   step instead of starting over.
+
+## Things you take apart, and lighters (2026-10-14)
+
+Painted sprites (`src/fill.ts`) now mark their painted part with `<!--fill-->` and `<!--/fill-->`. What the file has there
+is the thing as it comes, written by `node scripts/fills.ts` from the painters themselves (a new one spawned, full), so the
+gallery and the footprint check see the whole thing; the game paints over it from each item. Painters run before the
+item's ids are made its own, so they can use the sprite's gradients. A slot's `fill` can say how many it comes with
+(`count`), and a vessel can take only some liquids (`liquids`).
+- **Sliced bread** is a pack of eight 2x2 slices (put back in: it takes only bread). The loaf is as long as the slices left
+  in it, cut lines between them and a pale cut end; the bag stays as long as it was and lies flat past the loaf to its twist
+  and clip; the label shrinks onto the flat bag; empty, it is a flat bag of crumbs.
+- **Cheese**: a **wheel** (4x4, a round footprint) of eight **wedges** (3x3, a triangle footprint), each wedge eight 2x2
+  **slices**. Neither goes back together (take out only). The wheel from above shows one sector per wedge left, on its
+  paper, pale where it was cut; a wedge loses its thin end first, so what is left is nearer and nearer its rind, and at last
+  only the rind is left. A wedge can sit inside the wheel because it is tagged `vessel` (two levels deep).
+- **Ham** (4x2, in its netting) of eight round 2x2 slices: the log is as long as the slices left, its pink cut face showing.
+- Slices are 2x2 so that later they can stack: sandwiches.
+- **Matchbox** (2x1) of ten matches (1x1): its drawer is slid half out from the printed sleeve, one match for each in it.
+- **Disposable lighter** (1x2, standing): every one is its own, picked from its id (a test drive for seeded looks): one of
+  twelve plastic colours and solid, two-toned, striped, spotted, banded or swirled. Same hood, wheel and button on all.
+- **Refillable lighter** (2x2, brushed chrome, a lid that clicks): a vessel of 2 that takes only lamp oil or spirit, comes
+  full of lamp oil, and has no window, so how much is in it is only in the tooltip.
+- Sounds: a matchbox's matches shift inside it; the refillable lighter clicks and rings faintly.

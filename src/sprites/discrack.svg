@@ -6,16 +6,14 @@
       <stop offset="1" stop-color="#141518"/>
     </linearGradient>
   </defs>
-  <!-- a disc holder in black plastic, standing: twelve shallow shelves, each for one disc lying flat (fill.ts draws them) -->
+  <!-- a disc holder in black plastic, standing: eight shallow shelves, each for one disc lying flat (drawn by fill.ts) -->
   <rect x="4" y="3" width="56" height="90" rx="3" fill="url(#plastic)" stroke="#08080a" stroke-width="1"/>
   <rect x="8" y="7" width="48" height="82" rx="1" fill="#0d0e10"/>
   <g fill="#2c2e34">
-    <rect x="8" y="13.23" width="48" height="0.8"/><rect x="8" y="20.07" width="48" height="0.8"/><rect x="8" y="26.9" width="48" height="0.8"/>
-    <rect x="8" y="33.73" width="48" height="0.8"/><rect x="8" y="40.57" width="48" height="0.8"/><rect x="8" y="47.4" width="48" height="0.8"/>
-    <rect x="8" y="54.23" width="48" height="0.8"/><rect x="8" y="61.07" width="48" height="0.8"/><rect x="8" y="67.9" width="48" height="0.8"/>
-    <rect x="8" y="74.73" width="48" height="0.8"/><rect x="8" y="81.57" width="48" height="0.8"/><rect x="8" y="88.2" width="48" height="0.8"/>
+    <rect x="8" y="16.65" width="48" height="1"/><rect x="8" y="26.9" width="48" height="1"/><rect x="8" y="37.15" width="48" height="1"/><rect x="8" y="47.4" width="48" height="1"/>
+    <rect x="8" y="57.65" width="48" height="1"/><rect x="8" y="67.9" width="48" height="1"/><rect x="8" y="78.15" width="48" height="1"/><rect x="8" y="88" width="48" height="1"/>
   </g>
-  <g class="fill"></g>
+  <!--fill--><!--/fill-->
   <path d="M6 5.5C6 4.6 6.6 4 7.5 4L56.5 4" fill="none" stroke="#4a4c54" stroke-width="0.8"/>
   <path d="M5.2 8L5.2 90" stroke="#3a3c42" stroke-width="0.8"/>
   <rect x="8" y="91" width="48" height="1.2" fill="#000000" opacity="0.5"/>

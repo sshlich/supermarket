@@ -389,3 +389,22 @@ console.log('world ok')
   assert.ok(moveInto(s, c, { at: 'inside' }) && !overlaps(boxOf(b), boxOf(c)))
   console.log('move ok')
 }
+
+// a filled slot can say how many it comes with; a vessel can take only some liquids
+{
+  Object.assign(KINDS, {
+    crumb: { name: 'Crumb', icon: '', color: '#000', w: 1, h: 1 },
+    tin: { name: 'Tin', icon: '', color: '#000', w: 2, h: 2, slots: [{ w: 4, h: 4, fill: 'crumb', count: 5 }] },
+    zippo: { name: 'Zippo', icon: '', color: '#000', w: 2, h: 2, holds: 2, liquids: ['oil', 'spirit'] },
+  })
+  const s: State = { items: [], next: 1, windows: [] }
+  const tin = spawn(s, 'tin')!
+  assert.equal(contents(s, tin.id).length, 5) // not the 16 that would fit
+  const z = spawn(s, 'zippo')!, wine = spawn(s, 'winebottle')!, oil = spawn(s, 'flask')!
+  fillWith(oil, 'oil')
+  assert.equal(canPour(wine, z), 0)
+  assert.equal(pour(oil, z), 2)
+  fillWith(z, 'water')
+  assert.equal(z.fill, undefined) // not a liquid it takes
+  console.log('counts and fuels ok')
+}

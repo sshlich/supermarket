@@ -144,6 +144,14 @@ const MATERIALS: Record<string, Partial<Record<Action, () => void>>> = {
     lift: () => noise(vary(2200), { d: 0.02, g: 0.03, q: 2 }),
     drop: () => { noise(vary(1800), { d: 0.025, g: 0.05, q: 2 }); tone(vary(600), { type: 'triangle', d: 0.03, g: 0.015, at: 0.03 }) },
   },
+  card: { // a matchbox: its matches shift inside it
+    lift: () => times(4, 0.025, (_, at) => noise(vary(2400, 0.2), { d: 0.015, g: 0.025, q: 2, at })),
+    drop: () => { noise(vary(700), { d: 0.05, g: 0.05, q: 0.8 }); times(3, 0.02, (_, at) => noise(vary(2600, 0.2), { d: 0.012, g: 0.02, q: 2, at: at + 0.03 })) },
+  },
+  zippo: { // the lid's click, and a small ring of metal
+    lift: () => { noise(vary(3200), { d: 0.012, g: 0.05, q: 3 }); tone(vary(2300, 0.03), { d: 0.12, g: 0.012, at: 0.01 }) },
+    drop: () => { tone(vary(1500, 0.04), { d: 0.14, g: 0.02 }); noise(vary(1800), { d: 0.03, g: 0.05, q: 2 }) },
+  },
   gold: {
     lift: () => times(3, 0.035, (_, at) => tone(vary(2900, 0.12), { d: 0.05, g: 0.012, at })),
     drop: () => { tone(vary(1760, 0.02), { d: 0.35, g: 0.03 }); tone(vary(2640, 0.02), { d: 0.22, g: 0.012 }) },

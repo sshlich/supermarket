@@ -80,11 +80,10 @@ let uid = 0
  * a gradient), and for a container, `--in<n>` set to 0 for each empty square of its first slot (a blister shows its gaps).
  */
 function spriteHtml(it: Item) {
-  let svg = SPRITE[it.kind] ?? ''
+  let svg = paintFill(it, SPRITE[it.kind] ?? '', slot => inSpace(s, { host: it.id, slot })) // drawn from what is in it, before ids are made its own
   for (const [from, to] of Object.entries(look(it).colors)) svg = svg.replaceAll(new RegExp(from, 'gi'), to) // hex colours: nothing in them is special to a RegExp
   const u = `u${++uid}`
   svg = svg.replace(/id="([^"]+)"/g, `id="$1-${u}"`).replace(/url\(#([^)]+)\)/g, `url(#$1-${u})`).replace(/href="#([^"]+)"/g, `href="#$1-${u}"`)
-  svg = paintFill(it.kind, svg, slot => inSpace(s, { host: it.id, slot }))
   const vars: string[] = []
   const slot = KINDS[it.kind].slots?.[0]
   if (slot && svg.includes('var(--in')) {

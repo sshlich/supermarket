@@ -21,16 +21,17 @@ const isCounter = (c: unknown): c is Counter => typeof c === 'string' && c in CO
  * (for tooltips), private notes, tags (what customers ask for), a category (`cat`) and a price in coins.
  * `props` are what one thing of the kind can be on top of that: each property has values, the first one the default.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; read?: boolean; sound?: string; computer?: boolean }
-/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts); `computer`: its window is a screen (see computer.ts). */
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; liquids?: string[]; read?: boolean; sound?: string; computer?: boolean }
+/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `liquids`: the only liquids it takes (a lighter: fuel); `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts); `computer`: its window is a screen (see computer.ts). */
 /** What a property's value does to a thing: another name, description or price, more tags, and colours swapped in its sprite (hex to hex; "none" hides whatever had that colour). */
 export interface Effect { name?: string; desc?: string; tags?: string[]; price?: number; colors?: Record<string, string> }
 /**
  * A container's inside: a small grid with its own rules. Most containers have one slot; some have several, named. `accepts`
  * and `rejects` are tags; nothing else is checked. `out`: things can only be taken out of it (a blister); `fill`: a new one
- * comes full of this kind, which takes on the container's properties (a blister of antibiotics holds antibiotics).
+ * comes full of this kind, which takes on the container's properties (a blister of antibiotics holds antibiotics), `count`
+ * of them at most (a cheese wheel is eight wedges, however they would pack).
  */
-export interface Slot { name?: string; w: number; h: number; accepts?: string[]; rejects?: string[]; out?: boolean; fill?: string }
+export interface Slot { name?: string; w: number; h: number; accepts?: string[]; rejects?: string[]; out?: boolean; fill?: string; count?: number }
 
 /** What things are. Sizes are in field cells and every footprint is a plain rectangle; the data lives in kinds.json so the sprite editor can change it. */
 export const KINDS: Record<string, Kind> = DATA
@@ -58,6 +59,7 @@ export function canPour(from: Item, to: Item): number {
   const cap = KINDS[to.kind]?.holds ?? 0
   const have = from.fill?.amount ?? 0
   if (!have || !cap || from.id === to.id || (to.fill && to.fill.liquid !== from.fill!.liquid)) return 0
+  if (KINDS[to.kind].liquids && !KINDS[to.kind].liquids!.includes(from.fill!.liquid)) return 0
   return Math.min(have, cap - (to.fill?.amount ?? 0))
 }
 /** Pour one vessel into another (see canPour); an emptied vessel holds nothing. How much went. */
@@ -72,7 +74,7 @@ export function pour(from: Item, to: Item): number {
 /** Fill a vessel to the brim with a liquid, or empty it (null). */
 export function fillWith(it: Item, liquid: string | null) {
   const cap = KINDS[it.kind]?.holds ?? 0
-  if (cap && liquid && LIQUIDS[liquid]) it.fill = { liquid, amount: cap }
+  if (cap && liquid && LIQUIDS[liquid] && (KINDS[it.kind].liquids?.includes(liquid) ?? true)) it.fill = { liquid, amount: cap }
   else delete it.fill
 }
 /**
@@ -414,7 +416,7 @@ export function spawn(s: State, kind: string, space: Space = null, props: Record
   Object.assign(it, { x: spot.x, y: spot.y, rot: spot.rot })
   s.items.push(it)
   fillWith(it, KINDS[kind].liquid ?? null)
-  KINDS[kind].slots?.forEach((sl, slot) => { if (sl.fill && KINDS[sl.fill]) while (spawn(s, sl.fill, { host: it.id, slot }, propsOf(it), true)); })
+  KINDS[kind].slots?.forEach((sl, slot) => { if (sl.fill && KINDS[sl.fill]) for (let n = 0; n < (sl.count ?? Infinity) && spawn(s, sl.fill, { host: it.id, slot }, propsOf(it), true); n++); })
   return it
 }
 

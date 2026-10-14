@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 64">
+  <defs>
+    <linearGradient id="ham" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d98a84"/>
+      <stop offset="0.5" stop-color="#c66e68"/>
+      <stop offset="1" stop-color="#a9524d"/>
+    </linearGradient>
+  </defs>
+  <!-- a ham in its netting, as long as the slices left in it (drawn by fill.ts) -->
+  <!--fill--><rect x="9" y="10" width="110" height="46" rx="16" ry="20" fill="url(#ham)" stroke="#7a3a36" stroke-width="1"/><g fill="none" stroke="#f3dccc" stroke-width="0.8" opacity="0.55"><path d="M16 11L24 55"/><path d="M24 11L16 55"/><path d="M25 11L33 55"/><path d="M33 11L25 55"/><path d="M34 11L42 55"/><path d="M42 11L34 55"/><path d="M43 11L51 55"/><path d="M51 11L43 55"/><path d="M52 11L60 55"/><path d="M60 11L52 55"/><path d="M61 11L69 55"/><path d="M69 11L61 55"/><path d="M70 11L78 55"/><path d="M78 11L70 55"/><path d="M79 11L87 55"/><path d="M87 11L79 55"/><path d="M88 11L96 55"/><path d="M96 11L88 55"/><path d="M97 11L105 55"/><path d="M105 11L97 55"/><path d="M106 11L114 55"/><path d="M114 11L106 55"/></g><path d="M14 22C47 18 80 26 113 20" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.25"/><!--/fill-->
+</svg>
