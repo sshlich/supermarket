@@ -46,9 +46,17 @@ export const KINDS: Record<string, Kind> = DATA
 /** `in` says which container's slot it sits in (its x, y are then inside that slot's grid), `at` which counter it is on; neither means on the field. */
 /**
  * `props` are its property values where they are not the default (`{ origin: 'synthetic' }`); `fill` is the liquid in a
- * vessel; `left` how many pieces are left in something cut (all of them when missing); `age` how many days old it is.
+ * vessel; `left` how many pieces are left in something cut (all of them when missing); `age` how many days old it is;
+ * `seed` what its generated look is drawn from (a slice's fat or holes), when it is not its id.
  */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter; props?: Record<string, string>; fill?: Fill; left?: number; age?: number }
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter; props?: Record<string, string>; fill?: Fill; left?: number; age?: number; seed?: number }
+/** What a thing's generated look is drawn from. */
+export const seedOf = (it: Item) => it.seed ?? it.id
+/**
+ * The look of the face where something was cut, with `n` pieces still in it: the pattern of the next slice to come off.
+ * The knife hands that slice exactly this seed, and the face shows a new one after (its count has changed).
+ */
+export const faceSeed = (it: Item, n: number) => (Math.imul(seedOf(it) + 1, 2654435761) ^ Math.imul(n + 7, 40503)) >>> 0
 export interface Fill { liquid: string; amount: number }
 
 /**
@@ -375,10 +383,10 @@ function cleanFill(o: Item): { fill?: Fill } {
   const n = Math.min(cap, Math.floor(Number(o.fill?.amount) || 0))
   return o.fill && LIQUIDS[o.fill.liquid] && n > 0 ? { fill: { liquid: o.fill.liquid, amount: n } } : {}
 }
-/** How much is left of something cut, and how old a thing that ages is, where it makes sense. */
+/** How much is left of something cut, how old a thing that ages is, and what its look is drawn from, where they make sense. */
 function cleanCut(o: Item): { left?: number; age?: number } {
   const c = KINDS[o.kind]?.cut, n = Math.round(Number(o.left))
-  return { ...(c && n >= 1 && n < c.count ? { left: n } : {}), ...(KINDS[o.kind]?.ages && Number(o.age) > 0 ? { age: Number(o.age) } : {}) }
+  return { ...(c && n >= 1 && n < c.count ? { left: n } : {}), ...(KINDS[o.kind]?.ages && Number(o.age) > 0 ? { age: Number(o.age) } : {}), ...(Number.isFinite(o.seed) ? { seed: Number(o.seed) } : {}) }
 }
 /** Only properties the kind still has, with values it still knows, and none that are the default. */
 function cleanProps(o: Item): { props?: Record<string, string> } {
@@ -441,6 +449,7 @@ export function cut(s: State, it: Item): Item[] | null {
     const p = spawn(s, c.into, space) ?? spawn(s, c.into, null)
     if (!p) break
     if (it.age !== undefined) p.age = it.age
+    p.seed = faceSeed(it, n - i) // the slice that comes off is the face that was showing
     made.push(p)
   }
   if (made.length === pieces) return made

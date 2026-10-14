@@ -347,17 +347,21 @@ item's ids are made its own, so they can use the sprite's gradients. A slot's `f
   wedge left, a notch in the top where the back is gone, the pale cut face where one faces you. Size: 8 to 6 left 4x3, 5
   left 3x3, 4 to 2 left 2x3.
 - **Cheddar wedge** (3x2) of six slices, drawn after a photo of a good wedge: a little from above and in front, its front
-  (a cut face) a rectangle the full height of the wheel, its top the wheel's top tapering to the thin end at the left, the
-  rind a narrow band along the back and down the right. Smooth golden paste with a soft lit edge, a few round holes shaded
+  (a cut face) a rectangle the full height of the wheel, its top the wheel's top tapering to the thin end at the right, the
+  rind a narrow band along the back and down the left. Smooth golden paste with a soft lit edge, a few round holes shaded
   inside with a lit lower lip (one usually breaking the front edge), faint knife-scrape arcs on top; the holes and scrapes
-  are each wedge's own (from its id). Slices come off the thin end: 6 and 5 left 3x2, 4 and 3 left 2x2, 2 left 1x2.
-- **Slices are generated, every one its own** (from its id, `src/fill.ts`): a **slice of cheese** is a slightly uneven
+  are each wedge's own (from its seed). Slices come off the thin end: 6 and 5 left 3x2, 4 and 3 left 2x2, 2 left 1x2.
+  Once cut, the thin end is a face of paste with the next slice's holes on it, as hollows, in perspective.
+- **The cut face is the next slice.** A thing cut with the knife shows, on its cut end, exactly the slice that will come
+  off next: the face is drawn from `faceSeed(item, left)` and the knife gives that seed to the slice it cuts, so the slice
+  in your hand is the face you were looking at, and a new face shows under it.
+- **Slices are generated, every one its own** (from their `seed`, else their id, `src/fill.ts`): a **slice of cheese** is a slightly uneven
   square with three to seven holes right through it (the field shows through; a mask, not paint), varied in size, some
   biting into its edge, each with a darker rim and a lit lip. A **slice of salami** is deep red, darker toward its edge,
   flecked with fat (up to 46 flecks, mostly small, a few large, never touching, each an uneven little shape) and a few
   peppercorns, inside a rim of casing that is the same on every slice; its outline wanders slightly, never a perfect circle.
 - **Salami** (4x2, was the ham) of eight slices, cut off its right end: dark cured casing dusted with white bloom, string
-  round it and tied at its ends; cut, its end shows a dotted face. 8 to 6 left 4x2, 5 and 4 left 3x2, 3 and 2 left 2x2.
+  round it and tied at its ends; cut, its end shows the next slice, turned a little toward you. 8 to 6 left 4x2, 5 and 4 left 3x2, 3 and 2 left 2x2.
 - **Age** (for later): cheese carries an `age` in days; its colours mix from pale cheddar to orange with it (`aged()`),
   and from `AGE_DAYS` (10) on it is called aged and is worth half as much again. Nothing counts days yet; the debug panel
   spawns cheese fresh or aged.

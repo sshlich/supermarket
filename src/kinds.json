@@ -424,11 +424,11 @@
       "food"
     ],
     "ages": true,
-    "desc": "An eighth of a wheel: six slices, cut off its thin end with a knife.",
+    "desc": "An eighth of a wheel: six slices, cut off its thin end with a knife. Its cut end shows the next slice.",
     "cut": {
       "into": "cheeseslice",
       "count": 6,
-      "from": "left",
+      "from": "right",
       "sizes": [
         [
           5,
@@ -564,7 +564,7 @@
     "tags": [
       "food"
     ],
-    "desc": "A cured salami, tied with string, dusted white. Eight slices of it; cut them with a knife.",
+    "desc": "A cured salami, tied with string, dusted white. Eight slices of it; cut them with a knife. Its cut end shows the next slice.",
     "cut": {
       "into": "salamislice",
       "count": 8,

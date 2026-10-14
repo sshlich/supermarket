@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { accepts, canPour, cut, dims, leftOf, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
+import { accepts, canPour, cut, dims, faceSeed, leftOf, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
 import FIXTURE from './test/kinds.json' with { type: 'json' }
 
 // The game ships no items for now, so the tests bring their own kinds and the old starting field.
@@ -419,8 +419,10 @@ console.log('world ok')
   const w = spawn(s, 'wedgeT')!
   w.x = 10; w.y = 5; w.age = 4
   assert.deepEqual([leftOf(w), dims(w).w], [6, 3])
-  assert.equal(cut(s, w)!.length, 1)
+  const [first] = cut(s, w)!
+  assert.equal(first.seed, faceSeed(w, 6)) // the slice is the face that was showing...
   assert.deepEqual([leftOf(w), dims(w).w, w.x], [5, 3, 10])
+  assert.notEqual(faceSeed(w, 5), first.seed) // ...and the face under it is a new one
   cut(s, w)
   assert.deepEqual([leftOf(w), dims(w).w, w.x], [4, 2, 11]) // shrank from the left: the right edge stays at 13
   assert.equal(look(w).price, 4)
