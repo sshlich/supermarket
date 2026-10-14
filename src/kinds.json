@@ -526,7 +526,8 @@
     "tags": [
       "match"
     ],
-    "desc": "One strike's worth of light."
+    "desc": "One strike's worth of light.",
+    "lights": true
   },
   "lighter": {
     "name": "Disposable lighter",
@@ -540,7 +541,8 @@
     "tags": [
       "light"
     ],
-    "desc": "Cheap plastic, every one a different colour. When it runs out, it is rubbish."
+    "desc": "Cheap plastic, every one a different colour. When it runs out, it is rubbish.",
+    "lights": true
   },
   "zippo": {
     "name": "Refillable lighter",
@@ -560,7 +562,8 @@
       "oil",
       "spirit"
     ],
-    "desc": "Brushed chrome, a lid that clicks. Fill it with lamp oil or spirit."
+    "desc": "Brushed chrome, a lid that clicks. Fill it with lamp oil or spirit.",
+    "lights": true
   },
   "knife": {
     "name": "Kitchen knife",
@@ -626,5 +629,143 @@
       "food"
     ],
     "desc": "Deep red, flecked with fat, a darker rim of casing. No two slices are the same."
+  },
+  "coal": {
+    "name": "Coal",
+    "icon": "",
+    "color": "#2c2c33",
+    "sound": "coal",
+    "w": 1,
+    "h": 1,
+    "cat": "materials",
+    "price": 1,
+    "tags": [
+      "fuel",
+      "coal"
+    ],
+    "burns": 15,
+    "desc": "A lump of hard coal. In a furnace, a good while of heat; in a stove, an evening."
+  },
+  "ore": {
+    "name": "Iron ore",
+    "icon": "",
+    "color": "#8e3b22",
+    "sound": "stone",
+    "w": 2,
+    "h": 2,
+    "cat": "materials",
+    "price": 3,
+    "tags": [
+      "ore"
+    ],
+    "desc": "Heavy red-brown rock, banded with rust and glinting where it broke. Two lumps make a bar.",
+    "props": {
+      "metal": {
+        "iron": {},
+        "copper": {
+          "name": "Copper ore",
+          "price": 4,
+          "desc": "Grey rock with green crusts of malachite and specks of copper. Two lumps make a bar.",
+          "colors": {
+            "#7d6656": "#6e6c62",
+            "#5b4b43": "#55534b",
+            "#463830": "#3f3e38",
+            "#2f2521": "#2b2a26",
+            "#8e3b22": "#2e7a5c",
+            "#b9603e": "#63b38c",
+            "#a7a9ad": "#d68e52",
+            "#231b17": "#1e1d1a"
+          }
+        }
+      }
+    },
+    "smelt": {
+      "into": "ingot",
+      "count": 2,
+      "secs": 24
+    }
+  },
+  "ingot": {
+    "name": "Iron ingot",
+    "icon": "",
+    "color": "#8d9297",
+    "sound": "metal",
+    "w": 3,
+    "h": 2,
+    "cat": "materials",
+    "price": 10,
+    "tags": [
+      "metal"
+    ],
+    "desc": "A bar of iron, cast in a mould: a little hollow on top where it cooled.",
+    "props": {
+      "metal": {
+        "iron": {},
+        "copper": {
+          "name": "Copper ingot",
+          "price": 13,
+          "desc": "A bar of copper, cast in a mould: a little hollow on top where it cooled.",
+          "colors": {
+            "#8d9297": "#c27a4c",
+            "#a3a8ad": "#dc9a68",
+            "#b4b9bd": "#e3a776",
+            "#9a9fa4": "#cf8a58",
+            "#5f6468": "#8f5130",
+            "#4c5054": "#74401f",
+            "#2a2d30": "#3b2112",
+            "#70757a": "#a2603a",
+            "#c9cdd0": "#f2c79c"
+          }
+        }
+      }
+    }
+  },
+  "furnace": {
+    "name": "Furnace",
+    "icon": "",
+    "color": "#4a4440",
+    "sound": "iron",
+    "w": 3,
+    "h": 4,
+    "cat": "machines",
+    "price": 40,
+    "desc": "A squat cast-iron furnace with a firebrick crucible. Coal in the firebox, a match to it, and two lumps of ore come out one bar.",
+    "furnace": true,
+    "slots": [
+      {
+        "name": "crucible",
+        "w": 4,
+        "h": 2,
+        "accepts": [
+          "ore"
+        ]
+      },
+      {
+        "name": "firebox",
+        "w": 4,
+        "h": 1,
+        "accepts": [
+          "coal"
+        ]
+      }
+    ],
+    "props": {
+      "fire": {
+        "out": {
+          "colors": {
+            "#fe8a31": "none",
+            "#ffd27a": "none",
+            "#8e8a86": "none"
+          }
+        },
+        "lit": {
+          "colors": {
+            "#2a1f1b": "#f39a3a",
+            "#2a201c": "#ffe39a",
+            "#2b201c": "#ff7424"
+          }
+        }
+      }
+    }
   }
 }

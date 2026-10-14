@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 128">
+  <defs>
+    <linearGradient id="iron" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#57504b"/>
+      <stop offset="0.45" stop-color="#4a4440"/>
+      <stop offset="1" stop-color="#2f2a27"/>
+    </linearGradient>
+    <linearGradient id="pipe" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5a534e"/>
+      <stop offset="0.55" stop-color="#3a3532"/>
+      <stop offset="1" stop-color="#24201e"/>
+    </linearGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+  </defs>
+  <!-- a squat cast-iron furnace: a stovepipe, a riveted body, an arched crucible door with a mica window, the firebox door
+       with its vents, an ash pan, feet. Lit (the fire property), the window and the vents glow, flames move behind the mica
+       and smoke leaves the pipe (style.css: furnace-flicker, furnace-smoke) -->
+  <g class="furnace-smoke" fill="#8e8a86"><circle cx="64" cy="7" r="3.2" opacity="0.35"/><circle cx="66" cy="4" r="2.4" opacity="0.25"/><circle cx="62" cy="2.5" r="1.8" opacity="0.2"/></g>
+  <rect x="58" y="6" width="12" height="24" fill="url(#pipe)" stroke="#1c1917" stroke-width="1"/>
+  <rect x="56" y="18" width="16" height="4" rx="1" fill="#3e3834" stroke="#1c1917" stroke-width="0.8"/>
+  <rect x="8" y="28" width="80" height="8" rx="2" fill="#3e3834" stroke="#1c1917" stroke-width="1"/>
+  <path d="M10 29.5H86" stroke="#6a625c" stroke-width="0.8" opacity="0.7"/>
+  <rect x="12" y="35" width="72" height="77" rx="4" fill="url(#iron)" stroke="#1c1917" stroke-width="1.2"/>
+  <path d="M14 38V108" stroke="#7a726b" stroke-width="1" opacity="0.45"/>
+  <!-- riveted bands -->
+  <rect x="10.5" y="42" width="75" height="4.5" rx="1" fill="#3a3431" stroke="#1c1917" stroke-width="0.6"/>
+  <rect x="10.5" y="99" width="75" height="4.5" rx="1" fill="#3a3431" stroke="#1c1917" stroke-width="0.6"/>
+  <g fill="#7a716a"><circle cx="16" cy="44.2" r="1.1"/><circle cx="26" cy="44.2" r="1.1"/><circle cx="36" cy="44.2" r="1.1"/><circle cx="60" cy="44.2" r="1.1"/><circle cx="70" cy="44.2" r="1.1"/><circle cx="80" cy="44.2" r="1.1"/>
+    <circle cx="16" cy="101.2" r="1.1"/><circle cx="26" cy="101.2" r="1.1"/><circle cx="70" cy="101.2" r="1.1"/><circle cx="80" cy="101.2" r="1.1"/></g>
+  <rect x="41" y="40.6" width="14" height="4.6" rx="0.8" fill="#8a6e40" stroke="#4a3a20" stroke-width="0.5"/>
+  <path d="M43 43H53" stroke="#4a3a20" stroke-width="0.6" opacity="0.7"/>
+  <!-- the crucible door: its glow first, behind it -->
+  <ellipse cx="48" cy="66" rx="24" ry="15" fill="#fe8a31" opacity="0.35" filter="url(#soft)"/>
+  <path d="M25 78V62A23 15 0 0 1 71 62V78Z" fill="#3b3532" stroke="#1c1917" stroke-width="1.1"/>
+  <path d="M27.5 76V62.5A20.5 12.6 0 0 1 68.5 62.5V76Z" fill="none" stroke="#57504b" stroke-width="0.8"/>
+  <path d="M34 73V64.5A14 9.5 0 0 1 62 64.5V73Z" fill="#2a1f1b" stroke="#1c1917" stroke-width="1"/>
+  <ellipse cx="48" cy="70.5" rx="9.5" ry="3.6" fill="#2a201c"/>
+  <g class="furnace-flicker">
+    <path d="M38 73C38.5 68.5 42 67.5 41 62.5C45 66 46.5 69.5 45.5 73Z" fill="#fe8a31" opacity="0.9"/>
+    <path d="M47 73C47.5 67 52.5 65.5 50.5 60.5C55.5 64.5 57 69 55.5 73Z" fill="#fe8a31" opacity="0.85"/>
+    <path d="M40.5 73C41 70 43 69.5 42.6 67C44.6 69 45 71.5 44.4 73Z" fill="#ffd27a"/>
+    <path d="M49.5 73C50 69.5 52.5 68.5 51.6 65.5C54.4 68 55 71 53.8 73Z" fill="#ffd27a"/>
+  </g>
+  <path d="M37 67C38.5 64 41.5 62.4 45 62" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.22" stroke-linecap="round"/>
+  <rect x="22.5" y="64" width="3.5" height="4" rx="0.8" fill="#2a2523"/><rect x="22.5" y="72" width="3.5" height="4" rx="0.8" fill="#2a2523"/>
+  <rect x="64" y="68" width="6" height="3" rx="1.2" fill="#9a7a46" stroke="#4a3a20" stroke-width="0.5"/>
+  <!-- the firebox door and its vents, a glow under it -->
+  <ellipse cx="48" cy="97" rx="15" ry="3" fill="#fe8a31" opacity="0.4" filter="url(#soft)"/>
+  <rect x="30" y="81" width="36" height="16" rx="2" fill="#3b3532" stroke="#1c1917" stroke-width="1"/>
+  <path d="M31.5 82.5H64.5" stroke="#57504b" stroke-width="0.7"/>
+  <g fill="#2b201c"><rect x="35" y="85" width="26" height="2" rx="1"/><rect x="35" y="89" width="26" height="2" rx="1"/><rect x="35" y="93" width="26" height="2" rx="1"/></g>
+  <circle cx="62.5" cy="89" r="1.6" fill="#9a7a46" stroke="#4a3a20" stroke-width="0.5"/>
+  <!-- the ash pan, the feet -->
+  <rect x="34" y="105" width="28" height="5" rx="1" fill="#2a2522" stroke="#1c1917" stroke-width="0.8"/>
+  <path d="M44 107.5H52" stroke="#6a625c" stroke-width="1" stroke-linecap="round"/>
+  <path d="M15 111H25L23.5 123H16.5Z" fill="#2f2a27" stroke="#1c1917" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M71 111H81L79.5 123H72.5Z" fill="#2f2a27" stroke="#1c1917" stroke-width="0.9" stroke-linejoin="round"/>
+</svg>

@@ -36,7 +36,7 @@ function ac() {
     const d = noiseBuf.getChannelData(0)
     for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1
   }
-  if (ctx.state === 'suspended') ctx.resume()
+  if (ctx.state === 'suspended') ctx.resume().catch(() => { /* not after a gesture (Esc): the next click resumes it */ })
   return ctx
 }
 /** While a group sounds (see `handleMany`): how late this part starts and how loud it is, for every tone and noise in it. */
@@ -156,6 +156,18 @@ const MATERIALS: Record<string, Partial<Record<Action, () => void>>> = {
     lift: () => { noise(vary(3200), { d: 0.012, g: 0.05, q: 3 }); tone(vary(2300, 0.03), { d: 0.12, g: 0.012, at: 0.01 }) },
     drop: () => { tone(vary(1500, 0.04), { d: 0.14, g: 0.02 }); noise(vary(1800), { d: 0.03, g: 0.05, q: 2 }) },
   },
+  stone: { // a lump of ore: a dull, heavy knock of rock
+    lift: () => noise(vary(500), { d: 0.05, g: 0.04, q: 1.2 }),
+    drop: () => { tone(vary(95), { type: 'triangle', d: 0.1, g: 0.07, to: 70 }); noise(vary(700), { d: 0.06, g: 0.05, q: 1 }) },
+  },
+  coal: { // a lump of coal: light, gritty, a little hollow
+    lift: () => noise(vary(1800, 0.2), { d: 0.03, g: 0.025, q: 1.5 }),
+    drop: () => { noise(vary(1100), { d: 0.05, g: 0.04, q: 1.2 }); times(2, 0.02, (_, at) => noise(vary(2600, 0.2), { d: 0.012, g: 0.015, q: 2, at: at + 0.03 })) },
+  },
+  iron: { // cast iron: a deep clank
+    lift: () => { noise(vary(400), { d: 0.06, g: 0.05, q: 1 }); tone(vary(180), { type: 'triangle', d: 0.15, g: 0.025 }) },
+    drop: () => { tone(vary(120), { type: 'triangle', d: 0.3, g: 0.06, to: 95 }); tone(vary(410), { d: 0.25, g: 0.012 }); noise(vary(600), { d: 0.06, g: 0.06, q: 1 }) },
+  },
   gold: {
     lift: () => times(3, 0.035, (_, at) => tone(vary(2900, 0.12), { d: 0.05, g: 0.012, at })),
     drop: () => { tone(vary(1760, 0.02), { d: 0.35, g: 0.03 }); tone(vary(2640, 0.02), { d: 0.22, g: 0.012 }) },
@@ -196,8 +208,18 @@ const SHOP = {
   wipe: () => noise(450, { d: 0.45, g: 0.02, q: 0.6, to: 3200, a: 0.15 }),
   leave: () => noise(vary(800), { d: 0.25, g: 0.02, q: 0.5, to: 300, a: 0.05 }),
   menu: () => tone(660, { type: 'triangle', d: 0.06, g: 0.02 }),
+  // the trash taken out: the bin's lid, and a bag dragged off (nothing empties it yet)
+  trash: () => { tone(vary(240), { type: 'triangle', d: 0.12, g: 0.04, to: 180 }); noise(vary(900), { d: 0.35, g: 0.025, q: 0.6, to: 400, a: 0.06, at: 0.1 }) },
   // a knife going through cheese or ham: a soft drawn slice and the board under it
   cut: () => { noise(2200, { d: 0.16, g: 0.035, q: 1.2, to: 900, a: 0.04 }); tone(140, { type: 'triangle', d: 0.07, g: 0.05, at: 0.13, to: 100 }) },
+  // a match put to the coal: the strike, then the fire taking with a soft low whoomp
+  ignite: () => { noise(3200, { d: 0.07, g: 0.04, q: 2, to: 1800 }); noise(260, { d: 0.9, g: 0.07, q: 0.5, type: 'lowpass', a: 0.25, at: 0.08 }); tone(70, { d: 0.8, g: 0.03, a: 0.3, at: 0.1 }) },
+  // the fire dying: a last low breath and a tick of iron cooling
+  fireOut: () => { noise(300, { d: 0.7, g: 0.04, q: 0.5, type: 'lowpass', to: 120 }); tone(vary(1900, 0.05), { d: 0.06, g: 0.008, at: 0.55 }) },
+  // a bar cast: the crucible's ring, and a hiss
+  smelted: () => { tone(vary(330, 0.02), { type: 'triangle', d: 0.6, g: 0.04 }); tone(vary(495, 0.02), { d: 0.4, g: 0.015, at: 0.02 }); noise(4200, { d: 0.6, g: 0.015, q: 0.7, a: 0.08, at: 0.1, to: 2500 }) },
+  // the coal settling and popping now and then: very soft
+  crackle: () => times(1 + Math.floor(Math.random() * 3), 0.05, (_, at) => noise(vary(2400, 0.3), { d: 0.012, g: 0.012, q: 3, at })),
   // a machine's switch: a soft thunk, the tube's low hum coming up (or dying away)
   powerOn: () => { noise(300, { d: 0.08, g: 0.08, type: 'lowpass' }); tone(55, { d: 1.1, g: 0.05, a: 0.4 }); tone(110, { type: 'triangle', d: 0.9, g: 0.012, a: 0.5, at: 0.1 }) },
   powerOff: () => { noise(300, { d: 0.08, g: 0.07, type: 'lowpass' }); tone(110, { type: 'triangle', d: 0.5, g: 0.015, to: 60 }) },

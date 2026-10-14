@@ -7,7 +7,7 @@
     </linearGradient>
   </defs>
   <!-- a two-part capsule; the two colours are what the type of pill changes -->
-  <g transform="rotate(-45 16 16)">
+  <g>
     <path d="M16 10L9 10A6 6 0 0 0 9 22L16 22Z" fill="#e8e4d8"/>
     <path d="M16 10L23 10A6 6 0 0 1 23 22L16 22Z" fill="#b4473c"/>
     <path d="M9 10L23 10A6 6 0 0 1 23 22L9 22A6 6 0 0 1 9 10Z" fill="url(#round)"/>

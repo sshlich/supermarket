@@ -1,13 +1,16 @@
 import './style.css'
 import { BOOKS } from './books.ts'
-import { act as screenAct, power as screenPower, screenHtml } from './computer.ts'
+import { act as screenAct, power as screenPower, prune as pruneScreens, screenHtml } from './computer.ts'
 import { DISCS } from './discs.ts'
+import { charge, cool, CRUCIBLE, FIREBOX, fuelIn, isFurnace, isLit, light as kindle, progress, stoke } from './furnace.ts'
 import { paintFill } from './fill.ts'
-import { arrive, deal, dealt, greeting, open as canDeal, priceFor, stillWants, TAGS, type Customer, type Role } from './customers.ts'
+import { TAGS } from './customers.ts'
+import { esc } from './html.ts'
 import { openReader } from './reader.ts'
 import { initMenu, toggleMenu } from './menu.ts'
+import { customer, customerSays, dialNote, dropped, initTerminal, notYours, reopen, restart, resume, sideHtml, theirs, typeOn } from './terminal.ts'
 import { handle, handleMany, shop } from './sound.ts'
-import { applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, contents, COUNTERS, cut, dims, sizeOf, fillWith, find, LIQUIDS, look, moveInto, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { PLACES, sleep, trash, accepts, applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, COUNTERS, cut, dims, sizeOf, fillWith, find, isSlot, LIQUIDS, look, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -28,21 +31,6 @@ let shiftHeld = false // held while dragging: does the opposite of the strict se
 const strictNow = () => strict !== shiftHeld
 
 const app = document.getElementById('app')!
-
-// ---------------------------------------------------------------- the customer terminal
-
-/**
- * The terminal beside the field: the customer at the counter, the line of those still waiting, which of their wants are
- * met, and what has been said. Saved apart from the field.
- */
-interface Line { who: 'them' | 'you' | 'note'; text: string; name?: string }
-interface Talk { open: boolean; n: number; customer: Customer | null; line: Customer[]; met: string[]; log: Line[] }
-const TALK = 'field-v3-terminal'
-const blankTalk = (open = false): Talk => ({ open, n: 0, customer: null, line: [], met: [], log: [] })
-/** A saved customer from an older version (no role, or wants that no longer exist) is dropped, with the line. */
-const current = (c: Customer | null | undefined) => !!c?.role && Array.isArray(c.got) && c.wants.every(t => t in TAGS)
-let talk: Talk = ((): Talk => { try { const v = JSON.parse(localStorage.getItem(TALK) ?? 'null'); return v && Array.isArray(v.log) ? (current(v.customer) || !v.customer ? { ...blankTalk(), ...v, line: (v.line ?? []).filter(current) } : { ...blankTalk(v.open), n: v.n }) : blankTalk() } catch { return blankTalk() } })()
-const saveTalk = () => { try { localStorage.setItem(TALK, JSON.stringify(talk)) } catch { /* private window */ } }
 
 function load(): State | null {
   try { const v = JSON.parse(localStorage.getItem(SAVE) ?? 'null'); return v?.items ? settle(v) : null } catch { return null }
@@ -101,16 +89,21 @@ function liquidVars(it: Item, liquid = it.fill?.liquid) {
   return [`--fill:${level(it)}`, `--liquid:${l?.color ?? 'transparent'}`, `--liquid-o:${l?.opacity ?? 0}`]
 }
 
-/** One item: neutral rounded squares over its cells, its sprite on top. */
+/**
+ * One item: neutral rounded squares over its cells, its sprite on top. Something in the fire (ore melting, coal burning
+ * away) is drawn dark, with a second copy in its own colours below a line that rises as it goes (`--done`, 0 to 1).
+ */
 function itemHtml(it: Item) {
   const k = KINDS[it.kind]
   const d = dims(it)
   const cells = cellsOf(it) // only the squares it takes, however odd the shape
   const squares = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('') // the imprint: the field's own squares, lit lighter
   const hit = cells.map(([x, y]) => `<rect x="${x}" y="${y}" width="1" height="1"/>`).join('')
-  return `<div class="item ${selected.has(it.id) ? 'sel' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}">
+  const art = () => `<div class="art" style="--kw:${sizeOf(it).w};--kh:${sizeOf(it).h};--r:${quarter(it.rot) * 90}deg">${spriteHtml(it)}</div>`
+  const fire = it.heat !== undefined && (k.smelt || k.burns)
+  return `<div class="item ${selected.has(it.id) ? 'sel' : ''}${fire ? ' heating' : ''}" data-id="${it.id}" style="--x:${it.x};--y:${it.y};--w:${d.w};--h:${d.h};--c:${k.color}${fire ? `;--done:${it.heat!.toFixed(4)}` : ''}">
     <svg viewBox="0 0 ${d.w} ${d.h}"><g class="sq">${squares}</g><g class="hit">${hit}</g></svg>
-    <div class="art" style="--kw:${sizeOf(it).w};--kh:${sizeOf(it).h};--r:${quarter(it.rot) * 90}deg">${spriteHtml(it)}</div></div>`
+    ${art()}${fire ? `<div class="hot">${art()}</div><i class="gauge"></i>` : ''}</div>`
 }
 
 /** The edge of a set of squares: a line wherever a square has no neighbour. Traces irregular shapes exactly. */
@@ -133,20 +126,8 @@ const absCells = (it: Item): [number, number][] => cellsOf(it).map(([cx, cy]) =>
  * a seller asks for their things outside; what a buyer would pay for what they want inside, or what a trader would take).
  */
 function dialHtml(at: Counter) {
-  const here = inSpace(s, { at })
-  const sum = (list: Item[]) => list.reduce((n, it) => n + worth(s, it), 0)
-  const c = talk.customer
-  let note = ''
-  if (c && at === 'outside' && c.role === 'seller' && !c.dealt && c.brought.length) note = `${c.name} asks ${c.ask}$`
-  else if (c && at === 'inside' && canDeal(c) && c.role !== 'seller') {
-    const wants = c.role === 'buyer' ? stillWants(c) : c.wants
-    const wanted = here.filter(it => !c.brought.includes(it.id) && tagsIn(it).some(t => wants.includes(t)))
-    if (wanted.length) {
-      const pay = priceFor(c, sum(wanted))
-      note = c.role === 'buyer' ? `${c.name} pays ${pay}$${c.budget !== null && pay > c.budget ? '!' : ''}` : `${c.name} takes ${sum(wanted)}$`
-    }
-  }
-  return `<div class="dial" data-dial="${at}" title="${at === 'outside' ? 'Outside counter' : 'Inside counter'}: what is on it is worth"><small>${at}</small>${cashText(sum(here))}${note ? `<em>${esc(note)}</em>` : ''}</div>`
+  const note = dialNote(at)
+  return `<div class="dial" data-dial="${at}" title="${at === 'outside' ? 'Outside counter' : 'Inside counter'}: what is on it is worth"><small>${at}</small>${cashText(inSpace(s, { at }).reduce((n, it) => n + worth(s, it), 0))}${note ? `<em>${esc(note)}</em>` : ''}</div>`
 }
 /** Redraw the counters' dials alone (the customer changed, not the things). */
 function paintDials() {
@@ -163,6 +144,7 @@ function winHtml(w: Win, z: number) {
   const it = find(s, w.id)!
   const k = KINDS[it.kind]
   if (k.computer) return pcHtml(w, z)
+  if (k.furnace) return furnaceHtml(w, z)
   const slots = (k.slots ?? []).map((sl, i) => {
     const note = [sl.name, sl.accepts?.length ? `${sl.accepts.join(', ')} only` : '', sl.rejects?.length ? `no ${sl.rejects.join(', ')}` : '', sl.out ? 'take out only' : ''].filter(Boolean).join(' · ')
     return `<div class="slotbox">${note ? `<div class="slotnote">${note}</div>` : ''}<div class="grid" data-grid data-space="${it.id}:${i}" data-w="${sl.w}" data-h="${sl.h}" style="--w:${sl.w};--h:${sl.h}">${inSpace(s, { host: it.id, slot: i }).map(itemHtml).join('')}</div></div>`
@@ -220,6 +202,55 @@ function pressPower(id: number) {
   changed(new Map())
 }
 
+// ---------------------------------------------------------------- the furnace's window: its iron front, the crucible, the firebox
+
+/**
+ * A furnace's window, drawn as the thing itself: a stovepipe with smoke when it burns, the iron front with its maker's plate,
+ * the crucible in its arched firebrick mouth (glowing with the heat, sparks going up), the heat dial and a line saying what
+ * it is doing, and under it the firebox behind its open door: the coal on a grate with flames over it. The crucible and the
+ * firebox are places like any other; a match or a lighter dropped on the firebox lights it. How hot it is (`--heat`) and how
+ * far along things are (`--done`) are set on the page as it burns, without drawing it again (paintHeat).
+ */
+function furnaceHtml(w: Win, z: number) {
+  const it = find(s, w.id)!
+  const slots = KINDS[it.kind].slots!
+  const grid = (i: number) => `<div class="grid" data-grid data-space="${it.id}:${i}" data-w="${slots[i].w}" data-h="${slots[i].h}" style="--w:${slots[i].w};--h:${slots[i].h}">${inSpace(s, { host: it.id, slot: i }).map(itemHtml).join('')}</div>`
+  const n = (k: number) => Array.from({ length: k }, (_, i) => `<i style="--i:${i}"></i>`).join('')
+  return `<div class="win furnace${isLit(it) ? ' lit' : ''}" data-win="${it.id}" style="left:${w.x}px;top:${w.y}px;z-index:${10 + z};--heat:${(it.heat ?? 0).toFixed(3)}"><div class="win-head" data-whead style="--c:${swatch(it)}"><i></i><span>${esc(look(it).name)}</span><button data-wfold="${it.id}" title="Fold: keep just a tab along the top">–</button><button data-wclose="${it.id}" title="Close">✕</button></div>
+    <div class="fz"><div class="fz-pipe"><span class="fz-smoke">${n(4)}</span></div>
+      <div class="fz-body"><div class="fz-plate">MERROW FOUNDRY &middot; N&ordm; 2</div>
+        <div class="fz-mouth"><div class="fz-glow"></div><div class="fz-sparks">${n(8)}</div>${grid(CRUCIBLE)}</div>
+        <small class="fz-label">crucible &middot; two of one ore</small>
+        <div class="fz-mid"><div class="fz-dial" title="How hot it is"><i></i><b></b></div><div class="fz-status" data-fstatus="${it.id}">${esc(furnaceSays(it))}</div></div>
+        <div class="fz-firebox" data-ignite="${it.id}" title="Coal goes in here. Drop a match or a lighter on it to light it"><div class="fz-door"><i></i><i></i><i></i></div><div class="fz-fire">${grid(FIREBOX)}<div class="fz-flames">${n(6)}</div></div><div class="fz-grate"></div></div>
+        <small class="fz-label">firebox &middot; coal</small></div>
+      <div class="fz-feet"><i></i><i></i></div></div></div>`
+}
+/** What a furnace is doing, in a line. */
+function furnaceSays(f: Item): string {
+  const fuel = fuelIn(s, f).length, p = progress(s, f)
+  const ores = inSpace(s, { host: f.id, slot: CRUCIBLE }).length
+  const metal = p === null ? '' : look(charge(s, f)[0]).name.replace(/ ore$/i, '').toLowerCase()
+  const last = fuel === 1 ? ' · last coal' : ''
+  if (!isLit(f)) return !fuel ? 'cold. Coal in the firebox, then a match.' : p ? `out, the ${metal} ${Math.floor(p * 100)}% melted. Light it again.` : 'cold. Drop a match or a lighter on the firebox.'
+  if (p === null) return (ores ? 'burning. It melts two lumps of the same ore.' : 'burning. Two lumps of ore go in the crucible.') + last
+  return `melting ${metal}: ${Math.floor(p * 100)}%${last}`
+}
+/** As it burns: how hot each furnace is, how far along each thing in the fire is, and what each furnace's window says. */
+function paintHeat() {
+  for (const it of s.items) {
+    if (it.heat === undefined) continue
+    if (!isFurnace(it)) app.querySelector<HTMLElement>(`.item[data-id="${it.id}"]`)?.style.setProperty('--done', it.heat.toFixed(4))
+  }
+  for (const el of app.querySelectorAll<HTMLElement>('.win.furnace[data-win]')) {
+    const f = find(s, +el.dataset.win!)
+    if (!f) continue
+    el.style.setProperty('--heat', (f.heat ?? 0).toFixed(3))
+    const say = el.querySelector('[data-fstatus]')
+    if (say) say.textContent = furnaceSays(f)
+  }
+}
+
 /** Keep every open window on screen (after a resize, or a window that opened near an edge): its header always stays reachable. */
 function keepOnScreen() {
   for (const el of app.querySelectorAll<HTMLElement>('.win[data-win]')) {
@@ -271,7 +302,9 @@ function openWindow(it: Item) {
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
   setClock(app)
-  app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside>${cashHtml()}</div></div>${windowsHtml()}`
+  app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside><aside class="lside">${cashHtml()}${dayHtml()}${trashHtml()}</aside></div></div>${windowsHtml()}`
+  typeOn() // a line being typed carries on in the new terminal
+  showToast()
   if (hoverId !== null) showTip()
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
@@ -288,6 +321,8 @@ const rects = () => new Map([...app.querySelectorAll<HTMLElement>('.item[data-id
 
 function changed(from?: Map<number, DOMRect>) {
   selected = new Set([...selected].filter(id => find(s, id))) // things that are gone are no longer picked
+  pruneScreens(id => { const it = find(s, id); return !!it && isOn(it) }) // a machine sold or cleared away stops booting
+  cool(s) // ore taken out of a crucible starts again from cold
   save()
   render(from)
 }
@@ -298,7 +333,7 @@ function changed(from?: Map<number, DOMRect>) {
  * `uses` are the things the held one can be used on (`verb`: a vessel pours into them, a knife cuts them, a slice is laid on
  * them); `useOn` the one under the pointer now.
  */
-interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; hosts: Item[]; full: Item[]; blocked: Item | null; into: Item | null; space: Space; over: boolean; uses: Item[]; useOn: Item | null; verb: 'pour' | 'cut' | 'stack' | null }
+interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; hosts: Item[]; full: Item[]; blocked: Item | null; into: Item | null; space: Space; over: boolean; uses: Item[]; useOn: Item | null; verb: 'pour' | 'cut' | 'stack' | 'light' | null }
 let press: { id: number; x: number; y: number; gx: number; gy: number; toggle: boolean; wasGroup: boolean } | null = null
 let drag: Drag | null = null
 let last: PointerEvent | null = null
@@ -465,13 +500,19 @@ function toggleStrict() {
 function begin() {
   const held = lift(s, press!.id, [...selected])
   if (!held) { press = null; return }
+  if (held.items.some(o => theirs(o.id) && !customer()!.brought.includes(o.id))) { press = null; notYours(); return } // out of a customer's container
   const el = document.body.appendChild(document.createElement('div'))
   el.className = 'floating'
   drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', hosts: [], full: [], blocked: null, into: null, space: null, over: false, uses: [], useOn: null, verb: null }
-  for (const h of hostsFor(s, held.items)) (intoHost(s, held, h.id) ? drag.hosts : drag.full).push(h)
-  if (held.items.length === 1 && held.item.fill) Object.assign(drag, { verb: 'pour', uses: s.items.filter(o => canPour(held.item, o) > 0) })
-  else if (held.items.length === 1 && KINDS[held.item.kind].cuts) Object.assign(drag, { verb: 'cut', uses: s.items.filter(o => KINDS[o.kind].cut && o.id !== held.item.id) })
-  else if (held.items.length === 1) { const on = s.items.filter(o => !o.in && canStack(o, held.item)); if (on.length) Object.assign(drag, { verb: 'stack', uses: on }) } // bread on the field or a counter, not in its bag
+  const loose = held.items.some(o => theirs(o.id)) // a customer's things stay out of containers, theirs and yours
+  if (!loose) for (const h of hostsFor(s, held.items)) if (!theirs(h.id)) (intoHost(s, held, h.id) ? drag.hosts : drag.full).push(h)
+  const a = held.item, mine = (o: Item) => !theirs(o.id)
+  const cold = KINDS[a.kind].lights ? s.items.filter(o => mine(o) && isFurnace(o) && !isLit(o)) : [] // a match, a lighter: furnaces to light
+  if (held.items.length > 1 || theirs(a.id)) { /* a group, or a customer's thing: only moved */ }
+  else if (cold.length) Object.assign(drag, { verb: 'light', uses: cold })
+  else if (a.fill) Object.assign(drag, { verb: 'pour', uses: s.items.filter(o => mine(o) && canPour(a, o) > 0 && (!o.in || accepts(s, { ...o, fill: { liquid: a.fill!.liquid, amount: 1 } }, o.in))) }) // its slot must still take it full of that
+  else if (KINDS[a.kind].cuts) Object.assign(drag, { verb: 'cut', uses: s.items.filter(o => mine(o) && KINDS[o.kind].cut && o.id !== a.id) })
+  else { const on = s.items.filter(o => mine(o) && canStack(o, a)); if (on.length) Object.assign(drag, { verb: 'stack', uses: on }) } // bread on the field or a counter, not in its bag
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
   sounds(held.items, 'lift')
@@ -510,6 +551,14 @@ function turn(back = false) {
 function move(e: PointerEvent) {
   const d = drag!
   d.el.style.transform = `translate(${e.clientX - d.gx}px, ${e.clientY - d.gy}px)`
+  // a match over a furnace window's firebox lights that furnace
+  const ig = d.verb === 'light' ? document.elementFromPoint(e.clientX, e.clientY)?.closest<HTMLElement>('[data-ignite]') : null
+  const fire = ig && d.uses.find(o => o.id === +ig.dataset.ignite!)
+  if (fire) {
+    if (d.key === `ignite:${fire.id}`) return
+    Object.assign(d, { key: `ignite:${fire.id}`, plan: null, into: null, blocked: null, over: true, useOn: fire })
+    return paintGhosts(0, 0)
+  }
   const g = gridUnder(e.clientX, e.clientY)
   if (!g) { // over no grid: nothing to drop on, it would go back
     if (d.key === 'none') return
@@ -535,13 +584,15 @@ function move(e: PointerEvent) {
   d.into = d.plan ? host : null
   d.blocked = blocked
   d.useOn = useOn
-  if (!d.plan && !blocked && !useOn) d.plan = planDrop(s, d.held, sp, x, y, d.rot, strictNow())
+  const shut = isSlot(sp) ? theirs(sp.host) || d.held.items.some(o => theirs(o.id)) : spaceKey(sp) === 'trash' && d.held.items.some(o => theirs(o.id))
+  if (!d.plan && !blocked && !useOn && !shut) d.plan = planDrop(s, d.held, sp, x, y, d.rot, strictNow()) // nothing goes into a customer's container, nor any of theirs into one or the trash
   paintGhosts(x, y)
 }
 
 function clearGhosts() {
   document.querySelectorAll('.hl').forEach(el => el.remove())
   for (const el of app.querySelectorAll('.shoved')) el.classList.remove('shoved')
+  for (const el of app.querySelectorAll('.ignite, .ignite-now')) el.classList.remove('ignite', 'ignite-now')
 }
 
 type Light = { sp: Space; cells: [number, number][]; kind: 'ok' | 'bad' | 'use' | 'usenow' | 'land' | 'shove' }
@@ -571,6 +622,7 @@ function paintGhosts(x: number, y: number) {
   const p = d.plan
   const a = d.held.item
   const out: Light[] = [...d.hosts, ...d.uses].map(h => ({ sp: spaceOf(h), cells: absCells(h), kind: d.into?.id === h.id || d.useOn?.id === h.id ? 'usenow' : 'use' }))
+  if (d.verb === 'light') for (const f of d.uses) app.querySelector(`[data-ignite="${f.id}"]`)?.classList.add(d.useOn?.id === f.id ? 'ignite-now' : 'ignite')
   if (d.useOn) { light(out); return }
   if (d.blocked) { light([...out, { sp: spaceOf(d.blocked), cells: absCells(d.blocked), kind: 'bad' }]); return }
   if (!p) {
@@ -598,86 +650,21 @@ function paintGhosts(x: number, y: number) {
   light(out)
 }
 
-/** A line under the field that says what just happened. */
+/** A line under the field that says what just happened (for a few seconds, however often the page is drawn meanwhile). */
 let toastTimer = 0
+let toasting: string | null = null
 function toast(text: string) {
-  const el = app.querySelector<HTMLElement>('[data-toast]')
-  if (!el) return
-  el.textContent = text
-  el.classList.add('on')
+  toasting = text
+  showToast()
   clearTimeout(toastTimer)
-  toastTimer = window.setTimeout(() => el.classList.remove('on'), 2600)
+  toastTimer = window.setTimeout(() => { toasting = null; app.querySelector('[data-toast]')?.classList.remove('on') }, 2600)
 }
-
-// ---------------------------------------------------------------- the terminal, drawn and played
-
-/** A wanted tag as a short word; hovering it says what it is. Lit when what is on the counter meets it. */
-const tagChip = (t: string, met: boolean, i: number) => `<span class="tag${met ? ' met' : ''}" data-tag="${esc(t)}" style="--i:${i}">${esc(TAGS[t]?.label ?? t)}</span>`
-
-/** What the big button says for each sort of customer. */
-const DEAL: Record<Role, { label: string; title: string }> = {
-  buyer: { label: 'SELL', title: 'Sell them what they want from the inside counter' },
-  seller: { label: 'BUY', title: 'Buy what they unloaded on the outside counter, at their price' },
-  trader: { label: 'SWAP', title: 'Swap what they want from the inside counter for what they brought' },
+function showToast() {
+  const el = app.querySelector<HTMLElement>('[data-toast]')
+  if (!el || toasting === null) return
+  el.textContent = toasting
+  el.classList.add('on')
 }
-
-const svg = (d: string) => `<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square">${d}</svg>`
-const ICON = {
-  dismiss: svg('<path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/>'), // send away
-  next: svg('<path d="M3 3.5l5 4.5-5 4.5M9 3.5l5 4.5-5 4.5"/>'), // call the next in line
-  door: svg('<path d="M3.5 14V2.5h6V14M2 14h12M7.5 8.2v.1M12 6l2 2-2 2M10 8h4"/>'), // open the door
-}
-
-/** The button on the side of the field and, when it is open, the terminal under it: the conversation, and below it the controls (dismiss and next on the left, the big deal button on the right). */
-function sideHtml(fresh = false) {
-  const c = talk.customer
-  const button = `<button class="term-btn${talk.open ? ' on' : ''}" data-term title="Talk to the customer">&gt;_ customers</button>`
-  if (!talk.open) return button
-  const lines = talk.log.map((l, i) => l.who === 'them' ? `<div class="them" data-line="${i}"><b>${esc(l.name ?? '')}</b> <span>${esc(l.text)}</span></div>` : `<div class="${l.who}">${l.who === 'you' ? '$ ' : ''}${esc(l.text)}</div>`).join('')
-  const off = c ? '' : ' disabled'
-  const shut = c && canDeal(c) ? '' : ' disabled'
-  const waiting = talk.line.length ? `${talk.line.length} waiting` : 'nobody else waiting'
-  const lit = (t: string) => c?.got.includes(t) || talk.met.includes(t)
-  const money = c?.role === 'buyer' && c.budget !== null ? `<span class="tag ask" style="--i:${c.wants.length}" title="What they have left to spend">has ${c.budget}$</span>` : ''
-  const head = c ? `<span>customer ${c.id}: ${esc(c.name)} <small>· ${waiting}</small></span><span class="wants">${c.role === 'seller' ? (c.ask ? `<span class="tag ask" style="--i:0">asks ${c.ask}$</span>` : '') : c.wants.map((t, i) => tagChip(t, lit(t), i)).join('') + money}</span>`
-    : `<span>nobody at the counter <small>· ${talk.line.length ? waiting : 'the line is empty'}</small></span>`
-  const next = c || talk.line.length ? 'next customer' : 'let them in'
-  const big = c ? DEAL[c.role] : DEAL.buyer
-  return `${button}<div class="term"><div class="term-head${fresh ? ' fresh' : ''}">${head}</div>
-    <div class="term-screen"><div class="term-log" data-termlog>${lines}</div></div>
-    <div class="term-ask"><div class="ask-side"><button class="no" data-say="dismiss"${off} title="Send them away, with whatever they brought" aria-label="dismiss">${ICON.dismiss}</button><button class="go" data-say="next" title="${c || talk.line.length ? 'Call the next one in line' : 'Open the door: a new line forms'}" aria-label="${next}">${c || talk.line.length ? ICON.next : ICON.door}</button></div><button class="sell" data-say="deal"${shut} title="${big.title}">${big.label}</button></div></div>`
-}
-
-let seq = 0 // bumped by every move that changes who is at the counter: a slower one still going notices and gives up
-let typer = 0
-const wait = (ms: number) => new Promise<void>(r => setTimeout(r, ms))
-/** Redraw just the terminal (the field is left alone), scrolled to the latest line. `type` types out the newest line of the customer's, a letter at a time. */
-function renderTerm(o: { fresh?: boolean; type?: boolean } = {}) {
-  const side = app.querySelector('.side')
-  if (!side) return
-  clearInterval(typer)
-  tip.classList.remove('on') // the tag under the pointer may be gone: no pointerout will come for it
-  side.innerHTML = sideHtml(o.fresh)
-  const log = side.querySelector<HTMLElement>('[data-termlog]')
-  if (log) log.scrollTop = log.scrollHeight
-  paintDials()
-  const line = o.type && talk.log.length ? side.querySelector<HTMLElement>(`[data-line="${talk.log.length - 1}"]`) : null
-  const span = line?.querySelector('span')
-  if (line && span) {
-    const full = span.textContent ?? ''
-    let n = 0
-    span.textContent = ''
-    line.classList.add('typing')
-    typer = window.setInterval(() => {
-      span.textContent = full.slice(0, ++n)
-      if (n % 2 && full[n - 1] !== ' ') shop('key')
-      if (log) log.scrollTop = log.scrollHeight
-      if (n >= full.length || !line.isConnected) { clearInterval(typer); line.classList.remove('typing') }
-    }, 16)
-  }
-  saveTalk()
-}
-const typeTime = (text: string) => text.length * 16
 
 /** Things leave the shop: they lift off and fade where they were, and are gone (the caller redraws). */
 function vanish(ids: number[]) {
@@ -693,109 +680,56 @@ function vanish(ids: number[]) {
   }
   remove(s, ids)
 }
-/** The customer goes, taking back whatever they brought and you did not deal for, wherever it got to. */
-function leave() {
-  const c = talk.customer
-  if (c?.brought.length) { vanish(c.brought); changed(new Map()); shop('leave') }
-}
-/** The screen is wiped: a scan line sweeps down and the conversation fades behind it, then nobody is at the counter. False if something else happened meanwhile. */
-async function wipe(): Promise<boolean> {
-  const my = ++seq
-  const screen = app.querySelector('.term-screen')
-  if (screen && talk.open && talk.log.length) { screen.classList.add('wipe'); shop('wipe'); await wait(480) }
-  if (my !== seq) return false
-  Object.assign(talk, { customer: null, met: [], log: [] })
-  renderTerm()
-  return true
-}
-/** A new line forms when the door opens. */
-// ponytail: line length is random (3 to 7) for now; it should come from something in the game later (reputation, stock, the street)
-const newLine = () => Array.from({ length: 3 + Math.floor(Math.random() * 5) }, () => arrive(++talk.n))
-/** A seller or trader puts down what they brought on the outside counter, one thing after another; a seller then names a price for the lot. */
-function unload(c: Customer) {
-  for (const g of c.goods) {
-    const it = spawn(s, g.kind, { at: 'outside' }, g.props ?? {})
-    if (!it) continue // no room left on the counter
-    if (g.fill !== undefined) { if (g.fill) it.fill = { ...g.fill }; else delete it.fill }
-    if (g.missing) remove(s, contents(s, it.id).sort(() => Math.random() - 0.5).slice(0, g.missing).map(o => o.id))
-    if (g.left && g.left < (KINDS[g.kind].cut?.count ?? 0)) it.left = g.left
-    c.brought.push(it.id)
+
+// ---------------------------------------------------------------- the day, and the trash
+
+/** Which day it is, under the money. A day is one line of customers: when the last of them has gone, you sleep. */
+const dayHtml = () => `<div class="daydial" title="A day is one line of customers: when the last has gone, you sleep, and the trash is taken out"><small>day</small>${String(s.day ?? 1).padStart(2, '0')}</div>`
+
+/** The last customer of the line has gone: the page goes dark, you sleep, the trash is taken out, and it is the next day. */
+let sleeping = false
+function dayOver() {
+  if (sleeping) return
+  sleeping = true
+  const was = s.day ?? 1
+  const gone = sleep(s)
+  save()
+  const night = document.body.appendChild(document.createElement('div'))
+  night.className = 'night'
+  night.innerHTML = `<div><b>day ${was} is over</b><span>you sleep</span></div>`
+  const dark = night.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 700, easing: 'ease-in', fill: 'forwards' })
+  dark.onfinish = () => {
+    if (gone.length) shop('trash')
+    changed(new Map()) // drawn again in the dark: the trash is out, the day moves on
+    night.querySelector('div')!.innerHTML = `<b>day ${s.day}</b><span>${gone.length ? `the trash went out (${gone.length} thing${gone.length === 1 ? '' : 's'})` : 'morning'}</span>`
+    night.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 900, delay: 1100, easing: 'ease-out', fill: 'forwards' }).onfinish = () => { night.remove(); sleeping = false }
   }
-  if (c.role === 'seller') c.ask = Math.max(1, Math.round(c.brought.reduce((n, id) => n + worth(s, find(s, id)!), 0) * c.rate))
-  if (!c.brought.length) return
-  changed(new Map())
-  c.brought.forEach((id, i) => setTimeout(() => { const it = find(s, id); if (it) sound(it, 'drop') }, i * 110 + 120))
-  c.brought.forEach((id, i) => app.querySelector(`.item[data-id="${id}"]`)?.animate([{ opacity: 0, transform: 'translateY(-60%)' }, { opacity: 1, transform: 'none' }], { duration: 260, delay: i * 110, easing: 'ease-out', fill: 'backwards' }))
 }
-/**
- * The next one in line steps up (whoever was there leaves first, with their things). With nobody there and nobody waiting,
- * the door opens and a new line forms. A newcomer's wants fade in, a seller or trader unloads, and they start talking.
- */
-async function callNext() {
-  const had = !!talk.customer
-  leave()
-  if (!(await wipe())) return
-  if (!talk.line.length) { if (had) return; talk.line = newLine(); shop('bell') }
-  const my = seq
-  const c = talk.customer = talk.line.shift()!
-  talk.log.push({ who: 'note', text: `customer ${c.id} at the counter...` })
-  renderTerm({ fresh: true })
-  await wait(420)
-  if (my !== seq) return
-  unload(c)
-  talk.log.push({ who: 'them', name: c.name, text: greeting(c) })
-  renderTerm({ type: true })
+
+let trashOpen = ((): boolean => { try { return localStorage.getItem('trash-open') === '1' } catch { return false } })()
+/** The trash button under the money and, open, the bin under it: a place like a counter, for things to be thrown away. */
+function trashHtml() {
+  const n = trash(s).length
+  const button = `<button class="term-btn trash-btn${trashOpen ? ' on' : ''}" data-trash title="Things to throw away">${ICON_TRASH} trash${n ? ` <small>${n}</small>` : ''}</button>`
+  if (!trashOpen) return button
+  const { w, h } = PLACES.trash
+  return `${button}<div class="bin"><div class="grid" data-grid data-space="trash" data-w="${w}" data-h="${h}" style="--w:${w};--h:${h}">${trash(s).map(itemHtml).join('')}</div></div>`
 }
-/** Send the one at the counter away, with what they brought. */
-async function dismiss() {
-  leave()
-  await wipe()
+const ICON_TRASH = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 4h11M6 4V2.5h4V4M4 4l.8 9.5h6.4L12 4M6.8 6.5v5M9.2 6.5v5"/></svg>'
+function toggleTrash() {
+  trashOpen = !trashOpen
+  try { localStorage.setItem('trash-open', trashOpen ? '1' : '0') } catch { /* private window */ }
+  shop('menu')
+  render(new Map())
 }
-/** The tags of a thing on the counter as a customer sees them: its own, and those of whatever is inside it. */
-const tagsIn = (it: Item): string[] => [...look(it).tags, ...contents(s, it.id).flatMap(tagsIn)]
-/**
- * The big button: SELL to a buyer, BUY from a seller, SWAP with a trader (see `deal` in customers.ts). What is yours on the
- * inside counter is offered; their own things are not yours to offer. If it goes through, money moves, what they take
- * leaves and what they brought is yours. They stay: a buyer can buy again while they still want something.
- */
-function doDeal() {
-  const c = talk.customer
-  if (!c) return
-  c.brought = c.brought.filter(id => find(s, id))
-  const offered = inSpace(s, { at: 'inside' }).filter(it => !c.brought.includes(it.id)).map(it => ({ id: it.id, tags: tagsIn(it), worth: worth(s, it) }))
-  const theirs = c.brought.reduce((n, id) => n + worth(s, find(s, id)!), 0)
-  const r = deal(c, offered, s.cash ?? 0, theirs)
-  talk.met = c.role === 'trader' ? r.met : []
-  if (r.done) dealt(c, r)
-  talk.log.push({ who: 'you', text: DEAL[c.role].label }, { who: 'them', name: c.name, text: r.say })
-  renderTerm({ type: true })
-  if (!r.done) return
-  // what they take leaves; what you got slides across from the outside counter to the inside one (what fits)
-  const got = c.brought.map(id => find(s, id)!).filter(it => it.at === 'outside')
-  c.brought = []
-  if (r.pay) { setCash((s.cash ?? 0) + r.pay); shop(r.pay > 0 ? 'coinsIn' : 'coinsOut') }
-  const from = rects()
-  vanish(r.take)
-  for (const it of got) moveInto(s, it, { at: 'inside' })
-  changed(from)
-  saveTalk() // what they brought is yours now: a reload must not let them take it back
-  // they stay at the counter until you dismiss them or call the next one
-}
-function say(what: string) {
-  if (what === 'next') callNext()
-  else if (what === 'dismiss') dismiss()
-  else if (what === 'deal') doDeal()
-}
-/** Open or close the terminal; opening it with nobody there calls the next one (or lets a line in). */
-function toggleTerm() {
-  talk.open = !talk.open
-  if (talk.open && !talk.customer) return void callNext()
-  renderTerm()
-}
+/** Is it in the trash, or inside something that is? */
+const binned = (it: Item) => { let o: Item | undefined = it; while (o?.in) o = find(s, o.in.host); return o?.at === 'trash' }
+
 
 // ---------------------------------------------------------------- money: a black dial with green digits, on the main screen
 
 let cashShown = s.cash ?? START_CASH
+let cashRaf = 0
 /** Six digits, the leading zeros dim, then $. */
 function cashText(n: number) {
   const t = String(Math.max(0, Math.round(n))).padStart(6, '0')
@@ -806,6 +740,7 @@ const cashHtml = () => `<div class="cash" data-cash title="Your money">${cashTex
 /** Money changes: the dial counts to the new sum, and glows. */
 function setCash(v: number) {
   const from = cashShown, t0 = performance.now()
+  cancelAnimationFrame(cashRaf) // a count still going gives way to this one, from where it had got to
   s.cash = v
   save()
   const step = (t: number) => {
@@ -813,9 +748,9 @@ function setCash(v: number) {
     cashShown = k < 1 ? from + (v - from) * (1 - (1 - k) ** 3) : v
     const el = app.querySelector('[data-cash]')
     if (el) el.innerHTML = cashText(cashShown)
-    if (k < 1) requestAnimationFrame(step)
+    if (k < 1) cashRaf = requestAnimationFrame(step)
   }
-  requestAnimationFrame(step)
+  cashRaf = requestAnimationFrame(step)
   app.querySelector('[data-cash]')?.animate([{ boxShadow: `inset 0 0 0 1px #1d2a20, 0 0 18px ${v >= from ? 'rgba(74, 224, 122, .55)' : 'rgba(224, 96, 74, .55)'}` }, { boxShadow: 'inset 0 0 0 1px #1d2a20, 0 0 0 transparent' }], { duration: 900 })
 }
 
@@ -829,8 +764,14 @@ function finish(drop: boolean) {
   d.el.querySelectorAll<HTMLElement>('.item').forEach((el, i) => from.set(d.held.items[i].id, el.getBoundingClientRect()))
   const a = d.held.item, b = d.useOn
   const was = b && drop && d.verb === 'pour' ? { liquid: a.fill!.liquid, a: level(a), b: level(b), n: 0 } : null
-  let made: Item[] | null = null, laid = false
-  if (was && b) { was.n = pour(a, b); putBack(d.held); sound(a, 'use') }
+  let made: Item[] | null = null, laid = false, lit: ReturnType<typeof kindle> | null = null
+  if (b && drop && d.verb === 'light') {
+    lit = kindle(s, b)
+    if (lit === 'lit' && a.kind === 'match') remove(s, [a.id]) // a match is used up; a lighter goes back
+    else putBack(d.held)
+    shop(lit === 'lit' ? 'ignite' : 'bad')
+  }
+  else if (was && b) { was.n = pour(a, b); putBack(d.held); sound(a, 'use') }
   else if (b && drop && d.verb === 'stack') { sound(a, 'drop'); laid = stack(s, b, a); if (!laid) putBack(d.held) }
   else if (b && drop && d.verb === 'cut') { made = cut(s, b); putBack(d.held); if (made) shop('cut'); else shop('bad') }
   else if (drop && d.plan) { applyDrop(s, d.held, d.plan); sounds(d.held.items, 'drop') }
@@ -839,12 +780,14 @@ function finish(drop: boolean) {
   changed(from)
   if (made) for (const p of made) pop(p)
   if (b && drop && d.verb === 'cut' && !made) toast('no room for the piece')
+  if (lit) toast(lit === 'lit' ? `the ${look(b!).name.toLowerCase()} is lit` : 'nothing to burn: coal goes in the firebox')
   if (laid && b) pop(b, 0.92)
   if (was && b) {
     slosh(a, was.a, was.liquid)
     slosh(b, was.b, was.liquid)
     toast(`poured ${was.n} of ${LIQUIDS[was.liquid].name} into the ${look(b).name.toLowerCase()}`)
   }
+  dropped()
 }
 /** Something new (or just changed) pops into place. */
 const pop = (it: Item, from = 0.7) => app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: from < 0.9 ? 0 : 1, transform: `scale(${from})` }, { opacity: 1, transform: 'none' }], { duration: 220, easing: 'ease-out' })
@@ -864,7 +807,6 @@ function slosh(it: Item, from: number, liquid: string) {
 const tip = document.body.appendChild(document.createElement('div'))
 tip.className = 'tip'
 let hoverId: number | null = null
-const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
 
 /** Name, its properties where they are not the default, [tags], what it is worth, the description, and what can be done with it. */
 function tipHtml(it: Item) {
@@ -883,29 +825,16 @@ function tipHtml(it: Item) {
   const parts = [wet && `${l.price} + ${wet} ${LIQUIDS[it.fill!.liquid].name}`, value - l.price - wet && `${l.price} + ${value - l.price - wet} inside`].filter(Boolean)
   if (k.stack) parts.push(`${partsOf(it)} + ${value - partsOf(it)} for the making`)
   rows.push(`<div class="price"><span class="dollars">${value}$</span><small>${parts.join(', ') || 'worth'} · ${esc(k.cat ?? '')} · ${k.w}×${k.h}</small></div>`)
-  const who = customerSays(it, value)
+  const who = customerSays(it)
   if (who) rows.push(`<div class="who">${who}</div>`)
   if (l.desc) rows.push(`<p>${esc(l.desc)}</p>`)
+  if (binned(it)) rows.push(`<div class="hint">in the trash</div>`)
   if (isContainer(it.kind)) rows.push(`<div class="hint">double-click to open</div>`)
   if (k.read) rows.push(`<div class="hint">double-click to read</div>`)
   if (k.stack) rows.push(`<div class="hint">${closed(it) ? 'finished' : 'double-click to take the top off'}</div>`)
   if (it.fill) rows.push(`<div class="hint">drop it on another bottle to pour</div>`)
   return rows.join('')
 }
-/** What the customer at the counter makes of a thing: theirs, what a buyer would pay for it, whether a trader wants it. */
-function customerSays(it: Item, value: number): string {
-  const c = talk.customer
-  if (!c) return ''
-  const name = esc(c.name)
-  if (c.brought.includes(it.id)) return c.role === 'seller' && !c.dealt ? `${name}'s: part of a ${c.ask}$ lot` : `${name}'s, until you deal`
-  if (!canDeal(c) || c.role === 'seller') return ''
-  const wants = c.role === 'buyer' ? stillWants(c) : c.wants
-  if (!tagsIn(it).some(t => wants.includes(t))) return `${name} does not want this`
-  if (c.role === 'trader') return `${name} wants this`
-  const pay = priceFor(c, value)
-  return `${name} would pay ${pay}$${c.budget !== null && pay > c.budget ? ` (has ${c.budget}$)` : ''}`
-}
-
 /** Show the tooltip beside the hovered item (to its right, or its left if there is no room), kept on screen. */
 function showTip() {
   const it = hoverId === null || drag || marquee || winDrag ? undefined : find(s, hoverId)
@@ -955,14 +884,64 @@ initMenu({
   },
   addCash(n) { setCash((s.cash ?? 0) + n); shop('coinsIn') },
   clearField() { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) },
-  newGame() { s = start(); cashShown = s.cash!; selected = new Set(); seq++; talk = blankTalk(talk.open); changed(new Map()); if (talk.open) callNext() },
+  newGame() { cancelAnimationFrame(cashRaf); s = start(); cashShown = s.cash!; selected = new Set(); restart(); changed(new Map()); reopen() },
 })
 
-addEventListener('resize', () => { fit(); render(new Map()); fitStage(); keepOnScreen() })
+// what the terminal needs from the page (terminal.ts)
+initTerminal({
+  state: () => s,
+  changed,
+  rects,
+  vanish,
+  toast,
+  setCash,
+  sound,
+  dragging: () => !!drag,
+  paintDials,
+  hideTip: () => tip.classList.remove('on'),
+  dayOver,
+})
+
+// ---------------------------------------------------------------- the fire: furnaces burn in real time while the page is open
+
+let fireAt = performance.now(), savedAt = 0
+setInterval(() => {
+  const now = performance.now(), dt = Math.min(5, (now - fireAt) / 1000) // (a tab in the background ticks slowly: it catches up, a little)
+  fireAt = now
+  if (!s.items.some(o => isFurnace(o) && (isLit(o) || o.heat))) return
+  const r = stoke(s, dt, drag ? drag.held.items.map(o => o.id) : []) // what is in hand is not burnt
+  if (r.out.length) shop('fireOut')
+  if (r.made.length) shop('smelted')
+  else if (app.querySelector('.win.furnace.lit') && Math.random() < dt * 0.6) shop('crackle')
+  if (r.changed && !drag) { // (while something is in hand, the page is drawn again when it is put down)
+    changed()
+    for (const bar of r.made) cast(bar)
+    if (r.made.length) toast(`${r.made.length > 1 ? `${r.made.length} bars` : `a bar of ${look(r.made[0]).name.replace(/ ingot$/i, '').toLowerCase()}`} cast`)
+    if (r.out.length) toast(`the ${look(r.out[0]).name.toLowerCase()} has gone out`)
+    return
+  }
+  paintHeat()
+  if (r.changed || now - savedAt > 2000) { savedAt = now; save() }
+}, 100)
+/** A bar just cast: white-hot, cooling to its own colour. */
+function cast(bar: Item) {
+  app.querySelector(`.item[data-id="${bar.id}"] .art`)?.animate([
+    { filter: 'brightness(2.4) sepia(1) saturate(4) hue-rotate(-18deg) drop-shadow(0 0 7px #ffb347)', transform: 'translate(-50%, -50%) rotate(var(--r)) scale(1.06)' },
+    { filter: 'brightness(1.4) sepia(.6) saturate(2.5) hue-rotate(-18deg) drop-shadow(0 0 4px #ff7a2a)', offset: 0.35 },
+    { filter: 'none', transform: 'translate(-50%, -50%) rotate(var(--r))' },
+  ], { duration: 3200, easing: 'ease-out' })
+}
+
+let resizing = 0
+addEventListener('resize', () => {
+  cancelAnimationFrame(resizing)
+  resizing = requestAnimationFrame(() => { if (drag) finish(false); fit(); render(new Map()); fitStage(); keepOnScreen() })
+})
 fit()
 render(new Map())
 fitStage()
 keepOnScreen()
+resume() // a reload between someone stepping up and their unloading: they finish stepping up
 
 app.addEventListener('click', e => {
   const b = (e.target as HTMLElement).closest<HTMLElement>('button')
@@ -972,9 +951,8 @@ app.addEventListener('click', e => {
   if (b.dataset.wopen) { const it = find(s, +b.dataset.wopen); if (it) openWindow(it); return }
   if (b.dataset.wfull) { const w = winOf(+b.dataset.wfull); if (w) w.full = !w.full; shop('menu'); changed(new Map()); keepOnScreen(); return }
   if (b.dataset.power) { pressPower(+b.dataset.power); return }
+  if ('trash' in b.dataset) { toggleTrash(); return }
   if (b.dataset.pc) { const id = +b.dataset.pc; screenAct(id, b.dataset.act!, discIn(id), () => paintScreen(id), () => shop('seek')); return }
-  if ('term' in b.dataset) { toggleTerm(); return }
-  if (b.dataset.say) { say(b.dataset.say); return }
 })
 
 /** Double-click a container to open its insides in a window beside it, or a book to read it. */
@@ -983,5 +961,6 @@ app.addEventListener('dblclick', e => {
   const it = el && find(s, +el.dataset.id!)
   if (it && isContainer(it.kind)) openWindow(it)
   else if (it && KINDS[it.kind].read && BOOKS[propsOf(it).title]) { hideTip(); openReader(BOOKS[propsOf(it).title]) }
+  else if (it && KINDS[it.kind].stack && !closed(it) && theirs(it.id)) notYours()
   else if (it && KINDS[it.kind].stack && !closed(it)) { const p = unstack(s, it); if (!p) { toast('no room for it'); return } sound(p, 'lift'); hideTip(); changed(); pop(p) }
 })

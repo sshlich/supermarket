@@ -1,7 +1,7 @@
 // Customers at the counter: who they are, what they want (as tags), what they bring, and how a deal with them goes. Pure
 // data and rules, no page; the terminal in main.ts draws it and moves the things.
 
-import { KINDS, LIQUIDS, type Fill } from './world.ts'
+import { contents, KINDS, LIQUIDS, look, remove, spawn, worth, type Fill, type Item, type Space, type State } from './world.ts'
 
 /** The tags a customer can want (the same tags kinds carry): what people need to get by, not what things feel like. Each has a word for the tooltip and what a customer says about it. */
 export const TAGS: Record<string, { label: string; desc: string; say: string }> = {
@@ -12,6 +12,7 @@ export const TAGS: Record<string, { label: string; desc: string; say: string }> 
   light: { label: 'light', desc: 'Something to see by in the dark.', say: 'a light for the dark' },
   book: { label: 'book', desc: 'Something to read.', say: 'something to read' },
   fuel: { label: 'fuel', desc: 'Something to burn: for a lamp or a stove.', say: 'fuel for a lamp' },
+  metal: { label: 'metal', desc: 'Iron or copper in bars, to be worked into something.', say: 'some metal, in bars' },
   valuable: { label: 'valuable', desc: 'Worth something to someone: to keep, or to trade on.', say: 'something of value' },
 }
 
@@ -27,9 +28,10 @@ export interface Goods { kind: string; props?: Record<string, string>; fill?: Fi
  * ids of what they unloaded, still theirs until a deal; `ask` is a seller's price for all of it. A buyer's `budget` is the
  * money they have left (null: they have enough for anything) and `got` the wants they have bought already: they stay at
  * the counter until sent away, so they can buy again. `dealt`: a seller or trader has made their one deal. `slack`: how
- * much short of their own goods' worth a trader will settle for (you cover the rest in cash).
+ * much short of their own goods' worth a trader will settle for (you cover the rest in cash). `here`: they have stepped up
+ * to the counter (unloaded and said hello), so a reload does not do it twice, nor leave it undone.
  */
-export interface Customer { id: number; name: string; role: Role; wants: string[]; rate: number; goods: Goods[]; brought: number[]; ask: number; budget: number | null; got: string[]; dealt?: boolean; slack?: number }
+export interface Customer { id: number; name: string; role: Role; wants: string[]; rate: number; goods: Goods[]; brought: number[]; ask: number; budget: number | null; got: string[]; dealt?: boolean; slack?: number; here?: boolean }
 
 const NAMES = ['Mara', 'Odell', 'Pim', 'Ines', 'Tobias', 'Wren', 'Hollis', 'Bea', 'Corvin', 'Dot', 'Ansel', 'Yuki']
 const pick = <T>(list: T[], rand: () => number) => list[Math.floor(rand() * list.length)]
@@ -61,18 +63,28 @@ export function arrive(id: number, rand: () => number = Math.random, weights?: R
  * part full of something, a blister with some pills already gone. What people bring is never quite new.
  */
 export function bring(rand: () => number = Math.random, lean: (kind: string) => number = () => 1): Goods {
-  const pool = Object.entries(KINDS).filter(([, k]) => k.price)
+  const pool = Object.entries(KINDS).filter(([, k]) => k.price && !k.stack) // a sandwich is made, not brought
   const wt = ([n, k]: [string, (typeof pool)[number][1]]) => lean(n) / k.price!
   let r = rand() * pool.reduce((n, e) => n + wt(e), 0)
   const [kind, k] = pool.find(e => (r -= wt(e)) <= 0) ?? pool[0]
   const g: Goods = { kind }
   const props = Object.entries(k.props ?? {})
-  // ponytail: a property that is a state, not what the thing is (a machine's power), is left at its default; a list of one for now
-  if (props.length) g.props = Object.fromEntries(props.filter(([p]) => p !== 'power').map(([p, vals]) => [p, pick(Object.keys(vals), rand)]))
+  // ponytail: a property that is a state, not what the thing is (a machine's power, a furnace's fire), is left at its default
+  if (props.length) g.props = Object.fromEntries(props.filter(([p]) => p !== 'power' && p !== 'fire').map(([p, vals]) => [p, pick(Object.keys(vals), rand)]))
   if (k.holds) { const liquid = k.liquid ?? pick(Object.keys(LIQUIDS), rand); g.fill = { liquid, amount: 1 + Math.floor(rand() * k.holds) } }
   if (k.slots?.some(sl => sl.fill)) g.missing = Math.floor(rand() * 4)
   if (k.cut) g.left = 2 + Math.floor(rand() * (k.cut.count - 1)) // something already cut into, or whole
   return g
+}
+
+/** Make one thing a customer brings, in a place: its properties, its liquid, pills already gone, a cheese already cut into. Null if there is no room. */
+export function unpack(s: State, g: Goods, space: Space, rand: () => number = Math.random): Item | null {
+  const it = spawn(s, g.kind, space, g.props ?? {})
+  if (!it) return null
+  if (g.fill !== undefined) { if (g.fill) it.fill = { ...g.fill }; else delete it.fill }
+  if (g.missing) remove(s, contents(s, it.id).map(o => ({ o, r: rand() })).sort((a, b) => a.r - b.r).slice(0, g.missing).map(({ o }) => o.id))
+  if (g.left && g.left < (KINDS[g.kind].cut?.count ?? 0)) it.left = g.left
+  return it
 }
 
 const list = (words: string[]) => words.length > 1 ? `${words.slice(0, -1).join(', ')} and ${words[words.length - 1]}` : words[0]
@@ -91,8 +103,25 @@ export const open = (c: Customer) => c.role === 'buyer' ? stillWants(c).length >
 /** What a buyer would pay for these, at their rate. */
 export const priceFor = (c: Customer, worth: number) => Math.max(1, Math.round(worth * c.rate))
 
-/** A thing on the inside counter, as a customer sees it: its tags (and those of whatever is inside it) and what it is worth. */
-export interface Offer { id: number; tags: string[]; worth: number }
+/**
+ * A thing on the inside counter, as a customer sees it: its tags and what it is worth. A package (a container that comes
+ * full: a blister, a bag of bread, a matchbox) is one thing, its tags and worth those of all it holds. Any other container
+ * is itself (`worth` without what is in it) plus its `parts`, each seen on its own: a cabinet holding an apple sells the
+ * apple to someone who wants food, not the cabinet.
+ */
+export interface Offer { id: number; tags: string[]; worth: number; parts?: Offer[] }
+/** Is it a package: a container that comes full, sold with what is in it? */
+export const isPackage = (kind: string) => !!KINDS[kind]?.slots?.some(sl => sl.fill)
+const tagsIn = (s: State, it: Item): string[] => [...look(it).tags, ...contents(s, it.id).flatMap(o => tagsIn(s, o))]
+/** How a customer sees a thing (see Offer). */
+export function offerOf(s: State, it: Item): Offer {
+  if (isPackage(it.kind)) return { id: it.id, tags: [...new Set(tagsIn(s, it))], worth: worth(s, it) }
+  const kids = contents(s, it.id)
+  const own = { id: it.id, tags: look(it).tags, worth: worth(s, it) - kids.reduce((n, o) => n + worth(s, o), 0) }
+  return kids.length ? { ...own, parts: kids.map(o => offerOf(s, o)) } : own
+}
+/** What of these a customer who wants `wants` would take: each thing with a wanted tag, and, inside any container, whatever they want of what it holds. */
+export const picked = (offers: Offer[], wants: string[]): Offer[] => offers.flatMap(o => [...(o.tags.some(t => wants.includes(t)) ? [o] : []), ...picked(o.parts ?? [], wants)])
 
 /**
  * Press the deal button. What is on the inside counter (`offered`), the cash you have, and what the customer's own goods
@@ -103,7 +132,7 @@ export interface Offer { id: number; tags: string[]; worth: number }
  */
 export function deal(c: Customer, offered: Offer[], cash: number, theirs: number): { done: boolean; take: number[]; pay: number; met: string[]; say: string } {
   const wants = c.role === 'buyer' ? stillWants(c) : c.wants
-  const take = offered.filter(o => o.tags.some(t => wants.includes(t)))
+  const take = picked(offered, wants)
   const met = wants.filter(w => take.some(o => o.tags.includes(w)))
   const no = (say: string) => ({ done: false, take: [], pay: 0, met, say })
   const value = take.reduce((n, o) => n + o.worth, 0)

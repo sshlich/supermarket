@@ -4,8 +4,8 @@
 // lives here, by machine, in memory: the window around it is redrawn with the field, and the screen is drawn again from this.
 
 import type { Disc } from './discs.ts'
+import { esc } from './html.ts'
 
-const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
 
 /** `boot`: how many boot lines are shown (Infinity once at the desktop); `drive`: A: is open; `file`: the file being read. */
 interface Screen { boot: number; drive: boolean; reading: boolean; file: string | null; timer: number }
@@ -55,6 +55,11 @@ export function power(id: number, on: boolean, disc: Disc | null, repaint: () =>
     if (sc.boot >= total) { clearInterval(sc.timer); sc.boot = Infinity }
     repaint()
   }, 260)
+}
+
+/** Forget the screens of machines that are gone or off (sold, cleared away), and stop any that were still booting. */
+export function prune(keep: (id: number) => boolean) {
+  for (const [id, sc] of screens) if (!keep(id)) { clearInterval(sc.timer); screens.delete(id) }
 }
 
 /**

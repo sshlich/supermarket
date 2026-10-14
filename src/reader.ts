@@ -5,17 +5,18 @@
 import type { Book } from './books.ts'
 import { gone } from './menu.ts'
 import { handle } from './sound.ts'
+import { esc } from './html.ts'
 
 type Page = { t: 'end' } | { t: 'title' } | { t: 'text'; html: string; n: number }
 
-const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
 /** *italics*; an asterisk without its pair (a paragraph cut between pages) is just an asterisk. */
 const inline = (t: string) => esc(t).replace(/\*([^*]+)\*/g, '<em>$1</em>')
 
 /** A page's size, and its type size, which goes with it. */
 const sizes = (w: number, h: number) => `--pw:${w}px;--ph:${h}px;--fs:${(w / 22).toFixed(2)}px`
 
-let open: { el: HTMLElement; book: Book; pages: Page[]; spread: number; busy: boolean } | null = null
+/** `turning`: a page in mid-turn, the leaf and the spread it lands on. */
+let open: { el: HTMLElement; book: Book; pages: Page[]; spread: number; turning: { leaf: HTMLElement; to: number } | null } | null = null
 
 /** Cut a book's text into pages of this size, measuring each page as it fills. */
 function paginate(b: Book, w: number, h: number): Page[] {
@@ -80,19 +81,20 @@ function draw() {
 /** Turn a page: a leaf lifts off one side and falls over the spine, showing the next (or last) page on its back. */
 function turn(dir: 1 | -1) {
   const o = open
-  if (!o || o.busy) return
+  if (!o || o.turning) return
   const to = o.spread + dir
   if (to < 0 || to * 2 >= o.pages.length) return
-  o.busy = true
   const spread = o.el.querySelector<HTMLElement>('.spread')!
   const [front, back] = dir > 0 ? [o.pages[o.spread * 2 + 1], o.pages[to * 2]] : [o.pages[o.spread * 2], o.pages[to * 2 + 1]]
   const leaf = spread.appendChild(document.createElement('div'))
   leaf.className = `leaf ${dir > 0 ? 'fwd' : 'back'}`
+  const turning = o.turning = { leaf, to }
   leaf.innerHTML = `<div class="face front page ${dir > 0 ? 'right' : 'left'}">${pageHtml(front, o.book)}</div><div class="face back page ${dir > 0 ? 'left' : 'right'}">${pageHtml(back, o.book)}</div>`
   // under the leaf, the page it uncovers is already there
   o.el.querySelector(dir > 0 ? '.page.right' : '.page.left')!.innerHTML = pageHtml(dir > 0 ? o.pages[to * 2 + 1] : o.pages[to * 2], o.book)
   handle('paper', 'turn')
-  const done = () => { o.spread = to; draw(); leaf.remove(); o.busy = false }
+  // (the book may have been closed or laid out again meanwhile: then this turn is over already)
+  const done = () => { if (open !== o || o.turning !== turning) return; o.spread = to; o.turning = null; draw(); leaf.remove() }
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return done()
   leaf.animate([{ transform: 'rotateY(0deg)' }, { transform: `rotateY(${dir > 0 ? -180 : 180}deg)` }], { duration: 620, easing: 'cubic-bezier(.45, .05, .35, 1)' }).onfinish = done
   for (const f of leaf.querySelectorAll('.face')) f.animate([{ '--shade': '0' }, { '--shade': '0.35' }, { '--shade': '0' }], { duration: 620 })
@@ -126,6 +128,7 @@ function pageSize(m: Mode): [number, number] {
 /** Build the reader for the current mode: pages cut to its size, at about the same place in the book as before. */
 function layout() {
   const o = open!
+  if (o.turning) { o.spread = o.turning.to; o.turning = null } // a page in mid-turn lands first, then the book is cut again
   const [w, h] = pageSize(mode)
   const before = o.pages.length
   o.pages = paginate(o.book, w, h)
@@ -150,7 +153,7 @@ function keepOnScreen() {
 export function openReader(book: Book) {
   if (open) close()
   const el = document.body.appendChild(document.createElement('div'))
-  open = { el, book, pages: [], spread: 0, busy: false }
+  open = { el, book, pages: [], spread: 0, turning: null }
   layout()
   handle('paper', 'use')
   el.animate([{ opacity: 0, transform: 'translateY(14px) scale(.97)' }, { opacity: 1, transform: 'none' }], { duration: 240, easing: 'ease-out' })
@@ -181,8 +184,8 @@ const TURNS: Record<string, 1 | -1> = { ArrowRight: 1, PageDown: 1, ' ': 1, Arro
 addEventListener('keydown', e => {
   if (!open || (mode === 'float' && (e.key === ' ' || !(e.key in TURNS)))) return
   e.stopImmediatePropagation()
-  e.preventDefault()
-  if (e.key in TURNS) turn(TURNS[e.key])
-  else if (e.key === 'Escape') close()
+  if (e.key in TURNS) { e.preventDefault(); turn(TURNS[e.key]) }
+  else if (e.key === 'Escape') { e.preventDefault(); close() } // other keys still do what the browser does (reload, copy, tab)
 }, true)
-addEventListener('resize', () => { if (open?.el.isConnected) layout() })
+let resizing = 0
+addEventListener('resize', () => { cancelAnimationFrame(resizing); resizing = requestAnimationFrame(() => { if (open?.el.isConnected) layout() }) })

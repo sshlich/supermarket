@@ -6,6 +6,7 @@
 
 import { AGE_DAYS, KINDS, LIQUIDS, look, swatch } from './world.ts'
 import { setVolume, shop, soundOn, toggleSound, volume } from './sound.ts'
+import { esc } from './html.ts'
 
 export interface Hooks {
   strict(): boolean
@@ -17,7 +18,6 @@ export interface Hooks {
   newGame(): void
 }
 let hooks: Hooks
-const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
 const stored = <T>(key: string, fallback: T): T => { try { return JSON.parse(localStorage.getItem(key) ?? 'null') ?? fallback } catch { return fallback } }
 
 // ---------------------------------------------------------------- the menu
@@ -41,7 +41,7 @@ function menuHtml() {
     ${row('sound effects', `<button data-m="sound" class="${soundOn ? 'on' : ''}">${soundOn ? 'on' : 'off'}</button><input data-m="volume" type="range" min="0" max="100" value="${Math.round(volume * 100)}" ${soundOn ? '' : 'disabled'} aria-label="Volume">`)}
     ${row('music', '<button disabled>none yet</button>')}
     ${row('strict handling', `<button data-m="strict" class="${hooks.strict() ? 'on' : ''}">${hooks.strict() ? 'on' : 'off'}</button>`, 'things only go where they fit; S')}
-    ${row('debug', '<button data-m="debug">open</button>', 'spawn things, money')}
+    ${import.meta.env.DEV ? row('debug', '<button data-m="debug">open</button>', 'spawn things, money') : ''}
     ${row('new game', `<button data-m="new" class="${sure ? 'warn' : ''}">${sure ? 'sure? click again' : 'start over'}</button>`, 'empties the shop')}
     <div class="menu-foot">Esc closes</div></div>`
 }
@@ -51,6 +51,7 @@ export const menuOpen = () => !!menu
 export function toggleMenu() {
   shop('menu')
   if (menu) { const m = menu; menu = null; gone(m); return }
+  clearTimeout(sure) // a confirm left waiting from last time must not cancel a new one
   sure = 0
   menu = document.body.appendChild(document.createElement('div'))
   menu.className = 'menu'
@@ -63,7 +64,7 @@ export function toggleMenu() {
     if (what === 'close') return toggleMenu()
     if (what === 'sound') { toggleSound(); shop('menu') }
     else if (what === 'strict') hooks.toggleStrict()
-    else if (what === 'debug') { toggleMenu(); return openDebug() }
+    else if (what === 'debug' && import.meta.env.DEV) { toggleMenu(); return openDebug() } // the debug panel is for the dev server only
     else if (what === 'new') {
       if (!sure) { sure = window.setTimeout(() => { sure = 0; redrawMenu() }, 3000) }
       else { clearTimeout(sure); sure = 0; hooks.newGame(); return toggleMenu() }
@@ -83,7 +84,7 @@ addEventListener('keydown', e => {
 // ---------------------------------------------------------------- the debug panel
 
 /** Category order; anything else comes after, by name. */
-const CATS = ['food', 'sundries', 'medicine', 'tools', 'storage', 'furniture', 'tech']
+const CATS = ['food', 'sundries', 'medicine', 'tools', 'storage', 'furniture', 'tech', 'materials', 'machines']
 let debug: HTMLElement | null = null
 const pos = stored('debug-pos', { x: 16, y: 56 })
 

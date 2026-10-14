@@ -4,6 +4,7 @@ import './style.css'
 import './editor.css'
 import { KINDS, kindCells } from './world.ts'
 import { I, SHAPES, about, fmt, invert, move, mul, nearestSegment, parsePath, parsePoints, pathBounds, pathString, point, pointsAttr, scale, simplify, smoothPath, snapTo, splitSubpaths, transformAttr, turn, type M, type P, type Seg, type Shape } from './editor/geom.ts'
+import { esc } from './html.ts'
 
 // Saving an item's size, name or colour rewrites kinds.json; the editor already holds the new values, so it should not reload.
 if (import.meta.hot) import.meta.hot.accept('./world.ts', () => {})
@@ -55,7 +56,6 @@ const saveUi = () => { try { localStorage.setItem('sprite-editor-ui', JSON.strin
 const root = document.getElementById('ed')!
 const $ = <T extends Element>(sel: string) => root.querySelector<T>(sel)!
 const api = (path: string, kind: string, init?: RequestInit) => fetch(`/__sprites${path}?kind=${kind}`, init).then(r => r.ok ? r.text() : Promise.reject(new Error(`${r.status} ${r.statusText}`)))
-const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
 const dirty = (id: string) => draft[id] !== saved[id]
 const vbox = (id: string) => ({ w: KINDS[id].w * UNIT, h: KINDS[id].h * UNIT })
 

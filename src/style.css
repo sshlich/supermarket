@@ -150,7 +150,9 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .tag.ask { cursor: default; border-color: #3d5a3f; color: #9fd29a; }
 
 /* money: a black dial on the main screen, left of the field, green terminal digits and a $ at the end */
-.cash { position: absolute; right: 100%; top: calc(8 * var(--cell) + 19px); margin-right: 18px; padding: 7px 12px 6px; border-radius: 3px; background: #030504;
+/* left of the field, level with its top: the money, the day under it, then the trash */
+.lside { position: absolute; right: 100%; top: calc(8 * var(--cell) + 19px); margin-right: 18px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; font: 11px/1.5 ui-monospace, 'SF Mono', Menlo, monospace; }
+.cash { padding: 7px 12px 6px; border-radius: 3px; background: #030504;
   box-shadow: inset 0 0 0 1px #1d2a20; font: 600 22px/1 ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .08em;
   color: #4ae07a; text-shadow: 0 0 6px rgba(74, 224, 122, .55); white-space: nowrap;
   background-image: repeating-linear-gradient(to bottom, rgba(255, 255, 255, .025) 0 1px, transparent 1px 3px); }
@@ -319,3 +321,113 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 @keyframes pc-scroll { 0.000% { transform: translateY(0px); animation-timing-function: steps(1, end); } 10.938% { transform: translateY(-5px); animation-timing-function: steps(1, end); } 28.125% { transform: translateY(-10px); animation-timing-function: steps(1, end); } 36.719% { transform: translateY(-15px); animation-timing-function: steps(1, end); } 51.562% { transform: translateY(-20px); animation-timing-function: steps(1, end); } 71.875% { transform: translateY(-25px); animation-timing-function: steps(1, end); } 79.688% { transform: translateY(-30px); animation-timing-function: steps(1, end); } 91.406% { transform: translateY(-35px); animation-timing-function: steps(1, end); } 100% { transform: translateY(-40px); } }
 .pc-type { animation: pc-type 12.8s infinite; animation-delay: var(--clock, 0ms); }
 @keyframes pc-type { 0.000% { transform: translateX(0); animation-timing-function: steps(1, end); } 1.953% { transform: translateX(2.64px); animation-timing-function: steps(1, end); } 2.812% { transform: translateX(5.28px); animation-timing-function: steps(1, end); } 3.203% { transform: translateX(7.92px); animation-timing-function: steps(1, end); } 3.906% { transform: translateX(10.56px); animation-timing-function: steps(1, end); } 6.406% { transform: translateX(13.20px); animation-timing-function: steps(1, end); } 10.938% { transform: translateX(0); animation-timing-function: steps(1, end); } 12.813% { transform: translateX(2.60px); animation-timing-function: steps(1, end); } 13.125% { transform: translateX(5.20px); animation-timing-function: steps(1, end); } 14.141% { transform: translateX(7.80px); animation-timing-function: steps(1, end); } 14.766% { transform: translateX(10.40px); animation-timing-function: steps(1, end); } 15.156% { transform: translateX(13.00px); animation-timing-function: steps(1, end); } 16.875% { transform: translateX(15.60px); animation-timing-function: steps(1, end); } 17.422% { transform: translateX(18.20px); animation-timing-function: steps(1, end); } 18.203% { transform: translateX(20.80px); animation-timing-function: steps(1, end); } 18.594% { transform: translateX(23.40px); animation-timing-function: steps(1, end); } 19.062% { transform: translateX(26.00px); animation-timing-function: steps(1, end); } 20.469% { transform: translateX(28.60px); animation-timing-function: steps(1, end); } 21.016% { transform: translateX(31.20px); animation-timing-function: steps(1, end); } 28.125% { transform: translateX(0); animation-timing-function: steps(1, end); } 30.391% { transform: translateX(2.65px); animation-timing-function: steps(1, end); } 30.781% { transform: translateX(5.30px); animation-timing-function: steps(1, end); } 31.484% { transform: translateX(7.95px); animation-timing-function: steps(1, end); } 33.984% { transform: translateX(10.60px); animation-timing-function: steps(1, end); } 34.453% { transform: translateX(13.25px); animation-timing-function: steps(1, end); } 34.766% { transform: translateX(15.90px); animation-timing-function: steps(1, end); } 35.781% { transform: translateX(18.55px); animation-timing-function: steps(1, end); } 35.781% { transform: translateX(21.20px); animation-timing-function: steps(1, end); } 36.719% { transform: translateX(0); animation-timing-function: steps(1, end); } 38.516% { transform: translateX(2.58px); animation-timing-function: steps(1, end); } 40.234% { transform: translateX(5.16px); animation-timing-function: steps(1, end); } 40.781% { transform: translateX(7.73px); animation-timing-function: steps(1, end); } 41.562% { transform: translateX(10.31px); animation-timing-function: steps(1, end); } 41.953% { transform: translateX(12.89px); animation-timing-function: steps(1, end); } 42.422% { transform: translateX(15.47px); animation-timing-function: steps(1, end); } 43.828% { transform: translateX(18.04px); animation-timing-function: steps(1, end); } 44.375% { transform: translateX(20.62px); animation-timing-function: steps(1, end); } 45.234% { transform: translateX(23.20px); animation-timing-function: steps(1, end); } 51.562% { transform: translateX(0); animation-timing-function: steps(1, end); } 53.359% { transform: translateX(2.51px); animation-timing-function: steps(1, end); } 54.062% { transform: translateX(5.03px); animation-timing-function: steps(1, end); } 56.563% { transform: translateX(7.54px); animation-timing-function: steps(1, end); } 57.031% { transform: translateX(10.06px); animation-timing-function: steps(1, end); } 57.344% { transform: translateX(12.57px); animation-timing-function: steps(1, end); } 58.359% { transform: translateX(15.09px); animation-timing-function: steps(1, end); } 58.984% { transform: translateX(17.60px); animation-timing-function: steps(1, end); } 59.375% { transform: translateX(20.11px); animation-timing-function: steps(1, end); } 61.094% { transform: translateX(22.63px); animation-timing-function: steps(1, end); } 61.641% { transform: translateX(25.14px); animation-timing-function: steps(1, end); } 62.422% { transform: translateX(27.66px); animation-timing-function: steps(1, end); } 62.812% { transform: translateX(30.17px); animation-timing-function: steps(1, end); } 63.281% { transform: translateX(32.69px); animation-timing-function: steps(1, end); } 64.688% { transform: translateX(35.20px); animation-timing-function: steps(1, end); } 71.875% { transform: translateX(0); animation-timing-function: steps(1, end); } 73.828% { transform: translateX(2.46px); animation-timing-function: steps(1, end); } 74.688% { transform: translateX(4.91px); animation-timing-function: steps(1, end); } 75.078% { transform: translateX(7.37px); animation-timing-function: steps(1, end); } 75.781% { transform: translateX(9.83px); animation-timing-function: steps(1, end); } 78.281% { transform: translateX(12.29px); animation-timing-function: steps(1, end); } 78.750% { transform: translateX(14.74px); animation-timing-function: steps(1, end); } 78.750% { transform: translateX(17.20px); animation-timing-function: steps(1, end); } 79.688% { transform: translateX(0); animation-timing-function: steps(1, end); } 82.109% { transform: translateX(2.43px); animation-timing-function: steps(1, end); } 82.734% { transform: translateX(4.87px); animation-timing-function: steps(1, end); } 83.125% { transform: translateX(7.30px); animation-timing-function: steps(1, end); } 84.844% { transform: translateX(9.73px); animation-timing-function: steps(1, end); } 85.391% { transform: translateX(12.17px); animation-timing-function: steps(1, end); } 86.172% { transform: translateX(14.60px); animation-timing-function: steps(1, end); } 86.563% { transform: translateX(17.03px); animation-timing-function: steps(1, end); } 87.031% { transform: translateX(19.47px); animation-timing-function: steps(1, end); } 88.438% { transform: translateX(21.90px); animation-timing-function: steps(1, end); } 88.984% { transform: translateX(24.33px); animation-timing-function: steps(1, end); } 89.844% { transform: translateX(26.77px); animation-timing-function: steps(1, end); } 90.234% { transform: translateX(29.20px); animation-timing-function: steps(1, end); } 91.406% { transform: translateX(0); animation-timing-function: steps(1, end); } 93.516% { transform: translateX(2.42px); animation-timing-function: steps(1, end); } 96.016% { transform: translateX(4.85px); animation-timing-function: steps(1, end); } 96.484% { transform: translateX(7.27px); animation-timing-function: steps(1, end); } 96.797% { transform: translateX(9.69px); animation-timing-function: steps(1, end); } 97.812% { transform: translateX(12.12px); animation-timing-function: steps(1, end); } 98.438% { transform: translateX(14.54px); animation-timing-function: steps(1, end); } 98.828% { transform: translateX(16.96px); animation-timing-function: steps(1, end); } 99.063% { transform: translateX(19.39px); animation-timing-function: steps(1, end); } 99.063% { transform: translateX(21.81px); animation-timing-function: steps(1, end); } 99.063% { transform: translateX(24.24px); animation-timing-function: steps(1, end); } 99.063% { transform: translateX(26.66px); animation-timing-function: steps(1, end); } 99.063% { transform: translateX(29.08px); animation-timing-function: steps(1, end); } 99.063% { transform: translateX(31.51px); animation-timing-function: steps(1, end); } 99.063% { transform: translateX(33.93px); animation-timing-function: steps(1, end); } 99.063% { transform: translateX(36.35px); animation-timing-function: steps(1, end); } 99.063% { transform: translateX(38.78px); animation-timing-function: steps(1, end); } 99.063% { transform: translateX(41.20px); animation-timing-function: steps(1, end); } 100% { transform: translateX(0); } }
+
+/* the trash: a button like the customers' one; open, a small bin under it */
+.trash-btn { display: inline-flex; align-items: center; gap: 6px; border-color: #6b5a5a; color: #b9a5a0; }
+.trash-btn svg { width: 12px; height: 12px; }
+.trash-btn small { padding: 0 4px; border-radius: 2px; background: #3a2a2c; color: #d9c4bc; font-size: 10px; }
+.bin { padding: 8px; border-radius: 3px; background: #0a090d; box-shadow: 0 0 0 2px #6b5a5a; }
+.bin .grid { --rim: #4a3a3c; background-color: #1d181c; box-shadow: none; }
+
+/* the day: a small dial under the money */
+.daydial { padding: 4px 9px 5px; border-radius: 3px; background: #030504; box-shadow: inset 0 0 0 1px #1d2a20; cursor: help;
+  font: 600 15px/1.1 ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .06em; color: #4ae07a; text-shadow: 0 0 5px rgba(74, 224, 122, .45);
+  background-image: repeating-linear-gradient(to bottom, rgba(255, 255, 255, .025) 0 1px, transparent 1px 3px); }
+.daydial small { margin-right: 7px; font: 9px ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .14em; text-transform: uppercase; color: #2f6e44; text-shadow: none; }
+/* the night between two days: the page goes dark over everything, says so, and lifts */
+.night { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: #050407; opacity: 0; }
+.night div { display: flex; flex-direction: column; align-items: center; gap: 6px; font: 12px ui-monospace, 'SF Mono', Menlo, monospace; color: #6b6872; }
+.night b { font-size: 18px; font-weight: 600; letter-spacing: .12em; color: #c9b88f; }
+
+/* something in the fire (ore melting, coal burning away): drawn dark, with its own colours below a white line that rises as
+   it goes (--done, 0 to 1). The line and the cut are on the item's box, so they rise up the screen however it is turned. */
+.item.heating > .art svg { filter: brightness(.3) saturate(.45); }
+.item.heating .hot { position: absolute; inset: 0; pointer-events: none; clip-path: inset(calc((1 - var(--done)) * 100%) 0 0 0); transition: clip-path .12s linear; }
+.item.heating .gauge { position: absolute; left: 4%; right: 4%; top: calc((1 - var(--done)) * 100%); height: 2px; margin-top: -1px; border-radius: 1px; pointer-events: none;
+  background: #fff7e6; box-shadow: 0 0 4px 1px rgba(255, 226, 170, .85); transition: top .12s linear; }
+.win.furnace.lit .item.heating .hot .art svg { filter: drop-shadow(0 0 3px rgba(255, 150, 60, .75)); }
+
+/* the furnace on the field, lit: the flames behind its mica flicker and smoke leaves its pipe (on the page's one clock) */
+.furnace-flicker { transform-box: fill-box; transform-origin: 50% 100%; animation: fz-tongue 1.3s infinite alternate ease-in-out; animation-delay: var(--clock, 0ms); }
+@keyframes fz-tongue { 0% { transform: scaleY(.82); opacity: .8; } 40% { transform: scaleY(1.06) skewX(3deg); opacity: 1; } 70% { transform: scaleY(.9) skewX(-2deg); opacity: .85; } 100% { transform: scaleY(1.04); opacity: 1; } }
+.furnace-smoke { animation: fz-puff 3.2s infinite ease-out; animation-delay: var(--clock, 0ms); }
+@keyframes fz-puff { from { transform: translateY(4px); opacity: .9; } to { transform: translateY(-6px); opacity: 0; } }
+
+/* the furnace's window: the thing itself. Its pipe, its riveted iron front with a brass plate, the crucible in an arched
+   firebrick mouth, the dial and what it is doing, the firebox behind its open door, feet. --heat (0 to 1) warms it all. */
+.win.furnace { padding: 6px 14px 10px; }
+.fz { display: flex; flex-direction: column; align-items: center; font: 10px ui-monospace, 'SF Mono', Menlo, monospace; }
+.fz-pipe { position: relative; align-self: flex-end; margin-right: 22%; width: 22px; height: 20px; border: 1px solid #141110; border-bottom: 0;
+  background: linear-gradient(90deg, #5a534e, #3a3532 55%, #221e1c); }
+.fz-pipe::before { content: ''; position: absolute; left: -4px; right: -4px; top: 7px; height: 5px; border: 1px solid #141110; border-radius: 1px; background: linear-gradient(90deg, #5e5650, #3e3834 60%, #26221f); }
+.fz-smoke { position: absolute; left: 50%; bottom: 100%; display: none; }
+.win.furnace.lit .fz-smoke { display: block; }
+.fz-smoke i { position: absolute; left: -7px; bottom: -4px; width: 14px; height: 14px; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, rgba(150, 144, 138, .5), rgba(150, 144, 138, 0) 70%);
+  animation: fz-smoke 4s infinite ease-out; animation-delay: calc(var(--clock, 0ms) + var(--i) * -1s); }
+@keyframes fz-smoke { 0% { transform: translate(0, 0) scale(.5); opacity: 0; } 15% { opacity: calc(.35 + var(--heat) * .4); } 100% { transform: translate(calc(10px + var(--i) * 3px), -46px) scale(1.9); opacity: 0; } }
+.fz-body { position: relative; display: flex; flex-direction: column; align-items: center; width: calc(4 * var(--cell) + 96px); padding: 10px 16px 8px; border-radius: 7px 7px 3px 3px;
+  background:
+    radial-gradient(circle at 8px 8px, #8a8078 1.2px, #2a2523 1.7px, transparent 2.3px),
+    radial-gradient(circle at calc(100% - 8px) 8px, #8a8078 1.2px, #2a2523 1.7px, transparent 2.3px),
+    radial-gradient(circle at 8px calc(100% - 8px), #8a8078 1.2px, #2a2523 1.7px, transparent 2.3px),
+    radial-gradient(circle at calc(100% - 8px) calc(100% - 8px), #8a8078 1.2px, #2a2523 1.7px, transparent 2.3px),
+    linear-gradient(90deg, rgba(255, 255, 255, .07), transparent 28%, transparent 70%, rgba(0, 0, 0, .3)),
+    #3a3431;
+  box-shadow: inset 0 1px 0 #625952, inset 0 -2px 0 #1e1a18, 0 0 0 1px #141110,
+    0 0 calc(6px + var(--heat) * 30px) calc(var(--heat) * 3px) rgba(255, 120, 40, calc(var(--heat) * .22)); transition: box-shadow .4s; }
+.fz-plate { margin-bottom: 9px; padding: 2px 9px 1px; border-radius: 2px; background: linear-gradient(#b8955a, #7c6136); color: #2e2312; font-size: 8px; font-weight: 700; letter-spacing: .24em;
+  box-shadow: inset 0 1px 0 #dcbd80, 0 1px 0 #1a1614; text-shadow: 0 1px 0 rgba(255, 232, 186, .35); }
+.fz-label { margin: 5px 0 2px; color: #8a7f74; font-size: 9px; letter-spacing: .08em; text-shadow: 0 1px 0 #1a1614; }
+/* the crucible's mouth: firebrick under an iron arch, glowing from the bottom with the heat */
+.fz-mouth { position: relative; padding: calc(10px + var(--cell) * .45) 10px 9px; border-radius: 50% 50% 4px 4px / calc(var(--cell) * .9) calc(var(--cell) * .9) 4px 4px;
+  background: #6a3424 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='12'%3E%3Crect width='24' height='12' fill='%23653020'/%3E%3Crect x='6' width='18' height='5.5' fill='%23723a28'/%3E%3Crect width='6' height='5.5' fill='%23723a28'/%3E%3Crect x='0' y='6' width='18' height='5.5' fill='%235e2c1d'/%3E%3Cpath d='M0 5.75h24M0 11.75h24M6 0v5.5M18 6v6' stroke='%232a140d' stroke-width='0.9'/%3E%3Cpath d='M7 .8h16M1 6.8h16' stroke='%23b0705a' stroke-opacity='.25' stroke-width='0.6'/%3E%3C/svg%3E");
+  box-shadow: inset 0 0 0 2px #1a0f0b, inset 0 7px 14px rgba(0, 0, 0, .65), 0 0 0 4px #2c2624, 0 0 0 5px #141110; }
+.fz-glow { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2; mix-blend-mode: screen; opacity: var(--heat); transition: opacity .3s;
+  background: radial-gradient(ellipse at 50% 100%, rgba(255, 180, 96, .5), rgba(255, 106, 34, .2) 40%, rgba(255, 80, 20, 0) 70%); }
+.win.furnace.lit .fz-glow { animation: fz-breathe 1.9s infinite alternate ease-in-out; animation-delay: var(--clock, 0ms); }
+@keyframes fz-breathe { from { filter: brightness(.82); } 55% { filter: brightness(1.12); } to { filter: brightness(.95); } }
+.fz-mouth .grid { z-index: 1; --rim: #1a0f0b; background-color: color-mix(in srgb, #1b1311, #3c170b calc(var(--heat) * 100%));
+  background-image: linear-gradient(to right, rgba(255, 170, 100, .1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 170, 100, .1) 1px, transparent 1px);
+  box-shadow: 0 0 0 2px #1a0f0b, inset 0 calc(var(--heat) * -6px) calc(4px + var(--heat) * 12px) rgba(255, 130, 44, calc(var(--heat) * .45)); }
+.fz-sparks { position: absolute; left: 10px; right: 10px; bottom: 12px; height: 0; z-index: 3; pointer-events: none; display: none; }
+.win.furnace.lit .fz-sparks { display: block; }
+.fz-sparks i { position: absolute; bottom: 0; left: calc(6% + var(--i) * 12%); width: 2px; height: 2px; border-radius: 50%; background: #ffe0a0; box-shadow: 0 0 4px 1px #ff9a3c; opacity: 0;
+  animation: fz-spark calc(1.5s + var(--i) * .27s) infinite ease-out; animation-delay: calc(var(--clock, 0ms) + var(--i) * -.53s); }
+@keyframes fz-spark { 0% { transform: translate(0, 0); opacity: 0; } 12% { opacity: 1; } 100% { transform: translate(calc((var(--i) - 3.5) * 4px), calc(var(--cell) * -2.6)); opacity: 0; } }
+/* the dial: a cream face, the needle swinging with the heat (the red end is hot), and the line beside it */
+.fz-mid { display: flex; align-items: center; gap: 10px; align-self: stretch; margin: 6px 2px 8px; }
+.fz-dial { position: relative; flex: none; width: 44px; height: 25px; border-radius: 44px 44px 3px 3px; overflow: hidden; box-shadow: 0 0 0 2px #1e1a18, 0 0 0 3px #57504b;
+  background: conic-gradient(from -90deg at 50% 100%, transparent 0 125deg, rgba(178, 46, 30, .55) 125deg 180deg, transparent 180deg),
+    repeating-conic-gradient(from -90deg at 50% 100%, #3a3028 0 1.6deg, transparent 1.6deg 22.5deg),
+    radial-gradient(circle at 50% 100%, #efe6cf 0 62%, #d8ccad 63% 100%); }
+.fz-dial::after { content: ''; position: absolute; left: 50%; bottom: 0; width: 28px; height: 14px; margin-left: -14px; border-radius: 28px 28px 0 0; background: radial-gradient(circle at 50% 100%, #efe6cf 0 60%, #e6dcc0 61%); }
+.fz-dial i { position: absolute; z-index: 1; left: 50%; bottom: 1px; width: 2px; height: 21px; margin-left: -1px; border-radius: 1px; background: #8a1e14;
+  transform-origin: 50% 100%; transform: rotate(calc(-82deg + var(--heat) * 164deg)); transition: transform .35s ease-out; }
+.fz-dial b { position: absolute; z-index: 2; left: 50%; bottom: -4px; width: 9px; height: 9px; margin-left: -4.5px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #8a8078, #2a2523); }
+.fz-status { flex: 1; min-width: 0; color: #cdbf9c; line-height: 1.35; text-shadow: 0 1px 0 #141110; }
+.win.furnace.lit .fz-status { color: #f0c08a; }
+/* the firebox behind its open door: coal on a grate, flames over it, embers glowing through the bars */
+.fz-firebox { position: relative; margin-left: 12px; padding: 7px 9px 3px; border-radius: 3px; background: #120d0b; box-shadow: inset 0 0 0 2px #1a0f0b, inset 0 4px 10px rgba(0, 0, 0, .7), 0 0 0 4px #2c2624, 0 0 0 5px #141110; transition: box-shadow .15s; }
+.fz-firebox.ignite { box-shadow: inset 0 0 0 2px #1a0f0b, 0 0 0 4px #2c2624, 0 0 0 6px rgba(106, 168, 220, .55); }
+.fz-firebox.ignite-now { box-shadow: inset 0 0 0 2px #1a0f0b, inset 0 0 16px rgba(106, 168, 220, .35), 0 0 0 4px #2c2624, 0 0 0 6px #6aa8dc; }
+.fz-door { position: absolute; right: 100%; top: 1px; bottom: 1px; width: 15px; margin-right: 5px; border-radius: 2px; border: 1px solid #141110;
+  background: linear-gradient(90deg, #26211f, #4a433e 70%, #3a3431); transform: perspective(70px) rotateY(-38deg); transform-origin: 100% 50%;
+  display: flex; flex-direction: column; justify-content: center; gap: 3px; padding: 0 3px; }
+.fz-door i { height: 2px; border-radius: 1px; background: #1a1412; box-shadow: 0 1px 0 #5a524c; }
+.fz-fire { position: relative; background: color-mix(in srgb, #0f0b0a, #2e1209 calc(var(--heat) * 100%)); }
+.fz-fire .grid { --rim: #1a0f0b; background-color: transparent; box-shadow: none;
+  background-image: linear-gradient(to right, rgba(255, 170, 100, .07) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 170, 100, .07) 1px, transparent 1px); }
+.fz-flames { position: absolute; left: 0; right: 0; bottom: 20%; height: calc(var(--cell) * 1.15); z-index: 0; pointer-events: none; opacity: 0; transition: opacity .6s; }
+.win.furnace.lit .fz-flames { opacity: calc(.3 + var(--heat) * .6); }
+.fz-fire .grid { z-index: 1; }
+.win.furnace.lit .fz-fire .item:not(.heating) .art svg, .win.furnace.lit .fz-fire .item .hot .art svg { filter: drop-shadow(0 0 2px rgba(255, 110, 30, .9)) drop-shadow(0 -2px 4px rgba(255, 150, 60, .5)); }
+.fz-flames i { position: absolute; bottom: -2px; left: calc(var(--i) * 16.4% - 2%); width: 21%; height: 82%; border-radius: 50% 50% 45% 45% / 72% 72% 28% 28%;
+  background: radial-gradient(ellipse at 50% 92%, #ffe7a8 0 8%, #ffb347 26%, rgba(255, 100, 28, .6) 50%, rgba(255, 70, 20, 0) 72%); filter: blur(.8px);
+  transform-origin: 50% 100%; animation: fz-flame calc(.62s + var(--i) * .13s) infinite alternate ease-in-out; animation-delay: calc(var(--clock, 0ms) + var(--i) * -.31s); }
+.fz-flames i:nth-child(2n) { height: 96%; } .fz-flames i:nth-child(3n) { height: 70%; } .fz-flames i:nth-child(5) { height: 104%; }
+@keyframes fz-flame { from { transform: scale(1.06, .72) skewX(-4deg); } 50% { transform: scale(.94, 1.04) skewX(3deg); } to { transform: scale(1, .9) skewX(-1deg); } }
+.fz-grate { height: 6px; margin-top: 3px; border-radius: 1px; box-shadow: inset 0 1px 0 #4a423d;
+  background: repeating-linear-gradient(90deg, #2c2624 0 5px, rgba(255, 110, 30, calc(var(--heat) * .75)) 5px 8px), #0a0706; }
+.fz-feet { display: flex; justify-content: space-between; align-self: stretch; padding: 0 16px; }
+.fz-feet i { width: 16px; height: 8px; background: linear-gradient(90deg, #3e3834, #24201e); clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%); }

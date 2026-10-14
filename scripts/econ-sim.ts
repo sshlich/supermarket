@@ -1,8 +1,9 @@
 // Headless economy sim: drives customers.ts (and market.ts when it exists) with bots and prints the numbers ECONOMY.md
-// sets targets for. `node scripts/econ-sim.ts [days] [runs]`. No page, no world state: items are rebuilt from kinds.json.
+// sets targets for. `node scripts/econ-sim.ts [days] [runs]`. No page: each thing is made in a scratch field the way the
+// game makes it, and seen the way a customer sees it (customers.ts), so its worth and tags are the game's.
 
-import { arrive, deal, dealt, stillWants, open, TAGS, type Customer, type Goods, type Offer } from '../src/customers.ts'
-import { KINDS, LIQUIDS } from '../src/world.ts'
+import { arrive, deal, dealt, offerOf, stillWants, open, unpack, TAGS, type Customer, type Goods, type Offer } from '../src/customers.ts'
+import { start } from '../src/world.ts'
 import { impact, index, live, newMarket, rumors, tick, unmet, weights, type Market } from '../src/market.ts'
 
 const DAYS = Number(process.argv[2] ?? 12), RUNS = Number(process.argv[3] ?? 300), PER_DAY = Number(process.argv[5] ?? 10), CAP = 80
@@ -12,15 +13,13 @@ function rng(seed: number) { return () => { seed = (seed + 0x6d2b79f5) | 0; let 
 
 interface Stock extends Offer { cost: number; base: number }
 let nextId = 1
-/** What a customer's goods are as the counter sees them: the tags that count, and what they are worth (parts included, roughly). */
-function make(g: Goods): { tags: string[]; worth: number } {
-  const k = KINDS[g.kind]
-  let worth = k.price ?? 1
-  const tags = new Set(k.tags ?? [])
-  for (const [p, v] of Object.entries(g.props ?? {})) { const e = k.props?.[p]?.[v]; if (e?.price !== undefined) worth = e.price; e?.tags?.forEach(t => tags.add(t)) }
-  if (g.fill) { const l = LIQUIDS[g.fill.liquid]; worth += l.price * g.fill.amount; l.tags.forEach(t => tags.add(t)) }
-  if (k.slots?.some(sl => sl.fill)) { const pills = 6 - (g.missing ?? 0); worth += pills * (KINDS.pill.price ?? 2); if (pills) KINDS.pill.tags?.forEach(t => tags.add(t)) }
-  return { tags: [...tags].filter(t => t in TAGS), worth }
+/** What a customer's goods are as the counter sees them: the tags that count, and what they are worth, as the game makes and prices them. */
+function make(g: Goods, rand: () => number = Math.random): { tags: string[]; worth: number } {
+  const s = start()
+  const it = unpack(s, g, null, rand)
+  if (!it) throw new Error(`no room on an empty field for ${g.kind}`)
+  const o = offerOf(s, it) // what people bring comes empty if it is not a package, so it is one thing
+  return { tags: o.tags.filter(t => t in TAGS), worth: o.worth }
 }
 
 type Policy = 'all' | 'smart' | 'spec'
@@ -42,7 +41,7 @@ function runOne(policy: Policy, seed: number, days: number): Day[] {
     for (let h = 0; h < PER_DAY; h++) {
       for (const s of inv) s.worth = s.base * idx(s.tags)
       const c: Customer = arrive(++id, rand, m ? weights(m) : undefined, m ? lean : undefined)
-      const goods = c.goods.map(g => { const x = make(g); return { id: nextId++, ...x, base: x.worth, worth: x.worth * idx(x.tags) } })
+      const goods = c.goods.map(g => { const x = make(g, rand); return { id: nextId++, ...x, base: x.worth, worth: x.worth * idx(x.tags) } })
       // the spec bot holds what an event is about to make dear, and buys on a rumor
       const hot = new Set(m && policy === 'spec' ? [...rumors(m), ...live(m)].filter(e => e.d > 1 || e.s < 1).flatMap(e => e.tags) : [])
       c.brought = goods.map(g => g.id)
@@ -74,14 +73,16 @@ function runOne(policy: Policy, seed: number, days: number): Day[] {
         cash += r.pay
         if (c.role === 'seller') for (const g of goods) { inv.push({ ...g, cost: c.ask * g.worth / theirs }); if (m) for (const t of g.tags) impact(m, t, g.worth / g.tags.length, false) }
         else if (c.role === 'trader') { const paid = costGiven - r.pay; for (const g of goods) inv.push({ ...g, cost: paid * g.worth / theirs }) }
-        if (c.role !== 'seller') {
+        // what you sold moves its price down, a thing's worth split across the tags it was wanted for (as buying splits it up)
+        if (c.role !== 'seller' && m) for (const s of gave) { const ts = s.tags.filter(t => c.wants.includes(t)); for (const t of ts) impact(m, t, s.worth / ts.length, true) }
+        // the margin is on sales: a swap is an exchange (what you gave becomes the cost of what you got), not revenue and its cost
+        if (c.role === 'buyer') {
           const value = gave.reduce((n, s) => n + s.worth, 0)
-          d.rev += r.pay > 0 ? r.pay : 0; d.cogs += costGiven
-          if (m) for (const s of gave) for (const t of s.tags.filter(t => c.wants.includes(t))) impact(m, t, s.worth, true)
-          for (const s of gave) for (const t of s.tags.filter(t => c.wants.includes(t))) d.tagRev[t] = (d.tagRev[t] ?? 0) + r.pay * s.worth / (value || 1) / s.tags.filter(t => c.wants.includes(t)).length
+          d.rev += r.pay; d.cogs += costGiven
+          for (const s of gave) { const ts = s.tags.filter(t => c.wants.includes(t)); for (const t of ts) d.tagRev[t] = (d.tagRev[t] ?? 0) + r.pay * s.worth / (value || 1) / ts.length }
         }
       }
-      if (m) { if (c.role === 'buyer') stillWants(c).forEach(t => unmet(m, t)); tick(m, rand); d.events += m.events.filter(e => e.wait <= 0 && e.age === 0).length; for (const v of Object.values(m.p)) { d.pMin = Math.min(d.pMin, v); d.pMax = Math.max(d.pMax, v) } }
+      if (m) { if (c.role === 'buyer') stillWants(c).forEach(t => unmet(m, t)); tick(m, rand, 1, PER_DAY); d.events += m.events.filter(e => e.wait <= 0 && e.age === 0).length; for (const v of Object.values(m.p)) { d.pMin = Math.min(d.pMin, v); d.pMax = Math.max(d.pMax, v) } }
       if (c.role === 'buyer') { d.buyers++; if (!stillWants(c).length) d.served++; d.missed += stillWants(c).length }
     }
     d.cash = cash

@@ -13,7 +13,10 @@ export const H = 20
  */
 export type Counter = 'outside' | 'inside'
 export const COUNTERS: Record<Counter, { w: number; h: number }> = { outside: { w: W, h: 4 }, inside: { w: W, h: 4 } }
-const isCounter = (c: unknown): c is Counter => typeof c === 'string' && c in COUNTERS
+/** The places beside the field: the counters, and the trash (emptied overnight, see `sleep`). */
+export type Place = Counter | 'trash'
+export const PLACES: Record<Place, { w: number; h: number }> = { ...COUNTERS, trash: { w: 5, h: 6 } }
+const isPlace = (c: unknown): c is Place => typeof c === 'string' && Object.hasOwn(PLACES, c)
 
 /**
  * What a kind of thing is. `w` and `h` are its footprint's bounding box in cells; `cells`, when the footprint is not a plain
@@ -21,8 +24,10 @@ const isCounter = (c: unknown): c is Counter => typeof c === 'string' && c in CO
  * (for tooltips), private notes, tags (what customers ask for), a category (`cat`) and a price in coins.
  * `props` are what one thing of the kind can be on top of that: each property has values, the first one the default.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; liquids?: string[]; read?: boolean; sound?: string; computer?: boolean; cut?: Cut; cuts?: boolean; ages?: boolean; stack?: Stack }
-/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `liquids`: the only liquids it takes (a lighter: fuel); `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts); `computer`: its window is a screen (see computer.ts); `cut`: a knife cuts pieces off it; `cuts`: it is a knife; `ages`: it ages (cheese, see AGE_DAYS). */
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; liquids?: string[]; read?: boolean; sound?: string; computer?: boolean; cut?: Cut; cuts?: boolean; ages?: boolean; stack?: Stack; furnace?: boolean; smelt?: Smelt; burns?: number; lights?: boolean }
+/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `liquids`: the only liquids it takes (a lighter: fuel); `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts); `computer`: its window is a screen (see computer.ts); `cut`: a knife cuts pieces off it; `cuts`: it is a knife; `ages`: it ages (cheese, see AGE_DAYS); `furnace`: it smelts (see furnace.ts: its first slot is the crucible, its second the firebox); `smelt`: what it melts into; `burns`: it is fuel, and burns this many seconds; `lights`: it lights a furnace (a match is used up doing it). */
+/** What smelts into what: `count` of one kind (and the same properties: one metal) melt into one `into` in `secs` seconds of fire. */
+export interface Smelt { into: string; count: number; secs: number }
 /**
  * Something cut with a knife (a cheese wheel into wedges; a wedge, a ham into slices): `into` is what comes off, `count` how
  * many it starts with, `from` the side the pieces come off, 'left' or 'right' (it shrinks from there), `sizes` its footprint as it goes: a list
@@ -52,9 +57,10 @@ export const KINDS: Record<string, Kind> = DATA
 /**
  * `props` are its property values where they are not the default (`{ origin: 'synthetic' }`); `fill` is the liquid in a
  * vessel; `left` how many pieces are left in something cut (all of them when missing); `age` how many days old it is;
- * `seed` what its generated look is drawn from (a slice's fat or holes), when it is not its id.
+ * `seed` what its generated look is drawn from (a slice's fat or holes), when it is not its id; `heat` how far along it is
+ * in the fire, 0 to 1 (ore melting, coal burning away; for a furnace, how hot it is).
  */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter; props?: Record<string, string>; fill?: Fill; left?: number; age?: number; seed?: number; layers?: Layer[] }
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Place; props?: Record<string, string>; fill?: Fill; left?: number; age?: number; seed?: number; layers?: Layer[]; heat?: number }
 /** One thing laid on a sandwich, bottom first: what it was, its look and its age, so it comes back off as it went on. */
 export interface Layer { kind: string; seed?: number; age?: number }
 /** What a thing's generated look is drawn from. */
@@ -107,8 +113,8 @@ export function fillWith(it: Item, liquid: string | null) {
  */
 /** `full`: a computer's window filling the page (see computer.ts). */
 export interface Win { id: number; x: number; y: number; folded?: boolean; full?: boolean }
-/** `windows` are the open containers, the last one on top; `cash` is the money you have. */
-export interface State { items: Item[]; next: number; windows?: Win[]; cash?: number }
+/** `windows` are the open containers, the last one on top; `cash` is the money you have; `day` which day it is (from 1, see `sleep`). */
+export interface State { items: Item[]; next: number; windows?: Win[]; cash?: number; day?: number }
 /** What a new game starts with. */
 export const START_CASH = 50
 
@@ -172,9 +178,12 @@ export function look(it: Item): { name: string; desc?: string; tags: string[]; p
     Object.assign(out.colors, e.colors)
   }
   if (it.fill) out.tags.push(...LIQUIDS[it.fill.liquid]?.tags ?? [])
-  if (k.cut) out.price = Math.round(out.price * leftOf(it) / k.cut.count)
+  // something cut is worth its pieces (as old as it is), so cutting it neither makes nor loses money
+  const piece = k.cut && KINDS[k.cut.into] ? k.cut.into : null
+  if (piece) out.price = leftOf(it) * look({ id: 0, kind: piece, x: 0, y: 0, rot: 0, ...(it.age ? { age: it.age } : {}) }).price
+  else if (k.cut) out.price = Math.round(out.price * leftOf(it) / k.cut.count)
   if (k.stack) { const done = closed(it); out.price = Math.ceil(partsOf(it) * (done ? k.stack.closed : k.stack.open)); if (!done) out.name = `Open ${out.name[0].toLowerCase()}${out.name.slice(1)}` }
-  if (k.ages && (it.age ?? 0) >= AGE_DAYS) { out.name = `Aged ${out.name[0].toLowerCase()}${out.name.slice(1)}`; out.price = Math.round(out.price * 1.5) }
+  if (k.ages && (it.age ?? 0) >= AGE_DAYS) { out.name = `Aged ${out.name[0].toLowerCase()}${out.name.slice(1)}`; if (!piece) out.price = Math.round(out.price * 1.5) }
   return out
 }
 /**
@@ -195,18 +204,18 @@ export const worth = (s: State, it: Item): number => look(it).price + (it.fill ?
 
 // ---------------------------------------------------------------- places: the field, and the insides of containers
 
-/** Somewhere things can sit: the field (null), a counter, or one slot of a container item. */
-export type Space = { host: number; slot: number } | { at: Counter } | null
+/** Somewhere things can sit: the field (null), a counter or the trash, or one slot of a container item. */
+export type Space = { host: number; slot: number } | { at: Place } | null
 export type SlotSpace = { host: number; slot: number }
 /** Is this place inside a container (not the field or a counter)? */
 export const isSlot = (sp: Space): sp is SlotSpace => !!sp && 'host' in sp
 export const spaceOf = (it: Item): Space => it.in ?? (it.at ? { at: it.at } : null)
 export const spaceKey = (sp: Space) => !sp ? 'field' : isSlot(sp) ? `${sp.host}:${sp.slot}` : sp.at
 export const sameSpace = (a: Space, b: Space) => spaceKey(a) === spaceKey(b)
-/** The place a grid's key names: "field", a counter, or "host:slot". */
+/** The place a grid's key names: "field", a counter, "trash", or "host:slot". */
 export function spaceFromKey(k: string): Space {
   if (k === 'field') return null
-  if (isCounter(k)) return { at: k }
+  if (isPlace(k)) return { at: k }
   const [host, slot] = k.split(':').map(Number)
   return { host, slot }
 }
@@ -214,7 +223,7 @@ export const isContainer = (kind: string) => !!KINDS[kind]?.slots?.length
 const slotOf = (s: State, sp: SlotSpace) => { const host = find(s, sp.host); return host ? KINDS[host.kind]?.slots?.[sp.slot] : undefined }
 export function spaceSize(s: State, sp: Space): { w: number; h: number } {
   if (!sp) return { w: W, h: H }
-  if (!isSlot(sp)) return COUNTERS[sp.at]
+  if (!isSlot(sp)) return PLACES[sp.at]
   const host = find(s, sp.host)
   const slot = host && KINDS[host.kind]?.slots?.[sp.slot]
   return slot ? { w: slot.w, h: slot.h } : { w: 0, h: 0 }
@@ -225,13 +234,16 @@ export const contents = (s: State, host: number) => s.items.filter(o => o.in?.ho
 
 /** Containers do not go in containers, except kinds tagged `vessel` (bottles and the like), which take a second level and no more. */
 export const MAX_NEST = 2
-const chain = (s: State, id: number) => { const out: Item[] = []; for (let o = find(s, id); o; o = o.in ? find(s, o.in.host) : undefined) out.push(o); return out }
+/** An item and the containers it is in, innermost first (a broken save's loop is walked once). */
+const chain = (s: State, id: number) => { const out: Item[] = []; for (let o = find(s, id); o && !out.includes(o); o = o.in ? find(s, o.in.host) : undefined) out.push(o); return out }
 /** Is `id` the item `anc`, or somewhere inside it? */
 const within = (s: State, id: number, anc: number) => chain(s, id).some(o => o.id === anc)
+/** Is `id` one of `ids`, or somewhere inside one of them? */
+export const under = (s: State, id: number, ids: number[]) => chain(s, id).some(o => ids.includes(o.id))
 /** How many containers deep this item goes, itself included (0 for something that holds nothing). */
-const height = (s: State, it: Item): number => isContainer(it.kind) ? 1 + Math.max(0, ...contents(s, it.id).map(o => height(s, o))) : 0
+const height = (s: State, it: Item, seen = new Set<number>()): number => isContainer(it.kind) && !seen.has(it.id) ? (seen.add(it.id), 1 + Math.max(0, ...contents(s, it.id).map(o => height(s, o, seen)))) : 0
 
-/** Would this space take that item? The field and the counters take anything; a slot checks its tag rules, refuses cycles, and keeps the nesting limit. A take-out-only slot keeps only what is already in it. */
+/** Would this space take that item? The field, the counters and the trash take anything; a slot checks its tag rules, refuses cycles, and keeps the nesting limit. A take-out-only slot keeps only what is already in it. */
 export function accepts(s: State, it: Item, sp: Space): boolean {
   if (!isSlot(sp)) return true
   const host = find(s, sp.host)
@@ -396,9 +408,9 @@ function cleanFill(o: Item): { fill?: Fill } {
   return o.fill && LIQUIDS[o.fill.liquid] && n > 0 ? { fill: { liquid: o.fill.liquid, amount: n } } : {}
 }
 /** How much is left of something cut, how old a thing that ages is, and what its look is drawn from, where they make sense. */
-function cleanCut(o: Item): { left?: number; age?: number } {
-  const c = KINDS[o.kind]?.cut, n = Math.round(Number(o.left))
-  return { ...(c && n >= 1 && n < c.count ? { left: n } : {}), ...(KINDS[o.kind]?.ages && Number(o.age) > 0 ? { age: Number(o.age) } : {}), ...(Number.isFinite(o.seed) ? { seed: Number(o.seed) } : {}) }
+function cleanCut(o: Item): { left?: number; age?: number; heat?: number } {
+  const k = KINDS[o.kind], c = k?.cut, n = Math.round(Number(o.left)), heat = Number(o.heat)
+  return { ...(c && n >= 1 && n < c.count ? { left: n } : {}), ...((k?.furnace || k?.smelt || k?.burns) && heat > 0 ? { heat: Math.min(1, heat) } : {}), ...(KINDS[o.kind]?.ages && Number(o.age) > 0 ? { age: Number(o.age) } : {}), ...(Number.isFinite(o.seed) ? { seed: Number(o.seed) } : {}) }
 }
 /** A sandwich's layers, of kinds that still exist (no more than it holds); one with nothing on it is its bread again. */
 function cleanLayers(o: Item): { kind?: string; layers?: Layer[] } {
@@ -421,8 +433,11 @@ function cleanProps(o: Item): { props?: Record<string, string> } {
  */
 export function settle(s: State): State {
   // only what an item still is: no old properties, liquids or machine state (and nothing on a counter that does not exist)
-  const items: Item[] = s.items.filter(o => KINDS[o.kind]).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isCounter(o.at) ? { at: o.at } : {}), ...cleanProps(o), ...cleanFill(o), ...cleanCut(o), ...cleanLayers(o) }))
-  const state: State = { items, next: s.next }
+  // (and each id once: a broken save's duplicates would collide)
+  const ids0 = new Set<number>()
+  const items: Item[] = s.items.filter(o => KINDS[o.kind] && Number.isInteger(o.id) && !ids0.has(o.id) && ids0.add(o.id)).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isPlace(o.at) ? { at: o.at } : {}), ...cleanProps(o), ...cleanFill(o), ...cleanCut(o), ...cleanLayers(o) }))
+  const next = Math.max(Math.round(Number(s.next)) || 1, ...items.map(o => o.id + 1))
+  const state: State = { items, next }
   // pass 1: anything in a slot that does not exist, or that its slot now refuses, goes back out to the field
   const evict = (o: Item) => { delete o.in }
   for (const o of items) {
@@ -432,23 +447,37 @@ export function settle(s: State): State {
   }
   for (const o of items) if (o.in && !accepts(state, o, o.in)) evict(o)
   // pass 2: each place on its own
-  const out: Item[] = []
-  let stray: Item[] = []
+  let out: Item[] = []
+  const stray: Item[] = []
   const spaces = new Map<string, { sp: Space; list: Item[] }>()
   for (const o of items) { const k = spaceKey(spaceOf(o)); if (!spaces.has(k)) spaces.set(k, { sp: spaceOf(o), list: [] }); spaces.get(k)!.list.push(o) }
   for (const { sp, list } of spaces.values()) {
     const { w, h } = spaceSize(state, sp)
     const { kept, lost } = layout(list, w, h)
     out.push(...kept)
-    if (sp) stray.push(...lost) // lost from a slot or a counter: to the field
+    stray.push(...lost)
   }
-  // whatever did not fit its slot lands on the field, in the first free spots
-  const field = out.filter(o => !spaceOf(o))
-  for (const o of stray) { const spot = firstFree(W, H, field.map(boxOf), { ...boxOf({ ...o, rot: 0 }), x: 0, y: 0 }); if (spot) { const put = { ...o, x: spot.x, y: spot.y, rot: spot.rot }; setIn(put, null); out.push(put); field.push(put) } }
+  // whatever did not fit its place lands on the field in the first free spot, or failing that on a counter
+  const places: Space[] = [null, { at: 'inside' }, { at: 'outside' }]
+  const taken = new Map(places.map(p => [spaceKey(p), out.filter(o => sameSpace(spaceOf(o), p)).map(boxOf)]))
+  for (const o of stray) {
+    for (const p of places) {
+      const { w, h } = spaceSize(state, p), boxes = taken.get(spaceKey(p))!
+      const spot = firstFree(w, h, boxes, { ...boxOf({ ...o, rot: 0 }), x: 0, y: 0 })
+      if (!spot) continue
+      const put = { ...o, x: spot.x, y: spot.y, rot: spot.rot }
+      setIn(put, p)
+      out.push(put)
+      boxes.push(boxOf(put))
+      break
+    }
+  }
+  // what found no place at all is gone, and whatever was inside it
+  for (let n = -1; n !== out.length;) { n = out.length; const here = new Set(out.map(o => o.id)); out = out.filter(o => !o.in || here.has(o.in.host)) }
   const ids = new Set(out.map(o => o.id))
   // windows of containers that are gone (or no longer containers) close; old saves' docked panels are not carried over
   const windows = (s.windows ?? []).filter(w => ids.has(w.id) && isContainer(out.find(o => o.id === w.id)!.kind)).slice(-MAX_WINDOWS)
-  return { items: out, next: s.next, windows, cash: Math.max(0, Math.round(Number(s.cash ?? START_CASH)) || 0) }
+  return { items: out, next, windows, cash: Math.max(0, Math.round(Number(s.cash ?? START_CASH)) || 0), day: Math.max(1, Math.round(Number(s.day)) || 1) }
 }
 
 /**
@@ -458,15 +487,25 @@ export function settle(s: State): State {
  */
 export function cut(s: State, it: Item): Item[] | null {
   const c = KINDS[it.kind]?.cut
-  if (!c || !KINDS[c.into]) return null
-  const n = leftOf(it), pieces = n <= 2 ? n : 1, gone = n - pieces <= 0
-  const was = { x: it.x, left: it.left }, before = dims(it)
   const at = s.items.indexOf(it)
+  if (!c || !KINDS[c.into] || at < 0) return null
+  const n = leftOf(it), pieces = n <= 2 ? n : 1, gone = n - pieces <= 0
+  const was = { x: it.x, y: it.y, left: it.left }, before = sizeOf(it)
+  // the cut side, as it lies: 'left' or 'right' of the thing as made, turned with it
+  const r = quarter(it.rot), d = c.from === 'right' ? 1 : -1
+  const side: [number, number] = [[d, 0], [0, d], [-d, 0], [0, -d]][r] as [number, number]
   if (gone) s.items.splice(at, 1)
-  else { it.left = n - pieces; if (c.from !== 'right') it.x += before.w - dims(it).w }
+  else {
+    it.left = n - pieces
+    // what is left, inside the old footprint as made (against the side away from the cut), turned the way it lies
+    const after = sizeOf(it), W0 = before.w, H0 = before.h
+    const x0 = c.from === 'right' ? 0 : W0 - after.w, x1 = x0 + after.w, y1 = after.h
+    const [dx, dy] = [[x0, 0], [H0 - y1, x0], [W0 - x1, H0 - y1], [0, W0 - x1]][r]
+    it.x += dx; it.y += dy
+  }
   const made: Item[] = []
   for (let i = 0; i < pieces; i++) {
-    const p = pieceOf(s, c.into, it)
+    const p = pieceOf(s, c.into, it, side)
     if (!p) break
     if (it.age !== undefined) p.age = it.age
     p.seed = faceSeed(it, n - i) // the slice that comes off is the face that was showing
@@ -475,16 +514,19 @@ export function cut(s: State, it: Item): Item[] | null {
   if (made.length === pieces) return made
   remove(s, made.map(p => p.id)) // no room: everything as it was
   if (gone) s.items.splice(at, 0, it)
-  else { it.x = was.x; if (was.left === undefined) delete it.left; else it.left = was.left }
+  else { it.x = was.x; it.y = was.y; if (was.left === undefined) delete it.left; else it.left = was.left }
   return null
 }
 
-/** A new piece of something (cut off it, taken off it): on the free spot nearest its right side, or anywhere on the field. */
-function pieceOf(s: State, kind: string, from: Item): Item | null {
+/** A new piece of something (cut off it, taken off it): on the free spot nearest the side it comes off (`side`, a step: right unless told), or anywhere on the field. */
+function pieceOf(s: State, kind: string, from: Item, side: [number, number] = [1, 0]): Item | null {
   const p = spawn(s, kind, spaceOf(from)) ?? spawn(s, kind, null)
   if (!p || !sameSpace(spaceOf(p), spaceOf(from))) return p
   const { w, h } = spaceSize(s, spaceOf(p))
-  const b = nearest(w, h, inSpace(s, spaceOf(p)).filter(o => o.id !== p.id).map(boxOf), { ...boxOf({ ...p, rot: 0 }), x: from.x + dims(from).w, y: from.y })
+  const f = dims(from), pb = boxOf({ ...p, rot: 0 })
+  const x = side[0] > 0 ? from.x + f.w : side[0] < 0 ? from.x - pb.w : from.x
+  const y = side[1] > 0 ? from.y + f.h : side[1] < 0 ? from.y - pb.h : from.y
+  const b = nearest(w, h, inSpace(s, spaceOf(p)).filter(o => o.id !== p.id).map(boxOf), { ...pb, x, y })
   if (b) Object.assign(p, { x: b.x, y: b.y, rot: b.rot ?? 0 })
   return p
 }
@@ -493,10 +535,10 @@ function pieceOf(s: State, kind: string, from: Item): Item | null {
 
 /** The kind a thing turns into when something is laid on it (a slice of bread: a sandwich). */
 const madeFrom = (kind: string) => KINDS[kind]?.stack ? kind : Object.keys(KINDS).find(k => KINDS[k].stack?.on === kind)
-/** Can `top` be laid on `base`? A filling while there is room, the lid once there is at least one filling; nothing on a finished one. */
+/** Can `top` be laid on `base`? A filling while there is room, the lid once there is at least one filling; nothing on a finished one, nor on bread still in its bag. */
 export function canStack(base: Item, top: Item): boolean {
   const kind = madeFrom(base.kind), st = kind && KINDS[kind].stack
-  if (!st || base.id === top.id || top.layers?.length || closed(base)) return false
+  if (!st || base.in || base.id === top.id || top.layers?.length || closed(base)) return false
   const n = base.layers?.length ?? 0
   return st.takes.includes(top.kind) ? n < st.max : top.kind === st.lid && n > 0
 }
@@ -539,9 +581,9 @@ export function moveInto(s: State, it: Item, space: Space): boolean {
 export function spawn(s: State, kind: string, space: Space = null, props: Record<string, string> = {}, fill = false): Item | null {
   const { w, h } = spaceSize(s, space)
   const it: Item = { id: s.next, kind, x: 0, y: 0, rot: 0, ...cleanProps({ id: 0, kind, x: 0, y: 0, rot: 0, props }) }
+  if (!fill && !accepts(s, it, space)) return null // asked before it is put there: a take-out-only slot takes nothing new
   setIn(it, space)
-  if (!fill && !accepts(s, it, space)) return null
-  const spot = firstFree(w, h, inSpace(s, space).map(boxOf), shapeOf(kind))
+  const spot = firstFree(w, h, inSpace(s, space).map(boxOf), shapeOfItem(it))
   if (!spot) return null
   s.next++
   Object.assign(it, { x: spot.x, y: spot.y, rot: spot.rot })
@@ -551,7 +593,25 @@ export function spawn(s: State, kind: string, space: Space = null, props: Record
   return it
 }
 
-/** A new game: an empty field and a little money. */
+/** A new game: an empty field and a little money, on the first day. */
 export function start(): State {
-  return { items: [], next: 1, windows: [], cash: START_CASH }
+  return { items: [], next: 1, windows: [], cash: START_CASH, day: 1 }
+}
+
+/** What is in the trash (the things themselves; what is inside them goes with them). */
+export const trash = (s: State) => inSpace(s, { at: 'trash' })
+/** Empty the trash: what is in it is gone, with whatever is inside it. The ids that went (not their insides). */
+export function emptyTrash(s: State): number[] {
+  const gone = trash(s).map(o => o.id)
+  remove(s, gone)
+  return gone
+}
+/**
+ * The day is over (the last customer of the line has gone) and you sleep: the trash is taken out overnight, and it is the
+ * next day. A day is one line of customers, however long; nothing else counts time. The ids that went out with the trash.
+ */
+export function sleep(s: State): number[] {
+  const gone = emptyTrash(s)
+  s.day = (s.day ?? 1) + 1
+  return gone
 }

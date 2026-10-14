@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { accepts, canPour, canStack, closed, cut, find, partsOf, stack, unstack, dims, faceSeed, leftOf, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
+import { accepts, canPour, canStack, closed, cut, find, partsOf, stack, unstack, dims, faceSeed, leftOf, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, emptyTrash, sleep, trash, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
 import FIXTURE from './test/kinds.json' with { type: 'json' }
 
 // The game ships no items for now, so the tests bring their own kinds and the old starting field.
@@ -471,4 +471,114 @@ console.log('world ok')
   const t = settle({ items: [{ id: 1, kind: 'sandwich', x: 0, y: 0, rot: 0, layers: [{ kind: 'gone' }] }, { id: 2, kind: 'sandwich', x: 4, y: 0, rot: 0, layers: bread.layers }], next: 3 })
   assert.deepEqual([t.items[0].kind, t.items[0].layers, t.items[1].layers!.length], ['breadslice', undefined, 5])
   console.log('sandwiches ok')
+}
+
+// a cut thing is worth its pieces, fresh or aged: cutting it all up neither makes nor loses money
+{
+  for (const age of [0, 12]) {
+    const s: State = { items: [], next: 1, windows: [] }
+    const wheel = spawn(s, 'cheesewheel')!
+    if (age) wheel.age = age
+    const before = worth(s, wheel)
+    for (let guard = 0; guard < 99; guard++) { const cuttable = s.items.find(o => KINDS[o.kind].cut); if (!cuttable) break; assert.ok(cut(s, cuttable)) }
+    assert.equal(s.items.filter(o => o.kind === 'cheeseslice').length, 48)
+    assert.equal(s.items.reduce((n, o) => n + worth(s, o), 0), before)
+  }
+  const aged = { id: 1, kind: 'cheesewedge', x: 0, y: 0, rot: 0, age: 12 }
+  assert.equal(look(aged).price, 6 * look({ id: 2, kind: 'cheeseslice', x: 0, y: 0, rot: 0, age: 12 }).price)
+  console.log('cut worth ok')
+}
+
+// cutting something turned: it shrinks from its cut side as it lies, the other end staying put, and the piece lands by the cut
+{
+  // salami is cut off its right end as made; turned upside down, that end is on the left
+  const s: State = { items: [], next: 1, windows: [] }
+  const sal = spawn(s, 'salami')!
+  Object.assign(sal, { x: 10, y: 8, rot: 2 })
+  const right = sal.x + dims(sal).w
+  for (let i = 0; i < 3; i++) {
+    const [p] = cut(s, sal)!
+    assert.equal(sal.x + dims(sal).w, right) // the tied end stays where it was
+    assert.ok(p.x + dims(p).w <= sal.x, 'the slice lands left of it, by the cut')
+  }
+  // turned a quarter, the cut end (right as made) faces down: the top stays, slices land below
+  const t: State = { items: [], next: 1, windows: [] }
+  const s2 = spawn(t, 'salami')!
+  Object.assign(s2, { x: 10, y: 5, rot: 1 })
+  const top = s2.y
+  for (let i = 0; i < 3; i++) {
+    const [p] = cut(t, s2)!
+    assert.equal(s2.y, top)
+    assert.ok(p.y >= s2.y + dims(s2).h, 'below it')
+  }
+  // and a stale item (no longer on the field) is not cut
+  assert.equal(cut(t, { ...s2, id: 999 }), null)
+  console.log('cut turned ok')
+}
+
+// a take-out-only slot takes nothing new, not even something spawned straight into it; bread in its bag is not a sandwich base
+{
+  const s: State = { items: [], next: 1, windows: [] }
+  const b = spawn(s, 'blister')!
+  remove(s, contents(s, b.id).map(o => o.id))
+  assert.equal(spawn(s, 'pill', { host: b.id, slot: 0 }), null)
+  const loaf = spawn(s, 'bread')!
+  const slice = contents(s, loaf.id)[0]
+  assert.ok(!canStack(slice, spawn(s, 'cheeseslice')!))
+  console.log('take-out-only ok')
+}
+
+// a broken save is mended: a container inside itself, an id twice, a `next` behind the ids; what fits nowhere goes, with what is in it
+{
+  const items: Item[] = [
+    { id: 1, kind: 'blister', x: 0, y: 0, rot: 0, in: { host: 2, slot: 0 } },
+    { id: 2, kind: 'blister', x: 0, y: 0, rot: 0, in: { host: 1, slot: 0 } },
+    { id: 3, kind: 'cheeseslice', x: 5, y: 5, rot: 0 },
+    { id: 3, kind: 'cheeseslice', x: 9, y: 9, rot: 0 },
+  ]
+  const t = settle({ items, next: 1 })
+  assert.equal(t.items.filter(o => o.id === 3).length, 1)
+  assert.ok(t.next > 3)
+  assert.ok(t.items.some(o => (o.id === 1 || o.id === 2) && !o.in), 'the loop is broken')
+  // a full field and a cabinet that no longer fits it: it goes to a counter with what is in it
+  const full: Item[] = []
+  let id = 1
+  for (let x = 0; x < W; x++) for (let y = 0; y < H; y++) full.push({ id: id++, kind: 'pill', x, y, rot: 0 })
+  const cab = { id: id++, kind: 'cabinet', x: 0, y: 0, rot: 0 }, apple = { id: id++, kind: 'apple', x: 0, y: 0, rot: 0, in: { host: cab.id, slot: 0 } }
+  const u = settle({ items: [...full, cab, apple], next: id })
+  const c2 = u.items.find(o => o.id === cab.id)!
+  assert.equal(c2.at, 'inside')
+  assert.equal(u.items.find(o => o.id === apple.id)!.in!.host, cab.id)
+  // with the counters full too it is gone, and the apple with it (nothing left pointing at nothing)
+  for (const at of ['inside', 'outside'] as const) for (let x = 0; x < W; x++) for (let y = 0; y < 4; y++) full.push({ id: id++, kind: 'pill', x, y, rot: 0, at })
+  const v = settle({ items: [...full, cab, apple], next: id })
+  assert.ok(!v.items.some(o => o.id === cab.id || o.id === apple.id))
+  assert.ok(v.items.every(o => !o.in || v.items.some(h => h.id === o.in!.host)))
+  console.log('mended saves ok')
+}
+
+// The trash: a place like a counter (5x6). Things go in and out of it; a save keeps it; emptied, whatever is in it is gone,
+// with what is inside it, and nothing else.
+{
+  const s = start()
+  const log = s.items.find(o => o.kind === 'log')!, crate = s.items.find(o => o.kind === 'crate')!
+  applyDrop(s, lift(s, log.id)!, planDrop(s, lift(s, log.id)!, { at: 'trash' }, 0, 0, 0)!)
+  assert.equal(log.at, 'trash')
+  assert.deepEqual(trash(s).map(o => o.id), [log.id])
+  const cab = spawn(s, 'cabinet', { at: 'trash' })
+  const kept = settle(JSON.parse(JSON.stringify(s)))
+  assert.equal(kept.items.find(o => o.id === log.id)!.at, 'trash')
+  const gone = emptyTrash(s)
+  assert.deepEqual(gone.sort(), [log.id, ...(cab ? [cab.id] : [])].sort())
+  assert.ok(!find(s, log.id) && find(s, crate.id), 'the trash goes, the field stays')
+  assert.ok(!s.items.some(o => o.in && !find(s, o.in.host)), 'nothing left inside what went')
+  assert.deepEqual(emptyTrash(s), [])
+  // a night's sleep takes the trash out and moves the day on; a save keeps the day, an old save starts on day 1
+  const apple = spawn(s, 'apple', { at: 'trash' })!
+  s.day = 4
+  assert.deepEqual(sleep(s), [apple.id])
+  assert.equal(s.day, 5)
+  assert.equal(settle(JSON.parse(JSON.stringify(s))).day, 5)
+  assert.equal(settle({ items: [], next: 1 }).day, 1)
+  console.log('trash ok')
 }

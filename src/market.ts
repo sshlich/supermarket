@@ -3,18 +3,18 @@
 
 import { TAGS } from './customers.ts'
 
-/** What an event does to some tags: demand and supply multipliers at full strength, how long it lasts (hours), and how many hours until it starts (a rumor, until then). */
-export interface Event { name: string; tags: string[]; d: number; s: number; hours: number; wait: number; age: number; real: boolean }
+/** What an event does to some tags: demand and supply multipliers at full strength (`dt`: a tag's own demand, where it differs), how long it lasts (hours), and how many hours until it starts (a rumor, until then). */
+export interface Event { name: string; tags: string[]; d: number; s: number; dt?: Record<string, number>; hours: number; wait: number; age: number; real: boolean }
 export interface Market { p: Record<string, number>; u: Record<string, number>; events: Event[]; hour: number }
 
 // ponytail: the expected $ of one tag changing hands per day, in phase I. Impact is a fraction of it, so it must grow with the phase (x4 each) when phases exist.
 export const FLOW = 25
 export const ETA = 0.5
 
-const TEMPLATES: { name: string; tags: string[]; d: number; s: number }[] = [
+const TEMPLATES: { name: string; tags: string[]; d: number; s: number; dt?: Record<string, number> }[] = [
   { name: 'fever', tags: ['medicine'], d: 2, s: 1 },
   { name: 'convoy', tags: ['*'], d: 1, s: 2.5 },
-  { name: 'cold snap', tags: ['fuel', 'food', 'light'], d: 1.7, s: 1 },
+  { name: 'cold snap', tags: ['fuel', 'food', 'light'], d: 1.7, s: 1, dt: { light: 1.3 } },
   { name: 'blockade', tags: ['*'], d: 1, s: 0.4 },
   { name: 'festival', tags: ['alcohol', 'valuable'], d: 1.8, s: 1 },
   { name: 'raid', tags: ['*'], d: 0.5, s: 1.6 },
@@ -24,7 +24,8 @@ export const newMarket = (): Market => ({ p: Object.fromEntries(Object.keys(TAGS
 
 /** An event's strength now: full for its first third, then fading to nothing. */
 const strength = (e: Event) => e.wait > 0 ? 0 : e.age < e.hours / 3 ? 1 : Math.max(0, 1 - (e.age - e.hours / 3) / (e.hours * 2 / 3))
-const mult = (m: Market, t: string, key: 'd' | 's') => m.events.reduce((n, e) => e.tags.includes(t) ? n * (1 + (e[key] - 1) * strength(e)) : n, 1)
+const full = (e: Event, t: string, key: 'd' | 's') => (key === 'd' ? e.dt?.[t] : undefined) ?? e[key]
+const mult = (m: Market, t: string, key: 'd' | 's') => m.events.reduce((n, e) => e.tags.includes(t) ? n * (1 + (full(e, t, key) - 1) * strength(e)) : n, 1)
 /** Demand and supply multipliers on a tag from live events. */
 export const demand = (m: Market, t: string) => mult(m, t, 'd')
 export const supply = (m: Market, t: string) => mult(m, t, 's')

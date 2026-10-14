@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <defs>
+    <linearGradient id="top" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a3a8ad"/>
+      <stop offset="0.5" stop-color="#8d9297"/>
+      <stop offset="1" stop-color="#70757a"/>
+    </linearGradient>
+    <linearGradient id="front" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5f6468"/>
+      <stop offset="1" stop-color="#4c5054"/>
+    </linearGradient>
+  </defs>
+  <!-- a cast bar lying flat, seen from above and a little in front: a flat top, four sloped sides (lit from the top left, the
+       front one darkest and tallest), a shallow hollow where it cooled, and the foundry's stamp; the metal swaps the colours -->
+  <path d="M6 13L90 13L90 53L6 53Z" fill="#4c5054"/>
+  <path d="M6 13L90 13L80 17L16 17Z" fill="#b4b9bd"/>
+  <path d="M6 13L16 17L16 40L6 53Z" fill="#9a9fa4"/>
+  <path d="M90 13L90 53L80 40L80 17Z" fill="#5f6468"/>
+  <path d="M6 53L16 40L80 40L90 53Z" fill="url(#front)"/>
+  <rect x="16" y="17" width="64" height="23" fill="url(#top)"/>
+  <!-- the hollow on top, and its lit far rim -->
+  <ellipse cx="48" cy="29" rx="23" ry="6.5" fill="#70757a" opacity="0.55"/>
+  <path d="M26 31.5C33 35.5 63 35.5 70 31.5" fill="none" stroke="#c9cdd0" stroke-width="0.9" opacity="0.55" stroke-linecap="round"/>
+  <path d="M27 26.5C34 23 62 23 69 26.5" fill="none" stroke="#5f6468" stroke-width="0.8" opacity="0.6" stroke-linecap="round"/>
+  <!-- the stamp: a small sunk square with a diamond in it -->
+  <rect x="20.5" y="20.5" width="8" height="6.5" rx="1" fill="none" stroke="#5f6468" stroke-width="0.9"/>
+  <path d="M21 27.4H29V21" fill="none" stroke="#c9cdd0" stroke-width="0.6" opacity="0.7"/>
+  <path d="M24.5 21.8L26.6 23.75L24.5 25.7L22.4 23.75Z" fill="#70757a"/>
+  <!-- edges: lit along the top face's back and left, a glint on the left slope, the casting's small pocks -->
+  <path d="M16 40V17H80" fill="none" stroke="#c9cdd0" stroke-width="0.8" opacity="0.75"/>
+  <path d="M8.5 16.5L14 19" stroke="#c9cdd0" stroke-width="1" opacity="0.6" stroke-linecap="round"/>
+  <g fill="#70757a" opacity="0.7"><circle cx="62" cy="21" r="0.7"/><circle cx="36" cy="37" r="0.6"/><circle cx="74" cy="35" r="0.5"/><circle cx="42" cy="47" r="0.6"/></g>
+  <path d="M6 13L90 13L90 53L6 53Z" fill="none" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M6 13L16 17M90 13L80 17M6 53L16 40M90 53L80 40" stroke="#2a2d30" stroke-width="0.6" opacity="0.6"/>
+</svg>

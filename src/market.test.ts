@@ -42,4 +42,11 @@ const rand = () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return s
   assert.ok(started < announced && started > announced * 0.5, `${started}/${announced}`) // about a quarter are false
   assert.ok(demand(newMarket(), 'food') === 1 && supply(newMarket(), 'food') === 1)
 }
+// a cold snap: fuel and food twice as wanted nearly, light less so
+{
+  const m = newMarket()
+  m.events.push({ name: 'cold snap', tags: ['fuel', 'food', 'light'], d: 1.7, s: 1, dt: { light: 1.3 }, hours: 6, wait: 0, age: 0, real: true })
+  assert.equal(demand(m, 'food'), 1.7)
+  assert.ok(Math.abs(demand(m, 'light') - 1.3) < 1e-9)
+}
 console.log('market ok')

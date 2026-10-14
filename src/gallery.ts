@@ -7,6 +7,7 @@ import './style.css'
 import './gallery.css'
 import { firstFree, type Box } from './grid.ts'
 import { KINDS, boxOf, cellsOf, dims, kindCells, quarter, type Item } from './world.ts'
+import { esc } from './html.ts'
 
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
 const SPRITE: Record<string, string> = Object.fromEntries(Object.entries(files).map(([p, svg]) => [p.slice('./sprites/'.length, -'.svg'.length), svg]))
@@ -30,7 +31,6 @@ if (import.meta.hot) {
 
 const app = document.getElementById('gal')!
 const ids = Object.keys(KINDS)
-const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;')
 
 /** What the page shows, remembered between visits. */
 interface View { mode: 'cards' | 'field' | 'compare'; style: string; cell: number; rot: number; prints: boolean; check: boolean; group: boolean; q: string }

@@ -20,7 +20,9 @@ notes). The code here started from `12a606f` ("Items step A") with those systems
 - Nothing sits under the field but a line for notes. Spawning things, strict mode, sound and a new game are in the menu
   (see "Menu and debug" below).
 - The layout is saved in the browser (`field-v3`); `settle` repairs a saved layout when kinds change (unknown kinds go,
-  things whose slot is gone go to the field, overlaps get re-placed).
+  things whose slot is gone go to the field, overlaps get re-placed; what fits nowhere on its own place goes to the field,
+  then a counter, and only with no room anywhere is it lost, with what is in it). A broken save (a container inside itself,
+  an id twice) is mended, not thrown away.
 
 ## Handling (the game page)
 
@@ -162,30 +164,37 @@ and windows (closing with their container, settling, the cap).
 ## Customers, the line and money (2026-10-14)
 
 A `>_ customers` button on the side of the field opens a terminal beside it (`src/customers.ts` holds the customers and the
-rules of a deal, `main.ts` draws it and moves the things; the terminal's state is saved apart from the field, as
-`field-v3-terminal`).
+rules of a deal, `src/terminal.ts` draws the terminal and plays the deal out on the counters, with what it needs from the
+page handed in by `main.ts`; the terminal's state is saved apart from the field, as `field-v3-terminal`).
 - **The line.** Customers wait in a line and are served one by one; there is no clock. "let them in" opens the door when
   nobody is waiting, and a line of 3 to 7 forms (random for now: later something in the game should decide it). The header
   shows who is at the counter and how many are waiting. *next customer* calls the next one (whoever was there leaves);
   *dismiss* sends them away.
 - **Three sorts of customer**, one big button that changes its word:
   - a **buyer** wants tags (survival needs: food, drink, alcohol, medicine, light, fuel, book, valuable). **SELL**: they
-    take everything on the inside counter with a tag they still want (a container counts its contents) and pay its worth
-    times their rate (1.2 to 1.6), even if some wants are left; nothing they want there, no sale. About two in three count
+    take everything on the inside counter with a tag they still want and pay its worth times their rate (1.0 to 1.6, about
+    1.25), even if some wants are left; nothing they want there, no sale. A **package** (a container that comes full: a
+    blister, a bag of bread, a matchbox) goes whole, with what is in it. Any other container is just itself: a food buyer
+    takes the apple out of a cabinet and leaves the cabinet; one who wants the container itself takes it and leaves
+    whatever in it they did not want on the inside counter. About two in three count
     their money: a **budget** (5 to 40$, shown as "has N$" and said in their greeting) they cannot go over; the rest have
     plenty. They **stay** after buying, wants already bought lit in the header, and buy again until they have it all.
-  - a **seller** unloads one to three things on the outside counter and asks for the lot (worth times 0.5 to 0.9).
+  - a **seller** unloads one to three things on the outside counter and asks for the lot (worth times 0.6 to 1.0, about 0.8).
     **BUY**: if you have the money, it is yours, and it slides across to the inside counter (whatever fits there).
-  - a **trader** unloads things and wants tags. **SWAP**: they take what they want from the inside counter if it is worth
-    at least 80% of what they brought, and no money moves; what they brought slides across to the inside counter.
+  - a **trader** unloads things and wants tags. **SWAP**: they take what they want from the inside counter (by the same
+    rule as a buyer) if it is worth at least 70 to 90% of what they brought (their slack), and the difference is paid in
+    cash either way: you top up, or they do. Short of it, they say how much more it would take. What they brought slides
+    across to the inside counter.
 - **What they bring is never quite new**: cheaper kinds more often (a cabinet rarely), any property (synthetic apples, any
-  pill), vessels part full of any liquid, blisters with pills already gone. Their things stay theirs until a deal (the
-  tooltip says so, and they cannot be offered back to them); dismissed or sent off with *next*, they take them back from
-  wherever you moved them.
+  pill), vessels part full of any liquid, blisters with pills already gone, cheese already cut into (never a sandwich:
+  those are made). Their things stay theirs until a deal (the tooltip says so, and they cannot be offered back to them):
+  you can move them about and open them to look, but not take anything out of them, put anything in them, put them in a
+  container, or cut, pour or build on them. Dismissed or sent off with *next*, they take them back from wherever you moved
+  them. They unload only when nothing is being dragged, and a reload while they are stepping up finishes it.
 - **Nobody leaves on their own**: after a deal they stay at the counter until you dismiss them or call the next one. The
   big button greys out when they have nothing more to deal (a buyer with everything, a seller or trader after their deal).
-- The screen types their words (with soft key clicks), lights the wants that are met, and is wiped when they go (a scan line
-  sweeps down).
+- The screen types their words (with soft key clicks; a redraw of the page carries on where it was), lights the wants that
+  are met, and is wiped when they go (a scan line sweeps down).
 - **Numbers where a decision needs them.** An item's tooltip has its worth in green with what it is made of (`7$ · 1 + 6
   lamp oil · storage · 1×3`) and what the customer at the counter makes of it ("Wren would pay 11$", "does not want this",
   "theirs: part of a 20$ lot"). Each counter has a **dial** to its left (black, green digits, like the money's): the total
@@ -194,6 +203,47 @@ rules of a deal, `main.ts` draws it and moves the things; the terminal's state i
 - **Money** is a number on the main screen, left of the field: a black dial, green terminal digits with the leading
   zeros dim, and a `$` at the end. It counts to the new sum after a deal and glows (green up, red down). Saved with the
   field as `cash`; a new game starts with 50.
+
+## Days and the trash (2026-10-14)
+
+- **A day is one line of customers** (the user's rule): it starts when the door opens and a line comes in, and it is over
+  when the last of them has gone (sent off with *next* or dismissed, nobody left waiting). Then the page goes dark, "day N
+  is over / you sleep", the trash is taken out, and it lifts on the next day ("morning", or how many things went out).
+  Nothing else counts time: there are no hours, and customers are never held back by time (an hours plan from ECONOMY.md
+  section 2 was tried and reverted). `day` is saved with the field (`sleep` in `world.ts`); a small dial under the money
+  shows it; a new game starts on day 1.
+- **The trash**: a button under the day dial, like the customers' one, opens a small bin under it (5x6), a place like a
+  counter (`at: 'trash'`; `PLACES` in `world.ts` holds it with the counters). Anything goes in, containers too, and comes
+  back out until you sleep; then it is gone with whatever is in it. The button counts what is in it, a thing's tooltip says
+  it is in the trash, a customer's things cannot go in, and open or shut is remembered.
+
+## The furnace: the first machine (2026-10-14)
+
+Built like the computer: a thing on the field whose window is the machine itself. For now it does one job: **two lumps of
+ore (2x2) melt into one bar (3x2, lying flat)**. The rules are `src/furnace.ts` (pure, tested in `furnace.test.ts`).
+- **Kinds** (`materials` and `machines` in the debug panel): **ore** (2x2, iron 3$ or copper 4$, the `metal` property: broken
+  rock in lit facets banded with rust-red hematite or green malachite, glinting where it broke), **ingot** (3x2, iron 10$ or
+  copper 13$: a cast bar seen from above and a little in front, four sloped sides, a hollow where it cooled, a stamp),
+  **coal** (1x1, 1$, fuel: burns 15 seconds) and the **furnace** (3x4, 40$, cast iron: a stovepipe, riveted bands, an arched
+  crucible door with a mica window, the firebox door with its vents, an ash pan, feet). Its `fire` property lights it on
+  the field: the mica and the vents glow, flames move behind the mica and smoke leaves the pipe. Customers now also want
+  **metal** (a new tag, for bars); ore is wanted by nobody until it is melted.
+- **The window**: the pipe (smoking when lit), the iron front with four rivets and a brass plate (MERROW FOUNDRY No 2), the
+  **crucible** (4x2, takes ore) in an arched firebrick mouth, a heat dial whose needle swings with the heat, a line saying
+  what it is doing ("cold. Drop a match or a lighter on the firebox.", "melting iron: 53% · last coal"), and the
+  **firebox** (4x1, takes coal) behind its open door, the coal on a grate. Lit, the bricks glow from below, sparks go up
+  from the crucible, flames lick up behind the coal and glow between the grate's bars, and the whole front warms.
+- **Lighting**: drag a match, a lighter or the refillable lighter onto the furnace (on the field) or onto the firebox (in
+  its window); both light blue while you hold it. A match is used up; a lighter goes back. No coal: "nothing to burn".
+- **Burning in real time** while the game is open (never in the background, never held back by customers): the lump
+  burning first, then the next; with none left the fire goes out. Two lumps of the same ore heat together (24 seconds of
+  fire) and become one bar in the crucible, which comes out white-hot and cools to its colour, with a ring and a hiss.
+  The fire going out keeps how far they got; ore taken out of the crucible starts again from cold; what is in hand is not
+  burnt. The heat (the dial, the glow) comes up over 6 seconds and fades over 25.
+- **The gauge** on anything in the fire: the sprite goes dark, and a white line rises from the bottom with its own colours
+  below it (`heat` on the item, 0 to 1, saved).
+- Sounds: a match striking and the fire taking, soft crackles while its window is open, the fire dying, a bar cast; ore
+  knocks like rock, coal is gritty, the furnace clanks.
 
 ## Items, the first seed (2026-10-13)
 
@@ -277,7 +327,8 @@ gentle low-pass on everything keeps the highs from being shrill (glass is a low,
 The bottom of the field is clean: only the note line. `src/menu.ts` holds the rest.
 - **Menu**: the "≡ menu" button in the top left corner, or **Esc** (when nothing is selected; Esc first clears a
   selection). A small panel over the page: sound effects (on/off and a volume slider), music (none yet), strict handling,
-  the debug panel, and a new game (click twice: it empties the shop). Esc or a click outside closes it.
+  the debug panel (on the dev server only, not in a build), and a new game (click twice: it empties the shop). Esc or a
+  click outside closes it.
 - **Debug panel**: a window over the page, moved by its header and left where it was put, opened from the menu. Money
   (**+100$**), the field (clear it), and every kind of thing to spawn, by category: one row each with its colour, name,
   size and price, and a button per variant (real or synthetic apple, each pill type and blister, each book, a bottle empty
@@ -339,9 +390,10 @@ item's ids are made its own, so they can use the sprite's gradients. A slot's `f
 - **The knife, the first tool** (tools; 1x3, a kitchen knife, `cuts`): while you hold it, everything it can cut lights blue
   (bright under the pointer); drop it on one and a piece comes off, with a soft slicing sound, and the knife goes back.
   Things cut with it (`cut` on the kind) are not containers: they hold a count (`left` on the item) and shrink as it
-  goes, from the side the pieces come off, the rest staying where it was. The last cut splits the two that are left, and
-  the thing is gone. Pieces go on the first free spots of the same place (or the field), as old as what they came from; no
-  room, no cut. Worth goes down with what is left.
+  goes, from the side the pieces come off, the rest staying where it was (however it is turned). The last cut splits the
+  two that are left, and the thing is gone. Pieces go on the free spots nearest the side they came off, in the same place
+  (or the field), as old as what they came from; no room, no cut. **A cut thing is worth its pieces** (what is left times
+  a piece's worth, at its age), so cutting neither makes nor loses money.
 - **Cheddar wheel** (4x3) of eight wedges: a squat cylinder seen a little from above, its sides bulging out a touch, its top
   a touch domed. What is left is the part to the right (wedges come off the left): one sector of top and wall for each
   wedge left, a notch in the top where the back is gone, the pale cut face where one faces you. Size: 8 to 6 left 4x3, 5
@@ -364,8 +416,10 @@ item's ids are made its own, so they can use the sprite's gradients. A slot's `f
 - **Salami** (4x2, was the ham) of eight slices, cut off its right end: dark cured casing dusted with white bloom, string
   round it and tied at its ends; cut, its end shows the next slice, turned a little toward you. 8 to 6 left 4x2, 5 and 4 left 3x2, 3 and 2 left 2x2.
 - **Age** (for later): cheese carries an `age` in days; its colours mix from pale cheddar to orange with it (`aged()`),
-  and from `AGE_DAYS` (10) on it is called aged and is worth half as much again. Nothing counts days yet; the debug panel
-  spawns cheese fresh or aged.
+  and from `AGE_DAYS` (10) on it is called aged and is worth half as much again. That is reckoned on the smallest piece
+  (a cut thing is worth its pieces), so with whole dollars an aged slice is 2$ (1.5, rounded), an aged wedge 12$ and an
+  aged wheel 96$: aged cheese is worth about twice fresh for now. Nothing counts days yet; the debug panel spawns cheese
+  fresh or aged.
 - **Sandwiches.** Drag a slice of cheese or salami onto a slice of bread (on the field or a counter, not in its bag): the
   bread turns blue like anything the held thing can be used on, and dropped there the slice is laid on it and the bread is
   an open sandwich. Up to four fillings, in the order laid; a second slice of bread on top finishes it (it needs at least

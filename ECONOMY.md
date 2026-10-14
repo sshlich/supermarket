@@ -1,4 +1,4 @@
-# The economy (`inventory-v3`): a design, nothing here is built
+# The economy (`inventory-v3`): a design, mostly not built (section 11 says what is)
 
 Agreed 2026-10-14. `DESIGN.md` is what exists; this is where the money is going. Numbers are **starting guesses to be
 tuned by the sim (section 9)**, not decisions. What the user decided, in their words: customers should be probability
@@ -82,7 +82,7 @@ linearly to 1. Frequency about one per day, at most three at once (live or annou
 | Cold snap | fuel and food D x1.7, light D x1.3 | co-moving tags |
 | Blockade | one tag S x0.4 | what you hold gains value |
 | Festival | alcohol and valuable D x1.8 | |
-| Raid | one tag D x0.5 and sellers dump it | a bad stretch to wait out |
+| Raid | one tag D x0.5 and sellers dump it (supply x1.6) | a bad stretch to wait out |
 
 **Rumors.** A rumor reaches the terminal 2 to 4 hours before some events, and is wrong about 25% of the time (a rumor of
 a fever that never comes). That makes hoarding a decision under risk, not a trick; the dump impact in section 3 caps what
@@ -183,17 +183,25 @@ stock), **plateau** (sinks outrun income), **a pile of cash** (nothing to spend 
 
 ## 11. First sim results (2026-10-14; `npm run sim [days] [runs] [market] [customers per day]`)
 
-Built so far: the deal rewrite of section 4 (`customers.ts`, live in the game, not yet play-tested), `market.ts` (not wired
-into the game), and `scripts/econ-sim.ts` with three bots (`all`: accept everything; `smart`: takes only good asks and
-offers the best fitting item; `spec`: smart plus rumors and holding). 300 runs x 12 days, 10 customers a day, $50 start.
+Built so far: the deal rewrite of section 4 (`customers.ts`, live in the game, not yet play-tested; the deal button's live
+gap tooltip and "I only want the medicine" replies are not built), `market.ts` (not wired into the game), and
+`scripts/econ-sim.ts` with three bots (`all`: accept everything; `smart`: takes only good asks and offers the best fitting
+item; `spec`: smart plus rumors and holding). 300 runs x 12 days, 10 customers a day, $50 start.
 
-| | Old rules | New deal rules | + market, `all` bot |
-|---|---|---|---|
-| Round-trip spread (buy from a seller, sell to a buyer) | 2.0x | 1.56x | same |
-| Gross margin, realized | 40% (smart) | 35% | 33 to 35% |
-| Net / day, day 1 -> day 12 | 4 -> 16 | 5 -> 12 | 6 -> 14 |
-| Buyers who got everything they asked for | 10 to 20% | 10 to 18% | 9 to 13% |
-| Cash at day 12 | 160 | 128 | 163 |
+**Re-run 2026-10-14 after fixes.** The first run had three bugs: the sim priced goods its own way (every pre-filled
+container was a blister of six pills: bread $13 and medicine, a matchbox $13; no pill types; a cut wheel always whole), it
+booked a swap's goods as sold *and* as the cost of what came back (so margins read low), and selling pushed a price down
+by the full worth on every tag while buying split it across tags. The sim now makes each thing the way the game does
+(`unpack`, `offerOf`) and books margin on sales only. A buyer also no longer pays for a whole container when they want one
+thing in it (a cabinet holding an apple sells the apple), which the old `all` bot's lead partly rested on.
+
+| | Old rules | New deal rules (first run) | New deal rules (re-run, `all` / `smart`) | + market, `all` bot (first run) | + market, `all` bot (re-run) |
+|---|---|---|---|---|---|
+| Round-trip spread (buy from a seller, sell to a buyer) | 2.0x | 1.56x | same | same | same |
+| Gross margin, realized | 40% (smart) | 35% | 37 to 41% / 42% | 33 to 35% | 44 to 45% |
+| Net / day, day 1 -> day 12 | 4 -> 16 | 5 -> 12 | 4 -> 11 / 3 -> 9 | 6 -> 14 | 5 -> 14 |
+| Buyers who got everything they asked for | 10 to 20% | 10 to 18% | 7 to 13% / 6 to 17% | 9 to 13% | 8 to 13% |
+| Cash at day 12 | 160 | 128 | 115 / 101 | 163 | 143 |
 
 What it says:
 
@@ -203,20 +211,22 @@ What it says:
 2. **The constraint is matching, not margin.** Only 10 to 18% of buyers leave with everything they came for, because
    they ask for one to three of eight tags and the bot's stock rarely covers them. Cutting the spread to 35% hardly changed
    net. What moves it is volume and coverage: **net scales with customers per day almost exactly** (10 customers: $14, 20:
-   $31 by day 12). So the real knobs are customers per day, wants per customer, and how many kinds cover each tag
+   $28 by day 12, re-run). So the real knobs are customers per day, wants per customer, and how many kinds cover each tag
    (`valuable` and `book` have one or two kinds each and make 2 to 3% of revenue: there is nothing to sell).
 3. **The targets in section 9 were too rich for the phase I goods.** With a $1 to $60 ladder (typical item $4) and 10
-   customers, day 1 supports about +$6, not +$20; 20 customers gives +$16. Revised phase I targets: **day-1 net +10 to 15
+   customers, day 1 supports about +$5, not +$20; 20 customers gives +$15 (re-run). Revised phase I targets: **day-1 net +10 to 15
    at 15 to 20 customers a day**, or keep 10 and make the starting goods dearer. Decide in the next milestone.
 4. **The market is calm until an event hits** (medicine alone, 100,000 hours): the index sits at 0.95 to 1.04 for half the
    time, 1.61 at the 95th percentile, 2.39 at the highest, 0.50 at the lowest. About 0.75 events a day, with a rumor
    showing 17% of the time. The clamps are both reached, which is the intended range.
-5. **Speculating on rumors pays a little, and picky play loses to volume.** With the market on, `spec` earns about 10%
-   more than `smart`, but the naive `all` bot beats both (about +40% over `smart`): taking every deal and selling to anyone
+5. **Speculating on rumors pays a little, and picky play loses to volume.** With the market on, `spec` earns about 4 to
+   10% more than `smart`, but the naive `all` bot beats both (about +40% over `smart` by day 12, still so in the re-run): taking every deal and selling to anyone
    beats waiting for good asks, because volume is the constraint. Rumors and holding need a bigger payoff (larger
    shocks, or stock that cannot be replaced) before they matter, and the dump brake is not yet binding (eta may be too
    small, or `FLOW` too big, for hoards this small).
-6. **Services you are not yet measuring:** hoarding, the sink prices, losing days (near zero: 0 to 3%, below the 5 to 10%
+6. **Medicine carries the most.** It makes 34 to 39% of revenue, against the "under 40%" target: blisters are worth $13
+   to $31 with their pills but are drawn as often as $1 things, since sellers weigh what they bring by a kind's own price.
+7. **Services you are not yet measuring:** hoarding, the sink prices, losing days (near zero: 0 to 3%, below the 5 to 10%
    target, so there is not enough risk yet), and the day-end overhead.
 
 Next knobs to try with the sim: customers per day and wants per customer (volume), a few more kinds per thin tag, larger

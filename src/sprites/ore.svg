@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a lump of ore: broken rock in facets lit from the top left, banded with the metal's mineral (rust-red hematite for iron,
+       green malachite for copper: the metal property swaps the colours), glinting where it broke -->
+  <path d="M9 27L17 13L31 7L46 9L56 19L59 35L54 49L41 57L25 57L12 49L6 38Z" fill="#463830" stroke="#231b17" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M9 27L17 13L31 7L27 22Z" fill="#7d6656"/>
+  <path d="M31 7L46 9L43 24L27 22Z" fill="#7d6656"/>
+  <path d="M46 9L56 19L50 34L43 24Z" fill="#5b4b43"/>
+  <path d="M9 27L27 22L22 38L6 38Z" fill="#5b4b43"/>
+  <path d="M27 22L43 24L40 40L22 38Z" fill="#5b4b43"/>
+  <path d="M43 24L50 34L40 40Z" fill="#463830"/>
+  <path d="M56 19L59 35L50 34Z" fill="#463830"/>
+  <path d="M6 38L22 38L12 49Z" fill="#463830"/>
+  <path d="M22 38L40 40L41 57L25 57L12 49Z" fill="#2f2521"/>
+  <path d="M40 40L50 34L59 35L54 49L41 57Z" fill="#2f2521"/>
+  <!-- the mineral: bands across the faces, a crust in the hollows -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M12 31C18 28.5 22 31 28 28.5S38 26.5 46 29" stroke="#8e3b22" stroke-width="2.6"/>
+    <path d="M13 30.4C18.5 28 22 30.2 28 27.9S38 25.8 45 28.3" stroke="#b9603e" stroke-width="0.9"/>
+    <path d="M26 47C31 44 36 46.5 41 44S49 41 53 42" stroke="#8e3b22" stroke-width="2"/>
+    <path d="M27 46.3C31.5 43.6 36 45.8 41 43.4" stroke="#b9603e" stroke-width="0.7"/>
+    <path d="M33 13C35 16 34 19 37 21" stroke="#8e3b22" stroke-width="1.4"/>
+  </g>
+  <path d="M15 42C17 40.5 19.5 41 20 43C19 45 16.5 45.5 15 44Z" fill="#8e3b22"/>
+  <path d="M45 46C47 44.8 49.5 45.5 49 47.5C47.5 48.6 45.5 48.2 45 46Z" fill="#8e3b22"/>
+  <circle cx="16.6" cy="42.4" r="0.8" fill="#b9603e"/>
+  <circle cx="46.8" cy="46.3" r="0.6" fill="#b9603e"/>
+  <!-- pits, and where it broke clean: small bright flats -->
+  <g fill="#2f2521" opacity="0.75">
+    <ellipse cx="36" cy="16" rx="1.4" ry="0.9"/><ellipse cx="20" cy="22" rx="1.1" ry="0.7"/><ellipse cx="33" cy="35" rx="1.3" ry="0.8"/><ellipse cx="51" cy="25" rx="1" ry="0.7"/>
+  </g>
+  <g fill="#a7a9ad">
+    <path d="M22 14.5L25.5 13L26 15L23 16Z"/><path d="M41 13L43.6 12.4L43.2 14.4Z"/><path d="M33 31L36 30.2L35.4 32.2Z" opacity="0.8"/><path d="M50.5 22L52.5 21.8L52 23.4Z" opacity="0.7"/><path d="M14 33.5L16 33L15.6 34.6Z" opacity="0.6"/>
+  </g>
+  <path d="M10.5 26L17.5 14L30.5 8.5" fill="none" stroke="#ffffff" stroke-opacity="0.16" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
