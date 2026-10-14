@@ -1,7 +1,8 @@
 import './style.css'
 import { BOOKS } from './books.ts'
-import { arrive, deal, greeting, TAGS, type Customer, type Role } from './customers.ts'
+import { arrive, deal, dealt, greeting, open as canDeal, priceFor, stillWants, TAGS, type Customer, type Role } from './customers.ts'
 import { openReader } from './reader.ts'
+import { handle, shop, soundOn, toggleSound } from './sound.ts'
 import { applyDrop, canPour, cellsOf, contents, COUNTERS, dims, fillWith, find, LIQUIDS, look, moveInto, pour, propsOf, START_CASH, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
@@ -35,7 +36,7 @@ interface Talk { open: boolean; n: number; customer: Customer | null; line: Cust
 const TALK = 'field-v3-terminal'
 const blankTalk = (open = false): Talk => ({ open, n: 0, customer: null, line: [], met: [], log: [] })
 /** A saved customer from an older version (no role, or wants that no longer exist) is dropped, with the line. */
-const current = (c: Customer | null | undefined) => !!c?.role && c.wants.every(t => t in TAGS)
+const current = (c: Customer | null | undefined) => !!c?.role && Array.isArray(c.got) && c.wants.every(t => t in TAGS)
 let talk: Talk = ((): Talk => { try { const v = JSON.parse(localStorage.getItem(TALK) ?? 'null'); return v && Array.isArray(v.log) ? (current(v.customer) || !v.customer ? { ...blankTalk(), ...v, line: (v.line ?? []).filter(current) } : { ...blankTalk(v.open), n: v.n }) : blankTalk() } catch { return blankTalk() } })()
 const saveTalk = () => { try { localStorage.setItem(TALK, JSON.stringify(talk)) } catch { /* private window */ } }
 
@@ -134,7 +135,7 @@ function trayHtml() {
     return variants.map(o => `<button data-spawn="${id}" data-props="${esc(JSON.stringify(o.props))}"${o.liquid !== undefined ? ` data-liquid="${o.liquid}"` : ''} style="--c:${o.liquid ? LIQUIDS[o.liquid].color : swatch({ id: 0, kind: id, x: 0, y: 0, rot: 0, props: o.props })}" title="${esc(k.desc ?? '')}"><i></i>${esc(o.label)}</button>`).join('')
   }
   const groups = cats.map(c => `<span class="cat">${esc(c)}</span>${kinds.filter(([, k]) => (k.cat ?? 'other') === c).map(([id]) => buttons(id)).join('')}`).join('')
-  return `<div class="tray">${kinds.length ? groups : '<span>put on the field</span><span class="none">no items yet: <a href="/editor.html">make one in the editor</a></span>'}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
+  return `<div class="tray">${kinds.length ? groups : '<span>put on the field</span><span class="none">no items yet: <a href="/editor.html">make one in the editor</a></span>'}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-sound class="${soundOn ? 'on' : ''}" title="Sounds for handling things and for the shop">sound: ${soundOn ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
 }
 
 /** The two counters above the field: the outside one (what customers bring), then the inside one (what you sell), close together. */
@@ -200,6 +201,7 @@ function openWindow(it: Item) {
   const slots = KINDS[it.kind].slots ?? []
   const ww = Math.max(...slots.map(sl => sl.w)) * cell + 20 // a guess at its size; keepOnScreen corrects it once drawn
   ws.push({ id: it.id, x: Math.round(r.right + 12 + ww < innerWidth ? r.right + 12 : r.left - 12 - ww), y: Math.round(r.top) })
+  sound(it, 'use')
   pick([])
   changed()
   keepOnScreen()
@@ -211,6 +213,7 @@ function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
   app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside>${cashHtml()}</div></div>${windowsHtml()}`
   if (hoverId !== null) showTip()
+  else if (hoverCounter && last) { const at = hoverCounter; hoverCounter = null; showCounterTip(at, last.clientX, last.clientY) }
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
     const was = from.get(+el.dataset.id!)
@@ -300,6 +303,10 @@ addEventListener('pointermove', e => {
   // a redraw can swap the hovered thing for a new element the pointer never "enters", so no pointerout comes: check here
   const t = e.target as HTMLElement
   if (hoverId !== null && !t.closest?.(`.item[data-id="${hoverId}"]`)) hideTip()
+  // over a counter's empty squares: its tooltip follows the pointer
+  const counter = hoverId === null && !drag && !marquee && !winDrag && !press ? t.closest?.<HTMLElement>('.grid[data-space="outside"], .grid[data-space="inside"]') : null
+  if (counter && !t.closest('.item[data-id]')) showCounterTip(counter.dataset.space as Counter, e.clientX, e.clientY)
+  else if (hoverCounter) { hoverCounter = null; tip.classList.remove('on') }
   else if (hoverId === null && tip.classList.contains('on') && !t.closest?.('[data-tag]')) tip.classList.remove('on')
   if (marquee) return sweep(e)
   if (winDrag) return moveWindow(e)
@@ -407,6 +414,7 @@ function begin() {
   if (held.items.length === 1) drag.pours = s.items.filter(o => canPour(held.item, o) > 0)
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
+  sound(held.item, 'lift')
   paintFloating()
   hideTip()
   document.body.classList.add('dragging')
@@ -559,14 +567,17 @@ function sideHtml(fresh = false) {
   if (!talk.open) return button
   const lines = talk.log.map((l, i) => l.who === 'them' ? `<div class="them" data-line="${i}"><b>${esc(l.name ?? '')}</b> <span>${esc(l.text)}</span></div>` : `<div class="${l.who}">${l.who === 'you' ? '$ ' : ''}${esc(l.text)}</div>`).join('')
   const off = c ? '' : ' disabled'
+  const shut = c && canDeal(c) ? '' : ' disabled'
   const waiting = talk.line.length ? `${talk.line.length} waiting` : 'nobody else waiting'
-  const head = c ? `<span>customer ${c.id}: ${esc(c.name)} <small>· ${waiting}</small></span><span class="wants">${c.role === 'seller' ? (c.ask ? `<span class="tag ask" style="--i:0">asks ${c.ask}$</span>` : '') : c.wants.map((t, i) => tagChip(t, talk.met.includes(t), i)).join('')}</span>`
+  const lit = (t: string) => c?.got.includes(t) || talk.met.includes(t)
+  const money = c?.role === 'buyer' && c.budget !== null ? `<span class="tag ask" style="--i:${c.wants.length}" title="What they have left to spend">has ${c.budget}$</span>` : ''
+  const head = c ? `<span>customer ${c.id}: ${esc(c.name)} <small>· ${waiting}</small></span><span class="wants">${c.role === 'seller' ? (c.ask ? `<span class="tag ask" style="--i:0">asks ${c.ask}$</span>` : '') : c.wants.map((t, i) => tagChip(t, lit(t), i)).join('') + money}</span>`
     : `<span>nobody at the counter <small>· ${talk.line.length ? waiting : 'the line is empty'}</small></span>`
   const next = c || talk.line.length ? 'next customer' : 'let them in'
   const big = c ? DEAL[c.role] : DEAL.buyer
   return `${button}<div class="term"><div class="term-head${fresh ? ' fresh' : ''}">${head}</div>
     <div class="term-screen"><div class="term-log" data-termlog>${lines}</div></div>
-    <div class="term-ask"><div class="ask-side"><button data-say="dismiss"${off} title="Send them away, with whatever they brought">dismiss</button><button data-say="next" title="${c || talk.line.length ? 'Call the next one in line' : 'Open the door: a new line forms'}">${next}</button></div><button class="sell" data-say="deal"${off} title="${big.title}">${big.label}</button></div></div>`
+    <div class="term-ask"><div class="ask-side"><button data-say="dismiss"${off} title="Send them away, with whatever they brought">dismiss</button><button data-say="next" title="${c || talk.line.length ? 'Call the next one in line' : 'Open the door: a new line forms'}">${next}</button></div><button class="sell" data-say="deal"${shut} title="${big.title}">${big.label}</button></div></div>`
 }
 
 let seq = 0 // bumped by every move that changes who is at the counter: a slower one still going notices and gives up
@@ -590,6 +601,7 @@ function renderTerm(o: { fresh?: boolean; type?: boolean } = {}) {
     line.classList.add('typing')
     typer = window.setInterval(() => {
       span.textContent = full.slice(0, ++n)
+      if (n % 2 && full[n - 1] !== ' ') shop('key')
       if (log) log.scrollTop = log.scrollHeight
       if (n >= full.length || !line.isConnected) { clearInterval(typer); line.classList.remove('typing') }
     }, 16)
@@ -615,13 +627,13 @@ function vanish(ids: number[]) {
 /** The customer goes, taking back whatever they brought and you did not deal for, wherever it got to. */
 function leave() {
   const c = talk.customer
-  if (c?.brought.length) { vanish(c.brought); changed(new Map()) }
+  if (c?.brought.length) { vanish(c.brought); changed(new Map()); shop('leave') }
 }
 /** The screen is wiped: a scan line sweeps down and the conversation fades behind it, then nobody is at the counter. False if something else happened meanwhile. */
 async function wipe(): Promise<boolean> {
   const my = ++seq
   const screen = app.querySelector('.term-screen')
-  if (screen && talk.open && talk.log.length) { screen.classList.add('wipe'); await wait(480) }
+  if (screen && talk.open && talk.log.length) { screen.classList.add('wipe'); shop('wipe'); await wait(480) }
   if (my !== seq) return false
   Object.assign(talk, { customer: null, met: [], log: [] })
   renderTerm()
@@ -642,6 +654,7 @@ function unload(c: Customer) {
   if (c.role === 'seller') c.ask = Math.max(1, Math.round(c.brought.reduce((n, id) => n + worth(s, find(s, id)!), 0) * c.rate))
   if (!c.brought.length) return
   changed(new Map())
+  c.brought.forEach((id, i) => setTimeout(() => { const it = find(s, id); if (it) sound(it, 'drop') }, i * 110 + 120))
   c.brought.forEach((id, i) => app.querySelector(`.item[data-id="${id}"]`)?.animate([{ opacity: 0, transform: 'translateY(-60%)' }, { opacity: 1, transform: 'none' }], { duration: 260, delay: i * 110, easing: 'ease-out', fill: 'backwards' }))
 }
 /**
@@ -652,7 +665,7 @@ async function callNext() {
   const had = !!talk.customer
   leave()
   if (!(await wipe())) return
-  if (!talk.line.length) { if (had) return; talk.line = newLine() }
+  if (!talk.line.length) { if (had) return; talk.line = newLine(); shop('bell') }
   const my = seq
   const c = talk.customer = talk.line.shift()!
   talk.log.push({ who: 'note', text: `customer ${c.id} at the counter...` })
@@ -673,30 +686,29 @@ const tagsIn = (it: Item): string[] => [...look(it).tags, ...contents(s, it.id).
 /**
  * The big button: SELL to a buyer, BUY from a seller, SWAP with a trader (see `deal` in customers.ts). What is yours on the
  * inside counter is offered; their own things are not yours to offer. If it goes through, money moves, what they take
- * leaves, what they brought is yours, and they finish their sentence and go.
+ * leaves and what they brought is yours. They stay: a buyer can buy again while they still want something.
  */
-async function doDeal() {
+function doDeal() {
   const c = talk.customer
   if (!c) return
-  const my = ++seq
   c.brought = c.brought.filter(id => find(s, id))
   const offered = inSpace(s, { at: 'inside' }).filter(it => !c.brought.includes(it.id)).map(it => ({ id: it.id, tags: tagsIn(it), worth: worth(s, it) }))
   const theirs = c.brought.reduce((n, id) => n + worth(s, find(s, id)!), 0)
   const r = deal(c, offered, s.cash ?? 0, theirs)
-  talk.met = r.met
+  talk.met = c.role === 'trader' ? r.met : []
+  if (r.done) dealt(c, r)
   talk.log.push({ who: 'you', text: DEAL[c.role].label }, { who: 'them', name: c.name, text: r.say })
   renderTerm({ type: true })
   if (!r.done) return
   // what they take leaves; what you got slides across from the outside counter to the inside one (what fits)
   const got = c.brought.map(id => find(s, id)!).filter(it => it.at === 'outside')
   c.brought = []
-  if (r.pay) setCash((s.cash ?? 0) + r.pay)
+  if (r.pay) { setCash((s.cash ?? 0) + r.pay); shop(r.pay > 0 ? 'coinsIn' : 'coinsOut') }
   const from = rects()
   vanish(r.take)
   for (const it of got) moveInto(s, it, { at: 'inside' })
   changed(from)
-  await wait(typeTime(r.say) + 1100)
-  if (my === seq) await wipe()
+  // they stay at the counter until you dismiss them or call the next one
 }
 function say(what: string) {
   if (what === 'next') callNext()
@@ -746,9 +758,9 @@ function finish(drop: boolean) {
   d.el.querySelectorAll<HTMLElement>('.item').forEach((el, i) => from.set(d.held.items[i].id, el.getBoundingClientRect()))
   const a = d.held.item, b = d.pourInto
   const was = b && drop ? { liquid: a.fill!.liquid, a: level(a), b: level(b), n: 0 } : null
-  if (was && b) { was.n = pour(a, b); putBack(d.held) }
-  else if (drop && d.plan) applyDrop(s, d.held, d.plan)
-  else putBack(d.held)
+  if (was && b) { was.n = pour(a, b); putBack(d.held); sound(a, 'use') }
+  else if (drop && d.plan) { applyDrop(s, d.held, d.plan); sound(a, 'drop') }
+  else { putBack(d.held); if (drop && d.over) shop('bad'); else sound(a, 'drop') }
   d.el.remove()
   changed(from)
   if (was && b) {
@@ -757,6 +769,9 @@ function finish(drop: boolean) {
     toast(`poured ${was.n} of ${LIQUIDS[was.liquid].name} into the ${look(b).name.toLowerCase()}`)
   }
 }
+/** A thing makes the sound of what it is made of. */
+const sound = (it: Item, action: 'lift' | 'drop' | 'use') => handle(KINDS[it.kind]?.sound, action)
+
 /** A vessel's level moves from where it was to where it is now, in the colour of what was poured. */
 function slosh(it: Item, from: number, liquid: string) {
   const svg = app.querySelector<SVGElement>(`.item[data-id="${it.id}"] .art svg`)
@@ -782,15 +797,64 @@ function tipHtml(it: Item) {
   if (cap) { const f = it.fill, liq = f && LIQUIDS[f.liquid]; rows.push(`<div class="liquid">${liq ? `<i style="background:${liq.color}"></i>${esc(liq.name)}, ${f.amount} of ${cap}` : `empty (holds ${cap})`}</div>`) }
   const tags = l.tags.filter(t => t !== 'vessel' && !odd.includes(t))
   if (tags.length) rows.push(`<div class="tags">[${esc(tags.join(', '))}]</div>`)
+  // the money: what it is worth and what that is made of, and what the one at the counter would make of it
   const value = worth(s, it)
-  if (value) rows.push(`<div class="worth">worth ${value}${value !== l.price ? ` (${l.price} + what is inside)` : ''}</div>`)
+  const wet = it.fill ? (LIQUIDS[it.fill.liquid]?.price ?? 0) * it.fill.amount : 0
+  const parts = [wet && `${l.price} + ${wet} ${LIQUIDS[it.fill!.liquid].name}`, value - l.price - wet && `${l.price} + ${value - l.price - wet} inside`].filter(Boolean)
+  rows.push(`<div class="price"><span class="dollars">${value}$</span><small>${parts.join(', ') || 'worth'} · ${esc(k.cat ?? '')} · ${k.w}×${k.h}</small></div>`)
+  const who = customerSays(it, value)
+  if (who) rows.push(`<div class="who">${who}</div>`)
   if (l.desc) rows.push(`<p>${esc(l.desc)}</p>`)
-  if (talk.customer?.brought.includes(it.id)) rows.push(`<div class="prop">${esc(talk.customer.name)}'s, until you deal</div>`)
   if (isContainer(it.kind)) rows.push(`<div class="hint">double-click to open</div>`)
   if (k.read) rows.push(`<div class="hint">double-click to read</div>`)
   if (it.fill) rows.push(`<div class="hint">drop it on another bottle to pour</div>`)
   return rows.join('')
 }
+/** What the customer at the counter makes of a thing: theirs, what a buyer would pay for it, whether a trader wants it. */
+function customerSays(it: Item, value: number): string {
+  const c = talk.customer
+  if (!c) return ''
+  const name = esc(c.name)
+  if (c.brought.includes(it.id)) return c.role === 'seller' && !c.dealt ? `${name}'s: part of a ${c.ask}$ lot` : `${name}'s, until you deal`
+  if (!canDeal(c) || c.role === 'seller') return ''
+  const wants = c.role === 'buyer' ? stillWants(c) : c.wants
+  if (!tagsIn(it).some(t => wants.includes(t))) return `${name} does not want this`
+  if (c.role === 'trader') return `${name} wants this`
+  const pay = priceFor(c, value)
+  return `${name} would pay ${pay}$${c.budget !== null && pay > c.budget ? ` (has ${c.budget}$)` : ''}`
+}
+
+/**
+ * A counter's tooltip, shown by the pointer over its empty squares: what is on it altogether, whose, and what the customer
+ * at the counter would make of it. Easier to gauge a deal at a glance than adding up tooltips.
+ */
+function counterTipHtml(at: Counter): string {
+  const here = inSpace(s, { at })
+  const c = talk.customer
+  const sum = (list: Item[]) => list.reduce((n, it) => n + worth(s, it), 0)
+  const rows = [`<b>${at === 'outside' ? 'Outside counter' : 'Inside counter'}</b>`, `<div class="meta">${at === 'outside' ? 'where customers put down what they bring' : 'what you offer the customer'}</div>`]
+  rows.push(`<div class="price"><span class="dollars">${sum(here)}$</span><small>${here.length ? `${here.length} thing${here.length > 1 ? 's' : ''} on it` : 'empty'}</small></div>`)
+  if (!c) return rows.join('')
+  const name = esc(c.name)
+  const theirs = here.filter(it => c.brought.includes(it.id)), yours = here.filter(it => !c.brought.includes(it.id))
+  if (theirs.length) rows.push(`<div class="who">${name}'s: worth ${sum(theirs)}$${c.role === 'seller' && !c.dealt ? `, asking ${c.ask}$` : ''}</div>`)
+  if (at !== 'inside' || !canDeal(c) || c.role === 'seller') return rows.join('')
+  const wants = c.role === 'buyer' ? stillWants(c) : c.wants
+  const wanted = yours.filter(it => tagsIn(it).some(t => wants.includes(t)))
+  if (!wanted.length) rows.push(`<div class="who">nothing here ${name} wants</div>`)
+  else if (c.role === 'buyer') { const pay = priceFor(c, sum(wanted)); rows.push(`<div class="who">${name} would pay ${pay}$ for ${wanted.length} of them${c.budget !== null && pay > c.budget ? `: has only ${c.budget}$` : ''}</div>`) }
+  else { const need = Math.ceil(c.brought.reduce((n, id) => n + (find(s, id) ? worth(s, find(s, id)!) : 0), 0) * 0.8); rows.push(`<div class="who">${name} would take ${sum(wanted)}$ of it, and wants ${need}$</div>`) }
+  return rows.join('')
+}
+let hoverCounter: Counter | null = null
+/** Show a counter's tooltip by the pointer. */
+function showCounterTip(at: Counter, x: number, y: number) {
+  if (hoverCounter !== at || !tip.classList.contains('on')) { tip.innerHTML = counterTipHtml(at); tip.classList.add('on') }
+  hoverCounter = at
+  const t = tip.getBoundingClientRect()
+  tip.style.transform = `translate(${Math.min(innerWidth - t.width - 8, x + 16)}px, ${Math.min(innerHeight - t.height - 8, y + 16)}px)`
+}
+
 /** Show the tooltip beside the hovered item (to its right, or its left if there is no room), kept on screen. */
 function showTip() {
   const it = hoverId === null || drag || marquee || winDrag ? undefined : find(s, hoverId)
@@ -838,8 +902,9 @@ app.addEventListener('click', e => {
   if (b.dataset.wopen) { const it = find(s, +b.dataset.wopen); if (it) openWindow(it); return }
   if ('term' in b.dataset) { toggleTerm(); return }
   if (b.dataset.say) { say(b.dataset.say); return }
-  if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn, null, JSON.parse(b.dataset.props || '{}')); if (it && b.dataset.liquid !== undefined) fillWith(it, b.dataset.liquid || null); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
+  if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn, null, JSON.parse(b.dataset.props || '{}')); if (it && b.dataset.liquid !== undefined) fillWith(it, b.dataset.liquid || null); if (it) { sound(it, 'drop'); changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
   else if ('strict' in b.dataset) toggleStrict()
+  else if ('sound' in b.dataset) { const on = toggleSound(); b.classList.toggle('on', on); b.textContent = `sound: ${on ? 'on' : 'off'}` }
   else if ('clear' in b.dataset) { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) }
   else if ('reset' in b.dataset) { s = start(); cashShown = s.cash!; selected = new Set(); seq++; talk = blankTalk(talk.open); changed(new Map()); if (talk.open) callNext() }
 })

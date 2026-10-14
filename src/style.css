@@ -109,7 +109,11 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .tip b { display: block; color: #f0ece2; font-size: 12px; }
 .tip .tags { color: #5fb3a8; }
 .tip .prop { color: #d0a24e; }
-.tip .worth { color: #c9b88f; }
+.tip .price { display: flex; align-items: baseline; gap: 7px; margin-top: 4px; }
+.tip .dollars { font-weight: 600; font-size: 13px; color: #4ae07a; text-shadow: 0 0 5px rgba(74, 224, 122, .4); }
+.tip .price small { color: #86847e; }
+.tip .meta { color: #6b6872; }
+.tip .who { margin-top: 2px; color: #c49c68; }
 .tip .liquid { display: flex; align-items: center; gap: 6px; color: #cfcbd4; }
 .tip .liquid i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1px #4b3a55; }
 .tip p { margin: 5px 0 0; color: #a9a5b0; }
@@ -200,3 +204,10 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .reader-bar button { padding: 3px 10px; border-radius: 2px; background: none; border: 1px solid #34343c; color: #e6e3dc; font: inherit; cursor: pointer; }
 .reader-bar button:hover:not(:disabled) { border-color: var(--hi); }
 .reader-bar button:disabled { opacity: .3; cursor: default; }
+/* the reader floating beside the field: a window like a container's, moved by its header; the field stays usable */
+.reader.float { inset: auto; z-index: 50; padding: 6px 20px 12px; gap: 14px; border-radius: 4px; background: #15121a; box-shadow: 0 0 0 2px #4b3a55, 0 12px 30px rgba(0, 0, 0, .6); }
+.reader.float.grabbed { box-shadow: 0 0 0 2px #c49c68, 0 14px 34px rgba(0, 0, 0, .6); }
+.reader-head { align-self: stretch; display: flex; align-items: center; gap: 8px; margin: 0 -12px; padding: 2px 4px; cursor: grab; font: 11px ui-monospace, 'SF Mono', Menlo, monospace; color: #cfcbd4; }
+.reader-head span { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.reader-head button { padding: 0 3px; background: none; border: 0; color: #86847e; font: inherit; cursor: pointer; }
+.reader-head button:hover { color: var(--hi); }

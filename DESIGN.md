@@ -170,8 +170,10 @@ rules of a deal, `main.ts` draws it and moves the things; the terminal's state i
   *dismiss* sends them away.
 - **Three sorts of customer**, one big button that changes its word:
   - a **buyer** wants tags (survival needs: food, drink, alcohol, medicine, light, fuel, book, valuable). **SELL**: they
-    take everything on the inside counter with a tag they want (a container counts its contents) and pay its worth times
-    their rate (1.2 to 1.6), even if some wants are left; nothing they want there, no sale.
+    take everything on the inside counter with a tag they still want (a container counts its contents) and pay its worth
+    times their rate (1.2 to 1.6), even if some wants are left; nothing they want there, no sale. About two in three count
+    their money: a **budget** (5 to 40$, shown as "has N$" and said in their greeting) they cannot go over; the rest have
+    plenty. They **stay** after buying, wants already bought lit in the header, and buy again until they have it all.
   - a **seller** unloads one to three things on the outside counter and asks for the lot (worth times 0.5 to 0.9).
     **BUY**: if you have the money, it is yours, and it slides across to the inside counter (whatever fits there).
   - a **trader** unloads things and wants tags. **SWAP**: they take what they want from the inside counter if it is worth
@@ -180,7 +182,14 @@ rules of a deal, `main.ts` draws it and moves the things; the terminal's state i
   pill), vessels part full of any liquid, blisters with pills already gone. Their things stay theirs until a deal (the
   tooltip says so, and they cannot be offered back to them); dismissed or sent off with *next*, they take them back from
   wherever you moved them.
-- The screen types their words, lights the wants that are met, and is wiped after every customer (a scan line sweeps down).
+- **Nobody leaves on their own**: after a deal they stay at the counter until you dismiss them or call the next one. The
+  big button greys out when they have nothing more to deal (a buyer with everything, a seller or trader after their deal).
+- The screen types their words (with soft key clicks), lights the wants that are met, and is wiped when they go (a scan line
+  sweeps down).
+- **Tooltips that do the sums** (show what a decision needs, on hover): an item's tooltip has its worth in green with what
+  it is made of (`7$ · 1 + 6 lamp oil · storage · 1×3`) and what the customer at the counter makes of it ("Wren would pay
+  11$", "does not want this", "theirs: part of a 20$ lot"). Hovering a counter's empty squares shows its own tooltip: the
+  total worth on it, how many things, whose, and what the customer would pay for (or take of) what is there.
 - **Money** is a number on the main screen, left of the counters: a black dial, green terminal digits with the leading
   zeros dim, and a `$` at the end. It counts to the new sum after a deal and glows (green up, red down). Saved with the
   field as `cash`; a new game starts with 50.
@@ -245,5 +254,17 @@ endpaper (the cover colour, patterned) and a title page first, then the text in 
 has: Iowan Old Style, Palatino, Georgia), justified and hyphenated, with a running head, page numbers, chapter headings in
 small caps and a drop cap at each chapter. The text is cut into pages by measuring as it fills: a paragraph that does not
 fit carries on overleaf without an indent (the cut line is set full width). Click the right page or press → / space to go on, the left page or ← to go back;
-Esc or a click outside closes it. A page turns as a leaf falling over the spine, with its next page on its back and a
+Esc or a click outside closes it. **float** puts the book in a window of its own beside the field (moved by its header,
+smaller pages, the field still works; only the arrows turn its pages), **full** puts it back over the page; the choice and
+the window's place are remembered. Resizing the window re-cuts the pages. A page turns as a leaf falling over the spine, with its next page on its back and a
 shadow that is darkest when it stands upright. While a book is open its keys do nothing on the field.
+
+## Sounds (2026-10-14)
+
+All made on the spot with Web Audio in `src/sound.ts`: short tones and filtered noise, a little different every time.
+Things sound like what they are made of: a kind's `sound` in `kinds.json` names its material (glass, paper, metal, foil,
+pill, food, wrap, cloth, wax, gold; anything else is a plain thing), and each material has a sound for being picked up, put
+down and used. Glass clinks and pours in glugs, a book rustles and thuds, the cabinet clanks and its grate rattles, foil
+crinkles, pills tick, the locket's chain jingles. The shop has its own: a bell when a line comes in, coins in and out,
+a dull buzz when a drop is refused, the terminal's keys, the wipe, a customer leaving with their things, a page turning.
+"sound: on/off" under the field (remembered).

@@ -1,8 +1,9 @@
-// The reader: a book opened over the page, two pages at a time. The text is cut into pages to fit the page size (chapters
+// The reader: a book opened over the page (or in a window floating beside the field), two pages at a time. The text is cut into pages to fit the page size (chapters
 // start on a new page; a paragraph that does not fit carries on overleaf). The open book sits on its cover; a page turns
 // over the spine. Click the right page or press → to go on, the left page or ← to go back, Esc or outside to close.
 
 import type { Book } from './books.ts'
+import { handle } from './sound.ts'
 
 type Page = { t: 'end' } | { t: 'title' } | { t: 'text'; html: string; n: number }
 
@@ -89,6 +90,7 @@ function turn(dir: 1 | -1) {
   leaf.innerHTML = `<div class="face front page ${dir > 0 ? 'right' : 'left'}">${pageHtml(front, o.book)}</div><div class="face back page ${dir > 0 ? 'left' : 'right'}">${pageHtml(back, o.book)}</div>`
   // under the leaf, the page it uncovers is already there
   o.el.querySelector(dir > 0 ? '.page.right' : '.page.left')!.innerHTML = pageHtml(dir > 0 ? o.pages[to * 2 + 1] : o.pages[to * 2], o.book)
+  handle('paper', 'turn')
   const done = () => { o.spread = to; draw(); leaf.remove(); o.busy = false }
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return done()
   leaf.animate([{ transform: 'rotateY(0deg)' }, { transform: `rotateY(${dir > 0 ? -180 : 180}deg)` }], { duration: 620, easing: 'cubic-bezier(.45, .05, .35, 1)' }).onfinish = done
@@ -102,34 +104,84 @@ function close() {
   o.el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160 }).onfinish = () => o.el.remove()
 }
 
-/** Open a book over the page, at its title. */
-export function openReader(book: Book) {
-  if (open) close()
-  // two pages side by side, as large as fits the window, about as tall as a real book page
+/**
+ * Two ways to read: over the whole page (`full`), or in a window of its own that floats beside the field (`float`), moved
+ * by its header, so you can read and work at once. Which, and where the window was, are remembered.
+ */
+type Mode = 'full' | 'float'
+const remembered = <T>(key: string, fallback: T): T => { try { return JSON.parse(localStorage.getItem(key) ?? 'null') ?? fallback } catch { return fallback } }
+const keep = (key: string, v: unknown) => { try { localStorage.setItem(key, JSON.stringify(v)) } catch { /* private window */ } }
+let mode: Mode = remembered<Mode>('reader-mode', 'full')
+const pos = remembered('reader-pos', { x: 24, y: 80 })
+
+/** A page's width and height for a mode: as large as fits (full), or small enough to sit beside the field (float). */
+function pageSize(m: Mode): [number, number] {
+  if (m === 'float') { const w = Math.round(Math.min(230, Math.max(160, (innerWidth - 80) / 2))); return [w, Math.round(w * 1.45)] }
   let w = Math.min(340, Math.max(200, (innerWidth - 160) / 2)), h = Math.round(w * 1.45)
   if (h > innerHeight - 130) { h = innerHeight - 130; w = Math.round(h / 1.45) }
-  const el = document.body.appendChild(document.createElement('div'))
-  el.className = 'reader'
-  el.style.cssText = `${sizes(w, h)};--cover:${book.cover}`
-  el.innerHTML = `<div class="spread"><div class="page left" data-turn="-1"></div><div class="page right" data-turn="1"></div></div>
-    <div class="reader-bar"><button data-turn="-1" title="Back (←)">‹</button><span data-where></span><button data-turn="1" title="On (→)">›</button><button data-close title="Close (Esc)">close</button></div>`
-  open = { el, book, pages: paginate(book, w, h), spread: 0, busy: false }
+  return [w, h]
+}
+
+/** Build the reader for the current mode: pages cut to its size, at about the same place in the book as before. */
+function layout() {
+  const o = open!
+  const [w, h] = pageSize(mode)
+  const before = o.pages.length
+  o.pages = paginate(o.book, w, h)
+  o.spread = before ? Math.min(Math.round(o.spread * o.pages.length / before), Math.ceil(o.pages.length / 2) - 1) : 0
+  o.el.className = `reader ${mode}`
+  o.el.style.cssText = `${sizes(w, h)};--cover:${o.book.cover}${mode === 'float' ? `;left:${pos.x}px;top:${pos.y}px` : ''}`
+  const head = mode === 'float' ? `<div class="reader-head" data-grab><span>${esc(o.book.title)}</span><button data-mode title="Read over the whole page">full</button><button data-close title="Close">✕</button></div>` : ''
+  const tail = mode === 'full' ? `<button data-mode title="Read in a window beside the field">float</button><button data-close title="Close (Esc)">close</button>` : ''
+  o.el.innerHTML = `${head}<div class="spread"><div class="page left" data-turn="-1"></div><div class="page right" data-turn="1"></div></div>
+    <div class="reader-bar"><button data-turn="-1" title="Back (←)">‹</button><span data-where></span><button data-turn="1" title="On (→)">›</button>${tail}</div>`
   draw()
-  el.querySelector('.spread')!.animate([{ opacity: 0, transform: 'translateY(14px) scale(.97)' }, { opacity: 1, transform: 'none' }], { duration: 240, easing: 'ease-out' })
+  if (mode === 'float') keepOnScreen()
+}
+function keepOnScreen() {
+  const r = open!.el.getBoundingClientRect()
+  pos.x = Math.round(Math.max(8, Math.min(innerWidth - r.width - 8, pos.x)))
+  pos.y = Math.round(Math.max(8, Math.min(innerHeight - r.height - 8, pos.y)))
+  Object.assign(open!.el.style, { left: `${pos.x}px`, top: `${pos.y}px` })
+}
+
+/** Open a book at its title, the way it was last read. */
+export function openReader(book: Book) {
+  if (open) close()
+  const el = document.body.appendChild(document.createElement('div'))
+  open = { el, book, pages: [], spread: 0, busy: false }
+  layout()
+  handle('paper', 'use')
+  el.animate([{ opacity: 0, transform: 'translateY(14px) scale(.97)' }, { opacity: 1, transform: 'none' }], { duration: 240, easing: 'ease-out' })
   el.addEventListener('click', e => {
     const t = e.target as HTMLElement
-    if (t === el || t.closest('[data-close]')) return close()
+    if ((t === el && mode === 'full') || t.closest('[data-close]')) return close()
+    if (t.closest('[data-mode]')) { mode = mode === 'full' ? 'float' : 'full'; keep('reader-mode', mode); return layout() }
     const b = t.closest<HTMLElement>('[data-turn]')
     if (b) turn(+b.dataset.turn! as 1 | -1)
   })
+  // the floating window moves by its header
+  el.addEventListener('pointerdown', e => {
+    const t = e.target as HTMLElement
+    if (mode !== 'float' || !t.closest('[data-grab]') || t.closest('button')) return
+    const dx = e.clientX - pos.x, dy = e.clientY - pos.y
+    const move = (m: PointerEvent) => { pos.x = m.clientX - dx; pos.y = m.clientY - dy; keepOnScreen() }
+    const up = () => { removeEventListener('pointermove', move); removeEventListener('pointerup', up); el.classList.remove('grabbed'); keep('reader-pos', pos) }
+    addEventListener('pointermove', move)
+    addEventListener('pointerup', up)
+    el.classList.add('grabbed')
+    e.preventDefault()
+  })
 }
 
-// While a book is open, the keys are the book's: nothing reaches the field.
+// While a book is open over the page, the keys are the book's: nothing reaches the field. Floating beside it, the book only
+// takes the arrows (and page keys), and the field keeps the rest.
+const TURNS: Record<string, 1 | -1> = { ArrowRight: 1, PageDown: 1, ' ': 1, ArrowLeft: -1, PageUp: -1 }
 addEventListener('keydown', e => {
-  if (!open) return
+  if (!open || (mode === 'float' && (e.key === ' ' || !(e.key in TURNS)))) return
   e.stopImmediatePropagation()
   e.preventDefault()
-  if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') turn(1)
-  else if (e.key === 'ArrowLeft' || e.key === 'PageUp') turn(-1)
+  if (e.key in TURNS) turn(TURNS[e.key])
   else if (e.key === 'Escape') close()
 }, true)
+addEventListener('resize', () => { if (open?.el.isConnected) layout() })

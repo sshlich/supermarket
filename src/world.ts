@@ -21,8 +21,8 @@ const isCounter = (c: unknown): c is Counter => typeof c === 'string' && c in CO
  * (for tooltips), private notes, tags (what customers ask for), a category (`cat`) and a price in coins.
  * `props` are what one thing of the kind can be on top of that: each property has values, the first one the default.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; read?: boolean }
-/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `read`: it opens as a book (see books.ts). */
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; read?: boolean; sound?: string }
+/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts). */
 /** What a property's value does to a thing: another name, description or price, more tags, and colours swapped in its sprite (hex to hex; "none" hides whatever had that colour). */
 export interface Effect { name?: string; desc?: string; tags?: string[]; price?: number; colors?: Record<string, string> }
 /**
