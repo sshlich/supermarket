@@ -158,3 +158,17 @@ The save endpoint lives in `vite.config.ts`; shape maths and matrices are in `sr
 its own: the old kinds as a fixture (`src/test/kinds.json`) and the old starting field. It covers dropping, shoving, turning,
 strict mode, groups, irregular shapes, spawning, the counters, containers (filters, nesting, cascade, turning to fit), settling old saves,
 and windows (closing with their container, settling, the cap).
+
+## Customer terminal (2026-10-13)
+
+A `>_ customers` button on the side of the field opens a terminal beside it (`src/customers.ts` holds the data and rules,
+`main.ts` draws it; the terminal's state is saved apart from the field, as `field-v3-terminal`).
+- One customer at the counter at a time. Opening it with nobody there calls the first. The header shows what they want as
+  **tags with icons** (hover one for its name and meaning; the icons are game-icons, copied by `npm run icons`, tags are
+  in `TAGS`). The log is the conversation from their side: what they say, a dim line when they arrive or leave, and your
+  replies as `$` lines.
+- Three replies, as buttons: *what do you want again?* (they repeat it), *here, take a look* (judges the tags of what is on
+  the **inside** counter, containers' contents included: wants that are met light up green, and they say how it went; nothing
+  is taken yet, there is no money) and *next, please*.
+- A special customer would be a `Customer` with its own replies; for now everybody is the same sort. "Start over" clears the
+  conversation too.

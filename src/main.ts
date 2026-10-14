@@ -1,9 +1,14 @@
 import './style.css'
-import { applyDrop, cellsOf, COUNTERS, dims, find, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { arrive, greeting, judge, TAGS, type Customer } from './customers.ts'
+import { applyDrop, cellsOf, contents, COUNTERS, dims, find, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
 const SPRITE: Record<string, string> = Object.fromEntries(Object.entries(files).map(([p, svg]) => [p.slice('./sprites/'.length, -'.svg'.length), svg]))
+
+// The wanted-tag icons the customers' tags use (src/icons/, copied by `npm run icons`).
+const iconFiles = import.meta.glob<string>('./icons/*.svg', { query: '?raw', import: 'default', eager: true })
+const ICON: Record<string, string> = Object.fromEntries(Object.entries(iconFiles).map(([p, svg]) => [p.slice('./icons/'.length, -'.svg'.length), svg]))
 
 // When an item's data or a sprite changes, the game reloads itself; the sprite editor, which shares the files, is left alone.
 if (import.meta.hot) {
@@ -20,6 +25,16 @@ let shiftHeld = false // held while dragging: does the opposite of the strict se
 const strictNow = () => strict !== shiftHeld
 
 const app = document.getElementById('app')!
+
+// ---------------------------------------------------------------- the customer terminal
+
+/** The terminal beside the field: one customer at the counter, what they want (tags with icons), and what has been said. Saved apart from the field. */
+interface Line { who: 'them' | 'you' | 'note'; text: string; name?: string }
+interface Talk { open: boolean; n: number; customer: Customer | null; met: string[]; log: Line[] }
+const TALK = 'field-v3-terminal'
+const blankTalk = (open = false): Talk => ({ open, n: 0, customer: null, met: [], log: [] })
+let talk: Talk = ((): Talk => { try { const v = JSON.parse(localStorage.getItem(TALK) ?? 'null'); return v && Array.isArray(v.log) ? { ...blankTalk(), ...v } : blankTalk() } catch { return blankTalk() } })()
+const saveTalk = () => { try { localStorage.setItem(TALK, JSON.stringify(talk)) } catch { /* private window */ } }
 
 function load(): State | null {
   try { const v = JSON.parse(localStorage.getItem(SAVE) ?? 'null'); return v?.items ? settle(v) : null } catch { return null }
@@ -79,7 +94,7 @@ function trayHtml() {
 
 /** The two counters above the field: the outside one (what customers bring), then the inside one (what you sell), close together. */
 function countersHtml() {
-  return `<div class="counters">${(Object.keys(COUNTERS) as Counter[]).map(c => `<div class="counter" data-label="${c}"><div class="grid" data-grid data-space="${c}" data-w="${COUNTERS[c].w}" data-h="${COUNTERS[c].h}" style="--w:${COUNTERS[c].w};--h:${COUNTERS[c].h}">${inSpace(s, { at: c }).map(itemHtml).join('')}</div></div>`).join('')}</div>`
+  return `<div class="counters">${(Object.keys(COUNTERS) as Counter[]).map(c => `<div class="counter"><div class="grid" data-grid data-space="${c}" data-w="${COUNTERS[c].w}" data-h="${COUNTERS[c].h}" style="--w:${COUNTERS[c].w};--h:${COUNTERS[c].h}">${inSpace(s, { at: c }).map(itemHtml).join('')}</div></div>`).join('')}</div>`
 }
 
 /** One open container: a window floating over the page, its insides a small grid for each of its slots. */
@@ -149,7 +164,7 @@ function openWindow(it: Item) {
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
-  app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div></div></div>${windowsHtml()}`
+  app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside></div></div>${windowsHtml()}`
   if (hoverId !== null) showTip()
   if (document.hidden) return // background tabs freeze animations on their first frame
   for (const el of app.querySelectorAll<HTMLElement>('.item[data-id]')) {
@@ -471,6 +486,58 @@ function toast(text: string) {
   toastTimer = window.setTimeout(() => el.classList.remove('on'), 2600)
 }
 
+// ---------------------------------------------------------------- the terminal, drawn and played
+
+/** A wanted tag as an icon; hovering it says what it is. Lit when what is on the counter meets it. */
+const tagChip = (t: string, met: boolean) => `<span class="tag${met ? ' met' : ''}" data-tag="${esc(t)}" aria-label="${esc(TAGS[t]?.label ?? t)}">${ICON[TAGS[t]?.icon] ?? esc(t[0] ?? '?')}</span>`
+
+/** The button on the side of the field and, when it is open, the terminal under it. */
+function sideHtml() {
+  const c = talk.customer
+  const button = `<button class="term-btn${talk.open ? ' on' : ''}" data-term title="Talk to the customer">&gt;_ customers</button>`
+  if (!talk.open) return button
+  const lines = talk.log.map(l => l.who === 'them' ? `<div class="them"><b>${esc(l.name ?? '')}</b> ${esc(l.text)}</div>` : `<div class="${l.who}">${l.who === 'you' ? '$ ' : ''}${esc(l.text)}</div>`).join('')
+  return `${button}<div class="term"><div class="term-head"><span>${c ? `customer ${c.id}: ${esc(c.name)}` : 'nobody at the counter'}</span>${c ? `<span class="wants">${c.wants.map(t => tagChip(t, talk.met.includes(t))).join('')}</span>` : ''}</div>
+    <div class="term-log" data-termlog>${lines}</div>
+    <div class="term-ask">${c ? `<button data-say="ask">what do you want again?</button><button data-say="offer" title="Show them what is on the inside counter">here, take a look</button><button data-say="next">next, please</button>` : '<button data-say="next">call the next customer</button>'}</div></div>`
+}
+/** Redraw just the terminal (the field is left alone), scrolled to the latest line. */
+function renderTerm() {
+  const side = app.querySelector('.side')
+  if (!side) return
+  tip.classList.remove('on') // the icon under the pointer may be gone: no pointerout will come for it
+  side.innerHTML = sideHtml()
+  const log = side.querySelector('[data-termlog]')
+  if (log) log.scrollTop = log.scrollHeight
+  saveTalk()
+}
+/** Every tag of what is on the inside counter, and of whatever is inside containers there. */
+function offeredTags(): string[][] {
+  const tags = (it: Item): string[][] => [KINDS[it.kind]?.tags ?? [], ...contents(s, it.id).flatMap(tags)]
+  return inSpace(s, { at: 'inside' }).flatMap(tags)
+}
+function say(what: string) {
+  if (what === 'next' || !talk.customer) {
+    if (talk.customer) talk.log.push({ who: 'note', text: `${talk.customer.name} leaves.` })
+    const c = talk.customer = arrive(++talk.n)
+    talk.met = []
+    talk.log.push({ who: 'note', text: `${c.name} steps up to the counter.` }, { who: 'them', name: c.name, text: greeting(c) })
+    talk.log = talk.log.slice(-60)
+  } else if (what === 'ask') talk.log.push({ who: 'you', text: 'What do you want again?' }, { who: 'them', name: talk.customer.name, text: greeting(talk.customer) })
+  else if (what === 'offer') {
+    const r = judge(talk.customer, offeredTags())
+    talk.met = r.met
+    talk.log.push({ who: 'you', text: 'Here, take a look.' }, { who: 'them', name: talk.customer.name, text: r.say })
+  }
+  renderTerm()
+}
+/** Open or close the terminal; opening it with nobody there calls the first customer. */
+function toggleTerm() {
+  talk.open = !talk.open
+  if (talk.open && !talk.customer) return say('next')
+  renderTerm()
+}
+
 /** Let go: `drop` puts it where the ghost says, otherwise it goes back. */
 function finish(drop: boolean) {
   const d = drag!
@@ -519,7 +586,17 @@ app.addEventListener('pointerover', e => {
   hoverId = +el.dataset.id!
   showTip()
 })
+app.addEventListener('pointerover', e => {
+  const el = (e.target as HTMLElement).closest<HTMLElement>('[data-tag]')
+  const t = el && TAGS[el.dataset.tag!]
+  if (!el || !t) return
+  tip.innerHTML = `<b>${esc(t.label)}</b><p>${esc(t.desc)}</p>`
+  tip.classList.add('on')
+  const r = el.getBoundingClientRect(), b = tip.getBoundingClientRect()
+  tip.style.transform = `translate(${Math.max(8, Math.min(innerWidth - b.width - 8, r.left))}px, ${r.bottom + 8}px)`
+})
 app.addEventListener('pointerout', e => {
+  if ((e.target as HTMLElement).closest('[data-tag]')) tip.classList.remove('on')
   const el = (e.target as HTMLElement).closest('.item[data-id]')
   if (el && (e.relatedTarget as HTMLElement | null)?.closest?.('.item[data-id]') !== el) hideTip()
 })
@@ -536,10 +613,12 @@ app.addEventListener('click', e => {
   if (b.dataset.wclose) { s.windows = (s.windows ?? []).filter(w => w.id !== +b.dataset.wclose!); changed(new Map()); return }
   if (b.dataset.wfold) { const w = winOf(+b.dataset.wfold); if (w) w.folded = true; changed(new Map()); return }
   if (b.dataset.wopen) { const it = find(s, +b.dataset.wopen); if (it) openWindow(it); return }
+  if ('term' in b.dataset) { toggleTerm(); return }
+  if (b.dataset.say) { say(b.dataset.say); return }
   if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
   else if ('strict' in b.dataset) toggleStrict()
   else if ('clear' in b.dataset) { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) }
-  else if ('reset' in b.dataset) { s = start(); selected = new Set(); changed(new Map()) }
+  else if ('reset' in b.dataset) { s = start(); selected = new Set(); talk = blankTalk(talk.open); if (talk.open) say('next'); changed(new Map()) }
 })
 
 /** Double-click a container to open its insides in a window beside it. */
