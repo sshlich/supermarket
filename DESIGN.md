@@ -191,10 +191,10 @@ has a `cat` and a `price` (coins); the tooltip shows what a thing is worth (its 
 | sundries | Book | 2x3 | book | 7 |
 | sundries | Locket | 1x2 | valuable | 15 |
 | medicine | Pill (property `type`: painkiller, antibiotic, sleeping) | 1x1 | medicine | 2 / 5 / 3 |
-| medicine | Blister (property `type`), a container | 3x2, holds 3x2 | | 1 + its pills |
-| medicine | Bandage | 1x2 | medicine | 4 |
+| medicine | Blister (property `type`), a container | 2x1, holds 3x2 (six pills) | | 1 + its pills |
+| medicine | Bandage (a roll standing on its end) | 1x2 | medicine | 4 |
 | medicine | Antiseptic | 1x2 | medicine | 6 |
-| storage | Steel cabinet, a container | 3x3, holds 5x8 | | 25 |
+| storage | Steel cabinet, a container (front view: roller grate, ring pull) | 3x3, holds 5x8 | | 25 |
 
 - **Properties.** A kind can list `props`: each property has values, the first the default, and each value an `Effect` (another
   name, description or price, more tags, and colours swapped in the sprite: hex to hex, or `none` to hide what had that colour).
