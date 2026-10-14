@@ -381,12 +381,6 @@
     "sound": "food",
     "w": 4,
     "h": 4,
-    "cells": [
-      ".##.",
-      "####",
-      "####",
-      ".##."
-    ],
     "cat": "food",
     "price": 2,
     "tags": [
@@ -410,19 +404,14 @@
     "color": "#efcf6c",
     "sound": "food",
     "w": 3,
-    "h": 3,
-    "cells": [
-      "#..",
-      "##.",
-      "###"
-    ],
+    "h": 2,
     "cat": "food",
     "price": 1,
     "tags": [
       "food",
       "vessel"
     ],
-    "desc": "An eighth of a wheel. Slices come off its thin end until only the rind is left.",
+    "desc": "An eighth of a wheel, lying on its side. Slices come off its thin end until only the rind is left.",
     "slots": [
       {
         "name": "slices",

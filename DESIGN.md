@@ -331,12 +331,14 @@ gallery and the footprint check see the whole thing; the game paints over it fro
 item's ids are made its own, so they can use the sprite's gradients. A slot's `fill` can say how many it comes with
 (`count`), and a vessel can take only some liquids (`liquids`).
 - **Sliced bread** is a pack of eight 2x2 slices (put back in: it takes only bread). The loaf is as long as the slices left
-  in it, cut lines between them and a pale cut end; the bag stays as long as it was and lies flat past the loaf to its twist
-  and clip; the label shrinks onto the flat bag; empty, it is a flat bag of crumbs.
-- **Cheese**: a **wheel** (4x4, a round footprint) of eight **wedges** (3x3, a triangle footprint), each wedge eight 2x2
-  **slices**. Neither goes back together (take out only). The wheel from above shows one sector per wedge left, on its
-  paper, pale where it was cut; a wedge loses its thin end first, so what is left is nearer and nearer its rind, and at last
-  only the rind is left. A wedge can sit inside the wheel because it is tagged `vessel` (two levels deep).
+  in it, cut lines between them, its heel rounded and its cut end square and pale. The bag keeps its full shape: where the
+  loaf has gone it sags a little and creases, with crumbs in the bottom (an earlier bag that hugged the loaf and narrowed
+  to the twist read badly). Its printed label stays where it is.
+- **Cheese**: a **wheel** (4x4) of eight **wedges** (3x2, lying on their side), each wedge eight 2x2 **slices**. Neither
+  goes back together (take out only). The wheel from above shows one sector per wedge left, on its paper, pale where it was
+  cut. A wedge is seen from the front and a little above, thin end to the left and rind at the back; slices come off the
+  thin end, so it gets shorter and taller at its pale cut end, and at last only the rind is left. (Round and triangle
+  footprints were tried first and dropped: plain rectangles.) A wedge can sit inside the wheel because it is tagged `vessel` (two levels deep).
 - **Ham** (4x2, in its netting) of eight round 2x2 slices: the log is as long as the slices left, its pink cut face showing.
 - Slices are 2x2 so that later they can stack: sandwiches.
 - **Matchbox** (2x1) of ten matches (1x1): its drawer is slid half out from the printed sleeve, one match for each in it.

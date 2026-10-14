@@ -12,19 +12,26 @@ const f = (n: number) => +n.toFixed(2)
 /** A small, stable number from a thing's id: books are not all the same height, lighters not all the same colour. */
 const seeded = (id: number, salt = 0) => { let x = (id * 2654435761 + salt * 40503) >>> 0; return () => { x = (x ^ (x << 13)) >>> 0; x = (x ^ (x >>> 17)) >>> 0; x = (x ^ (x << 5)) >>> 0; return x / 4294967296 } }
 
-/** A wedge, or what is left of it, lying on its side: paste with holes, the rind along its back, a pale cut where slices went. */
+/**
+ * A wedge lying on its side, seen from the front and a little above: the thin end to the left, the rind at the back right.
+ * Slices come off the thin end, so with fewer left it is shorter and taller at its cut end, pale where it was cut; at last
+ * only the rind is left.
+ */
 function wedge(n: number) {
-  const A = [10, 6], B = [8, 90], C = [92, 90], k = Math.max(0.07, n / 8)
-  const at = (u: number, v: number) => [A[0] + u * (B[0] - A[0]) + v * (C[0] - A[0]), A[1] + u * (B[1] - A[1]) + v * (C[1] - A[1])]
-  const P = at(1 - k, 0), Q = at(0, 1 - k)
-  const pts = n >= 8 ? [A, B, C] : [P, B, C, Q]
+  const k = n / 8, xl = n ? 4 + 74 * (1 - k) : 84, back = 86, dx = 6, dy = -11
+  const top = (x: number) => 36 - (x - 4) * (21 / 82) // the top edge of the front face
   const r = seeded(7)
-  const holes: number[][] = []
-  for (let i = 0; i < 14; i++) { let u = r(), v = r(); if (u + v > 1) { u = 1 - u; v = 1 - v } const rr = 1.8 + r() * 3.6; if (u + v > 1 - k + 0.08 && u + v < 0.93) holes.push([...at(u, v), rr]) }
-  return `<polygon points="${pts.map(p => p.map(f).join(',')).join(' ')}" fill="#efcf6c" stroke="#8f6a1c" stroke-width="1.2" stroke-linejoin="round"/>`
-    + holes.map(([x, y, rr]) => `<ellipse cx="${f(x)}" cy="${f(y)}" rx="${f(rr)}" ry="${f(rr * 0.8)}" fill="#d8a83c"/>`).join('')
-    + `<path d="M8 90L92 90" stroke="#b07a26" stroke-width="5" stroke-linecap="round"/>`
-    + (n < 8 ? `<path d="M${P.map(f).join(' ')}L${Q.map(f).join(' ')}" stroke="#fbeaa8" stroke-width="2" stroke-linecap="round"/>` : '<path d="M14 18L13 80" stroke="#fff6cc" stroke-width="1.5" opacity="0.6"/>')
+  let out = ''
+  if (n) {
+    out += `<polygon points="${f(xl)},58 ${back},58 ${back},${f(top(back))} ${f(xl)},${f(top(xl))}" fill="#efcf6c" stroke="#8f6a1c" stroke-width="1" stroke-linejoin="round"/>`
+    for (let i = 0; i < 9; i++) { const x = xl + 4 + r() * (back - xl - 8), y = top(x) + 4 + r() * (54 - top(x) - 4), rr = 1.6 + r() * 3; if (x > xl + 3 && back - xl > 10) out += `<ellipse cx="${f(x)}" cy="${f(y)}" rx="${f(rr)}" ry="${f(rr * 0.8)}" fill="#d8a83c"/>` }
+    out += `<polygon points="${f(xl)},${f(top(xl))} ${back},${f(top(back))} ${back + dx},${f(top(back) + dy)} ${f(xl + dx)},${f(top(xl) + dy)}" fill="#f7e08e" stroke="#8f6a1c" stroke-width="1" stroke-linejoin="round"/>`
+    out += `<path d="M${f(xl + 8)} ${f(top(xl + 8) - 4)}L${back - 6} ${f(top(back - 6) - 4)}" stroke="#fff6cc" stroke-width="1.2" opacity="0.7" stroke-linecap="round"/>`
+    if (n < 8) out += `<path d="M${f(xl)} 58L${f(xl)} ${f(top(xl))}L${f(xl + dx)} ${f(top(xl) + dy)}" fill="none" stroke="#fbeaa8" stroke-width="1.8" stroke-linejoin="round"/>`
+  }
+  out += `<polygon points="${back},${f(top(back))} ${back + dx},${f(top(back) + dy)} ${back + dx},${58 + dy} ${back},58" fill="#b07a26" stroke="#6e4a14" stroke-width="1" stroke-linejoin="round"/>`
+  out += `<path d="M${back + 1.5} ${f(top(back) + 2)}L${back + 1.5} 55" stroke="#d29a44" stroke-width="1" opacity="0.6"/>`
+  return out
 }
 
 const PAINTERS: Record<string, Painter> = {
@@ -66,34 +73,41 @@ const PAINTERS: Record<string, Painter> = {
    * The bag stays the same length: past the loaf it lies flat to the twist and its clip; empty, it is a flat bag of crumbs.
    */
   bread: (_, inside) => {
-    const n = inside(0).length, full = n >= 8, L = 97 * n / 8, x1 = 8 + L, e = x1 + 3, R = Math.min(10, L / 2)
+    const n = inside(0).length, full = n >= 8, L = 97 * n / 8, x1 = 8 + L
     let out = ''
     if (n) {
-      out += `<rect x="8" y="11" width="${f(L)}" height="46" rx="${f(Math.min(12, L / 2))}" ry="11" fill="url(#crust)"/>`
+      const r = Math.min(12, L) // the heel is rounded; the end that was cut is square
+      out += `<path d="M${f(8 + r)} 11L${f(x1)} 11L${f(x1)} 57L${f(8 + r)} 57Q8 57 8 ${f(57 - r)}L8 ${f(11 + r)}Q8 11 ${f(8 + r)} 11Z" fill="url(#crust)"/>`
       for (let k = 1; k < n; k++) out += `<path d="M${f(8 + k * 97 / 8)} 12Q${f(7 + k * 97 / 8)} 34 ${f(8 + k * 97 / 8)} 56" fill="none" stroke="#8e5f31" stroke-width="0.9" opacity="0.5"/>`
-      if (!full) out += `<rect x="${f(x1 - 3.5)}" y="13" width="3.5" height="42" rx="1.5" fill="#ead6ad"/>`
-    } else out += '<g fill="#c99a5e" opacity="0.8"><circle cx="30" cy="38" r="1"/><circle cx="52" cy="41" r="0.8"/><circle cx="74" cy="37" r="1.1"/><circle cx="90" cy="40" r="0.7"/></g>'
-    // the label is printed on the bag: on the loaf while the loaf is under it, smaller on the flat bag after
-    out += n >= 6
-      ? '<rect x="40" y="22" width="32" height="24" rx="1.5" fill="#ece6d8"/><circle cx="50" cy="34" r="6.5" fill="#d39a3a"/><circle cx="50" cy="34" r="2.5" fill="#ece6d8"/><rect x="60" y="27" width="8.5" height="6" fill="#2f4866"/><rect x="60" y="35.5" width="8.5" height="2" fill="#2f4866"/><rect x="40" y="43" width="32" height="3" fill="#c25a3c"/>'
-      : '<rect x="42" y="27" width="28" height="15" rx="1.2" fill="#ece6d8"/><circle cx="50" cy="34" r="4.5" fill="#d39a3a"/><rect x="58" y="30" width="8" height="4" fill="#2f4866"/><rect x="42" y="40" width="28" height="2" fill="#c25a3c"/>'
-    const film = full ? 'M6 23C6 11 13 8.5 24 8.5L92 8.5C103 9 108 14 108 24L108 54C108 58 105 59.5 100 59.5L12 59.5C8 59.5 6 58 6 54Z'
-      : n ? `M6 ${f(8.5 + R)}Q6 8.5 ${f(6 + R)} 8.5L${f(e - R)} 8.5Q${f(e)} 8.5 ${f(e)} ${f(8.5 + R)}L${f(e)} 21Q${f(e)} 24 ${f(e + 4)} 24L105 24L105 44L${f(e + 4)} 44Q${f(e)} 44 ${f(e)} 47L${f(e)} ${f(59.5 - R)}Q${f(e)} 59.5 ${f(e - R)} 59.5L${f(6 + R)} 59.5Q6 59.5 6 ${f(59.5 - R)}Z`
-      : 'M6 28Q6 24 10 24L105 24L105 44L10 44Q6 44 6 40Z'
-    out += `<path d="${film}" fill="url(#film)" stroke="#e6edf0" stroke-width="1" stroke-opacity="0.6"/>`
-    out += `<path d="${full ? 'M105 12C110 17 113 26 114 30L114 40C113 44 110 51 105 57' : 'M105 24C109 26 112 28 114 30L114 40C112 42 109 44 105 44'}" fill="#dfe7ea" fill-opacity="0.35" stroke="#e6edf0" stroke-opacity="0.75" stroke-width="1"/>`
-    out += full ? '<path d="M14 14C30 11.5 60 11.5 84 12.5" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.6" stroke-linecap="round"/><path d="M20 53L44 53" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round"/><path d="M62 9L70 9L56 59L48 59Z" fill="#ffffff" fill-opacity="0.08"/>'
-      : `${L > 24 ? `<path d="M14 13C${f(14 + L * 0.3)} 11.5 ${f(e - 12)} 11.5 ${f(e - 6)} 12.5" fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="1.4" stroke-linecap="round"/>` : ''}<path d="M${f(Math.max(12, e + 6))} 26.5L100 26.5" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1" stroke-linecap="round"/>`
+      if (!full) out += `<rect x="${f(x1 - 3)}" y="11" width="3" height="46" fill="#ead6ad"/><path d="M${f(x1)} 11V57" stroke="#a9733f" stroke-width="0.8"/>`
+    }
+    if (!full) { // crumbs on the bottom of the empty part
+      const r = seeded(11)
+      out += '<g fill="#c99a5e" opacity="0.8">'
+      for (let i = 0; i < 7; i++) { const x = (n ? x1 + 4 : 12) + r() * (100 - (n ? x1 + 4 : 12)); if (x < 102) out += `<circle cx="${f(x)}" cy="${f(53 + r() * 4)}" r="${f(0.6 + r() * 0.6)}"/>` }
+      out += '</g>'
+    }
+    out += '<rect x="40" y="22" width="32" height="24" rx="1.5" fill="#ece6d8"/><circle cx="50" cy="34" r="6.5" fill="#d39a3a"/><circle cx="50" cy="34" r="2.5" fill="#ece6d8"/><rect x="60" y="27" width="8.5" height="6" fill="#2f4866"/><rect x="60" y="35.5" width="8.5" height="2" fill="#2f4866"/><rect x="40" y="43" width="32" height="3" fill="#c25a3c"/>'
+    // the bag: always its full shape; where it is empty it sags a little and creases
+    out += `<path d="M6 23C6 11 13 8.5 24 8.5L${full ? 92 : f(Math.max(24, x1))} 8.5${full ? '' : `Q${f((Math.max(24, x1) + 100) / 2)} 12.5 100 9`}C103 9 108 14 108 24L108 54C108 58 105 59.5 100 59.5L12 59.5C8 59.5 6 58 6 54Z" fill="url(#film)" stroke="#e6edf0" stroke-width="1" stroke-opacity="0.6"/>`
+    if (!full) {
+      const from = n ? x1 + 3 : 10
+      out += '<g fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="0.8">'
+      for (let x = from + 4; x < 100; x += 11) out += `<path d="M${f(x)} 14Q${f(x + 3)} 32 ${f(x - 2)} 54"/>`
+      out += '</g>'
+    }
+    out += '<path d="M105 12C110 17 113 26 114 30L114 40C113 44 110 51 105 57" fill="#dfe7ea" fill-opacity="0.35" stroke="#e6edf0" stroke-opacity="0.75" stroke-width="1"/>'
+    out += `<path d="M14 14C30 11.5 ${full ? '60 11.5 84 12.5' : `${f(Math.max(30, x1 - 20))} 11.5 ${f(Math.max(32, x1 - 4))} 12.5`}" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.6" stroke-linecap="round"/><path d="M20 53L44 53" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round"/>`
     return out
   },
   /** A cheese wheel from above: one sector for each wedge still in it (eight when new), the pale paste where it was cut, on its paper. */
   cheesewheel: (_, inside) => {
-    const n = inside(0).length, cx = 64, cy = 64, R = 45
+    const n = inside(0).length, cx = 64, cy = 64, R = 56
     const pt = (a: number, r = R) => `${f(cx + r * Math.cos(a))} ${f(cy + r * Math.sin(a))}`
-    let out = `<circle cx="64" cy="64" r="47" fill="#d8cfb8" opacity="0.55"/>`
+    let out = `<circle cx="64" cy="64" r="60" fill="#d8cfb8" opacity="0.55"/>`
     for (let k = 0; k < n; k++) {
       const a0 = -Math.PI / 2 + k * Math.PI / 4, a1 = a0 + Math.PI / 4
-      out += `<path d="M${cx} ${cy}L${pt(a0)}A${R} ${R} 0 0 1 ${pt(a1)}Z" fill="url(#rind)"/><path d="M${pt(a0)}A${R} ${R} 0 0 1 ${pt(a1)}" fill="none" stroke="#8f5f1c" stroke-width="4"/><path d="M${pt(a0, 37)}A37 37 0 0 1 ${pt(a1, 37)}" fill="none" stroke="#8f5f1c" stroke-width="0.8" opacity="0.4"/>`
+      out += `<path d="M${cx} ${cy}L${pt(a0)}A${R} ${R} 0 0 1 ${pt(a1)}Z" fill="url(#rind)"/><path d="M${pt(a0)}A${R} ${R} 0 0 1 ${pt(a1)}" fill="none" stroke="#8f5f1c" stroke-width="4"/><path d="M${pt(a0, 46)}A46 46 0 0 1 ${pt(a1, 46)}" fill="none" stroke="#8f5f1c" stroke-width="0.8" opacity="0.4"/>`
     }
     if (n && n < 8) {
       const a0 = -Math.PI / 2, a1 = a0 + n * Math.PI / 4
