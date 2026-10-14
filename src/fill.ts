@@ -3,7 +3,7 @@
 // footprint check see, and the game paints it over from the item itself: its contents (where each thing sits, how many,
 // what colour) or its own seed. The blister does the same with CSS variables; this is for drawings that need more.
 
-import { aged, dims, faceSeed, leftOf, seedOf, sizeOf, swatch, type Item } from './world.ts'
+import { aged, dims, faceSeed, KINDS, leftOf, seedOf, sizeOf, swatch, type Item, type Layer } from './world.ts'
 
 /** A painter gets the item and its contents by slot, and returns SVG in the sprite's own units (32 to a square). */
 type Painter = (host: Item, inside: (slot: number) => Item[]) => string
@@ -84,7 +84,7 @@ function cheeseFace(c: ReturnType<typeof cheddar>, seed: number) {
  */
 function salamiSlice(seed: number, id: string) {
   const r = seeded(seed, 11), cx = 32, cy = 32, R = 27.5
-  const ring = roundish(r, cx, cy, R, 0.035, 0.97)
+  const ring = salamiRing(r)
   let out = `<defs><radialGradient id="${id}m" cx="0.46" cy="0.42" r="0.6"><stop offset="0" stop-color="#b8404a"/><stop offset="0.72" stop-color="#9b2d36"/><stop offset="1" stop-color="#7a2029"/></radialGradient></defs>`
   out += `<path d="${ring(R)}" fill="#4b1714" stroke="#2e0d0b" stroke-width="0.8"/><path d="${ring(R - 0.9)}" fill="none" stroke="#6e2a24" stroke-width="0.6"/>`
   out += `<path d="${ring(R - 2.7)}" fill="url(#${id}m)"/>`
@@ -95,6 +95,47 @@ function salamiSlice(seed: number, id: string) {
   }
   for (let i = 0, n = 2 + Math.floor(r() * 5); i < n; i++) { const d = Math.sqrt(r()) * (R - 7), a = r() * 6.3; out += `<circle cx="${f(cx + d * Math.cos(a))}" cy="${f(cy + d * Math.sin(a))}" r="${f(0.65 + r() * 0.4)}" fill="#261010"/>` }
   return out + `<path d="M${cx - 17} ${cy - 14}Q${cx - 8} ${cy - 23} ${cx + 6} ${cy - 22}" fill="none" stroke="#ffffff" stroke-width="1.3" opacity="0.16" stroke-linecap="round"/>`
+}
+
+/** A salami slice's outline: never quite a circle (the same draws from its seed give the same one). */
+const salamiRing = (r: () => number) => roundish(r, 32, 32, 27.5, 0.035, 0.97)
+
+/** A slice of bread from above, as its own sprite draws it: the crust round it, the crumb full of small holes. */
+const BREAD = 'M9 25C8 12 19 6 32 6C45 6 56 12 55 25C55 27 53 28 53 30L53 55C53 57.5 51.5 59 49 59L15 59C12.5 59 11 57.5 11 55L11 30C11 28 9 27 9 25Z'
+const breadTop = (id: string) => `<defs><radialGradient id="${id}c" cx="0.45" cy="0.4" r="0.7"><stop offset="0" stop-color="#f3e4c2"/><stop offset="1" stop-color="#e2cb98"/></radialGradient></defs>`
+  + `<path d="${BREAD}" fill="url(#${id}c)" stroke="#a9733f" stroke-width="3.2" stroke-linejoin="round"/><path d="${BREAD}" fill="none" stroke="#7e5228" stroke-width="0.8"/>`
+  + '<g fill="#d6bb85" opacity="0.8"><ellipse cx="22" cy="22" rx="1.6" ry="1"/><ellipse cx="34" cy="18" rx="1.2" ry="0.8"/><ellipse cx="43" cy="27" rx="1.8" ry="1.1"/><ellipse cx="27" cy="33" rx="1.3" ry="0.9"/><ellipse cx="38" cy="40" rx="1.5" ry="1"/><ellipse cx="20" cy="45" rx="1.2" ry="0.8"/><ellipse cx="45" cy="50" rx="1.3" ry="0.9"/><ellipse cx="30" cy="51" rx="1.7" ry="1"/></g>'
+
+/**
+ * How a thing looks laid on a sandwich: its own face (the very slice, from its seed), its outline (to draw its edge), the
+ * colour of that edge, how thick it is and how big, and how loosely it lies (turned, shifted).
+ */
+function layerArt(l: Layer, id: string) {
+  const seed = l.seed ?? 0
+  if (l.kind === 'cheeseslice') { const c = cheddar({ id: 0, x: 0, y: 0, rot: 0, ...l }); return { face: cheeseSlice(c, seed, id), edge: cheeseHoles(seed).edge, side: mix(c.paste, c.dark, 0.45), t: 2.4, k: 0.85, turn: 9, shift: 2.5 } }
+  if (l.kind === 'salamislice') return { face: salamiSlice(seed, id), edge: salamiRing(seeded(seed, 11))(27.5), side: '#5e1e1b', t: 2, k: 0.68, turn: 0, shift: 8 }
+  return { face: breadTop(id), edge: BREAD, side: '#a06e3c', t: 5, k: 1, turn: 3, shift: 1.2 }
+}
+/**
+ * A sandwich, a little from above: its bread at the bottom and every layer on it in the order laid, each the very slice that
+ * went on (cheese with its own holes, which show what is under them; salami with its own fat), lying a little loose so the
+ * edges of the ones below show; the top one seen whole. A second slice of bread on top closes it.
+ */
+function sandwich(host: Item) {
+  const st = KINDS[host.kind].stack!, sample = [{ kind: st.takes[0], seed: 3 }, { kind: st.takes[1], seed: 4 }, { kind: st.lid }] // the file's own look: one made
+  const layers: Layer[] = [{ kind: st.on }, ...host.layers?.length ? host.layers : sample]
+  const S = 1.1, Q = 0.52
+  const arts = layers.map((l, i) => layerArt(l, `sw${host.id}l${i}`))
+  let cy = 61 - 27 * S * Q - arts[0].t // the bread's lower edge sits at the bottom
+  let out = `<ellipse cx="32" cy="${f(61 - arts[0].t * 0.4)}" rx="26" ry="4.5" fill="#000000" opacity="0.3"/>`
+  arts.forEach((a, i) => {
+    if (i) cy -= a.t
+    const r = seeded(seedOf(host) * 31 + i, 41), turn = (r() * 2 - 1) * a.turn, dx = (r() * 2 - 1) * a.shift, dy = (r() * 2 - 1) * a.shift * 0.35
+    const at = (y: number) => `translate(${f(32 + dx)} ${f(y + dy)}) scale(${f(S * a.k)} ${f(S * a.k * Q)}) rotate(${f(turn)}) translate(-32 -32)`
+    for (let j = a.t; j > 0.05; j -= 0.7) out += `<path d="${a.edge}" fill="${j === a.t ? mix(a.side, '#000000', 0.35) : a.side}" transform="${at(cy + j)}"/>`
+    out += `<g transform="${at(cy)}">${a.face}</g>`
+  })
+  return out
 }
 
 /**
@@ -136,12 +177,13 @@ function wedge(host: Item) {
   const B = [TX - R * q + R * q * dx, top + R * q * dy] // where the back cut meets the rind
   const C = [xr + s * dx, top + s * dy] // the top back corner of the face at the thin end
   const right = Math.max(xr, C[0]) + 1.5, k = Math.min(1, (sizeOf(host).w * 32 - 2) / (right - 3))
+  const ky = sizeOf(host).w < 2 ? 1 : k // the last bit, one square wide, still stands its two squares tall: drawn narrower, not smaller
   const topFace = `M6 ${top}L${f(xr)} ${top}L${f(C[0])} ${f(C[1])}L${f(B[0])} ${f(B[1])}C${f(B[0] - 24)} ${f(B[1] - 4)} 2 ${top - 19} 6 ${top}Z`
   let out = `<defs><linearGradient id="${id}f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.light}"/><stop offset="0.18" stop-color="${c.paste}"/><stop offset="1" stop-color="${mix(c.paste, c.dark, 0.28)}"/></linearGradient>`
     + `<linearGradient id="${id}t" x1="1" y1="1" x2="0.3" y2="0"><stop offset="0" stop-color="${c.light}"/><stop offset="1" stop-color="${mix(c.light, c.paste, 0.5)}"/></linearGradient>`
     + `<clipPath id="${id}c"><path d="${topFace}"/></clipPath>`
     + `<clipPath id="${id}e"><path d="M${f(xr)} ${top}L${f(xr)} ${bottom}L${f(C[0])} ${f(bottom + s * dy)}L${f(C[0])} ${f(C[1])}Z"/></clipPath></defs>`
-    + `<g transform="translate(${f(1 - 3 * k)} ${f(61 - 61 * k)}) scale(${f(k)})">`
+    + `<g transform="translate(${f(1 - 3 * k)} ${f(61 - 61 * ky)}) scale(${f(k)} ${f(ky)})">`
   out += `<path d="${topFace}" fill="url(#${id}t)" stroke="${c.line}" stroke-width="0.7" stroke-linejoin="round"/>`
   out += `<g clip-path="url(#${id}c)" fill="none">` // knife scrapes: faint arcs round the wheel's middle (the thin end)
   for (let i = 0; i < 9; i++) { const rad = 20 + i * 7.5 + r() * 4, a0 = Math.PI + 0.12 + r() * 0.1, a1 = Math.PI + 0.62 + r() * 0.2; out += `<path d="M${f(TX + rad * Math.cos(a0))} ${f(top + rad * Math.sin(a0) * 0.75)}A${f(rad)} ${f(rad * 0.75)} 0 0 1 ${f(TX + rad * Math.cos(a1))} ${f(top + rad * Math.sin(a1) * 0.75)}" stroke="${i % 3 ? '#ffffff' : c.dark}" stroke-width="${f(0.4 + r() * 0.5)}" opacity="${i % 3 ? 0.22 : 0.08}"/>` }
@@ -163,6 +205,7 @@ function wedge(host: Item) {
 }
 
 const PAINTERS: Record<string, Painter> = {
+  sandwich,
   /**
    * The disc holder: eight black plastic shelves, each holding one disc lying flat, seen from the front, so only its thin
    * edge shows, in its own colour, with the label wrapped over it. Inside it is 4 by 8: a disc's square (2 by 2) row by row is its shelf.

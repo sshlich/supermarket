@@ -59,11 +59,21 @@ const food = { id: 10, tags: ['food'], worth: 4 }, wine = { id: 11, tags: ['drin
   assert.ok(!open(c) && !deal(c, [], 99, 0).done) // one deal
   assert.equal(deal(who('seller', [], { ask: 0 }), [], 99, 0).done, false) // nothing on the counter to buy
 }
-// a trader swaps if what they want is worth most of what they brought
+// a trader swaps if what they want is worth most of what they brought; cash settles the difference either way
 {
-  const c = who('trader', ['drink'], { brought: [5] })
+  const c = who('trader', ['drink'], { brought: [5], slack: 0.2 })
   assert.equal(deal(c, [food], 0, 10).done, false)
-  assert.equal(deal(c, [wine], 0, 12).done, false) // 9 < 0.8 * 12
-  assert.deepEqual(deal(c, [wine, food], 0, 11), { done: true, take: [11], pay: 0, met: ['drink'], say: 'Fair trade.' })
+  const no = deal(c, [wine], 0, 12) // 9 < 12 * 0.8
+  assert.ok(!no.done && no.say.includes('Add about 1$ more'))
+  assert.deepEqual(deal(c, [wine, food], 5, 11), { done: true, take: [11], pay: -2, met: ['drink'], say: 'Close enough. You owe me 2$.' })
+  assert.equal(deal(c, [wine], 1, 11).done, false) // cannot cover the 2$
+  assert.deepEqual(deal(c, [wine], 0, 9), { done: true, take: [11], pay: 0, met: ['drink'], say: 'Fair trade.' })
+  assert.equal(deal(c, [wine], 0, 5).pay, 4) // worth more than they brought: they pay the rest
+}
+// the spread: a flip earns well under double
+{
+  const flips = Array.from({ length: 2000 }, () => { const c = arrive(1); return c.role === 'buyer' ? c.rate : c.role === 'seller' ? 1 / c.rate : 0 }).filter(Boolean)
+  const mean = flips.reduce((a, b) => a + b, 0) / flips.length
+  assert.ok(mean > 1.1 && mean < 1.4, String(mean))
 }
 console.log('customers ok')

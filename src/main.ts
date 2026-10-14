@@ -7,7 +7,7 @@ import { arrive, deal, dealt, greeting, open as canDeal, priceFor, stillWants, T
 import { openReader } from './reader.ts'
 import { initMenu, toggleMenu } from './menu.ts'
 import { handle, handleMany, shop } from './sound.ts'
-import { applyDrop, canPour, cellsOf, contents, COUNTERS, cut, dims, sizeOf, fillWith, find, LIQUIDS, look, moveInto, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, contents, COUNTERS, cut, dims, sizeOf, fillWith, find, LIQUIDS, look, moveInto, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -295,10 +295,10 @@ function changed(from?: Map<number, DOMRect>) {
 // ---------------------------------------------------------------- handling
 
 /**
- * `uses` are the things the held one can be used on (`verb`: a vessel pours into them, a knife cuts them); `useOn` the one
- * under the pointer now.
+ * `uses` are the things the held one can be used on (`verb`: a vessel pours into them, a knife cuts them, a slice is laid on
+ * them); `useOn` the one under the pointer now.
  */
-interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; hosts: Item[]; full: Item[]; blocked: Item | null; into: Item | null; space: Space; over: boolean; uses: Item[]; useOn: Item | null; verb: 'pour' | 'cut' | null }
+interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; hosts: Item[]; full: Item[]; blocked: Item | null; into: Item | null; space: Space; over: boolean; uses: Item[]; useOn: Item | null; verb: 'pour' | 'cut' | 'stack' | null }
 let press: { id: number; x: number; y: number; gx: number; gy: number; toggle: boolean; wasGroup: boolean } | null = null
 let drag: Drag | null = null
 let last: PointerEvent | null = null
@@ -471,6 +471,7 @@ function begin() {
   for (const h of hostsFor(s, held.items)) (intoHost(s, held, h.id) ? drag.hosts : drag.full).push(h)
   if (held.items.length === 1 && held.item.fill) Object.assign(drag, { verb: 'pour', uses: s.items.filter(o => canPour(held.item, o) > 0) })
   else if (held.items.length === 1 && KINDS[held.item.kind].cuts) Object.assign(drag, { verb: 'cut', uses: s.items.filter(o => KINDS[o.kind].cut && o.id !== held.item.id) })
+  else if (held.items.length === 1) { const on = s.items.filter(o => !o.in && canStack(o, held.item)); if (on.length) Object.assign(drag, { verb: 'stack', uses: on }) } // bread on the field or a counter, not in its bag
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
   sounds(held.items, 'lift')
@@ -828,21 +829,25 @@ function finish(drop: boolean) {
   d.el.querySelectorAll<HTMLElement>('.item').forEach((el, i) => from.set(d.held.items[i].id, el.getBoundingClientRect()))
   const a = d.held.item, b = d.useOn
   const was = b && drop && d.verb === 'pour' ? { liquid: a.fill!.liquid, a: level(a), b: level(b), n: 0 } : null
-  let made: Item[] | null = null
+  let made: Item[] | null = null, laid = false
   if (was && b) { was.n = pour(a, b); putBack(d.held); sound(a, 'use') }
+  else if (b && drop && d.verb === 'stack') { sound(a, 'drop'); laid = stack(s, b, a); if (!laid) putBack(d.held) }
   else if (b && drop && d.verb === 'cut') { made = cut(s, b); putBack(d.held); if (made) shop('cut'); else shop('bad') }
   else if (drop && d.plan) { applyDrop(s, d.held, d.plan); sounds(d.held.items, 'drop') }
   else { putBack(d.held); if (drop && d.over) shop('bad'); else sounds(d.held.items, 'drop') }
   d.el.remove()
   changed(from)
-  if (made) for (const p of made) app.querySelector(`.item[data-id="${p.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.7)' }, { opacity: 1, transform: 'none' }], { duration: 220, easing: 'ease-out' })
+  if (made) for (const p of made) pop(p)
   if (b && drop && d.verb === 'cut' && !made) toast('no room for the piece')
+  if (laid && b) pop(b, 0.92)
   if (was && b) {
     slosh(a, was.a, was.liquid)
     slosh(b, was.b, was.liquid)
     toast(`poured ${was.n} of ${LIQUIDS[was.liquid].name} into the ${look(b).name.toLowerCase()}`)
   }
 }
+/** Something new (or just changed) pops into place. */
+const pop = (it: Item, from = 0.7) => app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: from < 0.9 ? 0 : 1, transform: `scale(${from})` }, { opacity: 1, transform: 'none' }], { duration: 220, easing: 'ease-out' })
 /** A thing makes the sound of what it is made of; several at once, each material once (see handleMany). */
 const sound = (it: Item, action: 'lift' | 'drop' | 'use') => handle(KINDS[it.kind]?.sound, action)
 const sounds = (items: Item[], action: 'lift' | 'drop') => handleMany(items.map(it => KINDS[it.kind]?.sound), action)
@@ -876,12 +881,14 @@ function tipHtml(it: Item) {
   const value = worth(s, it)
   const wet = it.fill ? (LIQUIDS[it.fill.liquid]?.price ?? 0) * it.fill.amount : 0
   const parts = [wet && `${l.price} + ${wet} ${LIQUIDS[it.fill!.liquid].name}`, value - l.price - wet && `${l.price} + ${value - l.price - wet} inside`].filter(Boolean)
+  if (k.stack) parts.push(`${partsOf(it)} + ${value - partsOf(it)} for the making`)
   rows.push(`<div class="price"><span class="dollars">${value}$</span><small>${parts.join(', ') || 'worth'} · ${esc(k.cat ?? '')} · ${k.w}×${k.h}</small></div>`)
   const who = customerSays(it, value)
   if (who) rows.push(`<div class="who">${who}</div>`)
   if (l.desc) rows.push(`<p>${esc(l.desc)}</p>`)
   if (isContainer(it.kind)) rows.push(`<div class="hint">double-click to open</div>`)
   if (k.read) rows.push(`<div class="hint">double-click to read</div>`)
+  if (k.stack) rows.push(`<div class="hint">${closed(it) ? 'finished' : 'double-click to take the top off'}</div>`)
   if (it.fill) rows.push(`<div class="hint">drop it on another bottle to pour</div>`)
   return rows.join('')
 }
@@ -976,4 +983,5 @@ app.addEventListener('dblclick', e => {
   const it = el && find(s, +el.dataset.id!)
   if (it && isContainer(it.kind)) openWindow(it)
   else if (it && KINDS[it.kind].read && BOOKS[propsOf(it).title]) { hideTip(); openReader(BOOKS[propsOf(it).title]) }
+  else if (it && KINDS[it.kind].stack && !closed(it)) { const p = unstack(s, it); if (!p) { toast('no room for it'); return } sound(p, 'lift'); hideTip(); changed(); pop(p) }
 })

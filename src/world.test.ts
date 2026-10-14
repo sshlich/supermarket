@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { accepts, canPour, cut, dims, faceSeed, leftOf, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
+import { accepts, canPour, canStack, closed, cut, find, partsOf, stack, unstack, dims, faceSeed, leftOf, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
 import FIXTURE from './test/kinds.json' with { type: 'json' }
 
 // The game ships no items for now, so the tests bring their own kinds and the old starting field.
@@ -441,4 +441,34 @@ console.log('world ok')
   assert.equal(cut(t, big), null)
   assert.deepEqual([leftOf(big), big.x], [6, 0])
   console.log('cutting ok')
+}
+
+// sandwiches: slices laid on bread, worth more than their makings; the lid finishes it
+{
+  const s: State = { items: [], next: 1, windows: [] }
+  const bread = spawn(s, 'breadslice')!, lid = spawn(s, 'breadslice')!, cheese = spawn(s, 'cheeseslice')!, salami = spawn(s, 'salamislice')!
+  cheese.seed = 77; cheese.age = 12
+  assert.ok(!canStack(bread, lid)) // bread on bare bread is not a sandwich
+  assert.ok(stack(s, bread, cheese))
+  assert.deepEqual([bread.kind, bread.layers, find(s, cheese.id)], ['sandwich', [{ kind: 'cheeseslice', seed: 77, age: 12 }], undefined])
+  assert.equal(look(bread).name, 'Open sandwich')
+  assert.equal(look(bread).price, Math.ceil((1 + 2) * 1.2)) // bread 1, aged cheddar 2, a fifth more open
+  stack(s, bread, salami)
+  const back = unstack(s, bread)! // the top comes off as it went on
+  assert.deepEqual([back.kind, back.seed, bread.layers!.length], ['salamislice', salami.id, 1])
+  const off = unstack(s, bread)!
+  assert.deepEqual([off.seed, off.age, bread.kind, bread.layers], [77, 12, 'breadslice', undefined]) // the last one off leaves the bread
+  stack(s, bread, off); stack(s, bread, back)
+  for (let i = 0; i < 2; i++) assert.ok(stack(s, bread, spawn(s, 'cheeseslice')!))
+  assert.ok(!canStack(bread, spawn(s, 'cheeseslice')!)) // four fillings at most
+  assert.ok(stack(s, bread, lid))
+  assert.ok(closed(bread))
+  assert.equal(look(bread).name, 'Sandwich')
+  assert.equal(look(bread).price, Math.ceil(partsOf(bread) * 1.5))
+  assert.equal(unstack(s, bread), null) // finished: it stays as it is
+  assert.ok(!canStack(bread, spawn(s, 'salamislice')!))
+  // a saved sandwich keeps its layers; one with none is its bread again
+  const t = settle({ items: [{ id: 1, kind: 'sandwich', x: 0, y: 0, rot: 0, layers: [{ kind: 'gone' }] }, { id: 2, kind: 'sandwich', x: 4, y: 0, rot: 0, layers: bread.layers }], next: 3 })
+  assert.deepEqual([t.items[0].kind, t.items[0].layers, t.items[1].layers!.length], ['breadslice', undefined, 5])
+  console.log('sandwiches ok')
 }

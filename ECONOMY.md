@@ -73,7 +73,7 @@ The sim sets the realized margin: target **35% gross at the start**, rising with
 ## 5. Events (a tag shock, a duration, a rumor)
 
 One shape for all: `{ tags, demand: D, supply: S, hours, rumor? }`. The shock is full for its first third and decays
-linearly to 1. Frequency about one per day, at most two live.
+linearly to 1. Frequency about one per day, at most three at once (live or announced).
 
 | Event | Shock | For the player |
 |---|---|---|
@@ -180,3 +180,44 @@ stock), **plateau** (sinks outrun income), **a pile of cash** (nothing to spend 
 - Ads: price per block or a subscription? Default: per block, subscriptions later.
 - The wired terminal hosts Ledger, Board, Forecast and the order form as programs: one program each on a disc (the
   discs exist). Default: yes.
+
+## 11. First sim results (2026-10-14; `npm run sim [days] [runs] [market] [customers per day]`)
+
+Built so far: the deal rewrite of section 4 (`customers.ts`, live in the game, not yet play-tested), `market.ts` (not wired
+into the game), and `scripts/econ-sim.ts` with three bots (`all`: accept everything; `smart`: takes only good asks and
+offers the best fitting item; `spec`: smart plus rumors and holding). 300 runs x 12 days, 10 customers a day, $50 start.
+
+| | Old rules | New deal rules | + market, `all` bot |
+|---|---|---|---|
+| Round-trip spread (buy from a seller, sell to a buyer) | 2.0x | 1.56x | same |
+| Gross margin, realized | 40% (smart) | 35% | 33 to 35% |
+| Net / day, day 1 -> day 12 | 4 -> 16 | 5 -> 12 | 6 -> 14 |
+| Buyers who got everything they asked for | 10 to 20% | 10 to 18% | 9 to 13% |
+| Cash at day 12 | 160 | 128 | 163 |
+
+What it says:
+
+1. **There is no growth engine.** Net per day is flat at about $10 to 15 for twelve days, and cash just piles up (an idle
+   $320 by day 12 at 20 customers). That is the missing sink side, now measured: without things to buy, a good day 1 is a good
+   day 12. This confirms sections 6 and 7 as the next real work.
+2. **The constraint is matching, not margin.** Only 10 to 18% of buyers leave with everything they came for, because
+   they ask for one to three of eight tags and the bot's stock rarely covers them. Cutting the spread to 35% hardly changed
+   net. What moves it is volume and coverage: **net scales with customers per day almost exactly** (10 customers: $14, 20:
+   $31 by day 12). So the real knobs are customers per day, wants per customer, and how many kinds cover each tag
+   (`valuable` and `book` have one or two kinds each and make 2 to 3% of revenue: there is nothing to sell).
+3. **The targets in section 9 were too rich for the phase I goods.** With a $1 to $60 ladder (typical item $4) and 10
+   customers, day 1 supports about +$6, not +$20; 20 customers gives +$16. Revised phase I targets: **day-1 net +10 to 15
+   at 15 to 20 customers a day**, or keep 10 and make the starting goods dearer. Decide in the next milestone.
+4. **The market is calm until an event hits** (medicine alone, 100,000 hours): the index sits at 0.95 to 1.04 for half the
+   time, 1.61 at the 95th percentile, 2.39 at the highest, 0.50 at the lowest. About 0.75 events a day, with a rumor
+   showing 17% of the time. The clamps are both reached, which is the intended range.
+5. **Speculating on rumors pays a little, and picky play loses to volume.** With the market on, `spec` earns about 10%
+   more than `smart`, but the naive `all` bot beats both (about +40% over `smart`): taking every deal and selling to anyone
+   beats waiting for good asks, because volume is the constraint. Rumors and holding need a bigger payoff (larger
+   shocks, or stock that cannot be replaced) before they matter, and the dump brake is not yet binding (eta may be too
+   small, or `FLOW` too big, for hoards this small).
+6. **Services you are not yet measuring:** hoarding, the sink prices, losing days (near zero: 0 to 3%, below the 5 to 10%
+   target, so there is not enough risk yet), and the day-end overhead.
+
+Next knobs to try with the sim: customers per day and wants per customer (volume), a few more kinds per thin tag, larger
+event shocks, a smaller `FLOW`, and a rent that makes a bad day cost something.

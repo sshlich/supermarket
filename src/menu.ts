@@ -89,7 +89,7 @@ const pos = stored('debug-pos', { x: 16, y: 56 })
 
 /** One row per kind: its colour, name, size and price, then a button per variant. */
 function debugHtml() {
-  const kinds = Object.entries(KINDS)
+  const kinds = Object.entries(KINDS).filter(([, k]) => !k.stack) // sandwiches are made, not spawned
   const cats = [...new Set(kinds.map(([, k]) => k.cat ?? 'other'))].sort((a, b) => ((CATS.indexOf(a) + 1) || 99) - ((CATS.indexOf(b) + 1) || 99) || a.localeCompare(b))
   const rows = (id: string) => {
     const k = KINDS[id]

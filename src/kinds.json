@@ -372,7 +372,32 @@
       "food",
       "bread"
     ],
-    "desc": "One slice. Two make the start of a sandwich."
+    "desc": "One slice. Lay cheese or salami on it and it is a sandwich; another slice on top finishes it."
+  },
+  "sandwich": {
+    "name": "Sandwich",
+    "icon": "",
+    "color": "#e2cb98",
+    "sound": "food",
+    "w": 2,
+    "h": 2,
+    "cat": "food",
+    "price": 1,
+    "tags": [
+      "food"
+    ],
+    "stack": {
+      "on": "breadslice",
+      "takes": [
+        "cheeseslice",
+        "salamislice"
+      ],
+      "lid": "breadslice",
+      "max": 4,
+      "open": 1.2,
+      "closed": 1.5
+    },
+    "desc": "Bread and what was laid on it, worth more than its makings: a fifth more open, half again once a second slice finishes it. Finished, it stays as it is."
   },
   "cheesewheel": {
     "name": "Cheddar wheel",

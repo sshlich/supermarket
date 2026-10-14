@@ -21,7 +21,7 @@ const isCounter = (c: unknown): c is Counter => typeof c === 'string' && c in CO
  * (for tooltips), private notes, tags (what customers ask for), a category (`cat`) and a price in coins.
  * `props` are what one thing of the kind can be on top of that: each property has values, the first one the default.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; liquids?: string[]; read?: boolean; sound?: string; computer?: boolean; cut?: Cut; cuts?: boolean; ages?: boolean }
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; liquids?: string[]; read?: boolean; sound?: string; computer?: boolean; cut?: Cut; cuts?: boolean; ages?: boolean; stack?: Stack }
 /** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `liquids`: the only liquids it takes (a lighter: fuel); `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts); `computer`: its window is a screen (see computer.ts); `cut`: a knife cuts pieces off it; `cuts`: it is a knife; `ages`: it ages (cheese, see AGE_DAYS). */
 /**
  * Something cut with a knife (a cheese wheel into wedges; a wedge, a ham into slices): `into` is what comes off, `count` how
@@ -29,6 +29,11 @@ export interface Kind { name: string; icon: string; color: string; w: number; h:
  * of [at least this many left, w, h], biggest first.
  */
 export interface Cut { into: string; count: number; from: string; sizes: number[][] }
+/**
+ * Something made by laying things on something (a sandwich): it starts as `on` (a slice of bread) with one of `takes` laid on
+ * it, holds up to `max` of them, and is finished once `lid` goes on top. Worth its parts times `open`, or `closed` once finished.
+ */
+export interface Stack { on: string; takes: string[]; lid: string; max: number; open: number; closed: number }
 /** What a property's value does to a thing: another name, description or price, more tags, and colours swapped in its sprite (hex to hex; "none" hides whatever had that colour). */
 export interface Effect { name?: string; desc?: string; tags?: string[]; price?: number; colors?: Record<string, string> }
 /**
@@ -49,7 +54,9 @@ export const KINDS: Record<string, Kind> = DATA
  * vessel; `left` how many pieces are left in something cut (all of them when missing); `age` how many days old it is;
  * `seed` what its generated look is drawn from (a slice's fat or holes), when it is not its id.
  */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter; props?: Record<string, string>; fill?: Fill; left?: number; age?: number; seed?: number }
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter; props?: Record<string, string>; fill?: Fill; left?: number; age?: number; seed?: number; layers?: Layer[] }
+/** One thing laid on a sandwich, bottom first: what it was, its look and its age, so it comes back off as it went on. */
+export interface Layer { kind: string; seed?: number; age?: number }
 /** What a thing's generated look is drawn from. */
 export const seedOf = (it: Item) => it.seed ?? it.id
 /**
@@ -166,6 +173,7 @@ export function look(it: Item): { name: string; desc?: string; tags: string[]; p
   }
   if (it.fill) out.tags.push(...LIQUIDS[it.fill.liquid]?.tags ?? [])
   if (k.cut) out.price = Math.round(out.price * leftOf(it) / k.cut.count)
+  if (k.stack) { const done = closed(it); out.price = Math.ceil(partsOf(it) * (done ? k.stack.closed : k.stack.open)); if (!done) out.name = `Open ${out.name[0].toLowerCase()}${out.name.slice(1)}` }
   if (k.ages && (it.age ?? 0) >= AGE_DAYS) { out.name = `Aged ${out.name[0].toLowerCase()}${out.name.slice(1)}`; out.price = Math.round(out.price * 1.5) }
   return out
 }
@@ -176,6 +184,10 @@ export function look(it: Item): { name: string; desc?: string; tags: string[]; p
  */
 export const AGE_DAYS = 10
 export const aged = (it: Item) => Math.max(0, Math.min(1, (it.age ?? 0) / AGE_DAYS))
+/** What a sandwich's makings are worth: its bread and everything laid on it. */
+export const partsOf = (it: Item) => (KINDS[it.kind].price ?? 0) + (it.layers ?? []).reduce((n, l) => n + look({ id: 0, x: 0, y: 0, rot: 0, ...l }).price, 0)
+/** Is it finished (its lid on)? */
+export const closed = (it: Item) => { const st = KINDS[it.kind]?.stack, l = it.layers ?? []; return !!st && l.length > 1 && l[l.length - 1].kind === st.lid }
 /** A thing's colour swatch (menu rows, window headers): its kind's colour, or what its properties turn that colour into. */
 export const swatch = (it: Item) => { const c = KINDS[it.kind].color; return look(it).colors[c.toLowerCase()] ?? c }
 /** What a thing is worth: its own price, its liquid, and everything inside it. */
@@ -388,6 +400,14 @@ function cleanCut(o: Item): { left?: number; age?: number } {
   const c = KINDS[o.kind]?.cut, n = Math.round(Number(o.left))
   return { ...(c && n >= 1 && n < c.count ? { left: n } : {}), ...(KINDS[o.kind]?.ages && Number(o.age) > 0 ? { age: Number(o.age) } : {}), ...(Number.isFinite(o.seed) ? { seed: Number(o.seed) } : {}) }
 }
+/** A sandwich's layers, of kinds that still exist (no more than it holds); one with nothing on it is its bread again. */
+function cleanLayers(o: Item): { kind?: string; layers?: Layer[] } {
+  const st = KINDS[o.kind]?.stack
+  if (!st) return {}
+  const layers = (Array.isArray(o.layers) ? o.layers : []).filter(l => KINDS[l?.kind]).slice(0, st.max + 1)
+    .map(l => ({ kind: l.kind, ...(Number.isFinite(l.seed) ? { seed: Number(l.seed) } : {}), ...(Number(l.age) > 0 ? { age: Number(l.age) } : {}) }))
+  return layers.length ? { layers } : { kind: st.on }
+}
 /** Only properties the kind still has, with values it still knows, and none that are the default. */
 function cleanProps(o: Item): { props?: Record<string, string> } {
   const defs = KINDS[o.kind]?.props ?? {}
@@ -401,7 +421,7 @@ function cleanProps(o: Item): { props?: Record<string, string> } {
  */
 export function settle(s: State): State {
   // only what an item still is: no old properties, liquids or machine state (and nothing on a counter that does not exist)
-  const items: Item[] = s.items.filter(o => KINDS[o.kind]).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isCounter(o.at) ? { at: o.at } : {}), ...cleanProps(o), ...cleanFill(o), ...cleanCut(o) }))
+  const items: Item[] = s.items.filter(o => KINDS[o.kind]).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isCounter(o.at) ? { at: o.at } : {}), ...cleanProps(o), ...cleanFill(o), ...cleanCut(o), ...cleanLayers(o) }))
   const state: State = { items, next: s.next }
   // pass 1: anything in a slot that does not exist, or that its slot now refuses, goes back out to the field
   const evict = (o: Item) => { delete o.in }
@@ -457,6 +477,38 @@ export function cut(s: State, it: Item): Item[] | null {
   if (gone) s.items.splice(at, 0, it)
   else { it.x = was.x; if (was.left === undefined) delete it.left; else it.left = was.left }
   return null
+}
+
+// ---------------------------------------------------------------- sandwiches
+
+/** The kind a thing turns into when something is laid on it (a slice of bread: a sandwich). */
+const madeFrom = (kind: string) => KINDS[kind]?.stack ? kind : Object.keys(KINDS).find(k => KINDS[k].stack?.on === kind)
+/** Can `top` be laid on `base`? A filling while there is room, the lid once there is at least one filling; nothing on a finished one. */
+export function canStack(base: Item, top: Item): boolean {
+  const kind = madeFrom(base.kind), st = kind && KINDS[kind].stack
+  if (!st || base.id === top.id || top.layers?.length || closed(base)) return false
+  const n = base.layers?.length ?? 0
+  return st.takes.includes(top.kind) ? n < st.max : top.kind === st.lid && n > 0
+}
+/** Lay `top` on `base`: a slice of bread becomes a sandwich; the thing laid on is one of its layers now. */
+export function stack(s: State, base: Item, top: Item): boolean {
+  if (!canStack(base, top)) return false
+  base.kind = madeFrom(base.kind)!
+  base.layers = [...base.layers ?? [], { kind: top.kind, seed: seedOf(top), ...(top.age ? { age: top.age } : {}) }]
+  remove(s, [top.id])
+  return true
+}
+/** Take the top layer off an unfinished sandwich, onto the first free spot beside it (or the field); the last one off leaves the bread. */
+export function unstack(s: State, it: Item): Item | null {
+  const st = KINDS[it.kind]?.stack, top = it.layers?.[it.layers.length - 1]
+  if (!st || !top || closed(it)) return null
+  const p = spawn(s, top.kind, spaceOf(it)) ?? spawn(s, top.kind, null)
+  if (!p) return null
+  if (top.seed !== undefined) p.seed = top.seed
+  if (top.age) p.age = top.age
+  it.layers!.pop()
+  if (!it.layers!.length) { delete it.layers; it.kind = st.on }
+  return p
 }
 
 /** Move a thing (and whatever is inside it) to the first free spot of a place, turned if that is the only way it fits. False if there is no room. */

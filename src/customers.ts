@@ -26,34 +26,45 @@ export interface Goods { kind: string; props?: Record<string, string>; fill?: Fi
  * `rate` is how they price: what a buyer pays (over what things are worth) or a seller asks (under it). `brought` are the
  * ids of what they unloaded, still theirs until a deal; `ask` is a seller's price for all of it. A buyer's `budget` is the
  * money they have left (null: they have enough for anything) and `got` the wants they have bought already: they stay at
- * the counter until sent away, so they can buy again. `dealt`: a seller or trader has made their one deal.
+ * the counter until sent away, so they can buy again. `dealt`: a seller or trader has made their one deal. `slack`: how
+ * much short of their own goods' worth a trader will settle for (you cover the rest in cash).
  */
-export interface Customer { id: number; name: string; role: Role; wants: string[]; rate: number; goods: Goods[]; brought: number[]; ask: number; budget: number | null; got: string[]; dealt?: boolean }
+export interface Customer { id: number; name: string; role: Role; wants: string[]; rate: number; goods: Goods[]; brought: number[]; ask: number; budget: number | null; got: string[]; dealt?: boolean; slack?: number }
 
 const NAMES = ['Mara', 'Odell', 'Pim', 'Ines', 'Tobias', 'Wren', 'Hollis', 'Bea', 'Corvin', 'Dot', 'Ansel', 'Yuki']
 const pick = <T>(list: T[], rand: () => number) => list[Math.floor(rand() * list.length)]
 
 /** A new customer: a buyer half the time, else a seller or (less often) a trader. */
-export function arrive(id: number, rand: () => number = Math.random): Customer {
+export function arrive(id: number, rand: () => number = Math.random, weights?: Record<string, number>, lean?: (kind: string) => number): Customer {
   const r = rand()
   const role: Role = r < 0.5 ? 'buyer' : r < 0.8 ? 'seller' : 'trader'
   const wants: string[] = []
-  if (role !== 'seller') { const pool = Object.keys(TAGS); for (let n = 1 + Math.floor(rand() * (role === 'buyer' ? 3 : 2)); n > 0; n--) wants.push(...pool.splice(Math.floor(rand() * pool.length), 1)) }
-  const goods = role === 'buyer' ? [] : Array.from({ length: 1 + Math.floor(rand() * 3) }, () => bring(rand))
-  const rate = role === 'buyer' ? 1.2 + rand() * 0.4 : role === 'seller' ? 0.5 + rand() * 0.4 : 1
+  if (role !== 'seller') {
+    // each want is drawn without repeats, by `weights` when the market gives them (unmet need and events bring more of a tag)
+    const pool = Object.keys(TAGS)
+    for (let n = 1 + Math.floor(rand() * (role === 'buyer' ? 3 : 2)); n > 0; n--) {
+      let r = rand() * pool.reduce((a, t) => a + (weights?.[t] ?? 1), 0)
+      wants.push(...pool.splice(Math.max(0, pool.findIndex(t => (r -= weights?.[t] ?? 1) <= 0)), 1))
+    }
+  }
+  const goods = role === 'buyer' ? [] : Array.from({ length: 1 + Math.floor(rand() * 3) }, () => bring(rand, lean))
+  // ponytail: ECONOMY.md section 4. Ranges around a centre (a buyer pays about a quarter over worth, a seller asks about a fifth under), so a flip earns ~55%, not 100%
+  const around = (mid: number, spread: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, mid + spread * (rand() + rand() + rand() - 1.5) * 2))
+  const rate = role === 'buyer' ? around(1.25, 0.12, 1, 1.6) : role === 'seller' ? around(0.8, 0.1, 0.6, 1) : 1
   // most buyers count their money; some have plenty
   const budget = role === 'buyer' && rand() < 0.65 ? 5 + Math.floor(rand() * 36) : null
-  return { id, name: pick(NAMES, rand), role, wants, rate, goods, brought: [], ask: 0, budget, got: [] }
+  return { id, name: pick(NAMES, rand), role, wants, rate, goods, brought: [], ask: 0, budget, got: [], ...(role === 'trader' ? { slack: 0.1 + rand() * 0.2 } : {}) }
 }
 
 /**
  * Something a seller or trader brings: cheaper kinds more often (a cabinet rarely), any of its property values, a vessel
  * part full of something, a blister with some pills already gone. What people bring is never quite new.
  */
-export function bring(rand: () => number = Math.random): Goods {
+export function bring(rand: () => number = Math.random, lean: (kind: string) => number = () => 1): Goods {
   const pool = Object.entries(KINDS).filter(([, k]) => k.price)
-  let r = rand() * pool.reduce((n, [, k]) => n + 1 / k.price!, 0)
-  const [kind, k] = pool.find(([, k]) => (r -= 1 / k.price!) <= 0) ?? pool[0]
+  const wt = ([n, k]: [string, (typeof pool)[number][1]]) => lean(n) / k.price!
+  let r = rand() * pool.reduce((n, e) => n + wt(e), 0)
+  const [kind, k] = pool.find(e => (r -= wt(e)) <= 0) ?? pool[0]
   const g: Goods = { kind }
   const props = Object.entries(k.props ?? {})
   // ponytail: a property that is a state, not what the thing is (a machine's power), is left at its default; a list of one for now
@@ -88,7 +99,7 @@ export interface Offer { id: number; tags: string[]; worth: number }
  * are worth (`theirs`) decide it: `done` if it goes through, `take` what they take off the inside counter, `pay` what
  * changes hands (positive to you), `met` which wants it covers, `say` their answer. A buyer takes what has a tag they still
  * want and pays over its worth, if their budget runs to it; a seller wants their price; a trader takes what they want if it
- * is worth most of what they brought, and no money moves. Nobody leaves: they stay until sent away.
+ * is worth most of what they brought, and the difference is paid in cash. Nobody leaves: they stay until sent away.
  */
 export function deal(c: Customer, offered: Offer[], cash: number, theirs: number): { done: boolean; take: number[]; pay: number; met: string[]; say: string } {
   const wants = c.role === 'buyer' ? stillWants(c) : c.wants
@@ -109,8 +120,12 @@ export function deal(c: Customer, offered: Offer[], cash: number, theirs: number
   if (!take.length) return no('None of this is what I came for.')
   const missing = wants.filter(w => !met.includes(w)).map(t => TAGS[t]?.say ?? t)
   if (c.role === 'trader') {
-    if (value < theirs * 0.8) return no(`That's not worth what I brought.${missing.length ? ` And I still want ${list(missing)}.` : ''}`)
-    return { done: true, take: take.map(o => o.id), pay: 0, met, say: 'Fair trade.' }
+    // at worth, with some slack; the difference is settled in cash either way (positive: they pay you), so a near miss is never a dead end
+    const short = Math.ceil(theirs * (1 - (c.slack ?? 0.2)) - value)
+    if (short > 0) return no(`That's not worth what I brought. Add about ${short}$ more.${missing.length ? ` And I still want ${list(missing)}.` : ''}`)
+    const pay = Math.round(value - theirs)
+    if (pay < 0 && cash < -pay) return no(`Close, but you'd owe me ${-pay}$ and you haven't got it.`)
+    return { done: true, take: take.map(o => o.id), pay, met, say: pay > 0 ? `Fair trade, and ${pay}$ for the difference.` : pay < 0 ? `Close enough. You owe me ${-pay}$.` : 'Fair trade.' }
   }
   const pay = priceFor(c, value)
   if (c.budget !== null && pay > c.budget) return no(`That's ${pay}$. I've only got ${c.budget}$.`)
