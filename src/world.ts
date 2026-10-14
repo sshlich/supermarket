@@ -137,6 +137,8 @@ export function look(it: Item): { name: string; desc?: string; tags: string[]; p
   if (it.fill) out.tags.push(...LIQUIDS[it.fill.liquid]?.tags ?? [])
   return out
 }
+/** A thing's colour swatch (menu rows, window headers): its kind's colour, or what its properties turn that colour into. */
+export const swatch = (it: Item) => { const c = KINDS[it.kind].color; return look(it).colors[c.toLowerCase()] ?? c }
 /** What a thing is worth: its own price, its liquid, and everything inside it. */
 export const worth = (s: State, it: Item): number => look(it).price + (it.fill ? (LIQUIDS[it.fill.liquid]?.price ?? 0) * it.fill.amount : 0) + contents(s, it.id).reduce((n, o) => n + worth(s, o), 0)
 

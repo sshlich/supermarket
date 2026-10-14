@@ -2,8 +2,9 @@ import './style.css'
 import { BOOKS } from './books.ts'
 import { arrive, deal, dealt, greeting, open as canDeal, priceFor, stillWants, TAGS, type Customer, type Role } from './customers.ts'
 import { openReader } from './reader.ts'
-import { handle, shop, soundOn, toggleSound } from './sound.ts'
-import { applyDrop, canPour, cellsOf, contents, COUNTERS, dims, fillWith, find, LIQUIDS, look, moveInto, pour, propsOf, START_CASH, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { initMenu, toggleMenu } from './menu.ts'
+import { handle, shop } from './sound.ts'
+import { applyDrop, canPour, cellsOf, contents, COUNTERS, dims, fillWith, find, LIQUIDS, look, moveInto, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -48,11 +49,11 @@ const save = () => { try { localStorage.setItem(SAVE, JSON.stringify(s)) } catch
 function fit() {
   // room for windows beside the field (about six squares each side), and for the counters above it
   const deep = H + Object.values(COUNTERS).reduce((n, c) => n + c.h, 0)
-  cell = Math.floor(Math.max(14, Math.min(40, (innerWidth - 150) / (W + 12), (innerHeight - 190) / deep)))
+  cell = Math.floor(Math.max(14, Math.min(40, (innerWidth - 150) / (W + 12), (innerHeight - 110) / deep)))
   document.documentElement.style.setProperty('--cell', `${cell}px`)
 }
-/** The tray wraps to more rows as kinds are added: after drawing, shrink the squares until all of it (counters to tray) is on screen. */
-function fitTray() {
+/** After drawing, shrink the squares until all of it (counters to the note under the field) is on screen. */
+function fitStage() {
   const stage = app.querySelector('.stage')
   const off = () => { const r = stage!.getBoundingClientRect(); return r.top < 6 || r.bottom > innerHeight - 4 }
   while (stage && cell > 14 && off()) {
@@ -63,8 +64,6 @@ function fitTray() {
 
 // ---------------------------------------------------------------- drawing
 
-/** A thing's colour swatch (tray, window headers): its kind's colour, or what its properties turn that colour into. */
-const swatch = (it: Item) => { const c = KINDS[it.kind].color; return look(it).colors[c.toLowerCase()] ?? c }
 
 let uid = 0
 /**
@@ -118,25 +117,6 @@ function outline(cells: [number, number][]) {
 }
 /** Where an item's squares are on the field. */
 const absCells = (it: Item): [number, number][] => cellsOf(it).map(([cx, cy]) => [it.x + cx, it.y + cy])
-
-/** Category order in the tray; anything else comes after, by name. */
-const CATS = ['food', 'sundries', 'medicine', 'storage']
-/** Buttons to put any kind of thing on the field, for trying new items out: grouped by category, one per value of a kind's first property (an apple, a synthetic apple). */
-function trayHtml() {
-  const kinds = Object.entries(KINDS)
-  const cats = [...new Set(kinds.map(([, k]) => k.cat ?? 'other'))].sort((a, b) => ((CATS.indexOf(a) + 1) || 99) - ((CATS.indexOf(b) + 1) || 99) || a.localeCompare(b))
-  const buttons = (id: string) => {
-    const k = KINDS[id]
-    const [prop, vals] = Object.entries(k.props ?? {})[0] ?? []
-    type Variant = { props: Record<string, string>; label: string; liquid?: string }
-    const variants: Variant[] = prop ? Object.keys(vals).map(v => ({ props: { [prop]: v }, label: look({ id: 0, kind: id, x: 0, y: 0, rot: 0, props: { [prop]: v } }).name + (vals[v].name || v === Object.keys(vals)[0] ? '' : ` · ${v}`) }))
-      : k.holds && !k.liquid ? ['', ...Object.keys(LIQUIDS)].map(l => ({ props: {}, label: `${k.name} · ${l ? LIQUIDS[l].name : 'empty'}`, liquid: l }))
-      : [{ props: {}, label: k.name }]
-    return variants.map(o => `<button data-spawn="${id}" data-props="${esc(JSON.stringify(o.props))}"${o.liquid !== undefined ? ` data-liquid="${o.liquid}"` : ''} style="--c:${o.liquid ? LIQUIDS[o.liquid].color : swatch({ id: 0, kind: id, x: 0, y: 0, rot: 0, props: o.props })}" title="${esc(k.desc ?? '')}"><i></i>${esc(o.label)}</button>`).join('')
-  }
-  const groups = cats.map(c => `<span class="cat">${esc(c)}</span>${kinds.filter(([, k]) => (k.cat ?? 'other') === c).map(([id]) => buttons(id)).join('')}`).join('')
-  return `<div class="tray">${kinds.length ? groups : '<span>put on the field</span><span class="none">no items yet: <a href="/editor.html">make one in the editor</a></span>'}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-sound class="${soundOn ? 'on' : ''}" title="Sounds for handling things and for the shop">sound: ${soundOn ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
-}
 
 /** The two counters above the field: the outside one (what customers bring), then the inside one (what you sell), close together. */
 function countersHtml() {
@@ -211,7 +191,7 @@ function openWindow(it: Item) {
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
-  app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div>${trayHtml()}<div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside>${cashHtml()}</div></div>${windowsHtml()}`
+  app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside>${cashHtml()}</div></div>${windowsHtml()}`
   if (hoverId !== null) showTip()
   else if (hoverCounter && last) { const at = hoverCounter; hoverCounter = null; showCounterTip(at, last.clientX, last.clientY) }
   if (document.hidden) return // background tabs freeze animations on their first frame
@@ -387,7 +367,7 @@ addEventListener('keydown', e => {
     return
   }
   if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'a') { e.preventDefault(); pick(inSpace(s, null).map(o => o.id)) }
-  else if (e.key === 'Escape') pick([])
+  else if (e.key === 'Escape') { if (selected.size) pick([]); else toggleMenu() }
   else if ((e.key === 'Delete' || e.key === 'Backspace') && selected.size) { e.preventDefault(); remove(s, [...selected]); selected = new Set(); changed(new Map()) }
   else if (e.key.toLowerCase() === 's' && !e.metaKey && !e.ctrlKey) toggleStrict()
 })
@@ -708,6 +688,7 @@ function doDeal() {
   vanish(r.take)
   for (const it of got) moveInto(s, it, { at: 'inside' })
   changed(from)
+  saveTalk() // what they brought is yours now: a reload must not let them take it back
   // they stay at the counter until you dismiss them or call the next one
 }
 function say(what: string) {
@@ -888,10 +869,28 @@ app.addEventListener('pointerout', e => {
   if (el && (e.relatedTarget as HTMLElement | null)?.closest?.('.item[data-id]') !== el) hideTip()
 })
 
-addEventListener('resize', () => { fit(); render(new Map()); fitTray(); keepOnScreen() })
+// what the menu's controls do (menu.ts)
+initMenu({
+  strict: () => strict,
+  toggleStrict,
+  spawn(kind, props, liquid) {
+    const it = spawn(s, kind, null, props)
+    if (!it) return false
+    if (liquid !== undefined) fillWith(it, liquid || null)
+    sound(it, 'drop')
+    changed()
+    app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 })
+    return true
+  },
+  addCash(n) { setCash((s.cash ?? 0) + n); shop('coinsIn') },
+  clearField() { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) },
+  newGame() { s = start(); cashShown = s.cash!; selected = new Set(); seq++; talk = blankTalk(talk.open); changed(new Map()); if (talk.open) callNext() },
+})
+
+addEventListener('resize', () => { fit(); render(new Map()); fitStage(); keepOnScreen() })
 fit()
 render(new Map())
-fitTray()
+fitStage()
 keepOnScreen()
 
 app.addEventListener('click', e => {
@@ -902,11 +901,6 @@ app.addEventListener('click', e => {
   if (b.dataset.wopen) { const it = find(s, +b.dataset.wopen); if (it) openWindow(it); return }
   if ('term' in b.dataset) { toggleTerm(); return }
   if (b.dataset.say) { say(b.dataset.say); return }
-  if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn, null, JSON.parse(b.dataset.props || '{}')); if (it && b.dataset.liquid !== undefined) fillWith(it, b.dataset.liquid || null); if (it) { sound(it, 'drop'); changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
-  else if ('strict' in b.dataset) toggleStrict()
-  else if ('sound' in b.dataset) { const on = toggleSound(); b.classList.toggle('on', on); b.textContent = `sound: ${on ? 'on' : 'off'}` }
-  else if ('clear' in b.dataset) { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) }
-  else if ('reset' in b.dataset) { s = start(); cashShown = s.cash!; selected = new Set(); seq++; talk = blankTalk(talk.open); changed(new Map()); if (talk.open) callNext() }
 })
 
 /** Double-click a container to open its insides in a window beside it, or a book to read it. */

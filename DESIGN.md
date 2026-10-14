@@ -17,8 +17,8 @@ notes). The code here started from `12a606f` ("Items step A") with those systems
   neighbour a cell at a time until its actual squares are clear (not whole boxes), so an L slides past another's empty
   corner. A fuzz test drops 300 random shapes and checks every result is a valid layout; a stats run over 2,000 nudges found
   half moved nothing and only 5 moved anything more than 4 cells. The geometry is `src/grid.ts`.
-- The tray under the field puts any kind on it (first free spot, turned if that is the only way it fits), plus strict mode,
-  "clear the field" and "start over". With no kinds it points to the editor.
+- Nothing sits under the field but a line for notes. Spawning things, strict mode, sound and a new game are in the menu
+  (see "Menu and debug" below).
 - The layout is saved in the browser (`field-v3`); `settle` repairs a saved layout when kinds change (unknown kinds go,
   things whose slot is gone go to the field, overlaps get re-placed).
 
@@ -32,7 +32,7 @@ notes). The code here started from `12a606f` ("Items step A") with those systems
 - **Selection.** Sweep a rectangle on empty ground to pick everything it touches (Shift or Cmd/Ctrl adds), Cmd/Ctrl-click
   toggles one, Shift-click toggles on release, `Cmd/Ctrl+A` picks all, `Esc` clears, `Delete` removes the picked. Grabbing
   one of several picked things moves them all, keeping their arrangement (a group cannot be turned).
-- **Strict mode** (`S`, or the button under the field; remembered): a drop is accepted only if every square is free and
+- **Strict mode** (`S`, or in the menu; remembered): a drop is accepted only if every square is free and
   nothing else ever moves. Otherwise it is refused. Hold **Shift** while dragging to do the opposite for that one move: in
   strict mode Shift lets the shuffle-to-fit happen, and outside it Shift makes one move strict.
 - **Feedback while dragging** (from the reference video; no glow, and the held thing stays opaque):
@@ -54,7 +54,7 @@ width of the field and four squares deep, with a brass rim and its name to the l
 - They are places like the field: anything goes on them (containers too), and dragging, shoving, turning, strict mode,
   sweeping and dropping into containers work there the same. An item on one carries `at: 'outside' | 'inside'` (`COUNTERS` in
   `world.ts` holds their sizes). A save keeps them; anything that no longer fits a counter goes to the field.
-- The page shrinks its squares until everything from the outside counter to the tray is on screen.
+- The page shrinks its squares until everything from the outside counter to the note line under the field is on screen.
 
 ## Containers and windows (2026-10-13)
 
@@ -196,7 +196,7 @@ rules of a deal, `main.ts` draws it and moves the things; the terminal's state i
 
 ## Items, the first seed (2026-10-13)
 
-Twelve kinds in three categories plus storage, in `src/kinds.json`; the tray under the field is grouped by category. Each kind
+Twelve kinds in three categories plus storage, in `src/kinds.json`; the debug panel lists them by category. Each kind
 has a `cat` and a `price` (coins); the tooltip shows what a thing is worth (its price plus whatever is inside it).
 
 | Category | Item | Size | Tags | Price |
@@ -245,7 +245,7 @@ Books can be opened and read. Each book is a Markdown file in `src/books/`: copy
 a chapter on a new page, `*words*` are italics. Files whose names start with `_` are left out. `src/books.ts` reads them
 all and makes each one a value of the book kind's `title` property: a book on the field is one particular book, with its
 title as its name, `By <author>. <blurb>` as its description and its cover colour swapped into the sprite's leather (light,
-middle, dark, spine and worn corners are worked out from the one colour). The tray has a button per book, and customers
+middle, dark, spine and worn corners are worked out from the one colour). The debug panel has a button per book, and customers
 bring any of them. Three to start: *On Keeping Water* (a manual), *The Lamplighter* (a short story) and *A Ledger of Small
 Trades* (a shopkeeper's notebook).
 
@@ -267,4 +267,16 @@ pill, food, wrap, cloth, wax, gold; anything else is a plain thing), and each ma
 down and used. Glass clinks and pours in glugs, a book rustles and thuds, the cabinet clanks and its grate rattles, foil
 crinkles, pills tick, the locket's chain jingles. The shop has its own: a bell when a line comes in, coins in and out,
 a dull buzz when a drop is refused, the terminal's keys, the wipe, a customer leaving with their things, a page turning.
-"sound: on/off" under the field (remembered).
+On/off and volume are in the menu (remembered). The rule: quiet, soft and never in the way, but each one recognisable; a
+gentle low-pass on everything keeps the highs from being shrill (glass is a low, round clink, not a ping).
+
+## Menu and debug (2026-10-14)
+
+The bottom of the field is clean: only the note line. `src/menu.ts` holds the rest.
+- **Menu**: the "≡ menu" button in the top left corner, or **Esc** (when nothing is selected; Esc first clears a
+  selection). A small panel over the page: sound effects (on/off and a volume slider), music (none yet), strict handling,
+  the debug panel, and a new game (click twice: it empties the shop). Esc or a click outside closes it.
+- **Debug panel**: a window over the page, moved by its header and left where it was put, opened from the menu. Money
+  (**+100$**), the field (clear it), and every kind of thing to spawn, by category: one row each with its colour, name,
+  size and price, and a button per variant (real or synthetic apple, each pill type and blister, each book, a bottle empty
+  or full of each liquid). New things go on the field, on the first free spot.
