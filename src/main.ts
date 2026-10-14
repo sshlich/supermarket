@@ -3,7 +3,7 @@ import { BOOKS } from './books.ts'
 import { arrive, deal, dealt, greeting, open as canDeal, priceFor, stillWants, TAGS, type Customer, type Role } from './customers.ts'
 import { openReader } from './reader.ts'
 import { initMenu, toggleMenu } from './menu.ts'
-import { handle, shop } from './sound.ts'
+import { handle, handleMany, shop } from './sound.ts'
 import { applyDrop, canPour, cellsOf, contents, COUNTERS, dims, fillWith, find, LIQUIDS, look, moveInto, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
@@ -394,7 +394,7 @@ function begin() {
   if (held.items.length === 1) drag.pours = s.items.filter(o => canPour(held.item, o) > 0)
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
-  sound(held.item, 'lift')
+  sounds(held.items, 'lift')
   paintFloating()
   hideTip()
   document.body.classList.add('dragging')
@@ -740,8 +740,8 @@ function finish(drop: boolean) {
   const a = d.held.item, b = d.pourInto
   const was = b && drop ? { liquid: a.fill!.liquid, a: level(a), b: level(b), n: 0 } : null
   if (was && b) { was.n = pour(a, b); putBack(d.held); sound(a, 'use') }
-  else if (drop && d.plan) { applyDrop(s, d.held, d.plan); sound(a, 'drop') }
-  else { putBack(d.held); if (drop && d.over) shop('bad'); else sound(a, 'drop') }
+  else if (drop && d.plan) { applyDrop(s, d.held, d.plan); sounds(d.held.items, 'drop') }
+  else { putBack(d.held); if (drop && d.over) shop('bad'); else sounds(d.held.items, 'drop') }
   d.el.remove()
   changed(from)
   if (was && b) {
@@ -750,8 +750,9 @@ function finish(drop: boolean) {
     toast(`poured ${was.n} of ${LIQUIDS[was.liquid].name} into the ${look(b).name.toLowerCase()}`)
   }
 }
-/** A thing makes the sound of what it is made of. */
+/** A thing makes the sound of what it is made of; several at once, each material once (see handleMany). */
 const sound = (it: Item, action: 'lift' | 'drop' | 'use') => handle(KINDS[it.kind]?.sound, action)
+const sounds = (items: Item[], action: 'lift' | 'drop') => handleMany(items.map(it => KINDS[it.kind]?.sound), action)
 
 /** A vessel's level moves from where it was to where it is now, in the colour of what was poured. */
 function slosh(it: Item, from: number, liquid: string) {

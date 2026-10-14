@@ -39,20 +39,22 @@ function ac() {
   if (ctx.state === 'suspended') ctx.resume()
   return ctx
 }
+/** While a group sounds (see `handleMany`): how late this part starts and how loud it is, for every tone and noise in it. */
+let shift = 0, damp = 1
 /** A little off every time, so nothing sounds like a machine gun. */
 const vary = (v: number, k = 0.06) => v * (1 + (Math.random() * 2 - 1) * k)
 
 interface Shape { d: number; g: number; a?: number; at?: number; to?: number }
 /** A tone: frequency `f`, gliding to `to`, fading over `d` seconds. */
 function tone(f: number, o: Shape & { type?: OscillatorType }) {
-  const c = ac(), t = c.currentTime + (o.at ?? 0)
+  const c = ac(), t = c.currentTime + (o.at ?? 0) + shift
   const osc = c.createOscillator()
   osc.type = o.type ?? 'sine'
   osc.frequency.setValueAtTime(f, t)
   if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, t + o.d)
   const g = c.createGain()
   g.gain.setValueAtTime(0.0001, t)
-  g.gain.exponentialRampToValueAtTime(o.g, t + (o.a ?? 0.006))
+  g.gain.exponentialRampToValueAtTime(o.g * damp, t + (o.a ?? 0.006))
   g.gain.exponentialRampToValueAtTime(0.0001, t + o.d)
   osc.connect(g).connect(master)
   osc.start(t)
@@ -60,7 +62,7 @@ function tone(f: number, o: Shape & { type?: OscillatorType }) {
 }
 /** Noise through a filter at `f` (sweeping to `to`): rustles, clicks, thuds, crinkles. */
 function noise(f: number, o: Shape & { type?: BiquadFilterType; q?: number }) {
-  const c = ac(), t = c.currentTime + (o.at ?? 0)
+  const c = ac(), t = c.currentTime + (o.at ?? 0) + shift
   const src = c.createBufferSource()
   src.buffer = noiseBuf
   const filter = c.createBiquadFilter()
@@ -70,7 +72,7 @@ function noise(f: number, o: Shape & { type?: BiquadFilterType; q?: number }) {
   filter.Q.value = o.q ?? 1
   const g = c.createGain()
   g.gain.setValueAtTime(0.0001, t)
-  g.gain.exponentialRampToValueAtTime(o.g, t + (o.a ?? 0.004))
+  g.gain.exponentialRampToValueAtTime(o.g * damp, t + (o.a ?? 0.004))
   g.gain.exponentialRampToValueAtTime(0.0001, t + o.d)
   src.connect(filter).connect(g).connect(master)
   src.start(t, Math.random() * 0.5)
@@ -137,6 +139,23 @@ export function handle(material: string | undefined, action: Action) {
   if (!soundOn || !volume) return
   const m = MATERIALS[material ?? 'thing'] ?? MATERIALS.thing
   ;(m[action] ?? MATERIALS.thing[action === 'use' ? 'drop' : action as 'lift' | 'drop'])?.()
+}
+/**
+ * Several things picked up or put down at once. Each material sounds once, however many of it there are, the most common
+ * first; at most three, each a beat after the last and softer, so a bottle, a book and some pills come through as three
+ * clear sounds rather than a mush.
+ */
+export function handleMany(materials: (string | undefined)[], action: Action) {
+  const count = new Map<string, number>()
+  for (const m of materials) count.set(m ?? 'thing', (count.get(m ?? 'thing') ?? 0) + 1)
+  const order = [...count.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([m]) => m)
+  order.forEach((m, i) => {
+    shift = i * 0.045
+    damp = order.length > 1 ? 0.75 - i * 0.12 : 1
+    handle(m, action)
+  })
+  shift = 0
+  damp = 1
 }
 
 /** The shop's own sounds. */

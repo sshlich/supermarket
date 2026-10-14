@@ -262,7 +262,8 @@ shadow that is darkest when it stands upright. While a book is open its keys do 
 ## Sounds (2026-10-14)
 
 All made on the spot with Web Audio in `src/sound.ts`: short tones and filtered noise, a little different every time.
-Things sound like what they are made of: a kind's `sound` in `kinds.json` names its material (glass, paper, metal, foil,
+Things sound like what they are made of (several picked up or put down together: each material once, the most common
+first, at most three, a beat apart and softer, so they stay clear rather than muddy): a kind's `sound` in `kinds.json` names its material (glass, paper, metal, foil,
 pill, food, wrap, cloth, wax, gold; anything else is a plain thing), and each material has a sound for being picked up, put
 down and used. Glass clinks and pours in glugs, a book rustles and thuds, the cabinet clanks and its grate rattles, foil
 crinkles, pills tick, the locket's chain jingles. The shop has its own: a bell when a line comes in, coins in and out,
