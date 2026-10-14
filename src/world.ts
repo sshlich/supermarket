@@ -21,7 +21,8 @@ const isCounter = (c: unknown): c is Counter => typeof c === 'string' && c in CO
  * (for tooltips), private notes, tags (what customers ask for), a category (`cat`) and a price in coins.
  * `props` are what one thing of the kind can be on top of that: each property has values, the first one the default.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>> }
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string }
+/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it. */
 /** What a property's value does to a thing: another name, description or price, more tags, and colours swapped in its sprite (hex to hex; "none" hides whatever had that colour). */
 export interface Effect { name?: string; desc?: string; tags?: string[]; price?: number; colors?: Record<string, string> }
 /**
@@ -36,8 +37,44 @@ export const KINDS: Record<string, Kind> = DATA
 
 /** `rot` is how many quarter turns clockwise it has been turned (0 to 3): 2 is upside down. */
 /** `in` says which container's slot it sits in (its x, y are then inside that slot's grid), `at` which counter it is on; neither means on the field. */
-/** `props` are its property values where they are not the default (`{ origin: 'synthetic' }`). */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter; props?: Record<string, string> }
+/** `props` are its property values where they are not the default (`{ origin: 'synthetic' }`); `fill` is the liquid in a vessel. */
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Counter; props?: Record<string, string>; fill?: Fill }
+export interface Fill { liquid: string; amount: number }
+
+/**
+ * What can be in a vessel. Not things: a vessel holds whole units of one liquid. A liquid gives its vessel its tags (a bottle
+ * of water is a drink) and is worth `price` a unit. `color` and `opacity` are how it looks through clear glass.
+ */
+export interface Liquid { name: string; color: string; opacity: number; tags: string[]; price: number; desc: string }
+export const LIQUIDS: Record<string, Liquid> = {
+  water: { name: 'water', color: '#8fbfd6', opacity: 0.4, tags: ['drink'], price: 1, desc: 'Clean, or near enough.' },
+  wine: { name: 'wine', color: '#6a1a2a', opacity: 0.88, tags: ['drink', 'alcohol'], price: 2, desc: 'Red.' },
+  spirit: { name: 'spirit', color: '#e2ecf2', opacity: 0.32, tags: ['alcohol', 'medicine'], price: 3, desc: 'Clear and strong: to drink, or to clean a wound.' },
+  oil: { name: 'lamp oil', color: '#c99a2e', opacity: 0.82, tags: ['fuel'], price: 2, desc: 'Burns in a lamp or a stove.' },
+}
+
+/** How much of the held vessel's liquid would pour into that one: all of it that fits, if that one is empty or holds the same. 0 if none. */
+export function canPour(from: Item, to: Item): number {
+  const cap = KINDS[to.kind]?.holds ?? 0
+  const have = from.fill?.amount ?? 0
+  if (!have || !cap || from.id === to.id || (to.fill && to.fill.liquid !== from.fill!.liquid)) return 0
+  return Math.min(have, cap - (to.fill?.amount ?? 0))
+}
+/** Pour one vessel into another (see canPour); an emptied vessel holds nothing. How much went. */
+export function pour(from: Item, to: Item): number {
+  const n = canPour(from, to)
+  if (!n) return 0
+  to.fill = { liquid: from.fill!.liquid, amount: (to.fill?.amount ?? 0) + n }
+  from.fill!.amount -= n
+  if (!from.fill!.amount) delete from.fill
+  return n
+}
+/** Fill a vessel to the brim with a liquid, or empty it (null). */
+export function fillWith(it: Item, liquid: string | null) {
+  const cap = KINDS[it.kind]?.holds ?? 0
+  if (cap && liquid && LIQUIDS[liquid]) it.fill = { liquid, amount: cap }
+  else delete it.fill
+}
 /**
  * An open container: a window floating over the page, showing the container's insides. `id` is the container item; `x`, `y`
  * are screen pixels (its top-left); a folded one shows only as a tab in the rack along the top edge.
@@ -95,10 +132,11 @@ export function look(it: Item): { name: string; desc?: string; tags: string[]; p
     if (e.price !== undefined) out.price = e.price
     Object.assign(out.colors, e.colors)
   }
+  if (it.fill) out.tags.push(...LIQUIDS[it.fill.liquid]?.tags ?? [])
   return out
 }
-/** What a thing is worth: its own price and everything inside it. */
-export const worth = (s: State, it: Item): number => look(it).price + contents(s, it.id).reduce((n, o) => n + worth(s, o), 0)
+/** What a thing is worth: its own price, its liquid, and everything inside it. */
+export const worth = (s: State, it: Item): number => look(it).price + (it.fill ? (LIQUIDS[it.fill.liquid]?.price ?? 0) * it.fill.amount : 0) + contents(s, it.id).reduce((n, o) => n + worth(s, o), 0)
 
 // ---------------------------------------------------------------- places: the field, and the insides of containers
 
@@ -296,6 +334,12 @@ function layout(items: Item[], w: number, h: number): { kept: Item[]; lost: Item
   return { kept, lost }
 }
 
+/** A liquid only in a vessel, only one that exists, and no more than the vessel holds. */
+function cleanFill(o: Item): { fill?: Fill } {
+  const cap = KINDS[o.kind]?.holds ?? 0
+  const n = Math.min(cap, Math.floor(Number(o.fill?.amount) || 0))
+  return o.fill && LIQUIDS[o.fill.liquid] && n > 0 ? { fill: { liquid: o.fill.liquid, amount: n } } : {}
+}
 /** Only properties the kind still has, with values it still knows, and none that are the default. */
 function cleanProps(o: Item): { props?: Record<string, string> } {
   const defs = KINDS[o.kind]?.props ?? {}
@@ -309,7 +353,7 @@ function cleanProps(o: Item): { props?: Record<string, string> } {
  */
 export function settle(s: State): State {
   // only what an item still is: no old properties, liquids or machine state (and nothing on a counter that does not exist)
-  const items: Item[] = s.items.filter(o => KINDS[o.kind]).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isCounter(o.at) ? { at: o.at } : {}), ...cleanProps(o) }))
+  const items: Item[] = s.items.filter(o => KINDS[o.kind]).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isCounter(o.at) ? { at: o.at } : {}), ...cleanProps(o), ...cleanFill(o) }))
   const state: State = { items, next: s.next }
   // pass 1: anything in a slot that does not exist, or that its slot now refuses, goes back out to the field
   const evict = (o: Item) => { delete o.in }
@@ -341,7 +385,8 @@ export function settle(s: State): State {
 
 /**
  * Put a new thing of this kind, with these properties, on the first free spot of a place (the field unless told otherwise),
- * turned if that is the only way it fits. Null if there is no room. A container whose slot has `fill` comes full of it.
+ * turned if that is the only way it fits. Null if there is no room. A container whose slot has `fill` comes full of it; a
+ * vessel comes full of its `liquid`.
  */
 export function spawn(s: State, kind: string, space: Space = null, props: Record<string, string> = {}, fill = false): Item | null {
   const { w, h } = spaceSize(s, space)
@@ -353,6 +398,7 @@ export function spawn(s: State, kind: string, space: Space = null, props: Record
   s.next++
   Object.assign(it, { x: spot.x, y: spot.y, rot: spot.rot })
   s.items.push(it)
+  fillWith(it, KINDS[kind].liquid ?? null)
   KINDS[kind].slots?.forEach((sl, slot) => { if (sl.fill && KINDS[sl.fill]) while (spawn(s, sl.fill, { host: it.id, slot }, propsOf(it), true)); })
   return it
 }

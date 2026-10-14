@@ -165,7 +165,7 @@ A `>_ customers` button on the side of the field opens a terminal beside it (`sr
 `main.ts` draws it; the terminal's state is saved apart from the field, as `field-v3-terminal`).
 - One customer at the counter at a time. Opening it with nobody there calls the first. The header shows what they want as
   **text tags** (hover one for its meaning; `TAGS` in `customers.ts`): survival needs (food, drink, alcohol, medicine, light,
-  book, valuable), not how things feel. The screen is the conversation from their side: a
+  fuel, book, valuable), not how things feel. The screen is the conversation from their side: a
   dim "customer N at the counter..." line, then their words typed out a letter at a time.
 - **Controls** under the screen: on the left *dismiss* and *next customer*, on the right a big **SELL**. Sell judges the tags
   of what is on the **inside** counter (containers' contents included): wants that are met light up green and they say how it
@@ -179,21 +179,22 @@ A `>_ customers` button on the side of the field opens a terminal beside it (`sr
 
 ## Items, the first seed (2026-10-13)
 
-Eleven kinds in three categories plus storage, in `src/kinds.json`; the tray under the field is grouped by category. Each kind
+Twelve kinds in three categories plus storage, in `src/kinds.json`; the tray under the field is grouped by category. Each kind
 has a `cat` and a `price` (coins); the tooltip shows what a thing is worth (its price plus whatever is inside it).
 
 | Category | Item | Size | Tags | Price |
 |---|---|---|---|---|
 | food | Apple (property `origin`: real, or synthetic) | 2x2 | food (+ synthetic) | 4 (synthetic 2) |
 | food | Sliced bread | 4x2 | food | 3 |
-| food | Wine | 1x3 | drink, alcohol | 8 |
-| sundries | Candle | 1x2 | light | 2 |
+| food | Wine bottle (dark glass, comes full of wine) | 1x3, holds 4 | from its liquid | 1 + liquid |
+| sundries | Candle (a taper lying down, unlit) | 3x1 | light | 2 |
 | sundries | Book | 2x3 | book | 7 |
 | sundries | Locket | 1x2 | valuable | 15 |
 | medicine | Pill (property `type`: painkiller, antibiotic, sleeping) | 1x1 | medicine | 2 / 5 / 3 |
 | medicine | Blister (property `type`), a container | 2x1, holds 3x2 (six pills) | | 1 + its pills |
-| medicine | Bandage (a roll standing on its end) | 1x2 | medicine | 4 |
+| medicine | Bandage (a short roll standing on its end) | 1x1 | medicine | 4 |
 | medicine | Antiseptic | 1x2 | medicine | 6 |
+| storage | Bottle (clear glass, cork) | 1x3, holds 3 | from its liquid | 1 + liquid |
 | storage | Steel cabinet, a container (front view: roller grate, ring pull) | 3x3, holds 5x8 | | 25 |
 
 - **Properties.** A kind can list `props`: each property has values, the first the default, and each value an `Effect` (another
@@ -208,4 +209,15 @@ has a `cat` and a `price` (coins); the tooltip shows what a thing is worth (its 
 - **Sprites** are drawn by hand as SVG (no icon silhouettes): muted colours, gradients, small imperfections, light from the
   top left, one cell = 32 units. Every gradient id is made unique per thing on the page, since two apples of different
   properties must not share one.
+- **Liquids** (`LIQUIDS` in `world.ts`): water (drink), wine (drink, alcohol), spirit (alcohol, medicine), lamp oil (fuel),
+  each with a colour, how see-through it is, tags and a price a unit. A kind with `holds` is a vessel: an item carries
+  `fill: { liquid, amount }` in whole units, one liquid at a time; `liquid` on a kind makes a new one come full. A vessel takes
+  its liquid's tags (a bottle of water sells as a drink) and is worth its own price plus the liquid. **Pouring:** drag a
+  vessel onto another that is empty or holds the same liquid (they light blue, brighter under the pointer): all that fits
+  goes across, the one in hand goes back where it was, and a note under the field says how much. No mixing.
+- **State-based sprites for vessels.** The game sets `--fill` (0 to 1), `--liquid` and `--liquid-o` on a vessel's sprite.
+  The sprite clips a block of liquid to the inside of the glass and slides it down by how empty it is, with a lit surface on
+  top. The clear bottle shows the liquid plainly; the dark wine bottle shows it darkly, and a light line marks the level.
+  `--fill` is a registered CSS property, so after a pour both bottles' levels glide to their new height. A vessel turned on
+  its side keeps its level drawn along the bottle (the liquid does not settle yet).
 - Selling is unchanged: SELL judges tags (a thing's own and its properties'), and nothing is taken or paid yet.

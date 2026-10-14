@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { accepts, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, look, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
+import { accepts, canPour, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
 import FIXTURE from './test/kinds.json' with { type: 'json' }
 
 // The game ships no items for now, so the tests bring their own kinds and the old starting field.
@@ -345,4 +345,35 @@ console.log('world ok')
   assert.equal(kept.items.find(o => o.id === apple.id)!.props!.origin, 'synthetic')
   assert.equal(kept.items.find(o => o.id === 99)!.props, undefined)
   console.log('props ok')
+}
+
+// Liquids: a vessel comes full of its liquid, pours what fits into one that is empty or holds the same, and carries its tags.
+{
+  Object.assign(KINDS, {
+    winebottle: { name: 'Wine bottle', icon: '', color: '#000', w: 1, h: 3, price: 1, holds: 4, liquid: 'wine' },
+    flask: { name: 'Bottle', icon: '', color: '#000', w: 1, h: 3, price: 1, holds: 3 },
+  })
+  const s: State = { items: [], next: 1, windows: [] }
+  const wine = spawn(s, 'winebottle')!, a = spawn(s, 'flask')!, b = spawn(s, 'flask')!
+  assert.deepEqual(wine.fill, { liquid: 'wine', amount: 4 })
+  assert.equal(a.fill, undefined)
+  assert.ok(look(wine).tags.includes('alcohol') && !look(a).tags.includes('drink'))
+  assert.equal(worth(s, wine), 1 + 4 * LIQUIDS.wine.price)
+  assert.equal(canPour(a, wine), 0) // nothing to pour
+  assert.equal(pour(wine, a), 3) // only three fit
+  assert.deepEqual([wine.fill, a.fill], [{ liquid: 'wine', amount: 1 }, { liquid: 'wine', amount: 3 }])
+  assert.equal(canPour(wine, a), 0) // full
+  fillWith(b, 'water')
+  assert.equal(canPour(b, wine), 0) // no mixing
+  assert.equal(pour(wine, a), 0)
+  assert.equal(pour(a, wine), 3) // back the other way: 1 + 3 = 4
+  assert.equal(a.fill, undefined) // emptied
+  assert.equal(pour(b, a), 3) // an empty one takes any liquid
+  assert.equal(a.fill!.liquid, 'water')
+  // saves keep a fill that makes sense and drop the rest
+  const kept = settle(JSON.parse(JSON.stringify({ ...s, items: [...s.items, { id: 50, kind: 'flask', x: 0, y: 0, rot: 0, fill: { liquid: 'wine', amount: 9 } }, { id: 51, kind: 'flask', x: 2, y: 0, rot: 0, fill: { liquid: 'lava', amount: 1 } }] })))
+  assert.deepEqual(kept.items.find(o => o.id === 50)!.fill, { liquid: 'wine', amount: 3 })
+  assert.equal(kept.items.find(o => o.id === 51)!.fill, undefined)
+  assert.deepEqual(kept.items.find(o => o.id === wine.id)!.fill, { liquid: 'wine', amount: 4 })
+  console.log('liquids ok')
 }

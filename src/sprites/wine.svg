@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 96">
   <defs>
     <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#16291e"/>
-      <stop offset="0.33" stop-color="#2c4a35"/>
-      <stop offset="0.7" stop-color="#1d3326"/>
-      <stop offset="1" stop-color="#101d15"/>
+      <stop offset="0" stop-color="#16291e" stop-opacity="0.72"/>
+      <stop offset="0.33" stop-color="#2c4a35" stop-opacity="0.42"/>
+      <stop offset="0.7" stop-color="#1d3326" stop-opacity="0.52"/>
+      <stop offset="1" stop-color="#101d15" stop-opacity="0.8"/>
     </linearGradient>
     <linearGradient id="foil" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#3a141d"/>
@@ -16,8 +16,20 @@
       <stop offset="0.35" stop-color="#d9cfb2"/>
       <stop offset="1" stop-color="#ada384"/>
     </linearGradient>
+    <clipPath id="inside"><path d="M13.5 15L18.5 15L18.5 30C18.5 35.5 25 37.5 25 44L25 88.5C25 90.5 24 92 22 92L10 92C8 92 7 90.5 7 88.5L7 44C7 37.5 13.5 35.5 13.5 30Z"/></clipPath>
   </defs>
+  <!-- what is in it, seen darkly through the green glass: its level is how full it is (the fill variable, 0 to 1) -->
+  <g clip-path="url(#inside)">
+    <g style="transform: translateY(calc((1 - var(--fill)) * 72px))">
+      <rect x="0" y="23" width="32" height="74" fill="#6a1a2a" style="fill: var(--liquid, #6a1a2a); opacity: var(--liquid-o, 0.88)"/>
+      <ellipse cx="16" cy="23" rx="9" ry="1.3" fill="#ffffff" opacity="0.18" style="opacity: calc(var(--liquid-o, 0.88) * 0.25)"/>
+    </g>
+  </g>
   <path d="M12.5 14L19.5 14L19.5 30C19.5 35 26 37 26 44L26 89C26 91.5 24.5 93 22 93L10 93C7.5 93 6 91.5 6 89L6 44C6 37 12.5 35 12.5 30Z" fill="url(#glass)" stroke="#0b140e" stroke-width="1"/>
+  <!-- the surface of what is in it catches the light, so the level shows even through dark glass -->
+  <g clip-path="url(#inside)">
+    <path d="M6 23.3Q16 24.8 26 23.3" fill="none" stroke="#e8f0e4" stroke-width="0.9" opacity="0.6" style="transform: translateY(calc((1 - var(--fill)) * 72px)); opacity: calc(var(--liquid-o, 0.88) * 0.7)"/>
+  </g>
   <rect x="11.8" y="3" width="8.4" height="18" rx="1.6" fill="url(#foil)" stroke="#24090f" stroke-width="0.8"/>
   <path d="M12 17.5L20 17.5" stroke="#24090f" stroke-width="0.8"/>
   <path d="M13.5 4.5L13.5 16" stroke="#b0606c" stroke-width="1" stroke-opacity="0.5"/>

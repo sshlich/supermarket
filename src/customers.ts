@@ -10,6 +10,7 @@ export const TAGS: Record<string, { label: string; desc: string; say: string }> 
   medicine: { label: 'medicine', desc: 'Pills, dressings, anything that treats.', say: 'medicine' },
   light: { label: 'light', desc: 'Something to see by in the dark.', say: 'a light for the dark' },
   book: { label: 'book', desc: 'Something to read.', say: 'something to read' },
+  fuel: { label: 'fuel', desc: 'Something to burn: for a lamp or a stove.', say: 'fuel for a lamp' },
   valuable: { label: 'valuable', desc: 'Worth something to someone: to keep, or to trade on.', say: 'something of value' },
 }
 

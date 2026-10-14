@@ -1,3 +1,6 @@
+/* a vessel's level, animated when it is poured (see slosh in main.ts) */
+@property --fill { syntax: '<number>'; inherits: true; initial-value: 1; }
+
 :root {
   --cell: 28px;
   --bg: #0c0c0e;
@@ -107,6 +110,8 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .tip .tags { color: #5fb3a8; }
 .tip .prop { color: #d0a24e; }
 .tip .worth { color: #c9b88f; }
+.tip .liquid { display: flex; align-items: center; gap: 6px; color: #cfcbd4; }
+.tip .liquid i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1px #4b3a55; }
 .tip p { margin: 5px 0 0; color: #a9a5b0; }
 .tip .hint { margin-top: 3px; color: #6aa8dc; }
 

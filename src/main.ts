@@ -1,6 +1,6 @@
 import './style.css'
 import { arrive, greeting, judge, TAGS, type Customer } from './customers.ts'
-import { applyDrop, cellsOf, contents, COUNTERS, dims, find, look, propsOf, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { applyDrop, canPour, cellsOf, contents, COUNTERS, dims, fillWith, find, LIQUIDS, look, pour, propsOf, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -68,11 +68,20 @@ function spriteHtml(it: Item) {
   for (const [from, to] of Object.entries(look(it).colors)) svg = svg.replaceAll(new RegExp(from, 'gi'), to) // hex colours: nothing in them is special to a RegExp
   const u = `u${++uid}`
   svg = svg.replace(/id="([^"]+)"/g, `id="$1-${u}"`).replace(/url\(#([^)]+)\)/g, `url(#$1-${u})`).replace(/href="#([^"]+)"/g, `href="#$1-${u}"`)
+  const vars: string[] = []
   const slot = KINDS[it.kind].slots?.[0]
-  if (!slot || !svg.includes('var(--in')) return svg
-  const full = new Set(inSpace(s, { host: it.id, slot: 0 }).flatMap(o => cellsOf(o).map(([x, y]) => (o.y + y) * slot.w + o.x + x)))
-  const empty = Array.from({ length: slot.w * slot.h }, (_, i) => i).filter(i => !full.has(i))
-  return svg.replace('<svg ', `<svg style="${empty.map(i => `--in${i}:0`).join(';')}" `)
+  if (slot && svg.includes('var(--in')) {
+    const full = new Set(inSpace(s, { host: it.id, slot: 0 }).flatMap(o => cellsOf(o).map(([x, y]) => (o.y + y) * slot.w + o.x + x)))
+    for (let i = 0; i < slot.w * slot.h; i++) if (!full.has(i)) vars.push(`--in${i}:0`)
+  }
+  if (KINDS[it.kind].holds) vars.push(...liquidVars(it))
+  return vars.length ? svg.replace('<svg ', `<svg style="${vars.join(';')}" `) : svg
+}
+/** A vessel's sprite reads how full it is (`--fill`, 0 to 1) and what is in it (`--liquid`, `--liquid-o`). */
+const level = (it: Item) => (it.fill?.amount ?? 0) / (KINDS[it.kind].holds || 1)
+function liquidVars(it: Item, liquid = it.fill?.liquid) {
+  const l = liquid ? LIQUIDS[liquid] : undefined
+  return [`--fill:${level(it)}`, `--liquid:${l?.color ?? 'transparent'}`, `--liquid-o:${l?.opacity ?? 0}`]
 }
 
 /** One item: neutral rounded squares over its cells, its sprite on top. */
@@ -111,8 +120,11 @@ function trayHtml() {
   const buttons = (id: string) => {
     const k = KINDS[id]
     const [prop, vals] = Object.entries(k.props ?? {})[0] ?? []
-    const variants = prop ? Object.keys(vals).map(v => ({ props: { [prop]: v }, label: look({ id: 0, kind: id, x: 0, y: 0, rot: 0, props: { [prop]: v } }).name + (vals[v].name || v === Object.keys(vals)[0] ? '' : ` · ${v}`) })) : [{ props: {}, label: k.name }]
-    return variants.map(o => `<button data-spawn="${id}" data-props="${esc(JSON.stringify(o.props))}" style="--c:${swatch({ id: 0, kind: id, x: 0, y: 0, rot: 0, props: o.props })}" title="${esc(k.desc ?? '')}"><i></i>${esc(o.label)}</button>`).join('')
+    type Variant = { props: Record<string, string>; label: string; liquid?: string }
+    const variants: Variant[] = prop ? Object.keys(vals).map(v => ({ props: { [prop]: v }, label: look({ id: 0, kind: id, x: 0, y: 0, rot: 0, props: { [prop]: v } }).name + (vals[v].name || v === Object.keys(vals)[0] ? '' : ` · ${v}`) }))
+      : k.holds && !k.liquid ? ['', ...Object.keys(LIQUIDS)].map(l => ({ props: {}, label: `${k.name} · ${l ? LIQUIDS[l].name : 'empty'}`, liquid: l }))
+      : [{ props: {}, label: k.name }]
+    return variants.map(o => `<button data-spawn="${id}" data-props="${esc(JSON.stringify(o.props))}"${o.liquid !== undefined ? ` data-liquid="${o.liquid}"` : ''} style="--c:${o.liquid ? LIQUIDS[o.liquid].color : swatch({ id: 0, kind: id, x: 0, y: 0, rot: 0, props: o.props })}" title="${esc(k.desc ?? '')}"><i></i>${esc(o.label)}</button>`).join('')
   }
   const groups = cats.map(c => `<span class="cat">${esc(c)}</span>${kinds.filter(([, k]) => (k.cat ?? 'other') === c).map(([id]) => buttons(id)).join('')}`).join('')
   return `<div class="tray">${kinds.length ? groups : '<span>put on the field</span><span class="none">no items yet: <a href="/editor.html">make one in the editor</a></span>'}<span class="grow"></span><button data-strict class="${strict ? 'on' : ''}" title="Strict: things only go where they fit and nothing else moves. Hold Shift while dragging to do the opposite for one move.">strict mode: ${strict ? 'on' : 'off'}</button><button data-clear>clear the field</button><button data-reset>start over</button></div>`
@@ -213,7 +225,8 @@ function changed(from?: Map<number, DOMRect>) {
 
 // ---------------------------------------------------------------- handling
 
-interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; hosts: Item[]; full: Item[]; blocked: Item | null; into: Item | null; space: Space; over: boolean }
+/** `pours` are the vessels the held one would pour into; `pourInto` the one under the pointer now. */
+interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; hosts: Item[]; full: Item[]; blocked: Item | null; into: Item | null; space: Space; over: boolean; pours: Item[]; pourInto: Item | null }
 let press: { id: number; x: number; y: number; gx: number; gy: number; toggle: boolean; wasGroup: boolean } | null = null
 let drag: Drag | null = null
 let last: PointerEvent | null = null
@@ -382,8 +395,9 @@ function begin() {
   if (!held) { press = null; return }
   const el = document.body.appendChild(document.createElement('div'))
   el.className = 'floating'
-  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', hosts: [], full: [], blocked: null, into: null, space: null, over: false }
+  drag = { held, el, gx: press!.gx, gy: press!.gy, rot: held.item.rot, plan: null, key: '', hosts: [], full: [], blocked: null, into: null, space: null, over: false, pours: [], pourInto: null }
   for (const h of hostsFor(s, held.items)) (intoHost(s, held, h.id) ? drag.hosts : drag.full).push(h)
+  if (held.items.length === 1) drag.pours = s.items.filter(o => canPour(held.item, o) > 0)
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
   paintFloating()
@@ -432,10 +446,11 @@ function move(e: PointerEvent) {
   const y = Math.round((e.clientY - d.gy - r.top) / cell)
   const px = Math.floor((e.clientX - r.left) / cell), py = Math.floor((e.clientY - r.top) / cell)
   const on = (t: Item) => sameSpace(spaceOf(t), sp) && cellsOf(t).some(([cx, cy]) => t.x + cx === px && t.y + cy === py)
-  const host = d.hosts.find(on) ?? null // dropped onto a container: goes inside it
+  const pourInto = d.pours.find(on) ?? null // a vessel dropped onto another pours into it, and goes back where it was
+  const host = pourInto ? null : d.hosts.find(on) ?? null // dropped onto a container: goes inside it
   // over a container that would take it but is full: refused, and nothing gets shoved (one that never takes it is just another thing to rearrange)
-  const blocked = host ? null : d.full.find(on) ?? null
-  const key = `${spaceKey(sp)}:${x}:${y}:${d.rot}:${strictNow()}:${host?.id ?? ''}:${blocked?.id ?? ''}`
+  const blocked = host || pourInto ? null : d.full.find(on) ?? null
+  const key = `${spaceKey(sp)}:${x}:${y}:${d.rot}:${strictNow()}:${host?.id ?? ''}:${blocked?.id ?? ''}:${pourInto?.id ?? ''}`
   if (key === d.key) return
   d.key = key
   d.over = true
@@ -443,7 +458,8 @@ function move(e: PointerEvent) {
   d.plan = host ? intoHost(s, d.held, host.id) : null
   d.into = d.plan ? host : null
   d.blocked = blocked
-  if (!d.plan && !blocked) d.plan = planDrop(s, d.held, sp, x, y, d.rot, strictNow())
+  d.pourInto = pourInto
+  if (!d.plan && !blocked && !pourInto) d.plan = planDrop(s, d.held, sp, x, y, d.rot, strictNow())
   paintGhosts(x, y)
 }
 
@@ -478,7 +494,8 @@ function paintGhosts(x: number, y: number) {
   const d = drag!
   const p = d.plan
   const a = d.held.item
-  const out: Light[] = d.hosts.map(h => ({ sp: spaceOf(h), cells: absCells(h), kind: d.into?.id === h.id ? 'usenow' : 'use' }))
+  const out: Light[] = [...d.hosts, ...d.pours].map(h => ({ sp: spaceOf(h), cells: absCells(h), kind: d.into?.id === h.id || d.pourInto?.id === h.id ? 'usenow' : 'use' }))
+  if (d.pourInto) { light(out); return }
   if (d.blocked) { light([...out, { sp: spaceOf(d.blocked), cells: absCells(d.blocked), kind: 'bad' }]); return }
   if (!p) {
     // refused: red where each thing would go
@@ -622,10 +639,24 @@ function finish(drop: boolean) {
   clearGhosts()
   const from = rects()
   d.el.querySelectorAll<HTMLElement>('.item').forEach((el, i) => from.set(d.held.items[i].id, el.getBoundingClientRect()))
-  if (drop && d.plan) applyDrop(s, d.held, d.plan)
+  const a = d.held.item, b = d.pourInto
+  const was = b && drop ? { liquid: a.fill!.liquid, a: level(a), b: level(b), n: 0 } : null
+  if (was && b) { was.n = pour(a, b); putBack(d.held) }
+  else if (drop && d.plan) applyDrop(s, d.held, d.plan)
   else putBack(d.held)
   d.el.remove()
   changed(from)
+  if (was && b) {
+    slosh(a, was.a, was.liquid)
+    slosh(b, was.b, was.liquid)
+    toast(`poured ${was.n} of ${LIQUIDS[was.liquid].name} into the ${look(b).name.toLowerCase()}`)
+  }
+}
+/** A vessel's level moves from where it was to where it is now, in the colour of what was poured. */
+function slosh(it: Item, from: number, liquid: string) {
+  const svg = app.querySelector<SVGElement>(`.item[data-id="${it.id}"] .art svg`)
+  const [, colour, opacity] = liquidVars(it, liquid).map(v => v.split(':')[1])
+  svg?.animate([{ '--fill': String(from), '--liquid': colour, '--liquid-o': opacity }, { '--fill': String(level(it)), '--liquid': colour, '--liquid-o': opacity }], { duration: 700, easing: 'cubic-bezier(.4, 0, .3, 1)' })
 }
 
 // ---------------------------------------------------------------- tooltip
@@ -642,12 +673,15 @@ function tipHtml(it: Item) {
   const rows = [`<b>${esc(l.name)}</b>`]
   const odd = Object.entries(propsOf(it)).filter(([p, v]) => !k.props![p][v].name && v !== Object.keys(k.props![p])[0]).map(([, v]) => v)
   if (odd.length) rows.push(`<div class="prop">${esc(odd.join(', '))}</div>`)
+  const cap = k.holds
+  if (cap) { const f = it.fill, liq = f && LIQUIDS[f.liquid]; rows.push(`<div class="liquid">${liq ? `<i style="background:${liq.color}"></i>${esc(liq.name)}, ${f.amount} of ${cap}` : `empty (holds ${cap})`}</div>`) }
   const tags = l.tags.filter(t => t !== 'vessel' && !odd.includes(t))
   if (tags.length) rows.push(`<div class="tags">[${esc(tags.join(', '))}]</div>`)
   const value = worth(s, it)
   if (value) rows.push(`<div class="worth">worth ${value}${value !== l.price ? ` (${l.price} + what is inside)` : ''}</div>`)
   if (l.desc) rows.push(`<p>${esc(l.desc)}</p>`)
   if (isContainer(it.kind)) rows.push(`<div class="hint">double-click to open</div>`)
+  if (it.fill) rows.push(`<div class="hint">drop it on another bottle to pour</div>`)
   return rows.join('')
 }
 /** Show the tooltip beside the hovered item (to its right, or its left if there is no room), kept on screen. */
@@ -697,7 +731,7 @@ app.addEventListener('click', e => {
   if (b.dataset.wopen) { const it = find(s, +b.dataset.wopen); if (it) openWindow(it); return }
   if ('term' in b.dataset) { toggleTerm(); return }
   if (b.dataset.say) { say(b.dataset.say); return }
-  if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn, null, JSON.parse(b.dataset.props || '{}')); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
+  if (b.dataset.spawn) { const it = spawn(s, b.dataset.spawn, null, JSON.parse(b.dataset.props || '{}')); if (it && b.dataset.liquid !== undefined) fillWith(it, b.dataset.liquid || null); if (it) { changed(); app.querySelector(`.item[data-id="${it.id}"]`)?.animate([{ opacity: 0, transform: 'scale(.6)' }, { opacity: 1, transform: 'none' }], { duration: 180 }) } else b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 }) }
   else if ('strict' in b.dataset) toggleStrict()
   else if ('clear' in b.dataset) { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) }
   else if ('reset' in b.dataset) { s = start(); selected = new Set(); seq++; talk = blankTalk(talk.open); changed(new Map()); if (talk.open) callNext() }
