@@ -21,8 +21,8 @@ const isCounter = (c: unknown): c is Counter => typeof c === 'string' && c in CO
  * (for tooltips), private notes, tags (what customers ask for), a category (`cat`) and a price in coins.
  * `props` are what one thing of the kind can be on top of that: each property has values, the first one the default.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string }
-/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it. */
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; read?: boolean }
+/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `read`: it opens as a book (see books.ts). */
 /** What a property's value does to a thing: another name, description or price, more tags, and colours swapped in its sprite (hex to hex; "none" hides whatever had that colour). */
 export interface Effect { name?: string; desc?: string; tags?: string[]; price?: number; colors?: Record<string, string> }
 /**
@@ -383,6 +383,16 @@ export function settle(s: State): State {
   // windows of containers that are gone (or no longer containers) close; old saves' docked panels are not carried over
   const windows = (s.windows ?? []).filter(w => ids.has(w.id) && isContainer(out.find(o => o.id === w.id)!.kind)).slice(-MAX_WINDOWS)
   return { items: out, next: s.next, windows, cash: Math.max(0, Math.round(Number(s.cash ?? START_CASH)) || 0) }
+}
+
+/** Move a thing (and whatever is inside it) to the first free spot of a place, turned if that is the only way it fits. False if there is no room. */
+export function moveInto(s: State, it: Item, space: Space): boolean {
+  const { w, h } = spaceSize(s, space)
+  const spot = firstFree(w, h, inSpace(s, space).filter(o => o.id !== it.id).map(boxOf), shapeOf(it.kind))
+  if (!spot || !accepts(s, it, space)) return false
+  Object.assign(it, { x: spot.x, y: spot.y, rot: spot.rot })
+  setIn(it, space)
+  return true
 }
 
 /**

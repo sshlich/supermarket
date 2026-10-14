@@ -173,9 +173,9 @@ rules of a deal, `main.ts` draws it and moves the things; the terminal's state i
     take everything on the inside counter with a tag they want (a container counts its contents) and pay its worth times
     their rate (1.2 to 1.6), even if some wants are left; nothing they want there, no sale.
   - a **seller** unloads one to three things on the outside counter and asks for the lot (worth times 0.5 to 0.9).
-    **BUY**: if you have the money, it is yours.
+    **BUY**: if you have the money, it is yours, and it slides across to the inside counter (whatever fits there).
   - a **trader** unloads things and wants tags. **SWAP**: they take what they want from the inside counter if it is worth
-    at least 80% of what they brought, and no money moves.
+    at least 80% of what they brought, and no money moves; what they brought slides across to the inside counter.
 - **What they bring is never quite new**: cheaper kinds more often (a cabinet rarely), any property (synthetic apples, any
   pill), vessels part full of any liquid, blisters with pills already gone. Their things stay theirs until a deal (the
   tooltip says so, and they cannot be offered back to them); dismissed or sent off with *next*, they take them back from
@@ -228,3 +228,22 @@ has a `cat` and a `price` (coins); the tooltip shows what a thing is worth (its 
   top. The clear bottle shows the liquid plainly; the dark wine bottle shows it darkly, and a light line marks the level.
   `--fill` is a registered CSS property, so after a pour both bottles' levels glide to their new height. A vessel turned on
   its side keeps its level drawn along the bottle (the liquid does not settle yet).
+
+## Books (2026-10-14)
+
+Books can be opened and read. Each book is a Markdown file in `src/books/`: copy `_template.md`, give it a `title`,
+`author`, `cover` (a hex colour) and a `blurb` between the `---` lines, then write. Blank lines part paragraphs, `# ` starts
+a chapter on a new page, `*words*` are italics. Files whose names start with `_` are left out. `src/books.ts` reads them
+all and makes each one a value of the book kind's `title` property: a book on the field is one particular book, with its
+title as its name, `By <author>. <blurb>` as its description and its cover colour swapped into the sprite's leather (light,
+middle, dark, spine and worn corners are worked out from the one colour). The tray has a button per book, and customers
+bring any of them. Three to start: *On Keeping Water* (a manual), *The Lamplighter* (a short story) and *A Ledger of Small
+Trades* (a shopkeeper's notebook).
+
+**Double-click a book to read it** (`src/reader.ts`). It opens over the page as a two-page spread on its cover: the
+endpaper (the cover colour, patterned) and a title page first, then the text in a book face (the best serif the system
+has: Iowan Old Style, Palatino, Georgia), justified and hyphenated, with a running head, page numbers, chapter headings in
+small caps and a drop cap at each chapter. The text is cut into pages by measuring as it fills: a paragraph that does not
+fit carries on overleaf without an indent (the cut line is set full width). Click the right page or press → / space to go on, the left page or ← to go back;
+Esc or a click outside closes it. A page turns as a leaf falling over the spine, with its next page on its back and a
+shadow that is darkest when it stands upright. While a book is open its keys do nothing on the field.

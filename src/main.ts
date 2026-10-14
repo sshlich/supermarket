@@ -1,6 +1,8 @@
 import './style.css'
+import { BOOKS } from './books.ts'
 import { arrive, deal, greeting, TAGS, type Customer, type Role } from './customers.ts'
-import { applyDrop, canPour, cellsOf, contents, COUNTERS, dims, fillWith, find, LIQUIDS, look, pour, propsOf, START_CASH, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { openReader } from './reader.ts'
+import { applyDrop, canPour, cellsOf, contents, COUNTERS, dims, fillWith, find, LIQUIDS, look, moveInto, pour, propsOf, START_CASH, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -596,7 +598,7 @@ function renderTerm(o: { fresh?: boolean; type?: boolean } = {}) {
 }
 const typeTime = (text: string) => text.length * 16
 
-/** Things leave the shop: they lift off and fade where they were, and are gone. */
+/** Things leave the shop: they lift off and fade where they were, and are gone (the caller redraws). */
 function vanish(ids: number[]) {
   ids = ids.filter(id => find(s, id))
   if (!ids.length) return
@@ -609,12 +611,11 @@ function vanish(ids: number[]) {
     ghost.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-24px) scale(.9)' }], { duration: 320, easing: 'ease-in' }).onfinish = () => ghost.remove()
   }
   remove(s, ids)
-  changed(new Map())
 }
 /** The customer goes, taking back whatever they brought and you did not deal for, wherever it got to. */
 function leave() {
   const c = talk.customer
-  if (c?.brought.length) vanish(c.brought)
+  if (c?.brought.length) { vanish(c.brought); changed(new Map()) }
 }
 /** The screen is wiped: a scan line sweeps down and the conversation fades behind it, then nobody is at the counter. False if something else happened meanwhile. */
 async function wipe(): Promise<boolean> {
@@ -686,9 +687,14 @@ async function doDeal() {
   talk.log.push({ who: 'you', text: DEAL[c.role].label }, { who: 'them', name: c.name, text: r.say })
   renderTerm({ type: true })
   if (!r.done) return
+  // what they take leaves; what you got slides across from the outside counter to the inside one (what fits)
+  const got = c.brought.map(id => find(s, id)!).filter(it => it.at === 'outside')
   c.brought = []
   if (r.pay) setCash((s.cash ?? 0) + r.pay)
+  const from = rects()
   vanish(r.take)
+  for (const it of got) moveInto(s, it, { at: 'inside' })
+  changed(from)
   await wait(typeTime(r.say) + 1100)
   if (my === seq) await wipe()
 }
@@ -781,6 +787,7 @@ function tipHtml(it: Item) {
   if (l.desc) rows.push(`<p>${esc(l.desc)}</p>`)
   if (talk.customer?.brought.includes(it.id)) rows.push(`<div class="prop">${esc(talk.customer.name)}'s, until you deal</div>`)
   if (isContainer(it.kind)) rows.push(`<div class="hint">double-click to open</div>`)
+  if (k.read) rows.push(`<div class="hint">double-click to read</div>`)
   if (it.fill) rows.push(`<div class="hint">drop it on another bottle to pour</div>`)
   return rows.join('')
 }
@@ -837,9 +844,10 @@ app.addEventListener('click', e => {
   else if ('reset' in b.dataset) { s = start(); cashShown = s.cash!; selected = new Set(); seq++; talk = blankTalk(talk.open); changed(new Map()); if (talk.open) callNext() }
 })
 
-/** Double-click a container to open its insides in a window beside it. */
+/** Double-click a container to open its insides in a window beside it, or a book to read it. */
 app.addEventListener('dblclick', e => {
   const el = (e.target as HTMLElement).closest<HTMLElement>('.item[data-id]')
   const it = el && find(s, +el.dataset.id!)
   if (it && isContainer(it.kind)) openWindow(it)
+  else if (it && KINDS[it.kind].read && BOOKS[propsOf(it).title]) { hideTip(); openReader(BOOKS[propsOf(it).title]) }
 })

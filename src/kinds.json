@@ -77,6 +77,7 @@
     "cat": "sundries",
     "price": 7,
     "tags": ["book"],
+    "read": true,
     "desc": "Leather-bound, the title worn off. Paper is getting rare."
   },
   "locket": {

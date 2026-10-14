@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { accepts, canPour, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
+import { accepts, canPour, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
 import FIXTURE from './test/kinds.json' with { type: 'json' }
 
 // The game ships no items for now, so the tests bring their own kinds and the old starting field.
@@ -376,4 +376,16 @@ console.log('world ok')
   assert.equal(kept.items.find(o => o.id === 51)!.fill, undefined)
   assert.deepEqual(kept.items.find(o => o.id === wine.id)!.fill, { liquid: 'wine', amount: 4 })
   console.log('liquids ok')
+}
+
+// moving a thing to the first free spot of another place, with what is inside it
+{
+  const s: State = { items: [], next: 1, windows: [] }
+  const b = spawn(s, 'blister', { at: 'outside' })!
+  assert.ok(moveInto(s, b, { at: 'inside' }))
+  assert.deepEqual([b.at, b.x, b.y], ['inside', 0, 0])
+  assert.equal(contents(s, b.id).length, 6)
+  const c = spawn(s, 'cabinet', { at: 'outside' })!
+  assert.ok(moveInto(s, c, { at: 'inside' }) && !overlaps(boxOf(b), boxOf(c)))
+  console.log('move ok')
 }
