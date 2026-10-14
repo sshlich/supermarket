@@ -132,11 +132,16 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .term-log .you { color: #5fb3a8; }
 .term-log .note { color: #6b6872; }
 .term-ask { display: flex; gap: 8px; padding: 8px 10px; border-top: 1px solid #2a2230; }
-.ask-side { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.ask-side { display: flex; gap: 6px; }
+.ask-side button { width: 38px; height: 38px; padding: 0; display: grid; place-items: center; }
 .term-ask button { padding: 4px 8px; border-radius: 2px; background: none; border: 1px solid #34343c; color: #e6e3dc; font: inherit; cursor: pointer; }
 .term-ask button:hover:not(:disabled) { border-color: var(--hi); }
+.term-ask .no { border-color: #7a4a44; color: #d4786a; }
+.term-ask .no:hover:not(:disabled) { border-color: #d4786a; background: rgba(212, 120, 106, .15); }
+.term-ask .go { border-color: #3f7a72; color: #5fb3a8; }
+.term-ask .go:hover:not(:disabled) { border-color: #5fb3a8; background: rgba(95, 179, 168, .15); }
 .term-ask button:disabled { opacity: .35; cursor: default; }
-.term-ask .sell { flex: 1.3; border-color: #7a8f4e; color: #b9d27a; font-size: 15px; letter-spacing: .12em; }
+.term-ask .sell { flex: 1; height: 38px; border-color: #7a8f4e; color: #b9d27a; font-size: 15px; letter-spacing: .12em; }
 .term-ask .sell:hover:not(:disabled) { border-color: #b9d27a; background: rgba(127, 176, 105, .15); }
 .term-ask .sell:active:not(:disabled) { background: rgba(127, 176, 105, .3); }
 .term-log .typing span::after { content: '\258C'; margin-left: 1px; animation: blink .6s steps(1) infinite; }

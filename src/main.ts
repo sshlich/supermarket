@@ -603,6 +603,13 @@ const DEAL: Record<Role, { label: string; title: string }> = {
   trader: { label: 'SWAP', title: 'Swap what they want from the inside counter for what they brought' },
 }
 
+const svg = (d: string) => `<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square">${d}</svg>`
+const ICON = {
+  dismiss: svg('<path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/>'), // send away
+  next: svg('<path d="M3 3.5l5 4.5-5 4.5M9 3.5l5 4.5-5 4.5"/>'), // call the next in line
+  door: svg('<path d="M3.5 14V2.5h6V14M2 14h12M7.5 8.2v.1M12 6l2 2-2 2M10 8h4"/>'), // open the door
+}
+
 /** The button on the side of the field and, when it is open, the terminal under it: the conversation, and below it the controls (dismiss and next on the left, the big deal button on the right). */
 function sideHtml(fresh = false) {
   const c = talk.customer
@@ -620,7 +627,7 @@ function sideHtml(fresh = false) {
   const big = c ? DEAL[c.role] : DEAL.buyer
   return `${button}<div class="term"><div class="term-head${fresh ? ' fresh' : ''}">${head}</div>
     <div class="term-screen"><div class="term-log" data-termlog>${lines}</div></div>
-    <div class="term-ask"><div class="ask-side"><button data-say="dismiss"${off} title="Send them away, with whatever they brought">dismiss</button><button data-say="next" title="${c || talk.line.length ? 'Call the next one in line' : 'Open the door: a new line forms'}">${next}</button></div><button class="sell" data-say="deal"${shut} title="${big.title}">${big.label}</button></div></div>`
+    <div class="term-ask"><div class="ask-side"><button class="no" data-say="dismiss"${off} title="Send them away, with whatever they brought" aria-label="dismiss">${ICON.dismiss}</button><button class="go" data-say="next" title="${c || talk.line.length ? 'Call the next one in line' : 'Open the door: a new line forms'}" aria-label="${next}">${c || talk.line.length ? ICON.next : ICON.door}</button></div><button class="sell" data-say="deal"${shut} title="${big.title}">${big.label}</button></div></div>`
 }
 
 let seq = 0 // bumped by every move that changes who is at the counter: a slower one still going notices and gives up
