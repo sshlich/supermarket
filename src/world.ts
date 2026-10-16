@@ -24,8 +24,10 @@ const isPlace = (c: unknown): c is Place => typeof c === 'string' && Object.hasO
  * (for tooltips), private notes, tags (what customers ask for), a category (`cat`) and a price in coins.
  * `props` are what one thing of the kind can be on top of that: each property has values, the first one the default.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; liquids?: string[]; read?: boolean; sound?: string; computer?: boolean; cut?: Cut; cuts?: boolean; ages?: boolean; stack?: Stack; furnace?: boolean; smelt?: Smelt; burns?: number; lights?: boolean }
-/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `liquids`: the only liquids it takes (a lighter: fuel); `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts); `computer`: its window is a screen (see computer.ts); `cut`: a knife cuts pieces off it; `cuts`: it is a knife; `ages`: it ages (cheese, see AGE_DAYS); `furnace`: it smelts (see furnace.ts: its first slot is the crucible, its second the firebox); `smelt`: what it melts into; `burns`: it is fuel, and burns this many seconds; `lights`: it lights a furnace (a match is used up doing it). */
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; liquids?: string[]; read?: boolean; sound?: string; computer?: Machine; cut?: Cut; cuts?: boolean; ages?: boolean; stack?: Stack; furnace?: boolean; smelt?: Smelt; burns?: number; lights?: boolean }
+/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `liquids`: the only liquids it takes (a lighter: fuel); `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts); `computer`: its window is a screen (see computer.ts), and what the machine has; `cut`: a knife cuts pieces off it; `cuts`: it is a knife; `ages`: it ages (cheese, see AGE_DAYS); `furnace`: it smelts (see furnace.ts: its first slot is the crucible, its second the firebox); `smelt`: what it melts into; `burns`: it is fuel, and burns this many seconds; `lights`: it lights a furnace (a match is used up doing it). */
+/** A computer's insides: `memory` (K) that programs run in, a hard disk of `disk` K (its drive C:), a processor of `speed` MHz. */
+export interface Machine { memory: number; disk: number; speed: number }
 /** What smelts into what: `count` of one kind (and the same properties: one metal) melt into one `into` in `secs` seconds of fire. */
 export interface Smelt { into: string; count: number; secs: number }
 /**
@@ -59,9 +61,12 @@ export const KINDS: Record<string, Kind> = DATA
  * `props` are its property values where they are not the default (`{ origin: 'synthetic' }`); `fill` is the liquid in a
  * vessel; `left` how many pieces are left in something cut (all of them when missing); `age` how many days old it is;
  * `seed` what its generated look is drawn from (a slice's fat or holes), when it is not its id; `heat` how far along it is
- * in the fire, 0 to 1 (ore melting, coal burning away; for a furnace, how hot it is).
+ * in the fire, 0 to 1 (ore melting, coal burning away; for a furnace, how hot it is); `drive` what is on a computer's own disk,
+ * `wall` the picture on its desktop (a file's name there).
  */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Place; props?: Record<string, string>; fill?: Fill; left?: number; age?: number; seed?: number; layers?: Layer[]; heat?: number }
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Place; props?: Record<string, string>; fill?: Fill; left?: number; age?: number; seed?: number; layers?: Layer[]; heat?: number; drive?: DriveFile[]; wall?: string }
+/** A file on a computer's own disk (C:): a program (`prog`, by its id in computer.ts), a text (`text`) or a picture (`pic`, its pixels). */
+export interface DriveFile { name: string; prog?: string; text?: string; pic?: string }
 /** One thing laid on a sandwich, bottom first: what it was, its look and its age, so it comes back off as it went on. */
 export interface Layer { kind: string; seed?: number; age?: number }
 /** What a thing's generated look is drawn from. */
@@ -421,6 +426,14 @@ function cleanLayers(o: Item): { kind?: string; layers?: Layer[] } {
     .map(l => ({ kind: l.kind, ...(Number.isFinite(l.seed) ? { seed: Number(l.seed) } : {}), ...(Number(l.age) > 0 ? { age: Number(l.age) } : {}) }))
   return layers.length ? { layers } : { kind: st.on }
 }
+/** A computer's disk: files with a name, each one thing (a program, a text or a picture), and its wallpaper if that file is still there. */
+function cleanDrive(o: Item): { drive?: DriveFile[]; wall?: string } {
+  if (!KINDS[o.kind]?.computer || !Array.isArray(o.drive)) return {}
+  const str = (v: unknown) => typeof v === 'string' ? v : undefined
+  const drive: DriveFile[] = o.drive.filter(f => typeof f?.name === 'string' && f.name.trim()).map((f): DriveFile => ({ name: f.name.trim().toUpperCase().slice(0, 12), ...(str(f.prog) ? { prog: f.prog } : str(f.pic) ? { pic: f.pic } : { text: str(f.text) ?? '' }) }))
+    .filter((f, i, all) => all.findIndex(g => g.name === f.name) === i)
+  return drive.length ? { drive, ...(drive.some(f => f.name === o.wall && f.pic) ? { wall: o.wall } : {}) } : {}
+}
 /** Only properties the kind still has, with values it still knows, and none that are the default. */
 function cleanProps(o: Item): { props?: Record<string, string> } {
   const defs = KINDS[o.kind]?.props ?? {}
@@ -436,7 +449,7 @@ export function settle(s: State): State {
   // only what an item still is: no old properties, liquids or machine state (and nothing on a counter that does not exist)
   // (and each id once: a broken save's duplicates would collide)
   const ids0 = new Set<number>()
-  const items: Item[] = s.items.filter(o => KINDS[o.kind] && Number.isInteger(o.id) && !ids0.has(o.id) && ids0.add(o.id)).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isPlace(o.at) ? { at: o.at } : {}), ...cleanProps(o), ...cleanFill(o), ...cleanCut(o), ...cleanLayers(o) }))
+  const items: Item[] = s.items.filter(o => KINDS[o.kind] && Number.isInteger(o.id) && !ids0.has(o.id) && ids0.add(o.id)).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isPlace(o.at) ? { at: o.at } : {}), ...cleanProps(o), ...cleanFill(o), ...cleanCut(o), ...cleanDrive(o), ...cleanLayers(o) }))
   const next = Math.max(Math.round(Number(s.next)) || 1, ...items.map(o => o.id + 1))
   const state: State = { items, next }
   // pass 1: anything in a slot that does not exist, or that its slot now refuses, goes back out to the field

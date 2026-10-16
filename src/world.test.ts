@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { refill, accepts, canPour, canStack, closed, cut, find, partsOf, stack, unstack, dims, faceSeed, leftOf, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, emptyTrash, sleep, trash, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
+import { type DriveFile, refill, accepts, canPour, canStack, closed, cut, find, partsOf, stack, unstack, dims, faceSeed, leftOf, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, emptyTrash, sleep, trash, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
 import FIXTURE from './test/kinds.json' with { type: 'json' }
 
 // The game ships no items for now, so the tests bring their own kinds and the old starting field.
@@ -545,6 +545,15 @@ console.log('world ok')
   for (let i = 0; i < 4; i++) refill(s, bag, spawn(s, 'breadslice')!)
   assert.equal(leftOf(bag), 4) // the fifth would make it 3 wide, into the apple
   console.log('bread bag ok')
+}
+
+// a computer's own disk is kept with it: files with names (once each), a program, a text or a picture; the wallpaper only while its picture is there
+{
+  const drive = [{ name: 'paint.exe', prog: 'paint' }, { name: 'PIC1.PIC', pic: '33' }, { name: 'NOTE.TXT', text: 'hi' }, { name: 'NOTE.TXT', text: 'again' }, { name: '' }, { name: 'X.TXT' }] as DriveFile[]
+  const t = settle({ items: [{ id: 1, kind: 'computer', x: 0, y: 0, rot: 0, drive, wall: 'PIC1.PIC' }, { id: 2, kind: 'computer', x: 3, y: 0, rot: 0, drive: [{ name: 'A.TXT', text: '' }], wall: 'GONE.PIC' }, { id: 3, kind: 'apple', x: 6, y: 0, rot: 0, drive }], next: 4 })
+  assert.deepEqual(t.items[0].drive, [{ name: 'PAINT.EXE', prog: 'paint' }, { name: 'PIC1.PIC', pic: '33' }, { name: 'NOTE.TXT', text: 'hi' }, { name: 'X.TXT', text: '' }])
+  assert.deepEqual([t.items[0].wall, t.items[1].wall, t.items[2].drive], ['PIC1.PIC', undefined, undefined])
+  console.log('computer disks ok')
 }
 
 // a broken save is mended: a container inside itself, an id twice, a `next` behind the ids; what fits nowhere goes, with what is in it

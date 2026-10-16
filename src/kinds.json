@@ -277,7 +277,11 @@
     "tags": [
       "valuable"
     ],
-    "computer": true,
+    "computer": {
+      "memory": 640,
+      "disk": 2048,
+      "speed": 8
+    },
     "desc": "An all-in-one machine with a curved green screen and a drive for floppy discs. It needs the wall socket to do anything at all.",
     "slots": [
       {

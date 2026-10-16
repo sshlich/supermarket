@@ -1,6 +1,7 @@
 import './style.css'
 import { BOOKS } from './books.ts'
-import { act as screenAct, power as screenPower, prune as pruneScreens, screenHtml } from './computer.ts'
+import { initComputer, power as screenPower, prune as pruneScreens, screenHtml } from './computer.ts'
+import { kb, PIC_SIZE, programFile, PROGRAMS, SYSTEM_DISK, textSize } from './programs.ts'
 import { DISCS } from './discs.ts'
 import { charge, cool, CRUCIBLE, FIREBOX, fuelIn, isFurnace, isLit, light as kindle, progress, stoke } from './furnace.ts'
 import { paintFill } from './fill.ts'
@@ -167,9 +168,9 @@ function discIn(id: number) {
   const d = inSpace(s, { host: id, slot: 0 })[0]
   return d ? DISCS[propsOf(d).content] ?? null : null
 }
-/** How big the screen is drawn: a little over its own size in a window, as big as fits filling the page. */
-// (filling the page, everything grows with it: per unit of scale the machine is about 352 wide and 320 tall with its bezel, base and drive)
-const screenScale = (full?: boolean) => full ? Math.max(1.2, Math.min((innerWidth - 60) / 352, (innerHeight - 80) / 320)) : 1.15
+/** How big the 640x480 screen is drawn: in a window, as big as leaves room for the field (never past its own size); filling the page, as big as fits. */
+// (per unit of scale the machine is about 672 wide and 560 tall with its bezel, base and drive)
+const screenScale = (full?: boolean) => full ? Math.max(1, Math.min((innerWidth - 60) / 672, (innerHeight - 80) / 560)) : Math.max(0.7, Math.min(1, (innerWidth - 420) / 672, (innerHeight - 120) / 560))
 /**
  * A computer's window: the curved glass of a CRT in its beige bezel (the screen is computer.ts's), and under it the power
  * switch, its light, and the disc tray: a one-square slot that takes a floppy, handled like any other place.
@@ -180,7 +181,7 @@ function pcHtml(w: Win, z: number) {
   const tray = KINDS[it.kind].slots?.[0] ?? { w: 2, h: 2 }
   const k = screenScale(w.full) / screenScale(false) // the bezel's switch, light, name and drive grow with the screen
   return `<div class="win pc${w.full ? ' full' : ''}" data-win="${it.id}" style="left:${w.x}px;top:${w.y}px;z-index:${10 + z};--s:${screenScale(w.full).toFixed(3)};--k:${k.toFixed(3)}"><div class="win-head" data-whead style="--c:${swatch(it)}"><i></i><span>${esc(look(it).name)}</span><button data-wfull="${it.id}" title="${w.full ? 'Back to a window' : 'Fill the page'}">${w.full ? '⤡' : '⤢'}</button><button data-wfold="${it.id}" title="Fold: keep just a tab along the top">–</button><button data-wclose="${it.id}" title="Close">✕</button></div>
-    <div class="crt"><div class="glass${on ? ' on' : ''}" data-screen="${it.id}">${screenHtml(it.id, on, discIn(it.id))}</div>
+    <div class="crt"><div class="glass${on ? ' on' : ''}" data-screen="${it.id}">${screenHtml(it.id, on)}</div>
     <div class="crt-base"><button class="power${on ? ' on' : ''}" data-power="${it.id}" title="Power">&#9211;</button><i class="led${on ? ' on' : ''}"></i><span class="brand">WT-2</span>
     <div class="tray"><small>A:</small><div class="grid" data-grid data-space="${it.id}:0" data-w="${tray.w}" data-h="${tray.h}" style="--w:${tray.w};--h:${tray.h};--cell:${Math.round(cell * k)}px">${inSpace(s, { host: it.id, slot: 0 }).map(itemHtml).join('')}</div></div></div></div></div>`
 }
@@ -188,7 +189,7 @@ function pcHtml(w: Win, z: number) {
 function paintScreen(id: number) {
   const el = app.querySelector(`[data-screen="${id}"]`)
   const it = find(s, id)
-  if (el && it) { setClock(el as HTMLElement); el.innerHTML = screenHtml(id, isOn(it), discIn(id)) }
+  if (el && it) keepFocus(() => { setClock(el as HTMLElement); el.innerHTML = screenHtml(id, isOn(it)) })
 }
 /** The power switch: the property changes (the sprite on the field glows or goes dark), and the screen boots or goes black. */
 function pressPower(id: number) {
@@ -198,7 +199,7 @@ function pressPower(id: number) {
   if (on) it.props = { ...it.props, power: 'on' }
   else { delete it.props?.power; if (it.props && !Object.keys(it.props).length) delete it.props }
   shop(on ? 'powerOn' : 'powerOff')
-  screenPower(id, on, discIn(id), () => paintScreen(id), () => shop('key'))
+  screenPower(id, on)
   changed(new Map())
 }
 
@@ -298,11 +299,26 @@ function openWindow(it: Item) {
   save()
 }
 
+/**
+ * Draw something again without losing the field being typed in: whatever has focus and a `data-focus` key gets it back
+ * afterwards, with its caret, selection and scroll (a computer's prompt or notes survive the field being redrawn).
+ */
+function keepFocus(draw: () => void) {
+  const a = document.activeElement as HTMLInputElement | null, key = a?.dataset?.focus
+  const was = key ? { s: a!.selectionStart, e: a!.selectionEnd, top: a!.scrollTop } : null
+  draw()
+  const b = key ? document.querySelector<HTMLInputElement>(`[data-focus="${key}"]`) : null
+  if (!b || !was) return
+  b.focus({ preventScroll: true })
+  if (was.s !== null) b.setSelectionRange(was.s, was.e)
+  b.scrollTop = was.top
+}
+
 /** Redraw everything; things that moved glide from where they were. */
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
   setClock(app)
-  app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside><aside class="lside">${cashHtml()}${dayHtml()}${trashHtml()}</aside></div></div>${windowsHtml()}`
+  keepFocus(() => app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside><aside class="lside">${cashHtml()}${dayHtml()}${trashHtml()}</aside></div></div>${windowsHtml()}`)
   typeOn() // a line being typed carries on in the new terminal
   showToast()
   if (hoverId !== null) showTip()
@@ -834,6 +850,12 @@ function tipHtml(it: Item) {
   if (k.read) rows.push(`<div class="hint">double-click to read</div>`)
   if (k.stack) rows.push(`<div class="hint">${closed(it) ? 'finished' : 'double-click to take the top off'}</div>`)
   if (it.fill) rows.push(`<div class="hint">drop it on another bottle to pour</div>`)
+  if (k.computer) { // what the machine has, and how full its disk is
+    const used = SYSTEM_DISK + (it.drive ?? []).reduce((n, f) => n + (f.prog ? PROGRAMS[f.prog]?.size ?? 0 : f.pic !== undefined ? PIC_SIZE : textSize(f.text ?? '')), 0)
+    rows.push(`<div class="spec">${k.computer.speed} MHz · ${kb(k.computer.memory)} memory · ${kb(k.computer.disk)} disk, ${kb(k.computer.disk - used)} free</div>`)
+  }
+  const disc = k.tags?.includes('disc') ? DISCS[propsOf(it).content] : null
+  if (disc) rows.push(`<div class="spec">${disc.files.map(f => { const p = programFile(f.name); return `${esc(f.name)} ${p ? `${kb(p.size)} · runs in ${p.memory}K, wants ${p.speed} MHz${p.licensed ? ' · licensed' : ''}` : kb(textSize(f.text))}` }).join('<br>')}</div>`)
   return rows.join('')
 }
 /** Show the tooltip beside the hovered item (to its right, or its left if there is no room), kept on screen. */
@@ -886,6 +908,22 @@ initMenu({
   addCash(n) { setCash((s.cash ?? 0) + n); shop('coinsIn') },
   clearField() { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) },
   newGame() { cancelAnimationFrame(cashRaf); s = start(); cashShown = s.cash!; selected = new Set(); restart(); changed(new Map()); reopen() },
+})
+
+// what a computer's screen needs from the page (computer.ts)
+initComputer({
+  state: () => s,
+  disc: discIn,
+  repaint: paintScreen,
+  save,
+  sound: name => shop(name),
+  show(ids) {
+    if (drag) return // the lights are the drag's
+    document.querySelectorAll('.hl').forEach(el => el.remove())
+    if (!ids) return
+    light(ids.map(id => find(s, id)).filter((o): o is Item => !!o).map(o => ({ sp: spaceOf(o), cells: absCells(o), kind: 'usenow' })))
+    document.querySelectorAll('.hl').forEach(el => el.classList.add('hl-find'))
+  },
 })
 
 // what the terminal needs from the page (terminal.ts)
@@ -953,7 +991,6 @@ app.addEventListener('click', e => {
   if (b.dataset.wfull) { const w = winOf(+b.dataset.wfull); if (w) w.full = !w.full; shop('menu'); changed(new Map()); keepOnScreen(); return }
   if (b.dataset.power) { pressPower(+b.dataset.power); return }
   if ('trash' in b.dataset) { toggleTrash(); return }
-  if (b.dataset.pc) { const id = +b.dataset.pc; screenAct(id, b.dataset.act!, discIn(id), () => paintScreen(id), () => shop('seek')); return }
 })
 
 /** Double-click a container to open its insides in a window beside it, or a book to read it. */

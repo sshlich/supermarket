@@ -361,6 +361,39 @@ A first, small version of the computer idea (`IDEAS.md`): the feel, the CRT, the
   (they are cheap, so they come often); a seller never brings a machine switched on.
 - Later (`IDEAS.md`): parts, a case and configuration, screens; more programs; files as things.
 
+## A bigger screen, and programs as things (2026-10-16)
+
+The computer's second step (`IDEAS.md`, "Computers and devices, round two"): the screen grows, and programs become files
+with stats that come on discs.
+- **The screen is 640x480** (it was 320x240), scaled to fit: in a window as big as leaves room for the field (never past its
+  own size), filling the page as big as fits. The boot lists the machine's processor, memory and disk.
+- **A machine has stats** (its kind's `computer`: `memory` K, `disk` K, `speed` MHz; the WT-2 is 640K, 2048K, 8 MHz),
+  shown on hover with how much of its disk is free. The system (WT-DOS) takes 160K of memory and 520K of disk.
+- **Two drives.** A: is the disc in the tray: read only, 1440K. C: is the machine's own disk, kept on the item
+  (`item.drive`: files with a name and a program, a text or a picture), so files go where the machine goes, sold with it.
+- **Programs are files with stats** (`src/programs.ts`): size (K on a disk), memory (K while running), the speed they want,
+  and licensed or not. Four are in the machine itself: **Files** (A: and C:: open, copy to C:, delete, set a picture as
+  wallpaper), **Notepad** (read a text, write and save your own on C:), **Prompt** (DIR, A: and C:, TYPE, COPY, DEL, REN,
+  MEM, VER, CLS, EXIT, a program's or file's name to run or open it; up and down for history) and **System** (memory, C:
+  and A: as bars, what takes what). The rest come on discs, a file named like the program (`# PAINT.EXE`): **Paint** (
+  shareware, 8$: 160x120 in sixteen colours, a pen, a brush, a fill; saves .PIC to C:; any picture can be the desktop's
+  wallpaper), **Stocktake Pro** (licensed, 25$: everything you own on the field and in what is on it, counted and valued;
+  pointing at a line lights those things up on the field) and **Mines** (5$: nine by nine, ten mines). Discs can have a
+  `price`.
+- **Running one** takes its memory; if there is not enough, it says how much it needs and how much is free. It loads from
+  the drive it is on, at that drive's speed (a floppy 200K a second, the hard disk 900K), slower on a machine slower than it
+  wants, with a bar on the taskbar and the floppy whirring; one thing at a time, the rest waiting their turn. **Copying to
+  C:** takes time at the floppy's speed and room on C:; taking the disc out halfway fails it. A **licensed** program starts
+  only with its own disc in A:, so a copy on C: loads faster but is no use without the original (copying it does not make a
+  second one to sell). Shareware runs from C: alone.
+- **The desktop:** icons for A:, C:, the four built in and every program on C:; windows that move by their title bars
+  within the screen, minimise and close; a taskbar with what is running (in the order it was started), what is loading,
+  the memory left and the drive. Alerts are modal. A new window takes the keys; whatever is typed in survives the field
+  being redrawn (`keepFocus` in main.ts).
+- Not yet (`IDEAS.md`): writing to discs (blank media, and what copying costs), devices plugged in (printer, modem), more
+  programs and computers, patches, viruses.
+
+
 ## Shelves that show what is on them, and one clock (2026-10-14)
 
 - **Furniture** (a category): a **disc holder** (2x3, black plastic, 12$) and a **bookshelf** (4x4, wood, 24$). Their
