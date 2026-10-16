@@ -1,0 +1,300 @@
+[
+  {
+    "id": "mat_iron",
+    "name": "Iron",
+    "desc": "Heavy, rust-red, everywhere: bunk frames, ducts, hull ribs, most of what gets bent into a tool.",
+    "state": "solid",
+    "base_value": 1,
+    "unit_item": "it_core_scrap_iron",
+    "inflow": [
+      "haul",
+      "salvage",
+      "seller"
+    ],
+    "outflow": [
+      "export",
+      "tithe",
+      "consumed"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Ore arrives on the ore haul (sys_ore_haul); scrap from the spine. The commonest unit of the loop."
+  },
+  {
+    "id": "mat_copper",
+    "name": "Copper",
+    "desc": "Red wire metal, the cheapest way to carry current and the first thing scavengers strip.",
+    "state": "solid",
+    "base_value": 2,
+    "unit_item": "it_core_scrap_copper",
+    "inflow": [
+      "haul",
+      "salvage",
+      "seller"
+    ],
+    "outflow": [
+      "export",
+      "tithe",
+      "consumed"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Copper ore off the haul, wire tangles and dead boards from the spine."
+  },
+  {
+    "id": "mat_lightmetal",
+    "name": "Light metal",
+    "desc": "Pale alloy for housings, ladders and anything that has to be lifted by one person.",
+    "state": "solid",
+    "base_value": 2,
+    "unit_item": "it_core_scrap_light",
+    "inflow": [
+      "haul",
+      "salvage"
+    ],
+    "outflow": [
+      "export",
+      "tithe",
+      "consumed"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Bauxite off the haul; duct junk and hull offcuts from salvage."
+  },
+  {
+    "id": "mat_noble",
+    "name": "Noble metal",
+    "desc": "Gold-bright flakes that never corrode. Contacts, jewellery, the fillings in better teeth.",
+    "state": "solid",
+    "base_value": 25,
+    "unit_item": "it_core_noble_flake",
+    "inflow": [
+      "salvage",
+      "seller",
+      "company"
+    ],
+    "outflow": [
+      "export",
+      "tithe",
+      "consumed"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Only trace amounts in e-waste; traders bring flakes. Also what the tithe collectors like best."
+  },
+  {
+    "id": "mat_rare",
+    "name": "Rare earths",
+    "desc": "Grey dust that makes magnets, screens and chips possible. There is never enough of it.",
+    "state": "solid",
+    "base_value": 12,
+    "unit_item": "it_core_rare_dust",
+    "inflow": [
+      "salvage",
+      "seller"
+    ],
+    "outflow": [
+      "export",
+      "tithe",
+      "consumed"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Trace amounts in dead appliances and e-waste; the crusher is the only fair way to get it out."
+  },
+  {
+    "id": "mat_lithium",
+    "name": "Lithium",
+    "desc": "White salt that holds a charge. Every cell on the station is built around it.",
+    "state": "solid",
+    "base_value": 6,
+    "unit_item": "it_core_lithium_salt",
+    "inflow": [
+      "crate",
+      "salvage"
+    ],
+    "outflow": [
+      "export",
+      "tithe",
+      "consumed"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Wholesale crates and dead cell husks. A shortage here stalls the power chain."
+  },
+  {
+    "id": "mat_silicate",
+    "name": "Silicate",
+    "desc": "Grit and glass in the making: the stony half of every ore, and what slag is.",
+    "state": "solid",
+    "base_value": 0.2,
+    "unit_item": "it_core_grit",
+    "inflow": [
+      "haul",
+      "salvage"
+    ],
+    "outflow": [
+      "export",
+      "consumed"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Comes in with ore, goes out as slag, rubble or glass. Cheap, bulky, always there."
+  },
+  {
+    "id": "mat_carbon",
+    "name": "Carbon",
+    "desc": "Black dust: filter beds, electrodes, pencil lead, the soot in every duct.",
+    "state": "solid",
+    "base_value": 0.5,
+    "unit_item": "it_core_carbon_dust",
+    "inflow": [
+      "salvage",
+      "crate"
+    ],
+    "outflow": [
+      "export",
+      "consumed"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Spent filters and burnt-out husks are the main supply. Filters eat it back."
+  },
+  {
+    "id": "mat_polymer",
+    "name": "Polymer",
+    "desc": "Grey plastic: casings, pipe, sheet, insulation. The spine runs on it.",
+    "state": "solid",
+    "base_value": 1,
+    "unit_item": "it_core_polymer_flake",
+    "inflow": [
+      "salvage",
+      "crate"
+    ],
+    "outflow": [
+      "export",
+      "tithe",
+      "consumed"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Everything cheap is made of it, so everything cheap comes back as flakes."
+  },
+  {
+    "id": "mat_fibre",
+    "name": "Fibre",
+    "desc": "Lint, cloth and paper pulp: what soft things and flat things are made of.",
+    "state": "solid",
+    "base_value": 1,
+    "unit_item": "it_core_fibre_lint",
+    "inflow": [
+      "salvage",
+      "crate",
+      "seller"
+    ],
+    "outflow": [
+      "export",
+      "consumed"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Rags from the spine, lint from filters and bedding. Boxes are made of it too."
+  },
+  {
+    "id": "mat_biomass",
+    "name": "Biomass",
+    "desc": "Grey growing-stuff: the base of everything edible and half of what is not.",
+    "state": "solid",
+    "base_value": 0.5,
+    "unit_item": "it_core_biomass_paste",
+    "inflow": [
+      "crate",
+      "company"
+    ],
+    "outflow": [
+      "consumed",
+      "export"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Fed to vats, made from sludge by the digester. Rations are mostly this."
+  },
+  {
+    "id": "mat_water",
+    "name": "Water",
+    "desc": "Never quite clean. Ice melts into it, the reclaimers cycle it, bodies take it back.",
+    "state": "liquid",
+    "base_value": 0.4,
+    "unit_item": "it_core_greywater",
+    "inflow": [
+      "haul",
+      "salvage"
+    ],
+    "outflow": [
+      "consumed",
+      "vent"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Comes in as comet ice (sys_ice_haul); leaves by being drunk, or by the vent when it is too foul to save."
+  },
+  {
+    "id": "mat_salts",
+    "name": "Salts",
+    "desc": "Dried residue: table salt, mineral cake, what is left when water is boiled off.",
+    "state": "solid",
+    "base_value": 0.4,
+    "unit_item": "it_core_salt_cake",
+    "inflow": [
+      "salvage",
+      "crate"
+    ],
+    "outflow": [
+      "consumed",
+      "vent"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Precipitates out of reclaimed water and digester runs. Feeds scrubbers and brines."
+  },
+  {
+    "id": "mat_reagent",
+    "name": "Reagent",
+    "desc": "Crude chemical liquor, mixed and uncertain. A chemist can work with it.",
+    "state": "liquid",
+    "base_value": 1.5,
+    "unit_item": "it_core_reagent_dregs",
+    "inflow": [
+      "salvage",
+      "crate",
+      "seller"
+    ],
+    "outflow": [
+      "consumed",
+      "vent"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Dregs from the clinic and the foundry. Medicine starts here."
+  },
+  {
+    "id": "mat_volatiles",
+    "name": "Volatiles",
+    "desc": "Gas held under pressure: oxygen, nitrogen, methane, whatever the ice gave up.",
+    "state": "gas",
+    "base_value": 0.4,
+    "unit_item": "it_core_gas_bladder",
+    "inflow": [
+      "haul",
+      "salvage"
+    ],
+    "outflow": [
+      "consumed",
+      "vent"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Outgassed from comet ice and cracked from sludge. Bladders hold it until it is needed."
+  },
+  {
+    "id": "mat_sludge",
+    "name": "Sludge",
+    "desc": "What is left when nothing else can be made of it. Brown, thick, unavoidable.",
+    "state": "liquid",
+    "base_value": 0,
+    "unit_item": "it_core_sludge",
+    "inflow": [
+      "salvage"
+    ],
+    "outflow": [
+      "vent"
+    ],
+    "recycle_rate": 0.9,
+    "notes": "Waste of every pass through the recycler. The digester can turn it back; otherwise it leaves by the vent port and only there."
+  }
+]

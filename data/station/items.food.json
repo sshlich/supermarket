@@ -1,0 +1,1629 @@
+[
+  {
+    "id": "it_food_ration_bar",
+    "name": "Ration bar",
+    "desc": "Grey paste pressed into a bar. Tastes of nothing. Keeps a body going.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 4,
+    "composition": {
+      "mat_biomass": 2
+    },
+    "tags": [
+      "food",
+      "staple",
+      "ration",
+      "synthetic",
+      "spine_grade"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.5
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2,
+      "deck_dock": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "mods": [
+      "mod_synthetic"
+    ],
+    "notes": "The staple. The vat presses it from four paste, two bars to a run."
+  },
+  {
+    "id": "it_food_sugar",
+    "name": "Sugar",
+    "desc": "White crystals in a twist of foil. Feeds the vat, the still and the galley; children on the spine eat it dry.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 2.5,
+    "composition": {
+      "mat_biomass": 1
+    },
+    "tags": [
+      "food",
+      "sweet",
+      "processed"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.2
+    },
+    "notes": "Feedstock for lux (wine, spirit), med (salves) and life. Sources: vat refining, galley potato pressing."
+  },
+  {
+    "id": "it_food_oil",
+    "name": "Plant oil",
+    "desc": "Pale pressed oil in a plastic flask. For frying, for salves, and for hinges that squeal.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 3,
+    "composition": {
+      "mat_biomass": 1,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "food",
+      "processed",
+      "liquid"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.2
+    },
+    "notes": "Feedstock for kitchen, med salves and lamps. The flask is the polymer."
+  },
+  {
+    "id": "it_food_yeast",
+    "name": "Yeast culture",
+    "desc": "A cloudy grey culture in a stoppered tube. Wakes the bread dough and feeds the still.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 2,
+    "value": 2,
+    "composition": {
+      "mat_biomass": 0.2
+    },
+    "tags": [
+      "food",
+      "culture",
+      "processed"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.05
+    },
+    "notes": "Starter for the vat bakery and dairy discs, and for lux and med fermentation."
+  },
+  {
+    "id": "it_food_apple",
+    "name": "Apple",
+    "desc": "Ring fruit, bruised and speckled. A real one is rare; the vat versions come out perfectly red.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 8,
+    "composition": {
+      "mat_biomass": 0.5,
+      "mat_water": 0.5
+    },
+    "tags": [
+      "food",
+      "fresh",
+      "produce",
+      "ring_grade"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.25
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2
+    },
+    "carried_from": "apple",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "mods": [
+      "mod_real",
+      "mod_synthetic"
+    ],
+    "notes": "Pinned tier 2, but the real apple needs the orchard disc (phase 3); the synthetic vat apple (mod_synthetic) is phase 2."
+  },
+  {
+    "id": "it_food_bread",
+    "name": "Sliced bread",
+    "desc": "A vat loaf in cling film, sliced eight ways. Grey crumb, pale crust, warm only in the galley.",
+    "w": 3,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 8,
+    "composition": {
+      "mat_biomass": 4
+    },
+    "tags": [
+      "food",
+      "staple",
+      "bread"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.8
+    },
+    "carried_from": "bread"
+  },
+  {
+    "id": "it_food_bread_slice",
+    "name": "Slice of bread",
+    "desc": "One slice of vat bread. Lay cheese or salami on it, or eat it plain.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 1,
+    "composition": {
+      "mat_biomass": 0.5
+    },
+    "tags": [
+      "food",
+      "bread"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.1
+    },
+    "carried_from": "breadslice",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_sandwich",
+    "name": "Sandwich",
+    "desc": "Two slices and a slice of salami. Worth more than its makings once someone has put it together.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 4,
+    "composition": {
+      "mat_biomass": 1.5
+    },
+    "tags": [
+      "food",
+      "meal",
+      "snack"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.4
+    },
+    "carried_from": "sandwich",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "2 bread slices + 1 salami slice = 1.5 biomass."
+  },
+  {
+    "id": "it_food_cheese_wheel",
+    "name": "Cheese wheel",
+    "desc": "A pressed wheel of vat cheese in red wax, eight wedges of it. A cellar makes it better.",
+    "w": 4,
+    "h": 3,
+    "tier": 2,
+    "depth": 2,
+    "value": 48,
+    "composition": {
+      "mat_biomass": 8
+    },
+    "tags": [
+      "food",
+      "dairy",
+      "protein",
+      "synthetic"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 2.4
+    },
+    "carried_from": "cheesewheel",
+    "mods": [
+      "mod_aged"
+    ],
+    "notes": "Cut with a knife into eight wedges. The cellar adds mod_aged over nights."
+  },
+  {
+    "id": "it_food_cheese_wedge",
+    "name": "Cheese wedge",
+    "desc": "An eighth of a wheel, six slices. Cut it from the thin end with a knife.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 6,
+    "composition": {
+      "mat_biomass": 1
+    },
+    "tags": [
+      "food",
+      "dairy",
+      "protein"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.3
+    },
+    "carried_from": "cheesewedge",
+    "mods": [
+      "mod_aged"
+    ]
+  },
+  {
+    "id": "it_food_cheese_slice",
+    "name": "Cheese slice",
+    "desc": "One thin slice of cheese. Goes on bread.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 2,
+    "value": 1,
+    "composition": {
+      "mat_biomass": 0.17
+    },
+    "tags": [
+      "food",
+      "dairy",
+      "snack"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.05
+    },
+    "carried_from": "cheeseslice",
+    "notes": "Six to a wedge: 6 x 0.17 = 1.02 biomass (inside mass tolerance)."
+  },
+  {
+    "id": "it_food_salami",
+    "name": "Salami",
+    "desc": "A cured vat salami, tied with string and dusted white. Eight slices; a knife does the rest.",
+    "w": 4,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 16,
+    "composition": {
+      "mat_biomass": 4
+    },
+    "tags": [
+      "food",
+      "meat",
+      "protein",
+      "synthetic"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.8
+    },
+    "carried_from": "salami",
+    "decks": {
+      "deck_works": 2,
+      "deck_mid": 2
+    }
+  },
+  {
+    "id": "it_food_salami_slice",
+    "name": "Salami slice",
+    "desc": "One slice, deep red and flecked with fat. No two are quite alike.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 2,
+    "value": 2,
+    "composition": {
+      "mat_biomass": 0.5
+    },
+    "tags": [
+      "food",
+      "meat",
+      "protein",
+      "snack"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.1
+    },
+    "carried_from": "salamislice"
+  },
+  {
+    "id": "it_food_seed_greens",
+    "name": "Greens seed",
+    "desc": "A paper twist of pale seed, enough for one tray. Comes up in leaf under the lamp.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 1,
+    "composition": {
+      "mat_biomass": 0.2
+    },
+    "tags": [
+      "seed",
+      "raw"
+    ],
+    "market_need": "need_food",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    },
+    "notes": "Hydro harvests return a seed with a chance, so a tray keeps its own stock."
+  },
+  {
+    "id": "it_food_seed_beans",
+    "name": "Bean seed",
+    "desc": "Dry broad beans in a twist of paper. Plant them and more beans come back.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 1,
+    "composition": {
+      "mat_biomass": 0.2
+    },
+    "tags": [
+      "seed",
+      "raw"
+    ],
+    "market_need": "need_food",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_food_seed_potato",
+    "name": "Seed potato",
+    "desc": "Wrinkled sprouting tubers the size of thumbs. Cut and set, they take root in a tray.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 1,
+    "composition": {
+      "mat_biomass": 0.2
+    },
+    "tags": [
+      "seed",
+      "raw"
+    ],
+    "market_need": "need_food",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_food_seed_herbs",
+    "name": "Herb seed",
+    "desc": "Fine black seed in a screw of foil. Parsley, mostly, or something near it.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 1,
+    "value": 2,
+    "composition": {
+      "mat_biomass": 0.2
+    },
+    "tags": [
+      "seed",
+      "raw"
+    ],
+    "market_need": "need_food",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_food_seed_tomato",
+    "name": "Tomato seed",
+    "desc": "Flat yellow seed pressed between two cards. Wants clean water and a good lamp.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 2,
+    "composition": {
+      "mat_biomass": 0.2
+    },
+    "tags": [
+      "seed",
+      "raw"
+    ],
+    "market_need": "need_food",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_2"
+    }
+  },
+  {
+    "id": "it_food_seed_apple",
+    "name": "Apple graft",
+    "desc": "A dwarf apple graft in a wet sleeve, stamped with a ring nursery mark. Nearly unobtainable.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "depth": 3,
+    "value": 10,
+    "composition": {
+      "mat_biomass": 0.3
+    },
+    "tags": [
+      "seed",
+      "raw",
+      "ring_grade"
+    ],
+    "market_need": "need_food",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_3"
+    },
+    "notes": "Ring nursery stock. Stays in the rack: the orchard recipe always returns it."
+  },
+  {
+    "id": "it_food_seed_citrus",
+    "name": "Citrus graft",
+    "desc": "A bare citrus stem in a wet sleeve, with a ring nursery tag wired round it.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "depth": 3,
+    "value": 10,
+    "composition": {
+      "mat_biomass": 0.3
+    },
+    "tags": [
+      "seed",
+      "raw",
+      "ring_grade"
+    ],
+    "market_need": "need_food",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_3"
+    }
+  },
+  {
+    "id": "it_food_seed_berry",
+    "name": "Berry cutting",
+    "desc": "A bundle of cut canes in damp moss. Ring stock; the thorns are real.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "depth": 3,
+    "value": 10,
+    "composition": {
+      "mat_biomass": 0.3
+    },
+    "tags": [
+      "seed",
+      "raw",
+      "ring_grade"
+    ],
+    "market_need": "need_food",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_3"
+    }
+  },
+  {
+    "id": "it_food_greens",
+    "name": "Salad greens",
+    "desc": "Pale leaves grown under a lamp. Limp and bitter, and the nearest thing the spine has to a garden.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 4,
+    "composition": {
+      "mat_biomass": 0.8,
+      "mat_water": 1.5
+    },
+    "tags": [
+      "food",
+      "produce",
+      "fresh"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.3
+    },
+    "decks": {
+      "deck_spine": 2,
+      "deck_mid": 2
+    }
+  },
+  {
+    "id": "it_food_beans",
+    "name": "Broad beans",
+    "desc": "Fat pods from the hydro tray, shelled by hand. Plain protein that grows.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 5,
+    "composition": {
+      "mat_biomass": 1.6,
+      "mat_water": 0.7
+    },
+    "tags": [
+      "food",
+      "produce",
+      "protein"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.5
+    }
+  },
+  {
+    "id": "it_food_potatoes",
+    "name": "Potatoes",
+    "desc": "Knobbly tubers in a mesh sack, still faintly damp. Cook them or press them for sugar.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 3,
+    "composition": {
+      "mat_biomass": 1.4,
+      "mat_water": 0.9
+    },
+    "tags": [
+      "food",
+      "produce",
+      "staple"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.5
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_dock": 2
+    }
+  },
+  {
+    "id": "it_food_herbs",
+    "name": "Herb bunch",
+    "desc": "A tied bunch of green herbs. The smell alone is worth a few credits on the spine.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 12,
+    "composition": {
+      "mat_biomass": 0.7,
+      "mat_water": 1.6
+    },
+    "tags": [
+      "food",
+      "produce",
+      "fresh"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.1
+    },
+    "decks": {
+      "deck_ring": 2,
+      "deck_hub": 2
+    }
+  },
+  {
+    "id": "it_food_tomatoes",
+    "name": "Tomatoes",
+    "desc": "Small hard tomatoes, red on one side. Hydro-grown, so almost real.",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 14,
+    "composition": {
+      "mat_biomass": 1.2,
+      "mat_water": 1.1
+    },
+    "tags": [
+      "food",
+      "produce",
+      "fresh"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.4
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_citrus",
+    "name": "Citrus",
+    "desc": "A yellow fruit with a thick rind and a real scent. The ring sells it by the piece.",
+    "w": 2,
+    "h": 2,
+    "tier": 3,
+    "depth": 3,
+    "value": 22,
+    "composition": {
+      "mat_biomass": 0.6,
+      "mat_water": 0.5
+    },
+    "tags": [
+      "food",
+      "produce",
+      "fresh",
+      "real",
+      "ring_grade"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.3,
+      "need_luxury": 0.2
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2
+    },
+    "mods": [
+      "mod_real"
+    ]
+  },
+  {
+    "id": "it_food_berries",
+    "name": "Berries",
+    "desc": "A handful of dark berries in a paper cone. Ring luxury, dear by the handful.",
+    "w": 2,
+    "h": 1,
+    "tier": 3,
+    "depth": 3,
+    "value": 12,
+    "composition": {
+      "mat_biomass": 0.3,
+      "mat_water": 0.2
+    },
+    "tags": [
+      "food",
+      "produce",
+      "fresh",
+      "real",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_food": 0.1,
+      "need_luxury": 0.3
+    },
+    "decks": {
+      "deck_ring": 3
+    },
+    "mods": [
+      "mod_real"
+    ]
+  },
+  {
+    "id": "it_food_paste_tube",
+    "name": "Paste tube",
+    "desc": "Brown paste in a squeeze tube. Eaten straight from the nozzle on the long shifts.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 3,
+    "composition": {
+      "mat_biomass": 1.5
+    },
+    "tags": [
+      "food",
+      "staple",
+      "synthetic",
+      "spine_grade"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.4
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_dock": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_protein_block",
+    "name": "Protein block",
+    "desc": "A dense salted block of pressed paste. Chewy, grey, and the works canteen's lunch.",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "depth": 1,
+    "value": 6,
+    "composition": {
+      "mat_biomass": 2.5,
+      "mat_salts": 0.5
+    },
+    "tags": [
+      "food",
+      "protein",
+      "staple",
+      "synthetic"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.75
+    },
+    "decks": {
+      "deck_works": 3,
+      "deck_dock": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_crackers",
+    "name": "Crackers",
+    "desc": "A foil pack of dry vat crackers, salted on one side. They keep.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 2,
+    "value": 5,
+    "composition": {
+      "mat_biomass": 1.4,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "food",
+      "snack",
+      "bread",
+      "synthetic"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.4
+    },
+    "decks": {
+      "deck_mid": 2,
+      "deck_spine": 2
+    }
+  },
+  {
+    "id": "it_food_cheese_spread",
+    "name": "Cheese spread",
+    "desc": "Pale cheese paste in a tube. Spread it on bread or squeeze it onto a ration bar.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 5,
+    "composition": {
+      "mat_biomass": 1.5
+    },
+    "tags": [
+      "food",
+      "dairy",
+      "synthetic"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.4
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_sausage",
+    "name": "Sausage",
+    "desc": "Vat sausage in a plastic casing, a chain of four. Fatty, peppery and unmistakeably grey.",
+    "w": 3,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 14,
+    "composition": {
+      "mat_biomass": 3,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "food",
+      "meat",
+      "protein",
+      "synthetic"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.7
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_dock": 3
+    }
+  },
+  {
+    "id": "it_food_terrine",
+    "name": "Terrine",
+    "desc": "Vat meat set with herbs and oil in a mould. Served on the ring in thin slices.",
+    "w": 3,
+    "h": 1,
+    "tier": 3,
+    "depth": 3,
+    "value": 80,
+    "composition": {
+      "mat_biomass": 3.5,
+      "mat_polymer": 0.2,
+      "mat_water": 1.6
+    },
+    "tags": [
+      "food",
+      "meat",
+      "luxury",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_food": 0.8,
+      "need_luxury": 0.4
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2
+    },
+    "notes": "Gourmet vat disc. Herbs bring the water; oil brings the polymer casing."
+  },
+  {
+    "id": "it_food_cheese_herb",
+    "name": "Herb cheese",
+    "desc": "A soft round cheese folded through with fresh herbs. Ring tables only.",
+    "w": 2,
+    "h": 2,
+    "tier": 3,
+    "depth": 3,
+    "value": 50,
+    "composition": {
+      "mat_biomass": 2.2,
+      "mat_water": 1.6
+    },
+    "tags": [
+      "food",
+      "dairy",
+      "luxury",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_food": 0.6,
+      "need_luxury": 0.4
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2
+    },
+    "mods": [
+      "mod_aged"
+    ]
+  },
+  {
+    "id": "it_food_fruit_jelly",
+    "name": "Fruit jelly",
+    "desc": "Berry jelly set in a glass jar, red as a warning light. A ring gift.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "depth": 3,
+    "value": 40,
+    "composition": {
+      "mat_biomass": 1.6,
+      "mat_water": 0.4,
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "food",
+      "sweet",
+      "luxury",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_food": 0.2,
+      "need_luxury": 0.4
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2
+    },
+    "notes": "The jar (silicate 0.5) is the vial it was set in."
+  },
+  {
+    "id": "it_food_porridge",
+    "name": "Porridge pot",
+    "desc": "Warm paste and water stirred smooth in a tin pot. Breakfast on every deck below the ring.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 5,
+    "composition": {
+      "mat_biomass": 2,
+      "mat_water": 1
+    },
+    "tags": [
+      "food",
+      "meal",
+      "staple"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.75
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_fed"
+      ],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_stew",
+    "name": "Hot stew",
+    "desc": "Potatoes and protein in brown broth. The galley's best answer to a long shift.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 18,
+    "composition": {
+      "mat_biomass": 3.9,
+      "mat_salts": 0.5,
+      "mat_water": 0.9
+    },
+    "tags": [
+      "food",
+      "meal"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 1
+    },
+    "decks": {
+      "deck_works": 3,
+      "deck_core": 2,
+      "deck_mid": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_fed"
+      ],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_noodles",
+    "name": "Noodle bowl",
+    "desc": "Paste noodles in stock, with a pinch of salt. Steams for a minute and is gone.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 12,
+    "composition": {
+      "mat_biomass": 2.5,
+      "mat_water": 1,
+      "mat_salts": 0.5
+    },
+    "tags": [
+      "food",
+      "meal"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 1
+    },
+    "decks": {
+      "deck_mid": 3,
+      "deck_dock": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_fed"
+      ],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_dumplings",
+    "name": "Dumpling",
+    "desc": "A fried dumpling stuffed with herbs and paste. Greasy, filling, favoured on the Dock.",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 9,
+    "composition": {
+      "mat_biomass": 1.85,
+      "mat_water": 0.8,
+      "mat_polymer": 0.1
+    },
+    "tags": [
+      "food",
+      "meal",
+      "snack"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.7
+    },
+    "decks": {
+      "deck_dock": 3,
+      "deck_mid": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_fed"
+      ],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_toastie",
+    "name": "Toasted sandwich",
+    "desc": "A sandwich pressed hot on the galley plate. The salami sweats and the bread finally has a crust.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 2,
+    "value": 7,
+    "composition": {
+      "mat_biomass": 1.5
+    },
+    "tags": [
+      "food",
+      "meal",
+      "snack"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.4
+    },
+    "decks": {
+      "deck_mid": 3
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_fed"
+      ],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_stock_cube",
+    "name": "Stock cube",
+    "desc": "A hard grey cube of salt and boiled paste. One dissolves into a pot of broth.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 2,
+    "value": 3,
+    "composition": {
+      "mat_biomass": 0.5,
+      "mat_salts": 0.5
+    },
+    "tags": [
+      "food",
+      "processed"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.1
+    }
+  },
+  {
+    "id": "it_food_ring_dinner",
+    "name": "Ring dinner",
+    "desc": "Terrine, apple and citrus plated for the ring. Real, clean, and priced like it.",
+    "w": 3,
+    "h": 2,
+    "tier": 4,
+    "depth": 3,
+    "value": 200,
+    "composition": {
+      "mat_biomass": 4.5,
+      "mat_water": 2.75,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "food",
+      "meal",
+      "luxury",
+      "real",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_food": 1,
+      "need_luxury": 0.6
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 2,
+          "text": "+2 energy now"
+        }
+      ],
+      "adds": [
+        "stat_fed"
+      ],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "The galley plates it from gourmet vat food and orchard fruit; first reachable in phase 3."
+  },
+  {
+    "id": "it_food_sandwich_cheese",
+    "name": "Cheese sandwich",
+    "desc": "Two slices of vat bread and a slice of cheese. Plain, and good enough.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 4,
+    "composition": {
+      "mat_biomass": 1.17
+    },
+    "tags": [
+      "food",
+      "meal",
+      "snack"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.25
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "2 bread slices (1.0) + 1 cheese slice (0.17) = 1.17 biomass, so it is its own item."
+  },
+  {
+    "id": "it_food_sandwich_double",
+    "name": "Double sandwich",
+    "desc": "Bread, salami and cheese in a stack that will not close. Eat it with both hands.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 7,
+    "composition": {
+      "mat_biomass": 1.67
+    },
+    "tags": [
+      "food",
+      "meal",
+      "snack"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.35
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "decks": {
+      "deck_mid": 3,
+      "deck_works": 2
+    },
+    "notes": "2 bread slices + salami slice + cheese slice = 1.67 biomass."
+  },
+  {
+    "id": "it_food_tin_beans",
+    "name": "Tinned beans",
+    "desc": "Broad beans sealed in a can with a little brine. Nothing on the label but a number.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 1,
+    "value": 7,
+    "composition": {
+      "mat_iron": 0.5,
+      "mat_biomass": 1.6,
+      "mat_water": 0.7
+    },
+    "tags": [
+      "food",
+      "staple",
+      "processed"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.6
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_dock": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_tin_stew",
+    "name": "Tinned stew",
+    "desc": "Stew sealed hot into a tin. Opens with a knife and tastes of the tin.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 24,
+    "composition": {
+      "mat_iron": 0.5,
+      "mat_biomass": 3.9,
+      "mat_salts": 0.5,
+      "mat_water": 0.9
+    },
+    "tags": [
+      "food",
+      "meal",
+      "processed"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 1
+    },
+    "decks": {
+      "deck_dock": 3,
+      "deck_core": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_fed"
+      ],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_tin_apple",
+    "name": "Tinned apple",
+    "desc": "Apple halves in syrup, sealed in a can. The only fruit most of the spine will ever taste.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 1,
+    "value": 9,
+    "composition": {
+      "mat_iron": 0.5,
+      "mat_biomass": 1,
+      "mat_water": 1
+    },
+    "tags": [
+      "food",
+      "fresh",
+      "processed"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.5
+    },
+    "decks": {
+      "deck_spine": 2,
+      "deck_mid": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    }
+  },
+  {
+    "id": "it_food_culture_mat",
+    "name": "Culture mat",
+    "desc": "A dense wet mat grown from sludge in the bioreactor tank. Fibrous, faintly sweet, edible.",
+    "w": 2,
+    "h": 2,
+    "tier": 4,
+    "depth": 3,
+    "value": 40,
+    "composition": {
+      "mat_biomass": 3.7
+    },
+    "tags": [
+      "food",
+      "culture",
+      "protein",
+      "synthetic"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 0.9
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_mid": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Sludge in, food out: the loop closes here. Phase 4."
+  },
+  {
+    "id": "it_food_culture_steak",
+    "name": "Culture steak",
+    "desc": "Cultured protein, grained and seared like meat. The Concern's answer to the ring's table.",
+    "w": 2,
+    "h": 1,
+    "tier": 4,
+    "depth": 3,
+    "value": 120,
+    "composition": {
+      "mat_biomass": 3.7,
+      "mat_water": 0.8,
+      "mat_polymer": 0.1
+    },
+    "tags": [
+      "food",
+      "meal",
+      "culture",
+      "protein"
+    ],
+    "market_need": "need_food",
+    "needs": {
+      "need_food": 1
+    },
+    "decks": {
+      "deck_hub": 3,
+      "deck_ring": 2
+    },
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_fed"
+      ],
+      "clears": [],
+      "consumed": true
+    }
+  }
+]

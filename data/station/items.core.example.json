@@ -1,0 +1,41 @@
+[
+  {
+    "id": "it_core_ore_iron",
+    "name": "Iron ore",
+    "desc": "Red-brown rock off the ore haul, banded with rust. Two lumps make a bar.",
+    "w": 2, "h": 2, "tier": 1, "depth": 0, "value": 1.5,
+    "composition": { "mat_iron": 1, "mat_silicate": 1 },
+    "tags": ["raw", "ore"],
+    "market_need": "need_parts",
+    "inflow": { "channel": "haul", "phase": "phase_1" },
+    "carried_from": "ore",
+    "notes": "Hauled in by sys_ore_haul."
+  },
+  {
+    "id": "it_core_slag",
+    "name": "Slag",
+    "desc": "Glassy grey clinker from the smelter. The kiln can use it.",
+    "w": 1, "h": 1, "tier": 1, "depth": 0, "value": 0.2,
+    "composition": { "mat_silicate": 1 },
+    "tags": ["waste"],
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_core_scrap_iron",
+    "name": "Iron scrap",
+    "desc": "A fist of bent iron offcuts. Unit of iron.",
+    "w": 1, "h": 1, "tier": 1, "depth": 0, "value": 1,
+    "composition": { "mat_iron": 1 },
+    "tags": ["scrap", "unit"],
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_core_sludge",
+    "name": "Sludge",
+    "desc": "A sealed jug of brown slurry. Digest it or vent it.",
+    "w": 1, "h": 2, "tier": 1, "depth": 0, "value": 0,
+    "composition": { "mat_sludge": 1 },
+    "tags": ["waste", "unit"],
+    "market_need": "need_food"
+  }
+]

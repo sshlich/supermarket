@@ -1,0 +1,14 @@
+{
+  "credits": 50,
+  "energy_cap": 7,
+  "phase": "phase_1",
+  "carrier": "ctier_0",
+  "field": { "w": 25, "h": 20 },
+  "dock": { "w": 6, "h": 4 },
+  "things": [
+    { "id": "mach_recycler", "qty": 1 },
+    { "id": "it_core_ore_iron", "qty": 4 }
+  ],
+  "programs": ["prog_files", "prog_notepad", "prog_prompt", "prog_system"],
+  "notes": "Example only. The real start.json is task 9's."
+}

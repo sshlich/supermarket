@@ -1,0 +1,1352 @@
+[
+  {
+    "id": "rcp_lux_pulp_lint",
+    "name": "Pulp lint",
+    "kind": "produce",
+    "machine": "mach_pulper",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_pulp_rags",
+    "name": "Pulp rags",
+    "kind": "produce",
+    "machine": "mach_pulper",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_rags",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "notes": "Two fibre in, four sheets out.",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_press_board",
+    "name": "Press pasteboard",
+    "kind": "produce",
+    "machine": "mach_pulper",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_board",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_spin_yarn",
+    "name": "Spin yarn",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_yarn",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_lux_weave_lint",
+    "name": "Weave lint",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_weave_rags",
+    "name": "Weave rags",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_rags",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_weave_yarn",
+    "name": "Weave yarn",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_yarn",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_twist_wicks",
+    "name": "Twist wicks",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_yarn",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_wick",
+        "qty": 5
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_lux_sew_overalls",
+    "name": "Sew overalls",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": "disc_lux_garments",
+    "inputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_fasteners",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_overalls",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_sew_gloves",
+    "name": "Sew gloves",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": "disc_lux_garments",
+    "inputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 1
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_gloves",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_tailor_ring_coat",
+    "name": "Tailor ring coat",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": "disc_lux_garments",
+    "inputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 4
+      },
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_ring_coat",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 4,
+    "time": "job",
+    "notes": "Worth tailoring only for the Ring; phase 3 in practice.",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_knit_scarf",
+    "name": "Knit scarf",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": "disc_lux_garments",
+    "inputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 1
+      },
+      {
+        "id": "it_lux_yarn",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_scarf",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_stitch_blanket",
+    "name": "Stitch blanket",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": "disc_lux_garments",
+    "inputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_blanket",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_stuff_cushion",
+    "name": "Stuff cushion",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": "disc_lux_garments",
+    "inputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 1
+      },
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_cushion",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_hang_curtain",
+    "name": "Sew curtain",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": "disc_lux_garments",
+    "inputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 2
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_curtain",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_weave_rug",
+    "name": "Weave rug",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": "disc_lux_garments",
+    "inputs": [
+      {
+        "id": "it_core_rags",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_rug",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_unpick_overalls",
+    "name": "Unpick overalls",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_overalls",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_fasteners",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_lux_unpick_blanket",
+    "name": "Unpick blanket",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_blanket",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 3
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_lux_unravel_rug",
+    "name": "Unravel rug",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_rug",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_rags",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_lux_boil_soap",
+    "name": "Boil soap",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_oil",
+        "qty": 1
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_soap",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_mix_fluid",
+    "name": "Mix lighter fluid",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 3
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_lighter_fluid",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.1
+    },
+    "notes": "Volatile: a hot bench can flash.",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_blend_scent",
+    "name": "Blend scent",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_lux_perfumery",
+    "inputs": [
+      {
+        "id": "it_med_ethanol",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 1
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_scent",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 5,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_mix_cosmetic",
+    "name": "Grind cosmetic",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_lux_perfumery",
+    "inputs": [
+      {
+        "id": "it_food_oil",
+        "qty": 1
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_cosmetic",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 5,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_mix_must",
+    "name": "Mix must",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_water",
+        "qty": 6
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_must",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_lux_mix_wash",
+    "name": "Mix sugar wash",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_sugar",
+        "qty": 2
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_wash",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "notes": "Yeast would speed it; the pinned food chain keeps it optional.",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_lux_ferment_wine",
+    "name": "Bottle wine",
+    "kind": "produce",
+    "machine": "mach_still",
+    "disc": "disc_lux_vintner",
+    "inputs": [
+      {
+        "id": "it_lux_must",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_bottle",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_wine",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_distil_spirit",
+    "name": "Distil spirit",
+    "kind": "produce",
+    "machine": "mach_still",
+    "disc": "disc_lux_vintner",
+    "inputs": [
+      {
+        "id": "it_lux_wash",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_bottle",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_spirit",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 4,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.1
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_run_moonshine",
+    "name": "Run moonshine",
+    "kind": "produce",
+    "machine": "mach_still",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_algae",
+        "qty": 3
+      },
+      {
+        "id": "it_fab_bottle",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_moonshine",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.15,
+      "stat_flagged": 0.1
+    },
+    "notes": "No licence needed to run it; the spine does it behind a screen.",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_age_wine",
+    "name": "Age wine",
+    "kind": "modify",
+    "machine": "mach_cellar",
+    "disc": null,
+    "inputs": [],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 3,
+    "target": {
+      "ids": [
+        "it_lux_wine"
+      ]
+    },
+    "mods_add": [
+      "mod_aged"
+    ],
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_age_spirit",
+    "name": "Age spirit",
+    "kind": "modify",
+    "machine": "mach_cellar",
+    "disc": null,
+    "inputs": [],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 4,
+    "target": {
+      "ids": [
+        "it_lux_spirit"
+      ]
+    },
+    "mods_add": [
+      "mod_aged"
+    ],
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_fire_cup",
+    "name": "Fire cups",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_grit",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_cup",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_fire_vase",
+    "name": "Fire vase",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_grit",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_vase",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 4,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_print_book",
+    "name": "Print book",
+    "kind": "produce",
+    "machine": "mach_printer_m",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 3
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_printed_book",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_print_pamphlets",
+    "name": "Print pamphlets",
+    "kind": "produce",
+    "machine": "mach_printer_m",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 4
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_pamphlet",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_print_cards",
+    "name": "Print cards",
+    "kind": "produce",
+    "machine": "mach_printer_m",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_board",
+        "qty": 1
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_cards",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_print_poster",
+    "name": "Print art",
+    "kind": "produce",
+    "machine": "mach_printer_l",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 4
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_print",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 4,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_print_banner",
+    "name": "Print banner",
+    "kind": "produce",
+    "machine": "mach_printer_l",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_cloth",
+        "qty": 2
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_banner",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 4,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_print_sculpture",
+    "name": "Print sculpture",
+    "kind": "produce",
+    "machine": "mach_printer_3d",
+    "disc": "disc_lux_model_art",
+    "inputs": [
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 4
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_sculpture",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_print_ornament",
+    "name": "Print gilt ornament",
+    "kind": "produce",
+    "machine": "mach_printer_3d",
+    "disc": "disc_lux_model_art",
+    "inputs": [
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 2
+      },
+      {
+        "id": "it_core_noble_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_ornament",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_carve_dice",
+    "name": "Carve dice",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_knife"
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_dice",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_lux_set_copper_ring",
+    "name": "Set copper ring",
+    "kind": "produce",
+    "machine": "mach_jeweller",
+    "disc": "disc_lux_jewellery",
+    "inputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_ring_copper",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 5,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_set_signet",
+    "name": "Cast signet",
+    "kind": "produce",
+    "machine": "mach_jeweller",
+    "disc": "disc_lux_jewellery",
+    "inputs": [
+      {
+        "id": "it_core_noble_flake",
+        "qty": 1
+      },
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_signet",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_draw_chain",
+    "name": "Draw chain",
+    "kind": "produce",
+    "machine": "mach_jeweller",
+    "disc": "disc_lux_jewellery",
+    "inputs": [
+      {
+        "id": "it_core_noble_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_chain",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_set_locket",
+    "name": "Set locket",
+    "kind": "produce",
+    "machine": "mach_jeweller",
+    "disc": "disc_lux_jewellery",
+    "inputs": [
+      {
+        "id": "it_core_noble_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_locket",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "notes": "Two lockets from one flake; the old ones are rarer.",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_engrave",
+    "name": "Engrave",
+    "kind": "modify",
+    "machine": "mach_jeweller",
+    "disc": "disc_lux_jewellery",
+    "inputs": [],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "target": {
+      "tags": [
+        "jewellery"
+      ]
+    },
+    "mods_add": [
+      "mod_engraved"
+    ],
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_lux_dip_candles",
+    "name": "Dip candles",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_lux_bp_fire",
+    "inputs": [
+      {
+        "id": "it_food_sugar",
+        "qty": 1
+      },
+      {
+        "id": "it_lux_wick",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_candle",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_flagged": 0.1
+    },
+    "notes": "Sugar stands in for wax.",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_cut_matches",
+    "name": "Cut matches",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_lux_bp_fire",
+    "inputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_match",
+        "qty": 10
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_flagged": 0.1
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_mould_lighters",
+    "name": "Mould lighters",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_lux_bp_fire",
+    "inputs": [
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 3
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_lighter",
+        "qty": 10
+      }
+    ],
+    "energy": 1,
+    "cells": 4,
+    "time": "job",
+    "risks": {
+      "stat_flagged": 0.1
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_press_zippos",
+    "name": "Press zippo cases",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_lux_bp_fire",
+    "inputs": [
+      {
+        "id": "it_fab_housing",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_zippo",
+        "qty": 4
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 5,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.1
+    },
+    "notes": "Housings stripped for their light-metal shells.",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_forge_strikers",
+    "name": "Forge strikers",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_lux_bp_fire",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_striker",
+        "qty": 5
+      }
+    ],
+    "energy": 2,
+    "cells": 5,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_build_lamp",
+    "name": "Build oil lamp",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_lux_bp_fire",
+    "inputs": [
+      {
+        "id": "it_fab_housing",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 1
+      },
+      {
+        "id": "it_lux_wick",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_oil_lamp",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 4,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_lux_fold_matchbox",
+    "name": "Fold matchbox",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_lux_matchbox",
+        "qty": 5
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  }
+]

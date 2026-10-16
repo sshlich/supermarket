@@ -1,0 +1,257 @@
+[
+  {
+    "id": "disc_fab_bp_hardware",
+    "name": "Hardware blueprints",
+    "desc": "Blue-labelled floppy of stamped plans: bolts, rivets, hinges, pipe thread, tins and crates.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 40,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_fabricator",
+      "mach_autofab"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "FOUNDRY FAB-1 HARDWARE\nBOLTS RIVETS HINGES PIPE TINS CRATES"
+  },
+  {
+    "id": "disc_fab_bp_tools",
+    "name": "Hand tool blueprints",
+    "desc": "Floppy with a greasy thumbprint on the label. Knife, wrench, pliers and cutters, forged to size.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 40,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_fabricator",
+      "mach_autofab"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage",
+      "seller"
+    ],
+    "label": "FOUNDRY FAB-2 TOOLS\nKNIFE WRENCH PLIERS CUTTERS"
+  },
+  {
+    "id": "disc_fab_bp_spares",
+    "name": "Spares blueprints",
+    "desc": "Floppy labelled in marker: spare parts, brackets, springs, gears and device housings.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 50,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_fabricator",
+      "mach_autofab"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "FOUNDRY FAB-3 SPARES\nBRACKET SPRING GEAR SPARE HOUSING"
+  },
+  {
+    "id": "disc_fab_bp_precision",
+    "name": "Precision blueprints",
+    "desc": "Memory card of tolerance files: bearings, valves, seals, matched spares and the fine tools.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 3,
+    "value": 220,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_fab_precision",
+      "mach_autofab"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "FAB-P PRECISION\nBEARING VALVE SEAL MATCHED SPARE"
+  },
+  {
+    "id": "disc_fab_model_fittings",
+    "name": "Fitting models",
+    "desc": "Card of printable models: clips, brackets, pipe elbows and device cases.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 3,
+    "value": 180,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_printer_3d"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage",
+      "crate"
+    ],
+    "label": "PRINT MODELS 01\nCLIPS BRACKETS FITTINGS CASES"
+  },
+  {
+    "id": "disc_fab_synth_polymer",
+    "name": "Polymer synthesis",
+    "desc": "Card of chain-growth profiles: carbon and gas into new polymer flake. Warm in the sleeve.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 3,
+    "value": 240,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_synthesiser"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "SYNTH POLYMER P-7\nCARBON + GAS = FLAKE"
+  },
+  {
+    "id": "disc_fab_bp_heavy",
+    "name": "Heavy fab blueprints",
+    "desc": "Card of structural plans in company grey: hull plate, beams, frames. Stamped CONCERN USE.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 4,
+    "value": 900,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_4",
+    "machines": [
+      "mach_autofab"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "CONCERN HEAVY STRUCTURAL\nHULL PLATE BEAM FRAME"
+  },
+  {
+    "id": "disc_fab_refine",
+    "name": "Refinery profiles",
+    "desc": "Licensed card of recovery profiles: rare earths and noble metal from boards, chips and e-waste.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 4,
+    "value": 1100,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "card",
+    "phase": "phase_4",
+    "machines": [
+      "mach_refinery"
+    ],
+    "copyable": false,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "CONCERN REFINE R-2\nRARE + NOBLE RECOVERY"
+  }
+]

@@ -1,0 +1,992 @@
+[
+  {
+    "id": "it_tech_cell_s",
+    "name": "Small cell",
+    "desc": "A thumb-thick cell in a grey sleeve, stamped 10. Runs a hot plate or a printer for a morning.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 6,
+    "composition": {
+      "mat_lithium": 0.2,
+      "mat_iron": 0.3,
+      "mat_reagent": 0.2
+    },
+    "tags": [
+      "power",
+      "cell"
+    ],
+    "depth": 1,
+    "market_need": "need_power",
+    "needs": {
+      "need_power": 0.3
+    },
+    "cell": {
+      "capacity": 10
+    },
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    },
+    "carried_from": "coal",
+    "notes": "Phase 1 fuel: also brought by walk-in sellers (task 10 lists it in sells). Replaces coal; a spent cell is not a separate item, charge is state."
+  },
+  {
+    "id": "it_tech_cell_m",
+    "name": "Cell",
+    "desc": "Ribbed steel case, a charge gauge scratched into the side. Fuels the mid-size machines for a day.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 18,
+    "composition": {
+      "mat_lithium": 0.6,
+      "mat_iron": 0.6,
+      "mat_reagent": 0.5
+    },
+    "tags": [
+      "power",
+      "cell"
+    ],
+    "depth": 1,
+    "market_need": "need_power",
+    "needs": {
+      "need_power": 1
+    },
+    "cell": {
+      "capacity": 30
+    },
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_2"
+    },
+    "notes": "Crate stock until the cell press (phase 3) can make it."
+  },
+  {
+    "id": "it_tech_cell_l",
+    "name": "Heavy cell",
+    "desc": "A forearm of sealed lithium in a light-metal jacket. It runs a press or a mainframe, and weighs like one.",
+    "w": 2,
+    "h": 2,
+    "tier": 3,
+    "value": 60,
+    "composition": {
+      "mat_lithium": 2,
+      "mat_lightmetal": 1,
+      "mat_reagent": 1.5
+    },
+    "tags": [
+      "power",
+      "cell"
+    ],
+    "depth": 1,
+    "market_need": "need_power",
+    "needs": {
+      "need_power": 3
+    },
+    "cell": {
+      "capacity": 100
+    }
+  },
+  {
+    "id": "it_tech_circuit",
+    "name": "Circuit board",
+    "desc": "Green board, hand-soldered, flux still tacky. Every device on the station starts from one.",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "value": 24,
+    "composition": {
+      "mat_copper": 0.3,
+      "mat_rare": 0.1,
+      "mat_polymer": 0.3,
+      "mat_silicate": 0.2
+    },
+    "tags": [
+      "electronic",
+      "component"
+    ],
+    "depth": 2,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_chip",
+    "name": "Chip",
+    "desc": "A processor in a black package, legs bent from the tray. The reason rare earths are worth carrying.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 100,
+    "composition": {
+      "mat_rare": 0.2,
+      "mat_silicate": 0.1,
+      "mat_noble": 0.05
+    },
+    "tags": [
+      "electronic",
+      "component"
+    ],
+    "depth": 3,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_lamp",
+    "name": "Grow lamp",
+    "desc": "Hydro light: a glass tube on a copper base. A tool, and it dims a little every night it burns.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "value": 12,
+    "composition": {
+      "mat_copper": 0.2,
+      "mat_silicate": 0.5,
+      "mat_rare": 0.05
+    },
+    "tags": [
+      "tool",
+      "light",
+      "component"
+    ],
+    "depth": 2,
+    "market_need": "need_parts",
+    "wear": {
+      "uses": 12,
+      "becomes": "it_core_ewaste"
+    },
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    },
+    "notes": "Hydro trays need one from day 1, so it arrives by crate before the fabricator exists."
+  },
+  {
+    "id": "it_tech_motor",
+    "name": "Motor",
+    "desc": "Small electric motor: a copper winding round an iron rotor, and a hum. Fans, belts and loaders turn on it.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 30,
+    "composition": {
+      "mat_copper": 1,
+      "mat_iron": 1
+    },
+    "tags": [
+      "electronic",
+      "component",
+      "machine_part"
+    ],
+    "depth": 2,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_sensor",
+    "name": "Sensor",
+    "desc": "Reads gas, heat or light through a pinhole of glass. Scanners and scrubbers listen to it.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 18,
+    "composition": {
+      "mat_copper": 0.1,
+      "mat_rare": 0.1,
+      "mat_silicate": 0.1
+    },
+    "tags": [
+      "electronic",
+      "component"
+    ],
+    "depth": 2,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_cable",
+    "name": "Cable",
+    "desc": "Sheathed cable, a metre of copper inside grey polymer. Joins everything to everything else.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "value": 5,
+    "composition": {
+      "mat_copper": 0.5,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "wire",
+      "component"
+    ],
+    "depth": 1,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_screen",
+    "name": "Screen",
+    "desc": "A green phosphor screen in a cracked polymer frame. Text swims in it for a second after you look away.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "value": 30,
+    "composition": {
+      "mat_silicate": 1,
+      "mat_rare": 0.1,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "electronic",
+      "component"
+    ],
+    "depth": 2,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_slip",
+    "name": "Order slip",
+    "desc": "A strip of thermal paper: sender, goods, pay on delivery. A box leaves the dock only with one inside.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 0.2,
+    "composition": {
+      "mat_fibre": 0.1
+    },
+    "tags": [
+      "paper",
+      "packaging",
+      "consumable"
+    ],
+    "depth": 1,
+    "market_need": "need_parts",
+    "notes": "Its sink is the box rule (SEED 6.6), not a recipe; the recycler is its only other use, so a recycle-only warning is expected."
+  },
+  {
+    "id": "it_tech_switch",
+    "name": "Switch",
+    "desc": "A thumb switch: brass blade, polymer rocker, two screws. It clicks like a lock.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 4,
+    "composition": {
+      "mat_copper": 0.12,
+      "mat_iron": 0.12,
+      "mat_polymer": 0.25
+    },
+    "tags": [
+      "electronic",
+      "component"
+    ],
+    "depth": 2,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_relay",
+    "name": "Relay",
+    "desc": "A coil wound round a sprung blade in a clear case. Turns a whisper into a thump.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 19,
+    "composition": {
+      "mat_copper": 0.5,
+      "mat_iron": 0.25,
+      "mat_polymer": 0.25
+    },
+    "tags": [
+      "electronic",
+      "component"
+    ],
+    "depth": 2,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_keypad",
+    "name": "Keypad",
+    "desc": "Twelve polymer keys on a switch mat, the numbers worn off the five.",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "value": 18,
+    "composition": {
+      "mat_polymer": 0.88,
+      "mat_copper": 0.18,
+      "mat_iron": 0.18
+    },
+    "tags": [
+      "electronic",
+      "component"
+    ],
+    "depth": 2,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_speaker",
+    "name": "Speaker",
+    "desc": "A paper cone and a rare-earth magnet in a polymer ring. It crackles by design.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 30,
+    "composition": {
+      "mat_copper": 0.25,
+      "mat_rare": 0.25,
+      "mat_polymer": 0.75
+    },
+    "tags": [
+      "electronic",
+      "component"
+    ],
+    "depth": 2,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_soldering_iron",
+    "name": "Soldering iron",
+    "desc": "A copper tip in a polymer grip on a coiled lead. Joins boards, and wakes dead handsets.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 26,
+    "composition": {
+      "mat_copper": 0.5,
+      "mat_iron": 0.5,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "tool",
+      "electronic"
+    ],
+    "depth": 2,
+    "market_need": "need_parts",
+    "wear": {
+      "uses": 40,
+      "becomes": "it_core_scrap_mixed"
+    }
+  },
+  {
+    "id": "it_tech_work_light",
+    "name": "Work light",
+    "desc": "A caged lamp on a clamp with two metres of cable. Throws a hard white pool on the bench.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 78,
+    "composition": {
+      "mat_copper": 1.2,
+      "mat_silicate": 0.5,
+      "mat_rare": 0.05,
+      "mat_lightmetal": 1.0,
+      "mat_polymer": 1.0
+    },
+    "tags": [
+      "light",
+      "device",
+      "comfort"
+    ],
+    "depth": 2,
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 1
+    }
+  },
+  {
+    "id": "it_tech_torch",
+    "name": "Torch",
+    "desc": "A polymer tube, a switch and a lamp. The legal light: no flame, no smoke, no inspector at the door.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 28,
+    "composition": {
+      "mat_copper": 0.32,
+      "mat_silicate": 0.5,
+      "mat_rare": 0.05,
+      "mat_iron": 0.12,
+      "mat_polymer": 0.75
+    },
+    "tags": [
+      "light",
+      "device",
+      "comfort"
+    ],
+    "depth": 2,
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 1
+    },
+    "notes": "The lawful answer to candles and matches (contraband fire). Takes a small cell in the field."
+  },
+  {
+    "id": "it_tech_handbook",
+    "name": "Handbook",
+    "desc": "Twenty stapled pages of exploded drawings and warnings. Packed with every device that needs explaining.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 13,
+    "composition": {
+      "mat_fibre": 0.75,
+      "mat_carbon": 0.5
+    },
+    "tags": [
+      "book",
+      "paper",
+      "data"
+    ],
+    "depth": 2,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_notice",
+    "name": "Notice poster",
+    "desc": "Hard print, one colour: RATIONS AT SIX, KEEP THE DUCT CLEAR. Pinned up in every spine corridor.",
+    "w": 2,
+    "h": 3,
+    "tier": 2,
+    "value": 9.5,
+    "composition": {
+      "mat_fibre": 0.5,
+      "mat_carbon": 0.5
+    },
+    "tags": [
+      "paper",
+      "comfort"
+    ],
+    "depth": 2,
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.25
+    }
+  },
+  {
+    "id": "it_tech_memory_module",
+    "name": "Memory module",
+    "desc": "A strip of black chips on a green board. Doubles what a terminal can hold in mind.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 490,
+    "composition": {
+      "mat_copper": 0.3,
+      "mat_rare": 0.5,
+      "mat_polymer": 0.3,
+      "mat_silicate": 0.4,
+      "mat_noble": 0.1
+    },
+    "tags": [
+      "electronic",
+      "component",
+      "device"
+    ],
+    "depth": 3,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_modem_card",
+    "name": "Modem card",
+    "desc": "A card with a line jack and a tiny speaker for the handshake. The terminal's way to the mail.",
+    "w": 2,
+    "h": 1,
+    "tier": 3,
+    "value": 370,
+    "composition": {
+      "mat_copper": 0.8,
+      "mat_rare": 0.3,
+      "mat_polymer": 0.8,
+      "mat_silicate": 0.3,
+      "mat_noble": 0.05
+    },
+    "tags": [
+      "electronic",
+      "component",
+      "device"
+    ],
+    "depth": 3,
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 1
+    }
+  },
+  {
+    "id": "it_tech_dongle",
+    "name": "Dongle",
+    "desc": "A hardware key the size of a thumb. Plug it in the port bay: licensed software asks for its serial.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 290,
+    "composition": {
+      "mat_rare": 0.2,
+      "mat_silicate": 0.1,
+      "mat_noble": 0.05,
+      "mat_copper": 0.5,
+      "mat_polymer": 1.0
+    },
+    "tags": [
+      "device",
+      "electronic",
+      "licensed"
+    ],
+    "depth": 3,
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "mods": [
+      "mod_licensed",
+      "mod_cracked"
+    ],
+    "notes": "Licensed programs may list it in requires (prog_forecast does). A cracked program ignores it."
+  },
+  {
+    "id": "it_tech_handset",
+    "name": "Handset",
+    "desc": "A cradle phone with a keypad and a tinny line to the next bunk. The spine rings it for news.",
+    "w": 1,
+    "h": 2,
+    "tier": 3,
+    "value": 500,
+    "composition": {
+      "mat_copper": 0.73,
+      "mat_rare": 0.35,
+      "mat_polymer": 2.43,
+      "mat_silicate": 0.2,
+      "mat_iron": 0.18,
+      "mat_lightmetal": 1.0
+    },
+    "tags": [
+      "device",
+      "electronic"
+    ],
+    "depth": 3,
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 1.5
+    },
+    "mods": [
+      "mod_tuned",
+      "mod_refurbished",
+      "mod_damaged"
+    ]
+  },
+  {
+    "id": "it_tech_radio_set",
+    "name": "Radio set",
+    "desc": "A portable set with a telescopic whip. Hums with music, rumour and the company's hourly notice.",
+    "w": 2,
+    "h": 2,
+    "tier": 3,
+    "value": 500,
+    "composition": {
+      "mat_copper": 1.3,
+      "mat_rare": 0.6,
+      "mat_polymer": 2.8,
+      "mat_silicate": 0.2,
+      "mat_lightmetal": 1.0
+    },
+    "tags": [
+      "device",
+      "electronic"
+    ],
+    "depth": 3,
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 1.5
+    },
+    "mods": [
+      "mod_tuned",
+      "mod_refurbished",
+      "mod_damaged"
+    ]
+  },
+  {
+    "id": "it_tech_heater",
+    "name": "Room heater",
+    "desc": "A bar of hot wire behind a grille. Warms a bunk, dries a coat, and drinks cells like water.",
+    "w": 2,
+    "h": 2,
+    "tier": 3,
+    "value": 300,
+    "composition": {
+      "mat_lightmetal": 1.0,
+      "mat_polymer": 1.0,
+      "mat_copper": 2.24,
+      "mat_iron": 0.24,
+      "mat_fibre": 0.75,
+      "mat_carbon": 0.5
+    },
+    "tags": [
+      "device",
+      "comfort"
+    ],
+    "depth": 3,
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 2
+    },
+    "mods": [
+      "mod_refurbished",
+      "mod_damaged"
+    ]
+  },
+  {
+    "id": "it_tech_fan",
+    "name": "Fan",
+    "desc": "A grille, a motor and three blades. Moves foul air about and makes a bunk feel bigger.",
+    "w": 2,
+    "h": 2,
+    "tier": 3,
+    "value": 91,
+    "composition": {
+      "mat_copper": 1.62,
+      "mat_iron": 1.12,
+      "mat_lightmetal": 1.0,
+      "mat_polymer": 0.75
+    },
+    "tags": [
+      "device",
+      "air"
+    ],
+    "depth": 2,
+    "market_need": "need_air",
+    "needs": {
+      "need_air": 0.5,
+      "need_comfort": 0.5
+    },
+    "mods": [
+      "mod_refurbished",
+      "mod_damaged"
+    ]
+  },
+  {
+    "id": "it_tech_clock",
+    "name": "Wall clock",
+    "desc": "A round face behind a pane, one hand missing. Ticks to station time, which is not the same as day.",
+    "w": 2,
+    "h": 2,
+    "tier": 3,
+    "value": 58,
+    "composition": {
+      "mat_copper": 0.3,
+      "mat_rare": 0.1,
+      "mat_polymer": 0.3,
+      "mat_silicate": 2.2,
+      "mat_iron": 1.0,
+      "mat_fibre": 0.75,
+      "mat_carbon": 0.5
+    },
+    "tags": [
+      "device",
+      "comfort"
+    ],
+    "depth": 2,
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.5
+    },
+    "mods": [
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_tech_handheld",
+    "name": "Game handheld",
+    "desc": "A grey brick with a small screen and a cross of keys. It stacks blocks. Everyone loses a day to it.",
+    "w": 1,
+    "h": 2,
+    "tier": 3,
+    "value": 380,
+    "composition": {
+      "mat_copper": 0.48,
+      "mat_rare": 0.2,
+      "mat_polymer": 2.68,
+      "mat_silicate": 1.2,
+      "mat_iron": 0.18,
+      "mat_lightmetal": 0.5
+    },
+    "tags": [
+      "device",
+      "electronic",
+      "game",
+      "toy"
+    ],
+    "depth": 3,
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 2
+    },
+    "mods": [
+      "mod_tuned",
+      "mod_damaged"
+    ]
+  },
+  {
+    "id": "it_tech_hearing_aid",
+    "name": "Hearing aid",
+    "desc": "A polymer bud with a microphone and a cell sealed inside. The clinic fits them, the spine sells them on.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 300,
+    "composition": {
+      "mat_copper": 0.65,
+      "mat_rare": 0.45,
+      "mat_polymer": 1.05,
+      "mat_silicate": 0.3,
+      "mat_lithium": 0.2,
+      "mat_iron": 0.3,
+      "mat_reagent": 0.2
+    },
+    "tags": [
+      "device",
+      "electronic",
+      "medicine"
+    ],
+    "depth": 3,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 1
+    },
+    "mods": [
+      "mod_tuned",
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_tech_door_lock",
+    "name": "Door lock",
+    "desc": "A bolt on a relay with a keypad and two fobs. It opens to the right number and sulks at the wrong one.",
+    "w": 1,
+    "h": 2,
+    "tier": 3,
+    "value": 460,
+    "composition": {
+      "mat_copper": 0.98,
+      "mat_rare": 0.1,
+      "mat_polymer": 2.77,
+      "mat_silicate": 0.2,
+      "mat_iron": 0.43,
+      "mat_lightmetal": 1.34
+    },
+    "tags": [
+      "device",
+      "electronic"
+    ],
+    "depth": 3,
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 1
+    },
+    "mods": [
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_tech_alarm",
+    "name": "Door alarm",
+    "desc": "A sensor and a siren in a white shell. It shouts when the door opens and again when its cell dies.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 120,
+    "composition": {
+      "mat_copper": 0.75,
+      "mat_rare": 0.55,
+      "mat_silicate": 0.4,
+      "mat_polymer": 1.05
+    },
+    "tags": [
+      "device",
+      "electronic"
+    ],
+    "depth": 2,
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 1
+    }
+  },
+  {
+    "id": "it_tech_gamepad",
+    "name": "Gamepad",
+    "desc": "A grey polymer pad with a cross of keys and a lead that plugs into the terminal's port bay.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 63,
+    "composition": {
+      "mat_polymer": 2.38,
+      "mat_lightmetal": 0.5,
+      "mat_copper": 0.68,
+      "mat_iron": 0.18
+    },
+    "tags": [
+      "device",
+      "electronic",
+      "game",
+      "toy"
+    ],
+    "depth": 2,
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.75
+    },
+    "notes": "Occupies one terminal port (stat ports)."
+  },
+  {
+    "id": "it_tech_laptop",
+    "name": "Laptop terminal",
+    "desc": "A folding terminal with a green screen and a cell slot. Small enough for a bunk, slow enough to forgive.",
+    "w": 3,
+    "h": 2,
+    "tier": 3,
+    "value": 500,
+    "composition": {
+      "mat_copper": 1.08,
+      "mat_rare": 0.8,
+      "mat_polymer": 2.28,
+      "mat_silicate": 1.8,
+      "mat_noble": 0.1,
+      "mat_iron": 0.18
+    },
+    "tags": [
+      "device",
+      "computer",
+      "electronic"
+    ],
+    "depth": 3,
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 2
+    },
+    "mods": [
+      "mod_tuned",
+      "mod_refurbished",
+      "mod_damaged"
+    ],
+    "notes": "A device to sell, not a machine: it does not run the player's programs."
+  },
+  {
+    "id": "it_tech_desk_unit",
+    "name": "Desk unit",
+    "desc": "A ring desk machine in light-metal and gold trim. Silent, fast and mostly for show.",
+    "w": 3,
+    "h": 3,
+    "tier": 4,
+    "value": 2570,
+    "composition": {
+      "mat_copper": 1.2,
+      "mat_rare": 1.3,
+      "mat_polymer": 1.7,
+      "mat_silicate": 2.2,
+      "mat_noble": 1.2
+    },
+    "tags": [
+      "device",
+      "computer",
+      "electronic",
+      "luxury",
+      "ring_grade"
+    ],
+    "depth": 3,
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 1
+    },
+    "mods": [
+      "mod_engraved",
+      "mod_tuned"
+    ],
+    "notes": "A device to sell, not a machine. The noble bar is why it is dear."
+  },
+  {
+    "id": "it_tech_case",
+    "name": "Device case",
+    "desc": "A printed polymer shell, layer lines still showing, with a light-metal core. Fits a handheld or a set.",
+    "w": 2,
+    "h": 1,
+    "tier": 3,
+    "value": 10,
+    "composition": {
+      "mat_polymer": 1.0,
+      "mat_lightmetal": 0.5
+    },
+    "tags": [
+      "part",
+      "polymer",
+      "component"
+    ],
+    "depth": 2,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_fob",
+    "name": "Key fob",
+    "desc": "A printed polymer tag with a metal core and a hole for a ring. Opens one lock and one only.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 10,
+    "composition": {
+      "mat_polymer": 0.67,
+      "mat_lightmetal": 0.67
+    },
+    "tags": [
+      "part",
+      "polymer",
+      "component"
+    ],
+    "depth": 2,
+    "market_need": "need_parts"
+  },
+  {
+    "id": "it_tech_drone",
+    "name": "Service drone",
+    "desc": "A flat rotor frame on a sensor eye. It crawls ducts, reports leaks and cannot manage stairs.",
+    "w": 3,
+    "h": 2,
+    "tier": 4,
+    "value": 600,
+    "composition": {
+      "mat_copper": 2.8,
+      "mat_iron": 2.0,
+      "mat_rare": 1.4,
+      "mat_polymer": 1.1,
+      "mat_silicate": 0.6,
+      "mat_lightmetal": 1.0
+    },
+    "tags": [
+      "device",
+      "electronic",
+      "machine_part"
+    ],
+    "depth": 3,
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 2
+    }
+  },
+  {
+    "id": "it_tech_loader_arm",
+    "name": "Loader arm",
+    "desc": "A jointed arm on bearings that lifts a crate in one stroke. Bolts above a dock lane.",
+    "w": 4,
+    "h": 2,
+    "tier": 4,
+    "value": 420,
+    "composition": {
+      "mat_copper": 2.4,
+      "mat_iron": 8.0,
+      "mat_rare": 0.2,
+      "mat_polymer": 0.3,
+      "mat_silicate": 0.3
+    },
+    "tags": [
+      "device",
+      "machine_part"
+    ],
+    "depth": 3,
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 2
+    }
+  }
+]

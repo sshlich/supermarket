@@ -1,0 +1,2208 @@
+[
+  {
+    "id": "evt_reactor_scram",
+    "name": "Reactor scram",
+    "kind": "breakdown",
+    "phase_from": "phase_1",
+    "weight": 0.5,
+    "duration_days": 2,
+    "systems": [
+      "sys_reactor"
+    ],
+    "decks": [],
+    "shocks": [
+      {
+        "need": "need_power",
+        "demand": 1.4,
+        "supply": 0.5
+      }
+    ],
+    "effects": [
+      {
+        "stat": "charge_price_mult",
+        "op": "mul",
+        "value": 1.5,
+        "text": "Charging +50%"
+      }
+    ],
+    "spawns_orders": [
+      "ord_eng_reactor_repair"
+    ],
+    "adds": [
+      "stat_brownout"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.7,
+      "via": "mail",
+      "text": "Core engineer: the coolant pump is chattering. We may scram."
+    },
+    "mail_text": "Reactor scrammed. Cells are rationed until the plant restarts.",
+    "followups": [
+      "evt_stim_shipment"
+    ],
+    "requires": []
+  },
+  {
+    "id": "evt_reactor_coolant_leak",
+    "name": "Coolant leak",
+    "kind": "breakdown",
+    "phase_from": "phase_2",
+    "weight": 0.6,
+    "duration_days": 3,
+    "systems": [
+      "sys_reactor"
+    ],
+    "decks": [
+      "deck_core",
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_power",
+        "demand": 1.2,
+        "supply": 0.7
+      },
+      {
+        "need": "need_parts",
+        "demand": 1.5,
+        "supply": 0.9
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_eng_reactor_repair"
+    ],
+    "adds": [
+      "stat_tripped"
+    ],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.75,
+      "via": "radio",
+      "text": "Radio: coolant levels low at the plant. Engineers asking for spares."
+    },
+    "mail_text": "A coolant line has opened in the core. Spares are wanted.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_vanes_dust_storm",
+    "name": "Dust on the vanes",
+    "kind": "breakdown",
+    "phase_from": "phase_1",
+    "weight": 0.7,
+    "duration_days": 2,
+    "systems": [
+      "sys_solar_vanes"
+    ],
+    "decks": [
+      "deck_ring"
+    ],
+    "shocks": [
+      {
+        "need": "need_power",
+        "demand": 1.0,
+        "supply": 0.85
+      },
+      {
+        "need": "need_comfort",
+        "demand": 1.2,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_brownout",
+      "stat_dusty"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.8,
+      "via": "board",
+      "text": "Board: a dust cloud is crossing the vanes. Expect dimmer light."
+    },
+    "mail_text": "Dust storm across the sails. Ring power is thin.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_vanes_sail_tear",
+    "name": "Torn sail",
+    "kind": "breakdown",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 4,
+    "systems": [
+      "sys_solar_vanes"
+    ],
+    "decks": [
+      "deck_ring"
+    ],
+    "shocks": [
+      {
+        "need": "need_power",
+        "demand": 1.1,
+        "supply": 0.8
+      },
+      {
+        "need": "need_comfort",
+        "demand": 1.3,
+        "supply": 0.9
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_house_solar_repair"
+    ],
+    "adds": [],
+    "rumor": null,
+    "mail_text": "A sail panel has torn on the ring. Repairs wanted.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_scrubber_bank_fail",
+    "name": "Scrubber bank fails",
+    "kind": "breakdown",
+    "phase_from": "phase_1",
+    "weight": 0.8,
+    "duration_days": 3,
+    "systems": [
+      "sys_scrubber_bank"
+    ],
+    "decks": [
+      "deck_spine"
+    ],
+    "shocks": [
+      {
+        "need": "need_air",
+        "demand": 1.3,
+        "supply": 0.45
+      },
+      {
+        "need": "need_medicine",
+        "demand": 1.2,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_rush_filters"
+    ],
+    "adds": [
+      "stat_thin_air"
+    ],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.75,
+      "via": "mail",
+      "text": "Engineer: bank 4 is on its last cartridges. It will not last the week."
+    },
+    "mail_text": "Scrubber bank 4 has failed. Air is thin on the spine.",
+    "followups": [
+      "evt_cartridge_shortage"
+    ],
+    "requires": []
+  },
+  {
+    "id": "evt_cartridge_shortage",
+    "name": "Cartridge shortage",
+    "kind": "breakdown",
+    "phase_from": "phase_1",
+    "weight": 0.5,
+    "duration_days": 3,
+    "systems": [
+      "sys_scrubber_bank"
+    ],
+    "decks": [
+      "deck_spine",
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_air",
+        "demand": 1.2,
+        "supply": 0.7
+      },
+      {
+        "need": "need_parts",
+        "demand": 1.3,
+        "supply": 0.9
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.6,
+      "via": "board",
+      "text": "Board: queue at the filter stand. Cartridges rumoured out."
+    },
+    "mail_text": "Replacement cartridges are gone. Filters sell at any price.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_algae_dieoff",
+    "name": "Algae die-off",
+    "kind": "breakdown",
+    "phase_from": "phase_1",
+    "weight": 0.6,
+    "duration_days": 3,
+    "systems": [
+      "sys_algae_lungs"
+    ],
+    "decks": [
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_air",
+        "demand": 1.2,
+        "supply": 0.75
+      },
+      {
+        "need": "need_food",
+        "demand": 1.2,
+        "supply": 0.7
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_thin_air"
+    ],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.7,
+      "via": "board",
+      "text": "Board: tank temperatures are climbing on the mid decks."
+    },
+    "mail_text": "The mid-deck algae tanks have browned. Air and food are short.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_algae_heat",
+    "name": "Heat in the tanks",
+    "kind": "breakdown",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 2,
+    "systems": [
+      "sys_algae_lungs"
+    ],
+    "decks": [
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_air",
+        "demand": 1.1,
+        "supply": 0.85
+      },
+      {
+        "need": "need_food",
+        "demand": 1.1,
+        "supply": 0.9
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_tech_algae_repair"
+    ],
+    "adds": [
+      "stat_hot"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.8,
+      "via": "mail",
+      "text": "Technician: algae tank two is running hot. Checking the sensor."
+    },
+    "mail_text": "The tanks are running hot. Starter and nutrient wanted.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_reclaim_sludge",
+    "name": "Sludge in the tanks",
+    "kind": "breakdown",
+    "phase_from": "phase_1",
+    "weight": 0.8,
+    "duration_days": 3,
+    "systems": [
+      "sys_water_reclaim"
+    ],
+    "decks": [
+      "deck_spine",
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_water",
+        "demand": 1.4,
+        "supply": 0.5
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_water_rationing",
+      "stat_clogged"
+    ],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.75,
+      "via": "mail",
+      "text": "Engineer: the reclaim loop is sluggish. The sludge count is up."
+    },
+    "mail_text": "Reclaim tanks are fouled with sludge. Water is rationed.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_reclaim_pump_seize",
+    "name": "Pump seizes",
+    "kind": "breakdown",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 2,
+    "systems": [
+      "sys_water_reclaim"
+    ],
+    "decks": [
+      "deck_spine"
+    ],
+    "shocks": [
+      {
+        "need": "need_water",
+        "demand": 1.3,
+        "supply": 0.6
+      },
+      {
+        "need": "need_parts",
+        "demand": 1.3,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_leaking"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.7,
+      "via": "radio",
+      "text": "Radio: pump three on the reclaim loop is making a noise."
+    },
+    "mail_text": "A reclaim pump has seized. Water is short on the spine.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_tug_lost",
+    "name": "Ice tug lost",
+    "kind": "breakdown",
+    "phase_from": "phase_1",
+    "weight": 0.6,
+    "duration_days": 4,
+    "systems": [
+      "sys_ice_haul"
+    ],
+    "decks": [
+      "deck_dock",
+      "deck_spine",
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_water",
+        "demand": 1.4,
+        "supply": 0.6
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_water_rationing"
+    ],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.65,
+      "via": "radio",
+      "text": "Radio: an ice tug is overdue and out of contact."
+    },
+    "mail_text": "The ice tug did not return. Water will be dear.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_crane_collapse",
+    "name": "Crane collapse",
+    "kind": "accident",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 3,
+    "systems": [
+      "sys_ice_haul"
+    ],
+    "decks": [
+      "deck_dock"
+    ],
+    "shocks": [
+      {
+        "need": "need_water",
+        "demand": 1.2,
+        "supply": 0.8
+      },
+      {
+        "need": "need_parts",
+        "demand": 1.4,
+        "supply": 0.9
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_hauler_ice_cutters"
+    ],
+    "adds": [],
+    "rumor": null,
+    "mail_text": "A dock crane has collapsed. Cutters and bearings wanted.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_ring_blight",
+    "name": "Blight in the farms",
+    "kind": "breakdown",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 4,
+    "systems": [
+      "sys_ring_farms"
+    ],
+    "decks": [
+      "deck_ring"
+    ],
+    "shocks": [
+      {
+        "need": "need_food",
+        "demand": 1.2,
+        "supply": 0.6
+      },
+      {
+        "need": "need_luxury",
+        "demand": 1.3,
+        "supply": 0.6
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 3,
+      "accuracy": 0.7,
+      "via": "mail",
+      "text": "Ring council: a leaf spot in bed three. We hope it is nothing."
+    },
+    "mail_text": "Blight has taken a bed on the ring farms. Fresh food is short.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_ring_frost",
+    "name": "Cracked glass",
+    "kind": "breakdown",
+    "phase_from": "phase_3",
+    "weight": 0.5,
+    "duration_days": 3,
+    "systems": [
+      "sys_ring_farms"
+    ],
+    "decks": [
+      "deck_ring"
+    ],
+    "shocks": [
+      {
+        "need": "need_luxury",
+        "demand": 1.2,
+        "supply": 0.7
+      },
+      {
+        "need": "need_comfort",
+        "demand": 1.3,
+        "supply": 0.9
+      },
+      {
+        "need": "need_food",
+        "demand": 1.1,
+        "supply": 0.8
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_council_farm_repair"
+    ],
+    "adds": [],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.8,
+      "via": "mail",
+      "text": "Ring council: a pane in bed six is crazing. Glass wanted."
+    },
+    "mail_text": "A pane has cracked on the ring farms. Cold spreads over the beds.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_vat_contamination",
+    "name": "Vat contamination",
+    "kind": "breakdown",
+    "phase_from": "phase_1",
+    "weight": 0.7,
+    "duration_days": 4,
+    "systems": [
+      "sys_vat_halls"
+    ],
+    "decks": [
+      "deck_works",
+      "deck_spine",
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_food",
+        "demand": 1.3,
+        "supply": 0.5
+      },
+      {
+        "need": "need_medicine",
+        "demand": 1.4,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.7,
+      "via": "board",
+      "text": "Board: union reports a smell in vat room three."
+    },
+    "mail_text": "The vats are contaminated. Rations are short and the clinic fills.",
+    "followups": [
+      "evt_gut_sickness"
+    ],
+    "requires": []
+  },
+  {
+    "id": "evt_vat_vent_fail",
+    "name": "Vent failure",
+    "kind": "breakdown",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 2,
+    "systems": [
+      "sys_vat_halls"
+    ],
+    "decks": [
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_food",
+        "demand": 1.1,
+        "supply": 0.75
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_union_vat_repair"
+    ],
+    "adds": [],
+    "rumor": null,
+    "mail_text": "A vat room vent has failed. Valves wanted.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_foundry_strike",
+    "name": "Foundry strike",
+    "kind": "strike",
+    "phase_from": "phase_1",
+    "weight": 0.6,
+    "duration_days": 4,
+    "systems": [
+      "sys_foundry"
+    ],
+    "decks": [
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_parts",
+        "demand": 1.5,
+        "supply": 0.5
+      }
+    ],
+    "effects": [
+      {
+        "stat": "budget_mult",
+        "op": "mul",
+        "value": 0.8,
+        "text": "Works budgets -20%",
+        "scope": {
+          "deck": "deck_works"
+        }
+      }
+    ],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.8,
+      "via": "board",
+      "text": "Board: union voted to stop work at the next shift."
+    },
+    "mail_text": "The works has downed tools. Parts will be slow.",
+    "followups": [
+      "evt_foundry_backlog"
+    ],
+    "requires": []
+  },
+  {
+    "id": "evt_foundry_backlog",
+    "name": "Foundry backlog",
+    "kind": "windfall",
+    "phase_from": "phase_1",
+    "weight": 0.4,
+    "duration_days": 3,
+    "systems": [
+      "sys_foundry"
+    ],
+    "decks": [
+      "deck_works",
+      "deck_dock"
+    ],
+    "shocks": [
+      {
+        "need": "need_parts",
+        "demand": 1.0,
+        "supply": 1.6
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": null,
+    "mail_text": "The foundry is clearing its backlog. Bars flood the dock.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_foundry_furnace_crack",
+    "name": "Furnace cracks",
+    "kind": "breakdown",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 3,
+    "systems": [
+      "sys_foundry"
+    ],
+    "decks": [
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_parts",
+        "demand": 1.4,
+        "supply": 0.6
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_fitter_foundry_repair"
+    ],
+    "adds": [
+      "stat_hot"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.75,
+      "via": "mail",
+      "text": "Fitter: the lining is glowing in the wrong place."
+    },
+    "mail_text": "A furnace lining has cracked. Mills run hot.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_ore_convoy_late",
+    "name": "Ore convoy late",
+    "kind": "breakdown",
+    "phase_from": "phase_1",
+    "weight": 0.7,
+    "duration_days": 3,
+    "systems": [
+      "sys_ore_haul"
+    ],
+    "decks": [
+      "deck_dock",
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_parts",
+        "demand": 1.4,
+        "supply": 0.6
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.65,
+      "via": "radio",
+      "text": "Radio: the ore convoy is overdue. Cause unknown."
+    },
+    "mail_text": "The ore convoy is late. The foundry is idle.",
+    "followups": [
+      "evt_foundry_backlog"
+    ],
+    "requires": []
+  },
+  {
+    "id": "evt_tug_collision",
+    "name": "Tug collision",
+    "kind": "accident",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 4,
+    "systems": [
+      "sys_ore_haul"
+    ],
+    "decks": [
+      "deck_dock"
+    ],
+    "shocks": [
+      {
+        "need": "need_parts",
+        "demand": 1.3,
+        "supply": 0.5
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_hauler_crane_repair"
+    ],
+    "adds": [],
+    "rumor": null,
+    "mail_text": "Two ore tugs have collided. Cranes and bearings wanted.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_clinic_stockout",
+    "name": "Clinic stock-out",
+    "kind": "breakdown",
+    "phase_from": "phase_1",
+    "weight": 0.7,
+    "duration_days": 3,
+    "systems": [
+      "sys_clinic"
+    ],
+    "decks": [
+      "deck_mid",
+      "deck_spine"
+    ],
+    "shocks": [
+      {
+        "need": "need_medicine",
+        "demand": 1.5,
+        "supply": 0.5
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_clinic_charity"
+    ],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.7,
+      "via": "mail",
+      "text": "Orderly: the pharmacy is one order behind. It will be more."
+    },
+    "mail_text": "The clinic has run out of antibiotics. Private sellers are busy.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_clinic_power_cut",
+    "name": "Clinic power cut",
+    "kind": "breakdown",
+    "phase_from": "phase_3",
+    "weight": 0.4,
+    "duration_days": 2,
+    "systems": [
+      "sys_clinic"
+    ],
+    "decks": [
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_medicine",
+        "demand": 1.2,
+        "supply": 0.7
+      },
+      {
+        "need": "need_power",
+        "demand": 1.2,
+        "supply": 0.8
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_unpowered"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.7,
+      "via": "radio",
+      "text": "Radio: clinic on emergency cells. Medical stores low."
+    },
+    "mail_text": "The clinic has lost power. Cells and saline are wanted.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_store_lockdown",
+    "name": "Store lockdown",
+    "kind": "policy",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 2,
+    "systems": [
+      "sys_company_store"
+    ],
+    "decks": [
+      "deck_hub",
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_comfort",
+        "demand": 1.2,
+        "supply": 0.6
+      },
+      {
+        "need": "need_luxury",
+        "demand": 1.2,
+        "supply": 0.6
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_lockdown"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.8,
+      "via": "mail",
+      "text": "Clerk: there is a notice at the store door. I cannot say more."
+    },
+    "mail_text": "The company store is closed by order. Pickups are halved.",
+    "followups": [
+      "evt_carrier_blockade"
+    ],
+    "requires": []
+  },
+  {
+    "id": "evt_store_restock_cut",
+    "name": "Store restock cut",
+    "kind": "policy",
+    "phase_from": "phase_1",
+    "weight": 0.6,
+    "duration_days": 3,
+    "systems": [
+      "sys_company_store"
+    ],
+    "decks": [
+      "deck_hub",
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_comfort",
+        "demand": 1.3,
+        "supply": 0.6
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.7,
+      "via": "mail",
+      "text": "Clerk: stock sheets are coming in thinner. Make of that what you will."
+    },
+    "mail_text": "The company store is cutting its range. Lamps and cushions sell out.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_convoy_ore",
+    "name": "Ore convoy lands",
+    "kind": "convoy",
+    "phase_from": "phase_1",
+    "weight": 0.7,
+    "duration_days": 3,
+    "systems": [
+      "sys_ore_haul"
+    ],
+    "decks": [
+      "deck_dock",
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_parts",
+        "demand": 0.9,
+        "supply": 2.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.85,
+      "via": "radio",
+      "text": "Radio: ore convoy inbound, heavy load."
+    },
+    "mail_text": "An ore convoy has docked. Raw metal is cheap this week.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_convoy_ice",
+    "name": "Ice convoy lands",
+    "kind": "convoy",
+    "phase_from": "phase_1",
+    "weight": 0.7,
+    "duration_days": 3,
+    "systems": [
+      "sys_ice_haul"
+    ],
+    "decks": [
+      "deck_dock",
+      "deck_spine"
+    ],
+    "shocks": [
+      {
+        "need": "need_water",
+        "demand": 0.9,
+        "supply": 2.2
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.85,
+      "via": "radio",
+      "text": "Radio: tugs bring a full load of ice. Water will ease."
+    },
+    "mail_text": "Comet ice is in. Water is plentiful for a while.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_convoy_rations",
+    "name": "Ration convoy",
+    "kind": "convoy",
+    "phase_from": "phase_1",
+    "weight": 0.6,
+    "duration_days": 3,
+    "systems": [
+      "sys_vat_halls"
+    ],
+    "decks": [
+      "deck_spine",
+      "deck_works",
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_food",
+        "demand": 0.9,
+        "supply": 2.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.8,
+      "via": "board",
+      "text": "Board: halls overran the quota. Rations to go out cheap."
+    },
+    "mail_text": "Vat halls ship a surplus of rations. Prices fall.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_convoy_wine",
+    "name": "Wine convoy",
+    "kind": "convoy",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 3,
+    "systems": [
+      "sys_ring_farms"
+    ],
+    "decks": [
+      "deck_ring",
+      "deck_hub"
+    ],
+    "shocks": [
+      {
+        "need": "need_luxury",
+        "demand": 0.8,
+        "supply": 2.2
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.8,
+      "via": "mail",
+      "text": "Ring council: a wine shipment is expected from the hold."
+    },
+    "mail_text": "A wine shipment reaches the ring. Bottles are cheap for a week.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_convoy_medical",
+    "name": "Medical convoy",
+    "kind": "convoy",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 3,
+    "systems": [
+      "sys_clinic"
+    ],
+    "decks": [
+      "deck_mid",
+      "deck_spine"
+    ],
+    "shocks": [
+      {
+        "need": "need_medicine",
+        "demand": 0.8,
+        "supply": 2.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.8,
+      "via": "radio",
+      "text": "Radio: medical convoy cleared to dock."
+    },
+    "mail_text": "A medical convoy has docked. The clinic is restocked.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_convoy_cells",
+    "name": "Charged cell lot",
+    "kind": "convoy",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 3,
+    "systems": [
+      "sys_reactor"
+    ],
+    "decks": [
+      "deck_core",
+      "deck_dock"
+    ],
+    "shocks": [
+      {
+        "need": "need_power",
+        "demand": 0.8,
+        "supply": 1.8
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.75,
+      "via": "mail",
+      "text": "Engineer: we are overproducing again. Cells will go cheap."
+    },
+    "mail_text": "The plant releases a lot of charged cells. Charging is cheap.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_dock_blockade",
+    "name": "Dock blockade",
+    "kind": "blockade",
+    "phase_from": "phase_2",
+    "weight": 0.4,
+    "duration_days": 3,
+    "systems": [
+      "sys_ore_haul",
+      "sys_ice_haul"
+    ],
+    "decks": [
+      "deck_dock"
+    ],
+    "shocks": [
+      {
+        "need": "need_parts",
+        "demand": 1.4,
+        "supply": 0.4
+      },
+      {
+        "need": "need_water",
+        "demand": 1.3,
+        "supply": 0.6
+      }
+    ],
+    "effects": [
+      {
+        "stat": "transit_days",
+        "op": "add",
+        "value": 1,
+        "text": "+1 transit day"
+      }
+    ],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.7,
+      "via": "radio",
+      "text": "Radio: the dock gate is being closed. Reason not given."
+    },
+    "mail_text": "The dock is blockaded by order. Nothing moves in or out.",
+    "followups": [
+      "evt_dock_sweep"
+    ],
+    "requires": []
+  },
+  {
+    "id": "evt_carrier_blockade",
+    "name": "Carrier delays",
+    "kind": "blockade",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 3,
+    "systems": [],
+    "decks": [],
+    "shocks": [
+      {
+        "need": "need_parts",
+        "demand": 1.2,
+        "supply": 0.8
+      }
+    ],
+    "effects": [
+      {
+        "stat": "pickups_per_day",
+        "op": "mul",
+        "value": 0.5,
+        "text": "Pickups halved"
+      }
+    ],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.7,
+      "via": "mail",
+      "text": "Carrier: pickups are suspended pending notice."
+    },
+    "mail_text": "The carrier has cancelled pickups. Parcels wait.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_fever",
+    "name": "Fever",
+    "kind": "epidemic",
+    "phase_from": "phase_1",
+    "weight": 0.7,
+    "duration_days": 5,
+    "systems": [
+      "sys_clinic"
+    ],
+    "decks": [
+      "deck_mid",
+      "deck_spine",
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_medicine",
+        "demand": 2.2,
+        "supply": 0.8
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_clinic_epidemic"
+    ],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.75,
+      "via": "mail",
+      "text": "Orderly: beds are filling with the same symptoms."
+    },
+    "mail_text": "A fever has reached the lower decks. Medicine is in demand.",
+    "followups": [
+      "evt_clinic_stockout"
+    ],
+    "requires": []
+  },
+  {
+    "id": "evt_lung_rot",
+    "name": "Lung rot",
+    "kind": "epidemic",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 5,
+    "systems": [
+      "sys_scrubber_bank"
+    ],
+    "decks": [
+      "deck_spine"
+    ],
+    "shocks": [
+      {
+        "need": "need_medicine",
+        "demand": 1.8,
+        "supply": 0.9
+      },
+      {
+        "need": "need_air",
+        "demand": 1.3,
+        "supply": 0.9
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_clinic_epidemic"
+    ],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.7,
+      "via": "board",
+      "text": "Board: reports of coughs on the spine. Clinic is watching."
+    },
+    "mail_text": "Coughs run through the spine. Masks and medicine sell.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_gut_sickness",
+    "name": "Gut sickness",
+    "kind": "epidemic",
+    "phase_from": "phase_1",
+    "weight": 0.5,
+    "duration_days": 4,
+    "systems": [
+      "sys_vat_halls"
+    ],
+    "decks": [
+      "deck_works",
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_medicine",
+        "demand": 1.6,
+        "supply": 0.9
+      },
+      {
+        "need": "need_water",
+        "demand": 1.3,
+        "supply": 1.0
+      },
+      {
+        "need": "need_food",
+        "demand": 0.8,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": null,
+    "mail_text": "Bad vat food has sent half the works to bed.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_ring_festival",
+    "name": "Ring festival",
+    "kind": "festival",
+    "phase_from": "phase_2",
+    "weight": 0.6,
+    "duration_days": 3,
+    "systems": [
+      "sys_ring_farms"
+    ],
+    "decks": [
+      "deck_ring",
+      "deck_hub"
+    ],
+    "shocks": [
+      {
+        "need": "need_luxury",
+        "demand": 1.8,
+        "supply": 1.0
+      },
+      {
+        "need": "need_comfort",
+        "demand": 1.3,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_festival"
+    ],
+    "rumor": {
+      "lead_days": 3,
+      "accuracy": 0.85,
+      "via": "mail",
+      "text": "Ring council: festival banners are up. Expect a busy week."
+    },
+    "mail_text": "The ring is celebrating. Wine, scent and ornaments are wanted.",
+    "followups": [
+      "evt_festival_morning"
+    ],
+    "requires": []
+  },
+  {
+    "id": "evt_festival_morning",
+    "name": "Morning after",
+    "kind": "festival",
+    "phase_from": "phase_2",
+    "weight": 0.3,
+    "duration_days": 1,
+    "systems": [],
+    "decks": [
+      "deck_ring",
+      "deck_hub",
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_medicine",
+        "demand": 1.3,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_hungover"
+    ],
+    "rumor": null,
+    "mail_text": "The morning after. Heads are heavy and the clinic is quiet.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_founders_day",
+    "name": "Founders day",
+    "kind": "festival",
+    "phase_from": "phase_3",
+    "weight": 0.5,
+    "duration_days": 3,
+    "systems": [
+      "sys_company_store"
+    ],
+    "decks": [
+      "deck_hub",
+      "deck_ring",
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_comfort",
+        "demand": 1.5,
+        "supply": 1.0
+      },
+      {
+        "need": "need_luxury",
+        "demand": 1.4,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_festival"
+    ],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.8,
+      "via": "mail",
+      "text": "Clerk: a notice has gone up about founders day. Wage packets will be fat."
+    },
+    "mail_text": "The company marks founders day with a store sale and free scrip.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_works_feast",
+    "name": "Works feast",
+    "kind": "festival",
+    "phase_from": "phase_1",
+    "weight": 0.5,
+    "duration_days": 2,
+    "systems": [],
+    "decks": [
+      "deck_works",
+      "deck_dock"
+    ],
+    "shocks": [
+      {
+        "need": "need_food",
+        "demand": 1.5,
+        "supply": 1.0
+      },
+      {
+        "need": "need_luxury",
+        "demand": 1.3,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_fed"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.8,
+      "via": "board",
+      "text": "Board: union feast tonight in the hall. Bring a dish."
+    },
+    "mail_text": "The union has called a feast. Food and a little drink are wanted.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_inspection_routine",
+    "name": "Routine inspection",
+    "kind": "inspection",
+    "phase_from": "phase_1",
+    "weight": 0.9,
+    "duration_days": 1,
+    "systems": [],
+    "decks": [
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_luxury",
+        "demand": 0.8,
+        "supply": 1.0
+      }
+    ],
+    "effects": [
+      {
+        "stat": "inspection_chance",
+        "op": "add",
+        "value": 0.2,
+        "text": "Inspection chance +20%"
+      }
+    ],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.8,
+      "via": "mail",
+      "text": "Security: an inspection of mid-deck stalls has been scheduled."
+    },
+    "mail_text": "Security is inspecting stalls on the mid decks. Anything flagged is seized.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_dock_sweep",
+    "name": "Dock sweep",
+    "kind": "raid",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 2,
+    "systems": [],
+    "decks": [
+      "deck_dock"
+    ],
+    "shocks": [
+      {
+        "need": "need_luxury",
+        "demand": 0.5,
+        "supply": 1.6
+      },
+      {
+        "need": "need_medicine",
+        "demand": 0.8,
+        "supply": 1.3
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_flagged"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.7,
+      "via": "radio",
+      "text": "Radio: security vessels at the dock gate."
+    },
+    "mail_text": "Security has swept the dock. Fences dump their stock.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_hub_audit",
+    "name": "Company audit",
+    "kind": "inspection",
+    "phase_from": "phase_3",
+    "weight": 0.5,
+    "duration_days": 2,
+    "systems": [],
+    "decks": [
+      "deck_hub",
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_comfort",
+        "demand": 0.9,
+        "supply": 1.0
+      }
+    ],
+    "effects": [
+      {
+        "stat": "inspection_chance",
+        "op": "add",
+        "value": 0.25,
+        "text": "Inspection chance +25%"
+      }
+    ],
+    "spawns_orders": [],
+    "adds": [
+      "stat_flagged"
+    ],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.85,
+      "via": "mail",
+      "text": "Clerk: the auditors are in. Anything unlabelled is a problem."
+    },
+    "mail_text": "The company is auditing licensed goods. Unlicensed stock is seized.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_security_sweep",
+    "name": "Security sweep",
+    "kind": "inspection",
+    "phase_from": "phase_2",
+    "weight": 0.4,
+    "duration_days": 3,
+    "systems": [],
+    "decks": [],
+    "shocks": [
+      {
+        "need": "need_luxury",
+        "demand": 0.7,
+        "supply": 1.2
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_lockdown",
+      "stat_flagged"
+    ],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.7,
+      "via": "mail",
+      "text": "Security: a sweep of all decks is scheduled."
+    },
+    "mail_text": "A station-wide security sweep. Fire and drugs are being seized.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_wage_cut_works",
+    "name": "Works wage cut",
+    "kind": "macro",
+    "phase_from": "phase_1",
+    "weight": 0.5,
+    "duration_days": 7,
+    "systems": [],
+    "decks": [
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_luxury",
+        "demand": 0.6,
+        "supply": 1.0
+      },
+      {
+        "need": "need_comfort",
+        "demand": 0.7,
+        "supply": 1.0
+      }
+    ],
+    "effects": [
+      {
+        "stat": "budget_mult",
+        "op": "mul",
+        "value": 0.75,
+        "text": "Works budgets -25%",
+        "scope": {
+          "deck": "deck_works"
+        }
+      }
+    ],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.85,
+      "via": "mail",
+      "text": "Union: the company may cut scales next cycle."
+    },
+    "mail_text": "The company cuts works wages. Fewer coins for everything.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_wage_rise_ring",
+    "name": "Ring bonus",
+    "kind": "macro",
+    "phase_from": "phase_2",
+    "weight": 0.4,
+    "duration_days": 7,
+    "systems": [],
+    "decks": [
+      "deck_ring"
+    ],
+    "shocks": [
+      {
+        "need": "need_luxury",
+        "demand": 1.4,
+        "supply": 1.0
+      },
+      {
+        "need": "need_comfort",
+        "demand": 1.2,
+        "supply": 1.0
+      }
+    ],
+    "effects": [
+      {
+        "stat": "budget_mult",
+        "op": "mul",
+        "value": 1.25,
+        "text": "Ring budgets +25%",
+        "scope": {
+          "deck": "deck_ring"
+        }
+      }
+    ],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": null,
+    "mail_text": "The ring receives a bonus. Spending rises.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_spine_ration_cut",
+    "name": "Spine ration cut",
+    "kind": "macro",
+    "phase_from": "phase_1",
+    "weight": 0.5,
+    "duration_days": 7,
+    "systems": [],
+    "decks": [
+      "deck_spine"
+    ],
+    "shocks": [
+      {
+        "need": "need_food",
+        "demand": 1.3,
+        "supply": 0.9
+      },
+      {
+        "need": "need_water",
+        "demand": 1.2,
+        "supply": 1.0
+      }
+    ],
+    "effects": [
+      {
+        "stat": "budget_mult",
+        "op": "mul",
+        "value": 0.8,
+        "text": "Spine budgets -20%",
+        "scope": {
+          "deck": "deck_spine"
+        }
+      }
+    ],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 3,
+      "accuracy": 0.8,
+      "via": "board",
+      "text": "Board: allowance schedule for the spine is under revision."
+    },
+    "mail_text": "The company reduces spine credit allowance. Bunks tighten belts.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_rent_hike",
+    "name": "Rent hike",
+    "kind": "macro",
+    "phase_from": "phase_2",
+    "weight": 0.4,
+    "duration_days": 14,
+    "systems": [],
+    "decks": [],
+    "shocks": [],
+    "effects": [
+      {
+        "stat": "rent_mult",
+        "op": "mul",
+        "value": 1.25,
+        "text": "Rent +25%"
+      }
+    ],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 3,
+      "accuracy": 0.85,
+      "via": "mail",
+      "text": "Company: revised rents will be announced."
+    },
+    "mail_text": "The company raises stall rent. See the revised schedule.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_tithe_hike",
+    "name": "Tithe raised",
+    "kind": "macro",
+    "phase_from": "phase_3",
+    "weight": 0.4,
+    "duration_days": 14,
+    "systems": [],
+    "decks": [],
+    "shocks": [],
+    "effects": [
+      {
+        "stat": "tithe_mult",
+        "op": "mul",
+        "value": 1.3,
+        "text": "Tithe +30%"
+      }
+    ],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.85,
+      "via": "mail",
+      "text": "Company: a revised tithe schedule is in draft."
+    },
+    "mail_text": "The tithe schedule is revised. Larger deliveries are due.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_corridor_breach",
+    "name": "Corridor breach",
+    "kind": "accident",
+    "phase_from": "phase_1",
+    "weight": 0.5,
+    "duration_days": 1,
+    "systems": [],
+    "decks": [
+      "deck_spine",
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_air",
+        "demand": 1.2,
+        "supply": 0.9
+      },
+      {
+        "need": "need_parts",
+        "demand": 1.2,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_tired"
+    ],
+    "rumor": null,
+    "mail_text": "A corridor was breached overnight. Everyone is tired.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_galley_fire",
+    "name": "Galley fire",
+    "kind": "accident",
+    "phase_from": "phase_2",
+    "weight": 0.4,
+    "duration_days": 2,
+    "systems": [],
+    "decks": [
+      "deck_works",
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_medicine",
+        "demand": 1.4,
+        "supply": 1.0
+      },
+      {
+        "need": "need_food",
+        "demand": 1.2,
+        "supply": 0.9
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [
+      "ord_fitter_burn"
+    ],
+    "adds": [],
+    "rumor": null,
+    "mail_text": "A fire in the works galley. Burns and a missing meal.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_blackout_night",
+    "name": "Night blackout",
+    "kind": "accident",
+    "phase_from": "phase_2",
+    "weight": 0.4,
+    "duration_days": 1,
+    "systems": [],
+    "decks": [],
+    "shocks": [
+      {
+        "need": "need_power",
+        "demand": 1.2,
+        "supply": 0.9
+      },
+      {
+        "need": "need_comfort",
+        "demand": 1.2,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_unpowered",
+      "stat_tired"
+    ],
+    "rumor": null,
+    "mail_text": "The lights went out for a night. Machines sat idle.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_worm_in_mail",
+    "name": "Worm in the mail",
+    "kind": "accident",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 2,
+    "systems": [],
+    "decks": [
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_parts",
+        "demand": 1.1,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_infected"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.75,
+      "via": "mail",
+      "text": "Technician: strange mail on the net. Scan every disc."
+    },
+    "mail_text": "A worm is going round the terminals. Disc copying is risky.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_salvage_drift",
+    "name": "Salvage drift",
+    "kind": "windfall",
+    "phase_from": "phase_1",
+    "weight": 0.6,
+    "duration_days": 3,
+    "systems": [
+      "sys_ore_haul"
+    ],
+    "decks": [
+      "deck_spine",
+      "deck_dock"
+    ],
+    "shocks": [
+      {
+        "need": "need_parts",
+        "demand": 0.9,
+        "supply": 1.6
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.8,
+      "via": "radio",
+      "text": "Radio: a wreck is drifting close to the dock."
+    },
+    "mail_text": "A salvage drift is in range. Scrap floods the ducts.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_double_shift",
+    "name": "Double shift",
+    "kind": "windfall",
+    "phase_from": "phase_2",
+    "weight": 0.5,
+    "duration_days": 2,
+    "systems": [],
+    "decks": [
+      "deck_mid",
+      "deck_works"
+    ],
+    "shocks": [
+      {
+        "need": "need_food",
+        "demand": 1.2,
+        "supply": 1.0
+      },
+      {
+        "need": "need_comfort",
+        "demand": 0.9,
+        "supply": 1.0
+      }
+    ],
+    "effects": [
+      {
+        "stat": "budget_mult",
+        "op": "mul",
+        "value": 1.2,
+        "text": "Mid budgets +20%",
+        "scope": {
+          "deck": "deck_mid"
+        }
+      }
+    ],
+    "spawns_orders": [],
+    "adds": [
+      "stat_wired"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.8,
+      "via": "mail",
+      "text": "Company: shift roster to be revised."
+    },
+    "mail_text": "The company calls a double shift. Wages rise and sleep falls.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_stim_shipment",
+    "name": "Stim shipment",
+    "kind": "windfall",
+    "phase_from": "phase_1",
+    "weight": 0.4,
+    "duration_days": 1,
+    "systems": [],
+    "decks": [
+      "deck_core",
+      "deck_mid"
+    ],
+    "shocks": [
+      {
+        "need": "need_medicine",
+        "demand": 0.9,
+        "supply": 1.2
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_wired"
+    ],
+    "rumor": null,
+    "mail_text": "A stim shipment arrives. A short sharp day, then a crash.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_reactor_surplus",
+    "name": "Reactor surplus",
+    "kind": "windfall",
+    "phase_from": "phase_3",
+    "weight": 0.4,
+    "duration_days": 3,
+    "systems": [
+      "sys_reactor"
+    ],
+    "decks": [
+      "deck_core",
+      "deck_dock"
+    ],
+    "shocks": [
+      {
+        "need": "need_power",
+        "demand": 0.7,
+        "supply": 1.7
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [],
+    "rumor": {
+      "lead_days": 2,
+      "accuracy": 0.75,
+      "via": "mail",
+      "text": "Engineer: we are over target again. It will not last."
+    },
+    "mail_text": "The reactor runs above plan. Cells are cheap.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_company_feast",
+    "name": "Company feast",
+    "kind": "windfall",
+    "phase_from": "phase_1",
+    "weight": 0.4,
+    "duration_days": 1,
+    "systems": [
+      "sys_company_store"
+    ],
+    "decks": [
+      "deck_hub"
+    ],
+    "shocks": [
+      {
+        "need": "need_food",
+        "demand": 0.9,
+        "supply": 1.3
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_fed"
+    ],
+    "rumor": {
+      "lead_days": 1,
+      "accuracy": 0.85,
+      "via": "board",
+      "text": "Board: store hosts a meal for staff and tenants."
+    },
+    "mail_text": "The company hosts a feast. Even the stalls get a meal.",
+    "followups": [],
+    "requires": []
+  },
+  {
+    "id": "evt_quiet_cycle",
+    "name": "Quiet cycle",
+    "kind": "windfall",
+    "phase_from": "phase_1",
+    "weight": 0.5,
+    "duration_days": 1,
+    "systems": [],
+    "decks": [],
+    "shocks": [
+      {
+        "need": "need_comfort",
+        "demand": 1.1,
+        "supply": 1.0
+      }
+    ],
+    "effects": [],
+    "spawns_orders": [],
+    "adds": [
+      "stat_rested",
+      "stat_focused"
+    ],
+    "rumor": null,
+    "mail_text": "A quiet cycle. No alarms, no queues, a clear head.",
+    "followups": [],
+    "requires": []
+  }
+]

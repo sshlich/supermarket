@@ -1,0 +1,1455 @@
+[
+  {
+    "id": "rcp_med_purify_dregs",
+    "name": "Purify reagent",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_chem_basics",
+    "inputs": [
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 3
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Crude dregs settle and are decanted off their sediment; the sediment is too little to keep."
+  },
+  {
+    "id": "rcp_med_crack_paste",
+    "name": "Crack paste to reagent",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_chem_basics",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 2
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 4,
+    "time": "job",
+    "phase": "phase_2",
+    "risks": {
+      "stat_hot": 0.1
+    },
+    "notes": "Transmutation: biomass and carbon become reagent on the bench. Slow, hot, and the reason reagent is never scarce for long. Margin exceeds 6x; it is the whole point of the bench."
+  },
+  {
+    "id": "rcp_med_distil_ethanol_bench",
+    "name": "Distil ethanol",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_chem_basics",
+    "inputs": [
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_ethanol",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_distil_ethanol_sugar",
+    "name": "Distil sugar",
+    "kind": "produce",
+    "machine": "mach_still",
+    "disc": "disc_med_chem_basics",
+    "inputs": [
+      {
+        "id": "it_food_sugar",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_ethanol",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "The still turns one unit of sugar into a vial of spirit."
+  },
+  {
+    "id": "rcp_med_ferment_ethanol_paste",
+    "name": "Ferment paste",
+    "kind": "produce",
+    "machine": "mach_still",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_ethanol",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 2,
+    "time": "nights",
+    "phase": "phase_2",
+    "nights": 2,
+    "notes": "Slow route: biomass paste ferments overnight in the pot. Feeds lux spirit and lighter fluid too."
+  },
+  {
+    "id": "rcp_med_mix_antiseptic",
+    "name": "Mix antiseptic",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_chem_basics",
+    "inputs": [
+      {
+        "id": "it_med_ethanol",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_antiseptic",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_dilute_antiseptic",
+    "name": "Cut antiseptic",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_chem_basics",
+    "inputs": [
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_antiseptic",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Spine method: raw dregs, no spirit. Stings worse."
+  },
+  {
+    "id": "rcp_med_make_acid",
+    "name": "Cook acid",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_chem_basics",
+    "inputs": [
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 2
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_acid",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_make_base",
+    "name": "Cook base",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_chem_basics",
+    "inputs": [
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 2
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_base",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_mix_solvent",
+    "name": "Mix solvent",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_chem_basics",
+    "inputs": [
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 1
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_solvent",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "risks": {
+      "stat_hot": 0.08
+    },
+    "notes": "Volatile: a hot bench can flash."
+  },
+  {
+    "id": "rcp_med_mix_burn_gel",
+    "name": "Mix burn gel",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_chem_basics",
+    "inputs": [
+      {
+        "id": "it_food_oil",
+        "qty": 1
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_burn_gel",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Plant oil carries the reagent; two tubes per batch."
+  },
+  {
+    "id": "rcp_med_weave_gauze_lint",
+    "name": "Weave gauze",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_gauze",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_weave_gauze_rags",
+    "name": "Weave gauze from rags",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_rags",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_gauze",
+        "qty": 8
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Rags are the cheap spine source."
+  },
+  {
+    "id": "rcp_med_weave_bandage_lint",
+    "name": "Weave bandage roll",
+    "kind": "produce",
+    "machine": "mach_loom",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_bandage",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "The wound-care card sets the loom to selvedge rolls with a clip."
+  },
+  {
+    "id": "rcp_med_roll_bandage",
+    "name": "Roll bandage",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_gauze",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_bandage",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_fit_splint",
+    "name": "Fit splint",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_scrap_light",
+        "qty": 1
+      },
+      {
+        "id": "it_mach_padding",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_splint",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_pack_suture_kit",
+    "name": "Pack suture kit",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_yarn",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_fasteners",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_suture_kit",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_hang_saline_drip",
+    "name": "Hang saline drip",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_saline",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_polymer_tube",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_saline_drip",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_stir_rehydration",
+    "name": "Mix rehydration sachets",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_sugar",
+        "qty": 1
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_rehydration_mix",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_brew_stim",
+    "name": "Brew stims",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_stimulants",
+    "inputs": [
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_stim",
+        "qty": 5
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2",
+    "risks": {
+      "stat_hot": 0.1
+    },
+    "notes": "Five stims per purified unit."
+  },
+  {
+    "id": "rcp_med_brew_energy_tabs",
+    "name": "Press energy tabs",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_stimulants",
+    "inputs": [
+      {
+        "id": "it_food_sugar",
+        "qty": 1
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_energy_tab",
+        "qty": 10
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_press_blisters",
+    "name": "Press blister cards",
+    "kind": "produce",
+    "machine": "mach_pill_press",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      },
+      {
+        "id": "it_core_scrap_light",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_blister",
+        "qty": 10
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Foil stock stamped into ten six-pocket cards."
+  },
+  {
+    "id": "rcp_med_press_painkillers",
+    "name": "Press painkillers",
+    "kind": "produce",
+    "machine": "mach_pill_press",
+    "disc": "disc_med_analgesics",
+    "inputs": [
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_painkiller",
+        "qty": 10
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "notes": "Ten tablets per purified unit; the press never wastes powder."
+  },
+  {
+    "id": "rcp_med_press_burn_tabs",
+    "name": "Press burn tabs",
+    "kind": "produce",
+    "machine": "mach_pill_press",
+    "disc": "disc_med_analgesics",
+    "inputs": [
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 1
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_burn_tab",
+        "qty": 10
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "risks": {
+      "stat_jammed": 0.05
+    }
+  },
+  {
+    "id": "rcp_med_press_sleeping",
+    "name": "Press sleeping pills",
+    "kind": "produce",
+    "machine": "mach_pill_press",
+    "disc": "disc_med_sedatives",
+    "inputs": [
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_sleeping_pill",
+        "qty": 10
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "risks": {
+      "stat_jammed": 0.05
+    }
+  },
+  {
+    "id": "rcp_med_press_calmers",
+    "name": "Press calmers",
+    "kind": "produce",
+    "machine": "mach_pill_press",
+    "disc": "disc_med_sedatives",
+    "inputs": [
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 1
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_calmer",
+        "qty": 5
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_fill_painkiller",
+    "name": "Fill painkiller blister",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_blister",
+        "qty": 1
+      },
+      {
+        "id": "it_med_painkiller",
+        "qty": 6
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_fb_painkiller",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_fill_antibiotic",
+    "name": "Fill antibiotic blister",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_blister",
+        "qty": 1
+      },
+      {
+        "id": "it_med_antibiotic",
+        "qty": 6
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_fb_antibiotic",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_fill_sleeping_pill",
+    "name": "Fill sleeping blister",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_blister",
+        "qty": 1
+      },
+      {
+        "id": "it_med_sleeping_pill",
+        "qty": 6
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_fb_sleeping_pill",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_fill_antiviral",
+    "name": "Fill antiviral blister",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_blister",
+        "qty": 1
+      },
+      {
+        "id": "it_med_antiviral",
+        "qty": 6
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_fb_antiviral",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_fill_antirad",
+    "name": "Fill anti-rad blister",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_blister",
+        "qty": 1
+      },
+      {
+        "id": "it_med_antirad",
+        "qty": 6
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_fb_antirad",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_fill_burn_tab",
+    "name": "Fill burn tab blister",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_blister",
+        "qty": 1
+      },
+      {
+        "id": "it_med_burn_tab",
+        "qty": 6
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_fb_burn_tab",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_fill_dream_tab",
+    "name": "Fill dream blister",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_blister",
+        "qty": 1
+      },
+      {
+        "id": "it_med_dream_tab",
+        "qty": 6
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_fb_dream_tab",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2",
+    "notes": "Disguised as a legitimate card; the foil has no maker stamp."
+  },
+  {
+    "id": "rcp_med_empty_painkiller",
+    "name": "Punch out painkillers",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_fb_painkiller",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_blister",
+        "qty": 1
+      },
+      {
+        "id": "it_med_painkiller",
+        "qty": 6
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2",
+    "notes": "Returns the empty card with the tablets."
+  },
+  {
+    "id": "rcp_med_empty_antibiotic",
+    "name": "Punch out antibiotics",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_fb_antibiotic",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_blister",
+        "qty": 1
+      },
+      {
+        "id": "it_med_antibiotic",
+        "qty": 6
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2",
+    "notes": "Returns the empty card with the tablets."
+  },
+  {
+    "id": "rcp_med_empty_dream_tab",
+    "name": "Punch out dream tabs",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_fb_dream_tab",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_blister",
+        "qty": 1
+      },
+      {
+        "id": "it_med_dream_tab",
+        "qty": 6
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2",
+    "notes": "Returns the empty card with the tablets."
+  },
+  {
+    "id": "rcp_med_pack_first_aid_kit",
+    "name": "Pack first-aid kit",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_tub",
+        "qty": 1
+      },
+      {
+        "id": "it_med_bandage",
+        "qty": 2
+      },
+      {
+        "id": "it_med_antiseptic",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_first_aid_kit",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_empty_first_aid_kit",
+    "name": "Unpack first-aid kit",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_first_aid_kit",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_tub",
+        "qty": 1
+      },
+      {
+        "id": "it_med_bandage",
+        "qty": 2
+      },
+      {
+        "id": "it_med_antiseptic",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_pack_ward",
+    "name": "Pack ward crate",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_crate",
+        "qty": 1
+      },
+      {
+        "id": "it_med_fb_painkiller",
+        "qty": 2
+      },
+      {
+        "id": "it_med_fb_antibiotic",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_pack_ward",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_pack_wound",
+    "name": "Pack wound tub",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_tub",
+        "qty": 1
+      },
+      {
+        "id": "it_med_bandage",
+        "qty": 4
+      },
+      {
+        "id": "it_med_antiseptic",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_pack_wound",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_pack_burn",
+    "name": "Pack burn tub",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_tub",
+        "qty": 1
+      },
+      {
+        "id": "it_med_burn_gel",
+        "qty": 2
+      },
+      {
+        "id": "it_med_fb_burn_tab",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_pack_burn",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_unpack_wound",
+    "name": "Unpack wound tub",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_med_pack_wound",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_tub",
+        "qty": 1
+      },
+      {
+        "id": "it_med_bandage",
+        "qty": 4
+      },
+      {
+        "id": "it_med_antiseptic",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_med_synth_antibiotics",
+    "name": "Synthesise antibiotics",
+    "kind": "produce",
+    "machine": "mach_synthesiser",
+    "disc": "disc_med_antibiotics",
+    "inputs": [
+      {
+        "id": "it_med_acid",
+        "qty": 2
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_antibiotic",
+        "qty": 10
+      },
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 1
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 10,
+    "time": "job",
+    "phase": "phase_3",
+    "notes": "The acid is spent; its salt and grit come back out with spare reagent and paste."
+  },
+  {
+    "id": "rcp_med_synth_antivirals",
+    "name": "Synthesise antivirals",
+    "kind": "produce",
+    "machine": "mach_synthesiser",
+    "disc": "disc_med_antibiotics",
+    "inputs": [
+      {
+        "id": "it_med_base",
+        "qty": 2
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_antiviral",
+        "qty": 10
+      },
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 1
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 1
+      }
+    ],
+    "energy": 3,
+    "cells": 12,
+    "time": "job",
+    "phase": "phase_3",
+    "risks": {
+      "stat_hot": 0.1
+    },
+    "notes": "Rare dust is the binder. Margin is high on purpose: this is a ring-grade pharmacy product."
+  },
+  {
+    "id": "rcp_med_synth_antirad",
+    "name": "Synthesise anti-radiation tabs",
+    "kind": "produce",
+    "machine": "mach_synthesiser",
+    "disc": "disc_med_antibiotics",
+    "inputs": [
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 1
+      },
+      {
+        "id": "it_core_lithium_salt",
+        "qty": 2
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_antirad",
+        "qty": 10
+      }
+    ],
+    "energy": 2,
+    "cells": 10,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_med_synth_dream_tabs",
+    "name": "Synthesise dream tabs",
+    "kind": "produce",
+    "machine": "mach_synthesiser",
+    "disc": "disc_med_narcotics",
+    "inputs": [
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 1
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_dream_tab",
+        "qty": 10
+      }
+    ],
+    "energy": 2,
+    "cells": 10,
+    "time": "job",
+    "phase": "phase_3",
+    "risks": {
+      "stat_hot": 0.1
+    }
+  },
+  {
+    "id": "rcp_med_cook_blue_ampoules",
+    "name": "Cook blue ampoules",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_med_narcotics",
+    "inputs": [
+      {
+        "id": "it_med_solvent",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_blue_ampoule",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 4,
+    "time": "job",
+    "phase": "phase_3",
+    "risks": {
+      "stat_hot": 0.15
+    },
+    "notes": "Bench route: needs the narcotics disc and a steady hand. A hot bench flashes."
+  },
+  {
+    "id": "rcp_med_synth_blue_ampoules",
+    "name": "Synthesise blue ampoules",
+    "kind": "produce",
+    "machine": "mach_synthesiser",
+    "disc": "disc_med_narcotics",
+    "inputs": [
+      {
+        "id": "it_med_reagent_pure",
+        "qty": 1
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_blue_ampoule",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_med_synth_regrowth_gel",
+    "name": "Synthesise regrowth gel",
+    "kind": "produce",
+    "machine": "mach_synthesiser",
+    "disc": "disc_med_regenerative",
+    "inputs": [
+      {
+        "id": "it_med_burn_gel",
+        "qty": 5
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_regrowth_gel",
+        "qty": 5
+      }
+    ],
+    "energy": 3,
+    "cells": 20,
+    "time": "nights",
+    "phase": "phase_4",
+    "nights": 2,
+    "notes": "Five burn gels seeded with rare earth and left to culture for two nights."
+  },
+  {
+    "id": "rcp_med_synth_gene_patch",
+    "name": "Print gene patches",
+    "kind": "produce",
+    "machine": "mach_synthesiser",
+    "disc": "disc_med_regenerative",
+    "inputs": [
+      {
+        "id": "it_med_regrowth_gel",
+        "qty": 5
+      },
+      {
+        "id": "it_core_noble_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_med_gene_patch",
+        "qty": 5
+      }
+    ],
+    "energy": 3,
+    "cells": 30,
+    "time": "nights",
+    "phase": "phase_4",
+    "nights": 3,
+    "notes": "Noble flake is cut into the contacts. Ring-only product."
+  }
+]

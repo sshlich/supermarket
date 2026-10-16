@@ -1,0 +1,40 @@
+[
+  {
+    "id": "upg_smelter",
+    "name": "Smelter crate",
+    "desc": "The furnace, refitted for cells. Arrives on the outside counter an hour after you order it.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": { "credits": 40 },
+    "requires": ["phase_1"],
+    "grants": ["mach_smelter"],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_workbench",
+    "name": "Workbench",
+    "desc": "A 3x2 bench: refill, bundle, repair.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": { "credits": 150 },
+    "requires": ["upg_smelter"],
+    "grants": ["mach_bench"],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_dock_1",
+    "name": "Dock extension",
+    "desc": "Two more rows on the dock grid: more boxes per pickup.",
+    "phase": "phase_1",
+    "kind": "logistics",
+    "cost": { "credits": 120 },
+    "requires": [],
+    "effects": [{ "stat": "dock_h", "op": "add", "value": 2, "text": "dock 6x4 to 6x6" }],
+    "tiers": [
+      { "cost": { "credits": 900 }, "effects": [{ "stat": "dock_w", "op": "add", "value": 2, "text": "dock 6x6 to 8x6" }] }
+    ],
+    "delivery": "instant"
+  }
+]

@@ -1,0 +1,40 @@
+[
+  {
+    "id": "mach_smelter",
+    "name": "Smelter",
+    "desc": "The old cast-iron furnace, its firebox gutted for a cell rack. Two ore in, one bar out.",
+    "w": 3, "h": 4, "tier": 1, "value": 40,
+    "composition": { "mat_iron": 6, "mat_silicate": 4 },
+    "tags": ["fixture"],
+    "kind": "produce", "phase": "phase_1", "tray": false, "max_inputs": 2, "transmutes": [],
+    "slots": [
+      { "name": "crucible", "role": "input", "w": 4, "h": 2, "accepts_tags": ["ore"] },
+      { "name": "cell rack", "role": "cell", "w": 2, "h": 1, "accepts_tags": ["cell"] }
+    ],
+    "cells_per_job": 1, "energy_per_job": 1, "jobs": ["job"],
+    "statuses": ["stat_hot", "stat_jammed"],
+    "carried_from": "furnace"
+  },
+  {
+    "id": "mach_bench",
+    "name": "Workbench",
+    "desc": "A steel bench with a vice and a roller. Repair, refill, bundle.",
+    "w": 3, "h": 2, "tier": 1, "value": 150,
+    "composition": { "mat_iron": 5 },
+    "tags": ["fixture"],
+    "kind": "modify", "phase": "phase_1", "tray": false, "max_inputs": 3, "transmutes": [],
+    "slots": [{ "name": "top", "role": "input", "w": 6, "h": 4 }],
+    "energy_per_job": 1, "jobs": ["job"]
+  },
+  {
+    "id": "mach_recycler",
+    "name": "Recycler",
+    "desc": "A grinding drum and a row of sorting chutes. Anything in, materials out, a tenth to sludge.",
+    "w": 3, "h": 3, "tier": 1, "value": 60,
+    "composition": { "mat_iron": 4, "mat_copper": 1 },
+    "tags": ["fixture"],
+    "kind": "produce", "phase": "phase_1", "tray": false, "max_inputs": 1, "transmutes": [], "generic": "recycle",
+    "slots": [{ "name": "hopper", "role": "input", "w": 4, "h": 4 }, { "name": "chutes", "role": "output", "w": 6, "h": 2 }],
+    "cells_per_job": 1, "energy_per_job": 1, "jobs": ["job"]
+  }
+]

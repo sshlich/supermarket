@@ -1,0 +1,845 @@
+[
+  {
+    "id": "it_core_scrap_iron",
+    "name": "Iron scrap",
+    "desc": "A fist of bent iron offcuts, rust-red where the paint has gone. One unit of iron.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 1,
+    "composition": {
+      "mat_iron": 1
+    },
+    "tags": [
+      "scrap",
+      "unit",
+      "raw"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Fab smelts and rolls it; recycler output."
+  },
+  {
+    "id": "it_core_scrap_copper",
+    "name": "Copper scrap",
+    "desc": "Stripped copper, still curled from the conduit it came out of. One unit of copper.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 2,
+    "composition": {
+      "mat_copper": 1
+    },
+    "tags": [
+      "scrap",
+      "unit",
+      "raw"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Wire and tool stock; recycler output."
+  },
+  {
+    "id": "it_core_scrap_light",
+    "name": "Light scrap",
+    "desc": "Pale alloy bent off a ladder rail or a duct frame. Light enough for one hand.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 2,
+    "composition": {
+      "mat_lightmetal": 1
+    },
+    "tags": [
+      "scrap",
+      "unit",
+      "raw"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Fab (extruder, smelter) feedstock."
+  },
+  {
+    "id": "it_core_grit",
+    "name": "Grit",
+    "desc": "Coarse pale sand ground from stone and old glass. Scours, fills, and melts into glass.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 0.2,
+    "composition": {
+      "mat_silicate": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "powder"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Fab (kiln, glass) feedstock."
+  },
+  {
+    "id": "it_core_carbon_dust",
+    "name": "Carbon dust",
+    "desc": "Black dust that coats the hand and stays. Out of old filters, burnt husks and duct soot.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 0.5,
+    "composition": {
+      "mat_carbon": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "powder"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Machines (filters) and fab (steel) feedstock."
+  },
+  {
+    "id": "it_core_polymer_flake",
+    "name": "Polymer flake",
+    "desc": "Grey chips of crushed plastic, bagged. Warm to the touch when fresh. Becomes sheet and casing.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 1,
+    "composition": {
+      "mat_polymer": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "polymer"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Fab (extruder) feedstock."
+  },
+  {
+    "id": "it_core_fibre_lint",
+    "name": "Fibre lint",
+    "desc": "A grey wad of lint and short fibre pulled from filters and bedding. Soft, dusty, useful.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 1,
+    "composition": {
+      "mat_fibre": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "fibre"
+    ],
+    "market_need": "need_comfort",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Lux (pulper, loom) feedstock."
+  },
+  {
+    "id": "it_core_biomass_paste",
+    "name": "Biomass paste",
+    "desc": "A grey brick of pressed paste, cold and faintly sweet. What the vats are fed.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 0.5,
+    "composition": {
+      "mat_biomass": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "culture"
+    ],
+    "market_need": "need_food",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    },
+    "notes": "Food (vat) feedstock. Also made by the digester."
+  },
+  {
+    "id": "it_core_greywater",
+    "name": "Greywater",
+    "desc": "A sealed flask of cloudy water. Not for drinking until it has been through a purifier.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 0.4,
+    "composition": {
+      "mat_water": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "liquid",
+      "water"
+    ],
+    "market_need": "need_water",
+    "inflow": {
+      "channel": "haul",
+      "phase": "phase_1"
+    },
+    "notes": "Life (purifier) feedstock; meltwater siphoned off the ice haul (sys_ice_haul)."
+  },
+  {
+    "id": "it_core_salt_cake",
+    "name": "Salt cake",
+    "desc": "A pale crust of mineral salt, scraped off the reclaim tanks and pressed into a cake.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 0.4,
+    "composition": {
+      "mat_salts": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "powder"
+    ],
+    "market_need": "need_water",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Life (scrubbers, brine) feedstock."
+  },
+  {
+    "id": "it_core_reagent_dregs",
+    "name": "Reagent dregs",
+    "desc": "Dark, mixed chemical dregs in a stoppered vial. A chemist can work with it. Nobody else should.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 1.5,
+    "composition": {
+      "mat_reagent": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "liquid",
+      "reagent"
+    ],
+    "market_need": "need_medicine",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Med (chem bench) feedstock."
+  },
+  {
+    "id": "it_core_gas_bladder",
+    "name": "Gas bladder",
+    "desc": "A tight, flat bladder of mixed gas, strapped to a carry-frame. Handle with care; do not puncture.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 0.4,
+    "composition": {
+      "mat_volatiles": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "gas"
+    ],
+    "market_need": "need_air",
+    "inflow": {
+      "channel": "haul",
+      "phase": "phase_1"
+    },
+    "notes": "Life (electrolyser, scrubber) feedstock."
+  },
+  {
+    "id": "it_core_sludge",
+    "name": "Sludge",
+    "desc": "A sealed jug of brown slurry that is all that remains of other things. Digest it or vent it.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 0,
+    "composition": {
+      "mat_sludge": 1
+    },
+    "tags": [
+      "waste",
+      "unit",
+      "liquid"
+    ],
+    "market_need": "need_food",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Digester and vent input; the recycler's 10% ends up here."
+  },
+  {
+    "id": "it_core_ore_iron",
+    "name": "Iron ore",
+    "desc": "Red-brown rock off the ore haul, banded with rust. Two lumps make a bar.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 1.5,
+    "composition": {
+      "mat_iron": 1,
+      "mat_silicate": 1
+    },
+    "tags": [
+      "raw",
+      "ore"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "haul",
+      "phase": "phase_1"
+    },
+    "carried_from": "ore (iron)",
+    "decks": {
+      "deck_dock": 1.5,
+      "deck_works": 2
+    },
+    "notes": "Hauled in by sys_ore_haul. Smelter feed."
+  },
+  {
+    "id": "it_core_ore_copper",
+    "name": "Copper ore",
+    "desc": "Green-crusted rock off the haul. Smells of pennies when it is crushed.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 2.5,
+    "composition": {
+      "mat_copper": 1,
+      "mat_silicate": 1
+    },
+    "tags": [
+      "raw",
+      "ore"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "haul",
+      "phase": "phase_1"
+    },
+    "carried_from": "ore (copper)",
+    "decks": {
+      "deck_dock": 1.5,
+      "deck_works": 2
+    },
+    "notes": "Hauled in by sys_ore_haul."
+  },
+  {
+    "id": "it_core_ore_light",
+    "name": "Bauxite",
+    "desc": "Pitted red-brown bauxite, light for its size. The only source of fresh light metal.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 2.5,
+    "composition": {
+      "mat_lightmetal": 1,
+      "mat_silicate": 1
+    },
+    "tags": [
+      "raw",
+      "ore"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "haul",
+      "phase": "phase_1"
+    },
+    "decks": {
+      "deck_dock": 1.5,
+      "deck_works": 2
+    },
+    "notes": "Hauled in by sys_ore_haul."
+  },
+  {
+    "id": "it_core_ice",
+    "name": "Ice block",
+    "desc": "A dirty block of comet ice, grey with dust and hard to hold. Water and gas, once it melts.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 1.2,
+    "composition": {
+      "mat_water": 2,
+      "mat_volatiles": 1
+    },
+    "tags": [
+      "raw",
+      "ice",
+      "water"
+    ],
+    "market_need": "need_water",
+    "inflow": {
+      "channel": "haul",
+      "phase": "phase_1"
+    },
+    "decks": {
+      "deck_dock": 1.5,
+      "deck_spine": 2
+    },
+    "notes": "Hauled in by sys_ice_haul."
+  },
+  {
+    "id": "it_core_scrap_mixed",
+    "name": "Mixed scrap",
+    "desc": "A lot of junk bagged together: bent iron, plastic housings, a few lengths of wire. Crush or recycle it.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 3,
+    "composition": {
+      "mat_iron": 1,
+      "mat_polymer": 1,
+      "mat_copper": 0.5
+    },
+    "tags": [
+      "raw",
+      "scrap",
+      "salvage"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Spine salvage lot; the crusher sorts it better than the recycler."
+  },
+  {
+    "id": "it_core_ewaste",
+    "name": "E-waste",
+    "desc": "A stack of dead boards and cracked screens. Worth more crushed than whole.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 9,
+    "composition": {
+      "mat_copper": 1,
+      "mat_rare": 0.3,
+      "mat_polymer": 1,
+      "mat_noble": 0.1
+    },
+    "tags": [
+      "raw",
+      "scrap",
+      "salvage",
+      "electronic"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Source of rare dust and noble flakes (crusher)."
+  },
+  {
+    "id": "it_core_rags",
+    "name": "Rags",
+    "desc": "A tied bundle of stained cloth off the spine bunks. Fibre for the pulper, and not much else.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 2,
+    "composition": {
+      "mat_fibre": 2
+    },
+    "tags": [
+      "raw",
+      "scrap",
+      "fibre",
+      "salvage"
+    ],
+    "market_need": "need_comfort",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "decks": {
+      "deck_spine": 2
+    },
+    "notes": "Pulper and loom feed."
+  },
+  {
+    "id": "it_core_slag",
+    "name": "Slag",
+    "desc": "Glassy grey clinker raked out of the smelter. The kiln can use it.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 0.2,
+    "composition": {
+      "mat_silicate": 1
+    },
+    "tags": [
+      "waste",
+      "scrap"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Mainly a smelting byproduct (fab recipes); old heaps are also swept up as salvage."
+  },
+  {
+    "id": "it_core_duct_junk",
+    "name": "Duct junk",
+    "desc": "A tangle of foil tape, fan housings and ducting yanked from the spine walls.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 3,
+    "composition": {
+      "mat_lightmetal": 1,
+      "mat_polymer": 0.5,
+      "mat_fibre": 0.5
+    },
+    "tags": [
+      "raw",
+      "scrap",
+      "salvage"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Pulled by spine scavengers. Crusher yields light scrap, polymer flake and lint."
+  },
+  {
+    "id": "it_core_hull_offcuts",
+    "name": "Hull offcuts",
+    "desc": "Heavy plates and strips of hull alloy, cut off during repair and left on the dock.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 4,
+    "composition": {
+      "mat_iron": 1.5,
+      "mat_lightmetal": 1
+    },
+    "tags": [
+      "raw",
+      "scrap",
+      "salvage",
+      "structural"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Left behind by dock repair crews (sys_ore_haul upkeep). Crusher splits iron from light metal."
+  },
+  {
+    "id": "it_core_wire_tangle",
+    "name": "Wire tangle",
+    "desc": "A knotted ball of cable, half stripped, with a few cracked connectors still hanging off.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 4,
+    "composition": {
+      "mat_copper": 1.5,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "raw",
+      "scrap",
+      "salvage",
+      "wire"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Spine rewiring leaves these. Crusher splits copper from insulation."
+  },
+  {
+    "id": "it_core_rubble",
+    "name": "Rubble",
+    "desc": "A heavy bag of broken panel, concrete grit and old filter fill, swept from the dock floor.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 1,
+    "composition": {
+      "mat_silicate": 2,
+      "mat_iron": 0.5,
+      "mat_carbon": 0.5
+    },
+    "tags": [
+      "raw",
+      "scrap",
+      "salvage",
+      "waste"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Dock sweepings. Crush for grit, iron flecks and carbon; or vent it."
+  },
+  {
+    "id": "it_core_filter_husks",
+    "name": "Spent filters",
+    "desc": "Clogged cartridge husks from the scrubber bank, black inside and smelling of old breath.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 1.5,
+    "composition": {
+      "mat_carbon": 1,
+      "mat_fibre": 0.5,
+      "mat_salts": 0.5
+    },
+    "tags": [
+      "raw",
+      "scrap",
+      "salvage",
+      "filter",
+      "waste"
+    ],
+    "market_need": "need_air",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Swapped out by sys_scrubber_bank crews. Crusher gives carbon dust, lint and salt."
+  },
+  {
+    "id": "it_core_salvage_crate",
+    "name": "Salvage crate",
+    "desc": "A battered lidded crate from a clearance sale, packed with whatever a scavenger could not sell.",
+    "w": 3,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 2,
+    "composition": {
+      "mat_lightmetal": 0.5,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "raw",
+      "salvage",
+      "container",
+      "packaging"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "contents",
+          "w": 4,
+          "h": 3
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_core_scrap_mixed",
+          "qty": 1
+        },
+        {
+          "id": "it_core_scrap_iron",
+          "qty": 2
+        },
+        {
+          "id": "it_core_rags",
+          "qty": 1
+        }
+      ]
+    },
+    "notes": "Composition is the empty shell. A first lot of the spine scavengers; opening it is the point."
+  },
+  {
+    "id": "it_core_noble_flake",
+    "name": "Noble flake",
+    "desc": "A pinch of gold-bright flakes in a sealed twist of foil. It never tarnishes.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 0,
+    "value": 25,
+    "composition": {
+      "mat_noble": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "powder"
+    ],
+    "market_need": "need_luxury",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_2"
+    },
+    "notes": "Fab (contacts, jewellery) feedstock. Wave B: some trader should sell it."
+  },
+  {
+    "id": "it_core_rare_dust",
+    "name": "Rare dust",
+    "desc": "Grey, greasy dust that clings to the fingers. The magnets and chips are made of this.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 0,
+    "value": 12,
+    "composition": {
+      "mat_rare": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "powder"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_2"
+    },
+    "notes": "Tech (chips, magnets) feedstock. Wave B: some trader should sell it."
+  },
+  {
+    "id": "it_core_lithium_salt",
+    "name": "Lithium salt",
+    "desc": "White, caking salt in a screw-top tub. It holds a charge the way nothing else does.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 0,
+    "value": 6,
+    "composition": {
+      "mat_lithium": 1
+    },
+    "tags": [
+      "raw",
+      "unit",
+      "powder"
+    ],
+    "market_need": "need_power",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_2"
+    },
+    "notes": "Tech (cells) feedstock."
+  },
+  {
+    "id": "it_core_cell_husk",
+    "name": "Dead cell husk",
+    "desc": "A drained cell casing, split down the seam. A little lithium still clings to the inside.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 0,
+    "value": 5,
+    "composition": {
+      "mat_lightmetal": 0.5,
+      "mat_lithium": 0.5,
+      "mat_carbon": 0.5
+    },
+    "tags": [
+      "raw",
+      "scrap",
+      "salvage",
+      "cell"
+    ],
+    "market_need": "need_power",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_2"
+    },
+    "notes": "Dock chargers throw these out. Crusher recovers the lithium as salt."
+  },
+  {
+    "id": "it_core_dead_appliance",
+    "name": "Dead appliance",
+    "desc": "A kettle, a fan or a heater-plate gone black. Heavy for what it is, worth taking apart.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "depth": 0,
+    "value": 7,
+    "composition": {
+      "mat_iron": 1.5,
+      "mat_copper": 1,
+      "mat_polymer": 1,
+      "mat_rare": 0.1
+    },
+    "tags": [
+      "raw",
+      "scrap",
+      "salvage",
+      "electronic"
+    ],
+    "market_need": "need_parts",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_2"
+    },
+    "notes": "Cleared out of vacated bunks. A trace of rare dust inside makes the crusher worthwhile."
+  }
+]

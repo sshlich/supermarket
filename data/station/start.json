@@ -1,0 +1,111 @@
+{
+  "credits": 50,
+  "energy_cap": 7,
+  "phase": "phase_1",
+  "carrier": "ctier_0",
+  "field": {
+    "w": 25,
+    "h": 20
+  },
+  "dock": {
+    "w": 6,
+    "h": 4
+  },
+  "things": [
+    {
+      "id": "mach_terminal",
+      "qty": 1
+    },
+    {
+      "id": "mach_modem",
+      "qty": 1
+    },
+    {
+      "id": "mach_printer_s",
+      "qty": 1
+    },
+    {
+      "id": "disc_tech_prog_mail",
+      "qty": 1
+    },
+    {
+      "id": "disc_tech_prog_labels",
+      "qty": 1
+    },
+    {
+      "id": "box_s",
+      "qty": 3
+    },
+    {
+      "id": "box_m",
+      "qty": 2
+    },
+    {
+      "id": "box_l",
+      "qty": 1
+    },
+    {
+      "id": "it_tech_slip",
+      "qty": 3
+    },
+    {
+      "id": "it_tech_cell_s",
+      "qty": 3
+    },
+    {
+      "id": "it_fab_knife",
+      "qty": 1
+    },
+    {
+      "id": "it_core_ore_iron",
+      "qty": 2
+    },
+    {
+      "id": "it_core_ore_copper",
+      "qty": 1
+    },
+    {
+      "id": "it_core_scrap_mixed",
+      "qty": 2
+    },
+    {
+      "id": "it_food_bread",
+      "qty": 1
+    },
+    {
+      "id": "it_food_cheese_wedge",
+      "qty": 1
+    },
+    {
+      "id": "it_med_painkiller",
+      "qty": 1
+    },
+    {
+      "id": "it_lux_candle",
+      "qty": 1
+    },
+    {
+      "id": "it_lux_book",
+      "qty": 1
+    },
+    {
+      "id": "it_fit_bookshelf",
+      "qty": 1
+    },
+    {
+      "id": "it_fit_cabinet",
+      "qty": 1
+    },
+    {
+      "id": "it_fit_disc_rack",
+      "qty": 1
+    }
+  ],
+  "programs": [
+    "prog_files",
+    "prog_notepad",
+    "prog_prompt",
+    "prog_system"
+  ],
+  "notes": "The company issue: a wired terminal with modem and slip printer, the mail and labels discs, a few empty boxes, three small cells, a knife, a little ore and scrap, and what you carried from the old life. No charger, no smelter, no recycler: the first ten minutes decide what to buy with 50 credits."
+}

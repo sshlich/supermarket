@@ -1,0 +1,1261 @@
+[
+  {
+    "id": "it_fab_bar_iron",
+    "name": "Iron bar",
+    "desc": "Grey bar cast in a mould, a hollow on top where it cooled. Smelted from ore or scrap.",
+    "w": 3,
+    "h": 2,
+    "tier": 1,
+    "value": 8,
+    "depth": 1,
+    "composition": {
+      "mat_iron": 2
+    },
+    "tags": [
+      "processed",
+      "bar"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_works": 2,
+      "deck_dock": 1
+    },
+    "carried_from": "ingot (iron)"
+  },
+  {
+    "id": "it_fab_sheet",
+    "name": "Steel sheet",
+    "desc": "Rolled thin from a bar, edges still sharp. Two to a bar.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 4,
+    "depth": 1,
+    "composition": {
+      "mat_iron": 1
+    },
+    "tags": [
+      "processed",
+      "sheet"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_dock": 1
+    }
+  },
+  {
+    "id": "it_fab_wire",
+    "name": "Copper wire",
+    "desc": "A coil of bare copper, a few metres. Four to a bar.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 4,
+    "depth": 1,
+    "composition": {
+      "mat_copper": 0.5
+    },
+    "tags": [
+      "processed",
+      "wire"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_core": 2,
+      "deck_works": 1,
+      "deck_mid": 1
+    }
+  },
+  {
+    "id": "it_fab_fasteners",
+    "name": "Fasteners",
+    "desc": "A tin of bolts and rivets, sorted by feel. Never enough of them.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 6,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 0.5
+    },
+    "tags": [
+      "part",
+      "fastener"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_dock": 1,
+      "deck_core": 1
+    }
+  },
+  {
+    "id": "it_fab_polymer_sheet",
+    "name": "Polymer sheet",
+    "desc": "Grey polymer pressed flat, warm from the extruder. Housings, tubs and patches.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 4,
+    "depth": 1,
+    "composition": {
+      "mat_polymer": 1
+    },
+    "tags": [
+      "processed",
+      "sheet",
+      "polymer"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_works": 1,
+      "deck_mid": 1
+    }
+  },
+  {
+    "id": "it_fab_glass_pane",
+    "name": "Glass pane",
+    "desc": "Kiln glass, slightly green, with a bubble or two. Cuts to a lens or a window.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 2,
+    "depth": 1,
+    "composition": {
+      "mat_silicate": 2
+    },
+    "tags": [
+      "processed",
+      "glass"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_mid": 1,
+      "deck_ring": 1
+    }
+  },
+  {
+    "id": "it_fab_vial",
+    "name": "Glass vial",
+    "desc": "Empty stoppered glass tube. The clinic and the cellar both fill these.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 1,
+    "depth": 1,
+    "composition": {
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "processed",
+      "glass",
+      "vessel"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_mid": 2,
+      "deck_ring": 1
+    },
+    "notes": "Vessel for med and lux."
+  },
+  {
+    "id": "it_fab_bottle",
+    "name": "Bottle",
+    "desc": "Clear glass and a cork. Empty.",
+    "w": 1,
+    "h": 3,
+    "tier": 1,
+    "value": 1,
+    "depth": 1,
+    "composition": {
+      "mat_silicate": 1
+    },
+    "tags": [
+      "processed",
+      "glass",
+      "vessel",
+      "container"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_ring": 2,
+      "deck_mid": 1
+    },
+    "carried_from": "bottle",
+    "notes": "Vessel for lux (wine, spirit)."
+  },
+  {
+    "id": "it_fab_tin",
+    "name": "Tin can",
+    "desc": "Empty can and lid, rolled and crimped. Food goes in, and stays in.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 2,
+    "depth": 1,
+    "composition": {
+      "mat_iron": 0.5
+    },
+    "tags": [
+      "processed",
+      "vessel",
+      "container",
+      "packaging"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_spine": 2,
+      "deck_works": 1
+    },
+    "notes": "Vessel for food: food recipes can can rations in these. Sink is the food worker."
+  },
+  {
+    "id": "it_fab_knife",
+    "name": "Kitchen knife",
+    "desc": "Kitchen steel in a polymer grip. Cuts cheese, salami, bread and sealed boxes. Wears.",
+    "w": 1,
+    "h": 3,
+    "tier": 1,
+    "value": 8,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 0.5,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "tool"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_mid": 2,
+      "deck_spine": 1,
+      "deck_works": 1
+    },
+    "wear": {
+      "uses": 20,
+      "becomes": "it_core_scrap_iron"
+    },
+    "mods": [
+      "mod_tempered",
+      "mod_refurbished"
+    ],
+    "carried_from": "knife"
+  },
+  {
+    "id": "it_fab_wrench",
+    "name": "Wrench",
+    "desc": "Forged jaw on a long arm, worn bright where the hand goes. Clears jams, fits parts. Wears.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "value": 12,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 1
+    },
+    "tags": [
+      "tool"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_dock": 1,
+      "deck_core": 1
+    },
+    "wear": {
+      "uses": 25,
+      "becomes": "it_core_scrap_iron"
+    },
+    "mods": [
+      "mod_tempered",
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_fab_hinge",
+    "name": "Hinge",
+    "desc": "Two leaves and a pin. Doors, lids and cabinets on every deck swing on these.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 6,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 0.5
+    },
+    "tags": [
+      "part",
+      "fastener"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_dock": 1,
+      "deck_core": 1
+    },
+    "mods": [
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_fab_bracket",
+    "name": "Bracket",
+    "desc": "An L of bent steel with two slots. Holds shelves, pipes and cables to the wall.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "value": 7,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 0.5
+    },
+    "tags": [
+      "part",
+      "structural"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_works": 1,
+      "deck_spine": 2,
+      "deck_mid": 1
+    }
+  },
+  {
+    "id": "it_fab_spare_patched",
+    "name": "Patched spare",
+    "desc": "A spare part welded from two broken ones and a prayer. Spine fixers swear by it.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "value": 6,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 0.8,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "part",
+      "machine_part",
+      "salvage"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 1
+    },
+    "mods": [
+      "mod_refurbished"
+    ],
+    "notes": "The cheap grade: spine buys it, ring does not. Reworks into a standard spare at the bench."
+  },
+  {
+    "id": "it_fab_pliers",
+    "name": "Pliers",
+    "desc": "Flat jaws, a wire cutter, and polymer grips worn smooth. Bends what the hand cannot. Wears.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "value": 12,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 0.8,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "tool"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_dock": 1,
+      "deck_core": 1
+    },
+    "wear": {
+      "uses": 20,
+      "becomes": "it_core_scrap_iron"
+    },
+    "mods": [
+      "mod_tempered",
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_fab_polymer_tube",
+    "name": "Polymer tube",
+    "desc": "Grey flexible tube, a metre long. Drips, drains and cable runs.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "value": 2,
+    "depth": 1,
+    "composition": {
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "processed",
+      "polymer"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_spine": 1,
+      "deck_mid": 1,
+      "deck_works": 1
+    }
+  },
+  {
+    "id": "it_fab_polymer_film",
+    "name": "Polymer film",
+    "desc": "Thin clear film in a roll. Wraps, covers and seals what a box will not.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 1,
+    "depth": 1,
+    "composition": {
+      "mat_polymer": 0.25
+    },
+    "tags": [
+      "processed",
+      "polymer",
+      "packaging"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_dock": 1,
+      "deck_mid": 1
+    }
+  },
+  {
+    "id": "it_fab_tub",
+    "name": "Polymer tub",
+    "desc": "A squat tub with a snap lid. Holds paste, salve or a day of screws.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 4,
+    "depth": 2,
+    "composition": {
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "container",
+      "packaging",
+      "polymer"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_spine": 2,
+      "deck_mid": 1
+    }
+  },
+  {
+    "id": "it_fab_jar",
+    "name": "Glass jar",
+    "desc": "Wide-mouthed jar with a screw neck. Preserves, tablets, a few hundred grams of anything.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "value": 2,
+    "depth": 1,
+    "composition": {
+      "mat_silicate": 1.5
+    },
+    "tags": [
+      "processed",
+      "glass",
+      "vessel",
+      "container"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.25
+    },
+    "decks": {
+      "deck_ring": 1,
+      "deck_mid": 1
+    },
+    "notes": "Vessel for food, med and lux."
+  },
+  {
+    "id": "it_fab_tile",
+    "name": "Ceramic tile",
+    "desc": "Fired grey tile, glazed on one side. Floors, benches and furnace walls.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 3,
+    "depth": 1,
+    "composition": {
+      "mat_silicate": 2
+    },
+    "tags": [
+      "processed",
+      "structural"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.5
+    },
+    "decks": {
+      "deck_ring": 1,
+      "deck_hub": 1,
+      "deck_works": 1
+    }
+  },
+  {
+    "id": "it_fab_crucible_liner",
+    "name": "Crucible liner",
+    "desc": "A fired ceramic cup with a carbon skin. Takes the heat so the smelter does not. Wears.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 4,
+    "depth": 2,
+    "composition": {
+      "mat_silicate": 2,
+      "mat_carbon": 0.5
+    },
+    "tags": [
+      "tool",
+      "consumable"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_works": 2
+    },
+    "wear": {
+      "uses": 15,
+      "becomes": "it_core_slag"
+    }
+  },
+  {
+    "id": "it_fab_bar_copper",
+    "name": "Copper bar",
+    "desc": "Dull red bar with a green bloom at the ends. Wire, motors and boards start here.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "value": 16,
+    "depth": 1,
+    "composition": {
+      "mat_copper": 2
+    },
+    "tags": [
+      "processed",
+      "bar"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_works": 1,
+      "deck_core": 2
+    },
+    "carried_from": "ingot (copper)"
+  },
+  {
+    "id": "it_fab_bar_light",
+    "name": "Light-metal bar",
+    "desc": "Pale bar with a frosted skin, light for its size. Housings and ring plate start here.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "value": 16,
+    "depth": 1,
+    "composition": {
+      "mat_lightmetal": 2
+    },
+    "tags": [
+      "processed",
+      "bar"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_works": 1,
+      "deck_hub": 1,
+      "deck_ring": 1
+    }
+  },
+  {
+    "id": "it_fab_pipe",
+    "name": "Pipe",
+    "desc": "A length of steel pipe, threaded at both ends. Water, gas and coolant all run in it.",
+    "w": 1,
+    "h": 3,
+    "tier": 2,
+    "value": 10,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 1
+    },
+    "tags": [
+      "part",
+      "structural"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_spine": 1,
+      "deck_dock": 1
+    }
+  },
+  {
+    "id": "it_fab_bearing",
+    "name": "Bearing",
+    "desc": "A sealed ball bearing in a greased race. Spins for years, then all at once does not.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 10,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 0.5
+    },
+    "tags": [
+      "part",
+      "machine_part"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_core": 2
+    },
+    "mods": [
+      "mod_tempered",
+      "mod_refurbished"
+    ],
+    "notes": "Tier 2 by registry but only precision (phase 3) or the autofab makes it: warning accepted."
+  },
+  {
+    "id": "it_fab_valve",
+    "name": "Valve",
+    "desc": "A brass-seated valve with a hand wheel, for water and gas lines.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 20,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 0.5,
+      "mat_copper": 0.5
+    },
+    "tags": [
+      "part",
+      "machine_part"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "decks": {
+      "deck_works": 1,
+      "deck_spine": 2,
+      "deck_core": 1
+    },
+    "mods": [
+      "mod_tempered",
+      "mod_refurbished"
+    ],
+    "notes": "Tier 2 by registry but only precision (phase 3) or the autofab makes it: warning accepted."
+  },
+  {
+    "id": "it_fab_spare_part",
+    "name": "Spare part",
+    "desc": "The generic part the station runs on: a cast body, a bush, a gasket. Fits most things badly.",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "value": 20,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 1,
+      "mat_copper": 0.3,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "part",
+      "machine_part"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 1
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_core": 2,
+      "deck_mid": 1,
+      "deck_dock": 1
+    },
+    "mods": [
+      "mod_tempered",
+      "mod_refurbished"
+    ],
+    "notes": "What a worn machine (stat_worn) and the foundry system consume. Made at three phases: bench rework (1), fabricator (2), autofab (4)."
+  },
+  {
+    "id": "it_fab_housing",
+    "name": "Device housing",
+    "desc": "A pale metal shell with screw posts and a polymer lid. Tech builds its devices inside.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 30,
+    "depth": 2,
+    "composition": {
+      "mat_lightmetal": 1,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "part",
+      "component"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "decks": {
+      "deck_core": 2,
+      "deck_hub": 1,
+      "deck_mid": 1
+    },
+    "notes": "Feeds tech. Made four ways: bench fold, fabricator, 3D printer, autofab batch."
+  },
+  {
+    "id": "it_fab_light_sheet",
+    "name": "Light-metal sheet",
+    "desc": "Pale sheet rolled from a light bar, soft enough to cut with shears.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 8,
+    "depth": 1,
+    "composition": {
+      "mat_lightmetal": 1
+    },
+    "tags": [
+      "processed",
+      "sheet"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_core": 1,
+      "deck_hub": 1,
+      "deck_works": 1
+    }
+  },
+  {
+    "id": "it_fab_spring",
+    "name": "Spring",
+    "desc": "Coiled wire in a short cylinder. Every latch, valve and trigger wants one.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 6,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 0.5
+    },
+    "tags": [
+      "part",
+      "machine_part"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_works": 1,
+      "deck_core": 1
+    }
+  },
+  {
+    "id": "it_fab_gear",
+    "name": "Gear",
+    "desc": "A cut steel gear with a keyed bore. Small, heavy, and exact about its teeth.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 9,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 0.5
+    },
+    "tags": [
+      "part",
+      "machine_part"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_works": 1,
+      "deck_core": 2
+    }
+  },
+  {
+    "id": "it_fab_seal",
+    "name": "Seal",
+    "desc": "A ring of grey polymer that keeps a line from weeping. Cut to a tolerance.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 12,
+    "depth": 3,
+    "composition": {
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "part",
+      "machine_part",
+      "polymer"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_core": 1,
+      "deck_works": 1,
+      "deck_spine": 1
+    }
+  },
+  {
+    "id": "it_fab_cutter",
+    "name": "Cutters",
+    "desc": "Long-handled shears with a compound hinge. Takes bolts, rivets and strip. Wears.",
+    "w": 1,
+    "h": 3,
+    "tier": 2,
+    "value": 20,
+    "depth": 2,
+    "composition": {
+      "mat_iron": 1,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "tool"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_dock": 2,
+      "deck_core": 1
+    },
+    "wear": {
+      "uses": 20,
+      "becomes": "it_core_scrap_iron"
+    },
+    "mods": [
+      "mod_tempered",
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_fab_loupe",
+    "name": "Loupe",
+    "desc": "A ground lens in a steel collar on a short stem. Reads chip pins and flaws in a bar. Wears.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 14,
+    "depth": 2,
+    "composition": {
+      "mat_silicate": 1,
+      "mat_iron": 0.5
+    },
+    "tags": [
+      "tool"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_core": 1,
+      "deck_ring": 1,
+      "deck_hub": 1
+    },
+    "wear": {
+      "uses": 30,
+      "becomes": "it_core_scrap_iron"
+    },
+    "mods": [
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_fab_crate",
+    "name": "Polymer crate",
+    "desc": "A ribbed polymer crate with handholds. Stacks, rinses clean and outlives its contents.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "value": 12,
+    "depth": 2,
+    "composition": {
+      "mat_polymer": 2
+    },
+    "tags": [
+      "container",
+      "packaging",
+      "polymer"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "decks": {
+      "deck_dock": 2,
+      "deck_works": 1,
+      "deck_mid": 1
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "bin",
+          "w": 5,
+          "h": 3
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fab_lens",
+    "name": "Glass lens",
+    "desc": "A small ground disc, clear at the middle. Lamps, scopes and loupes all want one.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 6,
+    "depth": 2,
+    "composition": {
+      "mat_silicate": 1
+    },
+    "tags": [
+      "component",
+      "glass"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_core": 1,
+      "deck_hub": 1
+    },
+    "notes": "Used here in the loupe; tech may want it for lamps and sensors."
+  },
+  {
+    "id": "it_fab_print_clip",
+    "name": "Printed clip",
+    "desc": "A polymer snap clip, printed layer by layer. Cable, tube and panel.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 2,
+    "depth": 2,
+    "composition": {
+      "mat_polymer": 0.25
+    },
+    "tags": [
+      "part",
+      "fastener",
+      "polymer"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_mid": 2,
+      "deck_core": 1
+    }
+  },
+  {
+    "id": "it_fab_print_bracket",
+    "name": "Printed bracket",
+    "desc": "A light bracket of polymer with a metal core, ribbed where it will take load.",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "value": 6,
+    "depth": 2,
+    "composition": {
+      "mat_polymer": 0.5,
+      "mat_lightmetal": 0.25
+    },
+    "tags": [
+      "part",
+      "structural"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_mid": 2,
+      "deck_hub": 1
+    },
+    "notes": "Tier 2 value sits under the 10 floor of tier 3 on purpose: printed bits are cheap but phase 3 to make."
+  },
+  {
+    "id": "it_fab_print_fitting",
+    "name": "Printed fitting",
+    "desc": "An elbow or tee for a pipe run, printed in one piece. No seam to leak at.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 9,
+    "depth": 2,
+    "composition": {
+      "mat_polymer": 0.5,
+      "mat_lightmetal": 0.5
+    },
+    "tags": [
+      "part",
+      "polymer"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "decks": {
+      "deck_spine": 1,
+      "deck_mid": 2
+    }
+  },
+  {
+    "id": "it_fab_bar_noble",
+    "name": "Noble bar",
+    "desc": "A small heavy bar, warm to the hand. Jewellers and chip lines count them one by one.",
+    "w": 2,
+    "h": 1,
+    "tier": 3,
+    "value": 100,
+    "depth": 1,
+    "composition": {
+      "mat_noble": 1
+    },
+    "tags": [
+      "processed",
+      "bar"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_ring": 2,
+      "deck_hub": 1
+    },
+    "notes": "Cast from noble flake. Sink is lux (jeweller) and ring buyers; the refinery is the only way to get more flake."
+  },
+  {
+    "id": "it_fab_spare_precision",
+    "name": "Precision spare",
+    "desc": "Matched spring, gear, bearing and seal in a sealed sleeve. Ground to tolerance, ring-grade.",
+    "w": 2,
+    "h": 1,
+    "tier": 3,
+    "value": 80,
+    "depth": 3,
+    "composition": {
+      "mat_iron": 1.5,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "part",
+      "machine_part",
+      "ring_grade"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 2
+    },
+    "decks": {
+      "deck_core": 3,
+      "deck_ring": 2,
+      "deck_hub": 1
+    },
+    "mods": [
+      "mod_tempered",
+      "mod_refurbished"
+    ],
+    "notes": "Top grade; the station buys it for the reactor and the ring lifts."
+  },
+  {
+    "id": "it_fab_torque_driver",
+    "name": "Torque driver",
+    "desc": "A clicking driver set to a number on its collar. Tightens to the spec and no further. Wears.",
+    "w": 1,
+    "h": 2,
+    "tier": 3,
+    "value": 90,
+    "depth": 3,
+    "composition": {
+      "mat_iron": 1.5,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "tool",
+      "ring_grade"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 1
+    },
+    "decks": {
+      "deck_core": 3,
+      "deck_hub": 1
+    },
+    "wear": {
+      "uses": 40,
+      "becomes": "it_fab_spare_part"
+    },
+    "mods": [
+      "mod_tempered",
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_fab_multitool",
+    "name": "Multitool",
+    "desc": "Fold-out jaws, blade, driver and file in one steel body. A fitter keeps it on a lanyard. Wears.",
+    "w": 1,
+    "h": 2,
+    "tier": 3,
+    "value": 85,
+    "depth": 3,
+    "composition": {
+      "mat_iron": 1,
+      "mat_lightmetal": 1,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "tool"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 1
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_core": 2,
+      "deck_dock": 1
+    },
+    "wear": {
+      "uses": 50,
+      "becomes": "it_fab_spare_part"
+    },
+    "mods": [
+      "mod_tempered",
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_fab_hull_plate",
+    "name": "Hull plate",
+    "desc": "Layered steel and light-metal plate, hand-sized stencils on one edge. Spans a breach.",
+    "w": 4,
+    "h": 3,
+    "tier": 4,
+    "value": 180,
+    "depth": 3,
+    "composition": {
+      "mat_iron": 4,
+      "mat_lightmetal": 2
+    },
+    "tags": [
+      "structural",
+      "part"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 4
+    },
+    "decks": {
+      "deck_core": 3,
+      "deck_dock": 2,
+      "deck_ring": 2
+    },
+    "notes": "Station repair stock and Concern-level orders."
+  },
+  {
+    "id": "it_fab_beam",
+    "name": "Structural beam",
+    "desc": "A rolled I-beam, four hands long, painted deck-grey. Frames, racks and gantries.",
+    "w": 4,
+    "h": 1,
+    "tier": 4,
+    "value": 80,
+    "depth": 3,
+    "composition": {
+      "mat_iron": 4
+    },
+    "tags": [
+      "structural"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 2
+    },
+    "decks": {
+      "deck_dock": 2,
+      "deck_works": 2,
+      "deck_core": 1
+    }
+  },
+  {
+    "id": "it_fab_rare_ingot",
+    "name": "Rare-earth ingot",
+    "desc": "A dull dark ingot, brittle and heavy for its size. Magnets, chips and lamps start here.",
+    "w": 2,
+    "h": 1,
+    "tier": 4,
+    "value": 48,
+    "depth": 1,
+    "composition": {
+      "mat_rare": 1
+    },
+    "tags": [
+      "processed",
+      "bar"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_core": 2,
+      "deck_hub": 1
+    },
+    "notes": "Refinery product. Wanted by tech (magnets, lamps); no recipe here consumes it. Tier 4 because only the refinery makes it."
+  }
+]

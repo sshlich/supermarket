@@ -1,0 +1,241 @@
+[
+  {
+    "id": "disc_food_hydro_greens",
+    "name": "Hydro greens",
+    "desc": "Grow charts for leaves, beans, potatoes, herbs and tomatoes on a tray or a rack.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 12,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_1",
+    "machines": [
+      "mach_hydro_tray",
+      "mach_hydro_rack"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "seller",
+      "salvage"
+    ],
+    "label": "HYDRO / GREENS BEANS ROOTS"
+  },
+  {
+    "id": "disc_food_vat_staples",
+    "name": "Vat staples",
+    "desc": "Ration bars, paste tubes, protein blocks, sugar, oil, yeast, and the SYNTH-AG apple.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 40,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_vat",
+      "mach_vat_industrial"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "VAT / STAPLES REV 3"
+  },
+  {
+    "id": "disc_food_vat_bakery",
+    "name": "Vat bakery",
+    "desc": "Loaves and crackers, with notes on the yeast.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 30,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_vat",
+      "mach_vat_industrial"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "BAKERY 40 / LOAF CRACKER"
+  },
+  {
+    "id": "disc_food_vat_dairy",
+    "name": "Vat dairy",
+    "desc": "Cheese wheels and spreads from sugar and a sour culture.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 45,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_vat",
+      "mach_vat_industrial"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "DAIRY / CULTURES"
+  },
+  {
+    "id": "disc_food_vat_charcuterie",
+    "name": "Vat charcuterie",
+    "desc": "Salami and sausage cured overnight in the vat.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 45,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_vat",
+      "mach_vat_industrial"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "CHARCUTERIE / CURE 1"
+  },
+  {
+    "id": "disc_food_vat_gourmet",
+    "name": "Vat gourmet",
+    "desc": "Ring-grade terrine, herb cheese and jelly for the industrial vat.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 180,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tags": [
+      "media"
+    ],
+    "kind": "recipe",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_vat_industrial"
+    ],
+    "copyable": true,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "RING TABLE / GOURMET"
+  },
+  {
+    "id": "disc_food_hydro_orchard",
+    "name": "Hydro orchard",
+    "desc": "Dwarf stock for the rack: apples, citrus and berries, grown the real way.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 220,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tags": [
+      "media"
+    ],
+    "kind": "recipe",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_hydro_rack"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "ORCHARD / DWARF STOCK"
+  },
+  {
+    "id": "disc_food_bio_cultures",
+    "name": "Bio cultures",
+    "desc": "Culture mats and steak, grown from sludge and starter in the bioreactor tank.",
+    "w": 1,
+    "h": 1,
+    "tier": 4,
+    "value": 900,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tags": [
+      "media"
+    ],
+    "kind": "recipe",
+    "media": "card",
+    "phase": "phase_4",
+    "machines": [
+      "mach_bioreactor"
+    ],
+    "copyable": true,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "BIOCULT / SLUDGE TO FOOD"
+  }
+]

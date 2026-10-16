@@ -1,0 +1,608 @@
+[
+  {
+    "id": "stat_jammed",
+    "name": "Jammed",
+    "desc": "Something has seized inside. The machine will not run a job until it is cleared.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "job_yield_mult",
+        "op": "set",
+        "value": 0,
+        "text": "No jobs until cleared"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "rcp_fab_fab_gear",
+      "rcp_core_crush_mixed_scrap",
+      "rcp_mach_fab_water_filter"
+    ],
+    "cleared_by": [
+      "rcp_mach_clear_jam_bench",
+      "rcp_mach_clear_jam_kit",
+      "rcp_mach_clear_jam_smelter",
+      "it_mach_jam_kit"
+    ]
+  },
+  {
+    "id": "stat_hot",
+    "name": "Hot",
+    "desc": "Running past its limit. Yield drops and the next jam is more likely.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "job_yield_mult",
+        "op": "mul",
+        "value": 0.8,
+        "text": "Yield -20%"
+      },
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 1.5,
+        "text": "Jam chance +50%"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "rcp_mach_brew_coolant",
+      "rcp_fab_smelt_iron",
+      "rcp_mach_build_bench"
+    ],
+    "cleared_by": [
+      "it_mach_coolant",
+      "rcp_mach_chill_down",
+      "rcp_mach_chill_overnight",
+      "mach_chiller"
+    ]
+  },
+  {
+    "id": "stat_overclocked",
+    "name": "Overclocked",
+    "desc": "Pushed beyond spec. Jobs cost less energy, but the machine jams more.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "job_energy_mult",
+        "op": "mul",
+        "value": 0.7,
+        "text": "Jobs cost 30% less energy"
+      },
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 1.6,
+        "text": "Jam chance +60%"
+      }
+    ],
+    "duration_days": 3,
+    "caused_by": [
+      "prog_overclock"
+    ],
+    "cleared_by": [
+      "rcp_mach_chill_overnight"
+    ]
+  },
+  {
+    "id": "stat_worn",
+    "name": "Worn",
+    "desc": "Parts are tired. Yield drops until a spare part goes in.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "job_yield_mult",
+        "op": "mul",
+        "value": 0.85,
+        "text": "Yield -15%"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "rcp_mach_clear_jam_bench"
+    ],
+    "cleared_by": [
+      "rcp_mach_swap_worn_parts"
+    ]
+  },
+  {
+    "id": "stat_infected",
+    "name": "Infected",
+    "desc": "A virus rode in on a disc. Random jams and slower jobs until the controller is flashed.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 2,
+        "text": "Jam chance doubled"
+      },
+      {
+        "stat": "terminal_speed",
+        "op": "mul",
+        "value": 0.7,
+        "text": "Speed -30%"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "rcp_food_grow_culture_steak"
+    ],
+    "cleared_by": [
+      "rcp_mach_flash_controller"
+    ]
+  },
+  {
+    "id": "stat_unpowered",
+    "name": "Unpowered",
+    "desc": "No charged cell in the slot. Nothing runs.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "job_yield_mult",
+        "op": "set",
+        "value": 0,
+        "text": "No jobs without a charged cell"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "rcp_mach_flash_controller"
+    ],
+    "cleared_by": [
+      "mach_charger"
+    ]
+  },
+  {
+    "id": "stat_dusty",
+    "name": "Dusty",
+    "desc": "Grit in the works. Jobs creep up in jam chance until it is cleaned.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 1.2,
+        "text": "Jam chance +20%"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "mach_bench"
+    ],
+    "cleared_by": [
+      "it_mach_cleaning_kit"
+    ]
+  },
+  {
+    "id": "stat_leaking",
+    "name": "Leaking",
+    "desc": "A seal has gone. Fluid is lost and yield drops.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "job_yield_mult",
+        "op": "mul",
+        "value": 0.85,
+        "text": "Yield -15%"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "mach_purifier"
+    ],
+    "cleared_by": [
+      "it_mach_sealant"
+    ]
+  },
+  {
+    "id": "stat_misaligned",
+    "name": "Misaligned",
+    "desc": "Out of true. Precision jobs fail more often.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 1.3,
+        "text": "Jam chance +30%"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "rcp_mach_seal_box_s",
+      "rcp_mach_build_bench"
+    ],
+    "cleared_by": [
+      "rcp_mach_realign"
+    ]
+  },
+  {
+    "id": "stat_slipping",
+    "name": "Slipping",
+    "desc": "The drive belt is slipping. Jobs take extra charge.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "cell_drain_mult",
+        "op": "mul",
+        "value": 1.25,
+        "text": "Cell drain +25%"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "mach_crusher"
+    ],
+    "cleared_by": [
+      "rcp_mach_fit_belt",
+      "it_mach_lubricant",
+      "it_mach_drive_belt"
+    ]
+  },
+  {
+    "id": "stat_clogged",
+    "name": "Clogged",
+    "desc": "A filter or channel is choked. Output stalls until it is cleared.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "job_yield_mult",
+        "op": "mul",
+        "value": 0.7,
+        "text": "Yield -30%"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "mach_purifier"
+    ],
+    "cleared_by": [
+      "rcp_mach_clear_jam_kit",
+      "rcp_mach_rinse_water_filter"
+    ]
+  },
+  {
+    "id": "stat_tripped",
+    "name": "Tripped",
+    "desc": "The fuse blew. The machine is dead until a new fuse goes in.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "job_yield_mult",
+        "op": "set",
+        "value": 0,
+        "text": "No jobs until a new fuse is fitted"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "mach_charger"
+    ],
+    "cleared_by": [
+      "it_mach_fuse"
+    ]
+  },
+  {
+    "id": "stat_oiled",
+    "name": "Oiled",
+    "desc": "Freshly lubricated. Fewer jams for a few days.",
+    "applies_to": "machine",
+    "effects": [
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 0.6,
+        "text": "Jam chance -40% for 3 days"
+      }
+    ],
+    "duration_days": 3,
+    "caused_by": [
+      "it_mach_lubricant"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_tired",
+    "name": "Tired",
+    "desc": "Short on sleep. One less energy today.",
+    "applies_to": "player",
+    "effects": [
+      {
+        "stat": "energy_cap",
+        "op": "add",
+        "value": -1,
+        "text": "-1 energy today"
+      }
+    ],
+    "duration_days": 1,
+    "caused_by": [
+      "mach_hands"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_wired",
+    "name": "Wired",
+    "desc": "A stim in the blood. A burst of energy now, a crash tomorrow.",
+    "applies_to": "player",
+    "effects": [
+      {
+        "stat": "energy_now",
+        "op": "add",
+        "value": 1,
+        "text": "+1 energy now"
+      }
+    ],
+    "duration_days": 1,
+    "caused_by": [
+      "it_mach_manual"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_crash",
+    "name": "Crash",
+    "desc": "The stim has worn off. Two less energy today.",
+    "applies_to": "player",
+    "effects": [
+      {
+        "stat": "energy_cap",
+        "op": "add",
+        "value": -2,
+        "text": "-2 energy today"
+      }
+    ],
+    "duration_days": 1,
+    "caused_by": [
+      "stat_wired"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_fed",
+    "name": "Fed",
+    "desc": "A proper meal. One more energy today.",
+    "applies_to": "player",
+    "effects": [
+      {
+        "stat": "energy_cap",
+        "op": "add",
+        "value": 1,
+        "text": "+1 energy cap today"
+      }
+    ],
+    "duration_days": 1,
+    "caused_by": [
+      "it_mach_manual"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_flagged",
+    "name": "Flagged",
+    "desc": "Security has noticed you. Inspections come more often.",
+    "applies_to": "player",
+    "effects": [
+      {
+        "stat": "inspection_chance",
+        "op": "add",
+        "value": 0.15,
+        "text": "Inspection chance +15%"
+      }
+    ],
+    "duration_days": 3,
+    "caused_by": [
+      "rcp_lux_run_moonshine",
+      "rcp_lux_dip_candles"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_sore",
+    "name": "Sore",
+    "desc": "Aching hands from heavy hand-work. Hand jobs cost an extra energy.",
+    "applies_to": "player",
+    "effects": [
+      {
+        "stat": "job_energy_mult",
+        "op": "mul",
+        "value": 1.2,
+        "text": "Hand jobs +20% energy",
+        "scope": {
+          "machine": "mach_hands"
+        }
+      }
+    ],
+    "duration_days": 1,
+    "caused_by": [
+      "mach_hands"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_focused",
+    "name": "Focused",
+    "desc": "Mind clear and steady. Fewer slips at the bench.",
+    "applies_to": "player",
+    "effects": [
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 0.8,
+        "text": "Jam chance -20% today"
+      }
+    ],
+    "duration_days": 1,
+    "caused_by": [
+      "it_mach_manual"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_rested",
+    "name": "Rested",
+    "desc": "A full night. A little extra energy today.",
+    "applies_to": "player",
+    "effects": [
+      {
+        "stat": "energy_cap",
+        "op": "add",
+        "value": 1,
+        "text": "+1 energy today"
+      }
+    ],
+    "duration_days": 1,
+    "caused_by": [
+      "mach_hands"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_hungover",
+    "name": "Hungover",
+    "desc": "Last night's spirit lingers. Energy and focus down.",
+    "applies_to": "player",
+    "effects": [
+      {
+        "stat": "energy_cap",
+        "op": "add",
+        "value": -1,
+        "text": "-1 energy today"
+      }
+    ],
+    "duration_days": 1,
+    "caused_by": [
+      "rcp_lux_distil_spirit"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_brownout",
+    "name": "Brownout",
+    "desc": "The power gauge is low. Cells cost more and the charger is slow.",
+    "applies_to": "station",
+    "effects": [
+      {
+        "stat": "charge_price_mult",
+        "op": "mul",
+        "value": 1.5,
+        "text": "Charging +50%"
+      },
+      {
+        "stat": "cell_drain_mult",
+        "op": "mul",
+        "value": 1.1,
+        "text": "Cell drain +10%"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "sys_reactor",
+      "sys_solar_vanes"
+    ],
+    "cleared_by": [
+      "sys_reactor",
+      "sys_solar_vanes"
+    ]
+  },
+  {
+    "id": "stat_water_rationing",
+    "name": "Water rationing",
+    "desc": "The deck is rationing water. Water-using machines run on less.",
+    "applies_to": "station",
+    "effects": [
+      {
+        "stat": "need_supply_mult",
+        "op": "mul",
+        "value": 0.7,
+        "text": "Water supply -30%",
+        "scope": {
+          "need": "need_water"
+        }
+      }
+    ],
+    "duration_days": 3,
+    "caused_by": [
+      "sys_water_reclaim",
+      "sys_ice_haul"
+    ],
+    "cleared_by": [
+      "sys_water_reclaim",
+      "sys_ice_haul"
+    ]
+  },
+  {
+    "id": "stat_lockdown",
+    "name": "Lockdown",
+    "desc": "Security has sealed the decks. Inspections are near certain and mail waits.",
+    "applies_to": "station",
+    "effects": [
+      {
+        "stat": "inspection_chance",
+        "op": "add",
+        "value": 0.4,
+        "text": "Inspection chance +40%"
+      },
+      {
+        "stat": "pickups_per_day",
+        "op": "mul",
+        "value": 0.5,
+        "text": "Pickups halved"
+      }
+    ],
+    "duration_days": 2,
+    "caused_by": [
+      "sys_company_store"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_festival",
+    "name": "Festival mood",
+    "desc": "The station is in a buying mood. More walk-ins, softer prices.",
+    "applies_to": "station",
+    "effects": [
+      {
+        "stat": "customers_per_day",
+        "op": "add",
+        "value": 2,
+        "text": "+2 walk-ins per day"
+      },
+      {
+        "stat": "ceiling_mult",
+        "op": "mul",
+        "value": 1.1,
+        "text": "Buyers pay 10% more"
+      }
+    ],
+    "duration_days": 2,
+    "caused_by": [
+      "sys_company_store"
+    ],
+    "cleared_by": "sleep"
+  },
+  {
+    "id": "stat_thin_air",
+    "name": "Thin air",
+    "desc": "Air gauge low. Everyone is slower.",
+    "applies_to": "station",
+    "effects": [
+      {
+        "stat": "energy_cap",
+        "op": "add",
+        "value": -1,
+        "text": "-1 energy per day"
+      }
+    ],
+    "duration_days": null,
+    "caused_by": [
+      "sys_scrubber_bank",
+      "sys_algae_lungs"
+    ],
+    "cleared_by": [
+      "sys_scrubber_bank",
+      "sys_algae_lungs"
+    ]
+  }
+]

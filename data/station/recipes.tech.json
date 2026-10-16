@@ -1,0 +1,1710 @@
+[
+  {
+    "id": "rcp_tech_print_slips",
+    "name": "Print order slips",
+    "kind": "produce",
+    "machine": "mach_printer_s",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_slip",
+        "qty": 5
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_1",
+    "notes": "Paper 0.5 fibre becomes five slips of 0.1. prog_labels runs on the terminal that feeds the printer. Slips are pinned at 0.2 each: five come out for a sheet worth 2, so the value warning is expected (the slip is a ticket, not goods)."
+  },
+  {
+    "id": "rcp_tech_sheath_cable",
+    "name": "Sheath cable",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 2
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_cable",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_tech_wire_switches",
+    "name": "Wire switches",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_fasteners",
+        "qty": 1
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_switch",
+        "qty": 4
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_tech_etch_circuits",
+    "name": "Etch circuit boards",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_circuits",
+    "inputs": [
+      {
+        "id": "it_core_ore_copper",
+        "qty": 3
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 10
+      },
+      {
+        "id": "it_core_slag",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "notes": "Copper ore is etched down to traces; the silicate left over is the slag. Ten boards a bed. Circuit value is pinned, so the output/input value warning is expected: depth 2 sells ten times the ore it came from."
+  },
+  {
+    "id": "rcp_tech_draw_cable",
+    "name": "Draw cable run",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_circuits",
+    "inputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 8
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 4
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_cable",
+        "qty": 8
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_tech_build_sensors",
+    "name": "Build sensors",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_circuits",
+    "inputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 2
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_sensor",
+        "qty": 10
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Sensor value is pinned; value warning expected (depth 2 from depth 0 and 1 inputs)."
+  },
+  {
+    "id": "rcp_tech_wind_motors",
+    "name": "Wind motors",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_circuits",
+    "inputs": [
+      {
+        "id": "it_fab_bar_copper",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_motor",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2",
+    "risks": {
+      "stat_hot": 0.08
+    }
+  },
+  {
+    "id": "rcp_tech_wind_relays",
+    "name": "Wind relays",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_circuits",
+    "inputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 4
+      },
+      {
+        "id": "it_fab_spring",
+        "qty": 2
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_relay",
+        "qty": 4
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_tech_stamp_keypads",
+    "name": "Stamp keypads",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_circuits",
+    "inputs": [
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_switch",
+        "qty": 6
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_keypad",
+        "qty": 4
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_tech_form_speakers",
+    "name": "Form speakers",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_circuits",
+    "inputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 2
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_speaker",
+        "qty": 4
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_tech_blow_screens",
+    "name": "Blow screens",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_circuits",
+    "inputs": [
+      {
+        "id": "it_fab_glass_pane",
+        "qty": 5
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 5
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_screen",
+        "qty": 10
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Ten screens a bed: a glass pane is two units of silicate and a screen wants one. Screen value is pinned; value warning expected."
+  },
+  {
+    "id": "rcp_tech_forge_irons",
+    "name": "Forge soldering irons",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_circuits",
+    "inputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_fasteners",
+        "qty": 2
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_soldering_iron",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_tech_cast_lamps",
+    "name": "Cast grow lamps",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_lamps",
+    "inputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 4
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 5
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_lamp",
+        "qty": 10
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2",
+    "loss": {
+      "mat_rare": 0.5
+    },
+    "notes": "Half the rare dust is sprayed off in the coating and lost to the vent line."
+  },
+  {
+    "id": "rcp_tech_mount_work_lights",
+    "name": "Mount work lights",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_lamps",
+    "inputs": [
+      {
+        "id": "it_tech_lamp",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_light_sheet",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_cable",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_work_light",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_tech_make_torches",
+    "name": "Make torches",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_tech_bp_lamps",
+    "inputs": [
+      {
+        "id": "it_tech_lamp",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_switch",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_polymer_tube",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_torch",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "The lawful light. Sells where candles are banned."
+  },
+  {
+    "id": "rcp_tech_press_cell_s",
+    "name": "Press small cells",
+    "kind": "produce",
+    "machine": "mach_cell_press",
+    "disc": "disc_tech_bp_cells",
+    "inputs": [
+      {
+        "id": "it_core_lithium_salt",
+        "qty": 2
+      },
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 3
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_cell_s",
+        "qty": 10
+      }
+    ],
+    "energy": 3,
+    "cells": 10,
+    "time": "job",
+    "phase": "phase_3",
+    "risks": {
+      "stat_hot": 0.1,
+      "stat_leaking": 0.05
+    }
+  },
+  {
+    "id": "rcp_tech_press_cell_m",
+    "name": "Press cells",
+    "kind": "produce",
+    "machine": "mach_cell_press",
+    "disc": "disc_tech_bp_cells",
+    "inputs": [
+      {
+        "id": "it_core_lithium_salt",
+        "qty": 3
+      },
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 3
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_cell_m",
+        "qty": 5
+      }
+    ],
+    "energy": 3,
+    "cells": 12,
+    "time": "job",
+    "phase": "phase_3",
+    "loss": {
+      "mat_reagent": 0.5
+    },
+    "risks": {
+      "stat_hot": 0.1,
+      "stat_leaking": 0.05
+    },
+    "notes": "Half a unit of reagent boils off in the sleeve."
+  },
+  {
+    "id": "rcp_tech_press_cell_l",
+    "name": "Press heavy cells",
+    "kind": "produce",
+    "machine": "mach_cell_press",
+    "disc": "disc_tech_bp_cells",
+    "inputs": [
+      {
+        "id": "it_core_lithium_salt",
+        "qty": 4
+      },
+      {
+        "id": "it_core_scrap_light",
+        "qty": 2
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_cell_l",
+        "qty": 2
+      }
+    ],
+    "energy": 3,
+    "cells": 16,
+    "time": "job",
+    "phase": "phase_3",
+    "risks": {
+      "stat_hot": 0.15,
+      "stat_leaking": 0.08
+    }
+  },
+  {
+    "id": "rcp_tech_press_cell_s_night",
+    "name": "Press small cells overnight",
+    "kind": "produce",
+    "machine": "mach_cell_press",
+    "disc": "disc_tech_bp_cells",
+    "inputs": [
+      {
+        "id": "it_core_lithium_salt",
+        "qty": 2
+      },
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 3
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_cell_s",
+        "qty": 10
+      }
+    ],
+    "energy": 0,
+    "cells": 10,
+    "time": "nights",
+    "phase": "phase_3",
+    "nights": 1
+  },
+  {
+    "id": "rcp_tech_press_cell_m_night",
+    "name": "Press cells overnight",
+    "kind": "produce",
+    "machine": "mach_cell_press",
+    "disc": "disc_tech_bp_cells",
+    "inputs": [
+      {
+        "id": "it_core_lithium_salt",
+        "qty": 3
+      },
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 3
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_cell_m",
+        "qty": 5
+      }
+    ],
+    "energy": 0,
+    "cells": 12,
+    "time": "nights",
+    "phase": "phase_3",
+    "nights": 1,
+    "loss": {
+      "mat_reagent": 0.5
+    }
+  },
+  {
+    "id": "rcp_tech_press_cell_l_night",
+    "name": "Press heavy cells overnight",
+    "kind": "produce",
+    "machine": "mach_cell_press",
+    "disc": "disc_tech_bp_cells",
+    "inputs": [
+      {
+        "id": "it_core_lithium_salt",
+        "qty": 4
+      },
+      {
+        "id": "it_core_scrap_light",
+        "qty": 2
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_cell_l",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 16,
+    "time": "nights",
+    "phase": "phase_3",
+    "nights": 2,
+    "risks": {
+      "stat_leaking": 0.1
+    }
+  },
+  {
+    "id": "rcp_tech_print_handbooks",
+    "name": "Print handbooks",
+    "kind": "produce",
+    "machine": "mach_printer_m",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 3
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_handbook",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_tech_print_notices",
+    "name": "Print notice posters",
+    "kind": "produce",
+    "machine": "mach_printer_m",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 2
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_notice",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_tech_print_cases",
+    "name": "Print device cases",
+    "kind": "produce",
+    "machine": "mach_printer_3d",
+    "disc": "disc_tech_model_gadgets",
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 2
+      },
+      {
+        "id": "it_core_scrap_light",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_case",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_tech_print_fobs",
+    "name": "Print key fobs",
+    "kind": "produce",
+    "machine": "mach_printer_3d",
+    "disc": "disc_tech_model_gadgets",
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 2
+      },
+      {
+        "id": "it_core_scrap_light",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_fob",
+        "qty": 3
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_tech_bake_chips",
+    "name": "Bake chips",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_computers",
+    "inputs": [
+      {
+        "id": "it_core_rare_dust",
+        "qty": 4
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 2
+      },
+      {
+        "id": "it_core_noble_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_chip",
+        "qty": 20
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3",
+    "tools": [
+      "it_fab_loupe"
+    ],
+    "risks": {
+      "stat_hot": 0.1,
+      "stat_jammed": 0.05
+    },
+    "notes": "Twenty chips from dust, grit and a pinch of gold. Value rises with depth, so the output is worth far more than 6x the input: this is where rare earths turn into money."
+  },
+  {
+    "id": "rcp_tech_assemble_memory",
+    "name": "Assemble memory modules",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_computers",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_chip",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_memory_module",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3",
+    "tools": [
+      "it_fab_loupe"
+    ]
+  },
+  {
+    "id": "rcp_tech_assemble_modem_cards",
+    "name": "Assemble modem cards",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_computers",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_chip",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_cable",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_modem_card",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3",
+    "tools": [
+      "it_fab_pliers"
+    ]
+  },
+  {
+    "id": "rcp_tech_assemble_laptop",
+    "name": "Assemble laptop terminals",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_computers",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_memory_module",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_screen",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_keypad",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_laptop",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3",
+    "tools": [
+      "it_fab_torque_driver"
+    ]
+  },
+  {
+    "id": "rcp_tech_assemble_desk_unit",
+    "name": "Assemble desk units",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_computers",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_memory_module",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_screen",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_bar_noble",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_desk_unit",
+        "qty": 1
+      }
+    ],
+    "energy": 3,
+    "cells": 10,
+    "time": "job",
+    "phase": "phase_3",
+    "tools": [
+      "it_fab_torque_driver"
+    ],
+    "notes": "The noble bar is the ring trim. One bar a unit."
+  },
+  {
+    "id": "rcp_tech_assemble_dongles",
+    "name": "Assemble dongles",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_tech_chip",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_wire",
+        "qty": 1
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_dongle",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3",
+    "tools": [
+      "it_fab_loupe"
+    ]
+  },
+  {
+    "id": "rcp_tech_assemble_handsets",
+    "name": "Assemble handsets",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_speaker",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_keypad",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_housing",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_handset",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_tech_assemble_radio_sets",
+    "name": "Assemble radio sets",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_speaker",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_housing",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_cable",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_radio_set",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_tech_assemble_heaters",
+    "name": "Assemble room heaters",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_fab_housing",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_wire",
+        "qty": 4
+      },
+      {
+        "id": "it_tech_switch",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_handbook",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_heater",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3",
+    "risks": {
+      "stat_hot": 0.1
+    }
+  },
+  {
+    "id": "rcp_tech_assemble_fans",
+    "name": "Assemble fans",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_light_sheet",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_switch",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_cable",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_fan",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_tech_assemble_clocks",
+    "name": "Assemble wall clocks",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_gear",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_glass_pane",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_handbook",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_clock",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_tech_assemble_handhelds",
+    "name": "Assemble game handhelds",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_screen",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_keypad",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_case",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_handheld",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_tech_assemble_gamepads",
+    "name": "Assemble gamepads",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_tech_case",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_keypad",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_cable",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_gamepad",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_tech_assemble_hearing_aids",
+    "name": "Assemble hearing aids",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_speaker",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_sensor",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_cell_s",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_hearing_aid",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3",
+    "tools": [
+      "it_fab_loupe"
+    ]
+  },
+  {
+    "id": "rcp_tech_assemble_door_locks",
+    "name": "Assemble door locks",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_relay",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_fob",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_keypad",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_door_lock",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_tech_assemble_alarms",
+    "name": "Assemble door alarms",
+    "kind": "produce",
+    "machine": "mach_assembler",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_tech_sensor",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_speaker",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_alarm",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_tech_auto_circuits",
+    "name": "Etch circuit boards in bulk",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_tech_bp_circuits",
+    "inputs": [
+      {
+        "id": "it_core_ore_copper",
+        "qty": 6
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 6
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 20
+      },
+      {
+        "id": "it_core_slag",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 20,
+    "time": "nights",
+    "phase": "phase_4",
+    "nights": 1,
+    "notes": "Same chemistry as the hand etch, twice the bed, overnight. Value warning expected as for rcp_tech_etch_circuits."
+  },
+  {
+    "id": "rcp_tech_auto_chips",
+    "name": "Bake chips in bulk",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_tech_bp_computers",
+    "inputs": [
+      {
+        "id": "it_core_rare_dust",
+        "qty": 8
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 4
+      },
+      {
+        "id": "it_core_noble_flake",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_chip",
+        "qty": 40
+      }
+    ],
+    "energy": 0,
+    "cells": 24,
+    "time": "nights",
+    "phase": "phase_4",
+    "nights": 1,
+    "notes": "Forty chips overnight. Value warning expected (see rcp_tech_bake_chips)."
+  },
+  {
+    "id": "rcp_tech_auto_handsets",
+    "name": "Assemble handsets in bulk",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_tech_bp_devices",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 4
+      },
+      {
+        "id": "it_tech_speaker",
+        "qty": 4
+      },
+      {
+        "id": "it_tech_keypad",
+        "qty": 4
+      },
+      {
+        "id": "it_fab_housing",
+        "qty": 4
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_handset",
+        "qty": 4
+      }
+    ],
+    "energy": 0,
+    "cells": 24,
+    "time": "nights",
+    "phase": "phase_4",
+    "nights": 1
+  },
+  {
+    "id": "rcp_tech_build_drone",
+    "name": "Build service drones",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_tech_bp_automata",
+    "inputs": [
+      {
+        "id": "it_tech_motor",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_circuit",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_sensor",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_housing",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_rare_ingot",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_drone",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 28,
+    "time": "nights",
+    "phase": "phase_4",
+    "nights": 2,
+    "tools": [
+      "it_fab_torque_driver"
+    ],
+    "notes": "The rare ingot is the magnet stock for the rotors."
+  },
+  {
+    "id": "rcp_tech_build_loader_arm",
+    "name": "Build loader arms",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_tech_bp_automata",
+    "inputs": [
+      {
+        "id": "it_tech_motor",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_bearing",
+        "qty": 4
+      },
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_beam",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_sensor",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_tech_loader_arm",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 28,
+    "time": "nights",
+    "phase": "phase_4",
+    "nights": 2,
+    "tools": [
+      "it_fab_torque_driver"
+    ]
+  },
+  {
+    "id": "rcp_tech_refurbish_device",
+    "name": "Refurbish a device",
+    "kind": "modify",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_tech_relay",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_wire",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_2",
+    "tools": [
+      "it_tech_soldering_iron"
+    ],
+    "target": {
+      "tags": [
+        "device"
+      ]
+    },
+    "mods_add": [
+      "mod_refurbished"
+    ],
+    "mods_remove": [
+      "mod_damaged"
+    ],
+    "notes": "A new relay and a re-flowed joint: worth less than new, more than broken."
+  },
+  {
+    "id": "rcp_tech_tune_device",
+    "name": "Tune a device",
+    "kind": "modify",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_tech_sensor",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_3",
+    "tools": [
+      "it_tech_soldering_iron",
+      "it_fab_loupe"
+    ],
+    "target": {
+      "tags": [
+        "device",
+        "electronic"
+      ]
+    },
+    "mods_add": [
+      "mod_tuned"
+    ],
+    "notes": "prog_tuner is the program route to the same modifier (on a terminal)."
+  },
+  {
+    "id": "rcp_tech_run_scrub",
+    "name": "Scrub a disc",
+    "kind": "do",
+    "machine": "mach_terminal",
+    "disc": "disc_tech_prog_antivirus",
+    "inputs": [],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2",
+    "clears": [
+      "stat_infected"
+    ],
+    "effects": [
+      {
+        "stat": "virus_spread_chance",
+        "op": "set",
+        "value": 0,
+        "text": "Strips mod_infected from the disc in the tray"
+      }
+    ]
+  },
+  {
+    "id": "rcp_tech_run_diagnostics",
+    "name": "Poll the machines",
+    "kind": "do",
+    "machine": "mach_terminal",
+    "disc": "disc_tech_prog_diagnostics",
+    "inputs": [],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2",
+    "clears": [
+      "stat_unpowered"
+    ],
+    "effects": [
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 0.9,
+        "text": "Shows every machine's status so a jam is caught early"
+      }
+    ]
+  },
+  {
+    "id": "rcp_tech_run_ledger",
+    "name": "Close the day book",
+    "kind": "do",
+    "machine": "mach_terminal",
+    "disc": "disc_tech_prog_ledger",
+    "inputs": [],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2",
+    "effects": [
+      {
+        "stat": "price_visibility",
+        "op": "set",
+        "value": 1,
+        "text": "Need arrows for tomorrow, from today's sales"
+      }
+    ]
+  },
+  {
+    "id": "rcp_tech_run_forecast",
+    "name": "Run the forecast",
+    "kind": "do",
+    "machine": "mach_terminal_pro",
+    "disc": "disc_tech_prog_forecast",
+    "inputs": [],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_3",
+    "effects": [
+      {
+        "stat": "rumor_lead_days",
+        "op": "add",
+        "value": 2,
+        "text": "Events are rumoured two days earlier"
+      }
+    ]
+  },
+  {
+    "id": "rcp_tech_run_automation",
+    "name": "Run the scripts",
+    "kind": "do",
+    "machine": "mach_mainframe",
+    "disc": "disc_tech_prog_automate",
+    "inputs": [],
+    "energy": 0,
+    "cells": 5,
+    "time": "nights",
+    "phase": "phase_4",
+    "nights": 1,
+    "effects": [
+      {
+        "stat": "overnight_jobs",
+        "op": "add",
+        "value": 4,
+        "text": "Scripted machines run overnight at the mainframe's rate"
+      }
+    ]
+  }
+]

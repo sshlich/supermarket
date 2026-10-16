@@ -1,0 +1,494 @@
+[
+  {
+    "id": "it_mach_coolant",
+    "name": "Coolant",
+    "desc": "Pale blue fluid in a ribbed flask. Poured on a hot machine, it takes the heat and the fault with it.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 6,
+    "composition": {
+      "mat_water": 1,
+      "mat_reagent": 0.5,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "consumable",
+      "coolant",
+      "liquid",
+      "chemical"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_core": 2,
+      "deck_mid": 1
+    },
+    "use": {
+      "target": "machine",
+      "effects": [
+        {
+          "stat": "jam_chance_mult",
+          "op": "mul",
+          "value": 0.9,
+          "text": "Jam chance -10% for a day"
+        }
+      ],
+      "adds": [],
+      "clears": [
+        "stat_hot"
+      ],
+      "consumed": true
+    },
+    "mods": [],
+    "notes": "Four flasks per batch (rcp_mach_brew_coolant). Residents in the works and core buy it for their own kit."
+  },
+  {
+    "id": "it_mach_lubricant",
+    "name": "Lubricant",
+    "desc": "A squeeze tube of clear grease, smelling of oil and warm plastic. A little keeps a feed from jamming.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 4,
+    "composition": {
+      "mat_reagent": 0.5,
+      "mat_polymer": 0.1
+    },
+    "tags": [
+      "consumable",
+      "lubricant",
+      "chemical"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_spine": 1
+    },
+    "use": {
+      "target": "machine",
+      "effects": [
+        {
+          "stat": "jam_chance_mult",
+          "op": "mul",
+          "value": 0.6,
+          "text": "Jam chance -40% for 3 days"
+        }
+      ],
+      "adds": [
+        "stat_oiled"
+      ],
+      "clears": [
+        "stat_slipping"
+      ],
+      "consumed": true
+    },
+    "notes": "Ten tubes per batch; the cheap route runs carbon through the chem bench (rcp_mach_brew_lubricant_cheap) and is not written, see notes in recipes."
+  },
+  {
+    "id": "it_mach_water_filter",
+    "name": "Water filter",
+    "desc": "A grey carbon-and-mesh cartridge in a polymer sleeve. The purifier runs through it; it clogs slowly.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 2,
+    "value": 8,
+    "composition": {
+      "mat_polymer": 0.5,
+      "mat_carbon": 0.5,
+      "mat_iron": 0.2
+    },
+    "tags": [
+      "filter",
+      "water",
+      "consumable",
+      "machine_part"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2
+    },
+    "wear": {
+      "uses": 8,
+      "becomes": "it_mach_water_filter_spent"
+    },
+    "mods": [
+      "mod_damaged"
+    ],
+    "notes": "Spine bunks fit one over the tap to make tap water drinkable, which is why they buy it as parts."
+  },
+  {
+    "id": "it_mach_air_filter",
+    "name": "Air cartridge",
+    "desc": "A flat carbon-packed cartridge with a fibre pre-screen. Slots into a scrubber; bunks clip them over the vent.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 2,
+    "value": 10,
+    "composition": {
+      "mat_polymer": 0.5,
+      "mat_carbon": 1,
+      "mat_fibre": 0.3
+    },
+    "tags": [
+      "filter",
+      "air",
+      "consumable",
+      "machine_part"
+    ],
+    "market_need": "need_air",
+    "needs": {
+      "need_air": 1
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_mid": 1
+    },
+    "wear": {
+      "uses": 8,
+      "becomes": "it_mach_air_filter_spent"
+    },
+    "mods": [
+      "mod_damaged"
+    ],
+    "notes": "Serves need_air directly: one cartridge is one resident-day of cleaner air for a bunk."
+  },
+  {
+    "id": "it_mach_water_filter_spent",
+    "name": "Spent water filter",
+    "desc": "A clogged cartridge, heavy and brown with trapped grime. Rinse it with clean water, or recycle it.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 0,
+    "value": 1.2,
+    "composition": {
+      "mat_polymer": 0.5,
+      "mat_carbon": 0.5,
+      "mat_iron": 0.2,
+      "mat_sludge": 1
+    },
+    "tags": [
+      "filter",
+      "water",
+      "waste",
+      "machine_part"
+    ],
+    "market_need": "need_parts",
+    "notes": "The sludge is what the filter caught. rcp_mach_rinse_water_filter turns it back into a filter, a greywater and the sludge. Also turns up in salvage lots, so a rinse loop can start before the first filter wears out.",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_mach_air_filter_spent",
+    "name": "Spent air cartridge",
+    "desc": "The carbon bed is black and full. It rattles when shaken. Rinse it, or send it to the recycler.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 0,
+    "value": 1.3,
+    "composition": {
+      "mat_polymer": 0.5,
+      "mat_carbon": 1,
+      "mat_fibre": 0.3,
+      "mat_sludge": 1
+    },
+    "tags": [
+      "filter",
+      "air",
+      "waste",
+      "machine_part"
+    ],
+    "market_need": "need_parts",
+    "notes": "rcp_mach_rinse_air_cartridge restores it. Also turns up in salvage lots, so a rinse loop can start before the first filter wears out.",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_mach_jam_kit",
+    "name": "Jam kit",
+    "desc": "A roll of picks, a bent probe and a squeeze of grease. Frees a clogged feed without a wrench.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 2,
+    "value": 8,
+    "composition": {
+      "mat_iron": 0.5,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "tool",
+      "machine_part"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_works": 2
+    },
+    "wear": {
+      "uses": 4,
+      "becomes": null
+    },
+    "notes": "A tool in rcp_mach_clear_jam_kit; wears out after four jobs."
+  },
+  {
+    "id": "it_mach_fuse",
+    "name": "Fuse",
+    "desc": "A glass tube with a thin copper filament, packed in grit. It dies first so the machine does not.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 4,
+    "composition": {
+      "mat_copper": 0.5,
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "component",
+      "part",
+      "consumable"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_core": 2,
+      "deck_mid": 1
+    },
+    "use": {
+      "target": "machine",
+      "effects": [],
+      "adds": [],
+      "clears": [
+        "stat_tripped"
+      ],
+      "consumed": true
+    },
+    "notes": "Clears a tripped breaker."
+  },
+  {
+    "id": "it_mach_drive_belt",
+    "name": "Drive belt",
+    "desc": "A loop of ribbed polymer woven with fibre. Every drum and roller on the station turns on one of these.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 2,
+    "value": 10,
+    "composition": {
+      "mat_polymer": 1,
+      "mat_fibre": 0.5
+    },
+    "tags": [
+      "machine_part",
+      "part",
+      "consumable"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.5
+    },
+    "decks": {
+      "deck_works": 2,
+      "deck_dock": 1
+    },
+    "wear": {
+      "uses": 12,
+      "becomes": null
+    },
+    "notes": "Fitted by rcp_mach_fit_belt; sits in the consumable slot of drum and roller machines."
+  },
+  {
+    "id": "it_mach_manual",
+    "name": "Service manual",
+    "desc": "Forty printed pages of exploded drawings and torque figures, grease-thumbed. Read it before opening anything.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 12,
+    "composition": {
+      "mat_fibre": 1,
+      "mat_carbon": 0.5
+    },
+    "tags": [
+      "book",
+      "paper",
+      "data",
+      "tool"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_mid": 2,
+      "deck_hub": 1,
+      "deck_core": 1
+    },
+    "wear": {
+      "uses": 6,
+      "becomes": null
+    },
+    "notes": "Printed on the document printer; a tool in rcp_mach_realign. Tagged book, so collectors may want an old copy."
+  },
+  {
+    "id": "it_mach_tape",
+    "name": "Sealing tape",
+    "desc": "A reel of grey polymer tape with a hard adhesive. A box sealed with it opens only under a knife.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 2,
+    "composition": {
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "packaging",
+      "consumable",
+      "polymer"
+    ],
+    "market_need": "need_parts",
+    "notes": "The sealer eats one per small or medium box, two per large."
+  },
+  {
+    "id": "it_mach_padding",
+    "name": "Padding",
+    "desc": "Shredded rag packed in a flat bag. Stuffed round the goods it keeps a box from arriving dented.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 2,
+    "composition": {
+      "mat_fibre": 0.5
+    },
+    "tags": [
+      "packaging",
+      "fibre",
+      "consumable"
+    ],
+    "market_need": "need_parts",
+    "notes": "Made by hand from rags. Also hides things: see rcp_mach_hide_in_box."
+  },
+  {
+    "id": "it_mach_label_roll",
+    "name": "Label roll",
+    "desc": "A roll of gummed paper strips, blank, with a hole for the labeller spindle.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 2,
+    "value": 6,
+    "composition": {
+      "mat_fibre": 0.5
+    },
+    "tags": [
+      "paper",
+      "packaging",
+      "consumable"
+    ],
+    "market_need": "need_comfort",
+    "notes": "Cut on the slip printer from a sheet of paper. One roll per label."
+  },
+  {
+    "id": "it_mach_cleaning_kit",
+    "name": "Cleaning kit",
+    "desc": "A rag, a brush and a vial of solvent in a pouch. Lifts dust and gum from the works of a machine.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 7,
+    "composition": {
+      "mat_fibre": 1,
+      "mat_reagent": 0.5
+    },
+    "tags": [
+      "consumable",
+      "hygiene",
+      "chemical"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25,
+      "need_comfort": 0.25
+    },
+    "decks": {
+      "deck_ring": 1,
+      "deck_mid": 1,
+      "deck_works": 1
+    },
+    "use": {
+      "target": "machine",
+      "effects": [],
+      "adds": [],
+      "clears": [
+        "stat_dusty"
+      ],
+      "consumed": true
+    },
+    "notes": "Households use it too, hence need_comfort."
+  },
+  {
+    "id": "it_mach_sealant",
+    "name": "Sealant",
+    "desc": "Grey putty in a squeeze tube. Smeared over a seam it sets hard and holds water and gas.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 4,
+    "composition": {
+      "mat_polymer": 0.5,
+      "mat_reagent": 0.25
+    },
+    "tags": [
+      "consumable",
+      "chemical"
+    ],
+    "market_need": "need_parts",
+    "needs": {
+      "need_parts": 0.25
+    },
+    "decks": {
+      "deck_spine": 2,
+      "deck_works": 1
+    },
+    "use": {
+      "target": "machine",
+      "effects": [],
+      "adds": [],
+      "clears": [
+        "stat_leaking"
+      ],
+      "consumed": true
+    },
+    "notes": "Spine bunks patch pipes with it."
+  }
+]

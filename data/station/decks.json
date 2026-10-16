@@ -1,0 +1,234 @@
+[
+  {
+    "id": "deck_ring",
+    "name": "The Ring",
+    "desc": "Spun gravity and real plants. Pays well and wants it fast: luxury, comfort and clean repairs.",
+    "wealth": 4,
+    "population_share": 0.12,
+    "transit_days": 2,
+    "wants": {
+      "need_air": 0.8,
+      "need_water": 0.8,
+      "need_food": 1,
+      "need_power": 1,
+      "need_medicine": 1.2,
+      "need_parts": 1.2,
+      "need_comfort": 2.6,
+      "need_luxury": 3
+    },
+    "prefers_tags": [
+      "real",
+      "ring_grade",
+      "luxury",
+      "heirloom",
+      "jewellery",
+      "art",
+      "alcohol"
+    ],
+    "avoids_tags": [
+      "synthetic",
+      "spine_grade",
+      "salvage",
+      "scrap"
+    ],
+    "contraband_tolerance": 0.55,
+    "notes": "Quiet about fire and software, as long as nobody sees."
+  },
+  {
+    "id": "deck_hub",
+    "name": "Hub",
+    "desc": "Company offices and clerks. Everything licensed and in triplicate, with a lamp on every desk.",
+    "wealth": 3,
+    "population_share": 0.08,
+    "transit_days": 1,
+    "wants": {
+      "need_air": 0.8,
+      "need_water": 0.9,
+      "need_food": 1,
+      "need_power": 1.4,
+      "need_medicine": 1,
+      "need_parts": 1.2,
+      "need_comfort": 2.2,
+      "need_luxury": 1.6
+    },
+    "prefers_tags": [
+      "licensed",
+      "company",
+      "paper",
+      "computer",
+      "comfort"
+    ],
+    "avoids_tags": [
+      "contraband",
+      "salvage",
+      "synthetic"
+    ],
+    "contraband_tolerance": 0.1,
+    "notes": "Reports what it finds. The company store is here."
+  },
+  {
+    "id": "deck_core",
+    "name": "Core",
+    "desc": "The reactor and the engineers who live beside it. Cells, chips and parts at odd hours.",
+    "wealth": 1.6,
+    "population_share": 0.08,
+    "transit_days": 3,
+    "wants": {
+      "need_air": 1.2,
+      "need_water": 1,
+      "need_food": 1,
+      "need_power": 2.6,
+      "need_medicine": 1.2,
+      "need_parts": 2.4,
+      "need_comfort": 1.2,
+      "need_luxury": 0.8
+    },
+    "prefers_tags": [
+      "power",
+      "cell",
+      "part",
+      "tool",
+      "electronic",
+      "component"
+    ],
+    "avoids_tags": [
+      "alcohol",
+      "scent",
+      "toy"
+    ],
+    "contraband_tolerance": 0.35,
+    "notes": "Few questions asked about parts that are not on the manifest."
+  },
+  {
+    "id": "deck_mid",
+    "name": "Mid decks",
+    "desc": "Technicians, orderlies, crew. Your stall is here. A bit of everything for a bit of money.",
+    "wealth": 1.2,
+    "population_share": 0.22,
+    "transit_days": 1,
+    "wants": {
+      "need_air": 1.2,
+      "need_water": 1.4,
+      "need_food": 1.6,
+      "need_power": 1.4,
+      "need_medicine": 1.4,
+      "need_parts": 1.4,
+      "need_comfort": 1.2,
+      "need_luxury": 0.8
+    },
+    "prefers_tags": [
+      "food",
+      "tool",
+      "light",
+      "medicine",
+      "part"
+    ],
+    "avoids_tags": [
+      "ring_grade"
+    ],
+    "contraband_tolerance": 0.3,
+    "notes": "Looks the other way for small things."
+  },
+  {
+    "id": "deck_dock",
+    "name": "The dock",
+    "desc": "Haulers and crane crews. Ore and ice come in here; cells and parts go out.",
+    "wealth": 0.9,
+    "population_share": 0.12,
+    "transit_days": 1,
+    "wants": {
+      "need_air": 1,
+      "need_water": 1.4,
+      "need_food": 1.4,
+      "need_power": 2,
+      "need_medicine": 1.2,
+      "need_parts": 2.2,
+      "need_comfort": 0.8,
+      "need_luxury": 1
+    },
+    "prefers_tags": [
+      "power",
+      "cell",
+      "tool",
+      "part",
+      "fastener",
+      "structural",
+      "ore",
+      "ice"
+    ],
+    "avoids_tags": [
+      "ring_grade",
+      "jewellery"
+    ],
+    "contraband_tolerance": 0.5,
+    "notes": "Smuggles on the side and counts on being ignored."
+  },
+  {
+    "id": "deck_works",
+    "name": "Works",
+    "desc": "Foundry and fab halls. Tools, filters and medicine for burns; cheap food.",
+    "wealth": 0.7,
+    "population_share": 0.16,
+    "transit_days": 2,
+    "wants": {
+      "need_air": 1.4,
+      "need_water": 1.4,
+      "need_food": 1.8,
+      "need_power": 1.6,
+      "need_medicine": 1.6,
+      "need_parts": 2.6,
+      "need_comfort": 0.6,
+      "need_luxury": 0.4
+    },
+    "prefers_tags": [
+      "tool",
+      "filter",
+      "part",
+      "medicine",
+      "staple",
+      "fastener",
+      "machine_part"
+    ],
+    "avoids_tags": [
+      "luxury",
+      "ring_grade"
+    ],
+    "contraband_tolerance": 0.25,
+    "notes": "Trades for cash and kind; the foremen see everything."
+  },
+  {
+    "id": "deck_spine",
+    "name": "The Spine",
+    "desc": "Recycled air, bunks four high. Water, rations and filters at thin margins, and scavengers on every ladder.",
+    "wealth": 0.4,
+    "population_share": 0.22,
+    "transit_days": 2,
+    "wants": {
+      "need_air": 2.8,
+      "need_water": 3,
+      "need_food": 3,
+      "need_power": 1,
+      "need_medicine": 1.4,
+      "need_parts": 1.4,
+      "need_comfort": 0.5,
+      "need_luxury": 0.2
+    },
+    "prefers_tags": [
+      "staple",
+      "ration",
+      "water",
+      "filter",
+      "spine_grade",
+      "synthetic",
+      "salvage",
+      "scrap"
+    ],
+    "avoids_tags": [
+      "ring_grade",
+      "real",
+      "luxury"
+    ],
+    "contraband_tolerance": 0.6,
+    "notes": "Buys and sells what it has to. Inspectors rarely come down this far."
+  }
+]

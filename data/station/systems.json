@@ -1,0 +1,242 @@
+[
+  {
+    "id": "sys_reactor",
+    "name": "Reactor",
+    "desc": "The fission plant at the core. Everything runs off its cell lines, and the engineers sleep next to it.",
+    "deck": "deck_core",
+    "supply": [
+      {
+        "need": "need_power",
+        "share": 0.55
+      }
+    ],
+    "repair_items": [
+      "it_fab_spare_part",
+      "it_fab_valve",
+      "it_tech_circuit",
+      "it_mach_coolant"
+    ],
+    "notes": "Feeds power for the whole station. Breakdown events here move need_power hardest."
+  },
+  {
+    "id": "sys_solar_vanes",
+    "name": "Solar vanes",
+    "desc": "Mirror sails on the ring, fed by real sunlight. Pretty, fragile, owned by the rich.",
+    "deck": "deck_ring",
+    "supply": [
+      {
+        "need": "need_power",
+        "share": 0.25
+      }
+    ],
+    "repair_items": [
+      "it_tech_sensor",
+      "it_fab_polymer_sheet",
+      "it_tech_circuit",
+      "it_tech_motor"
+    ],
+    "notes": "Small but steady; first to be blamed in a dust storm."
+  },
+  {
+    "id": "sys_scrubber_bank",
+    "name": "Scrubber bank",
+    "desc": "Rows of cartridge scrubbers along the spine. They take the breath out of the air and give it back.",
+    "deck": "deck_spine",
+    "supply": [
+      {
+        "need": "need_air",
+        "share": 0.55
+      }
+    ],
+    "repair_items": [
+      "it_mach_air_filter",
+      "it_life_canister",
+      "it_fab_valve",
+      "it_fab_pipe"
+    ],
+    "notes": "The spine lives on this. When a bank clogs, filters and canisters are bought in a hurry."
+  },
+  {
+    "id": "sys_algae_lungs",
+    "name": "Algae lungs",
+    "desc": "Green tanks on the mid decks that breathe in carbon and breathe out air, and sometimes feed a few.",
+    "deck": "deck_mid",
+    "supply": [
+      {
+        "need": "need_air",
+        "share": 0.3
+      },
+      {
+        "need": "need_food",
+        "share": 0.1
+      }
+    ],
+    "repair_items": [
+      "it_life_nutrient",
+      "it_life_algae",
+      "it_tech_sensor",
+      "it_fab_pipe"
+    ],
+    "notes": "Sensitive to heat; a bloom or a die-off both hurt."
+  },
+  {
+    "id": "sys_water_reclaim",
+    "name": "Water reclaim",
+    "desc": "The loop of recovery tanks under the spine: every drop used again until it will not clean.",
+    "deck": "deck_spine",
+    "supply": [
+      {
+        "need": "need_water",
+        "share": 0.5
+      }
+    ],
+    "repair_items": [
+      "it_mach_water_filter",
+      "it_fab_valve",
+      "it_fab_pipe",
+      "it_tech_motor"
+    ],
+    "notes": "Sludge leaves here for the digester and the vent."
+  },
+  {
+    "id": "sys_ice_haul",
+    "name": "Ice haul",
+    "desc": "Tugs bring comet ice to the dock and crane crews cut it for the melters.",
+    "deck": "deck_dock",
+    "supply": [
+      {
+        "need": "need_water",
+        "share": 0.3
+      }
+    ],
+    "repair_items": [
+      "it_fab_bearing",
+      "it_tech_motor",
+      "it_fab_wrench",
+      "it_fab_spare_part"
+    ],
+    "notes": "Source of ice blocks (haul). A strike or a lost tug sends water prices up."
+  },
+  {
+    "id": "sys_ring_farms",
+    "name": "Ring farms",
+    "desc": "Real soil under real light, behind glass. Feeds the ring and sells the spare for gold.",
+    "deck": "deck_ring",
+    "supply": [
+      {
+        "need": "need_food",
+        "share": 0.15
+      },
+      {
+        "need": "need_luxury",
+        "share": 0.25
+      }
+    ],
+    "repair_items": [
+      "it_tech_lamp",
+      "it_life_nutrient",
+      "it_fab_glass_pane",
+      "it_fab_valve"
+    ],
+    "notes": "Luxury food and drink originate here; blight events hit the ring first."
+  },
+  {
+    "id": "sys_vat_halls",
+    "name": "Vat halls",
+    "desc": "Ranks of culture vats in the works. They turn biomass into bread, protein and the grey paste everyone eats.",
+    "deck": "deck_works",
+    "supply": [
+      {
+        "need": "need_food",
+        "share": 0.5
+      }
+    ],
+    "repair_items": [
+      "it_fab_valve",
+      "it_fab_pipe",
+      "it_tech_motor",
+      "it_mach_lubricant"
+    ],
+    "notes": "Eats biomass paste; contamination here is the food crisis."
+  },
+  {
+    "id": "sys_foundry",
+    "name": "Foundry",
+    "desc": "Smelters and rolling mills in the works. Makes bars and sheet for the whole station.",
+    "deck": "deck_works",
+    "supply": [
+      {
+        "need": "need_parts",
+        "share": 0.45
+      }
+    ],
+    "repair_items": [
+      "it_fab_bearing",
+      "it_tech_motor",
+      "it_fab_wrench",
+      "it_mach_coolant"
+    ],
+    "notes": "Eats ore and scrap; a stoppage starves every fabricator."
+  },
+  {
+    "id": "sys_ore_haul",
+    "name": "Ore haul",
+    "desc": "Cargo tugs and crane crews bringing ore to the dock. The only source of fresh metal.",
+    "deck": "deck_dock",
+    "supply": [
+      {
+        "need": "need_parts",
+        "share": 0.3
+      }
+    ],
+    "repair_items": [
+      "it_fab_bearing",
+      "it_tech_cable",
+      "it_fab_spare_part",
+      "it_tech_motor"
+    ],
+    "notes": "Source of ore (haul). A convoy delay or blockade starves the foundry."
+  },
+  {
+    "id": "sys_clinic",
+    "name": "Clinic",
+    "desc": "Three rooms on the mid decks and a pharmacy that is always one order behind.",
+    "deck": "deck_mid",
+    "supply": [
+      {
+        "need": "need_medicine",
+        "share": 0.7
+      }
+    ],
+    "repair_items": [
+      "it_med_antiseptic",
+      "it_med_bandage",
+      "it_tech_sensor",
+      "it_fab_vial"
+    ],
+    "notes": "Single point of failure for medicine; epidemics bite it directly."
+  },
+  {
+    "id": "sys_company_store",
+    "name": "Company store",
+    "desc": "Hub shelves with the company mark: licensed, paid in company scrip, never out of stock for long.",
+    "deck": "deck_hub",
+    "supply": [
+      {
+        "need": "need_comfort",
+        "share": 0.7
+      },
+      {
+        "need": "need_luxury",
+        "share": 0.5
+      }
+    ],
+    "repair_items": [
+      "it_tech_screen",
+      "it_tech_circuit",
+      "it_lux_paper",
+      "it_fab_housing"
+    ],
+    "notes": "Sets comfort prices on the hub and the mid decks; policy events change what it stocks."
+  }
+]

@@ -1,0 +1,627 @@
+[
+  {
+    "id": "it_life_water",
+    "name": "Water pouch",
+    "desc": "A litre of clean water in a heat-sealed polymer pouch, cold to the touch.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 1.5,
+    "composition": {
+      "mat_water": 1
+    },
+    "tags": [
+      "water",
+      "drink",
+      "liquid",
+      "staple"
+    ],
+    "market_need": "need_water",
+    "needs": {
+      "need_water": 0.5
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 1.5,
+      "deck_dock": 1.5,
+      "deck_mid": 1.5
+    }
+  },
+  {
+    "id": "it_life_meltwater",
+    "name": "Meltwater",
+    "desc": "Ice melted in a bag and strained once. Hard, grey, tastes of iron. Fine for a bunk, better filtered.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 2.5,
+    "composition": {
+      "mat_water": 2
+    },
+    "tags": [
+      "water",
+      "drink",
+      "liquid",
+      "raw"
+    ],
+    "market_need": "need_water",
+    "needs": {
+      "need_water": 0.5
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_dock": 2
+    },
+    "notes": "Ice melted without a filter: cheap spine water, and feed for the purifier."
+  },
+  {
+    "id": "it_life_water_ration",
+    "name": "Water ration",
+    "desc": "A flat sachet with a day of water in it, stamped with a bunk number. The spine lives on these.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 3.5,
+    "composition": {
+      "mat_water": 2,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "water",
+      "drink",
+      "staple",
+      "spine_grade"
+    ],
+    "market_need": "need_water",
+    "needs": {
+      "need_water": 1
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 1.5,
+      "deck_dock": 1
+    }
+  },
+  {
+    "id": "it_life_water_jug",
+    "name": "Water jug",
+    "desc": "Four litres in a sealed polymer jug with a tap. Heavy to carry up a bunk ladder.",
+    "w": 2,
+    "h": 3,
+    "tier": 1,
+    "depth": 1,
+    "value": 7,
+    "composition": {
+      "mat_water": 4,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "water",
+      "drink",
+      "liquid",
+      "container"
+    ],
+    "market_need": "need_water",
+    "needs": {
+      "need_water": 2
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2,
+      "deck_dock": 1.5,
+      "deck_mid": 1
+    }
+  },
+  {
+    "id": "it_life_brine",
+    "name": "Brine",
+    "desc": "Salt water in a stoppered flask, left over from the cooling loops. Undrinkable, useful to a still.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 2,
+    "composition": {
+      "mat_water": 1,
+      "mat_salts": 1
+    },
+    "tags": [
+      "liquid",
+      "water",
+      "raw"
+    ],
+    "market_need": "need_water",
+    "notes": "No resident drinks it; it feeds the still, the purifier and the brine algae strain. Source: salvage from the cooling loops.",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_life_distilled",
+    "name": "Distilled water",
+    "desc": "Boiled off and caught again in glass-clear tubing. Flat, pure, no minerals at all.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 5,
+    "composition": {
+      "mat_water": 1
+    },
+    "tags": [
+      "water",
+      "drink",
+      "liquid",
+      "processed"
+    ],
+    "market_need": "need_water",
+    "needs": {
+      "need_water": 0.5
+    },
+    "decks": {
+      "deck_ring": 2,
+      "deck_hub": 2,
+      "deck_mid": 1.5,
+      "deck_core": 1.5
+    }
+  },
+  {
+    "id": "it_life_saline",
+    "name": "Saline water",
+    "desc": "Distilled water with a measured pinch of salt, bottled for the clinic. Washes wounds, fills drips.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 8,
+    "composition": {
+      "mat_water": 1,
+      "mat_salts": 0.2
+    },
+    "tags": [
+      "water",
+      "liquid",
+      "medicine",
+      "processed"
+    ],
+    "market_need": "need_water",
+    "needs": {
+      "need_water": 0.5,
+      "need_medicine": 0.25
+    },
+    "decks": {
+      "deck_mid": 2,
+      "deck_spine": 1,
+      "deck_works": 1.5
+    },
+    "notes": "Market follows need_water but it also serves need_medicine: the clinic is its steady buyer."
+  },
+  {
+    "id": "it_life_water_bottle",
+    "name": "Bottled water",
+    "desc": "Distilled water in a real glass bottle with a cork. Ring households keep a shelf of these for show.",
+    "w": 1,
+    "h": 3,
+    "tier": 2,
+    "depth": 2,
+    "value": 10,
+    "composition": {
+      "mat_silicate": 1,
+      "mat_water": 2
+    },
+    "tags": [
+      "water",
+      "drink",
+      "vessel",
+      "ring_grade"
+    ],
+    "market_need": "need_water",
+    "needs": {
+      "need_water": 1
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2
+    }
+  },
+  {
+    "id": "it_life_canister",
+    "name": "Gas canister",
+    "desc": "A steel canister with a screw valve, dented and relabelled. Empty. Fill it, use it, bring it back.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 2,
+    "composition": {
+      "mat_iron": 0.5
+    },
+    "tags": [
+      "container",
+      "vessel",
+      "gas"
+    ],
+    "market_need": "need_air",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Dented canisters turn up in spine salvage; once owned it is a reusable vessel (fill, use, empty)."
+  },
+  {
+    "id": "it_life_oxygen",
+    "name": "Oxygen canister",
+    "desc": "A full canister of breathing gas, green band at the neck. Clinic and Works both stock a rack.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 4,
+    "composition": {
+      "mat_iron": 0.5,
+      "mat_volatiles": 1
+    },
+    "tags": [
+      "gas",
+      "air",
+      "container",
+      "staple"
+    ],
+    "market_need": "need_air",
+    "needs": {
+      "need_air": 1
+    },
+    "decks": {
+      "deck_spine": 2,
+      "deck_works": 2.5,
+      "deck_mid": 2,
+      "deck_core": 2
+    }
+  },
+  {
+    "id": "it_life_hydrogen",
+    "name": "Hydrogen canister",
+    "desc": "A canister of hydrogen, red band at the neck. Fuel for the reactor crews and the cell shops.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 5,
+    "composition": {
+      "mat_iron": 0.5,
+      "mat_volatiles": 1
+    },
+    "tags": [
+      "gas",
+      "container",
+      "power"
+    ],
+    "market_need": "need_power",
+    "needs": {
+      "need_power": 0.5
+    },
+    "decks": {
+      "deck_core": 3,
+      "deck_works": 2,
+      "deck_dock": 1.5
+    }
+  },
+  {
+    "id": "it_life_foul_air",
+    "name": "Foul air bladder",
+    "desc": "A bladder of exhaled air from the bunks, warm and sour. Carbon lives in it. Algae eat it.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 0.5,
+    "composition": {
+      "mat_volatiles": 1
+    },
+    "tags": [
+      "gas",
+      "air",
+      "waste"
+    ],
+    "market_need": "need_air",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Collected from bunk vents by scavengers. The scrubber strips its carbon, the algae tank eats it."
+  },
+  {
+    "id": "it_life_mask_refill",
+    "name": "Mask refill",
+    "desc": "A thumb-sized cartridge of breathing gas that clips into a mask. Good for a long shift.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 4,
+    "composition": {
+      "mat_volatiles": 1,
+      "mat_polymer": 0.25
+    },
+    "tags": [
+      "gas",
+      "air",
+      "consumable"
+    ],
+    "market_need": "need_air",
+    "needs": {
+      "need_air": 0.5
+    },
+    "decks": {
+      "deck_spine": 2,
+      "deck_works": 3,
+      "deck_dock": 2,
+      "deck_core": 2
+    }
+  },
+  {
+    "id": "it_life_air_puck",
+    "name": "Air puck",
+    "desc": "A grey puck of salt and carbon that sits in a bunk vent and softens the air. Spent in a month.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 5,
+    "composition": {
+      "mat_salts": 1,
+      "mat_carbon": 1,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "air",
+      "filter",
+      "consumable",
+      "spine_grade"
+    ],
+    "market_need": "need_air",
+    "needs": {
+      "need_air": 1
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 1.5,
+      "deck_mid": 1.5
+    }
+  },
+  {
+    "id": "it_life_puck_spent",
+    "name": "Spent puck",
+    "desc": "A bunk air puck gone dark and heavy with breath. The scrubber can wake it again.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 2,
+    "composition": {
+      "mat_salts": 1,
+      "mat_carbon": 1,
+      "mat_polymer": 0.2,
+      "mat_volatiles": 0.5
+    },
+    "tags": [
+      "air",
+      "waste",
+      "salvage"
+    ],
+    "market_need": "need_air",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Bunk tenants drop these in the ducts. The scrubber regenerates two into two fresh pucks plus a bladder of gas."
+  },
+  {
+    "id": "it_life_rebreather",
+    "name": "Sealed rebreather",
+    "desc": "A full-face mask with its own cartridge, polymer skirt stitched to cloth. Gets you through a leak.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 30,
+    "composition": {
+      "mat_polymer": 1.5,
+      "mat_carbon": 1,
+      "mat_fibre": 1.3
+    },
+    "tags": [
+      "air",
+      "device",
+      "filter"
+    ],
+    "market_need": "need_air",
+    "needs": {
+      "need_air": 3
+    },
+    "decks": {
+      "deck_works": 3,
+      "deck_core": 3,
+      "deck_dock": 2,
+      "deck_ring": 1
+    }
+  },
+  {
+    "id": "it_life_oxygen_candle",
+    "name": "Oxygen candle",
+    "desc": "A salt-and-iron block that burns without flame inside its tin and gives off oxygen. For emergencies.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 12,
+    "composition": {
+      "mat_salts": 2,
+      "mat_iron": 1
+    },
+    "tags": [
+      "air",
+      "chemical",
+      "consumable",
+      "gas"
+    ],
+    "market_need": "need_air",
+    "needs": {
+      "need_air": 2
+    },
+    "decks": {
+      "deck_spine": 2,
+      "deck_works": 2.5,
+      "deck_core": 2.5
+    },
+    "contraband": false,
+    "notes": "A chemical candle, not a flame: legal. It burns hot inside its housing, so security glances at it, but it is not class fire."
+  },
+  {
+    "id": "it_life_nutrient",
+    "name": "Nutrient mix",
+    "desc": "Grey salts with a little paste stirred in, sold in a twist of film. Hydro feed; the trays drink it.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 2,
+    "composition": {
+      "mat_salts": 1,
+      "mat_biomass": 0.2
+    },
+    "tags": [
+      "powder",
+      "processed",
+      "consumable"
+    ],
+    "market_need": "need_food"
+  },
+  {
+    "id": "it_life_nutrient_rich",
+    "name": "Fruiting mix",
+    "desc": "Nutrient mix with reagent worked in, blue-tinged. For orchards and anything that has to flower.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 8,
+    "composition": {
+      "mat_salts": 1,
+      "mat_biomass": 0.4,
+      "mat_reagent": 0.2
+    },
+    "tags": [
+      "powder",
+      "processed",
+      "consumable"
+    ],
+    "market_need": "need_food",
+    "notes": "Orchard and rack feed: expected to be used by food recipes (hydro rack). Recyclable until then."
+  },
+  {
+    "id": "it_life_algae",
+    "name": "Algae mat",
+    "desc": "A wet green mat lifted from the tank, slick and cold. Vat feedstock; it breathes the air clean.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 2,
+    "composition": {
+      "mat_biomass": 1,
+      "mat_water": 0.5
+    },
+    "tags": [
+      "raw",
+      "culture",
+      "produce"
+    ],
+    "market_need": "need_food"
+  },
+  {
+    "id": "it_life_algae_dense",
+    "name": "Dense algae",
+    "desc": "A pressed block of deep-green algae from a fast strain. Twice the biomass, half the water.",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 7,
+    "composition": {
+      "mat_biomass": 2,
+      "mat_water": 0.5
+    },
+    "tags": [
+      "culture",
+      "processed",
+      "produce"
+    ],
+    "market_need": "need_food"
+  },
+  {
+    "id": "it_life_tester_strip",
+    "name": "Water tester",
+    "desc": "A paper strip that turns from yellow to blue in clean water. Brown means do not drink.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 2,
+    "value": 2,
+    "composition": {
+      "mat_fibre": 0.3,
+      "mat_salts": 0.1
+    },
+    "tags": [
+      "consumable",
+      "water",
+      "paper"
+    ],
+    "market_need": "need_water",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "decks": {
+      "deck_spine": 2,
+      "deck_works": 1.5
+    },
+    "notes": "Used once to check a pouch or a jug. No stat effect yet: a pure information item for the water readout."
+  },
+  {
+    "id": "it_life_regulator",
+    "name": "Gas regulator",
+    "desc": "A valve and a short pipe brazed into a pressure regulator. Hydrogen only goes through one of these.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 24,
+    "composition": {
+      "mat_iron": 1.5,
+      "mat_copper": 0.5
+    },
+    "tags": [
+      "tool",
+      "component",
+      "gas"
+    ],
+    "market_need": "need_parts",
+    "wear": {
+      "uses": 50,
+      "becomes": null
+    },
+    "decks": {
+      "deck_core": 2,
+      "deck_works": 2
+    },
+    "notes": "Tool in the hydrogen fill. Wears to scrap."
+  }
+]

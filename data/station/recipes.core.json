@@ -1,0 +1,870 @@
+[
+  {
+    "id": "rcp_core_crush_mixed_scrap",
+    "name": "Crush mixed scrap",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_scrap_mixed",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 1
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      },
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 1,
+        "chance": 0.5
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1",
+    "notes": "iron 1 + polymer 1 + copper 0.5 in, same out: copper arrives half the time."
+  },
+  {
+    "id": "rcp_core_crush_ewaste",
+    "name": "Crush e-waste",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_ewaste",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 1
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1,
+        "chance": 0.3
+      },
+      {
+        "id": "it_core_noble_flake",
+        "qty": 1,
+        "chance": 0.1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1",
+    "notes": "Expected: rare dust 0.3 and noble flake 0.1 per board. A board is worth 9; the dust and flake alone are worth 6.1."
+  },
+  {
+    "id": "rcp_core_crush_rags",
+    "name": "Crush rags",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_rags",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_core_crush_ice",
+    "name": "Crush ice",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_ice",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_greywater",
+        "qty": 2
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1",
+    "notes": "Melts and splits: water and gas. No sludge, unlike the recycler."
+  },
+  {
+    "id": "rcp_core_crush_iron_ore",
+    "name": "Crush iron ore",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_ore_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 1
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_core_crush_copper_ore",
+    "name": "Crush copper ore",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_ore_copper",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 1
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_core_crush_bauxite",
+    "name": "Crush bauxite",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_ore_light",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_light",
+        "qty": 1
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_core_crush_slag",
+    "name": "Crush slag",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_slag",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_grit",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_core_crush_duct_junk",
+    "name": "Crush duct junk",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_duct_junk",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_light",
+        "qty": 2
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      },
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_core_crush_hull_offcuts",
+    "name": "Crush hull offcuts",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_hull_offcuts",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 3
+      },
+      {
+        "id": "it_core_scrap_light",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_core_crush_wire_tangle",
+    "name": "Crush wire tangle",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_wire_tangle",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 3
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_core_crush_rubble",
+    "name": "Crush rubble",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_rubble",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_grit",
+        "qty": 4
+      },
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 1
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_core_crush_filter_husks",
+    "name": "Crush spent filters",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_filter_husks",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 2
+      },
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 1
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_core_crush_cell_husk",
+    "name": "Crush cell husks",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_cell_husk",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_light",
+        "qty": 1
+      },
+      {
+        "id": "it_core_lithium_salt",
+        "qty": 1
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "Two husks give a unit of lithium: the cheapest lithium on the station."
+  },
+  {
+    "id": "rcp_core_crush_dead_appliance",
+    "name": "Crush dead appliance",
+    "kind": "produce",
+    "machine": "mach_crusher",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_dead_appliance",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 3
+      },
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 2
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 2
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1,
+        "chance": 0.2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_core_digest_sludge_paste",
+    "name": "Digest sludge to paste",
+    "kind": "produce",
+    "machine": "mach_digester",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 4
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 3
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 2,
+    "phase": "phase_2",
+    "notes": "4 sludge -> biomass 3 + salts 1 (transmutes sludge>biomass, sludge>salts). The vat feeder."
+  },
+  {
+    "id": "rcp_core_digest_sludge_brine",
+    "name": "Digest sludge to brine",
+    "kind": "produce",
+    "machine": "mach_digester",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 4
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_salt_cake",
+        "qty": 2
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 2,
+    "phase": "phase_2",
+    "notes": "Salt-heavy run for scrubbers."
+  },
+  {
+    "id": "rcp_core_digest_sludge_gas",
+    "name": "Digest sludge to gas",
+    "kind": "produce",
+    "machine": "mach_digester",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 4
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 2
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 3,
+    "phase": "phase_2",
+    "notes": "Slow ferment, three nights. The gas goes to electrolysers and scrubbers."
+  },
+  {
+    "id": "rcp_core_digest_sludge_water",
+    "name": "Digest sludge to water",
+    "kind": "produce",
+    "machine": "mach_digester",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 4
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_greywater",
+        "qty": 3
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 2,
+    "phase": "phase_2",
+    "notes": "Mostly water, still needs the purifier."
+  },
+  {
+    "id": "rcp_core_digest_sludge_bulk",
+    "name": "Digest a full tank",
+    "kind": "produce",
+    "machine": "mach_digester",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 8
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 5
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 3,
+    "phase": "phase_2",
+    "notes": "Eight jugs at once: all four transmutes in one tank."
+  },
+  {
+    "id": "rcp_core_vent_sludge",
+    "name": "Vent sludge",
+    "kind": "do",
+    "machine": "mach_vent",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 4
+      }
+    ],
+    "loss": {
+      "mat_sludge": 4
+    },
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "credits": 2,
+    "phase": "phase_2",
+    "notes": "The only way sludge leaves the loop. Fee 0.5 credit a jug. Cheaper than letting it pile up."
+  },
+  {
+    "id": "rcp_core_vent_greywater",
+    "name": "Vent foul water",
+    "kind": "do",
+    "machine": "mach_vent",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_greywater",
+        "qty": 4
+      }
+    ],
+    "loss": {
+      "mat_water": 4
+    },
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "credits": 3,
+    "phase": "phase_2",
+    "notes": "For water too foul to save; costs more than digesting it."
+  },
+  {
+    "id": "rcp_core_vent_gas",
+    "name": "Vent gas",
+    "kind": "do",
+    "machine": "mach_vent",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 4
+      }
+    ],
+    "loss": {
+      "mat_volatiles": 4
+    },
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "credits": 3,
+    "phase": "phase_2",
+    "notes": "Bladders emptied out of the lock. No one likes the smell."
+  },
+  {
+    "id": "rcp_core_vent_salt",
+    "name": "Vent salt cake",
+    "kind": "do",
+    "machine": "mach_vent",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_salt_cake",
+        "qty": 4
+      }
+    ],
+    "loss": {
+      "mat_salts": 4
+    },
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "credits": 1.5,
+    "phase": "phase_2",
+    "notes": "Brine that no one wants."
+  },
+  {
+    "id": "rcp_core_vent_slag",
+    "name": "Vent slag",
+    "kind": "do",
+    "machine": "mach_vent",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_slag",
+        "qty": 6
+      }
+    ],
+    "loss": {
+      "mat_silicate": 6
+    },
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "credits": 3,
+    "phase": "phase_2",
+    "notes": "Slag piled up beyond the kiln's need goes out too."
+  },
+  {
+    "id": "rcp_core_vent_rubble",
+    "name": "Vent rubble",
+    "kind": "do",
+    "machine": "mach_vent",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_rubble",
+        "qty": 3
+      }
+    ],
+    "loss": {
+      "mat_silicate": 6,
+      "mat_iron": 1.5,
+      "mat_carbon": 1.5
+    },
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "credits": 3,
+    "phase": "phase_2",
+    "notes": "Dock sweepings out of the airlock."
+  },
+  {
+    "id": "rcp_core_bioreactor_sludge",
+    "name": "Culture sludge",
+    "kind": "produce",
+    "machine": "mach_bioreactor",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 6
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 8
+      }
+    ],
+    "energy": 0,
+    "cells": 8,
+    "time": "nights",
+    "nights": 2,
+    "phase": "phase_4",
+    "notes": "Sludge and water into paste at 1:1, no byproducts (transmutes sludge>biomass, water>biomass). Better than the digester."
+  },
+  {
+    "id": "rcp_core_bioreactor_brine",
+    "name": "Culture brine and gas",
+    "kind": "produce",
+    "machine": "mach_bioreactor",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 4
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 2
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 8
+      }
+    ],
+    "energy": 0,
+    "cells": 10,
+    "time": "nights",
+    "nights": 3,
+    "phase": "phase_4",
+    "notes": "Uses up the digester's leftovers too."
+  },
+  {
+    "id": "rcp_core_bioreactor_bulk",
+    "name": "Culture a full tank",
+    "kind": "produce",
+    "machine": "mach_bioreactor",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 12
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 12
+      }
+    ],
+    "energy": 0,
+    "cells": 12,
+    "time": "nights",
+    "nights": 3,
+    "phase": "phase_4",
+    "notes": "Twelve jugs straight to paste. The loop closes."
+  }
+]

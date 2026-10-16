@@ -1,0 +1,122 @@
+[
+  {
+    "id": "phase_1",
+    "name": "Scraps",
+    "net_per_day": [
+      20,
+      200
+    ],
+    "bank": [
+      50,
+      800
+    ],
+    "rent_per_day": 5,
+    "typical_item_value": 4,
+    "upgrade_cost": [
+      30,
+      800
+    ],
+    "customers_per_day": [
+      10,
+      14
+    ],
+    "budget_scale": 1,
+    "orders_per_day": [
+      2,
+      4
+    ],
+    "events_per_day": 1,
+    "unlock_text": "You are a stall on the mid decks with a bench, a crate and a handful of coins. Rent is due. Every scrap is a decision.",
+    "notes": "Rent 5 a day. A few buyers, small bank, small mistakes."
+  },
+  {
+    "id": "phase_2",
+    "name": "Trade",
+    "net_per_day": [
+      200,
+      2000
+    ],
+    "bank": [
+      800,
+      8000
+    ],
+    "rent_per_day": 50,
+    "typical_item_value": 16,
+    "upgrade_cost": [
+      300,
+      8000
+    ],
+    "customers_per_day": [
+      12,
+      18
+    ],
+    "budget_scale": 4,
+    "orders_per_day": [
+      4,
+      8
+    ],
+    "events_per_day": 1,
+    "unlock_text": "The first machines hum. Regulars know your face. Something bigger than a stall has started to notice you.",
+    "notes": "Rent 50. Vents and digesters keep the loop closed; mail begins to matter."
+  },
+  {
+    "id": "phase_3",
+    "name": "Workshop",
+    "net_per_day": [
+      2000,
+      20000
+    ],
+    "bank": [
+      8000,
+      80000
+    ],
+    "rent_per_day": 500,
+    "typical_item_value": 64,
+    "upgrade_cost": [
+      3000,
+      80000
+    ],
+    "customers_per_day": [
+      15,
+      22
+    ],
+    "budget_scale": 16,
+    "orders_per_day": [
+      6,
+      12
+    ],
+    "events_per_day": 1,
+    "unlock_text": "You build things that other stalls buy to fix their own. The ring starts to send mail.",
+    "notes": "Rent 500. Precision work and licensed goods."
+  },
+  {
+    "id": "phase_4",
+    "name": "Concern",
+    "net_per_day": [
+      20000,
+      200000
+    ],
+    "bank": [
+      80000,
+      800000
+    ],
+    "rent_per_day": 5000,
+    "typical_item_value": 256,
+    "upgrade_cost": [
+      30000,
+      800000
+    ],
+    "customers_per_day": [
+      18,
+      25
+    ],
+    "budget_scale": 64,
+    "orders_per_day": [
+      8,
+      16
+    ],
+    "events_per_day": 1.2,
+    "unlock_text": "The company now writes to you by name. You are part of the supply: if you fail, the station notices.",
+    "notes": "Rent 5000. The tithe grows with the concern."
+  }
+]

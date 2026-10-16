@@ -1,0 +1,77 @@
+[
+  {
+    "id": "box_s",
+    "name": "Small box",
+    "desc": "Flat-pack fibreboard, 2 by 2. Takes a few small parts and a slip. Fee is low, space is thin.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 1,
+    "composition": {
+      "mat_fibre": 0.5
+    },
+    "tags": [
+      "container",
+      "packaging"
+    ],
+    "inner_w": 4,
+    "inner_h": 4,
+    "price": 1,
+    "fee": 2,
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    },
+    "notes": "Bought ahead on the terminal (crate); a box ships only sealed with its slip inside."
+  },
+  {
+    "id": "box_m",
+    "name": "Medium box",
+    "desc": "Taped fibreboard, 3 by 2. The usual size for a parts order or a bottle with its packing.",
+    "w": 3,
+    "h": 2,
+    "tier": 1,
+    "value": 1.5,
+    "composition": {
+      "mat_fibre": 0.8
+    },
+    "tags": [
+      "container",
+      "packaging"
+    ],
+    "inner_w": 6,
+    "inner_h": 4,
+    "price": 1.5,
+    "fee": 2.5,
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    },
+    "notes": "Bought ahead on the terminal (crate); a box ships only sealed with its slip inside."
+  },
+  {
+    "id": "box_l",
+    "name": "Large box",
+    "desc": "Reinforced crate, 4 by 4. Needs a floor to stack on. The fee per square is lowest here.",
+    "w": 4,
+    "h": 4,
+    "tier": 1,
+    "value": 3,
+    "composition": {
+      "mat_fibre": 2
+    },
+    "tags": [
+      "container",
+      "packaging"
+    ],
+    "inner_w": 8,
+    "inner_h": 8,
+    "price": 3,
+    "fee": 6,
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    },
+    "notes": "Bought ahead on the terminal (crate); a box ships only sealed with its slip inside."
+  }
+]

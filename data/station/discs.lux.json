@@ -1,0 +1,186 @@
+[
+  {
+    "id": "disc_lux_vintner",
+    "name": "Vintner",
+    "desc": "A floppy of cellar tables: must ratios, bottling times, how long a still may run before the cap sweats.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 24,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_still"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "seller"
+    ],
+    "label": "VINTNER / MUST, WINE, SPIRIT"
+  },
+  {
+    "id": "disc_lux_garments",
+    "name": "Garments",
+    "desc": "Patterns for overalls, gloves, coats, blankets and curtains, in cut lines and seam counts.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 22,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_loom"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "GARMENTS / CUT AND SEW"
+  },
+  {
+    "id": "disc_lux_bp_fire",
+    "name": "Fire blueprints",
+    "desc": "A scratched floppy with no label but a flame drawn on it in marker. Candles, matches, lighters, lamps.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 60,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_fabricator"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": "fire",
+    "found": [
+      "mail",
+      "seller"
+    ],
+    "label": "PATTERNS - DO NOT RUN ON STATION BUS",
+    "notes": "Exempt from the upgrade route (ids.json upgrade_exempt_discs). Needs an order attachment or a seller."
+  },
+  {
+    "id": "disc_lux_perfumery",
+    "name": "Perfumery",
+    "desc": "Distillation notes for scents, soaps and pastes, with ring-grade proportions marked in red.",
+    "w": 2,
+    "h": 2,
+    "tier": 3,
+    "value": 90,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_3",
+    "machines": [
+      "mach_chem_bench"
+    ],
+    "copyable": true,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "PERFUMERY / SCENT, PASTE"
+  },
+  {
+    "id": "disc_lux_jewellery",
+    "name": "Jewellery",
+    "desc": "A card of settings, link gauges and casting loads for rings, chains and lockets.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 110,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_jeweller"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "JEWELLERY / RING, CHAIN, LOCKET"
+  },
+  {
+    "id": "disc_lux_model_art",
+    "name": "Model art",
+    "desc": "A card of polygon models: figures, scrolls and ornaments sized for the large printer.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 100,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_printer_3d"
+    ],
+    "copyable": true,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "mail"
+    ],
+    "label": "MODELS / SCULPTURE, ORNAMENT"
+  }
+]

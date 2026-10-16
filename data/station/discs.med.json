@@ -1,0 +1,219 @@
+[
+  {
+    "id": "disc_med_chem_basics",
+    "name": "Chem basics",
+    "desc": "Floppy of the bench primer: purifying, ethanol, antiseptic, acids and bases, by the numbers.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 40,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_chem_bench",
+      "mach_still"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "CHEM BASICS / REAGENT, ETHANOL"
+  },
+  {
+    "id": "disc_med_analgesics",
+    "name": "Analgesics",
+    "desc": "Dosage tables and die settings for painkillers and burn tabs. Every clinic copy has coffee on it.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 36,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_pill_press"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "seller"
+    ],
+    "label": "ANALGESICS / PAINKILLER, BURN TAB"
+  },
+  {
+    "id": "disc_med_sedatives",
+    "name": "Sedatives",
+    "desc": "Press settings for sleeping pills and calmers, with a dosage warning typed in capitals.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 38,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_pill_press"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "seller"
+    ],
+    "label": "SEDATIVES / SLEEP, CALM"
+  },
+  {
+    "id": "disc_med_stimulants",
+    "name": "Stimulants",
+    "desc": "Bench sheets for stims and energy tabs. The last page is a list of known side effects.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 44,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_chem_bench"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "STIMULANTS / STIM, ENERGY TAB"
+  },
+  {
+    "id": "disc_med_antibiotics",
+    "name": "Antibiotics",
+    "desc": "Synthesis card for antibiotics and antivirals. Stamped by a ring pharmacy; copy-protected.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 140,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_synthesiser"
+    ],
+    "copyable": true,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "mail"
+    ],
+    "label": "ANTIBIOTICS / ANTIVIRALS"
+  },
+  {
+    "id": "disc_med_narcotics",
+    "name": "Narcotics",
+    "desc": "Unmarked floppy, handwritten label peeled half off. Dream tabs and ampoules, bench and reactor settings.",
+    "w": 2,
+    "h": 2,
+    "tier": 3,
+    "value": 160,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_3",
+    "machines": [
+      "mach_synthesiser",
+      "mach_chem_bench"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": "drug",
+    "found": [
+      "mail",
+      "seller"
+    ],
+    "label": "DO NOT LABEL",
+    "notes": "Exempt from the upgrade route (ids.json upgrade_exempt_discs). Needs an order attachment or a seller."
+  },
+  {
+    "id": "disc_med_regenerative",
+    "name": "Regenerative",
+    "desc": "Ring medicine card: regrowth gel and gene patch cultures. Heavy, real and licensed.",
+    "w": 1,
+    "h": 1,
+    "tier": 4,
+    "value": 480,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "card",
+    "phase": "phase_4",
+    "machines": [
+      "mach_synthesiser"
+    ],
+    "copyable": true,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "mail"
+    ],
+    "label": "REGENERATIVE / GEL, PATCH"
+  }
+]

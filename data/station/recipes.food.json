@@ -1,0 +1,2226 @@
+[
+  {
+    "id": "rcp_food_grow_greens",
+    "name": "Grow greens",
+    "kind": "produce",
+    "machine": "mach_hydro_tray",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_greens",
+        "qty": 1
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 2
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_greens",
+        "qty": 1
+      },
+      {
+        "id": "it_food_seed_greens",
+        "qty": 1,
+        "chance": 0.7
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1,
+        "chance": 0.5
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1,
+        "chance": 0.46
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 3,
+    "phase": "phase_1",
+    "notes": "Greywater is fine for leaves. Seed 0.2 + water 1 + nutrient 1.2 = 2.4 in; crop 2.3 + 0.7 x 0.2 seed out."
+  },
+  {
+    "id": "rcp_food_grow_greens_clean",
+    "name": "Grow greens, clean water",
+    "kind": "produce",
+    "machine": "mach_hydro_tray",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_greens",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 2
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_greens",
+        "qty": 1
+      },
+      {
+        "id": "it_food_seed_greens",
+        "qty": 1,
+        "chance": 0.7
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1,
+        "chance": 0.5
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1,
+        "chance": 0.46
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 2,
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_food_grow_beans",
+    "name": "Grow beans",
+    "kind": "produce",
+    "machine": "mach_hydro_tray",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_beans",
+        "qty": 1
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_beans",
+        "qty": 1
+      },
+      {
+        "id": "it_food_seed_beans",
+        "qty": 1,
+        "chance": 0.7
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 3,
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_food_grow_potatoes",
+    "name": "Grow potatoes",
+    "kind": "produce",
+    "machine": "mach_hydro_tray",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_potato",
+        "qty": 1
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_potatoes",
+        "qty": 1
+      },
+      {
+        "id": "it_food_seed_potato",
+        "qty": 1,
+        "chance": 0.7
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 4,
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_food_grow_potatoes_clean",
+    "name": "Grow potatoes, clean water",
+    "kind": "produce",
+    "machine": "mach_hydro_tray",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_potato",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 1
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_potatoes",
+        "qty": 1
+      },
+      {
+        "id": "it_food_seed_potato",
+        "qty": 1,
+        "chance": 0.7
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 3,
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_food_grow_herbs",
+    "name": "Grow herbs",
+    "kind": "produce",
+    "machine": "mach_hydro_tray",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_herbs",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 2
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_herbs",
+        "qty": 1
+      },
+      {
+        "id": "it_food_seed_herbs",
+        "qty": 1,
+        "chance": 0.7
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1,
+        "chance": 0.4
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1,
+        "chance": 0.56
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 2,
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_food_grow_tomatoes",
+    "name": "Grow tomatoes",
+    "kind": "produce",
+    "machine": "mach_hydro_tray",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_tomato",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 2
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_tomatoes",
+        "qty": 1
+      },
+      {
+        "id": "it_food_seed_tomato",
+        "qty": 1,
+        "chance": 0.7
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1,
+        "chance": 0.9
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1,
+        "chance": 0.06
+      }
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 3,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_food_rack_greens",
+    "name": "Rack greens",
+    "kind": "produce",
+    "machine": "mach_hydro_rack",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_greens",
+        "qty": 1
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 5
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 3
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_greens",
+        "qty": 3
+      },
+      {
+        "id": "it_food_seed_greens",
+        "qty": 1,
+        "chance": 0.7
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1,
+        "chance": 0.5
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 2,
+        "chance": 0.63
+      }
+    ],
+    "energy": 0,
+    "cells": 2,
+    "time": "nights",
+    "nights": 2,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_rack_beans",
+    "name": "Rack beans",
+    "kind": "produce",
+    "machine": "mach_hydro_rack",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_beans",
+        "qty": 1
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 3
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 3
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_beans",
+        "qty": 3
+      },
+      {
+        "id": "it_food_seed_beans",
+        "qty": 1,
+        "chance": 0.7
+      }
+    ],
+    "energy": 0,
+    "cells": 2,
+    "time": "nights",
+    "nights": 2,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_rack_potatoes",
+    "name": "Rack potatoes",
+    "kind": "produce",
+    "machine": "mach_hydro_rack",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_potato",
+        "qty": 1
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 3
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 3
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_potatoes",
+        "qty": 3
+      },
+      {
+        "id": "it_food_seed_potato",
+        "qty": 1,
+        "chance": 0.7
+      }
+    ],
+    "energy": 0,
+    "cells": 2,
+    "time": "nights",
+    "nights": 3,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_rack_herbs",
+    "name": "Rack herbs",
+    "kind": "produce",
+    "machine": "mach_hydro_rack",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_herbs",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 5
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 3
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_herbs",
+        "qty": 3
+      },
+      {
+        "id": "it_food_seed_herbs",
+        "qty": 1,
+        "chance": 0.7
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1,
+        "chance": 0.2
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 2,
+        "chance": 0.78
+      }
+    ],
+    "energy": 0,
+    "cells": 2,
+    "time": "nights",
+    "nights": 2,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_rack_tomatoes",
+    "name": "Rack tomatoes",
+    "kind": "produce",
+    "machine": "mach_hydro_rack",
+    "disc": "disc_food_hydro_greens",
+    "inputs": [
+      {
+        "id": "it_food_seed_tomato",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 4
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 3
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_tomatoes",
+        "qty": 3
+      },
+      {
+        "id": "it_food_seed_tomato",
+        "qty": 1,
+        "chance": 0.7
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1,
+        "chance": 0.7
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1,
+        "chance": 0.06
+      }
+    ],
+    "energy": 0,
+    "cells": 2,
+    "time": "nights",
+    "nights": 3,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_grow_apples",
+    "name": "Grow apples",
+    "kind": "produce",
+    "machine": "mach_hydro_rack",
+    "disc": "disc_food_hydro_orchard",
+    "inputs": [
+      {
+        "id": "it_food_seed_apple",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 2
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 2
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_apple",
+        "qty": 4
+      },
+      {
+        "id": "it_food_seed_apple",
+        "qty": 1
+      }
+    ],
+    "loss": {
+      "mat_salts": 0.4
+    },
+    "mods_add": [
+      "mod_real"
+    ],
+    "energy": 0,
+    "cells": 3,
+    "time": "nights",
+    "nights": 4,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3",
+    "notes": "Real apples (mod_real). The graft is returned every run; spent salts run off as brine (loss)."
+  },
+  {
+    "id": "rcp_food_grow_citrus",
+    "name": "Grow citrus",
+    "kind": "produce",
+    "machine": "mach_hydro_rack",
+    "disc": "disc_food_hydro_orchard",
+    "inputs": [
+      {
+        "id": "it_food_seed_citrus",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 2
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_citrus",
+        "qty": 3
+      },
+      {
+        "id": "it_food_seed_citrus",
+        "qty": 1
+      }
+    ],
+    "mods_add": [
+      "mod_real"
+    ],
+    "energy": 0,
+    "cells": 3,
+    "time": "nights",
+    "nights": 5,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_grow_berries",
+    "name": "Grow berries",
+    "kind": "produce",
+    "machine": "mach_hydro_rack",
+    "disc": "disc_food_hydro_orchard",
+    "inputs": [
+      {
+        "id": "it_food_seed_berry",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 1
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_tech_lamp"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_berries",
+        "qty": 4
+      },
+      {
+        "id": "it_food_seed_berry",
+        "qty": 1
+      }
+    ],
+    "loss": {
+      "mat_salts": 0.2
+    },
+    "mods_add": [
+      "mod_real"
+    ],
+    "energy": 0,
+    "cells": 2,
+    "time": "nights",
+    "nights": 3,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_press_ration_bars",
+    "name": "Press ration bars",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_staples",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 4
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_ration_bar",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_batch_ration_bars",
+    "name": "Batch ration bars",
+    "kind": "produce",
+    "machine": "mach_vat_industrial",
+    "disc": "disc_food_vat_staples",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 12
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_ration_bar",
+        "qty": 6
+      }
+    ],
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3",
+    "notes": "Overnight batch: three presses of paste, no energy spent."
+  },
+  {
+    "id": "rcp_food_squeeze_paste_tubes",
+    "name": "Squeeze paste tubes",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_staples",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_paste_tube",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_press_protein_blocks",
+    "name": "Press protein blocks",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_staples",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 5
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_protein_block",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_batch_protein_blocks",
+    "name": "Batch protein blocks",
+    "kind": "produce",
+    "machine": "mach_vat_industrial",
+    "disc": "disc_food_vat_staples",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 15
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_protein_block",
+        "qty": 6
+      }
+    ],
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_refine_sugar",
+    "name": "Refine sugar",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_staples",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_sugar",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2",
+    "notes": "One unit of paste crystallised: the value jump is the refining, within 6x."
+  },
+  {
+    "id": "rcp_food_press_plant_oil",
+    "name": "Press plant oil",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_staples",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 4
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_oil",
+        "qty": 4
+      }
+    ],
+    "loss": {
+      "mat_polymer": 0.2
+    },
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2",
+    "notes": "Flake makes the flasks; a fifth of a unit is trimmed off."
+  },
+  {
+    "id": "rcp_food_culture_yeast",
+    "name": "Culture yeast",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_staples",
+    "inputs": [
+      {
+        "id": "it_food_sugar",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_yeast",
+        "qty": 5
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2",
+    "notes": "Five tubes of starter from one sugar."
+  },
+  {
+    "id": "rcp_food_grow_vat_apples",
+    "name": "Grow vat apples",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_staples",
+    "inputs": [
+      {
+        "id": "it_food_sugar",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_apple",
+        "qty": 2
+      }
+    ],
+    "mods_add": [
+      "mod_synthetic"
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2",
+    "notes": "SYNTH-AG imitation: sugar and water, dyed red (src/discs/synth-ag.md). mod_synthetic on output; perfectly round, cheap on the spine."
+  },
+  {
+    "id": "rcp_food_bake_loaf",
+    "name": "Bake loaf",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_bakery",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 3
+      },
+      {
+        "id": "it_food_sugar",
+        "qty": 1
+      },
+      {
+        "id": "it_food_yeast",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_bread",
+        "qty": 1
+      }
+    ],
+    "loss": {
+      "mat_biomass": 0.2
+    },
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2",
+    "notes": "The yeast breathes out 0.2 biomass as gas."
+  },
+  {
+    "id": "rcp_food_bake_loaves",
+    "name": "Bake loaves, batch",
+    "kind": "produce",
+    "machine": "mach_vat_industrial",
+    "disc": "disc_food_vat_bakery",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 6
+      },
+      {
+        "id": "it_food_sugar",
+        "qty": 2
+      },
+      {
+        "id": "it_food_yeast",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_bread",
+        "qty": 2
+      }
+    ],
+    "loss": {
+      "mat_biomass": 0.4
+    },
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_bake_crackers",
+    "name": "Bake crackers",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_bakery",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      },
+      {
+        "id": "it_food_oil",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_crackers",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2",
+    "loss": {
+      "mat_biomass": 0.2
+    }
+  },
+  {
+    "id": "rcp_food_bake_crackers_batch",
+    "name": "Bake crackers, batch",
+    "kind": "produce",
+    "machine": "mach_vat_industrial",
+    "disc": "disc_food_vat_bakery",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 3
+      },
+      {
+        "id": "it_food_oil",
+        "qty": 6
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_crackers",
+        "qty": 6
+      }
+    ],
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3",
+    "loss": {
+      "mat_biomass": 0.6
+    }
+  },
+  {
+    "id": "rcp_food_culture_cheese",
+    "name": "Culture cheese wheel",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_dairy",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 5
+      },
+      {
+        "id": "it_food_sugar",
+        "qty": 3
+      },
+      {
+        "id": "it_food_yeast",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_cheese_wheel",
+        "qty": 1
+      }
+    ],
+    "loss": {
+      "mat_biomass": 0.2
+    },
+    "energy": 0,
+    "cells": 2,
+    "time": "nights",
+    "nights": 2,
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2",
+    "notes": "Sugar stands in for milk sugar; the yeast culture sours it. Overnight, no energy."
+  },
+  {
+    "id": "rcp_food_culture_cheese_batch",
+    "name": "Culture cheese wheels, batch",
+    "kind": "produce",
+    "machine": "mach_vat_industrial",
+    "disc": "disc_food_vat_dairy",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 10
+      },
+      {
+        "id": "it_food_sugar",
+        "qty": 6
+      },
+      {
+        "id": "it_food_yeast",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_cheese_wheel",
+        "qty": 2
+      }
+    ],
+    "loss": {
+      "mat_biomass": 0.4
+    },
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 2,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_mix_cheese_spread",
+    "name": "Mix cheese spread",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_dairy",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      },
+      {
+        "id": "it_food_sugar",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_cheese_spread",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_cure_salami",
+    "name": "Cure salami",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_charcuterie",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      },
+      {
+        "id": "it_food_sugar",
+        "qty": 1
+      },
+      {
+        "id": "it_food_oil",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_salami",
+        "qty": 1
+      }
+    ],
+    "loss": {
+      "mat_polymer": 0.2
+    },
+    "energy": 0,
+    "cells": 2,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2",
+    "notes": "Oil is the fat; its flask is trimmed away as loss."
+  },
+  {
+    "id": "rcp_food_cure_salami_batch",
+    "name": "Cure salami, batch",
+    "kind": "produce",
+    "machine": "mach_vat_industrial",
+    "disc": "disc_food_vat_charcuterie",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 4
+      },
+      {
+        "id": "it_food_sugar",
+        "qty": 2
+      },
+      {
+        "id": "it_food_oil",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_salami",
+        "qty": 2
+      }
+    ],
+    "loss": {
+      "mat_polymer": 0.4
+    },
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_stuff_sausage",
+    "name": "Stuff sausage",
+    "kind": "produce",
+    "machine": "mach_vat",
+    "disc": "disc_food_vat_charcuterie",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      },
+      {
+        "id": "it_food_oil",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_sausage",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_set_terrine",
+    "name": "Set terrine",
+    "kind": "produce",
+    "machine": "mach_vat_industrial",
+    "disc": "disc_food_vat_gourmet",
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      },
+      {
+        "id": "it_food_oil",
+        "qty": 1
+      },
+      {
+        "id": "it_food_herbs",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_terrine",
+        "qty": 1
+      }
+    ],
+    "loss": {
+      "mat_biomass": 0.2
+    },
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3",
+    "notes": "Herbs from the rack bring the water; value-add is the ring-grade disc."
+  },
+  {
+    "id": "rcp_food_make_herb_cheese",
+    "name": "Make herb cheese",
+    "kind": "produce",
+    "machine": "mach_vat_industrial",
+    "disc": "disc_food_vat_gourmet",
+    "inputs": [
+      {
+        "id": "it_food_cheese_spread",
+        "qty": 1
+      },
+      {
+        "id": "it_food_herbs",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_cheese_herb",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 2,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_set_fruit_jelly",
+    "name": "Set fruit jelly",
+    "kind": "produce",
+    "machine": "mach_vat_industrial",
+    "disc": "disc_food_vat_gourmet",
+    "inputs": [
+      {
+        "id": "it_food_sugar",
+        "qty": 1
+      },
+      {
+        "id": "it_food_berries",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_vial",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_fruit_jelly",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_culture_mat_from_sludge",
+    "name": "Culture mat from sludge",
+    "kind": "produce",
+    "machine": "mach_bioreactor",
+    "disc": "disc_food_bio_cultures",
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 4
+      },
+      {
+        "id": "it_food_yeast",
+        "qty": 5
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_culture_mat",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 12,
+    "time": "nights",
+    "nights": 2,
+    "risks": {
+      "stat_hot": 0.08,
+      "stat_infected": 0.02
+    },
+    "phase": "phase_4",
+    "notes": "Sludge becomes biomass (bioreactor transmute); salts in the nutrient also become biomass."
+  },
+  {
+    "id": "rcp_food_culture_mat_algae",
+    "name": "Culture mat from algae",
+    "kind": "produce",
+    "machine": "mach_bioreactor",
+    "disc": "disc_food_bio_cultures",
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 3
+      },
+      {
+        "id": "it_life_algae",
+        "qty": 3
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_culture_mat",
+        "qty": 2
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1
+      }
+    ],
+    "loss": {
+      "mat_water": 0.3
+    },
+    "energy": 0,
+    "cells": 12,
+    "time": "nights",
+    "nights": 2,
+    "risks": {
+      "stat_hot": 0.08,
+      "stat_infected": 0.02
+    },
+    "phase": "phase_4",
+    "notes": "Wetter feed: surplus water comes out as greywater."
+  },
+  {
+    "id": "rcp_food_grow_culture_steak",
+    "name": "Grow culture steak",
+    "kind": "produce",
+    "machine": "mach_bioreactor",
+    "disc": "disc_food_bio_cultures",
+    "inputs": [
+      {
+        "id": "it_core_sludge",
+        "qty": 2
+      },
+      {
+        "id": "it_food_culture_mat",
+        "qty": 1
+      },
+      {
+        "id": "it_food_herbs",
+        "qty": 1
+      },
+      {
+        "id": "it_food_oil",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_culture_steak",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 12,
+    "time": "nights",
+    "nights": 3,
+    "risks": {
+      "stat_hot": 0.08,
+      "stat_infected": 0.02
+    },
+    "phase": "phase_4"
+  },
+  {
+    "id": "rcp_food_cut_cheese_wheel",
+    "name": "Cut cheese wheel",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_cheese_wheel",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_knife"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_cheese_wedge",
+        "qty": 8
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_cut_cheese_wedge",
+    "name": "Cut cheese wedge",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_cheese_wedge",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_knife"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_cheese_slice",
+        "qty": 6
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2",
+    "notes": "6 x 0.17 = 1.02: inside the 0.05 mass tolerance."
+  },
+  {
+    "id": "rcp_food_cut_salami",
+    "name": "Cut salami",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_salami",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_knife"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_salami_slice",
+        "qty": 8
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_cut_bread",
+    "name": "Cut loaf",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_bread",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_knife"
+    ],
+    "outputs": [
+      {
+        "id": "it_food_bread_slice",
+        "qty": 8
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_stack_sandwich",
+    "name": "Stack sandwich",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_bread_slice",
+        "qty": 2
+      },
+      {
+        "id": "it_food_salami_slice",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_sandwich",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_stack_sandwich_cheese",
+    "name": "Stack cheese sandwich",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_bread_slice",
+        "qty": 2
+      },
+      {
+        "id": "it_food_cheese_slice",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_sandwich_cheese",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_stack_sandwich_double",
+    "name": "Stack double sandwich",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_bread_slice",
+        "qty": 2
+      },
+      {
+        "id": "it_food_salami_slice",
+        "qty": 1
+      },
+      {
+        "id": "it_food_cheese_slice",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_sandwich_double",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_open_tin_beans",
+    "name": "Open tinned beans",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_tin_beans",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_knife"
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_tin",
+        "qty": 1
+      },
+      {
+        "id": "it_food_beans",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_open_tin_stew",
+    "name": "Open tinned stew",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_tin_stew",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_knife"
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_tin",
+        "qty": 1
+      },
+      {
+        "id": "it_food_stew",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_open_tin_apple",
+    "name": "Open tinned apple",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_tin_apple",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_knife"
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_tin",
+        "qty": 1
+      },
+      {
+        "id": "it_food_apple",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2",
+    "notes": "Opened apples come out as plain apples, whatever the label said."
+  },
+  {
+    "id": "rcp_food_cook_porridge",
+    "name": "Cook porridge",
+    "kind": "produce",
+    "machine": "mach_kitchen",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      },
+      {
+        "id": "it_life_water",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_porridge",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_cook_stew",
+    "name": "Cook stew",
+    "kind": "produce",
+    "machine": "mach_kitchen",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_potatoes",
+        "qty": 1
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      },
+      {
+        "id": "it_food_stock_cube",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_stew",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_boil_noodles",
+    "name": "Boil noodles",
+    "kind": "produce",
+    "machine": "mach_kitchen",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      },
+      {
+        "id": "it_life_water",
+        "qty": 1
+      },
+      {
+        "id": "it_food_stock_cube",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_noodles",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_fry_dumplings",
+    "name": "Fry dumplings",
+    "kind": "produce",
+    "machine": "mach_kitchen",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      },
+      {
+        "id": "it_food_herbs",
+        "qty": 1
+      },
+      {
+        "id": "it_food_oil",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_dumplings",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_toast_sandwich",
+    "name": "Toast sandwich",
+    "kind": "produce",
+    "machine": "mach_kitchen",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_sandwich",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_toastie",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Same mass, more worth: heat is the processing."
+  },
+  {
+    "id": "rcp_food_boil_stock_cubes",
+    "name": "Boil stock cubes",
+    "kind": "produce",
+    "machine": "mach_kitchen",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_salt_cake",
+        "qty": 2
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_stock_cube",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_press_potato_sugar",
+    "name": "Press potato sugar",
+    "kind": "produce",
+    "machine": "mach_kitchen",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_potatoes",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_sugar",
+        "qty": 3
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 2
+      }
+    ],
+    "loss": {
+      "mat_water": 0.6
+    },
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Boiled down: steam leaves as loss, the rest comes out as sugar, paste and greywater."
+  },
+  {
+    "id": "rcp_food_can_beans",
+    "name": "Can beans",
+    "kind": "produce",
+    "machine": "mach_kitchen",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_beans",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_tin",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_tin_beans",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_can_stew",
+    "name": "Can stew",
+    "kind": "produce",
+    "machine": "mach_kitchen",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_stew",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_tin",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_tin_stew",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_can_apples",
+    "name": "Can apples",
+    "kind": "produce",
+    "machine": "mach_kitchen",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_apple",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_tin",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_tin_apple",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_food_plate_ring_dinner",
+    "name": "Plate ring dinner",
+    "kind": "produce",
+    "machine": "mach_kitchen",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_food_terrine",
+        "qty": 1
+      },
+      {
+        "id": "it_food_apple",
+        "qty": 2
+      },
+      {
+        "id": "it_food_citrus",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_food_ring_dinner",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_3",
+    "notes": "Ring-grade inputs: terrine (gourmet vat), apple and citrus (orchard). Peel and trimmings leave as loss.",
+    "loss": {
+      "mat_biomass": 0.45,
+      "mat_water": 0.35
+    }
+  },
+  {
+    "id": "rcp_food_age_cheese_wheel",
+    "name": "Age cheese wheel",
+    "kind": "modify",
+    "machine": "mach_cellar",
+    "disc": null,
+    "inputs": [],
+    "target": {
+      "ids": [
+        "it_food_cheese_wheel"
+      ]
+    },
+    "mods_add": [
+      "mod_aged"
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 4,
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_age_cheese_wedge",
+    "name": "Age cheese wedge",
+    "kind": "modify",
+    "machine": "mach_cellar",
+    "disc": null,
+    "inputs": [],
+    "target": {
+      "ids": [
+        "it_food_cheese_wedge"
+      ]
+    },
+    "mods_add": [
+      "mod_aged"
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 3,
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_food_age_herb_cheese",
+    "name": "Age herb cheese",
+    "kind": "modify",
+    "machine": "mach_cellar",
+    "disc": null,
+    "inputs": [],
+    "target": {
+      "ids": [
+        "it_food_cheese_herb"
+      ]
+    },
+    "mods_add": [
+      "mod_aged"
+    ],
+    "energy": 0,
+    "cells": 1,
+    "time": "nights",
+    "nights": 3,
+    "phase": "phase_3"
+  }
+]

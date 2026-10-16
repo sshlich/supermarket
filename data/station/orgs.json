@@ -1,0 +1,88 @@
+[
+  {
+    "id": "org_company",
+    "name": "The Company",
+    "desc": "Owns the station, the rent, the air and the paperwork. Writes in memos.",
+    "deck": "deck_hub",
+    "sends": [
+      "tithe",
+      "memo",
+      "order",
+      "standing"
+    ],
+    "notes": "Sends the recurring tithe (one template per phase), rent and wage memos, and issues licensed discs. Never a person, always a notice."
+  },
+  {
+    "id": "org_clinic",
+    "name": "Spine clinic",
+    "desc": "The clinic on the mid decks. Staple medical orders, thin pay, urgent.",
+    "deck": "deck_mid",
+    "sends": [
+      "bulk",
+      "charity",
+      "standing",
+      "rush",
+      "order"
+    ],
+    "notes": "Pays 0.85-1.0 of market. Its rush orders follow epidemics; its charity orders keep someone alive."
+  },
+  {
+    "id": "org_union",
+    "name": "Works union",
+    "desc": "Foundry and fab hall workers. Strike notices, bulk staples and spares for the halls.",
+    "deck": "deck_works",
+    "sends": [
+      "bulk",
+      "memo",
+      "repair",
+      "order"
+    ],
+    "notes": "Bulk buys of bread, yeast and returned filters; sends strike notices as memos."
+  },
+  {
+    "id": "org_ring_council",
+    "name": "Ring council",
+    "desc": "Elected residents of the ring. Festivals, luxury bulk, complaints.",
+    "deck": "deck_ring",
+    "sends": [
+      "bulk",
+      "memo",
+      "repair",
+      "order"
+    ],
+    "notes": "Pays 1.6-1.8 of market. Complaint memos when deliveries are late."
+  },
+  {
+    "id": "org_carrier",
+    "name": "Parcel carrier",
+    "desc": "Moves sealed boxes between decks. Pickup notices, tier letters, delays.",
+    "deck": "deck_dock",
+    "sends": [
+      "memo",
+      "order"
+    ],
+    "notes": "Sells nothing but sends notices; also buys packing stock."
+  },
+  {
+    "id": "org_black_market",
+    "name": "No letterhead",
+    "desc": "No letterhead, no name. Contraband orders and cracked attachments.",
+    "deck": "deck_dock",
+    "sends": [
+      "black",
+      "spam"
+    ],
+    "notes": "Every attachment here is a bad idea; the black orders carry exempt discs (fire blueprints, narcotics, cracked software)."
+  },
+  {
+    "id": "org_security",
+    "name": "Station security",
+    "desc": "Inspections, seizures and fines. Sometimes buys locks and alarms.",
+    "deck": "deck_hub",
+    "sends": [
+      "memo",
+      "order"
+    ],
+    "notes": "Sends notice letters ahead of inspections; its orders buy alarms and locks."
+  }
+]

@@ -1,0 +1,1088 @@
+[
+  {
+    "id": "rcp_life_purify_greywater",
+    "name": "Purify greywater",
+    "kind": "produce",
+    "machine": "mach_purifier",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_greywater",
+        "qty": 4
+      }
+    ],
+    "tools": [
+      "it_mach_water_filter"
+    ],
+    "outputs": [
+      {
+        "id": "it_life_water",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_purify_ice",
+    "name": "Purify ice",
+    "kind": "produce",
+    "machine": "mach_purifier",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_ice",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_mach_water_filter"
+    ],
+    "outputs": [
+      {
+        "id": "it_life_water",
+        "qty": 2
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_1",
+    "notes": "Ice is water 2 + volatiles 1: the gas must come out as a bladder, not loss."
+  },
+  {
+    "id": "rcp_life_melt_ice",
+    "name": "Melt ice",
+    "kind": "produce",
+    "machine": "mach_purifier",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_ice",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_meltwater",
+        "qty": 1
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_1",
+    "notes": "No filter worn: rough meltwater, cheap and spine-grade."
+  },
+  {
+    "id": "rcp_life_purify_meltwater",
+    "name": "Filter meltwater",
+    "kind": "produce",
+    "machine": "mach_purifier",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_meltwater",
+        "qty": 2
+      }
+    ],
+    "tools": [
+      "it_mach_water_filter"
+    ],
+    "outputs": [
+      {
+        "id": "it_life_water",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_purify_brine",
+    "name": "Desalt brine",
+    "kind": "produce",
+    "machine": "mach_purifier",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_brine",
+        "qty": 2
+      }
+    ],
+    "tools": [
+      "it_mach_water_filter"
+    ],
+    "outputs": [
+      {
+        "id": "it_life_water",
+        "qty": 2
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_worn": 0.1
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_distil_water",
+    "name": "Distil water",
+    "kind": "produce",
+    "machine": "mach_still",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_water",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_distilled",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_life_distil_brine",
+    "name": "Distil brine",
+    "kind": "produce",
+    "machine": "mach_still",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_brine",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_distilled",
+        "qty": 2
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Salts come out as cake, so nothing is lost."
+  },
+  {
+    "id": "rcp_life_evaporate_brine_nutrient",
+    "name": "Evaporate brine feed",
+    "kind": "produce",
+    "machine": "mach_still",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_brine",
+        "qty": 5
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_nutrient",
+        "qty": 5
+      },
+      {
+        "id": "it_life_water",
+        "qty": 5
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "brine 5 (water 5, salts 5) + paste 1 = nutrient 5 (salts 5, biomass 1) + water 5."
+  },
+  {
+    "id": "rcp_life_electrolyse_water",
+    "name": "Split water",
+    "kind": "produce",
+    "machine": "mach_electrolyser",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_water",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 4,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Water into volatiles by the electrolyser transmute. The gas is worth less than the water: an energy sink, not a profit."
+  },
+  {
+    "id": "rcp_life_fill_oxygen",
+    "name": "Fill oxygen canister",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_canister",
+        "qty": 1
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_oxygen",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_fill_hydrogen",
+    "name": "Fill hydrogen canister",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_canister",
+        "qty": 1
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_life_regulator"
+    ],
+    "outputs": [
+      {
+        "id": "it_life_hydrogen",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_life_empty_oxygen",
+    "name": "Empty oxygen canister",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_oxygen",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_canister",
+        "qty": 1
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1",
+    "notes": "Using a canister returns the empty shell."
+  },
+  {
+    "id": "rcp_life_empty_hydrogen",
+    "name": "Empty hydrogen canister",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_hydrogen",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_canister",
+        "qty": 1
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_fill_jug",
+    "name": "Fill water jugs",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_water",
+        "qty": 8
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_water_jug",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_decant_jugs",
+    "name": "Decant jugs",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_water_jug",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_water",
+        "qty": 8
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_pack_water_ration",
+    "name": "Pack water rations",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_water",
+        "qty": 10
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_water_ration",
+        "qty": 5
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_bottle_water",
+    "name": "Bottle water",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_bottle",
+        "qty": 1
+      },
+      {
+        "id": "it_life_distilled",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_water_bottle",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_life_pour_bottle",
+    "name": "Pour out bottle",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_water_bottle",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bottle",
+        "qty": 1
+      },
+      {
+        "id": "it_life_distilled",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_life_mix_saline",
+    "name": "Mix saline",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_distilled",
+        "qty": 5
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_saline",
+        "qty": 5
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_life_mix_nutrient",
+    "name": "Mix nutrient",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_salt_cake",
+        "qty": 5
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_nutrient",
+        "qty": 5
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_mix_nutrient_algae",
+    "name": "Mix nutrient with algae",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_salt_cake",
+        "qty": 10
+      },
+      {
+        "id": "it_life_algae",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_nutrient",
+        "qty": 10
+      },
+      {
+        "id": "it_life_water",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2",
+    "notes": "Algae supplies the biomass; its water comes out as a pouch."
+  },
+  {
+    "id": "rcp_life_mix_rich_nutrient",
+    "name": "Mix fruiting feed",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_nutrient",
+        "qty": 5
+      },
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 1
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_nutrient_rich",
+        "qty": 5
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_life_press_algae",
+    "name": "Press algae",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_algae",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 2
+      },
+      {
+        "id": "it_life_water",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2",
+    "notes": "Wring the mats into paste; the water drips out clean."
+  },
+  {
+    "id": "rcp_life_press_dense_algae",
+    "name": "Press dense algae",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_algae_dense",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_biomass_paste",
+        "qty": 4
+      },
+      {
+        "id": "it_life_water",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_life_make_air_puck",
+    "name": "Press air pucks",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_salt_cake",
+        "qty": 5
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 5
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_air_puck",
+        "qty": 5
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_fill_mask_refill",
+    "name": "Fill mask refills",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 4
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_mask_refill",
+        "qty": 4
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_assemble_rebreather",
+    "name": "Assemble rebreather",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 1
+      },
+      {
+        "id": "it_mach_air_filter",
+        "qty": 1
+      },
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_rebreather",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_2",
+    "notes": "The air cartridge is built in, so it is an input here, not a tool."
+  },
+  {
+    "id": "rcp_life_assemble_regulator",
+    "name": "Braze regulator",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_valve",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_pipe",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_regulator",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_life_make_tester_strips",
+    "name": "Cut tester strips",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 3
+      },
+      {
+        "id": "it_core_salt_cake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_tester_strip",
+        "qty": 10
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_life_scrub_foul_air",
+    "name": "Scrub foul air",
+    "kind": "produce",
+    "machine": "mach_scrubber",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_foul_air",
+        "qty": 3
+      }
+    ],
+    "tools": [
+      "it_mach_air_filter"
+    ],
+    "outputs": [
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "CO2 capture: volatiles to carbon by the scrubber transmute; the rest comes out as clean gas."
+  },
+  {
+    "id": "rcp_life_scrub_deep",
+    "name": "Strip foul air deep",
+    "kind": "produce",
+    "machine": "mach_scrubber",
+    "disc": "disc_life_scrubber_profiles",
+    "inputs": [
+      {
+        "id": "it_life_foul_air",
+        "qty": 4
+      }
+    ],
+    "tools": [
+      "it_mach_air_filter"
+    ],
+    "outputs": [
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 3
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 4,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_life_regenerate_puck",
+    "name": "Regenerate pucks",
+    "kind": "produce",
+    "machine": "mach_scrubber",
+    "disc": "disc_life_scrubber_profiles",
+    "inputs": [
+      {
+        "id": "it_life_puck_spent",
+        "qty": 2
+      }
+    ],
+    "tools": [
+      "it_mach_air_filter"
+    ],
+    "outputs": [
+      {
+        "id": "it_life_air_puck",
+        "qty": 2
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_life_sinter_oxygen_candle",
+    "name": "Sinter oxygen candle",
+    "kind": "produce",
+    "machine": "mach_scrubber",
+    "disc": "disc_life_scrubber_profiles",
+    "inputs": [
+      {
+        "id": "it_core_salt_cake",
+        "qty": 2
+      },
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_oxygen_candle",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.1
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_life_grow_algae",
+    "name": "Grow algae",
+    "kind": "produce",
+    "machine": "mach_algae_tank",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_nutrient",
+        "qty": 5
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_algae",
+        "qty": 6
+      }
+    ],
+    "energy": 0,
+    "cells": 3,
+    "time": "nights",
+    "nights": 2,
+    "phase": "phase_2",
+    "notes": "Salts to biomass by the tank transmute: nutrient 5 + water 3 = 6 mats (biomass 6, water 3)."
+  },
+  {
+    "id": "rcp_life_grow_algae_breath",
+    "name": "Grow algae on breath",
+    "kind": "produce",
+    "machine": "mach_algae_tank",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_foul_air",
+        "qty": 4
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_algae",
+        "qty": 4
+      }
+    ],
+    "energy": 0,
+    "cells": 2,
+    "time": "nights",
+    "nights": 1,
+    "phase": "phase_2",
+    "notes": "The tank eats foul air: volatiles to biomass."
+  },
+  {
+    "id": "rcp_life_grow_algae_full",
+    "name": "Grow algae, full feed",
+    "kind": "produce",
+    "machine": "mach_algae_tank",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_life_nutrient",
+        "qty": 5
+      },
+      {
+        "id": "it_life_foul_air",
+        "qty": 4
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 5
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_algae",
+        "qty": 10
+      }
+    ],
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 2,
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_life_grow_dense_algae",
+    "name": "Grow dense strain",
+    "kind": "produce",
+    "machine": "mach_algae_tank",
+    "disc": "disc_life_algae_strains",
+    "inputs": [
+      {
+        "id": "it_life_foul_air",
+        "qty": 4
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_algae_dense",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 1,
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_life_grow_brine_strain",
+    "name": "Grow brine strain",
+    "kind": "produce",
+    "machine": "mach_algae_tank",
+    "disc": "disc_life_algae_strains",
+    "inputs": [
+      {
+        "id": "it_life_brine",
+        "qty": 4
+      },
+      {
+        "id": "it_life_foul_air",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_life_algae",
+        "qty": 6
+      },
+      {
+        "id": "it_life_water",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 3,
+    "time": "nights",
+    "nights": 2,
+    "phase": "phase_2",
+    "notes": "A salt-eating strain: brine 4 + breath 2 = 6 mats + 1 pouch."
+  }
+]

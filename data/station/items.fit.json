@@ -1,0 +1,1024 @@
+[
+  {
+    "id": "it_fit_bookshelf",
+    "name": "Bookshelf",
+    "desc": "Plank shelving on an iron frame, bolted to the deck. Books, paper and disc cases.",
+    "w": 4,
+    "h": 4,
+    "tier": 1,
+    "depth": 2,
+    "value": 24,
+    "composition": {
+      "mat_fibre": 3,
+      "mat_iron": 1
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture"
+    ],
+    "market_need": "need_luxury",
+    "carried_from": "bookshelf",
+    "container": {
+      "slots": [
+        {
+          "name": "Shelves",
+          "w": 4,
+          "h": 3,
+          "accepts_tags": [
+            "book",
+            "paper",
+            "media",
+            "heirloom"
+          ]
+        }
+      ]
+    },
+    "fixture": {
+      "effects": []
+    }
+  },
+  {
+    "id": "it_fit_cabinet",
+    "name": "Steel cabinet",
+    "desc": "Grey steel, doors that shut, drawers that stick. Holds more than it looks like it should.",
+    "w": 3,
+    "h": 3,
+    "tier": 1,
+    "depth": 2,
+    "value": 25,
+    "composition": {
+      "mat_iron": 4
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture"
+    ],
+    "market_need": "need_comfort",
+    "carried_from": "cabinet",
+    "container": {
+      "slots": [
+        {
+          "name": "Drawers",
+          "w": 6,
+          "h": 4
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_disc_rack",
+    "name": "Disc holder",
+    "desc": "Moulded polymer with slots on edge. Floppies and cards, labels facing out.",
+    "w": 2,
+    "h": 3,
+    "tier": 1,
+    "depth": 2,
+    "value": 12,
+    "composition": {
+      "mat_polymer": 2
+    },
+    "tags": [
+      "container",
+      "fixture",
+      "media"
+    ],
+    "market_need": "need_comfort",
+    "carried_from": "discrack",
+    "container": {
+      "slots": [
+        {
+          "name": "Slots",
+          "w": 4,
+          "h": 4,
+          "accepts_tags": [
+            "media",
+            "program",
+            "data"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_cot",
+    "name": "Folding cot",
+    "desc": "Canvas on a steel frame, set up behind the stock. Sleep on it and the morning has more in it.",
+    "w": 2,
+    "h": 3,
+    "tier": 1,
+    "depth": 2,
+    "value": 28,
+    "composition": {
+      "mat_fibre": 2,
+      "mat_iron": 1.5,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "furniture",
+      "comfort",
+      "fixture"
+    ],
+    "market_need": "need_comfort",
+    "fixture": {
+      "effects": [
+        {
+          "stat": "energy_cap",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy per day"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_bunk",
+    "name": "Bunk",
+    "desc": "Welded frame, a locker under the mattress, a curtain on a wire. A spine bed, kept clean.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 90,
+    "composition": {
+      "mat_fibre": 3,
+      "mat_iron": 3,
+      "mat_polymer": 1
+    },
+    "tags": [
+      "furniture",
+      "comfort",
+      "fixture"
+    ],
+    "market_need": "need_comfort",
+    "container": {
+      "slots": [
+        {
+          "name": "Locker",
+          "w": 3,
+          "h": 2
+        }
+      ]
+    },
+    "fixture": {
+      "effects": [
+        {
+          "stat": "energy_cap",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy per day"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_berth",
+    "name": "Crew berth",
+    "desc": "Light-metal berth with a foam pad, a reading lamp and a door that latches from inside.",
+    "w": 3,
+    "h": 3,
+    "tier": 3,
+    "depth": 3,
+    "value": 480,
+    "composition": {
+      "mat_fibre": 4,
+      "mat_lightmetal": 2,
+      "mat_polymer": 2,
+      "mat_iron": 2
+    },
+    "tags": [
+      "furniture",
+      "comfort",
+      "fixture"
+    ],
+    "market_need": "need_comfort",
+    "fixture": {
+      "effects": [
+        {
+          "stat": "energy_cap",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy per day"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_cabin",
+    "name": "Ring cabin",
+    "desc": "A sleeping cabin in ring-grade veneer, a real window, quiet air. Nothing in it is recycled.",
+    "w": 4,
+    "h": 3,
+    "tier": 4,
+    "depth": 3,
+    "value": 1400,
+    "composition": {
+      "mat_fibre": 6,
+      "mat_lightmetal": 4,
+      "mat_copper": 2,
+      "mat_polymer": 3,
+      "mat_noble": 0.2
+    },
+    "tags": [
+      "furniture",
+      "comfort",
+      "fixture",
+      "ring_grade"
+    ],
+    "market_need": "need_comfort",
+    "fixture": {
+      "effects": [
+        {
+          "stat": "energy_cap",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy per day"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_shelf_unit",
+    "name": "Shelf unit",
+    "desc": "Open steel shelving on four legs, bolted down. Holds whatever you stack on it.",
+    "w": 3,
+    "h": 2,
+    "tier": 1,
+    "depth": 2,
+    "value": 18,
+    "composition": {
+      "mat_iron": 1.5,
+      "mat_fibre": 0.5
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture"
+    ],
+    "market_need": "need_comfort",
+    "container": {
+      "slots": [
+        {
+          "name": "Shelf",
+          "w": 6,
+          "h": 2
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_cold_cabinet",
+    "name": "Cold cabinet",
+    "desc": "A chilled glass-door cabinet running off a cell. Cheese, salami and fresh greens keep and sell.",
+    "w": 3,
+    "h": 3,
+    "tier": 2,
+    "depth": 3,
+    "value": 120,
+    "composition": {
+      "mat_iron": 2,
+      "mat_lightmetal": 0.5,
+      "mat_copper": 0.3,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture",
+      "device"
+    ],
+    "market_need": "need_food",
+    "container": {
+      "slots": [
+        {
+          "name": "Chilled shelves",
+          "w": 5,
+          "h": 3,
+          "accepts_tags": [
+            "food",
+            "fresh",
+            "dairy",
+            "meat",
+            "produce",
+            "drink"
+          ]
+        }
+      ]
+    },
+    "fixture": {
+      "effects": [
+        {
+          "stat": "ceiling_mult",
+          "op": "mul",
+          "value": 1.12,
+          "scope": {
+            "tag": "fresh"
+          },
+          "text": "cold food sells 12% higher"
+        },
+        {
+          "stat": "ceiling_mult",
+          "op": "mul",
+          "value": 1.12,
+          "scope": {
+            "tag": "dairy"
+          },
+          "text": "cold dairy and meat sell 12% higher"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_parts_locker",
+    "name": "Parts locker",
+    "desc": "Forty labelled bins behind a steel door. Fasteners, bearings and valves, sorted for once.",
+    "w": 2,
+    "h": 3,
+    "tier": 2,
+    "depth": 2,
+    "value": 40,
+    "composition": {
+      "mat_iron": 3,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture"
+    ],
+    "market_need": "need_parts",
+    "container": {
+      "slots": [
+        {
+          "name": "Bins",
+          "w": 6,
+          "h": 4,
+          "accepts_tags": [
+            "part",
+            "fastener",
+            "component",
+            "machine_part",
+            "tool"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_display_case",
+    "name": "Display case",
+    "desc": "Glass-fronted, lit from inside, with a lock nobody uses. Things behind glass are worth more.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 30,
+    "composition": {
+      "mat_silicate": 2,
+      "mat_iron": 1,
+      "mat_fibre": 0.5,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture",
+      "luxury"
+    ],
+    "market_need": "need_luxury",
+    "container": {
+      "slots": [
+        {
+          "name": "Glass shelf",
+          "w": 4,
+          "h": 2
+        }
+      ]
+    },
+    "fixture": {
+      "effects": [
+        {
+          "stat": "ceiling_mult",
+          "op": "mul",
+          "value": 1.15,
+          "scope": {
+            "tag": "luxury"
+          },
+          "text": "luxury goods sell 15% higher"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_vitrine",
+    "name": "Locked vitrine",
+    "desc": "Tall glass and light-metal, a real lock, a velvet shelf. For anything a collector asks to hold.",
+    "w": 2,
+    "h": 4,
+    "tier": 3,
+    "depth": 3,
+    "value": 400,
+    "composition": {
+      "mat_silicate": 3,
+      "mat_lightmetal": 2,
+      "mat_noble": 0.2,
+      "mat_polymer": 1
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture",
+      "luxury"
+    ],
+    "market_need": "need_luxury",
+    "container": {
+      "slots": [
+        {
+          "name": "Velvet shelves",
+          "w": 4,
+          "h": 3,
+          "accepts_tags": [
+            "jewellery",
+            "heirloom",
+            "art",
+            "luxury",
+            "scent"
+          ]
+        }
+      ]
+    },
+    "fixture": {
+      "effects": [
+        {
+          "stat": "ceiling_mult",
+          "op": "mul",
+          "value": 1.35,
+          "scope": {
+            "tag": "jewellery"
+          },
+          "text": "jewellery sells 35% higher"
+        },
+        {
+          "stat": "ceiling_mult",
+          "op": "mul",
+          "value": 1.35,
+          "scope": {
+            "tag": "heirloom"
+          },
+          "text": "heirlooms sell 35% higher"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_safe",
+    "name": "Floor safe",
+    "desc": "Bolted steel box with a dial and a heavy door. Cash, discs and heirlooms go in.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 100,
+    "composition": {
+      "mat_iron": 4,
+      "mat_lightmetal": 1
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture"
+    ],
+    "market_need": "need_luxury",
+    "container": {
+      "slots": [
+        {
+          "name": "Strongbox",
+          "w": 3,
+          "h": 3,
+          "accepts_tags": [
+            "jewellery",
+            "heirloom",
+            "media",
+            "data",
+            "luxury"
+          ]
+        }
+      ]
+    },
+    "fixture": {
+      "effects": [
+        {
+          "stat": "inspection_chance",
+          "op": "mul",
+          "value": 0.9,
+          "text": "inspections 10% rarer"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_strongroom",
+    "name": "Strongroom",
+    "desc": "A plated cell behind the stockroom wall, no sign on the door. Fire, drugs and cracked discs sleep here.",
+    "w": 4,
+    "h": 3,
+    "tier": 3,
+    "depth": 3,
+    "value": 450,
+    "composition": {
+      "mat_iron": 8,
+      "mat_lightmetal": 3,
+      "mat_copper": 1,
+      "mat_polymer": 1
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture"
+    ],
+    "market_need": "need_luxury",
+    "container": {
+      "slots": [
+        {
+          "name": "Hidden bay",
+          "w": 6,
+          "h": 4,
+          "accepts_tags": [
+            "contraband",
+            "fire",
+            "drug",
+            "media",
+            "data",
+            "luxury"
+          ]
+        }
+      ]
+    },
+    "fixture": {
+      "effects": [
+        {
+          "stat": "inspection_chance",
+          "op": "mul",
+          "value": 0.5,
+          "text": "inspections 50% rarer"
+        }
+      ]
+    },
+    "notes": "The hidden bay is what the inspection roll does not see: contraband inside should survive a raid."
+  },
+  {
+    "id": "it_fit_ledger_book",
+    "name": "Ledger book",
+    "desc": "Cloth-bound columns and a pencil on a string. Each evening you write down what sold and why.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 2,
+    "value": 8,
+    "composition": {
+      "mat_fibre": 1
+    },
+    "tags": [
+      "book",
+      "paper",
+      "fixture"
+    ],
+    "market_need": "need_luxury",
+    "fixture": {
+      "effects": [
+        {
+          "stat": "price_visibility",
+          "op": "set",
+          "value": 1,
+          "text": "price arrows on need chips"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_price_board",
+    "name": "Price board",
+    "desc": "A wall screen of live need prices and trend arrows, fed from the spine counting house.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "depth": 3,
+    "value": 70,
+    "composition": {
+      "mat_lightmetal": 0.5,
+      "mat_polymer": 0.5,
+      "mat_copper": 0.3,
+      "mat_silicate": 0.5,
+      "mat_rare": 0.1
+    },
+    "tags": [
+      "electronic",
+      "device",
+      "fixture"
+    ],
+    "market_need": "need_parts",
+    "fixture": {
+      "effects": [
+        {
+          "stat": "price_visibility",
+          "op": "set",
+          "value": 2,
+          "text": "live prices on need chips"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_aerial",
+    "name": "Roof aerial",
+    "desc": "A light-metal mast through the ceiling tiles on a coax run. Engineers' chatter comes in clear.",
+    "w": 1,
+    "h": 3,
+    "tier": 2,
+    "depth": 3,
+    "value": 70,
+    "composition": {
+      "mat_lightmetal": 1,
+      "mat_copper": 0.5,
+      "mat_polymer": 0.2
+    },
+    "tags": [
+      "electronic",
+      "device",
+      "fixture"
+    ],
+    "market_need": "need_parts",
+    "fixture": {
+      "effects": [
+        {
+          "stat": "rumor_accuracy",
+          "op": "add",
+          "value": 0.1,
+          "text": "rumors 10% more often right"
+        },
+        {
+          "stat": "rumor_lead_days",
+          "op": "add",
+          "value": 1,
+          "text": "+1 day of warning"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_pigeonholes",
+    "name": "Pigeonholes",
+    "desc": "A wall of paper slots for slips, notices and standing orders. Senders find a shop that answers.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 2,
+    "value": 16,
+    "composition": {
+      "mat_fibre": 1.5,
+      "mat_iron": 0.5
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture",
+      "paper"
+    ],
+    "market_need": "need_comfort",
+    "container": {
+      "slots": [
+        {
+          "name": "Slots",
+          "w": 4,
+          "h": 2,
+          "accepts_tags": [
+            "paper",
+            "media",
+            "data"
+          ]
+        }
+      ]
+    },
+    "fixture": {
+      "effects": [
+        {
+          "stat": "orders_per_day",
+          "op": "add",
+          "value": 1,
+          "text": "+1 mail order per day"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_sign",
+    "name": "Shop sign",
+    "desc": "Stencilled letters on a lit panel above the shutter. The corridor starts to know the name.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 2,
+    "value": 10,
+    "composition": {
+      "mat_iron": 0.5,
+      "mat_polymer": 0.5,
+      "mat_fibre": 0.2
+    },
+    "tags": [
+      "fixture",
+      "comfort",
+      "light"
+    ],
+    "market_need": "need_comfort",
+    "fixture": {
+      "effects": [
+        {
+          "stat": "customers_per_day",
+          "op": "add",
+          "value": 1,
+          "text": "+1 walk-in per day"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_ad_board",
+    "name": "Ad board",
+    "desc": "A hung board with a changing strip: one need advertised at a time, to everyone walking past.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "depth": 3,
+    "value": 110,
+    "composition": {
+      "mat_lightmetal": 1,
+      "mat_polymer": 1,
+      "mat_copper": 0.5,
+      "mat_rare": 0.1
+    },
+    "tags": [
+      "electronic",
+      "device",
+      "fixture"
+    ],
+    "market_need": "need_comfort",
+    "fixture": {
+      "effects": [
+        {
+          "stat": "ad_mult",
+          "op": "mul",
+          "value": 1.15,
+          "text": "advertised need draws 15% more"
+        },
+        {
+          "stat": "customers_per_day",
+          "op": "add",
+          "value": 1,
+          "text": "+1 walk-in per day"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_counter_2",
+    "name": "Second counter",
+    "desc": "A steel-topped counter, a till and a stool. The queue splits and moves.",
+    "w": 4,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 50,
+    "composition": {
+      "mat_iron": 2,
+      "mat_fibre": 1,
+      "mat_polymer": 1
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture"
+    ],
+    "market_need": "need_comfort",
+    "container": {
+      "slots": [
+        {
+          "name": "Counter top",
+          "w": 6,
+          "h": 2
+        }
+      ]
+    },
+    "fixture": {
+      "effects": [
+        {
+          "stat": "customers_per_day",
+          "op": "add",
+          "value": 3,
+          "text": "+3 walk-ins served per day"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_cell_bank",
+    "name": "Cell bank",
+    "desc": "A racked frame with six cradles. Cells sit in it between jobs and take on a little more.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "depth": 3,
+    "value": 110,
+    "composition": {
+      "mat_iron": 1.5,
+      "mat_lithium": 0.3,
+      "mat_copper": 0.3,
+      "mat_polymer": 0.4
+    },
+    "tags": [
+      "fixture",
+      "container",
+      "power",
+      "device"
+    ],
+    "market_need": "need_power",
+    "container": {
+      "slots": [
+        {
+          "name": "Cradles",
+          "w": 3,
+          "h": 2,
+          "accepts_tags": [
+            "cell",
+            "power"
+          ]
+        }
+      ]
+    },
+    "fixture": {
+      "effects": [
+        {
+          "stat": "cell_capacity_mult",
+          "op": "mul",
+          "value": 1.25,
+          "text": "cells hold 25% more"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_vent_hood",
+    "name": "Extractor hood",
+    "desc": "A ducted hood over the machine row. Less heat and dust in the works, fewer jams.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 3,
+    "value": 66,
+    "composition": {
+      "mat_lightmetal": 1,
+      "mat_polymer": 0.5,
+      "mat_copper": 0.3
+    },
+    "tags": [
+      "fixture",
+      "device",
+      "air"
+    ],
+    "market_need": "need_air",
+    "fixture": {
+      "effects": [
+        {
+          "stat": "jam_chance_mult",
+          "op": "mul",
+          "value": 0.85,
+          "text": "jams 15% rarer"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_load_governor",
+    "name": "Load governor",
+    "desc": "A rack unit that staggers every machine start across the grid. Same work, less effort to start it.",
+    "w": 2,
+    "h": 2,
+    "tier": 4,
+    "depth": 3,
+    "value": 500,
+    "composition": {
+      "mat_rare": 0.5,
+      "mat_noble": 0.1,
+      "mat_copper": 1,
+      "mat_lightmetal": 1,
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "electronic",
+      "device",
+      "fixture",
+      "computer"
+    ],
+    "market_need": "need_parts",
+    "fixture": {
+      "effects": [
+        {
+          "stat": "job_energy_mult",
+          "op": "mul",
+          "value": 0.8,
+          "text": "jobs cost 20% less energy"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_hand_station",
+    "name": "Hand station",
+    "desc": "A bench, a stool and a locker with a name taped on it. Someone works here while you sleep.",
+    "w": 3,
+    "h": 2,
+    "tier": 4,
+    "depth": 3,
+    "value": 300,
+    "composition": {
+      "mat_iron": 2,
+      "mat_fibre": 2,
+      "mat_polymer": 1,
+      "mat_lightmetal": 1,
+      "mat_copper": 0.5
+    },
+    "tags": [
+      "furniture",
+      "container",
+      "fixture"
+    ],
+    "market_need": "need_comfort",
+    "container": {
+      "slots": [
+        {
+          "name": "Locker",
+          "w": 2,
+          "h": 2
+        }
+      ]
+    },
+    "fixture": {
+      "effects": [
+        {
+          "stat": "energy_cap",
+          "op": "add",
+          "value": 2,
+          "text": "a hired hand: +2 energy per day"
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_fit_ring_frontage",
+    "name": "Ring frontage",
+    "desc": "Glass shopfront, warm light and a brass rail, on the promenade. The rent is paid in real money.",
+    "w": 4,
+    "h": 2,
+    "tier": 4,
+    "depth": 3,
+    "value": 700,
+    "composition": {
+      "mat_lightmetal": 3,
+      "mat_silicate": 2,
+      "mat_noble": 0.3,
+      "mat_polymer": 1,
+      "mat_fibre": 1
+    },
+    "tags": [
+      "fixture",
+      "luxury",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "fixture": {
+      "effects": [
+        {
+          "stat": "budget_mult",
+          "op": "mul",
+          "value": 2,
+          "scope": {
+            "deck": "deck_ring"
+          },
+          "text": "ring buyers' budgets x2"
+        },
+        {
+          "stat": "customers_per_day",
+          "op": "add",
+          "value": 4,
+          "text": "+4 walk-ins per day"
+        },
+        {
+          "stat": "rent_mult",
+          "op": "mul",
+          "value": 1.6,
+          "text": "rent x1.6"
+        }
+      ]
+    }
+  }
+]

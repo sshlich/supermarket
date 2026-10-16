@@ -1,0 +1,23 @@
+[
+  {
+    "id": "it_fab_bar_iron",
+    "name": "Iron bar",
+    "desc": "A bar of iron cast in a mould, a little hollow on top where it cooled.",
+    "w": 3, "h": 2, "tier": 1, "depth": 1, "value": 8,
+    "composition": { "mat_iron": 2 },
+    "tags": ["processed", "bar"],
+    "market_need": "need_parts",
+    "carried_from": "ingot"
+  },
+  {
+    "id": "it_fab_sheet",
+    "name": "Steel sheet",
+    "desc": "Rolled thin from a bar, edges still sharp. Two to a bar.",
+    "w": 2, "h": 2, "tier": 1, "depth": 1, "value": 4,
+    "composition": { "mat_iron": 1 },
+    "tags": ["processed", "sheet"],
+    "market_need": "need_parts",
+    "needs": { "need_parts": 0.25 },
+    "decks": { "deck_works": 2, "deck_dock": 1 }
+  }
+]

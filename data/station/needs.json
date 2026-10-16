@@ -1,0 +1,153 @@
+[
+  {
+    "id": "need_air",
+    "name": "Air",
+    "desc": "Breathable air, scrubbed and topped up. Nobody notices it until a scrubber stops.",
+    "old_tags": [],
+    "gauge_start": 0.9,
+    "per_capita": 1,
+    "price_floor": 0.5,
+    "price_cap": 2.5,
+    "elasticity": 2,
+    "systems": [
+      "sys_scrubber_bank",
+      "sys_algae_lungs"
+    ],
+    "shortage_text": "Headaches on the lower decks. Candles gutter, bunks empty.",
+    "glut_text": "The scrubbers run quiet and the air tastes of nothing."
+  },
+  {
+    "id": "need_water",
+    "name": "Water",
+    "desc": "Drinking water: reclaimed, melted, filtered. A resident drinks about a litre of the stuff a day, give or take.",
+    "old_tags": [
+      "drink"
+    ],
+    "gauge_start": 0.85,
+    "per_capita": 1,
+    "price_floor": 0.5,
+    "price_cap": 2.5,
+    "elasticity": 1.5,
+    "systems": [
+      "sys_water_reclaim",
+      "sys_ice_haul"
+    ],
+    "shortage_text": "Rationing. Jugs go for triple and the queues start before shift.",
+    "glut_text": "Taps run full. Nobody hoards a jug."
+  },
+  {
+    "id": "need_food",
+    "name": "Food",
+    "desc": "Calories in any form: rations, vat bread, whatever grew. One need unit is one resident fed for a day.",
+    "old_tags": [
+      "food"
+    ],
+    "gauge_start": 0.8,
+    "per_capita": 1,
+    "price_floor": 0.5,
+    "price_cap": 2.5,
+    "elasticity": 1.2,
+    "systems": [
+      "sys_algae_lungs",
+      "sys_ring_farms",
+      "sys_vat_halls"
+    ],
+    "shortage_text": "Empty shelves in the galleys. Ration bars change hands for coins.",
+    "glut_text": "Vat halls overproduce. Bread is cheap and nobody argues over a bar."
+  },
+  {
+    "id": "need_power",
+    "name": "Power",
+    "desc": "Charge in cells: for lamps, tools, machines, stoves. Spent faster than anyone budgets.",
+    "old_tags": [
+      "fuel"
+    ],
+    "gauge_start": 0.75,
+    "per_capita": 1,
+    "price_floor": 0.5,
+    "price_cap": 2.5,
+    "elasticity": 1.2,
+    "systems": [
+      "sys_reactor",
+      "sys_solar_vanes"
+    ],
+    "shortage_text": "Brownouts and dim corridors. A full cell is worth a day of wages.",
+    "glut_text": "Cells are cheap and chargers idle. Lights stay on."
+  },
+  {
+    "id": "need_medicine",
+    "name": "Medicine",
+    "desc": "Pills, bandages, antiseptic, what the clinic cannot get to in time.",
+    "old_tags": [
+      "medicine"
+    ],
+    "gauge_start": 0.7,
+    "per_capita": 1,
+    "price_floor": 0.5,
+    "price_cap": 2.5,
+    "elasticity": 1.8,
+    "systems": [
+      "sys_clinic"
+    ],
+    "shortage_text": "The clinic runs out of antibiotics. Pain is rationed and private sellers get rich.",
+    "glut_text": "Shelves of painkillers and dust on the antiseptic."
+  },
+  {
+    "id": "need_parts",
+    "name": "Parts",
+    "desc": "Spares and tools for everything that breaks, which is everything. Valves, bearings, fasteners, filters.",
+    "old_tags": [
+      "tool"
+    ],
+    "gauge_start": 0.8,
+    "per_capita": 1,
+    "price_floor": 0.5,
+    "price_cap": 2.5,
+    "elasticity": 1.5,
+    "systems": [
+      "sys_foundry",
+      "sys_ore_haul"
+    ],
+    "shortage_text": "Repairs wait for parts. Crews strip dead machines for spares.",
+    "glut_text": "Bins full of fasteners. Repair crews idle."
+  },
+  {
+    "id": "need_comfort",
+    "name": "Comfort",
+    "desc": "Light, softness, small things that make a bunk a home. Not survival, but people leave without it.",
+    "old_tags": [
+      "light"
+    ],
+    "gauge_start": 0.6,
+    "per_capita": 1,
+    "price_floor": 0.5,
+    "price_cap": 2.5,
+    "elasticity": 1,
+    "systems": [
+      "sys_company_store"
+    ],
+    "shortage_text": "Grey corridors and tempers short. A lamp sells before it is priced.",
+    "glut_text": "Warm light at every door. Decoration is cheap."
+  },
+  {
+    "id": "need_luxury",
+    "name": "Luxury",
+    "desc": "Drink, books, jewellery, something nobody needs. The ring lives on it, the spine dreams of it.",
+    "old_tags": [
+      "alcohol",
+      "valuable",
+      "book"
+    ],
+    "gauge_start": 0.5,
+    "per_capita": 1,
+    "price_floor": 0.5,
+    "price_cap": 2.5,
+    "elasticity": 0.8,
+    "systems": [
+      "sys_ring_farms",
+      "sys_company_store"
+    ],
+    "shortage_text": "The ring shuts its doors. Wine goes to the black market.",
+    "glut_text": "Wine at every table. Nobody notices a locket."
+  }
+]

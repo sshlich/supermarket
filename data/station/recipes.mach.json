@@ -1,0 +1,1758 @@
+[
+  {
+    "id": "rcp_mach_brew_coolant",
+    "name": "Brew coolant",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_mach_consumables",
+    "inputs": [
+      {
+        "id": "it_core_greywater",
+        "qty": 4
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 2
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_coolant",
+        "qty": 4
+      }
+    ],
+    "loss": {
+      "mat_polymer": 0.2
+    },
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "7 units in, 4 x 1.7 out, 0.2 polymer lost to the flask caps."
+  },
+  {
+    "id": "rcp_mach_brew_lubricant",
+    "name": "Brew lubricant",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_mach_consumables",
+    "inputs": [
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 5
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_lubricant",
+        "qty": 10
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "Ten tubes from six units. A cheaper batch could run carbon through the bench transmute; left out to keep the reagent loop honest."
+  },
+  {
+    "id": "rcp_mach_brew_sealant",
+    "name": "Mix sealant",
+    "kind": "produce",
+    "machine": "mach_chem_bench",
+    "disc": "disc_mach_consumables",
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 2
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_sealant",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_mach_mix_cleaning_kit",
+    "name": "Pack cleaning kits",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_rags",
+        "qty": 1
+      },
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_cleaning_kit",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_wind_tape",
+    "name": "Wind sealing tape",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_tape",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_braid_belt",
+    "name": "Braid drive belts",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 2
+      },
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_drive_belt",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_cast_fuse",
+    "name": "Pack fuses",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 2
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_fuse",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_assemble_jam_kit",
+    "name": "Assemble jam kits",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_fasteners",
+        "qty": 2
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_jam_kit",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_print_manual",
+    "name": "Print service manuals",
+    "kind": "produce",
+    "machine": "mach_printer_m",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 4
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_manual",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_mach_print_label_roll",
+    "name": "Cut label roll",
+    "kind": "produce",
+    "machine": "mach_printer_s",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_lux_paper",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_label_roll",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_shred_padding",
+    "name": "Shred rags to padding",
+    "kind": "produce",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_rags",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_padding",
+        "qty": 4
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_fab_water_filter",
+    "name": "Fabricate water filters",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_filters",
+    "inputs": [
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 1
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_fasteners",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_water_filter",
+        "qty": 2
+      }
+    ],
+    "loss": {
+      "mat_iron": 0.1
+    },
+    "energy": 2,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_mach_fab_air_cartridge",
+    "name": "Fabricate air cartridges",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_filters",
+    "inputs": [
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 1
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 2
+      },
+      {
+        "id": "it_core_fibre_lint",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_air_filter",
+        "qty": 2
+      }
+    ],
+    "loss": {
+      "mat_fibre": 0.4
+    },
+    "energy": 2,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_mach_rinse_water_filter",
+    "name": "Rinse water filter",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_mach_water_filter_spent",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_water_filter",
+        "qty": 1
+      },
+      {
+        "id": "it_core_sludge",
+        "qty": 1
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1",
+    "notes": "Filters are renewable for a pouch of water and an energy; the grime comes out as sludge. Tune uses on the filter if it proves too cheap."
+  },
+  {
+    "id": "rcp_mach_rinse_air_cartridge",
+    "name": "Rinse air cartridge",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_mach_air_filter_spent",
+        "qty": 1
+      },
+      {
+        "id": "it_life_water",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_mach_air_filter",
+        "qty": 1
+      },
+      {
+        "id": "it_core_sludge",
+        "qty": 1
+      },
+      {
+        "id": "it_core_greywater",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_seal_box_s",
+    "name": "Seal small box",
+    "kind": "modify",
+    "machine": "mach_sealer",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_mach_tape",
+        "qty": 1
+      }
+    ],
+    "target": {
+      "ids": [
+        "box_s"
+      ]
+    },
+    "mods_add": [
+      "mod_sealed"
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.05
+    },
+    "phase": "phase_1",
+    "notes": "A box ships only sealed and with an order slip inside; the sealer does not check the slip."
+  },
+  {
+    "id": "rcp_mach_seal_box_m",
+    "name": "Seal medium box",
+    "kind": "modify",
+    "machine": "mach_sealer",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_mach_tape",
+        "qty": 1
+      }
+    ],
+    "target": {
+      "ids": [
+        "box_m"
+      ]
+    },
+    "mods_add": [
+      "mod_sealed"
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_seal_box_l",
+    "name": "Seal large box",
+    "kind": "modify",
+    "machine": "mach_sealer",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_mach_tape",
+        "qty": 2
+      }
+    ],
+    "target": {
+      "ids": [
+        "box_l"
+      ]
+    },
+    "mods_add": [
+      "mod_sealed"
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_unseal_box",
+    "name": "Cut a box open",
+    "kind": "modify",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [],
+    "tools": [
+      "it_fab_knife"
+    ],
+    "target": {
+      "ids": [
+        "box_s",
+        "box_m",
+        "box_l"
+      ]
+    },
+    "mods_remove": [
+      "mod_sealed"
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1",
+    "notes": "The knife wears one use per cut."
+  },
+  {
+    "id": "rcp_mach_pad_box",
+    "name": "Pack padding in",
+    "kind": "modify",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_mach_padding",
+        "qty": 2
+      }
+    ],
+    "target": {
+      "ids": [
+        "box_s",
+        "box_m",
+        "box_l"
+      ]
+    },
+    "mods_add": [
+      "mod_padded"
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_hide_in_box",
+    "name": "Hide goods under padding",
+    "kind": "modify",
+    "machine": "mach_hands",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_mach_padding",
+        "qty": 1
+      },
+      {
+        "id": "it_mach_tape",
+        "qty": 1
+      }
+    ],
+    "target": {
+      "ids": [
+        "box_s",
+        "box_m",
+        "box_l"
+      ]
+    },
+    "mods_add": [
+      "mod_contraband_hidden"
+    ],
+    "effects": [
+      {
+        "stat": "inspection_chance",
+        "op": "add",
+        "value": 0.03,
+        "text": "Inspection chance +3% if the box is found"
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1",
+    "notes": "A false bottom: a hidden box passes a casual look but not the scanner."
+  },
+  {
+    "id": "rcp_mach_clear_jam_bench",
+    "name": "Clear a jam",
+    "kind": "do",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [],
+    "tools": [
+      "it_fab_wrench"
+    ],
+    "effects": [
+      {
+        "stat": "job_energy_mult",
+        "op": "mul",
+        "value": 1,
+        "text": "Frees a jammed feed"
+      }
+    ],
+    "clears": [
+      "stat_jammed"
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "risks": {
+      "stat_worn": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_clear_jam_kit",
+    "name": "Clear a jam with a kit",
+    "kind": "do",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [],
+    "tools": [
+      "it_mach_jam_kit"
+    ],
+    "effects": [
+      {
+        "stat": "job_energy_mult",
+        "op": "mul",
+        "value": 1,
+        "text": "Frees a jammed feed, no wrench needed"
+      }
+    ],
+    "clears": [
+      "stat_jammed",
+      "stat_clogged"
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_clear_jam_smelter",
+    "name": "Rake the crucible",
+    "kind": "do",
+    "machine": "mach_smelter",
+    "disc": null,
+    "inputs": [],
+    "tools": [
+      "it_fab_wrench"
+    ],
+    "effects": [
+      {
+        "stat": "job_energy_mult",
+        "op": "mul",
+        "value": 1,
+        "text": "Breaks up the slag crust"
+      }
+    ],
+    "clears": [
+      "stat_jammed",
+      "stat_hot"
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_swap_worn_parts",
+    "name": "Swap worn parts",
+    "kind": "do",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_spare_part",
+        "qty": 1
+      },
+      {
+        "id": "it_mach_lubricant",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_wrench"
+    ],
+    "effects": [
+      {
+        "stat": "job_yield_mult",
+        "op": "mul",
+        "value": 1,
+        "text": "Restores full yield"
+      }
+    ],
+    "clears": [
+      "stat_worn"
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_fit_belt",
+    "name": "Fit a new belt",
+    "kind": "do",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_mach_drive_belt",
+        "qty": 1
+      }
+    ],
+    "effects": [
+      {
+        "stat": "job_yield_mult",
+        "op": "mul",
+        "value": 1,
+        "text": "Drive grips again"
+      }
+    ],
+    "clears": [
+      "stat_slipping"
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_realign",
+    "name": "Realign by the manual",
+    "kind": "do",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [],
+    "tools": [
+      "it_mach_manual",
+      "it_fab_wrench"
+    ],
+    "effects": [
+      {
+        "stat": "job_yield_mult",
+        "op": "mul",
+        "value": 1,
+        "text": "Brings the head back to true"
+      }
+    ],
+    "clears": [
+      "stat_misaligned"
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_2",
+    "notes": "The manual wears one use; six realignments to a copy."
+  },
+  {
+    "id": "rcp_mach_flash_controller",
+    "name": "Flash the controller",
+    "kind": "do",
+    "machine": "mach_terminal",
+    "disc": null,
+    "inputs": [],
+    "effects": [
+      {
+        "stat": "virus_spread_chance",
+        "op": "add",
+        "value": -1,
+        "text": "Wipes the machine controllers clean"
+      }
+    ],
+    "clears": [
+      "stat_infected"
+    ],
+    "energy": 2,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_unpowered": 0.1
+    },
+    "phase": "phase_1",
+    "notes": "Costly and blunt; prog_antivirus does it cheaper and finds the disc that carried it."
+  },
+  {
+    "id": "rcp_mach_chill_down",
+    "name": "Chill a neighbour",
+    "kind": "do",
+    "machine": "mach_chiller",
+    "disc": null,
+    "inputs": [],
+    "effects": [
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 0.9,
+        "text": "Neighbouring machine runs cooler"
+      }
+    ],
+    "clears": [
+      "stat_hot"
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_mach_chill_overnight",
+    "name": "Chill overnight",
+    "kind": "do",
+    "machine": "mach_chiller",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_mach_coolant",
+        "qty": 1
+      }
+    ],
+    "effects": [
+      {
+        "stat": "job_energy_mult",
+        "op": "mul",
+        "value": 0.9,
+        "text": "Overclocked machines beside it cost 10% less energy"
+      }
+    ],
+    "clears": [
+      "stat_hot",
+      "stat_overclocked"
+    ],
+    "energy": 0,
+    "cells": 4,
+    "time": "nights",
+    "nights": 1,
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_mach_repair_goods",
+    "name": "Repair goods",
+    "kind": "modify",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_spare_part",
+        "qty": 1
+      }
+    ],
+    "target": {
+      "tags": [
+        "device",
+        "tool",
+        "machine_part",
+        "electronic",
+        "computer",
+        "part"
+      ]
+    },
+    "mods_remove": [
+      "mod_damaged"
+    ],
+    "mods_add": [
+      "mod_refurbished"
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1",
+    "notes": "Worth less than new, more than broken."
+  },
+  {
+    "id": "rcp_mach_beat_out_dent",
+    "name": "Beat out a dent",
+    "kind": "modify",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [],
+    "tools": [
+      "it_fab_wrench"
+    ],
+    "target": {
+      "tags": [
+        "container",
+        "vessel",
+        "packaging",
+        "tool"
+      ]
+    },
+    "mods_remove": [
+      "mod_dented"
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_scan_box",
+    "name": "Scan a box",
+    "kind": "modify",
+    "machine": "mach_scanner",
+    "disc": null,
+    "inputs": [],
+    "target": {
+      "tags": [
+        "packaging",
+        "container"
+      ]
+    },
+    "mods_remove": [
+      "mod_contraband_hidden"
+    ],
+    "effects": [
+      {
+        "stat": "inspection_chance",
+        "op": "add",
+        "value": 0,
+        "text": "Shows false bottoms and hidden contents"
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_scan_disc",
+    "name": "Scan a disc",
+    "kind": "do",
+    "machine": "mach_scanner",
+    "disc": null,
+    "inputs": [],
+    "target": {
+      "tags": [
+        "media",
+        "data",
+        "program"
+      ]
+    },
+    "effects": [
+      {
+        "stat": "virus_spread_chance",
+        "op": "add",
+        "value": 0,
+        "text": "Shows mod_infected, mod_bad_sector and mod_cracked on a disc"
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_scan_goods",
+    "name": "Scan for contraband",
+    "kind": "do",
+    "machine": "mach_scanner",
+    "disc": null,
+    "inputs": [],
+    "target": {
+      "tags": [
+        "contraband",
+        "fire",
+        "drug",
+        "luxury"
+      ]
+    },
+    "effects": [
+      {
+        "stat": "inspection_chance",
+        "op": "add",
+        "value": -0.05,
+        "text": "Marks contraband and fakes (mod_counterfeit, mod_stolen); inspection chance -5% for a day"
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_mach_label_ring",
+    "name": "Label ring grade",
+    "kind": "modify",
+    "machine": "mach_labeller",
+    "disc": "disc_mach_labels_ring",
+    "inputs": [
+      {
+        "id": "it_mach_label_roll",
+        "qty": 1
+      }
+    ],
+    "target": {
+      "tags": [
+        "luxury",
+        "food",
+        "drink",
+        "garment",
+        "jewellery",
+        "scent"
+      ]
+    },
+    "mods_add": [
+      "mod_label_ring"
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_mach_label_company",
+    "name": "Label company licence",
+    "kind": "modify",
+    "machine": "mach_labeller",
+    "disc": "disc_mach_labels_company",
+    "inputs": [
+      {
+        "id": "it_mach_label_roll",
+        "qty": 1
+      }
+    ],
+    "target": {
+      "tags": [
+        "medicine",
+        "device",
+        "computer",
+        "chemical",
+        "program"
+      ]
+    },
+    "mods_add": [
+      "mod_label_company"
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_mach_monogram",
+    "name": "Monogram goods",
+    "kind": "modify",
+    "machine": "mach_labeller",
+    "disc": "disc_mach_labels_ring",
+    "inputs": [
+      {
+        "id": "it_mach_label_roll",
+        "qty": 2
+      }
+    ],
+    "target": {
+      "tags": [
+        "garment",
+        "jewellery",
+        "book",
+        "luxury",
+        "furnishing"
+      ]
+    },
+    "mods_add": [
+      "mod_monogrammed"
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_mach_build_bench",
+    "name": "Build workbench",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_machines_1",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_sheet",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_fasteners",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_bench",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_smelter",
+    "name": "Build smelter",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_machines_1",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 3
+      },
+      {
+        "id": "it_fab_glass_pane",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_wire",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_smelter",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_recycler",
+    "name": "Build recycler",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_machines_1",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_sheet",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_recycler",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_crusher",
+    "name": "Build crusher",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_machines_1",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 3
+      },
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_bearing",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_crusher",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_purifier",
+    "name": "Build purifier",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_machines_1",
+    "inputs": [
+      {
+        "id": "it_fab_pipe",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_valve",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_purifier",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_charger",
+    "name": "Build charger",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_machines_1",
+    "inputs": [
+      {
+        "id": "it_fab_bar_copper",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_cable",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_housing",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_charger",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_sealer",
+    "name": "Build box sealer",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_machines_1",
+    "inputs": [
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_sheet",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_fasteners",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_sealer",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_printer_s",
+    "name": "Build slip printer",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_machines_1",
+    "inputs": [
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_housing",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_printer_s",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_scanner",
+    "name": "Build scanner",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_machines_1",
+    "inputs": [
+      {
+        "id": "it_tech_sensor",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_housing",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_scanner",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_radio",
+    "name": "Build radio",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_mach_bp_machines_1",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_cable",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_housing",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_radio",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_fabricator",
+    "name": "Build fabricator",
+    "kind": "produce",
+    "machine": "mach_fab_precision",
+    "disc": "disc_mach_bp_machines_2",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 3
+      },
+      {
+        "id": "it_tech_motor",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_bearing",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_fabricator",
+        "qty": 1
+      }
+    ],
+    "energy": 3,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.1
+    },
+    "phase": "phase_3",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_extruder",
+    "name": "Build extruder",
+    "kind": "produce",
+    "machine": "mach_fab_precision",
+    "disc": "disc_mach_bp_machines_2",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_pipe",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_wire",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_extruder",
+        "qty": 1
+      }
+    ],
+    "energy": 3,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.1
+    },
+    "phase": "phase_3",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_kiln",
+    "name": "Build kiln",
+    "kind": "produce",
+    "machine": "mach_fab_precision",
+    "disc": "disc_mach_bp_machines_2",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 3
+      },
+      {
+        "id": "it_core_slag",
+        "qty": 3
+      },
+      {
+        "id": "it_fab_wire",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_sensor",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_kiln",
+        "qty": 1
+      }
+    ],
+    "energy": 3,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.1
+    },
+    "phase": "phase_3",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_scrubber",
+    "name": "Build scrubber",
+    "kind": "produce",
+    "machine": "mach_fab_precision",
+    "disc": "disc_mach_bp_machines_2",
+    "inputs": [
+      {
+        "id": "it_fab_pipe",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_valve",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_sensor",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_scrubber",
+        "qty": 1
+      }
+    ],
+    "energy": 3,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.1
+    },
+    "phase": "phase_3",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_chiller",
+    "name": "Build chiller",
+    "kind": "produce",
+    "machine": "mach_fab_precision",
+    "disc": "disc_mach_bp_machines_2",
+    "inputs": [
+      {
+        "id": "it_fab_pipe",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_valve",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_sheet",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_chiller",
+        "qty": 1
+      }
+    ],
+    "energy": 3,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.1
+    },
+    "phase": "phase_3",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_fab_precision",
+    "name": "Build precision fabricator",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_mach_bp_machines_3",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 4
+      },
+      {
+        "id": "it_tech_motor",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_bearing",
+        "qty": 4
+      },
+      {
+        "id": "it_tech_circuit",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_sensor",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_fab_precision",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 12,
+    "time": "nights",
+    "nights": 2,
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.1
+    },
+    "phase": "phase_4",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  },
+  {
+    "id": "rcp_mach_build_annealer",
+    "name": "Build annealer",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_mach_bp_machines_3",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 3
+      },
+      {
+        "id": "it_fab_bar_light",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_wire",
+        "qty": 4
+      },
+      {
+        "id": "it_tech_sensor",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_housing",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "mach_annealer",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 12,
+    "time": "nights",
+    "nights": 2,
+    "risks": {
+      "stat_misaligned": 0.1,
+      "stat_hot": 0.1
+    },
+    "phase": "phase_4",
+    "notes": "Second route to the machine: parts instead of the crate price. Machine value is the crate price, so the parts are far cheaper than it."
+  }
+]

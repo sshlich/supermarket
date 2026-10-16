@@ -1,0 +1,30 @@
+[
+  {
+    "id": "rcp_fab_smelt_iron",
+    "name": "Smelt iron",
+    "kind": "produce",
+    "machine": "mach_smelter",
+    "disc": null,
+    "inputs": [{ "id": "it_core_ore_iron", "qty": 2 }],
+    "outputs": [{ "id": "it_fab_bar_iron", "qty": 1 }, { "id": "it_core_slag", "qty": 2 }],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": { "stat_hot": 0.05 },
+    "phase": "phase_1",
+    "notes": "2 x (iron 1 + silicate 1) = iron 2 (bar) + silicate 2 (slag): balanced."
+  },
+  {
+    "id": "rcp_fab_roll_sheet",
+    "name": "Roll sheet",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [{ "id": "it_fab_bar_iron", "qty": 1 }],
+    "outputs": [{ "id": "it_fab_sheet", "qty": 2 }],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  }
+]

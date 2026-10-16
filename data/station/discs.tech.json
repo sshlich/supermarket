@@ -1,0 +1,982 @@
+[
+  {
+    "id": "disc_tech_bp_circuits",
+    "name": "Circuit blueprints",
+    "desc": "Floppy of etched traces for boards, cables, sensors, motors and relays. Hand-numbered, lamp-black label.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 60,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_fabricator",
+      "mach_autofab"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "FOUNDRY FAB-2 CIRCUITS\nBOARDS CABLE SENSORS MOTORS RELAYS KEYPADS SCREENS"
+  },
+  {
+    "id": "disc_tech_bp_lamps",
+    "name": "Lamp blueprints",
+    "desc": "Yellow-sleeved floppy of tube and base drawings: grow lamps, work lights and the plain torch.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 35,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_fabricator"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "seller"
+    ],
+    "label": "LUMEN WORKS L-1\nGROW LAMPS WORK LIGHTS TORCHES"
+  },
+  {
+    "id": "disc_tech_bp_cells",
+    "name": "Cell chemistry",
+    "desc": "A company card of electrode ratios and sleeve drawings. The copier refuses it; the cell press does not.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 3,
+    "value": 240,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_cell_press"
+    ],
+    "copyable": false,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "ENERGY DEPT CELL-3\nSMALL STANDARD HEAVY\nCOPY PROHIBITED",
+    "notes": "Licensed on purpose: the cell press is the company's power monopoly. A cracked copy (disc_tech_prog_cracker) breaks it."
+  },
+  {
+    "id": "disc_tech_bp_devices",
+    "name": "Device blueprints",
+    "desc": "Card of assembly drawings for handsets, radios, heaters, fans, clocks, locks and alarms.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 3,
+    "value": 190,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_assembler",
+      "mach_autofab"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "ASSEMBLY A-3 DEVICES\nHANDSET RADIO HEATER FAN CLOCK LOCK ALARM"
+  },
+  {
+    "id": "disc_tech_bp_computers",
+    "name": "Computer blueprints",
+    "desc": "Card of board layouts, chip masks and chassis for terminals, laptops and desk units.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 3,
+    "value": 280,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_assembler",
+      "mach_autofab"
+    ],
+    "copyable": false,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "ASSEMBLY C-3 COMPUTERS\nCHIPS MEMORY MODEMS LAPTOP DESK",
+    "notes": "Licensed: chip masks are the company's. Cracking it is the black-market route to cheap computers."
+  },
+  {
+    "id": "disc_tech_model_gadgets",
+    "name": "Gadget models",
+    "desc": "Card of printable 3D models: shells, cases, key fobs and the odd plastic gadget.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 3,
+    "value": 130,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_printer_3d"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "mail"
+    ],
+    "label": "MODELS G-1\nCASES FOBS GADGETS"
+  },
+  {
+    "id": "disc_tech_bp_automata",
+    "name": "Automata blueprints",
+    "desc": "Heavy card of drone frames and loader arms, stamped CONCERN ONLY in red.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 4,
+    "value": 900,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_4",
+    "machines": [
+      "mach_autofab"
+    ],
+    "copyable": false,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "CONCERN AUTOMATA\nSERVICE DRONE LOADER ARM"
+  },
+  {
+    "id": "disc_tech_blank_floppy",
+    "name": "Blank floppy",
+    "desc": "A 3.5-inch floppy with a white label and nothing on it. Whatever you copy to it needs a terminal to read.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 1,
+    "value": 3,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blank",
+    "media": "floppy",
+    "phase": "phase_1",
+    "machines": [],
+    "copyable": false,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "crate",
+      "seller"
+    ],
+    "label": "BLANK",
+    "notes": "Carried over from the old blank floppy. Copy target for any copyable floppy."
+  },
+  {
+    "id": "disc_tech_blank_card",
+    "name": "Blank card",
+    "desc": "A memory card the size of a stamp, gold contacts and no label. Takes a model or a program.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 2,
+    "value": 14,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blank",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [],
+    "copyable": false,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "crate",
+      "seller"
+    ],
+    "label": "BLANK"
+  },
+  {
+    "id": "disc_tech_data_lore",
+    "name": "Salvaged disc",
+    "desc": "An unlabelled disc with a sticking shutter. Diaries, logs and schedules from somebody else's life.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 1,
+    "value": 14,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "data",
+    "media": "floppy",
+    "phase": "phase_1",
+    "machines": [],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "salvage"
+    ],
+    "data_effects": [
+      {
+        "stat": "rumor_accuracy",
+        "op": "add",
+        "value": 0.05,
+        "text": "Read it: rumours are 5% more often right"
+      },
+      {
+        "stat": "ceiling_mult",
+        "op": "mul",
+        "value": 1.1,
+        "scope": {
+          "tag": "media"
+        },
+        "text": "Collectors pay 10% over for dead people's files"
+      }
+    ],
+    "label": "(NO LABEL)",
+    "notes": "src/discs/unlabelled.md. Sells to collectors as a curiosity; also the mild source of rumours."
+  },
+  {
+    "id": "disc_tech_prog_mail",
+    "name": "Mail client",
+    "desc": "The company's mail disc: orders, attachments and the daily memo. No modem, no mail.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 1,
+    "value": 12,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_1",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_mail"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "company"
+    ],
+    "label": "COMPANY MAIL 1.0\nMAIL.EXE"
+  },
+  {
+    "id": "disc_tech_prog_labels",
+    "name": "Labels disc",
+    "desc": "Prints order slips and shelf labels on the slip printer. Dot-matrix font, three sizes.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 1,
+    "value": 14,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_1",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_labels"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "company"
+    ],
+    "label": "LABELS 1.2\nLABELS.EXE"
+  },
+  {
+    "id": "disc_tech_prog_paint",
+    "name": "Pixel paint",
+    "desc": "An orange shareware disc with a brush and a little sun on a hand-drawn label. Copy me, it says.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 1,
+    "value": 8,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_1",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_paint"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "salvage"
+    ],
+    "label": "PIXEL PAINT 2.1\nSHAREWARE: COPY ME",
+    "notes": "src/discs/paint.md. Exempt from the upgrade route (novelty)."
+  },
+  {
+    "id": "disc_tech_prog_mines",
+    "name": "Mines",
+    "desc": "A grey disc, ten kilobytes of dread. Flag the mines. Do not step on the mines.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 1,
+    "value": 6,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_1",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_mines"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "salvage"
+    ],
+    "label": "MINES 1.0",
+    "notes": "src/discs/mines.md. Exempt from the upgrade route (novelty)."
+  },
+  {
+    "id": "disc_tech_prog_stock",
+    "name": "Stocktake Pro",
+    "desc": "A green disc in a hard case with a hologram sticker. The case says LICENSED SOFTWARE.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 1,
+    "value": 25,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_1",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_stock"
+    ],
+    "copyable": false,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "seller"
+    ],
+    "label": "STOCKTAKE PRO 4\nLICENSED SOFTWARE\nSERIAL 0441-7782-K",
+    "notes": "src/discs/stock.md. It starts only with this disc in drive A:, so the licence is the disc."
+  },
+  {
+    "id": "disc_tech_prog_ledger",
+    "name": "Ledger disc",
+    "desc": "A day-book program: what sold, what moved, what the station did. Reads like a diary of numbers.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 40,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_ledger"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "LEDGER 2.0\nDAY BOOK BY NEED AND EVENT"
+  },
+  {
+    "id": "disc_tech_prog_board",
+    "name": "Price board disc",
+    "desc": "Live need prices and trend arrows, drawn in green on the terminal screen.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 60,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_board"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "BOARD 1.4\nLIVE NEED PRICES"
+  },
+  {
+    "id": "disc_tech_prog_antivirus",
+    "name": "Scrub disc",
+    "desc": "A white-labelled disc with a stamp: CLEAN. Finds what rode in on a copy and strips it.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 50,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_antivirus"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "seller"
+    ],
+    "label": "SCRUB 3.1\nVIRUS FINDER"
+  },
+  {
+    "id": "disc_tech_prog_overclock",
+    "name": "Overclock disc",
+    "desc": "A scorched-edge disc of timing tables. Machines go faster; so do their jams.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 65,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_overclock"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "OVERCLK 0.9\nUSE AT OWN RISK"
+  },
+  {
+    "id": "disc_tech_prog_wholesale",
+    "name": "Wholesale client",
+    "desc": "Account disc for the company trade desk: crates at market price, one account number.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 90,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_wholesale"
+    ],
+    "copyable": false,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "WHOLESALE ACCOUNT\nSERIAL 7701-W"
+  },
+  {
+    "id": "disc_tech_prog_diagnostics",
+    "name": "Diagnostics disc",
+    "desc": "Polls every machine on the field and lists what is jammed, hot or unplugged.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 75,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_diagnostics"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "DIAG 2.2\nALL MACHINES STATUS"
+  },
+  {
+    "id": "disc_tech_prog_dockmaster",
+    "name": "Dock manifest disc",
+    "desc": "Manifest disc issued with the dock gantry: what ships, which box, what each one pays.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 2,
+    "value": 55,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_dockmaster"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "company",
+      "mail",
+      "upgrade"
+    ],
+    "label": "DOCKMASTER 1.1\nMANIFEST AND FEES",
+    "notes": "Sold by an upgrade; also turns up through company and mail."
+  },
+  {
+    "id": "disc_tech_prog_forecast",
+    "name": "Forecast card",
+    "desc": "A licensed card that reads the engineers' bands and the board together. Wants a dongle in the port bay.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 3,
+    "value": 260,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "programs": [
+      "prog_forecast"
+    ],
+    "copyable": false,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "FORECAST 1.0\nLICENSED: DONGLE REQUIRED"
+  },
+  {
+    "id": "disc_tech_prog_automate",
+    "name": "Automation card",
+    "desc": "A card of scripts that load and start machine jobs in the night. Saves a morning of energy.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 3,
+    "value": 420,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "programs": [
+      "prog_automate"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "AUTO 1.0\nSCRIPTS AND SCHEDULES"
+  },
+  {
+    "id": "disc_tech_prog_cracker",
+    "name": "Cracker disc",
+    "desc": "A hand-labelled disc with no brand and a skull drawn in biro. It patches licence checks out of anything.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 3,
+    "value": 40,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_3",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_cracker"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": "software",
+    "found": [
+      "mail"
+    ],
+    "label": "CRACK\nNO REFUNDS",
+    "notes": "Task 10 attaches it to mail. The copy it makes of a licensed disc may carry mod_infected."
+  },
+  {
+    "id": "disc_tech_prog_blackmarket",
+    "name": "Night client",
+    "desc": "Encrypted client for the black-market order board. The label is blank and the plastic is warm.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 3,
+    "value": 90,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_3",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "programs": [
+      "prog_blackmarket"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": "software",
+    "found": [
+      "mail"
+    ],
+    "label": "(NO LABEL)"
+  },
+  {
+    "id": "disc_tech_prog_modelstore",
+    "name": "Model store card",
+    "desc": "Licensed shop client for 3D models: pick one, pay, and it is written to a blank card.",
+    "w": 1,
+    "h": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tier": 3,
+    "value": 190,
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "program",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "programs": [
+      "prog_modelstore"
+    ],
+    "copyable": false,
+    "licensed": true,
+    "contraband": false,
+    "found": [
+      "upgrade"
+    ],
+    "label": "MODELS STORE\nLICENSED"
+  },
+  {
+    "id": "disc_tech_prog_music",
+    "name": "Tracker and chess",
+    "desc": "A scuffed disc of module tunes and a chess board. Somebody scratched a clef into the plastic.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 1,
+    "value": 10,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_1",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_music",
+      "prog_chess"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "salvage",
+      "seller",
+      "upgrade"
+    ],
+    "label": "TRACKER 1.0 + CHESS\nSHAREWARE",
+    "notes": "Sold by an upgrade; also turns up through salvage and seller."
+  },
+  {
+    "id": "disc_tech_prog_utilities",
+    "name": "Utility disc",
+    "desc": "Three small programs on one disc: a defragmenter, a mail cipher and a bench tuner.",
+    "w": 2,
+    "h": 2,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tier": 3,
+    "value": 70,
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "program",
+    "media": "floppy",
+    "phase": "phase_3",
+    "machines": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "programs": [
+      "prog_defrag",
+      "prog_cipher",
+      "prog_tuner"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "salvage",
+      "seller",
+      "upgrade"
+    ],
+    "label": "UTILS 4\nDEFRAG CIPHER TUNER",
+    "notes": "Sold by an upgrade; also turns up through salvage and seller."
+  }
+]

@@ -1,0 +1,2659 @@
+[
+  {
+    "id": "ord_bunker_water",
+    "name": "Water for the row",
+    "kind": "order",
+    "sender": "res_bunker",
+    "deck": "deck_spine",
+    "phase_from": "phase_1",
+    "phase_to": "phase_2",
+    "wants": [
+      {
+        "id": "it_life_water",
+        "qty": 4
+      },
+      {
+        "id": "it_food_ration_bar",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.0,
+    "due_days": 5,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "late": {
+      "pay_mult": 0.8
+    },
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Four jugs and two bars. Pay on delivery, not before."
+  },
+  {
+    "id": "ord_bunker_air_charity",
+    "name": "Last puck on row C",
+    "kind": "charity",
+    "sender": "res_bunker",
+    "deck": "deck_spine",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_life_air_puck",
+        "qty": 2
+      },
+      {
+        "id": "it_life_water_ration",
+        "qty": 2
+      }
+    ],
+    "price_mult": 0.85,
+    "due_days": 6,
+    "boxes": [
+      "box_s"
+    ],
+    "late": {
+      "pay_mult": 0.9
+    },
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "Row C is down to its last puck. Whatever you can spare."
+  },
+  {
+    "id": "ord_bunker_rations",
+    "name": "Weekly rations",
+    "kind": "standing",
+    "sender": "res_bunker",
+    "deck": "deck_spine",
+    "phase_from": "phase_1",
+    "phase_to": "phase_2",
+    "wants": [
+      {
+        "id": "it_food_ration_bar",
+        "qty": 6
+      },
+      {
+        "id": "it_food_paste_tube",
+        "qty": 2
+      }
+    ],
+    "price_mult": 0.95,
+    "due_days": 7,
+    "boxes": [
+      "box_s"
+    ],
+    "late": {
+      "pay_mult": 0.7
+    },
+    "penalty": {
+      "credits": 3
+    },
+    "attachments": [],
+    "recurring_days": 7,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Same as last week. Same as every week."
+  },
+  {
+    "id": "ord_bunker_lamp",
+    "name": "A lamp for the bunk",
+    "kind": "order",
+    "sender": "res_bunker",
+    "deck": "deck_spine",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_tech_lamp",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_cell_s",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.1,
+    "due_days": 6,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.7,
+    "text": "The corridor lights went dim. We would like our own."
+  },
+  {
+    "id": "ord_rush_filters",
+    "name": "Scrubber bank is down",
+    "kind": "rush",
+    "sender": "res_bunker",
+    "deck": "deck_spine",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_mach_air_filter",
+        "qty": 3
+      },
+      {
+        "id": "it_life_air_puck",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.3,
+    "due_days": 3,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "late": {
+      "pay_mult": 0.5
+    },
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.0,
+    "text": "Bank 4 has stopped. Filters, any filters, today.",
+    "notes": "Spawned by the scrubber failure events; weight 0 in the normal draw."
+  },
+  {
+    "id": "ord_scav_tools",
+    "name": "Tools for the ducts",
+    "kind": "order",
+    "sender": "res_scavenger",
+    "deck": "deck_spine",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_fab_knife",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_pliers",
+        "qty": 1
+      },
+      {
+        "id": "it_mach_tape",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.0,
+    "due_days": 5,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "A knife, pliers, tape. Duct work eats all three."
+  },
+  {
+    "id": "ord_scav_cells",
+    "name": "Cells and cable",
+    "kind": "order",
+    "sender": "res_scavenger",
+    "deck": "deck_spine",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_tech_cell_s",
+        "qty": 3
+      },
+      {
+        "id": "it_tech_cable",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.05,
+    "due_days": 5,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Three small cells and cable. I will trade scrap if you prefer."
+  },
+  {
+    "id": "ord_scav_meal",
+    "name": "A hot week",
+    "kind": "charity",
+    "sender": "res_scavenger",
+    "deck": "deck_spine",
+    "phase_from": "phase_1",
+    "phase_to": "phase_2",
+    "wants": [
+      {
+        "id": "it_food_porridge",
+        "qty": 2
+      },
+      {
+        "id": "it_life_water",
+        "qty": 2
+      }
+    ],
+    "price_mult": 0.9,
+    "due_days": 6,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.7,
+    "text": "Bad week in the ducts. Porridge and water, please."
+  },
+  {
+    "id": "ord_hauler_stores",
+    "name": "Tug stores",
+    "kind": "bulk",
+    "sender": "res_hauler",
+    "deck": "deck_dock",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_food_ration_bar",
+        "qty": 8
+      },
+      {
+        "id": "it_food_tin_beans",
+        "qty": 4
+      },
+      {
+        "id": "it_life_water",
+        "qty": 4
+      }
+    ],
+    "price_mult": 1.0,
+    "due_days": 4,
+    "boxes": [
+      "box_l"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Stores for the next run. Eight bars, four tins, four jugs."
+  },
+  {
+    "id": "ord_hauler_cells",
+    "name": "Cells for the tug",
+    "kind": "order",
+    "sender": "res_hauler",
+    "deck": "deck_dock",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_tech_cell_m",
+        "qty": 3
+      },
+      {
+        "id": "it_tech_cell_l",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.1,
+    "due_days": 3,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "late": {
+      "pay_mult": 0.6
+    },
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Charged, and I mean charged. The last batch died at the ice."
+  },
+  {
+    "id": "ord_hauler_crane_repair",
+    "name": "Ore crane repair",
+    "kind": "repair",
+    "sender": "res_hauler",
+    "deck": "deck_dock",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_fab_bearing",
+        "qty": 3
+      },
+      {
+        "id": "it_fab_spare_part",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.2,
+    "due_days": 3,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "Crane two seized. Bearings and a motor before the next tug.",
+    "system": "sys_ore_haul"
+  },
+  {
+    "id": "ord_hauler_ice_cutters",
+    "name": "Ice cutter parts",
+    "kind": "repair",
+    "sender": "res_hauler",
+    "deck": "deck_dock",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_fab_wrench",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_bearing",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.15,
+    "due_days": 3,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "Cutters are dull and the crew is angry. Parts.",
+    "system": "sys_ice_haul"
+  },
+  {
+    "id": "ord_fitter_tools",
+    "name": "Tools for the second shift",
+    "kind": "order",
+    "sender": "res_fitter",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_fab_wrench",
+        "qty": 2
+      },
+      {
+        "id": "it_mach_jam_kit",
+        "qty": 1
+      },
+      {
+        "id": "it_mach_lubricant",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.0,
+    "due_days": 5,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Two wrenches, a jam kit, grease. Foreman signs on delivery."
+  },
+  {
+    "id": "ord_fitter_burn",
+    "name": "Burn kit",
+    "kind": "order",
+    "sender": "res_fitter",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_med_burn_gel",
+        "qty": 2
+      },
+      {
+        "id": "it_med_burn_tab",
+        "qty": 4
+      },
+      {
+        "id": "it_med_bandage",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.05,
+    "due_days": 5,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Splash on the third pour. Gel, tabs, bandage."
+  },
+  {
+    "id": "ord_fitter_foundry_repair",
+    "name": "Mill bearings",
+    "kind": "repair",
+    "sender": "res_fitter",
+    "deck": "deck_works",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_fab_bearing",
+        "qty": 3
+      },
+      {
+        "id": "it_fab_wrench",
+        "qty": 1
+      },
+      {
+        "id": "it_mach_coolant",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.2,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "Mill two runs hot. Bearings and coolant, fast.",
+    "system": "sys_foundry"
+  },
+  {
+    "id": "ord_fitter_filters_back",
+    "name": "Spent water filters",
+    "kind": "order",
+    "sender": "res_fitter",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_mach_water_filter_spent",
+        "qty": 4
+      }
+    ],
+    "price_mult": 1.0,
+    "due_days": 6,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.6,
+    "text": "Four spent filters. The shop rewinds them for the cooling loop."
+  },
+  {
+    "id": "ord_smelter_meds",
+    "name": "Shift meds",
+    "kind": "order",
+    "sender": "res_smelterhand",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_2",
+    "wants": [
+      {
+        "id": "it_med_painkiller",
+        "qty": 4
+      },
+      {
+        "id": "it_med_antiseptic",
+        "qty": 1
+      },
+      {
+        "id": "it_med_burn_tab",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.0,
+    "due_days": 5,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Pills for the hands and something for the burns."
+  },
+  {
+    "id": "ord_smelter_stew",
+    "name": "Hot meals",
+    "kind": "order",
+    "sender": "res_smelterhand",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_food_stew",
+        "qty": 3
+      },
+      {
+        "id": "it_food_noodles",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.0,
+    "due_days": 5,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Hot stew and noodles. Crew has been on cold paste."
+  },
+  {
+    "id": "ord_smelter_yeast",
+    "name": "Yeast and sugar",
+    "kind": "order",
+    "sender": "res_smelterhand",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_food_yeast",
+        "qty": 6
+      },
+      {
+        "id": "it_food_sugar",
+        "qty": 4
+      }
+    ],
+    "price_mult": 1.0,
+    "due_days": 5,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "Yeast, sugar. For the bread. Honestly.",
+    "notes": "Also what a still wants; the buyer says bread."
+  },
+  {
+    "id": "ord_tech_circuits",
+    "name": "Circuit stock",
+    "kind": "order",
+    "sender": "res_technician",
+    "deck": "deck_mid",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 3
+      },
+      {
+        "id": "it_tech_sensor",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_switch",
+        "qty": 4
+      }
+    ],
+    "price_mult": 1.05,
+    "due_days": 3,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Anything that works. Test them first."
+  },
+  {
+    "id": "ord_tech_manuals",
+    "name": "Manuals and a handbook",
+    "kind": "order",
+    "sender": "res_technician",
+    "deck": "deck_mid",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_mach_manual",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_handbook",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.1,
+    "due_days": 3,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Two manuals and the handbook. Mine are in pieces."
+  },
+  {
+    "id": "ord_tech_floppies",
+    "name": "Blank floppies",
+    "kind": "order",
+    "sender": "res_technician",
+    "deck": "deck_mid",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "disc_tech_blank_floppy",
+        "qty": 3
+      }
+    ],
+    "price_mult": 1.1,
+    "due_days": 4,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Blank floppies, three. Not the ones with the bad sector."
+  },
+  {
+    "id": "ord_tech_gadget_models",
+    "name": "Device models",
+    "kind": "order",
+    "sender": "res_technician",
+    "deck": "deck_mid",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_tech_handset",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_alarm",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.3,
+    "due_days": 5,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [
+      "disc_tech_model_gadgets"
+    ],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "Build to the attached model. Samples first, then we talk volume."
+  },
+  {
+    "id": "ord_tech_algae_repair",
+    "name": "Algae tanks",
+    "kind": "repair",
+    "sender": "res_technician",
+    "deck": "deck_mid",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_life_nutrient",
+        "qty": 3
+      },
+      {
+        "id": "it_life_algae",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_sensor",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.15,
+    "due_days": 3,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "Tank two is browning. Nutrient, starter, a fresh sensor.",
+    "system": "sys_algae_lungs"
+  },
+  {
+    "id": "ord_orderly_pills",
+    "name": "Ward stock",
+    "kind": "order",
+    "sender": "res_orderly",
+    "deck": "deck_mid",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_med_painkiller",
+        "qty": 6
+      },
+      {
+        "id": "it_med_antibiotic",
+        "qty": 3
+      },
+      {
+        "id": "it_med_sleeping_pill",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.0,
+    "due_days": 3,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Standard ward restock. Count them twice."
+  },
+  {
+    "id": "ord_orderly_wound",
+    "name": "Wound table",
+    "kind": "order",
+    "sender": "res_orderly",
+    "deck": "deck_mid",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_med_bandage",
+        "qty": 4
+      },
+      {
+        "id": "it_med_antiseptic",
+        "qty": 2
+      },
+      {
+        "id": "it_med_gauze",
+        "qty": 6
+      },
+      {
+        "id": "it_med_suture_kit",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.0,
+    "due_days": 3,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Dressing, antiseptic, sutures. A bad shift."
+  },
+  {
+    "id": "ord_orderly_ward",
+    "name": "Isolation ward",
+    "kind": "order",
+    "sender": "res_orderly",
+    "deck": "deck_mid",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_med_pack_ward",
+        "qty": 1
+      },
+      {
+        "id": "it_med_fb_antiviral",
+        "qty": 2
+      },
+      {
+        "id": "it_med_first_aid_kit",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.15,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Ward packs and antivirals for the isolation room."
+  },
+  {
+    "id": "ord_eng_cells",
+    "name": "Cells for the crew",
+    "kind": "order",
+    "sender": "res_engineer",
+    "deck": "deck_core",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_tech_cell_m",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_cell_s",
+        "qty": 4
+      }
+    ],
+    "price_mult": 1.15,
+    "due_days": 6,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Cells, charged. Core crew burns them in a night."
+  },
+  {
+    "id": "ord_eng_reactor_repair",
+    "name": "Reactor spares",
+    "kind": "repair",
+    "sender": "res_engineer",
+    "deck": "deck_core",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_fab_spare_part",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_valve",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_circuit",
+        "qty": 2
+      },
+      {
+        "id": "it_mach_coolant",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.25,
+    "due_days": 6,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "late": {
+      "pay_mult": 0.5
+    },
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "Plant needs spares before the next shift. Do not be late.",
+    "system": "sys_reactor"
+  },
+  {
+    "id": "ord_eng_chips",
+    "name": "Control chips",
+    "kind": "order",
+    "sender": "res_engineer",
+    "deck": "deck_core",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_tech_chip",
+        "qty": 4
+      },
+      {
+        "id": "it_tech_memory_module",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.3,
+    "due_days": 8,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Chips and one memory module. Do not drop them."
+  },
+  {
+    "id": "ord_eng_night_shift",
+    "name": "Night shift",
+    "kind": "order",
+    "sender": "res_engineer",
+    "deck": "deck_core",
+    "phase_from": "phase_1",
+    "phase_to": "phase_2",
+    "wants": [
+      {
+        "id": "it_med_energy_tab",
+        "qty": 6
+      },
+      {
+        "id": "it_food_stew",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_torch",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.1,
+    "due_days": 5,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Odd hours. Tabs, stew, a torch."
+  },
+  {
+    "id": "ord_eng_coolant",
+    "name": "Coolant, weekly",
+    "kind": "standing",
+    "sender": "res_engineer",
+    "deck": "deck_core",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_mach_coolant",
+        "qty": 4
+      },
+      {
+        "id": "it_mach_lubricant",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.15,
+    "due_days": 6,
+    "boxes": [
+      "box_s"
+    ],
+    "penalty": {
+      "credits": 20
+    },
+    "attachments": [],
+    "recurring_days": 7,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Same as last week. The plant eats coolant."
+  },
+  {
+    "id": "ord_eng_antirad",
+    "name": "Antirad for the crew",
+    "kind": "order",
+    "sender": "res_engineer",
+    "deck": "deck_core",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_med_antirad",
+        "qty": 6
+      }
+    ],
+    "price_mult": 1.25,
+    "due_days": 6,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Antirad tabs, six. Dosimeters ticked again."
+  },
+  {
+    "id": "ord_clerk_slips",
+    "name": "Form slips",
+    "kind": "bulk",
+    "sender": "res_clerk",
+    "deck": "deck_hub",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_tech_slip",
+        "qty": 20
+      },
+      {
+        "id": "it_mach_label_roll",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.1,
+    "due_days": 3,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Twenty slips and two label rolls. The forms never end."
+  },
+  {
+    "id": "ord_clerk_paper",
+    "name": "Paper and ledgers",
+    "kind": "order",
+    "sender": "res_clerk",
+    "deck": "deck_hub",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_lux_paper",
+        "qty": 3
+      },
+      {
+        "id": "it_fit_ledger_book",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_notice",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.15,
+    "due_days": 3,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Paper, ledgers, a notice board sheet. Company stock."
+  },
+  {
+    "id": "ord_clerk_comfort",
+    "name": "Office comfort",
+    "kind": "order",
+    "sender": "res_clerk",
+    "deck": "deck_hub",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_lux_cushion",
+        "qty": 2
+      },
+      {
+        "id": "it_lux_blanket",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_lamp",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.2,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "The office is cold. Cushions, blanket, lamps."
+  },
+  {
+    "id": "ord_clerk_store_repair",
+    "name": "Store shelving",
+    "kind": "repair",
+    "sender": "res_clerk",
+    "deck": "deck_hub",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_tech_screen",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_circuit",
+        "qty": 2
+      },
+      {
+        "id": "it_lux_paper",
+        "qty": 4
+      },
+      {
+        "id": "it_fab_housing",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.25,
+    "due_days": 3,
+    "boxes": [
+      "box_l"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "The store terminals are down. Screen, circuits, housing.",
+    "system": "sys_company_store"
+  },
+  {
+    "id": "ord_house_wine",
+    "name": "Wine for tonight",
+    "kind": "rush",
+    "sender": "res_household",
+    "deck": "deck_ring",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_lux_wine",
+        "qty": 2
+      },
+      {
+        "id": "it_lux_spirit",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.8,
+    "due_days": 3,
+    "boxes": [
+      "box_s"
+    ],
+    "late": {
+      "pay_mult": 0.4
+    },
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Guests tonight. Wine and a bottle of the good spirit."
+  },
+  {
+    "id": "ord_house_fresh",
+    "name": "Something fresh",
+    "kind": "order",
+    "sender": "res_household",
+    "deck": "deck_ring",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_food_apple",
+        "qty": 2
+      },
+      {
+        "id": "it_food_herbs",
+        "qty": 2
+      },
+      {
+        "id": "it_food_tomatoes",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.5,
+    "due_days": 5,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Real apples, herbs, tomatoes. Not vat-grown, please."
+  },
+  {
+    "id": "ord_house_solar_repair",
+    "name": "Sail panels",
+    "kind": "repair",
+    "sender": "res_household",
+    "deck": "deck_ring",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_tech_sensor",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_circuit",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.6,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "The sail panel is cracked. We would like the sun back.",
+    "system": "sys_solar_vanes"
+  },
+  {
+    "id": "ord_house_dinner",
+    "name": "The ring dinner",
+    "kind": "order",
+    "sender": "res_household",
+    "deck": "deck_ring",
+    "phase_from": "phase_4",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_food_ring_dinner",
+        "qty": 2
+      },
+      {
+        "id": "it_lux_wine",
+        "qty": 2
+      },
+      {
+        "id": "it_lux_scent",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.9,
+    "due_days": 6,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "A proper table for six. Wine and a scent for the room."
+  },
+  {
+    "id": "ord_collector_books",
+    "name": "Old paper",
+    "kind": "order",
+    "sender": "res_collector",
+    "deck": "deck_ring",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_lux_book",
+        "qty": 2
+      },
+      {
+        "id": "it_lux_photograph",
+        "qty": 1
+      },
+      {
+        "id": "it_lux_locket",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.7,
+    "due_days": 6,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Books, a photograph, a locket. Provenance matters."
+  },
+  {
+    "id": "ord_collector_fire",
+    "name": "A real flame",
+    "kind": "black",
+    "sender": "res_collector",
+    "deck": "deck_ring",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_lux_candle",
+        "qty": 2
+      },
+      {
+        "id": "it_lux_matchbox",
+        "qty": 1
+      },
+      {
+        "id": "it_lux_zippo",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.9,
+    "due_days": 6,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": "fire",
+    "weight": 0.8,
+    "text": "I am told you can find candles. I did not ask."
+  },
+  {
+    "id": "ord_collector_art",
+    "name": "Model for a print",
+    "kind": "order",
+    "sender": "res_collector",
+    "deck": "deck_ring",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_lux_print",
+        "qty": 1
+      },
+      {
+        "id": "it_lux_sculpture",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.8,
+    "due_days": 7,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [
+      "disc_lux_model_art"
+    ],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "A print and a small sculpture. Model attached, if you want a template."
+  },
+  {
+    "id": "ord_collector_watch",
+    "name": "A watch and a box",
+    "kind": "order",
+    "sender": "res_collector",
+    "deck": "deck_ring",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_lux_watch",
+        "qty": 1
+      },
+      {
+        "id": "it_lux_music_box",
+        "qty": 1
+      }
+    ],
+    "price_mult": 2.0,
+    "due_days": 7,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.6,
+    "text": "A watch that ticks and a box that plays. Price is no object."
+  },
+  {
+    "id": "ord_fence_moonshine",
+    "name": "Back-room still",
+    "kind": "black",
+    "sender": "res_fence",
+    "deck": "deck_dock",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_lux_moonshine",
+        "qty": 4
+      }
+    ],
+    "price_mult": 1.4,
+    "due_days": 4,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": "unlicensed",
+    "weight": 1.0,
+    "text": "Four bottles of the clear stuff. Do not label it."
+  },
+  {
+    "id": "ord_fence_dream",
+    "name": "Dream tabs",
+    "kind": "black",
+    "sender": "res_fence",
+    "deck": "deck_dock",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_med_dream_tab",
+        "qty": 6
+      },
+      {
+        "id": "it_med_fb_dream_tab",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.5,
+    "due_days": 4,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": "drug",
+    "weight": 1.0,
+    "text": "Six loose and two cards. No questions."
+  },
+  {
+    "id": "ord_fence_stolen",
+    "name": "Quiet goods",
+    "kind": "black",
+    "sender": "res_fence",
+    "deck": "deck_dock",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_fab_bar_noble",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_dongle",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.6,
+    "due_days": 5,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": "stolen",
+    "weight": 0.7,
+    "text": "A noble bar and a dongle. Do not ask where they went."
+  },
+  {
+    "id": "ord_fence_lighters",
+    "name": "Lighters",
+    "kind": "black",
+    "sender": "res_fence",
+    "deck": "deck_dock",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_lux_lighter",
+        "qty": 3
+      },
+      {
+        "id": "it_lux_lighter_fluid",
+        "qty": 2
+      },
+      {
+        "id": "it_lux_striker",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.5,
+    "due_days": 4,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": "fire",
+    "weight": 1.0,
+    "text": "Lighters, fluid, a striker. Fire sells."
+  },
+  {
+    "id": "ord_tithe_p1",
+    "name": "Company tithe, phase 1",
+    "kind": "tithe",
+    "sender": "org_company",
+    "deck": "deck_hub",
+    "phase_from": "phase_1",
+    "phase_to": "phase_1",
+    "wants": [
+      {
+        "need": "need_food",
+        "value": 40
+      }
+    ],
+    "price_mult": 0.25,
+    "due_days": 7,
+    "boxes": [
+      "box_l"
+    ],
+    "late": {
+      "pay_mult": 0.5
+    },
+    "penalty": {
+      "credits": 20,
+      "effects": [
+        {
+          "stat": "inspection_chance",
+          "op": "add",
+          "value": 0.1,
+          "text": "Inspection chance +10%"
+        }
+      ]
+    },
+    "attachments": [],
+    "recurring_days": 7,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Tithe for the week: forty credits of rations to the company store. Late tithe is docked from wages.",
+    "notes": "One tithe template per phase; the want is a need value, book rate 0.25 of market. Penalty is soft by default (STATION 7)."
+  },
+  {
+    "id": "ord_tithe_p2",
+    "name": "Company tithe, phase 2",
+    "kind": "tithe",
+    "sender": "org_company",
+    "deck": "deck_hub",
+    "phase_from": "phase_2",
+    "phase_to": "phase_2",
+    "wants": [
+      {
+        "need": "need_parts",
+        "value": 300
+      }
+    ],
+    "price_mult": 0.25,
+    "due_days": 7,
+    "boxes": [
+      "box_l"
+    ],
+    "late": {
+      "pay_mult": 0.5
+    },
+    "penalty": {
+      "credits": 150,
+      "effects": [
+        {
+          "stat": "inspection_chance",
+          "op": "add",
+          "value": 0.1,
+          "text": "Inspection chance +10%"
+        }
+      ]
+    },
+    "attachments": [],
+    "recurring_days": 7,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Tithe for the week: three hundred credits of spares to the company yard. Failure to deliver is noted.",
+    "notes": "One tithe template per phase; the want is a need value, book rate 0.25 of market. Penalty is soft by default (STATION 7)."
+  },
+  {
+    "id": "ord_tithe_p3",
+    "name": "Company tithe, phase 3",
+    "kind": "tithe",
+    "sender": "org_company",
+    "deck": "deck_hub",
+    "phase_from": "phase_3",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "need": "need_power",
+        "value": 3000
+      }
+    ],
+    "price_mult": 0.25,
+    "due_days": 7,
+    "boxes": [
+      "box_l"
+    ],
+    "late": {
+      "pay_mult": 0.5
+    },
+    "penalty": {
+      "credits": 1500,
+      "effects": [
+        {
+          "stat": "inspection_chance",
+          "op": "add",
+          "value": 0.1,
+          "text": "Inspection chance +10%"
+        }
+      ]
+    },
+    "attachments": [],
+    "recurring_days": 7,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Tithe for the week: three thousand credits of charged cells to the plant. Penalty applies after day seven.",
+    "notes": "One tithe template per phase; the want is a need value, book rate 0.25 of market. Penalty is soft by default (STATION 7)."
+  },
+  {
+    "id": "ord_tithe_p4",
+    "name": "Company tithe, phase 4",
+    "kind": "tithe",
+    "sender": "org_company",
+    "deck": "deck_hub",
+    "phase_from": "phase_4",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "need": "need_comfort",
+        "value": 30000
+      }
+    ],
+    "price_mult": 0.25,
+    "due_days": 7,
+    "boxes": [
+      "box_l"
+    ],
+    "late": {
+      "pay_mult": 0.5
+    },
+    "penalty": {
+      "credits": 15000,
+      "effects": [
+        {
+          "stat": "inspection_chance",
+          "op": "add",
+          "value": 0.1,
+          "text": "Inspection chance +10%"
+        }
+      ]
+    },
+    "attachments": [],
+    "recurring_days": 7,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Tithe for the week: thirty thousand credits of company-grade goods. You are part of the supply now.",
+    "notes": "One tithe template per phase; the want is a need value, book rate 0.25 of market. Penalty is soft by default (STATION 7)."
+  },
+  {
+    "id": "ord_company_rent_memo",
+    "name": "Rent due",
+    "kind": "memo",
+    "sender": "org_company",
+    "deck": "deck_hub",
+    "phase_from": "phase_1",
+    "phase_to": "phase_2",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Rent is due on the stall. Five a day. Late rent is added to the tithe.",
+    "notes": "Memo, no wants. Phase 1 rent is 5 a day."
+  },
+  {
+    "id": "ord_company_rent_notice",
+    "name": "New rent schedule",
+    "kind": "memo",
+    "sender": "org_company",
+    "deck": "deck_hub",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Your stall rent is revised in line with turnover. See the schedule at the store."
+  },
+  {
+    "id": "ord_company_wage_notice",
+    "name": "Wage notice",
+    "kind": "memo",
+    "sender": "org_company",
+    "deck": "deck_hub",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Wage scale adjustments take effect next cycle. Complaints to the clerk."
+  },
+  {
+    "id": "ord_company_dockmaster",
+    "name": "Dock records",
+    "kind": "memo",
+    "sender": "org_company",
+    "deck": "deck_hub",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [
+      "disc_tech_prog_dockmaster"
+    ],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Dock records are now kept by disc. A copy is attached for authorised stalls."
+  },
+  {
+    "id": "ord_company_labels",
+    "name": "New label standard",
+    "kind": "memo",
+    "sender": "org_company",
+    "deck": "deck_hub",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [
+      "disc_mach_labels_company"
+    ],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "All goods for company stores must carry the company label. Template attached."
+  },
+  {
+    "id": "ord_company_contract",
+    "name": "Company contract",
+    "kind": "order",
+    "sender": "org_company",
+    "deck": "deck_hub",
+    "phase_from": "phase_4",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_fab_hull_plate",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_beam",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_loader_arm",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.2,
+    "due_days": 10,
+    "boxes": [
+      "box_l"
+    ],
+    "attachments": [
+      "disc_mach_bp_machines_3"
+    ],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.7,
+    "text": "A hull repair contract. Attached are the machine plans for the job."
+  },
+  {
+    "id": "ord_clinic_staples",
+    "name": "Clinic staples",
+    "kind": "bulk",
+    "sender": "org_clinic",
+    "deck": "deck_mid",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_med_painkiller",
+        "qty": 10
+      },
+      {
+        "id": "it_med_bandage",
+        "qty": 6
+      },
+      {
+        "id": "it_med_antiseptic",
+        "qty": 3
+      },
+      {
+        "id": "it_med_gauze",
+        "qty": 8
+      }
+    ],
+    "price_mult": 0.95,
+    "due_days": 4,
+    "boxes": [
+      "box_l"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Quarterly staples. Please send in one box."
+  },
+  {
+    "id": "ord_clinic_charity",
+    "name": "Free ward",
+    "kind": "charity",
+    "sender": "org_clinic",
+    "deck": "deck_mid",
+    "phase_from": "phase_1",
+    "phase_to": "phase_2",
+    "wants": [
+      {
+        "id": "it_med_saline_drip",
+        "qty": 2
+      },
+      {
+        "id": "it_med_rehydration_mix",
+        "qty": 4
+      },
+      {
+        "id": "it_med_antibiotic",
+        "qty": 3
+      }
+    ],
+    "price_mult": 0.85,
+    "due_days": 3,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "The free ward has nothing left. Whatever you can send."
+  },
+  {
+    "id": "ord_clinic_standing",
+    "name": "Weekly dressings",
+    "kind": "standing",
+    "sender": "org_clinic",
+    "deck": "deck_mid",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_med_bandage",
+        "qty": 4
+      },
+      {
+        "id": "it_med_antiseptic",
+        "qty": 2
+      },
+      {
+        "id": "it_med_gauze",
+        "qty": 6
+      }
+    ],
+    "price_mult": 1.0,
+    "due_days": 7,
+    "boxes": [
+      "box_m"
+    ],
+    "penalty": {
+      "credits": 5
+    },
+    "attachments": [],
+    "recurring_days": 7,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Weekly dressings, same as before."
+  },
+  {
+    "id": "ord_clinic_antibiotics",
+    "name": "Antibiotic trial",
+    "kind": "order",
+    "sender": "org_clinic",
+    "deck": "deck_mid",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_med_antibiotic",
+        "qty": 8
+      },
+      {
+        "id": "it_med_fb_antibiotic",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.1,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [
+      "disc_med_antibiotics"
+    ],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "A new culture protocol. Disc attached."
+  },
+  {
+    "id": "ord_clinic_regen",
+    "name": "Regrowth cases",
+    "kind": "order",
+    "sender": "org_clinic",
+    "deck": "deck_mid",
+    "phase_from": "phase_4",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_med_regrowth_gel",
+        "qty": 2
+      },
+      {
+        "id": "it_med_gene_patch",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.2,
+    "due_days": 6,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [
+      "disc_med_regenerative"
+    ],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.7,
+    "text": "Two regrowth cases on the ward. Protocol disc attached."
+  },
+  {
+    "id": "ord_clinic_epidemic",
+    "name": "Fever ward rush",
+    "kind": "rush",
+    "sender": "org_clinic",
+    "deck": "deck_mid",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_med_antibiotic",
+        "qty": 4
+      },
+      {
+        "id": "it_med_saline_drip",
+        "qty": 2
+      },
+      {
+        "id": "it_med_rehydration_mix",
+        "qty": 4
+      }
+    ],
+    "price_mult": 1.35,
+    "due_days": 3,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "late": {
+      "pay_mult": 0.5
+    },
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.0,
+    "text": "Fever has filled the ward. Anything with a label, today.",
+    "notes": "Spawned by epidemic events."
+  },
+  {
+    "id": "ord_union_bread",
+    "name": "Hall bread",
+    "kind": "bulk",
+    "sender": "org_union",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_food_bread",
+        "qty": 4
+      },
+      {
+        "id": "it_food_porridge",
+        "qty": 6
+      },
+      {
+        "id": "it_food_yeast",
+        "qty": 8
+      }
+    ],
+    "price_mult": 0.95,
+    "due_days": 5,
+    "boxes": [
+      "box_l"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Bread, porridge and yeast for the halls. Union rates."
+  },
+  {
+    "id": "ord_union_strike_notice",
+    "name": "Strike notice",
+    "kind": "memo",
+    "sender": "org_union",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Works hands down tools at the next shift. Parts will be slow."
+  },
+  {
+    "id": "ord_union_filters_back",
+    "name": "Filter returns",
+    "kind": "bulk",
+    "sender": "org_union",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_mach_water_filter_spent",
+        "qty": 6
+      },
+      {
+        "id": "it_mach_air_filter_spent",
+        "qty": 6
+      },
+      {
+        "id": "it_life_puck_spent",
+        "qty": 6
+      }
+    ],
+    "price_mult": 0.95,
+    "due_days": 6,
+    "boxes": [
+      "box_l"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "Spent filters and pucks, back for the recycler. Weights agreed."
+  },
+  {
+    "id": "ord_union_manuals",
+    "name": "Hall manuals",
+    "kind": "order",
+    "sender": "org_union",
+    "deck": "deck_works",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_mach_manual",
+        "qty": 3
+      }
+    ],
+    "price_mult": 1.05,
+    "due_days": 5,
+    "boxes": [
+      "box_s",
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.7,
+    "text": "Three machine manuals. The new hires cannot read the old ones."
+  },
+  {
+    "id": "ord_union_vat_repair",
+    "name": "Vat valves",
+    "kind": "repair",
+    "sender": "org_union",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_fab_valve",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_pipe",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_motor",
+        "qty": 1
+      },
+      {
+        "id": "it_mach_lubricant",
+        "qty": 3
+      }
+    ],
+    "price_mult": 1.1,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "Vat room three is leaking. Valves, pipe, a motor.",
+    "system": "sys_vat_halls"
+  },
+  {
+    "id": "ord_council_festival",
+    "name": "Founders feast",
+    "kind": "bulk",
+    "sender": "org_ring_council",
+    "deck": "deck_ring",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_lux_wine",
+        "qty": 6
+      },
+      {
+        "id": "it_lux_spirit",
+        "qty": 3
+      }
+    ],
+    "price_mult": 1.7,
+    "due_days": 6,
+    "boxes": [
+      "box_l"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Wine and spirit for the founders feast. Delivered, chilled."
+  },
+  {
+    "id": "ord_council_complaint",
+    "name": "A complaint",
+    "kind": "memo",
+    "sender": "org_ring_council",
+    "deck": "deck_ring",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "The council notes with regret that deliveries to the ring are late."
+  },
+  {
+    "id": "ord_council_gifts",
+    "name": "Gifts of state",
+    "kind": "order",
+    "sender": "org_ring_council",
+    "deck": "deck_ring",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_lux_signet",
+        "qty": 2
+      },
+      {
+        "id": "it_lux_chain",
+        "qty": 1
+      },
+      {
+        "id": "it_lux_ornament",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.8,
+    "due_days": 7,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Gifts for the visiting board. Real metal only."
+  },
+  {
+    "id": "ord_council_farm_repair",
+    "name": "Farm glass",
+    "kind": "repair",
+    "sender": "org_ring_council",
+    "deck": "deck_ring",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_tech_lamp",
+        "qty": 3
+      },
+      {
+        "id": "it_life_nutrient",
+        "qty": 4
+      },
+      {
+        "id": "it_fab_glass_pane",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_valve",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.6,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "A pane has cracked over bed six. Lamps and glass, please.",
+    "system": "sys_ring_farms"
+  },
+  {
+    "id": "ord_carrier_pickup",
+    "name": "Pickup notice",
+    "kind": "memo",
+    "sender": "org_carrier",
+    "deck": "deck_dock",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Next general pickup is posted. Sealed boxes in the dock by then."
+  },
+  {
+    "id": "ord_carrier_tier_letter",
+    "name": "Account letter",
+    "kind": "memo",
+    "sender": "org_carrier",
+    "deck": "deck_dock",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Your account has reached a new tier. Terms attached, effective now."
+  },
+  {
+    "id": "ord_carrier_boxes",
+    "name": "Packing stock",
+    "kind": "order",
+    "sender": "org_carrier",
+    "deck": "deck_dock",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_fab_crate",
+        "qty": 2
+      },
+      {
+        "id": "it_mach_padding",
+        "qty": 6
+      },
+      {
+        "id": "it_mach_tape",
+        "qty": 4
+      }
+    ],
+    "price_mult": 1.1,
+    "due_days": 3,
+    "boxes": [
+      "box_l"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Crates, padding, tape. We run short every week."
+  },
+  {
+    "id": "ord_black_fire",
+    "name": "Fire plans",
+    "kind": "black",
+    "sender": "org_black_market",
+    "deck": "deck_dock",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_lux_candle",
+        "qty": 3
+      },
+      {
+        "id": "it_lux_match",
+        "qty": 6
+      }
+    ],
+    "price_mult": 1.5,
+    "due_days": 4,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [
+      "disc_lux_bp_fire"
+    ],
+    "recurring_days": null,
+    "contraband": "fire",
+    "weight": 0.8,
+    "text": "Candles and matches. Plans for a better flame enclosed."
+  },
+  {
+    "id": "ord_black_dream",
+    "name": "Narcotics notes",
+    "kind": "black",
+    "sender": "org_black_market",
+    "deck": "deck_dock",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_med_dream_tab",
+        "qty": 10
+      },
+      {
+        "id": "it_med_blue_ampoule",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.6,
+    "due_days": 5,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [
+      "disc_med_narcotics"
+    ],
+    "recurring_days": null,
+    "contraband": "drug",
+    "weight": 0.8,
+    "text": "Tabs and ampoules. Notes on the process enclosed."
+  },
+  {
+    "id": "ord_black_crack",
+    "name": "Cracked tools",
+    "kind": "black",
+    "sender": "org_black_market",
+    "deck": "deck_dock",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "disc_tech_blank_card",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.5,
+    "due_days": 4,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [
+      "disc_tech_prog_cracker"
+    ],
+    "recurring_days": null,
+    "contraband": "software",
+    "weight": 0.7,
+    "text": "Two blank cards. A tool is enclosed. Use at your own risk."
+  },
+  {
+    "id": "ord_black_market_prog",
+    "name": "Black exchange",
+    "kind": "black",
+    "sender": "org_black_market",
+    "deck": "deck_dock",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_tech_memory_module",
+        "qty": 1
+      }
+    ],
+    "price_mult": 1.5,
+    "due_days": 5,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [
+      "disc_tech_prog_blackmarket"
+    ],
+    "recurring_days": null,
+    "contraband": "software",
+    "weight": 0.7,
+    "text": "A memory module. The exchange program is enclosed."
+  },
+  {
+    "id": "ord_black_spirits",
+    "name": "Back-room stock",
+    "kind": "black",
+    "sender": "org_black_market",
+    "deck": "deck_dock",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_lux_moonshine",
+        "qty": 6
+      }
+    ],
+    "price_mult": 1.45,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": "unlicensed",
+    "weight": 1.0,
+    "text": "Six bottles. No labels, no names."
+  },
+  {
+    "id": "ord_spam_free_wine",
+    "name": "FREE WINE inside",
+    "kind": "spam",
+    "sender": "org_black_market",
+    "deck": "deck_mid",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [
+      "disc_tech_blank_floppy"
+    ],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.9,
+    "text": "Free wine, free music, free everything. Open the disc.",
+    "notes": "Spam: the attached disc carries mod_infected."
+  },
+  {
+    "id": "ord_spam_dock_offer",
+    "name": "Dock offer",
+    "kind": "spam",
+    "sender": "org_black_market",
+    "deck": "deck_mid",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [
+      "disc_tech_prog_music"
+    ],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 0.8,
+    "text": "Dock job, no questions. The disc has the details.",
+    "notes": "Spam: the attached disc carries mod_infected."
+  },
+  {
+    "id": "ord_security_notice",
+    "name": "Inspection notice",
+    "kind": "memo",
+    "sender": "org_security",
+    "deck": "deck_hub",
+    "phase_from": "phase_1",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "An inspection of stalls on the mid decks is scheduled. Declare nothing, hide nothing."
+  },
+  {
+    "id": "ord_security_seizure",
+    "name": "Seizure order",
+    "kind": "memo",
+    "sender": "org_security",
+    "deck": "deck_hub",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [],
+    "price_mult": 1.0,
+    "due_days": 1,
+    "boxes": [],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Items of fire class are subject to seizure. Fines apply."
+  },
+  {
+    "id": "ord_security_requisition",
+    "name": "Security stores",
+    "kind": "order",
+    "sender": "org_security",
+    "deck": "deck_hub",
+    "phase_from": "phase_2",
+    "phase_to": "phase_4",
+    "wants": [
+      {
+        "id": "it_tech_alarm",
+        "qty": 2
+      },
+      {
+        "id": "it_tech_door_lock",
+        "qty": 1
+      },
+      {
+        "id": "it_tech_torch",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.15,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 1.0,
+    "text": "Alarms, a lock, torches. Invoice the company."
+  }
+]

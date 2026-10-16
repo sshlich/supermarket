@@ -1,0 +1,2926 @@
+[
+  {
+    "id": "upg_mach_bench",
+    "name": "Workbench crate",
+    "desc": "Crated on the outside counter. Repair, refill, bundle, refurbish. ECONOMY.md's workbench.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 90
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_bench"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_smelter",
+    "name": "Smelter crate",
+    "desc": "Crated on the outside counter. The old furnace on cells: two ore into one bar, slag out.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 40
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_smelter"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_recycler",
+    "name": "Recycler crate",
+    "desc": "Any item into its materials as unit items; 10% to sludge. Generic rule, no written recipes.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 60
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_recycler"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_crusher",
+    "name": "Crusher crate",
+    "desc": "Breaks mixed scrap, e-waste and ice into sorted unit items, better than the recycler for raw lots.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 120
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_crusher"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_purifier",
+    "name": "Purifier crate",
+    "desc": "Crated on the outside counter. Greywater or ice into clean water; a filter wears.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 80
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_purifier"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_charger",
+    "name": "Charger crate",
+    "desc": "Crated on the outside counter. Refills spent cells from station power; billed in credits at the power price.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 30
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_charger"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_hydro_tray",
+    "name": "Hydro tray crate",
+    "desc": "Crated on the outside counter. Seed, water, nutrient and a lamp; grows over nights.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 70
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_hydro_tray"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_terminal",
+    "name": "Wired terminal crate",
+    "desc": "Crated on the outside counter. Runs programs from discs; mail, orders, remote for machines.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 150
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_terminal"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_modem",
+    "name": "Modem crate",
+    "desc": "Crated on the outside counter. Plugs into the terminal: mail, orders, boards. No modem, no mail.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 45
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_modem"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_printer_s",
+    "name": "Slip printer crate",
+    "desc": "Crated on the outside counter. Small print surface: order slips, labels, receipts.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 55
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_printer_s"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_sealer",
+    "name": "Box sealer crate",
+    "desc": "Crated on the outside counter. Seals a packed box (mod_sealed). A sealed box opens only with a knife.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 60
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_sealer"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_scanner",
+    "name": "Scanner crate",
+    "desc": "Reveals hidden modifiers (virus, counterfeit), composition and contraband flags.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 140
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_scanner"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_radio",
+    "name": "Radio crate",
+    "desc": "Crated on the outside counter. Engineers' chatter: rumors earlier and likelier right. Effects only.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 100
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "mach_radio"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_digester",
+    "name": "Digester crate",
+    "desc": "Crated on the outside counter. Sludge into biomass, salts, gas and water over nights.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 600
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_digester"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_vat",
+    "name": "Vat crate",
+    "desc": "Crated on the outside counter. Biomass paste into rations, salami, cheese, bread. Recipe disc required.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 1200
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_vat"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_fabricator",
+    "name": "Fabricator crate",
+    "desc": "Crated on the outside counter. Bars and polymer into parts, tools, filters, housings. Blueprint disc required.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 2200
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_fabricator"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_extruder",
+    "name": "Extruder crate",
+    "desc": "Crated on the outside counter. Polymer flake into sheet, tube and film.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 800
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_extruder"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_kiln",
+    "name": "Kiln crate",
+    "desc": "Crated on the outside counter. Grit and slag into glass, vials, ceramics.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 900
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_kiln"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_electrolyser",
+    "name": "Electrolyser crate",
+    "desc": "Crated on the outside counter. Water into oxygen and hydrogen. Drinks cells.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 1100
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_electrolyser"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_scrubber",
+    "name": "Scrubber crate",
+    "desc": "Crated on the outside counter. Pulls carbon out of foul air; cartridges wear.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 1000
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_scrubber"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_algae_tank",
+    "name": "Algae tank crate",
+    "desc": "Crated on the outside counter. Green water: biomass and oxygen from light, salts and gas.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 1300
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_algae_tank"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_still",
+    "name": "Still crate",
+    "desc": "Crated on the outside counter. Ferments and distils: ethanol, spirit, wine, distilled water.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 1500
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_still"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_chem_bench",
+    "name": "Chem bench crate",
+    "desc": "Crated on the outside counter. Reagents, antiseptic, coolant, lubricant, solvents.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 1800
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_chem_bench"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_pill_press",
+    "name": "Pill press crate",
+    "desc": "Crated on the outside counter. Reagent and filler into pills and blisters.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 1600
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_pill_press"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_loom",
+    "name": "Loom crate",
+    "desc": "Crated on the outside counter. Fibre into cloth, gauze, garments.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 1400
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_loom"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_pulper",
+    "name": "Pulper crate",
+    "desc": "Crated on the outside counter. Rags and lint into paper.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 700
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_pulper"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_kitchen",
+    "name": "Galley crate",
+    "desc": "Crated on the outside counter. Hot plate on cells, no flame: meals from vat food and crops.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 900
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_kitchen"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_printer_m",
+    "name": "Document printer crate",
+    "desc": "Crated on the outside counter. Medium print surface: manuals, posters, books in sheets.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 1100
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_printer_m"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_labeller",
+    "name": "Labeller crate",
+    "desc": "Crated on the outside counter. Puts a grade or licence label on goods (mod_label_*). Disc sets the label.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 800
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_labeller"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_copier",
+    "name": "Disc copier crate",
+    "desc": "A disc plus a blank of the same media into two. Generic rule; licensed discs refuse.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 650
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_copier"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_chiller",
+    "name": "Chiller crate",
+    "desc": "Crated on the outside counter. Pulls heat from a neighbour: clears Hot, slows overclock wear.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 500
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_chiller"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_vent",
+    "name": "Vent port crate",
+    "desc": "The outflow port: vents sludge and waste off station for a fee. Matter leaves the loop here.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 400
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "mach_vent"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_hydro_rack",
+    "name": "Hydro rack crate",
+    "desc": "Crated on the outside counter. Tall racks under lamps: fruit, herbs, fibre crops.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 6000
+    },
+    "requires": [
+      "phase_3"
+    ],
+    "grants": [
+      "mach_hydro_rack"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_vat_industrial",
+    "name": "Industrial vat crate",
+    "desc": "Big-batch vat on a pallet. Takes the first vat's feed lines; bring the old one as the reference.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 14000
+    },
+    "requires": [
+      "phase_3",
+      "mach_vat"
+    ],
+    "grants": [
+      "mach_vat_industrial"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_fab_precision",
+    "name": "Precision fabricator crate",
+    "desc": "Crated on the outside counter. Tight tolerances: bearings, valves, machine parts, phase 3 machines.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 22000
+    },
+    "requires": [
+      "phase_3"
+    ],
+    "grants": [
+      "mach_fab_precision"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_printer_3d",
+    "name": "3D printer crate",
+    "desc": "Crated on the outside counter. Reads models from a memory card; prints polymer and light metal.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 18000
+    },
+    "requires": [
+      "phase_3"
+    ],
+    "grants": [
+      "mach_printer_3d"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_assembler",
+    "name": "Assembler crate",
+    "desc": "Crated on the outside counter. Boards, chips and housings into devices and computers.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 20000
+    },
+    "requires": [
+      "phase_3"
+    ],
+    "grants": [
+      "mach_assembler"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_cell_press",
+    "name": "Cell press crate",
+    "desc": "Crated on the outside counter. Makes power cells from lithium, metal and reagent.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 16000
+    },
+    "requires": [
+      "phase_3"
+    ],
+    "grants": [
+      "mach_cell_press"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_synthesiser",
+    "name": "Synthesiser crate",
+    "desc": "Crated on the outside counter. Builds molecules: drugs, new polymer from carbon and gas.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 28000
+    },
+    "requires": [
+      "phase_3"
+    ],
+    "grants": [
+      "mach_synthesiser"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_cellar",
+    "name": "Cellar crate",
+    "desc": "Crated on the outside counter. Cold, dark, patient: ages cheese and wine over nights (mod_aged).",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 7000
+    },
+    "requires": [
+      "phase_3"
+    ],
+    "grants": [
+      "mach_cellar"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_jeweller",
+    "name": "Jeweller's bench crate",
+    "desc": "Crated on the outside counter. Noble metal and stones into rings, lockets, engraving.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 12000
+    },
+    "requires": [
+      "phase_3"
+    ],
+    "grants": [
+      "mach_jeweller"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_annealer",
+    "name": "Annealer crate",
+    "desc": "Crated on the outside counter. Tempers tools and parts (mod_tempered): more uses, more worth.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 6500
+    },
+    "requires": [
+      "phase_3"
+    ],
+    "grants": [
+      "mach_annealer"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_printer_l",
+    "name": "Banner printer crate",
+    "desc": "Crated on the outside counter. Large print surface: banners, art prints, ad sheets.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 9000
+    },
+    "requires": [
+      "phase_3"
+    ],
+    "grants": [
+      "mach_printer_l"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_broadcaster",
+    "name": "Broadcaster crate",
+    "desc": "Crated on the outside counter. Ads on the deck feeds: more buyers of one need for a while.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 11000
+    },
+    "requires": [
+      "phase_3"
+    ],
+    "grants": [
+      "mach_broadcaster"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_terminal_pro",
+    "name": "Workstation crate",
+    "desc": "A workstation in a steel case. The wired terminal stays as the second seat.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 15000
+    },
+    "requires": [
+      "phase_3",
+      "mach_terminal"
+    ],
+    "grants": [
+      "mach_terminal_pro"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_autofab",
+    "name": "Autofab crate",
+    "desc": "Industrial fabricator in three crates. Needs the precision fabricator to calibrate against.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 160000
+    },
+    "requires": [
+      "phase_4",
+      "mach_fab_precision"
+    ],
+    "grants": [
+      "mach_autofab"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_bioreactor",
+    "name": "Bioreactor crate",
+    "desc": "Crated on the outside counter. Digester and vat in one tank: sludge in, culture food out.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 120000
+    },
+    "requires": [
+      "phase_4"
+    ],
+    "grants": [
+      "mach_bioreactor"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_mainframe",
+    "name": "Mainframe crate",
+    "desc": "Runs automation for every machine at once; hosts the black-market client at scale.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 380000
+    },
+    "requires": [
+      "phase_4",
+      "mach_terminal_pro"
+    ],
+    "grants": [
+      "mach_mainframe"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_mach_refinery",
+    "name": "Refinery crate",
+    "desc": "Crated on the outside counter. Recovers rare earths and noble metal from e-waste and slag.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 140000
+    },
+    "requires": [
+      "phase_4"
+    ],
+    "grants": [
+      "mach_refinery"
+    ],
+    "effects": [],
+    "delivery": "crate"
+  },
+  {
+    "id": "upg_disc_food_vat_staples",
+    "name": "Vat staples disc",
+    "desc": "Floppy by mail. Ration bars, paste, protein blocks.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 450
+    },
+    "requires": [
+      "mach_vat"
+    ],
+    "grants": [
+      "disc_food_vat_staples"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_food_vat_bakery",
+    "name": "Vat bakery disc",
+    "desc": "Floppy by mail. Bread loaves, crackers.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 500
+    },
+    "requires": [
+      "mach_vat"
+    ],
+    "grants": [
+      "disc_food_vat_bakery"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_food_vat_dairy",
+    "name": "Vat dairy disc",
+    "desc": "Floppy by mail. Cheese wheels and spreads.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 650
+    },
+    "requires": [
+      "mach_vat"
+    ],
+    "grants": [
+      "disc_food_vat_dairy"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_food_vat_charcuterie",
+    "name": "Vat charcuterie disc",
+    "desc": "Floppy by mail. Salami and cured vat meats.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 700
+    },
+    "requires": [
+      "mach_vat"
+    ],
+    "grants": [
+      "disc_food_vat_charcuterie"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_food_vat_gourmet",
+    "name": "Vat gourmet disc",
+    "desc": "Card by mail. Ring-grade vat food.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 9000
+    },
+    "requires": [
+      "mach_vat_industrial"
+    ],
+    "grants": [
+      "disc_food_vat_gourmet"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_food_hydro_greens",
+    "name": "Hydro greens disc",
+    "desc": "Floppy by mail. Greens, sprouts, beans.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 40
+    },
+    "requires": [
+      "mach_hydro_tray"
+    ],
+    "grants": [
+      "disc_food_hydro_greens"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_food_hydro_orchard",
+    "name": "Hydro orchard disc",
+    "desc": "Card by mail. Dwarf fruit: apples, citrus, berries.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 7000
+    },
+    "requires": [
+      "mach_hydro_rack"
+    ],
+    "grants": [
+      "disc_food_hydro_orchard"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_food_bio_cultures",
+    "name": "Bio cultures disc",
+    "desc": "Card by mail. Culture food straight from sludge.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 90000
+    },
+    "requires": [
+      "mach_bioreactor"
+    ],
+    "grants": [
+      "disc_food_bio_cultures"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_life_algae_strains",
+    "name": "Algae strains disc",
+    "desc": "Floppy by mail. Fast and dense algae strains.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 600
+    },
+    "requires": [
+      "mach_algae_tank"
+    ],
+    "grants": [
+      "disc_life_algae_strains"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_life_scrubber_profiles",
+    "name": "Scrubber profiles disc",
+    "desc": "Floppy by mail. Carbon capture and gas sorting profiles.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 550
+    },
+    "requires": [
+      "mach_scrubber"
+    ],
+    "grants": [
+      "disc_life_scrubber_profiles"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_fab_bp_hardware",
+    "name": "Hardware blueprints disc",
+    "desc": "Floppy by mail. Fasteners, sheet goods, pipe, tins.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 500
+    },
+    "requires": [
+      "mach_fabricator"
+    ],
+    "grants": [
+      "disc_fab_bp_hardware"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_fab_bp_tools",
+    "name": "Tool blueprints disc",
+    "desc": "Floppy by mail. Knives, wrenches, hand tools.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 600
+    },
+    "requires": [
+      "mach_fabricator"
+    ],
+    "grants": [
+      "disc_fab_bp_tools"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_fab_bp_spares",
+    "name": "Spares blueprints disc",
+    "desc": "Floppy by mail. Spare parts, housings, brackets.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 700
+    },
+    "requires": [
+      "mach_fabricator"
+    ],
+    "grants": [
+      "disc_fab_bp_spares"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_fab_bp_precision",
+    "name": "Precision blueprints disc",
+    "desc": "Card by mail. Bearings, valves, seals.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 12000
+    },
+    "requires": [
+      "mach_fab_precision"
+    ],
+    "grants": [
+      "disc_fab_bp_precision"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_fab_model_fittings",
+    "name": "Fittings models disc",
+    "desc": "Card by mail. Printed brackets, clips, fittings.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 5500
+    },
+    "requires": [
+      "mach_printer_3d"
+    ],
+    "grants": [
+      "disc_fab_model_fittings"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_fab_synth_polymer",
+    "name": "Polymer synthesis disc",
+    "desc": "Card by mail. New polymer from carbon and gas.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 14000
+    },
+    "requires": [
+      "mach_synthesiser"
+    ],
+    "grants": [
+      "disc_fab_synth_polymer"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_fab_bp_heavy",
+    "name": "Heavy blueprints disc",
+    "desc": "Card by mail. Hull plate, frames, big structural.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 110000
+    },
+    "requires": [
+      "mach_autofab"
+    ],
+    "grants": [
+      "disc_fab_bp_heavy"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_fab_refine",
+    "name": "Refining profiles disc",
+    "desc": "Card by mail. Rare and noble recovery.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 130000
+    },
+    "requires": [
+      "mach_refinery"
+    ],
+    "grants": [
+      "disc_fab_refine"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_bp_circuits",
+    "name": "Circuit blueprints disc",
+    "desc": "Floppy by mail. Boards, cables, sensors.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 900
+    },
+    "requires": [
+      "mach_fabricator"
+    ],
+    "grants": [
+      "disc_tech_bp_circuits"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_bp_lamps",
+    "name": "Lamp blueprints disc",
+    "desc": "Floppy by mail. Grow lamps, work lights.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 450
+    },
+    "requires": [
+      "mach_fabricator"
+    ],
+    "grants": [
+      "disc_tech_bp_lamps"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_bp_cells",
+    "name": "Cell blueprints disc",
+    "desc": "Card by mail. Cell chemistry.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 11000
+    },
+    "requires": [
+      "mach_cell_press"
+    ],
+    "grants": [
+      "disc_tech_bp_cells"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_bp_devices",
+    "name": "Device blueprints disc",
+    "desc": "Card by mail. Radios, handsets, scanners, small devices.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 9000
+    },
+    "requires": [
+      "mach_assembler"
+    ],
+    "grants": [
+      "disc_tech_bp_devices"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_bp_computers",
+    "name": "Computer blueprints disc",
+    "desc": "Card by mail. Terminals and workstations.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 13000
+    },
+    "requires": [
+      "mach_assembler"
+    ],
+    "grants": [
+      "disc_tech_bp_computers"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_model_gadgets",
+    "name": "Gadget models disc",
+    "desc": "Card by mail. Printed gadgets and cases.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 6500
+    },
+    "requires": [
+      "mach_printer_3d"
+    ],
+    "grants": [
+      "disc_tech_model_gadgets"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_bp_automata",
+    "name": "Automata blueprints disc",
+    "desc": "Card by mail. Service drones and loader arms.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 150000
+    },
+    "requires": [
+      "mach_autofab"
+    ],
+    "grants": [
+      "disc_tech_bp_automata"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_mail",
+    "name": "Mail program disc",
+    "desc": "Floppy by mail. Mail and orders.",
+    "phase": "phase_1",
+    "kind": "information",
+    "cost": {
+      "credits": 30
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "grants": [
+      "disc_tech_prog_mail"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_labels",
+    "name": "Labels program disc",
+    "desc": "Floppy by mail. Prints order slips and labels.",
+    "phase": "phase_1",
+    "kind": "information",
+    "cost": {
+      "credits": 35
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "grants": [
+      "disc_tech_prog_labels"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_ledger",
+    "name": "Ledger program disc",
+    "desc": "Floppy by mail. Day summary by need and event.",
+    "phase": "phase_2",
+    "kind": "information",
+    "cost": {
+      "credits": 350
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "grants": [
+      "disc_tech_prog_ledger"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_board",
+    "name": "Board program disc",
+    "desc": "Floppy by mail. Live need prices and trend arrows.",
+    "phase": "phase_2",
+    "kind": "information",
+    "cost": {
+      "credits": 500
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "grants": [
+      "disc_tech_prog_board"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_antivirus",
+    "name": "Scrub program disc",
+    "desc": "Floppy by mail. Finds and strips mod_infected.",
+    "phase": "phase_2",
+    "kind": "information",
+    "cost": {
+      "credits": 450
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "grants": [
+      "disc_tech_prog_antivirus"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_overclock",
+    "name": "Overclock program disc",
+    "desc": "Floppy by mail. Modifier: machine jobs cheaper, jam risk up.",
+    "phase": "phase_2",
+    "kind": "information",
+    "cost": {
+      "credits": 600
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "grants": [
+      "disc_tech_prog_overclock"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_wholesale",
+    "name": "Wholesale program disc",
+    "desc": "Floppy by mail. Wholesale account client: crates at market price.",
+    "phase": "phase_2",
+    "kind": "information",
+    "cost": {
+      "credits": 800
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "grants": [
+      "disc_tech_prog_wholesale"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_diagnostics",
+    "name": "Diagnostics program disc",
+    "desc": "Floppy by mail. See all machine statuses remotely.",
+    "phase": "phase_2",
+    "kind": "information",
+    "cost": {
+      "credits": 700
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "grants": [
+      "disc_tech_prog_diagnostics"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_forecast",
+    "name": "Forecast program disc",
+    "desc": "Card by mail. Rumors earlier and more often right.",
+    "phase": "phase_3",
+    "kind": "information",
+    "cost": {
+      "credits": 7500
+    },
+    "requires": [
+      "mach_terminal_pro"
+    ],
+    "grants": [
+      "disc_tech_prog_forecast"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_automate",
+    "name": "Automate program disc",
+    "desc": "Card by mail. Scripts load and start machine jobs.",
+    "phase": "phase_3",
+    "kind": "information",
+    "cost": {
+      "credits": 10000
+    },
+    "requires": [
+      "mach_terminal_pro"
+    ],
+    "grants": [
+      "disc_tech_prog_automate"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_modelstore",
+    "name": "Model store program disc",
+    "desc": "Card by mail. Buy 3D models onto cards.",
+    "phase": "phase_3",
+    "kind": "information",
+    "cost": {
+      "credits": 5000
+    },
+    "requires": [
+      "mach_terminal_pro"
+    ],
+    "grants": [
+      "disc_tech_prog_modelstore"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_music",
+    "name": "Tracker and chess disc",
+    "desc": "Floppy by mail. Module tunes and a chess board.",
+    "phase": "phase_1",
+    "kind": "information",
+    "cost": {
+      "credits": 40
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "grants": [
+      "disc_tech_prog_music"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_dockmaster",
+    "name": "Dockmaster program disc",
+    "desc": "Floppy by mail. What ships, which box, what each pays.",
+    "phase": "phase_2",
+    "kind": "information",
+    "cost": {
+      "credits": 550
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "grants": [
+      "disc_tech_prog_dockmaster"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_tech_prog_utilities",
+    "name": "Utility program disc",
+    "desc": "Card by mail. Defrag, mail cipher and bench tuner.",
+    "phase": "phase_3",
+    "kind": "information",
+    "cost": {
+      "credits": 6000
+    },
+    "requires": [
+      "mach_terminal_pro"
+    ],
+    "grants": [
+      "disc_tech_prog_utilities"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_med_chem_basics",
+    "name": "Chemistry basics disc",
+    "desc": "Floppy by mail. Ethanol, antiseptic, saline.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 700
+    },
+    "requires": [
+      "mach_chem_bench"
+    ],
+    "grants": [
+      "disc_med_chem_basics"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_med_analgesics",
+    "name": "Analgesics disc",
+    "desc": "Floppy by mail. Painkillers.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 600
+    },
+    "requires": [
+      "mach_pill_press"
+    ],
+    "grants": [
+      "disc_med_analgesics"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_med_sedatives",
+    "name": "Sedatives disc",
+    "desc": "Floppy by mail. Sleeping pills, calmers.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 650
+    },
+    "requires": [
+      "mach_pill_press"
+    ],
+    "grants": [
+      "disc_med_sedatives"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_med_stimulants",
+    "name": "Stimulants disc",
+    "desc": "Floppy by mail. Stims and energy tabs.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 800
+    },
+    "requires": [
+      "mach_chem_bench"
+    ],
+    "grants": [
+      "disc_med_stimulants"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_med_antibiotics",
+    "name": "Antibiotics disc",
+    "desc": "Card by mail. Antibiotics and antivirals.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 13000
+    },
+    "requires": [
+      "mach_synthesiser"
+    ],
+    "grants": [
+      "disc_med_antibiotics"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_med_regenerative",
+    "name": "Regenerative disc",
+    "desc": "Card by mail. Ring medicine: regrowth gels, gene patches.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 100000
+    },
+    "requires": [
+      "mach_synthesiser"
+    ],
+    "grants": [
+      "disc_med_regenerative"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_lux_vintner",
+    "name": "Vintner disc",
+    "desc": "Floppy by mail. Wine and spirits.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 900
+    },
+    "requires": [
+      "mach_still"
+    ],
+    "grants": [
+      "disc_lux_vintner"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_lux_garments",
+    "name": "Garment patterns disc",
+    "desc": "Floppy by mail. Garments and furnishings.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 700
+    },
+    "requires": [
+      "mach_loom"
+    ],
+    "grants": [
+      "disc_lux_garments"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_lux_perfumery",
+    "name": "Perfumery disc",
+    "desc": "Floppy by mail. Scents, soaps, cosmetics.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 6500
+    },
+    "requires": [
+      "mach_chem_bench"
+    ],
+    "grants": [
+      "disc_lux_perfumery"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_lux_jewellery",
+    "name": "Jewellery models disc",
+    "desc": "Card by mail. Rings, chains, lockets.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 8500
+    },
+    "requires": [
+      "mach_jeweller"
+    ],
+    "grants": [
+      "disc_lux_jewellery"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_lux_model_art",
+    "name": "Art models disc",
+    "desc": "Card by mail. Sculpture and ornament models.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 5200
+    },
+    "requires": [
+      "mach_printer_3d"
+    ],
+    "grants": [
+      "disc_lux_model_art"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_mach_bp_machines_1",
+    "name": "Machine plans, first disc",
+    "desc": "Floppy by mail. Build phase 1 machines.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 1500
+    },
+    "requires": [
+      "mach_fabricator"
+    ],
+    "grants": [
+      "disc_mach_bp_machines_1"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_mach_bp_machines_2",
+    "name": "Machine plans, second disc",
+    "desc": "Card by mail. Build phase 2 machines.",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 15000
+    },
+    "requires": [
+      "mach_fab_precision"
+    ],
+    "grants": [
+      "disc_mach_bp_machines_2"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_mach_bp_machines_3",
+    "name": "Machine plans, third disc",
+    "desc": "Card by mail. Build phase 3 machines.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 120000
+    },
+    "requires": [
+      "mach_autofab"
+    ],
+    "grants": [
+      "disc_mach_bp_machines_3"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_mach_bp_filters",
+    "name": "Filter blueprints disc",
+    "desc": "Floppy by mail. Water filters and air cartridges.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 650
+    },
+    "requires": [
+      "mach_fabricator"
+    ],
+    "grants": [
+      "disc_mach_bp_filters"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_mach_consumables",
+    "name": "Consumables disc",
+    "desc": "Floppy by mail. Coolant and lubricant.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 550
+    },
+    "requires": [
+      "mach_chem_bench"
+    ],
+    "grants": [
+      "disc_mach_consumables"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_mach_labels_ring",
+    "name": "Ring labels disc",
+    "desc": "Floppy by mail. Ring-grade labels (mod_label_ring).",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 800
+    },
+    "requires": [
+      "mach_labeller"
+    ],
+    "grants": [
+      "disc_mach_labels_ring"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "id": "upg_disc_mach_labels_company",
+    "name": "Company labels disc",
+    "desc": "Card by mail. Company licence labels (mod_label_company).",
+    "phase": "phase_3",
+    "kind": "capability",
+    "cost": {
+      "credits": 7000
+    },
+    "requires": [
+      "mach_labeller"
+    ],
+    "grants": [
+      "disc_mach_labels_company"
+    ],
+    "effects": [],
+    "delivery": "mail"
+  },
+  {
+    "effects": [
+      {
+        "stat": "field_w",
+        "op": "add",
+        "value": 4,
+        "text": "field 4 wider"
+      }
+    ],
+    "id": "upg_shop_wing_1",
+    "name": "Shop extension",
+    "desc": "Knock through the next bay along: four more columns of floor, then four more rows.",
+    "phase": "phase_1",
+    "kind": "space",
+    "cost": {
+      "credits": 120
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "tiers": [
+      {
+        "cost": {
+          "credits": 600
+        },
+        "effects": [
+          {
+            "stat": "field_h",
+            "op": "add",
+            "value": 4,
+            "text": "field 4 deeper"
+          }
+        ]
+      }
+    ],
+    "delivery": "instant"
+  },
+  {
+    "effects": [
+      {
+        "stat": "field_w",
+        "op": "add",
+        "value": 4,
+        "text": "field 4 wider"
+      },
+      {
+        "stat": "field_h",
+        "op": "add",
+        "value": 2,
+        "text": "field 2 deeper"
+      }
+    ],
+    "id": "upg_shop_wing_2",
+    "name": "Second bay",
+    "desc": "The unit behind yours, rented off the Mid Decks board. Walls out, floor in.",
+    "phase": "phase_2",
+    "kind": "space",
+    "cost": {
+      "credits": 2400
+    },
+    "requires": [
+      "upg_shop_wing_1"
+    ],
+    "tiers": [
+      {
+        "cost": {
+          "credits": 5500
+        },
+        "effects": [
+          {
+            "stat": "field_h",
+            "op": "add",
+            "value": 4,
+            "text": "field 4 deeper"
+          }
+        ]
+      }
+    ],
+    "delivery": "instant"
+  },
+  {
+    "effects": [
+      {
+        "stat": "field_w",
+        "op": "add",
+        "value": 6,
+        "text": "field 6 wider"
+      },
+      {
+        "stat": "field_h",
+        "op": "add",
+        "value": 4,
+        "text": "field 4 deeper"
+      }
+    ],
+    "id": "upg_shop_wing_3",
+    "name": "Workshop hall",
+    "desc": "A foundry-side hall with a load-rated floor. Room for assemblers and their cradles.",
+    "phase": "phase_3",
+    "kind": "space",
+    "cost": {
+      "credits": 16000
+    },
+    "requires": [
+      "upg_shop_wing_2"
+    ],
+    "tiers": [
+      {
+        "cost": {
+          "credits": 45000
+        },
+        "effects": [
+          {
+            "stat": "field_w",
+            "op": "add",
+            "value": 4,
+            "text": "field 4 wider"
+          },
+          {
+            "stat": "field_h",
+            "op": "add",
+            "value": 4,
+            "text": "field 4 deeper"
+          }
+        ]
+      }
+    ],
+    "delivery": "instant"
+  },
+  {
+    "effects": [
+      {
+        "stat": "field_w",
+        "op": "add",
+        "value": 8,
+        "text": "field 8 wider"
+      },
+      {
+        "stat": "field_h",
+        "op": "add",
+        "value": 6,
+        "text": "field 6 deeper"
+      }
+    ],
+    "id": "upg_shop_wing_4",
+    "name": "Concern floor",
+    "desc": "A full deck section leased from the Company: gantry rails, clear height, its own lifts.",
+    "phase": "phase_4",
+    "kind": "space",
+    "cost": {
+      "credits": 120000
+    },
+    "requires": [
+      "upg_shop_wing_3"
+    ],
+    "tiers": [
+      {
+        "cost": {
+          "credits": 400000
+        },
+        "effects": [
+          {
+            "stat": "field_w",
+            "op": "add",
+            "value": 8,
+            "text": "field 8 wider"
+          },
+          {
+            "stat": "field_h",
+            "op": "add",
+            "value": 6,
+            "text": "field 6 deeper"
+          }
+        ]
+      }
+    ],
+    "delivery": "instant"
+  },
+  {
+    "effects": [
+      {
+        "stat": "dock_h",
+        "op": "add",
+        "value": 2,
+        "text": "dock 6x4 to 6x6"
+      }
+    ],
+    "id": "upg_dock_extension",
+    "name": "Dock extension",
+    "desc": "Two more rows on the dock grid and, later, two more columns: more boxes per pickup.",
+    "phase": "phase_1",
+    "kind": "logistics",
+    "cost": {
+      "credits": 90
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "tiers": [
+      {
+        "cost": {
+          "credits": 700
+        },
+        "effects": [
+          {
+            "stat": "dock_w",
+            "op": "add",
+            "value": 2,
+            "text": "dock 6x6 to 8x6"
+          }
+        ]
+      },
+      {
+        "cost": {
+          "credits": 2600
+        },
+        "effects": [
+          {
+            "stat": "dock_h",
+            "op": "add",
+            "value": 2,
+            "text": "dock 8x6 to 8x8"
+          }
+        ]
+      }
+    ],
+    "delivery": "instant"
+  },
+  {
+    "effects": [
+      {
+        "stat": "dock_w",
+        "op": "add",
+        "value": 2,
+        "text": "dock 8x8 to 10x8"
+      },
+      {
+        "stat": "dock_h",
+        "op": "add",
+        "value": 2,
+        "text": "dock 10x8 to 10x10"
+      }
+    ],
+    "id": "upg_dock_gantry",
+    "name": "Dock gantry",
+    "desc": "A rail and hoist over the dock apron. Large boxes stop being a two-person job.",
+    "phase": "phase_3",
+    "kind": "logistics",
+    "cost": {
+      "credits": 18000
+    },
+    "requires": [
+      "upg_dock_extension"
+    ],
+    "delivery": "instant"
+  },
+  {
+    "effects": [],
+    "id": "upg_cot",
+    "name": "Folding cot",
+    "desc": "Canvas on a steel frame, set up behind the stock. One decent night changes the morning.",
+    "phase": "phase_1",
+    "kind": "energy",
+    "cost": {
+      "credits": 60
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "it_fit_cot"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_bunk",
+    "name": "Bunk",
+    "desc": "A proper frame with a locker under it and a curtain. The spine sleeps four high; you sleep one.",
+    "phase": "phase_2",
+    "kind": "energy",
+    "cost": {
+      "credits": 900
+    },
+    "requires": [
+      "upg_cot"
+    ],
+    "grants": [
+      "it_fit_bunk"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_berth",
+    "name": "Crew berth",
+    "desc": "Light-metal berth with a foam pad, a reading lamp and a door that shuts.",
+    "phase": "phase_3",
+    "kind": "energy",
+    "cost": {
+      "credits": 9000
+    },
+    "requires": [
+      "upg_bunk"
+    ],
+    "grants": [
+      "it_fit_berth"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_cabin",
+    "name": "Ring cabin",
+    "desc": "A ring-grade sleeping cabin: real wood veneer, a window onto the stars, quiet.",
+    "phase": "phase_4",
+    "kind": "energy",
+    "cost": {
+      "credits": 90000
+    },
+    "requires": [
+      "upg_berth"
+    ],
+    "grants": [
+      "it_fit_cabin"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_cell_bank",
+    "name": "Cell bank",
+    "desc": "A racked charging frame: cells sit in it between jobs and take on a little more.",
+    "phase": "phase_2",
+    "kind": "energy",
+    "cost": {
+      "credits": 1400
+    },
+    "requires": [
+      "mach_charger"
+    ],
+    "grants": [
+      "it_fit_cell_bank"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [
+      {
+        "stat": "charge_price_mult",
+        "op": "mul",
+        "value": 0.85,
+        "text": "charger costs 15% less"
+      }
+    ],
+    "id": "upg_night_tariff",
+    "name": "Night tariff",
+    "desc": "A signed schedule with the reactor desk: charge at the dead hours, pay the dead-hour price.",
+    "phase": "phase_2",
+    "kind": "energy",
+    "cost": {
+      "credits": 2200
+    },
+    "requires": [
+      "mach_charger",
+      "ctier_1"
+    ],
+    "payback_days": 6,
+    "delivery": "instant"
+  },
+  {
+    "effects": [],
+    "id": "upg_vent_hood",
+    "name": "Extractor hood",
+    "desc": "Ducted hood over the machine row. Less heat and dust in the works means fewer jams.",
+    "phase": "phase_2",
+    "kind": "handling",
+    "cost": {
+      "credits": 1200
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "it_fit_vent_hood"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_load_governor",
+    "name": "Load governor",
+    "desc": "A rack unit that staggers every machine's start. Same work, a lighter bill in effort.",
+    "phase": "phase_4",
+    "kind": "energy",
+    "cost": {
+      "credits": 180000
+    },
+    "requires": [
+      "mach_mainframe"
+    ],
+    "grants": [
+      "it_fit_load_governor"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_display_case",
+    "name": "Display case",
+    "desc": "Glass-fronted, lit from inside. Things behind glass are worth what the buyer imagines.",
+    "phase": "phase_1",
+    "kind": "handling",
+    "cost": {
+      "credits": 150
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "it_fit_display_case"
+    ],
+    "payback_days": 6,
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_vitrine",
+    "name": "Locked vitrine",
+    "desc": "A tall locked cabinet for rings, lockets and anything a collector would ask to hold.",
+    "phase": "phase_3",
+    "kind": "handling",
+    "cost": {
+      "credits": 12000
+    },
+    "requires": [
+      "upg_display_case",
+      "mach_jeweller"
+    ],
+    "grants": [
+      "it_fit_vitrine"
+    ],
+    "payback_days": 7,
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_shelf_unit",
+    "name": "Shelf unit",
+    "desc": "Open steel shelving, bolted to the deck. Holds whatever you stack on it.",
+    "phase": "phase_1",
+    "kind": "handling",
+    "cost": {
+      "credits": 70
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "it_fit_shelf_unit"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_bookshelf",
+    "name": "Bookshelf",
+    "desc": "Another bookshelf, for paper and anything flat. Opening it takes a window.",
+    "phase": "phase_1",
+    "kind": "handling",
+    "cost": {
+      "credits": 45
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "it_fit_bookshelf"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_steel_cabinet",
+    "name": "Steel cabinet",
+    "desc": "A grey cabinet that holds more than it looks. Doors shut; things stay put.",
+    "phase": "phase_1",
+    "kind": "handling",
+    "cost": {
+      "credits": 80
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "it_fit_cabinet"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_disc_rack",
+    "name": "Disc holder",
+    "desc": "A polymer rack with slots for floppies and cards. Keeps the labels facing out.",
+    "phase": "phase_1",
+    "kind": "handling",
+    "cost": {
+      "credits": 35
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "it_fit_disc_rack"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_cold_cabinet",
+    "name": "Cold cabinet",
+    "desc": "A chilled cabinet for cheese, salami and anything fresh. Buyers pay more for cold.",
+    "phase": "phase_2",
+    "kind": "handling",
+    "cost": {
+      "credits": 1600
+    },
+    "requires": [
+      "mach_chiller"
+    ],
+    "grants": [
+      "it_fit_cold_cabinet"
+    ],
+    "payback_days": 7,
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_parts_locker",
+    "name": "Parts locker",
+    "desc": "Forty small bins behind a steel door. Fasteners, bearings and valves, sorted for once.",
+    "phase": "phase_2",
+    "kind": "handling",
+    "cost": {
+      "credits": 700
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "it_fit_parts_locker"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_ledger_book",
+    "name": "Ledger book",
+    "desc": "A bound book and a pencil on a string. Each evening you write down what sold and why.",
+    "phase": "phase_1",
+    "kind": "information",
+    "cost": {
+      "credits": 60
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "it_fit_ledger_book"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_price_board",
+    "name": "Price board",
+    "desc": "A screen on the wall showing live need prices, fed from the spine's counting house.",
+    "phase": "phase_2",
+    "kind": "information",
+    "cost": {
+      "credits": 750
+    },
+    "requires": [
+      "upg_ledger_book",
+      "phase_2"
+    ],
+    "grants": [
+      "it_fit_price_board"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_aerial",
+    "name": "Roof aerial",
+    "desc": "A mast through the ceiling tiles. Engineers' chatter comes in clearer and sooner.",
+    "phase": "phase_2",
+    "kind": "information",
+    "cost": {
+      "credits": 1100
+    },
+    "requires": [
+      "mach_radio"
+    ],
+    "grants": [
+      "it_fit_aerial"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_pigeonholes",
+    "name": "Pigeonholes",
+    "desc": "A wall of paper slots for slips and notices. Senders find a shop that answers.",
+    "phase": "phase_1",
+    "kind": "channel",
+    "cost": {
+      "credits": 100
+    },
+    "requires": [
+      "mach_modem"
+    ],
+    "grants": [
+      "it_fit_pigeonholes"
+    ],
+    "payback_days": 5,
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_sign",
+    "name": "Shop sign",
+    "desc": "Stencilled letters on a lit panel above the shutter. The corridor starts to know your name.",
+    "phase": "phase_1",
+    "kind": "cosmetic",
+    "cost": {
+      "credits": 80
+    },
+    "requires": [
+      "phase_1"
+    ],
+    "grants": [
+      "it_fit_sign"
+    ],
+    "payback_days": 5,
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_ad_board",
+    "name": "Ad board",
+    "desc": "A hung board with a rotating strip: one need advertised at a time, to whoever walks past.",
+    "phase": "phase_2",
+    "kind": "channel",
+    "cost": {
+      "credits": 1300
+    },
+    "requires": [
+      "upg_sign"
+    ],
+    "grants": [
+      "it_fit_ad_board"
+    ],
+    "payback_days": 6,
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_second_counter",
+    "name": "Second counter",
+    "desc": "A second till and a second pair of hands at it. The queue splits and moves.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 1800
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "it_fit_counter_2"
+    ],
+    "payback_days": 6,
+    "delivery": "crate"
+  },
+  {
+    "effects": [
+      {
+        "stat": "pickups_per_day",
+        "op": "add",
+        "value": 0.5,
+        "text": "+0.5 pickups per day"
+      }
+    ],
+    "id": "upg_carrier_pickup",
+    "name": "Extra pickup",
+    "desc": "The Account tier buys a half-day slot on the carrier's round. Sealed boxes leave sooner.",
+    "phase": "phase_2",
+    "kind": "logistics",
+    "cost": {
+      "credits": 1500
+    },
+    "requires": [
+      "ctier_1"
+    ],
+    "delivery": "instant"
+  },
+  {
+    "effects": [
+      {
+        "stat": "carrier_fee_mult",
+        "op": "mul",
+        "value": 0.9,
+        "text": "box fees 10% lower"
+      }
+    ],
+    "id": "upg_carrier_fee",
+    "name": "Fee schedule",
+    "desc": "A negotiated box-fee schedule for Account holders. Printed, stamped, filed in the pigeonholes.",
+    "phase": "phase_2",
+    "kind": "logistics",
+    "cost": {
+      "credits": 900
+    },
+    "requires": [
+      "ctier_1"
+    ],
+    "payback_days": 8,
+    "delivery": "instant"
+  },
+  {
+    "effects": [
+      {
+        "stat": "transit_days",
+        "op": "add",
+        "value": -1,
+        "text": "transit 1 day shorter"
+      }
+    ],
+    "id": "upg_carrier_priority",
+    "name": "Priority lane",
+    "desc": "Bonded boxes ride the priority sled. A day off every transit, on every deck.",
+    "phase": "phase_3",
+    "kind": "logistics",
+    "cost": {
+      "credits": 12000
+    },
+    "requires": [
+      "ctier_2"
+    ],
+    "delivery": "instant"
+  },
+  {
+    "effects": [
+      {
+        "stat": "carrier_fee_mult",
+        "op": "mul",
+        "value": 0.8,
+        "text": "box fees 20% lower"
+      },
+      {
+        "stat": "pickups_per_day",
+        "op": "add",
+        "value": 1,
+        "text": "+1 pickup per day"
+      }
+    ],
+    "id": "upg_carrier_contract",
+    "name": "Carrier contract",
+    "desc": "A signed contract with the parcel carrier: cheaper boxes, a second daily pickup.",
+    "phase": "phase_4",
+    "kind": "logistics",
+    "cost": {
+      "credits": 70000
+    },
+    "requires": [
+      "ctier_3"
+    ],
+    "payback_days": 8,
+    "delivery": "instant"
+  },
+  {
+    "effects": [
+      {
+        "stat": "wholesale_access",
+        "op": "set",
+        "value": 1,
+        "text": "order crates at market price"
+      }
+    ],
+    "id": "upg_wholesale_account",
+    "name": "Wholesale account",
+    "desc": "A trade account with the dock stores: crates ordered by terminal at market price.",
+    "phase": "phase_2",
+    "kind": "channel",
+    "cost": {
+      "credits": 1800
+    },
+    "requires": [
+      "prog_wholesale",
+      "ctier_1"
+    ],
+    "payback_days": 6,
+    "delivery": "instant"
+  },
+  {
+    "effects": [],
+    "id": "upg_safe",
+    "name": "Floor safe",
+    "desc": "A bolted steel box with a dial. Heirlooms, cash and discs go in; inspectors look elsewhere.",
+    "phase": "phase_2",
+    "kind": "security",
+    "cost": {
+      "credits": 1200
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "grants": [
+      "it_fit_safe"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [],
+    "id": "upg_strongroom",
+    "name": "Strongroom",
+    "desc": "A plated cell behind the stockroom wall. Fire, drugs and cracked discs sleep here.",
+    "phase": "phase_3",
+    "kind": "security",
+    "cost": {
+      "credits": 14000
+    },
+    "requires": [
+      "upg_safe",
+      "mach_scanner"
+    ],
+    "grants": [
+      "it_fit_strongroom"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 0.85,
+        "text": "jams 15% rarer"
+      }
+    ],
+    "id": "upg_insurance",
+    "name": "Breakdown cover",
+    "desc": "A policy with a mid-deck broker: a spare part ships the morning after you report a jam.",
+    "phase": "phase_2",
+    "kind": "security",
+    "cost": {
+      "credits": 2500
+    },
+    "requires": [
+      "phase_2"
+    ],
+    "tiers": [
+      {
+        "cost": {
+          "credits": 9000
+        },
+        "effects": [
+          {
+            "stat": "jam_chance_mult",
+            "op": "mul",
+            "value": 0.85,
+            "text": "jams a further 15% rarer"
+          }
+        ]
+      }
+    ],
+    "delivery": "instant"
+  },
+  {
+    "effects": [],
+    "id": "upg_hireling",
+    "name": "First hand",
+    "desc": "A hired hand and a bench to work at. They run jobs while you sleep and stay out of the till.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 60000
+    },
+    "requires": [
+      "phase_4"
+    ],
+    "grants": [
+      "it_fit_hand_station"
+    ],
+    "tiers": [
+      {
+        "cost": {
+          "credits": 160000
+        },
+        "effects": [
+          {
+            "stat": "energy_cap",
+            "op": "add",
+            "value": 2,
+            "text": "a second hand: +2 energy per day"
+          }
+        ]
+      },
+      {
+        "cost": {
+          "credits": 420000
+        },
+        "effects": [
+          {
+            "stat": "energy_cap",
+            "op": "add",
+            "value": 2,
+            "text": "a third hand: +2 energy per day"
+          }
+        ]
+      }
+    ],
+    "payback_days": 7,
+    "delivery": "instant"
+  },
+  {
+    "effects": [],
+    "id": "upg_ring_stall",
+    "name": "Ring frontage",
+    "desc": "A stall on the Ring promenade. Real light, real rent, buyers who carry real money.",
+    "phase": "phase_4",
+    "kind": "capability",
+    "cost": {
+      "credits": 250000
+    },
+    "requires": [
+      "phase_4",
+      "ctier_3"
+    ],
+    "grants": [
+      "it_fit_ring_frontage"
+    ],
+    "payback_days": 8,
+    "delivery": "instant"
+  },
+  {
+    "effects": [
+      {
+        "stat": "terminal_memory_kb",
+        "op": "add",
+        "value": 256,
+        "text": "+256K memory"
+      }
+    ],
+    "id": "upg_ram_bank",
+    "name": "Memory bank",
+    "desc": "Four chips on a card, pressed into the terminal's spare socket. More windows, fewer refusals.",
+    "phase": "phase_1",
+    "kind": "capability",
+    "cost": {
+      "credits": 90
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [
+      {
+        "stat": "terminal_storage_kb",
+        "op": "add",
+        "value": 2048,
+        "text": "+2 MB storage"
+      }
+    ],
+    "id": "upg_disk_drive",
+    "name": "Hard disk",
+    "desc": "A drive in a steel sled. Programs live on C: instead of riding in on floppies.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 600
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "delivery": "crate"
+  },
+  {
+    "effects": [
+      {
+        "stat": "ports",
+        "op": "add",
+        "value": 2,
+        "text": "+2 ports"
+      }
+    ],
+    "id": "upg_port_hub",
+    "name": "Port hub",
+    "desc": "A grey box with four sockets. The terminal stops being the only thing you plug into.",
+    "phase": "phase_2",
+    "kind": "capability",
+    "cost": {
+      "credits": 900
+    },
+    "requires": [
+      "mach_terminal"
+    ],
+    "delivery": "crate"
+  }
+]

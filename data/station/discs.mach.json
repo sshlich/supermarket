@@ -1,0 +1,222 @@
+[
+  {
+    "id": "disc_mach_bp_machines_1",
+    "name": "Machine blueprints I",
+    "desc": "Drawings for the first machines: bench, smelter, charger, sealer. Cut the parts; the fabricator does the rest.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 90,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_fabricator",
+      "mach_autofab"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage",
+      "seller"
+    ],
+    "label": "MACHINES 1  BENCH SMELTER CHARGER SEALER"
+  },
+  {
+    "id": "disc_mach_bp_machines_2",
+    "name": "Machine blueprints II",
+    "desc": "Close-tolerance drawings for fabricators, kilns, scrubbers and chillers. Needs a precision bed to hold them.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 330,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_fab_precision",
+      "mach_autofab"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "MACHINES 2  FAB EXTRUDER KILN SCRUBBER CHILLER"
+  },
+  {
+    "id": "disc_mach_bp_machines_3",
+    "name": "Machine blueprints III",
+    "desc": "A card of assembly plates for the big machines: precision cabinet, annealer drum. Autofab or nothing.",
+    "w": 1,
+    "h": 1,
+    "tier": 4,
+    "value": 1400,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "card",
+    "phase": "phase_4",
+    "machines": [
+      "mach_autofab"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "mail"
+    ],
+    "label": "MACHINES 3  PRECISION ANNEALER"
+  },
+  {
+    "id": "disc_mach_bp_filters",
+    "name": "Filter blueprints",
+    "desc": "Moulds and sleeve drawings for water filters and air cartridges. Spine bunks live off the prints.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 70,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "blueprint",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_fabricator",
+      "mach_autofab"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "seller"
+    ],
+    "label": "FILTERS  WATER AIR CARTRIDGE"
+  },
+  {
+    "id": "disc_mach_consumables",
+    "name": "Consumable recipes",
+    "desc": "A chemist's sheet in pencil: coolant, lubricant, sealant, with the ratios crossed out and redone.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 70,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_chem_bench"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "CONSUMABLES  COOLANT LUBRICANT SEALANT"
+  },
+  {
+    "id": "disc_mach_labels_ring",
+    "name": "Ring label set",
+    "desc": "A grade stamp and a script font lifted from a Ring catalogue. Goods wearing it fetch more on the hoop.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 90,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_labeller"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "seller"
+    ],
+    "label": "RING GRADE  LABELS  MONOGRAM"
+  },
+  {
+    "id": "disc_mach_labels_company",
+    "name": "Company label set",
+    "desc": "The licence mark and batch numbers the company puts on its own stock. Honest copies are rare.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 400,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_copper": 0.05,
+      "mat_rare": 0.02
+    },
+    "tags": [
+      "media",
+      "data"
+    ],
+    "kind": "recipe",
+    "media": "card",
+    "phase": "phase_3",
+    "machines": [
+      "mach_labeller"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "mail"
+    ],
+    "label": "COMPANY LICENCE  LABELS"
+  }
+]

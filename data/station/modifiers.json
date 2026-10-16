@@ -1,0 +1,540 @@
+[
+  {
+    "id": "mod_real",
+    "name": "Real",
+    "desc": "Grown or made the old way. The ring pays more.",
+    "applies_to_tags": [
+      "food",
+      "drink",
+      "produce",
+      "luxury"
+    ],
+    "value_mult": 1.5,
+    "effects": [],
+    "adds_tags": [
+      "real"
+    ],
+    "removes_tags": [
+      "synthetic"
+    ],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_food_grow_apples"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_synthetic",
+    "name": "Synthetic",
+    "desc": "Vat-made imitation. Cheaper, and the spine does not mind.",
+    "applies_to_tags": [
+      "food",
+      "drink",
+      "produce",
+      "luxury"
+    ],
+    "value_mult": 0.6,
+    "effects": [],
+    "adds_tags": [
+      "synthetic"
+    ],
+    "removes_tags": [
+      "real"
+    ],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_food_grow_vat_apples"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_sealed",
+    "name": "Sealed",
+    "desc": "A sealed box. It ships, and opens only with a knife.",
+    "applies_to_tags": [
+      "packaging",
+      "container"
+    ],
+    "value_mult": 1,
+    "effects": [],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_mach_seal_box_s",
+      "rcp_mach_seal_box_m",
+      "rcp_mach_seal_box_l"
+    ],
+    "removed_by": [
+      "rcp_mach_unseal_box"
+    ]
+  },
+  {
+    "id": "mod_licensed",
+    "name": "Licensed",
+    "desc": "Software paired to a machine or key.",
+    "applies_to_tags": [
+      "program",
+      "media"
+    ],
+    "value_mult": 1.2,
+    "effects": [
+      {
+        "stat": "copy_fail_chance",
+        "op": "add",
+        "value": 1,
+        "text": "Copier refuses"
+      }
+    ],
+    "adds_tags": [
+      "licensed"
+    ],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_mach_label_company"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_cracked",
+    "name": "Cracked",
+    "desc": "Licence removed. The spine buys it cheap and it may hide an infection.",
+    "applies_to_tags": [
+      "program",
+      "media"
+    ],
+    "value_mult": 0.5,
+    "effects": [
+      {
+        "stat": "virus_spread_chance",
+        "op": "add",
+        "value": 0.1,
+        "text": "Infection chance +10%"
+      }
+    ],
+    "adds_tags": [],
+    "removes_tags": [
+      "licensed"
+    ],
+    "hidden": false,
+    "contraband": "software",
+    "applied_by": [
+      "prog_cracker"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_infected",
+    "name": "Infected",
+    "desc": "Hidden until scanned. Spreads on copy, and sickens machines it is loaded into.",
+    "applies_to_tags": [
+      "program",
+      "media"
+    ],
+    "value_mult": 0.3,
+    "effects": [
+      {
+        "stat": "virus_spread_chance",
+        "op": "add",
+        "value": 0.5,
+        "text": "Spreads on copy"
+      }
+    ],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": true,
+    "contraband": "software",
+    "applied_by": [
+      "rcp_food_culture_mat_algae"
+    ],
+    "removed_by": [
+      "rcp_mach_scan_disc"
+    ]
+  },
+  {
+    "id": "mod_bad_sector",
+    "name": "Bad sector",
+    "desc": "A copy of a copy. A job or program run may fail.",
+    "applies_to_tags": [
+      "program",
+      "media"
+    ],
+    "value_mult": 0.7,
+    "effects": [
+      {
+        "stat": "copy_fail_chance",
+        "op": "add",
+        "value": 0.2,
+        "text": "Fails 20% of runs"
+      }
+    ],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "mach_copier"
+    ],
+    "removed_by": [
+      "rcp_mach_scan_disc"
+    ]
+  },
+  {
+    "id": "mod_tempered",
+    "name": "Tempered",
+    "desc": "Annealed. More wear uses and more worth.",
+    "applies_to_tags": [
+      "tool",
+      "machine_part"
+    ],
+    "value_mult": 1.3,
+    "effects": [
+      {
+        "stat": "wear_uses_mult",
+        "op": "mul",
+        "value": 1.5,
+        "text": "+50% wear uses"
+      }
+    ],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_fab_temper_tool",
+      "rcp_fab_temper_part"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_tuned",
+    "name": "Tuned",
+    "desc": "A calibrated device with better stats.",
+    "applies_to_tags": [
+      "device",
+      "electronic"
+    ],
+    "value_mult": 1.25,
+    "effects": [
+      {
+        "stat": "job_yield_mult",
+        "op": "mul",
+        "value": 1.1,
+        "text": "+10% yield"
+      }
+    ],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "mach_annealer"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_label_ring",
+    "name": "Ring label",
+    "desc": "Ring-grade label. Ring buyers pay more.",
+    "applies_to_tags": [
+      "packaging",
+      "container",
+      "food",
+      "luxury"
+    ],
+    "value_mult": 1.2,
+    "effects": [],
+    "adds_tags": [
+      "ring_grade"
+    ],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_mach_label_ring"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_label_company",
+    "name": "Company label",
+    "desc": "A company licence label. Legal in the hub and wanted by company orders.",
+    "applies_to_tags": [
+      "packaging",
+      "container",
+      "food",
+      "luxury"
+    ],
+    "value_mult": 1.15,
+    "effects": [],
+    "adds_tags": [
+      "company"
+    ],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_mach_label_company"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_aged",
+    "name": "Aged",
+    "desc": "Cellared. Cheese and wine are worth more.",
+    "applies_to_tags": [
+      "dairy",
+      "alcohol",
+      "drink"
+    ],
+    "value_mult": 1.4,
+    "effects": [],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_food_age_cheese_wheel",
+      "rcp_lux_age_wine"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_engraved",
+    "name": "Engraved",
+    "desc": "Personalised. Heirloom value rises but only one buyer type wants it.",
+    "applies_to_tags": [
+      "jewellery",
+      "heirloom",
+      "luxury"
+    ],
+    "value_mult": 1.4,
+    "effects": [],
+    "adds_tags": [
+      "heirloom"
+    ],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_lux_engrave"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_refurbished",
+    "name": "Refurbished",
+    "desc": "Repaired on the bench. Worth less than new, more than broken.",
+    "applies_to_tags": [
+      "tool",
+      "device",
+      "machine_part",
+      "luxury"
+    ],
+    "value_mult": 0.8,
+    "effects": [],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_mach_repair_goods",
+      "rcp_fab_refurbish_tool"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_counterfeit",
+    "name": "Counterfeit",
+    "desc": "A fake label or licence. Hidden until scanned.",
+    "applies_to_tags": [
+      "packaging",
+      "program",
+      "luxury",
+      "media"
+    ],
+    "value_mult": 0.4,
+    "effects": [],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": true,
+    "contraband": "stolen",
+    "applied_by": [
+      "rcp_mach_label_company"
+    ],
+    "removed_by": [
+      "rcp_mach_scan_goods"
+    ]
+  },
+  {
+    "id": "mod_damaged",
+    "name": "Damaged",
+    "desc": "Broken or dented. Worth half; the bench can repair it.",
+    "applies_to_tags": [
+      "tool",
+      "device",
+      "machine_part",
+      "luxury",
+      "container"
+    ],
+    "value_mult": 0.5,
+    "effects": [],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "mach_crusher"
+    ],
+    "removed_by": [
+      "rcp_mach_repair_goods"
+    ]
+  },
+  {
+    "id": "mod_dented",
+    "name": "Dented",
+    "desc": "A knock in the casing. A little off the price until it is beaten out.",
+    "applies_to_tags": [
+      "container",
+      "vessel",
+      "packaging",
+      "tool"
+    ],
+    "value_mult": 0.85,
+    "effects": [],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "mach_crusher"
+    ],
+    "removed_by": [
+      "rcp_mach_beat_out_dent"
+    ]
+  },
+  {
+    "id": "mod_monogrammed",
+    "name": "Monogrammed",
+    "desc": "Initials worked into the piece. A keepsake for one buyer.",
+    "applies_to_tags": [
+      "book",
+      "luxury",
+      "furnishing"
+    ],
+    "value_mult": 1.25,
+    "effects": [],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_mach_monogram"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_padded",
+    "name": "Padded",
+    "desc": "Packed in padding. Fragile goods survive transit.",
+    "applies_to_tags": [
+      "packaging",
+      "container"
+    ],
+    "value_mult": 1.05,
+    "effects": [],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_mach_pad_box"
+    ],
+    "removed_by": [
+      "rcp_mach_unseal_box"
+    ]
+  },
+  {
+    "id": "mod_contraband_hidden",
+    "name": "Hidden goods",
+    "desc": "Contraband tucked under padding. Inspections miss it until scanned.",
+    "applies_to_tags": [
+      "packaging",
+      "container"
+    ],
+    "value_mult": 1,
+    "effects": [
+      {
+        "stat": "inspection_chance",
+        "op": "add",
+        "value": -0.1,
+        "text": "Inspections miss it"
+      }
+    ],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": true,
+    "contraband": false,
+    "applied_by": [
+      "rcp_mach_hide_in_box"
+    ],
+    "removed_by": [
+      "rcp_mach_scan_box"
+    ]
+  },
+  {
+    "id": "mod_worn_in",
+    "name": "Worn in",
+    "desc": "A tool broken in to the hand. Slightly longer-lived.",
+    "applies_to_tags": [
+      "tool"
+    ],
+    "value_mult": 1.05,
+    "effects": [
+      {
+        "stat": "wear_uses_mult",
+        "op": "mul",
+        "value": 1.1,
+        "text": "+10% wear uses"
+      }
+    ],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "mach_hands"
+    ],
+    "removed_by": []
+  },
+  {
+    "id": "mod_overhauled",
+    "name": "Overhauled",
+    "desc": "A machine part rebuilt at the bench. Lasts longer than a patched one.",
+    "applies_to_tags": [
+      "machine_part"
+    ],
+    "value_mult": 1.1,
+    "effects": [
+      {
+        "stat": "wear_uses_mult",
+        "op": "mul",
+        "value": 1.25,
+        "text": "+25% wear uses"
+      }
+    ],
+    "adds_tags": [],
+    "removes_tags": [],
+    "hidden": false,
+    "contraband": false,
+    "applied_by": [
+      "rcp_mach_swap_worn_parts"
+    ],
+    "removed_by": []
+  }
+]

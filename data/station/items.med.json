@@ -1,0 +1,1294 @@
+[
+  {
+    "id": "it_med_ethanol",
+    "name": "Ethanol",
+    "desc": "Clear lab spirit in a stoppered vial. Wipes wounds, fuels lighters, and is drunk by the desperate.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "value": 6,
+    "composition": {
+      "mat_reagent": 1,
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "processed",
+      "chemical",
+      "solvent",
+      "liquid",
+      "alcohol",
+      "medicine"
+    ],
+    "depth": 1,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.25
+    }
+  },
+  {
+    "id": "it_med_painkiller",
+    "name": "Painkiller",
+    "desc": "White tablet, scored once. Takes the edge off a sore back and a long shift.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 2,
+    "composition": {
+      "mat_reagent": 0.1
+    },
+    "tags": [
+      "medicine",
+      "pill"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.25
+    },
+    "carried_from": "pill (painkiller)"
+  },
+  {
+    "id": "it_med_antibiotic",
+    "name": "Antibiotic",
+    "desc": "Yellow capsule-shaped tablet. Course of six; the clinic counts them back.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 5,
+    "composition": {
+      "mat_reagent": 0.1,
+      "mat_biomass": 0.1
+    },
+    "tags": [
+      "medicine",
+      "pill"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.25
+    },
+    "carried_from": "pill (antibiotic)"
+  },
+  {
+    "id": "it_med_sleeping_pill",
+    "name": "Sleeping pill",
+    "desc": "Small blue tablet. Eight dull hours and a clear head, if the pipes allow.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 3,
+    "composition": {
+      "mat_reagent": 0.1
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "sedative"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.25
+    },
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [],
+      "clears": [
+        "stat_tired"
+      ],
+      "consumed": true
+    },
+    "carried_from": "pill (sleeping)"
+  },
+  {
+    "id": "it_med_blister",
+    "name": "Blister card",
+    "desc": "Empty foil card of six pockets. Pills push out through the back and do not go back in.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "value": 1,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_lightmetal": 0.1
+    },
+    "tags": [
+      "processed",
+      "packaging",
+      "container"
+    ],
+    "depth": 1,
+    "market_need": "need_medicine",
+    "container": {
+      "slots": [
+        {
+          "name": "pockets",
+          "w": 2,
+          "h": 1,
+          "accepts_tags": [
+            "pill"
+          ]
+        }
+      ]
+    },
+    "carried_from": "blister",
+    "notes": "Empty card. Filled cards are separate items (it_med_fb_*) with container.fill of six pills."
+  },
+  {
+    "id": "it_med_bandage",
+    "name": "Bandage",
+    "desc": "Gauze roll with a steel clip. Boiled and re-rolled until it frays.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "value": 4,
+    "composition": {
+      "mat_fibre": 0.5
+    },
+    "tags": [
+      "processed",
+      "medicine",
+      "wound",
+      "fibre"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.5
+    },
+    "carried_from": "bandage"
+  },
+  {
+    "id": "it_med_antiseptic",
+    "name": "Antiseptic",
+    "desc": "Brown dropper bottle of ethanol and iodine salts. Stings, which is the point.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "value": 6,
+    "composition": {
+      "mat_reagent": 0.5,
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "processed",
+      "medicine",
+      "wound",
+      "liquid",
+      "vessel"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.25
+    },
+    "carried_from": "antiseptic"
+  },
+  {
+    "id": "it_med_stim",
+    "name": "Stim",
+    "desc": "Orange tablet, bitter. A shift of borrowed energy, repaid with interest the next morning.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 8,
+    "composition": {
+      "mat_reagent": 0.2
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "stim",
+      "drug"
+    ],
+    "depth": 3,
+    "market_need": "need_medicine",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_wired"
+      ],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Pressed at 5 per reagent unit: the margin is above 6x on purpose, a stim is the dear end of the bench."
+  },
+  {
+    "id": "it_med_reagent_pure",
+    "name": "Purified reagent",
+    "desc": "Clear reagent decanted off its sediment into a sealed vial. Pharmacy grade, or near enough.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 6,
+    "composition": {
+      "mat_reagent": 1
+    },
+    "tags": [
+      "processed",
+      "chemical",
+      "reagent",
+      "liquid"
+    ],
+    "depth": 1,
+    "market_need": "need_medicine"
+  },
+  {
+    "id": "it_med_acid",
+    "name": "Acid flask",
+    "desc": "Etched glass flask of reagent and salts, stopper waxed shut. Burns skin, clears scale.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 8,
+    "composition": {
+      "mat_reagent": 1,
+      "mat_salts": 0.5,
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "processed",
+      "chemical",
+      "reagent",
+      "liquid",
+      "vessel"
+    ],
+    "depth": 1,
+    "market_need": "need_medicine"
+  },
+  {
+    "id": "it_med_base",
+    "name": "Base flask",
+    "desc": "Flask of reagent cooked with carbon ash. Slick lye, handled with the clip tongs.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 8,
+    "composition": {
+      "mat_reagent": 1,
+      "mat_carbon": 0.5,
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "processed",
+      "chemical",
+      "reagent",
+      "liquid",
+      "vessel"
+    ],
+    "depth": 1,
+    "market_need": "need_medicine"
+  },
+  {
+    "id": "it_med_solvent",
+    "name": "Solvent",
+    "desc": "Sharp-smelling spirit thinned with gas and bottled. Strips paint, dissolves resin, never indoors.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 9,
+    "composition": {
+      "mat_reagent": 1,
+      "mat_volatiles": 1,
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "processed",
+      "chemical",
+      "solvent",
+      "liquid",
+      "vessel"
+    ],
+    "depth": 1,
+    "market_need": "need_medicine"
+  },
+  {
+    "id": "it_med_antiviral",
+    "name": "Antiviral",
+    "desc": "Pale green tablet with rare earth in the binder. Ring clinics stock it by the tray, the spine by the single.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 10,
+    "composition": {
+      "mat_reagent": 0.1,
+      "mat_biomass": 0.1,
+      "mat_rare": 0.1
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "ring_grade"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.25
+    },
+    "decks": {
+      "deck_ring": 2.5,
+      "deck_hub": 2,
+      "deck_mid": 1.5,
+      "deck_core": 1.5,
+      "deck_spine": 0.5
+    }
+  },
+  {
+    "id": "it_med_antirad",
+    "name": "Anti-radiation tab",
+    "desc": "Chalky lithium tablet, taken before a shift near the core. It gives the dose somewhere to go.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 10,
+    "composition": {
+      "mat_reagent": 0.1,
+      "mat_lithium": 0.2,
+      "mat_salts": 0.1
+    },
+    "tags": [
+      "medicine",
+      "pill"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.25
+    },
+    "decks": {
+      "deck_core": 3,
+      "deck_works": 2,
+      "deck_dock": 1.5,
+      "deck_mid": 1,
+      "deck_ring": 0.5
+    }
+  },
+  {
+    "id": "it_med_burn_tab",
+    "name": "Burn tab",
+    "desc": "Grey tablet of carbon and reagent. Eases scald and weld flash pain for a few hours.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 3,
+    "composition": {
+      "mat_reagent": 0.1,
+      "mat_carbon": 0.1
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "wound"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.25
+    },
+    "decks": {
+      "deck_works": 2.5,
+      "deck_core": 2,
+      "deck_spine": 1.5
+    }
+  },
+  {
+    "id": "it_med_calmer",
+    "name": "Calmer",
+    "desc": "Salty white tablet that unwinds the jaw. Ends a stim early; the crash is spared, the day is not.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 6,
+    "composition": {
+      "mat_reagent": 0.2,
+      "mat_salts": 0.2
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "sedative"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [],
+      "clears": [
+        "stat_wired"
+      ],
+      "consumed": true
+    },
+    "notes": "Clears stat_wired. Ending the stim early is meant to cost the +1 energy already spent, not refund it."
+  },
+  {
+    "id": "it_med_energy_tab",
+    "name": "Energy tab",
+    "desc": "Sugar and a pinch of reagent pressed into a sweet tablet. A small lift, no hangover.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 2,
+    "composition": {
+      "mat_biomass": 0.1,
+      "mat_reagent": 0.1
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "stim",
+      "sweet"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "The mild stim: +1 now and no status, so no crash. Cheap enough to be the spine's habit."
+  },
+  {
+    "id": "it_med_gauze",
+    "name": "Gauze pad",
+    "desc": "Square of loose-woven gauze, folded twice. Sterile until the packet is opened.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 1.5,
+    "composition": {
+      "mat_fibre": 0.25
+    },
+    "tags": [
+      "processed",
+      "medicine",
+      "wound",
+      "fibre",
+      "cloth"
+    ],
+    "depth": 1,
+    "market_need": "need_medicine"
+  },
+  {
+    "id": "it_med_burn_gel",
+    "name": "Burn gel",
+    "desc": "Cool clear gel in a squeeze tube, oil and reagent. Goes on scalds and weld burns.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 8,
+    "composition": {
+      "mat_reagent": 0.5,
+      "mat_biomass": 0.5,
+      "mat_polymer": 0.1
+    },
+    "tags": [
+      "processed",
+      "medicine",
+      "wound",
+      "liquid"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.5
+    },
+    "decks": {
+      "deck_works": 2.5,
+      "deck_core": 2,
+      "deck_dock": 1.5
+    }
+  },
+  {
+    "id": "it_med_suture_kit",
+    "name": "Suture kit",
+    "desc": "Curved needle, a hank of waxed thread and a sealed wipe. For a cut that will not close on its own.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 12,
+    "composition": {
+      "mat_fibre": 0.5,
+      "mat_iron": 0.5
+    },
+    "tags": [
+      "processed",
+      "medicine",
+      "wound"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.5
+    }
+  },
+  {
+    "id": "it_med_splint",
+    "name": "Splint",
+    "desc": "Light-alloy strip with a padded lining and two straps. Holds a broken arm straight.",
+    "w": 1,
+    "h": 3,
+    "tier": 2,
+    "value": 24,
+    "composition": {
+      "mat_lightmetal": 1,
+      "mat_fibre": 0.5
+    },
+    "tags": [
+      "processed",
+      "medicine",
+      "wound"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 1
+    }
+  },
+  {
+    "id": "it_med_saline_drip",
+    "name": "Saline drip",
+    "desc": "Soft bag of sterile saline with a line and a clamp. Clinics hang them, the spine hoards them.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 14,
+    "composition": {
+      "mat_water": 1,
+      "mat_salts": 0.2,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "processed",
+      "medicine",
+      "liquid",
+      "vessel"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.5
+    }
+  },
+  {
+    "id": "it_med_rehydration_mix",
+    "name": "Rehydration mix",
+    "desc": "Sachet of sugar and salt to stir into a pouch of water. Ends the shakes after a bad vent shift.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 5,
+    "composition": {
+      "mat_biomass": 0.5,
+      "mat_salts": 0.5
+    },
+    "tags": [
+      "processed",
+      "medicine",
+      "powder"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 0.25
+    }
+  },
+  {
+    "id": "it_med_dream_tab",
+    "name": "Dream tab",
+    "desc": "Unmarked white tablet with a soft sweet taste. A warm, loose day in a body that is owed none.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 4,
+    "composition": {
+      "mat_reagent": 0.1,
+      "mat_biomass": 0.1,
+      "mat_carbon": 0.1
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "drug",
+      "contraband"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "contraband": "drug",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_wired"
+      ],
+      "clears": [
+        "stat_tired"
+      ],
+      "consumed": true
+    },
+    "notes": "Contraband (drug). Sold through res_fence and the black market; the premium is in the market, not in value."
+  },
+  {
+    "id": "it_med_blue_ampoule",
+    "name": "Blue ampoule",
+    "desc": "Sealed glass ampoule of blue solution. Snap, swallow, and the station goes quiet for an hour.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 18,
+    "composition": {
+      "mat_reagent": 0.5,
+      "mat_volatiles": 0.5,
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "chemical",
+      "drug",
+      "contraband",
+      "liquid",
+      "vessel"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "contraband": "drug",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 2,
+          "text": "+2 energy now"
+        }
+      ],
+      "adds": [
+        "stat_wired"
+      ],
+      "clears": [
+        "stat_tired"
+      ],
+      "consumed": true
+    },
+    "notes": "Contraband (drug). The strong one: +2 energy now, the same crash tomorrow."
+  },
+  {
+    "id": "it_med_fb_painkiller",
+    "name": "Painkiller blister",
+    "desc": "Six white tablets in a foil card. They only come out.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "value": 13,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_lightmetal": 0.1,
+      "mat_reagent": 0.6
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "container",
+      "packaging"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 1.5
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "pockets",
+          "w": 2,
+          "h": 1,
+          "accepts_tags": [
+            "pill"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_med_painkiller",
+          "qty": 6
+        }
+      ]
+    },
+    "notes": "Composition includes the card and its six pills; container.fill lists them for taking out."
+  },
+  {
+    "id": "it_med_fb_antibiotic",
+    "name": "Antibiotic blister",
+    "desc": "Six yellow tablets in foil. A full course, if nobody shares.",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "value": 31,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_lightmetal": 0.1,
+      "mat_reagent": 0.6,
+      "mat_biomass": 0.6
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "container",
+      "packaging"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 1.5
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "pockets",
+          "w": 2,
+          "h": 1,
+          "accepts_tags": [
+            "pill"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_med_antibiotic",
+          "qty": 6
+        }
+      ]
+    },
+    "notes": "Composition includes the card and its six pills; container.fill lists them for taking out."
+  },
+  {
+    "id": "it_med_fb_sleeping_pill",
+    "name": "Sleeping blister",
+    "desc": "Six blue tablets in foil. Six nights of sleep, or one very long one.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "value": 19,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_lightmetal": 0.1,
+      "mat_reagent": 0.6
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "container",
+      "packaging"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 1.5
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "pockets",
+          "w": 2,
+          "h": 1,
+          "accepts_tags": [
+            "pill"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_med_sleeping_pill",
+          "qty": 6
+        }
+      ]
+    },
+    "notes": "Composition includes the card and its six pills; container.fill lists them for taking out."
+  },
+  {
+    "id": "it_med_fb_antiviral",
+    "name": "Antiviral blister",
+    "desc": "Six pale green tablets in foil. Ring pharmacy stamp on the back.",
+    "w": 2,
+    "h": 1,
+    "tier": 3,
+    "value": 61,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_lightmetal": 0.1,
+      "mat_reagent": 0.6,
+      "mat_biomass": 0.6,
+      "mat_rare": 0.6
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "container",
+      "packaging"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 1.5
+    },
+    "decks": {
+      "deck_ring": 2.5,
+      "deck_hub": 2,
+      "deck_mid": 1.5
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "pockets",
+          "w": 2,
+          "h": 1,
+          "accepts_tags": [
+            "pill"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_med_antiviral",
+          "qty": 6
+        }
+      ]
+    },
+    "notes": "Composition includes the card and its six pills; container.fill lists them for taking out."
+  },
+  {
+    "id": "it_med_fb_antirad",
+    "name": "Anti-rad blister",
+    "desc": "Six chalky tablets in foil. Core crews buy them by the strip.",
+    "w": 2,
+    "h": 1,
+    "tier": 3,
+    "value": 61,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_lightmetal": 0.1,
+      "mat_reagent": 0.6,
+      "mat_lithium": 1.2,
+      "mat_salts": 0.6
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "container",
+      "packaging"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 1.5
+    },
+    "decks": {
+      "deck_core": 3,
+      "deck_works": 2,
+      "deck_dock": 1.5
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "pockets",
+          "w": 2,
+          "h": 1,
+          "accepts_tags": [
+            "pill"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_med_antirad",
+          "qty": 6
+        }
+      ]
+    },
+    "notes": "Composition includes the card and its six pills; container.fill lists them for taking out."
+  },
+  {
+    "id": "it_med_fb_burn_tab",
+    "name": "Burn tab blister",
+    "desc": "Six grey tablets in foil. Works crews carry one in the overalls.",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "value": 19,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_lightmetal": 0.1,
+      "mat_reagent": 0.6,
+      "mat_carbon": 0.6
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "container",
+      "packaging"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 1.5
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "pockets",
+          "w": 2,
+          "h": 1,
+          "accepts_tags": [
+            "pill"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_med_burn_tab",
+          "qty": 6
+        }
+      ]
+    },
+    "notes": "Composition includes the card and its six pills; container.fill lists them for taking out."
+  },
+  {
+    "id": "it_med_fb_dream_tab",
+    "name": "Dream blister",
+    "desc": "Six unmarked tablets in plain foil. No stamp, no maker, no questions.",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "value": 25,
+    "composition": {
+      "mat_polymer": 0.1,
+      "mat_lightmetal": 0.1,
+      "mat_reagent": 0.6,
+      "mat_biomass": 0.6,
+      "mat_carbon": 0.6
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "container",
+      "packaging",
+      "drug",
+      "contraband"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "contraband": "drug",
+    "container": {
+      "slots": [
+        {
+          "name": "pockets",
+          "w": 2,
+          "h": 1,
+          "accepts_tags": [
+            "pill"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_med_dream_tab",
+          "qty": 6
+        }
+      ]
+    },
+    "notes": "Composition includes the card and its six pills; container.fill lists them for taking out."
+  },
+  {
+    "id": "it_med_first_aid_kit",
+    "name": "First-aid kit",
+    "desc": "Tub with a clip lid: two bandages and a bottle of antiseptic. Bolted to a wall in every decent corridor.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "value": 22,
+    "composition": {
+      "mat_polymer": 0.5,
+      "mat_fibre": 1,
+      "mat_reagent": 0.5,
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "medicine",
+      "wound",
+      "container",
+      "packaging"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 1.5
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "tray",
+          "w": 3,
+          "h": 2,
+          "accepts_tags": [
+            "medicine",
+            "wound"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_med_bandage",
+          "qty": 2
+        },
+        {
+          "id": "it_med_antiseptic",
+          "qty": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "it_med_pack_ward",
+    "name": "Ward pack",
+    "desc": "Taped crate of painkiller and antibiotic cards, packed for a clinic ward. Ships as one line on the manifest.",
+    "w": 3,
+    "h": 2,
+    "tier": 3,
+    "value": 110,
+    "composition": {
+      "mat_polymer": 2.4,
+      "mat_lightmetal": 0.4,
+      "mat_reagent": 2.4,
+      "mat_biomass": 1.2
+    },
+    "tags": [
+      "medicine",
+      "pill",
+      "container",
+      "packaging"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 6
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "bay",
+          "w": 3,
+          "h": 2,
+          "accepts_tags": [
+            "pill",
+            "medicine"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_med_fb_painkiller",
+          "qty": 2
+        },
+        {
+          "id": "it_med_fb_antibiotic",
+          "qty": 2
+        }
+      ]
+    },
+    "notes": "Bulk pack for org_clinic and res_orderly orders (task 10)."
+  },
+  {
+    "id": "it_med_pack_wound",
+    "name": "Wound pack",
+    "desc": "Sealed tub of four bandages and two bottles of antiseptic. The standing order of every works clinic.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 35,
+    "composition": {
+      "mat_polymer": 0.5,
+      "mat_fibre": 2,
+      "mat_reagent": 1,
+      "mat_silicate": 1
+    },
+    "tags": [
+      "medicine",
+      "wound",
+      "container",
+      "packaging"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 4
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "tub",
+          "w": 2,
+          "h": 2,
+          "accepts_tags": [
+            "wound",
+            "medicine"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_med_bandage",
+          "qty": 4
+        },
+        {
+          "id": "it_med_antiseptic",
+          "qty": 2
+        }
+      ]
+    },
+    "notes": "Bulk pack for org_clinic and res_orderly."
+  },
+  {
+    "id": "it_med_pack_burn",
+    "name": "Burn pack",
+    "desc": "Tub of two gel tubes and two cards of burn tabs, labelled for the foundry deck. Cold-stored if there is room.",
+    "w": 2,
+    "h": 2,
+    "tier": 3,
+    "value": 64,
+    "composition": {
+      "mat_polymer": 0.9,
+      "mat_reagent": 2.2,
+      "mat_biomass": 1,
+      "mat_lightmetal": 0.2,
+      "mat_carbon": 1.2
+    },
+    "tags": [
+      "medicine",
+      "wound",
+      "container",
+      "packaging"
+    ],
+    "depth": 2,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 6
+    },
+    "decks": {
+      "deck_works": 3,
+      "deck_core": 2.5,
+      "deck_dock": 1.5
+    },
+    "container": {
+      "slots": [
+        {
+          "name": "tub",
+          "w": 2,
+          "h": 2,
+          "accepts_tags": [
+            "wound",
+            "medicine"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_med_burn_gel",
+          "qty": 2
+        },
+        {
+          "id": "it_med_fb_burn_tab",
+          "qty": 2
+        }
+      ]
+    },
+    "notes": "Bulk pack for the works and core decks."
+  },
+  {
+    "id": "it_med_regrowth_gel",
+    "name": "Regrowth gel",
+    "desc": "Faintly warm gel in a lined tube, seeded with rare earth. Closes a deep wound in days, not weeks.",
+    "w": 1,
+    "h": 2,
+    "tier": 4,
+    "value": 70,
+    "composition": {
+      "mat_reagent": 0.5,
+      "mat_biomass": 0.5,
+      "mat_rare": 0.2,
+      "mat_polymer": 0.1
+    },
+    "tags": [
+      "processed",
+      "medicine",
+      "wound",
+      "ring_grade",
+      "liquid"
+    ],
+    "depth": 3,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 1
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 1.5,
+      "deck_mid": 0.5
+    }
+  },
+  {
+    "id": "it_med_gene_patch",
+    "name": "Gene patch",
+    "desc": "Square skin patch of cultured cells and noble-metal contacts. One patch rewrites what the ring cannot cure.",
+    "w": 1,
+    "h": 1,
+    "tier": 4,
+    "value": 450,
+    "composition": {
+      "mat_reagent": 0.5,
+      "mat_biomass": 0.5,
+      "mat_rare": 0.2,
+      "mat_noble": 0.2,
+      "mat_polymer": 0.1
+    },
+    "tags": [
+      "processed",
+      "medicine",
+      "ring_grade",
+      "synthetic"
+    ],
+    "depth": 3,
+    "market_need": "need_medicine",
+    "needs": {
+      "need_medicine": 2
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 1
+    }
+  }
+]

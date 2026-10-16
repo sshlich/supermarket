@@ -1,0 +1,3905 @@
+[
+  {
+    "id": "mach_hands",
+    "name": "Your hands",
+    "desc": "Two hands and a bench of habit. Cutting, stacking, filling, packing: instant, no cells, no energy.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 0,
+    "composition": {},
+    "tags": [
+      "tool"
+    ],
+    "kind": "produce",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 3,
+    "transmutes": [],
+    "virtual": true,
+    "slots": [],
+    "cells_per_job": 0,
+    "energy_per_job": 0,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_tired",
+      "stat_sore"
+    ],
+    "consumables": [],
+    "upgrades_to": null,
+    "notes": "Virtual: not a thing, always owned. Hand recipes are instant, 0 energy, 0 cells."
+  },
+  {
+    "id": "mach_bench",
+    "name": "Workbench",
+    "desc": "A steel bench with a vice, a roller and a rack of hand tools. Repair, refill, bundle, refurbish.",
+    "w": 3,
+    "h": 2,
+    "tier": 1,
+    "value": 150,
+    "composition": {
+      "mat_iron": 7
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "modify",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 3,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "top",
+        "role": "input",
+        "w": 6,
+        "h": 4
+      },
+      {
+        "name": "tool rail",
+        "role": "tool",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "tool"
+        ]
+      }
+    ],
+    "cells_per_job": 0,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_dusty",
+      "stat_misaligned"
+    ],
+    "consumables": [
+      "it_mach_lubricant",
+      "it_fab_spare_part"
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_bench."
+  },
+  {
+    "id": "mach_smelter",
+    "name": "Smelter",
+    "desc": "The old cast-iron furnace, its firebox gutted for a cell rack. Two ore in, one bar out.",
+    "w": 3,
+    "h": 4,
+    "tier": 1,
+    "value": 40,
+    "composition": {
+      "mat_iron": 6,
+      "mat_silicate": 4,
+      "mat_copper": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 2,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "crucible",
+        "role": "input",
+        "w": 4,
+        "h": 2,
+        "accepts_tags": [
+          "ore"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 1,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_hot",
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_lubricant",
+      "it_mach_coolant"
+    ],
+    "upgrades_to": "mach_refinery",
+    "carried_from": "furnace",
+    "notes": "Keeps the furnace footprint 3x4 and its ore-in crucible. Composition is iron and firebrick (silicate). Buildable: see rcp_mach_build_smelter."
+  },
+  {
+    "id": "mach_recycler",
+    "name": "Recycler",
+    "desc": "A grinding drum and a row of sorting chutes. Anything in, materials out, a tenth to sludge.",
+    "w": 3,
+    "h": 3,
+    "tier": 1,
+    "value": 60,
+    "composition": {
+      "mat_iron": 7,
+      "mat_copper": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 1,
+    "transmutes": [],
+    "generic": "recycle",
+    "slots": [
+      {
+        "name": "hopper",
+        "role": "input",
+        "w": 4,
+        "h": 4
+      },
+      {
+        "name": "chutes",
+        "role": "output",
+        "w": 6,
+        "h": 2
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 1,
+    "energy_per_job": 1,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_dusty",
+      "stat_slipping",
+      "stat_hot"
+    ],
+    "consumables": [
+      "it_mach_drive_belt",
+      "it_mach_lubricant"
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_recycler."
+  },
+  {
+    "id": "mach_crusher",
+    "name": "Crusher",
+    "desc": "Twin toothed rollers over a steel hopper. Breaks mixed scrap, e-waste and ice into sorted lumps.",
+    "w": 3,
+    "h": 3,
+    "tier": 1,
+    "value": 90,
+    "composition": {
+      "mat_iron": 8,
+      "mat_copper": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 1,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "hopper",
+        "role": "input",
+        "w": 4,
+        "h": 3
+      },
+      {
+        "name": "chute",
+        "role": "output",
+        "w": 4,
+        "h": 2
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      },
+      {
+        "name": "roller drive",
+        "role": "consumable",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "machine_part"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 2,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_dusty",
+      "stat_slipping",
+      "stat_hot"
+    ],
+    "consumables": [
+      "it_mach_drive_belt",
+      "it_mach_lubricant"
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_crusher."
+  },
+  {
+    "id": "mach_purifier",
+    "name": "Purifier",
+    "desc": "A tall tank with a pump and a filter sleeve. Greywater or melted ice goes in, clean water comes out.",
+    "w": 2,
+    "h": 3,
+    "tier": 1,
+    "value": 80,
+    "composition": {
+      "mat_iron": 3,
+      "mat_copper": 1,
+      "mat_polymer": 2
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 2,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "tank",
+        "role": "input",
+        "w": 2,
+        "h": 3,
+        "accepts_tags": [
+          "liquid",
+          "ice",
+          "water"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      },
+      {
+        "name": "filter sleeve",
+        "role": "tool",
+        "w": 1,
+        "h": 2,
+        "accepts_tags": [
+          "filter"
+        ]
+      }
+    ],
+    "cells_per_job": 1,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_clogged",
+      "stat_leaking"
+    ],
+    "consumables": [
+      "it_mach_water_filter",
+      "it_mach_sealant"
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_purifier."
+  },
+  {
+    "id": "mach_charger",
+    "name": "Charger",
+    "desc": "A wall-fed cradle that trickles station power into a spent cell. Billed by the charge, at the power price.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 50,
+    "composition": {
+      "mat_copper": 3,
+      "mat_polymer": 1.5,
+      "mat_lightmetal": 1
+    },
+    "tags": [
+      "fixture",
+      "power"
+    ],
+    "kind": "do",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 2,
+    "transmutes": [],
+    "generic": "charge",
+    "slots": [
+      {
+        "name": "cradle",
+        "role": "input",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 0,
+    "energy_per_job": 0,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_unpowered",
+      "stat_tripped",
+      "stat_hot"
+    ],
+    "consumables": [
+      "it_mach_fuse"
+    ],
+    "effects": [
+      {
+        "stat": "charge_price_mult",
+        "op": "mul",
+        "value": 1,
+        "text": "Refills a cell for its capacity x the power price, in credits"
+      },
+      {
+        "stat": "overnight_jobs",
+        "op": "add",
+        "value": 0,
+        "text": "Charges overnight too; a brownout slows it"
+      }
+    ],
+    "upgrades_to": null,
+    "notes": "Generic rule: any cell in the cradle is refilled; no matter moves. The effects text is the visible price. Buildable: see rcp_mach_build_charger."
+  },
+  {
+    "id": "mach_hydro_tray",
+    "name": "Hydro tray",
+    "desc": "A shallow polymer tray with a drip line and a lamp bracket. Seed, water and light turn over nights to crops.",
+    "w": 3,
+    "h": 2,
+    "tier": 1,
+    "value": 45,
+    "composition": {
+      "mat_polymer": 3,
+      "mat_lightmetal": 1,
+      "mat_iron": 1,
+      "mat_copper": 0.3
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_1",
+    "tray": true,
+    "max_inputs": 3,
+    "transmutes": [
+      [
+        "mat_water",
+        "mat_biomass"
+      ],
+      [
+        "mat_salts",
+        "mat_biomass"
+      ],
+      [
+        "mat_volatiles",
+        "mat_biomass"
+      ]
+    ],
+    "slots": [
+      {
+        "name": "bed",
+        "role": "input",
+        "w": 4,
+        "h": 2,
+        "accepts_tags": [
+          "seed",
+          "produce",
+          "water"
+        ]
+      },
+      {
+        "name": "lamp bracket",
+        "role": "tool",
+        "w": 1,
+        "h": 2,
+        "accepts_tags": [
+          "light"
+        ]
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      }
+    ],
+    "cells_per_job": 1,
+    "energy_per_job": 0,
+    "jobs": [
+      "nights"
+    ],
+    "statuses": [
+      "stat_leaking",
+      "stat_unpowered",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_tech_lamp",
+      "it_mach_sealant"
+    ],
+    "upgrades_to": "mach_hydro_rack"
+  },
+  {
+    "id": "mach_terminal",
+    "name": "Wired terminal",
+    "desc": "An all-in-one machine with a curved green screen and a floppy drive. It runs on a cell and a wall socket.",
+    "w": 3,
+    "h": 3,
+    "tier": 1,
+    "value": 60,
+    "composition": {
+      "mat_copper": 0.6,
+      "mat_rare": 0.3,
+      "mat_polymer": 2.1,
+      "mat_silicate": 1.4,
+      "mat_lightmetal": 2
+    },
+    "tags": [
+      "fixture",
+      "computer"
+    ],
+    "kind": "do",
+    "phase": "phase_1",
+    "tray": true,
+    "max_inputs": 1,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      },
+      {
+        "name": "port bay",
+        "role": "input",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "device"
+        ]
+      }
+    ],
+    "cells_per_job": 1,
+    "energy_per_job": 0,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_infected",
+      "stat_unpowered",
+      "stat_dusty",
+      "stat_tripped"
+    ],
+    "consumables": [
+      "it_mach_fuse"
+    ],
+    "effects": [
+      {
+        "stat": "terminal_memory_kb",
+        "op": "set",
+        "value": 640,
+        "text": "640 KB memory"
+      },
+      {
+        "stat": "terminal_storage_kb",
+        "op": "set",
+        "value": 2048,
+        "text": "2 MB storage"
+      },
+      {
+        "stat": "terminal_speed",
+        "op": "set",
+        "value": 8,
+        "text": "Speed 8"
+      },
+      {
+        "stat": "ports",
+        "op": "set",
+        "value": 2,
+        "text": "2 device ports"
+      }
+    ],
+    "upgrades_to": "mach_terminal_pro",
+    "carried_from": "computer",
+    "notes": "Numbers carried from src/kinds.json (memory 640, disk 2048, speed 8)."
+  },
+  {
+    "id": "mach_modem",
+    "name": "Modem",
+    "desc": "A beige box with a handset cradle and a line jack. Plugs into the terminal: no modem, no mail.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "value": 40,
+    "composition": {
+      "mat_copper": 0.5,
+      "mat_polymer": 0.8,
+      "mat_rare": 0.1,
+      "mat_lightmetal": 0.5
+    },
+    "tags": [
+      "fixture",
+      "device",
+      "electronic"
+    ],
+    "kind": "do",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 0,
+    "transmutes": [],
+    "slots": [],
+    "cells_per_job": 0,
+    "energy_per_job": 0,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_unpowered",
+      "stat_tripped"
+    ],
+    "consumables": [
+      "it_mach_fuse"
+    ],
+    "effects": [
+      {
+        "stat": "orders_per_day",
+        "op": "add",
+        "value": 1,
+        "text": "Mail orders reach you: +1 per day (none without a modem)"
+      },
+      {
+        "stat": "wholesale_access",
+        "op": "add",
+        "value": 0,
+        "text": "Lets wholesale and attachment mail through"
+      }
+    ],
+    "upgrades_to": null,
+    "requires": [
+      "mach_terminal"
+    ],
+    "notes": "orders_per_day add is the modem share of the phase rate; task 10 owns the base rate."
+  },
+  {
+    "id": "mach_printer_s",
+    "name": "Slip printer",
+    "desc": "A thermal slot printer with a roll of paper tape. Order slips, labels and receipts, a strip at a time.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 70,
+    "composition": {
+      "mat_copper": 1.3,
+      "mat_iron": 1,
+      "mat_rare": 0.1,
+      "mat_polymer": 0.8,
+      "mat_silicate": 0.2,
+      "mat_lightmetal": 1
+    },
+    "tags": [
+      "fixture",
+      "device"
+    ],
+    "kind": "produce",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 1,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "paper feed",
+        "role": "input",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "paper"
+        ]
+      },
+      {
+        "name": "tray",
+        "role": "output",
+        "w": 2,
+        "h": 1
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 1,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_drive_belt",
+      "it_mach_fuse"
+    ],
+    "upgrades_to": "mach_printer_m",
+    "notes": "Buildable: see rcp_mach_build_printer_s."
+  },
+  {
+    "id": "mach_sealer",
+    "name": "Box sealer",
+    "desc": "A clamp frame with a tape head and a hot wire. Run a packed box through and it comes out sealed.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 60,
+    "composition": {
+      "mat_copper": 1,
+      "mat_iron": 3.5
+    },
+    "tags": [
+      "fixture",
+      "packaging"
+    ],
+    "kind": "modify",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 1,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "frame",
+        "role": "input",
+        "w": 4,
+        "h": 4,
+        "accepts_tags": [
+          "container",
+          "packaging"
+        ]
+      },
+      {
+        "name": "tape head",
+        "role": "consumable",
+        "w": 1,
+        "h": 1,
+        "accepts_tags": [
+          "packaging"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 1,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_misaligned",
+      "stat_slipping"
+    ],
+    "consumables": [
+      "it_mach_tape",
+      "it_mach_drive_belt"
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_sealer."
+  },
+  {
+    "id": "mach_scanner",
+    "name": "Scanner",
+    "desc": "A flat bed under a hooded lamp, wired to a sensor head. Shows what a box or a disc is hiding.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 120,
+    "composition": {
+      "mat_copper": 0.5,
+      "mat_rare": 0.3,
+      "mat_silicate": 0.4,
+      "mat_polymer": 0.8,
+      "mat_lightmetal": 1
+    },
+    "tags": [
+      "fixture",
+      "device",
+      "electronic"
+    ],
+    "kind": "do",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 1,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "bed",
+        "role": "input",
+        "w": 4,
+        "h": 3
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 1,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_misaligned",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_cleaning_kit"
+    ],
+    "effects": [
+      {
+        "stat": "inspection_chance",
+        "op": "add",
+        "value": -0.05,
+        "text": "Security inspection chance -5% while a scanner is powered"
+      }
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_scanner."
+  },
+  {
+    "id": "mach_radio",
+    "name": "Radio",
+    "desc": "A scuffed engineers' set tuned to the maintenance bands. Chatter about breakdowns before they happen.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "value": 90,
+    "composition": {
+      "mat_copper": 0.8,
+      "mat_rare": 0.1,
+      "mat_polymer": 1.3,
+      "mat_silicate": 0.2,
+      "mat_lightmetal": 1
+    },
+    "tags": [
+      "fixture",
+      "device",
+      "electronic"
+    ],
+    "kind": "do",
+    "phase": "phase_1",
+    "tray": false,
+    "max_inputs": 0,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 0.5,
+    "energy_per_job": 0,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_unpowered",
+      "stat_tripped",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_fuse"
+    ],
+    "effects": [
+      {
+        "stat": "rumor_lead_days",
+        "op": "add",
+        "value": 1,
+        "text": "Rumors reach you 1 day earlier"
+      },
+      {
+        "stat": "rumor_accuracy",
+        "op": "add",
+        "value": 0.1,
+        "text": "Rumors are right 10% more often"
+      }
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_radio."
+  },
+  {
+    "id": "mach_digester",
+    "name": "Digester",
+    "desc": "A sealed iron tun with a stirrer and a vent line. Sludge sours and settles into paste over nights.",
+    "w": 3,
+    "h": 3,
+    "tier": 2,
+    "value": 500,
+    "composition": {
+      "mat_iron": 6,
+      "mat_polymer": 2,
+      "mat_copper": 1,
+      "mat_silicate": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": false,
+    "max_inputs": 1,
+    "transmutes": [
+      [
+        "mat_sludge",
+        "mat_biomass"
+      ],
+      [
+        "mat_sludge",
+        "mat_salts"
+      ],
+      [
+        "mat_sludge",
+        "mat_volatiles"
+      ],
+      [
+        "mat_sludge",
+        "mat_water"
+      ]
+    ],
+    "slots": [
+      {
+        "name": "tun",
+        "role": "input",
+        "w": 3,
+        "h": 3,
+        "accepts_tags": [
+          "waste",
+          "liquid"
+        ]
+      },
+      {
+        "name": "draw-off",
+        "role": "output",
+        "w": 3,
+        "h": 1
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 1,
+    "jobs": [
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_leaking",
+      "stat_clogged"
+    ],
+    "consumables": [
+      "it_mach_sealant",
+      "it_mach_lubricant"
+    ],
+    "upgrades_to": "mach_bioreactor"
+  },
+  {
+    "id": "mach_vat",
+    "name": "Vat",
+    "desc": "A square steel vat with a paddle and a press head. Biomass paste goes in; a disc decides what comes out.",
+    "w": 3,
+    "h": 3,
+    "tier": 2,
+    "value": 400,
+    "composition": {
+      "mat_iron": 5,
+      "mat_polymer": 3,
+      "mat_copper": 1.5,
+      "mat_lightmetal": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": true,
+    "max_inputs": 3,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "vat",
+        "role": "input",
+        "w": 4,
+        "h": 3,
+        "accepts_tags": [
+          "culture",
+          "raw",
+          "food"
+        ]
+      },
+      {
+        "name": "press",
+        "role": "output",
+        "w": 4,
+        "h": 2
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 3,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_infected",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_lubricant",
+      "it_mach_cleaning_kit"
+    ],
+    "upgrades_to": "mach_vat_industrial"
+  },
+  {
+    "id": "mach_fabricator",
+    "name": "Fabricator",
+    "desc": "A gantry with a feed hopper and a heated bed. A blueprint disc tells it what to make from bar and polymer.",
+    "w": 3,
+    "h": 3,
+    "tier": 2,
+    "value": 600,
+    "composition": {
+      "mat_iron": 9,
+      "mat_copper": 2.3,
+      "mat_rare": 0.1,
+      "mat_polymer": 0.3,
+      "mat_silicate": 0.2
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": true,
+    "max_inputs": 3,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "hopper",
+        "role": "input",
+        "w": 4,
+        "h": 3,
+        "accepts_tags": [
+          "bar",
+          "sheet",
+          "polymer",
+          "component"
+        ]
+      },
+      {
+        "name": "bed",
+        "role": "output",
+        "w": 4,
+        "h": 3
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      },
+      {
+        "name": "drive",
+        "role": "consumable",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "machine_part"
+        ]
+      }
+    ],
+    "cells_per_job": 3,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_misaligned",
+      "stat_infected",
+      "stat_overclocked"
+    ],
+    "consumables": [
+      "it_mach_lubricant",
+      "it_mach_drive_belt",
+      "it_mach_coolant"
+    ],
+    "upgrades_to": "mach_fab_precision",
+    "notes": "Buildable: see rcp_mach_build_fabricator."
+  },
+  {
+    "id": "mach_extruder",
+    "name": "Extruder",
+    "desc": "A heated barrel and a die plate. Polymer flake goes in the top and sheet, tube or film comes out.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "value": 450,
+    "composition": {
+      "mat_iron": 7,
+      "mat_copper": 2
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": false,
+    "max_inputs": 2,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "barrel",
+        "role": "input",
+        "w": 3,
+        "h": 2,
+        "accepts_tags": [
+          "polymer"
+        ]
+      },
+      {
+        "name": "die",
+        "role": "output",
+        "w": 4,
+        "h": 2
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 3,
+    "energy_per_job": 2,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_clogged",
+      "stat_overclocked"
+    ],
+    "consumables": [
+      "it_mach_coolant",
+      "it_mach_lubricant"
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_extruder."
+  },
+  {
+    "id": "mach_kiln",
+    "name": "Kiln",
+    "desc": "A brick drum on cells with a thick lid. Grit and slag fuse into glass, vials and ceramic.",
+    "w": 3,
+    "h": 3,
+    "tier": 2,
+    "value": 500,
+    "composition": {
+      "mat_iron": 6,
+      "mat_silicate": 3.1,
+      "mat_copper": 1.1,
+      "mat_rare": 0.1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": false,
+    "max_inputs": 2,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "chamber",
+        "role": "input",
+        "w": 4,
+        "h": 3,
+        "accepts_tags": [
+          "glass",
+          "powder",
+          "scrap"
+        ]
+      },
+      {
+        "name": "rack",
+        "role": "output",
+        "w": 3,
+        "h": 2
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 4,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_coolant"
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_kiln."
+  },
+  {
+    "id": "mach_electrolyser",
+    "name": "Electrolyser",
+    "desc": "Twin steel plates in a clear-glass tank, wired to a heavy rectifier. Water splits into gas.",
+    "w": 2,
+    "h": 3,
+    "tier": 2,
+    "value": 550,
+    "composition": {
+      "mat_iron": 3,
+      "mat_copper": 2,
+      "mat_polymer": 1.5,
+      "mat_noble": 0.1,
+      "mat_lightmetal": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": false,
+    "max_inputs": 1,
+    "transmutes": [
+      [
+        "mat_water",
+        "mat_volatiles"
+      ]
+    ],
+    "slots": [
+      {
+        "name": "cell tank",
+        "role": "input",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "water",
+          "liquid"
+        ]
+      },
+      {
+        "name": "gas port",
+        "role": "output",
+        "w": 1,
+        "h": 2
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 5,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_leaking",
+      "stat_tripped"
+    ],
+    "consumables": [
+      "it_mach_fuse",
+      "it_mach_sealant",
+      "it_mach_coolant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_scrubber",
+    "name": "Scrubber",
+    "desc": "A fan box with a slot for an air cartridge. Pulls foul air through carbon; the cartridge does the work.",
+    "w": 2,
+    "h": 3,
+    "tier": 2,
+    "value": 450,
+    "composition": {
+      "mat_iron": 3.5,
+      "mat_copper": 1.6,
+      "mat_rare": 0.1,
+      "mat_silicate": 0.1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": true,
+    "max_inputs": 2,
+    "transmutes": [
+      [
+        "mat_volatiles",
+        "mat_carbon"
+      ]
+    ],
+    "slots": [
+      {
+        "name": "intake",
+        "role": "input",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "gas",
+          "air"
+        ]
+      },
+      {
+        "name": "cartridge bay",
+        "role": "tool",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "filter"
+        ]
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 1,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_clogged",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_air_filter",
+      "it_mach_drive_belt"
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_scrubber."
+  },
+  {
+    "id": "mach_algae_tank",
+    "name": "Algae tank",
+    "desc": "A tall glass tank of green water with a lamp rack and an air stone. Grows biomass and breathes out.",
+    "w": 3,
+    "h": 3,
+    "tier": 2,
+    "value": 500,
+    "composition": {
+      "mat_silicate": 6,
+      "mat_polymer": 3,
+      "mat_iron": 2,
+      "mat_copper": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": true,
+    "max_inputs": 3,
+    "transmutes": [
+      [
+        "mat_water",
+        "mat_biomass"
+      ],
+      [
+        "mat_salts",
+        "mat_biomass"
+      ],
+      [
+        "mat_volatiles",
+        "mat_biomass"
+      ]
+    ],
+    "slots": [
+      {
+        "name": "tank",
+        "role": "input",
+        "w": 3,
+        "h": 3,
+        "accepts_tags": [
+          "water",
+          "culture",
+          "gas"
+        ]
+      },
+      {
+        "name": "lamp rack",
+        "role": "tool",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "light"
+        ]
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 1,
+    "jobs": [
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_leaking",
+      "stat_infected",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_tech_lamp",
+      "it_mach_sealant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_still",
+    "name": "Still",
+    "desc": "A copper pot, a coil and a drip jar. Ferments and distils slowly, and smells of both.",
+    "w": 2,
+    "h": 3,
+    "tier": 2,
+    "value": 600,
+    "composition": {
+      "mat_copper": 4,
+      "mat_iron": 3,
+      "mat_silicate": 1,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": true,
+    "max_inputs": 2,
+    "transmutes": [
+      [
+        "mat_biomass",
+        "mat_reagent"
+      ]
+    ],
+    "slots": [
+      {
+        "name": "pot",
+        "role": "input",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "liquid",
+          "culture",
+          "sweet"
+        ]
+      },
+      {
+        "name": "drip jar",
+        "role": "output",
+        "w": 1,
+        "h": 2
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 1,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_leaking"
+    ],
+    "consumables": [
+      "it_mach_sealant",
+      "it_mach_coolant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_chem_bench",
+    "name": "Chem bench",
+    "desc": "A fume-stained steel bench with burettes, a hot ring and a rack of vials. Reagents, solvents, coolant.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "value": 700,
+    "composition": {
+      "mat_iron": 5,
+      "mat_silicate": 2,
+      "mat_copper": 1,
+      "mat_polymer": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": true,
+    "max_inputs": 3,
+    "transmutes": [
+      [
+        "mat_biomass",
+        "mat_reagent"
+      ],
+      [
+        "mat_salts",
+        "mat_reagent"
+      ],
+      [
+        "mat_carbon",
+        "mat_reagent"
+      ],
+      [
+        "mat_volatiles",
+        "mat_reagent"
+      ]
+    ],
+    "slots": [
+      {
+        "name": "mixing deck",
+        "role": "input",
+        "w": 4,
+        "h": 3,
+        "accepts_tags": [
+          "liquid",
+          "chemical",
+          "reagent"
+        ]
+      },
+      {
+        "name": "rack",
+        "role": "output",
+        "w": 3,
+        "h": 2
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 1,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_leaking",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_cleaning_kit",
+      "it_mach_sealant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_pill_press",
+    "name": "Pill press",
+    "desc": "A turret press with a hopper of powder and a tray of dies. A hundred small thumps a minute.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 450,
+    "composition": {
+      "mat_iron": 4,
+      "mat_copper": 1,
+      "mat_lightmetal": 1,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": true,
+    "max_inputs": 2,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "hopper",
+        "role": "input",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "powder",
+          "chemical"
+        ]
+      },
+      {
+        "name": "chute",
+        "role": "output",
+        "w": 2,
+        "h": 1
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_dusty",
+      "stat_misaligned"
+    ],
+    "consumables": [
+      "it_mach_lubricant",
+      "it_mach_cleaning_kit"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_loom",
+    "name": "Loom",
+    "desc": "A wide loom rebuilt in light alloy, with a heddle drive. Fibre goes in; cloth and gauze come off.",
+    "w": 4,
+    "h": 3,
+    "tier": 2,
+    "value": 650,
+    "composition": {
+      "mat_iron": 6,
+      "mat_lightmetal": 2,
+      "mat_polymer": 1,
+      "mat_copper": 0.5
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": true,
+    "max_inputs": 2,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "creel",
+        "role": "input",
+        "w": 4,
+        "h": 2,
+        "accepts_tags": [
+          "fibre",
+          "cloth"
+        ]
+      },
+      {
+        "name": "beam",
+        "role": "output",
+        "w": 4,
+        "h": 2
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      },
+      {
+        "name": "heddle drive",
+        "role": "consumable",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "machine_part"
+        ]
+      }
+    ],
+    "cells_per_job": 3,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_slipping",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_drive_belt",
+      "it_mach_lubricant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_pulper",
+    "name": "Pulper",
+    "desc": "A tub with a paddle and a screen. Rags and lint soak into slurry and press out as paper.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 400,
+    "composition": {
+      "mat_iron": 3,
+      "mat_copper": 1,
+      "mat_polymer": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": false,
+    "max_inputs": 2,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "tub",
+        "role": "input",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "fibre",
+          "paper",
+          "cloth"
+        ]
+      },
+      {
+        "name": "screen",
+        "role": "output",
+        "w": 2,
+        "h": 2
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_clogged",
+      "stat_leaking"
+    ],
+    "consumables": [
+      "it_mach_drive_belt",
+      "it_mach_sealant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_kitchen",
+    "name": "Galley",
+    "desc": "A hot plate, a pan well and a fan on cells. No flame, no smoke, and a pot of something warm.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "value": 400,
+    "composition": {
+      "mat_iron": 3,
+      "mat_copper": 1.5,
+      "mat_polymer": 1,
+      "mat_silicate": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": false,
+    "max_inputs": 3,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "plate",
+        "role": "input",
+        "w": 4,
+        "h": 3,
+        "accepts_tags": [
+          "food",
+          "produce",
+          "staple"
+        ]
+      },
+      {
+        "name": "pass",
+        "role": "output",
+        "w": 3,
+        "h": 1
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_cleaning_kit",
+      "it_mach_fuse"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_printer_m",
+    "name": "Document printer",
+    "desc": "A flat-bed press with an ink well and a paper tray. Manuals, posters and books, a sheet at a time.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "value": 700,
+    "composition": {
+      "mat_iron": 3,
+      "mat_copper": 1,
+      "mat_polymer": 2,
+      "mat_rare": 0.2,
+      "mat_lightmetal": 1
+    },
+    "tags": [
+      "fixture",
+      "device"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": false,
+    "max_inputs": 2,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "paper tray",
+        "role": "input",
+        "w": 3,
+        "h": 2,
+        "accepts_tags": [
+          "paper"
+        ]
+      },
+      {
+        "name": "delivery",
+        "role": "output",
+        "w": 3,
+        "h": 2
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 1,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_dusty",
+      "stat_misaligned",
+      "stat_slipping"
+    ],
+    "consumables": [
+      "it_mach_drive_belt",
+      "it_mach_cleaning_kit"
+    ],
+    "upgrades_to": "mach_printer_l"
+  },
+  {
+    "id": "mach_labeller",
+    "name": "Labeller",
+    "desc": "A hand-fed gummer with a disc-driven print head. Sticks a grade or a licence on whatever you slide through.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 500,
+    "composition": {
+      "mat_iron": 2,
+      "mat_polymer": 1,
+      "mat_copper": 0.5,
+      "mat_rare": 0.1
+    },
+    "tags": [
+      "fixture",
+      "device"
+    ],
+    "kind": "modify",
+    "phase": "phase_2",
+    "tray": true,
+    "max_inputs": 2,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "feed",
+        "role": "input",
+        "w": 2,
+        "h": 2
+      },
+      {
+        "name": "label spindle",
+        "role": "consumable",
+        "w": 1,
+        "h": 1,
+        "accepts_tags": [
+          "paper"
+        ]
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 1,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_misaligned"
+    ],
+    "consumables": [
+      "it_mach_label_roll"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_copier",
+    "name": "Disc copier",
+    "desc": "A twin-drive disc cradle with a bar of green lights. Reads one disc, writes another, and does not ask.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 400,
+    "composition": {
+      "mat_iron": 1.5,
+      "mat_polymer": 1.5,
+      "mat_copper": 1,
+      "mat_rare": 0.2
+    },
+    "tags": [
+      "fixture",
+      "device",
+      "electronic"
+    ],
+    "kind": "produce",
+    "phase": "phase_2",
+    "tray": false,
+    "max_inputs": 2,
+    "transmutes": [],
+    "generic": "copy",
+    "slots": [
+      {
+        "name": "source drive",
+        "role": "input",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "target drive",
+        "role": "output",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_infected",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_cleaning_kit"
+    ],
+    "upgrades_to": null,
+    "notes": "Generic rule: any copyable, unlicensed disc and a blank of the same media become two discs."
+  },
+  {
+    "id": "mach_chiller",
+    "name": "Chiller",
+    "desc": "A finned radiator box with a pump and two hoses. Pulls heat out of whatever it stands beside.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 450,
+    "composition": {
+      "mat_iron": 6,
+      "mat_copper": 2
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "do",
+    "phase": "phase_2",
+    "tray": false,
+    "max_inputs": 1,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      },
+      {
+        "name": "coolant tank",
+        "role": "consumable",
+        "w": 1,
+        "h": 2,
+        "accepts_tags": [
+          "coolant"
+        ]
+      }
+    ],
+    "cells_per_job": 2,
+    "energy_per_job": 1,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_leaking",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_coolant",
+      "it_mach_sealant"
+    ],
+    "effects": [
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 0.9,
+        "scope": {
+          "tag": "fixture"
+        },
+        "text": "Neighbouring machines jam 10% less"
+      },
+      {
+        "stat": "cell_drain_mult",
+        "op": "mul",
+        "value": 0.95,
+        "text": "Overclocked machines beside it drain 5% less"
+      }
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_chiller."
+  },
+  {
+    "id": "mach_vent",
+    "name": "Vent port",
+    "desc": "A hatch on a rail with a bolted collar. Sludge and waste go through for a fee and do not come back.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 600,
+    "composition": {
+      "mat_iron": 6,
+      "mat_lightmetal": 2,
+      "mat_polymer": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "do",
+    "phase": "phase_2",
+    "tray": false,
+    "max_inputs": 1,
+    "transmutes": [],
+    "port": true,
+    "slots": [
+      {
+        "name": "hatch",
+        "role": "input",
+        "w": 2,
+        "h": 3,
+        "accepts_tags": [
+          "waste",
+          "liquid"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 1,
+    "energy_per_job": 1,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_clogged",
+      "stat_tripped"
+    ],
+    "consumables": [
+      "it_mach_lubricant",
+      "it_mach_fuse"
+    ],
+    "upgrades_to": null,
+    "notes": "The outflow port: matter leaves the loop in its recipes (loss) for a credit fee."
+  },
+  {
+    "id": "mach_hydro_rack",
+    "name": "Hydro rack",
+    "desc": "Four tiers of trays under strip lamps, with a drip line down one side. Fruit, herbs and fibre crops.",
+    "w": 3,
+    "h": 4,
+    "tier": 3,
+    "value": 4000,
+    "composition": {
+      "mat_iron": 6,
+      "mat_lightmetal": 5,
+      "mat_polymer": 4,
+      "mat_copper": 2,
+      "mat_silicate": 2
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_3",
+    "tray": true,
+    "max_inputs": 3,
+    "transmutes": [
+      [
+        "mat_water",
+        "mat_biomass"
+      ],
+      [
+        "mat_salts",
+        "mat_biomass"
+      ],
+      [
+        "mat_volatiles",
+        "mat_biomass"
+      ]
+    ],
+    "slots": [
+      {
+        "name": "racks",
+        "role": "input",
+        "w": 6,
+        "h": 4,
+        "accepts_tags": [
+          "seed",
+          "produce",
+          "water"
+        ]
+      },
+      {
+        "name": "lamp bank",
+        "role": "tool",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "light"
+        ]
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 6,
+    "energy_per_job": 1,
+    "jobs": [
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_leaking",
+      "stat_infected",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_tech_lamp",
+      "it_mach_sealant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_vat_industrial",
+    "name": "Industrial vat",
+    "desc": "A riveted cauldron the size of a bunk with a screw press. Big batches, gourmet discs, overnight runs.",
+    "w": 4,
+    "h": 4,
+    "tier": 3,
+    "value": 6000,
+    "composition": {
+      "mat_iron": 12,
+      "mat_lightmetal": 3,
+      "mat_polymer": 4,
+      "mat_copper": 3,
+      "mat_rare": 0.3
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_3",
+    "tray": true,
+    "max_inputs": 4,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "cauldron",
+        "role": "input",
+        "w": 6,
+        "h": 4,
+        "accepts_tags": [
+          "culture",
+          "raw",
+          "food"
+        ]
+      },
+      {
+        "name": "press",
+        "role": "output",
+        "w": 6,
+        "h": 2
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 10,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_infected",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_lubricant",
+      "it_mach_coolant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_fab_precision",
+    "name": "Precision fabricator",
+    "desc": "A closed cabinet with a granite bed and a probe arm. Tight tolerances: bearings, valves, machine parts.",
+    "w": 4,
+    "h": 3,
+    "tier": 3,
+    "value": 9000,
+    "composition": {
+      "mat_iron": 12,
+      "mat_copper": 2.8,
+      "mat_rare": 0.4,
+      "mat_polymer": 0.6,
+      "mat_silicate": 0.6
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_3",
+    "tray": true,
+    "max_inputs": 4,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "hopper",
+        "role": "input",
+        "w": 4,
+        "h": 3,
+        "accepts_tags": [
+          "bar",
+          "sheet",
+          "component",
+          "part"
+        ]
+      },
+      {
+        "name": "bed",
+        "role": "output",
+        "w": 4,
+        "h": 3
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      },
+      {
+        "name": "drive",
+        "role": "consumable",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "machine_part"
+        ]
+      }
+    ],
+    "cells_per_job": 8,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_misaligned",
+      "stat_infected",
+      "stat_overclocked"
+    ],
+    "consumables": [
+      "it_mach_lubricant",
+      "it_mach_coolant",
+      "it_mach_manual"
+    ],
+    "upgrades_to": "mach_autofab",
+    "notes": "Buildable: see rcp_mach_build_fab_precision."
+  },
+  {
+    "id": "mach_printer_3d",
+    "name": "3D printer",
+    "desc": "A glass-hooded gantry that lays polymer and light metal in threads. It reads its models off a memory card.",
+    "w": 3,
+    "h": 3,
+    "tier": 3,
+    "value": 7000,
+    "composition": {
+      "mat_lightmetal": 4,
+      "mat_polymer": 3,
+      "mat_copper": 2,
+      "mat_rare": 0.6,
+      "mat_iron": 2
+    },
+    "tags": [
+      "fixture",
+      "device"
+    ],
+    "kind": "produce",
+    "phase": "phase_3",
+    "tray": true,
+    "max_inputs": 2,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "feedstock",
+        "role": "input",
+        "w": 3,
+        "h": 2,
+        "accepts_tags": [
+          "polymer",
+          "bar"
+        ]
+      },
+      {
+        "name": "bed",
+        "role": "output",
+        "w": 3,
+        "h": 3
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 8,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_clogged",
+      "stat_misaligned"
+    ],
+    "consumables": [
+      "it_mach_coolant",
+      "it_mach_cleaning_kit"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_assembler",
+    "name": "Assembler",
+    "desc": "A cage of jointed arms over a jig. Boards, chips and housings snap together into whole devices.",
+    "w": 4,
+    "h": 3,
+    "tier": 3,
+    "value": 9000,
+    "composition": {
+      "mat_iron": 6,
+      "mat_copper": 4,
+      "mat_rare": 1,
+      "mat_lightmetal": 2,
+      "mat_polymer": 2,
+      "mat_noble": 0.1
+    },
+    "tags": [
+      "fixture",
+      "device"
+    ],
+    "kind": "produce",
+    "phase": "phase_3",
+    "tray": true,
+    "max_inputs": 4,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "jig",
+        "role": "input",
+        "w": 4,
+        "h": 3,
+        "accepts_tags": [
+          "component",
+          "electronic",
+          "device"
+        ]
+      },
+      {
+        "name": "bay",
+        "role": "output",
+        "w": 3,
+        "h": 2
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 8,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_misaligned",
+      "stat_infected",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_lubricant",
+      "it_mach_cleaning_kit"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_cell_press",
+    "name": "Cell press",
+    "desc": "A hydraulic press with a clean sleeve. Lithium, metal and reagent are squeezed into charged cells.",
+    "w": 3,
+    "h": 3,
+    "tier": 3,
+    "value": 8000,
+    "composition": {
+      "mat_iron": 8,
+      "mat_copper": 3,
+      "mat_lithium": 1,
+      "mat_lightmetal": 2,
+      "mat_rare": 0.3
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_3",
+    "tray": true,
+    "max_inputs": 3,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "chamber",
+        "role": "input",
+        "w": 3,
+        "h": 2,
+        "accepts_tags": [
+          "powder",
+          "chemical",
+          "bar"
+        ]
+      },
+      {
+        "name": "cell tray",
+        "role": "output",
+        "w": 3,
+        "h": 1
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 10,
+    "energy_per_job": 3,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_leaking",
+      "stat_tripped"
+    ],
+    "consumables": [
+      "it_mach_coolant",
+      "it_mach_fuse"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_synthesiser",
+    "name": "Synthesiser",
+    "desc": "A cabinet of reaction coils, cold traps and gas bottles. Builds molecules to order from a card.",
+    "w": 3,
+    "h": 4,
+    "tier": 3,
+    "value": 12000,
+    "composition": {
+      "mat_iron": 6,
+      "mat_lightmetal": 3,
+      "mat_copper": 3,
+      "mat_silicate": 3,
+      "mat_rare": 1,
+      "mat_noble": 0.2,
+      "mat_polymer": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_3",
+    "tray": true,
+    "max_inputs": 3,
+    "transmutes": [
+      [
+        "mat_carbon",
+        "mat_polymer"
+      ],
+      [
+        "mat_volatiles",
+        "mat_polymer"
+      ],
+      [
+        "mat_reagent",
+        "mat_polymer"
+      ],
+      [
+        "mat_biomass",
+        "mat_reagent"
+      ],
+      [
+        "mat_carbon",
+        "mat_reagent"
+      ],
+      [
+        "mat_salts",
+        "mat_reagent"
+      ]
+    ],
+    "slots": [
+      {
+        "name": "reactor",
+        "role": "input",
+        "w": 3,
+        "h": 3,
+        "accepts_tags": [
+          "chemical",
+          "reagent",
+          "gas"
+        ]
+      },
+      {
+        "name": "trap",
+        "role": "output",
+        "w": 3,
+        "h": 2
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 12,
+    "energy_per_job": 3,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_leaking",
+      "stat_clogged"
+    ],
+    "consumables": [
+      "it_mach_coolant",
+      "it_mach_sealant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_cellar",
+    "name": "Cellar",
+    "desc": "A cold insulated cabinet with a rack of shelves and a slow fan. Cheese and wine improve if you leave them.",
+    "w": 3,
+    "h": 3,
+    "tier": 3,
+    "value": 5000,
+    "composition": {
+      "mat_iron": 4,
+      "mat_lightmetal": 3,
+      "mat_polymer": 4,
+      "mat_copper": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "modify",
+    "phase": "phase_3",
+    "tray": false,
+    "max_inputs": 1,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "shelves",
+        "role": "input",
+        "w": 4,
+        "h": 4,
+        "accepts_tags": [
+          "dairy",
+          "drink",
+          "alcohol",
+          "food"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 4,
+    "energy_per_job": 0,
+    "jobs": [
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_leaking",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_coolant",
+      "it_mach_sealant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_jeweller",
+    "name": "Jeweller's bench",
+    "desc": "A fine bench under a loupe lamp, with a micro torch, a jig and a lock-drawer. Noble metal stays here.",
+    "w": 3,
+    "h": 2,
+    "tier": 3,
+    "value": 6000,
+    "composition": {
+      "mat_iron": 3,
+      "mat_copper": 1,
+      "mat_silicate": 2,
+      "mat_rare": 0.5,
+      "mat_noble": 0.3
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_3",
+    "tray": true,
+    "max_inputs": 3,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "bench top",
+        "role": "input",
+        "w": 3,
+        "h": 2,
+        "accepts_tags": [
+          "bar",
+          "jewellery",
+          "heirloom"
+        ]
+      },
+      {
+        "name": "tray",
+        "role": "output",
+        "w": 2,
+        "h": 1
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 4,
+    "energy_per_job": 2,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_misaligned",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_cleaning_kit",
+      "it_mach_lubricant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_annealer",
+    "name": "Annealer",
+    "desc": "A drum furnace with a quench tank and a timer. Heated and cooled by the book, tools last longer.",
+    "w": 3,
+    "h": 3,
+    "tier": 3,
+    "value": 5000,
+    "composition": {
+      "mat_iron": 6,
+      "mat_lightmetal": 3,
+      "mat_copper": 2.2,
+      "mat_rare": 0.2,
+      "mat_silicate": 0.2,
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "modify",
+    "phase": "phase_3",
+    "tray": false,
+    "max_inputs": 1,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "drum",
+        "role": "input",
+        "w": 3,
+        "h": 3,
+        "accepts_tags": [
+          "tool",
+          "part",
+          "machine_part"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 8,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_leaking"
+    ],
+    "consumables": [
+      "it_mach_coolant"
+    ],
+    "upgrades_to": null,
+    "notes": "Buildable: see rcp_mach_build_annealer."
+  },
+  {
+    "id": "mach_printer_l",
+    "name": "Banner printer",
+    "desc": "A wide roller press on legs, with four ink wells and a take-up spool. Banners, art prints, ad sheets.",
+    "w": 4,
+    "h": 3,
+    "tier": 3,
+    "value": 6500,
+    "composition": {
+      "mat_iron": 6,
+      "mat_lightmetal": 3,
+      "mat_polymer": 4,
+      "mat_copper": 2,
+      "mat_rare": 0.5
+    },
+    "tags": [
+      "fixture",
+      "device"
+    ],
+    "kind": "produce",
+    "phase": "phase_3",
+    "tray": false,
+    "max_inputs": 2,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "roll feed",
+        "role": "input",
+        "w": 4,
+        "h": 2,
+        "accepts_tags": [
+          "paper",
+          "cloth"
+        ]
+      },
+      {
+        "name": "spool",
+        "role": "output",
+        "w": 4,
+        "h": 2
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 6,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_slipping",
+      "stat_misaligned",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_drive_belt",
+      "it_mach_cleaning_kit"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_broadcaster",
+    "name": "Broadcaster",
+    "desc": "A rack transmitter with a feed encoder and a disc tray. Pushes your ad onto the deck screens.",
+    "w": 2,
+    "h": 3,
+    "tier": 3,
+    "value": 5500,
+    "composition": {
+      "mat_copper": 2,
+      "mat_rare": 0.8,
+      "mat_lightmetal": 2,
+      "mat_polymer": 2,
+      "mat_noble": 0.1
+    },
+    "tags": [
+      "fixture",
+      "device",
+      "electronic"
+    ],
+    "kind": "do",
+    "phase": "phase_3",
+    "tray": true,
+    "max_inputs": 1,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 6,
+    "energy_per_job": 2,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_infected",
+      "stat_tripped"
+    ],
+    "consumables": [
+      "it_mach_fuse"
+    ],
+    "effects": [
+      {
+        "stat": "ad_mult",
+        "op": "mul",
+        "value": 1.5,
+        "scope": {
+          "tag": "media"
+        },
+        "text": "The advertised need draws 1.5x the walk-ins for a while"
+      },
+      {
+        "stat": "customers_per_day",
+        "op": "add",
+        "value": 1,
+        "text": "+1 walk-in a day while an ad runs"
+      }
+    ],
+    "upgrades_to": null,
+    "requires": [
+      "mach_modem"
+    ]
+  },
+  {
+    "id": "mach_terminal_pro",
+    "name": "Workstation",
+    "desc": "A tower with a tall green screen, twin drives and a bay of ports. Bigger memory, more devices, scripts.",
+    "w": 4,
+    "h": 3,
+    "tier": 3,
+    "value": 7500,
+    "composition": {
+      "mat_copper": 2,
+      "mat_rare": 1,
+      "mat_polymer": 3,
+      "mat_silicate": 2,
+      "mat_lightmetal": 3,
+      "mat_noble": 0.1
+    },
+    "tags": [
+      "fixture",
+      "computer"
+    ],
+    "kind": "do",
+    "phase": "phase_3",
+    "tray": true,
+    "max_inputs": 1,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "second drive",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 3,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      },
+      {
+        "name": "port bay",
+        "role": "input",
+        "w": 4,
+        "h": 1,
+        "accepts_tags": [
+          "device"
+        ]
+      }
+    ],
+    "cells_per_job": 5,
+    "energy_per_job": 0,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_infected",
+      "stat_dusty",
+      "stat_tripped"
+    ],
+    "consumables": [
+      "it_mach_fuse",
+      "it_mach_cleaning_kit"
+    ],
+    "effects": [
+      {
+        "stat": "terminal_memory_kb",
+        "op": "set",
+        "value": 4096,
+        "text": "4 MB memory"
+      },
+      {
+        "stat": "terminal_storage_kb",
+        "op": "set",
+        "value": 32768,
+        "text": "32 MB storage"
+      },
+      {
+        "stat": "terminal_speed",
+        "op": "set",
+        "value": 24,
+        "text": "Speed 24"
+      },
+      {
+        "stat": "ports",
+        "op": "set",
+        "value": 5,
+        "text": "5 device ports"
+      },
+      {
+        "stat": "max_windows",
+        "op": "add",
+        "value": 1,
+        "text": "One more open window"
+      }
+    ],
+    "upgrades_to": "mach_mainframe",
+    "requires": [
+      "mach_terminal"
+    ]
+  },
+  {
+    "id": "mach_autofab",
+    "name": "Autofab",
+    "desc": "A hall-length fabricator with a robot arm, a parts silo and a conveyor. Any blueprint, batches overnight.",
+    "w": 6,
+    "h": 4,
+    "tier": 4,
+    "value": 60000,
+    "composition": {
+      "mat_iron": 30,
+      "mat_lightmetal": 12,
+      "mat_copper": 10,
+      "mat_polymer": 8,
+      "mat_rare": 4,
+      "mat_noble": 0.5
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_4",
+    "tray": true,
+    "max_inputs": 5,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "silo",
+        "role": "input",
+        "w": 6,
+        "h": 3,
+        "accepts_tags": [
+          "bar",
+          "sheet",
+          "component",
+          "part",
+          "polymer"
+        ]
+      },
+      {
+        "name": "conveyor",
+        "role": "output",
+        "w": 6,
+        "h": 2
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 4,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      },
+      {
+        "name": "drive",
+        "role": "consumable",
+        "w": 2,
+        "h": 1,
+        "accepts_tags": [
+          "machine_part"
+        ]
+      }
+    ],
+    "cells_per_job": 24,
+    "energy_per_job": 3,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_misaligned",
+      "stat_infected",
+      "stat_overclocked",
+      "stat_slipping"
+    ],
+    "consumables": [
+      "it_mach_lubricant",
+      "it_mach_coolant",
+      "it_mach_drive_belt",
+      "it_mach_manual"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_bioreactor",
+    "name": "Bioreactor",
+    "desc": "A glass-lined tank the height of the deck, with spargers and a sample port. Sludge in, culture food out.",
+    "w": 5,
+    "h": 5,
+    "tier": 4,
+    "value": 70000,
+    "composition": {
+      "mat_iron": 20,
+      "mat_lightmetal": 6,
+      "mat_silicate": 6,
+      "mat_polymer": 8,
+      "mat_copper": 4,
+      "mat_rare": 1
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_4",
+    "tray": true,
+    "max_inputs": 4,
+    "transmutes": [
+      [
+        "mat_sludge",
+        "mat_biomass"
+      ],
+      [
+        "mat_water",
+        "mat_biomass"
+      ],
+      [
+        "mat_salts",
+        "mat_biomass"
+      ],
+      [
+        "mat_volatiles",
+        "mat_biomass"
+      ]
+    ],
+    "slots": [
+      {
+        "name": "tank",
+        "role": "input",
+        "w": 5,
+        "h": 4,
+        "accepts_tags": [
+          "waste",
+          "culture",
+          "liquid"
+        ]
+      },
+      {
+        "name": "draw-off",
+        "role": "output",
+        "w": 5,
+        "h": 1
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 4,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 18,
+    "energy_per_job": 2,
+    "jobs": [
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_leaking",
+      "stat_infected",
+      "stat_clogged"
+    ],
+    "consumables": [
+      "it_mach_sealant",
+      "it_mach_coolant"
+    ],
+    "upgrades_to": null
+  },
+  {
+    "id": "mach_mainframe",
+    "name": "Mainframe",
+    "desc": "A cabinet bank behind a locked cage, humming and warm. Runs every machine on the field and the market clients.",
+    "w": 5,
+    "h": 4,
+    "tier": 4,
+    "value": 90000,
+    "composition": {
+      "mat_iron": 14,
+      "mat_copper": 12,
+      "mat_rare": 6,
+      "mat_noble": 2,
+      "mat_polymer": 8,
+      "mat_lightmetal": 6,
+      "mat_silicate": 4
+    },
+    "tags": [
+      "fixture",
+      "computer"
+    ],
+    "kind": "do",
+    "phase": "phase_4",
+    "tray": true,
+    "max_inputs": 1,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "second drive",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 4,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      },
+      {
+        "name": "port bay",
+        "role": "input",
+        "w": 5,
+        "h": 1,
+        "accepts_tags": [
+          "device"
+        ]
+      }
+    ],
+    "cells_per_job": 20,
+    "energy_per_job": 0,
+    "jobs": [
+      "job"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_infected",
+      "stat_hot",
+      "stat_dusty",
+      "stat_tripped"
+    ],
+    "consumables": [
+      "it_mach_fuse",
+      "it_mach_coolant"
+    ],
+    "effects": [
+      {
+        "stat": "terminal_memory_kb",
+        "op": "set",
+        "value": 65536,
+        "text": "64 MB memory"
+      },
+      {
+        "stat": "terminal_storage_kb",
+        "op": "set",
+        "value": 1048576,
+        "text": "1 GB storage"
+      },
+      {
+        "stat": "terminal_speed",
+        "op": "set",
+        "value": 120,
+        "text": "Speed 120"
+      },
+      {
+        "stat": "ports",
+        "op": "set",
+        "value": 12,
+        "text": "12 device ports"
+      },
+      {
+        "stat": "overnight_jobs",
+        "op": "add",
+        "value": 4,
+        "text": "Four more machines may run overnight"
+      },
+      {
+        "stat": "job_energy_mult",
+        "op": "mul",
+        "value": 0.75,
+        "text": "Scripted jobs cost 25% less energy"
+      }
+    ],
+    "upgrades_to": null,
+    "requires": [
+      "mach_terminal_pro"
+    ]
+  },
+  {
+    "id": "mach_refinery",
+    "name": "Refinery",
+    "desc": "A column of crucibles and cold traps, chimney bolted to the hull. Pulls rare earths and noble metal from slag.",
+    "w": 6,
+    "h": 5,
+    "tier": 4,
+    "value": 75000,
+    "composition": {
+      "mat_iron": 24,
+      "mat_lightmetal": 8,
+      "mat_copper": 8,
+      "mat_silicate": 8,
+      "mat_rare": 2,
+      "mat_noble": 1,
+      "mat_polymer": 4
+    },
+    "tags": [
+      "fixture"
+    ],
+    "kind": "produce",
+    "phase": "phase_4",
+    "tray": true,
+    "max_inputs": 3,
+    "transmutes": [],
+    "slots": [
+      {
+        "name": "charge",
+        "role": "input",
+        "w": 5,
+        "h": 3,
+        "accepts_tags": [
+          "scrap",
+          "waste",
+          "powder"
+        ]
+      },
+      {
+        "name": "cold trap",
+        "role": "output",
+        "w": 5,
+        "h": 2
+      },
+      {
+        "name": "disc tray",
+        "role": "tray",
+        "w": 2,
+        "h": 2,
+        "accepts_tags": [
+          "media"
+        ]
+      },
+      {
+        "name": "cell rack",
+        "role": "cell",
+        "w": 4,
+        "h": 1,
+        "accepts_tags": [
+          "cell"
+        ]
+      }
+    ],
+    "cells_per_job": 28,
+    "energy_per_job": 4,
+    "jobs": [
+      "job",
+      "nights"
+    ],
+    "statuses": [
+      "stat_jammed",
+      "stat_unpowered",
+      "stat_worn",
+      "stat_hot",
+      "stat_leaking",
+      "stat_dusty"
+    ],
+    "consumables": [
+      "it_mach_coolant",
+      "it_mach_sealant",
+      "it_mach_lubricant"
+    ],
+    "upgrades_to": null,
+    "requires": [
+      "ctier_3"
+    ]
+  }
+]

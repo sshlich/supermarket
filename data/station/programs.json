@@ -1,0 +1,735 @@
+[
+  {
+    "id": "prog_files",
+    "name": "Files",
+    "file": "FILES.EXE",
+    "desc": "File manager, built into every computer: drives, copies, the licence of each program.",
+    "size_kb": 0,
+    "memory_kb": 32,
+    "speed": 1,
+    "licensed": false,
+    "rom": true,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_1"
+  },
+  {
+    "id": "prog_notepad",
+    "name": "Notepad",
+    "file": "NOTEPAD.EXE",
+    "desc": "Plain text editor, built in. Memos, lists and the odd confession.",
+    "size_kb": 0,
+    "memory_kb": 48,
+    "speed": 1,
+    "licensed": false,
+    "rom": true,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_1"
+  },
+  {
+    "id": "prog_prompt",
+    "name": "Prompt",
+    "file": "PROMPT.EXE",
+    "desc": "The command line, built in. Types back what you ask of it and little more.",
+    "size_kb": 0,
+    "memory_kb": 24,
+    "speed": 1,
+    "licensed": false,
+    "rom": true,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_1"
+  },
+  {
+    "id": "prog_system",
+    "name": "System",
+    "file": "SYSTEM.EXE",
+    "desc": "Memory and machine stats, built in: what is loaded, what it takes, how fast it runs.",
+    "size_kb": 0,
+    "memory_kb": 16,
+    "speed": 1,
+    "licensed": false,
+    "rom": true,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_1"
+  },
+  {
+    "id": "prog_paint",
+    "name": "Paint",
+    "file": "PAINT.EXE",
+    "desc": "Sixteen colours, a pen, a brush and a fill. Pictures save to C: and can be the wallpaper.",
+    "size_kb": 640,
+    "memory_kb": 256,
+    "speed": 12,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [],
+    "requires": [],
+    "contraband": false,
+    "novelty": true,
+    "phase": "phase_1"
+  },
+  {
+    "id": "prog_mines",
+    "name": "Mines",
+    "file": "MINES.EXE",
+    "desc": "Flag the mines on a small grid. A game that fits in a corner of a very small machine.",
+    "size_kb": 96,
+    "memory_kb": 64,
+    "speed": 4,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [],
+    "requires": [],
+    "contraband": false,
+    "novelty": true,
+    "phase": "phase_1"
+  },
+  {
+    "id": "prog_stock",
+    "name": "Stocktake",
+    "file": "STOCK.EXE",
+    "desc": "Counts everything you own, on the floor and in every box, and tells you what it is worth.",
+    "size_kb": 380,
+    "memory_kb": 192,
+    "speed": 8,
+    "licensed": true,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_1"
+  },
+  {
+    "id": "prog_mail",
+    "name": "Mail",
+    "file": "MAIL.EXE",
+    "desc": "Mail, orders and attachments. Without a modem it only shows an empty inbox.",
+    "size_kb": 120,
+    "memory_kb": 96,
+    "speed": 4,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "effects": [
+      {
+        "stat": "orders_per_day",
+        "op": "add",
+        "value": 1,
+        "text": "Orders can be read and answered: +1 per day (with the modem)"
+      }
+    ],
+    "requires": [
+      "mach_modem"
+    ],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_1"
+  },
+  {
+    "id": "prog_labels",
+    "name": "Labels",
+    "file": "LABELS.EXE",
+    "desc": "Prints order slips and labels on the slip printer, in three sizes.",
+    "size_kb": 80,
+    "memory_kb": 64,
+    "speed": 4,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "effects": [],
+    "requires": [
+      "mach_printer_s"
+    ],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_1"
+  },
+  {
+    "id": "prog_ledger",
+    "name": "Ledger",
+    "file": "LEDGER.EXE",
+    "desc": "A day book by need and event: what sold, what moved, what broke.",
+    "size_kb": 160,
+    "memory_kb": 96,
+    "speed": 8,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "effects": [
+      {
+        "stat": "price_visibility",
+        "op": "set",
+        "value": 1,
+        "text": "Trend arrows on the need chips"
+      }
+    ],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_2"
+  },
+  {
+    "id": "prog_board",
+    "name": "Price board",
+    "file": "BOARD.EXE",
+    "desc": "Live need prices and trend arrows, redrawn each time a customer pays.",
+    "size_kb": 220,
+    "memory_kb": 128,
+    "speed": 8,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "effects": [
+      {
+        "stat": "price_visibility",
+        "op": "set",
+        "value": 2,
+        "text": "Live numbers on the need chips"
+      }
+    ],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_2"
+  },
+  {
+    "id": "prog_antivirus",
+    "name": "Scrub",
+    "file": "SCRUB.EXE",
+    "desc": "Finds mod_infected on any disc in the tray and strips it. Slow, and thorough.",
+    "size_kb": 140,
+    "memory_kb": 96,
+    "speed": 8,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "effects": [
+      {
+        "stat": "virus_spread_chance",
+        "op": "mul",
+        "value": 0.2,
+        "text": "Infections spread a fifth as often while it runs"
+      }
+    ],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_2"
+  },
+  {
+    "id": "prog_overclock",
+    "name": "Overclock",
+    "file": "OVERCLK.EXE",
+    "desc": "Loads into a machine and shortens every job. The machine runs hot and jams more.",
+    "size_kb": 60,
+    "memory_kb": 48,
+    "speed": 8,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "loads_into": [
+      "mach_fabricator",
+      "mach_extruder",
+      "mach_fab_precision",
+      "mach_autofab"
+    ],
+    "effects": [
+      {
+        "stat": "job_energy_mult",
+        "op": "mul",
+        "value": 0.75,
+        "text": "Jobs on the loaded machine cost a quarter less energy"
+      },
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 1.5,
+        "text": "Jam chance up by half"
+      }
+    ],
+    "adds": [
+      "stat_overclocked"
+    ],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_2"
+  },
+  {
+    "id": "prog_wholesale",
+    "name": "Wholesale",
+    "file": "WHOLESAL.EXE",
+    "desc": "Trade desk client: order crates at market price against one licensed account.",
+    "size_kb": 200,
+    "memory_kb": 128,
+    "speed": 8,
+    "licensed": true,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "effects": [
+      {
+        "stat": "wholesale_access",
+        "op": "set",
+        "value": 1,
+        "text": "Crates can be ordered at market price"
+      }
+    ],
+    "requires": [
+      "mach_modem"
+    ],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_2"
+  },
+  {
+    "id": "prog_diagnostics",
+    "name": "Diagnostics",
+    "file": "DIAG.EXE",
+    "desc": "Polls every machine and lists its status: jammed, hot, unplugged, worn.",
+    "size_kb": 180,
+    "memory_kb": 112,
+    "speed": 8,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "effects": [
+      {
+        "stat": "jam_chance_mult",
+        "op": "mul",
+        "value": 0.9,
+        "text": "Statuses seen early: a tenth fewer surprise jams"
+      }
+    ],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_2"
+  },
+  {
+    "id": "prog_dockmaster",
+    "name": "Dock manifest",
+    "file": "DOCK.EXE",
+    "desc": "The dock manifest: what ships, in which box, and what each box pays after fees.",
+    "size_kb": 150,
+    "memory_kb": 96,
+    "speed": 8,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "effects": [
+      {
+        "stat": "carrier_fee_mult",
+        "op": "mul",
+        "value": 0.95,
+        "text": "Fees seen before shipping: 5% fewer wasted boxes"
+      }
+    ],
+    "requires": [
+      "mach_modem"
+    ],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_2"
+  },
+  {
+    "id": "prog_forecast",
+    "name": "Forecast",
+    "file": "FORECAST.EXE",
+    "desc": "Reads the engineers' bands and the board together. Rumours come earlier, and are right more often.",
+    "size_kb": 900,
+    "memory_kb": 384,
+    "speed": 24,
+    "licensed": true,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [
+      {
+        "stat": "rumor_lead_days",
+        "op": "add",
+        "value": 2,
+        "text": "Rumours reach you 2 days earlier"
+      },
+      {
+        "stat": "rumor_accuracy",
+        "op": "add",
+        "value": 0.15,
+        "text": "Rumours are right 15% more often"
+      }
+    ],
+    "requires": [
+      "mach_modem",
+      "it_tech_dongle"
+    ],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_3"
+  },
+  {
+    "id": "prog_automate",
+    "name": "Automate",
+    "file": "AUTO.EXE",
+    "desc": "Scripts that load machines and start their jobs in the night. Needs the room to hold them.",
+    "size_kb": 700,
+    "memory_kb": 320,
+    "speed": 24,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "loads_into": [
+      "mach_smelter",
+      "mach_crusher",
+      "mach_purifier",
+      "mach_digester",
+      "mach_vat",
+      "mach_fabricator",
+      "mach_extruder",
+      "mach_kiln",
+      "mach_electrolyser",
+      "mach_scrubber",
+      "mach_algae_tank",
+      "mach_still",
+      "mach_chem_bench",
+      "mach_pill_press",
+      "mach_loom",
+      "mach_pulper",
+      "mach_kitchen",
+      "mach_printer_m",
+      "mach_hydro_tray",
+      "mach_hydro_rack",
+      "mach_vat_industrial",
+      "mach_fab_precision",
+      "mach_printer_3d",
+      "mach_assembler",
+      "mach_cell_press",
+      "mach_synthesiser",
+      "mach_jeweller",
+      "mach_printer_l",
+      "mach_autofab",
+      "mach_bioreactor",
+      "mach_refinery"
+    ],
+    "effects": [
+      {
+        "stat": "job_energy_mult",
+        "op": "mul",
+        "value": 0.8,
+        "text": "Scripted jobs cost a fifth less energy"
+      },
+      {
+        "stat": "overnight_jobs",
+        "op": "add",
+        "value": 2,
+        "text": "Two more machines may run overnight"
+      }
+    ],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_3"
+  },
+  {
+    "id": "prog_cracker",
+    "name": "Cracker",
+    "file": "CRACK.EXE",
+    "desc": "Patches the licence check out of a disc. The copy it makes is yours; so is whatever came with it.",
+    "size_kb": 48,
+    "memory_kb": 32,
+    "speed": 4,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "effects": [
+      {
+        "stat": "copy_fail_chance",
+        "op": "add",
+        "value": 0.1,
+        "text": "Copies of cracked discs fail one time in ten"
+      },
+      {
+        "stat": "virus_spread_chance",
+        "op": "add",
+        "value": 0.25,
+        "text": "Cracked copies carry a virus a quarter of the time"
+      }
+    ],
+    "adds": [
+      "stat_infected"
+    ],
+    "requires": [],
+    "contraband": "software",
+    "novelty": false,
+    "phase": "phase_3"
+  },
+  {
+    "id": "prog_blackmarket",
+    "name": "Night client",
+    "file": "NIGHT.EXE",
+    "desc": "Encrypted client for black-market orders. Pays well, leaves a trail, and asks no questions.",
+    "size_kb": 260,
+    "memory_kb": 160,
+    "speed": 12,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [
+      {
+        "stat": "orders_per_day",
+        "op": "add",
+        "value": 1,
+        "text": "Black-market orders arrive nightly"
+      },
+      {
+        "stat": "inspection_chance",
+        "op": "add",
+        "value": 0.05,
+        "text": "Security notices the traffic: inspection chance up"
+      }
+    ],
+    "requires": [
+      "mach_modem"
+    ],
+    "contraband": "software",
+    "novelty": false,
+    "phase": "phase_3"
+  },
+  {
+    "id": "prog_modelstore",
+    "name": "Model store",
+    "file": "MODELS.EXE",
+    "desc": "Shop client for 3D models: pick one, pay, and it is written to a blank card.",
+    "size_kb": 420,
+    "memory_kb": 256,
+    "speed": 24,
+    "licensed": true,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [],
+    "requires": [
+      "mach_modem"
+    ],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_3"
+  },
+  {
+    "id": "prog_music",
+    "name": "Tracker",
+    "file": "TRACKER.EXE",
+    "desc": "Module tracker: four voices, a grid of notes, and the hum of the terminal fan in time.",
+    "size_kb": 210,
+    "memory_kb": 128,
+    "speed": 12,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [],
+    "requires": [],
+    "contraband": false,
+    "novelty": true,
+    "phase": "phase_1"
+  },
+  {
+    "id": "prog_chess",
+    "name": "Chess",
+    "file": "CHESS.EXE",
+    "desc": "A chess board against a patient, stupid opponent. Takes whole evenings.",
+    "size_kb": 260,
+    "memory_kb": 160,
+    "speed": 12,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro",
+      "mach_mainframe"
+    ],
+    "effects": [],
+    "requires": [],
+    "contraband": false,
+    "novelty": true,
+    "phase": "phase_1"
+  },
+  {
+    "id": "prog_defrag",
+    "name": "Defrag",
+    "file": "DEFRAG.EXE",
+    "desc": "Packs C: tight. A slow program that gives back a tenth of the disk and an hour of your night.",
+    "size_kb": 70,
+    "memory_kb": 64,
+    "speed": 8,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "effects": [
+      {
+        "stat": "terminal_storage_kb",
+        "op": "mul",
+        "value": 1.1,
+        "text": "A tenth more room on C:"
+      }
+    ],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_2"
+  },
+  {
+    "id": "prog_cipher",
+    "name": "Cipher",
+    "file": "CIPHER.EXE",
+    "desc": "Scrambles mail and manifests before they leave. Inspectors find less to read.",
+    "size_kb": 110,
+    "memory_kb": 80,
+    "speed": 8,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "effects": [
+      {
+        "stat": "inspection_chance",
+        "op": "mul",
+        "value": 0.8,
+        "text": "Inspections come a fifth less often"
+      }
+    ],
+    "requires": [
+      "mach_modem"
+    ],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_3"
+  },
+  {
+    "id": "prog_tuner",
+    "name": "Tuner",
+    "file": "TUNER.EXE",
+    "desc": "Calibrates a device from its own readings. The bench does the same by hand.",
+    "size_kb": 90,
+    "memory_kb": 64,
+    "speed": 8,
+    "licensed": false,
+    "rom": false,
+    "runs_on": [
+      "mach_terminal",
+      "mach_terminal_pro"
+    ],
+    "loads_into": [
+      "mach_assembler"
+    ],
+    "effects": [
+      {
+        "stat": "value_mult",
+        "op": "mul",
+        "value": 1.15,
+        "scope": {
+          "tag": "device"
+        },
+        "text": "Devices made on the loaded assembler sell 15% dearer (mod_tuned)"
+      }
+    ],
+    "requires": [],
+    "contraband": false,
+    "novelty": false,
+    "phase": "phase_3"
+  }
+]

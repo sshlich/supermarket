@@ -1,0 +1,1655 @@
+[
+  {
+    "id": "it_lux_paper",
+    "name": "Paper",
+    "desc": "Grey pressed sheet, fibre still visible in the grain. Takes print, folds, burns.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 2,
+    "composition": {
+      "mat_fibre": 0.5
+    },
+    "tags": [
+      "processed",
+      "paper",
+      "fibre"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_hub": 1.5,
+      "deck_mid": 1.5,
+      "deck_works": 1,
+      "deck_spine": 1
+    }
+  },
+  {
+    "id": "it_lux_cloth",
+    "name": "Cloth",
+    "desc": "Plain woven bolt, undyed and a little stiff. Garments, bandages and banners start here.",
+    "w": 2,
+    "h": 2,
+    "tier": 1,
+    "depth": 1,
+    "value": 4,
+    "composition": {
+      "mat_fibre": 1
+    },
+    "tags": [
+      "processed",
+      "cloth",
+      "fibre"
+    ],
+    "market_need": "need_comfort",
+    "decks": {
+      "deck_hub": 1.5,
+      "deck_mid": 1.5,
+      "deck_works": 1,
+      "deck_spine": 1
+    }
+  },
+  {
+    "id": "it_lux_yarn",
+    "name": "Spun yarn",
+    "desc": "A hank of fibre twisted tight on the bench. Weave it, knit it or braid it into a wick.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 2,
+    "composition": {
+      "mat_fibre": 0.5
+    },
+    "tags": [
+      "processed",
+      "fibre",
+      "cloth"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_hub": 1.5,
+      "deck_mid": 1.5,
+      "deck_works": 1,
+      "deck_spine": 1
+    }
+  },
+  {
+    "id": "it_lux_board",
+    "name": "Pasteboard",
+    "desc": "Paper pressed three deep and dried flat. Stiff enough for covers, packing and playing cards.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 8,
+    "composition": {
+      "mat_fibre": 1.5
+    },
+    "tags": [
+      "processed",
+      "paper",
+      "packaging"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_hub": 1.5,
+      "deck_mid": 1.5,
+      "deck_works": 1,
+      "deck_spine": 1
+    }
+  },
+  {
+    "id": "it_lux_wick",
+    "name": "Wick",
+    "desc": "A braided thread of yarn, stiff with use. A candle or a lamp is no good without one.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 2,
+    "value": 0.5,
+    "composition": {
+      "mat_fibre": 0.1
+    },
+    "tags": [
+      "processed",
+      "fibre"
+    ],
+    "market_need": "need_parts",
+    "decks": {
+      "deck_spine": 1,
+      "deck_mid": 1
+    }
+  },
+  {
+    "id": "it_lux_overalls",
+    "name": "Spine overalls",
+    "desc": "Heavy cloth, patched at the knees and fastened with salvage. Standard issue below the Mid Decks.",
+    "w": 2,
+    "h": 3,
+    "tier": 2,
+    "depth": 2,
+    "value": 18,
+    "composition": {
+      "mat_fibre": 2,
+      "mat_iron": 1
+    },
+    "tags": [
+      "garment",
+      "comfort",
+      "spine_grade"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 1.12
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 3,
+      "deck_dock": 2.5,
+      "deck_mid": 1.5,
+      "deck_core": 1
+    },
+    "mods": [
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_lux_gloves",
+    "name": "Work gloves",
+    "desc": "Cloth palms lined with polymer. Stops a hot pipe from taking the skin off.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 12,
+    "composition": {
+      "mat_fibre": 1,
+      "mat_polymer": 1
+    },
+    "tags": [
+      "garment",
+      "comfort"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 3.0
+    },
+    "decks": {
+      "deck_works": 3,
+      "deck_dock": 2.5,
+      "deck_core": 2,
+      "deck_spine": 1.5,
+      "deck_mid": 1
+    }
+  },
+  {
+    "id": "it_lux_ring_coat",
+    "name": "Ring coat",
+    "desc": "Long coat of real dense cloth, cut to hang straight. Nobody on the spine has ever worn one.",
+    "w": 3,
+    "h": 3,
+    "tier": 3,
+    "depth": 2,
+    "value": 110,
+    "composition": {
+      "mat_fibre": 4,
+      "mat_polymer": 1
+    },
+    "tags": [
+      "garment",
+      "comfort",
+      "luxury",
+      "real",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 1.72
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2.5,
+      "deck_core": 1
+    },
+    "mods": [
+      "mod_real",
+      "mod_label_ring"
+    ]
+  },
+  {
+    "id": "it_lux_scarf",
+    "name": "Scarf",
+    "desc": "A long knitted strip of yarn and cloth, grey on grey. Warm round the neck in a cold duct.",
+    "w": 1,
+    "h": 3,
+    "tier": 2,
+    "depth": 2,
+    "value": 10,
+    "composition": {
+      "mat_fibre": 1.5
+    },
+    "tags": [
+      "garment",
+      "comfort"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 2.5
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2,
+      "deck_mid": 2,
+      "deck_dock": 2,
+      "deck_hub": 1
+    }
+  },
+  {
+    "id": "it_lux_blanket",
+    "name": "Blanket",
+    "desc": "Three bolts of cloth stitched into one. The warmest thing in a four-high bunk.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 24,
+    "composition": {
+      "mat_fibre": 3
+    },
+    "tags": [
+      "furnishing",
+      "comfort"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 1.5
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2,
+      "deck_dock": 2,
+      "deck_mid": 2,
+      "deck_core": 1.5,
+      "deck_hub": 1,
+      "deck_ring": 0.5
+    },
+    "mods": [
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "it_lux_cushion",
+    "name": "Cushion",
+    "desc": "Cloth case stuffed with lint. Takes the shape of whoever sat on it last.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 12,
+    "composition": {
+      "mat_fibre": 2
+    },
+    "tags": [
+      "furnishing",
+      "comfort"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 3.0
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2,
+      "deck_dock": 2,
+      "deck_mid": 2,
+      "deck_core": 1.5,
+      "deck_hub": 1,
+      "deck_ring": 0.5
+    }
+  },
+  {
+    "id": "it_lux_curtain",
+    "name": "Curtain",
+    "desc": "Cloth hung on a polymer rail. Gives a bunk a door, and a body some privacy.",
+    "w": 2,
+    "h": 4,
+    "tier": 2,
+    "depth": 2,
+    "value": 22,
+    "composition": {
+      "mat_fibre": 2,
+      "mat_polymer": 1
+    },
+    "tags": [
+      "furnishing",
+      "comfort"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 1.38
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2,
+      "deck_dock": 2,
+      "deck_mid": 2,
+      "deck_core": 1.5,
+      "deck_hub": 1,
+      "deck_ring": 0.5
+    }
+  },
+  {
+    "id": "it_lux_rug",
+    "name": "Woven rug",
+    "desc": "Strips of old rag woven tight into a mat. Every one has a pattern nobody planned.",
+    "w": 3,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 24,
+    "composition": {
+      "mat_fibre": 4
+    },
+    "tags": [
+      "furnishing",
+      "comfort",
+      "spine_grade"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 1.88
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2,
+      "deck_dock": 2,
+      "deck_mid": 2,
+      "deck_core": 1.5,
+      "deck_hub": 1,
+      "deck_ring": 0.5
+    }
+  },
+  {
+    "id": "it_lux_soap",
+    "name": "Soap bar",
+    "desc": "Grey fat boiled with salts and cut square. Smells of nothing, and gets the grease off.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 4,
+    "composition": {
+      "mat_biomass": 0.5,
+      "mat_salts": 0.5,
+      "mat_polymer": 0.1
+    },
+    "tags": [
+      "hygiene",
+      "comfort"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.5
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2,
+      "deck_dock": 2,
+      "deck_mid": 2,
+      "deck_core": 1.5,
+      "deck_hub": 1,
+      "deck_ring": 0.5
+    }
+  },
+  {
+    "id": "it_lux_scent",
+    "name": "Scent vial",
+    "desc": "Spirit, petal oil and glass in a vial the size of a thumb. One drop lasts a shift.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 40,
+    "composition": {
+      "mat_reagent": 1,
+      "mat_silicate": 1,
+      "mat_biomass": 1
+    },
+    "tags": [
+      "scent",
+      "hygiene",
+      "luxury",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 2.5
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2,
+      "deck_core": 1.5,
+      "deck_mid": 1,
+      "deck_dock": 0.5,
+      "deck_works": 0.5,
+      "deck_spine": 0.2
+    },
+    "mods": [
+      "mod_label_ring"
+    ]
+  },
+  {
+    "id": "it_lux_cosmetic",
+    "name": "Cosmetic pot",
+    "desc": "Soot and fat, ground fine and sealed in glass. Darkens a lid, flushes a cheek.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 22,
+    "composition": {
+      "mat_carbon": 1,
+      "mat_biomass": 1,
+      "mat_polymer": 0.2,
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "hygiene",
+      "luxury",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 1.38
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2,
+      "deck_core": 1.5,
+      "deck_mid": 1,
+      "deck_dock": 0.5,
+      "deck_works": 0.5,
+      "deck_spine": 0.2
+    }
+  },
+  {
+    "id": "it_lux_must",
+    "name": "Wine must",
+    "desc": "Sweet cloudy mash in a flask, working slowly. It is wine if you leave it alone.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 1,
+    "value": 8,
+    "composition": {
+      "mat_water": 3,
+      "mat_biomass": 0.5,
+      "mat_reagent": 0.5
+    },
+    "tags": [
+      "drink",
+      "liquid",
+      "alcohol",
+      "processed"
+    ],
+    "market_need": "need_luxury",
+    "decks": {
+      "deck_ring": 1,
+      "deck_hub": 1
+    }
+  },
+  {
+    "id": "it_lux_wash",
+    "name": "Sugar wash",
+    "desc": "Sugar and grey water gone sour in a flask. Sharp, thin, and only good for the still.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 1,
+    "value": 8,
+    "composition": {
+      "mat_water": 3,
+      "mat_biomass": 2
+    },
+    "tags": [
+      "drink",
+      "liquid",
+      "processed"
+    ],
+    "market_need": "need_luxury",
+    "decks": {
+      "deck_spine": 1,
+      "deck_dock": 1
+    }
+  },
+  {
+    "id": "it_lux_wine",
+    "name": "Wine bottle",
+    "desc": "Dark green glass, no year on it. Hold it to the light to see how much is left.",
+    "w": 1,
+    "h": 3,
+    "tier": 2,
+    "depth": 2,
+    "value": 30,
+    "composition": {
+      "mat_silicate": 1,
+      "mat_water": 3,
+      "mat_reagent": 0.5,
+      "mat_biomass": 0.5
+    },
+    "tags": [
+      "drink",
+      "alcohol",
+      "luxury",
+      "vessel"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 2
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2,
+      "deck_core": 1.5,
+      "deck_mid": 1,
+      "deck_dock": 0.5,
+      "deck_works": 0.5,
+      "deck_spine": 0.2
+    },
+    "carried_from": "wine",
+    "mods": [
+      "mod_aged",
+      "mod_label_ring",
+      "mod_real"
+    ],
+    "notes": "Pinned composition includes its glass; the still recipe consumes a bottle plus must. Empty vessel returns via the recycler."
+  },
+  {
+    "id": "it_lux_spirit",
+    "name": "Spirit bottle",
+    "desc": "Clear and fierce, run twice through the still. Sold sealed, with a company stamp on the cap.",
+    "w": 1,
+    "h": 3,
+    "tier": 2,
+    "depth": 2,
+    "value": 45,
+    "composition": {
+      "mat_silicate": 1,
+      "mat_water": 3,
+      "mat_reagent": 2
+    },
+    "tags": [
+      "drink",
+      "alcohol",
+      "luxury",
+      "vessel",
+      "licensed"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 2.81
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2,
+      "deck_core": 1.5,
+      "deck_mid": 1,
+      "deck_dock": 0.5,
+      "deck_works": 0.5,
+      "deck_spine": 0.2
+    },
+    "mods": [
+      "mod_aged",
+      "mod_label_ring",
+      "mod_label_company"
+    ]
+  },
+  {
+    "id": "it_lux_moonshine",
+    "name": "Moonshine",
+    "desc": "Algae mash run through a still nobody admits to. Cloudy, burns going down, cheap.",
+    "w": 1,
+    "h": 3,
+    "tier": 2,
+    "depth": 2,
+    "value": 20,
+    "composition": {
+      "mat_silicate": 1,
+      "mat_water": 1.5,
+      "mat_reagent": 1.5,
+      "mat_biomass": 1.5
+    },
+    "tags": [
+      "drink",
+      "alcohol",
+      "vessel",
+      "spine_grade",
+      "contraband"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 0.75,
+      "need_comfort": 0.5
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_dock": 2,
+      "deck_works": 2,
+      "deck_mid": 1
+    },
+    "contraband": "unlicensed",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_2",
+      "decks": [
+        "deck_spine",
+        "deck_dock"
+      ]
+    },
+    "notes": "Spine product: brewed without a vintner licence. Also sold by sellers who run their own still."
+  },
+  {
+    "id": "it_lux_cup",
+    "name": "Clay cup",
+    "desc": "Fired grit, rough inside and plain outside. Holds a ration of anything.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 2,
+    "value": 1,
+    "composition": {
+      "mat_silicate": 0.5
+    },
+    "tags": [
+      "comfort",
+      "vessel"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.25
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2,
+      "deck_dock": 2,
+      "deck_mid": 2,
+      "deck_core": 1.5,
+      "deck_hub": 1,
+      "deck_ring": 0.5
+    },
+    "notes": "Value 1 sits under the tier 2 floor on purpose: it is a fired scrap of grit; tier 1 though kiln is phase 2."
+  },
+  {
+    "id": "it_lux_vase",
+    "name": "Glazed vase",
+    "desc": "Kiln-fired and glazed green. Real flowers would look right in it, if there were any.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 5.5,
+    "composition": {
+      "mat_silicate": 3
+    },
+    "tags": [
+      "comfort",
+      "luxury",
+      "art",
+      "vessel"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 0.88
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2,
+      "deck_core": 1.5,
+      "deck_mid": 1,
+      "deck_dock": 0.5,
+      "deck_works": 0.5,
+      "deck_spine": 0.2
+    }
+  },
+  {
+    "id": "it_lux_book",
+    "name": "Book",
+    "desc": "Leather-bound, the title worn off. Paper is getting rare.",
+    "w": 2,
+    "h": 3,
+    "tier": 2,
+    "depth": 2,
+    "value": 20,
+    "composition": {
+      "mat_fibre": 2
+    },
+    "tags": [
+      "book",
+      "heirloom",
+      "luxury",
+      "paper"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 1
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2.5,
+      "deck_core": 1.5,
+      "deck_mid": 1
+    },
+    "value_basis": "rarity",
+    "heirloom": true,
+    "carried_from": "book",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "mods": [
+      "mod_real",
+      "mod_engraved"
+    ],
+    "notes": "The old kind: nobody makes these. Printed books are the craft version."
+  },
+  {
+    "id": "it_lux_printed_book",
+    "name": "Printed book",
+    "desc": "Machine-set pages in a board cover, the ink still sharp. Cheap enough to read, thin enough to lose.",
+    "w": 2,
+    "h": 3,
+    "tier": 2,
+    "depth": 2,
+    "value": 14,
+    "composition": {
+      "mat_fibre": 1.5,
+      "mat_carbon": 1
+    },
+    "tags": [
+      "book",
+      "luxury",
+      "paper"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 0.88
+    },
+    "decks": {
+      "deck_hub": 3,
+      "deck_ring": 2,
+      "deck_mid": 2,
+      "deck_core": 1.5,
+      "deck_works": 1
+    }
+  },
+  {
+    "id": "it_lux_pamphlet",
+    "name": "Pamphlet",
+    "desc": "Two folded sheets, printed one side. Rules, rumours or a recipe, depending who wrote it.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 6.5,
+    "composition": {
+      "mat_fibre": 1,
+      "mat_carbon": 0.5
+    },
+    "tags": [
+      "paper",
+      "book",
+      "comfort"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.25
+    },
+    "decks": {
+      "deck_hub": 2,
+      "deck_mid": 2,
+      "deck_spine": 1.5,
+      "deck_works": 1
+    }
+  },
+  {
+    "id": "it_lux_cards",
+    "name": "Playing cards",
+    "desc": "Fifty-two squares of board, soft at the corners. Every spine bunk has a deck.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 6,
+    "composition": {
+      "mat_fibre": 0.75,
+      "mat_carbon": 0.5
+    },
+    "tags": [
+      "game",
+      "toy",
+      "comfort",
+      "paper"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 1.5
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_works": 2,
+      "deck_dock": 2,
+      "deck_mid": 2,
+      "deck_core": 1.5,
+      "deck_hub": 1,
+      "deck_ring": 0.5
+    }
+  },
+  {
+    "id": "it_lux_dice",
+    "name": "Dice",
+    "desc": "Two cubes of polymer, the dots drilled by hand. One of them runs a little heavy.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 1.5,
+    "composition": {
+      "mat_polymer": 0.5
+    },
+    "tags": [
+      "game",
+      "toy",
+      "polymer"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.25
+    },
+    "decks": {
+      "deck_spine": 3,
+      "deck_dock": 2.5,
+      "deck_works": 2,
+      "deck_mid": 1
+    }
+  },
+  {
+    "id": "it_lux_locket",
+    "name": "Locket",
+    "desc": "Gold, and the hinge still closes. What is inside was someone else's.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 40,
+    "composition": {
+      "mat_noble": 0.5
+    },
+    "tags": [
+      "jewellery",
+      "luxury",
+      "heirloom"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 2.5
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2,
+      "deck_mid": 1,
+      "deck_spine": 0.5
+    },
+    "value_basis": "rarity",
+    "heirloom": true,
+    "carried_from": "locket",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "mods": [
+      "mod_engraved"
+    ],
+    "notes": "Carried item. The jeweller card can set new ones, but the old ones are worth keeping."
+  },
+  {
+    "id": "it_lux_ring_copper",
+    "name": "Copper ring",
+    "desc": "A plain band cut from wire and joined. Turns the finger green in a week.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 12,
+    "composition": {
+      "mat_copper": 0.5
+    },
+    "tags": [
+      "jewellery",
+      "comfort",
+      "spine_grade"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.75
+    },
+    "decks": {
+      "deck_spine": 2,
+      "deck_works": 2,
+      "deck_mid": 2,
+      "deck_dock": 1.5,
+      "deck_hub": 1
+    },
+    "mods": [
+      "mod_engraved"
+    ]
+  },
+  {
+    "id": "it_lux_signet",
+    "name": "Signet ring",
+    "desc": "Heavy gold and copper, flat face left blank for a name. Engrave it and it belongs to one person.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "depth": 2,
+    "value": 130,
+    "composition": {
+      "mat_noble": 1,
+      "mat_copper": 1
+    },
+    "tags": [
+      "jewellery",
+      "luxury",
+      "real",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 2.03
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2.5,
+      "deck_core": 1
+    },
+    "mods": [
+      "mod_engraved",
+      "mod_real"
+    ]
+  },
+  {
+    "id": "it_lux_chain",
+    "name": "Gold chain",
+    "desc": "A single hand-set strand of noble metal, links smaller than a grain. Weighs more than it looks.",
+    "w": 1,
+    "h": 2,
+    "tier": 3,
+    "depth": 2,
+    "value": 125,
+    "composition": {
+      "mat_noble": 1
+    },
+    "tags": [
+      "jewellery",
+      "luxury",
+      "real",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 1.95
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2,
+      "deck_core": 0.8
+    },
+    "mods": [
+      "mod_engraved",
+      "mod_real"
+    ]
+  },
+  {
+    "id": "it_lux_print",
+    "name": "Art print",
+    "desc": "Black ink on pressed paper, a view of a planet nobody on the station has stood on.",
+    "w": 2,
+    "h": 3,
+    "tier": 3,
+    "depth": 2,
+    "value": 24,
+    "composition": {
+      "mat_fibre": 2,
+      "mat_carbon": 1
+    },
+    "tags": [
+      "art",
+      "luxury",
+      "paper"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 1.5
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2.5,
+      "deck_core": 1.5,
+      "deck_mid": 1.5,
+      "deck_works": 0.5
+    }
+  },
+  {
+    "id": "it_lux_banner",
+    "name": "Cloth banner",
+    "desc": "Printed cloth hung from a pole: a crew colour, a slogan or a name. Spine crews paint their own.",
+    "w": 3,
+    "h": 2,
+    "tier": 3,
+    "depth": 2,
+    "value": 26,
+    "composition": {
+      "mat_fibre": 2,
+      "mat_carbon": 1
+    },
+    "tags": [
+      "art",
+      "comfort",
+      "cloth"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 1.62
+    },
+    "decks": {
+      "deck_dock": 2.5,
+      "deck_works": 2.5,
+      "deck_hub": 2,
+      "deck_mid": 2,
+      "deck_spine": 1.5
+    }
+  },
+  {
+    "id": "it_lux_sculpture",
+    "name": "Polymer sculpture",
+    "desc": "A figure printed layer by layer from a model, the layer lines left in. Heavy for its size.",
+    "w": 2,
+    "h": 3,
+    "tier": 3,
+    "depth": 3,
+    "value": 80,
+    "composition": {
+      "mat_polymer": 4
+    },
+    "tags": [
+      "art",
+      "luxury",
+      "polymer"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 1.25
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2.5,
+      "deck_core": 1.5,
+      "deck_mid": 1
+    }
+  },
+  {
+    "id": "it_lux_ornament",
+    "name": "Gilt ornament",
+    "desc": "A printed polymer scroll with a skin of noble metal. The ring hangs these in corridors.",
+    "w": 2,
+    "h": 2,
+    "tier": 4,
+    "depth": 2,
+    "value": 140,
+    "composition": {
+      "mat_polymer": 2,
+      "mat_noble": 1
+    },
+    "tags": [
+      "art",
+      "luxury",
+      "ring_grade"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 0.55
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 3,
+      "deck_core": 1.5
+    }
+  },
+  {
+    "id": "it_lux_candle",
+    "name": "Candle",
+    "desc": "A taper of wax and a wick: light when the power is out.",
+    "w": 1,
+    "h": 3,
+    "tier": 1,
+    "depth": 2,
+    "value": 6,
+    "composition": {
+      "mat_biomass": 0.5,
+      "mat_fibre": 0.05
+    },
+    "tags": [
+      "light",
+      "comfort",
+      "fire",
+      "contraband"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.75
+    },
+    "decks": {
+      "deck_ring": 2,
+      "deck_spine": 1.5,
+      "deck_hub": 1,
+      "deck_mid": 1
+    },
+    "contraband": "fire",
+    "carried_from": "candle",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "notes": "Fire is banned aboard. Residents still buy them quietly; the fence trades them."
+  },
+  {
+    "id": "it_lux_matchbox",
+    "name": "Matchbox",
+    "desc": "Ten matches when new. The drawer shows how many are left.",
+    "w": 2,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 1,
+    "composition": {
+      "mat_fibre": 0.2
+    },
+    "tags": [
+      "light",
+      "comfort",
+      "fire",
+      "contraband",
+      "container"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.25
+    },
+    "decks": {
+      "deck_spine": 1.5,
+      "deck_mid": 1,
+      "deck_ring": 1
+    },
+    "contraband": "fire",
+    "carried_from": "matchbox",
+    "container": {
+      "slots": [
+        {
+          "name": "drawer",
+          "w": 5,
+          "h": 2,
+          "accepts_tags": [
+            "match"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_lux_match",
+          "qty": 10
+        }
+      ]
+    },
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_lux_match",
+    "name": "Match",
+    "desc": "One strike's worth of light.",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "depth": 1,
+    "value": 0.2,
+    "composition": {
+      "mat_fibre": 0.05
+    },
+    "tags": [
+      "light",
+      "comfort",
+      "fire",
+      "contraband"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.1
+    },
+    "decks": {
+      "deck_spine": 1.5,
+      "deck_mid": 1,
+      "deck_ring": 1
+    },
+    "contraband": "fire",
+    "carried_from": "match",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_lux_lighter",
+    "name": "Disposable lighter",
+    "desc": "Cheap plastic, every one a different colour. When it runs out, it is rubbish.",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "depth": 2,
+    "value": 4,
+    "composition": {
+      "mat_polymer": 0.3,
+      "mat_reagent": 0.1
+    },
+    "tags": [
+      "light",
+      "comfort",
+      "fire",
+      "contraband"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.5
+    },
+    "decks": {
+      "deck_spine": 1.5,
+      "deck_dock": 1.5,
+      "deck_mid": 1,
+      "deck_ring": 1
+    },
+    "contraband": "fire",
+    "carried_from": "lighter",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_lux_zippo",
+    "name": "Refillable lighter",
+    "desc": "Brushed chrome, a lid that clicks. Fill it with lamp oil or spirit.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 30,
+    "composition": {
+      "mat_lightmetal": 0.5
+    },
+    "tags": [
+      "light",
+      "comfort",
+      "fire",
+      "contraband",
+      "container"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 1,
+      "need_comfort": 0.5
+    },
+    "decks": {
+      "deck_ring": 2.5,
+      "deck_hub": 1.5,
+      "deck_core": 1.5,
+      "deck_mid": 1
+    },
+    "contraband": "fire",
+    "carried_from": "zippo",
+    "container": {
+      "slots": [
+        {
+          "name": "fuel",
+          "w": 1,
+          "h": 1,
+          "accepts_tags": [
+            "liquid",
+            "fire"
+          ]
+        }
+      ],
+      "fill": [
+        {
+          "id": "it_lux_lighter_fluid",
+          "qty": 1
+        }
+      ]
+    },
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_2"
+    },
+    "notes": "Holds one flask of fluid; spirit also works."
+  },
+  {
+    "id": "it_lux_lighter_fluid",
+    "name": "Lighter fluid",
+    "desc": "A flask of thin, sweet-smelling solvent. Refills a zippo or feeds a lamp. Do not keep it near a vent.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 1,
+    "value": 4,
+    "composition": {
+      "mat_reagent": 0.75,
+      "mat_volatiles": 0.25
+    },
+    "tags": [
+      "liquid",
+      "chemical",
+      "light",
+      "fire",
+      "contraband",
+      "consumable"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.5
+    },
+    "decks": {
+      "deck_spine": 1,
+      "deck_ring": 1.5,
+      "deck_mid": 1
+    },
+    "contraband": "fire"
+  },
+  {
+    "id": "it_lux_striker",
+    "name": "Flint striker",
+    "desc": "A bar of iron and rare earth with a steel scraper. Throws sparks into tinder on the first stroke.",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 22,
+    "composition": {
+      "mat_iron": 0.4,
+      "mat_rare": 0.2
+    },
+    "tags": [
+      "light",
+      "tool",
+      "fire",
+      "contraband"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 0.5
+    },
+    "decks": {
+      "deck_spine": 2,
+      "deck_dock": 1.5,
+      "deck_mid": 1
+    },
+    "contraband": "fire",
+    "notes": "Spine alternative to matches: lasts years."
+  },
+  {
+    "id": "it_lux_oil_lamp",
+    "name": "Oil lamp",
+    "desc": "A glass chimney on a light-metal body with a braided wick. Burns oil, smells of it, and it gives a real flame.",
+    "w": 1,
+    "h": 3,
+    "tier": 2,
+    "depth": 2,
+    "value": 30,
+    "composition": {
+      "mat_lightmetal": 1,
+      "mat_polymer": 0.5,
+      "mat_silicate": 0.5,
+      "mat_fibre": 0.1
+    },
+    "tags": [
+      "light",
+      "comfort",
+      "fire",
+      "contraband",
+      "container"
+    ],
+    "market_need": "need_comfort",
+    "needs": {
+      "need_comfort": 1.5
+    },
+    "decks": {
+      "deck_ring": 2.5,
+      "deck_spine": 1.5,
+      "deck_hub": 1.5,
+      "deck_mid": 1
+    },
+    "contraband": "fire",
+    "container": {
+      "slots": [
+        {
+          "name": "oil",
+          "w": 1,
+          "h": 2,
+          "accepts_tags": [
+            "liquid"
+          ]
+        }
+      ]
+    },
+    "notes": "Takes lamp oil or fluid (food oil also burns)."
+  },
+  {
+    "id": "it_lux_photograph",
+    "name": "Old photograph",
+    "desc": "A printed face in a paper frame, silvered with age. Nobody alive can say who it is.",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "depth": 2,
+    "value": 30,
+    "composition": {
+      "mat_fibre": 0.1,
+      "mat_polymer": 0.1,
+      "mat_noble": 0.02
+    },
+    "tags": [
+      "art",
+      "heirloom",
+      "luxury",
+      "paper"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 1.5
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2,
+      "deck_mid": 1.5,
+      "deck_spine": 1
+    },
+    "value_basis": "rarity",
+    "heirloom": true,
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    },
+    "mods": [
+      "mod_engraved"
+    ],
+    "notes": "No recipe. Salvage and sellers only."
+  },
+  {
+    "id": "it_lux_watch",
+    "name": "Wristwatch",
+    "desc": "Wound movement in a steel case. It runs eleven minutes slow and nobody would change that.",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "depth": 3,
+    "value": 200,
+    "composition": {
+      "mat_copper": 0.3,
+      "mat_lightmetal": 0.2,
+      "mat_silicate": 0.1,
+      "mat_noble": 0.05
+    },
+    "tags": [
+      "jewellery",
+      "heirloom",
+      "luxury",
+      "real"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 3
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2.5,
+      "deck_core": 2
+    },
+    "value_basis": "rarity",
+    "heirloom": true,
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_3"
+    },
+    "mods": [
+      "mod_engraved"
+    ],
+    "notes": "No recipe: only sellers (collectors) bring them."
+  },
+  {
+    "id": "it_lux_wooden_horse",
+    "name": "Wooden horse",
+    "desc": "Carved from a single piece of real wood and worn smooth by hands. Wheels long gone.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 45,
+    "composition": {
+      "mat_biomass": 1.5
+    },
+    "tags": [
+      "toy",
+      "heirloom",
+      "luxury",
+      "real"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 2
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2,
+      "deck_mid": 1.5,
+      "deck_spine": 1
+    },
+    "value_basis": "rarity",
+    "heirloom": true,
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_2"
+    },
+    "mods": [
+      "mod_real"
+    ],
+    "notes": "No recipe. Wood no longer grows aboard."
+  },
+  {
+    "id": "it_lux_wooden_bowl",
+    "name": "Wooden bowl",
+    "desc": "Real wood, turned by hand: you can feel the grain under your thumb. Smells faintly of a forest.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "depth": 2,
+    "value": 55,
+    "composition": {
+      "mat_biomass": 2
+    },
+    "tags": [
+      "comfort",
+      "heirloom",
+      "luxury",
+      "real"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 2.5
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2,
+      "deck_core": 1
+    },
+    "value_basis": "rarity",
+    "heirloom": true,
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_2"
+    },
+    "mods": [
+      "mod_real"
+    ],
+    "notes": "No recipe."
+  },
+  {
+    "id": "it_lux_music_box",
+    "name": "Music box",
+    "desc": "A brass comb, a pinned drum and a hand crank. Plays one tune, slightly flat, and people go quiet.",
+    "w": 2,
+    "h": 2,
+    "tier": 4,
+    "depth": 3,
+    "value": 220,
+    "composition": {
+      "mat_lightmetal": 1,
+      "mat_copper": 0.3,
+      "mat_rare": 0.1,
+      "mat_fibre": 0.2
+    },
+    "tags": [
+      "music",
+      "toy",
+      "heirloom",
+      "luxury"
+    ],
+    "market_need": "need_luxury",
+    "needs": {
+      "need_luxury": 3
+    },
+    "decks": {
+      "deck_ring": 3,
+      "deck_hub": 2.5,
+      "deck_core": 1.5
+    },
+    "value_basis": "rarity",
+    "heirloom": true,
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_3"
+    },
+    "mods": [
+      "mod_engraved"
+    ],
+    "notes": "No recipe."
+  }
+]

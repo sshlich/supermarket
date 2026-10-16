@@ -1,0 +1,2172 @@
+[
+  {
+    "id": "rcp_fab_smelt_iron",
+    "name": "Smelt iron",
+    "kind": "produce",
+    "machine": "mach_smelter",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_ore_iron",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      },
+      {
+        "id": "it_core_slag",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_1",
+    "notes": "2 x (iron 1 + silicate 1) = iron 2 (bar) + silicate 2 (slag): balanced."
+  },
+  {
+    "id": "rcp_fab_smelt_copper",
+    "name": "Smelt copper",
+    "kind": "produce",
+    "machine": "mach_smelter",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_ore_copper",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bar_copper",
+        "qty": 1
+      },
+      {
+        "id": "it_core_slag",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_fab_smelt_light",
+    "name": "Smelt bauxite",
+    "kind": "produce",
+    "machine": "mach_smelter",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_ore_light",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bar_light",
+        "qty": 1
+      },
+      {
+        "id": "it_core_slag",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_fab_smelt_scrap_iron",
+    "name": "Melt iron scrap",
+    "kind": "produce",
+    "machine": "mach_smelter",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_1",
+    "notes": "Scrap becomes a bar with no slag: two units in, two out."
+  },
+  {
+    "id": "rcp_fab_smelt_scrap_copper",
+    "name": "Melt copper scrap",
+    "kind": "produce",
+    "machine": "mach_smelter",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bar_copper",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_fab_smelt_scrap_light",
+    "name": "Melt light scrap",
+    "kind": "produce",
+    "machine": "mach_smelter",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_scrap_light",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bar_light",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 1,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_fab_cast_noble",
+    "name": "Cast noble bar",
+    "kind": "produce",
+    "machine": "mach_smelter",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_noble_flake",
+        "qty": 2
+      }
+    ],
+    "tools": [
+      "it_fab_crucible_liner"
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bar_noble",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2",
+    "notes": "The liner keeps the flake from soaking into the crucible. Needs a kiln-made liner."
+  },
+  {
+    "id": "rcp_fab_roll_sheet",
+    "name": "Roll steel sheet",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_sheet",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_fab_roll_sheet_scrap",
+    "name": "Roll sheet from scrap",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_sheet",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_fab_roll_light_sheet",
+    "name": "Roll light-metal sheet",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_bar_light",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_light_sheet",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_draw_wire",
+    "name": "Draw copper wire",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_bar_copper",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_fab_draw_wire_scrap",
+    "name": "Draw wire from scrap",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_wire",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_fab_curl_pipe",
+    "name": "Curl pipe from sheet",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_sheet",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_pipe",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_fab_fold_tin",
+    "name": "Fold tin cans",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_sheet",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_tin",
+        "qty": 2
+      }
+    ],
+    "energy": 0,
+    "cells": 0,
+    "time": "instant",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_fab_patch_spare",
+    "name": "Patch a spare part",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 4
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_spare_patched",
+        "qty": 5
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1",
+    "notes": "Four iron scrap and a flake of polymer, hammered and glued. Five patched spares."
+  },
+  {
+    "id": "rcp_fab_rework_spare",
+    "name": "Rework patched spares",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_spare_patched",
+        "qty": 10
+      },
+      {
+        "id": "it_core_scrap_iron",
+        "qty": 2
+      },
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_spare_part",
+        "qty": 10
+      }
+    ],
+    "energy": 2,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1",
+    "notes": "Spare part, route 1 of 3: ten patched spares stripped, shimmed and re-bushed to standard."
+  },
+  {
+    "id": "rcp_fab_cut_rivets",
+    "name": "Cut rivets from sheet",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_sheet",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_fasteners",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_1"
+  },
+  {
+    "id": "rcp_fab_fold_housing",
+    "name": "Fold device housings",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_light_sheet",
+        "qty": 2
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_pliers"
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_housing",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_cut_seals",
+    "name": "Cut seals from film",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_polymer_film",
+        "qty": 2
+      }
+    ],
+    "tools": [
+      "it_fab_knife"
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_seal",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_mount_loupe",
+    "name": "Mount a loupe",
+    "kind": "produce",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_lens",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_fasteners",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_pliers"
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_loupe",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_refurbish_tool",
+    "name": "Refurbish a tool",
+    "kind": "modify",
+    "machine": "mach_bench",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_spare_patched",
+        "qty": 1
+      },
+      {
+        "id": "it_mach_lubricant",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_multitool"
+    ],
+    "outputs": [],
+    "energy": 1,
+    "cells": 0,
+    "time": "job",
+    "phase": "phase_3",
+    "notes": "Not a produce recipe: the tool comes out the same item, now mod_refurbished.",
+    "target": {
+      "tags": [
+        "tool"
+      ]
+    },
+    "mods_add": [
+      "mod_refurbished"
+    ]
+  },
+  {
+    "id": "rcp_fab_extrude_sheet",
+    "name": "Extrude polymer sheet",
+    "kind": "produce",
+    "machine": "mach_extruder",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_extrude_tube",
+    "name": "Extrude tube",
+    "kind": "produce",
+    "machine": "mach_extruder",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_polymer_tube",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_extrude_film",
+    "name": "Blow film",
+    "kind": "produce",
+    "machine": "mach_extruder",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_polymer_film",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_extrude_tub",
+    "name": "Press tubs",
+    "kind": "produce",
+    "machine": "mach_extruder",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_tub",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_extrude_crate",
+    "name": "Press crate",
+    "kind": "produce",
+    "machine": "mach_extruder",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_crate",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_melt_pane_slag",
+    "name": "Melt slag to pane",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_slag",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_glass_pane",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.08
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_melt_pane_grit",
+    "name": "Melt grit to pane",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_grit",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_glass_pane",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.08
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_blow_vials_slag",
+    "name": "Blow vials from slag",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_slag",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_vial",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.08
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_blow_vials_grit",
+    "name": "Blow vials from grit",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_grit",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_vial",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.08
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_blow_bottle_slag",
+    "name": "Blow bottle from slag",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_slag",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bottle",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.08
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_blow_bottle_grit",
+    "name": "Blow bottle from grit",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_grit",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bottle",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.08
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_press_jars",
+    "name": "Press jars",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_grit",
+        "qty": 3
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_jar",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.08
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_slump_lens",
+    "name": "Slump lenses",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_fab_glass_pane",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_lens",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 2,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.08
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fire_tile",
+    "name": "Fire tile",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_slag",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_tile",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.08
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fire_liner",
+    "name": "Fire crucible liners",
+    "kind": "produce",
+    "machine": "mach_kiln",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_slag",
+        "qty": 4
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_crucible_liner",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.08
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_fasteners",
+    "name": "Stamp fasteners",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_hardware",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_fasteners",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_tins",
+    "name": "Stamp tin cans",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_hardware",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_tin",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_pipe",
+    "name": "Thread pipe",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_hardware",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_pipe",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_hinges",
+    "name": "Forge hinges",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_hardware",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_hinge",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_crate",
+    "name": "Mould crate",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_hardware",
+    "inputs": [
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_crate",
+        "qty": 1
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_brackets",
+    "name": "Press brackets",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_spares",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bracket",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_spring",
+    "name": "Coil springs",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_spares",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_spring",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_gear",
+    "name": "Cut gears",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_spares",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_gear",
+        "qty": 4
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_spare",
+    "name": "Fabricate spare parts",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_spares",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 5
+      },
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 3
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_spare_part",
+        "qty": 10
+      }
+    ],
+    "energy": 2,
+    "cells": 5,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2",
+    "notes": "Spare part, route 2 of 3. Ten at a time: the fabricator is slow to set up and fast to repeat."
+  },
+  {
+    "id": "rcp_fab_fab_housing",
+    "name": "Fabricate housings",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_spares",
+    "inputs": [
+      {
+        "id": "it_fab_bar_light",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_housing",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 4,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_knife",
+    "name": "Forge kitchen knives",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_tools",
+    "inputs": [
+      {
+        "id": "it_fab_sheet",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_fasteners",
+        "qty": 1
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_knife",
+        "qty": 5
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_wrench",
+    "name": "Forge wrenches",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_tools",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_wrench",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 3,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_pliers",
+    "name": "Forge pliers",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_tools",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 2
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_pliers",
+        "qty": 5
+      }
+    ],
+    "energy": 1,
+    "cells": 4,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_fab_cutter",
+    "name": "Forge cutters",
+    "kind": "produce",
+    "machine": "mach_fabricator",
+    "disc": "disc_fab_bp_tools",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_cutter",
+        "qty": 2
+      }
+    ],
+    "energy": 1,
+    "cells": 4,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_2"
+  },
+  {
+    "id": "rcp_fab_prec_bearing",
+    "name": "Grind bearings",
+    "kind": "produce",
+    "machine": "mach_fab_precision",
+    "disc": "disc_fab_bp_precision",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bearing",
+        "qty": 4
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_fab_prec_valve",
+    "name": "Machine valves",
+    "kind": "produce",
+    "machine": "mach_fab_precision",
+    "disc": "disc_fab_bp_precision",
+    "inputs": [
+      {
+        "id": "it_fab_sheet",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_wire",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_valve",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_fab_prec_seal",
+    "name": "Mould seals",
+    "kind": "produce",
+    "machine": "mach_fab_precision",
+    "disc": "disc_fab_bp_precision",
+    "inputs": [
+      {
+        "id": "it_fab_polymer_tube",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_seal",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_fab_prec_spare",
+    "name": "Match precision spare",
+    "kind": "produce",
+    "machine": "mach_fab_precision",
+    "disc": "disc_fab_bp_precision",
+    "inputs": [
+      {
+        "id": "it_fab_spring",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_gear",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_bearing",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_seal",
+        "qty": 1
+      }
+    ],
+    "tools": [
+      "it_fab_torque_driver"
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_spare_precision",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3",
+    "notes": "Four matched parts in a sleeve. The torque driver sets the sleeve."
+  },
+  {
+    "id": "rcp_fab_prec_torque",
+    "name": "Build torque driver",
+    "kind": "produce",
+    "machine": "mach_fab_precision",
+    "disc": "disc_fab_bp_precision",
+    "inputs": [
+      {
+        "id": "it_fab_spring",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_gear",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_bearing",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_polymer_tube",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_torque_driver",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_fab_prec_multitool",
+    "name": "Build multitool",
+    "kind": "produce",
+    "machine": "mach_fab_precision",
+    "disc": "disc_fab_bp_precision",
+    "inputs": [
+      {
+        "id": "it_fab_sheet",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_light_sheet",
+        "qty": 1
+      },
+      {
+        "id": "it_fab_polymer_tube",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_multitool",
+        "qty": 1
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.05,
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_fab_print_clips",
+    "name": "Print clips",
+    "kind": "produce",
+    "machine": "mach_printer_3d",
+    "disc": "disc_fab_model_fittings",
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_print_clip",
+        "qty": 4
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.06
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_fab_print_brackets",
+    "name": "Print brackets",
+    "kind": "produce",
+    "machine": "mach_printer_3d",
+    "disc": "disc_fab_model_fittings",
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 2
+      },
+      {
+        "id": "it_core_scrap_light",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_print_bracket",
+        "qty": 4
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.06
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_fab_print_fittings",
+    "name": "Print pipe fittings",
+    "kind": "produce",
+    "machine": "mach_printer_3d",
+    "disc": "disc_fab_model_fittings",
+    "inputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      },
+      {
+        "id": "it_core_scrap_light",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_print_fitting",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.06
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_fab_print_housing",
+    "name": "Print housings",
+    "kind": "produce",
+    "machine": "mach_printer_3d",
+    "disc": "disc_fab_model_fittings",
+    "inputs": [
+      {
+        "id": "it_fab_bar_light",
+        "qty": 1
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_housing",
+        "qty": 2
+      }
+    ],
+    "energy": 2,
+    "cells": 6,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.06
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_fab_temper_tool",
+    "name": "Temper a tool",
+    "kind": "modify",
+    "machine": "mach_annealer",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [],
+    "energy": 2,
+    "cells": 5,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3",
+    "notes": "Carbon dust is the flux. Target keeps its identity and gains mod_tempered.",
+    "target": {
+      "tags": [
+        "tool"
+      ]
+    },
+    "mods_add": [
+      "mod_tempered"
+    ]
+  },
+  {
+    "id": "rcp_fab_temper_part",
+    "name": "Temper a machine part",
+    "kind": "modify",
+    "machine": "mach_annealer",
+    "disc": null,
+    "inputs": [
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      }
+    ],
+    "outputs": [],
+    "energy": 2,
+    "cells": 5,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3",
+    "target": {
+      "tags": [
+        "machine_part"
+      ]
+    },
+    "mods_add": [
+      "mod_tempered"
+    ]
+  },
+  {
+    "id": "rcp_fab_synth_polymer",
+    "name": "Synthesise polymer",
+    "kind": "produce",
+    "machine": "mach_synthesiser",
+    "disc": "disc_fab_synth_polymer",
+    "inputs": [
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 2
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 3
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3",
+    "notes": "Created polymer is covered by the carbon and volatiles consumed (the synthesiser transmutes both)."
+  },
+  {
+    "id": "rcp_fab_synth_polymer_dregs",
+    "name": "Synthesise from dregs",
+    "kind": "produce",
+    "machine": "mach_synthesiser",
+    "disc": "disc_fab_synth_polymer",
+    "inputs": [
+      {
+        "id": "it_core_reagent_dregs",
+        "qty": 1
+      },
+      {
+        "id": "it_core_carbon_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_core_gas_bladder",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 3
+      }
+    ],
+    "energy": 2,
+    "cells": 8,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.05
+    },
+    "phase": "phase_3"
+  },
+  {
+    "id": "rcp_fab_auto_hull_plate",
+    "name": "Assemble hull plate",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_fab_bp_heavy",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_bar_light",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_hull_plate",
+        "qty": 1
+      }
+    ],
+    "energy": 3,
+    "cells": 20,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_4"
+  },
+  {
+    "id": "rcp_fab_auto_beam",
+    "name": "Roll structural beam",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_fab_bp_heavy",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_beam",
+        "qty": 1
+      }
+    ],
+    "energy": 3,
+    "cells": 20,
+    "time": "job",
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_4"
+  },
+  {
+    "id": "rcp_fab_auto_spare",
+    "name": "Batch spare parts",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_fab_bp_spares",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 5
+      },
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 3
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_spare_part",
+        "qty": 10
+      }
+    ],
+    "energy": 0,
+    "cells": 15,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_4",
+    "notes": "Spare part, route 3 of 3: overnight, no energy."
+  },
+  {
+    "id": "rcp_fab_auto_bearings",
+    "name": "Batch bearings",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_fab_bp_precision",
+    "inputs": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 4
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_bearing",
+        "qty": 16
+      }
+    ],
+    "energy": 0,
+    "cells": 15,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_4"
+  },
+  {
+    "id": "rcp_fab_auto_valves",
+    "name": "Batch valves",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_fab_bp_precision",
+    "inputs": [
+      {
+        "id": "it_fab_sheet",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_bar_copper",
+        "qty": 1
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_valve",
+        "qty": 4
+      }
+    ],
+    "energy": 0,
+    "cells": 15,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_4"
+  },
+  {
+    "id": "rcp_fab_auto_housings",
+    "name": "Batch housings",
+    "kind": "produce",
+    "machine": "mach_autofab",
+    "disc": "disc_fab_bp_spares",
+    "inputs": [
+      {
+        "id": "it_fab_bar_light",
+        "qty": 2
+      },
+      {
+        "id": "it_fab_polymer_sheet",
+        "qty": 2
+      }
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_housing",
+        "qty": 4
+      }
+    ],
+    "energy": 0,
+    "cells": 15,
+    "time": "nights",
+    "nights": 1,
+    "risks": {
+      "stat_jammed": 0.04
+    },
+    "phase": "phase_4"
+  },
+  {
+    "id": "rcp_fab_refine_ewaste",
+    "name": "Refine e-waste",
+    "kind": "produce",
+    "machine": "mach_refinery",
+    "disc": "disc_fab_refine",
+    "inputs": [
+      {
+        "id": "it_core_ewaste",
+        "qty": 3
+      }
+    ],
+    "tools": [
+      "it_fab_crucible_liner"
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 3
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 3
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1,
+        "chance": 0.9
+      },
+      {
+        "id": "it_core_noble_flake",
+        "qty": 1,
+        "chance": 0.3
+      }
+    ],
+    "energy": 3,
+    "cells": 20,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.06
+    },
+    "phase": "phase_4",
+    "notes": "3 e-waste = copper 3, rare 0.9, polymer 3, noble 0.3: the chance lines carry the fractions."
+  },
+  {
+    "id": "rcp_fab_refine_ewaste_batch",
+    "name": "Refine e-waste in bulk",
+    "kind": "produce",
+    "machine": "mach_refinery",
+    "disc": "disc_fab_refine",
+    "inputs": [
+      {
+        "id": "it_core_ewaste",
+        "qty": 10
+      }
+    ],
+    "tools": [
+      "it_fab_crucible_liner"
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 10
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 10
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 3
+      },
+      {
+        "id": "it_core_noble_flake",
+        "qty": 1
+      }
+    ],
+    "energy": 0,
+    "cells": 30,
+    "time": "nights",
+    "nights": 2,
+    "risks": {
+      "stat_hot": 0.06
+    },
+    "phase": "phase_4"
+  },
+  {
+    "id": "rcp_fab_refine_circuits",
+    "name": "Strip circuit boards",
+    "kind": "produce",
+    "machine": "mach_refinery",
+    "disc": "disc_fab_refine",
+    "inputs": [
+      {
+        "id": "it_tech_circuit",
+        "qty": 10
+      }
+    ],
+    "tools": [
+      "it_fab_loupe"
+    ],
+    "outputs": [
+      {
+        "id": "it_core_scrap_copper",
+        "qty": 3
+      },
+      {
+        "id": "it_core_rare_dust",
+        "qty": 1
+      },
+      {
+        "id": "it_core_polymer_flake",
+        "qty": 3
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 2
+      }
+    ],
+    "energy": 3,
+    "cells": 20,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.06
+    },
+    "phase": "phase_4",
+    "notes": "Value warning accepted: stripping boards destroys their built worth, like the recycler; it is a matter-recovery route. Depends on it_tech_circuit (reserved, tech file not yet written)."
+  },
+  {
+    "id": "rcp_fab_refine_chips",
+    "name": "Recover chip metals",
+    "kind": "produce",
+    "machine": "mach_refinery",
+    "disc": "disc_fab_refine",
+    "inputs": [
+      {
+        "id": "it_tech_chip",
+        "qty": 10
+      }
+    ],
+    "tools": [
+      "it_fab_loupe"
+    ],
+    "outputs": [
+      {
+        "id": "it_core_rare_dust",
+        "qty": 2
+      },
+      {
+        "id": "it_core_grit",
+        "qty": 1
+      },
+      {
+        "id": "it_core_noble_flake",
+        "qty": 1,
+        "chance": 0.5
+      }
+    ],
+    "energy": 3,
+    "cells": 20,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.06
+    },
+    "phase": "phase_4",
+    "notes": "Ten chips hold 0.5 noble: half the time a flake comes out. Value warning accepted (matter recovery, not profit). Depends on it_tech_chip."
+  },
+  {
+    "id": "rcp_fab_refine_rare_ingot",
+    "name": "Cast rare-earth ingots",
+    "kind": "produce",
+    "machine": "mach_refinery",
+    "disc": "disc_fab_refine",
+    "inputs": [
+      {
+        "id": "it_core_rare_dust",
+        "qty": 3
+      }
+    ],
+    "tools": [
+      "it_fab_crucible_liner"
+    ],
+    "outputs": [
+      {
+        "id": "it_fab_rare_ingot",
+        "qty": 3
+      }
+    ],
+    "energy": 3,
+    "cells": 20,
+    "time": "job",
+    "risks": {
+      "stat_hot": 0.06
+    },
+    "phase": "phase_4"
+  }
+]

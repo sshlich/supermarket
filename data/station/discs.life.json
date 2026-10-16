@@ -1,0 +1,62 @@
+[
+  {
+    "id": "disc_life_algae_strains",
+    "name": "Algae strains",
+    "desc": "Scratched floppy from the lung halls: a dense strain and a salt-eating one for the tank.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 30,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_algae_tank"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "ALGAE STRAINS  DENSE / BRINE  TANK USE ONLY"
+  },
+  {
+    "id": "disc_life_scrubber_profiles",
+    "name": "Scrubber profiles",
+    "desc": "Gas-sorting tables on a grey floppy: deep strip, puck regeneration, oxygen candle sintering.",
+    "w": 2,
+    "h": 2,
+    "tier": 2,
+    "value": 30,
+    "composition": {
+      "mat_polymer": 0.3
+    },
+    "tags": [
+      "media",
+      "program"
+    ],
+    "kind": "recipe",
+    "media": "floppy",
+    "phase": "phase_2",
+    "machines": [
+      "mach_scrubber"
+    ],
+    "copyable": true,
+    "licensed": false,
+    "contraband": false,
+    "found": [
+      "upgrade",
+      "salvage"
+    ],
+    "label": "SCRUBBER PROFILES  DEEP / PUCK / CANDLE"
+  }
+]

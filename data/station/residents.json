@@ -1,0 +1,813 @@
+[
+  {
+    "id": "res_bunker",
+    "name": "Bunk tenant",
+    "deck": "deck_spine",
+    "desc": "Fourth bunk up on the spine. Counts water by the cup and air by the shift.",
+    "phase_from": "phase_1",
+    "roles": {
+      "buyer": 1.0,
+      "seller": 0,
+      "trader": 0
+    },
+    "budget": [
+      3,
+      9
+    ],
+    "wants": {
+      "need_air": 3.08,
+      "need_water": 3,
+      "need_food": 3,
+      "need_power": 1,
+      "need_medicine": 1.4,
+      "need_parts": 1.4,
+      "need_comfort": 0.5,
+      "need_luxury": 0.1
+    },
+    "prefers_tags": [
+      "water",
+      "air",
+      "staple",
+      "ration",
+      "spine_grade",
+      "filter"
+    ],
+    "avoids_tags": [
+      "luxury",
+      "ring_grade",
+      "real"
+    ],
+    "buys": [
+      "it_life_water",
+      "it_life_water_ration",
+      "it_food_ration_bar",
+      "it_food_paste_tube",
+      "it_life_air_puck",
+      "it_mach_air_filter",
+      "it_life_oxygen",
+      "it_food_porridge",
+      "it_med_painkiller",
+      "it_tech_cell_s",
+      "it_food_bread_slice",
+      "it_life_mask_refill"
+    ],
+    "sells": [],
+    "contraband": "none",
+    "sends_mail": true,
+    "lines": [
+      "Water first. The rest I can do without.",
+      "Is that a spine price or a ring price?",
+      "Row C is out of pucks again. Anything cheaper?",
+      "Pay you Friday. No? Then half now."
+    ]
+  },
+  {
+    "id": "res_scavenger",
+    "name": "Duct scavenger",
+    "deck": "deck_spine",
+    "desc": "Crawls the spine ducts with a sack. Sells what the company wrote off.",
+    "phase_from": "phase_1",
+    "roles": {
+      "buyer": 0.2,
+      "seller": 0.8,
+      "trader": 0
+    },
+    "budget": [
+      3,
+      12
+    ],
+    "wants": {
+      "need_air": 2.8,
+      "need_water": 3,
+      "need_food": 3,
+      "need_power": 1,
+      "need_medicine": 1.4,
+      "need_parts": 1.68,
+      "need_comfort": 0.5,
+      "need_luxury": 0.2
+    },
+    "prefers_tags": [
+      "salvage",
+      "scrap",
+      "waste",
+      "raw",
+      "heirloom"
+    ],
+    "avoids_tags": [
+      "licensed",
+      "company"
+    ],
+    "buys": [
+      "it_fab_knife",
+      "it_fab_pliers",
+      "it_tech_cell_s",
+      "it_mach_tape",
+      "it_food_porridge",
+      "it_life_water",
+      "it_tech_cable",
+      "it_med_painkiller"
+    ],
+    "sells": [
+      "it_core_scrap_iron",
+      "it_core_scrap_copper",
+      "it_core_scrap_light",
+      "it_core_scrap_mixed",
+      "it_core_ewaste",
+      "it_core_duct_junk",
+      "it_core_wire_tangle",
+      "it_core_rags",
+      "it_core_filter_husks",
+      "it_core_hull_offcuts",
+      "it_core_salvage_crate",
+      "it_life_brine",
+      "it_mach_water_filter_spent",
+      "it_mach_air_filter_spent",
+      "it_life_puck_spent",
+      "it_lux_photograph",
+      "it_lux_book",
+      "it_lux_locket",
+      "it_lux_candle",
+      "it_lux_matchbox",
+      "disc_tech_prog_music",
+      "disc_tech_prog_utilities",
+      "disc_food_hydro_greens"
+    ],
+    "contraband": "sells",
+    "sends_mail": true,
+    "lines": [
+      "Found it behind a panel. Don't ask which panel.",
+      "Three credits, or a filter. Your pick.",
+      "Heirloom. Somebody's gran, probably. Probably dead."
+    ]
+  },
+  {
+    "id": "res_hauler",
+    "name": "Dock hauler",
+    "deck": "deck_dock",
+    "desc": "Rides the ore and ice tugs. Brings raw goods in, takes cells and parts out.",
+    "phase_from": "phase_1",
+    "roles": {
+      "buyer": 0.3,
+      "seller": 0.3,
+      "trader": 0.4
+    },
+    "budget": [
+      10,
+      40
+    ],
+    "wants": {
+      "need_air": 1,
+      "need_water": 1.4,
+      "need_food": 1.4,
+      "need_power": 2.4,
+      "need_medicine": 1.2,
+      "need_parts": 2.2,
+      "need_comfort": 0.8,
+      "need_luxury": 1
+    },
+    "prefers_tags": [
+      "ore",
+      "ice",
+      "raw",
+      "cell",
+      "tool",
+      "staple"
+    ],
+    "avoids_tags": [
+      "luxury"
+    ],
+    "buys": [
+      "it_tech_cell_s",
+      "it_tech_cell_m",
+      "it_fab_spare_part",
+      "it_fab_bearing",
+      "it_mach_coolant",
+      "it_food_ration_bar",
+      "it_food_tin_stew",
+      "it_fab_wrench",
+      "it_mach_drive_belt",
+      "it_med_energy_tab"
+    ],
+    "sells": [
+      "it_core_ore_iron",
+      "it_core_ore_copper",
+      "it_core_ore_light",
+      "it_core_ice",
+      "it_core_greywater",
+      "it_core_gas_bladder",
+      "it_core_noble_flake",
+      "it_core_rare_dust",
+      "it_core_lithium_salt",
+      "it_tech_cell_s",
+      "it_tech_cell_m",
+      "it_tech_lamp",
+      "it_fab_wrench",
+      "disc_tech_blank_floppy",
+      "it_core_cell_husk"
+    ],
+    "contraband": "none",
+    "sends_mail": true,
+    "lines": [
+      "Ore on the dock by nine. Cells by ten, or I walk.",
+      "Tug came in short. Prices follow.",
+      "I sell what the rock gives. You sell what the rock costs."
+    ]
+  },
+  {
+    "id": "res_fitter",
+    "name": "Foundry fitter",
+    "deck": "deck_works",
+    "desc": "Keeps the rolling mills turning. Hard on tools, harder on hands.",
+    "phase_from": "phase_1",
+    "roles": {
+      "buyer": 0.85,
+      "seller": 0.15,
+      "trader": 0
+    },
+    "budget": [
+      8,
+      30
+    ],
+    "wants": {
+      "need_air": 1.4,
+      "need_water": 1.4,
+      "need_food": 1.8,
+      "need_power": 1.6,
+      "need_medicine": 1.76,
+      "need_parts": 2.6,
+      "need_comfort": 0.6,
+      "need_luxury": 0.4
+    },
+    "prefers_tags": [
+      "tool",
+      "part",
+      "fastener",
+      "wound",
+      "consumable",
+      "machine_part"
+    ],
+    "avoids_tags": [
+      "luxury",
+      "ring_grade"
+    ],
+    "buys": [
+      "it_fab_wrench",
+      "it_fab_pliers",
+      "it_mach_jam_kit",
+      "it_mach_lubricant",
+      "it_mach_water_filter_spent",
+      "it_med_burn_gel",
+      "it_med_burn_tab",
+      "it_lux_overalls",
+      "it_lux_gloves",
+      "it_mach_coolant",
+      "it_fab_fasteners",
+      "it_mach_drive_belt"
+    ],
+    "sells": [
+      "disc_fab_bp_tools",
+      "it_fab_spare_patched",
+      "it_fab_crucible_liner"
+    ],
+    "contraband": "none",
+    "sends_mail": true,
+    "lines": [
+      "Wrench gave out mid-pour. Got another?",
+      "Burn gel, two. Foreman's counting.",
+      "Works pays Fridays. Credit's good till then."
+    ]
+  },
+  {
+    "id": "res_smelterhand",
+    "name": "Smelter hand",
+    "deck": "deck_works",
+    "desc": "Walks out of the foundry with bars, slag and a thirst. Trades both.",
+    "phase_from": "phase_1",
+    "roles": {
+      "buyer": 0.4,
+      "seller": 0.3,
+      "trader": 0.3
+    },
+    "budget": [
+      6,
+      25
+    ],
+    "wants": {
+      "need_air": 1.4,
+      "need_water": 1.4,
+      "need_food": 1.98,
+      "need_power": 1.6,
+      "need_medicine": 1.6,
+      "need_parts": 2.6,
+      "need_comfort": 0.6,
+      "need_luxury": 0.6
+    },
+    "prefers_tags": [
+      "bar",
+      "scrap",
+      "drink",
+      "staple",
+      "meal"
+    ],
+    "avoids_tags": [
+      "ring_grade"
+    ],
+    "buys": [
+      "it_med_painkiller",
+      "it_med_antiseptic",
+      "it_med_burn_tab",
+      "it_food_ration_bar",
+      "it_food_stew",
+      "it_food_noodles",
+      "it_food_yeast",
+      "it_food_sugar",
+      "it_med_bandage"
+    ],
+    "sells": [
+      "it_core_slag",
+      "it_core_scrap_iron",
+      "it_fab_bar_iron",
+      "it_fab_bar_copper",
+      "it_fab_bar_light",
+      "it_fab_sheet",
+      "it_fab_fasteners",
+      "it_fab_crucible_liner",
+      "it_lux_moonshine",
+      "it_core_carbon_dust",
+      "it_fab_tile",
+      "it_core_grit",
+      "it_fab_hinge"
+    ],
+    "contraband": "sells",
+    "sends_mail": true,
+    "lines": [
+      "Bars off the second pour. Don't ask whose.",
+      "Got a still behind the cooling rack. Interested?",
+      "Something for the burns. And something for the head."
+    ]
+  },
+  {
+    "id": "res_technician",
+    "name": "Station technician",
+    "deck": "deck_mid",
+    "desc": "Fixes whatever the mid decks break. Collects circuits and discs.",
+    "phase_from": "phase_1",
+    "roles": {
+      "buyer": 0.8,
+      "seller": 0.2,
+      "trader": 0
+    },
+    "budget": [
+      14,
+      50
+    ],
+    "wants": {
+      "need_air": 1.2,
+      "need_water": 1.4,
+      "need_food": 1.6,
+      "need_power": 1.4,
+      "need_medicine": 1.4,
+      "need_parts": 1.54,
+      "need_comfort": 1.32,
+      "need_luxury": 0.8
+    },
+    "prefers_tags": [
+      "electronic",
+      "component",
+      "media",
+      "program",
+      "tool",
+      "data"
+    ],
+    "avoids_tags": [
+      "spine_grade"
+    ],
+    "buys": [
+      "it_tech_circuit",
+      "it_tech_sensor",
+      "it_tech_switch",
+      "it_tech_relay",
+      "it_tech_soldering_iron",
+      "it_tech_motor",
+      "it_mach_manual",
+      "it_tech_handbook",
+      "disc_tech_blank_floppy",
+      "it_tech_chip",
+      "it_tech_keypad",
+      "it_tech_speaker"
+    ],
+    "sells": [
+      "disc_tech_blank_card",
+      "disc_tech_bp_lamps",
+      "disc_tech_prog_antivirus",
+      "disc_mach_labels_ring"
+    ],
+    "contraband": "none",
+    "sends_mail": true,
+    "lines": [
+      "Got a floppy? Mine went bad on the third copy.",
+      "Circuits. Anything that isn't scorched.",
+      "If it has a screen it comes to me first."
+    ]
+  },
+  {
+    "id": "res_orderly",
+    "name": "Clinic orderly",
+    "deck": "deck_mid",
+    "desc": "Buys stock for the clinic out of a ledger that never balances.",
+    "phase_from": "phase_1",
+    "roles": {
+      "buyer": 0.8,
+      "seller": 0.2,
+      "trader": 0
+    },
+    "budget": [
+      10,
+      35
+    ],
+    "wants": {
+      "need_air": 1.2,
+      "need_water": 1.54,
+      "need_food": 1.6,
+      "need_power": 1.4,
+      "need_medicine": 1.68,
+      "need_parts": 1.4,
+      "need_comfort": 1.2,
+      "need_luxury": 0.8
+    },
+    "prefers_tags": [
+      "medicine",
+      "pill",
+      "wound",
+      "chemical",
+      "reagent"
+    ],
+    "avoids_tags": [
+      "drug",
+      "contraband"
+    ],
+    "buys": [
+      "it_med_painkiller",
+      "it_med_antibiotic",
+      "it_med_bandage",
+      "it_med_antiseptic",
+      "it_med_gauze",
+      "it_med_saline_drip",
+      "it_med_suture_kit",
+      "it_med_splint",
+      "it_med_rehydration_mix",
+      "it_med_first_aid_kit",
+      "it_med_sleeping_pill"
+    ],
+    "sells": [
+      "disc_med_analgesics",
+      "disc_med_sedatives",
+      "it_med_blister",
+      "it_med_rehydration_mix"
+    ],
+    "contraband": "none",
+    "sends_mail": true,
+    "lines": [
+      "Pharmacy is one order behind. Always.",
+      "Not for me. For ward two.",
+      "Antiseptic or nothing. We boil the rest."
+    ]
+  },
+  {
+    "id": "res_engineer",
+    "name": "Reactor engineer",
+    "deck": "deck_core",
+    "desc": "Sleeps beside the plant. Trades cells and chips, and talks too much.",
+    "phase_from": "phase_1",
+    "roles": {
+      "buyer": 0.2,
+      "seller": 0.4,
+      "trader": 0.4
+    },
+    "budget": [
+      18,
+      70
+    ],
+    "wants": {
+      "need_air": 1.2,
+      "need_water": 1,
+      "need_food": 1,
+      "need_power": 3.12,
+      "need_medicine": 1.2,
+      "need_parts": 2.64,
+      "need_comfort": 1.2,
+      "need_luxury": 0.8
+    },
+    "prefers_tags": [
+      "cell",
+      "power",
+      "electronic",
+      "component",
+      "device",
+      "machine_part"
+    ],
+    "avoids_tags": [
+      "food"
+    ],
+    "buys": [
+      "it_tech_cell_l",
+      "it_tech_chip",
+      "it_tech_circuit",
+      "it_tech_sensor",
+      "it_fab_valve",
+      "it_fab_spare_part",
+      "it_mach_coolant",
+      "it_med_antirad",
+      "it_med_energy_tab",
+      "it_tech_memory_module"
+    ],
+    "sells": [
+      "it_tech_cell_s",
+      "it_tech_cell_m",
+      "it_tech_cell_l",
+      "it_tech_lamp",
+      "it_tech_circuit",
+      "it_tech_sensor",
+      "it_tech_switch",
+      "it_tech_cable",
+      "it_core_cell_husk",
+      "it_core_lithium_salt",
+      "it_core_noble_flake",
+      "it_core_rare_dust",
+      "disc_mach_bp_machines_1",
+      "disc_mach_bp_filters",
+      "disc_tech_prog_stock",
+      "disc_tech_prog_utilities"
+    ],
+    "contraband": "none",
+    "sends_mail": true,
+    "lines": [
+      "Pump three is chattering. Told them last week.",
+      "Take the cells. And don't quote me on the load.",
+      "If the lights flicker twice, buy early."
+    ]
+  },
+  {
+    "id": "res_clerk",
+    "name": "Company clerk",
+    "deck": "deck_hub",
+    "desc": "Stamps what the company allows. Buys paper, comfort and licensed software.",
+    "phase_from": "phase_1",
+    "roles": {
+      "buyer": 1.0,
+      "seller": 0,
+      "trader": 0
+    },
+    "budget": [
+      25,
+      90
+    ],
+    "wants": {
+      "need_air": 0.8,
+      "need_water": 0.9,
+      "need_food": 1,
+      "need_power": 1.4,
+      "need_medicine": 1,
+      "need_parts": 1.2,
+      "need_comfort": 2.42,
+      "need_luxury": 1.92
+    },
+    "prefers_tags": [
+      "paper",
+      "comfort",
+      "licensed",
+      "company",
+      "program",
+      "book"
+    ],
+    "avoids_tags": [
+      "contraband"
+    ],
+    "buys": [
+      "it_tech_slip",
+      "it_lux_paper",
+      "it_fit_ledger_book",
+      "it_tech_notice",
+      "it_mach_label_roll",
+      "it_lux_cushion",
+      "it_tech_lamp",
+      "it_lux_blanket",
+      "it_tech_screen",
+      "it_tech_clock",
+      "it_lux_pamphlet"
+    ],
+    "sells": [],
+    "contraband": "reports",
+    "sends_mail": true,
+    "lines": [
+      "Is that licensed? I have to ask.",
+      "Slips. Forty. The forms never end.",
+      "I did not see that. Officially I saw it."
+    ]
+  },
+  {
+    "id": "res_household",
+    "name": "Ring household",
+    "deck": "deck_ring",
+    "desc": "A ring family with real soil and a view. Pays well and wants it now.",
+    "phase_from": "phase_1",
+    "roles": {
+      "buyer": 1.0,
+      "seller": 0,
+      "trader": 0
+    },
+    "budget": [
+      60,
+      150
+    ],
+    "wants": {
+      "need_air": 0.8,
+      "need_water": 0.8,
+      "need_food": 1,
+      "need_power": 1,
+      "need_medicine": 1.2,
+      "need_parts": 1.2,
+      "need_comfort": 2.86,
+      "need_luxury": 3.3
+    },
+    "prefers_tags": [
+      "real",
+      "ring_grade",
+      "luxury",
+      "fresh",
+      "comfort",
+      "art"
+    ],
+    "avoids_tags": [
+      "spine_grade",
+      "synthetic",
+      "salvage"
+    ],
+    "buys": [
+      "it_lux_wine",
+      "it_lux_spirit",
+      "it_food_apple",
+      "it_food_citrus",
+      "it_food_herbs",
+      "it_lux_scent",
+      "it_lux_cosmetic",
+      "it_lux_cushion",
+      "it_food_ring_dinner",
+      "it_lux_ring_coat",
+      "it_lux_print",
+      "it_tech_work_light"
+    ],
+    "sells": [],
+    "contraband": "none",
+    "sends_mail": true,
+    "lines": [
+      "Is it real? We can tell.",
+      "Name your price. Then deliver by Thursday.",
+      "The glass needs a pane. Today, if you can."
+    ]
+  },
+  {
+    "id": "res_collector",
+    "name": "Collector",
+    "deck": "deck_ring",
+    "desc": "Collects old things: books, lockets, fire. Pays double for provenance.",
+    "phase_from": "phase_2",
+    "roles": {
+      "buyer": 0.8,
+      "seller": 0.2,
+      "trader": 0
+    },
+    "budget": [
+      40,
+      150
+    ],
+    "wants": {
+      "need_air": 0.8,
+      "need_water": 0.8,
+      "need_food": 1,
+      "need_power": 1,
+      "need_medicine": 1.2,
+      "need_parts": 1.2,
+      "need_comfort": 2.6,
+      "need_luxury": 3.9
+    },
+    "prefers_tags": [
+      "heirloom",
+      "book",
+      "jewellery",
+      "art",
+      "fire",
+      "real",
+      "luxury"
+    ],
+    "avoids_tags": [
+      "synthetic",
+      "spine_grade"
+    ],
+    "buys": [
+      "it_lux_book",
+      "it_lux_locket",
+      "it_lux_photograph",
+      "it_lux_candle",
+      "it_lux_zippo",
+      "it_lux_lighter",
+      "it_lux_matchbox",
+      "it_lux_oil_lamp",
+      "it_lux_signet",
+      "it_lux_print",
+      "it_lux_sculpture"
+    ],
+    "sells": [
+      "it_lux_watch",
+      "it_lux_music_box",
+      "it_lux_wooden_horse",
+      "it_lux_wooden_bowl",
+      "it_lux_signet",
+      "it_lux_chain"
+    ],
+    "contraband": "buys",
+    "sends_mail": true,
+    "lines": [
+      "Pre-station. You can smell it.",
+      "A real flame. How much for the box?",
+      "I do not sell. I rotate."
+    ]
+  },
+  {
+    "id": "res_fence",
+    "name": "Fence",
+    "deck": "deck_dock",
+    "desc": "Moves what should not move: fire, drugs, cracked software, stolen stock.",
+    "phase_from": "phase_1",
+    "roles": {
+      "buyer": 0.35,
+      "seller": 0.35,
+      "trader": 0.3
+    },
+    "budget": [
+      20,
+      100
+    ],
+    "wants": {
+      "need_air": 1,
+      "need_water": 1.4,
+      "need_food": 1.4,
+      "need_power": 2,
+      "need_medicine": 1.44,
+      "need_parts": 2.2,
+      "need_comfort": 0.8,
+      "need_luxury": 1.8
+    },
+    "prefers_tags": [
+      "contraband",
+      "fire",
+      "drug",
+      "unlicensed",
+      "heirloom",
+      "luxury"
+    ],
+    "avoids_tags": [
+      "licensed",
+      "company"
+    ],
+    "buys": [
+      "it_lux_candle",
+      "it_lux_zippo",
+      "it_lux_lighter",
+      "it_lux_moonshine",
+      "it_med_dream_tab",
+      "it_med_stim",
+      "it_lux_spirit",
+      "it_lux_wine",
+      "it_fab_bar_noble",
+      "it_tech_dongle"
+    ],
+    "sells": [
+      "it_lux_candle",
+      "it_lux_matchbox",
+      "it_lux_lighter",
+      "it_lux_zippo",
+      "it_lux_lighter_fluid",
+      "it_lux_striker",
+      "it_lux_oil_lamp",
+      "it_lux_moonshine",
+      "it_med_dream_tab",
+      "it_med_blue_ampoule",
+      "it_med_fb_dream_tab",
+      "it_med_stim",
+      "it_lux_spirit",
+      "it_lux_wine",
+      "it_lux_watch",
+      "disc_lux_vintner",
+      "disc_lux_bp_fire",
+      "disc_med_narcotics"
+    ],
+    "contraband": "both",
+    "sends_mail": true,
+    "lines": [
+      "Never seen you. Never saw this either.",
+      "Fire's worth three times what it burns.",
+      "Ask me no questions, pay me no tax."
+    ]
+  }
+]

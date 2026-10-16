@@ -1,0 +1,110 @@
+[
+  {
+    "id": "ctier_0",
+    "name": "Walk-on",
+    "spend": 0,
+    "pickups_per_day": 0.5,
+    "transit_delta_days": 0,
+    "fee_mult": 1,
+    "effects": [],
+    "desc": "No account. Your parcels wait for the next general pickup and pay full fees."
+  },
+  {
+    "id": "ctier_1",
+    "name": "Account",
+    "spend": 150,
+    "pickups_per_day": 1,
+    "transit_delta_days": 0,
+    "fee_mult": 0.95,
+    "effects": [
+      {
+        "stat": "carrier_fee_mult",
+        "op": "mul",
+        "value": 0.95,
+        "text": "-5% box fees"
+      }
+    ],
+    "desc": "A named account with the carrier. A small discount and a regular slot."
+  },
+  {
+    "id": "ctier_2",
+    "name": "Bonded",
+    "spend": 2000,
+    "pickups_per_day": 1,
+    "transit_delta_days": -1,
+    "fee_mult": 0.85,
+    "effects": [
+      {
+        "stat": "transit_days",
+        "op": "add",
+        "value": -1,
+        "text": "-1 transit day"
+      },
+      {
+        "stat": "carrier_fee_mult",
+        "op": "mul",
+        "value": 0.85,
+        "text": "-15% box fees"
+      }
+    ],
+    "desc": "Your parcels are bonded: faster and cheaper, insured against loss."
+  },
+  {
+    "id": "ctier_3",
+    "name": "Priority",
+    "spend": 25000,
+    "pickups_per_day": 2,
+    "transit_delta_days": -1,
+    "fee_mult": 0.7,
+    "effects": [
+      {
+        "stat": "transit_days",
+        "op": "add",
+        "value": -1,
+        "text": "-1 transit day"
+      },
+      {
+        "stat": "pickups_per_day",
+        "op": "add",
+        "value": 1,
+        "text": "two pickups a day"
+      },
+      {
+        "stat": "carrier_fee_mult",
+        "op": "mul",
+        "value": 0.7,
+        "text": "-30% box fees"
+      }
+    ],
+    "desc": "Priority lane: your sealed boxes go out twice a day, ahead of general freight."
+  },
+  {
+    "id": "ctier_4",
+    "name": "Contract",
+    "spend": 300000,
+    "pickups_per_day": 3,
+    "transit_delta_days": -2,
+    "fee_mult": 0.5,
+    "effects": [
+      {
+        "stat": "transit_days",
+        "op": "add",
+        "value": -2,
+        "text": "-2 transit days"
+      },
+      {
+        "stat": "pickups_per_day",
+        "op": "add",
+        "value": 2,
+        "text": "three pickups a day"
+      },
+      {
+        "stat": "carrier_fee_mult",
+        "op": "mul",
+        "value": 0.5,
+        "text": "-50% box fees"
+      }
+    ],
+    "desc": "A contract carrier with a dedicated hold. Boxes are delivered before they are signed for."
+  }
+]
