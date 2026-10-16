@@ -6,7 +6,11 @@
 // and answers what is done in it, through `Os`.
 
 import { esc } from './html.ts'
+import { PALETTE, PIC_H, PIC_SIZE, PIC_W, picUrl } from './pics.ts'
+export { PALETTE, PIC_H, PIC_SIZE, PIC_W, picUrl } from './pics.ts'
 import { contents, find, look, worth, type Item, type Machine, type State } from './world.ts'
+import { browser } from './web.ts'
+import type { Goods } from './customers.ts'
 
 export type Drive = 'A' | 'C'
 /** A file as a program sees it: on a drive, its size in K, and what it is. */
@@ -40,14 +44,28 @@ export interface Os {
   repaint(): void
   wall(name: string | null): void
   wallName(): string | null
-  sound(name: 'key' | 'seek' | 'menu' | 'bad'): void
+  sound(name: 'key' | 'seek' | 'menu' | 'bad' | 'startup' | 'dial'): void
   /** Light up these things on the field (null: none). */
   show(ids: number[] | null): void
   windows(): Win[]
+  program(id: string): Program | undefined
+  /** The Wire: is the line up; bring it up (the browser dials first). */
+  online(): boolean
+  connect(): void
+  /** Bring a file down the line to C: at `rate` K a second (one thing at a time, like loading). */
+  download(name: string, data: { prog?: string; text?: string; pic?: string }, size: number, rate: number): void
+  /** The shop's money: how much there is; pay out (false, and nothing paid, if there is not enough), noted at Company Credit. */
+  cash(): number
+  pay(n: number, what: string): boolean
+  /** A thing's picture, as the field draws it, for a page: as it would be made (a used thing as it is, a new one full). */
+  art(g: Goods): string
+  save(): void
 }
 
 export interface Program {
   id: string; file: string; name: string; size: number; memory: number; speed: number; licensed?: boolean; rom?: boolean
+  /** What its splash says while it loads from a disc: its name as it was sold, and a line. */
+  splash?: [string, string]
   /** Its window's size on the 640x480 screen. */
   w: number; h: number
   icon: string
@@ -68,9 +86,6 @@ export interface Program {
 
 /** A text's size on a disk, in K (at least 1). */
 export const textSize = (t: string) => Math.max(1, Math.ceil(new Blob([t]).size / 1024))
-export const PIC_W = 160, PIC_H = 120
-/** A picture: 160 by 120, sixteen colours, half a byte a pixel. */
-export const PIC_SIZE = Math.ceil(PIC_W * PIC_H / 2 / 1024)
 export const kb = (k: number) => k >= 1024 ? `${+(k / 1024).toFixed(2)} MB` : `${k}K`
 /** A name a file can have: up to eight letters or digits, a dot, and up to three more. */
 export const fileName = (n: string, ext: string) => {
@@ -286,26 +301,9 @@ const system: Program = {
 
 // ---------------------------------------------------------------- Paint: sixteen colours, a pen, a brush and a fill
 
-export const PALETTE = ['#000000', '#7f7f7f', '#c3c3c3', '#ffffff', '#7a1f1f', '#d03a2f', '#e08a3a', '#f2d272', '#2f5a2a', '#5c9a4a', '#1f4a6a', '#4a8ad0', '#3a2f6a', '#9a6ad0', '#6a4a2a', '#e8b8a0']
 const blank = () => '3'.repeat(PIC_W * PIC_H) // white
-/** A picture's pixels as an image the page can show (the last few are kept). */
-const pics = new Map<string, string>()
-export function picUrl(px: string) {
-  const hit = pics.get(px)
-  if (hit) return hit
-  const c = document.createElement('canvas')
-  c.width = PIC_W; c.height = PIC_H
-  const g = c.getContext('2d')!, img = g.createImageData(PIC_W, PIC_H)
-  const rgb = PALETTE.map(h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16)))
-  for (let i = 0; i < PIC_W * PIC_H; i++) { const [r, gg, b] = rgb[parseInt(px[i] ?? '0', 16)] ?? rgb[0]; img.data.set([r, gg, b, 255], i * 4) }
-  g.putImageData(img, 0, 0)
-  const url = c.toDataURL()
-  pics.set(px, url)
-  if (pics.size > 12) pics.delete(pics.keys().next().value!)
-  return url
-}
 const paint: Program = {
-  id: 'paint', file: 'PAINT.EXE', name: 'Paint', size: 640, memory: 256, speed: 12, w: 372, h: 344, icon: ICONS.paint,
+  id: 'paint', file: 'PAINT.EXE', name: 'Paint', size: 640, memory: 256, speed: 12, w: 372, h: 344, icon: ICONS.paint, splash: ['PIXEL PAINT 2.1', 'Shareware. Copy it for your friends.'],
   start(os, f) {
     const taken = new Set((os.files('C') ?? []).map(o => o.name))
     let n = 1
@@ -369,6 +367,42 @@ const paint: Program = {
   },
 }
 
+// ---------------------------------------------------------------- Pictures: look through the pictures on a drive
+
+/** What a picture is, if a text on its drive says (a line starting with its name: INDEX.TXT on a picture disc). */
+function captionOf(os: Os, f: File) {
+  for (const t of os.files(f.drive) ?? []) for (const line of t.text?.split('\n') ?? []) if (line.startsWith(`${f.name} `)) return line.slice(f.name.length).trim()
+  return ''
+}
+const pictures: Program = {
+  id: 'pictures', file: 'PICTURES.EXE', name: 'Pictures', size: 0, memory: 48, speed: 1, rom: true, w: 352, h: 344, icon: ICONS.pic,
+  start: (os, f) => ({ drive: f?.drive ?? (os.files('C')?.some(o => o.pic !== undefined) || !os.files('A')?.some(o => o.pic !== undefined) ? 'C' : 'A'), name: f?.name ?? null }), // where the pictures are
+  title: w => `${w.st.name ?? 'Pictures'} - Pictures`,
+  body(os, w) {
+    const pics = (os.files(w.st.drive) ?? []).filter(f => f.pic !== undefined)
+    const i = Math.max(0, pics.findIndex(f => f.name === w.st.name)), f = pics[i]
+    if (!f) return `<div class="pane98 note98">No pictures on ${w.st.drive}:.</div><div class="bar98">${(['A', 'C'] as Drive[]).map(d => btn(`drive:${d}`, `${d}:`)).join('')}</div>`
+    w.st.name = f.name // the one shown, if the one asked for has gone
+    const side = f.drive === 'A' ? btn('copy', 'Copy to C:') : btn('wall', os.wallName() === f.name ? 'Wallpaper off' : 'Wallpaper')
+    return `<div class="canvas98"><img src="${picUrl(f.pic!)}" width="${PIC_W * 2}" height="${PIC_H * 2}" alt=""></div>
+      <div class="caption98">${esc(captionOf(os, f) || f.name)}</div>
+      <div class="bar98">${btn('prev', '&lt;')}<small>${i + 1} of ${pics.length} on ${f.drive}:</small>${btn('next', '&gt;')}<span class="grow"></span>${side}${btn('edit', 'Paint')}</div>`
+  },
+  act(os, w, what) {
+    const pics = (os.files(w.st.drive) ?? []).filter(f => f.pic !== undefined), i = pics.findIndex(f => f.name === w.st.name), f = pics[i]
+    if (what.startsWith('drive:')) Object.assign(w.st, { drive: what.slice(6), name: null })
+    else if ((what === 'prev' || what === 'next') && pics.length) w.st.name = pics[(i + (what === 'next' ? 1 : -1) + pics.length) % pics.length].name
+    else if (what === 'copy' && f) os.copy(f.name)
+    else if (what === 'wall' && f) os.wall(os.wallName() === f.name ? null : f.name)
+    else if (what === 'edit' && f) {
+      const p = (['C', 'A'] as Drive[]).map(d => os.files(d)?.find(o => o.prog?.id === 'paint')).find(Boolean)
+      if (!p) return os.alert('Paint is not on this machine. PAINT.EXE comes on a disc.')
+      return os.run('paint', p.drive, f)
+    }
+    os.repaint()
+  },
+}
+
 // ---------------------------------------------------------------- Stocktake: everything you own, counted and valued
 
 /** What you own: everything on the field and in what is on it (not on the counters, not in the trash), by what it is. */
@@ -385,7 +419,7 @@ function stocktake(s: State) {
   return [...rows.values()].sort((a, b) => b.worth - a.worth || a.name.localeCompare(b.name))
 }
 const stock: Program = {
-  id: 'stock', file: 'STOCK.EXE', name: 'Stocktake', size: 380, memory: 192, speed: 8, licensed: true, w: 400, h: 320, icon: ICONS.stock,
+  id: 'stock', file: 'STOCK.EXE', name: 'Stocktake', size: 380, memory: 192, speed: 8, licensed: true, w: 400, h: 320, icon: ICONS.stock, splash: ['STOCKTAKE PRO 4', 'This copy is licensed to serial 0441-7782-K.'],
   start: () => ({}),
   title: () => 'Stocktake Pro',
   body(os) {
@@ -400,7 +434,7 @@ const stock: Program = {
 
 const MW = 9, MH = 9, MN = 10
 const mines: Program = {
-  id: 'mines', file: 'MINES.EXE', name: 'Mines', size: 96, memory: 64, speed: 4, w: 232, h: 268, icon: ICONS.mines,
+  id: 'mines', file: 'MINES.EXE', name: 'Mines', size: 96, memory: 64, speed: 4, w: 232, h: 268, icon: ICONS.mines, splash: ['MINES', 'For a slow afternoon.'],
   start: () => ({ mines: [] as number[], cells: '.'.repeat(MW * MH), over: null as null | 'won' | 'lost' }),
   title: () => 'Mines',
   body(_, w) {
@@ -446,6 +480,6 @@ const set = (s: string, i: number, c: string) => s.slice(0, i) + c + s.slice(i +
 
 /** What the system itself takes: memory while the machine is on, and room on C:. */
 export const SYSTEM_MEMORY = 160, SYSTEM_DISK = 520
-export const PROGRAMS: Record<string, Program> = { files, notepad, prompt, system, paint, stock, mines }
+export const PROGRAMS: Record<string, Program> = { files, notepad, prompt, system, pictures, web: browser, paint, stock, mines }
 /** The program a file on a disc is, by its name. */
 export const programFile = (name: string) => Object.values(PROGRAMS).find(p => !p.rom && p.file === name.toUpperCase())

@@ -22,7 +22,7 @@ export const TAGS: Record<string, { label: string; desc: string; say: string }> 
  */
 export type Role = 'buyer' | 'seller' | 'trader'
 /** One thing a customer brings, as it should be made: its kind, its properties, its liquid, and pills already gone from a blister. */
-export interface Goods { kind: string; props?: Record<string, string>; fill?: Fill | null; missing?: number; left?: number }
+export interface Goods { kind: string; props?: Record<string, string>; fill?: Fill | null; missing?: number; left?: number; age?: number }
 /**
  * `rate` is how they price: what a buyer pays (over what things are worth) or a seller asks (under it). `brought` are the
  * ids of what they unloaded, still theirs until a deal; `ask` is a seller's price for all of it. A buyer's `budget` is the
@@ -83,7 +83,8 @@ export function unpack(s: State, g: Goods, space: Space, rand: () => number = Ma
   if (!it) return null
   if (g.fill !== undefined) { if (g.fill) it.fill = { ...g.fill }; else delete it.fill }
   if (g.missing) remove(s, contents(s, it.id).map(o => ({ o, r: rand() })).sort((a, b) => a.r - b.r).slice(0, g.missing).map(({ o }) => o.id))
-  if (g.left && g.left < (KINDS[g.kind].cut?.count ?? 0)) it.left = g.left
+  if (g.left !== undefined && g.left < (KINDS[g.kind].cut?.count ?? 0)) it.left = g.left
+  if (g.age) it.age = g.age
   return it
 }
 

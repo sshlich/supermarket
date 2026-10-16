@@ -2,6 +2,7 @@
 // containers with grids of their own. Nothing else yet.
 
 import { drop, dropGroup, firstFree, footprintKey, nearest, overlaps, turn, type Box } from './grid.ts'
+import type { Goods } from './customers.ts'
 import DATA from './kinds.json' with { type: 'json' }
 
 export const W = 25
@@ -120,7 +121,14 @@ export function fillWith(it: Item, liquid: string | null) {
 /** `full`: a computer's window filling the page (see computer.ts). */
 export interface Win { id: number; x: number; y: number; folded?: boolean; full?: boolean }
 /** `windows` are the open containers, the last one on top; `cash` is the money you have; `day` which day it is (from 1, see `sleep`). */
-export interface State { items: Item[]; next: number; windows?: Win[]; cash?: number; day?: number }
+export interface State { items: Item[]; next: number; windows?: Win[]; cash?: number; day?: number; orders?: Order[]; web?: WebData }
+/**
+ * Something bought on the Wire (see orders.ts), on its way: its goods, made as customers' goods are; by drone (`at` is when
+ * it lands, ms since 1970) or by freight (`at` is the morning it comes); `from` the shop.
+ */
+export interface Order { id: number; goods: Goods[]; by: 'drone' | 'freight'; at: number; from: string }
+/** What the Wire remembers: the last order's number, swap listings sold, the guestbook, the bank's lines. */
+export interface WebData { seq?: number; sold?: string[]; book?: { name: string; text: string; day: number }[]; log?: { day: number; text: string; amount: number }[] }
 /** What a new game starts with. */
 export const START_CASH = 50
 
@@ -491,7 +499,9 @@ export function settle(s: State): State {
   const ids = new Set(out.map(o => o.id))
   // windows of containers that are gone (or no longer containers) close; old saves' docked panels are not carried over
   const windows = (s.windows ?? []).filter(w => ids.has(w.id) && isContainer(out.find(o => o.id === w.id)!.kind)).slice(-MAX_WINDOWS)
-  return { items: out, next, windows, cash: Math.max(0, Math.round(Number(s.cash ?? START_CASH)) || 0), day: Math.max(1, Math.round(Number(s.day)) || 1) }
+  // orders on their way keep what still exists; the Wire's memory is kept as it was
+  const orders = (Array.isArray(s.orders) ? s.orders : []).map(o => ({ ...o, goods: (o.goods ?? []).filter(g => KINDS[g?.kind]) })).filter(o => o.goods.length && Number.isFinite(o.at))
+  return { items: out, next, windows, cash: Math.max(0, Math.round(Number(s.cash ?? START_CASH)) || 0), day: Math.max(1, Math.round(Number(s.day)) || 1), ...(orders.length ? { orders } : {}), ...(s.web && typeof s.web === 'object' ? { web: s.web } : {}) }
 }
 
 /**

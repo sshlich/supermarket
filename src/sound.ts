@@ -224,6 +224,16 @@ const SHOP = {
   powerOn: () => { noise(300, { d: 0.08, g: 0.08, type: 'lowpass' }); tone(55, { d: 1.1, g: 0.05, a: 0.4 }); tone(110, { type: 'triangle', d: 0.9, g: 0.012, a: 0.5, at: 0.1 }) },
   powerOff: () => { noise(300, { d: 0.08, g: 0.07, type: 'lowpass' }); tone(110, { type: 'triangle', d: 0.5, g: 0.015, to: 60 }) },
   // the drive reading: a few soft head clicks over a short whirr
+  /** A computer's system comes up: a slow, soft chord that swells and settles (after the old machines' start-up sounds, gentler). */
+  startup: () => { [[220, 0], [277, 0.12], [330, 0.24], [440, 0.42]].forEach(([f, at]) => tone(f, { type: 'triangle', d: 2.4 - at, g: 0.012, a: 0.5, at })); tone(660, { d: 1.6, g: 0.005, a: 0.6, at: 0.7 }) },
+  /** A modem dialling and shaking hands, muffled: seven soft tone pairs, a ring of carrier, a burst of hiss that settles. */
+  dial: () => {
+    const keys: [number, number][] = [[697, 1209], [770, 1336], [852, 1477], [697, 1336], [941, 1336], [770, 1209], [852, 1336]]
+    keys.forEach(([lo, hi], i) => { tone(lo, { d: 0.09, g: 0.007, at: i * 0.13 }); tone(hi, { d: 0.09, g: 0.005, at: i * 0.13 }) })
+    tone(2100, { d: 0.7, g: 0.004, a: 0.05, at: 1.1 })
+    times(5, 0.16, (_, at) => noise(vary(1400, 0.2), { d: 0.14, g: 0.012, q: 1.5, type: 'lowpass', at: 1.9 + at }))
+    noise(900, { d: 0.6, g: 0.008, q: 0.7, type: 'lowpass', a: 0.1, at: 2.75, to: 300 })
+  },
   seek: () => { tone(160, { type: 'triangle', d: 0.6, g: 0.012, a: 0.08 }); times(5, 0.09, (_, at) => noise(vary(1300, 0.15), { d: 0.02, g: 0.035, q: 4, at: at + 0.05 })) },
 }
 export function shop(name: keyof typeof SHOP) {

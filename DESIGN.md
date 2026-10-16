@@ -393,6 +393,48 @@ with stats that come on discs.
 - Not yet (`IDEAS.md`): writing to discs (blank media, and what copying costs), devices plugged in (printer, modem), more
   programs and computers, patches, viruses.
 
+## The boot, picture discs, and the Wire (2026-10-16)
+
+- **The boot, after the old machines'** (`computer.ts`, about five and a half seconds, a click skips it once the tube is
+  warm): the tube warms up (a line of light opens into a grey glow), the BIOS checks the machine in green on black with the
+  maker's mark top right (a tube with a bolt, "WIRED SAVES POWER"), the memory counting up to 640K and OK, the drives, and
+  "Press DEL to enter SETUP" at the foot; then the system's splash (a view from a station window: stars, a planet's lit edge,
+  WT-DOS 3.1 in italic serif, a rainbow bar sliding along the bottom) with a soft start-up chord; then the desktop. Off, the
+  picture collapses to a bright line and a dot. A program loading from a disc for more than a moment shows its **splash**
+  (its name as sold, a line, a bar): Pixel Paint 2.1, Stocktake Pro 4 ("licensed to serial ..."), Mines.
+- **Picture discs** (`scripts/pics.py` makes them): twenty public-domain pictures from Wikimedia Commons, each fitted into
+  160x120 and dithered to the sixteen colours, packed in base64 as `# NAME.PIC` files with an INDEX.TXT of captions.
+  *EARTH, AS PAINTED* (6$): the Great Wave, the Starry Night, the Mona Lisa, the Scream, the Girl with a Pearl Earring, the
+  Wanderer, Hunters in the Snow, Impression Sunrise, Sunflowers, the Hay Wain. *THE LONG WAY OUT* (6$): Earthrise, the Blue
+  Marble, Aldrin on the Moon, a bootprint, Saturn, Jupiter, the Pillars of Creation, the Crab Nebula, the ISS, Columbia
+  leaving. **Pictures** (built in) shows a drive's pictures with their captions, one after another, copies one to C:, sets
+  one as wallpaper, or opens it in Paint.
+- **The Wire** (`web.ts`): the station's network, and **Wirewalk**, the browser the machine comes with (192K). The first
+  page dials up (a box with the steps, and a muffled modem: seven soft tone pairs, a carrier, a hiss); the line stays up
+  until the machine is switched off (a "Wire" light on the taskbar). Back, forward, reload, home, an address bar (type
+  `swap.wire` and Enter), a globe that turns while a page comes in a band at a time, a status line. Pages look like the old
+  web: Times, blue underlined links (purple once followed), bevelled grey buttons, a ticker, hit counters, an under
+  construction bar. Sites:
+  - **home.wire**, the portal: where to go, today's day and the decks' temperatures, the picture of the day, a search box.
+  - **store.company**, the Company Store: everything new with a price, by category, drawn with its real sprite, at a
+    quarter over its worth (`worthOf`, orders.ts: what a new one is worth, made and thrown away).
+  - **swap.wire**, Swapline: eight listings a day from residents (made as customers' goods are: used, part full, cut into),
+    at their own prices, by seller and deck, with a line each; and two WANTED notices. Bought, a listing says SOLD.
+  - **soft.wire**, the Software Cellar: shareware downloads straight to C: over the line (16K a second, at the taskbar's
+    bar; it needs room), and the licensed Stocktake as its key disc, ordered.
+  - **gallery.wire**, the Gallery: both picture discs to look through free, one picture to take home for 1$, the whole
+    disc ordered for 6$, and a picture of the day free.
+  - **news.wire**, Station News: four stories a day from a pool (scrubbers, lettuce, the tithe, the convoy, a lost cat).
+  - **bank.company**, Company Credit: the balance, what is on its way and when, and what was paid on the Wire.
+  - **seek.wire**, Seek: a search over the Wire's pages. **ring.wire**, the Spine Ring: homepages made by hand, with a
+    ring bar on each (Tomas's lamp collection and his **guestbook**, which you can sign and which keeps what you wrote;
+    Mira's hydro corner; Pip's Mines high scores). Anything else: Not Found.
+- **Buying** (`orders.ts`): every shop shares one cart (**cart.wire**; kept while the page is open). Paying takes the money
+  now (declined if there is not enough) and places an order: by **drone** (3$, lands in 45 seconds) or by **freight**
+  (free, the next morning). It lands on the outside counter, or the field, or the inside counter, wherever there is room;
+  what has no room waits and comes when there is. A bell and a note say what came. Orders and the Wire's memory (order
+  numbers, swap listings sold, the guestbook, the bank's lines) are saved with the field.
+
 
 ## Shelves that show what is on them, and one clock (2026-10-14)
 

@@ -1,5 +1,6 @@
 import './style.css'
 import { BOOKS } from './books.ts'
+import { deliver } from './orders.ts'
 import { initComputer, power as screenPower, prune as pruneScreens, screenHtml } from './computer.ts'
 import { kb, PIC_SIZE, programFile, PROGRAMS, SYSTEM_DISK, textSize } from './programs.ts'
 import { DISCS } from './discs.ts'
@@ -301,12 +302,15 @@ function openWindow(it: Item) {
 
 /**
  * Draw something again without losing the field being typed in: whatever has focus and a `data-focus` key gets it back
- * afterwards, with its caret, selection and scroll (a computer's prompt or notes survive the field being redrawn).
+ * afterwards, with its caret, selection and scroll (a computer's prompt or notes survive the field being redrawn); whatever
+ * has a `data-scroll` key keeps how far it was scrolled (a page on the Wire).
  */
 function keepFocus(draw: () => void) {
   const a = document.activeElement as HTMLInputElement | null, key = a?.dataset?.focus
   const was = key ? { s: a!.selectionStart, e: a!.selectionEnd, top: a!.scrollTop } : null
+  const scrolled = [...document.querySelectorAll<HTMLElement>('[data-scroll]')].map(el => [el.dataset.scroll!, el.scrollTop] as const) // a page keeps its place
   draw()
+  for (const [k, top] of scrolled) { const el = document.querySelector<HTMLElement>(`[data-scroll="${CSS.escape(k)}"]`); if (el) el.scrollTop = top }
   const b = key ? document.querySelector<HTMLInputElement>(`[data-focus="${key}"]`) : null
   if (!b || !was) return
   b.focus({ preventScroll: true })
@@ -717,6 +721,7 @@ function dayOver() {
   dark.onfinish = () => {
     if (gone.length) shop('trash')
     changed(new Map()) // drawn again in the dark: the trash is out, the day moves on
+    setTimeout(arrivals, 2100) // the morning's freight, once the lights are up
     night.querySelector('div')!.innerHTML = `<b>day ${s.day}</b><span>${gone.length ? `the trash went out (${gone.length} thing${gone.length === 1 ? '' : 's'})` : 'morning'}</span>`
     night.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 900, delay: 1100, easing: 'ease-out', fill: 'forwards' }).onfinish = () => { night.remove(); sleeping = false }
   }
@@ -855,7 +860,12 @@ function tipHtml(it: Item) {
     rows.push(`<div class="spec">${k.computer.speed} MHz · ${kb(k.computer.memory)} memory · ${kb(k.computer.disk)} disk, ${kb(k.computer.disk - used)} free</div>`)
   }
   const disc = k.tags?.includes('disc') ? DISCS[propsOf(it).content] : null
-  if (disc) rows.push(`<div class="spec">${disc.files.map(f => { const p = programFile(f.name); return `${esc(f.name)} ${p ? `${kb(p.size)} · runs in ${p.memory}K, wants ${p.speed} MHz${p.licensed ? ' · licensed' : ''}` : kb(textSize(f.text))}` }).join('<br>')}</div>`)
+  if (disc) { // what is on it: each program and text, and the pictures counted
+    const pics = disc.files.filter(f => f.pic !== undefined)
+    const lines = disc.files.filter(f => f.pic === undefined).map(f => { const p = programFile(f.name); return `${esc(f.name)} ${p ? `${kb(p.size)} · runs in ${p.memory}K, wants ${p.speed} MHz${p.licensed ? ' · licensed' : ''}` : kb(textSize(f.text))}` })
+    if (pics.length) lines.push(`${pics.length} picture${pics.length === 1 ? '' : 's'}, ${kb(pics.length * PIC_SIZE)}`)
+    rows.push(`<div class="spec">${lines.join('<br>')}</div>`)
+  }
   return rows.join('')
 }
 /** Show the tooltip beside the hovered item (to its right, or its left if there is no room), kept on screen. */
@@ -924,7 +934,32 @@ initComputer({
     light(ids.map(id => find(s, id)).filter((o): o is Item => !!o).map(o => ({ sp: spaceOf(o), cells: absCells(o), kind: 'usenow' })))
     document.querySelectorAll('.hl').forEach(el => el.classList.add('hl-find'))
   },
+  cash: () => s.cash ?? 0,
+  pay(n) {
+    if ((s.cash ?? 0) < n) return false
+    setCash((s.cash ?? 0) - n)
+    shop('coinsOut')
+    return true
+  },
+  art(g) { // as it would be made: a used thing as it is (a bread bag half eaten, a bottle half drunk), a new one full
+    const k = KINDS[g.kind]
+    const fill = g.fill === undefined ? (k.liquid && k.holds ? { liquid: k.liquid, amount: k.holds } : undefined) : g.fill ?? undefined
+    const it: Item = { id: -1, kind: g.kind, x: 0, y: 0, rot: 0, ...(g.props ? { props: g.props } : {}), ...(fill ? { fill } : {}), ...(g.left !== undefined ? { left: g.left } : {}), ...(g.age ? { age: g.age } : {}) }
+    return spriteHtml(it).replace(/--in\d+:0;?/g, '')
+  },
 })
+
+// things bought on the Wire land when they come: a drone's when its time is up, freight in the morning (orders.ts)
+function arrivals() {
+  const came = deliver(s)
+  if (!came.length) return
+  const n = came.reduce((k, c) => k + c.items.length, 0)
+  shop('bell')
+  toast(`delivery: ${n} thing${n === 1 ? '' : 's'} from ${[...new Set(came.map(c => c.order.from))].join(', ')}${s.orders?.length ? ' (no room for the rest yet)' : ''}`)
+  changed()
+  for (const c of came) for (const it of c.items) pop(it)
+}
+setInterval(() => { if (!drag && !sleeping && s.orders?.length) arrivals() }, 1500)
 
 // what the terminal needs from the page (terminal.ts)
 initTerminal({
