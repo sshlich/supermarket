@@ -49,21 +49,28 @@
     "cat": "food",
     "price": 1,
     "tags": [
-      "food"
+      "food",
+      "bread"
     ],
-    "desc": "Sliced white in cling film, eight slices when new. Keeps a week, if nobody opens it.",
-    "slots": [
-      {
-        "name": "slices",
-        "w": 8,
-        "h": 4,
-        "accepts": [
-          "bread"
+    "desc": "Sliced white in cling film, eight slices when new. Double-click it to take a slice out; drop a slice on it to put it back.",
+    "cut": {
+      "into": "breadslice",
+      "count": 8,
+      "from": "right",
+      "keeps": true,
+      "sizes": [
+        [
+          5,
+          3,
+          2
         ],
-        "fill": "breadslice",
-        "count": 8
-      }
-    ]
+        [
+          0,
+          2,
+          2
+        ]
+      ]
+    }
   },
   "wine": {
     "name": "Wine bottle",

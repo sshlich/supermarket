@@ -10,7 +10,7 @@ import { openReader } from './reader.ts'
 import { initMenu, toggleMenu } from './menu.ts'
 import { customer, customerSays, dialNote, dropped, initTerminal, notYours, reopen, restart, resume, sideHtml, theirs, typeOn } from './terminal.ts'
 import { handle, handleMany, shop } from './sound.ts'
-import { PLACES, sleep, trash, accepts, applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, COUNTERS, cut, dims, sizeOf, fillWith, find, isSlot, LIQUIDS, look, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { refill, leftOf, PLACES, sleep, trash, accepts, applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, COUNTERS, cut, dims, sizeOf, fillWith, find, isSlot, LIQUIDS, look, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -512,7 +512,7 @@ function begin() {
   else if (cold.length) Object.assign(drag, { verb: 'light', uses: cold })
   else if (a.fill) Object.assign(drag, { verb: 'pour', uses: s.items.filter(o => mine(o) && canPour(a, o) > 0 && (!o.in || accepts(s, { ...o, fill: { liquid: a.fill!.liquid, amount: 1 } }, o.in))) }) // its slot must still take it full of that
   else if (KINDS[a.kind].cuts) Object.assign(drag, { verb: 'cut', uses: s.items.filter(o => mine(o) && KINDS[o.kind].cut && o.id !== a.id) })
-  else { const on = s.items.filter(o => mine(o) && canStack(o, a)); if (on.length) Object.assign(drag, { verb: 'stack', uses: on }) } // bread on the field or a counter, not in its bag
+  else { const on = s.items.filter(o => mine(o) && (canStack(o, a) || KINDS[o.kind].cut?.keeps && KINDS[o.kind].cut!.into === a.kind && leftOf(o) < KINDS[o.kind].cut!.count)); if (on.length) Object.assign(drag, { verb: 'stack', uses: on }) } // bread on the field or a counter lays on a slice, or goes back into its bag
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
   sounds(held.items, 'lift')
@@ -772,6 +772,7 @@ function finish(drop: boolean) {
     shop(lit === 'lit' ? 'ignite' : 'bad')
   }
   else if (was && b) { was.n = pour(a, b); putBack(d.held); sound(a, 'use') }
+  else if (b && drop && d.verb === 'stack' && KINDS[b.kind].cut?.keeps) { sound(a, 'drop'); laid = refill(s, b, a); if (!laid) { putBack(d.held); shop('bad') } } // back into its bag
   else if (b && drop && d.verb === 'stack') { sound(a, 'drop'); laid = stack(s, b, a); if (!laid) putBack(d.held) }
   else if (b && drop && d.verb === 'cut') { made = cut(s, b); putBack(d.held); if (made) shop('cut'); else shop('bad') }
   else if (drop && d.plan) { applyDrop(s, d.held, d.plan); sounds(d.held.items, 'drop') }
@@ -962,5 +963,7 @@ app.addEventListener('dblclick', e => {
   if (it && isContainer(it.kind)) openWindow(it)
   else if (it && KINDS[it.kind].read && BOOKS[propsOf(it).title]) { hideTip(); openReader(BOOKS[propsOf(it).title]) }
   else if (it && KINDS[it.kind].stack && !closed(it) && theirs(it.id)) notYours()
+  else if (it && KINDS[it.kind].cut?.keeps && theirs(it.id)) notYours()
+  else if (it && KINDS[it.kind].cut?.keeps) { const p = cut(s, it)?.[0]; if (!p) { toast(leftOf(it) ? 'no room for it' : 'it is empty'); return } sound(p, 'lift'); hideTip(); changed(); pop(p) } // a slice out of its bag
   else if (it && KINDS[it.kind].stack && !closed(it)) { const p = unstack(s, it); if (!p) { toast('no room for it'); return } sound(p, 'lift'); hideTip(); changed(); pop(p) }
 })

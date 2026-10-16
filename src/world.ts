@@ -31,9 +31,10 @@ export interface Smelt { into: string; count: number; secs: number }
 /**
  * Something cut with a knife (a cheese wheel into wedges; a wedge, a ham into slices): `into` is what comes off, `count` how
  * many it starts with, `from` the side the pieces come off, 'left' or 'right' (it shrinks from there), `sizes` its footprint as it goes: a list
- * of [at least this many left, w, h], biggest first.
+ * of [at least this many left, w, h], biggest first. `keeps`: what is left stays when the last piece comes off (an empty bag), and
+ * a piece can be put back; it is taken off by hand (double-click) as well as with a knife.
  */
-export interface Cut { into: string; count: number; from: string; sizes: number[][] }
+export interface Cut { into: string; count: number; from: string; sizes: number[][]; keeps?: boolean }
 /**
  * Something made by laying things on something (a sandwich): it starts as `on` (a slice of bread) with one of `takes` laid on
  * it, holds up to `max` of them, and is finished once `lid` goes on top. Worth its parts times `open`, or `closed` once finished.
@@ -134,7 +135,7 @@ export function shapeOf(kind: string): Box {
   return box
 }
 /** How many pieces are left in something cut (0 for anything else). */
-export const leftOf = (it: Item) => { const c = KINDS[it.kind]?.cut; return c ? Math.max(1, Math.min(c.count, Math.round(Number(it.left ?? c.count)) || c.count)) : 0 }
+export const leftOf = (it: Item) => { const c = KINDS[it.kind]?.cut, n = Math.round(Number(it.left ?? c?.count)); return c ? c.keeps ? Math.max(0, Math.min(c.count, Number.isNaN(n) ? c.count : n)) : Math.max(1, Math.min(c.count, n || c.count)) : 0 }
 /** A thing's footprint before turning: its kind's, or for something being cut, the size for what is left of it. */
 export function sizeOf(it: Item): { w: number; h: number } {
   const k = KINDS[it.kind], c = k.cut
@@ -410,7 +411,7 @@ function cleanFill(o: Item): { fill?: Fill } {
 /** How much is left of something cut, how old a thing that ages is, and what its look is drawn from, where they make sense. */
 function cleanCut(o: Item): { left?: number; age?: number; heat?: number } {
   const k = KINDS[o.kind], c = k?.cut, n = Math.round(Number(o.left)), heat = Number(o.heat)
-  return { ...(c && n >= 1 && n < c.count ? { left: n } : {}), ...((k?.furnace || k?.smelt || k?.burns) && heat > 0 ? { heat: Math.min(1, heat) } : {}), ...(KINDS[o.kind]?.ages && Number(o.age) > 0 ? { age: Number(o.age) } : {}), ...(Number.isFinite(o.seed) ? { seed: Number(o.seed) } : {}) }
+  return { ...(c && n >= (c.keeps ? 0 : 1) && n < c.count ? { left: n } : {}), ...((k?.furnace || k?.smelt || k?.burns) && heat > 0 ? { heat: Math.min(1, heat) } : {}), ...(KINDS[o.kind]?.ages && Number(o.age) > 0 ? { age: Number(o.age) } : {}), ...(Number.isFinite(o.seed) ? { seed: Number(o.seed) } : {}) }
 }
 /** A sandwich's layers, of kinds that still exist (no more than it holds); one with nothing on it is its bread again. */
 function cleanLayers(o: Item): { kind?: string; layers?: Layer[] } {
@@ -485,11 +486,17 @@ export function settle(s: State): State {
  * shrinks from its cut side, its other side staying where it was; the pieces (as old as it is) go on the nearest free spots
  * beside it, or the field. Null, with nothing changed, if there is no room for them.
  */
+/** Where the top-left of something cut moves when it goes from the footprint `before` to `after` (it keeps its side away from the cut), turned as it lies. */
+function shift(c: Cut, rot: number, before: { w: number; h: number }, after: { w: number; h: number }): [number, number] {
+  const W0 = before.w, H0 = before.h, x0 = c.from === 'right' ? 0 : W0 - after.w, x1 = x0 + after.w, y1 = after.h
+  return [[x0, 0], [H0 - y1, x0], [W0 - x1, H0 - y1], [0, W0 - x1]][quarter(rot)] as [number, number]
+}
 export function cut(s: State, it: Item): Item[] | null {
   const c = KINDS[it.kind]?.cut
   const at = s.items.indexOf(it)
   if (!c || !KINDS[c.into] || at < 0) return null
-  const n = leftOf(it), pieces = n <= 2 ? n : 1, gone = n - pieces <= 0
+  const n = leftOf(it), pieces = c.keeps ? Math.min(n, 1) : n <= 2 ? n : 1, gone = !c.keeps && n - pieces <= 0
+  if (!pieces) return null
   const was = { x: it.x, y: it.y, left: it.left }, before = sizeOf(it)
   // the cut side, as it lies: 'left' or 'right' of the thing as made, turned with it
   const r = quarter(it.rot), d = c.from === 'right' ? 1 : -1
@@ -498,9 +505,7 @@ export function cut(s: State, it: Item): Item[] | null {
   else {
     it.left = n - pieces
     // what is left, inside the old footprint as made (against the side away from the cut), turned the way it lies
-    const after = sizeOf(it), W0 = before.w, H0 = before.h
-    const x0 = c.from === 'right' ? 0 : W0 - after.w, x1 = x0 + after.w, y1 = after.h
-    const [dx, dy] = [[x0, 0], [H0 - y1, x0], [W0 - x1, H0 - y1], [0, W0 - x1]][r]
+    const [dx, dy] = shift(c, it.rot, before, sizeOf(it))
     it.x += dx; it.y += dy
   }
   const made: Item[] = []
@@ -516,6 +521,21 @@ export function cut(s: State, it: Item): Item[] | null {
   if (gone) s.items.splice(at, 0, it)
   else { it.x = was.x; it.y = was.y; if (was.left === undefined) delete it.left; else it.left = was.left }
   return null
+}
+
+/** Put a piece back into what it came off (a slice into its bag): it grows back where it shrank from, if the room is free. False, with nothing changed, if not. */
+export function refill(s: State, pack: Item, piece: Item): boolean {
+  const c = KINDS[pack.kind]?.cut, n = leftOf(pack)
+  if (!c?.keeps || piece.kind !== c.into || n >= c.count) return false
+  const was = { x: pack.x, y: pack.y, left: pack.left }, small = sizeOf(pack)
+  if (n + 1 >= c.count) delete pack.left; else pack.left = n + 1
+  const [dx, dy] = shift(c, pack.rot, sizeOf(pack), small)
+  pack.x -= dx; pack.y -= dy
+  const { w, h } = spaceSize(s, spaceOf(pack)), b = boxOf(pack)
+  if (b.x >= 0 && b.y >= 0 && b.x + b.w <= w && b.y + b.h <= h && inSpace(s, spaceOf(pack)).every(o => o.id === pack.id || o.id === piece.id || !overlaps(boxOf(o), b))) { remove(s, [piece.id]); return true }
+  pack.x = was.x; pack.y = was.y
+  if (was.left === undefined) delete pack.left; else pack.left = was.left
+  return false
 }
 
 /** A new piece of something (cut off it, taken off it): on the free spot nearest the side it comes off (`side`, a step: right unless told), or anywhere on the field. */

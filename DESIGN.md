@@ -253,7 +253,7 @@ has a `cat` and a `price` (coins); the tooltip shows what a thing is worth (its 
 | Category | Item | Size | Tags | Price |
 |---|---|---|---|---|
 | food | Apple (property `origin`: real, or synthetic) | 2x2 | food (+ synthetic) | 4 (synthetic 2) |
-| food | Sliced bread | 4x2 | food | 3 |
+| food | Sliced bread | 3x2 | food, bread | 8 |
 | food | Wine bottle (dark glass, comes full of wine) | 1x3, holds 4 | from its liquid | 1 + liquid |
 | sundries | Candle (a tall taper, standing, lit) | 1x3 | light | 2 |
 | sundries | Book | 2x3 | book | 7 |
@@ -383,10 +383,11 @@ is the thing as it comes, written by `node scripts/fills.ts` from the painters t
 gallery and the footprint check see the whole thing; the game paints over it from each item. Painters run before the
 item's ids are made its own, so they can use the sprite's gradients. A slot's `fill` can say how many it comes with
 (`count`), and a vessel can take only some liquids (`liquids`).
-- **Sliced bread** is a pack of eight 2x2 slices (put back in: it takes only bread). The loaf is as long as the slices left
-  in it, cut lines between them, its heel rounded and its cut end square and pale. The bag keeps its full shape: where the
-  loaf has gone it sags a little and creases, with crumbs in the bottom (an earlier bag that hugged the loaf and narrowed
-  to the twist read badly). Its printed label stays where it is.
+- **Sliced bread** is a bag of eight 2x2 slices, not a container: double-click it and a slice lands beside it; drag a slice
+  onto the bag (it turns blue) and it goes back, if the bag has room to grow. The footprint follows the slices: 3x2 with five
+  or more, 2x2 with fewer, and an empty bag stays as a crumpled 2x2 (a `cut` kind with `keeps`). The loaf is as long as the
+  slices left, cut lines between them, its heel rounded and its cut end square and pale; the bag shortens round it and the
+  twist rides on its end. Its printed label shows while six or more are left.
 - **The knife, the first tool** (tools; 1x3, a kitchen knife, `cuts`): while you hold it, everything it can cut lights blue
   (bright under the pointer); drop it on one and a piece comes off, with a soft slicing sound, and the knife goes back.
   Things cut with it (`cut` on the kind) are not containers: they hold a count (`left` on the item) and shrink as it

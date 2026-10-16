@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { overlaps } from './grid.ts'
-import { accepts, canPour, canStack, closed, cut, find, partsOf, stack, unstack, dims, faceSeed, leftOf, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, emptyTrash, sleep, trash, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
+import { refill, accepts, canPour, canStack, closed, cut, find, partsOf, stack, unstack, dims, faceSeed, leftOf, moveInto, fillWith, intoHost, applyDrop, boxOf, cellsOf, contents, COUNTERS, H, inSpace, KINDS, LIQUIDS, look, pour, MAX_WINDOWS, spaceOf, remove, settle, emptyTrash, sleep, trash, spawn, lift, planDrop, putBack, W, worth, type Item, type State } from './world.ts'
 import FIXTURE from './test/kinds.json' with { type: 'json' }
 
 // The game ships no items for now, so the tests bring their own kinds and the old starting field.
@@ -522,10 +522,29 @@ console.log('world ok')
   const b = spawn(s, 'blister')!
   remove(s, contents(s, b.id).map(o => o.id))
   assert.equal(spawn(s, 'pill', { host: b.id, slot: 0 }), null)
-  const loaf = spawn(s, 'bread')!
-  const slice = contents(s, loaf.id)[0]
-  assert.ok(!canStack(slice, spawn(s, 'cheeseslice')!))
   console.log('take-out-only ok')
+}
+
+// a bag of bread: a slice comes out by hand and lands beside it, the bag shortens, and empty it stays as a 2x2 crumpled bag; slices go back in while there is room
+{
+  const s: State = { items: [], next: 1, windows: [] }
+  const bag = spawn(s, 'bread')!
+  assert.deepEqual([dims(bag).w, dims(bag).h, leftOf(bag)], [3, 2, 8])
+  for (let i = 0; i < 3; i++) assert.ok(cut(s, bag))
+  assert.deepEqual([leftOf(bag), dims(bag).w, bag.x], [5, 3, 0])
+  const [slice] = cut(s, bag)!
+  assert.deepEqual([leftOf(bag), dims(bag).w, slice.kind], [4, 2, 'breadslice'])
+  for (let i = 0; i < 4; i++) assert.ok(cut(s, bag))
+  assert.deepEqual([leftOf(bag), dims(bag).w, dims(bag).h, find(s, bag.id) === bag], [0, 2, 2, true]) // still there, empty
+  assert.equal(cut(s, bag), null)
+  assert.ok(refill(s, bag, slice))
+  assert.deepEqual([leftOf(bag), find(s, slice.id)], [1, undefined])
+  // a neighbour in the way: the slice does not go back
+  const next = spawn(s, 'apple')!
+  Object.assign(next, { x: bag.x + 2, y: bag.y })
+  for (let i = 0; i < 4; i++) refill(s, bag, spawn(s, 'breadslice')!)
+  assert.equal(leftOf(bag), 4) // the fifth would make it 3 wide, into the apple
+  console.log('bread bag ok')
 }
 
 // a broken save is mended: a container inside itself, an id twice, a `next` behind the ids; what fits nowhere goes, with what is in it
