@@ -130,7 +130,16 @@
       "it_lux_matchbox",
       "disc_tech_prog_music",
       "disc_tech_prog_utilities",
-      "disc_food_hydro_greens"
+      "disc_food_hydro_greens",
+      "it_fab_knife",
+      "it_fab_pliers",
+      "it_med_bandage",
+      "it_med_antiseptic",
+      "it_med_painkiller",
+      "it_med_gauze",
+      "it_tech_motor",
+      "it_tech_torch",
+      "it_lux_paper"
     ],
     "contraband": "sells",
     "sends_mail": true,
@@ -203,7 +212,17 @@
       "it_tech_lamp",
       "it_fab_wrench",
       "disc_tech_blank_floppy",
-      "it_core_cell_husk"
+      "it_core_cell_husk",
+      "it_food_ration_bar",
+      "it_food_paste_tube",
+      "it_food_tin_beans",
+      "it_food_bread",
+      "it_food_sugar",
+      "it_food_yeast",
+      "it_fab_crate",
+      "it_life_algae",
+      "it_mach_lubricant",
+      "it_mach_tape"
     ],
     "contraband": "none",
     "sends_mail": true,
@@ -262,7 +281,8 @@
       "it_lux_gloves",
       "it_mach_coolant",
       "it_fab_fasteners",
-      "it_mach_drive_belt"
+      "it_mach_drive_belt",
+      "it_fab_light_sheet"
     ],
     "sells": [
       "disc_fab_bp_tools",
@@ -321,7 +341,9 @@
       "it_food_noodles",
       "it_food_yeast",
       "it_food_sugar",
-      "it_med_bandage"
+      "it_med_bandage",
+      "it_life_algae_dense",
+      "it_food_sausage"
     ],
     "sells": [
       "it_core_slag",
@@ -400,7 +422,10 @@
       "disc_tech_blank_card",
       "disc_tech_bp_lamps",
       "disc_tech_prog_antivirus",
-      "disc_mach_labels_ring"
+      "disc_mach_labels_ring",
+      "it_tech_motor",
+      "it_mach_lubricant",
+      "it_tech_notice"
     ],
     "contraband": "none",
     "sends_mail": true,
@@ -594,7 +619,10 @@
       "it_lux_blanket",
       "it_tech_screen",
       "it_tech_clock",
-      "it_lux_pamphlet"
+      "it_lux_pamphlet",
+      "it_food_culture_mat",
+      "it_food_cheese_spread",
+      "it_food_sausage"
     ],
     "sells": [],
     "contraband": "reports",
@@ -655,7 +683,12 @@
       "it_food_ring_dinner",
       "it_lux_ring_coat",
       "it_lux_print",
-      "it_tech_work_light"
+      "it_tech_work_light",
+      "it_food_cheese_wheel",
+      "it_food_cheese_wedge",
+      "it_food_salami",
+      "it_food_sausage",
+      "it_food_cheese_spread"
     ],
     "sells": [],
     "contraband": "none",
@@ -800,7 +833,11 @@
       "it_lux_watch",
       "disc_lux_vintner",
       "disc_lux_bp_fire",
-      "disc_med_narcotics"
+      "disc_med_narcotics",
+      "it_med_sleeping_pill",
+      "it_med_burn_tab",
+      "it_med_energy_tab",
+      "it_med_antibiotic"
     ],
     "contraband": "both",
     "sends_mail": true,

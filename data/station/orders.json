@@ -231,8 +231,8 @@
     "kind": "charity",
     "sender": "res_scavenger",
     "deck": "deck_spine",
-    "phase_from": "phase_1",
-    "phase_to": "phase_2",
+    "phase_from": "phase_2",
+    "phase_to": "phase_3",
     "wants": [
       {
         "id": "it_food_porridge",
@@ -326,7 +326,7 @@
     "kind": "repair",
     "sender": "res_hauler",
     "deck": "deck_dock",
-    "phase_from": "phase_1",
+    "phase_from": "phase_3",
     "phase_to": "phase_4",
     "wants": [
       {
@@ -361,8 +361,8 @@
     "kind": "repair",
     "sender": "res_hauler",
     "deck": "deck_dock",
-    "phase_from": "phase_1",
-    "phase_to": "phase_3",
+    "phase_from": "phase_3",
+    "phase_to": "phase_4",
     "wants": [
       {
         "id": "it_fab_wrench",
@@ -430,7 +430,7 @@
     "kind": "order",
     "sender": "res_fitter",
     "deck": "deck_works",
-    "phase_from": "phase_1",
+    "phase_from": "phase_2",
     "phase_to": "phase_4",
     "wants": [
       {
@@ -464,7 +464,7 @@
     "kind": "repair",
     "sender": "res_fitter",
     "deck": "deck_works",
-    "phase_from": "phase_2",
+    "phase_from": "phase_3",
     "phase_to": "phase_4",
     "wants": [
       {
@@ -556,7 +556,7 @@
     "kind": "order",
     "sender": "res_smelterhand",
     "deck": "deck_works",
-    "phase_from": "phase_1",
+    "phase_from": "phase_2",
     "phase_to": "phase_3",
     "wants": [
       {
@@ -805,7 +805,7 @@
     "kind": "order",
     "sender": "res_orderly",
     "deck": "deck_mid",
-    "phase_from": "phase_1",
+    "phase_from": "phase_2",
     "phase_to": "phase_3",
     "wants": [
       {
@@ -905,7 +905,7 @@
     "kind": "repair",
     "sender": "res_engineer",
     "deck": "deck_core",
-    "phase_from": "phase_2",
+    "phase_from": "phase_3",
     "phase_to": "phase_4",
     "wants": [
       {
@@ -976,8 +976,8 @@
     "kind": "order",
     "sender": "res_engineer",
     "deck": "deck_core",
-    "phase_from": "phase_1",
-    "phase_to": "phase_2",
+    "phase_from": "phase_2",
+    "phase_to": "phase_3",
     "wants": [
       {
         "id": "it_med_energy_tab",
@@ -1102,10 +1102,6 @@
       {
         "id": "it_lux_paper",
         "qty": 3
-      },
-      {
-        "id": "it_fit_ledger_book",
-        "qty": 2
       },
       {
         "id": "it_tech_notice",
@@ -1906,8 +1902,8 @@
     "kind": "charity",
     "sender": "org_clinic",
     "deck": "deck_mid",
-    "phase_from": "phase_1",
-    "phase_to": "phase_2",
+    "phase_from": "phase_2",
+    "phase_to": "phase_3",
     "wants": [
       {
         "id": "it_med_saline_drip",
@@ -2037,7 +2033,7 @@
     "kind": "rush",
     "sender": "org_clinic",
     "deck": "deck_mid",
-    "phase_from": "phase_1",
+    "phase_from": "phase_2",
     "phase_to": "phase_4",
     "wants": [
       {
@@ -2075,7 +2071,7 @@
     "kind": "bulk",
     "sender": "org_union",
     "deck": "deck_works",
-    "phase_from": "phase_1",
+    "phase_from": "phase_2",
     "phase_to": "phase_3",
     "wants": [
       {
@@ -2185,7 +2181,7 @@
     "kind": "repair",
     "sender": "org_union",
     "deck": "deck_works",
-    "phase_from": "phase_1",
+    "phase_from": "phase_3",
     "phase_to": "phase_4",
     "wants": [
       {
@@ -2303,7 +2299,7 @@
     "kind": "repair",
     "sender": "org_ring_council",
     "deck": "deck_ring",
-    "phase_from": "phase_2",
+    "phase_from": "phase_3",
     "phase_to": "phase_4",
     "wants": [
       {
@@ -2629,7 +2625,7 @@
     "kind": "order",
     "sender": "org_security",
     "deck": "deck_hub",
-    "phase_from": "phase_2",
+    "phase_from": "phase_3",
     "phase_to": "phase_4",
     "wants": [
       {
