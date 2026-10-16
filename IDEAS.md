@@ -65,3 +65,50 @@ Open questions:
 - Is "wired" a resource (power, a connection) or just flavour?
 - Which first program earns its place: Mail (orders from outside) or Files (with a virus to deal with)?
 - Could the computer bring the line in (a notice posted on a board brings more customers)?
+
+## Computers and devices, round two (pitched 2026-10-15, the user's verdicts 2026-10-16)
+
+**The core, approved:** a computer holds programs and files, and programs and files are things you get. That opens
+different computers and machines, better ones or ones for other jobs, and devices that read media (a 3D printer fed a
+memory card of models). Programs can be **modifiers**: loaded into a machine, they change what it does.
+
+What was decided or leaned:
+- **Storage and memory are plain stats, not grids.** A file manager is the usual list with a capacity bar; running
+  programs take memory. Computers and programs get stats of all kinds (memory, storage, speed, ports, power draw; a
+  program's size, the memory it needs, the speed it wants).
+- **Opening the case to fit parts** (memory, drives, cards) is liked and **parked as too early**.
+- **No connection by touching.** Wiring as a puzzle only makes sense as its own layer (cables drawn over the field, things
+  can sit on them, no effect on items), and only if inputs and outputs are meant to be limited with a clear upgrade path.
+  Simplest: ports are a stat, and plugging a device in is a verb.
+- **Printer, done properly:** printers by print surface (small for slips, labels and receipts; medium for documents,
+  manuals, posters; large for banners and art), so customers can later order art and banners. The label printer is just
+  the small printer. A **3D printer** reads models from a memory card (STATION's fabricator with a blueprint disc).
+- **Modem: yes** (mail, orders, boards).
+- **Boxes and the sealer: yes.** A sealed box cannot be opened; a knife cuts it open, and the sealer closes it again.
+- **Scanner:** good, early. **Radio scanner:** only worth it if it feels like sorting garbage for the one useful thing,
+  and then it is a big thing of its own. Parked.
+- **Programs on discs, including novelties:** a paint disc, a game, music; sometimes useful (an encrypted client for a
+  black market, a 3D model store). Endless room.
+- **Command line: yes**, as one more way to act on things. **Automation** (scripts that drive machines): yes.
+- **Viruses:** wanted, the shape is open. Leaning: a **cursed modifier** on a file, hidden until scanned, that rides
+  along on every copy and shows first by its symptoms (slower, space missing, a machine jams).
+- **Your own desktop** (icons, wallpaper, notes, printing them): yes. It gives junk files a use and has an aesthetic of
+  its own.
+- **The screen gets bigger** (more pixels), so working in it is comfortable.
+- Not a second game, a part of this one.
+
+**The open problem: copying.** If copies are free, programs, models and disc contents stop being worth anything. Proposal:
+copying is a production step with costs, not a free action:
+1. **Media:** a copy needs a blank disc or card with room for it, bought like any item; bigger programs need bigger media.
+2. **Time:** copying is a job for the computer, at its drive's speed (energy now, or free overnight, as STATION section 6).
+3. **The market remembers:** each title has a price that falls as you sell copies of it (the market already moves with
+   your sales).
+4. **Licences:** Company software runs only on the machine it is paired with, or with a hardware key (a dongle is a thing
+   and cannot be copied). A cracker program removes the check, comes from the black market and may carry a virus. Cracked
+   copies sell cheap to the spine; the ring wants licensed ones.
+5. Maybe **generation loss:** a copy of a copy can pick up a bad-sector modifier.
+That makes good drives and fast computers worth chasing, which is the user's own instinct ("the reason you want to chase
+good storage").
+
+How programs move between machines and get modified: carried on media (a disc or a card is a thing you carry), or sent
+by modem; modified by **patches**, files dropped on a program to change its stats (a cracker is a patch).
