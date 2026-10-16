@@ -111,6 +111,21 @@ Orders ship in boxes, and boxes are a real decision.
   gives faster pickup, shorter transit and lower fees. It is a sink that pays back, and the one standing in the game that
   is about money spent, not people (no relations with customers).
 
+## 8a. The calendar (a visibility layer, there from the start)
+
+Not an item and not a program: a feature of the interface, no power, no tiers, no unlock. It **folds** to a strip (the next
+few days, one mark per entry) and unfolds to the full view.
+
+- **Entries come from the other systems:** order due days, pickups and delivery days and payments, overnight jobs finishing,
+  rent and tithe, announced events and rumors, crates arriving.
+- **Ship by.** An order due on day 5 with a transit of 2 is marked on day 3, the day it must be in the dock; the carrier
+  tier changes that date.
+- **Cash forecast.** Hover a day for money in and out (deliveries paying, rent, tithe); this is what delivery-time payment
+  needs to be playable.
+- **Risk flags** on an entry when the box is not in the dock yet, a job will not finish in time, or the stock is not there.
+- **Rumors are tentative** (dashed, with a confidence) and turn solid or vanish on the day, so a hoard is a visible gamble.
+- Click an entry to open what it is (the mail, the box, the machine). Interactive visibility, as for the counters' dials.
+
 ## 9. Inflow and outflow (the loop is not terminal)
 
 | | In | Out |
