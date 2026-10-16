@@ -244,31 +244,31 @@ const PAINTERS: Record<string, Painter> = {
    * The bag stays the same length: past the loaf it lies flat to the twist and its clip; empty, it is a flat bag of crumbs.
    */
   bread: (_, inside) => {
-    const n = inside(0).length, full = n >= 8, L = 97 * n / 8, x1 = 8 + L
+    const n = inside(0).length, full = n >= 8, S = 9, L = S * n, x0 = 6, x1 = x0 + L, T = 18, B = 50, bagR = 82 // a slice is 9 wide; the loaf is 32 tall
     let out = ''
     if (n) {
-      const r = Math.min(12, L) // the heel is rounded; the end that was cut is square
-      out += `<path d="M${f(8 + r)} 11L${f(x1)} 11L${f(x1)} 57L${f(8 + r)} 57Q8 57 8 ${f(57 - r)}L8 ${f(11 + r)}Q8 11 ${f(8 + r)} 11Z" fill="url(#crust)"/>`
-      for (let k = 1; k < n; k++) out += `<path d="M${f(8 + k * 97 / 8)} 12Q${f(7 + k * 97 / 8)} 34 ${f(8 + k * 97 / 8)} 56" fill="none" stroke="#8e5f31" stroke-width="0.9" opacity="0.5"/>`
-      if (!full) out += `<rect x="${f(x1 - 3)}" y="11" width="3" height="46" fill="#ead6ad"/><path d="M${f(x1)} 11V57" stroke="#a9733f" stroke-width="0.8"/>`
+      const r = Math.min(9, L) // the heel is rounded; the end that was cut is square
+      out += `<path d="M${f(x0 + r)} ${T}L${f(x1)} ${T}L${f(x1)} ${B}L${f(x0 + r)} ${B}Q${x0} ${B} ${x0} ${f(B - r)}L${x0} ${f(T + r)}Q${x0} ${T} ${f(x0 + r)} ${T}Z" fill="url(#crust)"/>`
+      for (let k = 1; k < n; k++) out += `<path d="M${x0 + k * S} ${T + 1}Q${x0 + k * S - 1} 34 ${x0 + k * S} ${B - 1}" fill="none" stroke="#8e5f31" stroke-width="0.9" opacity="0.5"/>`
+      if (!full) out += `<rect x="${f(x1 - 3)}" y="${T}" width="3" height="${B - T}" fill="#ead6ad"/><path d="M${f(x1)} ${T}V${B}" stroke="#a9733f" stroke-width="0.8"/>`
     }
     if (!full) { // crumbs on the bottom of the empty part
-      const r = seeded(11)
+      const r = seeded(11), c0 = n ? x1 + 4 : 10
       out += '<g fill="#c99a5e" opacity="0.8">'
-      for (let i = 0; i < 7; i++) { const x = (n ? x1 + 4 : 12) + r() * (100 - (n ? x1 + 4 : 12)); if (x < 102) out += `<circle cx="${f(x)}" cy="${f(53 + r() * 4)}" r="${f(0.6 + r() * 0.6)}"/>` }
+      for (let i = 0; i < 7; i++) { const x = c0 + r() * (bagR - 4 - c0); if (x < bagR - 4) out += `<circle cx="${f(x)}" cy="${f(47 + r() * 3)}" r="${f(0.6 + r() * 0.6)}"/>` }
       out += '</g>'
     }
-    out += '<rect x="40" y="22" width="32" height="24" rx="1.5" fill="#ece6d8"/><circle cx="50" cy="34" r="6.5" fill="#d39a3a"/><circle cx="50" cy="34" r="2.5" fill="#ece6d8"/><rect x="60" y="27" width="8.5" height="6" fill="#2f4866"/><rect x="60" y="35.5" width="8.5" height="2" fill="#2f4866"/><rect x="40" y="43" width="32" height="3" fill="#c25a3c"/>'
+    out += '<rect x="26" y="26" width="24" height="16" rx="1.5" fill="#ece6d8"/><circle cx="33" cy="34" r="4.5" fill="#d39a3a"/><circle cx="33" cy="34" r="1.8" fill="#ece6d8"/><rect x="40" y="29.5" width="7" height="4.5" fill="#2f4866"/><rect x="40" y="35.5" width="7" height="1.6" fill="#2f4866"/><rect x="26" y="39.5" width="24" height="2.5" fill="#c25a3c"/>'
     // the bag: always its full shape; where it is empty it sags a little and creases
-    out += `<path d="M6 23C6 11 13 8.5 24 8.5L${full ? 92 : f(Math.max(24, x1))} 8.5${full ? '' : `Q${f((Math.max(24, x1) + 100) / 2)} 12.5 100 9`}C103 9 108 14 108 24L108 54C108 58 105 59.5 100 59.5L12 59.5C8 59.5 6 58 6 54Z" fill="url(#film)" stroke="#e6edf0" stroke-width="1" stroke-opacity="0.6"/>`
+    const e = Math.max(18, x1)
+    out += `<path d="M4 29C4 18 9 15 17 15L${full ? 66 : f(e)} 15${full ? '' : `Q${f((e + bagR) / 2)} 18 ${bagR - 2} 15.5`}C${bagR + 2} 16 ${bagR + 4} 19 ${bagR + 4} 28L${bagR + 4} 40C${bagR + 4} 49 ${bagR} 53 ${bagR - 4} 53L10 53C6 53 4 51 4 47Z" fill="url(#film)" stroke="#e6edf0" stroke-width="1" stroke-opacity="0.6"/>`
     if (!full) {
-      const from = n ? x1 + 3 : 10
       out += '<g fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="0.8">'
-      for (let x = from + 4; x < 100; x += 11) out += `<path d="M${f(x)} 14Q${f(x + 3)} 32 ${f(x - 2)} 54"/>`
+      for (let x = (n ? x1 + 3 : 10) + 4; x < bagR - 2; x += 10) out += `<path d="M${f(x)} 19Q${f(x + 3)} 34 ${f(x - 2)} 49"/>`
       out += '</g>'
     }
-    out += '<path d="M105 12C110 17 113 26 114 30L114 40C113 44 110 51 105 57" fill="#dfe7ea" fill-opacity="0.35" stroke="#e6edf0" stroke-opacity="0.75" stroke-width="1"/>'
-    out += `<path d="M14 14C30 11.5 ${full ? '60 11.5 84 12.5' : `${f(Math.max(30, x1 - 20))} 11.5 ${f(Math.max(32, x1 - 4))} 12.5`}" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.6" stroke-linecap="round"/><path d="M20 53L44 53" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round"/>`
+    out += `<path d="M${bagR - 3} 17C${bagR + 1} 20 ${bagR + 3} 27 ${bagR + 4} 30L${bagR + 4} 38C${bagR + 3} 41 ${bagR + 1} 48 ${bagR - 3} 51" fill="#dfe7ea" fill-opacity="0.35" stroke="#e6edf0" stroke-opacity="0.75" stroke-width="1"/>`
+    out += `<path d="M10 19C22 17.5 ${full ? '44 17.5 60 18' : `${f(Math.max(24, x1 - 14))} 17.5 ${f(Math.max(26, x1 - 3))} 18`}" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.6" stroke-linecap="round"/><path d="M14 48L32 48" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round"/>`
     return out
   },
   cheesewheel: host => wheel(host),
