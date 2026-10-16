@@ -93,16 +93,23 @@ how nasty the penalty is can be tuned later with no redesign. This answers the q
 ## 8. Parcels and boxes
 
 Orders ship in boxes, and boxes are a real decision.
-- **Box types are sizes**: 2x2, 3x2 and 4x4 for now. Each ships differently (guess: the small one by drone within the
-  hour, the big one by truck at day's end, the fee per box rising with size but cheaper per square). An order may need a
-  size, or a deadline that rules some out.
+- **Box types are sizes**: 2x2, 3x2 and 4x4 for now. The fee per box rises with size but falls per square. An order may
+  need a size, or a deadline that rules some out. Who carries them and how is outsourced: not modelled, not drawn.
 - **You buy boxes ahead.** They are items with a footprint, so a stack of boxes takes room, and running out mid-order costs
   a rush. How many to hold of which kind is a stocking decision.
-- **Pack and seal.** You put goods in a box, attach the order's slip (printed by the terminal), and seal it. Only sealed
-  boxes ship.
-- **Collection takes them all, wherever they are.** When the carrier arrives, a truck or a drone depending on the type,
-  every sealed box leaves the station, from the field and from inside any container. The dock hatch (beside the counters)
-  shows it happen and is the outflow port; it is not a place you put things. Payment arrives with the pickup (or on delivery; open).
+- **Pack and seal.** You put goods in a box, attach the order's slip (printed by the terminal), and seal it.
+- **The dock is a container you open, like the customer terminal.** It is a panel beside the counters whose grid takes
+  **boxes only** (a filter, like the existing container filters). That is the restriction: its size is how much can ship
+  per pickup, and **the field upgrades later** (a bigger dock grid is a sink). A sealed box left anywhere else does not
+  ship. It is the outflow port; ordered crates also arrive through it, or on the outside counter.
+- **Pickup takes everything in the dock.** The carrier collects on a schedule and the sealed boxes leave the grid; the
+  panel shows when the next pickup is, what is loaded, and what each box will pay (hover).
+- **Delivery takes time.** A box has a pickup time and a transit time (guess: days, and further for some decks). Payment
+  arrives **on delivery**, so cash lags what you shipped: ship Monday, paid Wednesday. An order's due day means delivered
+  by, so transit is part of the deadline. A late box pays less (or nothing).
+- **Standing with the carrier.** The total you spend on shipping raises a tier (a spend threshold, kept), and each tier
+  gives faster pickup, shorter transit and lower fees. It is a sink that pays back, and the one standing in the game that
+  is about money spent, not people (no relations with customers).
 
 ## 9. Inflow and outflow (the loop is not terminal)
 
@@ -145,7 +152,8 @@ sim, sandwiches (vat food and made-up meals), the print bridge for slips.
 - Is the tithe a hard deadline or soft pressure? Default: soft (a recurring order with a penalty).
 - Do machines run real-time (as the furnace) or tick per customer? Default: real-time, with energy as the shortcut and
   overnight as the free way (section 6).
-- Does payment come at pickup or on delivery? Default: at pickup.
+- Does the shipper charge you per box, or does the order's buyer pay the freight? Default: you pay.
+- Is transit the same for every destination? Default: it depends on the deck, so far decks are slow (open until decks have numbers).
 - Personal needs (eating, sleeping) beyond energy? Default: only eating as a way to buy energy.
 - How many conserved materials? Default: about six, to keep the sim tractable. A closed loop can spiral; let a collapse be
   an event and the story and not a bug to hide.
