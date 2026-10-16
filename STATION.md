@@ -126,6 +126,30 @@ few days, one mark per entry) and unfolds to the full view.
 - **Rumors are tentative** (dashed, with a confidence) and turn solid or vanish on the day, so a hoard is a visible gamble.
 - Click an entry to open what it is (the mail, the box, the machine). Interactive visibility, as for the counters' dials.
 
+## 8b. Night: outside (scavenging and shops), decided 2026-10-16
+
+The day is the stall; **the night is outside**. The line is **3 to 7 customers** in phase 1 (the first sim used 10 to 14 and showed
+no growth; with a line this small each sale must be worth more, which is what free loot is for).
+
+- **Scavenge sites** are places on a map, each with a theme, a finite loot table and a gate. The **sites refill every night**,
+  so what limits you is energy and room in the pack, never running a site dry for good. Loot costs nothing to acquire, which is
+  where margin comes from (the walk-in flip alone nets about 25% and went nowhere in the sim).
+- **Energy is shared**: a trip costs energy like a machine job does. A night spent out is a night of jobs not started by hand
+  (overnight jobs still run free while you are out).
+- **The pack is a small carry grid** (a container item). What you bring back is the handling game you already have; a bigger
+  pack is an upgrade, and heavy finds make you leave something behind.
+- **Tools gate sites** and tools are items that wear: a torch for dark decks, a rebreather and mask refills for thin air, a
+  crowbar or cutter for sealed hatches, a keycard or permit for the ring. This ties the fab and life chains into progression.
+- **Shops are the mirror of your counter**: you are the customer at their counter. Prices follow the needs gauges, a shop
+  restocks a limited amount each day, and shops buy from you at a low floor price (a scrap yard takes anything, so you can
+  never be left with nothing sellable). Small things are bought in person; **machines can be bought in person or delivered**
+  (in person is immediate, costs a trip and has to be carried; delivery is cheaper and slow; second-hand machines in person
+  come with statuses to repair).
+- Outside stays a **map of choices** that reuses the grid and counters (a short dig on a site, a counter in a shop), not a
+  second game of its own.
+- Inflow channels in the data now mean something: `salvage` is a site, `haul` and `crate` are shops or deliveries, `seller`
+  is the line.
+
 ## 9. Inflow and outflow (the loop is not terminal)
 
 | | In | Out |
@@ -165,6 +189,7 @@ sim, sandwiches (vat food and made-up meals), the print bridge for slips.
 ## 13. Open questions, with defaults
 
 - Is the tithe a hard deadline or soft pressure? Default: soft (a recurring order with a penalty).
+- (Settled) Night trips share the player's energy with machine jobs; sites refill each night.
 - Do machines run real-time (as the furnace) or tick per customer? Default: real-time, with energy as the shortcut and
   overnight as the free way (section 6).
 - Does the shipper charge you per box, or does the order's buyer pay the freight? Default: you pay.
