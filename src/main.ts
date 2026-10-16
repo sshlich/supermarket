@@ -1,6 +1,6 @@
 import './style.css'
 import { BOOKS } from './books.ts'
-import { deliver } from './orders.ts'
+import { deliver, morning, quote, ship, swapSales } from './orders.ts'
 import { initComputer, power as screenPower, prune as pruneScreens, screenHtml } from './computer.ts'
 import { kb, PIC_SIZE, programFile, PROGRAMS, SYSTEM_DISK, textSize } from './programs.ts'
 import { DISCS } from './discs.ts'
@@ -12,7 +12,7 @@ import { openReader } from './reader.ts'
 import { initMenu, toggleMenu } from './menu.ts'
 import { customer, customerSays, dialNote, dropped, initTerminal, notYours, reopen, restart, resume, sideHtml, theirs, typeOn } from './terminal.ts'
 import { handle, handleMany, shop } from './sound.ts'
-import { refill, leftOf, PLACES, sleep, trash, accepts, applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, COUNTERS, cut, dims, sizeOf, fillWith, find, isSlot, LIQUIDS, look, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { contents, isBox, sealed, pieceOf, type Print, refill, leftOf, PLACES, sleep, trash, accepts, applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, COUNTERS, cut, dims, sizeOf, fillWith, find, isSlot, LIQUIDS, look, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -192,6 +192,16 @@ function paintScreen(id: number) {
   const it = find(s, id)
   if (el && it) keepFocus(() => { setClock(el as HTMLElement); el.innerHTML = screenHtml(id, isOn(it)) })
 }
+/** A printer dropped on a computer: plugged into it (a computer has two ports), or out of it if it already was. */
+const PORTS = 2
+function plug(printer: Item, pc: Item) {
+  if (printer.link === pc.id) { delete printer.link; toast('printer unplugged'); shop('menu'); return }
+  if (s.items.filter(o => o.link === pc.id).length >= PORTS) { toast(`the ${look(pc).name.toLowerCase()} has no free port`); shop('bad'); return }
+  printer.link = pc.id
+  toast(`printer plugged into the ${look(pc).name.toLowerCase()}`)
+  shop('menu')
+}
+
 /** The power switch: the property changes (the sprite on the field glows or goes dark), and the screen boots or goes black. */
 function pressPower(id: number) {
   const it = find(s, id)
@@ -322,7 +332,7 @@ function keepFocus(draw: () => void) {
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
   setClock(app)
-  keepFocus(() => app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside><aside class="lside">${cashHtml()}${dayHtml()}${trashHtml()}</aside></div></div>${windowsHtml()}`)
+  keepFocus(() => app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside><aside class="lside">${cashHtml()}${dayHtml()}${trashHtml()}${dockHtml()}</aside></div></div>${windowsHtml()}`)
   typeOn() // a line being typed carries on in the new terminal
   showToast()
   if (hoverId !== null) showTip()
@@ -353,7 +363,7 @@ function changed(from?: Map<number, DOMRect>) {
  * `uses` are the things the held one can be used on (`verb`: a vessel pours into them, a knife cuts them, a slice is laid on
  * them); `useOn` the one under the pointer now.
  */
-interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; hosts: Item[]; full: Item[]; blocked: Item | null; into: Item | null; space: Space; over: boolean; uses: Item[]; useOn: Item | null; verb: 'pour' | 'cut' | 'stack' | 'light' | null }
+interface Drag { held: Held; el: HTMLElement; gx: number; gy: number; rot: number; plan: Plan | null; key: string; hosts: Item[]; full: Item[]; blocked: Item | null; into: Item | null; space: Space; over: boolean; uses: Item[]; useOn: Item | null; verb: 'pour' | 'cut' | 'stack' | 'light' | 'plug' | 'load' | 'seal' | null }
 let press: { id: number; x: number; y: number; gx: number; gy: number; toggle: boolean; wasGroup: boolean } | null = null
 let drag: Drag | null = null
 let last: PointerEvent | null = null
@@ -531,7 +541,10 @@ function begin() {
   if (held.items.length > 1 || theirs(a.id)) { /* a group, or a customer's thing: only moved */ }
   else if (cold.length) Object.assign(drag, { verb: 'light', uses: cold })
   else if (a.fill) Object.assign(drag, { verb: 'pour', uses: s.items.filter(o => mine(o) && canPour(a, o) > 0 && (!o.in || accepts(s, { ...o, fill: { liquid: a.fill!.liquid, amount: 1 } }, o.in))) }) // its slot must still take it full of that
-  else if (KINDS[a.kind].cuts) Object.assign(drag, { verb: 'cut', uses: s.items.filter(o => mine(o) && KINDS[o.kind].cut && o.id !== a.id) })
+  else if (KINDS[a.kind].cuts) Object.assign(drag, { verb: 'cut', uses: s.items.filter(o => mine(o) && (KINDS[o.kind].cut || sealed(o)) && o.id !== a.id) }) // a knife cuts food, and the tape on a box
+  else if (KINDS[a.kind].printer) Object.assign(drag, { verb: 'plug', uses: s.items.filter(o => mine(o) && KINDS[o.kind].computer) }) // a printer goes on a computer to plug in (or out)
+  else if (KINDS[a.kind].sheets) Object.assign(drag, { verb: 'load', uses: s.items.filter(o => mine(o) && KINDS[o.kind].printer && (o.paper ?? 0) < KINDS[o.kind].printer!) })
+  else if (KINDS[a.kind].seals) Object.assign(drag, { verb: 'seal', uses: s.items.filter(o => mine(o) && isBox(o) && !sealed(o)) })
   else { const on = s.items.filter(o => mine(o) && (canStack(o, a) || KINDS[o.kind].cut?.keeps && KINDS[o.kind].cut!.into === a.kind && leftOf(o) < KINDS[o.kind].cut!.count)); if (on.length) Object.assign(drag, { verb: 'stack', uses: on }) } // bread on the field or a counter lays on a slice, or goes back into its bag
   press = null
   for (const it of held.items) app.querySelector(`.item[data-id="${it.id}"]`)?.classList.add('lifted')
@@ -712,7 +725,9 @@ function dayOver() {
   if (sleeping) return
   sleeping = true
   const was = s.day ?? 1
+  const shipped = ship(s) // the carrier takes the dock's sealed boxes tonight; they are paid for on delivery, in the morning
   const gone = sleep(s)
+  const post = morning(s).filter(m => m.kind === 'order').length
   save()
   const night = document.body.appendChild(document.createElement('div'))
   night.className = 'night'
@@ -722,7 +737,9 @@ function dayOver() {
     if (gone.length) shop('trash')
     changed(new Map()) // drawn again in the dark: the trash is out, the day moves on
     setTimeout(arrivals, 2100) // the morning's freight, once the lights are up
-    night.querySelector('div')!.innerHTML = `<b>day ${s.day}</b><span>${gone.length ? `the trash went out (${gone.length} thing${gone.length === 1 ? '' : 's'})` : 'morning'}</span>`
+    const news = [gone.length && `the trash went out (${gone.length} thing${gone.length === 1 ? '' : 's'})`, shipped.boxes && `${shipped.boxes} box${shipped.boxes === 1 ? '' : 'es'} delivered: ${shipped.net}$`, post && `${post} new order${post === 1 ? '' : 's'} by mail`].filter(Boolean)
+    night.querySelector('div')!.innerHTML = `<b>day ${s.day}</b><span>${news.join(' · ') || 'morning'}</span>`
+    if (shipped.net) setTimeout(() => { setCash((s.cash ?? 0) + shipped.net); shop('coinsIn') }, 1400)
     night.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 900, delay: 1100, easing: 'ease-out', fill: 'forwards' }).onfinish = () => { night.remove(); sleeping = false }
   }
 }
@@ -735,6 +752,20 @@ function trashHtml() {
   if (!trashOpen) return button
   const { w, h } = PLACES.trash
   return `${button}<div class="bin"><div class="grid" data-grid data-space="trash" data-w="${w}" data-h="${h}" style="--w:${w};--h:${h}">${trash(s).map(itemHtml).join('')}</div></div>`
+}
+let dockOpen = ((): boolean => { try { return localStorage.getItem('dock-open') === '1' } catch { return false } })()
+/**
+ * The dock, under the trash: a place for boxes only (orders.ts). Sealed boxes with their slips go with the carrier at night
+ * and are paid for on delivery; the line under it says what is ready and what it will pay.
+ */
+function dockHtml() {
+  const boxes = inSpace(s, { at: 'dock' }), quotes = boxes.map(b => quote(s, b))
+  const ready = quotes.filter(q => q?.ships), pays = ready.reduce((n, q) => n + q!.pay - q!.fee, 0)
+  const button = `<button class="term-btn dock-btn${dockOpen ? ' on' : ''}" data-dock title="Boxes to ship: the carrier comes at night">&#9636; dock${boxes.length ? ` <small>${boxes.length}</small>` : ''}</button>`
+  if (!dockOpen) return button
+  const { w, h } = PLACES.dock
+  const note = !boxes.length ? 'boxes only: sealed, with their slip' : `${ready.length} of ${boxes.length} ready${ready.length ? `, pays ${pays}$` : ''} · pickup tonight`
+  return `${button}<div class="bin dock"><div class="grid" data-grid data-space="dock" data-w="${w}" data-h="${h}" style="--w:${w};--h:${h}">${boxes.map(itemHtml).join('')}</div><small class="dock-note">${note}</small></div>`
 }
 const ICON_TRASH = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 4h11M6 4V2.5h4V4M4 4l.8 9.5h6.4L12 4M6.8 6.5v5M9.2 6.5v5"/></svg>'
 function toggleTrash() {
@@ -795,13 +826,17 @@ function finish(drop: boolean) {
   else if (was && b) { was.n = pour(a, b); putBack(d.held); sound(a, 'use') }
   else if (b && drop && d.verb === 'stack' && KINDS[b.kind].cut?.keeps) { sound(a, 'drop'); laid = refill(s, b, a); if (!laid) { putBack(d.held); shop('bad') } } // back into its bag
   else if (b && drop && d.verb === 'stack') { sound(a, 'drop'); laid = stack(s, b, a); if (!laid) putBack(d.held) }
+  else if (b && drop && d.verb === 'cut' && sealed(b)) { delete b.props!.tape; putBack(d.held); shop('cut'); laid = true } // the tape cut: the box opens
   else if (b && drop && d.verb === 'cut') { made = cut(s, b); putBack(d.held); if (made) shop('cut'); else shop('bad') }
+  else if (b && drop && d.verb === 'plug') { putBack(d.held); plug(a, b) }
+  else if (b && drop && d.verb === 'load') { b.paper = Math.min(KINDS[b.kind].printer!, (b.paper ?? 0) + KINDS[a.kind].sheets!); remove(s, [a.id]); sound(a, 'drop'); toast(`${b.paper} sheets in the printer`); laid = true }
+  else if (b && drop && d.verb === 'seal') { b.props = { ...b.props, tape: 'sealed' }; s.windows = (s.windows ?? []).filter(w => w.id !== b.id); putBack(d.held); sound(b, 'drop'); laid = true }
   else if (drop && d.plan) { applyDrop(s, d.held, d.plan); sounds(d.held.items, 'drop') }
   else { putBack(d.held); if (drop && d.over) shop('bad'); else sounds(d.held.items, 'drop') }
   d.el.remove()
   changed(from)
   if (made) for (const p of made) pop(p)
-  if (b && drop && d.verb === 'cut' && !made) toast('no room for the piece')
+  if (b && drop && d.verb === 'cut' && !made && !laid) toast('no room for the piece')
   if (lit) toast(lit === 'lit' ? `the ${look(b!).name.toLowerCase()} is lit` : 'nothing to burn: coal goes in the firebox')
   if (laid && b) pop(b, 0.92)
   if (was && b) {
@@ -851,10 +886,18 @@ function tipHtml(it: Item) {
   if (who) rows.push(`<div class="who">${who}</div>`)
   if (l.desc) rows.push(`<p>${esc(l.desc)}</p>`)
   if (binned(it)) rows.push(`<div class="hint">in the trash</div>`)
-  if (isContainer(it.kind)) rows.push(`<div class="hint">double-click to open</div>`)
+  if (isContainer(it.kind) && !sealed(it)) rows.push(`<div class="hint">double-click to open</div>`)
   if (k.read) rows.push(`<div class="hint">double-click to read</div>`)
   if (k.stack) rows.push(`<div class="hint">${closed(it) ? 'finished' : 'double-click to take the top off'}</div>`)
   if (it.fill) rows.push(`<div class="hint">drop it on another bottle to pour</div>`)
+  if (k.printer) rows.push(`<div class="spec">${it.paper ?? 0} sheet${it.paper === 1 ? '' : 's'} of paper (holds ${k.printer})<br>${it.link !== undefined && find(s, it.link) ? `plugged into the ${esc(look(find(s, it.link)!).name.toLowerCase())}` : 'not plugged in: drop it on a computer'}</div>`)
+  if (it.print?.title && !it.print.job) rows.push(`<div class="spec">"${esc(it.print.title)}"${it.print.text ? `<br>${esc(it.print.text.slice(0, 90))}${it.print.text.length > 90 ? '...' : ''}` : ''}</div>`)
+  if (it.print?.job !== undefined) { const m = s.mail?.find(x => x.id === it.print!.job); rows.push(`<div class="spec">order #${it.print.job}${m?.job ? `: ${esc(m.job.wants.map(w => `${w.n} × ${KINDS[w.kind].name.toLowerCase()}`).join(', '))} for ${esc(m.from.split(',')[0])}, due day ${m.job.due}` : ''}</div>`) }
+  if (isBox(it)) { // interactive visibility: what this box would bring if it shipped tonight
+    const q = quote(s, it), n = contents(s, it.id).length
+    rows.push(`<div class="spec">${n ? `${n} thing${n === 1 ? '' : 's'} inside` : 'empty'}${q ? `<br>order #${q.mail.id}: ${q.have} of ${q.wanted} wanted${q.late ? ', late' : ''} · pays ${q.pay - q.fee}$ after the ${q.fee}$ fee` : n ? '<br>no slip inside: it will not ship' : ''}${sealed(it) ? '' : '<br>not taped: it will not ship'}</div>`)
+  }
+  if (it.listed) rows.push(`<div class="who">on Swapline at ${it.listed}$</div>`)
   if (k.computer) { // what the machine has, and how full its disk is
     const used = SYSTEM_DISK + (it.drive ?? []).reduce((n, f) => n + (f.prog ? PROGRAMS[f.prog]?.size ?? 0 : f.pic !== undefined ? PIC_SIZE : textSize(f.text ?? '')), 0)
     rows.push(`<div class="spec">${k.computer.speed} MHz · ${kb(k.computer.memory)} memory · ${kb(k.computer.disk)} disk, ${kb(k.computer.disk - used)} free</div>`)
@@ -917,6 +960,7 @@ initMenu({
   },
   addCash(n) { setCash((s.cash ?? 0) + n); shop('coinsIn') },
   clearField() { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) },
+  sleep: () => dayOver(),
   newGame() { cancelAnimationFrame(cashRaf); s = start(); cashShown = s.cash!; selected = new Set(); restart(); changed(new Map()); reopen() },
 })
 
@@ -941,6 +985,20 @@ initComputer({
     shop('coinsOut')
     return true
   },
+  printer: pc => s.items.find(o => KINDS[o.kind].printer && o.link === pc),
+  printed(printer, job) { // the sheet comes out beside the printer: a slip for an order, a page or a picture otherwise
+    const pr = find(s, printer.id)
+    if (!pr) return false
+    const p = pieceOf(s, job.job !== undefined ? 'slip' : 'print', pr, [0, 1])
+    if (!p) return false
+    p.print = job
+    if (job.pic) p.props = { face: 'picture' }
+    pr.paper = (pr.paper ?? 1) - 1
+    if (!pr.paper) delete pr.paper
+    changed()
+    pop(p)
+    return true
+  },
   art(g) { // as it would be made: a used thing as it is (a bread bag half eaten, a bottle half drunk), a new one full
     const k = KINDS[g.kind]
     const fill = g.fill === undefined ? (k.liquid && k.holds ? { liquid: k.liquid, amount: k.holds } : undefined) : g.fill ?? undefined
@@ -960,6 +1018,17 @@ function arrivals() {
   for (const c of came) for (const it of c.items) pop(it)
 }
 setInterval(() => { if (!drag && !sleeping && s.orders?.length) arrivals() }, 1500)
+// what is listed on Swapline sells in time (orders.ts): the courier takes it, the money comes
+setInterval(() => {
+  if (drag || sleeping || !s.items.some(o => o.listed)) return
+  const sold = swapSales(s)
+  if (!sold.length) return
+  setCash((s.cash ?? 0) + sold.reduce((n, x) => n + x.net, 0))
+  shop('coinsIn')
+  toast(sold.map(x => `sold on Swapline: ${x.name.toLowerCase()} to ${x.who}, ${x.net}$`).join(' · '))
+  changed()
+}, 20_000)
+if (!s.mail) { morning(s); save() } // the first morning's mail, for a game from before there was any
 
 // what the terminal needs from the page (terminal.ts)
 initTerminal({
@@ -1026,12 +1095,15 @@ app.addEventListener('click', e => {
   if (b.dataset.wfull) { const w = winOf(+b.dataset.wfull); if (w) w.full = !w.full; shop('menu'); changed(new Map()); keepOnScreen(); return }
   if (b.dataset.power) { pressPower(+b.dataset.power); return }
   if ('trash' in b.dataset) { toggleTrash(); return }
+  if ('dock' in b.dataset) { dockOpen = !dockOpen; try { localStorage.setItem('dock-open', dockOpen ? '1' : '0') } catch { /* private window */ } shop('menu'); render(new Map()); return }
 })
 
 /** Double-click a container to open its insides in a window beside it, or a book to read it. */
 app.addEventListener('dblclick', e => {
   const el = (e.target as HTMLElement).closest<HTMLElement>('.item[data-id]')
   const it = el && find(s, +el.dataset.id!)
+  if (it && sealed(it)) { toast('taped shut: cut the tape with a knife to open it'); shop('bad'); return }
+  if (it?.print?.text) { hideTip(); openReader({ id: `print-${it.id}`, title: it.print.title ?? 'A printed page', author: 'off the printer', cover: '#f2ece0', blurb: '', blocks: it.print.text.split(/\n{2,}/).map(p => ({ p })) }); return }
   if (it && isContainer(it.kind)) openWindow(it)
   else if (it && KINDS[it.kind].read && BOOKS[propsOf(it).title]) { hideTip(); openReader(BOOKS[propsOf(it).title]) }
   else if (it && KINDS[it.kind].stack && !closed(it) && theirs(it.id)) notYours()

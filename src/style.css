@@ -663,3 +663,43 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .dial-art svg { width: 30px; height: 30px; }
 .dial-art .dots { width: 80px; color: #8fe0a6; font-size: 20px; letter-spacing: 2px; }
 .tb-tray.online { color: #8fe0a6; }
+
+/* Wiremail: folders, the list on the left, the letter on the right */
+.mailbox { flex: 1; min-height: 0; display: flex; gap: 3px; }
+.maillist { flex: none; width: 220px; }
+.mailrow { align-items: flex-start; }
+.mailrow span { min-width: 0; overflow: hidden; }
+.mailrow small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mailrow b { font-weight: normal; }
+.mailrow.unread b { font-weight: 700; color: #f0d9a8; }
+.mailrow em { width: auto; font-size: 10px; color: #8fe0a6; }
+.mailrow i { font-style: normal; }
+.letter { padding: 8px 10px; line-height: 1.45; }
+.mail-head { padding-bottom: 6px; margin-bottom: 6px; border-bottom: 1px solid #3a3542; }
+.mail-head small { color: #8a8494; }
+.mail-text { margin-bottom: 8px; color: #d8d4cc; }
+.wants { border-collapse: collapse; margin: 4px 0; }
+.wants td { padding: 2px 8px 2px 0; }
+.wants .ok { color: #8fe0a6; } .wants .short { color: #e08a3a; }
+.letter .wart-cell { width: 54px; }
+.terms { margin: 6px 0; color: #b9b3c4; font-size: 11px; }
+.terms b { color: #f0d9a8; }
+.letter .btns98 { justify-content: flex-start; padding: 6px 0; gap: 6px; }
+.hint98 { color: #8a8494; font-size: 11px; }
+.tb-tray.mailtray { cursor: pointer; color: #f0d9a8; background: #3a2f52; }
+/* Swapline, selling */
+.price-in { width: 46px; text-align: right; }
+/* the dock: a bin for boxes, the carrier's note under it */
+.dock-btn { display: inline-flex; align-items: center; gap: 6px; border-color: #5a6b5a; color: #a8c0a5; }
+.dock-btn small { padding: 0 4px; border-radius: 2px; background: #2a3a2c; color: #c4d9bc; font-size: 10px; }
+.bin.dock { box-shadow: 0 0 0 2px #5a6b5a; }
+.bin.dock .grid { --rim: #3a4a3c; background-color: #161c18; }
+.dock-note { display: block; margin-top: 6px; max-width: 260px; color: #a8c0a5; font-size: 10px; }
+
+/* the screensaver: bread with wings, flying down and across, flapping */
+.display.saver { background: #000; cursor: none; }
+.fly { position: absolute; width: calc(96px * var(--s)); height: calc(56px * var(--s)); animation: fly var(--d) linear infinite; animation-delay: var(--o); }
+.fly svg { overflow: visible; }
+.fly .wing { transform-box: fill-box; transform-origin: 100% 85%; animation: flap .32s ease-in-out infinite alternate; }
+@keyframes fly { from { transform: translate(0, 0); } to { transform: translate(-1000px, 760px); } }
+@keyframes flap { from { transform: rotate(-28deg); } to { transform: rotate(18deg); } }

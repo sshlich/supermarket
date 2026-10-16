@@ -3,6 +3,7 @@
 // footprint check see, and the game paints it over from the item itself: its contents (where each thing sits, how many,
 // what colour) or its own seed. The blister does the same with CSS variables; this is for drawings that need more.
 
+import { picUrl } from './pics.ts'
 import { aged, dims, faceSeed, KINDS, leftOf, seedOf, sizeOf, swatch, type Item, type Layer } from './world.ts'
 
 /** A painter gets the item and its contents by slot, and returns SVG in the sprite's own units (32 to a square). */
@@ -101,7 +102,7 @@ function salamiSlice(seed: number, id: string) {
 const salamiRing = (r: () => number) => roundish(r, 32, 32, 27.5, 0.035, 0.97)
 
 /** A slice of bread from above, as its own sprite draws it: the crust round it, the crumb full of small holes. */
-const BREAD = 'M9 25C8 12 19 6 32 6C45 6 56 12 55 25C55 27 53 28 53 30L53 55C53 57.5 51.5 59 49 59L15 59C12.5 59 11 57.5 11 55L11 30C11 28 9 27 9 25Z'
+export const BREAD = 'M9 25C8 12 19 6 32 6C45 6 56 12 55 25C55 27 53 28 53 30L53 55C53 57.5 51.5 59 49 59L15 59C12.5 59 11 57.5 11 55L11 30C11 28 9 27 9 25Z'
 const breadTop = (id: string) => `<defs><radialGradient id="${id}c" cx="0.45" cy="0.4" r="0.7"><stop offset="0" stop-color="#f3e4c2"/><stop offset="1" stop-color="#e2cb98"/></radialGradient></defs>`
   + `<path d="${BREAD}" fill="url(#${id}c)" stroke="#a9733f" stroke-width="3.2" stroke-linejoin="round"/><path d="${BREAD}" fill="none" stroke="#7e5228" stroke-width="0.8"/>`
   + '<g fill="#d6bb85" opacity="0.8"><ellipse cx="22" cy="22" rx="1.6" ry="1"/><ellipse cx="34" cy="18" rx="1.2" ry="0.8"/><ellipse cx="43" cy="27" rx="1.8" ry="1.1"/><ellipse cx="27" cy="33" rx="1.3" ry="0.9"/><ellipse cx="38" cy="40" rx="1.5" ry="1"/><ellipse cx="20" cy="45" rx="1.2" ry="0.8"/><ellipse cx="45" cy="50" rx="1.3" ry="0.9"/><ellipse cx="30" cy="51" rx="1.7" ry="1"/></g>'
@@ -275,6 +276,25 @@ const PAINTERS: Record<string, Painter> = {
     out += `<path d="M10 19C22 17.5 ${full ? '44 17.5 60 18' : `${f(Math.max(24, x1 - 14))} 17.5 ${f(Math.max(26, x1 - 3))} 18`}" fill="none" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1.6" stroke-linecap="round"/>`
     if (n >= 4) out += '<path d="M14 48L32 48" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round"/>'
     return out
+  },
+  /**
+   * A printed sheet of fanfold paper, its tractor holes down the sides: a picture printed on it landscape, edge to edge, or a
+   * page of text portrait (a bold title, then the lines as they fall, each as long as it is).
+   */
+  print: host => {
+    const p = host.print ?? {}
+    const holes = (x: number, y0: number, y1: number) => { let o = ''; for (let y = y0 + 3; y < y1 - 1; y += 4.5) o += `<circle cx="${x}" cy="${f(y)}" r="0.9" fill="#d8d2c4"/>`; return o }
+    if (p.pic) return '<rect x="2.5" y="11" width="59" height="44" fill="#f6f3ea" stroke="#b8b2a2" stroke-width="0.6"/><path d="M6.5 11V55M57.5 11V55" stroke="#dcd6c8" stroke-width="0.5" stroke-dasharray="1 1"/>'
+      + holes(4.5, 11, 55) + holes(59.5, 11, 55) + `<image href="${picUrl(p.pic)}" x="9" y="14" width="46" height="34.5" preserveAspectRatio="none" style="image-rendering:pixelated"/>`
+      + '<rect x="9" y="14" width="46" height="34.5" fill="none" stroke="#2a2730" stroke-width="0.5"/><rect x="24" y="50.5" width="16" height="1.2" fill="#8a8494"/>'
+    const words = (p.text ?? 'Dear sir, I write to you about the order of last week, which has not yet arrived. The goods were paid for on the day. I would ask you to look into it. Yours, a customer').split(/\s+/)
+    const lines: number[] = []
+    let n = 0
+    for (const w of words) { if (n && n + w.length > 26) { lines.push(n); n = 0 } n += w.length + (n ? 1 : 0); if (lines.length >= 12) break }
+    if (n && lines.length < 12) lines.push(n)
+    return '<rect x="11.5" y="2.5" width="41" height="59" fill="#f6f3ea" stroke="#b8b2a2" stroke-width="0.6"/><path d="M15.5 2.5V61.5M48.5 2.5V61.5" stroke="#dcd6c8" stroke-width="0.5" stroke-dasharray="1 1"/>'
+      + holes(13.5, 2.5, 61.5) + holes(50.5, 2.5, 61.5) + `<rect x="19" y="7.5" width="${f(Math.min(26, 6 + (p.title ?? 'A LETTER').length * 1.4))}" height="2.2" fill="#2a2730"/>`
+      + lines.map((k, i) => `<rect x="19" y="${f(13 + i * 3.6)}" width="${f(Math.max(3, k / 26 * 26))}" height="1.3" fill="#6a6474"/>`).join('')
   },
   cheesewheel: host => wheel(host),
   cheesewedge: host => wedge(host),

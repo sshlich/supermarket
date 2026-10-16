@@ -15,6 +15,8 @@ export interface Hooks {
   spawn(kind: string, props: Record<string, string>, liquid?: string, age?: number): boolean
   addCash(n: number): void
   clearField(): void
+  /** End the day now: sleep, as when the last customer goes. */
+  sleep(): void
   newGame(): void
 }
 let hooks: Hooks
@@ -107,6 +109,7 @@ function debugHtml() {
     : '<div class="dnote">no kinds yet: <a href="/editor.html">make one in the editor</a></div>'
   return `<div class="dhead" data-grab><span>debug</span><button data-d="close" title="Close">✕</button></div>
     <div class="dbody"><div class="dline"><span>money</span><button data-d="cash">+100$</button></div>
+    <div class="dline"><span>day</span><button data-d="sleep">sleep now</button></div>
     <div class="dline"><span>field</span><button data-d="clear">clear the field</button></div>
     <div class="dcat">spawn <small>on the field, first free spot</small></div>${spawn}</div>`
 }
@@ -131,6 +134,7 @@ export function openDebug() {
     if (b.dataset.d === 'close') { debug!.remove(); debug = null; return }
     if (b.dataset.d === 'cash') return hooks.addCash(100)
     if (b.dataset.d === 'clear') return hooks.clearField()
+    if (b.dataset.d === 'sleep') return hooks.sleep()
     if (b.dataset.kind && !hooks.spawn(b.dataset.kind, JSON.parse(b.dataset.props || '{}'), b.dataset.liquid, Number(b.dataset.age) || undefined)) b.animate([{ transform: 'translateX(-3px)' }, { transform: 'translateX(3px)' }, { transform: 'none' }], { duration: 200 })
   })
   debug.addEventListener('pointerdown', e => {

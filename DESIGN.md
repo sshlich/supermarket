@@ -435,6 +435,40 @@ with stats that come on discs.
   what has no room waits and comes when there is. A bell and a note say what came. Orders and the Wire's memory (order
   numbers, swap listings sold, the guestbook, the bank's lines) are saved with the field.
 
+## Mail orders and shipping, selling on Swapline, the printer, flying bread (2026-10-16)
+
+The computer's work for the shop (`STATION.md` sections 7 and 8, the other session's `data/station` boxes and orders as
+the shape: box sizes and fees, wants with counts, due days, late pay):
+- **Wiremail** (built in, 96K; on the desktop, and the taskbar's envelope says how much is unread): the mail is on the Wire,
+  so it dials first. Folders: all, new orders, jobs, done. **Every morning two or three orders come** (`orders.ts`), from
+  people on the station by deck, each with what it wants (drawn, with how many you have of each, whole), what it pays on
+  delivery, its due day, and which box it would fit. The bunk tenant on the Spine pays thin and gives days; the clinic
+  orderly wants dressings fast; the Ring household pays well for real food and wants it in two days; the collector pays
+  double for old things. Now and then spam (a free cell, a cheap licence from the Fence). The first morning brings the
+  Company's welcome, which says how it all works. Accept or decline; an order nobody takes lapses after its day.
+- **The printer** (`printer` kind, 3x2, 30$): drop it on a computer to plug it in (two ports; drop again to unplug), drop
+  a **ream** (`paper`, 2x2, 5$, fifty sheets) on it to load it. Programs print through it (a few seconds, soft dot-matrix
+  ticks, a sheet a print): Notepad prints the text (a **printed page**, which double-click reads like a book), Pictures and
+  Paint print the picture (a **print**, 3$, landscape on fanfold paper, the picture itself drawn on it), Wiremail prints an
+  order's **slip** (1x1, a card with a punched hole and a bar code). A sheet comes out below the printer.
+- **Boxes** (`box_s` 2x2 holding 4x4, 1$, fee 2$; `box_m` 3x2 holding 6x4, 2$, fee 3$; `box_l` 4x4 holding 8x8, 3$, fee
+  6$): pack the goods and the slip in. The **tape gun** (`sealer`, 2x1, 4$) dropped on a box tapes it shut: brown tape
+  along the seam, nothing in or out, no window. A knife on a sealed box cuts the tape. Hovering a box says what it holds
+  and, with a slip in it, what it would pay if it shipped tonight.
+- **The dock** (a button under the trash, like the bin: an 8x6 place that takes boxes only): sealed boxes with their slips
+  go with the carrier **at night**, and are paid **on delivery**, in the morning, for what they held of the order (whole
+  things: an uncut bread bag, a full bottle), four fifths if late, less the box's fee. The line under the dock says what is
+  ready and what it will pay; the morning says what was delivered and how many orders came; the carrier's mail says what
+  each paid. A box without its slip, or not sealed, stays.
+- **Selling on Swapline** (`swap.wire/sell`): what is on your floor and free to go, by name, with its worth; set a price
+  and list one. How soon it sells is shown as you price it (likely in a minute or two at a kind price, unlikely high).
+  Every twenty seconds each listing has its chance; sold, the thing is gone (a courier), the money comes less Swapline's
+  tenth (a dollar at least), and a mail says who bought it. A listed thing says so on hover; take it down any time.
+- **Flying bread**: a computer left alone for a minute saves its screen. Slices of bread with white wings, and the odd
+  slice of toast, fly down and across a black screen, flapping. Moving over the screen, or a key, wakes it; `SAVER` at the
+  prompt starts it now.
+- The debug panel can **sleep now** (end the day), to see the night's pickup without serving a line.
+
 
 ## Shelves that show what is on them, and one clock (2026-10-14)
 

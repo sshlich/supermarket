@@ -234,6 +234,8 @@ const SHOP = {
     times(5, 0.16, (_, at) => noise(vary(1400, 0.2), { d: 0.14, g: 0.012, q: 1.5, type: 'lowpass', at: 1.9 + at }))
     noise(900, { d: 0.6, g: 0.008, q: 0.7, type: 'lowpass', a: 0.1, at: 2.75, to: 300 })
   },
+  /** A dot-matrix printer: lines of soft, fast ticks, the head running back between them. */
+  print: () => { for (let l = 0; l < 6; l++) { times(16, 0.024, (_, at) => noise(vary(1500, 0.15), { d: 0.012, g: 0.014, q: 3, at: l * 0.42 + at })); noise(500, { d: 0.05, g: 0.012, q: 1, type: 'lowpass', at: l * 0.42 + 0.4 }) } },
   seek: () => { tone(160, { type: 'triangle', d: 0.6, g: 0.012, a: 0.08 }); times(5, 0.09, (_, at) => noise(vary(1300, 0.15), { d: 0.02, g: 0.035, q: 4, at: at + 0.05 })) },
 }
 export function shop(name: keyof typeof SHOP) {

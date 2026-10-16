@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <!-- a tape gun from the side: a red pistol grip, a roll of brown tape, the roller and the toothed blade at the front -->
+  <path d="M12 30L18 16L26 16L22 30Z" fill="#a03a2f" stroke="#4a1a14" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M14 27L19 18" stroke="#c86a5a" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+  <path d="M18 15L56 15L58 21L50 21L48 17L24 17Z" fill="#3a3d44" stroke="#1d1e22" stroke-width="0.8" stroke-linejoin="round"/>
+  <circle cx="36" cy="12.5" r="10.5" fill="#b98a4e" stroke="#7e5a32" stroke-width="1"/>
+  <circle cx="36" cy="12.5" r="7" fill="none" stroke="#a87a42" stroke-width="0.6" opacity="0.8"/>
+  <circle cx="36" cy="12.5" r="4.2" fill="#e8dcc0" stroke="#a8884e" stroke-width="0.6"/>
+  <circle cx="36" cy="12.5" r="1.6" fill="#3a3d44"/>
+  <path d="M44 20L52 22" stroke="#b98a4e" stroke-width="1.6"/>
+  <circle cx="53" cy="22" r="2.4" fill="#5a5e66" stroke="#1d1e22" stroke-width="0.6"/>
+  <path d="M56.5 21L61 21L60.2 22.5L59.4 21.6L58.6 23L57.8 21.6L57 22.8Z" fill="#c6ccd4" stroke="#6a6e76" stroke-width="0.4"/>
+  <path d="M29 6C32 3.5 38 3 41.5 5" fill="none" stroke="#e8c896" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+</svg>

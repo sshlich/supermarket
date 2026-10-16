@@ -8,8 +8,8 @@
 import { esc } from './html.ts'
 import { PALETTE, PIC_H, PIC_SIZE, PIC_W, picUrl } from './pics.ts'
 export { PALETTE, PIC_H, PIC_SIZE, PIC_W, picUrl } from './pics.ts'
-import { contents, find, look, worth, type Item, type Machine, type State } from './world.ts'
-import { browser } from './web.ts'
+import { contents, find, look, worth, type Item, type Machine, type Print, type State } from './world.ts'
+import { browser, mailer } from './web.ts'
 import type { Goods } from './customers.ts'
 
 export type Drive = 'A' | 'C'
@@ -44,7 +44,7 @@ export interface Os {
   repaint(): void
   wall(name: string | null): void
   wallName(): string | null
-  sound(name: 'key' | 'seek' | 'menu' | 'bad' | 'startup' | 'dial'): void
+  sound(name: 'key' | 'seek' | 'menu' | 'bad' | 'startup' | 'dial' | 'print'): void
   /** Light up these things on the field (null: none). */
   show(ids: number[] | null): void
   windows(): Win[]
@@ -60,6 +60,10 @@ export interface Os {
   /** A thing's picture, as the field draws it, for a page: as it would be made (a used thing as it is, a new one full). */
   art(g: Goods): string
   save(): void
+  /** Send something to the printer plugged into this machine: it comes out as a sheet (or a slip) beside the printer. */
+  print(job: Print, title: string): void
+  /** Start the screensaver now. */
+  saver(): void
 }
 
 export interface Program {
@@ -159,9 +163,10 @@ const notepad: Program = {
   title: w => `${w.st.name}${w.st.saved ? '' : ' *'} - Notepad`,
   body(os, w) {
     return `<textarea class="text98" data-in="text" data-focus="${os.id}:${w.pid}:text" spellcheck="false">${esc(w.st.text)}</textarea>
-      <div class="bar98"><span>Save on C: as</span><input class="in98" data-in="name" data-focus="${os.id}:${w.pid}:name" value="${esc(w.st.name)}" maxlength="12">${btn('save', 'Save')}<span class="grow"></span><small>${kb(textSize(w.st.text))}</small></div>`
+      <div class="bar98"><span>Save on C: as</span><input class="in98" data-in="name" data-focus="${os.id}:${w.pid}:name" value="${esc(w.st.name)}" maxlength="12">${btn('save', 'Save')}${btn('print', 'Print')}<span class="grow"></span><small>${kb(textSize(w.st.text))}</small></div>`
   },
   act(os, w, what) {
+    if (what === 'print') return w.st.text.trim() ? os.print({ text: w.st.text, title: w.st.name }, w.st.name) : os.alert('There is nothing to print.')
     if (what !== 'save') return
     const name = fileName(w.st.name, 'TXT')
     if (!name) return os.alert('A file needs a name.')
@@ -188,7 +193,7 @@ const HELP = [
   'REN old new    rename a file on C:',
   'MEM            memory, what is running',
   'name           run a program, open a file',
-  'VER  CLS  EXIT',
+  'VER  CLS  SAVER  EXIT',
 ]
 const prompt: Program = {
   id: 'prompt', file: 'PROMPT.EXE', name: 'Prompt', size: 0, memory: 24, speed: 1, rom: true, w: 440, h: 280, icon: ICONS.prompt,
@@ -228,6 +233,7 @@ function command(os: Os, w: Win, line: string): string[] | null {
   const find = (d: Drive, n: string) => (os.files(d) ?? []).find(f => f.name === n.toUpperCase() || f.name === `${n.toUpperCase()}.EXE`)
   if (v === 'HELP') return HELP
   if (v === 'CLS') { st.lines = []; return [] }
+  if (v === 'SAVER') { os.saver(); return [] }
   if (v === 'EXIT') { os.close(w); return null }
   if (v === 'VER') return ['WT-DOS 3.1', `WT-2, ${os.spec.speed} MHz, ${os.spec.memory}K memory, ${kb(os.spec.disk)} disk`]
   if (v === 'A:' || v === 'C:') { if (v === 'A:' && !os.files('A')) return ['Not ready reading drive A:']; st.cwd = v[0]; return [] }
@@ -318,13 +324,14 @@ const paint: Program = {
     return `<div class="bar98">${tools}<span class="grow"></span>${btn('new', 'New')}</div>
       <div class="canvas98"><img data-press="draw" src="${picUrl(st.px)}" width="${PIC_W * 2}" height="${PIC_H * 2}" draggable="false" alt=""></div>
       <div class="bar98 swatches">${swatches}</div>
-      <div class="bar98"><span>Save on C: as</span><input class="in98" data-in="name" data-focus="${os.id}:${w.pid}:name" value="${esc(st.name)}" maxlength="12">${btn('save', 'Save')}${btn('wall', 'Wallpaper')}<span class="grow"></span><small>${kb(PIC_SIZE)}</small></div>`
+      <div class="bar98"><span>Save on C: as</span><input class="in98" data-in="name" data-focus="${os.id}:${w.pid}:name" value="${esc(st.name)}" maxlength="12">${btn('save', 'Save')}${btn('wall', 'Wallpaper')}${btn('print', 'Print')}<span class="grow"></span><small>${kb(PIC_SIZE)}</small></div>`
   },
   act(os, w, what) {
     const st = w.st
     if (what.startsWith('tool:')) st.tool = what.slice(5)
     else if (what.startsWith('col:')) st.col = +what.slice(4)
     else if (what === 'new') Object.assign(st, { px: blank(), saved: false })
+    else if (what === 'print') return os.print({ pic: st.px, title: st.name }, st.name)
     else if (what === 'save' || what === 'wall') {
       const name = fileName(st.name, 'PIC')
       if (!name) return os.alert('A picture needs a name.')
@@ -386,7 +393,7 @@ const pictures: Program = {
     const side = f.drive === 'A' ? btn('copy', 'Copy to C:') : btn('wall', os.wallName() === f.name ? 'Wallpaper off' : 'Wallpaper')
     return `<div class="canvas98"><img src="${picUrl(f.pic!)}" width="${PIC_W * 2}" height="${PIC_H * 2}" alt=""></div>
       <div class="caption98">${esc(captionOf(os, f) || f.name)}</div>
-      <div class="bar98">${btn('prev', '&lt;')}<small>${i + 1} of ${pics.length} on ${f.drive}:</small>${btn('next', '&gt;')}<span class="grow"></span>${side}${btn('edit', 'Paint')}</div>`
+      <div class="bar98">${btn('prev', '&lt;')}<small>${i + 1} of ${pics.length} on ${f.drive}:</small>${btn('next', '&gt;')}<span class="grow"></span>${side}${btn('print', 'Print')}${btn('edit', 'Paint')}</div>`
   },
   act(os, w, what) {
     const pics = (os.files(w.st.drive) ?? []).filter(f => f.pic !== undefined), i = pics.findIndex(f => f.name === w.st.name), f = pics[i]
@@ -394,6 +401,7 @@ const pictures: Program = {
     else if ((what === 'prev' || what === 'next') && pics.length) w.st.name = pics[(i + (what === 'next' ? 1 : -1) + pics.length) % pics.length].name
     else if (what === 'copy' && f) os.copy(f.name)
     else if (what === 'wall' && f) os.wall(os.wallName() === f.name ? null : f.name)
+    else if (what === 'print' && f) return os.print({ pic: f.pic!, title: captionOf(os, f) || f.name }, f.name)
     else if (what === 'edit' && f) {
       const p = (['C', 'A'] as Drive[]).map(d => os.files(d)?.find(o => o.prog?.id === 'paint')).find(Boolean)
       if (!p) return os.alert('Paint is not on this machine. PAINT.EXE comes on a disc.')
@@ -480,6 +488,6 @@ const set = (s: string, i: number, c: string) => s.slice(0, i) + c + s.slice(i +
 
 /** What the system itself takes: memory while the machine is on, and room on C:. */
 export const SYSTEM_MEMORY = 160, SYSTEM_DISK = 520
-export const PROGRAMS: Record<string, Program> = { files, notepad, prompt, system, pictures, web: browser, paint, stock, mines }
+export const PROGRAMS: Record<string, Program> = { files, notepad, prompt, system, pictures, web: browser, mail: mailer, paint, stock, mines }
 /** The program a file on a disc is, by its name. */
 export const programFile = (name: string) => Object.values(PROGRAMS).find(p => !p.rom && p.file === name.toUpperCase())

@@ -11,8 +11,9 @@
 import type { Goods } from './customers.ts'
 import type { Disc } from './discs.ts'
 import { esc } from './html.ts'
+import { BREAD } from './fill.ts'
 import { ICONS, PIC_SIZE, PROGRAMS, SYSTEM_DISK, SYSTEM_MEMORY, kb, picUrl, programFile, textSize, type Drive, type File, type Os, type Win } from './programs.ts'
-import { find, KINDS, type Item, type Machine, type State } from './world.ts'
+import { find, KINDS, type Item, type Machine, type Print, type State } from './world.ts'
 
 /** What the screen needs from the page. */
 export interface Hooks {
@@ -22,7 +23,7 @@ export interface Hooks {
   /** Draw a machine's screen again. */
   repaint(id: number): void
   save(): void
-  sound(name: 'key' | 'seek' | 'menu' | 'bad' | 'startup' | 'dial'): void
+  sound(name: 'key' | 'seek' | 'menu' | 'bad' | 'startup' | 'dial' | 'print'): void
   /** Light up these things on the field, or none. */
   show(ids: number[] | null): void
   /** The shop's money, and paying from it (false if there is not enough). */
@@ -30,6 +31,9 @@ export interface Hooks {
   pay(n: number): boolean
   /** A thing's sprite as the field draws it, as it would be made. */
   art(g: Goods): string
+  /** The printer plugged into a machine, if any; and a sheet off it (false if there was no room for it). */
+  printer(id: number): Item | undefined
+  printed(printer: Item, job: Print): boolean
 }
 let h: Hooks
 
@@ -39,11 +43,11 @@ const DISC_SIZE = 1440, FLOPPY = 200, HARD = 900
 /** `prog`: the program loading, whose splash shows while it does. */
 interface Busy { text: string; start: number; ms: number; tick: number; done: number; prog?: string }
 /** `on`: when it was switched on (the boot plays from then); `wins`: open windows, the last on top; `busy`: a program loading or a file copying (one thing at a time), `queue` what waits for it. */
-interface Screen { on: number; timer: number; wins: Win[]; pid: number; busy: Busy | null; queue: (() => void)[]; alert: { title: string; text: string } | null; online: boolean }
+interface Screen { on: number; timer: number; wins: Win[]; pid: number; busy: Busy | null; queue: (() => void)[]; alert: { title: string; text: string } | null; online: boolean; idle: number; saver: boolean }
 const screens = new Map<number, Screen>()
 /** When each machine was switched off, for the picture collapsing to a dot. */
 const offs = new Map<number, number>()
-const fresh = (on: number): Screen => ({ on, timer: 0, wins: [], pid: 1, busy: null, queue: [], alert: null, online: false })
+const fresh = (on: number): Screen => ({ on, timer: 0, wins: [], pid: 1, busy: null, queue: [], alert: null, online: false, idle: performance.now(), saver: false })
 /** A machine that is on but has no screen yet (a reload) is at its desktop already. */
 const screenOf = (id: number): Screen => screens.get(id) ?? (screens.set(id, fresh(-Infinity)), screens.get(id)!)
 /** The boot, in ms from the switch: the tube warms up, the BIOS checks the machine, the system's splash, then the desktop. */
@@ -175,6 +179,15 @@ function osFor(id: number): Os {
       return true
     },
     art: g => h.art(g),
+    saver: () => { sc.saver = true; os.repaint() },
+    print(job, title) {
+      if (sc.busy) { sc.queue.push(() => os.print(job, title)); return }
+      const pr = h.printer(id)
+      if (!pr) return os.alert('No printer is plugged in. Drop a printer on this computer to plug it in.', 'Print')
+      if (!((pr.paper ?? 0) > 0)) return os.alert('The printer is out of paper. Drop a ream of paper on it.', 'Print')
+      h.sound('print')
+      work(id, `Printing ${title}`, 2600, false, () => { if (!h.printed(pr, job)) os.alert('The printout had nowhere to go: the field is full.', 'Print') })
+    },
     save: () => h.save(),
   }
   return os
@@ -243,6 +256,25 @@ function bootHtml(id: number, t: number) {
   }
   return splashHtml()
 }
+// ---------------------------------------------------------------- the screensaver: bread, flying
+
+/** After a minute with nobody at it, a machine's screen saves itself: slices of bread fly across it, flapping. */
+const SAVER_MS = 60_000
+/** A slice of bread with a pair of wings, or a slice of toast (the wings are white and flap from where they join). */
+function slice(toast: boolean) {
+  const wing = '<path d="M12 30C2 14 -14 6 -27 7C-22 12 -21 16 -25 20C-17 21 -12 24 -16 28C-8 29 -1 32 12 36Z" fill="#f4f1e8" stroke="#a8a090" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 31C-1 22 -10 17 -19 15M6 33C-2 28 -8 26 -13 26" fill="none" stroke="#c8c2b4" stroke-width="1"/>'
+  return `<svg viewBox="-30 -4 124 72"><g class="wing">${wing}</g><g transform="translate(64 0) scale(-1 1)"><g class="wing">${wing}</g></g>
+    <path d="${BREAD}" fill="${toast ? '#c98a48' : '#ecdcb4'}" stroke="${toast ? '#6a3e1c' : '#a9733f'}" stroke-width="3.4" stroke-linejoin="round"/>
+    <g fill="${toast ? '#a8682c' : '#d6bb85'}"><ellipse cx="22" cy="24" rx="1.8" ry="1.1"/><ellipse cx="35" cy="19" rx="1.4" ry="0.9"/><ellipse cx="43" cy="30" rx="2" ry="1.2"/><ellipse cx="27" cy="36" rx="1.5" ry="1"/><ellipse cx="38" cy="44" rx="1.8" ry="1.1"/><ellipse cx="21" cy="48" rx="1.3" ry="0.9"/></g></svg>`
+}
+/** Bread across a black screen, each at its own height and speed, the odd one toasted. */
+function saverHtml() {
+  let r = 11
+  const rand = () => (r = (r * 16807) % 2147483647) / 2147483647
+  const flock = Array.from({ length: 10 }, (_, i) => `<i class="fly" style="left:${Math.round(260 + rand() * 820)}px;top:${Math.round(-420 + rand() * 520)}px;--d:${(9 + rand() * 7).toFixed(2)}s;--o:-${(rand() * 16).toFixed(2)}s;--s:${(0.75 + rand() * 0.5).toFixed(2)}">${slice(i % 4 === 3)}</i>`).join('')
+  return `<div class="display saver">${flock}</div>`
+}
+
 /** A program's splash while it loads, as programs used to have: its name, who made it, a bar. */
 function loadingHtml(b: Busy) {
   const p = b.prog ? PROGRAMS[b.prog] : undefined
@@ -263,22 +295,23 @@ export function screenHtml(id: number, on: boolean): string {
   if (!on) { const t = performance.now() - (offs.get(id) ?? -Infinity); return t < 800 ? `<div class="display off collapsing" style="--t:-${Math.round(t)}ms"><i></i></div>` : '<div class="display off"></div>' }
   const sc = screenOf(id), it = machine(id), spec = specOf(it), disc = h.disc(id)
   if (!booted(sc)) return bootHtml(id, performance.now() - sc.on)
+  if (sc.saver) return saverHtml()
   const os = osFor(id)
   const wall = it?.wall && it.drive?.find(f => f.name === it.wall)?.pic
   const installed = (filesOn(id, 'C') ?? []).filter(f => f.prog)
   const icon = (act: string, svg: string, label: string) => `<button class="d-icon" data-os="${act}"><i>${svg}</i><span>${esc(label)}</span></button>`
-  const icons = [icon('drive:A', ICONS.floppy, 'A:'), icon('drive:C', ICONS.disk, 'C:'), icon('run:prompt', ICONS.prompt, 'Prompt'), icon('run:notepad', ICONS.notepad, 'Notepad'), icon('run:system', ICONS.system, 'System'), icon('run:pictures', ICONS.pic, 'Pictures'), icon('run:web', PROGRAMS.web.icon, 'The Wire'),
+  const icons = [icon('drive:A', ICONS.floppy, 'A:'), icon('drive:C', ICONS.disk, 'C:'), icon('run:prompt', ICONS.prompt, 'Prompt'), icon('run:notepad', ICONS.notepad, 'Notepad'), icon('run:system', ICONS.system, 'System'), icon('run:pictures', ICONS.pic, 'Pictures'), icon('run:web', PROGRAMS.web.icon, 'The Wire'), icon('run:mail', PROGRAMS.mail.icon, 'Wiremail'),
     ...installed.map(f => icon(`open:${f.name}`, f.prog!.icon, f.prog!.name))].join('')
   const shown = sc.wins.filter(w => !w.min), top = shown[shown.length - 1]
   const windows = sc.wins.map((w, z) => w.min ? '' : winHtml(os, w, z, w === top)).join('')
   const alert = sc.alert ? `<div class="modal98"><div class="w98 active alert98"><div class="w98-bar"><span>${esc(sc.alert.title)}</span></div><div class="w98-body"><div class="err98"><b>!</b><span>${esc(sc.alert.text)}</span></div><div class="btns98"><button class="b98" data-os="ok">OK</button></div></div></div></div>` : ''
-  const free = spec.memory - memUsed(sc)
+  const free = spec.memory - memUsed(sc), unread = (h.state().mail ?? []).filter(m => !m.read).length
   // the taskbar: what is running, in the order it was started (a button stays where it is), what is loading, memory left
   const busy = sc.busy ? `<span class="tb-busy"><span>${esc(sc.busy.text)}</span><i style="--p:${Math.min(1, (performance.now() - sc.busy.start) / sc.busy.ms).toFixed(3)}"></i></span>` : ''
   const tasks = [...sc.wins].sort((a, b) => a.pid - b.pid).map(w => `<button class="tb-task${w === top ? ' on' : ''}" data-os="task:${w.pid}"><i>${PROGRAMS[w.prog].icon}</i><span>${esc(PROGRAMS[w.prog].name)}</span></button>`).join('')
   return `<div class="display desk${wall ? ' walled' : ''}"${wall ? ` style="background-image:url(${picUrl(wall)})"` : ''}>
     <div class="d-icons">${icons}</div>${windows}${sc.busy ? loadingHtml(sc.busy) : ''}${alert}
-    <div class="taskbar"><span class="tb-os">WT-DOS</span><span class="tb-tasks">${tasks}</span>${busy}${sc.online ? '<span class="tb-tray online" title="Connected to the Wire at 28,800 bps">&#9679; Wire</span>' : ''}<span class="tb-tray" title="Memory free of ${spec.memory}K">${free}K free</span><span class="tb-tray">A: ${disc ? 'ready' : 'empty'}</span></div></div>`
+    <div class="taskbar"><span class="tb-os">WT-DOS</span><span class="tb-tasks">${tasks}</span>${busy}${unread ? `<button class="tb-tray mailtray" data-os="run:mail" title="Unread mail: open Wiremail">&#9993; ${unread}</button>` : ''}${sc.online ? '<span class="tb-tray online" title="Connected to the Wire at 28,800 bps">&#9679; Wire</span>' : ''}<span class="tb-tray" title="Memory free of ${spec.memory}K">${free}K free</span><span class="tb-tray">A: ${disc ? 'ready' : 'empty'}</span></div></div>`
 }
 
 /** Something of the system was pressed: a desktop icon, a window's minimise or close, a task on the taskbar, an alert's OK. */
@@ -353,6 +386,15 @@ let showing = ''
 const lastClick = { key: '', at: 0 }
 export function initComputer(hooks: Hooks) {
   h = hooks
+  // someone at the machine: it is not idle, and the bread goes away
+  const touch = (e: Event) => {
+    const glass = (e.target as HTMLElement)?.closest?.<HTMLElement>('[data-screen]'), sc = glass && screens.get(+glass.dataset.screen!)
+    if (!sc) return
+    sc.idle = performance.now()
+    if (sc.saver) { sc.saver = false; h.repaint(+glass!.dataset.screen!); e.stopPropagation(); e.preventDefault() }
+  }
+  for (const type of ['pointermove', 'pointerdown', 'keydown', 'wheel']) document.addEventListener(type, touch, true)
+  setInterval(() => { for (const [id, sc] of screens) if (!sc.saver && booted(sc) && !sc.busy && performance.now() - sc.idle > SAVER_MS) { sc.saver = true; h.repaint(id) } }, 2000)
   document.addEventListener('click', e => {
     const t = e.target as HTMLElement, m = at(t)
     const glass = t.closest<HTMLElement>('[data-screen]'), sc = glass && screens.get(+glass.dataset.screen!)

@@ -778,5 +778,205 @@
         }
       }
     }
+  },
+  "printer": {
+    "name": "Dot-matrix printer",
+    "icon": "",
+    "color": "#c9c0a8",
+    "sound": "machine",
+    "w": 3,
+    "h": 2,
+    "cat": "tech",
+    "price": 30,
+    "tags": [
+      "tech"
+    ],
+    "printer": 100,
+    "desc": "A beige printer with a tractor feed, loud and slow and never wrong. Drop it on a computer to plug it in; drop a ream on it to load paper."
+  },
+  "paper": {
+    "name": "Ream of paper",
+    "icon": "",
+    "color": "#c79e64",
+    "sound": "paper",
+    "w": 2,
+    "h": 2,
+    "cat": "sundries",
+    "price": 5,
+    "tags": [
+      "paper"
+    ],
+    "sheets": 50,
+    "desc": "Fifty sheets of fanfold paper, holes down both edges, in a kraft wrap. Drop it on a printer to load it."
+  },
+  "print": {
+    "name": "Printed page",
+    "icon": "",
+    "color": "#f2ece0",
+    "sound": "paper",
+    "w": 2,
+    "h": 2,
+    "cat": "paper",
+    "price": 0,
+    "tags": [
+      "paper"
+    ],
+    "desc": "A sheet off the printer, its tractor holes still down the sides.",
+    "props": {
+      "face": {
+        "page": {
+          "price": 1
+        },
+        "picture": {
+          "name": "Print",
+          "price": 3,
+          "tags": [
+            "valuable"
+          ],
+          "desc": "A picture printed on fanfold paper, sixteen colours of dots. Someone will pin it to a wall."
+        }
+      }
+    }
+  },
+  "slip": {
+    "name": "Order slip",
+    "icon": "",
+    "color": "#f2ead8",
+    "sound": "paper",
+    "w": 1,
+    "h": 1,
+    "cat": "paper",
+    "price": 0,
+    "tags": [
+      "paper",
+      "slip"
+    ],
+    "desc": "Printed by the terminal for one order. Pack it in the box with the goods: a box without its slip does not ship."
+  },
+  "box_s": {
+    "name": "Small box",
+    "icon": "",
+    "color": "#c49a62",
+    "sound": "card",
+    "w": 2,
+    "h": 2,
+    "cat": "storage",
+    "price": 1,
+    "tags": [
+      "box"
+    ],
+    "desc": "Flat-pack fibreboard, 2 by 2. Pack an order in it with its slip, tape it shut, and put it in the dock: it ships at night.",
+    "slots": [
+      {
+        "name": "inside",
+        "w": 4,
+        "h": 4
+      }
+    ],
+    "props": {
+      "tape": {
+        "open": {
+          "colors": {
+            "#d8b878": "none",
+            "#a8884e": "none",
+            "#f4e6c4": "none"
+          }
+        },
+        "sealed": {
+          "name": "Sealed small box",
+          "desc": "Taped shut. Nothing goes in or out until a knife cuts the tape. In the dock, with its slip inside, it ships tonight."
+        }
+      }
+    },
+    "fee": 2
+  },
+  "box_m": {
+    "name": "Medium box",
+    "icon": "",
+    "color": "#c49a62",
+    "sound": "card",
+    "w": 3,
+    "h": 2,
+    "cat": "storage",
+    "price": 2,
+    "tags": [
+      "box"
+    ],
+    "desc": "Taped fibreboard, 3 by 2: the usual size for an order of a few things. Pack it with the slip, tape it, dock it.",
+    "slots": [
+      {
+        "name": "inside",
+        "w": 6,
+        "h": 4
+      }
+    ],
+    "props": {
+      "tape": {
+        "open": {
+          "colors": {
+            "#d8b878": "none",
+            "#a8884e": "none",
+            "#f4e6c4": "none"
+          }
+        },
+        "sealed": {
+          "name": "Sealed medium box",
+          "desc": "Taped shut. Nothing goes in or out until a knife cuts the tape. In the dock, with its slip inside, it ships tonight."
+        }
+      }
+    },
+    "fee": 3
+  },
+  "box_l": {
+    "name": "Large box",
+    "icon": "",
+    "color": "#c49a62",
+    "sound": "card",
+    "w": 4,
+    "h": 4,
+    "cat": "storage",
+    "price": 3,
+    "tags": [
+      "box"
+    ],
+    "desc": "A reinforced crate, 4 by 4, for a big order. Pack it with the slip, tape it, dock it.",
+    "slots": [
+      {
+        "name": "inside",
+        "w": 8,
+        "h": 8
+      }
+    ],
+    "props": {
+      "tape": {
+        "open": {
+          "colors": {
+            "#d8b878": "none",
+            "#a8884e": "none",
+            "#f4e6c4": "none"
+          }
+        },
+        "sealed": {
+          "name": "Sealed large box",
+          "desc": "Taped shut. Nothing goes in or out until a knife cuts the tape. In the dock, with its slip inside, it ships tonight."
+        }
+      }
+    },
+    "fee": 6
+  },
+  "sealer": {
+    "name": "Tape gun",
+    "icon": "",
+    "color": "#a03a2f",
+    "sound": "plastic",
+    "w": 2,
+    "h": 1,
+    "cat": "tools",
+    "price": 4,
+    "tags": [
+      "tool"
+    ],
+    "seals": true,
+    "desc": "Brown tape on a pistol grip. Drop it on a box to tape it shut; only a knife opens it again."
   }
 }

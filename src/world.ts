@@ -15,8 +15,8 @@ export const H = 20
 export type Counter = 'outside' | 'inside'
 export const COUNTERS: Record<Counter, { w: number; h: number }> = { outside: { w: W, h: 4 }, inside: { w: W, h: 4 } }
 /** The places beside the field: the counters, and the trash (emptied overnight, see `sleep`). */
-export type Place = Counter | 'trash'
-export const PLACES: Record<Place, { w: number; h: number }> = { ...COUNTERS, trash: { w: 5, h: 6 } }
+export type Place = Counter | 'trash' | 'dock'
+export const PLACES: Record<Place, { w: number; h: number }> = { ...COUNTERS, trash: { w: 5, h: 6 }, dock: { w: 8, h: 6 } }
 const isPlace = (c: unknown): c is Place => typeof c === 'string' && Object.hasOwn(PLACES, c)
 
 /**
@@ -25,8 +25,8 @@ const isPlace = (c: unknown): c is Place => typeof c === 'string' && Object.hasO
  * (for tooltips), private notes, tags (what customers ask for), a category (`cat`) and a price in coins.
  * `props` are what one thing of the kind can be on top of that: each property has values, the first one the default.
  */
-export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; liquids?: string[]; read?: boolean; sound?: string; computer?: Machine; cut?: Cut; cuts?: boolean; ages?: boolean; stack?: Stack; furnace?: boolean; smelt?: Smelt; burns?: number; lights?: boolean }
-/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `liquids`: the only liquids it takes (a lighter: fuel); `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts); `computer`: its window is a screen (see computer.ts), and what the machine has; `cut`: a knife cuts pieces off it; `cuts`: it is a knife; `ages`: it ages (cheese, see AGE_DAYS); `furnace`: it smelts (see furnace.ts: its first slot is the crucible, its second the firebox); `smelt`: what it melts into; `burns`: it is fuel, and burns this many seconds; `lights`: it lights a furnace (a match is used up doing it). */
+export interface Kind { name: string; icon: string; color: string; w: number; h: number; cells?: string[]; desc?: string; notes?: string; tags?: string[]; slots?: Slot[]; cat?: string; price?: number; props?: Record<string, Record<string, Effect>>; holds?: number; liquid?: string; liquids?: string[]; read?: boolean; sound?: string; computer?: Machine; cut?: Cut; cuts?: boolean; ages?: boolean; stack?: Stack; furnace?: boolean; smelt?: Smelt; burns?: number; lights?: boolean; printer?: number; sheets?: number; seals?: boolean; fee?: number }
+/** `holds`: it is a vessel and takes this many units of one liquid; `liquid`: a new one comes full of it; `liquids`: the only liquids it takes (a lighter: fuel); `read`: it opens as a book (see books.ts); `sound`: what it is made of, for how it sounds (see sound.ts); `computer`: its window is a screen (see computer.ts), and what the machine has; `cut`: a knife cuts pieces off it; `cuts`: it is a knife; `ages`: it ages (cheese, see AGE_DAYS); `furnace`: it smelts (see furnace.ts: its first slot is the crucible, its second the firebox); `smelt`: what it melts into; `burns`: it is fuel, and burns this many seconds; `lights`: it lights a furnace (a match is used up doing it); `printer`: it prints, plugged into a computer, and holds this many sheets; `sheets`: a ream, dropped on a printer it loads this many; `seals`: it tapes a box shut (a box is tagged `box`; sealed, nothing goes in or out until a knife cuts the tape); `fee`: what the carrier charges to take a box. */
 /** A computer's insides: `memory` (K) that programs run in, a hard disk of `disk` K (its drive C:), a processor of `speed` MHz. */
 export interface Machine { memory: number; disk: number; speed: number }
 /** What smelts into what: `count` of one kind (and the same properties: one metal) melt into one `into` in `secs` seconds of fire. */
@@ -63,9 +63,12 @@ export const KINDS: Record<string, Kind> = DATA
  * vessel; `left` how many pieces are left in something cut (all of them when missing); `age` how many days old it is;
  * `seed` what its generated look is drawn from (a slice's fat or holes), when it is not its id; `heat` how far along it is
  * in the fire, 0 to 1 (ore melting, coal burning away; for a furnace, how hot it is); `drive` what is on a computer's own disk,
- * `wall` the picture on its desktop (a file's name there).
+ * `wall` the picture on its desktop (a file's name there); `link` the computer a printer is plugged into, `paper` the sheets
+ * in it; `print` what is printed on it; `listed` its price on Swapline, while it is for sale there (see orders.ts).
  */
-export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Place; props?: Record<string, string>; fill?: Fill; left?: number; age?: number; seed?: number; layers?: Layer[]; heat?: number; drive?: DriveFile[]; wall?: string }
+export interface Item { id: number; kind: string; x: number; y: number; rot: number; in?: { host: number; slot: number }; at?: Place; props?: Record<string, string>; fill?: Fill; left?: number; age?: number; seed?: number; layers?: Layer[]; heat?: number; drive?: DriveFile[]; wall?: string; link?: number; paper?: number; print?: Print; listed?: number }
+/** What is printed on a sheet or a slip: a picture (`pic`), a text (`text`, with its `title`), or an order's slip (`job`: the order's number). */
+export interface Print { pic?: string; text?: string; title?: string; job?: number }
 /** A file on a computer's own disk (C:): a program (`prog`, by its id in computer.ts), a text (`text`) or a picture (`pic`, its pixels). */
 export interface DriveFile { name: string; prog?: string; text?: string; pic?: string }
 /** One thing laid on a sandwich, bottom first: what it was, its look and its age, so it comes back off as it went on. */
@@ -121,7 +124,14 @@ export function fillWith(it: Item, liquid: string | null) {
 /** `full`: a computer's window filling the page (see computer.ts). */
 export interface Win { id: number; x: number; y: number; folded?: boolean; full?: boolean }
 /** `windows` are the open containers, the last one on top; `cash` is the money you have; `day` which day it is (from 1, see `sleep`). */
-export interface State { items: Item[]; next: number; windows?: Win[]; cash?: number; day?: number; orders?: Order[]; web?: WebData }
+export interface State { items: Item[]; next: number; windows?: Win[]; cash?: number; day?: number; orders?: Order[]; web?: WebData; mail?: Mail[] }
+/**
+ * A message on the terminal (orders.ts): an order from someone on the station (`job`), a note, spam, word of something sold
+ * on Swapline or of a box paid for. `read` once opened.
+ */
+export interface Mail { id: number; day: number; from: string; subject: string; text: string; kind: 'order' | 'note' | 'spam' | 'sale' | 'paid'; read?: boolean; job?: Job }
+/** What an order wants (`n` of each kind, whole), what it pays on delivery, the day it is due; where it has got to, and what it paid. */
+export interface Job { wants: { kind: string; n: number }[]; pay: number; due: number; state: 'open' | 'taken' | 'done' | 'lapsed' | 'declined'; paid?: number }
 /**
  * Something bought on the Wire (see orders.ts), on its way: its goods, made as customers' goods are; by drone (`at` is when
  * it lands, ms since 1970) or by freight (`at` is the morning it comes); `from` the shop.
@@ -259,8 +269,9 @@ const height = (s: State, it: Item, seen = new Set<number>()): number => isConta
 
 /** Would this space take that item? The field, the counters and the trash take anything; a slot checks its tag rules, refuses cycles, and keeps the nesting limit. A take-out-only slot keeps only what is already in it. */
 export function accepts(s: State, it: Item, sp: Space): boolean {
-  if (!isSlot(sp)) return true
+  if (!isSlot(sp)) return sp?.at !== 'dock' || isBox(it) // the dock takes boxes, to ship
   const host = find(s, sp.host)
+  if (host && sealed(host) && !sameSpace(spaceOf(it), sp)) return false // taped shut: what is in it stays, nothing new goes in
   const slot = host && KINDS[host.kind]?.slots?.[sp.slot]
   if (!host || !slot || within(s, sp.host, it.id)) return false
   if (slot.out && !sameSpace(spaceOf(it), sp)) return false
@@ -270,6 +281,10 @@ export function accepts(s: State, it: Item, sp: Space): boolean {
   if (tags.some(t => slot.rejects?.includes(t))) return false
   return chain(s, sp.host).length + height(s, it) <= MAX_NEST
 }
+
+/** Boxes, for shipping: sealed, nothing goes in or out (see `Kind.seals`). */
+export const isBox = (it: Item) => !!KINDS[it.kind]?.tags?.includes('box')
+export const sealed = (it: Item) => isBox(it) && propsOf(it).tape === 'sealed'
 
 // ---------------------------------------------------------------- dragging
 
@@ -434,6 +449,12 @@ function cleanLayers(o: Item): { kind?: string; layers?: Layer[] } {
     .map(l => ({ kind: l.kind, ...(Number.isFinite(l.seed) ? { seed: Number(l.seed) } : {}), ...(Number(l.age) > 0 ? { age: Number(l.age) } : {}) }))
   return layers.length ? { layers } : { kind: st.on }
 }
+/** A printer's link and paper, what is printed on a sheet, a price on Swapline: kept where they make sense (a link to a computer that is gone is dropped after). */
+function cleanPrinted(o: Item): { link?: number; paper?: number; print?: Print; listed?: number } {
+  const k = KINDS[o.kind], str = (v: unknown) => typeof v === 'string' ? v : undefined, p = o.print
+  const print = p && typeof p === 'object' ? Object.fromEntries(Object.entries({ pic: str(p.pic), text: str(p.text), title: str(p.title), job: Number.isInteger(p.job) ? p.job : undefined }).filter(([, v]) => v !== undefined)) as Print : null
+  return { ...(k?.printer && Number.isInteger(o.link) ? { link: o.link } : {}), ...(k?.printer && Number(o.paper) > 0 ? { paper: Math.min(k.printer, Math.round(Number(o.paper))) } : {}), ...(print && Object.keys(print).length ? { print } : {}), ...(Number(o.listed) > 0 ? { listed: Math.round(Number(o.listed)) } : {}) }
+}
 /** A computer's disk: files with a name, each one thing (a program, a text or a picture), and its wallpaper if that file is still there. */
 function cleanDrive(o: Item): { drive?: DriveFile[]; wall?: string } {
   if (!KINDS[o.kind]?.computer || !Array.isArray(o.drive)) return {}
@@ -457,7 +478,7 @@ export function settle(s: State): State {
   // only what an item still is: no old properties, liquids or machine state (and nothing on a counter that does not exist)
   // (and each id once: a broken save's duplicates would collide)
   const ids0 = new Set<number>()
-  const items: Item[] = s.items.filter(o => KINDS[o.kind] && Number.isInteger(o.id) && !ids0.has(o.id) && ids0.add(o.id)).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isPlace(o.at) ? { at: o.at } : {}), ...cleanProps(o), ...cleanFill(o), ...cleanCut(o), ...cleanDrive(o), ...cleanLayers(o) }))
+  const items: Item[] = s.items.filter(o => KINDS[o.kind] && Number.isInteger(o.id) && !ids0.has(o.id) && ids0.add(o.id)).map(o => ({ id: o.id, kind: o.kind, x: o.x, y: o.y, rot: quarter(o.rot), ...(o.in ? { in: o.in } : isPlace(o.at) ? { at: o.at } : {}), ...cleanProps(o), ...cleanFill(o), ...cleanCut(o), ...cleanDrive(o), ...cleanPrinted(o), ...cleanLayers(o) }))
   const next = Math.max(Math.round(Number(s.next)) || 1, ...items.map(o => o.id + 1))
   const state: State = { items, next }
   // pass 1: anything in a slot that does not exist, or that its slot now refuses, goes back out to the field
@@ -501,7 +522,7 @@ export function settle(s: State): State {
   const windows = (s.windows ?? []).filter(w => ids.has(w.id) && isContainer(out.find(o => o.id === w.id)!.kind)).slice(-MAX_WINDOWS)
   // orders on their way keep what still exists; the Wire's memory is kept as it was
   const orders = (Array.isArray(s.orders) ? s.orders : []).map(o => ({ ...o, goods: (o.goods ?? []).filter(g => KINDS[g?.kind]) })).filter(o => o.goods.length && Number.isFinite(o.at))
-  return { items: out, next, windows, cash: Math.max(0, Math.round(Number(s.cash ?? START_CASH)) || 0), day: Math.max(1, Math.round(Number(s.day)) || 1), ...(orders.length ? { orders } : {}), ...(s.web && typeof s.web === 'object' ? { web: s.web } : {}) }
+  return { items: out, next, windows, cash: Math.max(0, Math.round(Number(s.cash ?? START_CASH)) || 0), day: Math.max(1, Math.round(Number(s.day)) || 1), ...(orders.length ? { orders } : {}), ...(s.web && typeof s.web === 'object' ? { web: s.web } : {}), ...(Array.isArray(s.mail) ? { mail: s.mail.filter(m => m && Number.isInteger(m.id) && (!m.job || m.job.wants?.every(x => KINDS[x.kind]))) } : {}) }
 }
 
 /**
@@ -562,7 +583,7 @@ export function refill(s: State, pack: Item, piece: Item): boolean {
 }
 
 /** A new piece of something (cut off it, taken off it): on the free spot nearest the side it comes off (`side`, a step: right unless told), or anywhere on the field. */
-function pieceOf(s: State, kind: string, from: Item, side: [number, number] = [1, 0]): Item | null {
+export function pieceOf(s: State, kind: string, from: Item, side: [number, number] = [1, 0]): Item | null {
   const p = spawn(s, kind, spaceOf(from)) ?? spawn(s, kind, null)
   if (!p || !sameSpace(spaceOf(p), spaceOf(from))) return p
   const { w, h } = spaceSize(s, spaceOf(p))

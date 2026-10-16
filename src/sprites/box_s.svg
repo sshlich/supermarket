@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#cfa66c"/>
+      <stop offset="1" stop-color="#b48a52"/>
+    </linearGradient>
+  </defs>
+  <!-- a fibreboard box from above: two long flaps meeting at the seam, "this way up", a label; sealed, brown tape runs
+       along the seam (open, the tape's colours are hidden: kinds.json, the box's tape property) -->
+  <rect x="3" y="3" width="58" height="58" rx="2" fill="url(#card)" stroke="#7e5a32" stroke-width="1.2"/>
+  <path d="M3 3H32.0V61H3Z" fill="#ffffff" opacity="0.07"/><path d="M32.0 3H61V61H32.0Z" fill="#000000" opacity="0.06"/>
+  <path d="M32.0 3V61" stroke="#8e6a3e" stroke-width="1.2"/>
+  <rect x="4.5" y="4.5" width="55" height="55" rx="1" fill="none" stroke="#e2bd84" stroke-width="0.8" opacity="0.6"/>
+  <g fill="#6a4a2a" opacity="0.75"><path d="M48 10l2.5 -3l2.5 3h-1.6v3.5h-1.8v-3.5Z"/><path d="M54 10l2.5 -3l2.5 3h-1.6v3.5h-1.8v-3.5Z"/><rect x="47" y="14.5" width="13" height="1"/></g>
+  <g opacity="0.55"><rect x="7" y="49" width="20" height="9" rx="1" fill="#efe6d0"/><rect x="9" y="51.5" width="14" height="1.2" fill="#6a6474"/><rect x="9" y="54.5" width="10" height="1.2" fill="#6a6474"/></g>
+  <rect x="27.0" y="1" width="10" height="62" fill="#d8b878" opacity="0.92"/><path d="M27.0 1V63M37.0 1V63" stroke="#a8884e" stroke-width="0.7"/><path d="M29.5 6V38.4" stroke="#f4e6c4" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+</svg>

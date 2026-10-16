@@ -10,10 +10,10 @@
 import { bring, type Goods } from './customers.ts'
 import { DISCS } from './discs.ts'
 import { esc } from './html.ts'
-import { DRONE_FEE, placeOrder, worthOf } from './orders.ts'
+import { chance, DRONE_FEE, forSale, placeOrder, quote, stockOf, worthOf } from './orders.ts'
 import { PIC_SIZE, picUrl } from './pics.ts'
 import type { Os, Program, Win } from './programs.ts'
-import { KINDS, look, type WebData } from './world.ts'
+import { contents, isBox, KINDS, look, worth, type Item, type Mail, type WebData } from './world.ts'
 
 // ---------------------------------------------------------------- small things
 
@@ -88,7 +88,40 @@ function swap(os: Os, w: Win) {
   const r = seeded(day * 31 + 5)
   const wanted = [pick(WANTED, r), pick(WANTED, r)].filter((x, i, xs) => xs.indexOf(x) === i).map(x => `<li class="wanted">${esc(x)}</li>`).join('')
   return { title: 'Swapline', html: `<div class="site swap">${cartLink(os, w)}<h1>SWAPLINE</h1><p class="sub">Residents buying and selling. New board every morning. Day ${day}.</p>
+    <p>${a(w, 'swap.wire/sell', '&raquo; Sell something of yours')}</p>
     <ul class="ads">${rows}${wanted}</ul><p class="fine">Swapline takes no responsibility for anything. Couriers come in the morning.</p></div>` }
+}
+/** About how long a listing takes to sell at this price, as words. */
+const odds = (price: number, value: number) => { const c = chance(price, value); if (c <= 0) return 'will not sell'; const min = 20 / c / 60; return min < 1.5 ? 'likely within a minute or two' : min < 6 ? `likely in ${Math.round(min)} minutes or so` : min < 20 ? 'slow: a quarter of an hour, maybe' : 'unlikely at that price' }
+/** Your things, to sell: what is on your floor and free to go (not listed yet, not a box, not something with things in it), by name. */
+function yours(os: Os) {
+  const s = os.state(), groups = new Map<string, Item[]>()
+  for (const it of s.items) {
+    if (it.listed || isBox(it) || it.kind === 'slip' || !forSale(s, it) || contents(s, it.id).length || worth(s, it) <= 0) continue
+    const name = look(it).name
+    groups.set(name, [...groups.get(name) ?? [], it])
+  }
+  return [...groups.entries()].sort((x, y) => x[0].localeCompare(y[0]))
+}
+function sell(os: Os, w: Win) {
+  const s = os.state()
+  const mine = yours(os).map(([name, its]) => {
+    const it = its[0], value = worth(s, it), key = `price:${name}`, price = Math.max(1, Math.round(Number(w.st[key] ?? value)) || value)
+    return `<tr><td class="wart-cell">${art(os, goodsOf(it))}</td><td><b>${esc(name)}</b>${its.length > 1 ? ` &times;${its.length}` : ''}<br><small>worth ${value}$ &middot; at ${price}$: ${odds(price, value)}</small></td>
+      <td><input class="wfield price-in" data-in="${esc(key)}" data-focus="${os.id}:${w.pid}:${esc(key)}" value="${price}" size="4">$</td><td>${button(`list:${name}`, 'List one')}</td></tr>`
+  }).join('') || '<tr><td>Nothing on your floor to sell.</td></tr>'
+  const listed = s.items.filter(o => o.listed).map(it => {
+    const value = worth(s, it)
+    return `<tr><td class="wart-cell">${art(os, goodsOf(it))}</td><td><b>${esc(look(it).name)}</b> &mdash; ${it.listed}$<br><small>worth ${value}$ &middot; ${forSale(s, it) ? odds(it.listed!, value) : 'not on your floor: it cannot go'}</small></td><td colspan="2">${button(`unlist:${it.id}`, 'Take it down')}</td></tr>`
+  }).join('') || '<tr><td>Nothing listed.</td></tr>'
+  return { title: 'Swapline - sell yours', html: `<div class="site swap"><p>${a(w, 'swap.wire', '&laquo; the board')}</p><h1>SELL YOURS</h1>
+    <p class="sub">List it at your price. Someone comes for it in time: sooner when the price is kind. A courier collects; Swapline keeps a tenth.</p>
+    <h3>Your listings</h3><table class="cat">${listed}</table><h3>On your floor</h3><table class="cat">${mine}</table></div>` }
+}
+/** A thing as goods, to draw it as it is. */
+const goodsOf = (it: Item): Goods => ({ kind: it.kind, ...(it.props ? { props: it.props } : {}), ...(it.left !== undefined ? { left: it.left } : {}), ...(it.fill ? { fill: it.fill } : { fill: null }), ...(it.age ? { age: it.age } : {}) })
+function swapPage(os: Os, w: Win, path: string) {
+  return path === 'sell' ? sell(os, w) : swap(os, w)
 }
 
 // ---------------------------------------------------------------- the Software Cellar: download shareware, order a licence
@@ -287,7 +320,7 @@ function page(os: Os, w: Win, url: string): { title: string; html: string } {
   const host = hostOf(url), path = url.slice(host.length).replace(/^\//, '')
   if (host === HOME && path.startsWith('~')) return homepage(os, w, path.slice(1), url)
   const sites: Record<string, () => { title: string; html: string }> = {
-    [HOME]: () => home(os, w), 'store.company': () => store(os, w, path), 'swap.wire': () => swap(os, w), 'soft.wire': () => soft(os, w),
+    [HOME]: () => home(os, w), 'store.company': () => store(os, w, path), 'swap.wire': () => swapPage(os, w, path), 'soft.wire': () => soft(os, w),
     'gallery.wire': () => gallery(os, w, path), 'news.wire': () => news(os, w), 'bank.company': () => bank(os, w), 'cart.wire': () => cart(os, w, path),
     'seek.wire': () => seek(os, w, path), 'ring.wire': () => ring(os, w),
   }
@@ -301,6 +334,19 @@ const DIAL: [number, string][] = [[0, 'Dialling 555-0144 ...'], [1100, 'Verifyin
 const DIAL_MS = 3300
 const GLOBE = '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="#1f4a6a" stroke="#c9c3d6" stroke-width=".7"/><path d="M1.5 8h13M8 1.5c-3 3-3 10 0 13M8 1.5c3 3 3 10 0 13M2.8 4.5h10.4M2.8 11.5h10.4" fill="none" stroke="#8fe0a6" stroke-width=".6"/></svg>'
 
+/** Bring the line up: the modem dials (a few seconds, with its box), then `then`. A window dials once at a time. */
+function dial(os: Os, st: { dial: number | null }, then: () => void) {
+  if (st.dial !== null) return
+  st.dial = performance.now()
+  os.sound('dial')
+  for (let t = 300; t <= DIAL_MS + 300; t += 300) setTimeout(() => {
+    if (st.dial === null) return
+    if (performance.now() - st.dial >= DIAL_MS || os.online()) { os.connect(); st.dial = null; then() } else os.repaint()
+  }, t)
+}
+/** The dialler's box, while it dials. */
+const dialHtml = (st: { dial: number }) => { const t = performance.now() - st.dial; return `<div class="pane98 dialer"><div class="w98 active dialbox"><div class="w98-bar"><span>Connect to the Wire</span></div><div class="w98-body"><div class="dial-art">${GLOBE}<span class="dots">${'&middot;'.repeat(1 + Math.floor(t / 250) % 6)}</span>${GLOBE}</div>${DIAL.filter(([at]) => t >= at).map(([, l]) => `<div>${l}</div>`).join('')}</div></div></div>` }
+
 /** Go to an address: dial first if the line is down, then load it (a page takes a moment, more for a big one). */
 function go(os: Os, w: Win, url: string, push = true) {
   const st = w.st
@@ -308,10 +354,7 @@ function go(os: Os, w: Win, url: string, push = true) {
   if (push) { st.hist = [...st.hist.slice(0, st.i + 1), url]; st.i = st.hist.length - 1 }
   st.url = url; st.addr = url
   st.seen = [...new Set([...(st.seen ?? []), url])]
-  if (!os.online()) {
-    if (st.dial === null) { st.dial = performance.now(); os.sound('dial'); for (let t = 300; t <= DIAL_MS + 300; t += 300) setTimeout(() => { if (st.dial !== null && performance.now() - st.dial >= DIAL_MS) { os.connect(); st.dial = null; go(os, w, st.url, false) } else os.repaint() }, t) }
-    return os.repaint()
-  }
+  if (!os.online()) { dial(os, st, () => go(os, w, st.url, false)); return os.repaint() }
   st.t0 = performance.now(); st.ms = 450 + Math.round(Math.random() * 600)
   setTimeout(() => os.repaint(), st.ms + 30)
   os.repaint()
@@ -327,10 +370,7 @@ export const browser: Program = {
     const busy = st.dial !== null || performance.now() - st.t0 < st.ms
     const nav = `<div class="bar98 nav98">${['back:&lt; Back', 'fwd:Forward &gt;', 'reload:Reload', 'home:Home'].map(x => { const [k, l] = x.split(':'); return `<button class="b98" data-act="${k}"${(k === 'back' && st.i <= 0) || (k === 'fwd' && st.i >= st.hist.length - 1) ? ' disabled' : ''}>${l}</button>` }).join('')}
       <input class="in98 addr" data-in="addr" data-focus="${os.id}:${w.pid}:addr" value="http://${esc(st.addr)}" spellcheck="false"><button class="b98" data-act="addr">Go</button><span class="throb${busy ? ' on' : ''}">${GLOBE}</span></div>`
-    if (st.dial !== null) {
-      const t = performance.now() - st.dial
-      return `${nav}<div class="pane98 dialer"><div class="w98 active dialbox"><div class="w98-bar"><span>Connect to the Wire</span></div><div class="w98-body"><div class="dial-art">${GLOBE}<span class="dots">${'&middot;'.repeat(1 + Math.floor(t / 250) % 6)}</span>${GLOBE}</div>${DIAL.filter(([at]) => t >= at).map(([, l]) => `<div>${l}</div>`).join('')}</div></div></div><div class="status98">Dialling ...</div>`
-    }
+    if (st.dial !== null) return `${nav}${dialHtml(st)}<div class="status98">Dialling ...</div>`
     if (!st.url) return `${nav}<div class="pane98"></div><div class="status98">&nbsp;</div>`
     const p = page(os, w, st.url)
     st.title = p.title
@@ -354,6 +394,15 @@ export const browser: Program = {
     if (verb === 'pay') return pay(os, w)
     if (verb === 'dl') { const p = os.program(arg); if (p) os.download(p.file, { prog: p.id }, p.size, LINE); return }
     if (verb === 'pic') return getPic(os, arg)
+    if (verb === 'list') {
+      const its = yours(os).find(([name]) => name === arg)?.[1]
+      if (!its) return
+      const value = worth(os.state(), its[0])
+      its[0].listed = Math.max(1, Math.round(Number(st[`price:${arg}`] ?? value)) || value)
+      os.save(); os.sound('menu')
+      return os.repaint()
+    }
+    if (verb === 'unlist') { const it = os.state().items.find(o => o.id === +arg); if (it) delete it.listed; os.save(); return os.repaint() }
     if (verb === 'sign') {
       const name = (st.bname ?? '').trim(), text = (st.btext ?? '').trim()
       if (!name || !text) return os.alert('A guestbook entry needs a name and a message.')
@@ -371,6 +420,7 @@ export const browser: Program = {
     if (f === 'addr') browser.act!(os, w, 'addr')
     else if (f === 'q') browser.act!(os, w, 'search')
     else if (f === 'bname' || f === 'btext') browser.act!(os, w, 'sign')
+    else if (f?.startsWith('price:')) browser.act!(os, w, `list:${f.slice(6)}`)
     return true
   },
 }
@@ -395,4 +445,66 @@ function getPic(os: Os, arg: string) {
   if (!f) return
   if (+cost && !os.pay(+cost, `The Gallery: ${name}.PIC`)) return os.alert(`Payment declined. Your account has ${os.cash()}$.`, 'Company Credit')
   os.download(name, { pic: f.pic! }, PIC_SIZE, LINE)
+}
+
+// ---------------------------------------------------------------- Wiremail: orders by mail
+
+const ENVELOPE = '<svg viewBox="0 0 16 16"><rect x="1.5" y="3.5" width="13" height="9" fill="#e8e4da" stroke="#2a2a30" stroke-width=".6"/><path d="M1.5 3.5L8 9l6.5-5.5" fill="none" stroke="#c25a3c" stroke-width=".9"/></svg>'
+const FOLDERS: [string, string, (m: Mail) => boolean][] = [
+  ['all', 'All', () => true],
+  ['open', 'New orders', m => m.job?.state === 'open'],
+  ['taken', 'Jobs', m => m.job?.state === 'taken'],
+  ['done', 'Done', m => !!m.job && ['done', 'lapsed', 'declined'].includes(m.job.state)],
+]
+const STATE: Record<string, string> = { open: 'new', taken: 'job', done: 'paid', lapsed: 'lapsed', declined: 'declined' }
+const who = (m: Mail) => m.from.split(/[,(]/)[0].trim()
+/** Roughly which box an order wants: by the squares its things take, and one for the slip. */
+function boxFor(m: Mail) {
+  const area = 1 + m.job!.wants.reduce((n, w) => n + KINDS[w.kind].w * KINDS[w.kind].h * w.n, 0)
+  return area <= 16 ? 'a small box' : area <= 24 ? 'a medium box' : area <= 64 ? 'a large box' : 'more than one box'
+}
+function letter(os: Os, m: Mail) {
+  const day = dayOf(os), s = os.state()
+  let out = `<div class="mail-head"><b>${esc(m.subject)}</b><br><small>From ${esc(m.from)} &middot; day ${m.day}</small></div><div class="mail-text">${esc(m.text).replace(/\n/g, '<br>')}</div>`
+  if (!m.job) return out
+  const j = m.job
+  const rows = j.wants.map(x => { const have = stockOf(s, x.kind); return `<tr><td class="wart-cell">${art(os, { kind: x.kind })}</td><td>${esc(KINDS[x.kind].name)}</td><td>${x.n}</td><td class="${have >= x.n ? 'ok' : 'short'}">you have ${have}</td></tr>` }).join('')
+  const left = j.due - day
+  out += `<table class="wants">${rows}</table><div class="terms">Pays <b>${j.pay}$</b> on delivery &middot; due day ${j.due} (${left > 0 ? `in ${left} day${left === 1 ? '' : 's'}` : left === 0 ? 'today' : 'past due'}) &middot; late pays four fifths &middot; fits ${boxFor(m)}</div>`
+  const boxes = s.items.filter(o => isBox(o)).map(b => quote(s, b)).filter(q => q?.mail.id === m.id)
+  if (j.state === 'open') out += `<div class="btns98">${btn98('accept', 'Accept')}${btn98('decline', 'Decline')}</div>`
+  else if (j.state === 'taken') out += `<div class="btns98">${btn98('slip', 'Print slip')}</div><div class="hint98">${boxes.length ? boxes.map(q => `A box has its slip: ${q!.have} of ${q!.wanted} things${q!.ships ? ', taped' : ', not taped yet'}; pays ${q!.pay - q!.fee}$ after the fee.`).join('<br>') : 'Print the slip, pack it with the things in a box, tape it shut, and put it in the dock. The carrier comes at night.'}</div>`
+  else out += `<div class="hint98">${j.state === 'done' ? `Delivered and paid: ${j.paid}$.` : j.state === 'lapsed' ? 'Lapsed: nobody is waiting for it now.' : 'Declined.'}</div>`
+  return out
+}
+const btn98 = (act: string, label: string) => `<button class="b98" data-act="${act}">${label}</button>`
+export const mailer: Program = {
+  id: 'mail', file: 'WIREMAIL.EXE', name: 'Wiremail', size: 0, memory: 96, speed: 1, rom: true, w: 600, h: 420, icon: ENVELOPE,
+  start: () => ({ folder: 'all', sel: null as number | null, dial: null as number | null }),
+  title: () => 'Wiremail',
+  body(os, w) {
+    const st = w.st
+    if (!os.online()) {
+      if (st.dial === null) queueMicrotask(() => dial(os, st, () => os.repaint())) // the mail is on the Wire: the line comes up first
+      return st.dial !== null ? dialHtml(st) : '<div class="pane98 note98">Connecting...</div>'
+    }
+    const all = [...os.state().mail ?? []].reverse()
+    const folder = FOLDERS.find(f => f[0] === st.folder) ?? FOLDERS[0]
+    const list = all.filter(folder[2])
+    const tabs = FOLDERS.map(([id, label, test]) => { const n = all.filter(test).filter(m => !m.read).length; return `<button class="tab98${id === folder[0] ? ' on' : ''}" data-act="folder:${id}">${label}${n ? ` (${n})` : ''}</button>` }).join('')
+    const sel = all.find(m => m.id === st.sel)
+    const rows = list.map(m => `<button class="row98 mailrow${m.id === st.sel ? ' on' : ''}${m.read ? '' : ' unread'}" data-act="read:${m.id}"><i>${m.kind === 'order' ? ENVELOPE : m.kind === 'spam' ? '&#9888;' : '&#9993;'}</i><span><b>${esc(who(m))}</b><br><small>${esc(m.subject)}</small></span><em>${m.job ? STATE[m.job.state] : `day ${m.day}`}</em></button>`).join('') || '<div class="note98">Nothing here.</div>'
+    return `<div class="bar98">${tabs}</div><div class="mailbox"><div class="pane98 list98 maillist">${rows}</div><div class="pane98 letter" data-scroll="${os.id}:${w.pid}:${st.sel}">${sel ? letter(os, sel) : '<div class="note98">Pick a message.</div>'}</div></div>
+      <div class="status98">${all.length} message${all.length === 1 ? '' : 's'} &middot; ${all.filter(m => !m.read).length} unread &middot; new orders come every morning</div>`
+  },
+  act(os, w, what) {
+    const st = w.st, [verb, arg] = what.split(':'), mail = os.state().mail ?? []
+    const m = mail.find(x => x.id === st.sel)
+    if (verb === 'folder') st.folder = arg
+    else if (verb === 'read') { st.sel = +arg; const r = mail.find(x => x.id === +arg); if (r && !r.read) { r.read = true; os.save() } }
+    else if (verb === 'accept' && m?.job?.state === 'open') { m.job.state = 'taken'; os.save(); os.sound('menu') }
+    else if (verb === 'decline' && m?.job?.state === 'open') { m.job.state = 'declined'; os.save() }
+    else if (verb === 'slip' && m?.job?.state === 'taken') return os.print({ job: m.id, title: `Order #${m.id}` }, `slip #${m.id}`)
+    os.repaint()
+  },
 }
