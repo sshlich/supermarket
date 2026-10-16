@@ -93,17 +93,16 @@ how nasty the penalty is can be tuned later with no redesign. This answers the q
 ## 8. Parcels and boxes
 
 Orders ship in boxes, and boxes are a real decision.
-- **Box types** differ in footprint, capacity, carrier, speed and cost per shipment. Guess at the set: *pouch* (1x1, drone,
-  within the hour, dear per kilo), *crate* (standard, truck, collected at day's end), *pallet* (large, cargo lift, two days,
-  cheap per volume), *padded case* (fewer slots, for what orders mark fragile), *lockbox* (high value, dear, insured).
-  An order may name a box type or a deadline that rules some out.
+- **Box types are sizes**: 2x2, 3x2 and 4x4 for now. Each ships differently (guess: the small one by drone within the
+  hour, the big one by truck at day's end, the fee per box rising with size but cheaper per square). An order may need a
+  size, or a deadline that rules some out.
 - **You buy boxes ahead.** They are items with a footprint, so a stack of boxes takes room, and running out mid-order costs
   a rush. How many to hold of which kind is a stocking decision.
 - **Pack and seal.** You put goods in a box, attach the order's slip (printed by the terminal), and seal it. Only sealed
   boxes ship.
 - **Collection takes them all, wherever they are.** When the carrier arrives, a truck or a drone depending on the type,
-  every sealed box leaves the station through the dock hatch, from the field and from inside any container. The hatch is
-  the outflow port. Payment arrives with the pickup (or on delivery; open).
+  every sealed box leaves the station, from the field and from inside any container. The dock hatch (beside the counters)
+  shows it happen and is the outflow port; it is not a place you put things. Payment arrives with the pickup (or on delivery; open).
 
 ## 9. Inflow and outflow (the loop is not terminal)
 
