@@ -86,7 +86,7 @@ if (EXAMPLES) for (const f of present.filter(f => f.endsWith('.example.json'))) 
   const base = f.replace(/\.example\.json$/, '.json')
   if (!candidates.has(base)) loadOne(base, f)
 }
-for (const f of present) if (f.endsWith('.json') && f !== 'ids.json' && !f.endsWith('.example.json') && !candidates.has(f)) warn('files', f, 'not a recognised data file name (ignored)')
+for (const f of present) if (f.endsWith('.json') && f !== 'ids.json' && f !== 'outside.json' && !f.endsWith('.example.json') && !candidates.has(f)) warn('files', f, 'not a recognised data file name (ignored)')
 
 // ------------------------------------------------------------------ index entities
 const defs = new Map() // id -> { type, file, o, domain }
@@ -202,6 +202,8 @@ function walk(v, key, where, root) {
 }
 for (const [id, d] of defs) for (const [k, v] of Object.entries(d.o)) if (k !== 'id') walk(v, k, id, false)
 if (START) walk(START, '', 'start.json', false)
+// outside.json (STATION.md 8b: sites, shops, the pack) is not an ID type of its own; only its references are checked
+if (present.includes('outside.json')) { try { walk(JSON.parse(fs.readFileSync(path.join(DIR, 'outside.json'), 'utf8')), '', 'outside.json', false) } catch (e) { err('json', 'outside.json', `does not parse: ${e.message}`) } }
 for (const [t, n] of unknownTags) warn('tags', `tag "${t}"`, `not in ids.json tags (${n} uses)`)
 
 // ------------------------------------------------------------------ pinned fields

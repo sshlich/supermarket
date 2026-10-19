@@ -132,14 +132,26 @@ The day is the stall; **the night is outside**. The line is **3 to 7 customers**
 no growth; with a line this small each sale must be worth more, which is what free loot is for).
 
 - **Scavenge sites** are places on a map, each with a theme, a finite loot table and a gate. The **sites refill every night**,
-  so what limits you is energy and room in the pack, never running a site dry for good. Loot costs nothing to acquire, which is
+  so what limits you is the night itself (one outing) and room in the pack, never running a site dry for good. Loot costs nothing to acquire, which is
   where margin comes from (the walk-in flip alone nets about 25% and went nowhere in the sim).
-- **Energy is shared**: a trip costs energy like a machine job does. A night spent out is a night of jobs not started by hand
-  (overnight jobs still run free while you are out).
-- **The pack is a small carry grid** (a container item). What you bring back is the handling game you already have; a bigger
-  pack is an upgrade, and heavy finds make you leave something behind.
-- **Tools gate sites** and tools are items that wear: a torch for dark decks, a rebreather and mask refills for thin air, a
-  crowbar or cutter for sealed hatches, a keycard or permit for the ring. This ties the fab and life chains into progression.
+- **No energy cost** (changed 2026-10-16): going out is after hours, so it does not touch the day's energy. A night is **one
+  outing** to one place (a site or a shop), and the pack is what you bring home. A night at the shop is a night not
+  scavenging. Overnight jobs still run free while you are out.
+- **The pack is a small carry grid** (a container item, in the body's pack slot). What you bring back is the handling game
+  you already have; a bigger pack is an upgrade, and big finds make you leave something behind.
+- **Searches** (decided 2026-10-19): each site has a set number of searches a visit, shown on the map before you go. A search
+  draws one entry from the site's loot table and **reveals** it on the site's grid (a window like the dock); you drag what you
+  want into the pack. When the searches are spent you go home, and what you left is rolled again by morning. It is a count,
+  never a clock.
+- **The body is a container with two slots for now: the pack and one tool.** No stats and no traits; your kit is your
+  character. The pack slot takes a pack (a bigger one is an upgrade); the tool slot takes one tool, so a night is one tool.
+- **Tools lock sites** (no trying without one): a torch for the dark bunks, a mask refill for thin air (used up per visit),
+  a wrench for bolted panels; later a crowbar or cutter for sealed hatches, a keycard or permit for the ring. At an open site
+  the tool slot can hold a **bonus tool** for more searches (a torch in the ducts finds the dark corners). Tools wear a use
+  a visit. This ties the fab and life chains into progression.
+- **The embark screen** opens when the day ends: the map (each site and shop with its searches, its lock, what it tends to
+  have, and any rumor by mail), you (the two slots, filled by dragging from the field), and Go. It **remembers the last
+  kit**: what is still on the field goes back into the same slots, so a repeat night is one click (RESEARCH.md section 6).
 - **Shops are the mirror of your counter**: you are the customer at their counter. Prices follow the needs gauges, a shop
   restocks a limited amount each day, and shops buy from you at a low floor price (a scrap yard takes anything, so you can
   never be left with nothing sellable). Small things are bought in person; **machines can be bought in person or delivered**
@@ -149,6 +161,11 @@ no growth; with a line this small each sale must be worth more, which is what fr
   second game of its own.
 - Inflow channels in the data now mean something: `salvage` is a site, `haul` and `crate` are shops or deliveries, `seller`
   is the line.
+- **Open:** one site still wins every night once its tool is bought (the sim: the dark bunks, over 90%). Something has to
+  vary the sites: rumors by mail, finds that follow the needs gauges, or a light rundown on a site visited night after night.
+- **In the data:** `data/station/outside.json` (phase-1 sites with searches and loot weights, the body's slots, shops, the
+  pack and its upgrades, the Company Store), played by
+  `scripts/station-sim.ts`. First results are in `data/station/SIM_RESULTS.md`.
 
 ## 9. Inflow and outflow (the loop is not terminal)
 
@@ -189,7 +206,7 @@ sim, sandwiches (vat food and made-up meals), the print bridge for slips.
 ## 13. Open questions, with defaults
 
 - Is the tithe a hard deadline or soft pressure? Default: soft (a recurring order with a penalty).
-- (Settled) Night trips share the player's energy with machine jobs; sites refill each night.
+- (Settled) Night trips cost no energy (after hours): one outing a night, the pack is the limit; sites refill each night.
 - Do machines run real-time (as the furnace) or tick per customer? Default: real-time, with energy as the shortcut and
   overnight as the free way (section 6).
 - Does the shipper charge you per box, or does the order's buyer pay the freight? Default: you pay.

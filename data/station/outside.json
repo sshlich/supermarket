@@ -1,0 +1,122 @@
+{
+  "notes": "STATION.md 8b: the night is outside. A site has a number of searches a visit; each search draws one entry from its loot table (by weight w, n of it) and the finds are revealed for you to take or leave. Sites refill every night. You have two body slots, the pack and one tool: a gated site is locked without its tool in the slot, and a bonus tool adds searches at an open site. A night is one outing (stops_per_night places, no energy: it is after hours), finds come home in the pack, tools wear a use a visit (a refill is used up). Shops are counters where you are the customer: a daily restock, and a floor price for what they buy. The Company Store is the Wire's store.company: no trip, freight the next morning. Every number is a starting guess for scripts/station-sim.ts.",
+  "stops_per_night": 1,
+  "body": { "slots": ["pack", "tool"] },
+  "pack": { "w": 4, "h": 4 },
+  "pack_upgrades": [
+    { "w": 5, "h": 5, "credits": 45, "name": "Hauler's pack" },
+    { "w": 6, "h": 6, "credits": 140, "name": "Frame pack" }
+  ],
+  "sites": [
+    {
+      "id": "site_spine_ducts", "name": "Spine ducts", "deck": "deck_spine", "phase": "phase_1", "searches": 6, "bonus": [{ "tool": "it_tech_torch", "searches": 2, "wear": 1 }],
+      "desc": "The crawlways behind the bunks. Everyone has been through them; there is always a little more.",
+      "loot": [
+        { "id": "it_core_scrap_iron", "n": [1, 3], "w": 0.9 },
+        { "id": "it_core_scrap_copper", "n": [1, 2], "w": 0.6 },
+        { "id": "it_core_scrap_light", "n": [1, 2], "w": 0.5 },
+        { "id": "it_core_polymer_flake", "n": [1, 3], "w": 0.7 },
+        { "id": "it_core_fibre_lint", "n": [1, 2], "w": 0.6 },
+        { "id": "it_core_rags", "n": [1, 1], "w": 0.4 },
+        { "id": "it_core_duct_junk", "n": [1, 1], "w": 0.5 },
+        { "id": "it_core_wire_tangle", "n": [1, 1], "w": 0.3 },
+        { "id": "it_core_filter_husks", "n": [1, 1], "w": 0.4 },
+        { "id": "it_lux_match", "n": [1, 3], "w": 0.3 },
+        { "id": "it_lux_photograph", "n": [1, 1], "w": 0.04 }
+      ]
+    },
+    {
+      "id": "site_dark_bunks", "name": "Dark bunks", "deck": "deck_spine", "phase": "phase_1", "searches": 3,
+      "gate": { "tool": "it_tech_torch", "wear": 1 },
+      "desc": "A bunk block with its lights cut after a fever went through. Lockers nobody came back for.",
+      "loot": [
+        { "id": "it_core_rags", "n": [1, 2], "w": 0.7 },
+        { "id": "it_lux_candle", "n": [1, 1], "w": 0.35 },
+        { "id": "it_lux_matchbox", "n": [1, 1], "w": 0.3 },
+        { "id": "it_lux_lighter", "n": [1, 1], "w": 0.25 },
+        { "id": "it_lux_book", "n": [1, 1], "w": 0.15 },
+        { "id": "it_lux_photograph", "n": [1, 1], "w": 0.2 },
+        { "id": "it_lux_locket", "n": [1, 1], "w": 0.08 },
+        { "id": "it_life_puck_spent", "n": [1, 2], "w": 0.4 },
+        { "id": "it_life_canister", "n": [1, 1], "w": 0.3 }
+      ]
+    },
+    {
+      "id": "site_slag_heap", "name": "Works slag heap", "deck": "deck_works", "phase": "phase_1", "searches": 8, "bonus": [{ "tool": "it_fab_wrench", "searches": 2, "wear": 1 }],
+      "desc": "Where the foundry tips what it cannot use. Heavy, cheap, and some of it is still metal.",
+      "loot": [
+        { "id": "it_core_slag", "n": [1, 4], "w": 0.9 },
+        { "id": "it_core_grit", "n": [1, 3], "w": 0.7 },
+        { "id": "it_core_carbon_dust", "n": [1, 2], "w": 0.6 },
+        { "id": "it_core_scrap_iron", "n": [1, 3], "w": 0.8 },
+        { "id": "it_core_hull_offcuts", "n": [1, 2], "w": 0.5 },
+        { "id": "it_core_rubble", "n": [1, 2], "w": 0.6 },
+        { "id": "it_core_scrap_mixed", "n": [1, 1], "w": 0.5 },
+        { "id": "it_core_salvage_crate", "n": [1, 1], "w": 0.12 }
+      ]
+    },
+    {
+      "id": "site_dead_scrubber", "name": "Dead scrubber bay", "deck": "deck_mid", "phase": "phase_1", "searches": 5,
+      "gate": { "tool": "it_life_mask_refill", "consume": 1 },
+      "desc": "A scrubber hall shut down and never stripped. The air is thin; a mask refill gets you an hour.",
+      "loot": [
+        { "id": "it_core_filter_husks", "n": [1, 2], "w": 0.7 },
+        { "id": "it_mach_air_filter_spent", "n": [1, 2], "w": 0.6 },
+        { "id": "it_mach_water_filter_spent", "n": [1, 2], "w": 0.5 },
+        { "id": "it_life_brine", "n": [1, 1], "w": 0.5 },
+        { "id": "it_core_salt_cake", "n": [1, 3], "w": 0.6 },
+        { "id": "it_core_reagent_dregs", "n": [1, 2], "w": 0.5 },
+        { "id": "it_life_canister", "n": [1, 2], "w": 0.5 },
+        { "id": "it_core_ewaste", "n": [1, 1], "w": 0.45 }
+      ]
+    },
+    {
+      "id": "site_core_cableway", "name": "Core cableway", "deck": "deck_core", "phase": "phase_1", "searches": 3,
+      "gate": { "tool": "it_fab_wrench", "wear": 1 },
+      "desc": "Bolted panels along the reactor's old cable runs. Unbolt one and the copper is still there.",
+      "loot": [
+        { "id": "it_core_ewaste", "n": [1, 2], "w": 0.6 },
+        { "id": "it_core_wire_tangle", "n": [1, 2], "w": 0.7 },
+        { "id": "it_core_scrap_copper", "n": [1, 3], "w": 0.8 },
+        { "id": "it_core_scrap_light", "n": [1, 2], "w": 0.5 },
+        { "id": "it_core_hull_offcuts", "n": [1, 1], "w": 0.4 }
+      ]
+    }
+  ],
+  "shops": [
+    {
+      "id": "shop_scrap_yard", "name": "Scrap yard", "deck": "deck_works", "phase": "phase_1",
+      "desc": "Takes anything by the kilo. You will never be left with nothing sellable, and never get much for it.",
+      "buys": { "any": true, "mult": 0.35 },
+      "sells": []
+    },
+    {
+      "id": "shop_dock_counter", "name": "Dock counter", "deck": "deck_dock", "phase": "phase_1",
+      "desc": "The haulers' counter: ore and ice off the last convoy, sold by the lump.",
+      "buys": { "needs": ["need_parts"], "mult": 0.5 },
+      "sells": [
+        { "id": "it_core_ore_iron", "per_day": 6, "mult": 1.0 },
+        { "id": "it_core_ore_copper", "per_day": 4, "mult": 1.0 },
+        { "id": "it_core_ore_light", "per_day": 4, "mult": 1.0 },
+        { "id": "it_core_ice", "per_day": 6, "mult": 1.0 },
+        { "id": "it_core_greywater", "per_day": 8, "mult": 1.0 },
+        { "id": "it_core_gas_bladder", "per_day": 8, "mult": 1.0 }
+      ]
+    },
+    {
+      "id": "shop_hardware", "name": "Works hardware", "deck": "deck_works", "phase": "phase_1",
+      "desc": "Tools on hooks, refills in a tub, cells behind the till.",
+      "buys": { "tags": ["tool"], "mult": 0.5 },
+      "sells": [
+        { "id": "it_tech_torch", "per_day": 1, "mult": 1.1 },
+        { "id": "it_fab_wrench", "per_day": 2, "mult": 1.1 },
+        { "id": "it_life_mask_refill", "per_day": 6, "mult": 1.1 },
+        { "id": "it_tech_cell_s", "per_day": 4, "mult": 1.1 }
+      ]
+    }
+  ],
+  "store": {
+    "id": "shop_company_store", "name": "Company Store", "channel": "crate", "mult": 1.25, "delivery_days": 1,
+    "desc": "store.company on the Wire: everything new at a quarter over its worth, freight the next morning, no trip."
+  }
+}

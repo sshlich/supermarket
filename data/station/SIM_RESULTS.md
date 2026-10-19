@@ -37,3 +37,60 @@ What it says:
 Decisions this points to: how raw goods reach the player (a daily salvage sweep, a terminal crate order, haul deliveries),
 how big the line is in phase 1 (10 to 14 is too small at these prices; 20+ shows growth), and whether machine jobs should
 have a better margin or cheaper crates in phase 1.
+
+## Night outside, wired in (2026-10-16, searches and the tool slot 2026-10-19)
+
+The sim plays STATION.md 8b from `data/station/outside.json` (on by default; a sixth argument of `0` turns it off).
+Going out costs **no energy** (it is after hours). Every bot makes one outing a night, to one site or one shop, and brings
+one pack home.
+- **Sites have searches.** Each search draws one entry from the loot table by weight. All the finds are revealed, and the
+  pack takes the dearest per square at the end.
+- **The body has two slots: the pack and one tool.** A locked site needs its tool in the slot. At an open site the slot can
+  hold a bonus tool for more searches. Tools wear one use a visit, and a refill is used up.
+
+| Site | Lock | Searches | Per search | Mean visit |
+|---|---|---|---|---|
+| Spine ducts | open (torch: +2) | 6 (8) | 2.45 | 14.7 (19.6) |
+| Dark bunks | torch | 3 | 7.14 | 21.4 |
+| Works slag heap | open (wrench: +2) | 8 (10) | 1.78 | 14.3 (17.8), but 3 squares a search fills the pack |
+| Dead scrubber bay | mask refill, used up | 5 | 2.71 | 13.6, less 4.4 for the refill |
+| Core cableway | wrench | 3 | 6.20 | 18.6 |
+
+- **The pack** starts at 4x4. It is counted in squares, not packed as a grid. Upgrades are 5x5 for 45 and 6x6 for 140,
+  bought after two nights home full.
+- **Three shops.** The scrap yard takes anything at 0.35x. The dock counter sells haul goods at worth with a daily restock
+  and takes parts at 0.5x. Works hardware sells the torch, the wrench, refills and cells at 1.1x and takes tools at 0.5x.
+  A shop visit buys at most one tool, the one that makes the best night.
+- **The Company Store** sells crate goods at 1.25x by freight the next morning, and is not an outing (the maker only).
+- A bot keeps 4 of each thing for the line and its orders; the rest is surplus for a shop's floor. Finds have no cost basis,
+  so `net` counts them only once they sell. `held` is everything in stock at its value.
+
+Phase 1, 200 runs, the line at 3 to 7 (phases.json); steady means days 4 to 14:
+
+| | walkin | orders | maker |
+|---|---|---|---|
+| Steady net per day, outside off | +0.1 | +1.0 | -2.6 |
+| Steady net per day, outside on | **+16** | **+18** | +1 |
+| Gross sales per day (on) | 30 | 31 | 31 |
+| Cash on day 14, median (off / on) | 167 / 321 | 174 / 315 | 40 / 71 |
+| Finds brought home a night | 22 | 21 | 21 |
+| Stock held on day 14, at value | 151 | 151 | 234 |
+| Line doubled (6 to 14): steady net | +24 | +26 | +12 |
+
+What it says:
+1. **Outside carries phase 1.** With no trips a 3 to 7 line nets nothing after the starting stock; one outing a night gives
+   +16 to +18 a day, just under ECONOMY.md's 20 to 200. Day 1 is -11 because every bot spends its first night and 31
+   credits buying the torch.
+2. **One site still wins.** The outings went to the dark bunks 93% and hardware 7%, and nothing else was ever worth a night.
+   The bunks (21.4) beat the ducts with a torch (18.7 after wear) and the cableway (18.1), and the bot always takes the
+   best. Even with the options close, nothing changes from one night to the next, so the pick never changes either. The
+   searches and the tool slot are the levers for tuning; what makes nights differ is a design question (STATION.md 8b,
+   open).
+3. **The tool slot settles the buy.** Every bot buys the torch, and almost none buys the wrench (1%), since with one slot
+   the second tool only helps on a night it would beat the torch.
+4. **The maker is still behind** (+1 a day). Its outputs go through the same small line, as before.
+5. **Mail orders are still never filled.** Nothing at the sites matches what the orders want.
+
+Not modelled yet: needs gauges moving shop prices, machines bought in person (second-hand, with statuses), real grid
+packing, site danger or events, and phase 2 to 4 sites (cell husks, dead appliances and the zippo are phase-2 salvage with
+no site).

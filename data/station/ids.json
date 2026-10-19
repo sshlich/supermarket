@@ -38,7 +38,7 @@
   },
 
   "phases": [
-    { "id": "phase_1", "name": "Scraps",   "net_per_day": [20, 200],       "bank": [50, 800],       "rent_per_day": 5,    "typical_item_value": 4,   "upgrade_cost": [30, 800],       "customers_per_day": [10, 14] },
+    { "id": "phase_1", "name": "Scraps",   "net_per_day": [20, 200],       "bank": [50, 800],       "rent_per_day": 5,    "typical_item_value": 4,   "upgrade_cost": [30, 800],       "customers_per_day": [3, 7] },
     { "id": "phase_2", "name": "Trade",    "net_per_day": [200, 2000],     "bank": [800, 8000],     "rent_per_day": 50,   "typical_item_value": 16,  "upgrade_cost": [300, 8000],     "customers_per_day": [12, 18] },
     { "id": "phase_3", "name": "Workshop", "net_per_day": [2000, 20000],   "bank": [8000, 80000],   "rent_per_day": 500,  "typical_item_value": 64,  "upgrade_cost": [3000, 80000],   "customers_per_day": [15, 22] },
     { "id": "phase_4", "name": "Concern",  "net_per_day": [20000, 200000], "bank": [80000, 800000], "rent_per_day": 5000, "typical_item_value": 256, "upgrade_cost": [30000, 800000], "customers_per_day": [18, 25] }
@@ -468,10 +468,10 @@
   "contraband_classes": ["fire", "drug", "software", "stolen", "unlicensed"],
 
   "inflow_channels": {
-    "haul":    "Ore and ice hauled in at the dock (sys_ore_haul, sys_ice_haul); arrives as crates.",
-    "crate":   "Ordered on the terminal (wholesale, upgrades); arrives through the dock or the outside counter.",
+    "haul":    "Ore and ice hauled in at the dock (sys_ore_haul, sys_ice_haul); bought at the dock counter at night (outside.json).",
+    "crate":   "Ordered on the terminal (the Company Store, wholesale, upgrades); arrives through the dock or the outside counter.",
     "seller":  "Walk-in sellers and traders bring it (residents.json sells must list it).",
-    "salvage": "Spine scavengers and duct junk; cheap, random lots.",
+    "salvage": "Scavenge sites at night (outside.json), and spine scavengers in the line; cheap, random lots.",
     "mail":    "Arrives as a mail attachment (orders.json attachments must list it).",
     "company": "Issued by the company (memos, starter kit, tithe returns)."
   },
