@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 96">
+  <!-- long-handled bolt cutters lying flat: two jaws at the top, a hinge, two long polymer grips -->
+  <path d="M7 3C10 3 14 8 15 22L16 28L13 30L9 20C7 14 6 8 7 3Z" fill="#b3bbc2" stroke="#4a5058" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M25 3C22 3 18 8 17 22L16 28L19 30L23 20C25 14 26 8 25 3Z" fill="#9aa3ab" stroke="#4a5058" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M10 30L16 26L22 30L20 40L12 40Z" fill="#9aa3ab" stroke="#4a5058" stroke-width="0.9" stroke-linejoin="round"/>
+  <circle cx="16" cy="32" r="2.4" fill="#4a5058" stroke="#2a2d30" stroke-width="0.5"/>
+  <path d="M11 38L14.5 38L14.5 93L8 93Z" fill="#c4682c" stroke="#5a2c10" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M17.5 38L21 38L24 93L17.5 93Z" fill="#a8541f" stroke="#5a2c10" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M11 50L11 88" stroke="#e8a070" stroke-width="1" opacity="0.6" stroke-linecap="round"/>
+  <path d="M10 6L13 20" stroke="#eef1f4" stroke-width="0.9" opacity="0.8" stroke-linecap="round"/>
+</svg>

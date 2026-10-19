@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a hardware key lying flat: a polymer body with a key hole, a metal plug with copper contacts -->
+  <rect x="3" y="11" width="16" height="12" rx="3" fill="#4e6a8e" stroke="#2c3e57" stroke-width="1" stroke-linejoin="round"/>
+  <circle cx="8" cy="17" r="2" fill="#2c3e57"/>
+  <rect x="19" y="13" width="10" height="8" fill="#c8ccd2" stroke="#6b727a" stroke-width="0.9" stroke-linejoin="round"/>
+  <rect x="21" y="15" width="6" height="1.6" fill="#c8742e"/><rect x="21" y="18" width="6" height="1.6" fill="#c8742e"/>
+  <path d="M6 13H16" stroke="#8fa8c6" stroke-width="1.1" stroke-linecap="round" opacity="0.8"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a small pile of coarse pale sand grit -->
+  <path d="M2 28C4 22 9 20 12 14C14 10 18 10 20 14C23 20 28 22 30 28C30 30 28 30 27 30H5C3 30 2 29 2 28Z" fill="#cbbf9d" stroke="#8a7f60" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M10 22C12 19 14 17 16 14" stroke="#e8dfc4" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <g fill="#8a7f60"><circle cx="12" cy="26" r="1"/><circle cx="19" cy="23" r="0.9"/><circle cx="24" cy="27" r="1"/><circle cx="7" cy="27" r="0.8"/><circle cx="17" cy="27" r="0.8"/></g>
+  <g fill="#ece4cc"><circle cx="21" cy="26" r="1"/><circle cx="14" cy="22" r="0.8"/></g>
+</svg>

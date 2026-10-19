@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 96">
+  <!-- a roof aerial seen from the front: a ceiling tile at the top, a pale mast with cross elements, a coax run down to a plug -->
+  <rect x="2" y="3" width="28" height="8" rx="1" fill="#a9a496" stroke="#6a6556" stroke-width="1"/>
+  <rect x="13" y="11" width="6" height="50" fill="#c3c9ce" stroke="#5a6168" stroke-width="1" stroke-linejoin="round"/>
+  <g stroke="#5a6168" stroke-width="1" stroke-linejoin="round" fill="#c3c9ce"><rect x="5" y="17" width="22" height="3" rx="1"/><rect x="8" y="27" width="16" height="3" rx="1"/><rect x="10" y="37" width="12" height="3" rx="1"/></g>
+  <rect x="9" y="58" width="14" height="7" rx="1" fill="#6f8091" stroke="#3a4753" stroke-width="1"/>
+  <path d="M16 65C16 74 26 74 26 82C26 88 19 88 16 91" fill="none" stroke="#b8693a" stroke-width="2.4" stroke-linecap="round"/>
+  <rect x="12" y="89" width="8" height="6" rx="1" fill="#4a5560" stroke="#2c3035" stroke-width="1"/>
+  <path d="M15 12V57" stroke="#eef1f3" stroke-opacity="0.7" stroke-width="1"/>
+</svg>

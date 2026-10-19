@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- a canvas pack lying flat, seen from above: the body, the top flap with its buckle, a side pocket, the two straps at the top -->
+  <path d="M30 10C30 4 38 2 38 9M66 10C66 4 58 2 58 9" fill="none" stroke="#4a4c34" stroke-width="3" stroke-linecap="round"/>
+  <rect x="14" y="10" width="68" height="80" rx="12" fill="#6f7350" stroke="#3e402a" stroke-width="1.5"/>
+  <path d="M14 34C30 40 66 40 82 34L82 22C82 15 76 10 70 10L26 10C20 10 14 15 14 22Z" fill="#5c603f" stroke="#3e402a" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="42" y="34" width="12" height="10" rx="1.5" fill="#b9a46a" stroke="#6e5f34" stroke-width="1"/>
+  <rect x="45.5" y="37" width="5" height="4" fill="#5c603f"/>
+  <rect x="26" y="56" width="44" height="26" rx="5" fill="#666a48" stroke="#3e402a" stroke-width="1.1"/>
+  <path d="M28 63L68 63" stroke="#3e402a" stroke-width="1" opacity="0.7"/>
+  <path d="M20 46L20 80M76 46L76 80" stroke="#868a63" stroke-width="1" stroke-dasharray="3 3" opacity="0.6"/>
+</svg>

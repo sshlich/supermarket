@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a pulper: a round steel tub on short legs with grey slurry and a paddle on a copper motor arm, a mesh screen frame leaning in at the side and a drain spout with paper sheet -->
+  <rect x="10" y="4" width="34" height="8" rx="2" fill="#4a535e" stroke="#2e353d" stroke-width="1"/>
+  <rect x="22" y="2" width="10" height="6" fill="#b8693a" stroke="#6e3a1c" stroke-width="0.8"/>
+  <path d="M27 12V32" stroke="#c5ccd2" stroke-width="3"/>
+  <path d="M19 32H35" stroke="#c5ccd2" stroke-width="3" stroke-linecap="round"/>
+  <path d="M4 26H50L46 52H8Z" fill="#5b6672" stroke="#2e353d" stroke-width="1.2" stroke-linejoin="round"/>
+  <ellipse cx="27" cy="26" rx="23" ry="4" fill="#b9b4a6" stroke="#2e353d" stroke-width="1"/>
+  <path d="M10 25Q18 23 26 25" fill="none" stroke="#e6e2d6" stroke-width="1.2"/>
+  <path d="M8 31H46" stroke="#9aa5af" stroke-width="1" opacity="0.5"/>
+  <rect x="14" y="38" width="16" height="6" rx="1" fill="#2a3036"/><circle cx="38" cy="41" r="2.4" fill="#6fd08c"/>
+  <path d="M6 52L10 60M44 52L48 60" stroke="#3e4650" stroke-width="4" stroke-linecap="round"/>
+  <rect x="50" y="26" width="10" height="26" rx="1.5" fill="#6e8aa0" stroke="#2e3f4f" stroke-width="1"/>
+  <path d="M50 32H60M50 38H60M50 44H60M55 26V52" stroke="#2e3f4f" stroke-width="0.8"/>
+  <path d="M46 36H50" stroke="#c5ccd2" stroke-width="3"/>
+  <rect x="50" y="54" width="12" height="6" rx="1" fill="#e8e4d4" stroke="#9a9680" stroke-width="0.8"/>
+</svg>

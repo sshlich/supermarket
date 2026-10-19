@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a wall-fed cradle: a polymer cradle holding a spent cell with a charge bar, a copper cable and plug at the top, a meter light -->
+  <rect x="4" y="24" width="56" height="36" rx="5" fill="#3f464f" stroke="#2e343c" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="8" y="28" width="48" height="28" rx="3" fill="#7d8a96" stroke="#2e343c" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="14" y="12" width="30" height="40" rx="3" fill="#d0a050" stroke="#6a4a1c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="14" y="12" width="30" height="8" rx="2" fill="#c4cbd2" stroke="#7d858d" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="22" y="6" width="14" height="6" rx="1.5" fill="#c4cbd2" stroke="#7d858d" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="18" y="24" width="22" height="3" rx="1" fill="#8fd46a" stroke="#8fd46a" stroke-width="0" stroke-linejoin="round"/>
+  <rect x="18" y="30" width="22" height="3" rx="1" fill="#8fd46a" stroke="#8fd46a" stroke-width="0" stroke-linejoin="round"/>
+  <rect x="18" y="36" width="12" height="3" rx="1" fill="#e0a040" stroke="#e0a040" stroke-width="0" stroke-linejoin="round"/>
+  <rect x="18" y="42" width="22" height="3" rx="1" fill="#3f464f" stroke="#3f464f" stroke-width="0" stroke-linejoin="round"/>
+  <path d="M16 22V48" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+  <rect x="46" y="34" width="10" height="14" rx="1.5" fill="#1d2226" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <circle cx="51" cy="40" r="2" fill="#8fd46a" stroke="#2e343c" stroke-width="0.7"/>
+  <circle cx="51" cy="46" r="2" fill="#e0a040" stroke="#2e343c" stroke-width="0.7"/>
+  <path d="M52 30V12H62" fill="none" stroke="#b0703c" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="58" y="8" width="4" height="8" rx="1" fill="#c4cbd2" stroke="#7d858d" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="8" y="56" width="10" height="4" rx="1" fill="#2e343c" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="46" y="56" width="10" height="4" rx="1" fill="#2e343c" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+</svg>

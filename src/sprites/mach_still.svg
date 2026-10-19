@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 96">
+  <defs><linearGradient id="cu" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d8905a"/><stop offset="1" stop-color="#8e4f27"/></linearGradient></defs>
+  <!-- a still: a round copper pot on a small iron burner stand, a tapering copper head and a coil beside it, and a glass drip jar underneath the coil outlet -->
+  <path d="M18 34Q4 34 4 52Q4 68 20 68H44Q60 68 60 52Q60 34 46 34Z" fill="url(#cu)" stroke="#6e3a1c" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M10 46Q10 40 18 38" fill="none" stroke="#f0b886" stroke-width="1.6" opacity="0.7" stroke-linecap="round"/>
+  <rect x="2" y="48" width="60" height="3" rx="1" fill="#8e4f27" opacity="0.7"/>
+  <path d="M22 34L26 12H38L42 34Z" fill="url(#cu)" stroke="#6e3a1c" stroke-width="1.1" stroke-linejoin="round"/>
+  <ellipse cx="32" cy="10" rx="8" ry="5" fill="#d08650" stroke="#6e3a1c" stroke-width="1"/>
+  <path d="M38 10H52" stroke="#b8693a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M52 10V54" stroke="#6e3a1c" stroke-width="0" />
+  <path d="M52 10V18Q58 20 52 24T52 32T52 40" fill="none" stroke="#b8693a" stroke-width="4" stroke-linecap="round" opacity="0"/>
+  <path d="M30 70H34V72H30Z" fill="none"/>
+  <rect x="10" y="68" width="44" height="6" rx="1.5" fill="#4a535e" stroke="#2e353d" stroke-width="1"/>
+  <path d="M12 74L16 90H48L52 74Z" fill="#4a535e" stroke="#2e353d" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M22 78H42M24 83H40" stroke="#fe8a31" stroke-width="2" opacity="0.7" stroke-linecap="round"/>
+  <path d="M56 12V30" stroke="#b8693a" stroke-width="0"/>
+  <path d="M50 12Q62 14 52 20T52 28T52 36" fill="none" stroke="#d08650" stroke-width="3" stroke-linecap="round" opacity="0"/>
+  <g fill="none" stroke="#b8693a" stroke-width="3.2" stroke-linecap="round"><path d="M50 12Q60 12 60 17T50 22Q60 22 60 27T52 32"/></g>
+  <path d="M52 32V44" stroke="#b8693a" stroke-width="3.2"/>
+  <path d="M46 56V60H58V56Z" fill="#bfe3dc" opacity="0" />
+  <rect x="48" y="46" width="12" height="16" rx="2.5" fill="#bfe3dc" opacity="0.6" stroke="#6ca8a0" stroke-width="1"/>
+  <rect x="49.5" y="54" width="9" height="6.5" rx="1.5" fill="#d6a23c" opacity="0.8"/>
+  <rect x="6" y="90" width="52" height="4" rx="1" fill="#3e4650" stroke="#2e353d" stroke-width="0.8"/>
+</svg>

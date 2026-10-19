@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 96">
+<!-- light-alloy splint strip with padded lining and two straps, lying flat -->
+  <rect x="5" y="2" width="22" height="92" rx="9" fill="#c9ccc4" stroke="#7b7e74" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="9" y="8" width="14" height="80" rx="6" fill="#d9ceb4" stroke="#a39878" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="3" y="26" width="26" height="9" rx="1.5" fill="#6b7f8f" stroke="#3a4752" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="3" y="60" width="26" height="9" rx="1.5" fill="#6b7f8f" stroke="#3a4752" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="12" y="28" width="8" height="5" fill="#9aa0a6" stroke="#4e5358" stroke-width="0.6"/>
+  <rect x="12" y="62" width="8" height="5" fill="#9aa0a6" stroke="#4e5358" stroke-width="0.6"/>
+  <path d="M7.5 14L7.5 80" stroke="#fff" stroke-opacity="0.6" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

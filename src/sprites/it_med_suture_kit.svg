@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- small sealed suture packet with a curved needle and thread -->
+  <rect x="3" y="5" width="26" height="22" rx="2" fill="#dfe6e8" stroke="#6b7a80" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M5 8L27 8" stroke="#b5c1c6" stroke-width="0.8" stroke-dasharray="1.5 1.2"/>
+  <path d="M9 22C8 14 15 11 21 14" fill="none" stroke="#8a8f94" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M21 14L23 15" stroke="#4a4e54" stroke-width="1" stroke-linecap="round"/>
+  <path d="M9 22C13 25 20 23 24 23" fill="none" stroke="#b09a6a" stroke-width="1.2" stroke-linecap="round"/>
+  <rect x="21" y="19" width="6" height="5" fill="#e8e3d6" stroke="#8f8672" stroke-width="0.5"/>
+  <path d="M5.5 6.5L16 6.5" stroke="#fff" stroke-opacity="0.8" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

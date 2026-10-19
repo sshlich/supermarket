@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- an extractor hood from the front: a duct up top, a tapered pale metal hood, a copper trim line, a grille and a lamp strip -->
+  <rect x="22" y="3" width="20" height="18" fill="#a9b0b6" stroke="#5a6168" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M25 4V20M32 4V20M39 4V20" stroke="#d6dce1" stroke-width="0.8" opacity="0.6"/>
+  <path d="M16 21H48L61 50V61H3V50Z" fill="#c3c9ce" stroke="#5a6168" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M5 50H59" stroke="#b8693a" stroke-width="2"/>
+  <rect x="9" y="53" width="46" height="6" fill="#6f8091" stroke="#3a4753" stroke-width="0.8"/>
+  <path d="M12 56H52" stroke="#2c3035" stroke-width="1"/>
+  <path d="M20 25H44L52 46H12Z" fill="#aab2b9" opacity="0.8"/>
+  <path d="M18 23H46" stroke="#eef1f3" stroke-opacity="0.8" stroke-width="1"/>
+</svg>

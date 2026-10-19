@@ -1,0 +1,36 @@
+<!-- blister card of six chalky anti-rad tablets -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <defs>
+    <linearGradient id="foil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#bfc3c8"/>
+      <stop offset="0.5" stop-color="#9ca1a8"/>
+      <stop offset="1" stop-color="#83888f"/>
+    </linearGradient>
+    <linearGradient id="round" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.3"/>
+    </linearGradient>
+    <!-- one pocket: a pill under a clear dome. The two pill colours are what the type of pill changes. -->
+    <g id="bubble">
+      <ellipse cx="0" cy="0" rx="8.6" ry="5.6" fill="#e9eef2" fill-opacity="0.3" stroke="#f2f5f7" stroke-opacity="0.75" stroke-width="0.7"/>
+      <path d="M0 -3L-2.6 -3A3 3 0 0 0 -2.6 3L0 3Z" fill="#ece9de"/>
+      <path d="M0 -3L2.6 -3A3 3 0 0 1 2.6 3L0 3Z" fill="#c9cbbf"/>
+      <path d="M-2.6 -3L2.6 -3A3 3 0 0 1 2.6 3L-2.6 3A3 3 0 0 1 -2.6 -3Z" fill="url(#round)" stroke="#2b2622" stroke-width="0.5"/>
+      <path d="M-5.8 -2.4C-4 -4.6 1.5 -5 5.2 -3.8" fill="none" stroke="#ffffff" stroke-opacity="0.8" stroke-width="0.8" stroke-linecap="round"/>
+    </g>
+    <!-- where a pill was pushed through: a dark hole and torn foil -->
+    <g id="hole">
+      <ellipse cx="0" cy="0" rx="7.2" ry="4.5" fill="#2b2e33"/>
+      <path d="M-6.8 -0.6L-4.8 -2L-3.4 0L-1.4 -2.7L0.7 -0.7L2.7 -3.4L4.1 -0.7L6.1 -2L7.2 0" fill="none" stroke="#d3d7db" stroke-width="0.6"/>
+    </g>
+  </defs>
+  <rect x="1" y="1" width="62" height="30" rx="2.5" fill="url(#foil)" stroke="#4a4e54" stroke-width="0.8"/>
+  <path d="M2 25L26 2L36 2L10 30L4 30Z" fill="#ffffff" fill-opacity="0.1"/>
+  <g stroke="#6e737a" stroke-width="0.6" stroke-dasharray="1.5 1.5" opacity="0.7"><path d="M21.7 2.5L21.7 29.5"/><path d="M42.3 2.5L42.3 29.5"/><path d="M2.5 16L61.5 16"/></g>
+  <!-- the six pockets, numbered like the inside of the blister (left to right, top row first): an empty one shows its hole -->
+  <use href="#hole" x="11.5" y="8.8"/><use href="#hole" x="32" y="8.8"/><use href="#hole" x="52.5" y="8.8"/>
+  <use href="#hole" x="11.5" y="23.2"/><use href="#hole" x="32" y="23.2"/><use href="#hole" x="52.5" y="23.2"/>
+  <use href="#bubble" x="11.5" y="8.8" style="opacity: var(--in0, 1)"/><use href="#bubble" x="32" y="8.8" style="opacity: var(--in1, 1)"/><use href="#bubble" x="52.5" y="8.8" style="opacity: var(--in2, 1)"/>
+  <use href="#bubble" x="11.5" y="23.2" style="opacity: var(--in3, 1)"/><use href="#bubble" x="32" y="23.2" style="opacity: var(--in4, 1)"/><use href="#bubble" x="52.5" y="23.2" style="opacity: var(--in5, 1)"/>
+</svg>

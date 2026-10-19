@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a spent air puck: darker, stained, cracked -->
+  <circle cx="16" cy="16" r="13" fill="#4d4e50" stroke="#1f2022" stroke-width="1"/>
+  <circle cx="16" cy="16" r="9" fill="#3c3d3f" stroke="#26272a" stroke-width="0.8"/>
+  <g stroke="#1c1d1f" stroke-width="1.6" stroke-linecap="round"><path d="M11 12L21 12"/><path d="M10 16L22 16"/><path d="M11 20L21 20"/></g>
+  <path d="M20 5L17 11L19 14" fill="none" stroke="#202123" stroke-width="0.9"/>
+  <path d="M7 11C9 7 12 5 16 4.5" fill="none" stroke="#7a7b7d" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

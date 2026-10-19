@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- Heap of pale salad leaves -->
+<path d="M4 38C2 26 12 20 20 24C22 12 38 10 42 22C52 18 62 28 58 40C60 52 46 60 32 59C16 60 4 52 4 38Z" fill="#9ab86a" stroke="#566e32" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M14 40C14 32 22 28 28 32C30 24 40 24 44 30C50 30 54 38 50 44C46 52 30 54 20 50C16 48 14 44 14 40Z" fill="#b4cc84" stroke="#566e32" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M32 28L32 50M32 38L22 32M32 42L42 36" stroke="#e4ecc0" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M10 34C10 28 14 26 18 26" stroke="#fff" stroke-opacity="0.4" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

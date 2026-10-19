@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- pliers lying flat, jaws up: flat steel jaws, a pivot, two blue polymer grips splayed slightly at the bottom -->
+  <path d="M9 3L15 3L15.5 22L12 26L9.5 22Z" fill="#b3bbc2" stroke="#4a5058" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M23 3L17 3L16.5 22L20 26L22.5 22Z" fill="#9aa3ab" stroke="#4a5058" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M9 22L23 22L21 32L11 32Z" fill="#9aa3ab" stroke="#4a5058" stroke-width="0.9" stroke-linejoin="round"/>
+  <circle cx="16" cy="27" r="2.3" fill="#4a5058" stroke="#2a2d30" stroke-width="0.5"/>
+  <path d="M11 31L15.5 31L13.5 61L6.5 61C6 50 8.5 40 11 31Z" fill="#4f6f8c" stroke="#2c4157" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M21 31L16.5 31L18.5 61L25.5 61C26 50 23.5 40 21 31Z" fill="#456380" stroke="#2c4157" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M10.5 38C9.5 45 9 52 9 58" stroke="#8fb0cc" stroke-width="1.1" stroke-linecap="round" opacity="0.7" fill="none"/>
+  <path d="M11.5 6V18" stroke="#eef1f4" stroke-width="0.9" stroke-linecap="round" opacity="0.8"/>
+</svg>

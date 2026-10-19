@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <!-- a ribbed polymer crate seen from above: rim, ribbed floor, a handhold slot at each short end -->
+  <rect x="3" y="4" width="90" height="56" rx="5" fill="#4f6f8c" stroke="#2c4157" stroke-width="1.1" stroke-linejoin="round"/>
+  <rect x="9" y="10" width="78" height="44" rx="3" fill="#3a566f" stroke="#2c4157" stroke-width="0.8"/>
+  <g stroke="#5f84a4" stroke-width="2.2" stroke-linecap="round"><path d="M22 14V50M34 14V50M46 14V50M58 14V50M70 14V50"/></g>
+  <rect x="3.5" y="22" width="5" height="20" rx="2.5" fill="#1f2d3a"/>
+  <rect x="87.5" y="22" width="5" height="20" rx="2.5" fill="#1f2d3a"/>
+  <path d="M8 6.5H88" stroke="#8fb0cc" stroke-width="1" opacity="0.7" stroke-linecap="round"/>
+</svg>

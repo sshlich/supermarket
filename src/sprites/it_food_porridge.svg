@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- Tin pot of porridge with a handle -->
+<path d="M4 24L60 24L56 54C56 58 52 59 48 59L16 59C12 59 8 58 8 54Z" fill="#9aa2aa" stroke="#4c565e" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M60 30L62 30C63 36 63 42 61 46L58 46" fill="none" stroke="#4c565e" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="32" cy="24" rx="28" ry="8" fill="#b4bcc4" stroke="#4c565e" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="32" cy="24" rx="24" ry="6" fill="#c8b890" stroke="#7a6a44" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M22 24C26 22 30 26 34 23M34 25C38 23 42 25 44 23" stroke="#e4d8b4" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M12 32L14 52" stroke="#fff" stroke-opacity="0.45" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M4 38L56 38" stroke="#6a747c" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <!-- a battered lidded light-metal crate, front view: dented lid, corner brackets, latch, a label and a strap of junk poking out -->
+  <rect x="4" y="12" width="88" height="48" rx="3" fill="#8a929a" stroke="#454c53" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="2" y="6" width="92" height="14" rx="3" fill="#a9b0b7" stroke="#545b62" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M8 10H88" stroke="#d3d8dc" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="M10 28H86M10 44H86" stroke="#66707a" stroke-width="1.4"/>
+  <rect x="4" y="12" width="9" height="48" fill="#6a737c"/>
+  <rect x="83" y="12" width="9" height="48" fill="#6a737c"/>
+  <rect x="40" y="16" width="16" height="9" rx="1.5" fill="#c9a24a" stroke="#6e5a22" stroke-width="0.9"/>
+  <circle cx="48" cy="20.5" r="1.5" fill="#6e5a22"/>
+  <rect x="62" y="34" width="20" height="14" rx="1" fill="#d8d2bc" stroke="#8a826a" stroke-width="0.8"/>
+  <path d="M65 39H79M65 43H75" stroke="#7a735c" stroke-width="1.2"/>
+  <path d="M22 50L30 40L34 52" stroke="#b5622f" stroke-width="1.6" fill="none" stroke-linejoin="round" opacity="0.9"/>
+  <path d="M22 34L28 32" stroke="#454c53" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/>
+</svg>

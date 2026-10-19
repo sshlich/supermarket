@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- an open-end wrench lying flat: the jaw at the top, a straight arm, a ring at the far end -->
+  <path d="M7 4L13 4L13 11L19 11L19 4L25 4L25 15C25 19 21 21 19 21L19 50L13 50L13 21C11 21 7 19 7 15Z" fill="#9aa3ab" stroke="#4a5058" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M15 23L15 48" stroke="#d4d9de" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+  <circle cx="16" cy="54" r="6.5" fill="#9aa3ab" stroke="#4a5058" stroke-width="1"/>
+  <circle cx="16" cy="54" r="3" fill="#1d1e22" stroke="#4a5058" stroke-width="0.6"/>
+</svg>

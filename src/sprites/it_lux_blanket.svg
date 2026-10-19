@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <!-- a blanket lying flat: three stitched strips of cloth in greys and khaki, fringe at the ends -->
+  <rect x="5" y="4" width="86" height="56" rx="2" fill="#a89c80" stroke="#5e5440" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="5" y="4" width="86" height="19" rx="2" fill="#8c8f90"/>
+  <rect x="5" y="42" width="86" height="18" rx="2" fill="#8c8f90"/>
+  <path d="M5 23L91 23M5 42L91 42" stroke="#5e5440" stroke-width="1" stroke-dasharray="3 2"/>
+  <path d="M5 33L91 33" stroke="#7a6e54" stroke-width="1.2" opacity="0.6"/>
+  <path d="M5 13L91 13M5 51L91 51" stroke="#6c7072" stroke-width="1.5" opacity="0.5"/>
+  <g stroke="#a89c80" stroke-width="1.2" stroke-linecap="round"><path d="M2 7V57M94 7V57"/></g>
+  <path d="M10 8L40 8" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="62" y="28" width="10" height="9" fill="#7a5a3a" opacity="0.8"/>
+</svg>

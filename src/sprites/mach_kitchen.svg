@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <!-- a galley: a counter unit with a glass-top induction hot plate with a pot of something warm on it, a pan well beside it, a small fan hood at the back on the right, knobs and a cell-pack door on the front -->
+  <rect x="62" y="4" width="28" height="22" rx="3" fill="#8c97a3" stroke="#2e353d" stroke-width="1"/>
+  <circle cx="76" cy="15" r="8" fill="#3e4650" stroke="#2e353d" stroke-width="1"/>
+  <path d="M76 8V22M69 15H83M71 10L81 20M81 10L71 20" stroke="#aab4be" stroke-width="1.4"/><circle cx="76" cy="15" r="1.8" fill="#aab4be"/>
+  <path d="M12 8Q16 4 20 8M24 6Q28 2 32 6" fill="none" stroke="#e6e9ec" stroke-width="1.4" opacity="0.6" stroke-linecap="round"/>
+  <rect x="8" y="12" width="40" height="22" rx="3" fill="#b8693a" stroke="#6e3a1c" stroke-width="1"/>
+  <rect x="6" y="14" width="44" height="5" rx="2" fill="#d08650" stroke="#6e3a1c" stroke-width="0.9"/>
+  <ellipse cx="28" cy="16" rx="18" ry="2" fill="#e0b060"/>
+  <path d="M50 20H56" stroke="#3e4650" stroke-width="3" stroke-linecap="round"/>
+  <path d="M4 34H92L90 42H6Z" fill="#c5ccd2" stroke="#6f7880" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="14" y="36" width="34" height="3" rx="1.5" fill="#3e4650"/><circle cx="56" cy="37" r="1.5" fill="#fe8a31"/>
+  <rect x="62" y="30" width="26" height="6" rx="2" fill="#3e4650" stroke="#2e353d" stroke-width="0.8"/>
+  <rect x="6" y="42" width="84" height="18" rx="2" fill="#5b6672" stroke="#2e353d" stroke-width="1.2"/>
+  <circle cx="16" cy="50" r="3.4" fill="#c5ccd2" stroke="#2e353d" stroke-width="0.8"/><path d="M16 47.5V50" stroke="#2e353d" stroke-width="1"/>
+  <circle cx="28" cy="50" r="3.4" fill="#c5ccd2" stroke="#2e353d" stroke-width="0.8"/><path d="M28 47.5L30 49" stroke="#2e353d" stroke-width="1"/>
+  <rect x="40" y="46" width="22" height="10" rx="1.5" fill="#3e4650" stroke="#2e353d" stroke-width="0.9"/>
+  <rect x="44" y="49" width="14" height="4" rx="1" fill="#6fd08c" opacity="0.8"/>
+  <rect x="68" y="46" width="18" height="10" rx="1.5" fill="#8c97a3" stroke="#2e353d" stroke-width="0.8"/>
+  <circle cx="74" cy="51" r="2" fill="#d6a23c"/><circle cx="81" cy="51" r="2" fill="#6fd08c"/>
+  <path d="M9 44H87" stroke="#9aa5af" stroke-width="1" opacity="0.5"/>
+</svg>

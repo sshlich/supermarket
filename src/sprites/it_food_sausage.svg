@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 32">
+<!-- Chain of four grey sausages in casing -->
+<g fill="#a89488" stroke="#5e4c42" stroke-width="1" stroke-linejoin="round" stroke-linecap="round">
+<rect x="3" y="9" width="23" height="14" rx="7"/><rect x="25" y="9" width="23" height="14" rx="7"/><rect x="47" y="9" width="23" height="14" rx="7"/><rect x="69" y="9" width="24" height="14" rx="7"/></g>
+<path d="M26 16L25 16M48 16L47 16M70 16L69 16" stroke="#5e4c42" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<g fill="#5e4c42"><circle cx="12" cy="17" r="1"/><circle cx="35" cy="15" r="1"/><circle cx="57" cy="17" r="1"/><circle cx="82" cy="15" r="1"/></g>
+<path d="M8 12L20 12M30 12L42 12M52 12L64 12M74 12L87 12" stroke="#fff" stroke-opacity="0.5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

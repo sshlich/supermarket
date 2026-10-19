@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a heavy lumpy bag of rubble, tied at the top, broken chunks showing through -->
+  <path d="M24 4L40 4L42 12C54 16 60 30 60 44C60 56 52 61 40 61H24C12 61 4 56 4 44C4 30 10 16 22 12Z" fill="#8a8578" stroke="#4a463c" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M22 12H42" stroke="#4a463c" stroke-width="1.2"/>
+  <rect x="26" y="9" width="12" height="4" rx="1.5" fill="#6b5a3e" stroke="#3c3220" stroke-width="0.8"/>
+  <path d="M12 26C10 34 10 44 14 54" stroke="#b5b09f" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <path d="M22 34L32 30L38 38L28 44Z" fill="#a7a293" stroke="#5d594d" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M38 48L48 44L52 52L42 55Z" fill="#6c6a64" stroke="#3a382f" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M16 46L22 44L24 50L18 52Z" fill="#7a5a48" stroke="#4a3426" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M44 28L50 32" stroke="#5d594d" stroke-width="1.2"/>
+</svg>

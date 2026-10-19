@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <!-- a flat water sachet with a stamped bunk number block, lying flat -->
+  <path d="M3 5L61 5L61 27L3 27Z" fill="#a9cde0" stroke="#4a7388" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M3 5L8 5L8 27L3 27ZM56 5L61 5L61 27L56 27Z" fill="#7fa0b4" stroke="#4a7388" stroke-width="0.8"/>
+  <rect x="14" y="11" width="22" height="10" fill="#e8e3d6" stroke="#7a7466" stroke-width="0.5"/>
+  <rect x="16" y="14" width="12" height="2" fill="#4a7388"/><rect x="16" y="17.5" width="8" height="1.6" fill="#4a7388" opacity="0.6"/>
+  <rect x="40" y="11" width="11" height="10" rx="1" fill="none" stroke="#c0392b" stroke-width="1.2"/>
+  <path d="M43 18L43 14L45 14M47 14L47 18" stroke="#c0392b" stroke-width="1" fill="none"/>
+  <path d="M10 8L40 8" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-opacity="0.6"/>
+</svg>

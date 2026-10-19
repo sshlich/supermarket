@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 32">
+<!-- Terrine loaf with herb layers and slices -->
+<rect x="3" y="5" width="60" height="22" rx="3" fill="#8e5a46" stroke="#4e2a1e" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M3 13L63 13M3 20L63 20" stroke="#6a8f4a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M63 8L72 6L72 26L63 27Z" fill="#a8705a" stroke="#4e2a1e" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M72 6L82 6L82 26L72 26Z" fill="#b07860" stroke="#4e2a1e" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M72 14L82 14" stroke="#6a8f4a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M8 8L58 8" stroke="#fff" stroke-opacity="0.35" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

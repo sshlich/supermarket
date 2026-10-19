@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a torch lying flat, lamp end up: the lens and its rim, the orange polymer tube, a black switch, the end cap -->
+  <path d="M8 4L24 4L22 16L10 16Z" fill="#3a3d44" stroke="#1d1e22" stroke-width="1" stroke-linejoin="round"/>
+  <ellipse cx="16" cy="5" rx="7" ry="2.4" fill="#e8f0d8" stroke="#8a9078" stroke-width="0.8"/>
+  <rect x="10" y="16" width="12" height="40" rx="2" fill="#c8742e" stroke="#7a4216" stroke-width="1"/>
+  <path d="M12.5 19L12.5 53" stroke="#e8a060" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <rect x="13" y="24" width="6" height="8" rx="1.5" fill="#22242a"/>
+  <rect x="11" y="55" width="10" height="5" rx="1.5" fill="#3a3d44" stroke="#1d1e22" stroke-width="0.8"/>
+</svg>

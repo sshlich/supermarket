@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a labeller: a low steel base with a feed slot and a roller bed, a print head on an arm above it with a disc slot, a roll of stickers on a spindle and a crank handle -->
+  <rect x="4" y="38" width="56" height="22" rx="3" fill="#5b6672" stroke="#2e353d" stroke-width="1.2"/>
+  <path d="M8 41H56" stroke="#9aa5af" stroke-width="1" opacity="0.5"/>
+  <rect x="9" y="46" width="34" height="8" rx="1.5" fill="#2a3036" stroke="#2e353d" stroke-width="0.9"/>
+  <g fill="#8c97a3"><circle cx="16" cy="50" r="2.5"/><circle cx="26" cy="50" r="2.5"/><circle cx="36" cy="50" r="2.5"/></g>
+  <circle cx="50" cy="50" r="3" fill="#6fd08c"/>
+  <path d="M10 38V16Q10 8 20 8H42Q50 8 50 16V24H38V20H22V38Z" fill="#4a535e" stroke="#2e353d" stroke-width="1.1" stroke-linejoin="round"/>
+  <rect x="24" y="22" width="12" height="8" rx="1.5" fill="#b8693a" stroke="#6e3a1c" stroke-width="1"/>
+  <rect x="26" y="30" width="8" height="5" rx="1" fill="#e8e4d4" stroke="#9a9680" stroke-width="0.7"/>
+  <circle cx="44" cy="14" r="8" fill="#e8e4d4" stroke="#9a9680" stroke-width="1"/><circle cx="44" cy="14" r="3" fill="#6e8aa0" stroke="#2e3f4f" stroke-width="0.8"/>
+  <rect x="14" y="14" width="12" height="3" rx="1" fill="#1e2429"/><rect x="15" y="14.6" width="8" height="1.6" fill="#3a3d44"/>
+  <path d="M60 28H54" stroke="#c5ccd2" stroke-width="3" stroke-linecap="round"/><circle cx="60" cy="28" r="2.5" fill="#c9833c" stroke="#7a4a1a" stroke-width="0.8"/>
+</svg>

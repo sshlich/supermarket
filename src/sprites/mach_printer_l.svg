@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 96">
+  <!-- a wide roller press on legs: a long roller bar, four ink wells (cyan, magenta, yellow, black), a take-up spool and a banner coming out -->
+  <rect x="6" y="58" width="6" height="34" rx="1" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="116" y="58" width="6" height="34" rx="1" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="6" y="60" width="116" height="5" rx="1" fill="#5b6572" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="4" y="16" width="120" height="46" rx="5" fill="#5b6572" stroke="#2e343c" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="10" y="22" width="108" height="12" rx="2" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="14" y="24" width="20" height="8" rx="1.5" fill="#3f8fb0" stroke="#2e343c" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="40" y="24" width="20" height="8" rx="1.5" fill="#b0487a" stroke="#2e343c" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="66" y="24" width="20" height="8" rx="1.5" fill="#d8b43a" stroke="#2e343c" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="92" y="24" width="20" height="8" rx="1.5" fill="#2a2f35" stroke="#2e343c" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="10" y="40" width="108" height="12" rx="6" fill="#8d97a3" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M18 44H108" fill="none" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+  <rect x="96" y="54" width="24" height="10" rx="2" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <circle cx="104" cy="59" r="2" fill="#8fd46a" stroke="#2e343c" stroke-width="0.7"/>
+  <circle cx="112" cy="59" r="2" fill="#e0a040" stroke="#2e343c" stroke-width="0.7"/>
+  <rect x="14" y="62" width="70" height="28" rx="1" fill="#e4dcc4" stroke="#6b6452" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="20" y="68" width="40" height="6" rx="1" fill="#b0487a" stroke="#2e343c" stroke-width="0.5" stroke-linejoin="round"/>
+  <rect x="20" y="78" width="56" height="4" rx="1" fill="#3f8fb0" stroke="#2e343c" stroke-width="0.5" stroke-linejoin="round"/>
+  <circle cx="106" cy="76" r="11" fill="#8d97a3" stroke="#2e343c" stroke-width="1"/>
+  <circle cx="106" cy="76" r="4" fill="#3f464f" stroke="#2e343c" stroke-width="0.8"/>
+</svg>

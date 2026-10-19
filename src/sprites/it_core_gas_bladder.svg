@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a tight flat gas bladder, strapped to a carry-frame, with a valve at the top -->
+  <rect x="12" y="2" width="8" height="7" rx="1.5" fill="#b9bec3" stroke="#5f6468" stroke-width="1"/>
+  <path d="M16 9C6 9 4 20 4 34C4 50 7 59 16 60C25 59 28 50 28 34C28 20 26 9 16 9Z" fill="#6f8f8a" stroke="#364846" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M9 18C8 28 8 40 10 52" stroke="#a9c4bf" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <rect x="2" y="22" width="28" height="4" rx="1" fill="#8a6a3a" stroke="#4a3920" stroke-width="0.8"/>
+  <rect x="2" y="44" width="28" height="4" rx="1" fill="#8a6a3a" stroke="#4a3920" stroke-width="0.8"/>
+  <rect x="14" y="21" width="4" height="6" fill="#c9cdd0" stroke="#5f6468" stroke-width="0.7"/>
+  <rect x="14" y="43" width="4" height="6" fill="#c9cdd0" stroke="#5f6468" stroke-width="0.7"/>
+</svg>

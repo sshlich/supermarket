@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- Stoppered tube of cloudy culture -->
+<path d="M10 6L22 6L22 24C22 28 20 29 16 29C12 29 10 28 10 24Z" fill="#c4cccc" fill-opacity="0.85" stroke="#6a7878" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M10 14L22 14L22 24C22 28 20 29 16 29C12 29 10 28 10 24Z" fill="#b8b4a0" stroke="#6a7878" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="9" y="2" width="14" height="5" rx="1.5" fill="#a0603c" stroke="#5e3620" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M13 9L13 24" stroke="#fff" stroke-opacity="0.6" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

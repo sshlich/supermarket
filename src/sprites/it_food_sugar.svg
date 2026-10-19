@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- White sugar in a foil twist -->
+<path d="M4 8L11 6L21 6L28 8L25 22L22 28L10 28L7 22Z" fill="#d8dde0" stroke="#7a848a" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M11 6L9 2L14 4L16 1L18 4L23 2L21 6Z" fill="#d8dde0" stroke="#7a848a" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="9" y="12" width="14" height="9" rx="1" fill="#f6f6f2" stroke="#7a848a" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M7 9L8 21" stroke="#fff" stroke-opacity="0.45" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a sensor: a small metal can with a glass pinhole window on top, three pins below, a green board stub -->
+  <g stroke="#d8b66a" stroke-width="2" stroke-linecap="round"><path d="M10 25V30M16 25V30M22 25V30"/></g>
+  <rect x="4" y="22" width="24" height="5" rx="1" fill="#4a7a52" stroke="#2c4a32" stroke-width="0.8"/>
+  <rect x="7" y="5" width="18" height="18" rx="3" fill="#b8bec6" stroke="#6b727a" stroke-width="1" stroke-linejoin="round"/>
+  <circle cx="16" cy="14" r="5.5" fill="#2a3a46" stroke="#6b727a" stroke-width="1"/>
+  <circle cx="16" cy="14" r="2.4" fill="#9ed0d8"/>
+  <circle cx="14.8" cy="12.8" r="0.9" fill="#ffffff"/>
+  <path d="M9 8V19" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+</svg>

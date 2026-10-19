@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <!-- a printed bracket lying flat: grey polymer L-plate with a ribbed corner gusset, a pale metal core strip and screw holes -->
+  <path d="M3 4L61 4L61 28L3 28Z" fill="#8d939b" stroke="#4d535b" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="47" y="4" width="14" height="24" fill="#767c85" stroke="#4d535b" stroke-width="0.8"/>
+  <path d="M47 11H61M47 17H61M47 23H61" stroke="#555b63" stroke-width="1.2"/>
+  <rect x="6" y="14" width="38" height="4" fill="#cfd6db" stroke="#6b747c" stroke-width="0.6"/>
+  <circle cx="12" cy="8.5" r="2" fill="#1f2226"/><circle cx="12" cy="23.5" r="2" fill="#1f2226"/>
+  <circle cx="34" cy="8.5" r="2" fill="#1f2226"/><circle cx="34" cy="23.5" r="2" fill="#1f2226"/>
+  <path d="M5 6H44" stroke="#d3d7db" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+</svg>

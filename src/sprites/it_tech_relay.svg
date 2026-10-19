@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a relay in a clear case: a copper coil wound on an iron core, a sprung blade above it, pins out of the base -->
+  <g stroke="#b8bec6" stroke-width="2" stroke-linecap="round"><path d="M9 26V30M16 26V30M23 26V30"/></g>
+  <rect x="4" y="4" width="24" height="22" rx="2.5" fill="#d4e6e8" stroke="#7c9a96" stroke-width="1" stroke-linejoin="round" opacity="0.95"/>
+  <rect x="7" y="15" width="18" height="9" rx="2" fill="#c8742e" stroke="#7a4216" stroke-width="0.8"/>
+  <g stroke="#7a4216" stroke-width="0.9"><path d="M11 15V24M15 15V24M19 15V24"/></g>
+  <path d="M8 11H23L25 8" fill="none" stroke="#6b727a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M6 6.5H20" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+</svg>

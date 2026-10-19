@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 96">
+  <!-- a thin printed book, board cover in slate with a pale title panel, sharp page edge on the right -->
+  <path d="M10 5L59 6L61 8L61 88L59 90L10 91Z" fill="#e0d8bc" stroke="#5a5240" stroke-width="0.8"/>
+  <g stroke="#b8ae90" stroke-width="0.5"><path d="M58 9L58 88"/><path d="M59.5 9L59.5 88"/></g>
+  <rect x="4" y="3" width="54" height="90" rx="2" fill="#4a5c6c" stroke="#222e38" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="4.6" y="3.6" width="7" height="88.8" rx="1.6" fill="#38485a"/>
+  <rect x="18" y="14" width="30" height="18" fill="#d8d0b4" stroke="#222e38" stroke-width="0.8"/>
+  <path d="M22 20L44 20M22 25L38 25" stroke="#3a3a40" stroke-width="1.6" opacity="0.8"/>
+  <path d="M18 74L48 74M18 79L40 79" stroke="#a8b4c0" stroke-width="1.2" opacity="0.6"/>
+  <path d="M14 6C24 5 40 5 54 6" stroke="#8c9cac" stroke-width="1" opacity="0.5" fill="none"/>
+</svg>

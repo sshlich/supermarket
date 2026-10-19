@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a square pane of kiln glass lying flat: pale green-blue, thick edge, a bubble or two and a glint -->
+  <rect x="3" y="3" width="58" height="58" rx="1.5" fill="#b9dcd6" fill-opacity="0.85" stroke="#5b8a85" stroke-width="1.1" stroke-linejoin="round"/>
+  <rect x="3" y="3" width="58" height="4" fill="#d7efea" opacity="0.8"/>
+  <rect x="3" y="57" width="58" height="4" fill="#8fbab4" opacity="0.7"/>
+  <path d="M12 46L40 12" stroke="#f2fbf9" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M20 52L50 16" stroke="#f2fbf9" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+  <circle cx="44" cy="42" r="2" fill="#e4f5f1" stroke="#6f9d97" stroke-width="0.6"/>
+  <circle cx="49" cy="47" r="1" fill="#e4f5f1" stroke="#6f9d97" stroke-width="0.5"/>
+</svg>

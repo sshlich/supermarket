@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <defs><linearGradient id="gw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7dbf8a"/><stop offset="1" stop-color="#3f8a5a"/></linearGradient></defs>
+  <!-- an algae tank: a tall glass tank of green water in a dark frame, a lamp rack on top, an air stone with bubbles, a pump box in the base -->
+  <rect x="14" y="4" width="68" height="12" rx="3" fill="#4a535e" stroke="#2e353d" stroke-width="1"/>
+  <g fill="#f0d98a" stroke="#8a7a3a" stroke-width="0.6"><rect x="20" y="12" width="16" height="5" rx="2"/><rect x="40" y="12" width="16" height="5" rx="2"/><rect x="60" y="12" width="16" height="5" rx="2"/></g>
+  <rect x="10" y="20" width="76" height="60" rx="3" fill="#bfe3dc" opacity="0.5" stroke="#6ca8a0" stroke-width="1.2"/>
+  <rect x="12" y="28" width="72" height="50" rx="2" fill="url(#gw)" opacity="0.9"/>
+  <path d="M12 28Q24 25 36 28T60 28T84 28" fill="none" stroke="#b6e0b8" stroke-width="1.4"/>
+  <circle cx="30" cy="40" r="2.5" fill="#c9efc9" opacity="0.7"/><circle cx="32" cy="52" r="3.2" fill="#c9efc9" opacity="0.7"/><circle cx="29" cy="64" r="2" fill="#c9efc9" opacity="0.7"/>
+  <circle cx="60" cy="46" r="2" fill="#c9efc9" opacity="0.6"/><circle cx="66" cy="58" r="2.8" fill="#c9efc9" opacity="0.6"/>
+  <path d="M30 72V30" stroke="#d6dce1" stroke-width="1.2" opacity="0.7"/>
+  <ellipse cx="30" cy="75" rx="7" ry="2.8" fill="#8c97a3" stroke="#4f5862" stroke-width="0.8"/>
+  <path d="M18 30V76" stroke="#fff" stroke-width="2" opacity="0.28" stroke-linecap="round"/>
+  <rect x="8" y="80" width="80" height="14" rx="3" fill="#4a535e" stroke="#2e353d" stroke-width="1.1"/>
+  <rect x="14" y="84" width="22" height="7" rx="1" fill="#1e2429"/><circle cx="47" cy="87.5" r="2.4" fill="#6fd08c"/><circle cx="55" cy="87.5" r="2.4" fill="#d6a23c"/>
+  <path d="M10 4V20M86 20V4" stroke="#2e353d" stroke-width="0"/>
+</svg>

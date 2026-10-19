@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 96">
+  <!-- a four litre blue-white polymer jug with a handle and a tap at the bottom -->
+  <rect x="21" y="2" width="22" height="9" rx="2" fill="#4a6e8c" stroke="#27394a" stroke-width="1"/>
+  <path d="M10 14C10 10 14 11 20 11L44 11C50 11 54 10 54 14L54 86C54 92 52 94 46 94L18 94C12 94 10 92 10 86Z" fill="#a9cde0" stroke="#4a7388" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M10 14C3 14 3 30 10 30" fill="none" stroke="#4a7388" stroke-width="3" stroke-linecap="round"/>
+  <path d="M11 44L53 44L53 86C53 91 52 93 46 93L18 93C12 93 11 91 11 86Z" fill="#7fb0cc" opacity="0.7"/>
+  <rect x="18" y="52" width="28" height="20" fill="#e8e3d6" stroke="#7a7466" stroke-width="0.6"/>
+  <rect x="22" y="57" width="20" height="3" fill="#4a7388"/><rect x="22" y="64" width="12" height="2.5" fill="#4a7388" opacity="0.6"/>
+  <path d="M26 82L38 82L38 90L26 90Z" fill="#e8a060" stroke="#7a4216" stroke-width="0.9"/>
+  <rect x="29" y="90" width="6" height="4" fill="#c8742e" stroke="#7a4216" stroke-width="0.8"/>
+  <path d="M15 26L15 82" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-opacity="0.55"/>
+</svg>

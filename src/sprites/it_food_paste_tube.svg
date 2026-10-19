@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+<!-- Tube of brown paste -->
+<path d="M7 6L25 6L24 48L8 48Z" fill="#8a6a4a" stroke="#4a3220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M8 48L24 48L25 56L7 56Z" fill="#8a6a4a" stroke="#4a3220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M7 56L25 56" stroke="#4a3220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M11 6L11 2L21 2L21 6Z" fill="#b8b0a0" stroke="#4a3220" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="9" y="18" width="14" height="16" fill="#d8d0b8" stroke="#4a3220" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M11 10L11 44" stroke="#fff" stroke-opacity="0.5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a grey polymer sheet lying flat, slightly curled at one corner, with a thick edge -->
+  <path d="M3 3L61 3L61 61L3 61Z" fill="#9aa0a8" stroke="#555b63" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M61 3L61 61L3 61L3 57L57 57L57 3Z" fill="#767c85"/>
+  <path d="M42 61C46 52 54 46 61 44L61 61Z" fill="#b3b8be" stroke="#555b63" stroke-width="0.8" stroke-linejoin="round"/>
+  <path d="M7 7H52M7 7V48" stroke="#d3d7db" stroke-width="1.6" stroke-linecap="round" opacity="0.8" fill="none"/>
+  <path d="M20 30L34 16" stroke="#d3d7db" stroke-width="3" stroke-linecap="round" opacity="0.35"/>
+</svg>

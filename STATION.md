@@ -163,8 +163,8 @@ no growth; with a line this small each sale must be worth more, which is what fr
   is the line.
 - **Open:** one site still wins every night once its tool is bought (the sim: the dark bunks, over 90%). Something has to
   vary the sites: rumors by mail, finds that follow the needs gauges, or a light rundown on a site visited night after night.
-- **In the data:** `data/station/outside.json` (phase-1 sites with searches and loot weights, the body's slots, shops, the
-  pack and its upgrades, the Company Store), played by
+- **In the data:** `data/station/outside.json` (sites with searches and loot weights, phase 1 and 2; the body's slots; shops;
+  the pack and its upgrades; the Company Store), played by the game (`src/outside.ts`, DESIGN.md) and by
   `scripts/station-sim.ts`. First results are in `data/station/SIM_RESULTS.md`.
 
 ## 9. Inflow and outflow (the loop is not terminal)

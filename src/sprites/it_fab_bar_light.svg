@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <defs><linearGradient id="t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3e8ec"/><stop offset="1" stop-color="#c3cbd1"/></linearGradient></defs>
+  <!-- a light-metal bar lying flat, pale frosted top, sloped sides -->
+  <path d="M2 13L94 13L94 62L2 62Z" fill="#98a2ab"/>
+  <path d="M2 13L94 13L84 17L12 17Z" fill="#eef2f4"/>
+  <path d="M2 13L12 17L12 48L2 62Z" fill="#d2d9de"/>
+  <path d="M94 13L94 62L84 48L84 17Z" fill="#a4adb5"/>
+  <path d="M2 62L12 48L84 48L94 62Z" fill="#98a2ab"/>
+  <rect x="12" y="17" width="72" height="31" fill="url(#t)"/>
+  <path d="M12 48V17H84" fill="none" stroke="#fafcfd" stroke-width="0.8" opacity="0.8"/>
+  <rect x="16" y="20" width="7" height="5" rx="1" fill="none" stroke="#59636b" stroke-width="0.8" opacity="0.7"/>
+  <path d="M2 13L94 13L94 62L2 62Z" fill="none" stroke="#59636b" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M2 13L12 17M94 13L84 17M2 62L12 48M94 62L84 48" stroke="#59636b" stroke-width="0.6" opacity="0.6"/>
+</svg>

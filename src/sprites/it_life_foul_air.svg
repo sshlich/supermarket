@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a limp grey-yellow bladder of exhaled air with a nozzle -->
+  <rect x="12" y="2" width="8" height="9" rx="1.5" fill="#6a6e72" stroke="#2f3235" stroke-width="0.9"/>
+  <path d="M10 10L22 10C28 18 30 26 29 40C28 54 24 61 16 61C8 61 4 54 3 40C2 26 4 18 10 10Z" fill="#b4ac78" stroke="#6a643a" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M8 22C6 32 6 44 9 54" fill="none" stroke="#e6e0b0" stroke-width="1.6" stroke-linecap="round" stroke-opacity="0.7"/>
+  <path d="M12 30C16 33 20 30 24 34M11 44C16 47 21 44 25 47" fill="none" stroke="#8a8250" stroke-width="1" stroke-linecap="round"/>
+</svg>

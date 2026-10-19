@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 96">
+  <!-- a steel pipe lying along its length: round body shading, threaded bands at both ends -->
+  <defs><linearGradient id="p" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c3cad0"/><stop offset="0.45" stop-color="#9aa3ab"/><stop offset="1" stop-color="#626b73"/></linearGradient></defs>
+  <rect x="6" y="3" width="20" height="90" rx="1.5" fill="url(#p)" stroke="#3f464d" stroke-width="1" stroke-linejoin="round"/>
+  <g fill="#7a838b" stroke="#3f464d" stroke-width="0.6"><rect x="6" y="3" width="20" height="12"/><rect x="6" y="81" width="20" height="12"/></g>
+  <g stroke="#3f464d" stroke-width="0.7"><path d="M6 6H26M6 9H26M6 12H26M6 84H26M6 87H26M6 90H26"/></g>
+  <path d="M10 18V78" stroke="#eef1f4" stroke-width="1.6" stroke-linecap="round" opacity="0.7"/>
+</svg>

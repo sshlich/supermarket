@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- Hard grey stock cube -->
+<path d="M5 12L16 6L27 12L27 24L16 29L5 24Z" fill="#8c9096" stroke="#4c5056" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M5 12L16 18L27 12M16 18L16 29" fill="none" stroke="#4c5056" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M16 18L5 12L16 6L27 12Z" fill="#b4b8bc"/>
+<path d="M9 12L16 9" stroke="#fff" stroke-opacity="0.6" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

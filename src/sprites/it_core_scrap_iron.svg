@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a fist of bent iron offcuts, rust-red where the paint has gone -->
+  <path d="M3 22L12 8L20 12L16 20L28 18L29 26L8 28Z" fill="#6b7480" stroke="#2f353c" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M12 8L20 12L16 20L10 22Z" fill="#8a94a0"/>
+  <path d="M16 20L28 18L29 26L8 28L10 22Z" fill="#59616c"/>
+  <path d="M19 21L27 20L27 24L18 25Z" fill="#a4542f"/>
+  <path d="M5 24L9 25" stroke="#a4542f" stroke-width="2" stroke-linecap="round"/>
+  <path d="M13 10L18 13" stroke="#b4bdc6" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M3 22L12 8L20 12L16 20L28 18L29 26L8 28Z" fill="none" stroke="#2f353c" stroke-width="1" stroke-linejoin="round"/>
+</svg>

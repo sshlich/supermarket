@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- ducting junk: a curled foil-silver duct section, a polymer fan housing, strips of foil tape -->
+  <rect x="4" y="30" width="38" height="28" rx="6" fill="#b9bec3" stroke="#6c7176" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M12 31V57M20 31V57M28 31V57M36 31V57" stroke="#8d9297" stroke-width="1.2"/>
+  <path d="M7 36H38" stroke="#e1e4e6" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="42" cy="20" r="15" fill="#5f6b7a" stroke="#2f3742" stroke-width="1"/>
+  <circle cx="42" cy="20" r="9" fill="#3f4854"/>
+  <path d="M42 20L42 12M42 20L49 24M42 20L35 24" stroke="#8d99a8" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="42" cy="20" r="2" fill="#2f3742"/>
+  <path d="M36 52L58 44L60 50L40 58Z" fill="#c9cdd0" stroke="#7a8086" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M6 8L22 6L24 12L8 14Z" fill="#cfd3d6" stroke="#7a8086" stroke-width="1" stroke-linejoin="round"/>
+</svg>

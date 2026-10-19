@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a hearing aid lying on its side: a beige curved body hooked to a clear ear tube, a mic grille and a battery door -->
+  <path d="M6 22C3 14 8 5 18 5C25 5 28 10 27 15" fill="none" stroke="#c9d6d8" stroke-width="3" stroke-linecap="round"/>
+  <path d="M10 12C12 20 14 28 22 28C27 28 29 23 26 19C24 16 20 18 18 14C16 10 12 8 10 12Z" fill="#d8b894" stroke="#8a6a48" stroke-width="1" stroke-linejoin="round"/>
+  <circle cx="14" cy="14" r="1.4" fill="#6b4e32"/>
+  <rect x="19" y="22" width="5" height="3.4" rx="1" fill="#8a6a48"/>
+  <path d="M13 17C14 21 15 24 18 26" fill="none" stroke="#f0dcc0" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+</svg>

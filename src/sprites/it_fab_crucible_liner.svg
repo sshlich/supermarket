@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a fired ceramic cup seen from the front, standing: tapered, a black carbon skin at the lip and base, a dark inside -->
+  <path d="M8 12L56 12L50 58L14 58Z" fill="#c8b9a0" stroke="#6b5c46" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M10 28L54 28L50 58L14 58L10 28Z" fill="#3a3836" opacity="0.8"/>
+  <ellipse cx="32" cy="12" rx="24" ry="6" fill="#2b2a28" stroke="#6b5c46" stroke-width="1"/>
+  <ellipse cx="32" cy="13" rx="18" ry="3.8" fill="#14130f"/>
+  <path d="M12 20L15 52" stroke="#efe2c8" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <path d="M14 58L50 58" stroke="#14130f" stroke-width="1.5"/>
+</svg>

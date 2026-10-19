@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a squashy square cushion seen from above: pinched corners, a button in the middle -->
+  <path d="M6 8C20 12 44 12 58 8C54 22 54 42 58 56C44 52 20 52 6 56C10 42 10 22 6 8Z" fill="#b89c70" stroke="#6a5436" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M32 32L10 11M32 32L54 11M32 32L10 53M32 32L54 53" stroke="#8c7450" stroke-width="1" opacity="0.6" fill="none"/>
+  <circle cx="32" cy="32" r="3" fill="#6a5436"/>
+  <path d="M14 13C24 15 38 15 48 13" stroke="#e0cc9e" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <g fill="#6a5436"><circle cx="8.5" cy="10" r="1.6"/><circle cx="55.5" cy="10" r="1.6"/><circle cx="8.5" cy="54" r="1.6"/><circle cx="55.5" cy="54" r="1.6"/></g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a sealed ball bearing seen face-on: outer race, seal ring, inner race and bore -->
+  <circle cx="16" cy="16" r="13.5" fill="#9aa3ab" stroke="#4a5058" stroke-width="1"/>
+  <circle cx="16" cy="16" r="10" fill="#6d767e" stroke="#4a5058" stroke-width="0.8"/>
+  <circle cx="16" cy="16" r="7" fill="#b3bbc2" stroke="#4a5058" stroke-width="0.8"/>
+  <circle cx="16" cy="16" r="3.5" fill="#1d1e22" stroke="#4a5058" stroke-width="0.6"/>
+  <path d="M7 9C9 6 12 4.5 16 4.5" fill="none" stroke="#e0e5e9" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+  <path d="M10 12C11 10.5 12.5 9.5 14 9.2" fill="none" stroke="#e0e5e9" stroke-width="0.8" stroke-linecap="round" opacity="0.7"/>
+</svg>

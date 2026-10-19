@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+<!-- Foil pack of crackers -->
+<path d="M2 6L6 4L58 4L62 6L62 26L58 28L6 28L2 26Z" fill="#b8bec2" stroke="#6a7278" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M6 4L6 28M58 4L58 28" stroke="#6a7278" stroke-width="1" stroke-dasharray="2 2" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="14" y="9" width="36" height="14" rx="1.5" fill="#d89a3c" stroke="#8a5a18" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<g fill="#f0d890"><circle cx="22" cy="16" r="1.4"/><circle cx="32" cy="16" r="1.4"/><circle cx="42" cy="16" r="1.4"/></g>
+<path d="M9 7L55 7" stroke="#fff" stroke-opacity="0.6" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

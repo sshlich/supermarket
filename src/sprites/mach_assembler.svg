@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 96">
+  <!-- a steel cage frame over a jig, with two jointed arms hanging from the top rail, a half-built device on the jig, a control box -->
+  <rect x="4" y="4" width="120" height="88" rx="3" fill="#2c3a3a" stroke="#2e343c" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="8" y="8" width="112" height="10" rx="2" fill="#5b6572" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M34 18V34L52 52" fill="none" stroke="#b0703c" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M34 18V34L52 52" fill="none" stroke="#6a3f1c" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="34" cy="34" r="4" fill="#8d97a3" stroke="#2e343c" stroke-width="1"/>
+  <circle cx="52" cy="52" r="3.5" fill="#8d97a3" stroke="#2e343c" stroke-width="1"/>
+  <path d="M52 52L56 60" fill="none" stroke="#c4cbd2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M94 18V30L78 50" fill="none" stroke="#b0703c" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="94" cy="30" r="4" fill="#8d97a3" stroke="#2e343c" stroke-width="1"/>
+  <circle cx="78" cy="50" r="3.5" fill="#8d97a3" stroke="#2e343c" stroke-width="1"/>
+  <path d="M78 50L72 60" fill="none" stroke="#c4cbd2" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="30" y="66" width="68" height="12" rx="2" fill="#8d97a3" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="46" y="58" width="36" height="9" rx="1.5" fill="#4f7f6a" stroke="#2d4d3e" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="52" y="54" width="10" height="5" rx="1" fill="#b0703c" stroke="#6a3f1c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="68" y="54" width="8" height="5" rx="1" fill="#c4cbd2" stroke="#7d858d" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="6" y="80" width="116" height="10" rx="2" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="98" y="34" width="20" height="26" rx="2" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="102" y="38" width="12" height="8" rx="1" fill="#6fbf86" stroke="#2d6a40" stroke-width="1" stroke-linejoin="round"/>
+  <circle cx="106" cy="53" r="2" fill="#8fd46a" stroke="#2e343c" stroke-width="0.7"/>
+  <path d="M4 8H124M4 90H124" fill="none" stroke="#1d2226" stroke-width="0.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M10 12H112" fill="none" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+</svg>

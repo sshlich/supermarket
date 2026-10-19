@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <!-- a flat bag of shredded rag padding, lumpy and clear-fronted -->
+  <path d="M3 8C3 5 8 5 14 5L50 5C56 5 61 5 61 8L61 24C61 27 56 27 50 27L14 27C8 27 3 27 3 24Z" fill="#cfc4a4" stroke="#7a6e4e" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M3 8L8 8L8 24L3 24ZM56 8L61 8L61 24L56 24Z" fill="#b0a482" stroke="#7a6e4e" stroke-width="0.8"/>
+  <g fill="none" stroke="#a89870" stroke-width="1.4" stroke-linecap="round"><path d="M12 12C16 10 18 15 22 12"/><path d="M26 18C30 15 32 21 37 17"/><path d="M40 11C44 9 46 14 51 11"/><path d="M14 22C18 20 22 24 26 21"/><path d="M42 22C46 20 49 24 52 21"/></g>
+  <path d="M11 7L48 7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-opacity="0.6"/>
+</svg>

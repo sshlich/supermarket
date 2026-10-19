@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a stiff pasteboard sheet lying flat, its edge showing three plies -->
+  <path d="M5 8L55 8L55 55L5 55Z" fill="#b8a888" stroke="#6a5c42" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M5 55L55 55L59 59L9 59Z" fill="#8c7e60" stroke="#6a5c42" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M55 8L59 12L59 59L55 55Z" fill="#9a8c6c" stroke="#6a5c42" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M7 57.2L57 57.2M57 12L57 57" stroke="#d8cdb0" stroke-width="0.6" opacity="0.7"/>
+  <path d="M5 8L55 8L55 55L5 55Z" fill="#cdbf9e" opacity="0.5"/>
+  <path d="M10 13L36 13" stroke="#ffffff" stroke-opacity="0.45" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M12 30L48 34M10 42L40 44" stroke="#a09270" stroke-width="0.8" opacity="0.5"/>
+</svg>

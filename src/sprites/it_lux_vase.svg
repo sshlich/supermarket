@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a green glazed vase, upright: round belly, narrow neck and flared lip, a darker band -->
+  <path d="M22 4L42 4L38 10L38 18C50 24 56 34 56 44C56 54 48 60 40 60L24 60C16 60 8 54 8 44C8 34 14 24 26 18L26 10Z" fill="#5e8a6e" stroke="#2c4a3a" stroke-width="1" stroke-linejoin="round"/>
+  <ellipse cx="32" cy="4.5" rx="10" ry="2" fill="#2c4a3a" stroke="#2c4a3a" stroke-width="1"/>
+  <path d="M10 40C20 44 44 44 54 40L55 46C44 50 20 50 9 46Z" fill="#3e6650"/>
+  <path d="M26 17L38 17" stroke="#2c4a3a" stroke-width="1"/>
+  <path d="M13 34C15 28 19 24 24 21" stroke="#c0e0cc" stroke-opacity="0.7" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M12 52C14 55 17 57 20 57" stroke="#c0e0cc" stroke-opacity="0.4" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+</svg>

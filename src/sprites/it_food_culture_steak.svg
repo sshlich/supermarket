@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+<!-- Seared cultured protein steak -->
+<path d="M4 16C2 8 14 3 30 4C48 4 62 8 60 18C58 27 44 29 30 28C14 29 5 25 4 16Z" fill="#8a4a3a" stroke="#4e2418" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M8 12C20 8 40 8 54 12M7 18C20 14 42 14 56 19" stroke="#5a2a20" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M12 22L22 20M34 22L46 20" stroke="#c8a888" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M10 9C18 6 28 6 34 6" stroke="#fff" stroke-opacity="0.35" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

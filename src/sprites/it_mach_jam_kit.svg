@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a jam kit: a roll of picks, a bent probe and a grease tube lying flat -->
+  <rect x="3" y="3" width="26" height="14" rx="3" fill="#a3946d" stroke="#5e5338" stroke-width="1"/>
+  <path d="M7 5L7 15M11 5L11 15M15 5L15 15M19 5L19 15M23 5L23 15" stroke="#7d848c" stroke-width="2" stroke-linecap="round"/>
+  <path d="M7 5L7 15M11 5L11 15M15 5L15 15M19 5L19 15M23 5L23 15" stroke="#d2d8dc" stroke-width="0.6" stroke-linecap="round"/>
+  <path d="M6 22L6 52L10 59" fill="none" stroke="#5f6468" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M6 24L6 50" stroke="#aab0b6" stroke-width="0.9" stroke-linecap="round"/>
+  <rect x="16" y="22" width="12" height="38" rx="3" fill="#c8742e" stroke="#7a4216" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="18" y="55" width="8" height="5" fill="#3a3d44"/>
+  <path d="M19 26L19 50" stroke="#e8a060" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
+</svg>

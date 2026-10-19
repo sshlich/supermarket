@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 128">
+  <!-- a synthesiser: a tall cabinet with a glass front showing a copper reaction coil and a cold trap flask, two gas bottles at the bottom, a card slot and panel -->
+  <rect x="4" y="4" width="88" height="96" rx="5" fill="#5b6672" stroke="#2e353d" stroke-width="1.2"/>
+  <path d="M9 7H87" stroke="#9aa5af" stroke-width="1.2" opacity="0.6"/>
+  <rect x="11" y="12" width="74" height="54" rx="3" fill="#232a30" stroke="#2e353d" stroke-width="1"/>
+  <path d="M24 18Q38 22 24 28T24 38T24 48T24 58" fill="none" stroke="#b8693a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M24 18Q38 22 24 28T24 38T24 48T24 58" fill="none" stroke="#e0a070" stroke-width="1" opacity="0.7" stroke-linecap="round" transform="translate(-1 -1)"/>
+  <path d="M55 16H71V28L76 58Q76 62 72 62H54Q50 62 50 58L55 28Z" fill="#bfe3dc" opacity="0.35" stroke="#8ec0b8" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M52 44L74 44L76 58Q76 62 72 62H54Q50 62 50 58Z" fill="#9b5fb0" opacity="0.7"/>
+  <rect x="53" y="12" width="20" height="4" fill="#c5ccd2" stroke="#6f7880" stroke-width="0.8"/>
+  <path d="M40 22H55M40 36H50" stroke="#c5ccd2" stroke-width="2"/>
+  <rect x="11" y="12" width="74" height="54" rx="3" fill="#bfe3dc" opacity="0.08"/>
+  <rect x="11" y="72" width="36" height="22" rx="2" fill="#8c97a3" stroke="#2e353d" stroke-width="1"/>
+  <rect x="15" y="76" width="22" height="4" rx="1" fill="#1e2429"/><rect x="17" y="77" width="16" height="2" fill="#e8e4d4"/>
+  <circle cx="20" cy="87" r="2.5" fill="#6fd08c"/><circle cx="28" cy="87" r="2.5" fill="#d6a23c"/>
+  <rect x="53" y="72" width="32" height="22" rx="2" fill="#3e4650" stroke="#2e353d" stroke-width="1"/>
+  <g fill="#1e2429"><rect x="58" y="77" width="22" height="2" rx="1"/><rect x="58" y="82" width="22" height="2" rx="1"/><rect x="58" y="87" width="22" height="2" rx="1"/></g>
+  <rect x="8" y="100" width="80" height="6" fill="#3e4650" stroke="#2e353d" stroke-width="0.8"/>
+  <g stroke-linejoin="round" stroke-width="1"><rect x="12" y="104" width="24" height="22" rx="8" fill="#c9833c" stroke="#7a4a1a"/><rect x="40" y="104" width="20" height="22" rx="7" fill="#6e8aa0" stroke="#2e3f4f"/><rect x="64" y="104" width="20" height="22" rx="7" fill="#8f9aa5" stroke="#4f5862"/></g>
+  <rect x="19" y="101" width="10" height="4" fill="#3e4650"/><rect x="45" y="101" width="10" height="4" fill="#3e4650"/><rect x="69" y="101" width="10" height="4" fill="#3e4650"/>
+  <path d="M16 108V122M44 108V122M68 108V122" stroke="#fff" stroke-width="1.2" opacity="0.3" stroke-linecap="round"/>
+</svg>

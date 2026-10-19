@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a fan from the front: a square light-metal frame, a round grille over three blades and a motor hub -->
+  <rect x="3" y="3" width="58" height="58" rx="7" fill="#bfc5cb" stroke="#6b727a" stroke-width="1.2" stroke-linejoin="round"/>
+  <circle cx="32" cy="32" r="24" fill="#3a3d44" stroke="#2a2c32" stroke-width="1"/>
+  <g fill="#8e98a6" stroke="#4e5864" stroke-width="0.8" stroke-linejoin="round"><path d="M32 32C28 20 34 10 42 12C44 20 40 28 32 32Z"/><path d="M32 32C42 26 54 30 54 38C48 44 38 42 32 32Z"/><path d="M32 32C34 44 26 52 20 48C18 40 24 34 32 32Z"/></g>
+  <circle cx="32" cy="32" r="6" fill="#c8742e" stroke="#7a4216" stroke-width="1"/>
+  <g fill="none" stroke="#d6dbe0" stroke-width="1" opacity="0.6"><circle cx="32" cy="32" r="22"/><circle cx="32" cy="32" r="14"/><path d="M32 8V56M8 32H56"/></g>
+  <g fill="#6b727a"><circle cx="8" cy="8" r="1.8"/><circle cx="56" cy="8" r="1.8"/><circle cx="8" cy="56" r="1.8"/><circle cx="56" cy="56" r="1.8"/></g>
+</svg>

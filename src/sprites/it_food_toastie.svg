@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- Pressed toasted sandwich, grill marks, cheese ooze -->
+<path d="M6 16C6 6 14 4 32 4C50 4 58 6 58 16L58 48C58 58 50 60 32 60C14 60 6 58 6 48Z" fill="#b87a34" stroke="#6a4210" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M12 18C12 12 18 10 32 10C46 10 52 12 52 18L52 46C52 52 46 54 32 54C18 54 12 52 12 46Z" fill="#d49a48" stroke="#8a5a1c" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M16 22L48 16M16 32L48 26M16 42L48 36" stroke="#6a3c10" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M52 36C58 36 60 40 58 44C56 46 54 44 52 44Z" fill="#e8c43c" stroke="#8a6e14" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M10 14C10 10 14 8 20 8" stroke="#fff" stroke-opacity="0.35" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

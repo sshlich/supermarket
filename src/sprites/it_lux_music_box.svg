@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a brass-and-wood music box seen from the front-top: open lid, steel comb, pinned drum, side crank -->
+  <path d="M6 22L52 22L52 56C52 58 51 59 49 59L9 59C7 59 6 58 6 56Z" fill="#a0693a" stroke="#4e2e14" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="9" y="12" width="40" height="12" rx="1.5" fill="#6e4424" stroke="#4e2e14" stroke-width="1"/>
+  <rect x="11" y="14" width="36" height="8" fill="#c8a24e" opacity="0.7"/>
+  <rect x="10" y="26" width="38" height="16" rx="2" fill="#4a3220" stroke="#2a1a0c" stroke-width="0.8"/>
+  <rect x="12" y="28" width="22" height="6" rx="3" fill="#c8a24e" stroke="#7a5a1c" stroke-width="0.8"/>
+  <g fill="#6e4a14"><circle cx="16" cy="31" r="0.9"/><circle cx="21" cy="31" r="0.9"/><circle cx="26" cy="31" r="0.9"/><circle cx="30" cy="31" r="0.9"/></g>
+  <path d="M36 28L46 28M36 31L46 31M36 34L46 34" stroke="#c8ccd0" stroke-width="1.6" stroke-linecap="round"/>
+  <rect x="9" y="46" width="40" height="9" rx="1" fill="#b87a44"/>
+  <path d="M9 48L49 48" stroke="#e0b078" stroke-width="1" opacity="0.7"/>
+  <rect x="52" y="34" width="8" height="3" fill="#a8acb2" stroke="#4a4e54" stroke-width="0.8"/>
+  <circle cx="59.5" cy="30" r="3" fill="#c8a24e" stroke="#7a5a1c" stroke-width="0.9"/>
+  <path d="M59.5 33L59.5 36" stroke="#7a5a1c" stroke-width="1.5"/>
+</svg>

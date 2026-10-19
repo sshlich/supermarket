@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+<!-- lined tube of warm peach gel, cap down -->
+  <path d="M6 4L26 4L26 6L24 7L24 52L27 58C27.5 60 26.5 62 24.5 62L7.5 62C5.5 62 4.5 60 5 58L8 52L8 7L6 6Z" fill="#e5b08a" stroke="#8a5a3a" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M8 8L24 8" stroke="#8a5a3a" stroke-width="0.8"/><path d="M8 10.5L24 10.5" stroke="#8a5a3a" stroke-width="0.8" opacity="0.6"/>
+  <rect x="8" y="22" width="16" height="22" fill="#e8e3d6"/>
+  <rect x="10" y="25" width="12" height="3" fill="#6b4a8a"/><rect x="10" y="31" width="8" height="2" fill="#6b4a8a" opacity="0.6"/>
+  <path d="M10.5 52L21.5 52L22.8 58L9.2 58Z" fill="#6b4a8a" stroke="#8a5a3a" stroke-width="0.8" stroke-linejoin="round" opacity="0"/>
+  <rect x="9" y="54" width="14" height="8" rx="1.5" fill="#6b4a8a" stroke="#8a5a3a" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M10.5 12L10.5 20" stroke="#fff" stroke-opacity="0.6" stroke-width="1.4" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+<!-- Two small tomatoes and a stem -->
+<circle cx="18" cy="17" r="12" fill="#b8402c" stroke="#6a1c10" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="46" cy="17" r="12" fill="#c05030" stroke="#6a1c10" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M58 13C60 18 58 24 52 27C60 26 63 20 61 14Z" fill="#c4a840"/>
+<path d="M11 8L18 12L25 8L21 14L25 16L18 15L11 16L15 14Z" fill="#5a8a3a" stroke="#33582a" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M39 8L46 12L53 8L49 14L53 16L46 15L39 16L43 14Z" fill="#5a8a3a" stroke="#33582a" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M9 18C9 14 11 12 13 11M37 18C37 14 39 12 41 11" stroke="#fff" stroke-opacity="0.5" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

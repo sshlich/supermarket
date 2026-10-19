@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- chalky lithium tablet with a score line -->
+  <defs><radialGradient id="t_antirad" cx="0.38" cy="0.32" r="0.8"><stop offset="0" stop-color="#f1efe6"/><stop offset="1" stop-color="#cfcdbf"/></radialGradient></defs>
+  <ellipse cx="16" cy="18" rx="12" ry="11" fill="#000" opacity="0.15"/>
+  <circle cx="16" cy="16" r="12" fill="url(#t_antirad)" stroke="#7d7b6e" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M6 16L26 16" stroke="#6b6a5e" stroke-opacity="0.5" stroke-width="1"/>
+  <path d="M8 11C10 7.5 14 6.2 18 6.6" fill="none" stroke="#fff" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

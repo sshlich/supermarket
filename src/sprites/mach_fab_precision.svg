@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 96">
+  <defs><linearGradient id="gr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6a6670"/><stop offset="1" stop-color="#46434b"/></linearGradient></defs>
+  <!-- a precision fabricator: a closed grey cabinet with a window onto a granite bed and a probe arm, a disc slot and a panel with lights below, short feet -->
+  <rect x="4" y="4" width="120" height="82" rx="6" fill="#5b6672" stroke="#2e353d" stroke-width="1.2"/>
+  <path d="M10 7H118" stroke="#9aa5af" stroke-width="1.2" opacity="0.6"/>
+  <rect x="12" y="12" width="104" height="44" rx="3" fill="#232a30" stroke="#2e353d" stroke-width="1"/>
+  <rect x="16" y="42" width="96" height="10" fill="url(#gr)" stroke="#2e2c33" stroke-width="0.8"/>
+  <g fill="#8d8995"><circle cx="30" cy="46" r="1"/><circle cx="52" cy="48" r="1"/><circle cx="76" cy="45" r="1"/><circle cx="98" cy="48" r="1"/></g>
+  <rect x="52" y="33" width="24" height="9" rx="1.5" fill="#c5ccd2" stroke="#6f7880" stroke-width="0.8"/>
+  <path d="M16 18H112" stroke="#b8693a" stroke-width="3.5"/>
+  <rect x="58" y="14" width="14" height="8" rx="1" fill="#b8693a" stroke="#6e3a1c" stroke-width="0.8"/>
+  <path d="M65 22V34" stroke="#c5ccd2" stroke-width="3"/><path d="M65 34V38" stroke="#c9833c" stroke-width="1.5"/>
+  <rect x="12" y="12" width="104" height="44" rx="3" fill="#bfe3dc" opacity="0.12"/>
+  <path d="M18 16L50 16L40 24" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.25" stroke-linecap="round"/>
+  <rect x="12" y="62" width="40" height="18" rx="2" fill="#3e4650" stroke="#2e353d" stroke-width="1"/>
+  <rect x="18" y="68" width="28" height="3" rx="1" fill="#1e2429"/><rect x="18" y="74" width="28" height="2" rx="1" fill="#8c97a3"/>
+  <rect x="60" y="62" width="56" height="18" rx="2" fill="#8c97a3" stroke="#2e353d" stroke-width="1"/>
+  <rect x="64" y="66" width="20" height="10" rx="1" fill="#1e2429"/><rect x="66" y="69" width="10" height="1.6" fill="#6fd08c"/><rect x="66" y="72" width="14" height="1.6" fill="#6fd08c"/>
+  <circle cx="94" cy="71" r="3" fill="#d6a23c"/><circle cx="104" cy="71" r="3" fill="#6fd08c"/>
+  <rect x="10" y="86" width="14" height="6" rx="1" fill="#3e4650" stroke="#2e353d" stroke-width="0.8"/><rect x="104" y="86" width="14" height="6" rx="1" fill="#3e4650" stroke="#2e353d" stroke-width="0.8"/>
+</svg>

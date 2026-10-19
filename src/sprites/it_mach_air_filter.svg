@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <!-- a flat carbon-packed air cartridge with a fibre pre-screen -->
+  <rect x="2" y="4" width="60" height="24" rx="3" fill="#8a98a6" stroke="#3c4650" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="7" y="8" width="50" height="16" rx="1.5" fill="#34363a" stroke="#3c4650" stroke-width="0.8"/>
+  <path d="M12 8L12 24M17 8L17 24M22 8L22 24M27 8L27 24M32 8L32 24M37 8L37 24M42 8L42 24M47 8L47 24M52 8L52 24" stroke="#c8c0a8" stroke-width="0.8" opacity="0.75"/>
+  <rect x="2" y="4" width="4" height="24" rx="2" fill="#8a98a6" stroke="#3c4650" stroke-width="0.8"/>
+  <path d="M8 6L56 6" stroke="#fff" stroke-opacity="0.3" stroke-width="1" stroke-linecap="round"/>
+</svg>

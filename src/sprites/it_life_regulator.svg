@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a gas regulator: brass body with a copper pipe, a dial and a handwheel -->
+  <rect x="13" y="26" width="6" height="36" rx="2" fill="#c8742e" stroke="#7a4216" stroke-width="1"/>
+  <rect x="4" y="17" width="24" height="16" rx="3" fill="#b08a3a" stroke="#5a4515" stroke-width="1" stroke-linejoin="round"/>
+  <circle cx="16" cy="9" r="7" fill="#d8d2c0" stroke="#5a5d60" stroke-width="1"/>
+  <path d="M16 9L19.5 5.5" stroke="#b83c32" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="16" cy="9" r="1" fill="#33383d"/>
+  <rect x="1.5" y="21" width="5" height="8" rx="1" fill="#7d848c" stroke="#33383d" stroke-width="0.8"/>
+  <rect x="25.5" y="21" width="5" height="8" rx="1" fill="#7d848c" stroke="#33383d" stroke-width="0.8"/>
+  <path d="M8 20L24 20" stroke="#e8d08a" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
+  <path d="M15 34L15 58" stroke="#e8a060" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
+</svg>

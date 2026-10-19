@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 32">
+  <!-- an I-beam lying along its length, seen from above: top flange, web shadow line, deck-grey paint -->
+  <rect x="2" y="3" width="124" height="26" rx="1" fill="#7f8a93" stroke="#3f464d" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="2" y="3" width="124" height="7" fill="#9aa5ae"/>
+  <rect x="2" y="22" width="124" height="7" fill="#66707a"/>
+  <rect x="2" y="12" width="124" height="8" fill="#5a636c"/>
+  <path d="M4 5.5H124" stroke="#d3dbe1" stroke-width="1" opacity="0.7"/>
+  <g stroke="#3f464d" stroke-width="0.6" opacity="0.7"><path d="M2 10H126M2 22H126"/></g>
+  <rect x="14" y="13.5" width="14" height="5" fill="#d9b24a" opacity="0.8"/>
+  <path d="M2 3L126 3L126 29L2 29Z" fill="none" stroke="#3f464d" stroke-width="1" stroke-linejoin="round"/>
+</svg>

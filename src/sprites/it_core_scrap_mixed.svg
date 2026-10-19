@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a lot of junk bagged together: a lumpy tied bag of bent iron, plastic housing corners and wire ends poking out -->
+  <path d="M22 6L42 6L44 14C56 18 61 32 61 44C61 56 53 61 41 61H23C11 61 3 56 3 44C3 32 8 18 20 14Z" fill="#7d8691" fill-opacity="0.9" stroke="#3a424b" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M20 14H44" stroke="#3a424b" stroke-width="1.2"/>
+  <rect x="26" y="11" width="12" height="4" rx="1.5" fill="#6b5a3e" stroke="#3c3220" stroke-width="0.8"/>
+  <path d="M12 28C10 36 10 46 13 54" stroke="#aab3bd" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <path d="M18 36L30 32L34 42L22 46Z" fill="#a4542f" stroke="#5e2c16" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M36 38L50 36L50 50L38 52Z" fill="#4f6a86" stroke="#27384b" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M24 52C30 48 36 56 44 52" stroke="#b9703a" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M46 22C54 18 58 14 60 8" stroke="#b9703a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+</svg>

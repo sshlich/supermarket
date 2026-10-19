@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- sachet of sugar and salt, crimped top and bottom -->
+  <path d="M5 3L27 3L27 6L26 7L26 25L27 26L27 29L5 29L5 26L6 25L6 7L5 6Z" fill="#e9e4d4" stroke="#8f8672" stroke-width="1" stroke-linejoin="round"/>
+  <g stroke="#b8b09a" stroke-width="0.6"><path d="M6 4.5L26 4.5M6 6L26 6M6 26L26 26M6 27.5L26 27.5"/></g>
+  <rect x="9" y="11" width="14" height="10" fill="#7fb6c4" stroke="#3f7686" stroke-width="0.6"/>
+  <path d="M12 16L20 16M16 13.5L16 18.5" stroke="#e9f2f4" stroke-width="1.6"/>
+  <path d="M7.5 8L7.5 24" stroke="#fff" stroke-opacity="0.6" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

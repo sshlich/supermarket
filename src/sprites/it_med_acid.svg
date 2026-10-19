@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+<!-- etched glass flask of purple-red reagent, wax-sealed stopper -->
+  <path d="M12 14L12 6L20 6L20 14L28 56C28.5 59 27 62 24 62L8 62C5 62 3.5 59 4 56Z" fill="#bfdad8" fill-opacity="0.75" stroke="#4f7773" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M8.4 40L23.6 40L27.2 56C27.6 59 26.4 60.6 24 60.6L8 60.6C5.6 60.6 4.4 59 4.8 56Z" fill="#9a2f5e" fill-opacity="0.9" stroke="#5a1736" stroke-width="0.6" stroke-linejoin="round"/>
+  <rect x="10.5" y="1.5" width="11" height="8" rx="1.5" fill="#b83b30" stroke="#6b1d17" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="8.5" y="40" width="15" height="12" fill="#e8e3d6" stroke="#8f8672" stroke-width="0.6"/><rect x="11" y="43" width="10" height="2" fill="#9a2f5e"/><rect x="11" y="47" width="6" height="1.5" fill="#9a2f5e" opacity="0.6"/>
+  <path d="M8 27L8 57" stroke="#fff" stroke-opacity="0.6" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M13.5 9L13.5 14" stroke="#fff" stroke-opacity="0.6" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

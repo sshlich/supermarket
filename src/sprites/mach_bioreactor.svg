@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <!-- a tall glass-lined culture tank on a steel skid: green culture with bubbles, sparger pipes, a sample port, a control panel, a feed hopper -->
+  <rect x="10" y="148" width="140" height="9" rx="2" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="26" y="22" width="108" height="124" rx="16" fill="#9fc9c4" stroke="#4f7f7a" stroke-width="1.4" stroke-linejoin="round"/>
+  <rect x="6" y="10" width="8" height="138" rx="2" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="146" y="10" width="8" height="138" rx="2" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="6" y="10" width="148" height="8" rx="2" fill="#5b6572" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M28 70H132V132Q132 144 120 144H40Q28 144 28 132Z" fill="#5f9a62" stroke="#3d6a40" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M42 36V120" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <circle cx="60" cy="100" r="3" fill="#cfe9d0" stroke="#3d6a40" stroke-width="0.7"/>
+  <circle cx="72" cy="118" r="2.4" fill="#cfe9d0" stroke="#3d6a40" stroke-width="0.7"/>
+  <circle cx="88" cy="92" r="3.4" fill="#cfe9d0" stroke="#3d6a40" stroke-width="0.7"/>
+  <circle cx="100" cy="112" r="2.4" fill="#cfe9d0" stroke="#3d6a40" stroke-width="0.7"/>
+  <circle cx="78" cy="80" r="2" fill="#cfe9d0" stroke="#3d6a40" stroke-width="0.7"/>
+  <circle cx="52" cy="124" r="2" fill="#cfe9d0" stroke="#3d6a40" stroke-width="0.7"/>
+  <rect x="42" y="18" width="76" height="10" rx="4" fill="#5b6572" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="70" y="10" width="20" height="8" rx="2" fill="#c4cbd2" stroke="#7d858d" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M14 40H28M14 40V120M14 120H28" fill="none" stroke="#8d97a3" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M146 40H132M146 40V110M146 110H132" fill="none" stroke="#8d97a3" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="138" cy="76" r="5" fill="#b0703c" stroke="#6a3f1c" stroke-width="1"/>
+  <rect x="134" y="60" width="10" height="12" rx="1" fill="#c4cbd2" stroke="#7d858d" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="16" y="106" width="28" height="30" rx="2" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="20" y="110" width="20" height="10" rx="1" fill="#1d2226" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <circle cx="24" cy="128" r="2" fill="#8fd46a" stroke="#2e343c" stroke-width="0.7"/>
+  <circle cx="32" cy="128" r="2" fill="#e0a040" stroke="#2e343c" stroke-width="0.7"/>
+  <rect x="46" y="132" width="80" height="14" rx="2" fill="#5b6572" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M38 136H120" fill="none" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+</svg>

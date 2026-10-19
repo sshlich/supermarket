@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- Yellow seeds pressed between two cards -->
+<rect x="5" y="4" width="20" height="24" rx="1" fill="#c8c0a8" stroke="#7a735c" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="8" y="7" width="20" height="22" rx="1" fill="#e6dcc0" stroke="#8a8060" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<g fill="#e0b838"><ellipse cx="14" cy="14" rx="2" ry="1.4"/><ellipse cx="21" cy="13" rx="2" ry="1.4"/><ellipse cx="17" cy="19" rx="2" ry="1.4"/><ellipse cx="23" cy="21" rx="2" ry="1.4"/><ellipse cx="13" cy="24" rx="2" ry="1.4"/></g>
+<path d="M10 9L10 27" stroke="#fff" stroke-opacity="0.5" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

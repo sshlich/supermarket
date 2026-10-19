@@ -21,7 +21,7 @@ for (const [p, svg] of Object.entries(styleFiles)) {
 const ORDER = ['simple', 'flat'] // most detailed first
 const STYLES = ['drawn', ...Object.keys(VERSIONS).sort((a, b) => ((ORDER.indexOf(a) + 1) || 99) - ((ORDER.indexOf(b) + 1) || 99) || a.localeCompare(b))]
 /** A kind's sprite in a style, falling back to the drawn one. */
-const spriteOf = (kind: string, style: string) => VERSIONS[style]?.[kind] ?? SPRITE[kind]
+const spriteOf = (kind: string, style: string) => VERSIONS[style]?.[kind] ?? SPRITE[KINDS[kind]?.sprite ?? kind]
 const hasVersions = (kind: string) => STYLES.some(st => st !== 'drawn' && VERSIONS[st][kind])
 
 if (import.meta.hot) {
@@ -72,7 +72,7 @@ function compare(id: string) {
   const it: Item = { id: 0, kind: id, x: 1, y: 1, rot: v.rot }
   const d = dims(it)
   const one = (st: string) => VERSIONS[st]?.[id] || st === 'drawn'
-    ? `<figure class="card" style="--gw:${d.w + 2}"><div class="grid" style="--w:${d.w + 2};--h:${d.h + 2}">${itemHtml(it, st === 'drawn' ? SPRITE[id] : VERSIONS[st][id])}</div><figcaption><b>${esc(st)}</b>${(st === 'drawn' ? SPRITE[id] : VERSIONS[st][id]) ? `<small class="fit" data-fit="${id}" data-style="${st}">measuring…</small>` : '<small class="fit off">no sprite yet</small>'}</figcaption></figure>`
+    ? `<figure class="card" style="--gw:${d.w + 2}"><div class="grid" style="--w:${d.w + 2};--h:${d.h + 2}">${itemHtml(it, st === 'drawn' ? SPRITE[KINDS[id]?.sprite ?? id] : VERSIONS[st][id])}</div><figcaption><b>${esc(st)}</b>${(st === 'drawn' ? SPRITE[KINDS[id]?.sprite ?? id] : VERSIONS[st][id]) ? `<small class="fit" data-fit="${id}" data-style="${st}">measuring…</small>` : '<small class="fit off">no sprite yet</small>'}</figcaption></figure>`
     : `<figure class="card none" style="--gw:${d.w + 2}"><div class="grid" style="--w:${d.w + 2};--h:${d.h + 2}"></div><figcaption><b>${esc(st)}</b><small>not drawn in this style</small></figcaption></figure>`
   return `<section class="versions"><h2><i style="background:${k.color}"></i>${esc(k.name)} <small>${id} · ${k.w}×${k.h}</small></h2><div class="cards">${STYLES.map(one).join('')}</div></section>`
 }
@@ -139,7 +139,7 @@ function measure(id: string, svg: string): Promise<Fit | null> {
 function fits() {
   for (const el of app.querySelectorAll<HTMLElement>('[data-fit]')) {
     const id = el.dataset.fit!, st = el.dataset.style ?? 'drawn', key = `${st}:${id}`
-    const svg = st === 'drawn' ? SPRITE[id] : VERSIONS[st]?.[id]
+    const svg = st === 'drawn' ? SPRITE[KINDS[id]?.sprite ?? id] : VERSIONS[st]?.[id]
     if (!svg) continue
     if (!measured.has(key)) measured.set(key, measure(id, svg))
     measured.get(key)!.then(f => {

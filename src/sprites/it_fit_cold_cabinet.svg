@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- a chilled cabinet from the front: light steel body, a glass door showing shelves of food, a vent grille at the base -->
+  <rect x="3" y="3" width="90" height="90" rx="2" fill="#aeb6bd" stroke="#5a6168" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="9" y="9" width="78" height="70" fill="#cfe8ea" stroke="#5a6168" stroke-width="1"/>
+  <g fill="#8f98a1"><rect x="9" y="30" width="78" height="2.5"/><rect x="9" y="54" width="78" height="2.5"/></g>
+  <rect x="14" y="19" width="22" height="11" rx="1" fill="#e6c36a" stroke="#8a6a2a" stroke-width="0.8"/>
+  <rect x="42" y="21" width="30" height="9" rx="4" fill="#b8693a" stroke="#6a3a1a" stroke-width="0.8"/>
+  <rect x="14" y="43" width="14" height="11" rx="1" fill="#e8dcb0" stroke="#8a7c55" stroke-width="0.8"/>
+  <rect x="34" y="40" width="10" height="14" rx="3" fill="#7fae6a" stroke="#4a6a3a" stroke-width="0.8"/>
+  <rect x="50" y="40" width="10" height="14" rx="3" fill="#8fbc72" stroke="#4a6a3a" stroke-width="0.8"/>
+  <rect x="14" y="62" width="30" height="17" rx="2" fill="#d9a05a" stroke="#8a5a2a" stroke-width="0.8"/>
+  <path d="M12 12L28 12L12 28Z" fill="#ffffff" opacity="0.4"/>
+  <rect x="81" y="30" width="3" height="30" rx="1" fill="#5a6168"/>
+  <g stroke="#5a6168" stroke-width="1.4"><path d="M12 84H84M12 88H84"/></g>
+</svg>

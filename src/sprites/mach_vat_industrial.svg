@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs><linearGradient id="st" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7a8591"/><stop offset="0.5" stop-color="#5b6672"/><stop offset="1" stop-color="#3f4852"/></linearGradient></defs>
+  <!-- an industrial vat: a big riveted round cauldron on legs, a lid hatch, a screw press column with a wheel on top at the right, a spout and a disc tray -->
+  <rect x="96" y="6" width="22" height="86" rx="2" fill="#3e4650" stroke="#2e353d" stroke-width="1"/>
+  <path d="M100 10V88" stroke="#8c97a3" stroke-width="1.2" opacity="0.5"/>
+  <circle cx="107" cy="6" r="8" fill="none" stroke="#c9833c" stroke-width="3"/><path d="M99 6H115M107 -2V14" stroke="#c9833c" stroke-width="2"/>
+  <path d="M8 6H78L62 36H24Z" fill="#4a535e" stroke="#2e353d" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M12 9H74" stroke="#9aa5af" stroke-width="1.2" opacity="0.6"/>
+  <ellipse cx="43" cy="12" rx="28" ry="3" fill="#8a7a50"/>
+  <path d="M96 40H66V50H96Z" fill="#5b6672" stroke="#2e353d" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M6 44Q6 36 16 36H88Q98 36 98 44V82Q98 98 82 98H22Q6 98 6 82Z" fill="url(#st)" stroke="#2e353d" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="2" y="34" width="100" height="9" rx="4" fill="#4a535e" stroke="#2e353d" stroke-width="1"/>
+  <path d="M8 38H98" stroke="#9aa5af" stroke-width="1" opacity="0.6"/>
+  <path d="M8 56H96M8 80H96" stroke="#2e353d" stroke-width="3.5" opacity="0.7"/>
+  <g fill="#aab4be"><circle cx="16" cy="56" r="1.4"/><circle cx="30" cy="56" r="1.4"/><circle cx="44" cy="56" r="1.4"/><circle cx="58" cy="56" r="1.4"/><circle cx="72" cy="56" r="1.4"/><circle cx="86" cy="56" r="1.4"/><circle cx="16" cy="80" r="1.4"/><circle cx="30" cy="80" r="1.4"/><circle cx="44" cy="80" r="1.4"/><circle cx="58" cy="80" r="1.4"/><circle cx="72" cy="80" r="1.4"/><circle cx="86" cy="80" r="1.4"/></g>
+  <rect x="34" y="62" width="30" height="14" rx="3" fill="#2a3036" stroke="#2e353d" stroke-width="1"/>
+  <circle cx="42" cy="69" r="2.6" fill="#6fd08c"/><rect x="48" y="67" width="12" height="4" rx="1" fill="#5f7f99"/>
+  <path d="M10 44H94" stroke="#a5b0ba" stroke-width="1.2" opacity="0.4"/>
+  <path d="M10 98L16 124H26L24 98ZM82 98L84 124H94L100 98Z" fill="#3e4650" stroke="#2e353d" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="100" y="96" width="24" height="8" rx="1.5" fill="#5f7f99" stroke="#2e3f4f" stroke-width="1"/>
+  <rect x="34" y="108" width="40" height="12" rx="2" fill="#3e4650" stroke="#2e353d" stroke-width="1"/>
+  <ellipse cx="54" cy="114" rx="14" ry="2.8" fill="#1e2429"/>
+  <path d="M28 98H34V104H28Z" fill="#8c97a3" stroke="#2e353d" stroke-width="0.8"/>
+</svg>

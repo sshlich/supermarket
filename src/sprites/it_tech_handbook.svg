@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a stapled handbook lying flat: cream cover, a dark title band, a drawing of a part, a staple line on the left -->
+  <rect x="4" y="3" width="24" height="58" rx="1.5" fill="#e6dcc0" stroke="#9a8f70" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="4" y="3" width="3" height="58" fill="#cfc4a4"/>
+  <g fill="#6b6860"><rect x="3" y="14" width="5" height="1.4"/><rect x="3" y="48" width="5" height="1.4"/></g>
+  <rect x="11" y="8" width="14" height="7" fill="#3a3d44"/>
+  <rect x="11" y="18" width="14" height="1.4" fill="#8a826c"/>
+  <rect x="11" y="22" width="9" height="1.4" fill="#8a826c"/>
+  <g fill="none" stroke="#4e5864" stroke-width="1.2" stroke-linejoin="round"><rect x="12" y="30" width="12" height="10"/><path d="M12 30L16 27H28L24 30M24 30V40L28 37V27"/><circle cx="18" cy="35" r="2.5"/></g>
+  <path d="M11 47H25" stroke="#b5432f" stroke-width="3"/>
+  <rect x="11" y="52" width="10" height="1.4" fill="#8a826c"/>
+</svg>

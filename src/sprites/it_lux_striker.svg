@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a flint striker standing up: an iron bar with a grip wrap, rare-earth rod tip and a steel scraper on a cord loop -->
+  <circle cx="16" cy="7" r="4" fill="none" stroke="#5a5e66" stroke-width="1.6"/>
+  <rect x="11" y="11" width="10" height="26" rx="2" fill="#5c6a78" stroke="#2c3640" stroke-width="1" stroke-linejoin="round"/>
+  <g stroke="#2c3640" stroke-width="1" opacity="0.7"><path d="M11 16L21 18M11 21L21 23M11 26L21 28M11 31L21 33"/></g>
+  <rect x="13" y="37" width="6" height="18" rx="1" fill="#8c8e94" stroke="#4a4e54" stroke-width="1"/>
+  <path d="M13 55L19 55L18 60L14 60Z" fill="#a08ca8" stroke="#4e3e58" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M13 40L13 53" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1" stroke-linecap="round"/>
+  <path d="M13 14L13 34" stroke="#9aaab8" stroke-opacity="0.6" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M24 58L28 54M25 61L30 60M23 55L25 51" stroke="#f0c050" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

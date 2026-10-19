@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a multitool lying flat, jaws out at the top: a steel body with polymer inset, fold-out blade and driver beside it, a lanyard hole -->
+  <path d="M8 4L13 4L13 14L19 14L19 4L24 4L24 18L22 22L22 58C22 60 21 61 19 61L13 61C11 61 10 60 10 58L10 22L8 18Z" fill="#9aa3ab" stroke="#4a5058" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="12" y="26" width="8" height="28" rx="2" fill="#c4682c" stroke="#5a2c10" stroke-width="0.8"/>
+  <path d="M4 20L7 20L7 54L4.5 54Z" fill="#cfd6db" stroke="#4a5058" stroke-width="0.7" stroke-linejoin="round"/>
+  <path d="M25 24L28 24L28 50L25.5 50Z" fill="#b3bbc2" stroke="#4a5058" stroke-width="0.7" stroke-linejoin="round"/>
+  <circle cx="16" cy="57" r="1.6" fill="#1d1e22"/>
+  <path d="M14.5 29V50" stroke="#e8a070" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+</svg>

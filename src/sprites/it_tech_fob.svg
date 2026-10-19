@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a key fob lying flat: a rounded polymer tag with a ring hole, a metal core stripe and a button -->
+  <path fill-rule="evenodd" d="M7 4H25C27 4 28 5 28 7V25C28 27 27 28 25 28H7C5 28 4 27 4 25V7C4 5 5 4 7 4ZM10 7.5a2.5 2.5 0 1 0 5 0a2.5 2.5 0 1 0 -5 0Z" fill="#c8742e" stroke="#7a4216" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="9" y="14" width="14" height="9" rx="1.5" fill="#c8ccd2" stroke="#6b727a" stroke-width="0.7"/>
+  <circle cx="21" cy="9" r="2" fill="#7a4216"/>
+  <path d="M6 12V24" stroke="#e8a060" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+</svg>

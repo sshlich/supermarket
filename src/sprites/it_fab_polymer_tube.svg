@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a grey flexible tube lying flat in a gentle S: round section, a lit highlight, dark open ends -->
+  <path d="M10 6C10 20 22 22 22 34C22 46 10 46 10 58" fill="none" stroke="#555b63" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M10 6C10 20 22 22 22 34C22 46 10 46 10 58" fill="none" stroke="#9aa0a8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M8 8C8 20 20 22 20 34C20 44 8 46 8 56" fill="none" stroke="#d3d7db" stroke-width="1.6" stroke-linecap="round" opacity="0.8"/>
+  <ellipse cx="10" cy="6" rx="4" ry="2" fill="#2b2e33"/>
+  <ellipse cx="10" cy="58" rx="4" ry="2" fill="#2b2e33"/>
+</svg>

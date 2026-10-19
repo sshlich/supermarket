@@ -97,7 +97,7 @@ const odds = (price: number, value: number) => { const c = chance(price, value);
 function yours(os: Os) {
   const s = os.state(), groups = new Map<string, Item[]>()
   for (const it of s.items) {
-    if (it.listed || isBox(it) || it.kind === 'slip' || !forSale(s, it) || contents(s, it.id).length || worth(s, it) <= 0) continue
+    if (it.listed || isBox(it) || it.kind === 'it_tech_slip' || !forSale(s, it) || contents(s, it.id).length || worth(s, it) <= 0) continue
     const name = look(it).name
     groups.set(name, [...groups.get(name) ?? [], it])
   }

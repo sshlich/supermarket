@@ -63,7 +63,7 @@ export function arrive(id: number, rand: () => number = Math.random, weights?: R
  * part full of something, a blister with some pills already gone. What people bring is never quite new.
  */
 export function bring(rand: () => number = Math.random, lean: (kind: string) => number = () => 1): Goods {
-  const pool = Object.entries(KINDS).filter(([, k]) => k.price && !k.stack) // a sandwich is made, not brought
+  const pool = Object.entries(KINDS).filter(([kind, k]) => k.price && !k.stack && k.cat !== 'machines' && !k.tags?.some(t => t === 'fixture' || t === 'contraband') && !kind.startsWith('disc_')) // a sandwich is made, not brought; nobody carries in a machine, a fitting or a blueprint
   const wt = ([n, k]: [string, (typeof pool)[number][1]]) => lean(n) / k.price!
   let r = rand() * pool.reduce((n, e) => n + wt(e), 0)
   const [kind, k] = pool.find(e => (r -= wt(e)) <= 0) ?? pool[0]

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a wall clock from the front: iron rim, pale face behind a glass pane, tick marks, a single hand -->
+  <circle cx="32" cy="32" r="29" fill="#5c6670" stroke="#2e353c" stroke-width="1.2"/>
+  <circle cx="32" cy="32" r="24" fill="#e8e3d2" stroke="#8a8676" stroke-width="1"/>
+  <g stroke="#3a3d44" stroke-width="2" stroke-linecap="round"><path d="M32 11V15"/><path d="M32 49V53"/><path d="M11 32H15"/><path d="M49 32H53"/></g>
+  <g stroke="#6b6860" stroke-width="1" stroke-linecap="round"><path d="M42.5 13.8L40.8 16.7"/><path d="M50.2 21.5L47.3 23.2"/><path d="M50.2 42.5L47.3 40.8"/><path d="M42.5 50.2L40.8 47.3"/><path d="M21.5 50.2L23.2 47.3"/><path d="M13.8 42.5L16.7 40.8"/><path d="M13.8 21.5L16.7 23.2"/><path d="M21.5 13.8L23.2 16.7"/></g>
+  <path d="M32 32L43 22" stroke="#26282e" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="32" cy="32" r="2.6" fill="#b5432f"/>
+  <path d="M16 20C20 13 27 10 34 10" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+</svg>

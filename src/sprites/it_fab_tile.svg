@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a fired grey ceramic tile lying flat: glazed face with a lit rim, a raw darker edge, a few glaze specks -->
+  <path d="M3 3L61 3L61 61L3 61Z" fill="#8f979d" stroke="#4d555b" stroke-width="1.1" stroke-linejoin="round"/>
+  <rect x="7" y="7" width="50" height="50" rx="1.5" fill="#a9b1b6" stroke="#6d757b" stroke-width="0.8"/>
+  <path d="M9 9H52M9 9V52" stroke="#e2e6e8" stroke-width="1.6" stroke-linecap="round" opacity="0.8" fill="none"/>
+  <g fill="#7d868c" opacity="0.8"><circle cx="40" cy="22" r="1.1"/><circle cx="24" cy="44" r="1"/><circle cx="48" cy="46" r="0.9"/><circle cx="18" cy="26" r="0.8"/></g>
+  <path d="M20 40L38 20" stroke="#e2e6e8" stroke-width="3" stroke-linecap="round" opacity="0.3"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a squeeze tube of grey sealant putty lying flat, nozzle at the left -->
+  <path d="M2 14L8 12L8 20L2 18Z" fill="#c8742e" stroke="#7a4216" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M8 10L25 8L25 24L8 22Z" fill="#8e949a" stroke="#464b50" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M25 7L29 9L29 23L25 25Z" fill="#6c7278" stroke="#464b50" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="12" y="13" width="9" height="6" fill="#c8742e" opacity="0.85"/>
+  <path d="M11 11.5L22 10" stroke="#d8dce0" stroke-width="1.3" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- Bowl of pale noodles in stock -->
+<path d="M4 28L60 28C60 46 48 58 32 58C16 58 4 46 4 28Z" fill="#8c96a0" stroke="#4c565e" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="32" cy="28" rx="28" ry="9" fill="#a8b2bc" stroke="#4c565e" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="32" cy="28" rx="24" ry="7" fill="#d8b868" stroke="#4c565e" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M14 28C20 24 26 32 32 27C38 23 44 31 50 27M18 30C24 27 30 33 36 30M22 26C28 24 34 28 42 25" stroke="#f0dc9c" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/><path d="M26 16C24 12 28 10 26 6M36 16C34 12 38 10 36 6" stroke="#fff" stroke-opacity="0.5" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M10 36C13 44 18 50 24 53" stroke="#fff" stroke-opacity="0.45" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

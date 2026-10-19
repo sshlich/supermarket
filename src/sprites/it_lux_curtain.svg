@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 128">
+  <!-- a curtain hung from a polymer rail: pleated cloth, two panels tied back to the sides -->
+  <path d="M5 12L30 12L31 120L5 120Z" fill="#8a7c9a" stroke="#4a4058" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M59 12L34 12L33 120L59 120Z" fill="#8a7c9a" stroke="#4a4058" stroke-width="1" stroke-linejoin="round"/>
+  <g stroke="#5e5470" stroke-width="1.6" opacity="0.7" stroke-linecap="round"><path d="M11 14L10 116M17 14L16 100M23 14L23 92"/><path d="M53 14L54 116M47 14L48 100M41 14L41 92"/></g>
+  <g stroke="#b8aec6" stroke-width="1.2" opacity="0.6" stroke-linecap="round"><path d="M14 16L13 112M20 16L20 94"/><path d="M50 16L51 112M44 16L44 94"/></g>
+  <path d="M5 112L31 112M59 112L33 112" stroke="#4a4058" stroke-width="1"/><path d="M5 113L31 113M59 113L33 113" stroke="#b8aec6" stroke-width="0.6" opacity="0.6"/>
+  <rect x="2" y="5" width="60" height="7" rx="3.5" fill="#bcc0c6" stroke="#5c6068" stroke-width="1"/>
+  <path d="M7 7.5L56 7.5" stroke="#ffffff" stroke-opacity="0.6" stroke-width="1" stroke-linecap="round"/>
+  <g fill="#7a8088"><circle cx="9" cy="14" r="1.8"/><circle cx="32" cy="14" r="1.8"/><circle cx="55" cy="14" r="1.8"/></g>
+</svg>

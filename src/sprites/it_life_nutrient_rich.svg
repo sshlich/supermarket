@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a twist of film holding blue-tinged fruiting mix -->
+  <path d="M3 8L10 11C13 9 19 9 22 11L29 8L28 14L26 17L29 24L22 21C19 23 13 23 10 21L3 24L6 17L4 14Z" fill="#b2b9c4" stroke="#4f5a6a" stroke-width="1" stroke-linejoin="round"/>
+  <ellipse cx="16" cy="16" rx="7" ry="5" fill="#6f86b0"/>
+  <circle cx="14" cy="15" r="1.2" fill="#9a5fb0"/><circle cx="18" cy="17" r="1" fill="#9a5fb0"/><circle cx="17" cy="14" r="0.8" fill="#d8dff0"/>
+  <path d="M8 12L12 13.5" stroke="#eef2fa" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

@@ -52,14 +52,14 @@ export function deliver(s: State, now = Date.now()): { order: Order; items: Item
 
 /** Who writes, from where, what they tend to want, how well they pay (over worth), how long they give, and how they put it. */
 const SENDERS: { who: string; deck: string; wants: string[]; mult: [number, number]; due: [number, number]; most: number; lines: string[] }[] = [
-  { who: 'bunk tenant', deck: 'the Spine', wants: ['bread', 'apple', 'bandage', 'antiseptic', 'breadslice', 'bottle'], mult: [1.0, 1.15], due: [3, 5], most: 3, lines: ['Four of us share a bunk and a bread bag. Pay on delivery, not before.', 'Whatever you can spare. We count it by the cup up here.', 'Same as last time, if there was a last time.'] },
-  { who: 'clinic orderly', deck: 'the mid decks', wants: ['bandage', 'antiseptic', 'pill'], mult: [1.15, 1.3], due: [2, 4], most: 3, lines: ['For the clinic on spine 6. The ledger never balances, but it pays.', 'We are out again. Please hurry, people are waiting.'] },
-  { who: 'foundry fitter', deck: 'the Works', wants: ['knife', 'ingot', 'bandage', 'coal', 'bread'], mult: [1.1, 1.25], due: [3, 5], most: 2, lines: ['Hard on tools, harder on hands. Send it to the Works gate.', 'The mill eats everything. Send what you have.'] },
-  { who: 'smelter hand', deck: 'the Works', wants: ['ore', 'coal', 'wine'], mult: [1.05, 1.2], due: [3, 5], most: 2, lines: ['For after the shift. You know the sort.', 'Bars do not make themselves.'] },
-  { who: 'station technician', deck: 'the mid decks', wants: ['disc', 'knife', 'lighter', 'paper'], mult: [1.1, 1.3], due: [3, 6], most: 2, lines: ['For the workshop on mid 3. Discs any colour.', 'Something always breaks. Something else needs fixing.'] },
-  { who: 'company clerk', deck: 'the Hub', wants: ['paper', 'book', 'locket'], mult: [1.2, 1.4], due: [2, 4], most: 2, lines: ['In triplicate, please. Invoice the Hub.', 'For the office. Licensed, stamped, on time.'] },
-  { who: 'ring household', deck: 'the Ring', wants: ['cheesewedge', 'salami', 'wine', 'apple', 'cheesewheel'], mult: [1.4, 1.7], due: [2, 3], most: 1, lines: ['For a dinner. We pay well, and we pay for speed.', 'Real food, please. The children have never had a whole apple.'] },
-  { who: 'collector', deck: 'the Ring', wants: ['book', 'locket', 'zippo', 'lighter'], mult: [1.8, 2.2], due: [3, 6], most: 1, lines: ['Old things only. I pay double for a story.', 'I hear you have things nobody else has. Prove it.'] },
+  { who: 'bunk tenant', deck: 'the Spine', wants: ['it_food_bread', 'it_food_apple', 'it_med_bandage', 'it_med_antiseptic', 'it_food_bread_slice', 'it_fab_bottle'], mult: [1.0, 1.15], due: [3, 5], most: 3, lines: ['Four of us share a bunk and a bread bag. Pay on delivery, not before.', 'Whatever you can spare. We count it by the cup up here.', 'Same as last time, if there was a last time.'] },
+  { who: 'clinic orderly', deck: 'the mid decks', wants: ['it_med_bandage', 'it_med_antiseptic', 'it_med_painkiller'], mult: [1.15, 1.3], due: [2, 4], most: 3, lines: ['For the clinic on spine 6. The ledger never balances, but it pays.', 'We are out again. Please hurry, people are waiting.'] },
+  { who: 'foundry fitter', deck: 'the Works', wants: ['it_fab_knife', 'it_fab_bar_iron', 'it_med_bandage', 'it_tech_cell_s', 'it_food_bread'], mult: [1.1, 1.25], due: [3, 5], most: 2, lines: ['Hard on tools, harder on hands. Send it to the Works gate.', 'The mill eats everything. Send what you have.'] },
+  { who: 'smelter hand', deck: 'the Works', wants: ['it_core_ore_iron', 'it_tech_cell_s', 'it_lux_wine'], mult: [1.05, 1.2], due: [3, 5], most: 2, lines: ['For after the shift. You know the sort.', 'Bars do not make themselves.'] },
+  { who: 'station technician', deck: 'the mid decks', wants: ['disc', 'it_fab_knife', 'it_lux_lighter', 'it_lux_paper'], mult: [1.1, 1.3], due: [3, 6], most: 2, lines: ['For the workshop on mid 3. Discs any colour.', 'Something always breaks. Something else needs fixing.'] },
+  { who: 'company clerk', deck: 'the Hub', wants: ['it_lux_paper', 'it_lux_book', 'it_lux_locket'], mult: [1.2, 1.4], due: [2, 4], most: 2, lines: ['In triplicate, please. Invoice the Hub.', 'For the office. Licensed, stamped, on time.'] },
+  { who: 'ring household', deck: 'the Ring', wants: ['it_food_cheese_wedge', 'it_food_salami', 'it_lux_wine', 'it_food_apple', 'it_food_cheese_wheel'], mult: [1.4, 1.7], due: [2, 3], most: 1, lines: ['For a dinner. We pay well, and we pay for speed.', 'Real food, please. The children have never had a whole apple.'] },
+  { who: 'collector', deck: 'the Ring', wants: ['it_lux_book', 'it_lux_locket', 'it_lux_zippo', 'it_lux_lighter'], mult: [1.8, 2.2], due: [3, 6], most: 1, lines: ['Old things only. I pay double for a story.', 'I hear you have things nobody else has. Prove it.'] },
 ]
 const NAMES = ['Wren', 'Odell', 'Ines', 'Hollis', 'Bea', 'Corvin', 'Dot', 'Ansel', 'Yuki', 'Marek', 'Saoirse', 'Tam', 'Lio', 'Pell', 'Mara', 'Ruth']
 const SPAM: [string, string][] = [
@@ -114,7 +114,7 @@ const inside = (s: State, id: number): Item[] => contents(s, id).flatMap(o => [o
 /** What a box would bring if it shipped tonight: its order, how much of what is wanted is in it, what it pays on delivery less the fee. Null with no slip in it. */
 export function quote(s: State, box: Item) {
   const things = inside(s, box.id)
-  const slip = things.find(o => o.kind === 'slip' && o.print?.job !== undefined)
+  const slip = things.find(o => o.kind === 'it_tech_slip' && o.print?.job !== undefined)
   const m = slip && s.mail?.find(x => x.id === slip.print!.job)
   if (!m?.job) return null
   const wanted = m.job.wants.reduce((n, w) => n + w.n, 0)

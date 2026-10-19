@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <!-- a display case from the front: an iron frame and plinth, a lit glass front, a fibre cloth shelf with objects, a small lock -->
+  <rect x="3" y="3" width="90" height="58" rx="2" fill="#6d7780" stroke="#2c3035" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="7" y="7" width="82" height="42" fill="#d6ecee" stroke="#4f5a64" stroke-width="1"/>
+  <rect x="7" y="7" width="82" height="10" fill="#f6efc8" opacity="0.7"/>
+  <rect x="7" y="38" width="82" height="11" fill="#b9a276" stroke="#7a6742" stroke-width="0.8"/>
+  <circle cx="24" cy="32" r="6" fill="#d9a05a" stroke="#8a5a2a" stroke-width="0.8"/>
+  <rect x="40" y="26" width="14" height="12" rx="1" fill="#8aa0ae" stroke="#4a6070" stroke-width="0.8"/>
+  <path d="M64 38L70 24L76 38Z" fill="#c9786a" stroke="#7a3a2a" stroke-width="0.8" stroke-linejoin="round"/>
+  <path d="M10 10L30 10L10 28Z" fill="#ffffff" opacity="0.45"/>
+  <rect x="7" y="52" width="82" height="6" fill="#4f5a64"/>
+  <circle cx="48" cy="55" r="2" fill="#d9c27a" stroke="#5a4a1a" stroke-width="0.6"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <!-- a ribbed polymer drive belt lying flat as a flat loop -->
+  <rect x="2" y="4" width="60" height="24" rx="12" fill="#2e3034" stroke="#17181a" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="9" y="11" width="46" height="10" rx="5" fill="#d8d2c0" stroke="#17181a" stroke-width="1"/>
+  <path d="M12 6L12 10M17 5.5L17 9.5M22 5.5L22 9.5M27 5.5L27 9.5M32 5.5L32 9.5M37 5.5L37 9.5M42 5.5L42 9.5M47 5.5L47 9.5M52 6L52 10" stroke="#5a5d62" stroke-width="1.2"/>
+  <path d="M12 22L12 26M17 22.5L17 26.5M22 22.5L22 26.5M27 22.5L27 26.5M32 22.5L32 26.5M37 22.5L37 26.5M42 22.5L42 26.5M47 22.5L47 26.5M52 22L52 26" stroke="#5a5d62" stroke-width="1.2"/>
+  <path d="M10 7L40 5.5" stroke="#8a8d92" stroke-width="1.2" stroke-linecap="round" stroke-opacity="0.7"/>
+</svg>

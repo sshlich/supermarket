@@ -703,3 +703,29 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .fly .wing { transform-box: fill-box; transform-origin: 100% 85%; animation: flap .32s ease-in-out infinite alternate; }
 @keyframes fly { from { transform: translate(0, 0); } to { transform: translate(-1000px, 760px); } }
 @keyframes flap { from { transform: rotate(-28deg); } to { transform: rotate(18deg); } }
+
+/* the night, outside (outside.ts): the map and the site where the terminal was, you under the dock, home dimmed while you are out */
+.side[hidden] { display: none; }
+.outing { position: absolute; left: 100%; top: 0; margin-left: 18px; width: 300px; display: flex; flex-direction: column; align-items: stretch; gap: 8px; font: 11px/1.5 ui-monospace, 'SF Mono', Menlo, monospace; color: #c9b88f; }
+.night-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding-bottom: 4px; border-bottom: 1px solid #3a3440; }
+.night-head b { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: #d8c9a0; }
+.night-head small, .site-row small { color: #8a8494; }
+.night-desc { margin: 0; color: #9a92a4; }
+.site-row { display: flex; flex-direction: column; gap: 2px; padding: 8px; border-radius: 3px; background: #0d0b11; box-shadow: 0 0 0 1px #3a3440; }
+.site-row .tends { color: #a8a0b4; }
+.site-row .term-btn { align-self: flex-start; margin-top: 4px; }
+.site-row.shut { opacity: .7; }
+.term-btn:disabled { opacity: .5; cursor: default; border-color: #4a4452; color: #8a8494; }
+.night-acts { display: flex; gap: 8px; }
+.bin.site { align-self: flex-start; box-shadow: 0 0 0 2px #4a4060; }
+.bin.site .grid { --rim: #352e44; background-color: #15121c; }
+.you-btn { display: inline-flex; align-items: center; gap: 6px; border-color: #6a6050; }
+.bin.body { display: flex; flex-wrap: wrap; gap: 10px; box-shadow: 0 0 0 2px #6a6050; max-width: 260px; }
+.bin.body .grid { --rim: #4a4234; background-color: #1a1712; }
+.body-slot small { display: block; margin-bottom: 3px; color: #a89c80; font-size: 10px; }
+.bin.body .dock-note { flex-basis: 100%; margin-top: 0; color: #a89c80; }
+.stage.away .counters, .stage.away .field { opacity: .28; filter: grayscale(.7); pointer-events: none; transition: opacity .4s; }
+.night-sub { margin-top: 4px; color: #8a8494; letter-spacing: .1em; text-transform: uppercase; font-size: 10px; }
+.shop-row { box-shadow: 0 0 0 1px #3a4440; }
+.bin.site.shop { box-shadow: 0 0 0 2px #4a6050; }
+.bin.site.shop .grid { --rim: #2e4436; background-color: #121a16; }

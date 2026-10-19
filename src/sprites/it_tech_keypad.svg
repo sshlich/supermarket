@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <!-- a keypad from above: a grey plate, twelve keys in a 6x2 block, the middle ones pale and worn -->
+  <rect x="2" y="3" width="60" height="26" rx="4" fill="#8e96a0" stroke="#4e5864" stroke-width="1" stroke-linejoin="round"/>
+  <g fill="#cfd3d8" stroke="#5a6470" stroke-width="0.7">
+    <rect x="6" y="7" width="8" height="8" rx="1.5"/><rect x="16" y="7" width="8" height="8" rx="1.5"/><rect x="26" y="7" width="8" height="8" rx="1.5"/><rect x="36" y="7" width="8" height="8" rx="1.5"/><rect x="46" y="7" width="8" height="8" rx="1.5"/>
+    <rect x="6" y="17" width="8" height="8" rx="1.5"/><rect x="16" y="17" width="8" height="8" rx="1.5"/><rect x="26" y="17" width="8" height="8" rx="1.5"/><rect x="36" y="17" width="8" height="8" rx="1.5"/><rect x="46" y="17" width="8" height="8" rx="1.5"/>
+  </g>
+  <rect x="55" y="7" width="5" height="18" rx="1.5" fill="#b5432f" stroke="#7a2c1e" stroke-width="0.7"/>
+  <g stroke="#8a929a" stroke-width="1" stroke-linecap="round"><path d="M8 11H12M18 11H22M28 11H32M38 11H42M48 11H52M8 21H12M18 21H22M38 21H42M48 21H52"/></g>
+</svg>

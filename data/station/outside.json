@@ -81,6 +81,73 @@
         { "id": "it_core_scrap_light", "n": [1, 2], "w": 0.5 },
         { "id": "it_core_hull_offcuts", "n": [1, 1], "w": 0.4 }
       ]
+    },
+    {
+      "id": "site_hatch_row", "name": "Sealed hatch row", "deck": "deck_dock", "phase": "phase_2", "searches": 3,
+      "gate": { "tool": "it_fab_cutter", "wear": 1 },
+      "desc": "Storage hatches along the old dock, sealed when their tenants stopped paying. Cutters take the bolts.",
+      "loot": [
+        { "id": "it_core_dead_appliance", "n": [1, 1], "w": 0.5 },
+        { "id": "it_core_salvage_crate", "n": [1, 1], "w": 0.4 },
+        { "id": "it_core_hull_offcuts", "n": [1, 2], "w": 0.6 },
+        { "id": "it_core_cell_husk", "n": [1, 2], "w": 0.5 },
+        { "id": "it_core_ewaste", "n": [1, 1], "w": 0.5 },
+        { "id": "it_lux_photograph", "n": [1, 1], "w": 0.1 }
+      ]
+    },
+    {
+      "id": "site_flooded_sump", "name": "Flooded sump", "deck": "deck_spine", "phase": "phase_2", "searches": 4,
+      "gate": { "tool": "it_life_rebreather", "wear": 1 },
+      "desc": "Where the spine's drains meet, under a skin of foul air. Things sink here, and some are worth fishing out.",
+      "loot": [
+        { "id": "it_life_brine", "n": [1, 1], "w": 0.6 },
+        { "id": "it_core_reagent_dregs", "n": [1, 2], "w": 0.6 },
+        { "id": "it_core_salt_cake", "n": [1, 3], "w": 0.5 },
+        { "id": "it_life_canister", "n": [1, 1], "w": 0.4 },
+        { "id": "it_core_filter_husks", "n": [1, 2], "w": 0.4 },
+        { "id": "it_lux_locket", "n": [1, 1], "w": 0.12 },
+        { "id": "it_lux_signet", "n": [1, 1], "w": 0.06 }
+      ]
+    },
+    {
+      "id": "site_ring_service", "name": "Ring service corridor", "deck": "deck_ring", "phase": "phase_2", "searches": 3,
+      "gate": { "tool": "it_tech_fob", "wear": 1 },
+      "desc": "The corridor behind the ring's apartments where their bins go out. A fob opens the service door.",
+      "loot": [
+        { "id": "it_lux_cloth", "n": [1, 1], "w": 0.6 },
+        { "id": "it_lux_scarf", "n": [1, 1], "w": 0.4 },
+        { "id": "it_lux_soap", "n": [1, 2], "w": 0.5 },
+        { "id": "it_lux_cup", "n": [1, 1], "w": 0.5 },
+        { "id": "it_lux_cosmetic", "n": [1, 1], "w": 0.4 },
+        { "id": "it_lux_vase", "n": [1, 1], "w": 0.2 },
+        { "id": "it_lux_zippo", "n": [1, 1], "w": 0.08 },
+        { "id": "it_lux_watch", "n": [1, 1], "w": 0.02 }
+      ]
+    },
+    {
+      "id": "site_clinic_back", "name": "Clinic back room", "deck": "deck_mid", "phase": "phase_2", "searches": 4, "bonus": [{ "tool": "it_fab_loupe", "searches": 2, "wear": 1 }],
+      "desc": "The store behind the mid-deck clinic, where opened packs and short dates are swept. A loupe reads the dates.",
+      "loot": [
+        { "id": "it_med_gauze", "n": [1, 2], "w": 0.7 },
+        { "id": "it_med_bandage", "n": [1, 1], "w": 0.5 },
+        { "id": "it_med_painkiller", "n": [1, 2], "w": 0.5 },
+        { "id": "it_med_blister", "n": [1, 1], "w": 0.4 },
+        { "id": "it_fab_vial", "n": [1, 2], "w": 0.5 },
+        { "id": "it_med_ethanol", "n": [1, 1], "w": 0.3 },
+        { "id": "it_med_antiseptic", "n": [1, 1], "w": 0.2 }
+      ]
+    },
+    {
+      "id": "site_junked_terminals", "name": "Junked terminals", "deck": "deck_hub", "phase": "phase_2", "searches": 4, "bonus": [{ "tool": "it_tech_soldering_iron", "searches": 2, "wear": 1 }],
+      "desc": "A Hub office's dead machines, stacked in a stairwell for the recycler that never came. A soldering iron gets the good parts off.",
+      "loot": [
+        { "id": "it_core_ewaste", "n": [1, 1], "w": 0.6 },
+        { "id": "it_tech_cable", "n": [1, 2], "w": 0.6 },
+        { "id": "it_tech_switch", "n": [1, 1], "w": 0.4 },
+        { "id": "it_tech_relay", "n": [1, 1], "w": 0.3 },
+        { "id": "it_tech_chip", "n": [1, 1], "w": 0.2 },
+        { "id": "it_tech_memory_module", "n": [1, 1], "w": 0.06 }
+      ]
     }
   ],
   "shops": [
@@ -111,7 +178,31 @@
         { "id": "it_tech_torch", "per_day": 1, "mult": 1.1 },
         { "id": "it_fab_wrench", "per_day": 2, "mult": 1.1 },
         { "id": "it_life_mask_refill", "per_day": 6, "mult": 1.1 },
-        { "id": "it_tech_cell_s", "per_day": 4, "mult": 1.1 }
+        { "id": "it_tech_cell_s", "per_day": 4, "mult": 1.1 },
+        { "id": "it_fab_cutter", "per_day": 1, "mult": 1.2 },
+        { "id": "it_fab_loupe", "per_day": 1, "mult": 1.1 },
+        { "id": "it_tech_soldering_iron", "per_day": 1, "mult": 1.1 },
+        { "id": "it_life_rebreather", "per_day": 1, "mult": 1.2 }
+      ]
+    },
+    {
+      "id": "shop_ring_concierge", "name": "Ring concierge", "deck": "deck_ring", "phase": "phase_2",
+      "desc": "A desk in a ring lobby that sells what residents need and takes what they do not, for a fee nobody mentions.",
+      "buys": { "needs": ["need_luxury", "need_comfort"], "mult": 0.6 },
+      "sells": [
+        { "id": "it_tech_fob", "per_day": 1, "mult": 4.0 },
+        { "id": "it_lux_soap", "per_day": 3, "mult": 1.5 },
+        { "id": "it_lux_scent", "per_day": 1, "mult": 1.5 }
+      ]
+    },
+    {
+      "id": "shop_spine_swap", "name": "Spine swap stall", "deck": "deck_spine", "phase": "phase_1",
+      "desc": "A trestle at the foot of a ladder: rations, water and refills for the bunks, and it buys food and water back cheap.",
+      "buys": { "needs": ["need_food", "need_water"], "mult": 0.5 },
+      "sells": [
+        { "id": "it_food_ration_bar", "per_day": 6, "mult": 1.2 },
+        { "id": "it_life_water_bottle", "per_day": 4, "mult": 1.2 },
+        { "id": "it_life_mask_refill", "per_day": 4, "mult": 1.3 }
       ]
     }
   ],

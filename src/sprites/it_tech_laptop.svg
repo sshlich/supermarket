@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <!-- a folding terminal, open, seen from the front: a dark screen with green text lines above a beige keyboard deck with a cell slot -->
+  <rect x="12" y="3" width="72" height="36" rx="5" fill="#cfc7ae" stroke="#5a5444" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="17" y="7" width="62" height="28" rx="3" fill="#1b201e" stroke="#111311" stroke-width="1"/>
+  <g fill="#6fbf80"><rect x="21" y="11" width="26" height="2"/><rect x="21" y="16" width="38" height="2"/><rect x="21" y="21" width="18" height="2"/><rect x="21" y="26" width="30" height="2"/><rect x="53" y="26" width="4" height="2"/></g>
+  <path d="M20 9C30 8 40 8 50 8" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.15"/>
+  <path d="M4 61L10 40H86L92 61Z" fill="#bdb59e" stroke="#5a5444" stroke-width="1.2" stroke-linejoin="round"/>
+  <g stroke="#6b6452" stroke-width="3" stroke-linecap="round"><path d="M18 46H78"/><path d="M16 51H80"/></g>
+  <rect x="38" y="55" width="20" height="3.5" rx="1" fill="#6b6452"/>
+  <rect x="75" y="53" width="8" height="5" rx="1" fill="#3b3a30"/>
+</svg>

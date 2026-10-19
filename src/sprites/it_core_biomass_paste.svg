@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a grey brick of pressed biomass paste, lying flat: top face, lit edge, damp green-brown streaks -->
+  <rect x="3" y="7" width="26" height="20" rx="3" fill="#6f7468" stroke="#3f443b" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="3" y="7" width="26" height="14" rx="3" fill="#8b9084"/>
+  <path d="M7 12H24M7 16H20" stroke="#a5aa9b" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+  <path d="M9 23C14 25 20 25 25 23" stroke="#5a5f3c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <rect x="3" y="7" width="26" height="20" rx="3" fill="none" stroke="#3f443b" stroke-width="1" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a vent port: a bolted steel collar with a round hatch door on a rail, hazard stripe band, a wheel latch, a little fee panel -->
+  <rect x="4" y="4" width="56" height="56" rx="5" fill="#5b6672" stroke="#2e353d" stroke-width="1.2"/>
+  <path d="M7 7H57" stroke="#9aa5af" stroke-width="1" opacity="0.5"/>
+  <g fill="#aab4be"><circle cx="9" cy="9" r="1.6"/><circle cx="55" cy="9" r="1.6"/><circle cx="9" cy="55" r="1.6"/><circle cx="55" cy="55" r="1.6"/></g>
+  <circle cx="30" cy="30" r="20" fill="#3e4650" stroke="#2e353d" stroke-width="1.2"/>
+  <g fill="#aab4be"><circle cx="30" cy="12" r="1.5"/><circle cx="30" cy="48" r="1.5"/><circle cx="12" cy="30" r="1.5"/><circle cx="48" cy="30" r="1.5"/><circle cx="17" cy="17" r="1.5"/><circle cx="43" cy="17" r="1.5"/><circle cx="17" cy="43" r="1.5"/><circle cx="43" cy="43" r="1.5"/></g>
+  <circle cx="30" cy="30" r="14" fill="#c5ccd2" stroke="#6f7880" stroke-width="1"/>
+  <path d="M20 28Q26 20 36 20" fill="none" stroke="#fff" stroke-width="1.4" opacity="0.7" stroke-linecap="round"/>
+  <circle cx="30" cy="30" r="6" fill="none" stroke="#6f7880" stroke-width="2"/><path d="M30 24V36M24 30H36" stroke="#6f7880" stroke-width="2"/>
+  <rect x="4" y="52" width="40" height="5" fill="#d6a23c" stroke="#7a5a1a" stroke-width="0.6"/>
+  <path d="M10 52L14 57M18 52L22 57M26 52L30 57M34 52L38 57" stroke="#2a3036" stroke-width="2"/>
+  <rect x="50" y="22" width="8" height="16" rx="1.5" fill="#2a3036" stroke="#2e353d" stroke-width="0.8"/>
+  <circle cx="54" cy="27" r="1.8" fill="#b24a3a"/><rect x="51.5" y="32" width="5" height="2" fill="#6fd08c"/>
+</svg>

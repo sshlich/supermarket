@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a small black heap of carbon dust with a soot smear -->
+  <path d="M3 27C3 20 9 11 16 8C23 11 29 20 29 27C29 29 27 29 25 29H7C5 29 3 29 3 27Z" fill="#2c2e30" stroke="#121314" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M10 22C11 17 14 13 16 11" stroke="#585b5e" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  <g fill="#585b5e"><circle cx="21" cy="21" r="1"/><circle cx="17" cy="25" r="0.9"/><circle cx="24" cy="25" r="0.8"/><circle cx="9" cy="26" r="0.8"/></g>
+</svg>

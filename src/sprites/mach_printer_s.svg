@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a beige dot-matrix slip printer: a boxy case with a tractor feed strip, a slot in front with a slip coming out, a lit button and a panel -->
+  <rect x="5" y="10" width="54" height="30" rx="4" fill="#cfc7b0" stroke="#6b6452" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M10 13H52" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+  <rect x="9" y="5" width="46" height="8" rx="2" fill="#a39a83" stroke="#6b6452" stroke-width="0.8" stroke-linejoin="round"/>
+  <circle cx="13" cy="9" r="1.1" fill="#1d2226" stroke="#1d2226" stroke-width="0"/>
+  <circle cx="18" cy="9" r="1.1" fill="#1d2226" stroke="#1d2226" stroke-width="0"/>
+  <circle cx="23" cy="9" r="1.1" fill="#1d2226" stroke="#1d2226" stroke-width="0"/>
+  <circle cx="28" cy="9" r="1.1" fill="#1d2226" stroke="#1d2226" stroke-width="0"/>
+  <circle cx="33" cy="9" r="1.1" fill="#1d2226" stroke="#1d2226" stroke-width="0"/>
+  <circle cx="38" cy="9" r="1.1" fill="#1d2226" stroke="#1d2226" stroke-width="0"/>
+  <circle cx="43" cy="9" r="1.1" fill="#1d2226" stroke="#1d2226" stroke-width="0"/>
+  <circle cx="48" cy="9" r="1.1" fill="#1d2226" stroke="#1d2226" stroke-width="0"/>
+  <circle cx="53" cy="9" r="1.1" fill="#1d2226" stroke="#1d2226" stroke-width="0"/>
+  <rect x="10" y="18" width="32" height="8" rx="2" fill="#1d2226" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="12" y="19.5" width="28" height="2" rx="0" fill="#555" stroke="#2e343c" stroke-width="0" stroke-linejoin="round"/>
+  <circle cx="48" cy="20" r="2" fill="#8fd46a" stroke="#2e343c" stroke-width="0.7"/>
+  <rect x="45" y="27" width="10" height="5" rx="1" fill="#8f8670" stroke="#6b6452" stroke-width="0.6" stroke-linejoin="round"/>
+  <rect x="5" y="38" width="54" height="16" rx="3" fill="#a39a83" stroke="#6b6452" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="14" y="36" width="36" height="4" rx="1.5" fill="#1d2226" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M16 38H48L50 61H14Z" fill="#f4efe0" stroke="#6b6452" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M20 46H44M20 51H40M20 56H44" fill="none" stroke="#a8a08a" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M16 38V61M48 38V61" fill="none" stroke="#c8c0aa" stroke-width="0.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle cx="16" cy="44" r="0.9" fill="#c8c0aa" stroke="none" stroke-width="0"/>
+  <circle cx="16" cy="50" r="0.9" fill="#c8c0aa" stroke="none" stroke-width="0"/>
+  <circle cx="16" cy="56" r="0.9" fill="#c8c0aa" stroke="none" stroke-width="0"/>
+  <circle cx="48" cy="44" r="0.9" fill="#c8c0aa" stroke="none" stroke-width="0"/>
+  <circle cx="48" cy="50" r="0.9" fill="#c8c0aa" stroke="none" stroke-width="0"/>
+  <circle cx="48" cy="56" r="0.9" fill="#c8c0aa" stroke="none" stroke-width="0"/>
+</svg>

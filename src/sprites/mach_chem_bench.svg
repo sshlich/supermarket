@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <!-- a fume-stained steel bench with a burette stand and flasks on top, a hot ring plate, and a rack of vials on a shelf below -->
+  <rect x="4" y="32" width="88" height="10" rx="2" fill="#6b7580" stroke="#2e343c" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M8 35H80" fill="none" stroke="#b0a060" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="6" y="42" width="6" height="20" rx="1" fill="#5b6572" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="80" y="42" width="6" height="20" rx="1" fill="#5b6572" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="12" y="48" width="68" height="4" rx="1" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="16" y="52" width="6" height="9" rx="1.5" fill="#9fc9c4" stroke="#4f7f7a" stroke-width="0.7" stroke-linejoin="round"/>
+  <rect x="25" y="52" width="6" height="9" rx="1.5" fill="#c070d0" stroke="#4f7f7a" stroke-width="0.7" stroke-linejoin="round"/>
+  <rect x="34" y="52" width="6" height="9" rx="1.5" fill="#9fc9c4" stroke="#4f7f7a" stroke-width="0.7" stroke-linejoin="round"/>
+  <rect x="43" y="52" width="6" height="9" rx="1.5" fill="#d0a050" stroke="#4f7f7a" stroke-width="0.7" stroke-linejoin="round"/>
+  <rect x="52" y="52" width="6" height="9" rx="1.5" fill="#9fc9c4" stroke="#4f7f7a" stroke-width="0.7" stroke-linejoin="round"/>
+  <rect x="61" y="52" width="6" height="9" rx="1.5" fill="#c070d0" stroke="#4f7f7a" stroke-width="0.7" stroke-linejoin="round"/>
+  <path d="M10 32V4" fill="none" stroke="#8d97a3" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M10 6H28" fill="none" stroke="#8d97a3" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="24" y="6" width="5" height="24" rx="1.5" fill="#9fc9c4" stroke="#4f7f7a" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="25" y="18" width="3" height="12" rx="1" fill="#c070d0" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+  <rect x="36" y="24" width="24" height="6" rx="2" fill="#3f464f" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <ellipse cx="48" cy="24" rx="10" ry="2.4" fill="#b0703c" stroke="#6a3f1c" stroke-width="1"/>
+  <path d="M40 24H56" fill="none" stroke="#e06a30" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M42 24V14H54V24Z" fill="#9fc9c4" stroke="#4f7f7a" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M42 20H54V24H42Z" fill="#d0a050" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M68 32V20H72V12H78V20H82V32Z" fill="#c8e0dc" stroke="#4f7f7a" stroke-width="0.9" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M68 26H82V32H68Z" fill="#c070d0" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M70 20V30" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+</svg>

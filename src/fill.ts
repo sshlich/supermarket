@@ -113,8 +113,8 @@ const breadTop = (id: string) => `<defs><radialGradient id="${id}c" cx="0.45" cy
  */
 function layerArt(l: Layer, id: string) {
   const seed = l.seed ?? 0
-  if (l.kind === 'cheeseslice') { const c = cheddar({ id: 0, x: 0, y: 0, rot: 0, ...l }); return { face: cheeseSlice(c, seed, id), edge: cheeseHoles(seed).edge, side: mix(c.paste, c.dark, 0.45), t: 2.4, k: 0.85, turn: 9, shift: 2.5 } }
-  if (l.kind === 'salamislice') return { face: salamiSlice(seed, id), edge: salamiRing(seeded(seed, 11))(27.5), side: '#5e1e1b', t: 2, k: 0.68, turn: 0, shift: 8 }
+  if (l.kind === 'it_food_cheese_slice') { const c = cheddar({ id: 0, x: 0, y: 0, rot: 0, ...l }); return { face: cheeseSlice(c, seed, id), edge: cheeseHoles(seed).edge, side: mix(c.paste, c.dark, 0.45), t: 2.4, k: 0.85, turn: 9, shift: 2.5 } }
+  if (l.kind === 'it_food_salami_slice') return { face: salamiSlice(seed, id), edge: salamiRing(seeded(seed, 11))(27.5), side: '#5e1e1b', t: 2, k: 0.68, turn: 0, shift: 8 }
   return { face: breadTop(id), edge: BREAD, side: '#a06e3c', t: 5, k: 1, turn: 3, shift: 1.2 }
 }
 /**
@@ -206,12 +206,12 @@ function wedge(host: Item) {
 }
 
 const PAINTERS: Record<string, Painter> = {
-  sandwich,
+  it_food_sandwich: sandwich,
   /**
    * The disc holder: eight black plastic shelves, each holding one disc lying flat, seen from the front, so only its thin
    * edge shows, in its own colour, with the label wrapped over it. Inside it is 4 by 8: a disc's square (2 by 2) row by row is its shelf.
    */
-  discrack: (_, inside) => {
+  it_fit_disc_rack: (_, inside) => {
     const top = 7, shelf = 82 / 8
     return inside(0).map(d => {
       const n = Math.min(7, Math.floor(d.y / 2) * 2 + Math.min(1, Math.floor(d.x / 2)))
@@ -224,7 +224,7 @@ const PAINTERS: Record<string, Painter> = {
    * The bookshelf: two shelves, each 12 squares wide and 3 high inside. A book standing shows its spine where it stands, in
    * its cover's colour, a little shorter or taller than its neighbours; a book lying down shows as a flat block where it lies.
    */
-  bookshelf: (_, inside) => {
+  it_fit_bookshelf: (_, inside) => {
     const left = 9, col = 110 / 12, row = 51 / 3, tops = [9, 68]
     return [0, 1].map(slot => inside(slot).map(b => {
       const { w, h } = dims(b)
@@ -326,7 +326,7 @@ const PAINTERS: Record<string, Painter> = {
     return out
   },
   /** A matchbox, its drawer slid half out: one match for each in it (ten when new), lying side by side, heads to the right. */
-  matchbox: (_, inside) => {
+  it_lux_matchbox: (_, inside) => {
     const n = Math.min(10, inside(0).length)
     let out = '<rect x="20" y="6" width="41" height="21" rx="1" fill="#d9b98a" stroke="#6e5232" stroke-width="0.8"/><rect x="22" y="8" width="37" height="17" fill="#b8956a"/>'
     for (let i = 0; i < n; i++) { const y = f(23.4 - i * 1.65); out += `<rect x="23" y="${y}" width="31" height="1.25" rx="0.4" fill="#ecd7a6"/><ellipse cx="55.4" cy="${f(+y + 0.62)}" rx="2.1" ry="1" fill="#8a2a22"/>` }

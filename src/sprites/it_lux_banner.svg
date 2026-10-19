@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <!-- a cloth banner hung from a pole: muted red with a pale stripe and a mark, swallow-tail hem -->
+  <path d="M10 14L86 14L86 58L74 51L62 58L50 51L38 58L26 51L10 58Z" fill="#9a4a3e" stroke="#5e2a24" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="10" y="26" width="76" height="6" fill="#d8c9a4"/>
+  <circle cx="48" cy="29" r="9" fill="#d8c9a4" stroke="#5e2a24" stroke-width="1"/>
+  <path d="M43 29L48 22L53 29L48 36Z" fill="#5e2a24"/>
+  <path d="M18 38L30 38M66 38L78 38" stroke="#d8c9a4" stroke-width="1.5" opacity="0.6"/>
+  <path d="M14 16L14 52" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5" stroke-linecap="round"/>
+  <rect x="3" y="8" width="90" height="6" rx="3" fill="#7a6a54" stroke="#3e3426" stroke-width="1"/>
+  <circle cx="5" cy="11" r="3" fill="#a08c6c" stroke="#3e3426" stroke-width="1"/><circle cx="91" cy="11" r="3" fill="#a08c6c" stroke="#3e3426" stroke-width="1"/>
+  <path d="M10 10L86 10" stroke="#ffffff" stroke-opacity="0.3" stroke-width="1" stroke-linecap="round"/>
+</svg>

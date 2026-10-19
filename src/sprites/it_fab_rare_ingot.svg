@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <defs><linearGradient id="t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5d5a66"/><stop offset="1" stop-color="#46434f"/></linearGradient></defs>
+  <!-- a dull dark rare-earth ingot, flat with sloped sides -->
+  <path d="M2 6L62 6L62 30L2 30Z" fill="#2e2c36"/>
+  <path d="M2 6L62 6L56 10L8 10Z" fill="#6f6c7a"/>
+  <path d="M2 6L8 10L8 23L2 30Z" fill="#55525f"/>
+  <path d="M62 6L62 30L56 23L56 10Z" fill="#33313b"/>
+  <path d="M2 30L8 23L56 23L62 30Z" fill="#2e2c36"/>
+  <rect x="8" y="10" width="48" height="13" fill="url(#t)"/>
+  <path d="M8 23V10H56" fill="none" stroke="#8d8a99" stroke-width="0.8" opacity="0.8"/>
+  <rect x="12" y="13" width="7" height="5" rx="1" fill="none" stroke="#1a1920" stroke-width="0.8" opacity="0.7"/>
+  <path d="M2 6L62 6L62 30L2 30Z" fill="none" stroke="#1a1920" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M2 6L8 10M62 6L56 10M2 30L8 23M62 30L56 23" stroke="#1a1920" stroke-width="0.6" opacity="0.6"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- Tall sandwich of bread, salami and cheese -->
+<path d="M8 12C6 4 16 2 32 2C48 2 58 4 56 12C56 14 54 16 52 16L12 16C10 16 8 14 8 12Z" fill="#c8964c" stroke="#7a5424" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M4 18L60 18L60 24L56 28L8 28L4 24Z" fill="#b8503c" stroke="#6a2418" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M6 26L58 26L58 36L50 40L6 36Z" fill="#e8c43c" stroke="#8a6e14" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M8 38L58 38L58 46L8 46Z" fill="#c8964c" stroke="#7a5424" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M6 48L58 48L58 52L56 56C54 59 50 60 46 60L18 60C12 60 8 58 6 52Z" fill="#b8503c" stroke="#6a2418" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M4 34L60 34" stroke="#6a8f3a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M14 7C22 4 32 4 40 5" stroke="#fff" stroke-opacity="0.4" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

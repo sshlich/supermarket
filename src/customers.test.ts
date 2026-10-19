@@ -14,14 +14,14 @@ for (let i = 0; i < 300; i++) {
 }
 // what people bring is mostly cheap: over many, apples outnumber cabinets
 const kinds = Array.from({ length: 2000 }, () => bring().kind)
-assert.ok(kinds.filter(k => k === 'apple').length > kinds.filter(k => k === 'cabinet').length)
+assert.ok(kinds.filter(k => k === 'it_food_apple').length > kinds.filter(k => k === 'it_fit_cabinet').length)
 assert.ok(kinds.every(k => !KINDS[k].stack)) // a sandwich is made, never brought
 // what is brought is made as it was meant: a blister two pills short, a wheel already cut into
 {
   const s = start()
-  const b = unpack(s, { kind: 'blister', missing: 2 }, { at: 'outside' })!
+  const b = unpack(s, { kind: 'it_med_fb_painkiller', missing: 2 }, { at: 'outside' })!
   assert.equal(contents(s, b.id).length, 4)
-  const w = unpack(s, { kind: 'cheesewheel', left: 3 }, { at: 'outside' })!
+  const w = unpack(s, { kind: 'it_food_cheese_wheel', left: 3 }, { at: 'outside' })!
   assert.equal(w.left, 3)
 }
 
@@ -89,7 +89,7 @@ const food = { id: 10, tags: ['food'], worth: 4 }, wine = { id: 11, tags: ['drin
 // itself, and what is in it is seen thing by thing. A food buyer takes the apple out of a cabinet, not the cabinet and the lockets.
 {
   const s = start()
-  const cab = spawn(s, 'cabinet', { at: 'inside' })!, apple = spawn(s, 'apple')!, l1 = spawn(s, 'locket')!, l2 = spawn(s, 'locket')!
+  const cab = spawn(s, 'it_fit_cabinet', { at: 'inside' })!, apple = spawn(s, 'it_food_apple')!, l1 = spawn(s, 'it_lux_locket')!, l2 = spawn(s, 'it_lux_locket')!
   for (const o of [apple, l1, l2]) assert.ok(moveInto(s, o, { host: cab.id, slot: 0 }))
   const o = offerOf(s, cab)
   assert.equal(o.worth + o.parts!.reduce((n, p) => n + p.worth, 0), worth(s, cab))
@@ -98,11 +98,11 @@ const food = { id: 10, tags: ['food'], worth: 4 }, wine = { id: 11, tags: ['drin
   const r = deal(c, [o], 0, 0)
   assert.deepEqual([r.done, r.take, r.pay], [true, [apple.id], Math.round(worth(s, apple) * c.rate)])
   // a blister is medicine with its pills, whole
-  const b = spawn(s, 'blister', { at: 'inside' })!
+  const b = spawn(s, 'it_med_fb_painkiller', { at: 'inside' })!
   const ob = offerOf(s, b)
   assert.deepEqual([ob.parts, ob.worth, picked([ob], ['medicine']).map(p => p.id)], [undefined, worth(s, b), [b.id]])
   // a computer is valuable for itself: taken without the disc in its tray, unless that is wanted too
-  const pc = spawn(s, 'computer', { at: 'inside' })!, disc = spawn(s, 'disc')!
+  const pc = spawn(s, 'mach_terminal', { at: 'inside' })!, disc = spawn(s, 'disc')!
   assert.ok(moveInto(s, disc, { host: pc.id, slot: 0 }))
   const op = offerOf(s, pc)
   assert.deepEqual(picked([op], ['valuable']).map(p => p.id), [pc.id])

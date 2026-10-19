@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- sealed vial of clear purified reagent -->
+  <rect x="11" y="3" width="10" height="6" rx="1.5" fill="#7b7f84" stroke="#3d4145" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M12 9L20 9L20 11C23 12 23 14 23 16L23 28C23 29.5 22 30 20.5 30L11.5 30C10 30 9 29.5 9 28L9 16C9 14 9 12 12 11Z" fill="#cfe6ea" fill-opacity="0.8" stroke="#4f7773" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M9.7 17L22.3 17L22.3 28C22.3 29.2 21.6 29.4 20.5 29.4L11.5 29.4C10.4 29.4 9.7 29.2 9.7 28Z" fill="#cbe9f2" stroke="#7aa6a3" stroke-width="0.6" stroke-linejoin="round"/>
+  <path d="M11.5 14L11.5 27" stroke="#fff" stroke-opacity="0.75" stroke-width="1.3" stroke-linecap="round"/>
+</svg>

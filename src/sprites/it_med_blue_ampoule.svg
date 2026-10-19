@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- sealed glass ampoule of blue solution, standing -->
+  <path d="M16 2C16.8 2 17.2 3 17.2 5L17.2 12C17.2 14 21 15.5 22 18L22 27C22 29 20.5 30 19 30L13 30C11.5 30 10 29 10 27L10 18C11 15.5 14.8 14 14.8 12L14.8 5C14.8 3 15.2 2 16 2Z" fill="#cfe6ea" fill-opacity="0.8" stroke="#4f7773" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M10.7 20L21.3 20L21.3 27C21.3 28.6 20.2 29.3 19 29.3L13 29.3C11.8 29.3 10.7 28.6 10.7 27Z" fill="#3a6fd0" stroke="#24468a" stroke-width="0.6" stroke-linejoin="round"/>
+  <path d="M12.3 18.5L12.3 27" stroke="#fff" stroke-opacity="0.7" stroke-width="1.3" stroke-linecap="round"/>
+</svg>

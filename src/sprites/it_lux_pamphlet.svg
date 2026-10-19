@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a folded printed pamphlet lying flat: a title block and lines of print, a fold down the middle -->
+  <rect x="3" y="3" width="26" height="58" rx="1" fill="#d8ceb0" stroke="#7a6e50" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="6" y="7" width="20" height="9" fill="#3e3a34"/>
+  <path d="M8 11.5L24 11.5" stroke="#d8ceb0" stroke-width="1.5" opacity="0.7"/>
+  <g stroke="#5a5448" stroke-width="1.2" opacity="0.7"><path d="M6 22L26 22M6 26L26 26M6 30L22 30M6 36L26 36M6 40L26 40M6 44L24 44M6 50L26 50M6 54L18 54"/></g>
+  <path d="M3 32L29 32" stroke="#a89c7c" stroke-width="0.8" opacity="0.8"/>
+  <path d="M5 5L5 58" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <!-- a wall screen of prices from the front: a light-metal bezel, a dark glass screen with rows of bars and trend arrows -->
+  <rect x="3" y="3" width="90" height="58" rx="3" fill="#b9c0c6" stroke="#5a6168" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="8" y="8" width="80" height="48" rx="1" fill="#1f2a30" stroke="#3a4753" stroke-width="1"/>
+  <g fill="#8fc0b0"><rect x="13" y="14" width="30" height="4"/><rect x="13" y="25" width="24" height="4"/><rect x="13" y="36" width="34" height="4"/><rect x="13" y="47" width="20" height="4"/></g>
+  <g fill="#e6c36a"><rect x="54" y="14" width="12" height="4"/><rect x="54" y="25" width="12" height="4"/><rect x="54" y="36" width="12" height="4"/><rect x="54" y="47" width="12" height="4"/></g>
+  <path d="M73 18L78 12L83 18Z" fill="#8fc07a"/><path d="M73 25L78 31L83 25Z" fill="#c9786a"/><path d="M73 40L78 34L83 40Z" fill="#8fc07a"/><path d="M73 47L78 53L83 47Z" fill="#c9786a"/>
+  <path d="M10 10L32 10L10 26Z" fill="#ffffff" opacity="0.12"/>
+</svg>

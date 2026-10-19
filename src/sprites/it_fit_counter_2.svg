@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 64">
+  <!-- a counter from above: a steel top, a till with a screen and drawer at one end, a round stool below -->
+  <rect x="3" y="3" width="122" height="38" rx="2" fill="#9aa3ab" stroke="#3a4148" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M6 6H122" stroke="#e1e5e8" stroke-opacity="0.6" stroke-width="1"/>
+  <rect x="8" y="9" width="36" height="28" rx="2" fill="#6f8091" stroke="#3a4753" stroke-width="1"/>
+  <rect x="12" y="12" width="28" height="11" fill="#2a3138"/><rect x="14" y="14" width="14" height="2" fill="#8fc0b0"/>
+  <rect x="12" y="26" width="28" height="8" fill="#8a97a3" stroke="#3a4753" stroke-width="0.8"/>
+  <rect x="56" y="14" width="30" height="18" rx="1" fill="#8a929a" stroke="#6a727a" stroke-width="0.8"/>
+  <rect x="94" y="14" width="22" height="18" rx="1" fill="#8a929a" stroke="#6a727a" stroke-width="0.8"/>
+  <path d="M5 41H123V45H5Z" fill="#4f5a64"/>
+  <circle cx="32" cy="54" r="8" fill="#c9b48a" stroke="#7a6742" stroke-width="1"/>
+  <circle cx="32" cy="54" r="4" fill="#d8c89e"/>
+  <circle cx="96" cy="54" r="8" fill="#c9b48a" stroke="#7a6742" stroke-width="1"/>
+  <circle cx="96" cy="54" r="4" fill="#d8c89e"/>
+</svg>

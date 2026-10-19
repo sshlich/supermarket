@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- Tin of stew -->
+<rect x="6" y="4" width="20" height="25" rx="2.5" fill="#a8b0b8" stroke="#5a626a" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="6" y="9" width="20" height="15" fill="#a8694a" stroke="#5a626a" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="10" y="13" width="12" height="7" rx="3" fill="#6a3c28" stroke="#3e2216" stroke-width="0.6" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="16" cy="5" rx="9" ry="2" fill="#c8cfd4" stroke="#5a626a" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M9 10L9 23" stroke="#fff" stroke-opacity="0.5" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 128">
+  <defs><linearGradient id="st" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#76828e"/><stop offset="1" stop-color="#4c5560"/></linearGradient></defs>
+  <!-- an autofab hall unit: a parts silo at the left, a long work bay with a robot arm over a bed, a conveyor belt out in front, a control panel -->
+  <path d="M6 28A22 10 0 0 1 50 28V92H6Z" fill="url(#st)" stroke="#2e353d" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M6 28A22 10 0 0 0 50 28" fill="none" stroke="#2e353d" stroke-width="1"/>
+  <path d="M10 36V90" stroke="#a5b0ba" stroke-width="1.2" opacity="0.5"/>
+  <rect x="4" y="52" width="48" height="5" rx="1" fill="#3e4650" stroke="#2e353d" stroke-width="0.8"/>
+  <path d="M18 92H38L34 104H22Z" fill="#3e4650" stroke="#2e353d" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="56" y="22" width="130" height="70" rx="4" fill="#59646f" stroke="#2e353d" stroke-width="1.2"/>
+  <path d="M59 25H183" stroke="#9aa5af" stroke-width="1" opacity="0.5"/>
+  <rect x="64" y="32" width="114" height="50" rx="3" fill="#2a3036" stroke="#2e353d" stroke-width="1"/>
+  <rect x="64" y="32" width="114" height="50" rx="3" fill="#bfe3dc" opacity="0.1"/>
+  <rect x="64" y="72" width="114" height="10" fill="#3e4650"/>
+  <rect x="88" y="66" width="36" height="8" rx="1" fill="#8c97a3" stroke="#2e353d" stroke-width="0.8"/>
+  <rect x="94" y="58" width="20" height="8" rx="1" fill="#c9833c" stroke="#7a4a1a" stroke-width="0.8"/>
+  <path d="M64 36H178" stroke="#b8693a" stroke-width="3"/>
+  <rect x="124" y="32" width="10" height="8" fill="#b8693a" stroke="#6e3a1c" stroke-width="0.8"/>
+  <path d="M129 40L112 50L116 62" fill="none" stroke="#d3d9de" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M129 40L112 50L116 62" fill="none" stroke="#2e353d" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/>
+  <path d="M129 40L112 50L116 62" fill="none" stroke="#c5ccd2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="129" cy="40" r="3.5" fill="#5f7f99" stroke="#2e353d" stroke-width="0.8"/><circle cx="112" cy="50" r="3" fill="#5f7f99" stroke="#2e353d" stroke-width="0.8"/>
+  <path d="M113 62H119L118 67H114Z" fill="#3e4650" stroke="#2e353d" stroke-width="0.8"/>
+  <rect x="150" y="62" width="14" height="10" rx="1.5" fill="#c9833c" stroke="#7a4a1a" stroke-width="0.8"/>
+  <rect x="56" y="94" width="130" height="14" rx="3" fill="#3e4650" stroke="#2e353d" stroke-width="1"/>
+  <g stroke="#6f7a85" stroke-width="1"><path d="M66 96V106M78 96V106M90 96V106M102 96V106M114 96V106M126 96V106M138 96V106M150 96V106M162 96V106M174 96V106"/></g>
+  <rect x="140" y="98" width="18" height="6" rx="1" fill="#8a6e40" stroke="#4a3a20" stroke-width="0.6" opacity="0.9"/>
+  <rect x="56" y="108" width="130" height="14" rx="2" fill="#4a535e" stroke="#2e353d" stroke-width="1"/>
+  <rect x="62" y="112" width="26" height="6" rx="1" fill="#1e2429"/><circle cx="96" cy="115" r="2.2" fill="#6fd08c"/><circle cx="104" cy="115" r="2.2" fill="#d6a23c"/>
+  <path d="M4 108H50V122H4Z" fill="#4a535e" stroke="#2e353d" stroke-width="1" stroke-linejoin="round"/>
+</svg>

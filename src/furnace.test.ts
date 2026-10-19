@@ -1,23 +1,23 @@
 import assert from 'node:assert/strict'
 import { charge, cool, fuelIn, isLit, light, progress, stoke } from './furnace.ts'
-import { find, inSpace, settle, spawn, start, worth, type Item, type State } from './world.ts'
+import { find, inSpace, KINDS, settle, spawn, start, worth, type Item, type State } from './world.ts'
 
 const near = (a: number | null | undefined, b: number, what = '') => assert.ok(a != null && Math.abs(a - b) < 1e-9, `${what} ${a} is not ${b}`)
 /** A furnace on the field, with coal in its firebox and ore in its crucible. */
 function furnace(coal: number, ores: Record<string, string>[]): { s: State; f: Item } {
   const s = start()
-  const f = spawn(s, 'furnace')!
-  for (let i = 0; i < coal; i++) assert.ok(spawn(s, 'coal', { host: f.id, slot: 1 }))
-  for (const p of ores) assert.ok(spawn(s, 'ore', { host: f.id, slot: 0 }, p))
+  const f = spawn(s, 'mach_smelter')!
+  for (let i = 0; i < coal; i++) assert.ok(spawn(s, 'it_tech_cell_s', { host: f.id, slot: 1 }))
+  for (const p of ores) assert.ok(spawn(s, p.metal === 'copper' ? 'it_core_ore_copper' : 'it_core_ore_iron', { host: f.id, slot: 0 }))
   return { s, f }
 }
 
 // The crucible takes two lumps of ore (2x2 each) and nothing else; the firebox four lumps of coal.
 {
   const { s, f } = furnace(4, [{}, {}])
-  assert.equal(spawn(s, 'ore', { host: f.id, slot: 0 }), null, 'two lumps fill it')
-  assert.equal(spawn(s, 'coal', { host: f.id, slot: 1 }), null, 'four lumps fill it')
-  assert.equal(spawn(s, 'coal', { host: f.id, slot: 0 }), null, 'no coal in the crucible')
+  assert.equal(spawn(s, 'it_core_ore_iron', { host: f.id, slot: 0 }), null, 'two lumps fill it')
+  assert.equal(spawn(s, 'it_tech_cell_s', { host: f.id, slot: 1 }), null, 'four lumps fill it')
+  assert.equal(spawn(s, 'it_tech_cell_s', { host: f.id, slot: 0 }), null, 'no coal in the crucible')
   assert.equal(charge(s, f).length, 2)
 }
 // No fuel, no fire. With coal it lights; a lump burns 15 seconds, then the next; the last gone, the fire goes out.
@@ -49,17 +49,17 @@ function furnace(coal: number, ores: Record<string, string>[]): { s: State; f: I
   const r = stoke(s, 12)
   assert.equal(r.made.length, 1)
   const bar = r.made[0]
-  assert.equal(bar.kind, 'ingot')
+  assert.equal(bar.kind, 'it_fab_bar_iron')
   assert.deepEqual(bar.in, { host: f.id, slot: 0 })
   assert.equal(inSpace(s, { host: f.id, slot: 0 }).length, 1, 'the ore is gone')
-  assert.equal(worth(s, bar), 10)
+  assert.equal(worth(s, bar), KINDS.it_fab_bar_iron.price)
   assert.equal(progress(s, f), null)
 }
 // Copper makes copper; one of each metal melts nothing; the fire going out keeps how far it got.
 {
   const c = furnace(2, [{ metal: 'copper' }, { metal: 'copper' }])
   light(c.s, c.f)
-  assert.equal(stoke(c.s, 24).made[0].props?.metal, 'copper')
+  assert.equal(stoke(c.s, 24).made[0].kind, 'it_fab_bar_copper')
   const m = furnace(2, [{}, { metal: 'copper' }])
   light(m.s, m.f)
   stoke(m.s, 10)

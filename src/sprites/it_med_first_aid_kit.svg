@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+<!-- first-aid tub with clip lid and a green cross -->
+  <rect x="2" y="2" width="92" height="60" rx="4" fill="#6f8a8a" stroke="#35504f" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="5" y="5" width="86" height="54" rx="2.5" fill="#8fa9a6" stroke="#35504f" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="44.0" y="18.0" width="8.0" height="24" fill="#e8e3d6"/><rect x="36.0" y="26.0" width="24" height="8.0" fill="#e8e3d6"/><rect x="3" y="3" width="0" height="0"/>
+  <rect x="42.0" y="56" width="12" height="5" rx="1" fill="#6f8a8a" stroke="#35504f" stroke-width="0.8"/>
+  <path d="M7 7L84 7" stroke="#fff" stroke-opacity="0.5" stroke-width="1.4" stroke-linecap="round"/>
+</svg>

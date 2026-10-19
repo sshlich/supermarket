@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a coil spring lying on its side: a short cylinder of slanted wire turns -->
+  <g fill="none" stroke-linecap="round">
+    <g stroke="#4a5058" stroke-width="4.4"><path d="M6 8L10 24M12 8L16 24M18 8L22 24M24 8L28 24"/></g>
+    <g stroke="#9aa3ab" stroke-width="2.8"><path d="M6 8L10 24M12 8L16 24M18 8L22 24M24 8L28 24"/></g>
+    <g stroke="#e0e5e9" stroke-width="0.9" opacity="0.8"><path d="M5.5 9L8 19M11.5 9L14 19M17.5 9L20 19M23.5 9L26 19"/></g>
+  </g>
+</svg>

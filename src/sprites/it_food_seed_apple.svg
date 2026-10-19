@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- Apple graft in wet sleeve -->
+<rect x="9" y="12" width="14" height="18" rx="3" fill="#a9c8c8" fill-opacity="0.8" stroke="#5a8586" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M16 24L16 8" stroke="#6b4a2c" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M16 9L22 5L21 10Z" fill="#6a8f3c" stroke="#3f5a24" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/><path d="M16 11L10 7L11 12Z" fill="#6a8f3c" stroke="#3f5a24" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M12 15L12 26" stroke="#fff" stroke-opacity="0.6" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="9" y="22" width="14" height="3" fill="#d9c9a0" stroke="#8a7648" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

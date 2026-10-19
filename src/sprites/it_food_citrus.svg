@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- Yellow citrus fruit with a leaf -->
+<circle cx="32" cy="35" r="26" fill="#e8bc30" stroke="#8a6a10" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M30 10C34 12 36 12 38 10" stroke="#8a6a10" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M34 10C40 2 52 3 56 8C50 14 40 14 34 10Z" fill="#5a8a3a" stroke="#33582a" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M36 10L52 8" stroke="#8cba5c" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+<g fill="#c89a20"><circle cx="22" cy="40" r="1"/><circle cx="30" cy="48" r="1"/><circle cx="42" cy="44" r="1"/><circle cx="44" cy="30" r="1"/><circle cx="24" cy="30" r="1"/><circle cx="36" cy="36" r="1"/></g>
+<path d="M13 30C14 24 18 19 24 16" stroke="#fff" stroke-opacity="0.55" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

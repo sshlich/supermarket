@@ -446,30 +446,30 @@ console.log('world ok')
 // sandwiches: slices laid on bread, worth more than their makings; the lid finishes it
 {
   const s: State = { items: [], next: 1, windows: [] }
-  const bread = spawn(s, 'breadslice')!, lid = spawn(s, 'breadslice')!, cheese = spawn(s, 'cheeseslice')!, salami = spawn(s, 'salamislice')!
+  const bread = spawn(s, 'it_food_bread_slice')!, lid = spawn(s, 'it_food_bread_slice')!, cheese = spawn(s, 'it_food_cheese_slice')!, salami = spawn(s, 'it_food_salami_slice')!
   cheese.seed = 77; cheese.age = 12
   assert.ok(!canStack(bread, lid)) // bread on bare bread is not a sandwich
   assert.ok(stack(s, bread, cheese))
-  assert.deepEqual([bread.kind, bread.layers, find(s, cheese.id)], ['sandwich', [{ kind: 'cheeseslice', seed: 77, age: 12 }], undefined])
+  assert.deepEqual([bread.kind, bread.layers, find(s, cheese.id)], ['it_food_sandwich', [{ kind: 'it_food_cheese_slice', seed: 77, age: 12 }], undefined])
   assert.equal(look(bread).name, 'Open sandwich')
-  assert.equal(look(bread).price, Math.ceil((1 + 2) * 1.2)) // bread 1, aged cheddar 2, a fifth more open
+  assert.equal(look(bread).price, Math.ceil((KINDS.it_food_bread_slice.price! + look({ id: 0, kind: 'it_food_cheese_slice', x: 0, y: 0, rot: 0, age: 12 }).price) * KINDS.it_food_sandwich.stack!.open)) // the bread and the aged cheddar, a fifth more open
   stack(s, bread, salami)
   const back = unstack(s, bread)! // the top comes off as it went on
-  assert.deepEqual([back.kind, back.seed, bread.layers!.length, back.x, back.y], ['salamislice', salami.id, 1, 4, 0]) // beside it (the lid is right next to it)
+  assert.deepEqual([back.kind, back.seed, bread.layers!.length, back.x, back.y], ['it_food_salami_slice', salami.id, 1, 4, 0]) // beside it (the lid is right next to it)
   const off = unstack(s, bread)!
-  assert.deepEqual([off.seed, off.age, bread.kind, bread.layers], [77, 12, 'breadslice', undefined]) // the last one off leaves the bread
+  assert.deepEqual([off.seed, off.age, bread.kind, bread.layers], [77, 12, 'it_food_bread_slice', undefined]) // the last one off leaves the bread
   stack(s, bread, off); stack(s, bread, back)
-  for (let i = 0; i < 2; i++) assert.ok(stack(s, bread, spawn(s, 'cheeseslice')!))
-  assert.ok(!canStack(bread, spawn(s, 'cheeseslice')!)) // four fillings at most
+  for (let i = 0; i < 2; i++) assert.ok(stack(s, bread, spawn(s, 'it_food_cheese_slice')!))
+  assert.ok(!canStack(bread, spawn(s, 'it_food_cheese_slice')!)) // four fillings at most
   assert.ok(stack(s, bread, lid))
   assert.ok(closed(bread))
   assert.equal(look(bread).name, 'Sandwich')
   assert.equal(look(bread).price, Math.ceil(partsOf(bread) * 1.5))
   assert.equal(unstack(s, bread), null) // finished: it stays as it is
-  assert.ok(!canStack(bread, spawn(s, 'salamislice')!))
+  assert.ok(!canStack(bread, spawn(s, 'it_food_salami_slice')!))
   // a saved sandwich keeps its layers; one with none is its bread again
-  const t = settle({ items: [{ id: 1, kind: 'sandwich', x: 0, y: 0, rot: 0, layers: [{ kind: 'gone' }] }, { id: 2, kind: 'sandwich', x: 4, y: 0, rot: 0, layers: bread.layers }], next: 3 })
-  assert.deepEqual([t.items[0].kind, t.items[0].layers, t.items[1].layers!.length], ['breadslice', undefined, 5])
+  const t = settle({ items: [{ id: 1, kind: 'it_food_sandwich', x: 0, y: 0, rot: 0, layers: [{ kind: 'gone' }] }, { id: 2, kind: 'it_food_sandwich', x: 4, y: 0, rot: 0, layers: bread.layers }], next: 3 })
+  assert.deepEqual([t.items[0].kind, t.items[0].layers, t.items[1].layers!.length], ['it_food_bread_slice', undefined, 5])
   console.log('sandwiches ok')
 }
 
@@ -477,15 +477,15 @@ console.log('world ok')
 {
   for (const age of [0, 12]) {
     const s: State = { items: [], next: 1, windows: [] }
-    const wheel = spawn(s, 'cheesewheel')!
+    const wheel = spawn(s, 'it_food_cheese_wheel')!
     if (age) wheel.age = age
     const before = worth(s, wheel)
     for (let guard = 0; guard < 99; guard++) { const cuttable = s.items.find(o => KINDS[o.kind].cut); if (!cuttable) break; assert.ok(cut(s, cuttable)) }
-    assert.equal(s.items.filter(o => o.kind === 'cheeseslice').length, 48)
+    assert.equal(s.items.filter(o => o.kind === 'it_food_cheese_slice').length, 48)
     assert.equal(s.items.reduce((n, o) => n + worth(s, o), 0), before)
   }
-  const aged = { id: 1, kind: 'cheesewedge', x: 0, y: 0, rot: 0, age: 12 }
-  assert.equal(look(aged).price, 6 * look({ id: 2, kind: 'cheeseslice', x: 0, y: 0, rot: 0, age: 12 }).price)
+  const aged = { id: 1, kind: 'it_food_cheese_wedge', x: 0, y: 0, rot: 0, age: 12 }
+  assert.equal(look(aged).price, 6 * look({ id: 2, kind: 'it_food_cheese_slice', x: 0, y: 0, rot: 0, age: 12 }).price)
   console.log('cut worth ok')
 }
 
@@ -493,7 +493,7 @@ console.log('world ok')
 {
   // salami is cut off its right end as made; turned upside down, that end is on the left
   const s: State = { items: [], next: 1, windows: [] }
-  const sal = spawn(s, 'salami')!
+  const sal = spawn(s, 'it_food_salami')!
   Object.assign(sal, { x: 10, y: 8, rot: 2 })
   const right = sal.x + dims(sal).w
   for (let i = 0; i < 3; i++) {
@@ -503,7 +503,7 @@ console.log('world ok')
   }
   // turned a quarter, the cut end (right as made) faces down: the top stays, slices land below
   const t: State = { items: [], next: 1, windows: [] }
-  const s2 = spawn(t, 'salami')!
+  const s2 = spawn(t, 'it_food_salami')!
   Object.assign(s2, { x: 10, y: 5, rot: 1 })
   const top = s2.y
   for (let i = 0; i < 3; i++) {
@@ -528,12 +528,12 @@ console.log('world ok')
 // a bag of bread: a slice comes out by hand and lands beside it, the bag shortens, and empty it stays as a 2x2 crumpled bag; slices go back in while there is room
 {
   const s: State = { items: [], next: 1, windows: [] }
-  const bag = spawn(s, 'bread')!
+  const bag = spawn(s, 'it_food_bread')!
   assert.deepEqual([dims(bag).w, dims(bag).h, leftOf(bag)], [3, 2, 8])
   for (let i = 0; i < 3; i++) assert.ok(cut(s, bag))
   assert.deepEqual([leftOf(bag), dims(bag).w, bag.x], [5, 3, 0])
   const [slice] = cut(s, bag)!
-  assert.deepEqual([leftOf(bag), dims(bag).w, slice.kind], [4, 2, 'breadslice'])
+  assert.deepEqual([leftOf(bag), dims(bag).w, slice.kind], [4, 2, 'it_food_bread_slice'])
   for (let i = 0; i < 4; i++) assert.ok(cut(s, bag))
   assert.deepEqual([leftOf(bag), dims(bag).w, dims(bag).h, find(s, bag.id) === bag], [0, 2, 2, true]) // still there, empty
   assert.equal(cut(s, bag), null)
@@ -542,7 +542,7 @@ console.log('world ok')
   // a neighbour in the way: the slice does not go back
   const next = spawn(s, 'apple')!
   Object.assign(next, { x: bag.x + 2, y: bag.y })
-  for (let i = 0; i < 4; i++) refill(s, bag, spawn(s, 'breadslice')!)
+  for (let i = 0; i < 4; i++) refill(s, bag, spawn(s, 'it_food_bread_slice')!)
   assert.equal(leftOf(bag), 4) // the fifth would make it 3 wide, into the apple
   console.log('bread bag ok')
 }
@@ -550,7 +550,7 @@ console.log('world ok')
 // a computer's own disk is kept with it: files with names (once each), a program, a text or a picture; the wallpaper only while its picture is there
 {
   const drive = [{ name: 'paint.exe', prog: 'paint' }, { name: 'PIC1.PIC', pic: '33' }, { name: 'NOTE.TXT', text: 'hi' }, { name: 'NOTE.TXT', text: 'again' }, { name: '' }, { name: 'X.TXT' }] as DriveFile[]
-  const t = settle({ items: [{ id: 1, kind: 'computer', x: 0, y: 0, rot: 0, drive, wall: 'PIC1.PIC' }, { id: 2, kind: 'computer', x: 3, y: 0, rot: 0, drive: [{ name: 'A.TXT', text: '' }], wall: 'GONE.PIC' }, { id: 3, kind: 'apple', x: 6, y: 0, rot: 0, drive }], next: 4 })
+  const t = settle({ items: [{ id: 1, kind: 'mach_terminal', x: 0, y: 0, rot: 0, drive, wall: 'PIC1.PIC' }, { id: 2, kind: 'mach_terminal', x: 3, y: 0, rot: 0, drive: [{ name: 'A.TXT', text: '' }], wall: 'GONE.PIC' }, { id: 3, kind: 'apple', x: 6, y: 0, rot: 0, drive }], next: 4 })
   assert.deepEqual(t.items[0].drive, [{ name: 'PAINT.EXE', prog: 'paint' }, { name: 'PIC1.PIC', pic: '33' }, { name: 'NOTE.TXT', text: 'hi' }, { name: 'X.TXT', text: '' }])
   assert.deepEqual([t.items[0].wall, t.items[1].wall, t.items[2].drive], ['PIC1.PIC', undefined, undefined])
   console.log('computer disks ok')

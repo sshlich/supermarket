@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a twisted hank of yarn lying flat: a loop of cord bound at one end, muted rust-red -->
+  <ellipse cx="16" cy="15" rx="10" ry="12" fill="none" stroke="#6a3a2c" stroke-width="7"/>
+  <ellipse cx="16" cy="15" rx="10" ry="12" fill="none" stroke="#a8614a" stroke-width="5"/>
+  <ellipse cx="16" cy="15" rx="10" ry="12" fill="none" stroke="#d09478" stroke-width="1" stroke-dasharray="2 2.4"/>
+  <rect x="12" y="24.5" width="8" height="5" rx="1.5" fill="#d8ccaa" stroke="#7a6e50" stroke-width="0.9"/>
+  <path d="M10 8C11 6 13 5 15 4.6" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1" stroke-linecap="round" fill="none"/>
+</svg>

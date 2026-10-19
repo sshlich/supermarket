@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- Sprouting seed potatoes -->
+<path d="M3 20C3 12 11 10 15 13C19 9 29 12 29 20C29 27 22 29 16 28C9 29 3 27 3 20Z" fill="#b69868" stroke="#6e5834" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M9 12L8 6M15 12L16 5M23 12L25 7" stroke="#d8e8a0" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="10" cy="20" r="1" fill="#6e5834"/><circle cx="21" cy="21" r="1" fill="#6e5834"/>
+<path d="M6 16C7 14 9 13 11 13" stroke="#fff" stroke-opacity="0.4" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

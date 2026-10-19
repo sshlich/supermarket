@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a flask of soured grey sugar wash: square-shouldered bottle, a screw cap, murky grey-tan liquid -->
+  <path d="M11 6L21 6L21 14L25 18L25 56C25 58.5 24 60 22 60L10 60C8 60 7 58.5 7 56L7 18L11 14Z" fill="#b8c4c4" fill-opacity="0.55" stroke="#56666a" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M8 28L24 28L24 56C24 57.8 23.4 59 22 59L10 59C8.6 59 8 57.8 8 56Z" fill="#a09a78" fill-opacity="0.9"/>
+  <path d="M8 28C13 29.4 19 26.6 24 28" stroke="#d8d4b4" stroke-width="1" fill="none" opacity="0.7"/>
+  <rect x="10" y="2" width="12" height="6" rx="1.4" fill="#7a8088" stroke="#3e444c" stroke-width="1"/>
+  <g fill="#d8d4b4" opacity="0.6"><circle cx="14" cy="42" r="1.2"/><circle cx="19" cy="50" r="1"/></g>
+  <path d="M10 22L10 54" stroke="#ffffff" stroke-opacity="0.5" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

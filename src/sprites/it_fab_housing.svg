@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a device housing seen from above: a pale metal shell with four screw posts at the corners and a polymer lid inset -->
+  <rect x="3" y="3" width="58" height="58" rx="4" fill="#cfd6db" stroke="#6b747c" stroke-width="1.1" stroke-linejoin="round"/>
+  <rect x="13" y="13" width="38" height="38" rx="2" fill="#5f7f9a" stroke="#34495b" stroke-width="1"/>
+  <rect x="17" y="17" width="30" height="30" rx="1" fill="#6f90ac"/>
+  <g fill="#8b949b" stroke="#4d565d" stroke-width="0.7"><circle cx="8" cy="8" r="3"/><circle cx="56" cy="8" r="3"/><circle cx="8" cy="56" r="3"/><circle cx="56" cy="56" r="3"/></g>
+  <g stroke="#34495b" stroke-width="1" opacity="0.7"><path d="M22 28H42M22 34H42M22 40H34"/></g>
+  <path d="M6 5.5H58" stroke="#f2f5f7" stroke-width="1" opacity="0.8" stroke-linecap="round"/>
+</svg>

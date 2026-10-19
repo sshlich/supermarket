@@ -470,6 +470,68 @@ the shape: box sizes and fees, wants with counts, due days, late pay):
 - The debug panel can **sleep now** (end the day), to see the night's pickup without serving a line.
 
 
+## The station's items: every thing in the game is a station thing (2026-10-19)
+
+The game's kinds now come from the station data (`data/station`, made for `STATION.md`): **441 kinds** (318 items, 49
+machines, 3 boxes, 67 discs, and 4 of the game's own with no station thing: the pack, the computer's disc, a printed sheet,
+the tape gun).
+- **`node scripts/station-kinds.ts`** writes `src/kinds.json`. Each station thing is a kind by its station id
+  (`it_food_apple`, `mach_smelter`). The station owns its name (for new things), size, worth (`price` is the station
+  `value`), tags, what it is made of (`made`), the need it serves (`need`), its tier and its slots. The game keeps what it
+  added: colour, sound, sprite, behaviour (cutting, pouring, smelting, a computer's insides) and properties. Run it again
+  whenever the station data changes; it rewrites only the station's fields. New kinds get a colour and a sound from their
+  main material, a store category from their domain and tags, and the game's want tags (`metal` for bars, `valuable` for
+  luxuries and heirlooms, `fuel` for cells, `tool` for whatever the night's places lock on).
+- **The old kinds moved** to their station ids (`src/aliases.ts`): a kind that was one thing with a property became one
+  station item per value (iron and copper ore; three pills; three filled blisters), its colours baked into a copy of its
+  sprite. Old saves are mended on load (`settle`): items, orders on their way and mail orders' wants. Coal became the small
+  cell (it burns in the smelter's firebox for now); the furnace is the smelter; the computer is the terminal.
+- **Sprites for everything.** About 330 new ones, drawn to the station footprints in the existing flat style, checked by
+  `node scripts/check-sprites.mjs [ids or prefix*] [--sheet out.png]` (the file, the viewBox, and in a real browser every
+  taken square at least 15% drawn and nothing in a free one; `--sheet` lays them out on squares to look at). Every floppy
+  disc shares the disc sprite and every memory card one card sprite (`sprite` on the kind). The printer is 2x2 now, as the
+  station has it. Prices are the station's, so some are fractions (slag is worth 0.2).
+- **Customers** bring any item, but not machines, fittings, blueprints or contraband. Mail orders want station items.
+- Not yet: the station's machines and recipes do not run (only the smelter, which is the old furnace); needs, residents,
+  events and upgrades are not in the game.
+
+## The night outside: the map, sites, shops, a pack and one tool (2026-10-19)
+
+The night of `STATION.md` 8b (`outside.ts`), from the station data's `data/station/outside.json` (the sim plays the same file):
+- **The evening.** When the last customer of the line has gone, the door shuts (no new line forms until morning) and the
+  terminal's place shows **the map**: ten sites and five shops. Each site lists its searches (counting the tool in your hand
+  now), its lock, what it tends to turn up; each shop what it sells and what it buys; a button: go, or why not. Below them
+  is **stay in and sleep**. Going out costs no energy and nothing counts time: a night is one outing, to one place.
+- **You** (a button under the dock, always open at night): a body with two places. The **back** takes one pack (tagged
+  `pack`); the **hand** takes one tool (tagged `tool`). What you leave on you is there tomorrow, so the last kit is
+  remembered for free. A new game starts with a **canvas pack** on your back (3x3, a 4x4 inside).
+- **Sites** (searches; lock or bonus): Spine ducts (6; a torch +2), Dark bunks (3; torch), Works slag heap (8; a wrench +2),
+  Dead scrubber bay (5; a mask refill, used up going in), Core cableway (3; wrench), Sealed hatch row (3; cutters), Flooded
+  sump (4; rebreather), Ring service corridor (3; a key fob), Clinic back room (4; a loupe +2), Junked terminals (4; a
+  soldering iron +2). Their loot is salvage: scrap, junk, spent filters, chemicals, heirlooms now and then.
+- **Out at a site** the field and the counters dim and are out of reach. The panel shows the **ground** (an 8x8 place) and
+  the pack's window opens. **Search** turns up one find, drawn by weight from the site's table, onto the ground, and you drag
+  what you want into the pack. A search with no room on the ground is not spent. Only the ground and the inside of the pack
+  on your back take or give anything until you go home.
+- **Shops**: the scrap yard (buys anything at 35% of its worth), the dock counter (ore, ice, greywater, gas; buys parts at
+  50%), works hardware (the torch, the wrench, refills, cells, cutters, a loupe, a soldering iron, a rebreather; buys tools
+  at 50%), the ring concierge (a key fob, soap, scent; buys luxury and comfort goods at 60%) and the spine swap stall
+  (rations and refills; buys food and water at 50%). Out at a shop, the ground is **their counter** with tonight's stock
+  (each kind's daily restock, as many as fit), each thing at its price (hover). **Taking one into your pack buys it** (the
+  money goes; you cannot take what you cannot pay for); taken back out it is theirs again and the money comes back. **One of
+  yours laid on their counter sells it** at their floor price, if they buy that sort of thing (hover says what they would
+  pay), and it is gone.
+- **Go home and sleep**: what is left on the ground stays there (the site fills again by tomorrow night; a shop restocks).
+  The tool in your hand has had a night if it served the place (a lock or a bonus): a tool `wears` (the torch 12 nights, the
+  wrench 20, cutters 20...), its tooltip and the you panel say how many are left, and one worn through is gone. Then you
+  sleep as before (the trash, the carrier, the morning's mail), and the morning says what came home in the pack.
+- Saved with the field: being out (`out`: the place, the searches left, a shop's buy rule), the evening (`night`), the
+  things on the ground with their prices, a tool's `used`. The debug panel's **sleep now** ends the night too, bringing you
+  home first if you are out.
+- The game shows every place; the station data puts the five newer sites and the concierge in phase 2 (the sim's phase 1
+  plays the first five sites and three shops). Not yet: phases in the game, varied nights (rumors, finds that follow
+  shortages), bigger packs.
+
 ## Shelves that show what is on them, and one clock (2026-10-14)
 
 - **Furniture** (a category): a **disc holder** (2x3, black plastic, 12$) and a **bookshelf** (4x4, wood, 24$). Their

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+<!-- Plate with terrine slice, apple and citrus half -->
+<ellipse cx="48" cy="32" rx="44" ry="29" fill="#e4e8ea" stroke="#7a868c" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="48" cy="32" rx="35" ry="22" fill="#f2f4f4" stroke="#a8b2b8" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M18 22L46 20L46 42L18 44Z" fill="#8e5a46" stroke="#4e2a1e" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M18 29L46 28M18 36L46 35" stroke="#6a8f4a" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="62" cy="26" r="10" fill="#b8402c" stroke="#6a1c10" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M62 17L63 13" stroke="#5a3a20" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M56 24C57 21 59 20 61 20" stroke="#fff" stroke-opacity="0.5" stroke-width="1.6" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M54 46C56 38 74 38 78 46Z" fill="#e8bc30" stroke="#8a6a10" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M58 45L66 40M66 45L66 40M74 45L66 40" stroke="#f6e090" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

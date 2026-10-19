@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- Cheese sandwich seen from the side -->
+<path d="M6 18C4 8 14 5 32 5C50 5 60 8 58 18C58 22 56 24 52 24L12 24C8 24 6 22 6 18Z" fill="#c8964c" stroke="#7a5424" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M4 28L60 28L60 40L50 46L4 40Z" fill="#e8c43c" stroke="#8a6e14" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M6 48L58 48C58 56 54 59 48 59L16 59C10 59 6 56 6 48Z" fill="#c8964c" stroke="#7a5424" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M6 24L58 24L58 28L6 28Z" fill="#e8d4a0" stroke="#a08a50" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M6 41L58 43L58 48L6 48Z" fill="#e8d4a0" stroke="#a08a50" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M12 10C20 7 30 7 38 8" stroke="#fff" stroke-opacity="0.4" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

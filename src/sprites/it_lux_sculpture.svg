@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 96">
+  <!-- a printed polymer figure standing on a plinth: a simple head, shoulders and body, layer lines across -->
+  <path d="M10 82L54 82L56 92L8 92Z" fill="#8c9096" stroke="#4a4e54" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M22 82L22 56C22 46 18 44 18 34C18 26 24 22 32 22C40 22 46 26 46 34C46 44 42 46 42 56L42 82Z" fill="#6c7e8e" stroke="#34424e" stroke-width="1" stroke-linejoin="round"/>
+  <circle cx="32" cy="12" r="9" fill="#6c7e8e" stroke="#34424e" stroke-width="1"/>
+  <rect x="28" y="19" width="8" height="5" fill="#6c7e8e"/>
+  <g stroke="#34424e" stroke-width="0.7" opacity="0.5"><path d="M24 15L40 15M23 30L41 30M22 38L42 38M22 46L42 46M23 54L41 54M22 62L42 62M22 70L42 70M22 78L42 78M24 8L40 8"/></g>
+  <path d="M25 30C23 38 24 50 25 70" stroke="#b8c8d6" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M26 8C28 6 30 5.4 32 5.4" stroke="#b8c8d6" stroke-opacity="0.7" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a thin steel sheet lying flat, one corner lifted: grey top with a darker edge strip and a sharp-corner glint -->
+  <path d="M3 3L61 3L61 61L3 61Z" fill="#9aa3ab" stroke="#4a5058" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M61 3L61 61L3 61L3 57L57 57L57 3Z" fill="#6d767e"/>
+  <path d="M42 61L61 42L61 61Z" fill="#b3bbc2" stroke="#4a5058" stroke-width="0.8" stroke-linejoin="round"/>
+  <path d="M7 7H50M7 7V50" stroke="#e0e5e9" stroke-width="1.6" stroke-linecap="round" opacity="0.8" fill="none"/>
+  <path d="M16 40L38 14" stroke="#d4d9de" stroke-width="3" stroke-linecap="round" opacity="0.35"/>
+</svg>

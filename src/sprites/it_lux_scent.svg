@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a thumb-sized glass scent vial with a dropper cap and a little pink spirit -->
+  <path d="M12 9L20 9L20 12C24 13 26 16 26 20L26 26C26 28 25 29.5 23 29.5L9 29.5C7 29.5 6 28 6 26L6 20C6 16 8 13 12 12Z" fill="#b8d4d0" fill-opacity="0.65" stroke="#4c6c68" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M7 21L25 21L25 26C25 27.8 24.4 28.5 23 28.5L9 28.5C7.6 28.5 7 27.8 7 26Z" fill="#c87a90" fill-opacity="0.85"/>
+  <rect x="11" y="3" width="10" height="6.5" rx="2" fill="#b89040" stroke="#5e4818" stroke-width="1"/>
+  <path d="M9 17L9 26" stroke="#ffffff" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

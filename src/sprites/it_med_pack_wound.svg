@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- wound pack tub, beige lid with a red cross -->
+  <rect x="2" y="2" width="60" height="60" rx="4" fill="#8f8672" stroke="#4a4436" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="5" y="5" width="54" height="54" rx="2.5" fill="#b8ae96" stroke="#4a4436" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="28.333333333333332" y="19.0" width="7.333333333333333" height="22" fill="#b4473c"/><rect x="21.0" y="26.333333333333332" width="22" height="7.333333333333333" fill="#b4473c"/>
+  <rect x="26.0" y="56" width="12" height="5" rx="1" fill="#8f8672" stroke="#4a4436" stroke-width="0.8"/>
+  <path d="M7 7L52 7" stroke="#fff" stroke-opacity="0.5" stroke-width="1.4" stroke-linecap="round"/>
+</svg>

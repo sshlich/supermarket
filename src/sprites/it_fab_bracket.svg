@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <!-- an L bracket lying flat: a long leg with two slots, a short leg folded up on the right (shown as a darker strip) -->
+  <path d="M3 5L61 5L61 27L3 27Z" fill="#9aa3ab" stroke="#4a5058" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M49 5L61 5L61 27L49 27Z" fill="#7a838b" stroke="#4a5058" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="9" y="12" width="14" height="8" rx="4" fill="#1d1e22" stroke="#4a5058" stroke-width="0.8"/>
+  <rect x="28" y="12" width="14" height="8" rx="4" fill="#1d1e22" stroke="#4a5058" stroke-width="0.8"/>
+  <circle cx="55" cy="16" r="2.5" fill="#1d1e22"/>
+  <path d="M5 7.5H47" stroke="#d4d9de" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+</svg>

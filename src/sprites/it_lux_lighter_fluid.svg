@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a small flat flask of pale solvent with a screw cap and a hazard-orange label -->
+  <path d="M12 3L20 3L20 8C24 10 26 12 26 15L26 27C26 29 25 30 23 30L9 30C7 30 6 29 6 27L6 15C6 12 8 10 12 8Z" fill="#b0cfcc" fill-opacity="0.7" stroke="#4c6a68" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M7 17L25 17L25 27C25 28.4 24.4 29 23 29L9 29C7.6 29 7 28.4 7 27Z" fill="#d8dca0" fill-opacity="0.8"/>
+  <rect x="10.5" y="1.5" width="11" height="5" rx="1.2" fill="#a8522c" stroke="#5a2a14" stroke-width="0.9"/>
+  <rect x="8" y="19" width="16" height="8" fill="#e0a040" stroke="#7a5018" stroke-width="0.7"/>
+  <path d="M16 20.5C18 22.5 19 23.5 18.5 25C18 26.2 14 26.2 13.5 25C13 23.5 14.5 22.5 16 20.5Z" fill="#7a3a18"/>
+  <path d="M9 13L9 16" stroke="#ffffff" stroke-opacity="0.7" stroke-width="1.4" stroke-linecap="round"/>
+</svg>

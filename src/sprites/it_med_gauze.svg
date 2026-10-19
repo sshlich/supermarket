@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- folded sterile gauze square -->
+  <rect x="4" y="5" width="24" height="22" rx="1.5" fill="#000" opacity="0.12" transform="translate(1 1.5)"/>
+  <rect x="4" y="4" width="24" height="24" rx="1.5" fill="#ece6d9" stroke="#8f8672" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M4 16L28 16M16 4L16 28" stroke="#cbc3b0" stroke-width="0.8"/>
+  <g stroke="#cbc3b0" stroke-width="0.5" opacity="0.7"><path d="M8 5V27M12 5V27M20 5V27M24 5V27M5 8H27M5 12H27M5 20H27M5 24H27"/></g>
+  <path d="M6 6L26 6" stroke="#fff" stroke-opacity="0.7" stroke-width="1.4" stroke-linecap="round"/>
+</svg>

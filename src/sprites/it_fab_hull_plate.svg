@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 96">
+  <!-- a big layered hull plate lying flat: steel top with a light-metal layer edge on the right and bottom, rivet rows, stencil marks -->
+  <path d="M3 3L125 3L125 93L3 93Z" fill="#c4ccd2" stroke="#4a5058" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M3 3L117 3L117 85L3 85Z" fill="#7f8a93" stroke="#3f464d" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M5 5H115" stroke="#b3bdc5" stroke-width="1.4" opacity="0.8" stroke-linecap="round"/>
+  <g fill="#5a636c" stroke="#3a4046" stroke-width="0.6"><circle cx="11" cy="11" r="2.2"/><circle cx="109" cy="11" r="2.2"/><circle cx="11" cy="77" r="2.2"/><circle cx="109" cy="77" r="2.2"/><circle cx="60" cy="11" r="2.2"/><circle cx="60" cy="77" r="2.2"/></g>
+  <g fill="#d9b24a" opacity="0.9"><rect x="12" y="30" width="20" height="5"/><rect x="36" y="30" width="8" height="5"/><rect x="12" y="38" width="12" height="5"/></g>
+  <path d="M60 25L100 25M60 50L100 50M60 62L90 62" stroke="#5a636c" stroke-width="1.2" opacity="0.7"/>
+  <path d="M117 3V85H3" fill="none" stroke="#4a5058" stroke-width="0.7"/>
+</svg>

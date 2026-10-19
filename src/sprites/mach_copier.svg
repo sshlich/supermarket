@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a beige twin-drive disc cradle: two disc slots with discs, a bar of green lights, a small panel -->
+  <rect x="3" y="10" width="58" height="48" rx="5" fill="#cfc7b0" stroke="#6b6452" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M8 13H54" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+  <rect x="8" y="16" width="22" height="22" rx="3" fill="#a39a83" stroke="#6b6452" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="34" y="16" width="22" height="22" rx="3" fill="#a39a83" stroke="#6b6452" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="11" y="25" width="16" height="4" rx="1.5" fill="#1d2226" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="37" y="25" width="16" height="4" rx="1.5" fill="#1d2226" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="12" y="22" width="14" height="2" rx="0" fill="#3a3d44" stroke="#2e343c" stroke-width="0" stroke-linejoin="round"/>
+  <circle cx="45" cy="30" r="0" fill="none" stroke="none" stroke-width="0"/>
+  <rect x="10" y="42" width="44" height="7" rx="2" fill="#1d2226" stroke="#2e343c" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="13" y="44" width="5" height="3" rx="0.5" fill="#8fd46a" stroke="#8fd46a" stroke-width="0" stroke-linejoin="round"/>
+  <rect x="20" y="44" width="5" height="3" rx="0.5" fill="#8fd46a" stroke="#8fd46a" stroke-width="0" stroke-linejoin="round"/>
+  <rect x="27" y="44" width="5" height="3" rx="0.5" fill="#8fd46a" stroke="#8fd46a" stroke-width="0" stroke-linejoin="round"/>
+  <rect x="34" y="44" width="5" height="3" rx="0.5" fill="#8fd46a" stroke="#8fd46a" stroke-width="0" stroke-linejoin="round"/>
+  <rect x="41" y="44" width="5" height="3" rx="0.5" fill="#8fd46a" stroke="#8fd46a" stroke-width="0" stroke-linejoin="round"/>
+  <rect x="48" y="44" width="5" height="3" rx="0.5" fill="#8fd46a" stroke="#8fd46a" stroke-width="0" stroke-linejoin="round"/>
+  <rect x="8" y="52" width="14" height="3" rx="1" fill="#8f8670" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+  <circle cx="52" cy="53.5" r="2" fill="#c9c1aa" stroke="#6b6452" stroke-width="0.6"/>
+</svg>

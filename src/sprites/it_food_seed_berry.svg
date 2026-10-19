@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- Bundle of cut canes in damp moss -->
+<path d="M10 4L12 4L13 24L11 24Z" fill="#7a3a46" stroke="#4a1f2a" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M15 2L17 2L17 24L15 24Z" fill="#8a4450" stroke="#4a1f2a" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M20 4L22 4L21 24L19 24Z" fill="#7a3a46" stroke="#4a1f2a" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M4 22C4 18 28 18 28 22C30 28 24 30 16 30C8 30 2 28 4 22Z" fill="#5a7a3a" stroke="#364c22" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M8 24L12 23M16 26L21 25M22 23L25 24" stroke="#8aa85a" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- two clogged cartridge husks standing upright: sooty grey cylinders with pleated fibre and a black open top -->
+  <rect x="3" y="8" width="12" height="52" rx="3" fill="#7e7a6e" stroke="#3a372f" stroke-width="1" stroke-linejoin="round"/>
+  <ellipse cx="9" cy="8" rx="6" ry="2.5" fill="#1d1d1f" stroke="#3a372f" stroke-width="0.8"/>
+  <path d="M6 14V56M9 14V56M12 14V56" stroke="#57544a" stroke-width="1"/>
+  <rect x="17" y="3" width="12" height="57" rx="3" fill="#8d897c" stroke="#3a372f" stroke-width="1" stroke-linejoin="round"/>
+  <ellipse cx="23" cy="3.5" rx="6" ry="2.5" fill="#1d1d1f" stroke="#3a372f" stroke-width="0.8"/>
+  <path d="M20 10V56M23 10V56M26 10V56" stroke="#5f5c52" stroke-width="1"/>
+  <rect x="17" y="46" width="12" height="4" fill="#c8c4b6" opacity="0.8"/>
+  <path d="M5 12V50" stroke="#a8a496" stroke-width="1.2" opacity="0.6"/>
+</svg>

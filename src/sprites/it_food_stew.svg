@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- Bowl of brown stew with potato lumps -->
+<path d="M4 28L60 28C60 46 48 58 32 58C16 58 4 46 4 28Z" fill="#8c96a0" stroke="#4c565e" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="32" cy="28" rx="28" ry="9" fill="#a8b2bc" stroke="#4c565e" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="32" cy="28" rx="24" ry="7" fill="#7a4a2c" stroke="#4c565e" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="24" cy="27" r="3.5" fill="#d8b878" stroke="#8a6a30" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="38" cy="29" r="3" fill="#d8b878" stroke="#8a6a30" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/><rect x="30" y="24" width="6" height="4" rx="1" fill="#a85a40"/><path d="M26 16C24 12 28 10 26 6M38 16C36 12 40 10 38 6" stroke="#fff" stroke-opacity="0.5" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M10 36C13 44 18 50 24 53" stroke="#fff" stroke-opacity="0.45" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

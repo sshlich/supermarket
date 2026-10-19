@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a sealed flask of cloudy grey water, standing, with a screw cap and a level line -->
+  <rect x="11" y="3" width="10" height="7" rx="1.5" fill="#5f6b7a" stroke="#2f3742" stroke-width="1"/>
+  <path d="M12 10H20L20 14C28 17 29 22 29 28V54C29 58 27 61 23 61H9C5 61 3 58 3 54V28C3 22 4 17 12 14Z" fill="#cfdcdc" fill-opacity="0.6" stroke="#5e7676" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M4.5 30H27.5V54C27.5 57 26 59.5 23 59.5H9C6 59.5 4.5 57 4.5 54Z" fill="#8b9792"/>
+  <path d="M5 30C12 32 20 28 27 30" stroke="#b4beb9" stroke-width="1.2" fill="none"/>
+  <path d="M8 20C7 26 7 40 8 52" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <rect x="13" y="38" width="10" height="9" fill="#e4e0d2" stroke="#8b8775" stroke-width="0.7"/>
+</svg>

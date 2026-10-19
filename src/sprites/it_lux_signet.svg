@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a heavy gold signet ring seen from the front: a band with a wide flat blank face on top -->
+  <defs><radialGradient id="gd" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#e3c47a"/><stop offset="0.5" stop-color="#c49a48"/><stop offset="1" stop-color="#8e6a2c"/></radialGradient></defs>
+  <ellipse cx="16" cy="20" rx="12" ry="10" fill="url(#gd)" stroke="#4e3a14" stroke-width="1"/>
+  <ellipse cx="16" cy="21" rx="7" ry="6" fill="#2e2622" stroke="#4e3a14" stroke-width="1"/>
+  <path d="M7 4L25 4L27 12L5 12Z" fill="url(#gd)" stroke="#4e3a14" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M10 6.2L22 6.2L23 10L9 10Z" fill="#b8903e" stroke="#7a5a22" stroke-width="0.7"/>
+  <path d="M8 6L14 6" stroke="#fff3d0" stroke-opacity="0.7" stroke-width="1" stroke-linecap="round"/>
+  <path d="M6 22C6 18 8 15 10 14" stroke="#fff3d0" stroke-opacity="0.5" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+</svg>

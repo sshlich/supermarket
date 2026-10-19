@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a tin can standing upright, seen from the front: a rolled body with crimped rims, and a label band -->
+  <defs><linearGradient id="n" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#cdd3d8"/><stop offset="0.45" stop-color="#aab2b9"/><stop offset="1" stop-color="#737c84"/></linearGradient></defs>
+  <rect x="5" y="4" width="22" height="25" rx="2" fill="url(#n)" stroke="#464c52" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="4" y="3" width="24" height="4" rx="1.5" fill="#8d959c" stroke="#464c52" stroke-width="0.9"/>
+  <rect x="4" y="26" width="24" height="4" rx="1.5" fill="#8d959c" stroke="#464c52" stroke-width="0.9"/>
+  <rect x="5.5" y="12" width="21" height="9" fill="#b05a2a" stroke="#5a2c10" stroke-width="0.6"/>
+  <path d="M10 14.5H22M10 18H18" stroke="#e8d7b0" stroke-width="1.2"/>
+  <path d="M8 9V25" stroke="#f4f6f8" stroke-width="1.4" stroke-linecap="round" opacity="0.7"/>
+</svg>

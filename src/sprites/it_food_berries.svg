@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+<!-- Paper cone of dark berries -->
+<path d="M26 5L61 11L61 21L26 27C20 24 20 8 26 5Z" fill="#d9c9a0" stroke="#8a7648" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M30 8L58 13M30 24L58 19" stroke="#a89860" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<g fill="#4a2a5e" stroke="#241034" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"><circle cx="9" cy="10" r="5"/><circle cx="18" cy="9" r="5"/><circle cx="13" cy="19" r="5"/><circle cx="22" cy="19" r="5"/><circle cx="6" cy="21" r="4"/></g>
+<g fill="#fff" fill-opacity="0.5"><circle cx="7.5" cy="8.5" r="1.2"/><circle cx="16.5" cy="7.5" r="1.2"/><circle cx="11.5" cy="17.5" r="1.2"/><circle cx="20.5" cy="17.5" r="1.2"/></g>
+</svg>

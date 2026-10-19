@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <!-- a spent air cartridge, black carbon bed full and stained -->
+  <rect x="2" y="4" width="60" height="24" rx="3" fill="#5b5d5c" stroke="#242624" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="7" y="8" width="50" height="16" rx="1.5" fill="#17181a" stroke="#242624" stroke-width="0.8"/>
+  <path d="M12 8L12 24M17 8L17 24M22 8L22 24M27 8L27 24M32 8L32 24M37 8L37 24M42 8L42 24M47 8L47 24M52 8L52 24" stroke="#4a4a46" stroke-width="0.8" opacity="0.75"/>
+  <rect x="2" y="4" width="4" height="24" rx="2" fill="#5b5d5c" stroke="#242624" stroke-width="0.8"/>
+  <path d="M8 6L56 6" stroke="#fff" stroke-opacity="0.3" stroke-width="1" stroke-linecap="round"/>
+  <path d="M14 22L20 12L26 21L33 11" fill="none" stroke="#3c342a" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 96">
+  <!-- a notice poster pinned up: cheap pale paper, a heavy one-colour header block, ruled print lines, a bold warning bar, four pins -->
+  <rect x="5" y="3" width="54" height="90" fill="#e4dcc4" stroke="#9a8f70" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="10" y="9" width="44" height="15" fill="#2a2730"/>
+  <g fill="#e4dcc4"><rect x="14" y="13" width="36" height="2.6"/><rect x="14" y="18" width="24" height="2.6"/></g>
+  <g fill="#3a3640"><rect x="10" y="30" width="44" height="3"/><rect x="10" y="36" width="38" height="3"/><rect x="10" y="42" width="44" height="3"/></g>
+  <rect x="10" y="52" width="44" height="14" fill="#b5432f"/>
+  <path d="M14 56H50M14 62H40" stroke="#e4dcc4" stroke-width="2.4"/>
+  <g fill="#3a3640"><rect x="10" y="72" width="44" height="2.4"/><rect x="10" y="78" width="30" height="2.4"/><rect x="10" y="84" width="40" height="2.4"/></g>
+  <g fill="#c8ccd2" stroke="#6b727a" stroke-width="0.6"><circle cx="9" cy="7" r="2"/><circle cx="55" cy="7" r="2"/><circle cx="9" cy="89" r="2"/><circle cx="55" cy="89" r="2"/></g>
+</svg>

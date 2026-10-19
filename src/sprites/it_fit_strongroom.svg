@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 96">
+  <!-- a strongroom from the front: iron plate walls with rivets, a heavy round-cornered door with a wheel handle and hinges, copper wiring conduit, no sign -->
+  <rect x="3" y="3" width="122" height="90" rx="3" fill="#6d7780" stroke="#2c3035" stroke-width="1.4" stroke-linejoin="round"/>
+  <path d="M42 3V93M86 3V93" stroke="#4f5a64" stroke-width="1.2"/>
+  <g fill="#aab2b9"><circle cx="8" cy="8" r="1.4"/><circle cx="120" cy="8" r="1.4"/><circle cx="8" cy="88" r="1.4"/><circle cx="120" cy="88" r="1.4"/><circle cx="37" cy="8" r="1.4"/><circle cx="91" cy="8" r="1.4"/><circle cx="37" cy="88" r="1.4"/><circle cx="91" cy="88" r="1.4"/></g>
+  <rect x="42" y="12" width="44" height="72" rx="3" fill="#8f98a1" stroke="#2c3035" stroke-width="1.2"/>
+  <rect x="47" y="17" width="34" height="62" rx="2" fill="#7d8791" stroke="#4f5a64" stroke-width="1"/>
+  <circle cx="64" cy="48" r="12" fill="#b9c0c6" stroke="#4f5a64" stroke-width="1.4"/>
+  <circle cx="64" cy="48" r="3" fill="#4f5a64"/>
+  <path d="M64 36V60M52 48H76" stroke="#4f5a64" stroke-width="2.2" stroke-linecap="round"/>
+  <rect x="39" y="22" width="5" height="10" fill="#3a4148"/><rect x="39" y="64" width="5" height="10" fill="#3a4148"/>
+  <path d="M96 10V70H118" fill="none" stroke="#b8693a" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="12" y="62" width="20" height="14" fill="#4f5a64" stroke="#2c3035" stroke-width="1"/>
+  <path d="M5 5H123" stroke="#d6dce1" stroke-opacity="0.4" stroke-width="1"/>
+</svg>

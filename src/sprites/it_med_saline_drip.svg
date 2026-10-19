@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+<!-- soft bag of saline hanging, with a line and a clamp -->
+  <path d="M12 2L20 2L20 5L12 5Z" fill="#7b7f84" stroke="#3d4145" stroke-width="0.8" stroke-linejoin="round"/>
+  <circle cx="16" cy="3.5" r="1" fill="#2b2e33"/>
+  <path d="M5 8C5 6 7 5 9 5L23 5C25 5 27 6 27 8L28 38C28 42 25 44 22 44L10 44C7 44 4 42 4 38Z" fill="#cfe6ea" fill-opacity="0.85" stroke="#4f7773" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M5.5 24L26.5 24L27.7 38C27.7 41.5 25 43.4 22 43.4L10 43.4C7 43.4 4.3 41.5 4.3 38Z" fill="#bfe0ea" stroke="#7aa6a3" stroke-width="0.6" stroke-linejoin="round"/>
+  <rect x="9" y="14" width="14" height="14" fill="#e8e3d6" stroke="#8f8672" stroke-width="0.6"/>
+  <rect x="11" y="17" width="10" height="2" fill="#3c8a73"/><rect x="11" y="21" width="7" height="1.5" fill="#3c8a73" opacity="0.6"/>
+  <rect x="13.5" y="44" width="5" height="5" fill="#cfe6ea" stroke="#4f7773" stroke-width="0.8" stroke-linejoin="round"/>
+  <path d="M16 49L16 52L11 55L11 60" fill="none" stroke="#c8d3d6" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="9" y="52" width="4" height="6" rx="1" fill="#5a78a4" stroke="#33466a" stroke-width="0.8" stroke-linejoin="round"/>
+  <path d="M8 10L8 36" stroke="#fff" stroke-opacity="0.6" stroke-width="1.6" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <!-- a wet green algae mat -->
+  <path d="M3 10C3 5 10 4 20 5C32 3 48 4 58 6C62 8 62 14 61 20C60 26 52 28 40 27C28 29 12 28 6 26C3 24 3 16 3 10Z" fill="#5f9a48" stroke="#2e5a24" stroke-width="1" stroke-linejoin="round"/>
+  <g fill="#3f7a30"><ellipse cx="18" cy="18" rx="6" ry="2.5"/><ellipse cx="38" cy="15" rx="7" ry="2.5"/><ellipse cx="50" cy="21" rx="5" ry="2"/></g><g fill="#c8f0a0" opacity="0.7"><circle cx="26" cy="21" r="1.2"/><circle cx="46" cy="12" r="1"/><circle cx="12" cy="13" r="1"/></g>
+  <path d="M8 9C16 7 28 7 40 8" fill="none" stroke="#b0e08a" stroke-width="1.6" stroke-linecap="round" stroke-opacity="0.7"/>
+</svg>

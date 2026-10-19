@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <defs><linearGradient id="t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e0b95a"/><stop offset="1" stop-color="#c29a3c"/></linearGradient></defs>
+  <!-- a small noble-metal bar, warm gold, flat with sloped sides -->
+  <path d="M2 6L62 6L62 30L2 30Z" fill="#8f6e22"/>
+  <path d="M2 6L62 6L56 10L8 10Z" fill="#ecd08a"/>
+  <path d="M2 6L8 10L8 23L2 30Z" fill="#d1a94c"/>
+  <path d="M62 6L62 30L56 23L56 10Z" fill="#9c7a2a"/>
+  <path d="M2 30L8 23L56 23L62 30Z" fill="#8f6e22"/>
+  <rect x="8" y="10" width="48" height="13" fill="url(#t)"/>
+  <path d="M8 23V10H56" fill="none" stroke="#f6e2a8" stroke-width="0.8" opacity="0.8"/>
+  <rect x="12" y="13" width="7" height="5" rx="1" fill="none" stroke="#5a4410" stroke-width="0.8" opacity="0.7"/>
+  <path d="M2 6L62 6L62 30L2 30Z" fill="none" stroke="#5a4410" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M2 6L8 10M62 6L56 10M2 30L8 23M62 30L56 23" stroke="#5a4410" stroke-width="0.6" opacity="0.6"/>
+</svg>

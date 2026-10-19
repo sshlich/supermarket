@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- a roll of thin clear film lying on its side: a long translucent cylinder, a paper core visible at the left end, a loose sheet edge -->
+  <rect x="4" y="12" width="56" height="40" rx="4" fill="#cfe0ea" fill-opacity="0.8" stroke="#6f8ca0" stroke-width="1.1" stroke-linejoin="round"/>
+  <ellipse cx="12" cy="32" rx="8" ry="20" fill="#dbe8ef" stroke="#6f8ca0" stroke-width="1"/>
+  <ellipse cx="12" cy="32" rx="5" ry="13" fill="#e4d7bd" stroke="#8a7a58" stroke-width="0.8"/>
+  <ellipse cx="12" cy="32" rx="2.2" ry="6" fill="#4a4538"/>
+  <path d="M22 18H56M22 24H56" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity="0.8"/>
+  <path d="M22 46H56" stroke="#6f8ca0" stroke-width="1" opacity="0.5"/>
+  <path d="M60 28L62 28L62 44L60 44Z" fill="#e8f2f7" stroke="#6f8ca0" stroke-width="0.6"/>
+</svg>

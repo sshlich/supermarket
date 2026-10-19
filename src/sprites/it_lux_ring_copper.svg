@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a plain copper band, standing on its edge with the hole showing, a green tint at the rim -->
+  <ellipse cx="16" cy="17" rx="12" ry="12" fill="#b8693a" stroke="#6a3418" stroke-width="1"/>
+  <ellipse cx="16" cy="17" rx="7.6" ry="7.6" fill="#2e2622" stroke="#6a3418" stroke-width="1"/>
+  <path d="M6 12C8 7 12 5 17 5" stroke="#f0b088" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.8"/>
+  <path d="M24 24C22 27 19 28.5 15 28.5" stroke="#6ea08a" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.7"/>
+  <path d="M9 17C9 12 12 9.4 16 9.4" stroke="#8a4a24" stroke-width="0.8" fill="none" opacity="0.7"/>
+</svg>

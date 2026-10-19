@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a torque driver lying flat, bit up: a steel shaft, a knurled collar with a scale mark, a polymer handle -->
+  <path d="M14.5 3L17.5 3L17.5 24L14.5 24Z" fill="#b3bbc2" stroke="#4a5058" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="9" y="23" width="14" height="14" rx="2" fill="#9aa3ab" stroke="#4a5058" stroke-width="0.9"/>
+  <g stroke="#4a5058" stroke-width="0.7"><path d="M9 27H23M9 30H23M9 33H23"/></g>
+  <rect x="9.5" y="25" width="5" height="1.5" fill="#d9b24a"/>
+  <path d="M10 37L22 37L24 58C24 60 22.5 61 21 61L11 61C9.5 61 8 60 8 58Z" fill="#4f6f8c" stroke="#2c4157" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M12 41L12.5 56" stroke="#8fb0cc" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <path d="M15 44H20M15 49H20" stroke="#2c4157" stroke-width="1"/>
+</svg>

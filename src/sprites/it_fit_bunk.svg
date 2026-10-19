@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+  <!-- a bunk from the front: welded iron frame, a mattress on top, a locker drawer underneath, a curtain on a wire -->
+  <path d="M5 3H91" stroke="#4a5560" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M6 4H56V30H6Z" fill="#8aa0ae" stroke="#4a6070" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M10 4V30M18 4V30M26 4V30M34 4V30M42 4V30M50 4V30" stroke="#a9bcc8" stroke-width="1.2"/>
+  <rect x="3" y="30" width="90" height="6" rx="1.5" fill="#d8cfb4" stroke="#8a7c55" stroke-width="1"/>
+  <rect x="3" y="36" width="90" height="25" rx="1.5" fill="#6d7a86" stroke="#2c3035" stroke-width="1.2" stroke-linejoin="round"/>
+  <rect x="8" y="41" width="80" height="15" fill="#808d99" stroke="#3a4148" stroke-width="0.8"/>
+  <rect x="40" y="47" width="16" height="3" rx="1" fill="#2c3035"/>
+  <rect x="3" y="30" width="5" height="31" fill="#4f5a64"/><rect x="88" y="30" width="5" height="31" fill="#4f5a64"/>
+  <path d="M6 38V59" stroke="#aab4bd" stroke-opacity="0.5" stroke-width="1"/>
+  <path d="M56 4H90V30H56Z" fill="#7d9c8a" stroke="#4a6a58" stroke-width="1" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+<!-- Broad bean pods with shelled beans -->
+<path d="M3 12C3 6 10 4 24 6C40 8 44 14 40 20C34 26 12 24 5 20C3 18 3 15 3 12Z" fill="#6a9a40" stroke="#38601f" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M8 12C18 10 30 12 36 15" stroke="#8cba5c" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M22 24C30 30 52 30 61 24C62 18 54 14 44 16C34 18 24 20 22 24Z" fill="#7ab050" stroke="#38601f" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<g fill="#cfd89a" stroke="#7a8a4a" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"><ellipse cx="46" cy="9" rx="4" ry="3"/><ellipse cx="54" cy="12" rx="4" ry="3"/><ellipse cx="58" cy="6" rx="3.5" ry="2.8"/></g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+  <!-- a patched spare lying flat: two mismatched halves, one iron and one grey polymer, joined by a lumpy weld bead -->
+  <path d="M3 6L31 6L31 26L3 26Z" fill="#7f8a93" stroke="#3f464d" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M33 8L61 8L61 28L33 28Z" fill="#8d939b" stroke="#4d535b" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M28 4C32 6 30 9 33 11C30 13 33 16 30 18C33 20 30 24 33 26C32 28 28 28 28 26L28 4Z" fill="#b8693a" stroke="#6a3818" stroke-width="0.9" stroke-linejoin="round"/>
+  <circle cx="10" cy="16" r="2.8" fill="#1d1e22"/><circle cx="54" cy="18" r="2.8" fill="#1f2226"/>
+  <path d="M5 8.5H24" stroke="#b3bdc5" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
+  <path d="M37 10.5H58" stroke="#d3d7db" stroke-width="1" stroke-linecap="round" opacity="0.7"/>
+  <path d="M40 24L48 24" stroke="#555b63" stroke-width="1.2"/>
+</svg>

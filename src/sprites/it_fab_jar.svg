@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a wide-mouthed glass jar standing upright: a screw neck with a metal lid, a pale glass body, a paper label -->
+  <rect x="5" y="3" width="22" height="9" rx="2" fill="#9aa3ab" stroke="#4a5058" stroke-width="0.9"/>
+  <g stroke="#6b747c" stroke-width="0.6"><path d="M10 4.5V10.5M14 4.5V10.5M18 4.5V10.5M22 4.5V10.5"/></g>
+  <path d="M7 12L25 12L25 15C28 17 29 20 29 24L29 58C29 60.5 27.5 61.5 25.5 61.5L6.5 61.5C4.5 61.5 3 60.5 3 58L3 24C3 20 4 17 7 15Z" fill="#bfe0dc" fill-opacity="0.8" stroke="#5b8a85" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="3.5" y="30" width="25" height="16" fill="#e8e3d6" stroke="#a39e92" stroke-width="0.6"/>
+  <path d="M8 35H24M8 40H20" stroke="#8a8478" stroke-width="1"/>
+  <path d="M6.5 22L6.5 56" stroke="#f2fbf9" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <rect x="5" y="49" width="22" height="9" fill="#8fbab4" opacity="0.5"/>
+</svg>

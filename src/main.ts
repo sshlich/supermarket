@@ -10,9 +10,10 @@ import { TAGS } from './customers.ts'
 import { esc } from './html.ts'
 import { openReader } from './reader.ts'
 import { initMenu, toggleMenu } from './menu.ts'
+import { floorFor, barred, goHome, goOut, inHand, named, nightsLeft, search, searchesFor, sells, shopOf, SHOPS, siteOf, SITES, tends, trade } from './outside.ts'
 import { customer, customerSays, dialNote, dropped, initTerminal, notYours, reopen, restart, resume, sideHtml, theirs, typeOn } from './terminal.ts'
 import { handle, handleMany, shop } from './sound.ts'
-import { contents, isBox, sealed, pieceOf, type Print, refill, leftOf, PLACES, sleep, trash, accepts, applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, COUNTERS, cut, dims, sizeOf, fillWith, find, isSlot, LIQUIDS, look, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { type Buys, worn, contents, isBox, sealed, pieceOf, type Print, refill, leftOf, PLACES, sleep, trash, accepts, applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, COUNTERS, cut, dims, sizeOf, fillWith, find, isSlot, LIQUIDS, look, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -70,7 +71,7 @@ let uid = 0
  * a gradient), and for a container, `--in<n>` set to 0 for each empty square of its first slot (a blister shows its gaps).
  */
 function spriteHtml(it: Item) {
-  let svg = paintFill(it, SPRITE[it.kind] ?? '', slot => inSpace(s, { host: it.id, slot })) // drawn from what is in it, before ids are made its own
+  let svg = paintFill(it, SPRITE[KINDS[it.kind].sprite ?? it.kind] ?? '', slot => inSpace(s, { host: it.id, slot })) // drawn from what is in it, before ids are made its own
   if (KINDS[it.kind].cut) { const { w, h } = sizeOf(it); svg = svg.replace(/viewBox="[^"]*"/, `viewBox="0 0 ${w * 32} ${h * 32}"`) } // drawn to the size it is now
   for (const [from, to] of Object.entries(look(it).colors)) svg = svg.replaceAll(new RegExp(from, 'gi'), to) // hex colours: nothing in them is special to a RegExp
   const u = `u${++uid}`
@@ -332,7 +333,7 @@ function keepFocus(draw: () => void) {
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
   setClock(app)
-  keepFocus(() => app.innerHTML = `<div class="stage"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side">${sideHtml()}</aside><aside class="lside">${cashHtml()}${dayHtml()}${trashHtml()}${dockHtml()}</aside></div></div>${windowsHtml()}`)
+  keepFocus(() => app.innerHTML = `<div class="stage${s.out ? ' away' : ''}"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side"${s.night ? ' hidden' : ''}>${sideHtml()}</aside>${s.night ? `<aside class="outing">${nightHtml()}</aside>` : ''}<aside class="lside">${cashHtml()}${dayHtml()}${trashHtml()}${dockHtml()}${youHtml()}</aside></div></div>${windowsHtml()}`)
   typeOn() // a line being typed carries on in the new terminal
   showToast()
   if (hoverId !== null) showTip()
@@ -719,9 +720,18 @@ function vanish(ids: number[]) {
 /** Which day it is, under the money. A day is one line of customers: when the last of them has gone, you sleep. */
 const dayHtml = () => `<div class="daydial" title="A day is one line of customers: when the last has gone, you sleep, and the trash is taken out"><small>day</small>${String(s.day ?? 1).padStart(2, '0')}</div>`
 
-/** The last customer of the line has gone: the page goes dark, you sleep, the trash is taken out, and it is the next day. */
-let sleeping = false
+/** The last customer of the line has gone: the door shuts and the evening begins (the night is outside, see `nightHtml`). */
 function dayOver() {
+  if (s.night || sleeping) return
+  s.night = true
+  youOpen = true
+  shop('bell')
+  toast('the line has gone: the night is yours')
+  changed(new Map())
+}
+/** You sleep: the page goes dark, the trash is taken out, the carrier takes the dock's boxes, and it is the next day. */
+let sleeping = false
+function sleepNow(home = '') {
   if (sleeping) return
   sleeping = true
   const was = s.day ?? 1
@@ -737,7 +747,7 @@ function dayOver() {
     if (gone.length) shop('trash')
     changed(new Map()) // drawn again in the dark: the trash is out, the day moves on
     setTimeout(arrivals, 2100) // the morning's freight, once the lights are up
-    const news = [gone.length && `the trash went out (${gone.length} thing${gone.length === 1 ? '' : 's'})`, shipped.boxes && `${shipped.boxes} box${shipped.boxes === 1 ? '' : 'es'} delivered: ${shipped.net}$`, post && `${post} new order${post === 1 ? '' : 's'} by mail`].filter(Boolean)
+    const news = [home, gone.length && `the trash went out (${gone.length} thing${gone.length === 1 ? '' : 's'})`, shipped.boxes && `${shipped.boxes} box${shipped.boxes === 1 ? '' : 'es'} delivered: ${shipped.net}$`, post && `${post} new order${post === 1 ? '' : 's'} by mail`].filter(Boolean)
     night.querySelector('div')!.innerHTML = `<b>day ${s.day}</b><span>${news.join(' · ') || 'morning'}</span>`
     if (shipped.net) setTimeout(() => { setCash((s.cash ?? 0) + shipped.net); shop('coinsIn') }, 1400)
     night.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 900, delay: 1100, easing: 'ease-out', fill: 'forwards' }).onfinish = () => { night.remove(); sleeping = false }
@@ -767,6 +777,84 @@ function dockHtml() {
   const note = !boxes.length ? 'boxes only: sealed, with their slip' : `${ready.length} of ${boxes.length} ready${ready.length ? `, pays ${pays}$` : ''} · pickup tonight`
   return `${button}<div class="bin dock"><div class="grid" data-grid data-space="dock" data-w="${w}" data-h="${h}" style="--w:${w};--h:${h}">${boxes.map(itemHtml).join('')}</div><small class="dock-note">${note}</small></div>`
 }
+// ---------------------------------------------------------------- the night: outside (outside.ts)
+
+let youOpen = ((): boolean => { try { return localStorage.getItem('you-open') === '1' } catch { return false } })()
+/** You, under the dock: a body with two places, the pack on your back and the tool in your hand. Always open at night. */
+function youHtml() {
+  const pack = worn(s), tool = inHand(s), open = youOpen || !!s.night
+  const button = `<button class="term-btn you-btn${open ? ' on' : ''}" data-you title="What you take out at night: a pack on your back, one tool in your hand">&#9673; you</button>`
+  if (!open) return button
+  const slot = (at: 'back' | 'hand', label: string) => { const { w, h } = PLACES[at]; return `<div class="body-slot"><small>${label}</small><div class="grid" data-grid data-space="${at}" data-w="${w}" data-h="${h}" style="--w:${w};--h:${h}">${inSpace(s, { at }).map(itemHtml).join('')}</div></div>` }
+  const note = !pack ? 'no pack: nothing to carry finds in' : tool && nightsLeft(tool) !== null ? `${esc(look(tool).name.toLowerCase())}: ${nightsLeft(tool)} nights left in it` : tool ? `${esc(look(tool).name.toLowerCase())} in hand` : 'nothing in hand'
+  return `${button}<div class="bin body">${slot('back', 'back')}${slot('hand', 'hand')}<small class="dock-note">${note}</small></div>`
+}
+/**
+ * The night, where the customers' terminal was. In the evening, the map: each site with its searches (with what is in your
+ * hand now), its lock, what it tends to turn up; go to one, or stay in and sleep. Out at a site: the ground, where each search
+ * turns up a find to take into the pack (its window opens), the searches left, and the way home.
+ */
+function nightHtml() {
+  const site = siteOf(s.out?.site), store = shopOf(s.out?.site)
+  const { w, h } = PLACES.site
+  const ground = (cls: string) => `<div class="bin ${cls}"><div class="grid" data-grid data-space="site" data-w="${w}" data-h="${h}" style="--w:${w};--h:${h}">${inSpace(s, { at: 'site' }).map(itemHtml).join('')}</div></div>`
+  if (site && s.out) {
+    const left = s.out.left
+    return `<div class="night-head"><b>${esc(site.name)}</b><small>${esc(site.deck)} · night of day ${s.day ?? 1}</small></div><p class="night-desc">${esc(site.desc)}</p>
+      ${ground('site')}<small class="dock-note">drag what you want into your pack; what is left here stays here</small>
+      <div class="night-acts"><button class="term-btn" data-search${left ? '' : ' disabled'}>search <small>${left} left</small></button><button class="term-btn" data-home>go home and sleep</button></div>`
+  }
+  if (store && s.out) {
+    return `<div class="night-head"><b>${esc(store.name)}</b><small>${esc(store.deck)} · night of day ${s.day ?? 1}</small></div><p class="night-desc">${esc(store.desc)}</p>
+      ${ground('site shop')}<small class="dock-note">their counter: take a thing into your pack to buy it (back out, it is theirs again); lay one of yours down to sell it to them${buysText(store.buys) ? `: they buy ${buysText(store.buys)}` : ''}</small>
+      <div class="night-acts"><button class="term-btn" data-home>go home and sleep</button></div>`
+  }
+  const lockText = (x: (typeof SITES)[number]) => x.lock ? ` · needs ${a(KINDS[x.lock.tool].name)}${x.lock.consume ? ' (used up)' : ''}` : ''
+  const rows = SITES.map(x => {
+    const why = barred(s, x), n = searchesFor(s, x), more = n - x.searches
+    return `<div class="site-row${why ? ' shut' : ''}"><div><b>${esc(x.name)}</b> <small>${esc(x.deck)}</small></div>
+      <small>${n} searches${more ? ` (+${more} with the ${esc(look(inHand(s)!).name.toLowerCase())})` : ''}${esc(lockText(x))}${x.bonus.length && !more ? ` · ${x.bonus.map(b => esc(a(KINDS[b.tool].name))).join(' or ')} finds more` : ''}</small>
+      <small class="tends">tends to turn up ${esc(tends(x).join(', '))}</small>
+      <button class="term-btn" data-go="${x.id}"${why ? ` disabled title="${esc(why)}"` : ` title="${esc(x.desc)}"`}>${why ? esc(why) : 'go'}</button></div>`
+  }).join('')
+  const shops = SHOPS.map(x => {
+    const why = barred(s, x)
+    return `<div class="site-row shop-row${why ? ' shut' : ''}"><div><b>${esc(x.name)}</b> <small>${esc(x.deck)} · a shop</small></div>
+      ${x.sells.length ? `<small class="tends">sells ${esc(sells(x).join(', '))}</small>` : ''}<small>buys ${esc(buysText(x.buys))}</small>
+      <button class="term-btn" data-go="${x.id}"${why ? ` disabled title="${esc(why)}"` : ''}>${why ? esc(why) : 'go'}</button></div>`
+  }).join('')
+  return `<div class="night-head"><b>night</b><small>day ${s.day ?? 1} · the door is shut</small></div><p class="night-desc">One outing tonight, with what is on you (under the dock): a site to scavenge, or a shop. Put a pack on your back and, if you have one, a tool in your hand.</p>${rows}<div class="night-sub">shops</div>${shops}<div class="night-acts"><button class="term-btn" data-stayin>stay in and sleep</button></div>`
+}
+const a = (name: string) => `${/^[aeiou]/i.test(name) ? 'an' : 'a'} ${name.toLowerCase()}`
+/** What a shop buys, in words: "anything at 35% of its worth", "parts at 50%". */
+function buysText(b: Buys) {
+  const what = b.any ? 'anything' : [...(b.needs ?? []).map(n => n.replace(/^need_/, '')), ...(b.tags ?? []).map(t => `${t}s`)].join(' and ')
+  return what ? `${what} at ${Math.round(b.mult * 100)}% of its worth` : ''
+}
+function goingOut(id: string) {
+  const why = goOut(s, id)
+  if (why) { toast(why); shop('bad'); return }
+  shop('menu')
+  pick([])
+  changed(new Map())
+  const pack = worn(s)
+  if (pack && !winOf(pack.id)) openWindow(pack) // the pack opens: finds go in it
+}
+function searching() {
+  const r = search(s)
+  if (r === 'done') { toast('nothing left to search here tonight'); return }
+  if (r === 'full') { toast('no room on the ground: take something, or leave it'); shop('bad'); return }
+  sound(r[0], 'drop')
+  toast(`${s.out!.left ? `${s.out!.left} left · ` : 'that was the last search · '}found ${named(r)}`)
+  changed()
+  r.forEach(it => pop(it))
+}
+function home() {
+  const pack = worn(s), came = pack ? contents(s, pack.id).length : 0
+  const { spent } = goHome(s)
+  sleepNow([came ? `home with ${came} thing${came === 1 ? '' : 's'} in the pack` : 'home empty-handed', spent && `the ${look(spent).name.toLowerCase()} is worn through`].filter(Boolean).join(' · '))
+}
+
 const ICON_TRASH = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 4h11M6 4V2.5h4V4M4 4l.8 9.5h6.4L12 4M6.8 6.5v5M9.2 6.5v5"/></svg>'
 function toggleTrash() {
   trashOpen = !trashOpen
@@ -819,7 +907,7 @@ function finish(drop: boolean) {
   let made: Item[] | null = null, laid = false, lit: ReturnType<typeof kindle> | null = null
   if (b && drop && d.verb === 'light') {
     lit = kindle(s, b)
-    if (lit === 'lit' && a.kind === 'match') remove(s, [a.id]) // a match is used up; a lighter goes back
+    if (lit === 'lit' && a.kind === 'it_lux_match') remove(s, [a.id]) // a match is used up; a lighter goes back
     else putBack(d.held)
     shop(lit === 'lit' ? 'ignite' : 'bad')
   }
@@ -831,7 +919,14 @@ function finish(drop: boolean) {
   else if (b && drop && d.verb === 'plug') { putBack(d.held); plug(a, b) }
   else if (b && drop && d.verb === 'load') { b.paper = Math.min(KINDS[b.kind].printer!, (b.paper ?? 0) + KINDS[a.kind].sheets!); remove(s, [a.id]); sound(a, 'drop'); toast(`${b.paper} sheets in the printer`); laid = true }
   else if (b && drop && d.verb === 'seal') { b.props = { ...b.props, tape: 'sealed' }; s.windows = (s.windows ?? []).filter(w => w.id !== b.id); putBack(d.held); sound(b, 'drop'); laid = true }
-  else if (drop && d.plan) { applyDrop(s, d.held, d.plan); sounds(d.held.items, 'drop') }
+  else if (drop && d.plan) {
+    applyDrop(s, d.held, d.plan); sounds(d.held.items, 'drop')
+    if (s.out?.buys) { // at a shop at night: what changed hands (outside.ts)
+      const t = trade(s, d.held.items.map((it, i) => ({ it, from: d.held.froms[i].space })))
+      const said = [t.bought.length && `bought ${t.bought.map(o => look(o).name.toLowerCase()).join(', ')} for ${t.cost}$`, t.back.length && `put back ${t.back.map(o => look(o).name.toLowerCase()).join(', ')}`, t.sold.length && `sold ${t.sold.map(x => x.name).join(', ')} for ${t.paid}$`].filter(Boolean)
+      if (said.length) { const now = s.cash ?? 0; s.cash = now + t.cost - t.paid; setCash(now); toast(said.join(' · ')); shop(t.paid || t.cost < 0 ? 'coinsIn' : 'coinsOut') } // the dial counts from what it was
+    }
+  }
   else { putBack(d.held); if (drop && d.over) shop('bad'); else sounds(d.held.items, 'drop') }
   d.el.remove()
   changed(from)
@@ -898,6 +993,9 @@ function tipHtml(it: Item) {
     rows.push(`<div class="spec">${n ? `${n} thing${n === 1 ? '' : 's'} inside` : 'empty'}${q ? `<br>order #${q.mail.id}: ${q.have} of ${q.wanted} wanted${q.late ? ', late' : ''} · pays ${q.pay - q.fee}$ after the ${q.fee}$ fee` : n ? '<br>no slip inside: it will not ship' : ''}${sealed(it) ? '' : '<br>not taped: it will not ship'}</div>`)
   }
   if (it.listed) rows.push(`<div class="who">on Swapline at ${it.listed}$</div>`)
+  if (it.sale !== undefined) rows.push(`<div class="who">${it.bought ? `bought for ${it.sale}$ (put it back to return it)` : `theirs: ${it.sale}$ (take it into your pack to buy it)`}</div>`)
+  if (s.out?.buys && it.sale === undefined && it.in?.host === worn(s)?.id) { const f = floorFor(s.out.buys, it); rows.push(`<div class="who">${f === null ? 'they do not buy this' : `they would pay ${f}$`}</div>`) }
+  if (nightsLeft(it) !== null) rows.push(`<div class="spec">good for ${nightsLeft(it)} more night${nightsLeft(it) === 1 ? '' : 's'} out in your hand</div>`)
   if (k.computer) { // what the machine has, and how full its disk is
     const used = SYSTEM_DISK + (it.drive ?? []).reduce((n, f) => n + (f.prog ? PROGRAMS[f.prog]?.size ?? 0 : f.pic !== undefined ? PIC_SIZE : textSize(f.text ?? '')), 0)
     rows.push(`<div class="spec">${k.computer.speed} MHz · ${kb(k.computer.memory)} memory · ${kb(k.computer.disk)} disk, ${kb(k.computer.disk - used)} free</div>`)
@@ -960,7 +1058,7 @@ initMenu({
   },
   addCash(n) { setCash((s.cash ?? 0) + n); shop('coinsIn') },
   clearField() { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) },
-  sleep: () => dayOver(),
+  sleep: () => s.out ? home() : sleepNow(), // ends the day and the night now, whatever is going on
   newGame() { cancelAnimationFrame(cashRaf); s = start(); cashShown = s.cash!; selected = new Set(); restart(); changed(new Map()); reopen() },
 })
 
@@ -989,7 +1087,7 @@ initComputer({
   printed(printer, job) { // the sheet comes out beside the printer: a slip for an order, a page or a picture otherwise
     const pr = find(s, printer.id)
     if (!pr) return false
-    const p = pieceOf(s, job.job !== undefined ? 'slip' : 'print', pr, [0, 1])
+    const p = pieceOf(s, job.job !== undefined ? 'it_tech_slip' : 'print', pr, [0, 1])
     if (!p) return false
     p.print = job
     if (job.pic) p.props = { face: 'picture' }
@@ -1043,6 +1141,7 @@ initTerminal({
   paintDials,
   hideTip: () => tip.classList.remove('on'),
   dayOver,
+  closed: () => !!s.night,
 })
 
 // ---------------------------------------------------------------- the fire: furnaces burn in real time while the page is open
@@ -1095,6 +1194,11 @@ app.addEventListener('click', e => {
   if (b.dataset.wfull) { const w = winOf(+b.dataset.wfull); if (w) w.full = !w.full; shop('menu'); changed(new Map()); keepOnScreen(); return }
   if (b.dataset.power) { pressPower(+b.dataset.power); return }
   if ('trash' in b.dataset) { toggleTrash(); return }
+  if ('you' in b.dataset) { if (s.night) return; youOpen = !youOpen; try { localStorage.setItem('you-open', youOpen ? '1' : '0') } catch { /* private window */ } shop('menu'); render(new Map()); return }
+  if (b.dataset.go) { goingOut(b.dataset.go); return }
+  if ('search' in b.dataset) { searching(); return }
+  if ('home' in b.dataset) { home(); return }
+  if ('stayin' in b.dataset) { sleepNow(); return }
   if ('dock' in b.dataset) { dockOpen = !dockOpen; try { localStorage.setItem('dock-open', dockOpen ? '1' : '0') } catch { /* private window */ } shop('menu'); render(new Map()); return }
 })
 

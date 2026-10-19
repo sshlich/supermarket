@@ -29,6 +29,8 @@ export interface Hooks {
   hideTip(): void
   /** The last customer of the line has gone: the day is over. */
   dayOver(): void
+  /** After hours (the night, outside.ts): the door stays shut and no new line forms until morning. */
+  closed(): boolean
 }
 let h: Hooks
 const app = document.getElementById('app')!
@@ -198,6 +200,7 @@ function unload(c: Customer) {
  * the door opens and a new line forms. A newcomer's wants fade in, a seller or trader unloads, and they start talking.
  */
 async function callNext() {
+  if (h.closed()) return
   const had = !!talk.customer
   leave()
   if (!(await wipe())) return
@@ -267,7 +270,7 @@ function doDeal() {
 /** Open or close the terminal; opening it with nobody there calls the next one (or lets a line in). */
 function toggleTerm() {
   talk.open = !talk.open
-  if (talk.open && !talk.customer) return void callNext()
+  if (talk.open && !talk.customer && !h.closed()) return void callNext()
   renderTerm()
 }
 

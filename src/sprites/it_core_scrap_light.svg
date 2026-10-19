@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- pale alloy bent off a rail: an L-bent strip with a hole -->
+  <path d="M4 10L24 6L28 12L12 16L14 26L6 28Z" fill="#c4cad0" stroke="#6c737a" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M5 11L23 7.5" stroke="#eef0f2" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M12 16L14 26L6 28Z" fill="#a6adb4"/>
+  <circle cx="22" cy="10.5" r="1.8" fill="#6c737a"/>
+  <path d="M4 10L24 6L28 12L12 16L14 26L6 28Z" fill="none" stroke="#6c737a" stroke-width="1" stroke-linejoin="round"/>
+</svg>

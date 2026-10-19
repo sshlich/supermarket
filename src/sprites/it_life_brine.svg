@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a stoppered flask of salty water, murky pale blue with white salt crust -->
+  <path d="M12 3L20 3L20 14C20 17 28 19 28 25L28 59C28 61 26.5 62 25 62L7 62C5.5 62 4 61 4 59L4 25C4 19 12 17 12 14Z" fill="#a8bcc4" stroke="#4d6670" stroke-width="1" stroke-linejoin="round"/>
+  <rect x="11" y="1.5" width="10" height="6" rx="1.5" fill="#8a6a3c" stroke="#2a2a2a" stroke-width="0.8"/>
+  <path d="M7.5 28L7.5 57" stroke="#ffffff" stroke-opacity="0.45" stroke-width="1.6" stroke-linecap="round"/>
+  <rect x="5" y="36" width="22" height="14" fill="#d8d2c0" stroke="#00000033" stroke-width="0.5"/>
+  <rect x="8" y="39" width="16" height="2" fill="#4d6670"/>
+  <rect x="8" y="44" width="10" height="2" fill="#4d6670" opacity="0.6"/>
+  <path d="M5 58L27 58L27 60C27 61 26 61.5 25 61.5L7 61.5C6 61.5 5 61 5 60Z" fill="#e8ece8" opacity="0.8"/>
+
+</svg>
