@@ -153,12 +153,12 @@ Phases are shown as digits. Domain, kind and phase of all 67 discs:
 ### Ring label set (`disc_mach_labels_ring`) — recipe · floppy · phase 2
 **What it is:** A grade stamp and a script font lifted from a Ring catalogue.
 **Function:** Required by 2 recipes on: Labeller (Label ring grade, Monogram goods); they modify existing goods rather than make new items.
-**Chain:** `Comes from:` upgrade 'Ring labels disc' for 800 credits (needs Labeller owned; delivery mail); walk-in sellers. `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Ring labels disc' for 800 credits (needs Labeller owned; delivery mail); walk-in sellers. `Unlocks / leads to:` no recipe or product.
 
 ### Company label set (`disc_mach_labels_company`) — recipe · card · phase 3
 **What it is:** The licence mark and batch numbers the company puts on its own stock.
-**Function:** Required by 1 recipes on: Labeller (Label company licence); they modify existing goods rather than make new items.
-**Chain:** `Comes from:` upgrade 'Company labels disc' for 7,000 credits (needs Labeller owned; delivery mail); mail attachment on order 'New label standard' (wants nothing). `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Function:** Required by 1 recipe on: Labeller (Label company licence); they modify existing goods rather than make new items.
+**Chain:** `Comes from:` upgrade 'Company labels disc' for 7,000 credits (needs Labeller owned; delivery mail); mail attachment on order 'New label standard' (wants nothing). `Unlocks / leads to:` no recipe or product.
 
 
 ## Technology and terminal software
@@ -177,7 +177,7 @@ Phases are shown as digits. Domain, kind and phase of all 67 discs:
 **What it is:** A company card of electrode ratios and sleeve drawings.
 **Function:** Required by 6 recipes on: Cell press. Makes Small cell, Cell, Heavy cell.
 **Chain:** `Comes from:` upgrade 'Cell blueprints disc' for 11,000 credits (needs Cell press owned; delivery mail). `Unlocks / leads to:` Small cell, Cell, Heavy cell; feeds into Hearing aid; wanted by orders: A lamp for the bunk, Cells and cable, Cells for the tug, Cells for the crew.
-**Note:** Not copyable, licensed (the copier refuses it unless cracked). Licensed on purpose: the cell press is the company's power monopoly. A cracked copy (disc_tech_prog_cracker) breaks it.
+**Note:** Not copyable, licensed (the copier refuses it unless cracked). Licensed on purpose: the cell press is the company's power monopoly. A cracked copy (Cracker disc) breaks it.
 
 ### Device blueprints (`disc_tech_bp_devices`) — blueprint · card · phase 3
 **What it is:** Card of assembly drawings for handsets, radios, heaters, fans, clocks, locks and alarms.
@@ -203,126 +203,126 @@ Phases are shown as digits. Domain, kind and phase of all 67 discs:
 
 ### Blank floppy (`disc_tech_blank_floppy`) — blank · floppy · phase 1
 **What it is:** A 3.5-inch floppy with nothing on it.
-**Function:** Copy target: the copier (`Copier`) writes a copyable floppy onto it; it unlocks no recipe.
-**Chain:** `Comes from:` mail attachment on order 'FREE WINE inside' (wants nothing); walk-in sellers; ordered crate. `Unlocks / leads to:` itself wanted by order(s): ord_tech_floppies (res_technician, x3).
+**Function:** Copy target: the copier (Copier) writes a copyable floppy onto it; it unlocks no recipe.
+**Chain:** `Comes from:` mail attachment on order 'FREE WINE inside' (wants nothing); walk-in sellers; ordered crate. `Unlocks / leads to:` itself wanted by order Blank floppies (x3).
 **Note:** Not copyable. Carried over from the old blank floppy. Copy target for any copyable floppy.
 
 ### Blank card (`disc_tech_blank_card`) — blank · card · phase 3
 **What it is:** A stamp-sized memory card, gold contacts and no label.
 **Function:** Copy target for cards and the card the Model store writes a purchased model to; it unlocks no recipe.
-**Chain:** `Comes from:` walk-in sellers; ordered crate. `Unlocks / leads to:` itself wanted by order(s): ord_black_crack (org_black_market, x2).
+**Chain:** `Comes from:` walk-in sellers; ordered crate. `Unlocks / leads to:` itself wanted by order Cracked tools (x2).
 **Note:** Not copyable.
 
 ### Salvaged disc (`disc_tech_data_lore`) — data · floppy · phase 1
 **What it is:** An unlabelled salvaged disc of someone else's diaries, logs and schedules.
 **Function:** Data disc: no machine and no recipe. Reading it gives rumours +5% accuracy and makes collectors pay 10% over on media items.
-**Chain:** `Comes from:` salvage. `Unlocks / leads to:` nothing downstream (no recipe outputs).
-**Note:** src/discs/unlabelled.md. Sells to collectors as a curiosity; also the mild source of rumours.
+**Chain:** `Comes from:` salvage. `Unlocks / leads to:` no recipe or product.
+**Note:** Sells to collectors as a curiosity; also the mild source of rumours.
 
 ### Mail client (`disc_tech_prog_mail`) — program · floppy · phase 1
 **What it is:** The company's mail disc: orders, attachments and the daily memo.
 **Function:** Mail (MAIL.EXE): Mail, orders and attachments. Without a modem it only shows an empty inbox. Effect: Orders can be read and answered: +1 per day (with the modem). Needs: Modem. Runs on: Wired terminal, Workstation.
-**Chain:** `Comes from:` the starter kit (start.json); upgrade 'Mail program disc' for 30 credits (needs Wired terminal owned; delivery mail); company issue. `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` the starter kit (start.json); upgrade 'Mail program disc' for 30 credits (needs Wired terminal owned; delivery mail); company issue. `Unlocks / leads to:` no goods; its value is the program effect.
 
 ### Labels disc (`disc_tech_prog_labels`) — program · floppy · phase 1
 **What it is:** Prints order slips and shelf labels on the slip printer.
 **Function:** Labels (LABELS.EXE): Prints order slips and labels on the slip printer, in three sizes. Needs: Slip printer. Runs on: Wired terminal, Workstation.
-**Chain:** `Comes from:` the starter kit (start.json); upgrade 'Labels program disc' for 35 credits (needs Wired terminal owned; delivery mail); company issue. `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` the starter kit (start.json); upgrade 'Labels program disc' for 35 credits (needs Wired terminal owned; delivery mail); company issue. `Unlocks / leads to:` no goods; its value is the program effect.
 
 ### Pixel paint (`disc_tech_prog_paint`) — program · floppy · phase 1
 **What it is:** An orange shareware disc with a brush and a little sun on a hand-drawn label.
 **Function:** Paint (PAINT.EXE): Sixteen colours, a pen, a brush and a fill. Pictures save to C: and can be the wallpaper. Novelty program with no game effect. Runs on: Wired terminal, Workstation, Mainframe.
-**Chain:** `Comes from:` salvage. `Unlocks / leads to:` nothing downstream (no recipe outputs).
-**Note:** src/discs/paint.md. Exempt from the upgrade route (novelty).
+**Chain:** `Comes from:` salvage. `Unlocks / leads to:` no goods; its value is the program effect.
+**Note:** Exempt from the upgrade route (novelty).
 
 ### Mines (`disc_tech_prog_mines`) — program · floppy · phase 1
 **What it is:** A grey disc, ten kilobytes of dread.
 **Function:** Mines (MINES.EXE): Flag the mines on a small grid. A game that fits in a corner of a very small machine. Novelty program with no game effect. Runs on: Wired terminal, Workstation, Mainframe.
-**Chain:** `Comes from:` salvage. `Unlocks / leads to:` nothing downstream (no recipe outputs).
-**Note:** src/discs/mines.md. Exempt from the upgrade route (novelty).
+**Chain:** `Comes from:` salvage. `Unlocks / leads to:` no goods; its value is the program effect.
+**Note:** Exempt from the upgrade route (novelty).
 
 ### Stocktake Pro (`disc_tech_prog_stock`) — program · floppy · phase 1
 **What it is:** A green disc in a hard case with a hologram sticker.
 **Function:** Stocktake (STOCK.EXE): Counts everything you own, on the floor and in every box, and tells you what it is worth. Runs on: Wired terminal, Workstation, Mainframe.
-**Chain:** `Comes from:` walk-in sellers. `Unlocks / leads to:` nothing downstream (no recipe outputs).
-**Note:** Not copyable, licensed (the copier refuses it unless cracked). src/discs/stock.md. It starts only with this disc in drive A:, so the licence is the disc.
+**Chain:** `Comes from:` walk-in sellers. `Unlocks / leads to:` no goods; its value is the program effect.
+**Note:** Not copyable, licensed (the copier refuses it unless cracked). It starts only with this disc in drive A:, so the licence is the disc.
 
 ### Ledger disc (`disc_tech_prog_ledger`) — program · floppy · phase 2
 **What it is:** A day-book program: what sold, what moved, what the station did.
 **Function:** Ledger (LEDGER.EXE): A day book by need and event: what sold, what moved, what broke. Effect: Trend arrows on the need chips. Runs on: Wired terminal, Workstation. Also enables the terminal job Close the day book (no item output).
-**Chain:** `Comes from:` upgrade 'Ledger program disc' for 350 credits (needs Wired terminal owned; delivery mail); salvage. `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Ledger program disc' for 350 credits (needs Wired terminal owned; delivery mail); salvage. `Unlocks / leads to:` no goods; its value is the program effect.
 
 ### Price board disc (`disc_tech_prog_board`) — program · floppy · phase 2
 **What it is:** Live need prices and trend arrows, drawn in green on the terminal screen.
 **Function:** Price board (BOARD.EXE): Live need prices and trend arrows, redrawn each time a customer pays. Effect: Live numbers on the need chips. Runs on: Wired terminal, Workstation.
-**Chain:** `Comes from:` upgrade 'Board program disc' for 500 credits (needs Wired terminal owned; delivery mail). `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Board program disc' for 500 credits (needs Wired terminal owned; delivery mail). `Unlocks / leads to:` no goods; its value is the program effect.
 
 ### Scrub disc (`disc_tech_prog_antivirus`) — program · floppy · phase 2
 **What it is:** A white-labelled disc with a stamp: CLEAN.
-**Function:** Scrub (SCRUB.EXE): Finds mod_infected on any disc in the tray and strips it. Slow, and thorough. Effect: Infections spread a fifth as often while it runs. Runs on: Wired terminal, Workstation. Also enables the terminal job Scrub a disc (no item output).
-**Chain:** `Comes from:` upgrade 'Scrub program disc' for 450 credits (needs Wired terminal owned; delivery mail); walk-in sellers. `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Function:** Scrub (SCRUB.EXE): Finds the infected modifier on any disc in the tray and strips it. Slow, and thorough. Effect: Infections spread a fifth as often while it runs. Runs on: Wired terminal, Workstation. Also enables the terminal job Scrub a disc (no item output).
+**Chain:** `Comes from:` upgrade 'Scrub program disc' for 450 credits (needs Wired terminal owned; delivery mail); walk-in sellers. `Unlocks / leads to:` no goods; its value is the program effect.
 
 ### Overclock disc (`disc_tech_prog_overclock`) — program · floppy · phase 2
 **What it is:** A scorched-edge disc of timing tables.
 **Function:** Overclock (OVERCLK.EXE): Loads into a machine and shortens every job. The machine runs hot and jams more. Effect: Jobs on the loaded machine cost a quarter less energy; Jam chance up by half. Runs on: Wired terminal, Workstation.
-**Chain:** `Comes from:` upgrade 'Overclock program disc' for 600 credits (needs Wired terminal owned; delivery mail). `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Overclock program disc' for 600 credits (needs Wired terminal owned; delivery mail). `Unlocks / leads to:` no goods; its value is the program effect.
 
 ### Wholesale client (`disc_tech_prog_wholesale`) — program · floppy · phase 2
 **What it is:** Account disc for the company trade desk: crates at market price, one account number.
 **Function:** Wholesale (WHOLESAL.EXE): Trade desk client: order crates at market price against one licensed account. Effect: Crates can be ordered at market price. Needs: Modem. Runs on: Wired terminal, Workstation.
-**Chain:** `Comes from:` upgrade 'Wholesale program disc' for 800 credits (needs Wired terminal owned; delivery mail). `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Wholesale program disc' for 800 credits (needs Wired terminal owned; delivery mail). `Unlocks / leads to:` no goods; its value is the program effect.
 **Note:** Not copyable, licensed (the copier refuses it unless cracked).
 
 ### Diagnostics disc (`disc_tech_prog_diagnostics`) — program · floppy · phase 2
 **What it is:** Polls every machine on the field and lists what is jammed, hot or unplugged.
 **Function:** Diagnostics (DIAG.EXE): Polls every machine and lists its status: jammed, hot, unplugged, worn. Effect: Statuses seen early: a tenth fewer surprise jams. Runs on: Wired terminal, Workstation. Also enables the terminal job Poll the machines (no item output).
-**Chain:** `Comes from:` upgrade 'Diagnostics program disc' for 700 credits (needs Wired terminal owned; delivery mail). `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Diagnostics program disc' for 700 credits (needs Wired terminal owned; delivery mail). `Unlocks / leads to:` no goods; its value is the program effect.
 
 ### Dock manifest disc (`disc_tech_prog_dockmaster`) — program · floppy · phase 2
 **What it is:** Manifest disc issued with the dock gantry: what ships, which box, what each one pays.
 **Function:** Dock manifest (DOCK.EXE): The dock manifest: what ships, in which box, and what each box pays after fees. Effect: Fees seen before shipping: 5% fewer wasted boxes. Needs: Modem. Runs on: Wired terminal, Workstation.
-**Chain:** `Comes from:` upgrade 'Dockmaster program disc' for 550 credits (needs Wired terminal owned; delivery mail); mail attachment on order 'Dock records' (wants nothing); company issue. `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Dockmaster program disc' for 550 credits (needs Wired terminal owned; delivery mail); mail attachment on order 'Dock records' (wants nothing); company issue. `Unlocks / leads to:` no goods; its value is the program effect.
 **Note:** Sold by an upgrade; also turns up through company and mail.
 
 ### Forecast card (`disc_tech_prog_forecast`) — program · card · phase 3
 **What it is:** A licensed card that reads the engineers' bands and the board together.
 **Function:** Forecast (FORECAST.EXE): Reads the engineers' bands and the board together. Rumours come earlier, and are right more often. Effect: Rumours reach you 2 days earlier; Rumours are right 15% more often. Needs: Modem, Dongle. Runs on: Workstation, Mainframe. Also enables the terminal job Run the forecast (no item output).
-**Chain:** `Comes from:` upgrade 'Forecast program disc' for 7,500 credits (needs Workstation owned; delivery mail). `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Forecast program disc' for 7,500 credits (needs Workstation owned; delivery mail). `Unlocks / leads to:` no goods; its value is the program effect.
 **Note:** Not copyable, licensed (the copier refuses it unless cracked).
 
 ### Automation card (`disc_tech_prog_automate`) — program · card · phase 3
 **What it is:** A card of scripts that load and start machine jobs in the night.
 **Function:** Automate (AUTO.EXE): Scripts that load machines and start their jobs in the night. Needs the room to hold them. Effect: Scripted jobs cost a fifth less energy; Two more machines may run overnight. Runs on: Workstation, Mainframe. Also enables the terminal job Run the scripts (no item output).
-**Chain:** `Comes from:` upgrade 'Automate program disc' for 10,000 credits (needs Workstation owned; delivery mail). `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Automate program disc' for 10,000 credits (needs Workstation owned; delivery mail). `Unlocks / leads to:` no goods; its value is the program effect.
 
 ### Cracker disc (`disc_tech_prog_cracker`) — program · floppy · phase 3
 **What it is:** A hand-labelled disc with no brand and a skull drawn in biro.
 **Function:** Cracker (CRACK.EXE): Patches the licence check out of a disc. The copy it makes is yours; so is whatever came with it. Effect: Copies of cracked discs fail one time in ten; Cracked copies carry a virus a quarter of the time. Runs on: Wired terminal, Workstation.
-**Chain:** `Comes from:` mail attachment on order 'Cracked tools' (wants Blank card x2). `Unlocks / leads to:` nothing downstream (no recipe outputs).
-**Note:** Contraband (software). Task 10 attaches it to mail. The copy it makes of a licensed disc may carry mod_infected.
+**Chain:** `Comes from:` mail attachment on order 'Cracked tools' (wants Blank card x2). `Unlocks / leads to:` no goods; its value is the program effect.
+**Note:** Contraband (software). The copy it makes of a licensed disc may carry the infected modifier.
 
 ### Night client (`disc_tech_prog_blackmarket`) — program · floppy · phase 3
 **What it is:** Encrypted client for the black-market order board.
 **Function:** Night client (NIGHT.EXE): Encrypted client for black-market orders. Pays well, leaves a trail, and asks no questions. Effect: Black-market orders arrive nightly; Security notices the traffic: inspection chance up. Needs: Modem. Runs on: Wired terminal, Workstation, Mainframe.
-**Chain:** `Comes from:` mail attachment on order 'Black exchange' (wants Memory module x1). `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` mail attachment on order 'Black exchange' (wants Memory module x1). `Unlocks / leads to:` no goods; its value is the program effect.
 **Note:** Contraband (software).
 
 ### Model store card (`disc_tech_prog_modelstore`) — program · card · phase 3
 **What it is:** Licensed shop client for 3D models: pick one, pay, and it is written to a blank card.
 **Function:** Model store (MODELS.EXE): Shop client for 3D models: pick one, pay, and it is written to a blank card. Needs: Modem. Runs on: Workstation, Mainframe.
-**Chain:** `Comes from:` upgrade 'Model store program disc' for 5,000 credits (needs Workstation owned; delivery mail). `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Model store program disc' for 5,000 credits (needs Workstation owned; delivery mail). `Unlocks / leads to:` no goods; its value is the program effect.
 **Note:** Not copyable, licensed (the copier refuses it unless cracked).
 
 ### Tracker and chess (`disc_tech_prog_music`) — program · floppy · phase 1
 **What it is:** A scuffed disc of module tunes and a chess board.
 **Function:** Tracker (TRACKER.EXE): Module tracker: four voices, a grid of notes, and the hum of the terminal fan in time. Novelty program with no game effect. Chess (CHESS.EXE): A chess board against a patient, stupid opponent. Takes whole evenings. Novelty program with no game effect. Runs on: Wired terminal, Workstation, Mainframe.
-**Chain:** `Comes from:` upgrade 'Tracker and chess disc' for 40 credits (needs Wired terminal owned; delivery mail); mail attachment on order 'Dock offer' (wants nothing); walk-in sellers; salvage. `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Tracker and chess disc' for 40 credits (needs Wired terminal owned; delivery mail); mail attachment on order 'Dock offer' (wants nothing); walk-in sellers; salvage. `Unlocks / leads to:` no goods; its value is the program effect.
 **Note:** Sold by an upgrade; also turns up through salvage and seller.
 
 ### Utility disc (`disc_tech_prog_utilities`) — program · floppy · phase 3
 **What it is:** Three small programs on one disc: a defragmenter, a mail cipher and a bench tuner.
 **Function:** Defrag (DEFRAG.EXE): Packs C: tight. A slow program that gives back a tenth of the disk and an hour of your night. Effect: A tenth more room on C:. Cipher (CIPHER.EXE): Scrambles mail and manifests before they leave. Inspectors find less to read. Effect: Inspections come a fifth less often. Needs: Modem. Tuner (TUNER.EXE): Calibrates a device from its own readings. The bench does the same by hand. Effect: Devices made on the loaded assembler sell 15% dearer (mod_tuned). Runs on: Wired terminal, Workstation.
-**Chain:** `Comes from:` upgrade 'Utility program disc' for 6,000 credits (needs Workstation owned; delivery mail); walk-in sellers; salvage. `Unlocks / leads to:` nothing downstream (no recipe outputs).
+**Chain:** `Comes from:` upgrade 'Utility program disc' for 6,000 credits (needs Workstation owned; delivery mail); walk-in sellers; salvage. `Unlocks / leads to:` no goods; its value is the program effect.
 **Note:** Sold by an upgrade; also turns up through salvage and seller.
 
 
@@ -416,7 +416,7 @@ Phases are shown as digits. Domain, kind and phase of all 67 discs:
 **What it is:** Unmarked floppy, handwritten label peeled half off.
 **Function:** Required by 3 recipes on: Synthesiser, Chem bench. Makes Dream tab, Blue ampoule.
 **Chain:** `Comes from:` mail attachment on order 'Narcotics notes' (wants Dream tab x10, Blue ampoule x2); walk-in sellers. `Unlocks / leads to:` Dream tab, Blue ampoule; feeds into Dream blister; wanted by orders: Dream tabs, Narcotics notes.
-**Note:** Contraband (drug). Exempt from the upgrade route (ids.json upgrade_exempt_discs). Needs an order attachment or a seller.
+**Note:** Contraband (drug). Exempt from the upgrade route (the upgrade-exempt list). Needs an order attachment or a seller.
 
 ### Regenerative (`disc_med_regenerative`) — recipe · card · phase 4
 **What it is:** Ring medicine card: regrowth gel and gene patch cultures.
@@ -441,7 +441,7 @@ Phases are shown as digits. Domain, kind and phase of all 67 discs:
 **What it is:** A scratched floppy with no label but a flame drawn on it in marker.
 **Function:** Required by 6 recipes on: Fabricator. Makes Candle, Match, Disposable lighter, Refillable lighter, Polymer flake, Flint striker, Oil lamp.
 **Chain:** `Comes from:` mail attachment on order 'Fire plans' (wants Candle x3, Match x6); walk-in sellers. `Unlocks / leads to:` Candle, Match, Disposable lighter, Refillable lighter, Polymer flake, Flint striker, Oil lamp; feeds into Polymer crate, Cutters, Device housing, Kitchen knife, Pliers and 30 more; wanted by orders: A real flame, Lighters, Fire plans.
-**Note:** Contraband (fire). Exempt from the upgrade route (ids.json upgrade_exempt_discs). Needs an order attachment or a seller.
+**Note:** Contraband (fire). Exempt from the upgrade route (the upgrade-exempt list). Needs an order attachment or a seller.
 
 ### Perfumery (`disc_lux_perfumery`) — recipe · floppy · phase 3
 **What it is:** Distillation notes for scents, soaps and pastes, with ring-grade proportions marked in red.
