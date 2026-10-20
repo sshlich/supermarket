@@ -94,3 +94,36 @@ What it says:
 Not modelled yet: needs gauges moving shop prices, machines bought in person (second-hand, with statuses), real grid
 packing, site danger or events, and phase 2 to 4 sites (cell husks, dead appliances and the zippo are phase-2 salvage with
 no site).
+
+## Machines alone, and what pays (2026-10-19)
+
+The maker bot now values a find by what its machines would make of it, and a job's output by its value only while it holds
+few (after six, at the best shop's floor: it would not make 76 switches). `SIM_ONLY=mach_x,...` lets it buy only those
+machines; the run prints a **payback day**: when the maker's running net catches up with the walk-in bot's (net counts
+stock at what it cost, so finds and unsold output count nothing). Phase 1, 100 runs, 14 days, after adding five orders that
+want machine output (bars, sheet and wire, clean water, herbs; weight 3) and the fab hall loading bay (buys bars, sheet,
+wire and parts at 75%):
+
+| Machines | Payback | Steady net, day 14 | Note |
+|---|---|---|---|
+| none (walkin) | | +16 | |
+| smelter (40) | **day 10** | +33 | scrap from the ducts (torch) into bars; bars to orders and the bay |
+| bench (90) | not by day 14 | +27 | most of what it can make (yarn, padding, switches, dice) has no buyer; at 50 it nearly catches up (181 against 198) |
+| purifier (80) | not by day 14 | | greywater and ice come only from the dock counter, a night's trip; clean water is worth 1.5 |
+| hydro tray (70) | never bought | | needs a disc (40), a lamp, seeds and nutrient; herbs give +6 every three nights |
+| smelter and crusher | not by day 14 | | the crusher splits junk into scrap at no gain: it only pays through the smelter |
+| everything the bot likes | not by day 14 | | it buys three or four machines on day 1 (210+) and runs out of buyers |
+
+What it says:
+1. **Outlets decide, not margins.** The smelter's margin was always there (+11 a job); it paid back only once orders
+   wanted bars (day 14 before the orders, day 10 after). Each machine needs someone who wants what it makes.
+2. **The bench needs a market for its range.** Its useful outputs (wire, sheet, spare parts) sell; most of its recipes make
+   things nobody in phase 1 buys.
+3. **Feed that costs a night does not pay.** The purifier's greywater and the hydro tray's seeds come from shops; one
+   outing a night makes buying feed as dear as a night's scavenging. A delivery channel for haul goods (the Company Store
+   by freight) would fix it.
+4. **The recycler is not in the sim** (it is in the game), nor are hand recipes.
+
+Changes proposed, not made: the Company Store delivers haul goods (greywater, ice, ore) by freight; cheaper first machines
+(the bench at 50, the hydro tray at 30 with its disc at 20); buyers for the bench's range (a shop or orders for cable,
+switches, padding); herbs in two nights.

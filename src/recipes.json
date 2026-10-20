@@ -1,0 +1,8168 @@
+{
+ "recipes": [
+  {
+   "id": "rcp_core_crush_mixed_scrap",
+   "name": "Crush mixed scrap",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_scrap_mixed",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_iron",
+     "n": 1
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    },
+    {
+     "id": "it_core_scrap_copper",
+     "n": 1,
+     "chance": 0.5
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_ewaste",
+   "name": "Crush e-waste",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_ewaste",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_copper",
+     "n": 1
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1,
+     "chance": 0.3
+    },
+    {
+     "id": "it_core_noble_flake",
+     "n": 1,
+     "chance": 0.1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_rags",
+   "name": "Crush rags",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_rags",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_fibre_lint",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_ice",
+   "name": "Crush ice",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_ice",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_greywater",
+     "n": 2
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_iron_ore",
+   "name": "Crush iron ore",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_ore_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_iron",
+     "n": 1
+    },
+    {
+     "id": "it_core_grit",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_copper_ore",
+   "name": "Crush copper ore",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_ore_copper",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_copper",
+     "n": 1
+    },
+    {
+     "id": "it_core_grit",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_bauxite",
+   "name": "Crush bauxite",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_ore_light",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_light",
+     "n": 1
+    },
+    {
+     "id": "it_core_grit",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_slag",
+   "name": "Crush slag",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_slag",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_grit",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_duct_junk",
+   "name": "Crush duct junk",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_duct_junk",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_light",
+     "n": 2
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    },
+    {
+     "id": "it_core_fibre_lint",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_hull_offcuts",
+   "name": "Crush hull offcuts",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_hull_offcuts",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_iron",
+     "n": 3
+    },
+    {
+     "id": "it_core_scrap_light",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_wire_tangle",
+   "name": "Crush wire tangle",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_wire_tangle",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_copper",
+     "n": 3
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_rubble",
+   "name": "Crush rubble",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_rubble",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_grit",
+     "n": 4
+    },
+    {
+     "id": "it_core_scrap_iron",
+     "n": 1
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_filter_husks",
+   "name": "Crush spent filters",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_filter_husks",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_carbon_dust",
+     "n": 2
+    },
+    {
+     "id": "it_core_fibre_lint",
+     "n": 1
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_cell_husk",
+   "name": "Crush cell husks",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_cell_husk",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_light",
+     "n": 1
+    },
+    {
+     "id": "it_core_lithium_salt",
+     "n": 1
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_crush_dead_appliance",
+   "name": "Crush dead appliance",
+   "machine": "mach_crusher",
+   "inputs": [
+    {
+     "id": "it_core_dead_appliance",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_iron",
+     "n": 3
+    },
+    {
+     "id": "it_core_scrap_copper",
+     "n": 2
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 2
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1,
+     "chance": 0.2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_core_digest_sludge_paste",
+   "name": "Digest sludge to paste",
+   "machine": "mach_digester",
+   "inputs": [
+    {
+     "id": "it_core_sludge",
+     "n": 4
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 3
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_core_digest_sludge_brine",
+   "name": "Digest sludge to brine",
+   "machine": "mach_digester",
+   "inputs": [
+    {
+     "id": "it_core_sludge",
+     "n": 4
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_salt_cake",
+     "n": 2
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_core_digest_sludge_gas",
+   "name": "Digest sludge to gas",
+   "machine": "mach_digester",
+   "inputs": [
+    {
+     "id": "it_core_sludge",
+     "n": 4
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_gas_bladder",
+     "n": 2
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_core_digest_sludge_water",
+   "name": "Digest sludge to water",
+   "machine": "mach_digester",
+   "inputs": [
+    {
+     "id": "it_core_sludge",
+     "n": 4
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_greywater",
+     "n": 3
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_core_digest_sludge_bulk",
+   "name": "Digest a full tank",
+   "machine": "mach_digester",
+   "inputs": [
+    {
+     "id": "it_core_sludge",
+     "n": 8
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 5
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 1
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_core_bioreactor_sludge",
+   "name": "Culture sludge",
+   "machine": "mach_bioreactor",
+   "inputs": [
+    {
+     "id": "it_core_sludge",
+     "n": 6
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 8
+    }
+   ],
+   "energy": 0,
+   "cells": 8,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_core_bioreactor_brine",
+   "name": "Culture brine and gas",
+   "machine": "mach_bioreactor",
+   "inputs": [
+    {
+     "id": "it_core_sludge",
+     "n": 4
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 2
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 8
+    }
+   ],
+   "energy": 0,
+   "cells": 10,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_core_bioreactor_bulk",
+   "name": "Culture a full tank",
+   "machine": "mach_bioreactor",
+   "inputs": [
+    {
+     "id": "it_core_sludge",
+     "n": 12
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 12
+    }
+   ],
+   "energy": 0,
+   "cells": 12,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_fab_roll_sheet",
+   "name": "Roll steel sheet",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_sheet",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_roll_sheet_scrap",
+   "name": "Roll sheet from scrap",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_core_scrap_iron",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_sheet",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_roll_light_sheet",
+   "name": "Roll light-metal sheet",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_bar_light",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_light_sheet",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_draw_wire",
+   "name": "Draw copper wire",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_bar_copper",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_wire",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_draw_wire_scrap",
+   "name": "Draw wire from scrap",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_core_scrap_copper",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_wire",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_curl_pipe",
+   "name": "Curl pipe from sheet",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_sheet",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_pipe",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 0,
+   "time": "instant"
+  },
+  {
+   "id": "rcp_fab_fold_tin",
+   "name": "Fold tin cans",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_sheet",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_tin",
+     "n": 2
+    }
+   ],
+   "energy": 0,
+   "cells": 0,
+   "time": "instant"
+  },
+  {
+   "id": "rcp_fab_patch_spare",
+   "name": "Patch a spare part",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_core_scrap_iron",
+     "n": 4
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_spare_patched",
+     "n": 5
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_rework_spare",
+   "name": "Rework patched spares",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_spare_patched",
+     "n": 10
+    },
+    {
+     "id": "it_core_scrap_iron",
+     "n": 2
+    },
+    {
+     "id": "it_core_scrap_copper",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_spare_part",
+     "n": 10
+    }
+   ],
+   "energy": 2,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_cut_rivets",
+   "name": "Cut rivets from sheet",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_sheet",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_fasteners",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fold_housing",
+   "name": "Fold device housings",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_light_sheet",
+     "n": 2
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_housing",
+     "n": 2
+    }
+   ],
+   "tools": [
+    "it_fab_pliers"
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_cut_seals",
+   "name": "Cut seals from film",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_polymer_film",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_seal",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_knife"
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_mount_loupe",
+   "name": "Mount a loupe",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_lens",
+     "n": 1
+    },
+    {
+     "id": "it_fab_fasteners",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_loupe",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_pliers"
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_extrude_sheet",
+   "name": "Extrude polymer sheet",
+   "machine": "mach_extruder",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_extrude_tube",
+   "name": "Extrude tube",
+   "machine": "mach_extruder",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_polymer_tube",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_extrude_film",
+   "name": "Blow film",
+   "machine": "mach_extruder",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_polymer_film",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_extrude_tub",
+   "name": "Press tubs",
+   "machine": "mach_extruder",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_tub",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_extrude_crate",
+   "name": "Press crate",
+   "machine": "mach_extruder",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_crate",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_melt_pane_slag",
+   "name": "Melt slag to pane",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_core_slag",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_glass_pane",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_melt_pane_grit",
+   "name": "Melt grit to pane",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_core_grit",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_glass_pane",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_blow_vials_slag",
+   "name": "Blow vials from slag",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_core_slag",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_vial",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_blow_vials_grit",
+   "name": "Blow vials from grit",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_core_grit",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_vial",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_blow_bottle_slag",
+   "name": "Blow bottle from slag",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_core_slag",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_bottle",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_blow_bottle_grit",
+   "name": "Blow bottle from grit",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_core_grit",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_bottle",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_press_jars",
+   "name": "Press jars",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_core_grit",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_jar",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_slump_lens",
+   "name": "Slump lenses",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_fab_glass_pane",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_lens",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fire_tile",
+   "name": "Fire tile",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_core_slag",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_tile",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fire_liner",
+   "name": "Fire crucible liners",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_core_slag",
+     "n": 4
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_crucible_liner",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_fasteners",
+   "name": "Stamp fasteners",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_hardware",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_fasteners",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_tins",
+   "name": "Stamp tin cans",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_hardware",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_tin",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_pipe",
+   "name": "Thread pipe",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_hardware",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_pipe",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_hinges",
+   "name": "Forge hinges",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_hardware",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_hinge",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_crate",
+   "name": "Mould crate",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_hardware",
+   "inputs": [
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_crate",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_brackets",
+   "name": "Press brackets",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_spares",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_bracket",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_spring",
+   "name": "Coil springs",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_spares",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_spring",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_gear",
+   "name": "Cut gears",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_spares",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_gear",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_spare",
+   "name": "Fabricate spare parts",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_spares",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 5
+    },
+    {
+     "id": "it_core_scrap_copper",
+     "n": 3
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_spare_part",
+     "n": 10
+    }
+   ],
+   "energy": 2,
+   "cells": 5,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_housing",
+   "name": "Fabricate housings",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_spares",
+   "inputs": [
+    {
+     "id": "it_fab_bar_light",
+     "n": 1
+    },
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_housing",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_knife",
+   "name": "Forge kitchen knives",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_tools",
+   "inputs": [
+    {
+     "id": "it_fab_sheet",
+     "n": 2
+    },
+    {
+     "id": "it_fab_fasteners",
+     "n": 1
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_knife",
+     "n": 5
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_wrench",
+   "name": "Forge wrenches",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_tools",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_wrench",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_pliers",
+   "name": "Forge pliers",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_tools",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 2
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_pliers",
+     "n": 5
+    }
+   ],
+   "energy": 1,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_fab_cutter",
+   "name": "Forge cutters",
+   "machine": "mach_fabricator",
+   "disc": "disc_fab_bp_tools",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_cutter",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_prec_bearing",
+   "name": "Grind bearings",
+   "machine": "mach_fab_precision",
+   "disc": "disc_fab_bp_precision",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_bearing",
+     "n": 4
+    }
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_prec_valve",
+   "name": "Machine valves",
+   "machine": "mach_fab_precision",
+   "disc": "disc_fab_bp_precision",
+   "inputs": [
+    {
+     "id": "it_fab_sheet",
+     "n": 1
+    },
+    {
+     "id": "it_fab_wire",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_valve",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_prec_seal",
+   "name": "Mould seals",
+   "machine": "mach_fab_precision",
+   "disc": "disc_fab_bp_precision",
+   "inputs": [
+    {
+     "id": "it_fab_polymer_tube",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_seal",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_prec_spare",
+   "name": "Match precision spare",
+   "machine": "mach_fab_precision",
+   "disc": "disc_fab_bp_precision",
+   "inputs": [
+    {
+     "id": "it_fab_spring",
+     "n": 1
+    },
+    {
+     "id": "it_fab_gear",
+     "n": 1
+    },
+    {
+     "id": "it_fab_bearing",
+     "n": 1
+    },
+    {
+     "id": "it_fab_seal",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_spare_precision",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_torque_driver"
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_prec_torque",
+   "name": "Build torque driver",
+   "machine": "mach_fab_precision",
+   "disc": "disc_fab_bp_precision",
+   "inputs": [
+    {
+     "id": "it_fab_spring",
+     "n": 1
+    },
+    {
+     "id": "it_fab_gear",
+     "n": 1
+    },
+    {
+     "id": "it_fab_bearing",
+     "n": 1
+    },
+    {
+     "id": "it_fab_polymer_tube",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_torque_driver",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_prec_multitool",
+   "name": "Build multitool",
+   "machine": "mach_fab_precision",
+   "disc": "disc_fab_bp_precision",
+   "inputs": [
+    {
+     "id": "it_fab_sheet",
+     "n": 1
+    },
+    {
+     "id": "it_fab_light_sheet",
+     "n": 1
+    },
+    {
+     "id": "it_fab_polymer_tube",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_multitool",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_print_clips",
+   "name": "Print clips",
+   "machine": "mach_printer_3d",
+   "disc": "disc_fab_model_fittings",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_print_clip",
+     "n": 4
+    }
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_print_brackets",
+   "name": "Print brackets",
+   "machine": "mach_printer_3d",
+   "disc": "disc_fab_model_fittings",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 2
+    },
+    {
+     "id": "it_core_scrap_light",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_print_bracket",
+     "n": 4
+    }
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_print_fittings",
+   "name": "Print pipe fittings",
+   "machine": "mach_printer_3d",
+   "disc": "disc_fab_model_fittings",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    },
+    {
+     "id": "it_core_scrap_light",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_print_fitting",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_print_housing",
+   "name": "Print housings",
+   "machine": "mach_printer_3d",
+   "disc": "disc_fab_model_fittings",
+   "inputs": [
+    {
+     "id": "it_fab_bar_light",
+     "n": 1
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_housing",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_synth_polymer",
+   "name": "Synthesise polymer",
+   "machine": "mach_synthesiser",
+   "disc": "disc_fab_synth_polymer",
+   "inputs": [
+    {
+     "id": "it_core_carbon_dust",
+     "n": 2
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 3
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_synth_polymer_dregs",
+   "name": "Synthesise from dregs",
+   "machine": "mach_synthesiser",
+   "disc": "disc_fab_synth_polymer",
+   "inputs": [
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 1
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 3
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_auto_hull_plate",
+   "name": "Assemble hull plate",
+   "machine": "mach_autofab",
+   "disc": "disc_fab_bp_heavy",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 2
+    },
+    {
+     "id": "it_fab_bar_light",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_hull_plate",
+     "n": 1
+    }
+   ],
+   "energy": 3,
+   "cells": 20,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_auto_beam",
+   "name": "Roll structural beam",
+   "machine": "mach_autofab",
+   "disc": "disc_fab_bp_heavy",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_beam",
+     "n": 1
+    }
+   ],
+   "energy": 3,
+   "cells": 20,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_auto_spare",
+   "name": "Batch spare parts",
+   "machine": "mach_autofab",
+   "disc": "disc_fab_bp_spares",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 5
+    },
+    {
+     "id": "it_core_scrap_copper",
+     "n": 3
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_spare_part",
+     "n": 10
+    }
+   ],
+   "energy": 0,
+   "cells": 15,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_fab_auto_bearings",
+   "name": "Batch bearings",
+   "machine": "mach_autofab",
+   "disc": "disc_fab_bp_precision",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 4
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_bearing",
+     "n": 16
+    }
+   ],
+   "energy": 0,
+   "cells": 15,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_fab_auto_valves",
+   "name": "Batch valves",
+   "machine": "mach_autofab",
+   "disc": "disc_fab_bp_precision",
+   "inputs": [
+    {
+     "id": "it_fab_sheet",
+     "n": 2
+    },
+    {
+     "id": "it_fab_bar_copper",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_valve",
+     "n": 4
+    }
+   ],
+   "energy": 0,
+   "cells": 15,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_fab_auto_housings",
+   "name": "Batch housings",
+   "machine": "mach_autofab",
+   "disc": "disc_fab_bp_spares",
+   "inputs": [
+    {
+     "id": "it_fab_bar_light",
+     "n": 2
+    },
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_housing",
+     "n": 4
+    }
+   ],
+   "energy": 0,
+   "cells": 15,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_fab_refine_ewaste",
+   "name": "Refine e-waste",
+   "machine": "mach_refinery",
+   "disc": "disc_fab_refine",
+   "inputs": [
+    {
+     "id": "it_core_ewaste",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_copper",
+     "n": 3
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 3
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1,
+     "chance": 0.9
+    },
+    {
+     "id": "it_core_noble_flake",
+     "n": 1,
+     "chance": 0.3
+    }
+   ],
+   "tools": [
+    "it_fab_crucible_liner"
+   ],
+   "energy": 3,
+   "cells": 20,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_refine_ewaste_batch",
+   "name": "Refine e-waste in bulk",
+   "machine": "mach_refinery",
+   "disc": "disc_fab_refine",
+   "inputs": [
+    {
+     "id": "it_core_ewaste",
+     "n": 10
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_copper",
+     "n": 10
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 10
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 3
+    },
+    {
+     "id": "it_core_noble_flake",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_crucible_liner"
+   ],
+   "energy": 0,
+   "cells": 30,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_fab_refine_circuits",
+   "name": "Strip circuit boards",
+   "machine": "mach_refinery",
+   "disc": "disc_fab_refine",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 10
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_scrap_copper",
+     "n": 3
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 3
+    },
+    {
+     "id": "it_core_grit",
+     "n": 2
+    }
+   ],
+   "tools": [
+    "it_fab_loupe"
+   ],
+   "energy": 3,
+   "cells": 20,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_refine_chips",
+   "name": "Recover chip metals",
+   "machine": "mach_refinery",
+   "disc": "disc_fab_refine",
+   "inputs": [
+    {
+     "id": "it_tech_chip",
+     "n": 10
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_rare_dust",
+     "n": 2
+    },
+    {
+     "id": "it_core_grit",
+     "n": 1
+    },
+    {
+     "id": "it_core_noble_flake",
+     "n": 1,
+     "chance": 0.5
+    }
+   ],
+   "tools": [
+    "it_fab_loupe"
+   ],
+   "energy": 3,
+   "cells": 20,
+   "time": "job"
+  },
+  {
+   "id": "rcp_fab_refine_rare_ingot",
+   "name": "Cast rare-earth ingots",
+   "machine": "mach_refinery",
+   "disc": "disc_fab_refine",
+   "inputs": [
+    {
+     "id": "it_core_rare_dust",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_fab_rare_ingot",
+     "n": 3
+    }
+   ],
+   "tools": [
+    "it_fab_crucible_liner"
+   ],
+   "energy": 3,
+   "cells": 20,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_grow_greens",
+   "name": "Grow greens",
+   "machine": "mach_hydro_tray",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_greens",
+     "n": 1
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 2
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_greens",
+     "n": 1
+    },
+    {
+     "id": "it_food_seed_greens",
+     "n": 1,
+     "chance": 0.7
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1,
+     "chance": 0.5
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1,
+     "chance": 0.46
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_food_grow_greens_clean",
+   "name": "Grow greens, clean water",
+   "machine": "mach_hydro_tray",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_greens",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 2
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_greens",
+     "n": 1
+    },
+    {
+     "id": "it_food_seed_greens",
+     "n": 1,
+     "chance": 0.7
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1,
+     "chance": 0.5
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1,
+     "chance": 0.46
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_food_grow_beans",
+   "name": "Grow beans",
+   "machine": "mach_hydro_tray",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_beans",
+     "n": 1
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_beans",
+     "n": 1
+    },
+    {
+     "id": "it_food_seed_beans",
+     "n": 1,
+     "chance": 0.7
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_food_grow_potatoes",
+   "name": "Grow potatoes",
+   "machine": "mach_hydro_tray",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_potato",
+     "n": 1
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_potatoes",
+     "n": 1
+    },
+    {
+     "id": "it_food_seed_potato",
+     "n": 1,
+     "chance": 0.7
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 4
+  },
+  {
+   "id": "rcp_food_grow_potatoes_clean",
+   "name": "Grow potatoes, clean water",
+   "machine": "mach_hydro_tray",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_potato",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 1
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_potatoes",
+     "n": 1
+    },
+    {
+     "id": "it_food_seed_potato",
+     "n": 1,
+     "chance": 0.7
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_food_grow_herbs",
+   "name": "Grow herbs",
+   "machine": "mach_hydro_tray",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_herbs",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 2
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_herbs",
+     "n": 1
+    },
+    {
+     "id": "it_food_seed_herbs",
+     "n": 1,
+     "chance": 0.7
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1,
+     "chance": 0.4
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1,
+     "chance": 0.56
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_food_grow_tomatoes",
+   "name": "Grow tomatoes",
+   "machine": "mach_hydro_tray",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_tomato",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 2
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_tomatoes",
+     "n": 1
+    },
+    {
+     "id": "it_food_seed_tomato",
+     "n": 1,
+     "chance": 0.7
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1,
+     "chance": 0.9
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1,
+     "chance": 0.06
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 1,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_food_rack_greens",
+   "name": "Rack greens",
+   "machine": "mach_hydro_rack",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_greens",
+     "n": 1
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 5
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_greens",
+     "n": 3
+    },
+    {
+     "id": "it_food_seed_greens",
+     "n": 1,
+     "chance": 0.7
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1,
+     "chance": 0.5
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 2,
+     "chance": 0.63
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 2,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_food_rack_beans",
+   "name": "Rack beans",
+   "machine": "mach_hydro_rack",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_beans",
+     "n": 1
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 3
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_beans",
+     "n": 3
+    },
+    {
+     "id": "it_food_seed_beans",
+     "n": 1,
+     "chance": 0.7
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 2,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_food_rack_potatoes",
+   "name": "Rack potatoes",
+   "machine": "mach_hydro_rack",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_potato",
+     "n": 1
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 3
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_potatoes",
+     "n": 3
+    },
+    {
+     "id": "it_food_seed_potato",
+     "n": 1,
+     "chance": 0.7
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 2,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_food_rack_herbs",
+   "name": "Rack herbs",
+   "machine": "mach_hydro_rack",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_herbs",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 5
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_herbs",
+     "n": 3
+    },
+    {
+     "id": "it_food_seed_herbs",
+     "n": 1,
+     "chance": 0.7
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1,
+     "chance": 0.2
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 2,
+     "chance": 0.78
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 2,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_food_rack_tomatoes",
+   "name": "Rack tomatoes",
+   "machine": "mach_hydro_rack",
+   "disc": "disc_food_hydro_greens",
+   "inputs": [
+    {
+     "id": "it_food_seed_tomato",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 4
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_tomatoes",
+     "n": 3
+    },
+    {
+     "id": "it_food_seed_tomato",
+     "n": 1,
+     "chance": 0.7
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1,
+     "chance": 0.7
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1,
+     "chance": 0.06
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 2,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_food_grow_apples",
+   "name": "Grow apples",
+   "machine": "mach_hydro_rack",
+   "disc": "disc_food_hydro_orchard",
+   "inputs": [
+    {
+     "id": "it_food_seed_apple",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 2
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_apple",
+     "n": 4
+    },
+    {
+     "id": "it_food_seed_apple",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 3,
+   "time": "nights",
+   "nights": 4
+  },
+  {
+   "id": "rcp_food_grow_citrus",
+   "name": "Grow citrus",
+   "machine": "mach_hydro_rack",
+   "disc": "disc_food_hydro_orchard",
+   "inputs": [
+    {
+     "id": "it_food_seed_citrus",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 2
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_citrus",
+     "n": 3
+    },
+    {
+     "id": "it_food_seed_citrus",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 3,
+   "time": "nights",
+   "nights": 5
+  },
+  {
+   "id": "rcp_food_grow_berries",
+   "name": "Grow berries",
+   "machine": "mach_hydro_rack",
+   "disc": "disc_food_hydro_orchard",
+   "inputs": [
+    {
+     "id": "it_food_seed_berry",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 1
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_berries",
+     "n": 4
+    },
+    {
+     "id": "it_food_seed_berry",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_tech_lamp"
+   ],
+   "energy": 0,
+   "cells": 2,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_food_press_ration_bars",
+   "name": "Press ration bars",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_staples",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 4
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_ration_bar",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_batch_ration_bars",
+   "name": "Batch ration bars",
+   "machine": "mach_vat_industrial",
+   "disc": "disc_food_vat_staples",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 12
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_ration_bar",
+     "n": 6
+    }
+   ],
+   "energy": 0,
+   "cells": 4,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_food_squeeze_paste_tubes",
+   "name": "Squeeze paste tubes",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_staples",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_paste_tube",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_press_protein_blocks",
+   "name": "Press protein blocks",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_staples",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 5
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_protein_block",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_batch_protein_blocks",
+   "name": "Batch protein blocks",
+   "machine": "mach_vat_industrial",
+   "disc": "disc_food_vat_staples",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 15
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_protein_block",
+     "n": 6
+    }
+   ],
+   "energy": 0,
+   "cells": 4,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_food_refine_sugar",
+   "name": "Refine sugar",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_staples",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_sugar",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_press_plant_oil",
+   "name": "Press plant oil",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_staples",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 4
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_oil",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_culture_yeast",
+   "name": "Culture yeast",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_staples",
+   "inputs": [
+    {
+     "id": "it_food_sugar",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_yeast",
+     "n": 5
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_grow_vat_apples",
+   "name": "Grow vat apples",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_staples",
+   "inputs": [
+    {
+     "id": "it_food_sugar",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_apple",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_bake_loaf",
+   "name": "Bake loaf",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_bakery",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 3
+    },
+    {
+     "id": "it_food_sugar",
+     "n": 1
+    },
+    {
+     "id": "it_food_yeast",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_bread",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_bake_loaves",
+   "name": "Bake loaves, batch",
+   "machine": "mach_vat_industrial",
+   "disc": "disc_food_vat_bakery",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 6
+    },
+    {
+     "id": "it_food_sugar",
+     "n": 2
+    },
+    {
+     "id": "it_food_yeast",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_bread",
+     "n": 2
+    }
+   ],
+   "energy": 0,
+   "cells": 4,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_food_bake_crackers",
+   "name": "Bake crackers",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_bakery",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    },
+    {
+     "id": "it_food_oil",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_crackers",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_bake_crackers_batch",
+   "name": "Bake crackers, batch",
+   "machine": "mach_vat_industrial",
+   "disc": "disc_food_vat_bakery",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 3
+    },
+    {
+     "id": "it_food_oil",
+     "n": 6
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_crackers",
+     "n": 6
+    }
+   ],
+   "energy": 0,
+   "cells": 4,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_food_culture_cheese",
+   "name": "Culture cheese wheel",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_dairy",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 5
+    },
+    {
+     "id": "it_food_sugar",
+     "n": 3
+    },
+    {
+     "id": "it_food_yeast",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_cheese_wheel",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 2,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_food_culture_cheese_batch",
+   "name": "Culture cheese wheels, batch",
+   "machine": "mach_vat_industrial",
+   "disc": "disc_food_vat_dairy",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 10
+    },
+    {
+     "id": "it_food_sugar",
+     "n": 6
+    },
+    {
+     "id": "it_food_yeast",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_cheese_wheel",
+     "n": 2
+    }
+   ],
+   "energy": 0,
+   "cells": 4,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_food_mix_cheese_spread",
+   "name": "Mix cheese spread",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_dairy",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 2
+    },
+    {
+     "id": "it_food_sugar",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_cheese_spread",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_cure_salami",
+   "name": "Cure salami",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_charcuterie",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 2
+    },
+    {
+     "id": "it_food_sugar",
+     "n": 1
+    },
+    {
+     "id": "it_food_oil",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_salami",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 2,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_food_cure_salami_batch",
+   "name": "Cure salami, batch",
+   "machine": "mach_vat_industrial",
+   "disc": "disc_food_vat_charcuterie",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 4
+    },
+    {
+     "id": "it_food_sugar",
+     "n": 2
+    },
+    {
+     "id": "it_food_oil",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_salami",
+     "n": 2
+    }
+   ],
+   "energy": 0,
+   "cells": 4,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_food_stuff_sausage",
+   "name": "Stuff sausage",
+   "machine": "mach_vat",
+   "disc": "disc_food_vat_charcuterie",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 2
+    },
+    {
+     "id": "it_food_oil",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_sausage",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_set_terrine",
+   "name": "Set terrine",
+   "machine": "mach_vat_industrial",
+   "disc": "disc_food_vat_gourmet",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 2
+    },
+    {
+     "id": "it_food_oil",
+     "n": 1
+    },
+    {
+     "id": "it_food_herbs",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_terrine",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 4,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_food_make_herb_cheese",
+   "name": "Make herb cheese",
+   "machine": "mach_vat_industrial",
+   "disc": "disc_food_vat_gourmet",
+   "inputs": [
+    {
+     "id": "it_food_cheese_spread",
+     "n": 1
+    },
+    {
+     "id": "it_food_herbs",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_cheese_herb",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 4,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_food_set_fruit_jelly",
+   "name": "Set fruit jelly",
+   "machine": "mach_vat_industrial",
+   "disc": "disc_food_vat_gourmet",
+   "inputs": [
+    {
+     "id": "it_food_sugar",
+     "n": 1
+    },
+    {
+     "id": "it_food_berries",
+     "n": 2
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_fruit_jelly",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 4,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_food_culture_mat_from_sludge",
+   "name": "Culture mat from sludge",
+   "machine": "mach_bioreactor",
+   "disc": "disc_food_bio_cultures",
+   "inputs": [
+    {
+     "id": "it_core_sludge",
+     "n": 4
+    },
+    {
+     "id": "it_food_yeast",
+     "n": 5
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_culture_mat",
+     "n": 2
+    }
+   ],
+   "energy": 0,
+   "cells": 12,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_food_culture_mat_algae",
+   "name": "Culture mat from algae",
+   "machine": "mach_bioreactor",
+   "disc": "disc_food_bio_cultures",
+   "inputs": [
+    {
+     "id": "it_core_sludge",
+     "n": 3
+    },
+    {
+     "id": "it_life_algae",
+     "n": 3
+    },
+    {
+     "id": "it_life_nutrient",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_culture_mat",
+     "n": 2
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 12,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_food_grow_culture_steak",
+   "name": "Grow culture steak",
+   "machine": "mach_bioreactor",
+   "disc": "disc_food_bio_cultures",
+   "inputs": [
+    {
+     "id": "it_core_sludge",
+     "n": 2
+    },
+    {
+     "id": "it_food_culture_mat",
+     "n": 1
+    },
+    {
+     "id": "it_food_herbs",
+     "n": 1
+    },
+    {
+     "id": "it_food_oil",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_culture_steak",
+     "n": 2
+    }
+   ],
+   "energy": 0,
+   "cells": 12,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_food_cook_porridge",
+   "name": "Cook porridge",
+   "machine": "mach_kitchen",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 2
+    },
+    {
+     "id": "it_life_water",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_porridge",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_cook_stew",
+   "name": "Cook stew",
+   "machine": "mach_kitchen",
+   "inputs": [
+    {
+     "id": "it_food_potatoes",
+     "n": 1
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 2
+    },
+    {
+     "id": "it_food_stock_cube",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_stew",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_boil_noodles",
+   "name": "Boil noodles",
+   "machine": "mach_kitchen",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 2
+    },
+    {
+     "id": "it_life_water",
+     "n": 1
+    },
+    {
+     "id": "it_food_stock_cube",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_noodles",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_fry_dumplings",
+   "name": "Fry dumplings",
+   "machine": "mach_kitchen",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 2
+    },
+    {
+     "id": "it_food_herbs",
+     "n": 1
+    },
+    {
+     "id": "it_food_oil",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_dumplings",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_toast_sandwich",
+   "name": "Toast sandwich",
+   "machine": "mach_kitchen",
+   "inputs": [
+    {
+     "id": "it_food_sandwich",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_toastie",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_boil_stock_cubes",
+   "name": "Boil stock cubes",
+   "machine": "mach_kitchen",
+   "inputs": [
+    {
+     "id": "it_core_salt_cake",
+     "n": 2
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_stock_cube",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_press_potato_sugar",
+   "name": "Press potato sugar",
+   "machine": "mach_kitchen",
+   "inputs": [
+    {
+     "id": "it_food_potatoes",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_sugar",
+     "n": 3
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_can_beans",
+   "name": "Can beans",
+   "machine": "mach_kitchen",
+   "inputs": [
+    {
+     "id": "it_food_beans",
+     "n": 1
+    },
+    {
+     "id": "it_fab_tin",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_tin_beans",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_can_stew",
+   "name": "Can stew",
+   "machine": "mach_kitchen",
+   "inputs": [
+    {
+     "id": "it_food_stew",
+     "n": 1
+    },
+    {
+     "id": "it_fab_tin",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_tin_stew",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_can_apples",
+   "name": "Can apples",
+   "machine": "mach_kitchen",
+   "inputs": [
+    {
+     "id": "it_food_apple",
+     "n": 2
+    },
+    {
+     "id": "it_fab_tin",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_tin_apple",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_food_plate_ring_dinner",
+   "name": "Plate ring dinner",
+   "machine": "mach_kitchen",
+   "inputs": [
+    {
+     "id": "it_food_terrine",
+     "n": 1
+    },
+    {
+     "id": "it_food_apple",
+     "n": 2
+    },
+    {
+     "id": "it_food_citrus",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_food_ring_dinner",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_purify_greywater",
+   "name": "Purify greywater",
+   "machine": "mach_purifier",
+   "inputs": [
+    {
+     "id": "it_core_greywater",
+     "n": 4
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_water",
+     "n": 4
+    }
+   ],
+   "tools": [
+    "it_mach_water_filter"
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_purify_ice",
+   "name": "Purify ice",
+   "machine": "mach_purifier",
+   "inputs": [
+    {
+     "id": "it_core_ice",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_water",
+     "n": 2
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_mach_water_filter"
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_melt_ice",
+   "name": "Melt ice",
+   "machine": "mach_purifier",
+   "inputs": [
+    {
+     "id": "it_core_ice",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_meltwater",
+     "n": 1
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_purify_meltwater",
+   "name": "Filter meltwater",
+   "machine": "mach_purifier",
+   "inputs": [
+    {
+     "id": "it_life_meltwater",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_water",
+     "n": 4
+    }
+   ],
+   "tools": [
+    "it_mach_water_filter"
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_purify_brine",
+   "name": "Desalt brine",
+   "machine": "mach_purifier",
+   "inputs": [
+    {
+     "id": "it_life_brine",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_water",
+     "n": 2
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 2
+    }
+   ],
+   "tools": [
+    "it_mach_water_filter"
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_distil_water",
+   "name": "Distil water",
+   "machine": "mach_still",
+   "inputs": [
+    {
+     "id": "it_life_water",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_distilled",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_distil_brine",
+   "name": "Distil brine",
+   "machine": "mach_still",
+   "inputs": [
+    {
+     "id": "it_life_brine",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_distilled",
+     "n": 2
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_evaporate_brine_nutrient",
+   "name": "Evaporate brine feed",
+   "machine": "mach_still",
+   "inputs": [
+    {
+     "id": "it_life_brine",
+     "n": 5
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_nutrient",
+     "n": 5
+    },
+    {
+     "id": "it_life_water",
+     "n": 5
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_electrolyse_water",
+   "name": "Split water",
+   "machine": "mach_electrolyser",
+   "inputs": [
+    {
+     "id": "it_life_water",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_gas_bladder",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_scrub_foul_air",
+   "name": "Scrub foul air",
+   "machine": "mach_scrubber",
+   "inputs": [
+    {
+     "id": "it_life_foul_air",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 2
+    }
+   ],
+   "tools": [
+    "it_mach_air_filter"
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_scrub_deep",
+   "name": "Strip foul air deep",
+   "machine": "mach_scrubber",
+   "disc": "disc_life_scrubber_profiles",
+   "inputs": [
+    {
+     "id": "it_life_foul_air",
+     "n": 4
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_core_carbon_dust",
+     "n": 3
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_mach_air_filter"
+   ],
+   "energy": 2,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_regenerate_puck",
+   "name": "Regenerate pucks",
+   "machine": "mach_scrubber",
+   "disc": "disc_life_scrubber_profiles",
+   "inputs": [
+    {
+     "id": "it_life_puck_spent",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_air_puck",
+     "n": 2
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_mach_air_filter"
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_sinter_oxygen_candle",
+   "name": "Sinter oxygen candle",
+   "machine": "mach_scrubber",
+   "disc": "disc_life_scrubber_profiles",
+   "inputs": [
+    {
+     "id": "it_core_salt_cake",
+     "n": 2
+    },
+    {
+     "id": "it_core_scrap_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_oxygen_candle",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_life_grow_algae",
+   "name": "Grow algae",
+   "machine": "mach_algae_tank",
+   "inputs": [
+    {
+     "id": "it_life_nutrient",
+     "n": 5
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_algae",
+     "n": 6
+    }
+   ],
+   "energy": 0,
+   "cells": 3,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_life_grow_algae_breath",
+   "name": "Grow algae on breath",
+   "machine": "mach_algae_tank",
+   "inputs": [
+    {
+     "id": "it_life_foul_air",
+     "n": 4
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_algae",
+     "n": 4
+    }
+   ],
+   "energy": 0,
+   "cells": 2,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_life_grow_algae_full",
+   "name": "Grow algae, full feed",
+   "machine": "mach_algae_tank",
+   "inputs": [
+    {
+     "id": "it_life_nutrient",
+     "n": 5
+    },
+    {
+     "id": "it_life_foul_air",
+     "n": 4
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 5
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_algae",
+     "n": 10
+    }
+   ],
+   "energy": 0,
+   "cells": 4,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_life_grow_dense_algae",
+   "name": "Grow dense strain",
+   "machine": "mach_algae_tank",
+   "disc": "disc_life_algae_strains",
+   "inputs": [
+    {
+     "id": "it_life_foul_air",
+     "n": 4
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_algae_dense",
+     "n": 2
+    }
+   ],
+   "energy": 0,
+   "cells": 4,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_life_grow_brine_strain",
+   "name": "Grow brine strain",
+   "machine": "mach_algae_tank",
+   "disc": "disc_life_algae_strains",
+   "inputs": [
+    {
+     "id": "it_life_brine",
+     "n": 4
+    },
+    {
+     "id": "it_life_foul_air",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_life_algae",
+     "n": 6
+    },
+    {
+     "id": "it_life_water",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 3,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_lux_pulp_lint",
+   "name": "Pulp lint",
+   "machine": "mach_pulper",
+   "inputs": [
+    {
+     "id": "it_core_fibre_lint",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_paper",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_pulp_rags",
+   "name": "Pulp rags",
+   "machine": "mach_pulper",
+   "inputs": [
+    {
+     "id": "it_core_rags",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_paper",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_press_board",
+   "name": "Press pasteboard",
+   "machine": "mach_pulper",
+   "inputs": [
+    {
+     "id": "it_lux_paper",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_board",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_spin_yarn",
+   "name": "Spin yarn",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_core_fibre_lint",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_yarn",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_weave_lint",
+   "name": "Weave lint",
+   "machine": "mach_loom",
+   "inputs": [
+    {
+     "id": "it_core_fibre_lint",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_cloth",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_weave_rags",
+   "name": "Weave rags",
+   "machine": "mach_loom",
+   "inputs": [
+    {
+     "id": "it_core_rags",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_cloth",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_weave_yarn",
+   "name": "Weave yarn",
+   "machine": "mach_loom",
+   "inputs": [
+    {
+     "id": "it_lux_yarn",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_cloth",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_twist_wicks",
+   "name": "Twist wicks",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_lux_yarn",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_wick",
+     "n": 5
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_sew_overalls",
+   "name": "Sew overalls",
+   "machine": "mach_loom",
+   "disc": "disc_lux_garments",
+   "inputs": [
+    {
+     "id": "it_lux_cloth",
+     "n": 2
+    },
+    {
+     "id": "it_fab_fasteners",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_overalls",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_sew_gloves",
+   "name": "Sew gloves",
+   "machine": "mach_loom",
+   "disc": "disc_lux_garments",
+   "inputs": [
+    {
+     "id": "it_lux_cloth",
+     "n": 1
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_gloves",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_tailor_ring_coat",
+   "name": "Tailor ring coat",
+   "machine": "mach_loom",
+   "disc": "disc_lux_garments",
+   "inputs": [
+    {
+     "id": "it_lux_cloth",
+     "n": 4
+    },
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_ring_coat",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_knit_scarf",
+   "name": "Knit scarf",
+   "machine": "mach_loom",
+   "disc": "disc_lux_garments",
+   "inputs": [
+    {
+     "id": "it_lux_cloth",
+     "n": 1
+    },
+    {
+     "id": "it_lux_yarn",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_scarf",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_stitch_blanket",
+   "name": "Stitch blanket",
+   "machine": "mach_loom",
+   "disc": "disc_lux_garments",
+   "inputs": [
+    {
+     "id": "it_lux_cloth",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_blanket",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_stuff_cushion",
+   "name": "Stuff cushion",
+   "machine": "mach_loom",
+   "disc": "disc_lux_garments",
+   "inputs": [
+    {
+     "id": "it_lux_cloth",
+     "n": 1
+    },
+    {
+     "id": "it_core_fibre_lint",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_cushion",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_hang_curtain",
+   "name": "Sew curtain",
+   "machine": "mach_loom",
+   "disc": "disc_lux_garments",
+   "inputs": [
+    {
+     "id": "it_lux_cloth",
+     "n": 2
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_curtain",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_weave_rug",
+   "name": "Weave rug",
+   "machine": "mach_loom",
+   "disc": "disc_lux_garments",
+   "inputs": [
+    {
+     "id": "it_core_rags",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_rug",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_boil_soap",
+   "name": "Boil soap",
+   "machine": "mach_chem_bench",
+   "inputs": [
+    {
+     "id": "it_food_oil",
+     "n": 1
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_soap",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_mix_fluid",
+   "name": "Mix lighter fluid",
+   "machine": "mach_chem_bench",
+   "inputs": [
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 3
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_lighter_fluid",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_blend_scent",
+   "name": "Blend scent",
+   "machine": "mach_chem_bench",
+   "disc": "disc_lux_perfumery",
+   "inputs": [
+    {
+     "id": "it_med_ethanol",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 1
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_scent",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 5,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_mix_cosmetic",
+   "name": "Grind cosmetic",
+   "machine": "mach_chem_bench",
+   "disc": "disc_lux_perfumery",
+   "inputs": [
+    {
+     "id": "it_food_oil",
+     "n": 1
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_cosmetic",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 5,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_ferment_wine",
+   "name": "Bottle wine",
+   "machine": "mach_still",
+   "disc": "disc_lux_vintner",
+   "inputs": [
+    {
+     "id": "it_lux_must",
+     "n": 1
+    },
+    {
+     "id": "it_fab_bottle",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_wine",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_distil_spirit",
+   "name": "Distil spirit",
+   "machine": "mach_still",
+   "disc": "disc_lux_vintner",
+   "inputs": [
+    {
+     "id": "it_lux_wash",
+     "n": 1
+    },
+    {
+     "id": "it_fab_bottle",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_spirit",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_run_moonshine",
+   "name": "Run moonshine",
+   "machine": "mach_still",
+   "inputs": [
+    {
+     "id": "it_life_algae",
+     "n": 3
+    },
+    {
+     "id": "it_fab_bottle",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_moonshine",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_fire_cup",
+   "name": "Fire cups",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_core_grit",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_cup",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_fire_vase",
+   "name": "Fire vase",
+   "machine": "mach_kiln",
+   "inputs": [
+    {
+     "id": "it_core_grit",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_vase",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_print_book",
+   "name": "Print book",
+   "machine": "mach_printer_m",
+   "inputs": [
+    {
+     "id": "it_lux_paper",
+     "n": 3
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_printed_book",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_print_pamphlets",
+   "name": "Print pamphlets",
+   "machine": "mach_printer_m",
+   "inputs": [
+    {
+     "id": "it_lux_paper",
+     "n": 4
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_pamphlet",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_print_cards",
+   "name": "Print cards",
+   "machine": "mach_printer_m",
+   "inputs": [
+    {
+     "id": "it_lux_board",
+     "n": 1
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_cards",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_print_poster",
+   "name": "Print art",
+   "machine": "mach_printer_l",
+   "inputs": [
+    {
+     "id": "it_lux_paper",
+     "n": 4
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_print",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_print_banner",
+   "name": "Print banner",
+   "machine": "mach_printer_l",
+   "inputs": [
+    {
+     "id": "it_lux_cloth",
+     "n": 2
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_banner",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_print_sculpture",
+   "name": "Print sculpture",
+   "machine": "mach_printer_3d",
+   "disc": "disc_lux_model_art",
+   "inputs": [
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 4
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_sculpture",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_print_ornament",
+   "name": "Print gilt ornament",
+   "machine": "mach_printer_3d",
+   "disc": "disc_lux_model_art",
+   "inputs": [
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 2
+    },
+    {
+     "id": "it_core_noble_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_ornament",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_carve_dice",
+   "name": "Carve dice",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_dice",
+     "n": 2
+    }
+   ],
+   "tools": [
+    "it_fab_knife"
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_set_copper_ring",
+   "name": "Set copper ring",
+   "machine": "mach_jeweller",
+   "disc": "disc_lux_jewellery",
+   "inputs": [
+    {
+     "id": "it_fab_wire",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_ring_copper",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 5,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_set_signet",
+   "name": "Cast signet",
+   "machine": "mach_jeweller",
+   "disc": "disc_lux_jewellery",
+   "inputs": [
+    {
+     "id": "it_core_noble_flake",
+     "n": 1
+    },
+    {
+     "id": "it_core_scrap_copper",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_signet",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_draw_chain",
+   "name": "Draw chain",
+   "machine": "mach_jeweller",
+   "disc": "disc_lux_jewellery",
+   "inputs": [
+    {
+     "id": "it_core_noble_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_chain",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_set_locket",
+   "name": "Set locket",
+   "machine": "mach_jeweller",
+   "disc": "disc_lux_jewellery",
+   "inputs": [
+    {
+     "id": "it_core_noble_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_locket",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_dip_candles",
+   "name": "Dip candles",
+   "machine": "mach_fabricator",
+   "disc": "disc_lux_bp_fire",
+   "inputs": [
+    {
+     "id": "it_food_sugar",
+     "n": 1
+    },
+    {
+     "id": "it_lux_wick",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_candle",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_cut_matches",
+   "name": "Cut matches",
+   "machine": "mach_fabricator",
+   "disc": "disc_lux_bp_fire",
+   "inputs": [
+    {
+     "id": "it_lux_paper",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_match",
+     "n": 10
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_mould_lighters",
+   "name": "Mould lighters",
+   "machine": "mach_fabricator",
+   "disc": "disc_lux_bp_fire",
+   "inputs": [
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 3
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_lighter",
+     "n": 10
+    }
+   ],
+   "energy": 1,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_press_zippos",
+   "name": "Press zippo cases",
+   "machine": "mach_fabricator",
+   "disc": "disc_lux_bp_fire",
+   "inputs": [
+    {
+     "id": "it_fab_housing",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_zippo",
+     "n": 4
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 5,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_forge_strikers",
+   "name": "Forge strikers",
+   "machine": "mach_fabricator",
+   "disc": "disc_lux_bp_fire",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_striker",
+     "n": 5
+    }
+   ],
+   "energy": 2,
+   "cells": 5,
+   "time": "job"
+  },
+  {
+   "id": "rcp_lux_build_lamp",
+   "name": "Build oil lamp",
+   "machine": "mach_fabricator",
+   "disc": "disc_lux_bp_fire",
+   "inputs": [
+    {
+     "id": "it_fab_housing",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 1
+    },
+    {
+     "id": "it_lux_wick",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_lux_oil_lamp",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_brew_coolant",
+   "name": "Brew coolant",
+   "machine": "mach_chem_bench",
+   "disc": "disc_mach_consumables",
+   "inputs": [
+    {
+     "id": "it_core_greywater",
+     "n": 4
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 2
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_coolant",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_brew_lubricant",
+   "name": "Brew lubricant",
+   "machine": "mach_chem_bench",
+   "disc": "disc_mach_consumables",
+   "inputs": [
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 5
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_lubricant",
+     "n": 10
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_brew_sealant",
+   "name": "Mix sealant",
+   "machine": "mach_chem_bench",
+   "disc": "disc_mach_consumables",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 2
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_sealant",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_mix_cleaning_kit",
+   "name": "Pack cleaning kits",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_core_rags",
+     "n": 1
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_cleaning_kit",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_wind_tape",
+   "name": "Wind sealing tape",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_tape",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_braid_belt",
+   "name": "Braid drive belts",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 2
+    },
+    {
+     "id": "it_core_fibre_lint",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_drive_belt",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_cast_fuse",
+   "name": "Pack fuses",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_wire",
+     "n": 2
+    },
+    {
+     "id": "it_core_grit",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_fuse",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_assemble_jam_kit",
+   "name": "Assemble jam kits",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_fab_fasteners",
+     "n": 2
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_jam_kit",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_print_manual",
+   "name": "Print service manuals",
+   "machine": "mach_printer_m",
+   "inputs": [
+    {
+     "id": "it_lux_paper",
+     "n": 4
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_manual",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 1,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_fab_water_filter",
+   "name": "Fabricate water filters",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_filters",
+   "inputs": [
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 1
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    },
+    {
+     "id": "it_fab_fasteners",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_water_filter",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_fab_air_cartridge",
+   "name": "Fabricate air cartridges",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_filters",
+   "inputs": [
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 1
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 2
+    },
+    {
+     "id": "it_core_fibre_lint",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_air_filter",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_rinse_water_filter",
+   "name": "Rinse water filter",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_mach_water_filter_spent",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_water_filter",
+     "n": 1
+    },
+    {
+     "id": "it_core_sludge",
+     "n": 1
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_rinse_air_cartridge",
+   "name": "Rinse air cartridge",
+   "machine": "mach_bench",
+   "inputs": [
+    {
+     "id": "it_mach_air_filter_spent",
+     "n": 1
+    },
+    {
+     "id": "it_life_water",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_mach_air_filter",
+     "n": 1
+    },
+    {
+     "id": "it_core_sludge",
+     "n": 1
+    },
+    {
+     "id": "it_core_greywater",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 0,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_bench",
+   "name": "Build workbench",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_machines_1",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 2
+    },
+    {
+     "id": "it_fab_sheet",
+     "n": 2
+    },
+    {
+     "id": "it_fab_fasteners",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_bench",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_smelter",
+   "name": "Build smelter",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_machines_1",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 3
+    },
+    {
+     "id": "it_fab_glass_pane",
+     "n": 2
+    },
+    {
+     "id": "it_fab_wire",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_smelter",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_recycler",
+   "name": "Build recycler",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_machines_1",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 2
+    },
+    {
+     "id": "it_tech_motor",
+     "n": 1
+    },
+    {
+     "id": "it_fab_sheet",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_recycler",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_crusher",
+   "name": "Build crusher",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_machines_1",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 3
+    },
+    {
+     "id": "it_tech_motor",
+     "n": 1
+    },
+    {
+     "id": "it_fab_bearing",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_crusher",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_purifier",
+   "name": "Build purifier",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_machines_1",
+   "inputs": [
+    {
+     "id": "it_fab_pipe",
+     "n": 2
+    },
+    {
+     "id": "it_fab_valve",
+     "n": 2
+    },
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_purifier",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_charger",
+   "name": "Build charger",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_machines_1",
+   "inputs": [
+    {
+     "id": "it_fab_bar_copper",
+     "n": 1
+    },
+    {
+     "id": "it_tech_cable",
+     "n": 2
+    },
+    {
+     "id": "it_fab_housing",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_charger",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_sealer",
+   "name": "Build box sealer",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_machines_1",
+   "inputs": [
+    {
+     "id": "it_tech_motor",
+     "n": 1
+    },
+    {
+     "id": "it_fab_sheet",
+     "n": 2
+    },
+    {
+     "id": "it_fab_fasteners",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_sealer",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_printer_s",
+   "name": "Build slip printer",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_machines_1",
+   "inputs": [
+    {
+     "id": "it_tech_motor",
+     "n": 1
+    },
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_fab_housing",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_printer_s",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_scanner",
+   "name": "Build scanner",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_machines_1",
+   "inputs": [
+    {
+     "id": "it_tech_sensor",
+     "n": 2
+    },
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_fab_housing",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_scanner",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_radio",
+   "name": "Build radio",
+   "machine": "mach_fabricator",
+   "disc": "disc_mach_bp_machines_1",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_tech_cable",
+     "n": 1
+    },
+    {
+     "id": "it_fab_housing",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_radio",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_fabricator",
+   "name": "Build fabricator",
+   "machine": "mach_fab_precision",
+   "disc": "disc_mach_bp_machines_2",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 3
+    },
+    {
+     "id": "it_tech_motor",
+     "n": 2
+    },
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_fab_bearing",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_fabricator",
+     "n": 1
+    }
+   ],
+   "energy": 3,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_extruder",
+   "name": "Build extruder",
+   "machine": "mach_fab_precision",
+   "disc": "disc_mach_bp_machines_2",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 2
+    },
+    {
+     "id": "it_tech_motor",
+     "n": 1
+    },
+    {
+     "id": "it_fab_pipe",
+     "n": 2
+    },
+    {
+     "id": "it_fab_wire",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_extruder",
+     "n": 1
+    }
+   ],
+   "energy": 3,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_kiln",
+   "name": "Build kiln",
+   "machine": "mach_fab_precision",
+   "disc": "disc_mach_bp_machines_2",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 3
+    },
+    {
+     "id": "it_core_slag",
+     "n": 3
+    },
+    {
+     "id": "it_fab_wire",
+     "n": 2
+    },
+    {
+     "id": "it_tech_sensor",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_kiln",
+     "n": 1
+    }
+   ],
+   "energy": 3,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_scrubber",
+   "name": "Build scrubber",
+   "machine": "mach_fab_precision",
+   "disc": "disc_mach_bp_machines_2",
+   "inputs": [
+    {
+     "id": "it_fab_pipe",
+     "n": 2
+    },
+    {
+     "id": "it_fab_valve",
+     "n": 1
+    },
+    {
+     "id": "it_tech_motor",
+     "n": 1
+    },
+    {
+     "id": "it_tech_sensor",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_scrubber",
+     "n": 1
+    }
+   ],
+   "energy": 3,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_chiller",
+   "name": "Build chiller",
+   "machine": "mach_fab_precision",
+   "disc": "disc_mach_bp_machines_2",
+   "inputs": [
+    {
+     "id": "it_fab_pipe",
+     "n": 2
+    },
+    {
+     "id": "it_fab_valve",
+     "n": 2
+    },
+    {
+     "id": "it_tech_motor",
+     "n": 1
+    },
+    {
+     "id": "it_fab_sheet",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_chiller",
+     "n": 1
+    }
+   ],
+   "energy": 3,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_mach_build_fab_precision",
+   "name": "Build precision fabricator",
+   "machine": "mach_autofab",
+   "disc": "disc_mach_bp_machines_3",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 4
+    },
+    {
+     "id": "it_tech_motor",
+     "n": 2
+    },
+    {
+     "id": "it_fab_bearing",
+     "n": 4
+    },
+    {
+     "id": "it_tech_circuit",
+     "n": 2
+    },
+    {
+     "id": "it_tech_sensor",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_fab_precision",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 12,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_mach_build_annealer",
+   "name": "Build annealer",
+   "machine": "mach_autofab",
+   "disc": "disc_mach_bp_machines_3",
+   "inputs": [
+    {
+     "id": "it_fab_bar_iron",
+     "n": 3
+    },
+    {
+     "id": "it_fab_bar_light",
+     "n": 1
+    },
+    {
+     "id": "it_fab_wire",
+     "n": 4
+    },
+    {
+     "id": "it_tech_sensor",
+     "n": 2
+    },
+    {
+     "id": "it_fab_housing",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "mach_annealer",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 12,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_med_purify_dregs",
+   "name": "Purify reagent",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_chem_basics",
+   "inputs": [
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_reagent_pure",
+     "n": 3
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_crack_paste",
+   "name": "Crack paste to reagent",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_chem_basics",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 2
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_reagent_pure",
+     "n": 2
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_distil_ethanol_bench",
+   "name": "Distil ethanol",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_chem_basics",
+   "inputs": [
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_ethanol",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_distil_ethanol_sugar",
+   "name": "Distil sugar",
+   "machine": "mach_still",
+   "disc": "disc_med_chem_basics",
+   "inputs": [
+    {
+     "id": "it_food_sugar",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_ethanol",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_ferment_ethanol_paste",
+   "name": "Ferment paste",
+   "machine": "mach_still",
+   "inputs": [
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_ethanol",
+     "n": 1
+    }
+   ],
+   "energy": 0,
+   "cells": 2,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_med_mix_antiseptic",
+   "name": "Mix antiseptic",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_chem_basics",
+   "inputs": [
+    {
+     "id": "it_med_ethanol",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_antiseptic",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_dilute_antiseptic",
+   "name": "Cut antiseptic",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_chem_basics",
+   "inputs": [
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_antiseptic",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_make_acid",
+   "name": "Cook acid",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_chem_basics",
+   "inputs": [
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 2
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_acid",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_make_base",
+   "name": "Cook base",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_chem_basics",
+   "inputs": [
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 2
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_base",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_mix_solvent",
+   "name": "Mix solvent",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_chem_basics",
+   "inputs": [
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 1
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_solvent",
+     "n": 1
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_mix_burn_gel",
+   "name": "Mix burn gel",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_chem_basics",
+   "inputs": [
+    {
+     "id": "it_food_oil",
+     "n": 1
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_burn_gel",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_weave_gauze_lint",
+   "name": "Weave gauze",
+   "machine": "mach_loom",
+   "inputs": [
+    {
+     "id": "it_core_fibre_lint",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_gauze",
+     "n": 4
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_weave_gauze_rags",
+   "name": "Weave gauze from rags",
+   "machine": "mach_loom",
+   "inputs": [
+    {
+     "id": "it_core_rags",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_gauze",
+     "n": 8
+    }
+   ],
+   "energy": 1,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_weave_bandage_lint",
+   "name": "Weave bandage roll",
+   "machine": "mach_loom",
+   "inputs": [
+    {
+     "id": "it_core_fibre_lint",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_bandage",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_brew_stim",
+   "name": "Brew stims",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_stimulants",
+   "inputs": [
+    {
+     "id": "it_med_reagent_pure",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_stim",
+     "n": 5
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_brew_energy_tabs",
+   "name": "Press energy tabs",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_stimulants",
+   "inputs": [
+    {
+     "id": "it_food_sugar",
+     "n": 1
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_energy_tab",
+     "n": 10
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_press_blisters",
+   "name": "Press blister cards",
+   "machine": "mach_pill_press",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    },
+    {
+     "id": "it_core_scrap_light",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_blister",
+     "n": 10
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_press_painkillers",
+   "name": "Press painkillers",
+   "machine": "mach_pill_press",
+   "disc": "disc_med_analgesics",
+   "inputs": [
+    {
+     "id": "it_med_reagent_pure",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_painkiller",
+     "n": 10
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_press_burn_tabs",
+   "name": "Press burn tabs",
+   "machine": "mach_pill_press",
+   "disc": "disc_med_analgesics",
+   "inputs": [
+    {
+     "id": "it_med_reagent_pure",
+     "n": 1
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_burn_tab",
+     "n": 10
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_press_sleeping",
+   "name": "Press sleeping pills",
+   "machine": "mach_pill_press",
+   "disc": "disc_med_sedatives",
+   "inputs": [
+    {
+     "id": "it_med_reagent_pure",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_sleeping_pill",
+     "n": 10
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_press_calmers",
+   "name": "Press calmers",
+   "machine": "mach_pill_press",
+   "disc": "disc_med_sedatives",
+   "inputs": [
+    {
+     "id": "it_med_reagent_pure",
+     "n": 1
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_calmer",
+     "n": 5
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_synth_antibiotics",
+   "name": "Synthesise antibiotics",
+   "machine": "mach_synthesiser",
+   "disc": "disc_med_antibiotics",
+   "inputs": [
+    {
+     "id": "it_med_acid",
+     "n": 2
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_antibiotic",
+     "n": 10
+    },
+    {
+     "id": "it_med_reagent_pure",
+     "n": 1
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1
+    },
+    {
+     "id": "it_core_grit",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 10,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_synth_antivirals",
+   "name": "Synthesise antivirals",
+   "machine": "mach_synthesiser",
+   "disc": "disc_med_antibiotics",
+   "inputs": [
+    {
+     "id": "it_med_base",
+     "n": 2
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_antiviral",
+     "n": 10
+    },
+    {
+     "id": "it_med_reagent_pure",
+     "n": 1
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    },
+    {
+     "id": "it_core_grit",
+     "n": 1
+    }
+   ],
+   "energy": 3,
+   "cells": 12,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_synth_antirad",
+   "name": "Synthesise anti-radiation tabs",
+   "machine": "mach_synthesiser",
+   "disc": "disc_med_antibiotics",
+   "inputs": [
+    {
+     "id": "it_med_reagent_pure",
+     "n": 1
+    },
+    {
+     "id": "it_core_lithium_salt",
+     "n": 2
+    },
+    {
+     "id": "it_core_salt_cake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_antirad",
+     "n": 10
+    }
+   ],
+   "energy": 2,
+   "cells": 10,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_synth_dream_tabs",
+   "name": "Synthesise dream tabs",
+   "machine": "mach_synthesiser",
+   "disc": "disc_med_narcotics",
+   "inputs": [
+    {
+     "id": "it_med_reagent_pure",
+     "n": 1
+    },
+    {
+     "id": "it_core_biomass_paste",
+     "n": 1
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_dream_tab",
+     "n": 10
+    }
+   ],
+   "energy": 2,
+   "cells": 10,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_cook_blue_ampoules",
+   "name": "Cook blue ampoules",
+   "machine": "mach_chem_bench",
+   "disc": "disc_med_narcotics",
+   "inputs": [
+    {
+     "id": "it_med_solvent",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_blue_ampoule",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 4,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_synth_blue_ampoules",
+   "name": "Synthesise blue ampoules",
+   "machine": "mach_synthesiser",
+   "disc": "disc_med_narcotics",
+   "inputs": [
+    {
+     "id": "it_med_reagent_pure",
+     "n": 1
+    },
+    {
+     "id": "it_core_gas_bladder",
+     "n": 1
+    },
+    {
+     "id": "it_fab_vial",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_blue_ampoule",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_med_synth_regrowth_gel",
+   "name": "Synthesise regrowth gel",
+   "machine": "mach_synthesiser",
+   "disc": "disc_med_regenerative",
+   "inputs": [
+    {
+     "id": "it_med_burn_gel",
+     "n": 5
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_regrowth_gel",
+     "n": 5
+    }
+   ],
+   "energy": 3,
+   "cells": 20,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_med_synth_gene_patch",
+   "name": "Print gene patches",
+   "machine": "mach_synthesiser",
+   "disc": "disc_med_regenerative",
+   "inputs": [
+    {
+     "id": "it_med_regrowth_gel",
+     "n": 5
+    },
+    {
+     "id": "it_core_noble_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_med_gene_patch",
+     "n": 5
+    }
+   ],
+   "energy": 3,
+   "cells": 30,
+   "time": "nights",
+   "nights": 3
+  },
+  {
+   "id": "rcp_tech_etch_circuits",
+   "name": "Etch circuit boards",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_circuits",
+   "inputs": [
+    {
+     "id": "it_core_ore_copper",
+     "n": 3
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1
+    },
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 10
+    },
+    {
+     "id": "it_core_slag",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_draw_cable",
+   "name": "Draw cable run",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_circuits",
+   "inputs": [
+    {
+     "id": "it_fab_wire",
+     "n": 8
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 4
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_cable",
+     "n": 8
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_build_sensors",
+   "name": "Build sensors",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_circuits",
+   "inputs": [
+    {
+     "id": "it_fab_wire",
+     "n": 2
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1
+    },
+    {
+     "id": "it_core_grit",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_sensor",
+     "n": 10
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_wind_motors",
+   "name": "Wind motors",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_circuits",
+   "inputs": [
+    {
+     "id": "it_fab_bar_copper",
+     "n": 1
+    },
+    {
+     "id": "it_fab_bar_iron",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_motor",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_wind_relays",
+   "name": "Wind relays",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_circuits",
+   "inputs": [
+    {
+     "id": "it_fab_wire",
+     "n": 4
+    },
+    {
+     "id": "it_fab_spring",
+     "n": 2
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_relay",
+     "n": 4
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_stamp_keypads",
+   "name": "Stamp keypads",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_circuits",
+   "inputs": [
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 2
+    },
+    {
+     "id": "it_tech_switch",
+     "n": 6
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_keypad",
+     "n": 4
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_form_speakers",
+   "name": "Form speakers",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_circuits",
+   "inputs": [
+    {
+     "id": "it_fab_wire",
+     "n": 2
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_speaker",
+     "n": 4
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_blow_screens",
+   "name": "Blow screens",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_circuits",
+   "inputs": [
+    {
+     "id": "it_fab_glass_pane",
+     "n": 5
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1
+    },
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 5
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_screen",
+     "n": 10
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_forge_irons",
+   "name": "Forge soldering irons",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_circuits",
+   "inputs": [
+    {
+     "id": "it_fab_wire",
+     "n": 2
+    },
+    {
+     "id": "it_fab_fasteners",
+     "n": 2
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_soldering_iron",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_cast_lamps",
+   "name": "Cast grow lamps",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_lamps",
+   "inputs": [
+    {
+     "id": "it_fab_wire",
+     "n": 4
+    },
+    {
+     "id": "it_core_grit",
+     "n": 5
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_lamp",
+     "n": 10
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_mount_work_lights",
+   "name": "Mount work lights",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_lamps",
+   "inputs": [
+    {
+     "id": "it_tech_lamp",
+     "n": 1
+    },
+    {
+     "id": "it_fab_light_sheet",
+     "n": 1
+    },
+    {
+     "id": "it_tech_cable",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_work_light",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_make_torches",
+   "name": "Make torches",
+   "machine": "mach_fabricator",
+   "disc": "disc_tech_bp_lamps",
+   "inputs": [
+    {
+     "id": "it_tech_lamp",
+     "n": 1
+    },
+    {
+     "id": "it_tech_switch",
+     "n": 1
+    },
+    {
+     "id": "it_fab_polymer_tube",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_torch",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 3,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_press_cell_s",
+   "name": "Press small cells",
+   "machine": "mach_cell_press",
+   "disc": "disc_tech_bp_cells",
+   "inputs": [
+    {
+     "id": "it_core_lithium_salt",
+     "n": 2
+    },
+    {
+     "id": "it_core_scrap_iron",
+     "n": 3
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_cell_s",
+     "n": 10
+    }
+   ],
+   "energy": 3,
+   "cells": 10,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_press_cell_m",
+   "name": "Press cells",
+   "machine": "mach_cell_press",
+   "disc": "disc_tech_bp_cells",
+   "inputs": [
+    {
+     "id": "it_core_lithium_salt",
+     "n": 3
+    },
+    {
+     "id": "it_core_scrap_iron",
+     "n": 3
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_cell_m",
+     "n": 5
+    }
+   ],
+   "energy": 3,
+   "cells": 12,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_press_cell_l",
+   "name": "Press heavy cells",
+   "machine": "mach_cell_press",
+   "disc": "disc_tech_bp_cells",
+   "inputs": [
+    {
+     "id": "it_core_lithium_salt",
+     "n": 4
+    },
+    {
+     "id": "it_core_scrap_light",
+     "n": 2
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_cell_l",
+     "n": 2
+    }
+   ],
+   "energy": 3,
+   "cells": 16,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_press_cell_s_night",
+   "name": "Press small cells overnight",
+   "machine": "mach_cell_press",
+   "disc": "disc_tech_bp_cells",
+   "inputs": [
+    {
+     "id": "it_core_lithium_salt",
+     "n": 2
+    },
+    {
+     "id": "it_core_scrap_iron",
+     "n": 3
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_cell_s",
+     "n": 10
+    }
+   ],
+   "energy": 0,
+   "cells": 10,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_tech_press_cell_m_night",
+   "name": "Press cells overnight",
+   "machine": "mach_cell_press",
+   "disc": "disc_tech_bp_cells",
+   "inputs": [
+    {
+     "id": "it_core_lithium_salt",
+     "n": 3
+    },
+    {
+     "id": "it_core_scrap_iron",
+     "n": 3
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_cell_m",
+     "n": 5
+    }
+   ],
+   "energy": 0,
+   "cells": 12,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_tech_press_cell_l_night",
+   "name": "Press heavy cells overnight",
+   "machine": "mach_cell_press",
+   "disc": "disc_tech_bp_cells",
+   "inputs": [
+    {
+     "id": "it_core_lithium_salt",
+     "n": 4
+    },
+    {
+     "id": "it_core_scrap_light",
+     "n": 2
+    },
+    {
+     "id": "it_core_reagent_dregs",
+     "n": 3
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_cell_l",
+     "n": 2
+    }
+   ],
+   "energy": 0,
+   "cells": 16,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_tech_print_handbooks",
+   "name": "Print handbooks",
+   "machine": "mach_printer_m",
+   "inputs": [
+    {
+     "id": "it_lux_paper",
+     "n": 3
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_handbook",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_print_notices",
+   "name": "Print notice posters",
+   "machine": "mach_printer_m",
+   "inputs": [
+    {
+     "id": "it_lux_paper",
+     "n": 2
+    },
+    {
+     "id": "it_core_carbon_dust",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_notice",
+     "n": 2
+    }
+   ],
+   "energy": 1,
+   "cells": 2,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_print_cases",
+   "name": "Print device cases",
+   "machine": "mach_printer_3d",
+   "disc": "disc_tech_model_gadgets",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 2
+    },
+    {
+     "id": "it_core_scrap_light",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_case",
+     "n": 2
+    }
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_print_fobs",
+   "name": "Print key fobs",
+   "machine": "mach_printer_3d",
+   "disc": "disc_tech_model_gadgets",
+   "inputs": [
+    {
+     "id": "it_core_polymer_flake",
+     "n": 2
+    },
+    {
+     "id": "it_core_scrap_light",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_fob",
+     "n": 3
+    }
+   ],
+   "energy": 2,
+   "cells": 6,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_bake_chips",
+   "name": "Bake chips",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_computers",
+   "inputs": [
+    {
+     "id": "it_core_rare_dust",
+     "n": 4
+    },
+    {
+     "id": "it_core_grit",
+     "n": 2
+    },
+    {
+     "id": "it_core_noble_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_chip",
+     "n": 20
+    }
+   ],
+   "tools": [
+    "it_fab_loupe"
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_memory",
+   "name": "Assemble memory modules",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_computers",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_tech_chip",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_memory_module",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_loupe"
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_modem_cards",
+   "name": "Assemble modem cards",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_computers",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_tech_chip",
+     "n": 1
+    },
+    {
+     "id": "it_tech_cable",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_modem_card",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_pliers"
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_laptop",
+   "name": "Assemble laptop terminals",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_computers",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 2
+    },
+    {
+     "id": "it_tech_memory_module",
+     "n": 1
+    },
+    {
+     "id": "it_tech_screen",
+     "n": 1
+    },
+    {
+     "id": "it_tech_keypad",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_laptop",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_torque_driver"
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_desk_unit",
+   "name": "Assemble desk units",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_computers",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 2
+    },
+    {
+     "id": "it_tech_memory_module",
+     "n": 2
+    },
+    {
+     "id": "it_tech_screen",
+     "n": 1
+    },
+    {
+     "id": "it_fab_bar_noble",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_desk_unit",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_torque_driver"
+   ],
+   "energy": 3,
+   "cells": 10,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_dongles",
+   "name": "Assemble dongles",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_tech_chip",
+     "n": 1
+    },
+    {
+     "id": "it_fab_wire",
+     "n": 1
+    },
+    {
+     "id": "it_core_polymer_flake",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_dongle",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_loupe"
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_handsets",
+   "name": "Assemble handsets",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_tech_speaker",
+     "n": 1
+    },
+    {
+     "id": "it_tech_keypad",
+     "n": 1
+    },
+    {
+     "id": "it_fab_housing",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_handset",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_radio_sets",
+   "name": "Assemble radio sets",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_tech_speaker",
+     "n": 2
+    },
+    {
+     "id": "it_fab_housing",
+     "n": 1
+    },
+    {
+     "id": "it_tech_cable",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_radio_set",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_heaters",
+   "name": "Assemble room heaters",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_fab_housing",
+     "n": 1
+    },
+    {
+     "id": "it_fab_wire",
+     "n": 4
+    },
+    {
+     "id": "it_tech_switch",
+     "n": 2
+    },
+    {
+     "id": "it_tech_handbook",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_heater",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_fans",
+   "name": "Assemble fans",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_tech_motor",
+     "n": 1
+    },
+    {
+     "id": "it_fab_light_sheet",
+     "n": 1
+    },
+    {
+     "id": "it_tech_switch",
+     "n": 1
+    },
+    {
+     "id": "it_tech_cable",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_fan",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_clocks",
+   "name": "Assemble wall clocks",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_fab_gear",
+     "n": 2
+    },
+    {
+     "id": "it_fab_glass_pane",
+     "n": 1
+    },
+    {
+     "id": "it_tech_handbook",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_clock",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_handhelds",
+   "name": "Assemble game handhelds",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_tech_screen",
+     "n": 1
+    },
+    {
+     "id": "it_tech_keypad",
+     "n": 1
+    },
+    {
+     "id": "it_tech_case",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_handheld",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_gamepads",
+   "name": "Assemble gamepads",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_tech_case",
+     "n": 1
+    },
+    {
+     "id": "it_tech_keypad",
+     "n": 1
+    },
+    {
+     "id": "it_tech_cable",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_gamepad",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_hearing_aids",
+   "name": "Assemble hearing aids",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_tech_speaker",
+     "n": 1
+    },
+    {
+     "id": "it_tech_sensor",
+     "n": 1
+    },
+    {
+     "id": "it_tech_cell_s",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_hearing_aid",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_loupe"
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_door_locks",
+   "name": "Assemble door locks",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_tech_relay",
+     "n": 1
+    },
+    {
+     "id": "it_tech_fob",
+     "n": 2
+    },
+    {
+     "id": "it_tech_keypad",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_door_lock",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_assemble_alarms",
+   "name": "Assemble door alarms",
+   "machine": "mach_assembler",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_tech_sensor",
+     "n": 2
+    },
+    {
+     "id": "it_tech_speaker",
+     "n": 1
+    },
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_alarm",
+     "n": 1
+    }
+   ],
+   "energy": 2,
+   "cells": 8,
+   "time": "job"
+  },
+  {
+   "id": "rcp_tech_auto_circuits",
+   "name": "Etch circuit boards in bulk",
+   "machine": "mach_autofab",
+   "disc": "disc_tech_bp_circuits",
+   "inputs": [
+    {
+     "id": "it_core_ore_copper",
+     "n": 6
+    },
+    {
+     "id": "it_core_rare_dust",
+     "n": 2
+    },
+    {
+     "id": "it_fab_polymer_sheet",
+     "n": 6
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 20
+    },
+    {
+     "id": "it_core_slag",
+     "n": 2
+    }
+   ],
+   "energy": 0,
+   "cells": 20,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_tech_auto_chips",
+   "name": "Bake chips in bulk",
+   "machine": "mach_autofab",
+   "disc": "disc_tech_bp_computers",
+   "inputs": [
+    {
+     "id": "it_core_rare_dust",
+     "n": 8
+    },
+    {
+     "id": "it_core_grit",
+     "n": 4
+    },
+    {
+     "id": "it_core_noble_flake",
+     "n": 2
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_chip",
+     "n": 40
+    }
+   ],
+   "energy": 0,
+   "cells": 24,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_tech_auto_handsets",
+   "name": "Assemble handsets in bulk",
+   "machine": "mach_autofab",
+   "disc": "disc_tech_bp_devices",
+   "inputs": [
+    {
+     "id": "it_tech_circuit",
+     "n": 4
+    },
+    {
+     "id": "it_tech_speaker",
+     "n": 4
+    },
+    {
+     "id": "it_tech_keypad",
+     "n": 4
+    },
+    {
+     "id": "it_fab_housing",
+     "n": 4
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_handset",
+     "n": 4
+    }
+   ],
+   "energy": 0,
+   "cells": 24,
+   "time": "nights",
+   "nights": 1
+  },
+  {
+   "id": "rcp_tech_build_drone",
+   "name": "Build service drones",
+   "machine": "mach_autofab",
+   "disc": "disc_tech_bp_automata",
+   "inputs": [
+    {
+     "id": "it_tech_motor",
+     "n": 2
+    },
+    {
+     "id": "it_tech_circuit",
+     "n": 2
+    },
+    {
+     "id": "it_tech_sensor",
+     "n": 2
+    },
+    {
+     "id": "it_fab_housing",
+     "n": 1
+    },
+    {
+     "id": "it_fab_rare_ingot",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_drone",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_torque_driver"
+   ],
+   "energy": 0,
+   "cells": 28,
+   "time": "nights",
+   "nights": 2
+  },
+  {
+   "id": "rcp_tech_build_loader_arm",
+   "name": "Build loader arms",
+   "machine": "mach_autofab",
+   "disc": "disc_tech_bp_automata",
+   "inputs": [
+    {
+     "id": "it_tech_motor",
+     "n": 2
+    },
+    {
+     "id": "it_fab_bearing",
+     "n": 4
+    },
+    {
+     "id": "it_tech_circuit",
+     "n": 1
+    },
+    {
+     "id": "it_fab_beam",
+     "n": 1
+    },
+    {
+     "id": "it_tech_sensor",
+     "n": 1
+    }
+   ],
+   "outputs": [
+    {
+     "id": "it_tech_loader_arm",
+     "n": 1
+    }
+   ],
+   "tools": [
+    "it_fab_torque_driver"
+   ],
+   "energy": 0,
+   "cells": 28,
+   "time": "nights",
+   "nights": 2
+  }
+ ],
+ "units": {
+  "mat_iron": "it_core_scrap_iron",
+  "mat_copper": "it_core_scrap_copper",
+  "mat_lightmetal": "it_core_scrap_light",
+  "mat_noble": "it_core_noble_flake",
+  "mat_rare": "it_core_rare_dust",
+  "mat_lithium": "it_core_lithium_salt",
+  "mat_silicate": "it_core_grit",
+  "mat_carbon": "it_core_carbon_dust",
+  "mat_polymer": "it_core_polymer_flake",
+  "mat_fibre": "it_core_fibre_lint",
+  "mat_biomass": "it_core_biomass_paste",
+  "mat_water": "it_core_greywater",
+  "mat_salts": "it_core_salt_cake",
+  "mat_reagent": "it_core_reagent_dregs",
+  "mat_volatiles": "it_core_gas_bladder",
+  "mat_sludge": "it_core_sludge"
+ },
+ "sludge": "it_core_sludge"
+}

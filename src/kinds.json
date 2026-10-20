@@ -8920,7 +8920,8 @@
       "mat_reagent": 1.5
     },
     "need": "need_power",
-    "tier": 3
+    "tier": 3,
+    "cell": 100
   },
   "it_tech_cell_m": {
     "name": "Cell",
@@ -8943,7 +8944,8 @@
       "mat_reagent": 0.5
     },
     "need": "need_power",
-    "tier": 2
+    "tier": 2,
+    "cell": 30
   },
   "it_tech_cell_s": {
     "name": "Coal",
@@ -8968,7 +8970,8 @@
       "mat_reagent": 0.2
     },
     "need": "need_power",
-    "tier": 1
+    "tier": 1,
+    "cell": 10
   },
   "it_tech_chip": {
     "name": "Chip",
@@ -9778,16 +9781,13 @@
     "slots": [
       {
         "name": "tank",
+        "role": "input",
         "w": 3,
-        "h": 3,
-        "accepts": [
-          "water",
-          "culture",
-          "gas"
-        ]
+        "h": 3
       },
       {
         "name": "lamp rack",
+        "role": "tool",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -9796,6 +9796,7 @@
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -9804,6 +9805,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -9817,7 +9819,15 @@
       "mat_iron": 2,
       "mat_copper": 1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "nights"
+      ],
+      "cells": 2,
+      "energy": 1
+    }
   },
   "mach_annealer": {
     "name": "Annealer",
@@ -9835,6 +9845,7 @@
     "slots": [
       {
         "name": "drum",
+        "role": "input",
         "w": 3,
         "h": 3,
         "accepts": [
@@ -9845,6 +9856,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -9860,7 +9872,16 @@
       "mat_silicate": 0.2,
       "mat_polymer": 0.5
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "modify",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 8,
+      "energy": 2
+    }
   },
   "mach_assembler": {
     "name": "Assembler",
@@ -9879,21 +9900,20 @@
     "slots": [
       {
         "name": "jig",
+        "role": "input",
         "w": 4,
-        "h": 3,
-        "accepts": [
-          "component",
-          "electronic",
-          "device"
-        ]
+        "h": 3
       },
       {
         "name": "bay",
+        "role": "output",
         "w": 3,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -9902,6 +9922,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -9917,7 +9938,16 @@
       "mat_polymer": 2,
       "mat_noble": 0.1
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 8,
+      "energy": 2
+    }
   },
   "mach_autofab": {
     "name": "Autofab",
@@ -9935,23 +9965,20 @@
     "slots": [
       {
         "name": "silo",
+        "role": "input",
         "w": 6,
-        "h": 3,
-        "accepts": [
-          "bar",
-          "sheet",
-          "component",
-          "part",
-          "polymer"
-        ]
+        "h": 3
       },
       {
         "name": "conveyor",
+        "role": "output",
         "w": 6,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -9960,6 +9987,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 4,
         "h": 1,
         "accepts": [
@@ -9968,6 +9996,7 @@
       },
       {
         "name": "drive",
+        "role": "consumable",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -9983,7 +10012,16 @@
       "mat_rare": 4,
       "mat_noble": 0.5
     },
-    "tier": 4
+    "tier": 4,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 24,
+      "energy": 3
+    }
   },
   "mach_bench": {
     "name": "Workbench",
@@ -10001,11 +10039,13 @@
     "slots": [
       {
         "name": "top",
+        "role": "input",
         "w": 6,
         "h": 4
       },
       {
         "name": "tool rail",
+        "role": "tool",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -10016,7 +10056,15 @@
     "made": {
       "mat_iron": 7
     },
-    "tier": 1
+    "tier": 1,
+    "machine": {
+      "kind": "modify",
+      "jobs": [
+        "job"
+      ],
+      "cells": 0,
+      "energy": 1
+    }
   },
   "mach_bioreactor": {
     "name": "Bioreactor",
@@ -10034,21 +10082,20 @@
     "slots": [
       {
         "name": "tank",
+        "role": "input",
         "w": 5,
-        "h": 4,
-        "accepts": [
-          "waste",
-          "culture",
-          "liquid"
-        ]
+        "h": 4
       },
       {
         "name": "draw-off",
+        "role": "output",
         "w": 5,
-        "h": 1
+        "h": 1,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10057,6 +10104,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 4,
         "h": 1,
         "accepts": [
@@ -10072,7 +10120,15 @@
       "mat_copper": 4,
       "mat_rare": 1
     },
-    "tier": 4
+    "tier": 4,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "nights"
+      ],
+      "cells": 18,
+      "energy": 2
+    }
   },
   "mach_broadcaster": {
     "name": "Broadcaster",
@@ -10092,6 +10148,7 @@
     "slots": [
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10100,6 +10157,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10114,7 +10172,16 @@
       "mat_polymer": 2,
       "mat_noble": 0.1
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "do",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 6,
+      "energy": 2
+    }
   },
   "mach_cell_press": {
     "name": "Cell press",
@@ -10132,21 +10199,20 @@
     "slots": [
       {
         "name": "chamber",
+        "role": "input",
         "w": 3,
-        "h": 2,
-        "accepts": [
-          "powder",
-          "chemical",
-          "bar"
-        ]
+        "h": 2
       },
       {
         "name": "cell tray",
+        "role": "output",
         "w": 3,
-        "h": 1
+        "h": 1,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10155,6 +10221,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -10169,7 +10236,16 @@
       "mat_lightmetal": 2,
       "mat_rare": 0.3
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 10,
+      "energy": 3
+    }
   },
   "mach_cellar": {
     "name": "Cellar",
@@ -10187,6 +10263,7 @@
     "slots": [
       {
         "name": "shelves",
+        "role": "input",
         "w": 4,
         "h": 4,
         "accepts": [
@@ -10198,6 +10275,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10211,7 +10289,15 @@
       "mat_polymer": 4,
       "mat_copper": 1
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "modify",
+      "jobs": [
+        "nights"
+      ],
+      "cells": 4,
+      "energy": 0
+    }
   },
   "mach_charger": {
     "name": "Charger",
@@ -10230,6 +10316,7 @@
     "slots": [
       {
         "name": "cradle",
+        "role": "input",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10242,7 +10329,17 @@
       "mat_polymer": 1.5,
       "mat_lightmetal": 1
     },
-    "tier": 1
+    "tier": 1,
+    "machine": {
+      "kind": "do",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 0,
+      "energy": 0,
+      "generic": "charge"
+    }
   },
   "mach_chem_bench": {
     "name": "Chem bench",
@@ -10260,21 +10357,20 @@
     "slots": [
       {
         "name": "mixing deck",
+        "role": "input",
         "w": 4,
-        "h": 3,
-        "accepts": [
-          "liquid",
-          "chemical",
-          "reagent"
-        ]
+        "h": 3
       },
       {
         "name": "rack",
+        "role": "output",
         "w": 3,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10283,6 +10379,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10296,7 +10393,16 @@
       "mat_copper": 1,
       "mat_polymer": 1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 2,
+      "energy": 1
+    }
   },
   "mach_chiller": {
     "name": "Chiller",
@@ -10314,6 +10420,7 @@
     "slots": [
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10322,6 +10429,7 @@
       },
       {
         "name": "coolant tank",
+        "role": "consumable",
         "w": 1,
         "h": 2,
         "accepts": [
@@ -10333,7 +10441,16 @@
       "mat_iron": 6,
       "mat_copper": 2
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "do",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 2,
+      "energy": 1
+    }
   },
   "mach_copier": {
     "name": "Disc copier",
@@ -10353,6 +10470,7 @@
     "slots": [
       {
         "name": "source drive",
+        "role": "input",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10361,14 +10479,17 @@
       },
       {
         "name": "target drive",
+        "role": "output",
         "w": 2,
         "h": 2,
         "accepts": [
           "media"
-        ]
+        ],
+        "out": true
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10382,7 +10503,16 @@
       "mat_copper": 1,
       "mat_rare": 0.2
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job"
+      ],
+      "cells": 2,
+      "energy": 1,
+      "generic": "copy"
+    }
   },
   "mach_crusher": {
     "name": "Crusher",
@@ -10400,16 +10530,20 @@
     "slots": [
       {
         "name": "hopper",
+        "role": "input",
         "w": 4,
         "h": 3
       },
       {
         "name": "chute",
+        "role": "output",
         "w": 4,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10418,6 +10552,7 @@
       },
       {
         "name": "roller drive",
+        "role": "consumable",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10429,7 +10564,15 @@
       "mat_iron": 8,
       "mat_copper": 1
     },
-    "tier": 1
+    "tier": 1,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job"
+      ],
+      "cells": 2,
+      "energy": 2
+    }
   },
   "mach_digester": {
     "name": "Digester",
@@ -10447,6 +10590,7 @@
     "slots": [
       {
         "name": "tun",
+        "role": "input",
         "w": 3,
         "h": 3,
         "accepts": [
@@ -10456,11 +10600,14 @@
       },
       {
         "name": "draw-off",
+        "role": "output",
         "w": 3,
-        "h": 1
+        "h": 1,
+        "out": true
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10474,7 +10621,15 @@
       "mat_copper": 1,
       "mat_silicate": 1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "nights"
+      ],
+      "cells": 2,
+      "energy": 1
+    }
   },
   "mach_electrolyser": {
     "name": "Electrolyser",
@@ -10492,6 +10647,7 @@
     "slots": [
       {
         "name": "cell tank",
+        "role": "input",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10501,11 +10657,14 @@
       },
       {
         "name": "gas port",
+        "role": "output",
         "w": 1,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -10520,7 +10679,16 @@
       "mat_noble": 0.1,
       "mat_lightmetal": 1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 5,
+      "energy": 2
+    }
   },
   "mach_extruder": {
     "name": "Extruder",
@@ -10538,6 +10706,7 @@
     "slots": [
       {
         "name": "barrel",
+        "role": "input",
         "w": 3,
         "h": 2,
         "accepts": [
@@ -10546,11 +10715,14 @@
       },
       {
         "name": "die",
+        "role": "output",
         "w": 4,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10562,7 +10734,15 @@
       "mat_iron": 7,
       "mat_copper": 2
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job"
+      ],
+      "cells": 3,
+      "energy": 2
+    }
   },
   "mach_fab_precision": {
     "name": "Precision fabricator",
@@ -10580,22 +10760,20 @@
     "slots": [
       {
         "name": "hopper",
-        "w": 4,
-        "h": 3,
-        "accepts": [
-          "bar",
-          "sheet",
-          "component",
-          "part"
-        ]
-      },
-      {
-        "name": "bed",
+        "role": "input",
         "w": 4,
         "h": 3
       },
       {
+        "name": "bed",
+        "role": "output",
+        "w": 4,
+        "h": 3,
+        "out": true
+      },
+      {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10604,6 +10782,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -10612,6 +10791,7 @@
       },
       {
         "name": "drive",
+        "role": "consumable",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10626,7 +10806,16 @@
       "mat_polymer": 0.6,
       "mat_silicate": 0.6
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 8,
+      "energy": 2
+    }
   },
   "mach_fabricator": {
     "name": "Fabricator",
@@ -10644,22 +10833,20 @@
     "slots": [
       {
         "name": "hopper",
-        "w": 4,
-        "h": 3,
-        "accepts": [
-          "bar",
-          "sheet",
-          "polymer",
-          "component"
-        ]
-      },
-      {
-        "name": "bed",
+        "role": "input",
         "w": 4,
         "h": 3
       },
       {
+        "name": "bed",
+        "role": "output",
+        "w": 4,
+        "h": 3,
+        "out": true
+      },
+      {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10668,6 +10855,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10676,6 +10864,7 @@
       },
       {
         "name": "drive",
+        "role": "consumable",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10690,7 +10879,16 @@
       "mat_polymer": 0.3,
       "mat_silicate": 0.2
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 3,
+      "energy": 2
+    }
   },
   "mach_hydro_rack": {
     "name": "Hydro rack",
@@ -10708,16 +10906,13 @@
     "slots": [
       {
         "name": "racks",
+        "role": "input",
         "w": 6,
-        "h": 4,
-        "accepts": [
-          "seed",
-          "produce",
-          "water"
-        ]
+        "h": 4
       },
       {
         "name": "lamp bank",
+        "role": "tool",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -10726,6 +10921,7 @@
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10734,6 +10930,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -10748,7 +10945,15 @@
       "mat_copper": 2,
       "mat_silicate": 2
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "nights"
+      ],
+      "cells": 6,
+      "energy": 1
+    }
   },
   "mach_hydro_tray": {
     "name": "Hydro tray",
@@ -10766,16 +10971,13 @@
     "slots": [
       {
         "name": "bed",
+        "role": "input",
         "w": 4,
-        "h": 2,
-        "accepts": [
-          "seed",
-          "produce",
-          "water"
-        ]
+        "h": 2
       },
       {
         "name": "lamp bracket",
+        "role": "tool",
         "w": 1,
         "h": 2,
         "accepts": [
@@ -10784,6 +10986,7 @@
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10797,7 +11000,15 @@
       "mat_iron": 1,
       "mat_copper": 0.3
     },
-    "tier": 1
+    "tier": 1,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "nights"
+      ],
+      "cells": 1,
+      "energy": 0
+    }
   },
   "mach_jeweller": {
     "name": "Jeweller's bench",
@@ -10815,21 +11026,20 @@
     "slots": [
       {
         "name": "bench top",
+        "role": "input",
         "w": 3,
-        "h": 2,
-        "accepts": [
-          "bar",
-          "jewellery",
-          "heirloom"
-        ]
+        "h": 2
       },
       {
         "name": "tray",
+        "role": "output",
         "w": 2,
-        "h": 1
+        "h": 1,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10838,6 +11048,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10852,7 +11063,15 @@
       "mat_rare": 0.5,
       "mat_noble": 0.3
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job"
+      ],
+      "cells": 4,
+      "energy": 2
+    }
   },
   "mach_kiln": {
     "name": "Kiln",
@@ -10870,6 +11089,7 @@
     "slots": [
       {
         "name": "chamber",
+        "role": "input",
         "w": 4,
         "h": 3,
         "accepts": [
@@ -10880,11 +11100,14 @@
       },
       {
         "name": "rack",
+        "role": "output",
         "w": 3,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -10898,7 +11121,16 @@
       "mat_copper": 1.1,
       "mat_rare": 0.1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 4,
+      "energy": 2
+    }
   },
   "mach_kitchen": {
     "name": "Galley",
@@ -10916,21 +11148,20 @@
     "slots": [
       {
         "name": "plate",
+        "role": "input",
         "w": 4,
-        "h": 3,
-        "accepts": [
-          "food",
-          "produce",
-          "staple"
-        ]
+        "h": 3
       },
       {
         "name": "pass",
+        "role": "output",
         "w": 3,
-        "h": 1
+        "h": 1,
+        "out": true
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10944,7 +11175,15 @@
       "mat_polymer": 1,
       "mat_silicate": 1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job"
+      ],
+      "cells": 2,
+      "energy": 1
+    }
   },
   "mach_labeller": {
     "name": "Labeller",
@@ -10963,11 +11202,13 @@
     "slots": [
       {
         "name": "feed",
+        "role": "input",
         "w": 2,
         "h": 2
       },
       {
         "name": "label spindle",
+        "role": "consumable",
         "w": 1,
         "h": 1,
         "accepts": [
@@ -10976,6 +11217,7 @@
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -10984,6 +11226,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -10997,7 +11240,15 @@
       "mat_copper": 0.5,
       "mat_rare": 0.1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "modify",
+      "jobs": [
+        "job"
+      ],
+      "cells": 1,
+      "energy": 1
+    }
   },
   "mach_loom": {
     "name": "Loom",
@@ -11015,20 +11266,20 @@
     "slots": [
       {
         "name": "creel",
-        "w": 4,
-        "h": 2,
-        "accepts": [
-          "fibre",
-          "cloth"
-        ]
-      },
-      {
-        "name": "beam",
+        "role": "input",
         "w": 4,
         "h": 2
       },
       {
+        "name": "beam",
+        "role": "output",
+        "w": 4,
+        "h": 2,
+        "out": true
+      },
+      {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -11037,6 +11288,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11045,6 +11297,7 @@
       },
       {
         "name": "heddle drive",
+        "role": "consumable",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11058,7 +11311,16 @@
       "mat_polymer": 1,
       "mat_copper": 0.5
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 3,
+      "energy": 2
+    }
   },
   "mach_mainframe": {
     "name": "Mainframe",
@@ -11077,6 +11339,7 @@
     "slots": [
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -11085,6 +11348,7 @@
       },
       {
         "name": "second drive",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -11093,6 +11357,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 4,
         "h": 1,
         "accepts": [
@@ -11101,6 +11366,7 @@
       },
       {
         "name": "port bay",
+        "role": "input",
         "w": 5,
         "h": 1,
         "accepts": [
@@ -11117,7 +11383,15 @@
       "mat_lightmetal": 6,
       "mat_silicate": 4
     },
-    "tier": 4
+    "tier": 4,
+    "machine": {
+      "kind": "do",
+      "jobs": [
+        "job"
+      ],
+      "cells": 20,
+      "energy": 0
+    }
   },
   "mach_modem": {
     "name": "Modem",
@@ -11140,7 +11414,15 @@
       "mat_rare": 0.1,
       "mat_lightmetal": 0.5
     },
-    "tier": 1
+    "tier": 1,
+    "machine": {
+      "kind": "do",
+      "jobs": [
+        "job"
+      ],
+      "cells": 0,
+      "energy": 0
+    }
   },
   "mach_pill_press": {
     "name": "Pill press",
@@ -11158,20 +11440,20 @@
     "slots": [
       {
         "name": "hopper",
+        "role": "input",
         "w": 2,
-        "h": 2,
-        "accepts": [
-          "powder",
-          "chemical"
-        ]
+        "h": 2
       },
       {
         "name": "chute",
+        "role": "output",
         "w": 2,
-        "h": 1
+        "h": 1,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -11180,6 +11462,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11193,7 +11476,15 @@
       "mat_lightmetal": 1,
       "mat_polymer": 0.5
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job"
+      ],
+      "cells": 2,
+      "energy": 1
+    }
   },
   "mach_printer_3d": {
     "name": "3D printer",
@@ -11212,20 +11503,20 @@
     "slots": [
       {
         "name": "feedstock",
+        "role": "input",
         "w": 3,
-        "h": 2,
-        "accepts": [
-          "polymer",
-          "bar"
-        ]
+        "h": 2
       },
       {
         "name": "bed",
+        "role": "output",
         "w": 3,
-        "h": 3
+        "h": 3,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -11234,6 +11525,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -11248,7 +11540,16 @@
       "mat_rare": 0.6,
       "mat_iron": 2
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 8,
+      "energy": 2
+    }
   },
   "mach_printer_l": {
     "name": "Banner printer",
@@ -11267,20 +11568,20 @@
     "slots": [
       {
         "name": "roll feed",
-        "w": 4,
-        "h": 2,
-        "accepts": [
-          "paper",
-          "cloth"
-        ]
-      },
-      {
-        "name": "spool",
+        "role": "input",
         "w": 4,
         "h": 2
       },
       {
+        "name": "spool",
+        "role": "output",
+        "w": 4,
+        "h": 2,
+        "out": true
+      },
+      {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11295,7 +11596,16 @@
       "mat_copper": 2,
       "mat_rare": 0.5
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 6,
+      "energy": 2
+    }
   },
   "mach_printer_m": {
     "name": "Document printer",
@@ -11314,19 +11624,20 @@
     "slots": [
       {
         "name": "paper tray",
-        "w": 3,
-        "h": 2,
-        "accepts": [
-          "paper"
-        ]
-      },
-      {
-        "name": "delivery",
+        "role": "input",
         "w": 3,
         "h": 2
       },
       {
+        "name": "delivery",
+        "role": "output",
+        "w": 3,
+        "h": 2,
+        "out": true
+      },
+      {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11341,7 +11652,16 @@
       "mat_rare": 0.2,
       "mat_lightmetal": 1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 2,
+      "energy": 1
+    }
   },
   "mach_printer_s": {
     "name": "Dot-matrix printer",
@@ -11408,6 +11728,7 @@
     "slots": [
       {
         "name": "tub",
+        "role": "input",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -11418,11 +11739,14 @@
       },
       {
         "name": "screen",
+        "role": "output",
         "w": 2,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11435,7 +11759,15 @@
       "mat_copper": 1,
       "mat_polymer": 1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job"
+      ],
+      "cells": 2,
+      "energy": 1
+    }
   },
   "mach_purifier": {
     "name": "Purifier",
@@ -11453,6 +11785,7 @@
     "slots": [
       {
         "name": "tank",
+        "role": "input",
         "w": 2,
         "h": 3,
         "accepts": [
@@ -11463,6 +11796,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11471,6 +11805,7 @@
       },
       {
         "name": "filter sleeve",
+        "role": "tool",
         "w": 1,
         "h": 2,
         "accepts": [
@@ -11483,7 +11818,15 @@
       "mat_copper": 1,
       "mat_polymer": 2
     },
-    "tier": 1
+    "tier": 1,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job"
+      ],
+      "cells": 1,
+      "energy": 1
+    }
   },
   "mach_radio": {
     "name": "Radio",
@@ -11503,6 +11846,7 @@
     "slots": [
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11517,7 +11861,15 @@
       "mat_silicate": 0.2,
       "mat_lightmetal": 1
     },
-    "tier": 1
+    "tier": 1,
+    "machine": {
+      "kind": "do",
+      "jobs": [
+        "job"
+      ],
+      "cells": 0.5,
+      "energy": 0
+    }
   },
   "mach_recycler": {
     "name": "Recycler",
@@ -11535,16 +11887,20 @@
     "slots": [
       {
         "name": "hopper",
+        "role": "input",
         "w": 4,
         "h": 4
       },
       {
         "name": "chutes",
+        "role": "output",
         "w": 6,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11556,7 +11912,17 @@
       "mat_iron": 7,
       "mat_copper": 1
     },
-    "tier": 1
+    "tier": 1,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 1,
+      "energy": 1,
+      "generic": "recycle"
+    }
   },
   "mach_refinery": {
     "name": "Refinery",
@@ -11574,21 +11940,20 @@
     "slots": [
       {
         "name": "charge",
+        "role": "input",
         "w": 5,
-        "h": 3,
-        "accepts": [
-          "scrap",
-          "waste",
-          "powder"
-        ]
+        "h": 3
       },
       {
         "name": "cold trap",
+        "role": "output",
         "w": 5,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -11597,6 +11962,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 4,
         "h": 1,
         "accepts": [
@@ -11613,7 +11979,16 @@
       "mat_noble": 1,
       "mat_polymer": 4
     },
-    "tier": 4
+    "tier": 4,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 28,
+      "energy": 4
+    }
   },
   "mach_scanner": {
     "name": "Scanner",
@@ -11633,11 +12008,13 @@
     "slots": [
       {
         "name": "bed",
+        "role": "input",
         "w": 4,
         "h": 3
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11652,7 +12029,15 @@
       "mat_polymer": 0.8,
       "mat_lightmetal": 1
     },
-    "tier": 1
+    "tier": 1,
+    "machine": {
+      "kind": "do",
+      "jobs": [
+        "job"
+      ],
+      "cells": 1,
+      "energy": 1
+    }
   },
   "mach_scrubber": {
     "name": "Scrubber",
@@ -11670,15 +12055,13 @@
     "slots": [
       {
         "name": "intake",
+        "role": "input",
         "w": 2,
-        "h": 2,
-        "accepts": [
-          "gas",
-          "air"
-        ]
+        "h": 2
       },
       {
         "name": "cartridge bay",
+        "role": "tool",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11687,6 +12070,7 @@
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -11695,6 +12079,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11708,7 +12093,16 @@
       "mat_rare": 0.1,
       "mat_silicate": 0.1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 2,
+      "energy": 1
+    }
   },
   "mach_sealer": {
     "name": "Box sealer",
@@ -11727,6 +12121,7 @@
     "slots": [
       {
         "name": "frame",
+        "role": "input",
         "w": 4,
         "h": 4,
         "accepts": [
@@ -11736,6 +12131,7 @@
       },
       {
         "name": "tape head",
+        "role": "consumable",
         "w": 1,
         "h": 1,
         "accepts": [
@@ -11744,6 +12140,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11755,7 +12152,15 @@
       "mat_copper": 1,
       "mat_iron": 3.5
     },
-    "tier": 1
+    "tier": 1,
+    "machine": {
+      "kind": "modify",
+      "jobs": [
+        "job"
+      ],
+      "cells": 1,
+      "energy": 1
+    }
   },
   "mach_smelter": {
     "name": "Furnace",
@@ -11830,21 +12235,20 @@
     "slots": [
       {
         "name": "pot",
+        "role": "input",
         "w": 2,
-        "h": 2,
-        "accepts": [
-          "liquid",
-          "culture",
-          "sweet"
-        ]
+        "h": 3
       },
       {
         "name": "drip jar",
+        "role": "output",
         "w": 1,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -11853,6 +12257,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -11866,7 +12271,16 @@
       "mat_silicate": 1,
       "mat_polymer": 0.5
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 2,
+      "energy": 1
+    }
   },
   "mach_synthesiser": {
     "name": "Synthesiser",
@@ -11884,21 +12298,20 @@
     "slots": [
       {
         "name": "reactor",
+        "role": "input",
         "w": 3,
-        "h": 3,
-        "accepts": [
-          "chemical",
-          "reagent",
-          "gas"
-        ]
+        "h": 3
       },
       {
         "name": "trap",
+        "role": "output",
         "w": 3,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -11907,6 +12320,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -11923,7 +12337,16 @@
       "mat_noble": 0.2,
       "mat_polymer": 1
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 12,
+      "energy": 3
+    }
   },
   "mach_terminal": {
     "name": "Wired terminal",
@@ -11993,6 +12416,7 @@
     "slots": [
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -12001,6 +12425,7 @@
       },
       {
         "name": "second drive",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -12009,6 +12434,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -12017,6 +12443,7 @@
       },
       {
         "name": "port bay",
+        "role": "input",
         "w": 4,
         "h": 1,
         "accepts": [
@@ -12032,7 +12459,15 @@
       "mat_lightmetal": 3,
       "mat_noble": 0.1
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "do",
+      "jobs": [
+        "job"
+      ],
+      "cells": 5,
+      "energy": 0
+    }
   },
   "mach_vat": {
     "name": "Vat",
@@ -12050,21 +12485,20 @@
     "slots": [
       {
         "name": "vat",
+        "role": "input",
         "w": 4,
-        "h": 3,
-        "accepts": [
-          "culture",
-          "raw",
-          "food"
-        ]
+        "h": 3
       },
       {
         "name": "press",
+        "role": "output",
         "w": 4,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -12073,6 +12507,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -12086,7 +12521,16 @@
       "mat_copper": 1.5,
       "mat_lightmetal": 1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 3,
+      "energy": 2
+    }
   },
   "mach_vat_industrial": {
     "name": "Industrial vat",
@@ -12104,21 +12548,20 @@
     "slots": [
       {
         "name": "cauldron",
+        "role": "input",
         "w": 6,
-        "h": 4,
-        "accepts": [
-          "culture",
-          "raw",
-          "food"
-        ]
+        "h": 4
       },
       {
         "name": "press",
+        "role": "output",
         "w": 6,
-        "h": 2
+        "h": 2,
+        "out": true
       },
       {
         "name": "disc tray",
+        "role": "tray",
         "w": 2,
         "h": 2,
         "accepts": [
@@ -12127,6 +12570,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 3,
         "h": 1,
         "accepts": [
@@ -12141,7 +12585,16 @@
       "mat_copper": 3,
       "mat_rare": 0.3
     },
-    "tier": 3
+    "tier": 3,
+    "machine": {
+      "kind": "produce",
+      "jobs": [
+        "job",
+        "nights"
+      ],
+      "cells": 10,
+      "energy": 2
+    }
   },
   "mach_vent": {
     "name": "Vent port",
@@ -12159,6 +12612,7 @@
     "slots": [
       {
         "name": "hatch",
+        "role": "input",
         "w": 2,
         "h": 3,
         "accepts": [
@@ -12168,6 +12622,7 @@
       },
       {
         "name": "cell rack",
+        "role": "cell",
         "w": 2,
         "h": 1,
         "accepts": [
@@ -12180,6 +12635,14 @@
       "mat_lightmetal": 2,
       "mat_polymer": 1
     },
-    "tier": 2
+    "tier": 2,
+    "machine": {
+      "kind": "do",
+      "jobs": [
+        "job"
+      ],
+      "cells": 1,
+      "energy": 1
+    }
   }
 }

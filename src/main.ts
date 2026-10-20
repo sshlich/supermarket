@@ -10,6 +10,7 @@ import { TAGS } from './customers.ts'
 import { esc } from './html.ts'
 import { openReader } from './reader.ts'
 import { initMenu, toggleMenu } from './menu.ts'
+import { chargeOf, ENERGY_CAP, energyOf, isMachine, options as machineOptions, outsText, overnight, run as runMachine, says as machineSays } from './machines.ts'
 import { floorFor, barred, goHome, goOut, inHands, named, nightsLeft, search, searchesFor, sells, shopOf, SHOPS, siteOf, SITES, tends, trade } from './outside.ts'
 import { customer, customerSays, dialNote, dropped, initTerminal, notYours, reopen, restart, resume, sideHtml, theirs, typeOn } from './terminal.ts'
 import { handle, handleMany, shop } from './sound.ts'
@@ -158,7 +159,30 @@ function winHtml(w: Win, z: number) {
     const note = [sl.name, sl.accepts?.length ? `${sl.accepts.join(', ')} only` : '', sl.rejects?.length ? `no ${sl.rejects.join(', ')}` : '', sl.out ? 'take out only' : ''].filter(Boolean).join(' · ')
     return `<div class="slotbox">${note ? `<div class="slotnote">${note}</div>` : ''}<div class="grid" data-grid data-space="${it.id}:${i}" data-w="${sl.w}" data-h="${sl.h}" style="--w:${sl.w};--h:${sl.h}">${inSpace(s, { host: it.id, slot: i }).map(itemHtml).join('')}</div></div>`
   }).join('')
-  return `<div class="win" data-win="${it.id}" style="left:${w.x}px;top:${w.y}px;z-index:${10 + z}"><div class="win-head" data-whead style="--c:${swatch(it)}"><i></i><span>${esc(look(it).name)}</span><button data-wfold="${it.id}" title="Fold: keep just a tab along the top">–</button><button data-wclose="${it.id}" title="Close">✕</button></div>${slots}</div>`
+  return `<div class="win${isMachine(it) ? ' machine' : ''}" data-win="${it.id}" style="left:${w.x}px;top:${w.y}px;z-index:${10 + z}"><div class="win-head" data-whead style="--c:${swatch(it)}"><i></i><span>${esc(look(it).name)}</span><button data-wfold="${it.id}" title="Fold: keep just a tab along the top">–</button><button data-wclose="${it.id}" title="Close">✕</button></div>${slots}${isMachine(it) ? machineHtml(it) : ''}</div>`
+}
+
+/**
+ * Under a machine's slots (machines.ts): what it is doing, and what it can make with what is in it: the ready ones with a
+ * button to run them now (energy) or overnight (free, the machine held till morning), then the nearest, with what is missing.
+ */
+function machineHtml(m: Item) {
+  const line = machineSays(s, m)
+  if (m.job) return `<div class="mach"><div class="mach-says busy">${esc(line)}</div></div>`
+  const opts = machineOptions(s, m), ready = opts.filter(o => o.ok), near = opts.filter(o => !o.ok).slice(0, Math.max(2, 5 - ready.length))
+  const row = (o: (typeof opts)[number]) => `<div class="mach-row${o.ok ? ' ok' : ''}"><div><b>${esc(o.name)}</b>${o.outs.length ? ` <small>→ ${esc(outsText(o.outs))}</small>` : ''}${o.credits ? ` <small>· ${o.credits}$ of power</small>` : ''}</div>
+    ${o.ok ? `<div class="mach-go">${o.now ? `<button class="term-btn" data-mrun="${m.id}:${o.id}:now"${energyOf(s) < o.energy ? ' disabled' : ''} title="Do it now, for ${o.energy} of your energy">now${o.energy ? ` · ${o.energy}⚡` : ''}</button>` : ''}${o.overnight ? `<button class="term-btn" data-mrun="${m.id}:${o.id}:overnight" title="Leave it to run overnight: free, but the machine is held till morning">${o.nights > 1 ? `${o.nights} nights` : 'overnight'}</button>` : ''}</div>` : `<small class="mach-miss">needs ${esc(o.missing.join(', '))}</small>`}</div>`
+  const none = !opts.length ? `<small class="mach-miss">${(KINDS[m.kind].slots ?? []).some(sl => sl.role === 'tray') ? 'put a disc in its tray to see what it makes' : 'nothing it makes yet'}</small>` : ''
+  return `<div class="mach">${line ? `<div class="mach-says">${esc(line)}</div>` : ''}${[...ready, ...near].map(row).join('')}${none}</div>`
+}
+function runJob(id: number, recipe: string, mode: 'now' | 'overnight') {
+  const r = runMachine(s, id, recipe, mode)
+  if (typeof r === 'string') { toast(r); shop('bad'); return }
+  const m = find(s, id)!
+  sound(m, 'use')
+  toast(mode === 'now' ? (r.made.length ? `made ${r.made.length > 1 ? `${r.made.length} things` : look(r.made[0]).name.toLowerCase()}` : 'done') : `the ${look(m).name.toLowerCase()} runs overnight`)
+  changed()
+  r.made.forEach(o => pop(o))
 }
 
 /** The open windows where they were left, and the folded ones as tabs in the rack along the top edge. */
@@ -339,7 +363,7 @@ function keepFocus(draw: () => void) {
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
   setClock(app)
-  keepFocus(() => app.innerHTML = `<div class="stage${s.out ? ' away' : ''}"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side"${s.night ? ' hidden' : ''}>${sideHtml()}</aside>${s.night ? `<aside class="outing">${nightHtml()}</aside>` : ''}<aside class="lside">${cashHtml()}${dayHtml()}${trashHtml()}${dockHtml()}${youHtml()}</aside></div></div>${windowsHtml()}`)
+  keepFocus(() => app.innerHTML = `<div class="stage${s.out ? ' away' : ''}"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side"${s.night ? ' hidden' : ''}>${sideHtml()}</aside>${s.night ? `<aside class="outing">${nightHtml()}</aside>` : ''}<aside class="lside">${cashHtml()}${dayHtml()}${energyHtml()}${trashHtml()}${dockHtml()}${youHtml()}</aside></div></div>${windowsHtml()}`)
   typeOn() // a line being typed carries on in the new terminal
   showToast()
   if (hoverId !== null) showTip()
@@ -725,6 +749,8 @@ function vanish(ids: number[]) {
 // ---------------------------------------------------------------- the day, and the trash
 
 /** Which day it is, under the money. A day is one line of customers: when the last of them has gone, you sleep. */
+/** Your energy today, under the day: what starting machine jobs by hand costs (machines.ts); full again when you sleep. */
+const energyHtml = () => `<div class="daydial energy" title="Energy: starting a machine job now costs some; overnight jobs are free. Full again when you sleep."><small>energy</small>${energyOf(s)}<small>/${ENERGY_CAP}</small></div>`
 const dayHtml = () => `<div class="daydial" title="A day is one line of customers: when the last has gone, you sleep, and the trash is taken out"><small>day</small>${String(s.day ?? 1).padStart(2, '0')}</div>`
 
 /** The last customer of the line has gone: the door shuts and the evening begins (the night is outside, see `nightHtml`). */
@@ -743,6 +769,7 @@ function sleepNow(home = '') {
   sleeping = true
   const was = s.day ?? 1
   const shipped = ship(s) // the carrier takes the dock's sealed boxes tonight; they are paid for on delivery, in the morning
+  const jobs = overnight(s) // machines left running finish (or move on a night), and your energy is full again
   const gone = sleep(s)
   const post = morning(s).filter(m => m.kind === 'order').length
   save()
@@ -754,7 +781,7 @@ function sleepNow(home = '') {
     if (gone.length) shop('trash')
     changed(new Map()) // drawn again in the dark: the trash is out, the day moves on
     setTimeout(arrivals, 2100) // the morning's freight, once the lights are up
-    const news = [home, gone.length && `the trash went out (${gone.length} thing${gone.length === 1 ? '' : 's'})`, shipped.boxes && `${shipped.boxes} box${shipped.boxes === 1 ? '' : 'es'} delivered: ${shipped.net}$`, post && `${post} new order${post === 1 ? '' : 's'} by mail`].filter(Boolean)
+    const news = [home, jobs.length && `${jobs.map(j => `the ${look(j.machine).name.toLowerCase()} finished`).join(', ')}`, gone.length && `the trash went out (${gone.length} thing${gone.length === 1 ? '' : 's'})`, shipped.boxes && `${shipped.boxes} box${shipped.boxes === 1 ? '' : 'es'} delivered: ${shipped.net}$`, post && `${post} new order${post === 1 ? '' : 's'} by mail`].filter(Boolean)
     night.querySelector('div')!.innerHTML = `<b>day ${s.day}</b><span>${news.join(' · ') || 'morning'}</span>`
     if (shipped.net) setTimeout(() => { setCash((s.cash ?? 0) + shipped.net); shop('coinsIn') }, 1400)
     night.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 900, delay: 1100, easing: 'ease-out', fill: 'forwards' }).onfinish = () => { night.remove(); sleeping = false }
@@ -1010,6 +1037,8 @@ function tipHtml(it: Item) {
   if (it.listed) rows.push(`<div class="who">on Swapline at ${it.listed}$</div>`)
   if (it.sale !== undefined) rows.push(`<div class="who">${it.bought ? `bought for ${it.sale}$ (put it back to return it)` : `theirs: ${it.sale}$ (take it into your pack to buy it)`}</div>`)
   if (s.out?.buys && it.sale === undefined && it.in?.host === worn(s)?.id) { const f = floorFor(s.out.buys, it); rows.push(`<div class="who">${f === null ? 'they do not buy this' : `they would pay ${f}$`}</div>`) }
+  if (KINDS[it.kind].cell) rows.push(`<div class="spec">charge ${chargeOf(it)} of ${KINDS[it.kind].cell}${chargeOf(it) ? '' : ': flat, the charger fills it'}</div>`)
+  if (isMachine(it)) { const line = machineSays(s, it); rows.push(`<div class="spec">${esc(line || 'a machine')}<br>double-click to load it and run it</div>`) }
   if (nightsLeft(it) !== null) rows.push(`<div class="spec">good for ${nightsLeft(it)} more night${nightsLeft(it) === 1 ? '' : 's'} out in your hand</div>`)
   if (k.computer) { // what the machine has, and how full its disk is
     const used = SYSTEM_DISK + (it.drive ?? []).reduce((n, f) => n + (f.prog ? PROGRAMS[f.prog]?.size ?? 0 : f.pic !== undefined ? PIC_SIZE : textSize(f.text ?? '')), 0)
@@ -1232,6 +1261,7 @@ app.addEventListener('click', e => {
   if ('trash' in b.dataset) { toggleTrash(); return }
   if ('you' in b.dataset) { if (s.night) return; youOpen = !youOpen; try { localStorage.setItem('you-open', youOpen ? '1' : '0') } catch { /* private window */ } shop('menu'); render(new Map()); return }
   if (b.dataset.go) { goingOut(b.dataset.go); return }
+  if (b.dataset.mrun) { const [id, recipe, mode] = b.dataset.mrun.split(':'); runJob(+id, recipe, mode as 'now' | 'overnight'); return }
   if ('search' in b.dataset) { searching(); return }
   if ('home' in b.dataset) { home(); return }
   if ('stayin' in b.dataset) { sleepNow(); return }

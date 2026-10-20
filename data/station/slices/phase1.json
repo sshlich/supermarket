@@ -109,7 +109,119 @@
    "prog_prompt",
    "prog_system"
   ],
-  "notes": "The company issue: a wired terminal with modem and slip printer, the mail and labels discs, a few empty boxes, three small cells, a knife, a little ore and scrap, and what you carried from the old life. No charger, no smelter, no recycler: the first ten minutes decide what to buy with 50 credits."
+  "notes": "The company issue: a wired terminal with modem and slip printer, the mail and labels discs, a few empty boxes, three small cells, a knife, a little ore and scrap, and what you carried from the old life. No charger, no smelter, no recycler: the first ten minutes decide what to buy with 50 credits. The game starts from one of `presets`, picked at a new game (each: credits, things on the field, a tool in hand); the sim still plays `things`.",
+  "presets": [
+   {
+    "id": "smelter",
+    "name": "Smelter",
+    "line": "A furnace off the Works, ore to melt and coal to melt it with. Two lumps make a bar, and anyone who wants metal buys bars.",
+    "credits": 30,
+    "hand": "it_fab_wrench",
+    "things": [
+     {
+      "id": "mach_smelter",
+      "qty": 1
+     },
+     {
+      "id": "it_core_ore_copper",
+      "qty": 4
+     },
+     {
+      "id": "it_core_ore_iron",
+      "qty": 4
+     },
+     {
+      "id": "it_tech_cell_s",
+      "qty": 6
+     },
+     {
+      "id": "it_lux_lighter",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "deli",
+    "name": "Deli",
+    "line": "A knife, bread, a cheese wheel and salami. Cut them and close sandwiches: a closed one is worth half again its parts.",
+    "credits": 40,
+    "things": [
+     {
+      "id": "it_food_cheese_wheel",
+      "qty": 1
+     },
+     {
+      "id": "it_food_salami",
+      "qty": 2
+     },
+     {
+      "id": "it_food_bread",
+      "qty": 3
+     },
+     {
+      "id": "it_fab_knife",
+      "qty": 1
+     }
+    ]
+   },
+   {
+    "id": "mail",
+    "name": "Mail order",
+    "line": "The company issue: a wired terminal, a printer and paper, boxes and a tape gun. Orders come by mail every morning; ship them from the dock.",
+    "credits": 20,
+    "things": [
+     {
+      "id": "mach_terminal",
+      "qty": 1
+     },
+     {
+      "id": "mach_printer_s",
+      "qty": 1
+     },
+     {
+      "id": "it_lux_paper",
+      "qty": 1
+     },
+     {
+      "id": "box_m",
+      "qty": 2
+     },
+     {
+      "id": "box_s",
+      "qty": 3
+     },
+     {
+      "id": "sealer",
+      "qty": 1
+     },
+     {
+      "id": "it_food_bread",
+      "qty": 1
+     },
+     {
+      "id": "it_med_bandage",
+      "qty": 2
+     }
+    ]
+   },
+   {
+    "id": "scavenger",
+    "name": "Scavenger",
+    "line": "A torch in your hand, cutters and a wrench: the dark bunks, the cableway and the sealed hatches are open to you at night. No stock, more cash.",
+    "credits": 70,
+    "hand": "it_tech_torch",
+    "things": [
+     {
+      "id": "it_fab_cutter",
+      "qty": 1
+     },
+     {
+      "id": "it_fab_wrench",
+      "qty": 1
+     }
+    ]
+   }
+  ]
  },
  "machines": [
   {
@@ -5455,6 +5567,47 @@
    }
   },
   {
+   "id": "it_food_coffee",
+   "name": "Coffee brick",
+   "w": 2,
+   "h": 1,
+   "tier": 3,
+   "value": 24,
+   "depth": 3,
+   "composition": {
+    "mat_biomass": 0.5
+   },
+   "tags": [
+    "food",
+    "drink",
+    "real",
+    "ring_grade",
+    "luxury",
+    "stim"
+   ],
+   "market_need": "need_luxury",
+   "desc": "A vacuum brick of ground coffee from real ring beans. The smell alone could start a riot on the spine.",
+   "use": {
+    "target": "self",
+    "effects": [
+     {
+      "stat": "energy_now",
+      "op": "add",
+      "value": 1,
+      "text": "+1 energy now"
+     }
+    ],
+    "adds": [],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "Real coffee: a ring luxury. No crash.",
+   "inflow": {
+    "channel": "crate",
+    "phase": "phase_1"
+   }
+  },
+  {
    "id": "it_life_water",
    "name": "Water pouch",
    "desc": "A litre of clean water in a heat-sealed polymer pouch, cold to the touch.",
@@ -6597,6 +6750,433 @@
    "notes": "No recipe: only sellers (collectors) bring them."
   },
   {
+   "id": "it_lux_smokes",
+   "name": "Hydro smokes",
+   "w": 1,
+   "h": 2,
+   "tier": 2,
+   "value": 12,
+   "depth": 2,
+   "composition": {
+    "mat_biomass": 0.4,
+    "mat_fibre": 0.2,
+    "mat_polymer": 0.1
+   },
+   "tags": [
+    "comfort",
+    "drug",
+    "fire",
+    "contraband",
+    "packaging"
+   ],
+   "market_need": "need_comfort",
+   "contraband": "fire",
+   "desc": "A crushed soft pack of twenty, hydro-grown leaf. Lit in a vent, the smoke detector taped over.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [
+     "stat_focused"
+    ],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "Contraband (fire): it needs a flame. Tobacco, hydro-grown on the spine.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_spine",
+     "deck_dock"
+    ]
+   }
+  },
+  {
+   "id": "it_lux_vape",
+   "name": "Vapour pen",
+   "w": 1,
+   "h": 2,
+   "tier": 2,
+   "value": 18,
+   "depth": 2,
+   "composition": {
+    "mat_polymer": 0.3,
+    "mat_lithium": 0.1,
+    "mat_copper": 0.1,
+    "mat_reagent": 0.2
+   },
+   "tags": [
+    "comfort",
+    "device",
+    "drug",
+    "licensed"
+   ],
+   "market_need": "need_comfort",
+   "desc": "Company-licensed: no flame, no smoke, a sweet cloud and a little red light. The Hub's answer to the smokes.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [
+     "stat_focused"
+    ],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "The legal nicotine. Clerks and the ring carry them.",
+   "inflow": {
+    "channel": "crate",
+    "phase": "phase_1"
+   }
+  },
+  {
+   "id": "it_lux_chew_tin",
+   "name": "Chew tin",
+   "w": 1,
+   "h": 1,
+   "tier": 1,
+   "value": 5,
+   "depth": 2,
+   "composition": {
+    "mat_biomass": 0.2,
+    "mat_iron": 0.1,
+    "mat_reagent": 0.05
+   },
+   "tags": [
+    "comfort",
+    "drug",
+    "spine_grade"
+   ],
+   "market_need": "need_comfort",
+   "desc": "A flat tin of nicotine pouches. One under the lip lasts a shift, and nobody sees it.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [
+     "stat_focused"
+    ],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "Snus. Legal, cheap, everywhere on the spine and the Works.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_spine",
+     "deck_works"
+    ]
+   }
+  },
+  {
+   "id": "it_lux_beer",
+   "name": "Algae beer",
+   "w": 1,
+   "h": 2,
+   "tier": 1,
+   "value": 5,
+   "depth": 2,
+   "composition": {
+    "mat_biomass": 0.3,
+    "mat_water": 0.5,
+    "mat_lightmetal": 0.1
+   },
+   "tags": [
+    "drink",
+    "alcohol",
+    "spine_grade"
+   ],
+   "market_need": "need_comfort",
+   "desc": "A dented can of green-gold beer brewed from tank algae. Tastes of the tank, works anyway.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [
+     "stat_hungover"
+    ],
+    "clears": [
+     "stat_sore"
+    ],
+    "consumed": true
+   },
+   "notes": "The cheap drink. Licensed brewery on the dock.",
+   "inflow": {
+    "channel": "crate",
+    "phase": "phase_1"
+   }
+  },
+  {
+   "id": "it_lux_gas_whip",
+   "name": "Gas whip",
+   "w": 1,
+   "h": 1,
+   "tier": 1,
+   "value": 3,
+   "depth": 2,
+   "composition": {
+    "mat_volatiles": 0.3,
+    "mat_iron": 0.2
+   },
+   "tags": [
+    "gas",
+    "drug",
+    "consumable"
+   ],
+   "market_need": "need_comfort",
+   "desc": "A small steel cartridge of nitrous, meant for the galley's cream. A minute of giggling and a headache.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "Nitrous oxide, sold as a kitchen consumable. Grey, not contraband.",
+   "inflow": {
+    "channel": "crate",
+    "phase": "phase_1"
+   }
+  },
+  {
+   "id": "it_lux_tray_leaf",
+   "name": "Tray leaf",
+   "w": 1,
+   "h": 1,
+   "tier": 2,
+   "value": 10,
+   "depth": 2,
+   "composition": {
+    "mat_biomass": 0.4,
+    "mat_polymer": 0.05
+   },
+   "tags": [
+    "drug",
+    "contraband",
+    "comfort",
+    "fresh"
+   ],
+   "market_need": "need_comfort",
+   "contraband": "drug",
+   "desc": "A twist of sticky green buds grown in a hydro tray under a borrowed lamp. Smells like a greenhouse on fire.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [
+     "stat_rested"
+    ],
+    "clears": [
+     "stat_sore"
+    ],
+    "consumed": true
+   },
+   "notes": "Contraband (drug). Cannabis, hydro-grown.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_spine",
+     "deck_dock"
+    ]
+   }
+  },
+  {
+   "id": "it_lux_miners_leaf",
+   "name": "Miner's leaf",
+   "w": 1,
+   "h": 1,
+   "tier": 2,
+   "value": 7,
+   "depth": 2,
+   "composition": {
+    "mat_biomass": 0.3,
+    "mat_salts": 0.1
+   },
+   "tags": [
+    "drug",
+    "stim",
+    "contraband",
+    "spine_grade"
+   ],
+   "market_need": "need_comfort",
+   "contraband": "drug",
+   "desc": "Bitter green leaves with a pinch of lime, chewed through a double shift. Green teeth, wide eyes.",
+   "use": {
+    "target": "self",
+    "effects": [
+     {
+      "stat": "energy_now",
+      "op": "add",
+      "value": 1,
+      "text": "+1 energy now"
+     }
+    ],
+    "adds": [
+     "stat_wired"
+    ],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "Contraband (drug). Khat and coca leaf: the Works' chew.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_works",
+     "deck_dock"
+    ]
+   }
+  },
+  {
+   "id": "it_lux_duct_caps",
+   "name": "Duct caps",
+   "w": 1,
+   "h": 1,
+   "tier": 2,
+   "value": 9,
+   "depth": 3,
+   "composition": {
+    "mat_biomass": 0.3
+   },
+   "tags": [
+    "drug",
+    "contraband",
+    "fresh"
+   ],
+   "market_need": "need_luxury",
+   "contraband": "drug",
+   "desc": "Small brown-capped mushrooms that grow where the ducts run damp. Eat two and the walls start breathing.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "Contraband (drug). Psilocybin mushrooms; they grow wild in wet ducts and the sump.",
+   "inflow": {
+    "channel": "salvage",
+    "phase": "phase_1"
+   }
+  },
+  {
+   "id": "it_lux_ring_snow",
+   "name": "Ring snow",
+   "w": 1,
+   "h": 1,
+   "tier": 3,
+   "value": 40,
+   "depth": 3,
+   "composition": {
+    "mat_biomass": 0.2,
+    "mat_reagent": 0.3,
+    "mat_silicate": 0.1
+   },
+   "tags": [
+    "drug",
+    "stim",
+    "contraband",
+    "luxury",
+    "ring_grade",
+    "powder"
+   ],
+   "market_need": "need_luxury",
+   "contraband": "drug",
+   "desc": "A tiny vial of fine white powder, a silver spoon on the cap. Ring parties end at breakfast for it.",
+   "use": {
+    "target": "self",
+    "effects": [
+     {
+      "stat": "energy_now",
+      "op": "add",
+      "value": 1,
+      "text": "+1 energy now"
+     }
+    ],
+    "adds": [
+     "stat_wired"
+    ],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "Contraband (drug). Cocaine: dear, ring-side.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_ring",
+     "deck_dock"
+    ]
+   }
+  },
+  {
+   "id": "it_lux_spice",
+   "name": "Spacer spice",
+   "w": 1,
+   "h": 1,
+   "tier": 1,
+   "value": 4,
+   "depth": 2,
+   "composition": {
+    "mat_biomass": 0.2,
+    "mat_reagent": 0.1,
+    "mat_polymer": 0.05
+   },
+   "tags": [
+    "drug",
+    "contraband",
+    "synthetic",
+    "spine_grade"
+   ],
+   "market_need": "need_comfort",
+   "contraband": "drug",
+   "desc": "Dry herb sprayed with something from a lab nobody runs. Cheap, strong, and nobody knows what is in it.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [
+     "stat_crash"
+    ],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "Contraband (drug). Synthetic cannabinoid: the spine's cheapest high.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_spine"
+    ]
+   }
+  },
+  {
+   "id": "it_lux_pipe",
+   "name": "Glass pipe",
+   "w": 2,
+   "h": 1,
+   "tier": 2,
+   "value": 12,
+   "depth": 2,
+   "composition": {
+    "mat_silicate": 2
+   },
+   "tags": [
+    "glass",
+    "drug",
+    "fire",
+    "contraband"
+   ],
+   "market_need": "need_comfort",
+   "contraband": "fire",
+   "desc": "A hand-blown pipe swirled blue and amber, the bowl blackened. For leaf, resin, or whatever is going.",
+   "notes": "Contraband (fire). A tool for the leaf and the resin, not used up.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_dock"
+    ]
+   }
+  },
+  {
    "id": "it_mach_lubricant",
    "name": "Lubricant",
    "desc": "A squeeze tube of clear grease, smelling of oil and warm plastic. A little keeps a feed from jamming.",
@@ -7374,6 +7954,304 @@
     ]
    },
    "notes": "Composition includes the card and its six pills; container.fill lists them for taking out."
+  },
+  {
+   "id": "it_med_cough_syrup",
+   "name": "Cough syrup",
+   "w": 1,
+   "h": 2,
+   "tier": 2,
+   "value": 9,
+   "depth": 2,
+   "composition": {
+    "mat_reagent": 0.3,
+    "mat_biomass": 0.2,
+    "mat_silicate": 0.3
+   },
+   "tags": [
+    "medicine",
+    "sedative",
+    "liquid",
+    "drug"
+   ],
+   "market_need": "need_medicine",
+   "desc": "Thick purple syrup, codeine and sugar. For a cough, officially; mixed with soda, for a slow night.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [
+     "stat_rested"
+    ],
+    "clears": [
+     "stat_sore"
+    ],
+    "consumed": true
+   },
+   "notes": "Legal medicine that walks off the shelf: lean.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_mid"
+    ]
+   }
+  },
+  {
+   "id": "it_med_desk_strips",
+   "name": "Desk strips",
+   "w": 1,
+   "h": 1,
+   "tier": 2,
+   "value": 8,
+   "depth": 3,
+   "composition": {
+    "mat_reagent": 0.2,
+    "mat_polymer": 0.05
+   },
+   "tags": [
+    "medicine",
+    "stim",
+    "licensed",
+    "company",
+    "drug"
+   ],
+   "market_need": "need_medicine",
+   "desc": "Company-issue focus strips in a blue sleeve: one on the tongue and a shift of spreadsheets goes by in an hour.",
+   "use": {
+    "target": "self",
+    "effects": [
+     {
+      "stat": "energy_now",
+      "op": "add",
+      "value": 1,
+      "text": "+1 energy now"
+     }
+    ],
+    "adds": [
+     "stat_focused"
+    ],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "Licensed nootropic (modafinil, amphetamine salts). The Hub runs on them.",
+   "inflow": {
+    "channel": "crate",
+    "phase": "phase_1"
+   }
+  },
+  {
+   "id": "it_med_crank",
+   "name": "Crank",
+   "w": 1,
+   "h": 1,
+   "tier": 2,
+   "value": 14,
+   "depth": 2,
+   "composition": {
+    "mat_reagent": 0.3,
+    "mat_lithium": 0.05,
+    "mat_salts": 0.1
+   },
+   "tags": [
+    "drug",
+    "stim",
+    "contraband",
+    "powder",
+    "spine_grade"
+   ],
+   "market_need": "need_medicine",
+   "contraband": "drug",
+   "desc": "Cloudy crystal shards in a twist of foil, cooked behind the Works. Three days awake, then the bill.",
+   "use": {
+    "target": "self",
+    "effects": [
+     {
+      "stat": "energy_now",
+      "op": "add",
+      "value": 2,
+      "text": "+2 energy now"
+     }
+    ],
+    "adds": [
+     "stat_wired",
+     "stat_crash"
+    ],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "Contraband (drug). Methamphetamine: the strongest stim, the worst crash.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_works",
+     "deck_spine"
+    ]
+   }
+  },
+  {
+   "id": "it_med_dock_candy",
+   "name": "Dock candy",
+   "w": 1,
+   "h": 1,
+   "tier": 2,
+   "value": 10,
+   "depth": 3,
+   "composition": {
+    "mat_reagent": 0.2,
+    "mat_carbon": 0.1
+   },
+   "tags": [
+    "drug",
+    "pill",
+    "contraband",
+    "sweet"
+   ],
+   "market_need": "need_luxury",
+   "contraband": "drug",
+   "desc": "A chalky pastel pill stamped with a rocket. On the dock floor everybody loves everybody till morning.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [
+     "stat_crash"
+    ],
+    "clears": [
+     "stat_tired"
+    ],
+    "consumed": true
+   },
+   "notes": "Contraband (drug). MDMA: the dock's dance nights.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_dock"
+    ]
+   }
+  },
+  {
+   "id": "it_med_blotter",
+   "name": "Blotter",
+   "w": 1,
+   "h": 1,
+   "tier": 2,
+   "value": 12,
+   "depth": 3,
+   "composition": {
+    "mat_fibre": 0.1,
+    "mat_reagent": 0.05
+   },
+   "tags": [
+    "drug",
+    "paper",
+    "contraband",
+    "art"
+   ],
+   "market_need": "need_luxury",
+   "contraband": "drug",
+   "desc": "A square of paper printed with a tiny eye, cut into tabs. One on the tongue and the station is very far away.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [],
+    "clears": [],
+    "consumed": true
+   },
+   "notes": "Contraband (drug). LSD on art paper.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_dock"
+    ]
+   }
+  },
+  {
+   "id": "it_med_black_resin",
+   "name": "Black resin",
+   "w": 1,
+   "h": 1,
+   "tier": 3,
+   "value": 22,
+   "depth": 3,
+   "composition": {
+    "mat_biomass": 0.4,
+    "mat_reagent": 0.1
+   },
+   "tags": [
+    "drug",
+    "sedative",
+    "contraband"
+   ],
+   "market_need": "need_medicine",
+   "contraband": "drug",
+   "desc": "A sticky black lump in wax paper, from poppies somebody grows on the ring. Warm, slow, hard to stop.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [
+     "stat_rested",
+     "stat_crash"
+    ],
+    "clears": [
+     "stat_sore",
+     "stat_tired"
+    ],
+    "consumed": true
+   },
+   "notes": "Contraband (drug). Opium.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_ring",
+     "deck_dock"
+    ]
+   }
+  },
+  {
+   "id": "it_med_painwash",
+   "name": "Painwash",
+   "w": 1,
+   "h": 2,
+   "tier": 3,
+   "value": 26,
+   "depth": 3,
+   "composition": {
+    "mat_reagent": 0.4,
+    "mat_polymer": 0.2,
+    "mat_iron": 0.1
+   },
+   "tags": [
+    "medicine",
+    "drug",
+    "sedative",
+    "licensed",
+    "wound"
+   ],
+   "market_need": "need_medicine",
+   "desc": "A yellow morphine auto-injector, black safety cap. Clinic stock, numbered, and always going missing.",
+   "use": {
+    "target": "self",
+    "effects": [],
+    "adds": [
+     "stat_rested"
+    ],
+    "clears": [
+     "stat_sore"
+    ],
+    "consumed": true
+   },
+   "notes": "Licensed medicine (morphine). The clinic buys it; the fence sells the ones that went missing.",
+   "inflow": {
+    "channel": "seller",
+    "phase": "phase_1",
+    "decks": [
+     "deck_mid",
+     "deck_dock"
+    ]
+   }
   },
   {
    "id": "it_tech_cell_s",
@@ -8611,7 +9489,10 @@
     "it_med_painkiller",
     "it_tech_cell_s",
     "it_food_bread_slice",
-    "it_life_mask_refill"
+    "it_life_mask_refill",
+    "it_lux_beer",
+    "it_lux_chew_tin",
+    "it_med_cough_syrup"
    ],
    "sells": [],
    "contraband": "none",
@@ -8701,7 +9582,10 @@
     "it_med_gauze",
     "it_tech_motor",
     "it_tech_torch",
-    "it_lux_paper"
+    "it_lux_paper",
+    "it_lux_duct_caps",
+    "it_lux_spice",
+    "it_lux_smokes"
    ],
    "contraband": "sells",
    "sends_mail": true,
@@ -8757,7 +9641,9 @@
     "it_food_tin_stew",
     "it_fab_wrench",
     "it_mach_drive_belt",
-    "it_med_energy_tab"
+    "it_med_energy_tab",
+    "it_lux_beer",
+    "it_lux_chew_tin"
    ],
    "sells": [
     "it_core_ore_iron",
@@ -8784,9 +9670,12 @@
     "it_fab_crate",
     "it_life_algae",
     "it_mach_lubricant",
-    "it_mach_tape"
+    "it_mach_tape",
+    "it_lux_smokes",
+    "it_lux_chew_tin",
+    "it_lux_beer"
    ],
-   "contraband": "none",
+   "contraband": "sells",
    "sends_mail": true,
    "lines": [
     "Ore on the dock by nine. Cells by ten, or I walk.",
@@ -8844,7 +9733,9 @@
     "it_mach_coolant",
     "it_fab_fasteners",
     "it_mach_drive_belt",
-    "it_fab_light_sheet"
+    "it_fab_light_sheet",
+    "it_lux_chew_tin",
+    "it_lux_beer"
    ],
    "sells": [
     "disc_fab_bp_tools",
@@ -8905,7 +9796,12 @@
     "it_food_sugar",
     "it_med_bandage",
     "it_life_algae_dense",
-    "it_food_sausage"
+    "it_food_sausage",
+    "it_lux_beer",
+    "it_lux_smokes",
+    "it_lux_miners_leaf",
+    "it_lux_tray_leaf",
+    "it_lux_chew_tin"
    ],
    "sells": [
     "it_core_slag",
@@ -8920,9 +9816,12 @@
     "it_core_carbon_dust",
     "it_fab_tile",
     "it_core_grit",
-    "it_fab_hinge"
+    "it_fab_hinge",
+    "it_lux_miners_leaf",
+    "it_med_crank",
+    "it_lux_beer"
    ],
-   "contraband": "sells",
+   "contraband": "both",
    "sends_mail": true,
    "lines": [
     "Bars off the second pour. Don't ask whose.",
@@ -8978,7 +9877,10 @@
     "disc_tech_blank_floppy",
     "it_tech_chip",
     "it_tech_keypad",
-    "it_tech_speaker"
+    "it_tech_speaker",
+    "it_food_coffee",
+    "it_med_desk_strips",
+    "it_lux_vape"
    ],
    "sells": [
     "disc_tech_blank_card",
@@ -9044,13 +9946,16 @@
     "it_med_splint",
     "it_med_rehydration_mix",
     "it_med_first_aid_kit",
-    "it_med_sleeping_pill"
+    "it_med_sleeping_pill",
+    "it_med_painwash",
+    "it_med_cough_syrup"
    ],
    "sells": [
     "disc_med_analgesics",
     "disc_med_sedatives",
     "it_med_blister",
-    "it_med_rehydration_mix"
+    "it_med_rehydration_mix",
+    "it_med_cough_syrup"
    ],
    "contraband": "none",
    "sends_mail": true,
@@ -9106,7 +10011,9 @@
     "it_mach_coolant",
     "it_med_antirad",
     "it_med_energy_tab",
-    "it_tech_memory_module"
+    "it_tech_memory_module",
+    "it_food_coffee",
+    "it_med_desk_strips"
    ],
    "sells": [
     "it_tech_cell_s",
@@ -9184,7 +10091,10 @@
     "it_lux_pamphlet",
     "it_food_culture_mat",
     "it_food_cheese_spread",
-    "it_food_sausage"
+    "it_food_sausage",
+    "it_food_coffee",
+    "it_med_desk_strips",
+    "it_lux_vape"
    ],
    "sells": [],
    "contraband": "reports",
@@ -9250,10 +10160,14 @@
     "it_food_cheese_wedge",
     "it_food_salami",
     "it_food_sausage",
-    "it_food_cheese_spread"
+    "it_food_cheese_spread",
+    "it_food_coffee",
+    "it_lux_ring_snow",
+    "it_med_black_resin",
+    "it_lux_vape"
    ],
    "sells": [],
-   "contraband": "none",
+   "contraband": "buys",
    "sends_mail": true,
    "lines": [
     "Is it real? We can tell.",
@@ -9308,7 +10222,14 @@
     "it_lux_spirit",
     "it_lux_wine",
     "it_fab_bar_noble",
-    "it_tech_dongle"
+    "it_tech_dongle",
+    "it_med_crank",
+    "it_lux_ring_snow",
+    "it_lux_tray_leaf",
+    "it_med_black_resin",
+    "it_med_dock_candy",
+    "it_med_painwash",
+    "it_med_blotter"
    ],
    "sells": [
     "it_lux_candle",
@@ -9332,7 +10253,17 @@
     "it_med_sleeping_pill",
     "it_med_burn_tab",
     "it_med_energy_tab",
-    "it_med_antibiotic"
+    "it_med_antibiotic",
+    "it_lux_smokes",
+    "it_lux_tray_leaf",
+    "it_lux_ring_snow",
+    "it_med_dock_candy",
+    "it_med_blotter",
+    "it_med_black_resin",
+    "it_med_crank",
+    "it_med_painwash",
+    "it_lux_pipe",
+    "it_lux_spice"
    ],
    "contraband": "both",
    "sends_mail": true,
@@ -10253,6 +11184,135 @@
    "contraband": false,
    "weight": 1,
    "text": "An inspection of stalls on the mid decks is scheduled. Declare nothing, hide nothing."
+  },
+  {
+   "id": "ord_works_iron_bars",
+   "name": "Bars for the fab hall",
+   "kind": "order",
+   "sender": "res_fitter",
+   "deck": "deck_works",
+   "phase_from": "phase_1",
+   "phase_to": "phase_3",
+   "wants": [
+    {
+     "id": "it_fab_bar_iron",
+     "qty": 4
+    }
+   ],
+   "price_mult": 1.3,
+   "due_days": 4,
+   "boxes": [
+    "box_m"
+   ],
+   "attachments": [],
+   "recurring_days": null,
+   "contraband": false,
+   "weight": 3,
+   "text": "Four iron bars for the fab hall. The Company's own are late again."
+  },
+  {
+   "id": "ord_works_copper",
+   "name": "Copper for the windings",
+   "kind": "order",
+   "sender": "res_engineer",
+   "deck": "deck_core",
+   "phase_from": "phase_1",
+   "phase_to": "phase_3",
+   "wants": [
+    {
+     "id": "it_fab_bar_copper",
+     "qty": 2
+    }
+   ],
+   "price_mult": 1.3,
+   "due_days": 4,
+   "boxes": [
+    "box_m"
+   ],
+   "attachments": [],
+   "recurring_days": null,
+   "contraband": false,
+   "weight": 3,
+   "text": "Two copper bars. The reactor's windings will not wait for the convoy."
+  },
+  {
+   "id": "ord_fitter_sheet_wire",
+   "name": "Sheet and wire",
+   "kind": "order",
+   "sender": "res_fitter",
+   "deck": "deck_works",
+   "phase_from": "phase_1",
+   "phase_to": "phase_3",
+   "wants": [
+    {
+     "id": "it_fab_sheet",
+     "qty": 4
+    },
+    {
+     "id": "it_fab_wire",
+     "qty": 4
+    }
+   ],
+   "price_mult": 1.25,
+   "due_days": 4,
+   "boxes": [
+    "box_m"
+   ],
+   "attachments": [],
+   "recurring_days": null,
+   "contraband": false,
+   "weight": 3,
+   "text": "Sheet and wire, rolled and drawn. Whatever the bench turns out."
+  },
+  {
+   "id": "ord_spine_clean_water",
+   "name": "Clean water for the row",
+   "kind": "order",
+   "sender": "res_bunker",
+   "deck": "deck_spine",
+   "phase_from": "phase_1",
+   "phase_to": "phase_3",
+   "wants": [
+    {
+     "id": "it_life_water",
+     "qty": 6
+    }
+   ],
+   "price_mult": 1.4,
+   "due_days": 3,
+   "boxes": [
+    "box_s"
+   ],
+   "attachments": [],
+   "recurring_days": null,
+   "contraband": false,
+   "weight": 3,
+   "text": "Six of clean, not grey. The row has been boiling greywater for a week."
+  },
+  {
+   "id": "ord_ring_herbs",
+   "name": "Fresh herbs",
+   "kind": "order",
+   "sender": "res_household",
+   "deck": "deck_ring",
+   "phase_from": "phase_1",
+   "phase_to": "phase_3",
+   "wants": [
+    {
+     "id": "it_food_herbs",
+     "qty": 2
+    }
+   ],
+   "price_mult": 1.5,
+   "due_days": 3,
+   "boxes": [
+    "box_s"
+   ],
+   "attachments": [],
+   "recurring_days": null,
+   "contraband": false,
+   "weight": 3,
+   "text": "Fresh herbs for the table, grown under a lamp, not out of a tube."
   }
  ],
  "events": [

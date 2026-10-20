@@ -10,7 +10,7 @@ const move = (s: State, it: Item, to: Space) => { const from = it.in ? { ...it.i
 
 // The night's places come from the station data; every find exists, and every lock and bonus is a tool you can hold.
 assert.equal(SITES.length, 10)
-assert.equal(SHOPS.length, 5)
+assert.equal(SHOPS.length, 6)
 for (const site of SITES) for (const f of site.finds) assert.ok(KINDS[f.kind], `${site.id}: ${f.kind}`)
 for (const t of GEAR) { assert.ok(KINDS[t]?.tags?.includes('tool'), `${t} is a tool`); const s = start(); assert.ok(accepts(s, spawn(s, t)!, { at: 'hand' }), `${t} goes in a hand`) }
 

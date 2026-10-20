@@ -14,6 +14,7 @@ import { readFileSync } from 'node:fs'
 
 const P = Number(process.argv[2] ?? 1), DAYS = Number(process.argv[3] ?? 14), RUNS = Number(process.argv[4] ?? 200), SELLERS = Number(process.argv[5] ?? 1) // CUSTOMERS multiplies the day's line; SELLERS multiplies how often a walk-in is a seller
 const CUSTOMERS = Number(process.argv[6] ?? 1), OUTSIDE = Number(process.argv[7] ?? 1) > 0
+const ONLY = process.env.SIM_ONLY?.split(',') // the maker buys only these machines (and their discs)
 const dir = new URL('../data/station/', import.meta.url)
 const S: any = JSON.parse(readFileSync(new URL(`slices/phase${P}.json`, dir), 'utf8'))
 const PH: any = JSON.parse(readFileSync(new URL('phases.json', dir), 'utf8')).find((p: any) => p.id === `phase_${P}`)
@@ -44,12 +45,13 @@ const YARD_KEEP = 4 // a bot keeps this many of a thing for the line and orders;
 const uses = (id: string) => I[id]?.wear?.uses ?? 30 // a tool with no wear in the data is guessed at 30 trips
 const shopPrice = (id: string) => { let p = Infinity; for (const s of SHOPS) for (const x of s.sells) if (x.id === id) p = Math.min(p, val(id) * (1 + O.markup)); return p }
 const shopTakes = (shop: any, id: string) => shop.buys?.any || (shop.buys?.needs ?? []).includes(I[id]?.market_need) || (I[id]?.tags ?? []).some((t: string) => (shop.buys?.tags ?? []).includes(t))
-// the best pack from a pile of finds: dearest per square first
-function packUp(pile: Map<string, number>, room: number) {
+// the best pack from a pile of finds: dearest per square first, by what a thing is worth to this bot (`vf`: a maker counts
+// what its machines would make of it)
+function packUp(pile: Map<string, number>, room: number, vf: (id: string) => number = val) {
   const got: [string, number][] = []; let v = 0
-  for (const id of [...pile.keys()].sort((a, b) => val(b) / area(b) - val(a) / area(a))) {
+  for (const id of [...pile.keys()].sort((a, b) => vf(b) / area(b) - vf(a) / area(a))) {
     const n = Math.min(pile.get(id)!, Math.floor(room / area(id))); if (n <= 0) continue
-    got.push([id, n]); room -= n * area(id); v += n * val(id)
+    got.push([id, n]); room -= n * area(id); v += n * vf(id)
   }
   return { got, v }
 }
@@ -57,10 +59,10 @@ function packUp(pile: Map<string, number>, room: number) {
 const rollSite = (r: () => number, s: any, n: number) => { const m = new Map<string, number>(); for (let i = 0; i < n; i++) { const l = weighted(r, s.loot, (x: any) => x.w); m.set(l.id, (m.get(l.id) ?? 0) + Math.round(between(r, l.n))) } return m }
 // what a fresh site is worth in one pack, on average (the bots know their sites)
 const evCache = new Map<string, number>()
-function siteEV(s: any, n: number, room: number) {
-  const k = `${s.id}:${n}:${room}`; if (evCache.has(k)) return evCache.get(k)!
-  const r = rng(7); let t = 0; for (let i = 0; i < 400; i++) t += packUp(rollSite(r, s, n), room).v
-  evCache.set(k, t / 400); return t / 400
+function siteEV(s: any, n: number, room: number, vf: (id: string) => number = val, key = '') {
+  const k = `${s.id}:${n}:${room}:${key}`; if (evCache.has(k)) return evCache.get(k)!
+  const N = key ? 40 : 400, r = rng(7); let t = 0; for (let i = 0; i < N; i++) t += packUp(rollSite(r, s, n), room, vf).v
+  evCache.set(k, t / N); return t / N
 }
 
 function rng(seed: number) { return () => { seed = (seed + 0x6d2b79f5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296 } }
@@ -87,6 +89,7 @@ function runOne(policy: Policy, seed: number): { days: Day[]; firstBuy: number; 
   let firstBuy = -1
   let pack = 0, fullNights = 0 // pack size (index into PACKS); nights it came home full
   const went: Record<string, number> = {} // trips by destination
+  const ranBy: Record<string, number> = {} // machine jobs by recipe (SIM_DEBUG)
   const tools = new Map<string, number>() // gate tools in hand: trips left on a wearing tool, or refills held
   const bought = new Map<string, number>() // shop:item -> bought today, against the shop's daily restock
   let arriving: { day: number; id: string; q: number; c: number }[] = [] // Company Store freight
@@ -119,6 +122,9 @@ function runOne(policy: Policy, seed: number): { days: Day[]; firstBuy: number; 
     }
   }
 
+  // what a job's outputs are worth to the bot: their value while it holds few, else what the best shop would pay (it would not make 76 switches)
+  const floorPrice = (id: string) => Math.max(0, ...SHOPS.filter(sh => shopTakes(sh, id)).map(sh => val(id) * sh.buys.mult))
+  const outWorth = (outs: any[]) => items(outs).reduce((n, o) => n + (have(o.id) >= 6 ? floorPrice(o.id) : val(o.id)) * (o.qty ?? 1) * (o.chance ?? 1), 0)
   // best runnable recipe by profit: out value - in value - cells; null if none pays
   function bestRecipe(energyLeft: number, nights: boolean, busy: Set<string>) {
     let best: any = null, bestM = 0.25
@@ -128,7 +134,7 @@ function runOne(policy: Policy, seed: number): { days: Day[]; firstBuy: number; 
       const e = nights ? 0 : rc.energy ?? 0
       if (e > energyLeft || !rc.inputs.every((x: any) => have(x.id) >= x.qty)) continue
       if (rc.inputs.some((x: any) => have(x.id) - x.qty < reserved(x.id) && reserved(x.id) > 0)) continue
-      const m = worthOf(rc.outputs) - worthOf(rc.inputs) - (rc.cells ?? 0) * CELL
+      const m = outWorth(rc.outputs) - worthOf(rc.inputs) - (rc.cells ?? 0) * CELL
       if (m > bestM) { best = rc; bestM = m }
     }
     return best
@@ -138,7 +144,7 @@ function runOne(policy: Policy, seed: number): { days: Day[]; firstBuy: number; 
     for (let n = 0; n < 40; n++) {
       const rc = bestRecipe(energyLeft.v, nights, busy); if (!rc) break
       let cost = (rc.cells ?? 0) * CELL; for (const x of rc.inputs) cost += take(x.id, x.qty)
-      cash -= (rc.cells ?? 0) * CELL; D.jobs++
+      cash -= (rc.cells ?? 0) * CELL; D.jobs++; ranBy[rc.id] = (ranBy[rc.id] ?? 0) + 1
       if (nights) { busy.add(rc.machine); night.push({ day: d + 1, outs: rc.outputs, cost }) }
       else { energyLeft.v -= rc.energy ?? 0; D.energy += rc.energy ?? 0; const t = worthOf(rc.outputs) || 1; for (const o of rc.outputs) add(o.id, o.qty, cost * val(o.id) * o.qty / t) }
     }
@@ -159,6 +165,7 @@ function runOne(policy: Policy, seed: number): { days: Day[]; firstBuy: number; 
         const price = u.cost?.credits ?? 0
         if (ups.has(u.id) || price > cash - 15 || !(u.grants ?? []).length || !(u.requires ?? []).every((q: string) => q.startsWith('phase_') || owned.has(q) || ups.has(q) || discs.has(q))) continue
         if ((u.grants as string[]).every(g => owned.has(g) || discs.has(g))) continue
+        if (ONLY && !(u.grants as string[]).some(g => ONLY.includes(g))) continue // SIM_ONLY: measure one machine (or a few) alone
         const s = score(u) / price; if (s > bs) { best = u; bs = s }
       }
       if (!best) return
@@ -176,7 +183,12 @@ function runOne(policy: Policy, seed: number): { days: Day[]; firstBuy: number; 
   const useCost = (t: string | null, u: any) => !t ? 0 : u.consume ? refill(t) * u.consume : val(t) / uses(t) * (u.wear ?? 1)
   const surplus = (shop: any) => { const m = new Map<string, number>(); for (const [id, st] of stock) { const n = Math.floor(st.q - YARD_KEEP - reserved(id)); if (n > 0 && shopTakes(shop, id) && !feeds.has(id) && !id.startsWith('box_')) m.set(id, n) } return m }
   // every (site, tool) this bot could go out with tonight, and what it is worth after the tool's wear
-  const choices = (owns: (t: string) => boolean) => SITES.flatMap(s => kits(s).filter(k => !k.tool || owns(k.tool)).map(k => ({ s, k, v: siteEV(s, k.n, room()) - useCost(k.tool, k.use) })))
+  // what a find is worth to this bot: its value, or for a maker what its machines would make of it (the best margin of a recipe it eats)
+  // (with plenty of it in stock already, more is only worth a shop's floor: nobody hoards past what they can turn over)
+  const PLENTY = 6
+  const worthTo = (id: string) => have(id) >= PLENTY ? val(id) * 0.35 : policy === 'maker' ? val(id) * (1 + Math.max(0, lift(id))) : val(id)
+  const sig = () => policy === 'maker' ? `${[...owned].sort().join()}|${[...discs].sort().join()}|${[...stock.keys()].filter(id => have(id) >= PLENTY).sort().join()}` : ''
+  const choices = (owns: (t: string) => boolean) => SITES.flatMap(s => kits(s).filter(k => !k.tool || owns(k.tool)).map(k => ({ s, k, v: siteEV(s, k.n, room(), worthTo, sig()) - useCost(k.tool, k.use) })))
   const bestSite = (owns: (t: string) => boolean) => choices(owns).reduce((b: any, c) => !b || c.v > b.v ? c : b, null)
   function night_(d: number, D: Day) {
     const left = DAYS - d - 1
@@ -219,7 +231,7 @@ function runOne(policy: Policy, seed: number): { days: Day[]; firstBuy: number; 
           tools.set(t, toolIn(t) - (u.consume ?? u.wear ?? 1))
           if (toolIn(t) <= 0) { tools.delete(t); const b = I[t]?.wear?.becomes; if (!u.consume && b && I[b]) add(b, 1, 0) }
         }
-        const { got, v } = packUp(rollSite(r, s, kit.n), room())
+        const { got, v } = packUp(rollSite(r, s, kit.n), room(), worthTo)
         for (const [id, q] of got) add(id, q, 0)
         D.loot += v; if (got.reduce((n, [id, q]) => n + q * area(id), 0) >= room() * 0.85) fullNights++
       } else {
@@ -305,6 +317,7 @@ function runOne(policy: Policy, seed: number): { days: Day[]; firstBuy: number; 
     D.held = [...stock].reduce((n, [id, st]) => n + st.q * val(id), 0)
     days.push(D)
   }
+  if (process.env.SIM_DEBUG && policy === 'maker' && seed === 1000) console.error('maker holds:', [...stock].sort((a, b) => b[1].q * val(b[0]) - a[1].q * val(a[0])).slice(0, 14).map(([id, st]) => `${id.replace(/^it_/, '')} ${st.q}x${val(id)}`).join(', '), '| jobs by recipe:', JSON.stringify(ranBy))
   return { days, firstBuy, owned: [...ups], pack, tools: [...tools.keys()], went }
 }
 
@@ -313,8 +326,11 @@ const med = (xs: number[]) => [...xs].sort((a, b) => a - b)[xs.length >> 1]
 const pad = (s: any, n: number) => String(s).padStart(n)
 console.log(`phase ${P}: ${DAYS} days, ${RUNS} runs, ${S.items.length} items, ${S.recipes.length} recipes, ${S.orders.length} orders, rent ${PH.rent_per_day}/day, ${PH.customers_per_day} customers, ${PH.orders_per_day} orders a day${OUTSIDE ? `; outside: ${SITES.length} sites, ${SHOPS.length} shops, pack ${O.pack.w}x${O.pack.h}, one tool slot` : '; outside off'}\n`)
 if (OUTSIDE && dropped.length) console.log(`outside.json names things not in this slice (dropped): ${dropped.join(', ')}\n`)
+const cumul: Record<string, number[]> = {} // mean running total of net per day, by policy: when machines have paid for themselves
 for (const policy of ['walkin', 'orders', 'maker'] as Policy[]) {
   const res = Array.from({ length: RUNS }, (_, i) => runOne(policy, 1000 + i))
+  cumul[policy] = Array.from({ length: DAYS }, (_, d) => mean(res.map(x => x.days.slice(0, d + 1).reduce((n, y) => n + y.net, 0))))
+  if (policy === 'maker') { const at = cumul.maker.findIndex((v, d) => v >= cumul.walkin[d] && d > 0); console.log(`payback: the maker's running net ${at < 0 ? `has not caught up with walkin's by day ${DAYS} (${cumul.maker[DAYS - 1].toFixed(0)} against ${cumul.walkin[DAYS - 1].toFixed(0)})` : `catches up with walkin's on day ${at + 1}`}; net counts stock at what it cost, so finds and unsold output count nothing`) }
   console.log(`== ${policy} ==`)
   console.log(' day   cash    net  walkin  ordPay  filled expired missed jobs  energy  machines bought' + (OUTSIDE ? ' trips   loot  floor  spent   held' : ''))
   for (const d of [0, 1, 2, 3, 5, 7, 9, 11, DAYS - 1].filter((x, i, a) => x < DAYS && a.indexOf(x) === i)) {

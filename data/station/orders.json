@@ -2651,5 +2651,134 @@
     "contraband": false,
     "weight": 1.0,
     "text": "Alarms, a lock, torches. Invoice the company."
+  },
+  {
+    "id": "ord_works_iron_bars",
+    "name": "Bars for the fab hall",
+    "kind": "order",
+    "sender": "res_fitter",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_fab_bar_iron",
+        "qty": 4
+      }
+    ],
+    "price_mult": 1.3,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 3,
+    "text": "Four iron bars for the fab hall. The Company's own are late again."
+  },
+  {
+    "id": "ord_works_copper",
+    "name": "Copper for the windings",
+    "kind": "order",
+    "sender": "res_engineer",
+    "deck": "deck_core",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_fab_bar_copper",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.3,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 3,
+    "text": "Two copper bars. The reactor's windings will not wait for the convoy."
+  },
+  {
+    "id": "ord_fitter_sheet_wire",
+    "name": "Sheet and wire",
+    "kind": "order",
+    "sender": "res_fitter",
+    "deck": "deck_works",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_fab_sheet",
+        "qty": 4
+      },
+      {
+        "id": "it_fab_wire",
+        "qty": 4
+      }
+    ],
+    "price_mult": 1.25,
+    "due_days": 4,
+    "boxes": [
+      "box_m"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 3,
+    "text": "Sheet and wire, rolled and drawn. Whatever the bench turns out."
+  },
+  {
+    "id": "ord_spine_clean_water",
+    "name": "Clean water for the row",
+    "kind": "order",
+    "sender": "res_bunker",
+    "deck": "deck_spine",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_life_water",
+        "qty": 6
+      }
+    ],
+    "price_mult": 1.4,
+    "due_days": 3,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 3,
+    "text": "Six of clean, not grey. The row has been boiling greywater for a week."
+  },
+  {
+    "id": "ord_ring_herbs",
+    "name": "Fresh herbs",
+    "kind": "order",
+    "sender": "res_household",
+    "deck": "deck_ring",
+    "phase_from": "phase_1",
+    "phase_to": "phase_3",
+    "wants": [
+      {
+        "id": "it_food_herbs",
+        "qty": 2
+      }
+    ],
+    "price_mult": 1.5,
+    "due_days": 3,
+    "boxes": [
+      "box_s"
+    ],
+    "attachments": [],
+    "recurring_days": null,
+    "contraband": false,
+    "weight": 3,
+    "text": "Fresh herbs for the table, grown under a lamp, not out of a tube."
   }
 ]

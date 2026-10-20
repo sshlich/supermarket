@@ -197,6 +197,14 @@
       ]
     },
     {
+      "id": "shop_fab_bay", "name": "Fab hall loading bay", "deck": "deck_works", "phase": "phase_1",
+      "desc": "The back door of the fab hall, where the night shift buys stock off anyone who has it: bars, sheet, wire, parts.",
+      "buys": { "tags": ["bar", "sheet", "wire", "part", "fastener", "component", "machine_part"], "mult": 0.75 },
+      "sells": [
+        { "id": "it_tech_cell_s", "per_day": 2 }
+      ]
+    },
+    {
       "id": "shop_ring_concierge", "name": "Ring concierge", "deck": "deck_ring", "phase": "phase_2",
       "desc": "A desk in a ring lobby that sells what residents need and takes what they do not, for a fee nobody mentions.",
       "buys": { "needs": ["need_luxury", "need_comfort"], "mult": 0.6 },

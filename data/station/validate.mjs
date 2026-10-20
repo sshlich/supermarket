@@ -464,7 +464,7 @@ const TARGETS = {
   'items.core.json': [28, 34], 'items.food.json': [40, 50], 'items.life.json': [22, 28], 'items.fab.json': [40, 50], 'items.tech.json': [35, 45], 'items.med.json': [30, 40], 'items.lux.json': [40, 50], 'items.mach.json': [14, 20], 'items.fit.json': [18, 26],
   'recipes.core.json': [22, 30], 'recipes.food.json': [60, 75], 'recipes.life.json': [30, 40], 'recipes.fab.json': [60, 75], 'recipes.tech.json': [45, 60], 'recipes.med.json': [40, 50], 'recipes.lux.json': [40, 55], 'recipes.mach.json': [40, 55], 'recipes.fit.json': [0, 10],
   'materials.json': [16, 16], 'needs.json': [8, 8], 'systems.json': [12, 12], 'decks.json': [7, 7], 'phases.json': [4, 4], 'boxes.json': [3, 3], 'carriers.json': [5, 5],
-  'machines.json': [50, 54], 'programs.json': [22, 28], 'statuses.json': [25, 35], 'modifiers.json': [18, 28], 'upgrades.json': [120, 150], 'residents.json': [12, 12], 'orgs.json': [7, 7], 'orders.json': [70, 90], 'events.json': [45, 60],
+  'machines.json': [50, 54], 'programs.json': [22, 28], 'statuses.json': [25, 35], 'modifiers.json': [18, 28], 'upgrades.json': [120, 150], 'residents.json': [12, 12], 'orgs.json': [7, 7], 'orders.json': [70, 95], 'events.json': [45, 60],
 }
 for (const s of fileStatus) { const t = TARGETS[s.name]; if (t && s.state === 'ok' && (s.n < t[0] || s.n > t[1])) warn('counts', s.name, `${s.n} entries, target ${t[0]}-${t[1]}`) }
 

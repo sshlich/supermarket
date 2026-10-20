@@ -20,6 +20,8 @@ const sprite = (id: string) => new URL(`sprites/${id}.svg`, SRC)
 const GAME_ONLY = ['pack', 'disc', 'print', 'sealer'] // the game's own, with no station thing
 const outside = load('outside.json')
 const GEAR = new Set<string>(outside.sites.flatMap((x: any) => [x.gate?.tool, ...(x.bonus ?? []).map((b: any) => b.tool)]).filter(Boolean)) // what goes in your hand at night is a tool
+// kinds the game had before (and its own): their slots are the game's, made for what they do (the computer's tray, the smelter's crucible, a box)
+const GAME_SLOTS = new Set([...GAME_ONLY, ...Object.values(ALIASES).flatMap(a => typeof a === 'string' ? [a] : Object.values(a.to)), 'box_s', 'box_m', 'box_l'])
 const stationIds = new Set([...items, ...machines, ...boxes, ...discs].map(x => x.id))
 
 // 1. the first time: each old kind moves to its station id (a split one becomes one kind per value, its colours baked into
@@ -67,6 +69,7 @@ const MAT: Record<string, { color: string; sound: string }> = {
   mat_salts: { color: '#d8d4c8', sound: 'stone' }, mat_reagent: { color: '#a85a8a', sound: 'glass' }, mat_volatiles: { color: '#a8c86a', sound: 'glass' },
   mat_sludge: { color: '#5a5040', sound: 'food' },
 }
+const GENERIC: Record<string, string> = { mach_recycler: 'recycle', mach_charger: 'charge', mach_copier: 'copy' } // SEED.md 7.2: machines with no recipes written
 const main = (x: any) => Object.entries<number>(x.composition ?? {}).sort((a, b) => b[1] - a[1])[0]?.[0]
 const CAT: Record<string, string> = { core: 'materials', food: 'food', med: 'medicine', lux: 'sundries', tech: 'tech', life: 'sundries', fab: 'tools', mach: 'tools', fit: 'furniture' }
 function catOf(x: any, kind: 'item' | 'machine' | 'box' | 'disc') {
@@ -84,13 +87,14 @@ function gameTags(t: string[]) {
   if (t.includes('cell')) out.add('fuel')
   return [...out]
 }
-const slotsOf = (x: any) => (x.container?.slots ?? x.slots ?? []).map((sl: any) => ({ ...(sl.name ? { name: sl.name } : {}), w: sl.w, h: sl.h, ...(sl.accepts_tags?.length ? { accepts: sl.accepts_tags } : {}) }))
+const slotsOf = (x: any) => (x.container?.slots ?? x.slots ?? []).map((sl: any) => ({ ...(sl.name ? { name: sl.name } : {}), ...(sl.role ? { role: sl.role } : {}), w: sl.w, h: sl.h, ...(sl.accepts_tags?.length ? { accepts: sl.accepts_tags } : {}), ...(sl.role === 'output' ? { out: true } : {}) }))
 function put(x: any, kind: 'item' | 'machine' | 'box' | 'disc') {
   const was = K[x.id], k = was ?? {}
   const m = MAT[main(x)] ?? { color: '#8a8494', sound: 'thing' }
   const fill = x.container?.fill
-  const slots = k.slots ?? slotsOf(x)
-  if (!k.slots && slots.length && fill?.length === 1) Object.assign(slots[0], { fill: fill[0].id, count: fill[0].qty })
+  const own = GAME_SLOTS.has(x.id) && k.slots
+  const slots = own ? k.slots : slotsOf(x)
+  if (!own && slots.length && fill?.length === 1) Object.assign(slots[0], { fill: fill[0].id, count: fill[0].qty })
   const box = kind === 'box' && !slots.length ? [{ name: 'inside', w: x.inner_w, h: x.inner_h }] : []
   K[x.id] = {
     name: was?.name ?? x.name, icon: k.icon ?? '', color: k.color ?? m.color, sound: k.sound ?? m.sound,
@@ -104,6 +108,9 @@ function put(x: any, kind: 'item' | 'machine' | 'box' | 'disc') {
     ...(slots.length || box.length ? { slots: slots.length ? slots : box } : {}),
     ...(x.wear?.uses && !k.wears ? { wears: x.wear.uses } : {}),
     ...(x.composition ? { made: x.composition } : {}), ...(x.market_need ? { need: x.market_need } : {}), ...(x.tier ? { tier: x.tier } : {}),
+    ...(x.cell?.capacity ? { cell: x.cell.capacity } : {}),
+    // a station machine the game runs (machines.ts): not the ones the game already drives its own way (computer, smelter, printer)
+    ...(kind === 'machine' && !k.computer && !k.furnace && !k.printer ? { machine: { kind: x.kind, jobs: x.jobs ?? ['job'], cells: x.cells_per_job ?? 0, energy: x.energy_per_job ?? 0, ...(GENERIC[x.id] ? { generic: GENERIC[x.id] } : {}) } } : {}),
   }
 }
 for (const x of items) put(x, 'item')
@@ -113,13 +120,41 @@ for (const x of discs) put(x, 'disc')
 // something made by laying things on something (a sandwich) is worth its makings: its own price is its base's (world.ts `Stack`)
 for (const k of Object.values(K)) if (k.stack && K[k.stack.on]) k.price = K[k.stack.on].price
 
-// 3. write: the game's own kinds first, then the station's by domain
+// 3. the recipes the game runs (machines.ts): what each machine makes, and what the recycler gives back per material
+const recipeFiles = files.filter(f => /^recipes\.[a-z]+\.json$/.test(f)).flatMap(load)
+const runs = recipeFiles.filter((r: any) => r.kind === 'produce' && K[r.machine]?.machine).map((r: any) => ({
+  id: r.id, name: r.name, machine: r.machine, ...(r.disc ? { disc: r.disc } : {}), inputs: r.inputs.map((q: any) => ({ id: q.id, n: q.qty })),
+  outputs: r.outputs.map((q: any) => ({ id: q.id, n: q.qty, ...(q.chance ? { chance: q.chance } : {}) })), ...(r.tools?.length ? { tools: r.tools } : {}),
+  energy: r.energy ?? 0, cells: r.cells ?? 0, time: r.time, ...(r.nights ? { nights: r.nights } : {}),
+}))
+// a machine's input or tool slot that would refuse what its own recipes need takes anything instead (the station's slot
+// tags are a first guess; the recipes are what the machine is for)
+for (const [id, k] of Object.entries(K)) {
+  if (!k.machine || !k.slots) continue
+  const mine = runs.filter((r: any) => r.machine === id)
+  for (const role of ['input', 'tool']) {
+    const need = mine.flatMap((r: any) => role === 'input' ? r.inputs.map((q: any) => q.id) : r.tools ?? [])
+    for (const sl of k.slots.filter((x: any) => x.role === role && x.accepts))
+      if (need.some((n: string) => !(K[n]?.tags ?? []).some((t: string) => sl.accepts.includes(t)))) delete sl.accepts
+    // and one too small for the biggest thing it needs grows to take it (a bottle in the still)
+    for (const sl of k.slots.filter((x: any) => x.role === role)) for (const n of need) {
+      const t = K[n]; if (!t) continue
+      const fits = (t.w <= sl.w && t.h <= sl.h) || (t.h <= sl.w && t.w <= sl.h)
+      if (!fits) { sl.w = Math.max(sl.w, t.w); sl.h = Math.max(sl.h, t.h) }
+    }
+  }
+}
+const units = Object.fromEntries(load('materials.json').map((m: any) => [m.id, m.unit_item]))
+writeFileSync(new URL('recipes.json', SRC), JSON.stringify({ recipes: runs, units, sludge: 'it_core_sludge' }, null, 1) + '\n')
+
+// 4. write: the game's own kinds first, then the station's by domain
 const order = (id: string) => GAME_ONLY.includes(id) ? '0' + id : id
 const out = Object.fromEntries(Object.keys(K).sort((a, b) => order(a) < order(b) ? -1 : 1).map(id => [id, K[id]]))
 const strays = Object.keys(out).filter(id => !stationIds.has(id) && !GAME_ONLY.includes(id))
 writeFileSync(new URL('kinds.json', SRC), JSON.stringify(out, null, 2) + '\n')
 const art = (id: string) => existsSync(sprite(K[id].sprite ?? id))
 const missing = Object.keys(out).filter(id => !art(id))
+console.log(`${runs.length} recipes for ${new Set(runs.map((r: any) => r.machine)).size} machines in src/recipes.json`)
 console.log(`${Object.keys(out).length} kinds (${items.length} items, ${machines.filter(m => !m.virtual).length} machines, ${boxes.length} boxes, ${discs.length} discs, ${GAME_ONLY.length} the game's own); ${moved.length} moved from old kinds; ${missing.length} without a sprite`)
 if (moved.length) console.log('moved:', moved.join(', '))
 if (strays.length) console.log('kinds that are neither station things nor the game\'s own:', strays.join(', '))

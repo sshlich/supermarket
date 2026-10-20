@@ -752,3 +752,16 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .shop-row { box-shadow: 0 0 0 1px #3a4440; }
 .bin.site.shop { box-shadow: 0 0 0 2px #4a6050; }
 .bin.site.shop .grid { --rim: #2e4436; background-color: #121a16; }
+
+/* a machine's window (machines.ts): under its slots, what it is doing and what it can make */
+.mach { margin-top: 8px; padding-top: 6px; border-top: 1px solid #3a3440; display: flex; flex-direction: column; gap: 5px; max-width: 300px; font: 10px/1.45 ui-monospace, 'SF Mono', Menlo, monospace; color: #b8b0c4; }
+.mach-says { color: #9fd29a; }
+.mach-says.busy { color: #e8c896; }
+.mach-row { display: flex; flex-direction: column; gap: 3px; padding: 4px 6px; border-radius: 2px; background: #0d0b11; }
+.mach-row.ok { box-shadow: inset 2px 0 0 #6ac47a; }
+.mach-row b { color: #d8c9a0; font-weight: 600; }
+.mach-row small { color: #8a8494; }
+.mach-go { display: flex; gap: 6px; }
+.mach-go .term-btn { padding: 2px 8px; font-size: 10px; }
+.mach-miss { color: #a8806a; }
+.daydial.energy { color: #e8c86a; }

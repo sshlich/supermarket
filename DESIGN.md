@@ -521,6 +521,32 @@ pipe**. Each has a station `use` (energy, wired, crash...) for when using your o
 - Residents buy them for their reasons: the Works chews and drinks, clerks and technicians want coffee and strips, the
   orderly wants painwash and syrup, the ring household coffee and snow, the fence the dear contraband.
 
+## Machines run: the station's recipes, energy, cells, overnight jobs (2026-10-19)
+
+`STATION.md` sections 5 and 6, built (`machines.ts`). Every station machine with recipes runs (31 of them, 302 recipes in
+`src/recipes.json`, written by `scripts/station-kinds.ts`), and the recycler and the charger do their generic jobs. The
+smelter is still the old furnace (real-time fire, see furnace.ts); the computer and the printer do what they did.
+- **A machine is a container with slots by role**: input, output (take out only), cell, tray (a disc), tool. Double-click
+  it: under its slots, its window says what it is doing and **what it can make** with what is in it: the ready recipes
+  first, each with what comes out, then the nearest with what is still missing (inputs, a tool, charge). A recipe on a disc
+  shows once its disc is in the tray.
+- **Now or overnight.** A ready job runs **now** for its energy (the dial under the day: **7 a day**, full again when you
+  sleep), done at once; or **overnight**, free, the machine held till morning (nothing in or out of it). A growing recipe
+  takes nights (hydro greens: three). Outputs go to the output slots, else the input slots, else the field beside it; a
+  job whose outputs would find no room does not run, and nothing changes.
+- **Cells** in the cell slots hold charge (a small cell 10, a medium 30, a large 100); a job drains it, the emptiest cell
+  first; a flat cell stays (the tooltip says how much is left) and the **charger** fills it for 0.2$ a unit. Tools a
+  recipe needs must be in the machine and wear a use a job.
+- **The recycler** gives anything with materials back as unit items (iron scrap, polymer flake...), nine tenths, the tenth
+  as sludge; part-units stay in the machine for the next job.
+- The station's slot tags are widened where they would refuse their own machine's recipes (the hydro bed takes nutrient),
+  and an input slot grows to fit the biggest thing its recipes need (a bottle in the still).
+- Saved: a job overnight (`job`: the recipe, the nights to go, what will come out), a cell's `charge`, the recycler's
+  `residue`, your `energy`. The morning says which machines finished.
+- Mail orders now also come from a fab hall foreman (bars, sheet, wire), a spine row warden (clean water) and a ring cook
+  (herbs, greens); the fab hall loading bay buys bars, sheet, wire and parts at 75% at night.
+- Not yet: hand recipes (`mach_hands`), modify and do recipes, the copier, statuses (jammed, hot), automation.
+
 ## The night outside: the map, sites, shops, a pack and one tool (2026-10-19)
 
 The night of `STATION.md` 8b (`outside.ts`), from the station data's `data/station/outside.json` (the sim plays the same file):
