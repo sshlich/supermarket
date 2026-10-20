@@ -68,6 +68,31 @@ export function firstFree(W: number, H: number, taken: Box[], shape: Box): { x: 
   return null
 }
 
+/**
+ * Fit several shapes into a W x H grid around what is taken: each somewhere free, turned if need be. Tries the biggest first
+ * and backtracks, so a lot that fits one way round is found; null when it finds no way within `budget` tries.
+ */
+// ponytail: a plain bounded search (fine for a pack or a box); a real packer if containers grow much bigger
+export function pack(W: number, H: number, taken: Box[], shapes: Box[], budget = 20000): Box[] | null {
+  const size = (b: Box) => b.cells?.length ?? b.w * b.h
+  const order = shapes.map((b, i) => ({ b, i })).sort((p, q) => size(q.b) - size(p.b))
+  const out: Box[] = [], placed: Box[] = []
+  let tries = 0
+  const go = (k: number): boolean => {
+    if (k === order.length) return true
+    for (const v of orientations(order[k].b)) for (let y = 0; y + v.h <= H; y++) for (let x = 0; x + v.w <= W; x++) {
+      if (++tries > budget) return false
+      const at = { ...v, id: order[k].b.id, x, y }
+      if (taken.some(t => overlaps(t, at)) || placed.some(t => overlaps(t, at))) continue
+      placed.push(at); out[order[k].i] = at
+      if (go(k + 1)) return true
+      placed.pop()
+    }
+    return false
+  }
+  return go(0) ? out : null
+}
+
 const DIRS = [[1, 0], [0, 1], [-1, 0], [0, -1]] as const
 
 /**
@@ -170,13 +195,3 @@ export function dropGroup(W: number, H: number, others: Box[], ms: Box[], toward
 
 const lean = ([dx, dy]: readonly [number, number], m: Box, t: { x: number; y: number }) => dx * Math.sign(t.x - m.x) + dy * Math.sign(t.y - m.y)
 
-/** Pack boxes (in the given order) from the top-left, turning any that only fit turned. */
-export function pack(W: number, H: number, boxes: Box[]): Box[] | null {
-  const out: Box[] = []
-  for (const b of boxes) {
-    const s = firstFree(W, H, out, b)
-    if (!s) return null
-    out.push({ ...s.box, id: b.id, x: s.x, y: s.y })
-  }
-  return out
-}

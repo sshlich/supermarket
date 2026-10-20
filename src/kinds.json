@@ -4430,6 +4430,31 @@
     "need": "need_food",
     "tier": 3
   },
+  "it_food_coffee": {
+    "name": "Coffee brick",
+    "icon": "",
+    "color": "#7a9a4a",
+    "sound": "food",
+    "w": 2,
+    "h": 1,
+    "cat": "food",
+    "price": 24,
+    "tags": [
+      "food",
+      "drink",
+      "real",
+      "ring_grade",
+      "luxury",
+      "stim",
+      "valuable"
+    ],
+    "desc": "A vacuum brick of ground coffee from real ring beans. The smell alone could start a riot on the spine.",
+    "made": {
+      "mat_biomass": 0.5
+    },
+    "need": "need_luxury",
+    "tier": 3
+  },
   "it_food_crackers": {
     "name": "Crackers",
     "icon": "",
@@ -5864,6 +5889,29 @@
     "need": "need_comfort",
     "tier": 3
   },
+  "it_lux_beer": {
+    "name": "Algae beer",
+    "icon": "",
+    "color": "#6aa8c8",
+    "sound": "glass",
+    "w": 1,
+    "h": 2,
+    "cat": "sundries",
+    "price": 5,
+    "tags": [
+      "drink",
+      "alcohol",
+      "spine_grade"
+    ],
+    "desc": "A dented can of green-gold beer brewed from tank algae. Tastes of the tank, works anyway.",
+    "made": {
+      "mat_biomass": 0.3,
+      "mat_water": 0.5,
+      "mat_lightmetal": 0.1
+    },
+    "need": "need_comfort",
+    "tier": 1
+  },
   "it_lux_blanket": {
     "name": "Blanket",
     "icon": "",
@@ -5998,6 +6046,29 @@
     "need": "need_luxury",
     "tier": 3
   },
+  "it_lux_chew_tin": {
+    "name": "Chew tin",
+    "icon": "",
+    "color": "#7a9a4a",
+    "sound": "food",
+    "w": 1,
+    "h": 1,
+    "cat": "sundries",
+    "price": 5,
+    "tags": [
+      "comfort",
+      "drug",
+      "spine_grade"
+    ],
+    "desc": "A flat tin of nicotine pouches. One under the lip lasts a shift, and nobody sees it.",
+    "made": {
+      "mat_biomass": 0.2,
+      "mat_iron": 0.1,
+      "mat_reagent": 0.05
+    },
+    "need": "need_comfort",
+    "tier": 1
+  },
   "it_lux_cloth": {
     "name": "Cloth",
     "icon": "",
@@ -6122,6 +6193,49 @@
     "desc": "Two cubes of polymer, the dots drilled by hand. One of them runs a little heavy.",
     "made": {
       "mat_polymer": 0.5
+    },
+    "need": "need_comfort",
+    "tier": 1
+  },
+  "it_lux_duct_caps": {
+    "name": "Duct caps",
+    "icon": "",
+    "color": "#7a9a4a",
+    "sound": "food",
+    "w": 1,
+    "h": 1,
+    "cat": "sundries",
+    "price": 9,
+    "tags": [
+      "drug",
+      "contraband",
+      "fresh"
+    ],
+    "desc": "Small brown-capped mushrooms that grow where the ducts run damp. Eat two and the walls start breathing.",
+    "made": {
+      "mat_biomass": 0.3
+    },
+    "need": "need_luxury",
+    "tier": 2
+  },
+  "it_lux_gas_whip": {
+    "name": "Gas whip",
+    "icon": "",
+    "color": "#a8c86a",
+    "sound": "glass",
+    "w": 1,
+    "h": 1,
+    "cat": "sundries",
+    "price": 3,
+    "tags": [
+      "gas",
+      "drug",
+      "consumable"
+    ],
+    "desc": "A small steel cartridge of nitrous, meant for the galley's cream. A minute of giggling and a headache.",
+    "made": {
+      "mat_volatiles": 0.3,
+      "mat_iron": 0.2
     },
     "need": "need_comfort",
     "tier": 1
@@ -6276,6 +6390,29 @@
     },
     "need": "need_comfort",
     "tier": 1
+  },
+  "it_lux_miners_leaf": {
+    "name": "Miner's leaf",
+    "icon": "",
+    "color": "#7a9a4a",
+    "sound": "food",
+    "w": 1,
+    "h": 1,
+    "cat": "sundries",
+    "price": 7,
+    "tags": [
+      "drug",
+      "stim",
+      "contraband",
+      "spine_grade"
+    ],
+    "desc": "Bitter green leaves with a pinch of lime, chewed through a double shift. Green teeth, wide eyes.",
+    "made": {
+      "mat_biomass": 0.3,
+      "mat_salts": 0.1
+    },
+    "need": "need_comfort",
+    "tier": 2
   },
   "it_lux_moonshine": {
     "name": "Moonshine",
@@ -6503,6 +6640,28 @@
     "need": "need_luxury",
     "tier": 2
   },
+  "it_lux_pipe": {
+    "name": "Glass pipe",
+    "icon": "",
+    "color": "#9a9488",
+    "sound": "stone",
+    "w": 2,
+    "h": 1,
+    "cat": "sundries",
+    "price": 12,
+    "tags": [
+      "glass",
+      "drug",
+      "fire",
+      "contraband"
+    ],
+    "desc": "A hand-blown pipe swirled blue and amber, the bowl blackened. For leaf, resin, or whatever is going.",
+    "made": {
+      "mat_silicate": 2
+    },
+    "need": "need_comfort",
+    "tier": 2
+  },
   "it_lux_print": {
     "name": "Art print",
     "icon": "",
@@ -6595,6 +6754,33 @@
     },
     "need": "need_comfort",
     "tier": 2
+  },
+  "it_lux_ring_snow": {
+    "name": "Ring snow",
+    "icon": "",
+    "color": "#a85a8a",
+    "sound": "glass",
+    "w": 1,
+    "h": 1,
+    "cat": "sundries",
+    "price": 40,
+    "tags": [
+      "drug",
+      "stim",
+      "contraband",
+      "luxury",
+      "ring_grade",
+      "powder",
+      "valuable"
+    ],
+    "desc": "A tiny vial of fine white powder, a silver spoon on the cap. Ring parties end at breakfast for it.",
+    "made": {
+      "mat_biomass": 0.2,
+      "mat_reagent": 0.3,
+      "mat_silicate": 0.1
+    },
+    "need": "need_luxury",
+    "tier": 3
   },
   "it_lux_rug": {
     "name": "Woven rug",
@@ -6708,6 +6894,31 @@
     "need": "need_luxury",
     "tier": 3
   },
+  "it_lux_smokes": {
+    "name": "Hydro smokes",
+    "icon": "",
+    "color": "#7a9a4a",
+    "sound": "food",
+    "w": 1,
+    "h": 2,
+    "cat": "sundries",
+    "price": 12,
+    "tags": [
+      "comfort",
+      "drug",
+      "fire",
+      "contraband",
+      "packaging"
+    ],
+    "desc": "A crushed soft pack of twenty, hydro-grown leaf. Lit in a vent, the smoke detector taped over.",
+    "made": {
+      "mat_biomass": 0.4,
+      "mat_fibre": 0.2,
+      "mat_polymer": 0.1
+    },
+    "need": "need_comfort",
+    "tier": 2
+  },
   "it_lux_soap": {
     "name": "Soap bar",
     "icon": "",
@@ -6729,6 +6940,30 @@
     },
     "need": "need_comfort",
     "tier": 2
+  },
+  "it_lux_spice": {
+    "name": "Spacer spice",
+    "icon": "",
+    "color": "#7a9a4a",
+    "sound": "food",
+    "w": 1,
+    "h": 1,
+    "cat": "sundries",
+    "price": 4,
+    "tags": [
+      "drug",
+      "contraband",
+      "synthetic",
+      "spine_grade"
+    ],
+    "desc": "Dry herb sprayed with something from a lab nobody runs. Cheap, strong, and nobody knows what is in it.",
+    "made": {
+      "mat_biomass": 0.2,
+      "mat_reagent": 0.1,
+      "mat_polymer": 0.05
+    },
+    "need": "need_comfort",
+    "tier": 1
   },
   "it_lux_spirit": {
     "name": "Spirit bottle",
@@ -6775,6 +7010,54 @@
     "made": {
       "mat_iron": 0.4,
       "mat_rare": 0.2
+    },
+    "need": "need_comfort",
+    "tier": 2
+  },
+  "it_lux_tray_leaf": {
+    "name": "Tray leaf",
+    "icon": "",
+    "color": "#7a9a4a",
+    "sound": "food",
+    "w": 1,
+    "h": 1,
+    "cat": "sundries",
+    "price": 10,
+    "tags": [
+      "drug",
+      "contraband",
+      "comfort",
+      "fresh"
+    ],
+    "desc": "A twist of sticky green buds grown in a hydro tray under a borrowed lamp. Smells like a greenhouse on fire.",
+    "made": {
+      "mat_biomass": 0.4,
+      "mat_polymer": 0.05
+    },
+    "need": "need_comfort",
+    "tier": 2
+  },
+  "it_lux_vape": {
+    "name": "Vapour pen",
+    "icon": "",
+    "color": "#6a8aa8",
+    "sound": "plastic",
+    "w": 1,
+    "h": 2,
+    "cat": "sundries",
+    "price": 18,
+    "tags": [
+      "comfort",
+      "device",
+      "drug",
+      "licensed"
+    ],
+    "desc": "Company-licensed: no flame, no smoke, a sweet cloud and a little red light. The Hub's answer to the smokes.",
+    "made": {
+      "mat_polymer": 0.3,
+      "mat_lithium": 0.1,
+      "mat_copper": 0.1,
+      "mat_reagent": 0.2
     },
     "need": "need_comfort",
     "tier": 2
@@ -7513,6 +7796,28 @@
     "need": "need_medicine",
     "tier": 2
   },
+  "it_med_black_resin": {
+    "name": "Black resin",
+    "icon": "",
+    "color": "#7a9a4a",
+    "sound": "food",
+    "w": 1,
+    "h": 1,
+    "cat": "medicine",
+    "price": 22,
+    "tags": [
+      "drug",
+      "sedative",
+      "contraband"
+    ],
+    "desc": "A sticky black lump in wax paper, from poppies somebody grows on the ring. Warm, slow, hard to stop.",
+    "made": {
+      "mat_biomass": 0.4,
+      "mat_reagent": 0.1
+    },
+    "need": "need_medicine",
+    "tier": 3
+  },
   "it_med_blister": {
     "name": "Blister card",
     "icon": "",
@@ -7544,6 +7849,30 @@
     },
     "need": "need_medicine",
     "tier": 1
+  },
+  "it_med_blotter": {
+    "name": "Blotter",
+    "icon": "",
+    "color": "#c8b48a",
+    "sound": "cloth",
+    "w": 1,
+    "h": 1,
+    "cat": "medicine",
+    "price": 12,
+    "tags": [
+      "drug",
+      "paper",
+      "contraband",
+      "art",
+      "valuable"
+    ],
+    "desc": "A square of paper printed with a tiny eye, cut into tabs. One on the tongue and the station is very far away.",
+    "made": {
+      "mat_fibre": 0.1,
+      "mat_reagent": 0.05
+    },
+    "need": "need_luxury",
+    "tier": 2
   },
   "it_med_blue_ampoule": {
     "name": "Blue ampoule",
@@ -7636,6 +7965,102 @@
       "mat_salts": 0.2
     },
     "need": "need_medicine",
+    "tier": 2
+  },
+  "it_med_cough_syrup": {
+    "name": "Cough syrup",
+    "icon": "",
+    "color": "#a85a8a",
+    "sound": "glass",
+    "w": 1,
+    "h": 2,
+    "cat": "medicine",
+    "price": 9,
+    "tags": [
+      "medicine",
+      "sedative",
+      "liquid",
+      "drug"
+    ],
+    "desc": "Thick purple syrup, codeine and sugar. For a cough, officially; mixed with soda, for a slow night.",
+    "made": {
+      "mat_reagent": 0.3,
+      "mat_biomass": 0.2,
+      "mat_silicate": 0.3
+    },
+    "need": "need_medicine",
+    "tier": 2
+  },
+  "it_med_crank": {
+    "name": "Crank",
+    "icon": "",
+    "color": "#a85a8a",
+    "sound": "glass",
+    "w": 1,
+    "h": 1,
+    "cat": "medicine",
+    "price": 14,
+    "tags": [
+      "drug",
+      "stim",
+      "contraband",
+      "powder",
+      "spine_grade"
+    ],
+    "desc": "Cloudy crystal shards in a twist of foil, cooked behind the Works. Three days awake, then the bill.",
+    "made": {
+      "mat_reagent": 0.3,
+      "mat_lithium": 0.05,
+      "mat_salts": 0.1
+    },
+    "need": "need_medicine",
+    "tier": 2
+  },
+  "it_med_desk_strips": {
+    "name": "Desk strips",
+    "icon": "",
+    "color": "#a85a8a",
+    "sound": "glass",
+    "w": 1,
+    "h": 1,
+    "cat": "medicine",
+    "price": 8,
+    "tags": [
+      "medicine",
+      "stim",
+      "licensed",
+      "company",
+      "drug"
+    ],
+    "desc": "Company-issue focus strips in a blue sleeve: one on the tongue and a shift of spreadsheets goes by in an hour.",
+    "made": {
+      "mat_reagent": 0.2,
+      "mat_polymer": 0.05
+    },
+    "need": "need_medicine",
+    "tier": 2
+  },
+  "it_med_dock_candy": {
+    "name": "Dock candy",
+    "icon": "",
+    "color": "#a85a8a",
+    "sound": "glass",
+    "w": 1,
+    "h": 1,
+    "cat": "medicine",
+    "price": 10,
+    "tags": [
+      "drug",
+      "pill",
+      "contraband",
+      "sweet"
+    ],
+    "desc": "A chalky pastel pill stamped with a rocket. On the dock floor everybody loves everybody till morning.",
+    "made": {
+      "mat_reagent": 0.2,
+      "mat_carbon": 0.1
+    },
+    "need": "need_luxury",
     "tier": 2
   },
   "it_med_dream_tab": {
@@ -8176,6 +8601,31 @@
     },
     "need": "need_medicine",
     "tier": 1
+  },
+  "it_med_painwash": {
+    "name": "Painwash",
+    "icon": "",
+    "color": "#a85a8a",
+    "sound": "glass",
+    "w": 1,
+    "h": 2,
+    "cat": "medicine",
+    "price": 26,
+    "tags": [
+      "medicine",
+      "drug",
+      "sedative",
+      "licensed",
+      "wound"
+    ],
+    "desc": "A yellow morphine auto-injector, black safety cap. Clinic stock, numbered, and always going missing.",
+    "made": {
+      "mat_reagent": 0.4,
+      "mat_polymer": 0.2,
+      "mat_iron": 0.1
+    },
+    "need": "need_medicine",
+    "tier": 3
   },
   "it_med_reagent_pure": {
     "name": "Purified reagent",

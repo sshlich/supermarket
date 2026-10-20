@@ -48,8 +48,8 @@ export const noble = (c: Customer) => c.role === 'buyer' && c.rate >= NOBLE - 1e
 const CAST = RESIDENTS.filter(r => r.phase_from === 'phase_1')
 export const residentOf = (c: Customer) => RESIDENTS.find(r => r.id === c.who)
 export const deckOf = (c: Customer) => DECKS.find(d => d.id === residentOf(c)?.deck)
-/** Could a customer bring it? Not a sandwich (made, not brought), a machine, a fitting, a blueprint or contraband. */
-const bringable = (kind: string) => { const k = KINDS[kind]; return !!k?.price && !k.stack && k.cat !== 'machines' && !k.tags?.some(t => t === 'fixture' || t === 'contraband') && !kind.startsWith('disc_') }
+/** Could a customer bring it? Not a sandwich (made, not brought), a machine, a fitting or a blueprint; contraband only from those who deal in it (`contra`). */
+const bringable = (kind: string, contra = false) => { const k = KINDS[kind]; return !!k?.price && !k.stack && k.cat !== 'machines' && !k.tags?.some(t => t === 'fixture' || (!contra && t === 'contraband')) && !kind.startsWith('disc_') }
 const weighted = <T>(list: T[], w: (x: T) => number, rand: () => number) => { let r = rand() * list.reduce((n, x) => n + w(x), 0); return list.find(x => (r -= w(x)) <= 0) ?? list[list.length - 1] }
 
 /**
@@ -60,14 +60,15 @@ const weighted = <T>(list: T[], w: (x: T) => number, rand: () => number) => { le
 export function arrive(id: number, rand: () => number = Math.random, weights?: Record<string, number>, lean?: (kind: string) => number): Customer {
   const r = rand()
   const role: Role = r < MIX.buyer ? 'buyer' : r < MIX.buyer + MIX.seller ? 'seller' : 'trader'
-  const res = weighted(CAST.filter(x => x.roles[role] > 0 && (role === 'buyer' || x.sells.some(bringable))), x => x.roles[role], rand)
+  const deals = (x: (typeof CAST)[number]) => x.contraband === 'sells' || x.contraband === 'both' // a fence, a scavenger: contraband among what they bring
+  const res = weighted(CAST.filter(x => x.roles[role] > 0 && (role === 'buyer' || x.sells.some(k => bringable(k, deals(x))))), x => x.roles[role], rand)
   const wants: string[] = []
   if (role !== 'seller') {
     const pool = [...new Set(res.buys.map(k => KINDS[k]?.need ?? '').filter(n => n in TAGS))]
     const w = (n: string) => res.buys.filter(k => KINDS[k]?.need === n).length * (weights?.[n] ?? 1)
     for (let n = 1 + Math.floor(rand() * 2); n > 0 && pool.length; n--) { const t = weighted(pool, w, rand); wants.push(t); pool.splice(pool.indexOf(t), 1) }
   }
-  const goods = role === 'buyer' ? [] : Array.from({ length: 1 + Math.floor(rand() * 3) }, () => bring(rand, lean, res.sells))
+  const goods = role === 'buyer' ? [] : Array.from({ length: 1 + Math.floor(rand() * 3) }, () => bring(rand, lean, res.sells, deals(res)))
   // ponytail: ECONOMY.md section 4. A buyer pays the markup over worth; a seller asks a range around a fifth under it
   const around = (mid: number, spread: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, mid + spread * (rand() + rand() + rand() - 1.5) * 2))
   const rich = rand() ** (2 / (DECKS.find(d => d.id === res.deck)?.wealth ?? 1)) // a rich deck draws nearer the top
@@ -81,9 +82,9 @@ export function arrive(id: number, rand: () => number = Math.random, weights?: R
  * any of its property values, a vessel part full of something, a blister with some pills already gone. What people bring
  * is never quite new.
  */
-export function bring(rand: () => number = Math.random, lean: (kind: string) => number = () => 1, from?: string[]): Goods {
-  const ids = (from ?? []).filter(bringable)
-  const pool = (ids.length ? ids : Object.keys(KINDS).filter(bringable)).map(kind => [kind, KINDS[kind]] as const)
+export function bring(rand: () => number = Math.random, lean: (kind: string) => number = () => 1, from?: string[], contra = false): Goods {
+  const ids = (from ?? []).filter(k => bringable(k, contra))
+  const pool = (ids.length ? ids : Object.keys(KINDS).filter(k => bringable(k))).map(kind => [kind, KINDS[kind]] as const)
   const wt = ([n, k]: (typeof pool)[number]) => lean(n) / Math.sqrt(1 + k.price!)
   let r = rand() * pool.reduce((n, e) => n + wt(e), 0)
   const [kind, k] = pool.find(e => (r -= wt(e)) <= 0) ?? pool[0]

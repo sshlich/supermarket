@@ -1651,5 +1651,432 @@
       "mod_engraved"
     ],
     "notes": "No recipe."
+  },
+  {
+    "id": "it_lux_smokes",
+    "name": "Hydro smokes",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 12,
+    "depth": 2,
+    "composition": {
+      "mat_biomass": 0.4,
+      "mat_fibre": 0.2,
+      "mat_polymer": 0.1
+    },
+    "tags": [
+      "comfort",
+      "drug",
+      "fire",
+      "contraband",
+      "packaging"
+    ],
+    "market_need": "need_comfort",
+    "contraband": "fire",
+    "desc": "A crushed soft pack of twenty, hydro-grown leaf. Lit in a vent, the smoke detector taped over.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [
+        "stat_focused"
+      ],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Contraband (fire): it needs a flame. Tobacco, hydro-grown on the spine.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_spine",
+        "deck_dock"
+      ]
+    }
+  },
+  {
+    "id": "it_lux_vape",
+    "name": "Vapour pen",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 18,
+    "depth": 2,
+    "composition": {
+      "mat_polymer": 0.3,
+      "mat_lithium": 0.1,
+      "mat_copper": 0.1,
+      "mat_reagent": 0.2
+    },
+    "tags": [
+      "comfort",
+      "device",
+      "drug",
+      "licensed"
+    ],
+    "market_need": "need_comfort",
+    "desc": "Company-licensed: no flame, no smoke, a sweet cloud and a little red light. The Hub's answer to the smokes.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [
+        "stat_focused"
+      ],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "The legal nicotine. Clerks and the ring carry them.",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_lux_chew_tin",
+    "name": "Chew tin",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 5,
+    "depth": 2,
+    "composition": {
+      "mat_biomass": 0.2,
+      "mat_iron": 0.1,
+      "mat_reagent": 0.05
+    },
+    "tags": [
+      "comfort",
+      "drug",
+      "spine_grade"
+    ],
+    "market_need": "need_comfort",
+    "desc": "A flat tin of nicotine pouches. One under the lip lasts a shift, and nobody sees it.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [
+        "stat_focused"
+      ],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Snus. Legal, cheap, everywhere on the spine and the Works.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_spine",
+        "deck_works"
+      ]
+    }
+  },
+  {
+    "id": "it_lux_beer",
+    "name": "Algae beer",
+    "w": 1,
+    "h": 2,
+    "tier": 1,
+    "value": 5,
+    "depth": 2,
+    "composition": {
+      "mat_biomass": 0.3,
+      "mat_water": 0.5,
+      "mat_lightmetal": 0.1
+    },
+    "tags": [
+      "drink",
+      "alcohol",
+      "spine_grade"
+    ],
+    "market_need": "need_comfort",
+    "desc": "A dented can of green-gold beer brewed from tank algae. Tastes of the tank, works anyway.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [
+        "stat_hungover"
+      ],
+      "clears": [
+        "stat_sore"
+      ],
+      "consumed": true
+    },
+    "notes": "The cheap drink. Licensed brewery on the dock.",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_lux_gas_whip",
+    "name": "Gas whip",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 3,
+    "depth": 2,
+    "composition": {
+      "mat_volatiles": 0.3,
+      "mat_iron": 0.2
+    },
+    "tags": [
+      "gas",
+      "drug",
+      "consumable"
+    ],
+    "market_need": "need_comfort",
+    "desc": "A small steel cartridge of nitrous, meant for the galley's cream. A minute of giggling and a headache.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Nitrous oxide, sold as a kitchen consumable. Grey, not contraband.",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_lux_tray_leaf",
+    "name": "Tray leaf",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 10,
+    "depth": 2,
+    "composition": {
+      "mat_biomass": 0.4,
+      "mat_polymer": 0.05
+    },
+    "tags": [
+      "drug",
+      "contraband",
+      "comfort",
+      "fresh"
+    ],
+    "market_need": "need_comfort",
+    "contraband": "drug",
+    "desc": "A twist of sticky green buds grown in a hydro tray under a borrowed lamp. Smells like a greenhouse on fire.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [
+        "stat_rested"
+      ],
+      "clears": [
+        "stat_sore"
+      ],
+      "consumed": true
+    },
+    "notes": "Contraband (drug). Cannabis, hydro-grown.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_spine",
+        "deck_dock"
+      ]
+    }
+  },
+  {
+    "id": "it_lux_miners_leaf",
+    "name": "Miner's leaf",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 7,
+    "depth": 2,
+    "composition": {
+      "mat_biomass": 0.3,
+      "mat_salts": 0.1
+    },
+    "tags": [
+      "drug",
+      "stim",
+      "contraband",
+      "spine_grade"
+    ],
+    "market_need": "need_comfort",
+    "contraband": "drug",
+    "desc": "Bitter green leaves with a pinch of lime, chewed through a double shift. Green teeth, wide eyes.",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_wired"
+      ],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Contraband (drug). Khat and coca leaf: the Works' chew.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_works",
+        "deck_dock"
+      ]
+    }
+  },
+  {
+    "id": "it_lux_duct_caps",
+    "name": "Duct caps",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 9,
+    "depth": 3,
+    "composition": {
+      "mat_biomass": 0.3
+    },
+    "tags": [
+      "drug",
+      "contraband",
+      "fresh"
+    ],
+    "market_need": "need_luxury",
+    "contraband": "drug",
+    "desc": "Small brown-capped mushrooms that grow where the ducts run damp. Eat two and the walls start breathing.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Contraband (drug). Psilocybin mushrooms; they grow wild in wet ducts and the sump.",
+    "inflow": {
+      "channel": "salvage",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_lux_ring_snow",
+    "name": "Ring snow",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 40,
+    "depth": 3,
+    "composition": {
+      "mat_biomass": 0.2,
+      "mat_reagent": 0.3,
+      "mat_silicate": 0.1
+    },
+    "tags": [
+      "drug",
+      "stim",
+      "contraband",
+      "luxury",
+      "ring_grade",
+      "powder"
+    ],
+    "market_need": "need_luxury",
+    "contraband": "drug",
+    "desc": "A tiny vial of fine white powder, a silver spoon on the cap. Ring parties end at breakfast for it.",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_wired"
+      ],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Contraband (drug). Cocaine: dear, ring-side.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_ring",
+        "deck_dock"
+      ]
+    }
+  },
+  {
+    "id": "it_lux_spice",
+    "name": "Spacer spice",
+    "w": 1,
+    "h": 1,
+    "tier": 1,
+    "value": 4,
+    "depth": 2,
+    "composition": {
+      "mat_biomass": 0.2,
+      "mat_reagent": 0.1,
+      "mat_polymer": 0.05
+    },
+    "tags": [
+      "drug",
+      "contraband",
+      "synthetic",
+      "spine_grade"
+    ],
+    "market_need": "need_comfort",
+    "contraband": "drug",
+    "desc": "Dry herb sprayed with something from a lab nobody runs. Cheap, strong, and nobody knows what is in it.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [
+        "stat_crash"
+      ],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Contraband (drug). Synthetic cannabinoid: the spine's cheapest high.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_spine"
+      ]
+    }
+  },
+  {
+    "id": "it_lux_pipe",
+    "name": "Glass pipe",
+    "w": 2,
+    "h": 1,
+    "tier": 2,
+    "value": 12,
+    "depth": 2,
+    "composition": {
+      "mat_silicate": 2
+    },
+    "tags": [
+      "glass",
+      "drug",
+      "fire",
+      "contraband"
+    ],
+    "market_need": "need_comfort",
+    "contraband": "fire",
+    "desc": "A hand-blown pipe swirled blue and amber, the bowl blackened. For leaf, resin, or whatever is going.",
+    "notes": "Contraband (fire). A tool for the leaf and the resin, not used up.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_dock"
+      ]
+    }
   }
 ]

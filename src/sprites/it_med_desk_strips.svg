@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a blue company sleeve of focus strips, the Hub's stamp on it, one thin translucent strip pulled half out -->
+  <defs><linearGradient id="ds_sleeve" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f7fc4"/><stop offset="1" stop-color="#2c5490"/></linearGradient></defs>
+  <ellipse cx="16" cy="27" rx="12.5" ry="3" fill="#000" opacity="0.22"/>
+  <rect x="9" y="3.5" width="13" height="12" rx="1" fill="#e8d8f0" fill-opacity="0.75" stroke="#8a72a0" stroke-width="0.8" transform="rotate(-8 15 9)"/>
+  <path d="M11 7.5L19 6.4M11.3 10L18 9.1" stroke="#8a72a0" stroke-opacity="0.6" stroke-width="0.7" stroke-linecap="round"/>
+  <rect x="4.5" y="11" width="23" height="16" rx="1.6" fill="url(#ds_sleeve)" stroke="#16304e" stroke-width="1"/>
+  <rect x="4.5" y="11" width="23" height="3" fill="#1c3a64"/>
+  <circle cx="11" cy="20" r="4" fill="#e8eef6" stroke="#16304e" stroke-width="0.7"/>
+  <path d="M9.2 20L10.6 21.4L13 18.6" fill="none" stroke="#2c5490" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M17 18.4H24.5M17 21H23M17 23.6H24" stroke="#c8d8f0" stroke-width="1.1" stroke-linecap="round"/>
+  <path d="M6.6 16L6.6 25" stroke="#fff" stroke-opacity="0.45" stroke-width="1.1" stroke-linecap="round"/>
+</svg>

@@ -1625,5 +1625,46 @@
       "clears": [],
       "consumed": true
     }
+  },
+  {
+    "id": "it_food_coffee",
+    "name": "Coffee brick",
+    "w": 2,
+    "h": 1,
+    "tier": 3,
+    "value": 24,
+    "depth": 3,
+    "composition": {
+      "mat_biomass": 0.5
+    },
+    "tags": [
+      "food",
+      "drink",
+      "real",
+      "ring_grade",
+      "luxury",
+      "stim"
+    ],
+    "market_need": "need_luxury",
+    "desc": "A vacuum brick of ground coffee from real ring beans. The smell alone could start a riot on the spine.",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Real coffee: a ring luxury. No crash.",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    }
   }
 ]

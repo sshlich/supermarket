@@ -50,8 +50,8 @@ const art = (os: Os, g: Goods) => { const k = KINDS[g.kind]; return `<span class
 // ---------------------------------------------------------------- the Company store
 
 const CATS: [string, string, string[]][] = [['food', 'Food', ['food']], ['sundries', 'Sundries', ['sundries']], ['medicine', 'Medicine', ['medicine']], ['tools', 'Tools & storage', ['tools', 'storage']], ['tech', 'Tech', ['tech']], ['home', 'Furniture', ['furniture']], ['raw', 'Materials', ['materials']], ['machines', 'Machines', ['machines']]]
-/** What the Company sells: anything new with a price (not a sandwich, which is made; not a disc, which has its own shops), at the shops' markup over what it is worth. */
-const stocked = (cats: string[]) => Object.entries(KINDS).filter(([kind, k]) => k.price && !k.stack && kind !== 'disc' && cats.includes(k.cat ?? '')).map(([kind]) => ({ kind } as Goods))
+/** What the Company sells: anything new with a price (not a sandwich, which is made; not a disc, which has its own shops; never contraband), at the shops' markup over what it is worth. */
+const stocked = (cats: string[]) => Object.entries(KINDS).filter(([kind, k]) => k.price && !k.stack && kind !== 'disc' && !k.tags?.includes('contraband') && cats.includes(k.cat ?? '')).map(([kind]) => ({ kind } as Goods))
 const companyPrice = (g: Goods) => Math.max(1, Math.ceil(worthOf(g) * (1 + SHOP_MARKUP)))
 function store(os: Os, w: Win, path: string) {
   const cat = CATS.find(([id]) => id === path) ?? CATS[0]

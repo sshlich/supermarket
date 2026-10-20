@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a yellow morphine auto-injector standing up: a black safety cap on top, a dose window, warning stripes, the orange needle end at the bottom -->
+  <defs><linearGradient id="pw_body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c49a14"/><stop offset="0.4" stop-color="#f4d04a"/><stop offset="1" stop-color="#a88010"/></linearGradient></defs>
+  <ellipse cx="16" cy="60" rx="9.5" ry="2.6" fill="#000" opacity="0.25"/>
+  <rect x="10.5" y="3" width="11" height="10" rx="2.4" fill="#26282c" stroke="#0e0f12" stroke-width="0.9"/>
+  <path d="M12.4 6H19.6M12.4 8.6H19.6" stroke="#5a5e66" stroke-width="0.8"/>
+  <rect x="10" y="12.5" width="12" height="40" rx="3" fill="url(#pw_body)" stroke="#5a4206" stroke-width="1"/>
+  <rect x="13" y="17" width="6" height="12" rx="1.2" fill="#e8f0f4" fill-opacity="0.75" stroke="#5a4206" stroke-width="0.7"/>
+  <rect x="13.6" y="22" width="4.8" height="6.4" fill="#d8e8f0"/>
+  <g fill="#1e1e22"><path d="M10 33L13 33L10 36Z"/><path d="M14 33L17 33L12.2 38L10.6 38Z" transform="translate(0 0)"/><path d="M18.4 33L21.4 33L16.4 38L13.4 38Z"/><path d="M22 34.8L22 37L20.6 38L18.6 38Z"/></g>
+  <path d="M12 42H20M12 45H18" stroke="#5a4206" stroke-width="1" stroke-linecap="round"/>
+  <path d="M12.5 52.5L19.5 52.5L18.5 58C18.4 58.8 17.8 59.2 17 59.2L15 59.2C14.2 59.2 13.6 58.8 13.5 58Z" fill="#e8762a" stroke="#6a2e08" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M12.4 15L12.4 50" stroke="#fff" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round"/>
+</svg>

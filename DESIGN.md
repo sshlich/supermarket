@@ -64,7 +64,10 @@ width of the field and four squares deep, with a brass rim and its name to the l
   Items inside carry `in: { host, slot }`, and their x, y are in that slot's grid.
 - Containers do not go in containers, except kinds tagged `vessel`, and never more than two levels (`MAX_NEST`).
 - Dropping a thing onto a container that would take it puts it inside (blue light, brighter under the pointer); a full one
-  refuses it (red) and nothing gets shoved; one that never takes it is just another thing to rearrange.
+  refuses it (red) and nothing gets shoved; one that never takes it is just another thing to rearrange. **Several selected
+  things** dropped onto a container (or into its open window where they will not go as they lie) are **packed in**
+  (2026-10-20, `pack` in grid.ts: biggest first, turned where they must be, a bounded search), around what is in it, or
+  failing that with what is in it shifted about too.
 - **Double-click a container to open it in a window.** The window floats over the page beside the container (right of it, or
   left if there is no room). Its body is the container's insides: one grid per slot, with the slot's name and tag rules
   above it. Everything the field does works inside it (drag in and out, between windows, shove, sweep, strict mode).
@@ -502,6 +505,22 @@ the tape gun).
 - Not yet: the station's machines and recipes do not run (only the smelter, which is the old furnace); needs, residents,
   events and upgrades are not in the game.
 
+## Substances and more (2026-10-20)
+
+Nineteen more station items, mostly what people take to get through a shift, after real ones (in `data/station`, with
+sprites): **hydro smokes** (cigarettes; fire, so contraband), a **vapour pen** (licensed nicotine), a **chew tin** (snus),
+**algae beer**, a **gas whip** (nitrous), **coffee brick** (real ring coffee), **cough syrup** (codeine), **desk strips**
+(the Hub's licensed focus strips), **painwash** (a morphine auto-injector, licensed), and contraband: **tray leaf**
+(cannabis), **miner's leaf** (khat and coca), **duct caps** (mushrooms), **crank** (meth), **ring snow** (cocaine),
+**dock candy** (MDMA), **blotter** (LSD), **black resin** (opium), **spacer spice** (synthetic cannabinoid) and a **glass
+pipe**. Each has a station `use` (energy, wired, crash...) for when using your own stock comes in.
+- The legal ones come by crate (the Company Store, which never stocks contraband); the rest through walk-ins: the fence,
+  the scavenger, the smelter hand and the hauler sell them (residents who deal in contraband now bring it to the counter),
+  and the sites turn some up (caps in the ducts and the sump, smokes and spice in the dark bunks, syrup at the clinic).
+  The spine swap stall sells beer and chew; the ring concierge coffee and vape pens.
+- Residents buy them for their reasons: the Works chews and drinks, clerks and technicians want coffee and strips, the
+  orderly wants painwash and syrup, the ring household coffee and snow, the fence the dear contraband.
+
 ## The night outside: the map, sites, shops, a pack and one tool (2026-10-19)
 
 The night of `STATION.md` 8b (`outside.ts`), from the station data's `data/station/outside.json` (the sim plays the same file):
@@ -509,9 +528,11 @@ The night of `STATION.md` 8b (`outside.ts`), from the station data's `data/stati
   terminal's place shows **the map**: ten sites and five shops. Each site lists its searches (counting the tool in your hand
   now), its lock, what it tends to turn up; each shop what it sells and what it buys; a button: go, or why not. Below them
   is **stay in and sleep**. Going out costs no energy and nothing counts time: a night is one outing, to one place.
-- **You** (a button under the dock, always open at night): a body with two places. The **back** takes one pack (tagged
-  `pack`); the **hand** takes one tool (tagged `tool`). What you leave on you is there tomorrow, so the last kit is
-  remembered for free. A new game starts with a **canvas pack** on your back (3x3, a 4x4 inside).
+- **You** (a button under the dock, always open at night): a body. The **back** takes one pack (tagged `pack`); the
+  **hands** are two **flex slots** (2026-10-20): each holds one thing of any size, drawn shrunk to fit its square frame (a
+  furnace too). Hand to hand, the two swap. A tool in either hand opens a site's lock or adds its bonus, and each that
+  served wears a night. Out at night the hands are in reach like the pack: carry a big find home in them, or buy into
+  them at a shop. What you leave on you is there tomorrow, so the last kit is remembered for free. A new game starts with a **canvas pack** on your back (3x3, a 4x4 inside).
 - **Sites** (searches; lock or bonus): Spine ducts (6; a torch +2), Dark bunks (3; torch), Works slag heap (8; a wrench +2),
   Dead scrubber bay (5; a mask refill, used up going in), Core cableway (3; wrench), Sealed hatch row (3; cutters), Flooded
   sump (4; rebreather), Ring service corridor (3; a key fob), Clinic back room (4; a loupe +2), Junked terminals (4; a

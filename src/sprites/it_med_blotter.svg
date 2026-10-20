@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a square of art paper perforated into sixteen tabs, printed with one big eye in a swirl of colour -->
+  <ellipse cx="16" cy="27.5" rx="12" ry="2.6" fill="#000" opacity="0.2"/>
+  <rect x="4" y="4" width="24" height="23" fill="#f4ecd8" stroke="#8a7e64" stroke-width="0.9"/>
+  <path d="M4 15.5C9 9 16 8 22 11C25 12.5 27 14.5 28 16L28 4L4 4Z" fill="#7a5ac8" opacity="0.85"/>
+  <path d="M4 27L4 18C10 21 17 21.5 22 18.5C25 16.8 27 16.8 28 17.5L28 27Z" fill="#e8a238" opacity="0.85"/>
+  <path d="M6.5 15.5C10 11 22 11 25.5 15.5C22 20 10 20 6.5 15.5Z" fill="#fff8ec" stroke="#2a2030" stroke-width="0.9" stroke-linejoin="round"/>
+  <circle cx="16" cy="15.5" r="3.6" fill="#2a9a8a" stroke="#2a2030" stroke-width="0.8"/>
+  <circle cx="16" cy="15.5" r="1.6" fill="#1a1420"/>
+  <circle cx="17" cy="14.5" r="0.6" fill="#fff"/>
+  <g stroke="#2a2030" stroke-opacity="0.35" stroke-width="0.5" stroke-dasharray="0.8 0.8"><path d="M10 4V27M16 4V27M22 4V27M4 9.75H28M4 15.5H28M4 21.25H28"/></g>
+</svg>

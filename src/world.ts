@@ -1,7 +1,7 @@
 // The field: a grid of cells with things on it; two counters above it (outside and inside, for trading with customers); and
 // containers with grids of their own. Nothing else yet.
 
-import { drop, dropGroup, firstFree, footprintKey, nearest, overlaps, turn, type Box } from './grid.ts'
+import { drop, dropGroup, firstFree, footprintKey, nearest, overlaps, pack, turn, type Box } from './grid.ts'
 import type { Goods } from './customers.ts'
 import DATA from './kinds.json' with { type: 'json' }
 import START from '../data/station/start.json' with { type: 'json' }
@@ -18,12 +18,17 @@ export type Counter = 'outside' | 'inside'
 export const COUNTERS: Record<Counter, { w: number; h: number }> = { outside: { w: W, h: 4 }, inside: { w: W, h: 4 } }
 /**
  * The places beside the field: the counters, the trash (emptied overnight, see `sleep`), the dock (boxes, to ship), and for
- * the night outside (outside.ts): you, a body with two slots (`back` takes one pack, `hand` one tool), and `site`, the ground
- * where tonight's finds turn up.
+ * the night outside (outside.ts): you, a body (`back` takes one pack; `hand` is two hands), and `site`, the ground where
+ * tonight's finds turn up. The hands are **flex slots**: each holds one thing, whatever its size (its `x` is which hand), so
+ * `hand` is two slots wide and one deep.
  */
 export type Place = Counter | 'trash' | 'dock' | 'back' | 'hand' | 'site'
-export const PLACES: Record<Place, { w: number; h: number }> = { ...COUNTERS, trash: { w: 5, h: 6 }, dock: { w: 8, h: 6 }, back: { w: 3, h: 3 }, hand: { w: 2, h: 3 }, site: { w: 8, h: 8 } }
+export const PLACES: Record<Place, { w: number; h: number }> = { ...COUNTERS, trash: { w: 5, h: 6 }, dock: { w: 8, h: 6 }, back: { w: 3, h: 3 }, hand: { w: 2, h: 1 }, site: { w: 8, h: 8 } }
 const isPlace = (c: unknown): c is Place => typeof c === 'string' && Object.hasOwn(PLACES, c)
+/** Is it a place of flex slots (the hands): one thing a slot, any size? */
+export const isFlex = (sp: Space) => !!sp && 'at' in sp && sp.at === 'hand'
+/** The first flex slot free of anything but `it`, or null. */
+const freeFlex = (s: State, sp: Space, it?: Item) => { const n = spaceSize(s, sp).w, taken = inSpace(s, sp).filter(o => o.id !== it?.id).map(o => o.x); for (let x = 0; x < n; x++) if (!taken.includes(x)) return x; return null }
 
 /**
  * What a kind of thing is. `w` and `h` are its footprint's bounding box in cells; `cells`, when the footprint is not a plain
@@ -284,8 +289,8 @@ const height = (s: State, it: Item, seen = new Set<number>()): number => isConta
 
 /** The pack on your back, if there is one. */
 export const worn = (s: State) => inSpace(s, { at: 'back' })[0] as Item | undefined
-/** Out at a site, only the ground there and the inside of the pack on your back are within reach. */
-const reach = (s: State, sp: Space) => isSlot(sp) ? sp.host === worn(s)?.id : placeOf(sp) === 'site'
+/** Out at a site, only the ground there, your hands and the inside of the pack on your back are within reach. */
+const reach = (s: State, sp: Space) => isSlot(sp) ? sp.host === worn(s)?.id : placeOf(sp) === 'site' || placeOf(sp) === 'hand'
 /** Which place beside the field a space is, if it is one. */
 const placeOf = (sp: Space) => sp && !isSlot(sp) ? sp.at : null
 /**
@@ -303,7 +308,8 @@ export function accepts(s: State, it: Item, sp: Space): boolean {
     if (isSlot(sp) && it.sale !== undefined && !it.bought && (s.cash ?? 0) < it.sale) return false
   }
   if (at === 'site') return !!s.out
-  if (at === 'back' || at === 'hand') return look(it).tags.includes(at === 'back' ? 'pack' : 'tool') && inSpace(s, sp).every(o => o.id === it.id)
+  if (at === 'back') return look(it).tags.includes('pack') && inSpace(s, sp).every(o => o.id === it.id)
+  if (at === 'hand') return freeFlex(s, sp, it) !== null // anything, while a hand is free
   if (!isSlot(sp)) return sp?.at !== 'dock' || isBox(it) // the dock takes boxes, to ship
   const host = find(s, sp.host)
   if (host && sealed(host) && !sameSpace(spaceOf(it), sp)) return false // taped shut: what is in it stays, nothing new goes in
@@ -345,10 +351,17 @@ export function lift(s: State, id: number, selected: number[] = []): Held | null
 export function planDrop(s: State, held: Held, space: Space, x: number, y: number, rot: number, strict = false, turnedOnce = false): Plan | null {
   if (isSlot(space) && slotOf(s, space)?.out) return null // nothing goes into a take-out-only slot, not even back to another spot in it
   if (held.items.some(o => !accepts(s, o, space))) return null
-  if ((placeOf(space) === 'back' || placeOf(space) === 'hand') && held.items.length > 1) return null // one pack, one tool
+  if ((placeOf(space) === 'back' || placeOf(space) === 'hand') && held.items.length > 1) return null // one pack; one thing a hand
+  if (isFlex(space)) { // into the hand it is over, or the other if that one is full; hand to hand, the two swap
+    const it = held.item, want = Math.max(0, Math.min(spaceSize(s, space).w - 1, x)), there = inSpace(s, space).find(o => o.x === want && o.id !== it.id)
+    if (!there) return { space, x: want, y: 0, rot: it.rot, moves: [] }
+    if (sameSpace(held.space, space)) return { space, x: want, y: 0, rot: it.rot, moves: [{ id: there.id, x: held.from.x, y: 0, rot: there.rot }] }
+    const other = freeFlex(s, space, it)
+    return other === null ? null : { space, x: other, y: 0, rot: it.rot, moves: [] }
+  }
   const { w: SW, h: SH } = spaceSize(s, space)
   if (!SW || !SH) return null
-  if (held.items.length > 1) return planGroup(s, held, space, x, y, strict)
+  if (held.items.length > 1) return planGroup(s, held, space, x, y, strict) ?? (isSlot(space) ? packInto(s, held, space) : null) // a lot that will not go in as it lies is packed in
   const it = held.item
   const d = dims({ ...it, rot })
   const others = inSpace(s, space).filter(o => o.id !== it.id)
@@ -399,25 +412,25 @@ function planGroup(s: State, held: Held, space: Space, x: number, y: number, str
   return { space, x: tx, y: ty, rot: held.item.rot, moves: [...members, ...res.slice(boxes.length).map(r => ({ id: r.id, x: r.x, y: r.y, rot: r.rot ?? 0 }))] }
 }
 
-/** Dropped onto a container itself: into the first of its slots that takes the lot and has room, on the first free spots. */
+/**
+ * Pack what is held into a container's slot (every one of them must be one it takes): around what is there, or failing that
+ * with what is there packed again too (it shifts about inside). Where each goes, or null.
+ */
+function packInto(s: State, held: Held, space: SlotSpace): Plan | null {
+  const slot = slotOf(s, space)
+  if (!slot || held.items.some(o => !accepts(s, o, space))) return null
+  const there = inSpace(s, space).filter(o => !held.items.includes(o)), shape = (o: Item) => ({ ...boxOf(o), x: 0, y: 0 })
+  const around = pack(slot.w, slot.h, there.map(boxOf), held.items.map(shape))
+  const placed = around ?? pack(slot.w, slot.h, [], [...held.items, ...there].map(shape))
+  if (!placed) return null
+  const [a, ...rest] = placed, n = held.items.length
+  return { space, x: a.x, y: a.y, rot: a.rot ?? 0, moves: rest.map((b, i) => ({ id: b.id, x: b.x, y: b.y, rot: b.rot ?? 0, ...i + 1 < n ? { group: true } : {} })) }
+}
+/** Dropped onto a container itself: into the first of its slots that takes the lot and has room for it, packed in (see `pack`). */
 export function intoHost(s: State, held: Held, hostId: number): Plan | null {
   const host = find(s, hostId)
   if (!host || held.items.some(o => o.id === hostId || within(s, hostId, o.id))) return null
-  const slots = KINDS[host.kind]?.slots ?? []
-  for (let i = 0; i < slots.length; i++) {
-    const space: Space = { host: hostId, slot: i }
-    if (held.items.some(o => !accepts(s, o, space))) continue
-    const taken = inSpace(s, space).filter(o => !held.items.includes(o)).map(boxOf)
-    const placed: Box[] = []
-    for (const o of held.items) {
-      const spot = firstFree(slots[i].w, slots[i].h, [...taken, ...placed], { ...boxOf(o), x: 0, y: 0 })
-      if (!spot) break
-      placed.push({ ...spot.box, id: o.id, x: spot.x, y: spot.y })
-    }
-    if (placed.length < held.items.length) continue
-    const [a, ...rest] = placed
-    return { space, x: a.x, y: a.y, rot: a.rot ?? 0, moves: rest.map(b => ({ id: b.id, x: b.x, y: b.y, rot: b.rot ?? 0, group: true })) }
-  }
+  for (let i = 0; i < (KINDS[host.kind]?.slots ?? []).length; i++) { const p = packInto(s, held, { host: hostId, slot: i }); if (p) return p }
   return null
 }
 
@@ -466,6 +479,15 @@ function layout(items: Item[], w: number, h: number): { kept: Item[]; lost: Item
   return { kept, lost }
 }
 
+/** Flex slots (the hands): one thing a slot, in the slot it names if that is free, else the next free one. */
+function flexLayout(items: Item[], n: number): { kept: Item[]; lost: Item[] } {
+  const kept: Item[] = [], lost: Item[] = []
+  for (const it of items) {
+    const want = Number.isInteger(it.x) && it.x >= 0 && it.x < n && !kept.some(o => o.x === it.x) ? it.x : [...Array(n).keys()].find(x => !kept.some(o => o.x === x))
+    if (want === undefined) lost.push(it); else kept.push({ ...it, x: want, y: 0 })
+  }
+  return { kept, lost }
+}
 /** A liquid only in a vessel, only one that exists, and no more than the vessel holds. */
 function cleanFill(o: Item): { fill?: Fill } {
   const cap = KINDS[o.kind]?.holds ?? 0
@@ -535,7 +557,7 @@ export function settle(s: State): State {
   for (const o of items) { const k = spaceKey(spaceOf(o)); if (!spaces.has(k)) spaces.set(k, { sp: spaceOf(o), list: [] }); spaces.get(k)!.list.push(o) }
   for (const { sp, list } of spaces.values()) {
     const { w, h } = spaceSize(state, sp)
-    const { kept, lost } = layout(list, w, h)
+    const { kept, lost } = isFlex(sp) ? flexLayout(list, w) : layout(list, w, h)
     out.push(...kept)
     stray.push(...lost)
   }
@@ -669,6 +691,7 @@ export function unstack(s: State, it: Item): Item | null {
 
 /** Move a thing (and whatever is inside it) to the first free spot of a place, turned if that is the only way it fits. False if there is no room. */
 export function moveInto(s: State, it: Item, space: Space): boolean {
+  if (isFlex(space)) { const x = freeFlex(s, space, it); if (x === null || !accepts(s, it, space)) return false; Object.assign(it, { x, y: 0 }); setIn(it, space); return true }
   const { w, h } = spaceSize(s, space)
   const spot = firstFree(w, h, inSpace(s, space).filter(o => o.id !== it.id).map(boxOf), shapeOfItem(it))
   if (!spot || !accepts(s, it, space)) return false
@@ -687,7 +710,8 @@ export function spawn(s: State, kind: string, space: Space = null, props: Record
   const it: Item = { id: s.next, kind, x: 0, y: 0, rot: 0, ...cleanProps({ id: 0, kind, x: 0, y: 0, rot: 0, props }) }
   if (!fill && !accepts(s, it, space)) return null // asked before it is put there: a take-out-only slot takes nothing new
   setIn(it, space)
-  const spot = firstFree(w, h, inSpace(s, space).map(boxOf), shapeOfItem(it))
+  const flex = isFlex(space) ? freeFlex(s, space) : null
+  const spot = isFlex(space) ? flex === null ? null : { x: flex, y: 0, rot: 0 } : firstFree(w, h, inSpace(s, space).map(boxOf), shapeOfItem(it))
   if (!spot) return null
   s.next++
   Object.assign(it, { x: spot.x, y: spot.y, rot: spot.rot })

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a crumpled twist of foil opened up, cloudy blue-white crystal shards heaped in it -->
+  <defs><linearGradient id="cr_foil" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6eaee"/><stop offset="0.5" stop-color="#9aa2aa"/><stop offset="1" stop-color="#d0d6dc"/></linearGradient></defs>
+  <ellipse cx="16" cy="26" rx="13.5" ry="3.6" fill="#000" opacity="0.22"/>
+  <path d="M3 18L6 12.5L9.5 14L12 9.5L16 12L20.5 8.5L23 13L27.5 11.5L29 17.5L27 22L29 25.5L22 26.5L17 28L11 26.4L5 27L6 22.5Z" fill="url(#cr_foil)" stroke="#4a5058" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M6 22.5L11 20.5L17 22.5L22 20L27 22M9.5 14L11 20.5M23 13L22 20M16 12L17 22.5" fill="none" stroke="#6a7078" stroke-opacity="0.45" stroke-width="0.7"/>
+  <g stroke="#7a94a8" stroke-width="0.6" stroke-linejoin="round">
+    <path d="M10 19L12.5 13.5L14.5 19.5Z" fill="#e8f2f8"/>
+    <path d="M13.5 20L16.5 12L19.5 20.5Z" fill="#d6e8f2"/>
+    <path d="M18 19.5L20.2 15L22.6 20Z" fill="#eef6fa"/>
+    <path d="M12 21L14 17.6L16 21.4Z" fill="#c8dcea"/>
+    <path d="M16.5 21.6L18.4 17.8L20.6 21.8Z" fill="#e0eef6"/>
+  </g>
+  <path d="M15.6 14.4L16.4 13.2M12.3 15.2L12.8 14.4" stroke="#fff" stroke-width="0.8" stroke-linecap="round"/>
+  <path d="M4.8 18.6L6.6 14" stroke="#fff" stroke-opacity="0.6" stroke-width="1" stroke-linecap="round"/>
+</svg>

@@ -37,9 +37,9 @@ assert.equal(touches(b(1, 0, 0), b(2, 1, 1)), false)
 assert.equal(touches(b(1, 0, 0, 2, 1), b(2, 1, 1)), true)
 
 // Packing fills from the top-left and turns what only fits turned.
-assert.deepEqual(pack(2, 3, [b(1, 0, 0, 2, 2), b(2, 0, 0, 2, 1)]), [b(1, 0, 0, 2, 2), b(2, 0, 2, 2, 1)])
-assert.deepEqual(pack(1, 3, [b(1, 0, 0, 2, 1)]), [{ ...b(1, 0, 0, 1, 2), rot: 1 }])
-assert.equal(pack(2, 2, [b(1, 0, 0, 2, 2), b(2, 0, 0)]), null)
+assert.deepEqual(pack(2, 3, [], [b(1, 0, 0, 2, 2), b(2, 0, 0, 2, 1)]), [b(1, 0, 0, 2, 2), b(2, 0, 2, 2, 1)])
+assert.deepEqual(pack(1, 3, [], [b(1, 0, 0, 2, 1)]), [{ ...b(1, 0, 0, 1, 2), rot: 1 }])
+assert.equal(pack(2, 2, [], [b(1, 0, 0, 2, 2), b(2, 0, 0)]), null)
 
 // Irregular shapes: an L (cells 0,0 0,1 1,1) leaves its empty corner free, and turns a quarter clockwise.
 const L: Box = { id: 1, x: 0, y: 0, w: 2, h: 2, cells: [[0, 0], [0, 1], [1, 1]] }

@@ -1290,5 +1290,303 @@
       "deck_ring": 3,
       "deck_hub": 1
     }
+  },
+  {
+    "id": "it_med_cough_syrup",
+    "name": "Cough syrup",
+    "w": 1,
+    "h": 2,
+    "tier": 2,
+    "value": 9,
+    "depth": 2,
+    "composition": {
+      "mat_reagent": 0.3,
+      "mat_biomass": 0.2,
+      "mat_silicate": 0.3
+    },
+    "tags": [
+      "medicine",
+      "sedative",
+      "liquid",
+      "drug"
+    ],
+    "market_need": "need_medicine",
+    "desc": "Thick purple syrup, codeine and sugar. For a cough, officially; mixed with soda, for a slow night.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [
+        "stat_rested"
+      ],
+      "clears": [
+        "stat_sore"
+      ],
+      "consumed": true
+    },
+    "notes": "Legal medicine that walks off the shelf: lean.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_mid"
+      ]
+    }
+  },
+  {
+    "id": "it_med_desk_strips",
+    "name": "Desk strips",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 8,
+    "depth": 3,
+    "composition": {
+      "mat_reagent": 0.2,
+      "mat_polymer": 0.05
+    },
+    "tags": [
+      "medicine",
+      "stim",
+      "licensed",
+      "company",
+      "drug"
+    ],
+    "market_need": "need_medicine",
+    "desc": "Company-issue focus strips in a blue sleeve: one on the tongue and a shift of spreadsheets goes by in an hour.",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 1,
+          "text": "+1 energy now"
+        }
+      ],
+      "adds": [
+        "stat_focused"
+      ],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Licensed nootropic (modafinil, amphetamine salts). The Hub runs on them.",
+    "inflow": {
+      "channel": "crate",
+      "phase": "phase_1"
+    }
+  },
+  {
+    "id": "it_med_crank",
+    "name": "Crank",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 14,
+    "depth": 2,
+    "composition": {
+      "mat_reagent": 0.3,
+      "mat_lithium": 0.05,
+      "mat_salts": 0.1
+    },
+    "tags": [
+      "drug",
+      "stim",
+      "contraband",
+      "powder",
+      "spine_grade"
+    ],
+    "market_need": "need_medicine",
+    "contraband": "drug",
+    "desc": "Cloudy crystal shards in a twist of foil, cooked behind the Works. Three days awake, then the bill.",
+    "use": {
+      "target": "self",
+      "effects": [
+        {
+          "stat": "energy_now",
+          "op": "add",
+          "value": 2,
+          "text": "+2 energy now"
+        }
+      ],
+      "adds": [
+        "stat_wired",
+        "stat_crash"
+      ],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Contraband (drug). Methamphetamine: the strongest stim, the worst crash.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_works",
+        "deck_spine"
+      ]
+    }
+  },
+  {
+    "id": "it_med_dock_candy",
+    "name": "Dock candy",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 10,
+    "depth": 3,
+    "composition": {
+      "mat_reagent": 0.2,
+      "mat_carbon": 0.1
+    },
+    "tags": [
+      "drug",
+      "pill",
+      "contraband",
+      "sweet"
+    ],
+    "market_need": "need_luxury",
+    "contraband": "drug",
+    "desc": "A chalky pastel pill stamped with a rocket. On the dock floor everybody loves everybody till morning.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [
+        "stat_crash"
+      ],
+      "clears": [
+        "stat_tired"
+      ],
+      "consumed": true
+    },
+    "notes": "Contraband (drug). MDMA: the dock's dance nights.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_dock"
+      ]
+    }
+  },
+  {
+    "id": "it_med_blotter",
+    "name": "Blotter",
+    "w": 1,
+    "h": 1,
+    "tier": 2,
+    "value": 12,
+    "depth": 3,
+    "composition": {
+      "mat_fibre": 0.1,
+      "mat_reagent": 0.05
+    },
+    "tags": [
+      "drug",
+      "paper",
+      "contraband",
+      "art"
+    ],
+    "market_need": "need_luxury",
+    "contraband": "drug",
+    "desc": "A square of paper printed with a tiny eye, cut into tabs. One on the tongue and the station is very far away.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [],
+      "clears": [],
+      "consumed": true
+    },
+    "notes": "Contraband (drug). LSD on art paper.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_dock"
+      ]
+    }
+  },
+  {
+    "id": "it_med_black_resin",
+    "name": "Black resin",
+    "w": 1,
+    "h": 1,
+    "tier": 3,
+    "value": 22,
+    "depth": 3,
+    "composition": {
+      "mat_biomass": 0.4,
+      "mat_reagent": 0.1
+    },
+    "tags": [
+      "drug",
+      "sedative",
+      "contraband"
+    ],
+    "market_need": "need_medicine",
+    "contraband": "drug",
+    "desc": "A sticky black lump in wax paper, from poppies somebody grows on the ring. Warm, slow, hard to stop.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [
+        "stat_rested",
+        "stat_crash"
+      ],
+      "clears": [
+        "stat_sore",
+        "stat_tired"
+      ],
+      "consumed": true
+    },
+    "notes": "Contraband (drug). Opium.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_ring",
+        "deck_dock"
+      ]
+    }
+  },
+  {
+    "id": "it_med_painwash",
+    "name": "Painwash",
+    "w": 1,
+    "h": 2,
+    "tier": 3,
+    "value": 26,
+    "depth": 3,
+    "composition": {
+      "mat_reagent": 0.4,
+      "mat_polymer": 0.2,
+      "mat_iron": 0.1
+    },
+    "tags": [
+      "medicine",
+      "drug",
+      "sedative",
+      "licensed",
+      "wound"
+    ],
+    "market_need": "need_medicine",
+    "desc": "A yellow morphine auto-injector, black safety cap. Clinic stock, numbered, and always going missing.",
+    "use": {
+      "target": "self",
+      "effects": [],
+      "adds": [
+        "stat_rested"
+      ],
+      "clears": [
+        "stat_sore"
+      ],
+      "consumed": true
+    },
+    "notes": "Licensed medicine (morphine). The clinic buys it; the fence sells the ones that went missing.",
+    "inflow": {
+      "channel": "seller",
+      "phase": "phase_1",
+      "decks": [
+        "deck_mid",
+        "deck_dock"
+      ]
+    }
   }
 ]

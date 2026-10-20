@@ -738,7 +738,12 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .bin.site { align-self: flex-start; box-shadow: 0 0 0 2px #4a4060; }
 .bin.site .grid { --rim: #352e44; background-color: #15121c; }
 .you-btn { display: inline-flex; align-items: center; gap: 6px; border-color: #6a6050; }
-.bin.body { display: flex; flex-wrap: wrap; gap: 10px; box-shadow: 0 0 0 2px #6a6050; max-width: 260px; }
+.bin.body { display: flex; flex-wrap: wrap; gap: 10px; box-shadow: 0 0 0 2px #6a6050; max-width: 300px; }
+/* the hands: two flex slots, each a square frame; what is held is drawn whole, shrunk to fit and centred */
+.grid.flex { background: none; box-shadow: none; }
+.flex-frame, .flex-in { position: absolute; top: 0; left: calc(var(--x) * var(--cell)); width: calc(var(--f) * var(--cell)); height: calc(var(--f) * var(--cell)); }
+.flex-frame { box-sizing: border-box; border-radius: 4px; background: #1a1712; box-shadow: inset 0 0 0 1px #4a4234, 0 0 0 2px #4a4234; }
+.flex-fit { position: absolute; inset: 0; transform-origin: 0 0; transform: translate(calc(var(--dx) * var(--cell)), calc(var(--dy) * var(--cell))) scale(var(--k)); }
 .bin.body .grid { --rim: #4a4234; background-color: #1a1712; }
 .body-slot small { display: block; margin-bottom: 3px; color: #a89c80; font-size: 10px; }
 .bin.body .dock-note { flex-basis: 100%; margin-top: 0; color: #a89c80; }

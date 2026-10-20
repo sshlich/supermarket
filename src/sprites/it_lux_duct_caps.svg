@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- three small brown-capped mushrooms with pale bendy stems, a crumb of damp duct grime at their feet -->
+  <defs><radialGradient id="dc_cap" cx="0.4" cy="0.3" r="0.8"><stop offset="0" stop-color="#c49a62"/><stop offset="1" stop-color="#7a5430"/></radialGradient></defs>
+  <ellipse cx="16" cy="27" rx="13" ry="3.4" fill="#000" opacity="0.22"/>
+  <path d="M5 27.5C7 25.5 12 25 16 25.4C20.5 25.8 25.5 25.4 27.5 27C25 28.6 9 29 5 27.5Z" fill="#4a4436"/>
+  <g stroke="#8a7e66" stroke-width="0.8" stroke-linejoin="round" fill="#efe6d2">
+    <path d="M9 14C8.6 18 9.6 22.5 8.4 26.4L10.8 26.4C11.6 22.4 10.6 18 11.2 14Z"/>
+    <path d="M17 11C16.2 16 17.8 21 16.4 26.4L19 26.4C20 21 18.6 16 19.4 11Z"/>
+    <path d="M24 17C23.8 20 24.8 23.6 23.8 26.4L25.8 26.4C26.6 23.4 25.8 20 26.2 17Z"/>
+  </g>
+  <g stroke="#4a2e14" stroke-width="0.9" stroke-linejoin="round" fill="url(#dc_cap)">
+    <path d="M4.5 15C4.5 10.5 7.5 8.2 10.2 8.2C13 8.2 15.8 10.5 15.6 15C12.5 13.9 7.6 13.9 4.5 15Z"/>
+    <path d="M11.8 11.8C11.8 6 15 3.4 18.2 3.4C21.5 3.4 24.6 6 24.4 11.8C20.6 10.4 15.6 10.4 11.8 11.8Z"/>
+    <path d="M20.4 17.8C20.4 14.6 22.6 12.8 25 12.8C27.4 12.8 29.6 14.6 29.4 17.8C26.6 16.9 23.2 16.9 20.4 17.8Z"/>
+  </g>
+  <path d="M14.6 6.6C15.6 5.2 17 4.6 18.4 4.6M7 11C7.8 10 8.8 9.5 9.8 9.4" fill="none" stroke="#fff" stroke-opacity="0.5" stroke-width="1.1" stroke-linecap="round"/>
+</svg>

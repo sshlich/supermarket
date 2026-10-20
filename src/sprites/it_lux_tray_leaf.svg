@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a small clear zip baggie, a red zip along its top, sticky green buds pressed against the plastic -->
+  <ellipse cx="16" cy="27.5" rx="11.5" ry="3" fill="#000" opacity="0.22"/>
+  <path d="M5.5 7.5L26.5 7.5L26.5 26C26.5 27 25.8 27.6 24.8 27.6L7.2 27.6C6.2 27.6 5.5 27 5.5 26Z" fill="#e8eef0" fill-opacity="0.35" stroke="#a8b4b8" stroke-width="1" stroke-linejoin="round"/>
+  <g stroke="#2c4a1c" stroke-width="0.8" stroke-linejoin="round">
+    <path d="M8 26C7 21 9 17.5 12 17C15 16.6 16.5 19.5 16 23C15.6 25.6 13.5 27 11 27C9.6 27 8.3 26.8 8 26Z" fill="#5f8f34"/>
+    <path d="M15 26.5C14 22 15.5 18.5 19 18C22.6 17.5 25 20.5 24.6 23.6C24.2 26.4 22 27.2 19.4 27.2C17.4 27.2 15.4 27.2 15 26.5Z" fill="#6f9e3c"/>
+    <path d="M11 19.5C10.4 15.6 12.6 12.6 15.6 12.6C18.8 12.6 20.6 15.4 19.8 18.4C19.2 20.6 17.2 21.6 15 21.6C13 21.6 11.3 21 11 19.5Z" fill="#7aae44"/>
+  </g>
+  <g fill="#c8a85a"><circle cx="12" cy="21" r="0.8"/><circle cx="20.5" cy="22" r="0.8"/><circle cx="16.6" cy="15.6" r="0.8"/><circle cx="14" cy="24.5" r="0.7"/><circle cx="22" cy="25" r="0.7"/></g>
+  <g fill="#e8f0d8" opacity="0.8"><circle cx="13.6" cy="15" r="0.5"/><circle cx="18" cy="17" r="0.5"/><circle cx="10.6" cy="23" r="0.5"/><circle cx="19.6" cy="20.4" r="0.5"/></g>
+  <rect x="5.5" y="7.5" width="21" height="3.2" fill="#d23c3c" stroke="#7a1e1e" stroke-width="0.8"/>
+  <path d="M5.5 12.2L26.5 12.2" stroke="#a8b4b8" stroke-width="0.7"/>
+  <path d="M8 14L8 24" stroke="#fff" stroke-opacity="0.7" stroke-width="1.4" stroke-linecap="round"/>
+</svg>

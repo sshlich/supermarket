@@ -10,10 +10,10 @@ import { TAGS } from './customers.ts'
 import { esc } from './html.ts'
 import { openReader } from './reader.ts'
 import { initMenu, toggleMenu } from './menu.ts'
-import { floorFor, barred, goHome, goOut, inHand, named, nightsLeft, search, searchesFor, sells, shopOf, SHOPS, siteOf, SITES, tends, trade } from './outside.ts'
+import { floorFor, barred, goHome, goOut, inHands, named, nightsLeft, search, searchesFor, sells, shopOf, SHOPS, siteOf, SITES, tends, trade } from './outside.ts'
 import { customer, customerSays, dialNote, dropped, initTerminal, notYours, reopen, restart, resume, sideHtml, theirs, typeOn } from './terminal.ts'
 import { handle, handleMany, shop } from './sound.ts'
-import { type Buys, worn, contents, isBox, sealed, pieceOf, type Print, refill, leftOf, PLACES, sleep, trash, accepts, applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, COUNTERS, cut, dims, sizeOf, fillWith, find, isSlot, LIQUIDS, look, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, PRESETS, W, type Held, type Preset, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { type Buys, worn, contents, isBox, sealed, pieceOf, type Print, refill, leftOf, PLACES, sleep, trash, accepts, applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, COUNTERS, cut, dims, sizeOf, fillWith, find, isSlot, LIQUIDS, look, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, isFlex, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, PRESETS, W, type Held, type Preset, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -124,7 +124,11 @@ function outline(cells: [number, number][]) {
   return d
 }
 /** Where an item's squares are on the field. */
-const absCells = (it: Item): [number, number][] => cellsOf(it).map(([cx, cy]) => [it.x + cx, it.y + cy])
+/** How many squares a side a flex slot (a hand) is drawn: whatever is in it is shrunk to fit. */
+const FLEX = 3
+/** The squares of flex slot `n`, in its place's drawn grid. */
+const flexCells = (n: number): [number, number][] => Array.from({ length: FLEX * FLEX }, (_, i) => [n * FLEX + i % FLEX, Math.floor(i / FLEX)])
+const absCells = (it: Item): [number, number][] => isFlex(spaceOf(it)) ? flexCells(it.x) : cellsOf(it).map(([cx, cy]) => [it.x + cx, it.y + cy])
 
 /**
  * A counter's dial, beside it: what is on it altogether, and under that what the customer at the counter makes of it (what
@@ -603,10 +607,10 @@ function move(e: PointerEvent) {
   }
   const sp = spaceAt(g)
   const r = g.getBoundingClientRect()
-  const x = Math.round((e.clientX - d.gx - r.left) / cell)
-  const y = Math.round((e.clientY - d.gy - r.top) / cell)
   const px = Math.floor((e.clientX - r.left) / cell), py = Math.floor((e.clientY - r.top) / cell)
-  const on = (t: Item) => sameSpace(spaceOf(t), sp) && cellsOf(t).some(([cx, cy]) => t.x + cx === px && t.y + cy === py)
+  const x = isFlex(sp) ? Math.floor(px / FLEX) : Math.round((e.clientX - d.gx - r.left) / cell) // over the hands: the hand under the pointer
+  const y = isFlex(sp) ? 0 : Math.round((e.clientY - d.gy - r.top) / cell)
+  const on = (t: Item) => sameSpace(spaceOf(t), sp) && absCells(t).some(([cx, cy]) => cx === px && cy === py)
   const useOn = d.uses.find(on) ?? null // a vessel dropped onto another pours into it, a knife onto cheese cuts it; either goes back where it was
   const host = useOn ? null : d.hosts.find(on) ?? null // dropped onto a container: goes inside it
   // over a container that would take it but is full: refused, and nothing gets shoved (one that never takes it is just another thing to rearrange)
@@ -620,7 +624,7 @@ function move(e: PointerEvent) {
   d.into = d.plan ? host : null
   d.blocked = blocked
   d.useOn = useOn
-  const shut = isSlot(sp) ? theirs(sp.host) || d.held.items.some(o => theirs(o.id)) : spaceKey(sp) === 'trash' && d.held.items.some(o => theirs(o.id))
+  const shut = isSlot(sp) ? theirs(sp.host) || d.held.items.some(o => theirs(o.id)) : (spaceKey(sp) === 'trash' || isFlex(sp)) && d.held.items.some(o => theirs(o.id))
   if (!d.plan && !blocked && !useOn && !shut) d.plan = planDrop(s, d.held, sp, x, y, d.rot, strictNow()) // nothing goes into a customer's container, nor any of theirs into one or the trash
   paintGhosts(x, y)
 }
@@ -663,7 +667,8 @@ function paintGhosts(x: number, y: number) {
   if (d.blocked) { light([...out, { sp: spaceOf(d.blocked), cells: absCells(d.blocked), kind: 'bad' }]); return }
   if (!p) {
     // refused: red where each thing would go
-    if (d.over) {
+    if (d.over && isFlex(d.space)) out.push({ sp: d.space, cells: flexCells(Math.max(0, Math.min(PLACES.hand.w - 1, x))), kind: 'bad' })
+    else if (d.over) {
       const { w: SW, h: SH } = { w: +(gridOf(d.space)?.dataset.w ?? W), h: +(gridOf(d.space)?.dataset.h ?? H) }
       for (const it of d.held.items) {
         const rot = it === a ? d.rot : it.rot
@@ -676,11 +681,11 @@ function paintGhosts(x: number, y: number) {
     return
   }
   const landing = strictNow() ? 'ok' : 'land'
-  if (!d.into) out.push({ sp: p.space, cells: absCells({ ...a, x: p.x, y: p.y, rot: p.rot }), kind: landing })
+  if (!d.into) out.push({ sp: p.space, cells: isFlex(p.space) ? flexCells(p.x) : absCells({ ...a, x: p.x, y: p.y, rot: p.rot }), kind: landing })
   for (const mv of p.moves) {
     const o = find(s, mv.id)!
     if (d.into && !mv.group) continue
-    out.push({ sp: p.space, cells: absCells({ ...o, x: mv.x, y: mv.y, rot: mv.rot }), kind: mv.group ? landing : 'shove' })
+    out.push({ sp: p.space, cells: isFlex(p.space) ? flexCells(mv.x) : absCells({ ...o, x: mv.x, y: mv.y, rot: mv.rot }), kind: mv.group ? landing : 'shove' })
     if (!mv.group) app.querySelector(`.item[data-id="${mv.id}"]`)?.classList.add('shoved')
   }
   light(out)
@@ -782,14 +787,22 @@ function dockHtml() {
 // ---------------------------------------------------------------- the night: outside (outside.ts)
 
 let youOpen = ((): boolean => { try { return localStorage.getItem('you-open') === '1' } catch { return false } })()
-/** You, under the dock: a body with two places, the pack on your back and the tool in your hand. Always open at night. */
+/** You, under the dock: a body, the pack on your back and two hands (flex slots: one thing each, any size). Always open at night. */
 function youHtml() {
-  const pack = worn(s), tool = inHand(s), open = youOpen || !!s.night
-  const button = `<button class="term-btn you-btn${open ? ' on' : ''}" data-you title="What you take out at night: a pack on your back, one tool in your hand">&#9673; you</button>`
+  const pack = worn(s), held = inHands(s), open = youOpen || !!s.night
+  const button = `<button class="term-btn you-btn${open ? ' on' : ''}" data-you title="What you take out at night: a pack on your back, and two hands (one thing each, any size)">&#9673; you</button>`
   if (!open) return button
-  const slot = (at: 'back' | 'hand', label: string) => { const { w, h } = PLACES[at]; return `<div class="body-slot"><small>${label}</small><div class="grid" data-grid data-space="${at}" data-w="${w}" data-h="${h}" style="--w:${w};--h:${h}">${inSpace(s, { at }).map(itemHtml).join('')}</div></div>` }
-  const note = !pack ? 'no pack: nothing to carry finds in' : tool && nightsLeft(tool) !== null ? `${esc(look(tool).name.toLowerCase())}: ${nightsLeft(tool)} nights left in it` : tool ? `${esc(look(tool).name.toLowerCase())} in hand` : 'nothing in hand'
-  return `${button}<div class="bin body">${slot('back', 'back')}${slot('hand', 'hand')}<small class="dock-note">${note}</small></div>`
+  const back = `<div class="body-slot"><small>back</small><div class="grid" data-grid data-space="back" data-w="${PLACES.back.w}" data-h="${PLACES.back.h}" style="--w:${PLACES.back.w};--h:${PLACES.back.h}">${inSpace(s, { at: 'back' }).map(itemHtml).join('')}</div></div>`
+  const n = PLACES.hand.w, frames = Array.from({ length: n }, (_, i) => `<i class="flex-frame" style="--x:${i * FLEX}"></i>`).join('')
+  const hands = `<div class="body-slot"><small>hands</small><div class="grid flex" data-grid data-space="hand" data-w="${n * FLEX}" data-h="${FLEX}" style="--w:${n * FLEX};--h:${FLEX};--f:${FLEX}">${frames}${held.map(flexHtml).join('')}</div></div>`
+  const worn_ = held.filter(o => nightsLeft(o) !== null).map(o => `${esc(look(o).name.toLowerCase())}: ${nightsLeft(o)} nights left in it`)
+  const note = !pack ? 'no pack: nothing to carry finds in' : worn_.length ? worn_.join(' · ') : held.length ? `${held.map(o => esc(look(o).name.toLowerCase())).join(' and ')} in hand` : 'nothing in your hands'
+  return `${button}<div class="bin body">${back}${hands}<small class="dock-note">${note}</small></div>`
+}
+/** A thing in a flex slot (a hand): drawn whole, shrunk to fit the slot's square and centred in it. */
+function flexHtml(it: Item) {
+  const d = dims(it), k = Math.min(1, FLEX / Math.max(d.w, d.h))
+  return `<div class="flex-in" style="--x:${it.x * FLEX}"><div class="flex-fit" style="--k:${k};--dx:${(FLEX - d.w * k) / 2};--dy:${(FLEX - d.h * k) / 2}">${itemHtml({ ...it, x: 0, y: 0 })}</div></div>`
 }
 /**
  * The night, where the customers' terminal was. In the evening, the map: each site with its searches (with what is in your
@@ -815,7 +828,7 @@ function nightHtml() {
   const rows = SITES.map(x => {
     const why = barred(s, x), n = searchesFor(s, x), more = n - x.searches
     return `<div class="site-row${why ? ' shut' : ''}"><div><b>${esc(x.name)}</b> <small>${esc(x.deck)}</small></div>
-      <small>${n} searches${more ? ` (+${more} with the ${esc(look(inHand(s)!).name.toLowerCase())})` : ''}${esc(lockText(x))}${x.bonus.length && !more ? ` · ${x.bonus.map(b => esc(a(KINDS[b.tool].name))).join(' or ')} finds more` : ''}</small>
+      <small>${n} searches${more ? ` (+${more} with the ${esc(look(inHands(s).find(o => x.bonus.some(b => b.tool === o.kind) || x.lock?.tool === o.kind)!).name.toLowerCase())})` : ''}${esc(lockText(x))}${x.bonus.length && !more ? ` · ${x.bonus.map(b => esc(a(KINDS[b.tool].name))).join(' or ')} finds more` : ''}</small>
       <small class="tends">tends to turn up ${esc(tends(x).join(', '))}</small>
       <button class="term-btn" data-go="${x.id}"${why ? ` disabled title="${esc(why)}"` : ` title="${esc(x.desc)}"`}>${why ? esc(why) : 'go'}</button></div>`
   }).join('')
@@ -854,7 +867,7 @@ function searching() {
 function home() {
   const pack = worn(s), came = pack ? contents(s, pack.id).length : 0
   const { spent } = goHome(s)
-  sleepNow([came ? `home with ${came} thing${came === 1 ? '' : 's'} in the pack` : 'home empty-handed', spent && `the ${look(spent).name.toLowerCase()} is worn through`].filter(Boolean).join(' · '))
+  sleepNow([came ? `home with ${came} thing${came === 1 ? '' : 's'} in the pack` : 'home empty-handed', ...spent.map(t => `the ${look(t).name.toLowerCase()} is worn through`)].join(' · '))
 }
 
 const ICON_TRASH = '<svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 4h11M6 4V2.5h4V4M4 4l.8 9.5h6.4L12 4M6.8 6.5v5M9.2 6.5v5"/></svg>'

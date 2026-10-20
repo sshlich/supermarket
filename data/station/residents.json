@@ -49,7 +49,10 @@
       "it_med_painkiller",
       "it_tech_cell_s",
       "it_food_bread_slice",
-      "it_life_mask_refill"
+      "it_life_mask_refill",
+      "it_lux_beer",
+      "it_lux_chew_tin",
+      "it_med_cough_syrup"
     ],
     "sells": [],
     "contraband": "none",
@@ -139,7 +142,10 @@
       "it_med_gauze",
       "it_tech_motor",
       "it_tech_torch",
-      "it_lux_paper"
+      "it_lux_paper",
+      "it_lux_duct_caps",
+      "it_lux_spice",
+      "it_lux_smokes"
     ],
     "contraband": "sells",
     "sends_mail": true,
@@ -195,7 +201,9 @@
       "it_food_tin_stew",
       "it_fab_wrench",
       "it_mach_drive_belt",
-      "it_med_energy_tab"
+      "it_med_energy_tab",
+      "it_lux_beer",
+      "it_lux_chew_tin"
     ],
     "sells": [
       "it_core_ore_iron",
@@ -222,9 +230,12 @@
       "it_fab_crate",
       "it_life_algae",
       "it_mach_lubricant",
-      "it_mach_tape"
+      "it_mach_tape",
+      "it_lux_smokes",
+      "it_lux_chew_tin",
+      "it_lux_beer"
     ],
-    "contraband": "none",
+    "contraband": "sells",
     "sends_mail": true,
     "lines": [
       "Ore on the dock by nine. Cells by ten, or I walk.",
@@ -282,7 +293,9 @@
       "it_mach_coolant",
       "it_fab_fasteners",
       "it_mach_drive_belt",
-      "it_fab_light_sheet"
+      "it_fab_light_sheet",
+      "it_lux_chew_tin",
+      "it_lux_beer"
     ],
     "sells": [
       "disc_fab_bp_tools",
@@ -343,7 +356,12 @@
       "it_food_sugar",
       "it_med_bandage",
       "it_life_algae_dense",
-      "it_food_sausage"
+      "it_food_sausage",
+      "it_lux_beer",
+      "it_lux_smokes",
+      "it_lux_miners_leaf",
+      "it_lux_tray_leaf",
+      "it_lux_chew_tin"
     ],
     "sells": [
       "it_core_slag",
@@ -358,9 +376,12 @@
       "it_core_carbon_dust",
       "it_fab_tile",
       "it_core_grit",
-      "it_fab_hinge"
+      "it_fab_hinge",
+      "it_lux_miners_leaf",
+      "it_med_crank",
+      "it_lux_beer"
     ],
-    "contraband": "sells",
+    "contraband": "both",
     "sends_mail": true,
     "lines": [
       "Bars off the second pour. Don't ask whose.",
@@ -416,7 +437,10 @@
       "disc_tech_blank_floppy",
       "it_tech_chip",
       "it_tech_keypad",
-      "it_tech_speaker"
+      "it_tech_speaker",
+      "it_food_coffee",
+      "it_med_desk_strips",
+      "it_lux_vape"
     ],
     "sells": [
       "disc_tech_blank_card",
@@ -482,13 +506,16 @@
       "it_med_splint",
       "it_med_rehydration_mix",
       "it_med_first_aid_kit",
-      "it_med_sleeping_pill"
+      "it_med_sleeping_pill",
+      "it_med_painwash",
+      "it_med_cough_syrup"
     ],
     "sells": [
       "disc_med_analgesics",
       "disc_med_sedatives",
       "it_med_blister",
-      "it_med_rehydration_mix"
+      "it_med_rehydration_mix",
+      "it_med_cough_syrup"
     ],
     "contraband": "none",
     "sends_mail": true,
@@ -544,7 +571,9 @@
       "it_mach_coolant",
       "it_med_antirad",
       "it_med_energy_tab",
-      "it_tech_memory_module"
+      "it_tech_memory_module",
+      "it_food_coffee",
+      "it_med_desk_strips"
     ],
     "sells": [
       "it_tech_cell_s",
@@ -622,7 +651,10 @@
       "it_lux_pamphlet",
       "it_food_culture_mat",
       "it_food_cheese_spread",
-      "it_food_sausage"
+      "it_food_sausage",
+      "it_food_coffee",
+      "it_med_desk_strips",
+      "it_lux_vape"
     ],
     "sells": [],
     "contraband": "reports",
@@ -688,10 +720,14 @@
       "it_food_cheese_wedge",
       "it_food_salami",
       "it_food_sausage",
-      "it_food_cheese_spread"
+      "it_food_cheese_spread",
+      "it_food_coffee",
+      "it_lux_ring_snow",
+      "it_med_black_resin",
+      "it_lux_vape"
     ],
     "sells": [],
-    "contraband": "none",
+    "contraband": "buys",
     "sends_mail": true,
     "lines": [
       "Is it real? We can tell.",
@@ -748,7 +784,8 @@
       "it_lux_oil_lamp",
       "it_lux_signet",
       "it_lux_print",
-      "it_lux_sculpture"
+      "it_lux_sculpture",
+      "it_lux_pipe"
     ],
     "sells": [
       "it_lux_watch",
@@ -813,7 +850,14 @@
       "it_lux_spirit",
       "it_lux_wine",
       "it_fab_bar_noble",
-      "it_tech_dongle"
+      "it_tech_dongle",
+      "it_med_crank",
+      "it_lux_ring_snow",
+      "it_lux_tray_leaf",
+      "it_med_black_resin",
+      "it_med_dock_candy",
+      "it_med_painwash",
+      "it_med_blotter"
     ],
     "sells": [
       "it_lux_candle",
@@ -837,7 +881,17 @@
       "it_med_sleeping_pill",
       "it_med_burn_tab",
       "it_med_energy_tab",
-      "it_med_antibiotic"
+      "it_med_antibiotic",
+      "it_lux_smokes",
+      "it_lux_tray_leaf",
+      "it_lux_ring_snow",
+      "it_med_dock_candy",
+      "it_med_blotter",
+      "it_med_black_resin",
+      "it_med_crank",
+      "it_med_painwash",
+      "it_lux_pipe",
+      "it_lux_spice"
     ],
     "contraband": "both",
     "sends_mail": true,

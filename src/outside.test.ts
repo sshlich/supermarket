@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
-import { accepts, inSpace, KINDS, PRESETS, settle, sleep, spawn, start, worn, type Item, type Space, type State } from './world.ts'
-import { barred, floorFor, GEAR, goHome, goOut, inHand, nightsLeft, search, searchesFor, shopOf, SHOPS, siteOf, SITES, trade } from './outside.ts'
+import { accepts, applyDrop, intoHost, lift, planDrop, inSpace, KINDS, PRESETS, settle, sleep, spawn, start, worn, type Item, type Space, type State } from './world.ts'
+import { barred, floorFor, GEAR, goHome, goOut, inHands, nightsLeft, search, searchesFor, shopOf, SHOPS, siteOf, SITES, trade } from './outside.ts'
 
 const ducts = siteOf('site_spine_ducts')!, bunks = siteOf('site_dark_bunks')!
 const TORCH = 'it_tech_torch', WRENCH = 'it_fab_wrench', MASK = 'it_life_mask_refill'
@@ -22,9 +22,16 @@ for (const t of GEAR) { assert.ok(KINDS[t]?.tags?.includes('tool'), `${t} is a t
   assert.equal(worn(s)?.id, pack.id)
   assert.ok(!accepts(s, apple, { at: 'back' }), 'an apple is not a pack')
   assert.ok(!accepts(s, pack2, { at: 'back' }), 'one pack at a time')
-  const torch = spawn(s, TORCH, { at: 'hand' })!, knife = spawn(s, 'it_fab_knife')!
-  assert.equal(inHand(s)?.id, torch.id)
-  assert.ok(!accepts(s, knife, { at: 'hand' }), 'one tool at a time')
+  // two hands, flex slots: one thing each, of any size (a furnace too); a third finds no hand
+  const torch = spawn(s, TORCH, { at: 'hand' })!, furnace = spawn(s, 'mach_smelter', { at: 'hand' })!, knife = spawn(s, 'it_fab_knife')!
+  assert.deepEqual(inHands(s).map(o => [o.id, o.x]), [[torch.id, 0], [furnace.id, 1]])
+  assert.ok(!accepts(s, knife, { at: 'hand' }), 'both hands full')
+  // dropped on the hand that holds the other: the two swap; from the field onto a full hand: nowhere
+  const h = lift(s, torch.id)!, p = planDrop(s, h, { at: 'hand' }, 1, 0, 0)!
+  assert.deepEqual([p.x, p.moves], [1, [{ id: furnace.id, x: 0, y: 0, rot: furnace.rot }]])
+  assert.equal(planDrop(s, lift(s, knife.id)!, { at: 'hand' }, 0, 0, 0), null)
+  const kept = settle(JSON.parse(JSON.stringify(s)))
+  assert.deepEqual(inHands(kept).map(o => [o.kind, o.x]), [[TORCH, 0], ['mach_smelter', 1]], 'a save keeps each in its hand, whatever its size')
   assert.ok(!accepts(s, apple, { at: 'site' }), 'nobody is out: the site takes nothing')
 }
 
@@ -82,7 +89,7 @@ for (const t of GEAR) { assert.ok(KINDS[t]?.tags?.includes('tool'), `${t} is a t
   spawn(s, 'pack', { at: 'back' })
   spawn(s, MASK, { at: 'hand' })
   assert.equal(goOut(s, 'site_dead_scrubber'), null)
-  assert.equal(inHand(s), undefined, 'the refill is used up')
+  assert.equal(inHands(s).length, 0, 'the refill is used up')
   goHome(s)
   const torch = spawn(s, TORCH, { at: 'hand' })!
   goOut(s, bunks.id); goHome(s)
@@ -90,8 +97,8 @@ for (const t of GEAR) { assert.ok(KINDS[t]?.tags?.includes('tool'), `${t} is a t
   assert.equal(nightsLeft(torch), KINDS[TORCH].wears! - 1)
   torch.used = KINDS[TORCH].wears! - 1
   goOut(s, bunks.id)
-  assert.equal(goHome(s).spent?.kind, TORCH)
-  assert.equal(inHand(s), undefined)
+  assert.deepEqual(goHome(s).spent.map(o => o.kind), [TORCH])
+  assert.equal(inHands(s).length, 0)
   const wrench = spawn(s, WRENCH, { at: 'hand' })!
   goOut(s, ducts.id); goHome(s)
   assert.equal(wrench.used, undefined, 'a wrench does nothing in the ducts, and does not wear there')
@@ -174,6 +181,23 @@ for (const p of PRESETS) {
   assert.equal(s.cash, p.credits, p.id)
   for (const t of p.things) assert.equal(field.filter(o => o.kind === t.id).length, t.qty, `${p.id}: ${t.id}`)
   assert.equal(field.length, p.things.reduce((n, t) => n + t.qty, 0), `${p.id}: nothing else on the field`)
-  assert.equal(inHand(s)?.kind, p.hand, `${p.id}: in hand`)
+  assert.equal(inHands(s)[0]?.kind, p.hand, `${p.id}: in hand`)
   assert.equal(worn(s)?.kind, 'pack', `${p.id}: a pack`)
+}
+
+// Several things selected and dropped on a container pack into it however they were lying (turned where they must be):
+// two lumps of ore, a knife, a wrench and a torch fill a 4x4 pack but for one square
+{
+  const s = start(), pack = s.items[0]
+  const ores = [0, 1].map(() => spawn(s, 'it_core_ore_iron')!), knife = spawn(s, 'it_fab_knife', { at: 'inside' })!, wrench = spawn(s, WRENCH)!, torch = spawn(s, TORCH)!
+  knife.rot = 1 // lying flat on the counter: it goes in standing up
+  const held = lift(s, wrench.id, [wrench.id, ...ores.map(o => o.id), torch.id])!
+  const p = intoHost(s, held, pack.id)!
+  assert.ok(p, 'it all goes in')
+  applyDrop(s, held, p)
+  const k = lift(s, knife.id)!, q = intoHost(s, k, pack.id)!
+  assert.ok(q, 'and the knife after them')
+  applyDrop(s, k, q)
+  assert.equal(inSpace(s, { host: pack.id, slot: 0 }).length, 5)
+  assert.equal(intoHost(s, lift(s, spawn(s, 'it_core_ore_iron')!.id)!, pack.id), null, 'then it is full')
 }

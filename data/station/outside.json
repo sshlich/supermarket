@@ -23,7 +23,8 @@
         { "id": "it_core_wire_tangle", "n": [1, 1], "w": 0.3 },
         { "id": "it_core_filter_husks", "n": [1, 1], "w": 0.4 },
         { "id": "it_lux_match", "n": [1, 3], "w": 0.3 },
-        { "id": "it_lux_photograph", "n": [1, 1], "w": 0.04 }
+        { "id": "it_lux_photograph", "n": [1, 1], "w": 0.04 },
+        { "id": "it_lux_duct_caps", "n": [1, 3], "w": 0.25 }
       ]
     },
     {
@@ -39,7 +40,11 @@
         { "id": "it_lux_photograph", "n": [1, 1], "w": 0.2 },
         { "id": "it_lux_locket", "n": [1, 1], "w": 0.08 },
         { "id": "it_life_puck_spent", "n": [1, 2], "w": 0.4 },
-        { "id": "it_life_canister", "n": [1, 1], "w": 0.3 }
+        { "id": "it_life_canister", "n": [1, 1], "w": 0.3 },
+        { "id": "it_lux_smokes", "n": [1, 1], "w": 0.3 },
+        { "id": "it_lux_spice", "n": [1, 2], "w": 0.25 },
+        { "id": "it_lux_pipe", "n": [1, 1], "w": 0.1 },
+        { "id": "it_med_blotter", "n": [1, 1], "w": 0.06 }
       ]
     },
     {
@@ -107,7 +112,8 @@
         { "id": "it_life_canister", "n": [1, 1], "w": 0.4 },
         { "id": "it_core_filter_husks", "n": [1, 2], "w": 0.4 },
         { "id": "it_lux_locket", "n": [1, 1], "w": 0.12 },
-        { "id": "it_lux_signet", "n": [1, 1], "w": 0.06 }
+        { "id": "it_lux_signet", "n": [1, 1], "w": 0.06 },
+        { "id": "it_lux_duct_caps", "n": [1, 4], "w": 0.4 }
       ]
     },
     {
@@ -122,7 +128,9 @@
         { "id": "it_lux_cosmetic", "n": [1, 1], "w": 0.4 },
         { "id": "it_lux_vase", "n": [1, 1], "w": 0.2 },
         { "id": "it_lux_zippo", "n": [1, 1], "w": 0.08 },
-        { "id": "it_lux_watch", "n": [1, 1], "w": 0.02 }
+        { "id": "it_lux_watch", "n": [1, 1], "w": 0.02 },
+        { "id": "it_lux_vape", "n": [1, 1], "w": 0.15 },
+        { "id": "it_food_coffee", "n": [1, 1], "w": 0.08 }
       ]
     },
     {
@@ -135,7 +143,9 @@
         { "id": "it_med_blister", "n": [1, 1], "w": 0.4 },
         { "id": "it_fab_vial", "n": [1, 2], "w": 0.5 },
         { "id": "it_med_ethanol", "n": [1, 1], "w": 0.3 },
-        { "id": "it_med_antiseptic", "n": [1, 1], "w": 0.2 }
+        { "id": "it_med_antiseptic", "n": [1, 1], "w": 0.2 },
+        { "id": "it_med_cough_syrup", "n": [1, 1], "w": 0.3 },
+        { "id": "it_med_painwash", "n": [1, 1], "w": 0.08 }
       ]
     },
     {
@@ -193,17 +203,21 @@
       "sells": [
         { "id": "it_tech_fob", "per_day": 1 },
         { "id": "it_lux_soap", "per_day": 3 },
-        { "id": "it_lux_scent", "per_day": 1 }
+        { "id": "it_lux_scent", "per_day": 1 },
+        { "id": "it_food_coffee", "per_day": 2 },
+        { "id": "it_lux_vape", "per_day": 2 }
       ]
     },
     {
       "id": "shop_spine_swap", "name": "Spine swap stall", "deck": "deck_spine", "phase": "phase_1",
-      "desc": "A trestle at the foot of a ladder: rations, water and refills for the bunks, and it buys food and water back cheap.",
+      "desc": "A trestle at the foot of a ladder: rations, water, refills, beer and chew for the bunks; it buys food and water back cheap.",
       "buys": { "needs": ["need_food", "need_water"], "mult": 0.5 },
       "sells": [
         { "id": "it_food_ration_bar", "per_day": 6 },
         { "id": "it_life_water_bottle", "per_day": 4 },
-        { "id": "it_life_mask_refill", "per_day": 4 }
+        { "id": "it_life_mask_refill", "per_day": 4 },
+        { "id": "it_lux_beer", "per_day": 6 },
+        { "id": "it_lux_chew_tin", "per_day": 4 }
       ]
     }
   ],

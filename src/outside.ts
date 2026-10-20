@@ -1,12 +1,12 @@
 // The night is outside (STATION.md 8b). The line is over; you go out after hours to one place, with what is on you: a pack on
-// your back and one tool in your hand (two places beside the field, see world.ts). The places are the station's
+// your back and two hands, each holding one thing, tools among them (places beside the field, see world.ts). The places are the station's
 // (data/station/outside.json, which the sim plays too):
 // - A **site** has a number of searches; each one turns up a find on the ground there, drawn from its loot table, and you
-//   take what you want into the pack. A locked site needs its tool in your hand (a refill is used up going in); at an open
-//   one a bonus tool finds more. Going home, what you left is gone (the site fills again by tomorrow night) and the tool in
-//   your hand has worn a night.
+//   take what you want into the pack or your hands. A locked site needs its tool in a hand (a refill is used up going in);
+//   at an open one a bonus tool finds more. Going home, what you left is gone (the site fills again by tomorrow night) and
+//   the tools in your hands that served have worn a night.
 // - A **shop** is a counter where you are the customer: tonight's stock is on it (a daily restock), each thing at its
-//   price. Taking one into your pack buys it; one of yours laid on their counter sells it at their floor price, if they buy
+//   price. Taking one into your pack or a hand buys it; one of yours laid on their counter sells it at their floor price, if they buy
 //   that sort of thing.
 // Going out costs no energy and nothing counts time: a night is one outing.
 
@@ -34,16 +34,18 @@ export const shopOf = (id: string | undefined) => SHOPS.find(x => x.id === id)
 /** Every tool a site locks on or rewards. */
 export const GEAR = new Set(SITES.flatMap(x => [x.lock?.tool, ...x.bonus.map(b => b.tool)]).filter((t): t is string => !!t))
 
-/** The tool in your hand, if any. */
-export const inHand = (s: State) => inSpace(s, { at: 'hand' })[0] as Item | undefined
+/** What is in your hands (one thing a hand, any size). */
+export const inHands = (s: State) => inSpace(s, { at: 'hand' })
+/** Is one of your hands holding this kind? */
+const holding = (s: State, kind: string | undefined) => inHands(s).find(o => o.kind === kind)
 const toolName = (kind: string) => KINDS[kind]?.name.toLowerCase() ?? kind
-const bonusOf = (s: State, site: Site) => site.bonus.find(b => b.tool === inHand(s)?.kind)
-/** How many searches a visit gives, with what is in your hand now. */
-export const searchesFor = (s: State, site: Site) => site.searches + (bonusOf(s, site)?.searches ?? 0) + (site.lock && site.lock.tool === inHand(s)?.kind ? site.lock.searches ?? 0 : 0)
+const bonusOf = (s: State, site: Site) => site.bonus.filter(b => holding(s, b.tool)).sort((a, b) => (b.searches ?? 0) - (a.searches ?? 0))[0]
+/** How many searches a visit gives, with what is in your hands now. */
+export const searchesFor = (s: State, site: Site) => site.searches + (bonusOf(s, site)?.searches ?? 0) + (site.lock && holding(s, site.lock.tool) ? site.lock.searches ?? 0 : 0)
 /** Why you cannot go there tonight (no pack on your back, the wrong thing in your hand), or null if you can. */
 export function barred(s: State, place: Site | Shop): string | null {
   if (!worn(s)) return 'put a pack on your back first'
-  if ('lock' in place && place.lock && inHand(s)?.kind !== place.lock.tool) return `locked: it needs ${an(toolName(place.lock.tool))} in your hand`
+  if ('lock' in place && place.lock && !holding(s, place.lock.tool)) return `locked: it needs ${an(toolName(place.lock.tool))} in a hand`
   return null
 }
 /** What a site tends to turn up, likeliest first; what a shop sells (for the map). */
@@ -70,8 +72,8 @@ export function goOut(s: State, id: string): string | null {
   s.night = true
   if (site) {
     s.out = { site: id, left: searchesFor(s, site) }
-    const t = inHand(s)
-    if (t && site.lock?.consume && t.kind === site.lock.tool) remove(s, [t.id]) // a refill is used up going in
+    const t = holding(s, site.lock?.tool)
+    if (t && site.lock?.consume) remove(s, [t.id]) // a refill is used up going in
     return null
   }
   s.out = { site: id, left: 0, buys: shop!.buys }
@@ -106,7 +108,7 @@ export function trade(s: State, moves: { it: Item; from: Space }[]): { bought: I
   if (!s.out?.buys) return out
   const pack = worn(s)
   const onGround = (sp: Space) => !!sp && 'at' in sp && sp.at === 'site'
-  const inPack = (sp: Space) => !!sp && 'host' in sp && sp.host === pack?.id
+  const inPack = (sp: Space) => !!sp && ('host' in sp ? sp.host === pack?.id : sp.at === 'hand') // the pack, or a hand
   for (const { it, from } of moves) {
     const to = spaceOf(it)
     if (onGround(from) && inPack(to) && it.sale !== undefined && !it.bought) { s.cash = (s.cash ?? 0) - it.sale; it.bought = true; out.bought.push(it); out.cost += it.sale }
@@ -121,20 +123,20 @@ export function trade(s: State, moves: { it: Item; from: Space }[]): { bought: I
   return out
 }
 /**
- * Come home: what is left on the ground stays there (unsold stock, finds left behind), the tool in your hand has had a night
- * (if it served the place: a lock or a bonus), and one that is worn through is gone. What came home in the pack stays in it,
- * paid for. What was left, and the worn-out tool.
+ * Come home: what is left on the ground stays there (unsold stock, finds left behind), each tool in your hands that served
+ * the place (a lock or a bonus) has had a night, and one that is worn through is gone. What came home in the pack or your
+ * hands stays there, paid for. What was left, and the worn-out tools.
  */
-export function goHome(s: State): { left: number; spent: Item | null } {
+export function goHome(s: State): { left: number; spent: Item[] } {
   const ground = inSpace(s, { at: 'site' }), site = siteOf(s.out?.site)
   remove(s, ground.map(o => o.id))
   const pack = worn(s)
-  for (const o of pack ? contents(s, pack.id) : []) { delete o.sale; delete o.bought }
-  const t = inHand(s), wears = t && KINDS[t.kind]?.wears, served = t && site && (site.lock?.tool === t.kind || site.bonus.some(b => b.tool === t.kind))
-  let spent: Item | null = null
-  if (t && wears && served) {
+  for (const o of [...pack ? contents(s, pack.id) : [], ...inHands(s)]) { delete o.sale; delete o.bought }
+  const spent: Item[] = []
+  for (const t of inHands(s)) {
+    if (!KINDS[t.kind]?.wears || !site || !(site.lock?.tool === t.kind || site.bonus.some(b => b.tool === t.kind))) continue
     t.used = (t.used ?? 0) + 1
-    if (t.used >= wears) { spent = { ...t }; remove(s, [t.id]) }
+    if (t.used >= KINDS[t.kind].wears!) { spent.push({ ...t }); remove(s, [t.id]) }
   }
   delete s.out
   return { left: ground.length, spent }

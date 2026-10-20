@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <!-- a crushed soft pack of smokes standing up, the foil torn open at the top, three cigarettes poking out with orange filters -->
+  <defs><linearGradient id="sm_pack" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a2a24"/><stop offset="0.4" stop-color="#d0473c"/><stop offset="1" stop-color="#7a1e1a"/></linearGradient></defs>
+  <ellipse cx="16" cy="59" rx="12" ry="3.2" fill="#000" opacity="0.22"/>
+  <g stroke="#6a5030" stroke-width="0.8">
+    <rect x="9" y="6" width="4.2" height="18" rx="0.8" fill="#f2efe6"/><rect x="9" y="6" width="4.2" height="5.5" rx="0.8" fill="#d8873c"/>
+    <rect x="14" y="3" width="4.2" height="20" rx="0.8" fill="#f2efe6"/><rect x="14" y="3" width="4.2" height="5.5" rx="0.8" fill="#d8873c"/>
+    <rect x="19" y="8" width="4.2" height="16" rx="0.8" fill="#f2efe6"/><rect x="19" y="8" width="4.2" height="5.5" rx="0.8" fill="#d8873c"/>
+  </g>
+  <path d="M6 16L26 16L26.5 57C26.5 58.5 25.5 59.5 24 59.5L8 59.5C6.5 59.5 5.5 58.5 5.5 57Z" fill="url(#sm_pack)" stroke="#3a0e0c" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M6 16L9 19.5L12.5 16.5L16 20L19.5 16.8L23 19.6L26 16" fill="#cfd4d8" stroke="#6a7078" stroke-width="0.8" stroke-linejoin="round"/>
+  <rect x="5.8" y="30" width="20.4" height="13" fill="#f2e8d2" stroke="#3a0e0c" stroke-width="0.7"/>
+  <path d="M10 34.5C12 32.5 14.5 33.5 16 35.5C17.5 33.5 20 32.5 22 34.5" fill="none" stroke="#3a7a3a" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M10 39.5H22" stroke="#7a1e1a" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M8 47L8 56" stroke="#fff" stroke-opacity="0.35" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M12 50L20 52" stroke="#3a0e0c" stroke-opacity="0.35" stroke-width="0.8"/>
+</svg>
