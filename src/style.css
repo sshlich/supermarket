@@ -434,6 +434,23 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .night div { display: flex; flex-direction: column; align-items: center; gap: 6px; font: 12px ui-monospace, 'SF Mono', Menlo, monospace; color: #6b6872; }
 .night b { font-size: 18px; font-weight: 600; letter-spacing: .12em; color: #c9b88f; }
 
+/* how to start (a new game): a card per preset over the dark, what each brings drawn small at the field's scale */
+.pick { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; overflow: auto; padding: 16px; background: #050407; font: 12px ui-monospace, 'SF Mono', Menlo, monospace; color: #9a92a4; }
+.pick-box { display: flex; flex-direction: column; align-items: center; gap: 18px; max-width: 1040px; }
+.pick-head { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.pick-head b { font-size: 18px; font-weight: 600; letter-spacing: .12em; color: #c9b88f; }
+.pick-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; width: 100%; }
+.pick-card { display: flex; flex-direction: column; gap: 8px; padding: 12px; text-align: left; font: inherit; color: inherit; cursor: pointer; border: 0; border-radius: 4px; background: #0d0b11; box-shadow: 0 0 0 1px #3a3440; }
+.pick-card:hover { background: #14111a; box-shadow: 0 0 0 1px #c9b88f; }
+.pick-card b { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: #d8c9a0; }
+.pick-line { color: #a8a0b4; line-height: 1.45; }
+.pick-things { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.pick-thing { display: flex; align-items: center; gap: 8px; color: #c4bccc; }
+.pick-thing i { display: grid; place-items: center; flex: none; width: 40px; height: 36px; }
+.pick-thing i svg { width: calc(var(--kw) * 9px); height: calc(var(--kh) * 9px); }
+.pick-thing small { color: #8a8494; }
+.pick-sum { color: #7fd68f; }
+
 /* something in the fire (ore melting, coal burning away): drawn dark, with its own colours below a white line that rises as
    it goes (--done, 0 to 1). The line and the cut are on the item's box, so they rise up the screen however it is turned. */
 .item.heating > .art svg { filter: brightness(.3) saturate(.45); }

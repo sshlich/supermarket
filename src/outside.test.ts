@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { accepts, inSpace, KINDS, settle, sleep, spawn, start, worn, type Item, type Space, type State } from './world.ts'
+import { accepts, inSpace, KINDS, PRESETS, settle, sleep, spawn, start, worn, type Item, type Space, type State } from './world.ts'
 import { barred, floorFor, GEAR, goHome, goOut, inHand, nightsLeft, search, searchesFor, shopOf, SHOPS, siteOf, SITES, trade } from './outside.ts'
 
 const ducts = siteOf('site_spine_ducts')!, bunks = siteOf('site_dark_bunks')!
@@ -166,3 +166,14 @@ for (const t of GEAR) { assert.ok(KINDS[t]?.tags?.includes('tool'), `${t} is a t
 }
 
 console.log('outside ok')
+
+// Every preset starts the game with all it brings: its money, each of its things on the field, its tool in hand, the pack on your back.
+assert.ok(PRESETS.length >= 3)
+for (const p of PRESETS) {
+  const s = start(p), field = inSpace(s, null)
+  assert.equal(s.cash, p.credits, p.id)
+  for (const t of p.things) assert.equal(field.filter(o => o.kind === t.id).length, t.qty, `${p.id}: ${t.id}`)
+  assert.equal(field.length, p.things.reduce((n, t) => n + t.qty, 0), `${p.id}: nothing else on the field`)
+  assert.equal(inHand(s)?.kind, p.hand, `${p.id}: in hand`)
+  assert.equal(worn(s)?.kind, 'pack', `${p.id}: a pack`)
+}

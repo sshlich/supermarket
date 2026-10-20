@@ -532,6 +532,19 @@ The night of `STATION.md` 8b (`outside.ts`), from the station data's `data/stati
   plays the first five sites and three shops). Not yet: phases in the game, varied nights (rumors, finds that follow
   shortages), bigger packs.
 
+## How a game starts: presets (2026-10-20)
+
+A new game no longer starts empty. The first load with no save, and *start over* in the menu, show **a new stall**: a card
+per preset, with what it brings drawn at the field's scale, its cash, and what it all is worth. A pick starts the game over
+with it (the morning's mail comes at once); from the menu there is also *back to the game*. Nothing is saved until the first
+pick, so a reload before it shows the cards again.
+- The presets are `presets` in `data/station/start.json` (each: `credits`, `things` put on the field biggest first, a
+  `hand` tool), read by `start()` in `world.ts`. The sim still plays the file's `things` (the company issue).
+- **Smelter** (30$): the furnace, 4 copper and 4 iron ore, 6 coal, a lighter; a wrench in hand (the slag heap +2).
+  **Deli** (40$): a cheddar wheel, 2 salami, 3 bread, a knife. **Mail order** (20$): the wired terminal, the printer, paper,
+  boxes, a tape gun, bread and bandages for the first orders. **Scavenger** (70$): cutters and a wrench, a torch in hand.
+  The pack is on your back in all of them.
+
 ## Shelves that show what is on them, and one clock (2026-10-14)
 
 - **Furniture** (a category): a **disc holder** (2x3, black plastic, 12$) and a **bookshelf** (4x4, wood, 24$). Their

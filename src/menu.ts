@@ -44,7 +44,7 @@ function menuHtml() {
     ${row('music', '<button disabled>none yet</button>')}
     ${row('strict handling', `<button data-m="strict" class="${hooks.strict() ? 'on' : ''}">${hooks.strict() ? 'on' : 'off'}</button>`, 'things only go where they fit; S')}
     ${import.meta.env.DEV ? row('debug', '<button data-m="debug">open</button>', 'spawn things, money') : ''}
-    ${row('new game', `<button data-m="new" class="${sure ? 'warn' : ''}">${sure ? 'sure? click again' : 'start over'}</button>`, 'empties the shop')}
+    ${row('new game', `<button data-m="new" class="${sure ? 'warn' : ''}">${sure ? 'sure? click again' : 'start over'}</button>`, 'pick a new start')}
     <div class="menu-foot">Esc closes</div></div>`
 }
 const redrawMenu = () => { if (menu) menu.innerHTML = menuHtml() }

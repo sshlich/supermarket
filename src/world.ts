@@ -4,6 +4,7 @@
 import { drop, dropGroup, firstFree, footprintKey, nearest, overlaps, turn, type Box } from './grid.ts'
 import type { Goods } from './customers.ts'
 import DATA from './kinds.json' with { type: 'json' }
+import START from '../data/station/start.json' with { type: 'json' }
 import { aliasOf } from './aliases.ts'
 
 export const W = 25
@@ -696,9 +697,21 @@ export function spawn(s: State, kind: string, space: Space = null, props: Record
   return it
 }
 
-/** A new game: an empty field, a little money and a canvas pack on your back (for the night, outside.ts), on the first day. */
-export function start(): State {
-  return { items: KINDS.pack ? [{ id: 1, kind: 'pack', x: 0, y: 0, rot: 0, at: 'back' }] : [], next: KINDS.pack ? 2 : 1, windows: [], cash: START_CASH, day: 1 }
+/** A way to start (`presets` in data/station/start.json, picked at a new game): its money, things on the field, a tool in hand. */
+export interface Preset { id: string; name: string; line: string; credits: number; things: { id: string; qty: number }[]; hand?: string }
+export const PRESETS: Preset[] = START.presets
+/**
+ * A new game on the first day, a canvas pack on your back (for the night, outside.ts), and what the preset brings: its money,
+ * its things on the field (the biggest first, so they pack from the corner) and its tool in your hand. No preset: an empty
+ * field and a little money.
+ */
+export function start(kit?: Preset): State {
+  const s: State = { items: [], next: 1, windows: [], cash: kit?.credits ?? START_CASH, day: 1 }
+  if (KINDS.pack) spawn(s, 'pack', { at: 'back' })
+  if (kit?.hand) spawn(s, kit.hand, { at: 'hand' })
+  const area = (id: string) => KINDS[id].w * KINDS[id].h
+  for (const t of [...kit?.things ?? []].sort((a, b) => area(b.id) - area(a.id))) for (let i = 0; i < t.qty; i++) spawn(s, t.id)
+  return s
 }
 
 /** What is in the trash (the things themselves; what is inside them goes with them). */

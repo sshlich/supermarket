@@ -107,5 +107,117 @@
     "prog_prompt",
     "prog_system"
   ],
-  "notes": "The company issue: a wired terminal with modem and slip printer, the mail and labels discs, a few empty boxes, three small cells, a knife, a little ore and scrap, and what you carried from the old life. No charger, no smelter, no recycler: the first ten minutes decide what to buy with 50 credits."
+  "notes": "The company issue: a wired terminal with modem and slip printer, the mail and labels discs, a few empty boxes, three small cells, a knife, a little ore and scrap, and what you carried from the old life. No charger, no smelter, no recycler: the first ten minutes decide what to buy with 50 credits. The game starts from one of `presets`, picked at a new game (each: credits, things on the field, a tool in hand); the sim still plays `things`.",
+  "presets": [
+    {
+      "id": "smelter",
+      "name": "Smelter",
+      "line": "A furnace off the Works, ore to melt and coal to melt it with. Two lumps make a bar, and anyone who wants metal buys bars.",
+      "credits": 30,
+      "hand": "it_fab_wrench",
+      "things": [
+        {
+          "id": "mach_smelter",
+          "qty": 1
+        },
+        {
+          "id": "it_core_ore_copper",
+          "qty": 4
+        },
+        {
+          "id": "it_core_ore_iron",
+          "qty": 4
+        },
+        {
+          "id": "it_tech_cell_s",
+          "qty": 6
+        },
+        {
+          "id": "it_lux_lighter",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "deli",
+      "name": "Deli",
+      "line": "A knife, bread, a cheese wheel and salami. Cut them and close sandwiches: a closed one is worth half again its parts.",
+      "credits": 40,
+      "things": [
+        {
+          "id": "it_food_cheese_wheel",
+          "qty": 1
+        },
+        {
+          "id": "it_food_salami",
+          "qty": 2
+        },
+        {
+          "id": "it_food_bread",
+          "qty": 3
+        },
+        {
+          "id": "it_fab_knife",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "mail",
+      "name": "Mail order",
+      "line": "The company issue: a wired terminal, a printer and paper, boxes and a tape gun. Orders come by mail every morning; ship them from the dock.",
+      "credits": 20,
+      "things": [
+        {
+          "id": "mach_terminal",
+          "qty": 1
+        },
+        {
+          "id": "mach_printer_s",
+          "qty": 1
+        },
+        {
+          "id": "it_lux_paper",
+          "qty": 1
+        },
+        {
+          "id": "box_m",
+          "qty": 2
+        },
+        {
+          "id": "box_s",
+          "qty": 3
+        },
+        {
+          "id": "sealer",
+          "qty": 1
+        },
+        {
+          "id": "it_food_bread",
+          "qty": 1
+        },
+        {
+          "id": "it_med_bandage",
+          "qty": 2
+        }
+      ]
+    },
+    {
+      "id": "scavenger",
+      "name": "Scavenger",
+      "line": "A torch in your hand, cutters and a wrench: the dark bunks, the cableway and the sealed hatches are open to you at night. No stock, more cash.",
+      "credits": 70,
+      "hand": "it_tech_torch",
+      "things": [
+        {
+          "id": "it_fab_cutter",
+          "qty": 1
+        },
+        {
+          "id": "it_fab_wrench",
+          "qty": 1
+        }
+      ]
+    }
+  ]
 }

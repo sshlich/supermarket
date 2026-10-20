@@ -13,7 +13,7 @@ import { initMenu, toggleMenu } from './menu.ts'
 import { floorFor, barred, goHome, goOut, inHand, named, nightsLeft, search, searchesFor, sells, shopOf, SHOPS, siteOf, SITES, tends, trade } from './outside.ts'
 import { customer, customerSays, dialNote, dropped, initTerminal, notYours, reopen, restart, resume, sideHtml, theirs, typeOn } from './terminal.ts'
 import { handle, handleMany, shop } from './sound.ts'
-import { type Buys, worn, contents, isBox, sealed, pieceOf, type Print, refill, leftOf, PLACES, sleep, trash, accepts, applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, COUNTERS, cut, dims, sizeOf, fillWith, find, isSlot, LIQUIDS, look, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, W, type Held, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
+import { type Buys, worn, contents, isBox, sealed, pieceOf, type Print, refill, leftOf, PLACES, sleep, trash, accepts, applyDrop, canPour, canStack, cellsOf, closed, partsOf, stack, unstack, COUNTERS, cut, dims, sizeOf, fillWith, find, isSlot, LIQUIDS, look, pour, propsOf, START_CASH, swatch, worth, H, hostsFor, inSpace, intoHost, isContainer, KINDS, lift, MAX_WINDOWS, planDrop, putBack, quarter, remove, sameSpace, settle, spaceFromKey, spaceKey, spaceOf, spawn, start, PRESETS, W, type Held, type Preset, type Item, type Plan, type Counter, type Space, type State, type Win } from './world.ts'
 
 // One SVG per kind in src/sprites/, drawn in the item's own footprint (see the editor: /editor.html).
 const files = import.meta.glob<string>('./sprites/*.svg', { query: '?raw', import: 'default', eager: true })
@@ -26,7 +26,8 @@ if (import.meta.hot) {
 }
 
 const SAVE = 'field-v3'
-let s: State = load() ?? start()
+const saved = load() // none: the game begins by picking how to start (`choose`)
+let s: State = saved ?? start()
 let cell = 28
 let selected = new Set<number>() // what is picked, to be moved or removed together
 let strict = ((): boolean => { try { return localStorage.getItem('field-strict') === '1' } catch { return false } })()
@@ -38,7 +39,8 @@ const app = document.getElementById('app')!
 function load(): State | null {
   try { const v = JSON.parse(localStorage.getItem(SAVE) ?? 'null'); return v?.items ? settle(v) : null } catch { return null }
 }
-const save = () => { try { localStorage.setItem(SAVE, JSON.stringify(s)) } catch { /* private window */ } }
+let picking = !saved // nothing is saved until the first game has picked how to start
+const save = () => { if (picking) return; try { localStorage.setItem(SAVE, JSON.stringify(s)) } catch { /* private window */ } }
 
 function fit() {
   // room for windows beside the field (about six squares each side), and for the counters above it
@@ -1059,7 +1061,7 @@ initMenu({
   addCash(n) { setCash((s.cash ?? 0) + n); shop('coinsIn') },
   clearField() { s.items = []; s.windows = []; selected = new Set(); changed(new Map()) },
   sleep: () => s.out ? home() : sleepNow(), // ends the day and the night now, whatever is going on
-  newGame() { cancelAnimationFrame(cashRaf); s = start(); cashShown = s.cash!; selected = new Set(); restart(); changed(new Map()); reopen() },
+  newGame: () => choose(true),
 })
 
 // what a computer's screen needs from the page (computer.ts)
@@ -1184,6 +1186,27 @@ render(new Map())
 fitStage()
 keepOnScreen()
 resume() // a reload between someone stepping up and their unloading: they finish stepping up
+if (!saved) choose()
+
+/** How to start: a card per preset (world.ts), what it brings and what that is worth; a pick starts the game over with it. */
+function choose(back = false) {
+  const thing = (id: string, n: number, where = '') => { const k = KINDS[id]; return `<span class="pick-thing"><i style="--kw:${k.w};--kh:${k.h}">${spriteHtml({ id: -1, kind: id, x: 0, y: 0, rot: 0 })}</i>${n > 1 ? `${n} × ` : ''}${esc(k.name.toLowerCase())}${where}</span>` }
+  const card = (p: Preset, i: number) => `<button class="pick-card" data-pick="${i}"><b>${esc(p.name)}</b><span class="pick-line">${esc(p.line)}</span>
+    <span class="pick-things">${p.things.map(t => thing(t.id, t.qty)).join('')}${p.hand ? thing(p.hand, 1, ' <small>in hand</small>') : ''}</span>
+    <span class="pick-sum">${p.credits}$ cash · worth ${Math.round(p.credits + [...p.things, ...p.hand ? [{ id: p.hand, qty: 1 }] : []].reduce((n, t) => n + (KINDS[t.id].price ?? 0) * t.qty, 0))}$ in all</span></button>`
+  const el = document.body.appendChild(document.createElement('div'))
+  el.className = 'pick'
+  el.innerHTML = `<div class="pick-box"><div class="pick-head"><b>a new stall</b><span>what do you start with?</span></div><div class="pick-cards">${PRESETS.map(card).join('')}</div>${back ? '<button class="term-btn" data-back>back to the game</button>' : ''}</div>`
+  el.addEventListener('click', e => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>('button')
+    if (!b) return
+    el.remove()
+    shop('menu')
+    if ('back' in b.dataset) return
+    picking = false
+    cancelAnimationFrame(cashRaf); s = start(PRESETS[+b.dataset.pick!]); morning(s); cashShown = s.cash!; selected = new Set(); restart(); changed(new Map()); reopen()
+  })
+}
 
 app.addEventListener('click', e => {
   const b = (e.target as HTMLElement).closest<HTMLElement>('button')
