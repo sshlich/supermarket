@@ -19,7 +19,7 @@ export interface Find { kind: string; w: number; n: [number, number] }
 /** A tool's part in a visit: `searches` it adds, `wear` (nights it uses up), `consume` (how many of it a visit uses: a refill). */
 export interface Gear { tool: string; searches?: number; wear?: number; consume?: number }
 export interface Site { id: string; name: string; deck: string; desc: string; searches: number; lock?: Gear; bonus: Gear[]; finds: Find[] }
-export interface Shop { id: string; name: string; deck: string; desc: string; buys: Buys; sells: { kind: string; perDay: number; mult: number }[] }
+export interface Shop { id: string; name: string; deck: string; desc: string; buys: Buys; sells: { kind: string; perDay: number }[] }
 
 const deckName = (id: string) => (DECKS as { id: string; name: string }[]).find(d => d.id === id)?.name ?? id
 const known = (kind: string) => !!KINDS[kind]
@@ -28,7 +28,7 @@ export const SITES: Site[] = (OUT.sites as any[]).map(x => ({
   ...(x.gate && known(x.gate.tool) ? { lock: x.gate as Gear } : {}), bonus: (x.bonus ?? []).filter((b: Gear) => known(b.tool)),
   finds: x.loot.filter((l: any) => known(l.id)).map((l: any) => ({ kind: l.id, w: l.w, n: l.n })),
 })).filter(x => x.finds.length)
-export const SHOPS: Shop[] = (OUT.shops as any[]).map(x => ({ id: x.id, name: x.name, deck: deckName(x.deck), desc: x.desc, buys: x.buys, sells: x.sells.filter((g: any) => known(g.id)).map((g: any) => ({ kind: g.id, perDay: g.per_day, mult: g.mult })) }))
+export const SHOPS: Shop[] = (OUT.shops as any[]).map(x => ({ id: x.id, name: x.name, deck: deckName(x.deck), desc: x.desc, buys: x.buys, sells: x.sells.filter((g: any) => known(g.id)).map((g: any) => ({ kind: g.id, perDay: g.per_day })) }))
 export const siteOf = (id: string | undefined) => SITES.find(x => x.id === id)
 export const shopOf = (id: string | undefined) => SHOPS.find(x => x.id === id)
 /** Every tool a site locks on or rewards. */
@@ -56,7 +56,9 @@ export function floorFor(buys: Buys, it: Item): number | null {
   return takes ? Math.max(0, Math.floor(look(it).price * buys.mult)) : null
 }
 /** What a shop asks for one of its things. */
-export const askFor = (kind: string, mult: number) => Math.max(1, Math.ceil((KINDS[kind].price ?? 0) * mult))
+/** What every shop adds over worth when it sells to you (outside.json `markup`): the night's counters and the Company Store. */
+export const SHOP_MARKUP: number = OUT.markup
+export const askFor = (kind: string) => Math.max(1, Math.ceil((KINDS[kind].price ?? 0) * (1 + SHOP_MARKUP)))
 
 /** Go out to a site or a shop: the evening is over. At a site you have its searches; at a shop, tonight's stock is on the counter. The reason if you cannot. */
 export function goOut(s: State, id: string): string | null {
@@ -77,7 +79,7 @@ export function goOut(s: State, id: string): string | null {
   const left = shop!.sells.map(g => g.perDay)
   for (let more = true; more;) {
     more = false
-    shop!.sells.forEach((g, i) => { if (left[i] <= 0) return; const it = spawn(s, g.kind, { at: 'site' }); if (!it) { left[i] = 0; return } it.sale = askFor(g.kind, g.mult); left[i]--; more = true })
+    shop!.sells.forEach((g, i) => { if (left[i] <= 0) return; const it = spawn(s, g.kind, { at: 'site' }); if (!it) { left[i] = 0; return } it.sale = askFor(g.kind); left[i]--; more = true })
   }
   return null
 }

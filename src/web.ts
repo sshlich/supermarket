@@ -10,6 +10,7 @@
 import { bring, type Goods } from './customers.ts'
 import { DISCS } from './discs.ts'
 import { esc } from './html.ts'
+import { SHOP_MARKUP } from './outside.ts'
 import { chance, DRONE_FEE, forSale, placeOrder, quote, stockOf, worthOf } from './orders.ts'
 import { PIC_SIZE, picUrl } from './pics.ts'
 import type { Os, Program, Win } from './programs.ts'
@@ -49,9 +50,9 @@ const art = (os: Os, g: Goods) => { const k = KINDS[g.kind]; return `<span class
 // ---------------------------------------------------------------- the Company store
 
 const CATS: [string, string, string[]][] = [['food', 'Food', ['food']], ['sundries', 'Sundries', ['sundries']], ['medicine', 'Medicine', ['medicine']], ['tools', 'Tools & storage', ['tools', 'storage']], ['tech', 'Tech', ['tech']], ['home', 'Furniture', ['furniture']], ['raw', 'Materials', ['materials']], ['machines', 'Machines', ['machines']]]
-/** What the Company sells: anything new with a price (not a sandwich, which is made; not a disc, which has its own shops), a quarter over what it is worth. */
+/** What the Company sells: anything new with a price (not a sandwich, which is made; not a disc, which has its own shops), at the shops' markup over what it is worth. */
 const stocked = (cats: string[]) => Object.entries(KINDS).filter(([kind, k]) => k.price && !k.stack && kind !== 'disc' && cats.includes(k.cat ?? '')).map(([kind]) => ({ kind } as Goods))
-const companyPrice = (g: Goods) => Math.max(1, Math.ceil(worthOf(g) * 1.25))
+const companyPrice = (g: Goods) => Math.max(1, Math.ceil(worthOf(g) * (1 + SHOP_MARKUP)))
 function store(os: Os, w: Win, path: string) {
   const cat = CATS.find(([id]) => id === path) ?? CATS[0]
   const tabs = CATS.map(([id, label]) => id === cat[0] ? `<b>${label}</b>` : a(w, `store.company/${id}`, label)).join(' | ')

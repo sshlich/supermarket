@@ -36,6 +36,9 @@ export interface Customer { id: number; name: string; role: Role; wants: string[
 const NAMES = ['Mara', 'Odell', 'Pim', 'Ines', 'Tobias', 'Wren', 'Hollis', 'Bea', 'Corvin', 'Dot', 'Ansel', 'Yuki']
 const pick = <T>(list: T[], rand: () => number) => list[Math.floor(rand() * list.length)]
 
+/** What a buyer pays over what things are worth. */
+export const MARKUP = 0.15
+
 /** A new customer: a buyer half the time, else a seller or (less often) a trader. */
 export function arrive(id: number, rand: () => number = Math.random, weights?: Record<string, number>, lean?: (kind: string) => number): Customer {
   const r = rand()
@@ -50,9 +53,9 @@ export function arrive(id: number, rand: () => number = Math.random, weights?: R
     }
   }
   const goods = role === 'buyer' ? [] : Array.from({ length: 1 + Math.floor(rand() * 3) }, () => bring(rand, lean))
-  // ponytail: ECONOMY.md section 4. Ranges around a centre (a buyer pays about a quarter over worth, a seller asks about a fifth under), so a flip earns ~55%, not 100%
+  // ponytail: ECONOMY.md section 4. A buyer pays the markup over worth; a seller asks a range around a fifth under it
   const around = (mid: number, spread: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, mid + spread * (rand() + rand() + rand() - 1.5) * 2))
-  const rate = role === 'buyer' ? around(1.25, 0.12, 1, 1.6) : role === 'seller' ? around(0.8, 0.1, 0.6, 1) : 1
+  const rate = role === 'buyer' ? 1 + MARKUP : role === 'seller' ? around(0.8, 0.1, 0.6, 1) : 1
   // most buyers count their money; some have plenty
   const budget = role === 'buyer' && rand() < 0.65 ? 5 + Math.floor(rand() * 36) : null
   return { id, name: pick(NAMES, rand), role, wants, rate, goods, brought: [], ask: 0, budget, got: [], ...(role === 'trader' ? { slack: 0.1 + rand() * 0.2 } : {}) }

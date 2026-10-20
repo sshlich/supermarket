@@ -172,8 +172,8 @@ page handed in by `main.ts`; the terminal's state is saved apart from the field,
   *dismiss* sends them away.
 - **Three sorts of customer**, one big button that changes its word:
   - a **buyer** wants tags (survival needs: food, drink, alcohol, medicine, light, fuel, book, valuable). **SELL**: they
-    take everything on the inside counter with a tag they still want and pay its worth times their rate (1.0 to 1.6, about
-    1.25), even if some wants are left; nothing they want there, no sale. A **package** (a container that comes full: a
+    take everything on the inside counter with a tag they still want and pay its worth plus the markup (`MARKUP` in
+    customers.ts, 15%), even if some wants are left; nothing they want there, no sale. A **package** (a container that comes full: a
     blister, a bag of bread, a matchbox) goes whole, with what is in it. Any other container is just itself: a food buyer
     takes the apple out of a cabinet and leaves the cabinet; one who wants the container itself takes it and leaves
     whatever in it they did not want on the inside counter. About two in three count
@@ -416,8 +416,8 @@ with stats that come on discs.
   web: Times, blue underlined links (purple once followed), bevelled grey buttons, a ticker, hit counters, an under
   construction bar. Sites:
   - **home.wire**, the portal: where to go, today's day and the decks' temperatures, the picture of the day, a search box.
-  - **store.company**, the Company Store: everything new with a price, by category, drawn with its real sprite, at a
-    quarter over its worth (`worthOf`, orders.ts: what a new one is worth, made and thrown away).
+  - **store.company**, the Company Store: everything new with a price, by category, drawn with its real sprite, at the
+    shops' markup over its worth (`markup` in outside.json, 5%; `worthOf`, orders.ts: what a new one is worth, made and thrown away).
   - **swap.wire**, Swapline: eight listings a day from residents (made as customers' goods are: used, part full, cut into),
     at their own prices, by seller and deck, with a line each; and two WANTED notices. Bought, a listing says SOLD.
   - **soft.wire**, the Software Cellar: shareware downloads straight to C: over the line (16K a second, at the taskbar's
@@ -517,7 +517,7 @@ The night of `STATION.md` 8b (`outside.ts`), from the station data's `data/stati
   50%), works hardware (the torch, the wrench, refills, cells, cutters, a loupe, a soldering iron, a rebreather; buys tools
   at 50%), the ring concierge (a key fob, soap, scent; buys luxury and comfort goods at 60%) and the spine swap stall
   (rations and refills; buys food and water at 50%). Out at a shop, the ground is **their counter** with tonight's stock
-  (each kind's daily restock, as many as fit), each thing at its price (hover). **Taking one into your pack buys it** (the
+  (each kind's daily restock, as many as fit), each thing at its worth plus the shops' markup (`markup` in outside.json, 5%; hover). **Taking one into your pack buys it** (the
   money goes; you cannot take what you cannot pay for); taken back out it is theirs again and the money comes back. **One of
   yours laid on their counter sells it** at their floor price, if they buy that sort of thing (hover says what they would
   pay), and it is gone.

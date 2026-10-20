@@ -42,7 +42,7 @@ const STORE = O.store, CRATE = new Set(S.items.filter((i: any) => i.inflow?.chan
 const PACKS: { w: number; h: number; credits: number }[] = [{ ...O.pack, credits: 0 }, ...O.pack_upgrades]
 const YARD_KEEP = 4 // a bot keeps this many of a thing for the line and orders; more is surplus, for a shop's floor
 const uses = (id: string) => I[id]?.wear?.uses ?? 30 // a tool with no wear in the data is guessed at 30 trips
-const shopPrice = (id: string) => { let p = Infinity; for (const s of SHOPS) for (const x of s.sells) if (x.id === id) p = Math.min(p, val(id) * x.mult); return p }
+const shopPrice = (id: string) => { let p = Infinity; for (const s of SHOPS) for (const x of s.sells) if (x.id === id) p = Math.min(p, val(id) * (1 + O.markup)); return p }
 const shopTakes = (shop: any, id: string) => shop.buys?.any || (shop.buys?.needs ?? []).includes(I[id]?.market_need) || (I[id]?.tags ?? []).some((t: string) => (shop.buys?.tags ?? []).includes(t))
 // the best pack from a pile of finds: dearest per square first
 function packUp(pile: Map<string, number>, room: number) {
@@ -187,7 +187,7 @@ function runOne(policy: Policy, seed: number): { days: Day[]; firstBuy: number; 
       const pick = sh.sells.filter((x: any) => GEAR.has(x.id) && !hasGear(x.id)).map((x: any) => ({ id: x.id, v: bestSite(t => t === x.id || hasGear(t))?.v ?? 0 })).sort((a: any, b: any) => b.v - a.v)[0]?.id
       for (const x of sh.sells) {
         if (GEAR.has(x.id) && !hasGear(x.id) && x.id !== pick) continue
-        const price = val(x.id) * x.mult, avail = x.per_day - (bought.get(sh.id + x.id) ?? 0); if (avail <= 0) continue
+        const price = val(x.id) * (1 + O.markup), avail = x.per_day - (bought.get(sh.id + x.id) ?? 0); if (avail <= 0) continue
         let q = 0, g = 0
         if (GEAR.has(x.id) && !hasGear(x.id)) {
           const u = GEAR.get(x.id), withIt = bestSite(t => t === x.id || hasGear(t))
@@ -239,7 +239,7 @@ function runOne(policy: Policy, seed: number): { days: Day[]; firstBuy: number; 
     arriving = arriving.filter(a => a.day > d)
     if (policy === 'maker') for (const id of feeds) {
       if (!CRATE.has(id) || have(id) >= 2 || arriving.some(a => a.id === id)) continue
-      const price = val(id) * STORE.mult, q = 3
+      const price = val(id) * (1 + O.markup), q = 3
       if (val(id) * (1 + lift(id)) <= price || cash - price * q < 20) continue
       cash -= price * q; D.spent += price * q; arriving.push({ day: d + (STORE.delivery_days ?? 1), id, q, c: price * q })
     }
