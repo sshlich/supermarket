@@ -7,22 +7,22 @@ const rand = () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return s
 // selling pushes a tag's price down, buying from a seller up; always inside the clamp
 {
   const m = newMarket()
-  impact(m, 'food', 10, true)
-  assert.ok(m.p.food < 1)
-  impact(m, 'light', 10, false)
-  assert.ok(m.p.light > 1)
-  for (let i = 0; i < 50; i++) impact(m, 'food', 100, true)
-  assert.equal(m.p.food, 0.5)
+  impact(m, 'need_food', 10, true)
+  assert.ok(m.p.need_food < 1)
+  impact(m, 'need_comfort', 10, false)
+  assert.ok(m.p.need_comfort > 1)
+  for (let i = 0; i < 50; i++) impact(m, 'need_food', 100, true)
+  assert.equal(m.p.need_food, 0.5)
   assert.equal(index(m, ['vessel']), 1) // a tag that does not count
 }
 // prices drift back, need builds and fades
 {
   const m = newMarket()
-  m.p.food = 0.6
+  m.p.need_food = 0.6
   for (let i = 0; i < 20; i++) tick(m, () => 0.5, 0) // no noise, no events
-  assert.ok(Math.abs(m.p.food - 1) < 0.02)
-  unmet(m, 'drink'); unmet(m, 'drink')
-  assert.ok(weights(m).drink > weights(m).food)
+  assert.ok(Math.abs(m.p.need_food - 1) < 0.02)
+  unmet(m, 'need_water'); unmet(m, 'need_water')
+  assert.ok(weights(m).need_water > weights(m).need_food)
 }
 // over a long run: prices stay in range, events come and go, a rumor is announced before it starts, some never happen
 {
@@ -40,13 +40,13 @@ const rand = () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return s
   announced = seen.size; started = [...seen].filter(e => began.has(e)).length
   assert.ok(evs > 0 && announced > 100)
   assert.ok(started < announced && started > announced * 0.5, `${started}/${announced}`) // about a quarter are false
-  assert.ok(demand(newMarket(), 'food') === 1 && supply(newMarket(), 'food') === 1)
+  assert.ok(demand(newMarket(), 'need_food') === 1 && supply(newMarket(), 'need_food') === 1)
 }
 // a cold snap: fuel and food twice as wanted nearly, light less so
 {
   const m = newMarket()
-  m.events.push({ name: 'cold snap', tags: ['fuel', 'food', 'light'], d: 1.7, s: 1, dt: { light: 1.3 }, hours: 6, wait: 0, age: 0, real: true })
-  assert.equal(demand(m, 'food'), 1.7)
-  assert.ok(Math.abs(demand(m, 'light') - 1.3) < 1e-9)
+  m.events.push({ name: 'cold snap', tags: ['need_power', 'need_food', 'need_comfort'], d: 1.7, s: 1, dt: { need_comfort: 1.3 }, hours: 6, wait: 0, age: 0, real: true })
+  assert.equal(demand(m, 'need_food'), 1.7)
+  assert.ok(Math.abs(demand(m, 'need_comfort') - 1.3) < 1e-9)
 }
 console.log('market ok')

@@ -3,7 +3,7 @@
 // out on the counters. customers.ts holds the rules of a deal; main.ts hands in the field and what it can do (`initTerminal`).
 // The terminal's state is saved apart from the field.
 
-import { arrive, deal, dealt, greeting, isPackage, offerOf, open as canDeal, picked, priceFor, stillWants, TAGS, unpack, type Customer, type Role } from './customers.ts'
+import { arrive, deal, dealt, deckOf, greeting, isPackage, offerOf, open as canDeal, priceFor, residentOf, takes, TAGS, unpack, type Customer, type Role } from './customers.ts'
 import { esc } from './html.ts'
 import { shop } from './sound.ts'
 import { contents, find, inSpace, moveInto, under, worth, type Counter, type Item, type State } from './world.ts'
@@ -63,11 +63,12 @@ export function dialNote(at: Counter): string {
   const s = h.state(), c = talk.customer
   if (c && at === 'outside' && c.role === 'seller' && !c.dealt && c.brought.length) return `${c.name} asks ${c.ask}$`
   if (!c || at !== 'inside' || !canDeal(c) || c.role === 'seller') return ''
-  const wants = c.role === 'buyer' ? stillWants(c) : c.wants
-  const wanted = picked(inSpace(s, { at }).filter(it => !c.brought.includes(it.id)).map(it => offerOf(s, it)), wants).reduce((n, o) => n + o.worth, 0)
+  const offers = inSpace(s, { at }).filter(it => !c.brought.includes(it.id)).map(it => offerOf(s, it))
+  const wanted = takes(c, offers).reduce((n, o) => n + o.worth, 0)
   if (!wanted) return ''
-  const pay = priceFor(c, wanted)
-  return c.role === 'buyer' ? `${c.name} pays ${pay}$${c.budget !== null && pay > c.budget ? '!' : ''}` : `${c.name} takes ${wanted}$`
+  if (c.role === 'trader') return `${c.name} takes ${wanted}$`
+  const r = deal(c, offers, 0, 0) // short of money, they pay for what they can: `!` says not all of it
+  return `${c.name} pays ${r.done ? r.pay : 0}$${!r.done || r.pay < priceFor(c, wanted) ? '!' : ''}`
 }
 
 /** What the customer at the counter makes of a thing (for its tooltip): theirs, what a buyer would pay for it, whether a trader wants it. */
@@ -77,8 +78,7 @@ export function customerSays(it: Item): string {
   const name = esc(c.name)
   if (c.brought.includes(it.id)) return c.role === 'seller' && !c.dealt ? `${name}'s: part of a ${c.ask}$ lot` : `${name}'s, until you deal`
   if (!canDeal(c) || c.role === 'seller') return ''
-  const wants = c.role === 'buyer' ? stillWants(c) : c.wants
-  const take = picked([offerOf(h.state(), it)], wants)
+  const take = takes(c, [offerOf(h.state(), it)])
   if (!take.length) return `${name} does not want this`
   const what = take.some(o => o.id === it.id) ? 'this' : 'what is in this'
   if (c.role === 'trader') return `${name} wants ${what}`
@@ -116,7 +116,8 @@ export function sideHtml(fresh = false) {
   const waiting = talk.line.length ? `${talk.line.length} waiting` : 'nobody else waiting'
   const lit = (t: string) => c?.got.includes(t) || talk.met.includes(t)
   const money = c?.role === 'buyer' && c.budget !== null ? `<span class="tag ask" style="--i:${c.wants.length}" title="What they have left to spend">has ${c.budget}$</span>` : ''
-  const head = c ? `<span>customer ${c.id}: ${esc(c.name)} <small>· ${waiting}</small></span><span class="wants">${c.role === 'seller' ? (c.ask ? `<span class="tag ask" style="--i:0">asks ${c.ask}$</span>` : '') : c.wants.map((t, i) => tagChip(t, lit(t), i)).join('') + money}</span>`
+  const who = c && residentOf(c), from = who ? ` <small class="who" title="${esc(who.desc)}">${esc(who.name.toLowerCase())}, ${esc(deckOf(c!)?.name ?? '')}</small>` : ''
+  const head = c ? `<span>customer ${c.id}: ${esc(c.name)} <small>· ${waiting}</small>${from}</span><span class="wants">${c.role === 'seller' ? (c.ask ? `<span class="tag ask" style="--i:0">asks ${c.ask}$</span>` : '') : c.wants.map((t, i) => tagChip(t, lit(t), i)).join('') + money}</span>`
     : `<span>nobody at the counter <small>· ${talk.line.length ? waiting : 'the line is empty'}</small></span>`
   const next = c || talk.line.length ? 'next customer' : 'let them in'
   const big = c ? DEAL[c.role] : DEAL.buyer

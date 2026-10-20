@@ -12,11 +12,11 @@ export const FLOW = 25
 export const ETA = 0.5
 
 const TEMPLATES: { name: string; tags: string[]; d: number; s: number; dt?: Record<string, number> }[] = [
-  { name: 'fever', tags: ['medicine'], d: 2, s: 1 },
+  { name: 'fever', tags: ['need_medicine'], d: 2, s: 1 },
   { name: 'convoy', tags: ['*'], d: 1, s: 2.5 },
-  { name: 'cold snap', tags: ['fuel', 'food', 'light'], d: 1.7, s: 1, dt: { light: 1.3 } },
+  { name: 'cold snap', tags: ['need_power', 'need_food', 'need_comfort'], d: 1.7, s: 1, dt: { need_comfort: 1.3 } },
   { name: 'blockade', tags: ['*'], d: 1, s: 0.4 },
-  { name: 'festival', tags: ['alcohol', 'valuable'], d: 1.8, s: 1 },
+  { name: 'festival', tags: ['need_luxury'], d: 1.8, s: 1 },
   { name: 'raid', tags: ['*'], d: 0.5, s: 1.6 },
 ]
 

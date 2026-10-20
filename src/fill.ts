@@ -113,14 +113,14 @@ const breadTop = (id: string) => `<defs><radialGradient id="${id}c" cx="0.45" cy
  */
 function layerArt(l: Layer, id: string) {
   const seed = l.seed ?? 0
-  if (l.kind === 'it_food_cheese_slice') { const c = cheddar({ id: 0, x: 0, y: 0, rot: 0, ...l }); return { face: cheeseSlice(c, seed, id), edge: cheeseHoles(seed).edge, side: mix(c.paste, c.dark, 0.45), t: 2.4, k: 0.85, turn: 9, shift: 2.5 } }
-  if (l.kind === 'it_food_salami_slice') return { face: salamiSlice(seed, id), edge: salamiRing(seeded(seed, 11))(27.5), side: '#5e1e1b', t: 2, k: 0.68, turn: 0, shift: 8 }
+  if (l.kind === 'it_food_cheese_slice') { const c = cheddar({ id: 0, x: 0, y: 0, rot: 0, ...l }); return { face: cheeseSlice(c, seed, id), edge: cheeseHoles(seed).edge, side: mix(c.paste, c.dark, 0.45), t: 2.4, k: 0.85, turn: 12, shift: 6 } }
+  if (l.kind === 'it_food_salami_slice') return { face: salamiSlice(seed, id), edge: salamiRing(seeded(seed, 11))(27.5), side: '#5e1e1b', t: 2, k: 0.68, turn: 0, shift: 11 }
   return { face: breadTop(id), edge: BREAD, side: '#a06e3c', t: 5, k: 1, turn: 3, shift: 1.2 }
 }
 /**
  * A sandwich, a little from above: its bread at the bottom and every layer on it in the order laid, each the very slice that
- * went on (cheese with its own holes, which show what is under them; salami with its own fat), lying a little loose so the
- * edges of the ones below show; the top one seen whole. A second slice of bread on top closes it.
+ * went on (cheese with its own holes, which show what is under them; salami with its own fat), each slid off the middle a
+ * different way (turning by the golden angle from the sandwich's own start) so the ones below show; the top one seen whole. A second slice of bread on top closes it.
  */
 function sandwich(host: Item) {
   const st = KINDS[host.kind].stack!, sample = [{ kind: st.takes[0], seed: 3 }, { kind: st.takes[1], seed: 4 }, { kind: st.lid }] // the file's own look: one made
@@ -131,7 +131,8 @@ function sandwich(host: Item) {
   let out = `<ellipse cx="32" cy="${f(61 - arts[0].t * 0.4)}" rx="26" ry="4.5" fill="#000000" opacity="0.3"/>`
   arts.forEach((a, i) => {
     if (i) cy -= a.t
-    const r = seeded(seedOf(host) * 31 + i, 41), turn = (r() * 2 - 1) * a.turn, dx = (r() * 2 - 1) * a.shift, dy = (r() * 2 - 1) * a.shift * 0.35
+    const r = seeded(seedOf(host) * 31 + i, 41), turn = (r() * 2 - 1) * a.turn, way = seedOf(host) * 0.7 + i * 2.4, d = a.shift * (0.65 + 0.35 * r())
+    const dx = Math.cos(way) * d, dy = Math.sin(way) * d * 0.4
     const at = (y: number) => `translate(${f(32 + dx)} ${f(y + dy)}) scale(${f(S * a.k)} ${f(S * a.k * Q)}) rotate(${f(turn)}) translate(-32 -32)`
     for (let j = a.t; j > 0.05; j -= 0.7) out += `<path d="${a.edge}" fill="${j === a.t ? mix(a.side, '#000000', 0.35) : a.side}" transform="${at(cy + j)}"/>`
     out += `<g transform="${at(cy)}">${a.face}</g>`

@@ -8511,7 +8511,7 @@
       "cell"
     ],
     "desc": "A lump of hard coal. In a furnace, a good while of heat; in a stove, an evening.",
-    "burns": 15,
+    "burns": 60,
     "made": {
       "mat_lithium": 0.2,
       "mat_iron": 0.3,

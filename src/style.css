@@ -149,6 +149,7 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .term-log .typing span::after { content: '\258C'; margin-left: 1px; animation: blink .6s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 .term-head small { color: #5d5a64; font-size: 10px; }
+.term-head small.who { display: block; color: #8a8494; white-space: normal; } /* who they are, under their name */
 .tag.ask { cursor: default; border-color: #3d5a3f; color: #9fd29a; }
 
 /* money: a black dial on the main screen, left of the field, green terminal digits and a $ at the end */

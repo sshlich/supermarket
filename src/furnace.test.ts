@@ -20,7 +20,8 @@ function furnace(coal: number, ores: Record<string, string>[]): { s: State; f: I
   assert.equal(spawn(s, 'it_tech_cell_s', { host: f.id, slot: 0 }), null, 'no coal in the crucible')
   assert.equal(charge(s, f).length, 2)
 }
-// No fuel, no fire. With coal it lights; a lump burns 15 seconds, then the next; the last gone, the fire goes out.
+// No fuel, no fire. With coal it lights; a lump burns its time (a minute), then the next; the last gone, the fire goes out.
+const B = KINDS.it_tech_cell_s.burns!
 {
   const { s, f } = furnace(0, [])
   assert.equal(light(s, f), 'no fuel')
@@ -28,13 +29,13 @@ function furnace(coal: number, ores: Record<string, string>[]): { s: State; f: I
   const t = furnace(2, [])
   assert.equal(light(t.s, t.f), 'lit')
   assert.equal(light(t.s, t.f), 'lit already')
-  let r = stoke(t.s, 7.5)
+  let r = stoke(t.s, B / 2)
   assert.ok(r.changed, 'the first lump catching is news')
   near(fuelIn(t.s, t.f)[0].heat, 0.5)
-  r = stoke(t.s, 7.5)
+  r = stoke(t.s, B / 2)
   assert.equal(r.burnt, 1)
   assert.equal(fuelIn(t.s, t.f).length, 1)
-  r = stoke(t.s, 20)
+  r = stoke(t.s, B + 5)
   assert.equal(r.burnt, 1)
   assert.deepEqual(r.out.map(o => o.id), [t.f.id])
   assert.equal(isLit(t.f), false)
@@ -66,6 +67,7 @@ function furnace(coal: number, ores: Record<string, string>[]): { s: State; f: I
   assert.equal(progress(m.s, m.f), null)
   assert.ok(inSpace(m.s, { host: m.f.id, slot: 0 }).every(o => o.heat === undefined), 'a mixed pair does not heat')
   const k = furnace(1, [{}, {}])
+  fuelIn(k.s, k.f)[0].heat = 1 - 15 / B // a lump with 15 seconds left in it
   light(k.s, k.f)
   stoke(k.s, 20)
   assert.equal(isLit(k.f), false)

@@ -170,21 +170,28 @@ page handed in by `main.ts`; the terminal's state is saved apart from the field,
   nobody is waiting, and a line of 3 to 7 forms (random for now: later something in the game should decide it). The header
   shows who is at the counter and how many are waiting. *next customer* calls the next one (whoever was there leaves);
   *dismiss* sends them away.
+- **Customers are residents of the station** (2026-10-20, `data/station/residents.json`, the phase-1 ones): a bunk tenant
+  from the Spine, a duct scavenger, a dock hauler, a foundry fitter, a smelter hand, a technician, a clinic orderly, a
+  reactor engineer, a company clerk, a ring household, a fence. The header says who and from which deck (hover: what they
+  are), and they open with a line of their own. Each comes in as a buyer, seller or trader by the **mix** (`MIX` in
+  customers.ts: 40% buyers, 40% sellers, 20% traders), and then a resident who comes as that, as often as they do.
 - **Three sorts of customer**, one big button that changes its word:
-  - a **buyer** wants tags (survival needs: food, drink, alcohol, medicine, light, fuel, book, valuable). **SELL**: they
-    take everything on the inside counter with a tag they still want and pay its worth plus the markup (`MARKUP` in
-    customers.ts, 15%), even if some wants are left; nothing they want there, no sale. A **package** (a container that comes full: a
-    blister, a bag of bread, a matchbox) goes whole, with what is in it. Any other container is just itself: a food buyer
-    takes the apple out of a cabinet and leaves the cabinet; one who wants the container itself takes it and leaves
-    whatever in it they did not want on the inside counter. About two in three count
-    their money: a **budget** (5 to 40$, shown as "has N$" and said in their greeting) they cannot go over; the rest have
-    plenty. They **stay** after buying, wants already bought lit in the header, and buy again until they have it all.
-  - a **seller** unloads one to three things on the outside counter and asks for the lot (worth times 0.6 to 1.0, about 0.8).
-    **BUY**: if you have the money, it is yours, and it slides across to the inside counter (whatever fits there).
-  - a **trader** unloads things and wants tags. **SWAP**: they take what they want from the inside counter (by the same
-    rule as a buyer) if it is worth at least 70 to 90% of what they brought (their slack), and the difference is paid in
-    cash either way: you top up, or they do. Short of it, they say how much more it would take. What they brought slides
-    across to the inside counter.
+  - a **buyer** wants one or two **needs** (the station's: air, water, food, power, medicine, parts, comfort, luxury), those
+    of the things on their own buy list (a fitter wants parts, an orderly medicine, a household food and luxury). Anything
+    that serves the need counts (every thing names its need), less what their sort avoids (the ring avoids synthetic,
+    the bunk luxury), unless it is on their own list. **SELL**: they take what they want from the inside counter and pay
+    its worth plus their **markup**: drawn from 10 to 40% (`MARKUP`), nearer the top the richer their deck. The top fifth
+    of the range are **nobles**: they carry half again the money and talk with manners ("Good day to you. I find myself in
+    want of..."). A **package** (a container that comes full: a blister, a bag of bread) goes whole, with what is in it.
+    Any other container is just itself: a food buyer takes the apple out of a cabinet and leaves the cabinet. Every buyer
+    has a **budget** (their resident's range, shown as "has N$"); short of money for all of it they take what they can pay
+    for, the dearest first. They **stay** and keep buying (SELL stays live) while they have money; the needs they have
+    bought are lit in the header.
+  - a **seller** unloads one to three things from their own sell list on the outside counter and asks for the lot (worth
+    times 0.6 to 1.0, about 0.8). **BUY**: if you have the money, it is yours, and it slides across to the inside counter.
+  - a **trader** unloads things from their list and wants needs. **SWAP**: they take what they want from the inside counter
+    (by the same rule as a buyer) if it is worth at least 70 to 90% of what they brought (their slack), and the difference is
+    paid in cash either way: you top up, or they do. Short of it, they say how much more it would take.
 - **What they bring is never quite new**: cheaper kinds more often (a cabinet rarely), any property (synthetic apples, any
   pill), vessels part full of any liquid, blisters with pills already gone, cheese already cut into (never a sandwich:
   those are made). Their things stay theirs until a deal (the tooltip says so, and they cannot be offered back to them):
@@ -192,14 +199,14 @@ page handed in by `main.ts`; the terminal's state is saved apart from the field,
   container, or cut, pour or build on them. Dismissed or sent off with *next*, they take them back from wherever you moved
   them. They unload only when nothing is being dragged, and a reload while they are stepping up finishes it.
 - **Nobody leaves on their own**: after a deal they stay at the counter until you dismiss them or call the next one. The
-  big button greys out when they have nothing more to deal (a buyer with everything, a seller or trader after their deal).
+  big button greys out when they have nothing more to deal (a buyer with no money left, a seller or trader after their deal).
 - The screen types their words (with soft key clicks; a redraw of the page carries on where it was), lights the wants that
   are met, and is wiped when they go (a scan line sweeps down).
 - **Numbers where a decision needs them.** An item's tooltip has its worth in green with what it is made of (`7$ · 1 + 6
   lamp oil · storage · 1×3`) and what the customer at the counter makes of it ("Wren would pay 11$", "does not want this",
   "theirs: part of a 20$ lot"). Each counter has a **dial** to its left (black, green digits, like the money's): the total
   worth on it, and under that what the customer makes of it ("Hollis asks 20$" outside; "Wren pays 14$" inside, with a `!`
-  if that is over their budget). (A hover tooltip on the counters was tried first and dropped: it fought the items' own.)
+  when their money does not run to all of it). (A hover tooltip on the counters was tried first and dropped: it fought the items' own.)
 - **Money** is a number on the main screen, left of the field: a black dial, green terminal digits with the leading
   zeros dim, and a `$` at the end. It counts to the new sum after a deal and glows (green up, red down). Saved with the
   field as `cash`; a new game starts with 50.
@@ -224,7 +231,7 @@ ore (2x2) melt into one bar (3x2, lying flat)**. The rules are `src/furnace.ts` 
 - **Kinds** (`materials` and `machines` in the debug panel): **ore** (2x2, iron 3$ or copper 4$, the `metal` property: broken
   rock in lit facets banded with rust-red hematite or green malachite, glinting where it broke), **ingot** (3x2, iron 10$ or
   copper 13$: a cast bar seen from above and a little in front, four sloped sides, a hollow where it cooled, a stamp),
-  **coal** (1x1, 1$, fuel: burns 15 seconds) and the **furnace** (3x4, 40$, cast iron: a stovepipe, riveted bands, an arched
+  **coal** (1x1, 1$, fuel: burns 15 seconds; as the small cell, a minute since 2026-10-20, so a bar pays) and the **furnace** (3x4, 40$, cast iron: a stovepipe, riveted bands, an arched
   crucible door with a mica window, the firebox door with its vents, an ash pan, feet). Its `fire` property lights it on
   the field: the mica and the vents glow, flames move behind the mica and smoke leaves the pipe. Customers now also want
   **metal** (a new tag, for bars); ore is wanted by nobody until it is melted.
@@ -612,7 +619,7 @@ item's ids are made its own, so they can use the sprite's gradients. A slot's `f
   slice that went on (its seed and age are kept on the sandwich, `layers`). Finished, it stays as it is. Worth its makings
   a fifth more open and half again finished (`stack` on the kind; rounded up, so the making always shows), and its tooltip
   says how much of that is the making. Drawn from its layers: a little from above, its bread at the bottom and each slice on
-  it as itself (cheese holes show what is under them), lying a little loose so the edges below show; the top one whole.
+  it as itself (cheese holes show what is under them), each slid off the middle a different way (2026-10-20) so the ones below show; the top one whole.
   Sandwiches are made, not spawned (not in the debug panel).
 - Pieces cut off, and a slice taken off a sandwich, land on the free spot nearest the thing's right side.
 - **Matchbox** (2x1) of ten matches (1x1): its drawer is slid half out from the printed sleeve, one match for each in it.
