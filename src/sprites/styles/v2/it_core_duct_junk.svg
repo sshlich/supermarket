@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="dj-poly" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8190a3"/>
+      <stop offset="0.5" stop-color="#576275"/>
+      <stop offset="1" stop-color="#363e4b"/>
+    </linearGradient>
+    <radialGradient id="dj-roll" cx="0.3" cy="0.25" r="0.9">
+      <stop offset="0" stop-color="#f3f7f9"/>
+      <stop offset="0.5" stop-color="#c9d2d8"/>
+      <stop offset="1" stop-color="#8794a0"/>
+    </radialGradient>
+    <radialGradient id="dj-hub" cx="0.35" cy="0.3" r="0.8">
+      <stop offset="0" stop-color="#c7d0dc"/>
+      <stop offset="0.5" stop-color="#7a8594"/>
+      <stop offset="1" stop-color="#3a424e"/>
+    </radialGradient>
+  </defs>
+  <!-- duct junk: a corrugated flexi-duct torn open with its spring wire showing, a square axial fan housing with a snapped blade, a roll of foil tape
+       with a strip stuck down, taped patches, and lint -->
+  <ellipse cx="33" cy="58.4" rx="28" ry="3.6" fill="#0b0810" opacity="0.3"/>
+  <!-- fan housing, tilted -->
+  <g transform="rotate(8 42 22)">
+    <rect x="31" y="11.5" width="26" height="26" rx="4" fill="#262c36"/>
+    <rect x="29" y="9" width="26" height="26" rx="4" fill="url(#dj-poly)" stroke="#222831" stroke-width="1.1"/>
+    <path d="M31.5 33V13Q31.5 11.5 33.5 11.5H52.6" fill="none" stroke="#b9c4d2" stroke-width="0.9" opacity="0.7" stroke-linecap="round"/>
+    <circle cx="42" cy="22" r="11.4" fill="#4a5464" stroke="#232933" stroke-width="0.9"/>
+    <circle cx="42" cy="22" r="10" fill="#1f252d"/>
+    <path d="M33 17.2Q36 12.4 42 11.6" fill="none" stroke="#9fabbb" stroke-width="0.8" opacity="0.7" stroke-linecap="round"/>
+    <g transform="translate(42 22)">
+      <g fill="#6a7587" stroke="#161b22" stroke-width="0.6" stroke-linejoin="round">
+        <path d="M0 -2.4C-4 -3 -7 -6 -6 -9C-2 -10 3 -8 3.6 -4C3.6 -3 2 -2.6 0 -2.4Z"/>
+        <g transform="rotate(72)"><path d="M0 -2.4C-4 -3 -7 -6 -6 -9C-2 -10 3 -8 3.6 -4C3.6 -3 2 -2.6 0 -2.4Z"/></g>
+        <g transform="rotate(144)"><path d="M0 -2.4C-4 -3 -7 -6 -6 -9C-2 -10 3 -8 3.6 -4C3.6 -3 2 -2.6 0 -2.4Z"/></g>
+        <g transform="rotate(216)"><path d="M0 -2.4C-3 -3 -4.6 -4.4 -4.4 -6L-2.4 -5L-1.4 -6.6L1 -5.4L3.6 -4C3.6 -3 2 -2.6 0 -2.4Z"/></g>
+        <g transform="rotate(288)"><path d="M0 -2.4C-4 -3 -7 -6 -6 -9C-2 -10 3 -8 3.6 -4C3.6 -3 2 -2.6 0 -2.4Z"/></g>
+      </g>
+      <path d="M-5 -8.4C-2 -9.4 1 -8.4 2.4 -6.4" fill="none" stroke="#c9d3df" stroke-width="0.6" opacity="0.7" stroke-linecap="round"/>
+      <circle r="3.2" fill="url(#dj-hub)" stroke="#161b22" stroke-width="0.8"/>
+      <circle r="1" fill="#2a303a"/>
+    </g>
+    <g fill="#2a303a" stroke="#a9b5c4" stroke-width="0.5"><circle cx="32.6" cy="12.6" r="1.3"/><circle cx="51.4" cy="12.6" r="1.3"/><circle cx="32.6" cy="31.4" r="1.3"/><circle cx="51.4" cy="31.4" r="1.3"/></g>
+    <circle cx="51.4" cy="31.4" r="0.6" fill="#a4522b"/>
+    <!-- foil tape across the top-right corner -->
+    <path d="M44.6 10.4L49.6 10.4L54 14.8L54 19.8Z" fill="#dfe6ea" stroke="#7a8793" stroke-width="0.7" stroke-linejoin="round"/>
+    <path d="M47.6 11.4L53.2 17M49.6 12.2L53.2 16" stroke="#8794a0" stroke-width="0.5" opacity="0.7"/>
+    <path d="M45.6 11.2H49.2" stroke="#ffffff" stroke-width="0.7" opacity="0.85"/>
+  </g>
+  <!-- the flexi-duct: ribs from a dashed stroke, lit and shaded edges -->
+  <g fill="none" stroke-linejoin="round">
+    <path d="M10 33C5 44 12 56 26 53.4C37 51.2 43 46.4 52 47.6" stroke="#3d4751" stroke-width="13.8"/>
+    <path d="M10 33C5 44 12 56 26 53.4C37 51.2 43 46.4 52 47.6" stroke="#aeb8c0" stroke-width="12"/>
+    <path d="M10 33C5 44 12 56 26 53.4C37 51.2 43 46.4 52 47.6" stroke="#5a6671" stroke-width="12" stroke-dasharray="0.9 3" opacity="0.6"/>
+    <path d="M10 33C5 44 12 56 26 53.4C37 51.2 43 46.4 52 47.6" stroke="#f1f6f8" stroke-width="12" stroke-dasharray="1 3" stroke-dashoffset="-1.3" opacity="0.5"/>
+    <g transform="translate(2 2)"><path d="M10 33C5 44 12 56 26 53.4C37 51.2 43 46.4 52 47.6" stroke="#6b7782" stroke-width="3.6" opacity="0.55"/></g>
+    <g transform="translate(-2 -1.8)"><path d="M10 33C5 44 12 56 26 53.4C37 51.2 43 46.4 52 47.6" stroke="#fafdfe" stroke-width="2.2" opacity="0.7" stroke-linecap="round"/></g>
+  </g>
+  <!-- torn right end: the spring wire coils out of ragged foil -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M53.6 42L55.2 53.4M55.6 42L57.2 53.4M57.6 42L59.2 53.4M59.6 42.2L61 53.2" stroke="#2f3740" stroke-width="1.9"/>
+    <path d="M53.6 42L55.2 53.4M55.6 42L57.2 53.4M57.6 42L59.2 53.4M59.6 42.2L61 53.2" stroke="#a3acb5" stroke-width="0.9"/>
+  </g>
+  <path d="M49.4 41L52.6 43.4L50.8 45.4L53.6 47.4L51 49.6L53 52.4L49.4 54Z" fill="#cfd8de" stroke="#4d5862" stroke-width="0.8" stroke-linejoin="round"/>
+  <path d="M50 42.2L52 43.6" stroke="#ffffff" stroke-width="0.6" opacity="0.8"/>
+  <!-- open left mouth -->
+  <ellipse cx="10" cy="33" rx="6.4" ry="2.6" transform="rotate(-18 10 33)" fill="#2d343c" stroke="#3d4751" stroke-width="1"/>
+  <path d="M5.4 32.6Q10 29.4 14.6 32" fill="none" stroke="#f4f8fa" stroke-width="0.9" opacity="0.8" stroke-linecap="round"/>
+  <path d="M6.6 34.4Q10 32.8 13.4 34" fill="none" stroke="#9ca5ae" stroke-width="0.9" opacity="0.8" stroke-linecap="round"/>
+  <!-- tape bands wrapped round the duct -->
+  <path d="M26.4 47L31.4 46.2L33.6 59.4L28.6 60.2Z" fill="#e3e9ed" stroke="#7a8793" stroke-width="0.7" stroke-linejoin="round"/>
+  <path d="M27.6 49L32.2 48.4M28.2 52.6L32.8 52M28.8 56.4L33.2 55.8" stroke="#aab4bc" stroke-width="0.5" opacity="0.7"/>
+  <path d="M27 47.6L31 47" stroke="#ffffff" stroke-width="0.7" opacity="0.8"/>
+  <path d="M42 43.8L46.4 45.2L45.4 54L41 52.6Z" fill="#dae2e7" stroke="#7a8793" stroke-width="0.7" stroke-linejoin="round"/>
+  <path d="M42.2 46L45.8 47.2M41.8 49.4L45.2 50.6" stroke="#aab4bc" stroke-width="0.5" opacity="0.7"/>
+  <!-- the roll of foil tape, with a strip peeled down and stuck over the duct mouth -->
+  <ellipse cx="17" cy="15" rx="11.4" ry="9.4" fill="#6f7c88"/>
+  <ellipse cx="15.8" cy="14" rx="11.4" ry="9.4" fill="#7f8c98"/>
+  <ellipse cx="14.6" cy="13" rx="11.4" ry="9.4" fill="#919ea9"/>
+  <ellipse cx="13.4" cy="12" rx="11.4" ry="9.4" fill="url(#dj-roll)" stroke="#4d5862" stroke-width="1.1"/>
+  <ellipse cx="13.4" cy="12" rx="8.6" ry="7" fill="none" stroke="#8794a0" stroke-width="0.5" opacity="0.7"/>
+  <ellipse cx="13.4" cy="12" rx="6.6" ry="5.4" fill="none" stroke="#f4f8fa" stroke-width="0.5" opacity="0.6"/>
+  <ellipse cx="13.4" cy="12" rx="5" ry="4.1" fill="#b78a55" stroke="#6a4a26" stroke-width="0.9"/>
+  <path d="M9.2 11.2Q13.4 7.8 17.6 10.6" fill="none" stroke="#e2c08e" stroke-width="0.7" opacity="0.8" stroke-linecap="round"/>
+  <ellipse cx="14.4" cy="13.2" rx="3.4" ry="2.6" fill="#6a4a26" opacity="0.7"/>
+  <path d="M5.4 8.6Q8 4.4 13.4 3.2" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.8" stroke-linecap="round"/>
+  <path d="M12.4 21.4L17.4 20.8L19 28L22.4 36L26.2 45.6L21 47.6L19.6 40.6L16 33.4L13.4 27.6Z" fill="#d9e1e6" stroke="#6e7b87" stroke-width="0.8" stroke-linejoin="round"/>
+  <path d="M14 22.6L14.6 27.2L17.2 33L20.6 40.6L21.4 45.6" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.85" stroke-linecap="round"/>
+  <path d="M15.6 26.4L18.6 25.8M18 31.4L21.2 30.4M20.4 37.2L23.6 36M21.4 43L24.8 42" stroke="#9aa5af" stroke-width="0.5" opacity="0.8"/>
+  <!-- lint clinging to the housing and the duct, grit -->
+  <path d="M27.6 41.4Q27.2 39.4 29.2 39Q30 37.6 31.8 38.2Q33.8 37.8 34 39.8Q35 41.2 33.2 42.2Q31.8 43.4 30 42.8Q28.2 43.2 27.6 41.4Z" fill="#b4ae9f" stroke="#7d786c" stroke-width="0.5" stroke-linejoin="round"/>
+  <path d="M29 40.6Q30.4 39.4 32 40.2M30.2 42Q31.8 41.4 32.8 41" fill="none" stroke="#d6d0c2" stroke-width="0.5" stroke-linecap="round"/>
+  <path d="M35.6 60Q35.2 58.4 37 58.2Q37.8 56.8 39.6 57.4Q41.6 57.2 41.8 59Q43 60 41.4 61.2Q40 62.4 38.4 61.8Q36.4 62.2 35.6 60Z" fill="#b4ae9f" stroke="#7d786c" stroke-width="0.5" stroke-linejoin="round"/>
+  <path d="M37 59.6Q38.4 58.6 40 59.4M38.4 61Q39.8 60.6 40.8 60.2" fill="none" stroke="#d6d0c2" stroke-width="0.5" stroke-linecap="round"/>
+  <path d="M34 42.6h.01M48 40.2h.01M45 58.6h.01M36 62h.01" stroke="#7d7a72" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+</svg>

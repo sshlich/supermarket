@@ -1,0 +1,213 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+ <defs>
+ <linearGradient id="an-steel" x1="0" y1="0" x2="1" y2="1">
+ <stop offset="0" stop-color="#b4b9bd"/><stop offset="0.45" stop-color="#8d9297"/><stop offset="1" stop-color="#5f6468"/>
+ </linearGradient>
+ <linearGradient id="an-steelv" x1="0" y1="0" x2="0" y2="1">
+ <stop offset="0" stop-color="#a3a8ad"/><stop offset="1" stop-color="#5f6468"/>
+ </linearGradient>
+ <linearGradient id="an-barrel" gradientUnits="userSpaceOnUse" x1="22" y1="38" x2="46" y2="68.8">
+ <stop offset="0" stop-color="#c9cdd0"/><stop offset="0.25" stop-color="#a3a8ad"/><stop offset="0.6" stop-color="#7d8287"/><stop offset="1" stop-color="#4a4e52"/>
+ </linearGradient>
+ <linearGradient id="an-door" x1="0" y1="0" x2="1" y2="1">
+ <stop offset="0" stop-color="#a9aeb2"/><stop offset="0.5" stop-color="#7d8287"/><stop offset="1" stop-color="#4f5357"/>
+ </linearGradient>
+ <linearGradient id="an-pipe" x1="0" y1="0" x2="1" y2="0">
+ <stop offset="0" stop-color="#c9cdd0"/><stop offset="0.35" stop-color="#8d9297"/><stop offset="0.8" stop-color="#5f6468"/><stop offset="1" stop-color="#4a4e52"/>
+ </linearGradient>
+ <linearGradient id="an-cu" x1="0" y1="0" x2="0" y2="1">
+ <stop offset="0" stop-color="#e6a46a"/><stop offset="0.5" stop-color="#c1763f"/><stop offset="1" stop-color="#8a4a22"/>
+ </linearGradient>
+ <linearGradient id="an-water" x1="0" y1="0" x2="0" y2="1">
+ <stop offset="0" stop-color="#6fb0d8"/><stop offset="1" stop-color="#3f7fae"/>
+ </linearGradient>
+ <radialGradient id="an-fire" cx="0.42" cy="0.4" r="0.7">
+ <stop offset="0" stop-color="#fff3b0"/><stop offset="0.35" stop-color="#ffc24a"/><stop offset="0.75" stop-color="#fe8a31"/><stop offset="1" stop-color="#c24a14"/>
+ </radialGradient>
+ <radialGradient id="an-heat" cx="0.5" cy="0.5" r="0.5">
+ <stop offset="0.52" stop-color="#ff9a3a" stop-opacity="0.6"/><stop offset="0.72" stop-color="#e0a040" stop-opacity="0.28"/><stop offset="1" stop-color="#e0a040" stop-opacity="0"/>
+ </radialGradient>
+ <linearGradient id="an-sh" x1="0" y1="0" x2="0" y2="1">
+ <stop offset="0" stop-color="#1d1f22" stop-opacity="0"/><stop offset="1" stop-color="#1d1f22" stop-opacity="0.55"/>
+ </linearGradient>
+ <linearGradient id="an-deep" x1="0" y1="0" x2="0" y2="1">
+ <stop offset="0" stop-color="#1d3f63" stop-opacity="0"/><stop offset="1" stop-color="#1d3f63" stop-opacity="0.5"/>
+ </linearGradient>
+ <clipPath id="an-win"><rect x="63.8" y="50" width="20.4" height="15" rx="1.6"/></clipPath>
+ <clipPath id="an-hull"><path d="M16 44.6A19.5 19.5 0 0 0 40 75.4L49 68.4A19.5 19.5 0 0 0 25 37.6Z"/></clipPath>
+ <clipPath id="an-door-c"><circle cx="28" cy="60" r="14.4"/></clipPath>
+ </defs>
+ <!-- an annealer: drum furnace (riveted hatch, glowing port, barrel hoops), flue stack with a flat rain cap, timer box with brass bell, cell-bay plinth, and a blue-water quench tank with a hoisted tool basket; lit from top left -->
+ <ellipse cx="50" cy="93.4" rx="44" ry="2" fill="#0d0a12" opacity="0.4"/>
+ <!-- flue stack (behind the drum) -->
+ <rect x="12" y="12" width="9.6" height="36" fill="url(#an-pipe)" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+ <rect x="11.6" y="8.2" width="2" height="4" fill="#5f6468" stroke="#2a2d30" stroke-width="0.7"/><rect x="20" y="8.2" width="2" height="4" fill="#4a4e52" stroke="#2a2d30" stroke-width="0.7"/>
+ <rect x="9" y="5.2" width="15.6" height="3.2" rx="1.4" fill="url(#an-steelv)" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+ <path d="M10.6 6.2H20" stroke="#e4e8ea" stroke-width="0.8" opacity="0.7" stroke-linecap="round"/>
+ <rect x="10.8" y="22" width="12" height="2.6" rx="0.8" fill="#6f7479" stroke="#2a2d30" stroke-width="0.7"/>
+ <path d="M12.2 22.8H17" stroke="#c9cdd0" stroke-width="0.6" opacity="0.7"/>
+ <path d="M13.4 13.6V21M13.4 26V36" stroke="#e4e8ea" stroke-width="0.8" opacity="0.55" stroke-linecap="round"/>
+ <path d="M14 13Q13 16.4 14.6 19.4M19.4 13Q20.4 15.4 19 18" fill="none" stroke="#2a2d30" stroke-width="1" opacity="0.35" stroke-linecap="round"/>
+ <rect x="12.5" y="32" width="8.6" height="16" fill="url(#an-sh)"/>
+ <!-- timer box behind the drum top, brass bell above -->
+ <path d="M26 44V11.4Q26 9.6 27.8 9.6H52.2Q54 9.6 54 11.4V44Z" fill="url(#an-steel)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+ <path d="M27.6 11.2H52.4" stroke="#e4e8ea" stroke-width="0.8" opacity="0.7"/>
+ <g transform="translate(36.6 22) scale(1.14) translate(-34.4 -22)">
+ <circle cx="34.4" cy="22" r="8.2" fill="url(#an-cu)" stroke="#4a2410" stroke-width="1"/>
+ <circle cx="34.4" cy="22" r="6.4" fill="#ece6d8" stroke="#8a4a22" stroke-width="0.7"/>
+ <g stroke="#3a3d44" stroke-linecap="round"><path d="M34.4 16.6V18M34.4 26V27.4M29 22H30.4M38.4 22H39.8" stroke-width="1"/></g>
+ <path d="M34.4 22L38 18.8A5.4 5.4 0 0 0 35.4 16.7Z" fill="#b5432f" opacity="0.55"/>
+ <path d="M34.4 22L30.8 18.6" stroke="#26282e" stroke-width="1.3" stroke-linecap="round"/>
+ <circle cx="34.4" cy="22" r="1.2" fill="#c1763f" stroke="#4a2410" stroke-width="0.5"/>
+ <path d="M29.4 18.6Q30.8 16.4 33.6 16" fill="none" stroke="#ffffff" stroke-width="0.9" opacity="0.7" stroke-linecap="round"/>
+ </g>
+ <rect x="48.4" y="15.4" width="4.8" height="15" rx="1.2" fill="#3a3d42" stroke="#2a2d30" stroke-width="0.6"/>
+ <circle cx="50.8" cy="19.2" r="1.5" fill="#6fd08c" stroke="#2a2d30" stroke-width="0.4"/><circle cx="50.8" cy="23.6" r="1.5" fill="#d6a23c" stroke="#2a2d30" stroke-width="0.4"/>
+ <path d="M49.3 27.8H52.3" stroke="#b4b9bd" stroke-width="1" stroke-linecap="round"/>
+ <g transform="translate(2.2 0)">
+ <path d="M29.6 9.6Q29.6 4.4 34.4 4.4Q39.2 4.4 39.2 9.6Z" fill="url(#an-cu)" stroke="#4a2410" stroke-width="0.9" stroke-linejoin="round"/>
+ <path d="M31 8.2Q31 6 33.2 5.6" fill="none" stroke="#fbe0c4" stroke-width="0.8" opacity="0.8" stroke-linecap="round"/>
+ <circle cx="34.4" cy="3.6" r="1.3" fill="#c1763f" stroke="#4a2410" stroke-width="0.6"/>
+ </g>
+ <g fill="#c9cdd0" opacity="0.8"><circle cx="28" cy="12.4" r="0.6"/><circle cx="52" cy="12.4" r="0.6"/><circle cx="28" cy="32" r="0.6"/><circle cx="52" cy="32" r="0.6"/></g>
+ <!-- plinth with cell bays -->
+ <path d="M4 79H93V90Q93 91 92 91H5Q4 91 4 90Z" fill="url(#an-steelv)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+ <path d="M5.5 80.2H91.5" stroke="#e4e8ea" stroke-width="0.8" opacity="0.7"/>
+ <g fill="#2e3034" stroke="#2a2d30" stroke-width="0.6"><rect x="9" y="81.6" width="15" height="7" rx="1.5"/><rect x="27" y="81.6" width="15" height="7" rx="1.5"/><rect x="45" y="81.6" width="15" height="7" rx="1.5"/></g>
+ <g fill="#c1763f" stroke="#4a2410" stroke-width="0.5"><rect x="10.5" y="83" width="10" height="4.2" rx="1.2"/><rect x="28.5" y="83" width="10" height="4.2" rx="1.2"/><rect x="46.5" y="83" width="10" height="4.2" rx="1.2"/></g>
+ <g fill="#e6a46a"><rect x="12" y="83.4" width="6" height="1" rx="0.5"/><rect x="30" y="83.4" width="6" height="1" rx="0.5"/><rect x="48" y="83.4" width="6" height="1" rx="0.5"/></g>
+ <circle cx="22" cy="85" r="1.1" fill="#6fd08c"/><circle cx="40" cy="85" r="1.1" fill="#6fd08c"/><circle cx="58" cy="85" r="1.1" fill="#d6a23c"/>
+ <path d="M63.5 80.6V89.6" stroke="#5f6468" stroke-width="0.6"/>
+ <path fill="#2a2d30" opacity="0.8" d="M67 83h3v1h-3zM71 83h2v1h-2zM79 83h3v1h-3zM67 84h1v1h-1zM69 84h1v1h-1zM71 84h1v1h-1zM73 84h1v1h-1zM81 84h1v1h-1zM67 85h3v1h-3zM71 85h1v1h-1zM73 85h1v1h-1zM75 85h3v1h-3zM79 85h3v1h-3zM67 86h1v1h-1zM69 86h1v1h-1zM71 86h1v1h-1zM73 86h1v1h-1zM81 86h1v1h-1zM67 87h1v1h-1zM69 87h1v1h-1zM71 87h1v1h-1zM73 87h1v1h-1zM79 87h3v1h-3z"/>
+ <path d="M5 91H13V94H5ZM85 91H93V94H85Z" fill="#3a3d42" stroke="#2a2d30" stroke-width="0.8" stroke-linejoin="round"/>
+ <ellipse cx="28" cy="80.4" rx="15" ry="1.8" fill="#ff9a3a" opacity="0.3"/>
+ <!-- drum barrel running back to the upper right -->
+ <path d="M16 44.6A19.5 19.5 0 0 0 40 75.4L49 68.4A19.5 19.5 0 0 0 25 37.6Z" fill="url(#an-barrel)" stroke="#2a2d30" stroke-width="1.2" stroke-linejoin="round"/>
+ <g clip-path="url(#an-hull)" fill="none">
+ <circle cx="32.1" cy="56.9" r="19.5" stroke="#3a3d42" stroke-width="2.6"/>
+ <circle cx="31.7" cy="56.5" r="19.5" stroke="#b4b9bd" stroke-width="0.6" opacity="0.55"/>
+ <circle cx="35.6" cy="54.1" r="19.5" stroke="#3a3d42" stroke-width="2.6"/>
+ <circle cx="35.2" cy="53.7" r="19.5" stroke="#b4b9bd" stroke-width="0.6" opacity="0.55"/>
+ <path d="M24 36L18 44" stroke="#e4e8ea" stroke-width="1.4" opacity="0.5" stroke-linecap="round"/>
+ <path d="M41.8 46.2L50.8 39.2" stroke="#2a2d30" stroke-width="0.8" opacity="0.7"/>
+ <path d="M41.8 47L50.8 40" stroke="#c9cdd0" stroke-width="0.5" opacity="0.5"/>
+ <g fill="#c9cdd0" opacity="0.85"><circle cx="45.2" cy="43.1" r="0.6"/><circle cx="48.4" cy="41.5" r="0.6"/><circle cx="29" cy="39.4" r="0.6"/></g>
+ <path d="M30 37L29 41M36 35.6L35.4 39.2M42 36.4L41 40" stroke="#2a2d30" stroke-width="1.2" opacity="0.3" stroke-linecap="round"/>
+ </g>
+ <!-- steel gussets under the drum -->
+ <path d="M7 79H15.4V76.6L9.8 74.4Q8.6 74 8 75Z" fill="url(#an-steelv)" stroke="#2a2d30" stroke-width="0.8" stroke-linejoin="round"/>
+ <path d="M42.6 79H51.4L49.6 71.8L44.6 74.6Z" fill="url(#an-steelv)" stroke="#2a2d30" stroke-width="0.8" stroke-linejoin="round"/>
+ <path d="M9 74.8L14.6 77M45 74.8L49.2 72.2" stroke="#e4e8ea" stroke-width="0.6" opacity="0.7" stroke-linecap="round"/>
+ <g fill="#c9cdd0" stroke="#3a3d42" stroke-width="0.3"><circle cx="11.2" cy="77.6" r="0.7"/><circle cx="47.2" cy="77.2" r="0.7"/></g>
+ <!-- front flange and hatch -->
+ <circle cx="28" cy="60" r="19.5" fill="url(#an-steel)" stroke="#2a2d30" stroke-width="1.2"/>
+ <path d="M12.4 50.4A18.3 18.3 0 0 1 24 42" fill="none" stroke="#e4e8ea" stroke-width="1" opacity="0.75" stroke-linecap="round"/>
+ <circle cx="28" cy="60" r="15.2" fill="#3a3d42" stroke="#2a2d30" stroke-width="0.8"/>
+ <g fill="#c9cdd0" stroke="#3a3d42" stroke-width="0.4"><circle cx="44.2" cy="64.3" r="0.9"/><circle cx="39.9" cy="71.9" r="0.9"/><circle cx="32.3" cy="76.2" r="0.9"/><circle cx="23.7" cy="76.2" r="0.9"/><circle cx="16.1" cy="71.9" r="0.9"/><circle cx="11.8" cy="64.3" r="0.9"/><circle cx="11.8" cy="55.7" r="0.9"/><circle cx="16.1" cy="48.1" r="0.9"/><circle cx="23.7" cy="43.8" r="0.9"/><circle cx="32.3" cy="43.8" r="0.9"/><circle cx="39.9" cy="48.1" r="0.9"/><circle cx="44.2" cy="55.7" r="0.9"/></g>
+ <circle cx="28" cy="60" r="14.4" fill="url(#an-door)" stroke="#2a2d30" stroke-width="0.6"/>
+ <circle cx="28" cy="60" r="14.4" fill="url(#an-heat)"/>
+ <path d="M15.4 52.6A14.4 14.4 0 0 1 22 46" fill="none" stroke="#e4e8ea" stroke-width="0.9" opacity="0.6" stroke-linecap="round"/>
+ <!-- tempered rainbow on the steel around the port -->
+ <g fill="none" stroke-linecap="round" opacity="0.55"><path d="M17.4 66A12 12 0 0 0 36 70.6" stroke="#5a6fb8" stroke-width="1.2"/><path d="M18.4 64.6A10.8 10.8 0 0 0 35.2 69" stroke="#9b6fb0" stroke-width="0.8"/></g>
+ <circle cx="28" cy="60" r="9.2" fill="#4a4e52" stroke="#2a2d30" stroke-width="0.9"/>
+ <circle cx="28" cy="60" r="8.4" fill="none" stroke="#c1763f" stroke-width="0.8"/>
+ <circle cx="28" cy="60" r="7.2" fill="url(#an-fire)" stroke="#7a3a10" stroke-width="0.6"/>
+ <path d="M23.2 57A5.6 5.6 0 0 1 27.6 54.2" fill="none" stroke="#ffffff" stroke-width="1.1" opacity="0.7" stroke-linecap="round"/>
+ <path d="M24 63.6Q27 65.4 31.4 64" fill="none" stroke="#c24a14" stroke-width="0.8" opacity="0.7" stroke-linecap="round"/>
+ <!-- hinge straps and the latch handle -->
+ <rect x="10" y="51.6" width="9.4" height="3.4" rx="1" fill="#4a4e52" stroke="#2a2d30" stroke-width="0.7"/>
+ <rect x="10" y="65.2" width="9.4" height="3.4" rx="1" fill="#4a4e52" stroke="#2a2d30" stroke-width="0.7"/>
+ <path d="M11 52.4H17.6M11 66H17.6" stroke="#9aa0a5" stroke-width="0.5" opacity="0.8"/>
+ <g fill="#c9cdd0"><circle cx="11.8" cy="53.4" r="0.5"/><circle cx="17.6" cy="53.4" r="0.5"/><circle cx="11.8" cy="67" r="0.5"/><circle cx="17.6" cy="67" r="0.5"/></g>
+ <rect x="35.4" y="58.8" width="11" height="2.6" rx="1.2" fill="#8d9297" stroke="#2a2d30" stroke-width="0.8"/>
+ <path d="M36.8 59.6H44.4" stroke="#e4e8ea" stroke-width="0.5" opacity="0.8"/>
+ <circle cx="46.2" cy="60.1" r="2.5" fill="#b5432f" stroke="#5a1d12" stroke-width="0.8"/><circle cx="45.3" cy="59.2" r="0.8" fill="#e8806a"/>
+ <!-- davit: post, jib, brace -->
+ <rect x="87.4" y="10" width="5.6" height="70" fill="url(#an-pipe)" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+ <path d="M88.8 12V76" stroke="#e4e8ea" stroke-width="0.7" opacity="0.6"/>
+ <path d="M85.6 77H94.4V80H85.6Z" fill="#5f6468" stroke="#2a2d30" stroke-width="0.8" stroke-linejoin="round"/>
+ <g fill="#c9cdd0"><circle cx="87" cy="78.5" r="0.5"/><circle cx="93.2" cy="78.5" r="0.5"/></g>
+ <path d="M64 9.6H93V14.6H64Z" fill="url(#an-steelv)" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+ <path d="M65.4 10.8H92" stroke="#e4e8ea" stroke-width="0.7" opacity="0.7"/>
+ <path d="M88 30.6L79 15" stroke="#3a3d42" stroke-width="2.4" stroke-linecap="round"/>
+ <path d="M87.2 29L79.6 15.8" stroke="#8d9297" stroke-width="0.8" opacity="0.8" stroke-linecap="round"/>
+ <g fill="#c9cdd0" opacity="0.9"><circle cx="66" cy="12.2" r="0.7"/><circle cx="90.2" cy="12.2" r="0.7"/></g>
+ <!-- trolley and chain -->
+ <rect x="68.6" y="14.6" width="9.2" height="3.6" rx="1.2" fill="#6f7479" stroke="#2a2d30" stroke-width="0.8"/>
+ <circle cx="71.2" cy="19" r="1.4" fill="#4a4e52" stroke="#2a2d30" stroke-width="0.6"/><circle cx="75.2" cy="19" r="1.4" fill="#4a4e52" stroke="#2a2d30" stroke-width="0.6"/>
+ <path d="M73.2 19.6V26" stroke="#2a2d30" stroke-width="1.8" stroke-dasharray="1.8 1"/>
+ <path d="M73.2 19.6V26" stroke="#9aa0a5" stroke-width="0.7" stroke-dasharray="1.8 1.6" opacity="0.8"/>
+ <!-- quench tank: an open-top steel bath with a glass front full of blue water, and a valve + gauge cabinet with a hazard strip below -->
+ <path d="M62 80V43.4Q62 40 65.4 40H82.6Q86 40 86 43.4V80Z" fill="url(#an-steel)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+ <path d="M63.4 43Q63.6 41.4 65.6 41.4H82" fill="none" stroke="#e4e8ea" stroke-width="0.8" opacity="0.75" stroke-linecap="round"/>
+ <!-- open top: dark well with the bright water surface -->
+ <rect x="64.2" y="42" width="19.6" height="5" rx="2.2" fill="#3a3d42" stroke="#2a2d30" stroke-width="0.6"/>
+ <rect x="64.8" y="42.8" width="18.4" height="3.6" rx="1.8" fill="url(#an-water)"/>
+ <path d="M66.4 44Q68.6 43 71 44T75.8 44T80.6 44" fill="none" stroke="#e6f6fb" stroke-width="0.8" opacity="0.9" stroke-linecap="round"/>
+ <!-- glass front: solid blue bath -->
+ <rect x="63.8" y="50" width="20.4" height="15" rx="1.6" fill="#3f7fae" stroke="#2a2d30" stroke-width="1.1"/>
+ <g clip-path="url(#an-win)">
+ <rect x="63.8" y="50" width="20.4" height="3.2" fill="#6fb0d8"/>
+ <rect x="63.8" y="50" width="20.4" height="15" fill="url(#an-deep)"/>
+ <path d="M63.8 53.2Q66.6 52 69.4 53.2T75 53.2T80.6 53.2T86 53.2" fill="none" stroke="#e6f6fb" stroke-width="0.8" opacity="0.85"/>
+ <path d="M66 62L72.4 50" stroke="#ffffff" stroke-width="2.4" opacity="0.14"/>
+ <!-- submerged basket and tool shafts, dimmed by the water -->
+ <g opacity="0.72">
+ <path d="M69 50V60.6" stroke="#2a2d30" stroke-width="2" stroke-linecap="round"/><path d="M69 50V60.4" stroke="#b4b9bd" stroke-width="1" stroke-linecap="round"/>
+ <path d="M74.2 50V59.6" stroke="#2a2d30" stroke-width="2.6" stroke-linecap="round"/><path d="M74.2 50V59.4" stroke="#8d9297" stroke-width="1.5" stroke-linecap="round"/>
+ <path d="M79.4 50V60.4" stroke="#6b4423" stroke-width="3" stroke-linecap="round"/><path d="M79.4 50V60.2" stroke="#c99a5e" stroke-width="1.7" stroke-linecap="round"/>
+ <path d="M66 50V62.4H82.4V50" fill="none" stroke="#2a2d30" stroke-width="1.2" stroke-linejoin="round"/>
+ <path d="M66 62.4H82.4M66.6 56.4H81.8" stroke="#8d9297" stroke-width="0.6"/>
+ </g>
+ <g fill="#e6f6fb"><circle cx="71.6" cy="58.4" r="0.8" opacity="0.7"/><circle cx="77" cy="61.6" r="0.5" opacity="0.7"/></g>
+ <path d="M64.8 51.2V60" stroke="#ffffff" stroke-width="0.9" opacity="0.6" stroke-linecap="round"/>
+ </g>
+ <path d="M64.6 50.9H70" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"/>
+ <g fill="#c9cdd0"><circle cx="62.9" cy="48.6" r="0.6"/><circle cx="85.1" cy="48.6" r="0.6"/><circle cx="62.9" cy="66.4" r="0.6"/><circle cx="85.1" cy="66.4" r="0.6"/></g>
+ <!-- band, rivets -->
+ <path d="M62 67.4H86" stroke="#3a3d42" stroke-width="2.2" opacity="0.75"/>
+ <path d="M62.4 66.3H85.6" stroke="#b4b9bd" stroke-width="0.5" opacity="0.6"/>
+ <!-- valve wheel and a temperature dial -->
+ <circle cx="69" cy="72" r="3.4" fill="none" stroke="#c1763f" stroke-width="1.5"/>
+ <path d="M69 68.6V75.4M65.6 72H72.4" stroke="#8a4a22" stroke-width="0.9"/>
+ <circle cx="69" cy="72" r="1" fill="#e6a46a" stroke="#4a2410" stroke-width="0.4"/>
+ <path d="M66.6 70Q67.4 68.6 69.2 68.4" fill="none" stroke="#fbe0c4" stroke-width="0.5" opacity="0.8"/>
+ <circle cx="79.4" cy="72" r="3.8" fill="url(#an-cu)" stroke="#4a2410" stroke-width="0.8"/>
+ <circle cx="79.4" cy="72" r="2.8" fill="#ece6d8" stroke="#8a4a22" stroke-width="0.4"/>
+ <path d="M79.4 72L80.9 70.1" stroke="#b5432f" stroke-width="0.9" stroke-linecap="round"/>
+ <path d="M77.6 70.8Q78.2 69.8 79.2 69.6" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.8"/>
+ <!-- hazard strip -->
+ <rect x="64" y="76" width="20" height="3" rx="0.8" fill="#e0b43a" stroke="#7a5a0e" stroke-width="0.5"/>
+ <path d="M67 76L65.6 79M71 76L69.6 79M75 76L73.6 79M79 76L77.6 79M83 76L81.6 79" stroke="#2a2d30" stroke-width="1.2"/>
+ <!-- grime -->
+ <g fill="#2a2d30" opacity="0.5"><circle cx="84.6" cy="73.4" r="0.5"/><circle cx="47" cy="40.6" r="0.5"/><circle cx="6.4" cy="63" r="0.5"/></g>
+ <!-- the hoisted rack: spreader bar, hangers, tools standing in a wire basket dipping into the bath -->
+ <rect x="65.2" y="28.2" width="18" height="2.2" rx="1" fill="url(#an-steelv)" stroke="#2a2d30" stroke-width="0.8"/>
+ <path d="M73.2 26V28.2" stroke="#3a3d42" stroke-width="1"/>
+ <circle cx="73.2" cy="26" r="1.3" fill="none" stroke="#3a3d42" stroke-width="0.9"/>
+ <path d="M66.4 30.4V38.4M82 30.4V38.4" stroke="#3a3d42" stroke-width="1" stroke-linecap="round"/>
+ <path d="M66.4 30.4V38.4" stroke="#9aa0a5" stroke-width="0.4" opacity="0.8"/>
+ <!-- screwdriver -->
+ <path d="M69 44.6V37" stroke="#2a2d30" stroke-width="2.2" stroke-linecap="round"/><path d="M69 44.6V38" stroke="#b4b9bd" stroke-width="1" stroke-linecap="round"/>
+ <rect x="67.1" y="31.6" width="3.8" height="7.6" rx="1.6" fill="#4a78b8" stroke="#2a2d30" stroke-width="0.8"/>
+ <path d="M68 33V37.8" stroke="#9fc0ea" stroke-width="0.7" opacity="0.85" stroke-linecap="round"/>
+ <!-- wrench -->
+ <path d="M74.2 44.6V37" stroke="#2a2d30" stroke-width="2.6" stroke-linecap="round"/>
+ <path d="M74.2 44.6V37.6" stroke="#8d9297" stroke-width="1.4" stroke-linecap="round"/>
+ <circle cx="74.2" cy="34.4" r="3" fill="#8d9297" stroke="#2a2d30" stroke-width="0.9"/>
+ <path d="M72.9 32.2L74.2 34.4L75.5 32.2Z" fill="#2a2d30"/>
+ <path d="M72 33.6Q72.4 32.4 73.6 31.8" fill="none" stroke="#e4e8ea" stroke-width="0.7" opacity="0.8" stroke-linecap="round"/>
+ <!-- hammer -->
+ <path d="M79.4 44.6V36" stroke="#6b4423" stroke-width="3" stroke-linecap="round"/><path d="M79.4 44.6V36.4" stroke="#c99a5e" stroke-width="1.7" stroke-linecap="round"/>
+ <rect x="77" y="31.6" width="5.6" height="4.4" rx="1" fill="#5f6468" stroke="#2a2d30" stroke-width="0.8"/>
+ <path d="M77.8 32.6H81.2" stroke="#b4b9bd" stroke-width="0.7" opacity="0.8" stroke-linecap="round"/>
+ <!-- basket rim and cage above the surface -->
+ <path d="M66.2 38.4H82.2" stroke="#c9cdd0" stroke-width="0.8" opacity="0.7"/>
+ <path d="M66 38.9H82.4" stroke="#3a3d42" stroke-width="1.2"/>
+ <path d="M66.4 39.4V44.4M82 39.4V44.4" stroke="#3a3d42" stroke-width="1" stroke-linecap="round"/>
+ <ellipse cx="74.2" cy="44.6" rx="9.4" ry="1.5" fill="none" stroke="#e6f6fb" stroke-width="0.8" opacity="0.9"/>
+ <!-- a steam wisp off the bath -->
+ <g fill="none" stroke="#f2eee4" stroke-linecap="round">
+ <path d="M63.6 40Q61 37.6 62.8 35.2T61.2 30.6" stroke-width="1.2" opacity="0.5"/>
+ </g>
+</svg>

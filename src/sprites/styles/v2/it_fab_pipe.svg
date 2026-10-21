@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 96">
+<defs>
+<linearGradient id="pp-body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a6abb0"/><stop offset="0.14" stop-color="#d2d6d9"/><stop offset="0.32" stop-color="#b4b9bd"/><stop offset="0.58" stop-color="#8d9297"/><stop offset="0.86" stop-color="#5f6468"/><stop offset="1" stop-color="#6d7277"/></linearGradient>
+<linearGradient id="pp-end" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2e5e7"/><stop offset="1" stop-color="#8d9297"/></linearGradient>
+<linearGradient id="pp-band" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f4d676"/><stop offset="0.4" stop-color="#d9a82e"/><stop offset="1" stop-color="#8f6a14"/></linearGradient>
+<linearGradient id="pp-dent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f5458" stop-opacity="0.6"/><stop offset="0.55" stop-color="#8d9297" stop-opacity="0"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.6"/></linearGradient>
+<clipPath id="pp-clip"><path d="M5.5 7L5.5 89A10.5 3.2 0 0 0 26.5 89L26.5 7A10.5 3.2 0 0 0 5.5 7Z"/></clipPath>
+</defs>
+<!-- a length of seamed steel pipe lying along the bench seen from above: round-shaded body, an open end showing the bore at the top,
+cut threads at both ends, a faint weld seam, stencilled lettering and a yellow gas band, rust in the thread roots and a dent -->
+<path d="M5.5 7L5.5 89A10.5 3.2 0 0 0 26.5 89L26.5 7A10.5 3.2 0 0 0 5.5 7Z" fill="#0e0b13" opacity="0.28" transform="translate(2.6 2.4)"/>
+<path d="M5.5 7L5.5 89A10.5 3.2 0 0 0 26.5 89L26.5 7A10.5 3.2 0 0 0 5.5 7Z" fill="url(#pp-body)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+<g clip-path="url(#pp-clip)">
+<path d="M5 7L27 7L27 25.4Q16 31.8 5 24.4ZM5 71.4Q16 77.8 27 72.4L27 92L5 92Z" fill="#3a3f44" opacity="0.16"/>
+<path d="M5.5 10Q16 16.9 26.5 11M5.5 12Q16 18.9 26.5 13M5.5 14Q16 20.9 26.5 15M5.5 16Q16 22.9 26.5 17M5.5 18Q16 24.9 26.5 19M5.5 20Q16 26.9 26.5 21M5.5 22Q16 28.9 26.5 23M5.5 73.5Q16 80.4 26.5 74.5M5.5 75.5Q16 82.4 26.5 76.5M5.5 77.5Q16 84.4 26.5 78.5M5.5 79.5Q16 86.4 26.5 80.5M5.5 81.5Q16 88.4 26.5 82.5M5.5 83.5Q16 90.4 26.5 84.5M5.5 85.5Q16 92.4 26.5 86.5" fill="none" stroke="#3f464d" stroke-width="0.65" opacity="0.62"/>
+<path d="M5.5 10.9Q16 17.8 26.5 11.9M5.5 12.9Q16 19.8 26.5 13.9M5.5 14.9Q16 21.8 26.5 15.9M5.5 16.9Q16 23.8 26.5 17.9M5.5 18.9Q16 25.8 26.5 19.9M5.5 20.9Q16 27.8 26.5 21.9M5.5 22.9Q16 29.8 26.5 23.9M5.5 74.4Q16 81.3 26.5 75.4M5.5 76.4Q16 83.3 26.5 77.4M5.5 78.4Q16 85.3 26.5 79.4M5.5 80.4Q16 87.3 26.5 81.4M5.5 82.4Q16 89.3 26.5 83.4M5.5 84.4Q16 91.3 26.5 85.4M5.5 86.4Q16 93.3 26.5 87.4" fill="none" stroke="#e4e7e9" stroke-width="0.5" opacity="0.5"/>
+<path d="M5 24.4Q16 30.8 27 25.4M5 71.4Q16 77.8 27 72.4" fill="none" stroke="#2a2d30" stroke-width="0.7" opacity="0.7"/>
+<path d="M5 25.4Q16 31.8 27 26.4M5 72.4Q16 78.8 27 73.4" fill="none" stroke="#f0f2f3" stroke-width="0.6" opacity="0.6"/>
+<path d="M5.5 62.6Q16 69 26.5 62.6L26.5 66.2Q16 72.6 5.5 66.2Z" fill="url(#pp-band)" stroke="#8a6a1a" stroke-width="0.5"/>
+<path d="M7 63.6Q10 65.2 13 65.4" fill="none" stroke="#fff3c4" stroke-width="0.6" opacity="0.7"/>
+<g fill="#9aa0a5" opacity="0.8"><circle cx="9" cy="66" r="0.5"/><circle cx="20.4" cy="69.4" r="0.45"/><circle cx="23.6" cy="68" r="0.35"/></g>
+<path d="M13.6 31h0.75v0.75h-0.75zM13.6 31.8h0.75v0.75h-0.75zM13.6 32.5h0.75v0.75h-0.75zM12.9 31h0.75v0.75h-0.75zM12.9 32.5h0.75v0.75h-0.75zM12.1 31h0.75v0.75h-0.75zM12.1 31.8h0.75v0.75h-0.75zM12.1 32.5h0.75v0.75h-0.75zM11.4 31h0.75v0.75h-0.75zM10.6 31h0.75v0.75h-0.75zM13.6 34.8h0.75v0.75h-0.75zM13.6 35.5h0.75v0.75h-0.75zM12.9 34.8h0.75v0.75h-0.75zM12.1 34.8h0.75v0.75h-0.75zM11.4 34.8h0.75v0.75h-0.75zM10.6 34h0.75v0.75h-0.75zM10.6 34.8h0.75v0.75h-0.75zM10.6 35.5h0.75v0.75h-0.75zM13.6 37h0.75v0.75h-0.75zM13.6 37.8h0.75v0.75h-0.75zM12.9 37h0.75v0.75h-0.75zM12.9 38.5h0.75v0.75h-0.75zM12.1 37h0.75v0.75h-0.75zM12.1 37.8h0.75v0.75h-0.75zM12.1 38.5h0.75v0.75h-0.75zM11.4 37h0.75v0.75h-0.75zM10.6 37h0.75v0.75h-0.75zM13.6 40h0.75v0.75h-0.75zM13.6 40.8h0.75v0.75h-0.75zM13.6 41.5h0.75v0.75h-0.75zM12.1 40h0.75v0.75h-0.75zM12.1 40.8h0.75v0.75h-0.75zM11.4 40h0.75v0.75h-0.75zM10.6 40h0.75v0.75h-0.75zM10.6 40.8h0.75v0.75h-0.75zM10.6 41.5h0.75v0.75h-0.75zM12.1 43h0.75v0.75h-0.75zM12.1 43.8h0.75v0.75h-0.75zM12.1 44.5h0.75v0.75h-0.75zM13.6 46h0.75v0.75h-0.75zM13.6 47.5h0.75v0.75h-0.75zM12.9 47.5h0.75v0.75h-0.75zM12.1 46h0.75v0.75h-0.75zM12.1 46.8h0.75v0.75h-0.75zM12.1 47.5h0.75v0.75h-0.75zM11.4 46h0.75v0.75h-0.75zM10.6 46h0.75v0.75h-0.75zM10.6 46.8h0.75v0.75h-0.75zM10.6 47.5h0.75v0.75h-0.75z" fill="#ece8dc" opacity="0.82"/>
+<path d="M18.2 55.6L19.4 53.2L20.6 55.6ZM19.1 55.4H19.7V58.2H19.1Z" fill="#ece8dc" opacity="0.75"/>
+<path d="M21.4 27V70" stroke="#4f5458" stroke-width="0.6" opacity="0.5"/>
+<path d="M22 27V70" stroke="#c9cdd0" stroke-width="0.45" opacity="0.4"/>
+<g fill="#8d9297" opacity="0.8"><circle cx="20.4" cy="40" r="0.35"/><circle cx="23" cy="52" r="0.3"/><circle cx="20.6" cy="60" r="0.3"/></g>
+<ellipse cx="19.6" cy="43.4" rx="2.6" ry="1.7" fill="url(#pp-dent)"/>
+<path d="M6.6 83.2C8.6 81.6 12.4 82.2 15 83.4C17.4 84.4 20 84.2 22.4 85.4C23.2 86.2 22 87.4 19.6 87.4C15 87.8 9.4 87.6 6.8 86Z" fill="#a4522b" opacity="0.45"/>
+<path d="M9 84.4C11 83.4 13.6 84 14.8 85.2C13.2 86.4 10.4 86.6 8.8 85.8Z" fill="#7a3d1e" opacity="0.5"/>
+<path d="M10.6 79.6L11 83M15.4 84.2L15.6 88.4M19.2 85.6L19.4 88.6" fill="none" stroke="#a4522b" stroke-width="0.7" stroke-linecap="round" opacity="0.5"/>
+<path d="M21.6 74.6C22.6 74.2 24.4 74.8 24.6 75.8C24.8 76.8 23.2 77.2 22.2 76.8Z" fill="#a4522b" opacity="0.5"/>
+<path d="M8.2 11.6L9.6 12.6M23.4 20.6L24.6 21.4" stroke="#a4522b" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+<path d="M9.2 27L9.4 62" fill="none" stroke="#fafbfb" stroke-width="1.3" stroke-linecap="round" opacity="0.65"/><path d="M11.6 27L11.7 62" fill="none" stroke="#fafbfb" stroke-width="0.5" stroke-linecap="round" opacity="0.4"/>
+<path d="M14.4 55.6L17.4 52.4M13.6 58.6L16.6 56.2" stroke="#4f5458" stroke-width="0.4" opacity="0.5"/>
+</g>
+<ellipse cx="16" cy="7" rx="10.5" ry="3.2" fill="url(#pp-end)" stroke="#2a2d30" stroke-width="1.1"/>
+<ellipse cx="16" cy="7.2" rx="8.6" ry="2.5" fill="none" stroke="#6d7277" stroke-width="0.5" opacity="0.7"/>
+<ellipse cx="16" cy="7.3" rx="7.2" ry="2.05" fill="#2b2d30"/>
+<path d="M9.4 6.4Q11 4.9 16 4.9" fill="none" stroke="#7b8187" stroke-width="0.6" opacity="0.8" stroke-linecap="round"/>
+<path d="M10.6 8.6Q16 10.4 22 8.4" fill="none" stroke="#a7acb1" stroke-width="0.6" opacity="0.5" stroke-linecap="round"/>
+<path d="M6.6 5.8Q8 4.4 11 3.9" fill="none" stroke="#ffffff" stroke-width="0.9" opacity="0.85" stroke-linecap="round"/>
+<path d="M7 90.4Q9.5 92.4 12.4 92.9" fill="none" stroke="#e8ebed" stroke-width="0.7" opacity="0.7" stroke-linecap="round"/>
+</svg>

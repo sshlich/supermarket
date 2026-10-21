@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <defs>
+    <linearGradient id="at-steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b4b9bd"/><stop offset="0.45" stop-color="#8d9297"/><stop offset="1" stop-color="#5f6468"/>
+    </linearGradient>
+    <linearGradient id="at-steelv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a3a8ad"/><stop offset="1" stop-color="#5f6468"/>
+    </linearGradient>
+    <linearGradient id="at-water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c2ea86"/><stop offset="0.22" stop-color="#86d27a"/><stop offset="0.6" stop-color="#4aa466"/><stop offset="1" stop-color="#256b48"/>
+    </linearGradient>
+    <linearGradient id="at-shade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0f3a35" stop-opacity="0"/><stop offset="0.55" stop-color="#0f3a35" stop-opacity="0.08"/><stop offset="1" stop-color="#0f3a35" stop-opacity="0.42"/>
+    </linearGradient>
+    <linearGradient id="at-ray" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff4c4" stop-opacity="0.55"/><stop offset="1" stop-color="#fff4c4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="at-cu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6a46a"/><stop offset="0.5" stop-color="#c1763f"/><stop offset="1" stop-color="#8a4a22"/>
+    </linearGradient>
+    <radialGradient id="at-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff9fd8" stop-opacity="0.6"/><stop offset="1" stop-color="#ff9fd8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- an algae tank: a steel-framed glass tank of green water under a pink grow-lamp hood, an air stone with a bubble column fed by a hose from the pump tower on the right (gauge, louvres, exhaust stack), a cell-bay plinth below; lit from top left -->
+  <ellipse cx="50" cy="93.4" rx="44" ry="2" fill="#0d0a12" opacity="0.4"/>
+
+  <!-- pump tower -->
+  <path d="M73 14H91Q92 14 92 15V78H73Z" fill="url(#at-steel)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M74.5 16V77" stroke="#e4e8ea" stroke-width="0.8" opacity="0.6"/>
+  <path d="M78 6H88V14H78Z" fill="url(#at-steelv)" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+  <g fill="#e6f4e0" opacity="0.55"><circle cx="82.6" cy="3" r="1.3"/><circle cx="86.4" cy="2" r="1.1"/><circle cx="90" cy="2.6" r="0.8"/></g>
+  <path d="M76 6H90" stroke="#2a2d30" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M77 4.8H89" stroke="#b4b9bd" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M79.5 8.5H86.5M79.5 10.8H86.5" stroke="#3a3d42" stroke-width="0.9" stroke-linecap="round"/>
+  <!-- gauge -->
+  <circle cx="82.5" cy="26" r="7.6" fill="#8d9297" stroke="#2a2d30" stroke-width="1"/>
+  <circle cx="82.5" cy="26" r="6" fill="#ece6d8" stroke="#5f6468" stroke-width="0.7"/>
+  <path d="M78.4 30.2A5.8 5.8 0 0 1 86.6 30.2" fill="none" stroke="#6fbf6a" stroke-width="1.4" stroke-linecap="round"/>
+  <path d="M82.5 26L85.6 21.8" stroke="#b5432f" stroke-width="1.1" stroke-linecap="round"/>
+  <circle cx="82.5" cy="26" r="1.2" fill="#2a2d30"/>
+  <path d="M78.5 22.2Q80.5 20 83 20" fill="none" stroke="#ffffff" stroke-width="0.9" opacity="0.7" stroke-linecap="round"/>
+  <!-- louvres -->
+  <rect x="76" y="37" width="13" height="12" rx="1.5" fill="#4a4e52" stroke="#2a2d30" stroke-width="0.7"/>
+  <path d="M77.5 39.5H87.5M77.5 42.5H87.5M77.5 45.5H87.5" stroke="#2a2d30" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M77.5 40.4H87.5M77.5 43.4H87.5M77.5 46.4H87.5" stroke="#9a9fa4" stroke-width="0.5" opacity="0.7"/>
+  <!-- pump panel: knob and pilot lamps -->
+  <rect x="76" y="57" width="13" height="16" rx="1.5" fill="#5f6468" stroke="#2a2d30" stroke-width="0.7"/>
+  <circle cx="82.5" cy="64" r="3.6" fill="#c9cdd0" stroke="#2a2d30" stroke-width="0.8"/>
+  <path d="M82.5 64L80.8 61.4" stroke="#2a2d30" stroke-width="1.1" stroke-linecap="round"/>
+  <path d="M80 62.2Q81 60.8 82.6 60.6" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.7" stroke-linecap="round"/>
+  <circle cx="79.5" cy="70" r="1.4" fill="#6fd08c" stroke="#2a2d30" stroke-width="0.5"/><circle cx="85.5" cy="70" r="1.4" fill="#d6a23c" stroke="#2a2d30" stroke-width="0.5"/>
+  <g fill="#c9cdd0" opacity="0.8"><circle cx="75.5" cy="17" r="0.7"/><circle cx="75.5" cy="75" r="0.7"/><circle cx="89.5" cy="75" r="0.7"/><circle cx="89.5" cy="17" r="0.7"/></g>
+  <path d="M75 52H91" stroke="#2a2d30" stroke-width="0.6" opacity="0.6"/>
+
+  <!-- tank: water -->
+  <rect x="11" y="27" width="55" height="48" fill="#4aa466"/>
+  <rect x="11" y="31" width="55" height="44" fill="url(#at-water)"/>
+  <!-- air gap above the water: pale glass tint with warm lamp wash -->
+  <rect x="11" y="26" width="55" height="5.5" fill="#d8f0e6" opacity="0.55"/>
+  <!-- lamp light shafts, caustic dapples -->
+  <path d="M14 28L26 28L36 56L6 56Z" fill="url(#at-ray)" opacity="0.7"/>
+  <path d="M30 28L42 28L52 60L22 60Z" fill="url(#at-ray)" opacity="0.6"/>
+  <path d="M47 28L59 28L68 56L38 56Z" fill="url(#at-ray)" opacity="0.55"/>
+  <g fill="#e8ff9a" opacity="0.28"><ellipse cx="26" cy="40" rx="3.4" ry="1.2"/><ellipse cx="49" cy="46" rx="3" ry="1"/><ellipse cx="33" cy="64" rx="3.6" ry="1.1"/><ellipse cx="57" cy="40" rx="2.4" ry="0.9"/></g>
+  <!-- surface -->
+  <path d="M11 31.5Q17 29.8 23 31.5T35 31.5T47 31.5T59 31.5T66 31" fill="none" stroke="#e6ffc4" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="M11 33Q17 31.6 23 33T35 33T47 33T59 33T66 32.6" fill="none" stroke="#3f8f5a" stroke-width="0.8" opacity="0.6" stroke-linecap="round"/>
+  <!-- floating mat -->
+  <path d="M13 32.4Q15 30.6 18 31.8Q21 30.2 24 32Q26 33.6 23 34.6Q19 35.6 15 35Q12 34.6 13 32.4Z" fill="#3a8a3f" stroke="#256b34" stroke-width="0.6" stroke-linejoin="round"/>
+  <path d="M50 32.2Q53 30.8 56 32.2Q59 31.4 60 33Q58 35 54 34.6Q50 35 50 32.2Z" fill="#3a8a3f" stroke="#256b34" stroke-width="0.6" stroke-linejoin="round"/>
+  <path d="M15 31.6Q18 30.6 21 31.4" fill="none" stroke="#9ad46a" stroke-width="0.7" opacity="0.8" stroke-linecap="round"/>
+  <!-- hanging strands and fronds -->
+  <g fill="none" stroke="#2a7a42" stroke-linecap="round" stroke-linejoin="round" opacity="0.75">
+    <path d="M18 35Q15 41 19 47T17 58" stroke-width="1.5"/>
+    <path d="M22 35Q25 40 22 46T25 56" stroke-width="1.1"/>
+    <path d="M54 35Q57 41 53 48T56 58" stroke-width="1.5"/>
+    <path d="M59 34Q61 40 58 46" stroke-width="1"/>
+  </g>
+  <!-- sediment and clump -->
+  <path d="M11 75V70Q18 66 26 70T42 70Q52 67 66 70V75Z" fill="#1f5a3c"/>
+  <path d="M13 74Q11 68 15 64Q15.6 62.4 17 63.6Q17.6 66 19 68Q19.6 63 22 61.6Q23.6 62 23 65Q25 68 25 74Z" fill="#2f7a4c" stroke="#1c4a34" stroke-width="0.6" stroke-linejoin="round"/>
+  <path d="M15.6 72Q15 68 17 65.6M21 72Q20.6 68 22 65.4" fill="none" stroke="#5fae6c" stroke-width="0.6" opacity="0.7" stroke-linecap="round"/>
+  <path d="M54 74Q53 70 56 67.6Q57 66.2 58.4 67.6Q59 69 60.4 70Q61 67.6 63 66.6Q64.4 67.4 64 70L65 74Z" fill="#2f7a4c" stroke="#1c4a34" stroke-width="0.6" stroke-linejoin="round"/>
+  <!-- a snail on the glass -->
+  <path d="M28 73.6Q28 72 30 72H34.4Q35 72 35 72.6Q35 73.6 34 73.6Z" fill="#c7b58a" stroke="#6b5a34" stroke-width="0.5" stroke-linejoin="round"/>
+  <circle cx="31" cy="70.6" r="2" fill="#b9733c" stroke="#6b4423" stroke-width="0.6"/>
+  <path d="M31 70.6m-0.8 0a0.8 0.8 0 1 1 1.6 0" fill="none" stroke="#6b4423" stroke-width="0.4"/>
+  <path d="M34.4 72Q35.4 70.8 35.6 70M33.8 72Q34.2 70.8 34.2 70" fill="none" stroke="#6b5a34" stroke-width="0.4" stroke-linecap="round"/>
+  <g fill="#6fb47a" opacity="0.7"><circle cx="30" cy="73" r="0.6"/><circle cx="47" cy="72.5" r="0.5"/><circle cx="52" cy="73.5" r="0.6"/></g>
+  <!-- airline, air stone, bubbles -->
+  <path d="M66 47C58 45 54 60 46 69.5" fill="none" stroke="#2f2f38" stroke-width="2" stroke-linecap="round"/>
+  <path d="M65 46.4C58 44.4 54.4 59 45.6 68.6" fill="none" stroke="#7a7a88" stroke-width="0.6" opacity="0.8" stroke-linecap="round"/>
+  <rect x="36" y="69" width="12" height="5" rx="2.4" fill="#aeb0b4" stroke="#5f6468" stroke-width="0.8"/>
+  <path d="M38 70.2H44" stroke="#eef3f6" stroke-width="0.8" opacity="0.8" stroke-linecap="round"/>
+  <g fill="#7a7d84" opacity="0.8"><circle cx="40" cy="72.4" r="0.4"/><circle cx="44.5" cy="72.8" r="0.4"/></g>
+  <g fill="#d8f7d4" fill-opacity="0.45" stroke="#f4fff0" stroke-width="0.6">
+    <circle cx="40.6" cy="66" r="1"/><circle cx="42.4" cy="61.6" r="1.4"/><circle cx="40" cy="56" r="1.7"/><circle cx="42.6" cy="50" r="2"/><circle cx="40.6" cy="43.4" r="2.3"/><circle cx="42.2" cy="36.4" r="2.5"/>
+  </g>
+  <g fill="#f4fff0" opacity="0.8"><circle cx="39.8" cy="55.2" r="0.5"/><circle cx="41.7" cy="49.2" r="0.6"/><circle cx="39.8" cy="42.5" r="0.7"/><circle cx="41.3" cy="35.5" r="0.8"/></g>
+  <g fill="#d8f7d4" fill-opacity="0.35" stroke="#f4fff0" stroke-width="0.4"><circle cx="31" cy="58" r="0.9"/><circle cx="33" cy="49" r="1.1"/><circle cx="50" cy="63" r="0.8"/><circle cx="47" cy="46" r="1"/></g>
+  <!-- water darkens toward the right, the glass catches the lamp on the left -->
+  <rect x="11" y="27" width="55" height="48" fill="url(#at-shade)"/>
+  <path d="M13.6 33V71" stroke="#ffffff" stroke-width="2.2" opacity="0.28" stroke-linecap="round"/>
+  <path d="M17.6 36V60" stroke="#ffffff" stroke-width="0.8" opacity="0.25" stroke-linecap="round"/>
+  <path d="M62.5 30V68" stroke="#ffffff" stroke-width="0.8" opacity="0.18" stroke-linecap="round"/>
+  <path d="M12 50L33 28H39L12 58Z" fill="#ffffff" opacity="0.11"/><path d="M12 62L41 28H43L12 66Z" fill="#ffffff" opacity="0.09"/>
+
+  <!-- tank frame: corner posts, top rim, bottom rim -->
+  <path d="M6 24H71V28H6Z" fill="url(#at-steel)" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M7.5 25.2H69" stroke="#e4e8ea" stroke-width="0.7" opacity="0.7"/>
+  <path d="M6 74H71V80H6Z" fill="url(#at-steelv)" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M7.5 75.2H69" stroke="#d3d7da" stroke-width="0.6" opacity="0.6"/>
+  <path d="M6 24H11V80H6Z" fill="url(#at-steel)" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M7.4 26V78" stroke="#e4e8ea" stroke-width="0.7" opacity="0.7"/>
+  <path d="M66 28H71V74H66Z" fill="#5f6468" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M67 29V73" stroke="#8d9297" stroke-width="0.6" opacity="0.7"/>
+  <rect x="11" y="28" width="55" height="46" fill="none" stroke="#3f7f86" stroke-width="0.9"/>
+  <g fill="#c9cdd0"><circle cx="8.5" cy="27" r="0.8"/><circle cx="8.5" cy="76.5" r="0.8"/><circle cx="68.5" cy="26" r="0.8"/><circle cx="68.5" cy="77" r="0.8"/></g>
+  <!-- rust blooming under the bottom bolts -->
+  <path d="M8 77Q8.4 79 7.6 80M68.6 77.6Q69 79 68.4 80" fill="none" stroke="#a4522b" stroke-width="0.9" opacity="0.8" stroke-linecap="round"/>
+  <g fill="#7a3d1e" opacity="0.7"><circle cx="9.6" cy="79" r="0.5"/><circle cx="12.4" cy="78.4" r="0.4"/><circle cx="66.4" cy="78.8" r="0.5"/></g>
+  <!-- ruler ticks stencilled up the left post -->
+  <g stroke="#2a2d30" stroke-width="0.6" opacity="0.75"><path d="M6.6 33H9.4M6.6 38H8.6M6.6 43H9.4M6.6 48H8.6M6.6 53H9.4M6.6 58H8.6M6.6 63H9.4M6.6 68H8.6"/></g>
+  <!-- green slime streak down the outside of the right post -->
+  <path d="M66.4 28Q67.6 36 66.8 44" fill="none" stroke="#6fb44a" stroke-width="1.2" opacity="0.7" stroke-linecap="round"/>
+
+  <!-- hose through the tower: copper nipple and union nut -->
+  <rect x="66" y="44.4" width="8" height="5" rx="1" fill="url(#at-cu)" stroke="#4a2410" stroke-width="0.8"/>
+  <rect x="68.2" y="43.2" width="2.8" height="7.4" rx="0.8" fill="#e6a46a" stroke="#4a2410" stroke-width="0.6"/>
+  <path d="M66.6 45.2H73" stroke="#fbe0c4" stroke-width="0.6" opacity="0.7"/>
+
+  <!-- lamp hood on the rack -->
+  <path d="M6 15L9 5H73V15Z" fill="url(#at-steel)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M10.5 6.4H72" stroke="#e4e8ea" stroke-width="0.9" opacity="0.7"/>
+  <path d="M7 13.6H73" stroke="#4a4e52" stroke-width="1.2"/>
+  <g fill="#3a3d42"><rect x="14" y="8.4" width="10" height="1.4" rx="0.7"/><rect x="14" y="11" width="10" height="1.4" rx="0.7"/><rect x="28" y="8.4" width="10" height="1.4" rx="0.7"/><rect x="28" y="11" width="10" height="1.4" rx="0.7"/></g>
+  <!-- hazard tag -->
+  <rect x="44" y="7.6" width="24" height="5" rx="0.8" fill="#e0b43a" stroke="#7a5a0e" stroke-width="0.6"/>
+  <path d="M47 7.6L45 12.6M51 7.6L49 12.6M55 7.6L53 12.6M59 7.6L57 12.6M63 7.6L61 12.6M67 7.6L65 12.6" stroke="#2a2d30" stroke-width="1.4"/>
+  <!-- tube lamps under the lip -->
+  <ellipse cx="20" cy="21.5" rx="12" ry="4.4" fill="url(#at-glow)"/><ellipse cx="38" cy="21.5" rx="12" ry="4.4" fill="url(#at-glow)"/><ellipse cx="56" cy="21.5" rx="12" ry="4.4" fill="url(#at-glow)"/>
+  <g>
+    <rect x="12" y="15" width="16" height="4" rx="2" fill="#f6a9d8" opacity="0.5"/>
+    <rect x="30" y="15" width="16" height="4" rx="2" fill="#f6a9d8" opacity="0.5"/>
+    <rect x="48" y="15" width="16" height="4" rx="2" fill="#f6a9d8" opacity="0.5"/>
+    <rect x="13" y="15.8" width="14" height="2.4" rx="1.2" fill="#fff6fb" stroke="#d46ab8" stroke-width="0.5"/>
+    <rect x="31" y="15.8" width="14" height="2.4" rx="1.2" fill="#fff6fb" stroke="#d46ab8" stroke-width="0.5"/>
+    <rect x="49" y="15.8" width="14" height="2.4" rx="1.2" fill="#fff6fb" stroke="#d46ab8" stroke-width="0.5"/>
+  </g>
+  <!-- hood arm into the tower -->
+  <path d="M71 7H77V15H71Z" fill="#5f6468" stroke="#2a2d30" stroke-width="0.9" stroke-linejoin="round"/>
+
+  <!-- plinth with cell bays -->
+  <path d="M4 79H92V90Q92 91 91 91H5Q4 91 4 90Z" fill="url(#at-steelv)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M5.5 80.2H90.5" stroke="#e4e8ea" stroke-width="0.8" opacity="0.7"/>
+  <g stroke-linejoin="round">
+    <rect x="9" y="81.6" width="15" height="7" rx="1.5" fill="#2e3034" stroke="#2a2d30" stroke-width="0.6"/>
+    <rect x="27" y="81.6" width="15" height="7" rx="1.5" fill="#2e3034" stroke="#2a2d30" stroke-width="0.6"/>
+    <rect x="45" y="81.6" width="15" height="7" rx="1.5" fill="#2e3034" stroke="#2a2d30" stroke-width="0.6"/>
+  </g>
+  <rect x="10.5" y="83" width="10" height="4.2" rx="1.2" fill="#c1763f" stroke="#4a2410" stroke-width="0.5"/><rect x="12" y="83.4" width="6" height="1" rx="0.5" fill="#e6a46a"/>
+  <rect x="28.5" y="83" width="10" height="4.2" rx="1.2" fill="#c1763f" stroke="#4a2410" stroke-width="0.5"/><rect x="30" y="83.4" width="6" height="1" rx="0.5" fill="#e6a46a"/>
+  <circle cx="22" cy="85" r="1.1" fill="#6fd08c"/><circle cx="40" cy="85" r="1.1" fill="#6fd08c"/><circle cx="58" cy="85" r="1.1" fill="#d6a23c"/>
+  <path d="M63.5 80.6V89.6" stroke="#5f6468" stroke-width="0.6"/>
+  <path opacity="0.8" fill="#2a2d30" shape-rendering="crispEdges" d="M67 82h1v1h-1zM68 82h1v1h-1zM69 82h1v1h-1zM67 83h1v1h-1zM69 83h1v1h-1zM67 84h1v1h-1zM68 84h1v1h-1zM69 84h1v1h-1zM67 85h1v1h-1zM69 85h1v1h-1zM67 86h1v1h-1zM69 86h1v1h-1zM71 82h1v1h-1zM71 83h1v1h-1zM71 84h1v1h-1zM71 85h1v1h-1zM71 86h1v1h-1zM72 86h1v1h-1zM73 86h1v1h-1zM75 82h1v1h-1zM76 82h1v1h-1zM77 82h1v1h-1zM75 83h1v1h-1zM75 84h1v1h-1zM77 84h1v1h-1zM75 85h1v1h-1zM77 85h1v1h-1zM75 86h1v1h-1zM76 86h1v1h-1zM77 86h1v1h-1zM79 84h1v1h-1zM80 84h1v1h-1zM81 84h1v1h-1zM83 82h1v1h-1zM84 82h1v1h-1zM85 82h1v1h-1zM85 83h1v1h-1zM83 84h1v1h-1zM84 84h1v1h-1zM85 84h1v1h-1zM85 85h1v1h-1zM83 86h1v1h-1zM84 86h1v1h-1zM85 86h1v1h-1z"/>
+  <!-- grime: specks, a grease run under the louvres, a scuff on the plinth -->
+  <g fill="#2a2d30" opacity="0.5"><circle cx="30" cy="10.4" r="0.5"/><circle cx="62" cy="9" r="0.4"/><circle cx="80" cy="34" r="0.5"/><circle cx="87" cy="55" r="0.5"/><circle cx="21" cy="89.6" r="0.5"/><circle cx="55" cy="80.8" r="0.4"/><circle cx="88" cy="89" r="0.5"/></g>
+  <path d="M80 49.4Q80.4 53 79.8 56M85.4 49.4Q85.2 52 85.6 54" fill="none" stroke="#3a3d42" stroke-width="0.7" opacity="0.5" stroke-linecap="round"/>
+  <path d="M30 89.6L38 89.6" stroke="#d3d7da" stroke-width="0.5" opacity="0.5" stroke-linecap="round"/>
+  <path d="M5 91H13V94H5ZM83 91H91V94H83Z" fill="#3a3d42" stroke="#2a2d30" stroke-width="0.8" stroke-linejoin="round"/>
+</svg>

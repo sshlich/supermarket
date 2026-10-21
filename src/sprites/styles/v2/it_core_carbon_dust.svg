@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="cd-heap" x1="0.1" y1="0.05" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#72757f"/>
+      <stop offset="0.35" stop-color="#5a5c66"/>
+      <stop offset="0.7" stop-color="#4a4c55"/>
+      <stop offset="1" stop-color="#40414a"/>
+    </linearGradient>
+    <linearGradient id="cd-coal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5e606c"/>
+      <stop offset="0.5" stop-color="#3c3d46"/>
+      <stop offset="1" stop-color="#26262d"/>
+    </linearGradient>
+    <clipPath id="cd-body"><path d="M2.2 28C2.4 25.2 3.8 22 6 19C8 16.2 9.8 12.8 12 11.6C14.2 10.6 16.6 11.4 18.4 13.6C20.8 16.6 23 19.4 26 22.6C28 24.8 30.2 26.4 30.4 28C30.5 28.9 29.2 29.4 27.8 29.4H5C3 29.4 2 28.9 2.2 28Z"/></clipPath>
+  </defs>
+  <!-- slumped heap of fine black carbon dust: steep lit left shoulder, long shaded right slope, soft finger-drags, three-tone grit, a plain coal chunk at the toe, motes over the crown -->
+  <!-- contact shadow -->
+  <path d="M1.8 29.2C8 30.8 24 30.9 30.8 29C30.2 27.8 27 27.6 24 28.2C17 28.8 8 28.6 1.8 29.2Z" fill="#14111a" opacity="0.45"/>
+  <!-- heap body -->
+  <path d="M2.2 28C2.4 25.2 3.8 22 6 19C8 16.2 9.8 12.8 12 11.6C14.2 10.6 16.6 11.4 18.4 13.6C20.8 16.6 23 19.4 26 22.6C28 24.8 30.2 26.4 30.4 28C30.5 28.9 29.2 29.4 27.8 29.4H5C3 29.4 2 28.9 2.2 28Z" fill="url(#cd-heap)"/>
+  <g clip-path="url(#cd-body)">
+    <!-- lit left flank -->
+    <path d="M12 11.6C9.8 12.8 8 16.2 6 19C3.8 22 2.4 25.2 2.2 28L2 30L9 30C9.6 25.6 11 20.4 13.6 15C14.2 13.6 14.2 12.4 13.8 11.2Z" fill="#8a8d99" opacity="0.32"/>
+    <path d="M12.6 12.4C10.6 14 9.2 16.8 7.6 19.2C6 21.6 4.6 24 4 26.4" fill="none" stroke="#a9acb8" stroke-width="1.3" opacity="0.4" stroke-linecap="round"/>
+    <!-- shaded right slope -->
+    <path d="M17.4 12.6C19.6 16.4 22.4 19.4 26 22.6C28 24.8 30.2 26.4 30.8 28.4L31 30.5H17C22 25.6 21 17.6 16.6 12Z" fill="#1b1a22" opacity="0.28"/>
+    <!-- three soft finger-drag grooves, short, fading downhill -->
+    <g fill="none" stroke-linecap="round">
+      <g stroke="#26252d" stroke-width="1.2"><path d="M11 18.8C10.4 20.6 10.4 22.2 9.8 23.8" opacity="0.5"/><path d="M14.4 19.6C14.2 21.6 14.4 23.2 13.8 24.8" opacity="0.5"/><path d="M18.2 20.8C18.6 22.2 19 23.2 19.2 24.4" opacity="0.4"/></g>
+      <g stroke="#a4a7b3" stroke-width="0.5"><path d="M11.8 18.6C11.2 20.4 11.2 22 10.6 23.6" opacity="0.4"/><path d="M15.2 19.4C15 21.4 15.2 23 14.6 24.6" opacity="0.35"/><path d="M19 20.6C19.4 22 19.8 23 20 24.2" opacity="0.3"/></g>
+    </g>
+    <!-- grain: lit crystals, dark crumbs, mid crumbs -->
+    <path d="M12.8 13.8h.01M10.8 16.8h.01M8.4 20.2h.01M6.2 23.4h.01M15.4 16.2h.01M12 21.4h.01M4.4 26.2h.01M9.6 25.4h.01" stroke="#cfd2dc" stroke-width="0.6" stroke-linecap="round" opacity="0.75"/>
+    <path d="M17.2 18.2h.01M20.8 22h.01M16.4 24.2h.01M25 25.4h.01M12.6 27h.01M19.2 26.6h.01M23 26.8h.01M15.6 14.4h.01M27.8 27.8h.01M22.4 20.6h.01" stroke="#15131a" stroke-width="1" stroke-linecap="round" opacity="0.75"/>
+    <path d="M18.2 15.4h.01M20 19h.01M23.6 23.2h.01M16.8 21.8h.01M7.2 27.2h.01M26.6 26.2h.01M13.8 17.2h.01M10 22.4h.01" stroke="#7d808c" stroke-width="0.85" stroke-linecap="round" opacity="0.8"/>
+  </g>
+  <!-- warm dark rim, with a lit line along the steep left shoulder and crown -->
+  <path d="M3.4 26.6C4 24.4 5.2 22.2 7.2 19.8C9.2 17.2 10.6 14.2 12.4 12.8C14.2 11.8 16 12.4 17.2 13.8" fill="none" stroke="#c4c7d2" stroke-width="0.8" opacity="0.5" stroke-linecap="round"/>
+  <path d="M2.2 28C2.4 25.2 3.8 22 6 19C8 16.2 9.8 12.8 12 11.6C14.2 10.6 16.6 11.4 18.4 13.6C20.8 16.6 23 19.4 26 22.6C28 24.8 30.2 26.4 30.4 28C30.5 28.9 29.2 29.4 27.8 29.4H5C3 29.4 2 28.9 2.2 28Z" fill="none" stroke="#221a20" stroke-width="1.1" stroke-linejoin="round"/>
+  <!-- bounce light keeps the shaded right slope off the dark field -->
+  <path d="M19.6 15.4C21.8 18.2 24 20.6 26.6 23.4C28.4 25.4 29.6 26.6 29.4 27.8" fill="none" stroke="#7b7e8b" stroke-width="0.7" opacity="0.5" stroke-linecap="round"/>
+  <!-- stirred-up motes just above the crown -->
+  <path d="M10.6 9h.01M14.6 7.8h.01M12.6 6.4h.01M16.8 9.8h.01" stroke="#a3a6b4" stroke-width="0.9" stroke-linecap="round" opacity="0.55"/>
+  <!-- floor grit hugging the base -->
+  <path d="M1.8 30.2h.01M8.4 30.6h.01M18 30.8h.01M30 30.2h.01" stroke="#6a6d79" stroke-width="0.8" stroke-linecap="round" opacity="0.8"/>
+  <!-- plain angular coal chunk at the right toe: lit top-left facet, dark flank -->
+  <path d="M19.6 29.4L20.4 25.6L23.6 23.6L27.2 25L28.8 28L28.2 29.4Z" fill="url(#cd-coal)" stroke="#1d1519" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M21 25.8L23.6 24L25.6 25.4L22 27.2Z" fill="#8d909c" opacity="0.9"/>
+  <path d="M25.6 25.4L27.2 25L28.8 28L28.2 29.4L26 29.4Z" fill="#17161c" opacity="0.6"/>
+  <path d="M21 25.8L23.6 24" stroke="#cfd1db" stroke-width="0.5" opacity="0.8" stroke-linecap="round"/>
+</svg>

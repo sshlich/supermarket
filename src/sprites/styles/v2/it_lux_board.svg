@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<!-- two sheets of pasteboard in a ragged stack: the buff top face with fibre flecks, a taped corner, a stencilled 3-PLY, a pulper's OK stamp and a pencil tally; the edges show three plies, and one corner has delaminated to show the layers beneath -->
+<defs>
+<linearGradient id="pb-t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0e6cc"/><stop offset=".55" stop-color="#dccfae"/><stop offset="1" stop-color="#bfae88"/></linearGradient>
+<linearGradient id="pb-u" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d8cba8"/><stop offset=".6" stop-color="#bfb08c"/><stop offset="1" stop-color="#9c8d6c"/></linearGradient>
+</defs>
+<ellipse cx="33" cy="58.4" rx="25" ry="3" fill="#000" opacity=".3"/>
+<!-- the lower sheet -->
+<g transform="translate(6 4.4) rotate(3 28 28)">
+<path d="M7 47L49 47L50.1 48.7L8.1 48.7Z" fill="#d8cba8"/><path d="M8.1 48.7L50.1 48.7L51.1 50.5L9.1 50.5Z" fill="#8e7e5e"/><path d="M9.1 50.5L51.1 50.5L52.2 52.2L10.2 52.2Z" fill="#c4b68f"/><path d="M49 8L50.1 9.7L50.1 48.7L49 47Z" fill="#d8cba8"/><path d="M50.1 9.7L51.1 11.5L51.1 50.5L50.1 48.7Z" fill="#8e7e5e"/><path d="M51.1 11.5L52.2 13.2L52.2 52.2L51.1 50.5Z" fill="#c4b68f"/><path d="M7 47L49 47L52.2 52.2L10.2 52.2Z" fill="#2a2010" opacity=".14"/><path d="M49 8L52.2 13.2L52.2 52.2L49 47Z" fill="#2a2010" opacity=".3"/><path d="M8.1 48.7H50.1L50.1 9.7M9.1 50.5H51.1L51.1 11.5" fill="none" stroke="#6a5a3c" stroke-width=".45" opacity=".7"/><path d="M11 50l0.4 0.1M13.7 50l0.8 -0M17.1 48.5l1 -0.1M21.4 48.5l0.9 0.2M25.2 50l0.7 -0.3M29.8 48.5l0.8 0.3M34.7 50l1.2 0.1M37.6 50l0.6 -0.1M41.3 50l1.1 0M45.4 50l1.1 -0.2" stroke="#f4ead0" stroke-width=".4" opacity=".6" fill="none"/>
+<rect x="7" y="8" width="42" height="39" rx="1.2" fill="url(#pb-u)"/>
+<path d="M7.6 46.4V8.6H48.4" fill="none" stroke="#fff" stroke-width=".7" opacity=".4"/>
+<g fill="#5a4a30" opacity=".5"><circle cx="32.8" cy="12.3" r="0.3"/><circle cx="40.8" cy="19.1" r="0.3"/><circle cx="33.3" cy="15.3" r="0.4"/><circle cx="42" cy="28.3" r="0.4"/><circle cx="20.4" cy="11.1" r="0.5"/><circle cx="27" cy="35.2" r="0.5"/><circle cx="25.9" cy="42.7" r="0.5"/><circle cx="12.7" cy="14.8" r="0.3"/><circle cx="28.3" cy="23.5" r="0.3"/><circle cx="31.2" cy="30.4" r="0.5"/><circle cx="34.5" cy="15.7" r="0.5"/><circle cx="45.7" cy="41.7" r="0.4"/><circle cx="19.8" cy="12.2" r="0.5"/><circle cx="46.6" cy="13.1" r="0.5"/></g><path d="M18 29l1.2 0.1M46.8 26.5l1.6 -0M34.5 12.2l1.6 0.1M36.1 42.2l1.2 0.3M45.7 25.3l1.4 -0.2M34.9 42.5l1.7 0.5M36.1 17.4l1.6 0.1M24.6 15.3l1.1 0.3" stroke="#5a4a30" stroke-width=".4" opacity=".45" fill="none"/>
+<path d="M40 30l5 .3M38 33l7 .2" stroke="#5a4a30" stroke-width=".7" opacity=".25"/>
+<rect x="7" y="8" width="42" height="39" rx="1.2" fill="none" stroke="#5a4c34" stroke-width="1" stroke-linejoin="round"/>
+<path d="M7 47L10.2 52.2H52.2V13.2L49 8M49 47L52.2 52.2" fill="none" stroke="#5a4c34" stroke-width="1" stroke-linejoin="round"/>
+</g>
+<!-- the top sheet -->
+<g transform="translate(0.5 0.5) rotate(-2.6 28 28)">
+<path d="M7 47L49 47L50.1 48.7L8.1 48.7Z" fill="#efe4c8"/><path d="M8.1 48.7L50.1 48.7L51.1 50.5L9.1 50.5Z" fill="#9a8966"/><path d="M9.1 50.5L51.1 50.5L52.2 52.2L10.2 52.2Z" fill="#dccfae"/><path d="M49 8L50.1 9.7L50.1 48.7L49 47Z" fill="#efe4c8"/><path d="M50.1 9.7L51.1 11.5L51.1 50.5L50.1 48.7Z" fill="#9a8966"/><path d="M51.1 11.5L52.2 13.2L52.2 52.2L51.1 50.5Z" fill="#dccfae"/><path d="M7 47L49 47L52.2 52.2L10.2 52.2Z" fill="#2a2010" opacity=".14"/><path d="M49 8L52.2 13.2L52.2 52.2L49 47Z" fill="#2a2010" opacity=".3"/><path d="M8.1 48.7H50.1L50.1 9.7M9.1 50.5H51.1L51.1 11.5" fill="none" stroke="#6a5a3c" stroke-width=".45" opacity=".7"/><path d="M10 50l0.5 0.2M13.7 48.5l1 -0.1M18.4 50l1.1 -0.1M23 50l1.2 -0.1M25.4 48.5l0.8 0.2M29.7 50l0.8 0.2M34.3 50l0.7 0.1M38.5 50l0.7 0.2M42.7 50l1.2 0.3M46 48.5l0.6 -0.1" stroke="#f4ead0" stroke-width=".4" opacity=".6" fill="none"/>
+<rect x="7" y="8" width="42" height="39" rx="1.2" fill="url(#pb-t)"/>
+<ellipse cx="40" cy="42.5" rx="8" ry="3.2" fill="#8c7a52" opacity=".13"/>
+<path d="M0 0" fill="none"/>
+<g fill="#5a4a30" opacity=".55"><circle cx="37.1" cy="42.3" r="0.3"/><circle cx="26.7" cy="43" r="0.4"/><circle cx="29.7" cy="30.1" r="0.3"/><circle cx="17.2" cy="19.8" r="0.5"/><circle cx="32.5" cy="14.4" r="0.3"/><circle cx="42.1" cy="17.3" r="0.3"/><circle cx="29.5" cy="33.7" r="0.3"/><circle cx="44.8" cy="34.2" r="0.5"/><circle cx="14.5" cy="12.3" r="0.3"/><circle cx="31.9" cy="10.1" r="0.4"/><circle cx="21" cy="26.8" r="0.4"/><circle cx="11.2" cy="44.1" r="0.3"/><circle cx="22.9" cy="30.2" r="0.3"/><circle cx="10.8" cy="16.3" r="0.5"/><circle cx="22.1" cy="22.4" r="0.4"/><circle cx="38.5" cy="13.8" r="0.4"/><circle cx="12.5" cy="21.9" r="0.4"/><circle cx="43.9" cy="21.9" r="0.5"/><circle cx="12" cy="15.2" r="0.4"/><circle cx="46.9" cy="15.7" r="0.3"/></g><path d="M32.7 36l1.6 0.4M43.2 14l1.3 -0.3M38.1 15.6l1.6 -0.4M46.3 40.5l1.1 0.5M43 20.5l1.2 -0.3M21.8 20.8l1.6 -0M37.5 39.6l0.8 0.3M16.5 36.5l1.7 0.4M39.3 40.1l0.8 0.4M29.7 20.9l1.1 -0.3" stroke="#5a4a30" stroke-width=".4" opacity=".5" fill="none"/>
+<g fill="#fff" opacity=".6"><circle cx="30" cy="20" r=".35"/><circle cx="21" cy="30" r=".3"/><circle cx="36" cy="26" r=".3"/></g>
+<path d="M8 17H48M8 22H48M8 27H48M8 32H48M8 37H48" stroke="#8c7a52" stroke-width=".4" stroke-dasharray="1.2 1.6" opacity=".14"/>
+<path d="M8 46V9H48" fill="none" stroke="#fff" stroke-width=".8" opacity=".6"/>
+<path d="M48.2 9V46.2H8" fill="none" stroke="#8c7a52" stroke-width=".6" opacity=".45"/>
+<!-- delaminated corner: the top ply torn off to show the second and third -->
+<path d="M34 8L49 8L49 23.5L47.4 21.4L46.6 18.6L44.4 17.6L43.4 14.8L41 14.2L40 11.4L37.4 10.6L36 9.2Z" fill="#b2a27f"/>
+<path d="M41.4 8L49 8L49 17L47.6 15.2L46.2 12.6L44.2 12L43.4 9.6Z" fill="#8a7a5a"/>
+<path d="M36 9.2L37.4 10.6L40 11.4L41 14.2L43.4 14.8L44.4 17.6L46.6 18.6L47.4 21.4L49 23.5" fill="none" stroke="#fff4dc" stroke-width="1" stroke-linejoin="round"/>
+<path d="M43.4 9.6L44.2 12L46.2 12.6L47.6 15.2L49 17" fill="none" stroke="#d8cba8" stroke-width=".8" stroke-linejoin="round"/>
+<path d="M37.6 12.2l3.6 1.6M41.8 9.6l2.6 2M42.8 16l3 1.2M45.2 19.8l2 .8M39 9.6l1.4 1" stroke="#5a4a30" stroke-width=".4" opacity=".6"/>
+<path d="M36.6 11.4l2.4.8M40.4 15.6l2.4.8M44.6 19.6l1.8.6" stroke="#f4ead0" stroke-width=".5" opacity=".7"/>
+<!-- masking tape across the top left corner -->
+<path d="M4.6 15.4L14 6.2L18.4 9.4L10 18.6Z" fill="#e8d27a" fill-opacity=".9" stroke="#a8903a" stroke-width=".6" stroke-linejoin="round"/>
+<path d="M6 15L14.4 7.2" stroke="#fff6c0" stroke-width=".8" opacity=".7"/>
+<path d="M8.6 14.2l3.4-3.4M10 15.8l2.8-2.8" stroke="#6a5a2a" stroke-width=".6" opacity=".6" stroke-linecap="round"/>
+<!-- a scuffed, crushed corner low on the right -->
+<path d="M44.6 47L49 43.2L49 47Z" fill="#b2a27f"/><path d="M44.6 47L49 43.2" stroke="#fff4dc" stroke-width=".7" opacity=".8"/><path d="M45.6 46L48 44.2" stroke="#5a4a30" stroke-width=".4" opacity=".6"/>
+<!-- the stencil, stamp and tally -->
+<path fill="#6a5a3c" shape-rendering="crispEdges" d="M10.5 38.4h3.3v1.1h-3.3zM12.7 39.5h1.1v4.4h-1.1zM10.5 40.6h2.2v1.1h-2.2zM10.5 42.8h2.2v1.1h-2.2zM14.9 40.6h3.3v1.1h-3.3zM19.3 38.4h3.3v1.1h-3.3zM19.3 39.5h1.1v4.4h-1.1zM21.5 39.5h1.1v2.2h-1.1zM20.4 40.6h1.1v1.1h-1.1zM23.7 38.4h1.1v5.5h-1.1zM24.8 42.8h2.2v1.1h-2.2zM28.1 38.4h1.1v2.2h-1.1zM30.3 38.4h1.1v2.2h-1.1zM29.2 40.6h1.1v3.3h-1.1z"/>
+<circle cx="37.6" cy="30.4" r="5.8" fill="none" stroke="#a24a38" stroke-width="1" opacity=".6"/>
+<circle cx="37.6" cy="30.4" r="4.3" fill="none" stroke="#a24a38" stroke-width=".4" opacity=".5"/>
+<path fill="#a24a38" shape-rendering="crispEdges" d="M34.8 28.2h2.7v0.9h-2.7zM34.8 29.1h0.9v3.6h-0.9zM36.6 29.1h0.9v3.6h-0.9zM35.7 31.8h0.9v0.9h-0.9zM38.4 28.2h0.9v4.5h-0.9zM40.2 28.2h0.9v1.8h-0.9zM39.3 30h0.9v0.9h-0.9zM40.2 30.9h0.9v1.8h-0.9z"/>
+<path d="M12 24V30M14 24V30M16 24V30M18 24V30M10.6 29L19.6 25" stroke="#4a4a50" stroke-width=".7" opacity=".65" stroke-linecap="round"/>
+<rect x="7" y="8" width="42" height="39" rx="1.2" fill="none" stroke="#5a4c34" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M7 47L10.2 52.2H52.2V13.2L49 8M49 47L52.2 52.2" fill="none" stroke="#5a4c34" stroke-width="1.1" stroke-linejoin="round"/>
+</g>
+</svg>

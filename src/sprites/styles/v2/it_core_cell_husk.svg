@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="ch-steel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6ebee"/>
+      <stop offset="0.28" stop-color="#bcc3c9"/>
+      <stop offset="0.68" stop-color="#8a9198"/>
+      <stop offset="1" stop-color="#555b61"/>
+    </linearGradient>
+    <linearGradient id="ch-sleeve" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7aa0d0"/>
+      <stop offset="0.35" stop-color="#4f78aa"/>
+      <stop offset="1" stop-color="#2b4463"/>
+    </linearGradient>
+    <clipPath id="ch-body"><path d="M7 10H24.2Q26.6 10 26.6 12.4V19.6Q26.6 22 24.2 22H7Z"/></clipPath>
+  </defs>
+  <!-- a spent cell lying slanted, open end toward us: burst casing, jelly-roll layers and lithium crust, torn blue sleeve, crimp ring, nub -->
+  <g transform="rotate(-30 16.5 16)">
+    <rect x="5" y="12.6" width="23" height="11.6" rx="4" fill="#0b0810" opacity="0.32"/>
+    <!-- positive nub -->
+    <rect x="25.6" y="13" width="4.2" height="6" rx="1.3" fill="url(#ch-steel)" stroke="#3b4046" stroke-width="0.9"/>
+    <path d="M26.8 14.2H28.8" stroke="#f4f7f8" stroke-width="0.7" opacity="0.85" stroke-linecap="round"/>
+    <!-- casing -->
+    <path d="M7 10H24.2Q26.6 10 26.6 12.4V19.6Q26.6 22 24.2 22H7Z" fill="url(#ch-steel)"/>
+    <g clip-path="url(#ch-body)">
+      <!-- torn blue polymer sleeve -->
+      <path d="M15.4 9.6L17.2 11L15.6 12.8L17.6 14.2L16 16.2L18 17.8L16.2 19.6L17.4 22.4H27V9.6Z" fill="url(#ch-sleeve)"/>
+      <path d="M15.4 9.6L17.2 11L15.6 12.8L17.6 14.2L16 16.2L18 17.8L16.2 19.6L17.4 22.4" fill="none" stroke="#1d2e44" stroke-width="0.7" stroke-linejoin="round"/>
+      <path d="M17.6 10.8H27" stroke="#b4d0f0" stroke-width="0.8" opacity="0.7"/>
+      <path d="M20 9.6H22.2V22.4H20Z" fill="#ebe9e1" opacity="0.88"/>
+      <path d="M22.2 9.6V22.4" stroke="#b9ad94" stroke-width="0.5"/>
+      <g fill="#dfe7ee" opacity="0.8"><rect x="23.4" y="11.2" width="2.8" height="0.9" rx="0.3"/><rect x="23.4" y="20" width="1.8" height="0.9" rx="0.3"/></g>
+    </g>
+    <!-- crimp groove near the nub -->
+    <path d="M24.6 10.2V21.8" stroke="#2c2f33" stroke-width="0.7" opacity="0.6"/>
+    <!-- the split: widest at the open end, tapering to a hairline; lips peeled -->
+    <path d="M8.6 14.2L11 14.7L13.2 14L15.6 14.9L18 14.6L22.4 15.6L18 16.4L15.2 16.2L12.8 17.2L10.4 16.7L8.8 18Z" fill="#241e25" stroke="#2f343a" stroke-width="0.6" stroke-linejoin="round"/>
+    <path d="M8.6 14L11 14.5L13.2 13.8L15.6 14.7" fill="none" stroke="#f4f7f8" stroke-width="0.9" opacity="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8.8 18.4L10.4 17.2L12.8 17.7L15.2 16.7" fill="none" stroke="#4a5056" stroke-width="0.8" opacity="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#f1eee4" stroke="#8d8a80" stroke-width="0.35"><circle cx="11.6" cy="16" r="0.9"/><circle cx="14" cy="15.7" r="0.8"/><circle cx="16.4" cy="15.6" r="0.55"/><circle cx="19" cy="15.8" r="0.45"/></g>
+    <!-- rust weep from the burst, a dent, grit -->
+    <path d="M12.6 17.2C12.4 18.4 12.8 19 12.6 20.2" fill="none" stroke="#a4522b" stroke-width="1" stroke-linecap="round" opacity="0.65"/>
+    <ellipse cx="10.8" cy="20.2" rx="1.6" ry="0.9" fill="#6a7077" opacity="0.7"/><path d="M9.4 19.8Q10.8 19 12.2 19.8" fill="none" stroke="#e9eef1" stroke-width="0.5" opacity="0.6"/>
+    <!-- scratches and highlight -->
+    <path d="M12 10.9H16" stroke="#ffffff" stroke-width="0.9" opacity="0.75" stroke-linecap="round"/>
+    <path d="M7 10H24.2Q26.6 10 26.6 12.4V19.6Q26.6 22 24.2 22H7" fill="none" stroke="#2f343a" stroke-width="1.1" stroke-linejoin="round"/>
+    <!-- the open end: casing rim, then the rolled layers and crust -->
+    <ellipse cx="7" cy="16" rx="3.4" ry="6.1" fill="url(#ch-steel)" stroke="#2f343a" stroke-width="1.1"/>
+    <ellipse cx="7" cy="16" rx="2.7" ry="5.3" fill="#241e25"/>
+    <g fill="none" stroke-linecap="round">
+      <ellipse cx="7" cy="16" rx="2.3" ry="4.7" stroke="#c1763f" stroke-width="0.9"/>
+      <ellipse cx="7" cy="16" rx="1.8" ry="3.8" stroke="#d6dde2" stroke-width="0.8"/>
+      <ellipse cx="7" cy="16" rx="1.3" ry="2.8" stroke="#c1763f" stroke-width="0.8"/>
+      <ellipse cx="7" cy="16" rx="0.8" ry="1.8" stroke="#d6dde2" stroke-width="0.7"/>
+    </g>
+    <path d="M7 12.4Q9.2 14.4 9 16.6" fill="none" stroke="#241e25" stroke-width="0.7" stroke-linecap="round"/>
+    <g fill="#f1eee4" stroke="#8d8a80" stroke-width="0.35"><circle cx="6.8" cy="16.2" r="0.9"/><circle cx="6.6" cy="19.6" r="0.7"/><circle cx="8.2" cy="20.4" r="0.55"/><circle cx="5.9" cy="12.6" r="0.5"/></g>
+    <path d="M5 12.2Q5.6 10.8 7 10.4" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.85" stroke-linecap="round"/>
+  </g>
+  <!-- crumbs of lithium on the floor -->
+  <g fill="#ecebe2" opacity="0.9"><circle cx="5.6" cy="28.4" r="0.6"/><circle cx="3.2" cy="26.8" r="0.45"/><circle cx="8.2" cy="29.2" r="0.4"/></g>
+</svg>

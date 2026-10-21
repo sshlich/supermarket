@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+<defs>
+<linearGradient id="pl-sa" gradientUnits="userSpaceOnUse" x1="6" y1="4" x2="27" y2="40"><stop offset="0" stop-color="#d4d8db"/><stop offset="0.5" stop-color="#a1a6ab"/><stop offset="1" stop-color="#6f7479"/></linearGradient>
+<linearGradient id="pl-sb" gradientUnits="userSpaceOnUse" x1="10" y1="4" x2="30" y2="40"><stop offset="0" stop-color="#b9bec2"/><stop offset="0.5" stop-color="#8d9297"/><stop offset="1" stop-color="#5a5f63"/></linearGradient>
+<linearGradient id="pl-ga" gradientUnits="userSpaceOnUse" x1="17" y1="0" x2="29" y2="0"><stop offset="0" stop-color="#6f96cc"/><stop offset="0.45" stop-color="#4a78b8"/><stop offset="1" stop-color="#2c4d80"/></linearGradient>
+<linearGradient id="pl-gb" gradientUnits="userSpaceOnUse" x1="3" y1="0" x2="15" y2="0"><stop offset="0" stop-color="#86abd9"/><stop offset="0.45" stop-color="#5683c0"/><stop offset="1" stop-color="#355c92"/></linearGradient>
+<radialGradient id="pl-piv" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#e8ebed"/><stop offset="0.6" stop-color="#9aa0a5"/><stop offset="1" stop-color="#5f6468"/></radialGradient>
+</defs>
+<!-- combination pliers lying open: two crossed steel halves meeting at a chunky riveted pivot box, serrated flat jaws with a
+wire-cutter notch, blue polymer grips with finger grooves at the ends, worn smooth and bright where the palm sits -->
+<g fill="#0e0b13" opacity="0.25" transform="translate(1.8 2)"><path d="M8 4.6L13.8 4.6L16 15L18.2 4.6L24 4.6L23 20L18.6 30L21.4 40L10.6 40L13.4 30L9 20Z"/><path d="M17.3 40L17.3 42.4L18 48L18.9 55L19.8 60.4L20.9 62L28.3 62L29 60.4L27.9 55L26 48L24.1 42.4L22.9 40Z"/><path d="M14.7 40L14.7 42.4L14 48L13.1 55L12.2 60.4L11.1 62L3.7 62L3 60.4L4.1 55L6 48L7.9 42.4L9.1 40Z"/></g>
+<g stroke-linejoin="round">
+<path d="M8.3 5L7.8 6L8.3 14L9.6 19L10.2 23L11.1 26.5L13.1 30L15.3 34L17.3 41L17.9 44L23.7 44L23.1 41L21.9 34L21.7 30L20.9 26.5L19 23L16.6 19L15.5 14L14.4 6L13.7 5Z" fill="url(#pl-sa)" stroke="#2f3236" stroke-width="0.9"/>
+<path d="M17.3 40L17.3 42.4L18 48L18.9 55L19.8 60.4L20.9 62L28.3 62L29 60.4L27.9 55L26 48L24.1 42.4L22.9 40Z" fill="url(#pl-ga)" stroke="#223d63" stroke-width="0.9"/>
+<path d="M23.7 5L24.2 6L23.7 14L22.4 19L21.8 23L20.9 26.5L18.9 30L16.7 34L14.7 41L14.1 44L8.3 44L8.9 41L10.1 34L10.3 30L11.1 26.5L13 23L15.4 19L16.5 14L17.6 6L18.3 5Z" fill="url(#pl-sb)" stroke="#2f3236" stroke-width="0.9"/>
+<path d="M14.7 40L14.7 42.4L14 48L13.1 55L12.2 60.4L11.1 62L3.7 62L3 60.4L4.1 55L6 48L7.9 42.4L9.1 40Z" fill="url(#pl-gb)" stroke="#223d63" stroke-width="0.9"/>
+</g>
+<path d="M14.3 6.8L12.2 7.9M14.4 8.1L12.3 9.2M14.5 9.4L12.4 10.5M14.7 10.7L12.6 11.8M14.8 12L12.7 13.1M14.9 13.3L12.8 14.4M17.7 6.8L19.8 7.9M17.6 8.1L19.7 9.2M17.5 9.4L19.6 10.5M17.3 10.7L19.4 11.8M17.2 12L19.3 13.1M17.1 13.3L19.2 14.4" fill="none" stroke="#3f4448" stroke-width="0.5" opacity="0.65"/>
+<path d="M7.8 6L8.3 14L9.6 19L10.2 23" fill="none" stroke="#f2f4f5" stroke-width="0.8" opacity="0.85" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.2 6L23.7 14L22.4 19L21.8 23" fill="none" stroke="#dfe2e4" stroke-width="0.7" opacity="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.8 6.2L12.6 6.2M19.4 6.2L21.2 6.2" stroke="#ffffff" stroke-width="0.5" opacity="0.7"/>
+<ellipse cx="16" cy="19.2" rx="1.2" ry="1.8" fill="#26282b"/>
+<circle cx="16" cy="26.5" r="4.1" fill="url(#pl-piv)" stroke="#2a2d30" stroke-width="0.9"/>
+<circle cx="16" cy="26.5" r="2.1" fill="#7b8085" stroke="#3a3e42" stroke-width="0.5"/>
+<path d="M14.7 27.4L17.3 25.6" stroke="#2a2d30" stroke-width="0.7"/>
+<path d="M12.7 24.6Q14 22.8 16 22.7" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.85" stroke-linecap="round"/>
+<path d="M19.3 52.2Q22.8 53.3 26.3 52.4M19.8 55.4Q23.5 56.5 27.2 55.6M20.2 58.6Q24.1 59.7 28.1 58.8M12.7 52.2Q9.2 53.3 5.7 52.4M12.2 55.4Q8.5 56.5 4.8 55.6M11.8 58.6Q7.9 59.7 3.9 58.8" fill="none" stroke="#223d63" stroke-width="0.7" opacity="0.65"/>
+<path d="M19.3 53Q22.8 54.1 26.3 53.2M19.8 56.2Q23.5 57.3 27.2 56.4M20.2 59.4Q24.1 60.5 28.1 59.6M12.7 53Q9.2 54.1 5.7 53.2M12.2 56.2Q8.5 57.3 4.8 56.4M11.8 59.4Q7.9 60.5 3.9 59.6" fill="none" stroke="#9fbfe6" stroke-width="0.5" opacity="0.5"/>
+<path d="M10.6 43.6C9.8 46 9.8 48.6 10.4 50.4M22 41.8C22.8 44 23 46 22.6 48" fill="none" stroke="#b8d0ea" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+<g fill="#2a2d30" opacity="0.5"><rect x="19" y="32" width="0.8" height="2.6"/><rect x="20.4" y="32" width="0.8" height="2.6"/><rect x="19.6" y="33" width="1.2" height="0.7"/></g>
+<g fill="#a4522b" opacity="0.7"><circle cx="9.6" cy="15" r="0.5"/><circle cx="21.8" cy="12.4" r="0.35"/></g>
+</svg>

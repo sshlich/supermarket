@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<defs>
+<linearGradient id="ls-face" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5f8fa"/><stop offset="0.5" stop-color="#dfe5e9"/><stop offset="1" stop-color="#b7c1c8"/></linearGradient>
+<linearGradient id="ls-front" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#aab4bc"/><stop offset="1" stop-color="#6f7a83"/></linearGradient>
+<linearGradient id="ls-side" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8d98a1"/><stop offset="1" stop-color="#5b656d"/></linearGradient>
+<linearGradient id="ls-bend" gradientUnits="userSpaceOnUse" x1="59.8" y1="43.6" x2="46.4" y2="58"><stop offset="0" stop-color="#8d98a1"/><stop offset="0.5" stop-color="#b4bdc4"/><stop offset="1" stop-color="#6f7a83"/></linearGradient>
+<linearGradient id="ls-under" gradientUnits="userSpaceOnUse" x1="47" y1="43.6" x2="54.6" y2="51.6"><stop offset="0" stop-color="#e6ecef"/><stop offset="0.5" stop-color="#c9d2d8"/><stop offset="1" stop-color="#9aa6b0"/></linearGradient>
+<linearGradient id="ls-sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset="0.5" stop-color="#ffffff" stop-opacity="0.6"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+<linearGradient id="ls-dent" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6b7882" stop-opacity="0.55"/><stop offset="0.55" stop-color="#d8dfe4" stop-opacity="0"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.8"/></linearGradient>
+<clipPath id="ls-clip"><path d="M3.8 6.2L50 4.8L57.4 11.8L57.4 43.6L46.4 54.8L3.8 54.8L3.1 30.4Z"/></clipPath>
+</defs>
+<!-- a pale light-metal sheet lying on the bench: a brushed mill-finish face (short broken grain, soft sheen bands) lit from the
+top left, a thick cut edge along the front and right, a shears-snipped corner, a wavy hand-cut left edge, a small bottom-right
+corner folded back flat with a crisp crease, a pale underside and a thick bent edge, a stencilled batch mark, a dent and scratches -->
+<path d="M3.8 6.2L50 4.8L57.4 11.8L57.4 43.6L46.4 54.8L3.8 54.8L3.1 30.4Z" fill="#0e0b13" opacity="0.14" transform="translate(2 3.4)"/>
+<path d="M3.8 6.2L50 4.8L57.4 11.8L57.4 43.6L46.4 54.8L3.8 54.8L3.1 30.4Z" fill="#0e0b13" opacity="0.14" transform="translate(3.4 5.6)"/>
+<path d="M3.8 54.8L46.4 54.8L46.4 58.4L3.8 58.4Z" fill="url(#ls-front)"/>
+<path d="M57.4 11.8L60.2 14.6L60.2 43.6L57.4 43.6Z" fill="url(#ls-side)"/>
+<path d="M57.4 43.6L60.2 43.6L46.4 58.4L46.4 54.8Z" fill="url(#ls-bend)"/>
+<path d="M3.8 56.9L46.4 56.9" stroke="#59636b" stroke-width="0.4" opacity="0.5"/>
+<path d="M3.8 6.2L50 4.8L57.4 11.8L57.4 43.6L46.4 54.8L3.8 54.8L3.1 30.4Z" fill="url(#ls-face)"/>
+<g clip-path="url(#ls-clip)">
+<path d="M13.2 8.3H25.2M6.4 13.7H25.3M9.1 16H27.8M36.9 16H54M7.7 18.5H28.4M11.3 23.6H21.1M27.3 23.6H44.2M9.1 28.5H23.8M13.1 30.8H34.1M9.2 33.8H27.8M39.3 33.8H53.9M12.8 38.5H33.2M5.4 43.4H22.7M4.1 45.9H14.2" stroke="#ffffff" stroke-width="0.4" opacity="0.6" fill="none" stroke-linecap="round"/>
+<path d="M7.3 9.7H26.9M35.2 9.7H53.8M10.8 14.8H32.8M7 19.6H20.1M5.9 24.8H15.7M22.6 24.8H36.4M8.2 29.6H24.7M9.9 35H23.5M5.5 39.6H28.5M12.8 44.7H34.2" stroke="#8794a0" stroke-width="0.4" opacity="0.32" fill="none" stroke-linecap="round"/>
+<path d="M30 2L44 2L18 58L4 58Z" fill="url(#ls-sheen)" opacity="0.8"/>
+<path d="M45 2L49 2L23 58L19 58Z" fill="url(#ls-sheen)" opacity="0.5"/>
+<ellipse cx="36" cy="30.6" rx="4.6" ry="3.4" fill="url(#ls-dent)"/>
+<path d="M13 42.6L28.6 34.4" stroke="#6f7a83" stroke-width="0.5" opacity="0.7"/>
+<path d="M13.4 43.4L29 35.2" stroke="#ffffff" stroke-width="0.4" opacity="0.7"/>
+<path d="M44 24.4L51.4 30" stroke="#6f7a83" stroke-width="0.45" opacity="0.6"/>
+<path d="M44.4 25.2L51.8 30.8" stroke="#ffffff" stroke-width="0.35" opacity="0.7"/>
+<path d="M24.4 26.6L26.4 28" stroke="#6f7a83" stroke-width="0.4" opacity="0.6"/>
+<path fill="#4f5a63" shape-rendering="crispEdges" d="M8 47.4h1v1h-1zM8 48.4h1v1h-1zM8 49.4h1v1h-1zM8 50.4h1v1h-1zM8 51.4h1v1h-1zM9 51.4h1v1h-1zM10 51.4h1v1h-1zM12 47.4h1v1h-1zM13 47.4h1v1h-1zM14 47.4h1v1h-1zM12 48.4h1v1h-1zM14 48.4h1v1h-1zM12 49.4h1v1h-1zM13 49.4h1v1h-1zM14 49.4h1v1h-1zM12 50.4h1v1h-1zM14 50.4h1v1h-1zM12 51.4h1v1h-1zM14 51.4h1v1h-1zM16 49.4h1v1h-1zM17 49.4h1v1h-1zM18 49.4h1v1h-1zM20 47.4h1v1h-1zM21 47.4h1v1h-1zM22 47.4h1v1h-1zM20 48.4h1v1h-1zM20 49.4h1v1h-1zM21 49.4h1v1h-1zM22 49.4h1v1h-1zM20 50.4h1v1h-1zM22 50.4h1v1h-1zM20 51.4h1v1h-1zM21 51.4h1v1h-1zM22 51.4h1v1h-1z"/>
+<g fill="#8794a0" opacity="0.6"><circle cx="30" cy="12" r="0.5"/><circle cx="46" cy="38" r="0.45"/><circle cx="12" cy="30" r="0.4"/><circle cx="52" cy="22" r="0.45"/><circle cx="35" cy="50" r="0.4"/><circle cx="28.4" cy="44" r="0.35"/></g>
+</g>
+<path d="M3.8 54.8L3.1 30.4L3.8 6.2L50 4.8" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.9" stroke-linejoin="round"/>
+<path d="M50 4.8L57.4 11.8L57.4 43.6" fill="none" stroke="#e6ebee" stroke-width="0.6" opacity="0.6"/>
+<path d="M46.4 54.8L3.8 54.8" fill="none" stroke="#6f7a83" stroke-width="0.6" opacity="0.7"/>
+<path d="M57.4 43.2Q52.4 41.6 47.4 42.4L45.6 43.8Q45.5 49 45.8 55.4L46.4 54.8L57 44.4Z" fill="#0e0b13" opacity="0.15"/>
+<path d="M57.4 43.6Q52.4 42.2 47.8 42.9L46 44.2L46.4 54.8Z" fill="url(#ls-under)" stroke="#59636b" stroke-width="0.9" stroke-linejoin="round"/>
+<path d="M56.2 44.5Q52 43.5 48.2 44" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.8" stroke-linecap="round"/>
+<path d="M47.2 45.4Q47.3 49.6 47.7 53" fill="none" stroke="#f1f5f7" stroke-width="0.5" opacity="0.6" stroke-linecap="round"/>
+<path d="M57.4 43.6L46.4 54.8" fill="none" stroke="#59636b" stroke-width="1" stroke-linecap="round"/>
+<path d="M56.6 44.2L47.2 53.8" fill="none" stroke="#ffffff" stroke-width="0.4" opacity="0.5" stroke-linecap="round"/>
+<path d="M57.4 43.6L60.2 43.6" fill="none" stroke="#59636b" stroke-width="0.5" opacity="0.7"/>
+<path d="M3.1 30.4L3.8 6.2L50 4.8L57.4 11.8L60.2 14.6L60.2 43.6L46.4 58.4L3.8 58.4L3.8 54.8Z" fill="none" stroke="#59636b" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M57.4 11.8L57.4 43.6" fill="none" stroke="#59636b" stroke-width="0.7" opacity="0.8"/>
+<path d="M46.4 54.8L3.8 54.8" fill="none" stroke="#59636b" stroke-width="0.6" opacity="0.7"/>
+</svg>
