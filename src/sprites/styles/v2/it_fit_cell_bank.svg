@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+<defs>
+<linearGradient id="cb-up" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c9cdd0"/><stop offset="0.35" stop-color="#9aa0a5"/><stop offset="1" stop-color="#686e73"/></linearGradient>
+<linearGradient id="cb-beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c3c8cc"/><stop offset="0.4" stop-color="#8d9297"/><stop offset="1" stop-color="#5f6468"/></linearGradient>
+<linearGradient id="cb-top" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3e7ea"/><stop offset="1" stop-color="#9aa0a5"/></linearGradient>
+<linearGradient id="cb-back" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#46505a"/><stop offset="1" stop-color="#2a3037"/></linearGradient>
+<linearGradient id="cb-can" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2e6ea"/><stop offset="0.3" stop-color="#a9b2bd"/><stop offset="0.7" stop-color="#7a8593"/><stop offset="1" stop-color="#4e5864"/></linearGradient>
+<linearGradient id="cb-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7ea3cf"/><stop offset="0.4" stop-color="#4f6e94"/><stop offset="1" stop-color="#2f4766"/></linearGradient>
+<linearGradient id="cb-saddle" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b0b6bb"/><stop offset="0.45" stop-color="#7b8187"/><stop offset="1" stop-color="#555a5f"/></linearGradient>
+<linearGradient id="cb-cu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6a46a"/><stop offset="0.5" stop-color="#c1763f"/><stop offset="1" stop-color="#8a4a22"/></linearGradient>
+<radialGradient id="cb-lamp" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#e8ffe9"/><stop offset="0.5" stop-color="#6fd08c"/><stop offset="1" stop-color="#2f7a48"/></radialGradient>
+<clipPath id="cb-hz"><rect x="64" y="54.6" width="22" height="3.8" rx="1"/></clipPath>
+</defs>
+<!-- a cell bank, raised front view: an angle-iron rack with a lamp, vents, copper bus bar and breaker along the head, a shelf
+     between two tiers, and six cradles with gold contacts and a status lamp each; five hold fat ribbed steel cells (blue charge
+     band, gauge window: full, charging, full, low, charging), one cradle stands empty with an OUT tag; stencilled base, rust -->
+<ellipse cx="48" cy="61.8" rx="43" ry="1.9" fill="#0e0b13" opacity="0.4"/>
+<g fill="#4a4f54" stroke="#2a2d30" stroke-width="0.8" stroke-linejoin="round"><rect x="6" y="57.4" width="10" height="4.4" rx="1"/><rect x="80" y="57.4" width="10" height="4.4" rx="1"/></g>
+<rect x="10" y="11" width="76" height="44" fill="url(#cb-back)"/>
+<path d="M10 11.6h24v19.4h-24zM36 11.6h24v19.4h-24zM62 11.6h24v19.4h-24zM10 34.6h24v19.4h-24zM36 34.6h24v19.4h-24zM62 34.6h24v19.4h-24z" fill="#222830" stroke="#566370" stroke-width="0.6"/>
+<path d="M10 11.6H86M10 34.4H86" stroke="#0e0b13" stroke-width="1.4" opacity="0.4"/>
+<path d="M74 11.6V17" stroke="#d6cdb8" stroke-width="0.5"/>
+<g transform="rotate(-4 74 21)"><rect x="67.6" y="16.4" width="12.8" height="8" rx="0.8" fill="#ece6d8" stroke="#b9ad94" stroke-width="0.5"/><circle cx="74" cy="17.6" r="0.6" fill="#b9ad94"/><path fill="#a23a2c" shape-rendering="crispEdges" d="M68.8 19.4h3v1h-3zM68.8 20.4h1v1h-1zM70.8 20.4h1v1h-1zM68.8 21.4h1v1h-1zM70.8 21.4h1v1h-1zM68.8 22.4h1v1h-1zM70.8 22.4h1v1h-1zM68.8 23.4h3v1h-3zM72.8 19.4h1v1h-1zM74.8 19.4h1v1h-1zM72.8 20.4h1v1h-1zM74.8 20.4h1v1h-1zM72.8 21.4h1v1h-1zM74.8 21.4h1v1h-1zM72.8 22.4h1v1h-1zM74.8 22.4h1v1h-1zM72.8 23.4h3v1h-3zM76.8 19.4h3v1h-3zM77.8 20.4h1v1h-1zM77.8 21.4h1v1h-1zM77.8 22.4h1v1h-1zM77.8 23.4h1v1h-1z"/></g>
+<!-- the cells, layer by layer -->
+<g fill="#0e0b13" opacity="0.45"><ellipse cx="23.4" cy="27" rx="10.6" ry="2.2"/><ellipse cx="49.4" cy="27" rx="10.6" ry="2.2"/><ellipse cx="23.4" cy="50" rx="10.6" ry="2.2"/><ellipse cx="49.4" cy="50" rx="10.6" ry="2.2"/><ellipse cx="75.4" cy="50" rx="10.6" ry="2.2"/></g>
+<g fill="#d8dde2" stroke="#5a6470" stroke-width="0.6"><rect x="10.6" y="18.2" width="2.6" height="4.6" rx="1"/><rect x="36.6" y="18.2" width="2.6" height="4.6" rx="1"/><rect x="10.6" y="41.2" width="2.6" height="4.6" rx="1"/><rect x="36.6" y="41.2" width="2.6" height="4.6" rx="1"/><rect x="62.6" y="41.2" width="2.6" height="4.6" rx="1"/></g>
+<g fill="url(#cb-can)" stroke="#3e4852" stroke-width="0.9"><rect x="12.8" y="13.6" width="19.8" height="13.4" rx="4"/><rect x="38.8" y="13.6" width="19.8" height="13.4" rx="4"/><rect x="12.8" y="36.6" width="19.8" height="13.4" rx="4"/><rect x="38.8" y="36.6" width="19.8" height="13.4" rx="4"/><rect x="64.8" y="36.6" width="19.8" height="13.4" rx="4"/></g>
+<path d="M16 14.6v11.4M29.8 14.6v11.4M42 14.6v11.4M55.8 14.6v11.4M16 37.6v11.4M29.8 37.6v11.4M42 37.6v11.4M55.8 37.6v11.4M68 37.6v11.4M81.8 37.6v11.4" stroke="#4e5864" stroke-width="0.7"/>
+<g fill="url(#cb-band)"><rect x="16.2" y="14.9" width="13.4" height="10.8"/><rect x="42.2" y="14.9" width="13.4" height="10.8"/><rect x="16.2" y="37.9" width="13.4" height="10.8"/><rect x="42.2" y="37.9" width="13.4" height="10.8"/><rect x="68.2" y="37.9" width="13.4" height="10.8"/></g>
+<g fill="#1d2833" stroke="#0f161d" stroke-width="0.4"><rect x="17.5" y="17.8" width="10.8" height="5.4" rx="0.8"/><rect x="43.5" y="17.8" width="10.8" height="5.4" rx="0.8"/><rect x="17.5" y="40.8" width="10.8" height="5.4" rx="0.8"/><rect x="43.5" y="40.8" width="10.8" height="5.4" rx="0.8"/><rect x="69.5" y="40.8" width="10.8" height="5.4" rx="0.8"/></g>
+<path d="M18.3 18.8h2.7v3.4h-2.7zM21.8 18.8h2.7v3.4h-2.7zM25.3 18.8h2.7v3.4h-2.7zM18.3 41.8h2.7v3.4h-2.7zM21.8 41.8h2.7v3.4h-2.7zM25.3 41.8h2.7v3.4h-2.7z" fill="#8fc27a"/><path d="M44.3 18.8h2.7v3.4h-2.7zM47.8 18.8h2.7v3.4h-2.7zM70.3 41.8h2.7v3.4h-2.7zM73.8 41.8h2.7v3.4h-2.7z" fill="#d8b84a"/><path d="M44.3 41.8h2.7v3.4h-2.7z" fill="#e2503f"/><path d="M51.3 18.8h2.7v3.4h-2.7zM47.8 41.8h2.7v3.4h-2.7zM51.3 41.8h2.7v3.4h-2.7zM77.3 41.8h2.7v3.4h-2.7z" fill="#34414f"/>
+<path d="M15.6 15.1h13.8M41.6 15.1h13.8M15.6 38.1h13.8M41.6 38.1h13.8M67.6 38.1h13.8" stroke="#fff" stroke-width="0.7" opacity="0.75" stroke-linecap="round" fill="none"/>
+<path d="M28.9 13.8L32.1 13.4L32.4 26.6L29.2 27Z" fill="#e6dcae" stroke="#a99555" stroke-width="0.4" stroke-linejoin="round"/>
+<path d="M29.4 14.4L29.6 26.2" stroke="#fff" stroke-width="0.4" opacity="0.7"/>
+<path d="M62.3 33V37.6" stroke="none"/>
+<!-- cradles: saddles, slots, contacts, lamps -->
+<path d="M10 31.4V27.8Q10 26 11.8 26H32.2Q34 26 34 27.8V31.4ZM36 31.4V27.8Q36 26 37.8 26H58.2Q60 26 60 27.8V31.4ZM62 31.4V27.8Q62 26 63.8 26H84.2Q86 26 86 27.8V31.4Z" fill="url(#cb-saddle)"/><path d="M10 54.4V50.8Q10 49 11.8 49H32.2Q34 49 34 50.8V54.4ZM36 54.4V50.8Q36 49 37.8 49H58.2Q60 49 60 50.8V54.4ZM62 54.4V50.8Q62 49 63.8 49H84.2Q86 49 86 50.8V54.4Z" fill="url(#cb-saddle)"/>
+<g fill="none" stroke="#2a2d30" stroke-width="0.9" stroke-linejoin="round"><path d="M10 31.4V27.8Q10 26 11.8 26H32.2Q34 26 34 27.8V31.4ZM36 31.4V27.8Q36 26 37.8 26H58.2Q60 26 60 27.8V31.4ZM62 31.4V27.8Q62 26 63.8 26H84.2Q86 26 86 27.8V31.4Z"/><path d="M10 54.4V50.8Q10 49 11.8 49H32.2Q34 49 34 50.8V54.4ZM36 54.4V50.8Q36 49 37.8 49H58.2Q60 49 60 50.8V54.4ZM62 54.4V50.8Q62 49 63.8 49H84.2Q86 49 86 50.8V54.4Z"/></g>
+<path d="M11 26.9h22M37 26.9h22M63 26.9h22M11 49.9h22M37 49.9h22M63 49.9h22" stroke="#e8ecee" stroke-width="0.6" opacity="0.7" stroke-linecap="round"/>
+<path d="M12.6 28.4h5v2.4h-5zM26.4 28.4h5v2.4h-5zM38.6 28.4h5v2.4h-5zM52.4 28.4h5v2.4h-5zM64.6 28.4h5v2.4h-5zM78.4 28.4h5v2.4h-5zM12.6 51.4h5v2.4h-5zM26.4 51.4h5v2.4h-5zM38.6 51.4h5v2.4h-5zM52.4 51.4h5v2.4h-5zM64.6 51.4h5v2.4h-5zM78.4 51.4h5v2.4h-5z" fill="#2a2d30" opacity="0.8"/>
+<g opacity="0.3"><circle cx="22" cy="29.3" r="3.4" fill="#6fd08c"/><circle cx="48" cy="29.3" r="3.4" fill="#f0a93a"/><circle cx="22" cy="52.3" r="3.4" fill="#6fd08c"/><circle cx="48" cy="52.3" r="3.4" fill="#e2503f"/><circle cx="74" cy="52.3" r="3.4" fill="#f0a93a"/></g>
+<circle cx="22" cy="29.3" r="1.9" fill="#2a2d30"/><circle cx="22" cy="29.3" r="1.3" fill="#6fd08c"/><circle cx="48" cy="29.3" r="1.9" fill="#2a2d30"/><circle cx="48" cy="29.3" r="1.3" fill="#f0a93a"/><circle cx="74" cy="29.3" r="1.9" fill="#2a2d30"/><circle cx="74" cy="29.3" r="1.3" fill="#4a525a"/><circle cx="22" cy="52.3" r="1.9" fill="#2a2d30"/><circle cx="22" cy="52.3" r="1.3" fill="#6fd08c"/><circle cx="48" cy="52.3" r="1.9" fill="#2a2d30"/><circle cx="48" cy="52.3" r="1.3" fill="#e2503f"/><circle cx="74" cy="52.3" r="1.9" fill="#2a2d30"/><circle cx="74" cy="52.3" r="1.3" fill="#f0a93a"/>
+<path d="M21.6 28.9h0.1M47.6 28.9h0.1M21.6 51.9h0.1M47.6 51.9h0.1M73.6 51.9h0.1" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.9"/>
+<!-- shelf between the tiers -->
+<rect x="10" y="30.8" width="76" height="3.6" fill="url(#cb-beam)" stroke="#2a2d30" stroke-width="0.9"/>
+<path d="M10.6 31.7H85.4" stroke="#fff" stroke-width="0.6" opacity="0.6"/>
+<path d="M24 32.2h8v1h-8zM64 32.2h8v1h-8z" fill="#2a2d30" opacity="0.75"/>
+<!-- uprights -->
+<g stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"><rect x="3" y="4" width="7.4" height="54" rx="1.4" fill="url(#cb-up)"/><rect x="85.6" y="4" width="7.4" height="54" rx="1.4" fill="url(#cb-up)"/></g>
+<path d="M4.4 6V56" stroke="#fff" stroke-width="0.8" opacity="0.6" stroke-linecap="round"/>
+<path d="M91.6 6V56" stroke="#2a2d30" stroke-width="0.6" opacity="0.5"/>
+<path d="M5.6 15h2.4v3.6h-2.4zM5.6 22h2.4v3.6h-2.4zM5.6 40h2.4v3.6h-2.4zM5.6 47h2.4v3.6h-2.4zM88 15h2.4v3.6h-2.4zM88 22h2.4v3.6h-2.4zM88 40h2.4v3.6h-2.4zM88 47h2.4v3.6h-2.4z" fill="#2a2d30" opacity="0.85"/>
+<path d="M5.6 18.6h2.4v.5h-2.4zM5.6 25.6h2.4v.5h-2.4zM5.6 43.6h2.4v.5h-2.4zM5.6 50.6h2.4v.5h-2.4z" fill="#c9cdd0" opacity="0.7"/>
+<g stroke="#4a4f54" stroke-width="0.5"><circle cx="6.7" cy="30" r="1.1" fill="#d8dde0"/><circle cx="89.3" cy="30" r="1.1" fill="#9aa0a5"/><circle cx="6.7" cy="35" r="1.1" fill="#d8dde0"/><circle cx="89.3" cy="35" r="1.1" fill="#9aa0a5"/></g>
+<!-- head beam -->
+<path d="M5 4.6L7.4 2.2H88.6L91 4.6Z" fill="url(#cb-top)" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+<path d="M8.5 3.4H87" stroke="#fff" stroke-width="0.7" opacity="0.8" stroke-linecap="round"/>
+<rect x="3" y="4.4" width="90" height="7.4" rx="1.6" fill="url(#cb-beam)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M4.4 5.4H91.6" stroke="#fff" stroke-width="0.7" opacity="0.65" stroke-linecap="round"/>
+<circle cx="15" cy="7.6" r="3" fill="#6fd08c" opacity="0.25"/><circle cx="15" cy="7.6" r="2.3" fill="#2a2d30"/><circle cx="15" cy="7.6" r="1.6" fill="url(#cb-lamp)"/>
+<path d="M22 6h1v3h-1zM24 6h1v3h-1zM26 6h1v3h-1zM28 6h1v3h-1zM30 6h1v3h-1zM60 6h1v3h-1zM62 6h1v3h-1zM64 6h1v3h-1zM66 6h1v3h-1zM68 6h1v3h-1z" fill="#2a2d30" opacity="0.8"/>
+<path d="M37.6 5.6L55.8 5.4L56 9.6L37.8 9.8Z" fill="#ece6d8" stroke="#b9ad94" stroke-width="0.5" stroke-linejoin="round"/>
+<path fill="#3a4350" shape-rendering="crispEdges" d="M38.4 6.4h1.5v0.5h-1.5zM38.4 6.9h0.5v0.5h-0.5zM38.4 7.4h0.5v0.5h-0.5zM38.4 7.9h0.5v0.5h-0.5zM38.4 8.4h1.5v0.5h-1.5zM40.4 6.4h1.5v0.5h-1.5zM40.4 6.9h0.5v0.5h-0.5zM40.4 7.4h1v0.5h-1zM40.4 7.9h0.5v0.5h-0.5zM40.4 8.4h1.5v0.5h-1.5zM42.4 6.4h0.5v0.5h-0.5zM42.4 6.9h0.5v0.5h-0.5zM42.4 7.4h0.5v0.5h-0.5zM42.4 7.9h0.5v0.5h-0.5zM42.4 8.4h1.5v0.5h-1.5zM44.4 6.4h0.5v0.5h-0.5zM44.4 6.9h0.5v0.5h-0.5zM44.4 7.4h0.5v0.5h-0.5zM44.4 7.9h0.5v0.5h-0.5zM44.4 8.4h1.5v0.5h-1.5zM46.4 6.4h1.5v0.5h-1.5zM46.4 6.9h0.5v0.5h-0.5zM46.4 7.4h1.5v0.5h-1.5zM47.4 7.9h0.5v0.5h-0.5zM46.4 8.4h1.5v0.5h-1.5z"/>
+<rect x="74" y="6" width="7" height="3.6" rx="1.2" fill="#2a2d30"/><rect x="74.8" y="6.6" width="3" height="2.4" rx="0.8" fill="#d6483c"/><rect x="77.6" y="6.6" width="2.8" height="2.4" rx="0.8" fill="#7a8088"/>
+<rect x="11" y="10.2" width="74" height="1.4" rx="0.6" fill="url(#cb-cu)" stroke="#4a2410" stroke-width="0.4"/>
+<!-- base rail -->
+<rect x="3" y="54" width="90" height="4.6" rx="1.4" fill="url(#cb-beam)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M4.4 54.9H91.6" stroke="#fff" stroke-width="0.6" opacity="0.6"/>
+<path fill="#2a2d30" shape-rendering="crispEdges" d="M13 55.2h1.8v0.6h-1.8zM13 55.8h0.6v0.6h-0.6zM13 56.4h0.6v0.6h-0.6zM13 57h0.6v0.6h-0.6zM13 57.6h1.8v0.6h-1.8zM15.4 55.2h1.2v0.6h-1.2zM15.4 55.8h0.6v0.6h-0.6zM16.6 55.8h0.6v0.6h-0.6zM15.4 56.4h1.2v0.6h-1.2zM15.4 57h0.6v0.6h-0.6zM16.6 57h0.6v0.6h-0.6zM15.4 57.6h1.2v0.6h-1.2zM17.8 56.4h1.8v0.6h-1.8zM20.2 55.2h1.8v0.6h-1.8zM20.2 55.8h0.6v0.6h-0.6zM20.2 56.4h1.8v0.6h-1.8zM20.2 57h0.6v0.6h-0.6zM21.4 57h0.6v0.6h-0.6zM20.2 57.6h1.8v0.6h-1.8z"/>
+<g clip-path="url(#cb-hz)"><rect x="64" y="54.6" width="22" height="3.8" fill="#e0b43a"/><path d="M62 58.4h3l5-4h-3zM68 58.4h3l5-4h-3zM74 58.4h3l5-4h-3zM80 58.4h3l5-4h-3zM86 58.4h3l5-4h-3z" fill="#3a3f44"/></g>
+<path d="M3.4 51L10 51.4L9.6 56.6L3.6 57Z" fill="#a4522b" opacity="0.5"/>
+<path d="M5 53V57.6M7.4 54V57.4" stroke="#7a3d1e" stroke-width="0.5" opacity="0.7"/>
+<path d="M88 22L90 38M42 52.6L50 52.2" stroke="#e8ecee" stroke-width="0.5" opacity="0.5" stroke-linecap="round"/>
+<g fill="#3a3f44" opacity="0.5"><circle cx="30" cy="56.4" r="0.4"/><circle cx="52" cy="56.8" r="0.5"/><circle cx="40" cy="30" r="0.4"/></g>
+</svg>

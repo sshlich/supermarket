@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="ic-top" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#dbe9f0"/>
+      <stop offset="0.55" stop-color="#b4c6d1"/>
+      <stop offset="1" stop-color="#97a8b4"/>
+    </linearGradient>
+    <linearGradient id="ic-left" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#aebdc7"/>
+      <stop offset="1" stop-color="#7d8c98"/>
+    </linearGradient>
+    <linearGradient id="ic-right" x1="0" y1="0" x2="0.6" y2="1">
+      <stop offset="0" stop-color="#6b7b8e"/>
+      <stop offset="1" stop-color="#434f63"/>
+    </linearGradient>
+    <linearGradient id="ic-clear" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2fcfd"/>
+      <stop offset="0.45" stop-color="#a6dbe4"/>
+      <stop offset="1" stop-color="#4f93ad"/>
+    </linearGradient>
+    <linearGradient id="ic-clear2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8fd0de"/>
+      <stop offset="1" stop-color="#2f6f8c"/>
+    </linearGradient>
+    <clipPath id="ic-body"><path d="M6 24L11 15L15 10L24 7L32 5L42 4L50 6.5L55 11L59 18L60 30L60.5 40L57 48L52 55L44 57L36 60L26 59L17 57L9 52L5 46L4 35Z"/></clipPath>
+  </defs>
+  <!-- a hauled block of comet ice: grey dust-crusted faces, a clean fracture window of blue glassy ice with trapped bubbles,
+       two chipped corners, frost on the lit edges, a stencilled haul mark, shards and meltwater at the foot -->
+  <!-- contact shadow, meltwater, spilled shards -->
+  <ellipse cx="34" cy="60.4" rx="22" ry="2.4" fill="#120e18" opacity="0.4"/>
+  <path d="M40 59.6C46 57.8 54 58.6 58.5 60.6C54 62.4 44 62.6 40 59.6Z" fill="#6aa8c8" opacity="0.55"/>
+  <path d="M5 59.6L8 56.4L11 59.2L9 61.4Z" fill="#cfeff3" stroke="#3f7f86" stroke-width="0.7" stroke-linejoin="round"/>
+  <path d="M8 56.4L11 59.2L9 61.4Z" fill="#7fbccd"/>
+  <path d="M12.8 61L14.6 58.8L17 60.8L15 62Z" fill="#bfe3e6" stroke="#3f7f86" stroke-width="0.6" stroke-linejoin="round"/>
+  <g clip-path="url(#ic-body)">
+    <!-- the three faces -->
+    <path d="M0 0H64V64H0Z" fill="url(#ic-left)"/>
+    <path d="M4 24L15 10L32 5L50 6L59 18L38 30L19 27Z" fill="url(#ic-top)"/>
+    <path d="M38 30L59 18L61 40L52 55L36 60Z" fill="url(#ic-right)"/>
+    <!-- dust on the top face: dark drifts and grit -->
+    <g fill="#7c8791" opacity="0.5">
+      <path d="M16 15C20 11.5 26 12.5 28 15.4C25.5 18 20 18.4 16 17Z"/>
+      <path d="M39 9.4C43 8.4 47.6 10.4 47 13.2C44 14.4 39.6 13 39 9.4Z"/>
+      <path d="M29 21.4C33 20 38 21.6 36.4 23.8C33.4 24.6 29.6 24 29 21.4Z"/>
+      <path d="M49 21L54 17.6L55.4 20.4Z"/>
+    </g>
+    <path d="M18 13.6C22 12.2 25 13.4 26.6 14.8" fill="none" stroke="#5a6670" stroke-width="0.7" opacity="0.5" stroke-linecap="round"/>
+    <g fill="#5d6870" opacity="0.7"><circle cx="24" cy="20" r="0.7"/><circle cx="34" cy="13" r="0.6"/><circle cx="44" cy="19" r="0.7"/><circle cx="12" cy="20" r="0.6"/><circle cx="52" cy="12" r="0.5"/><circle cx="29" cy="9" r="0.5"/><circle cx="41" cy="24" r="0.5"/></g>
+    <!-- chipped top-right corner: clear ice showing -->
+    <path d="M44 4L50 6.5L55 11L59 18L52.5 17.4L49 12.4L46 8Z" fill="url(#ic-clear)"/>
+    <path d="M46 8L49 12.4L52.5 17.4M49 12.4L55 11" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.75" stroke-linejoin="round"/>
+    <path d="M52.5 17.4L59 18L55 11Z" fill="#4f93ad" opacity="0.45"/>
+    <!-- left face: the clean fracture window with a jagged crust edge -->
+    <path d="M8 34L14 29.5L20.5 31.5L26.5 29L31 36L28.5 45L30 52L20 55L12.5 51.5L9 43Z" fill="url(#ic-clear)"/>
+    <path d="M14 29.5L20.5 31.5L17 38L9.5 36.5Z" fill="#ffffff" opacity="0.5"/>
+    <path d="M20.5 31.5L26.5 29L31 36L24 41L17 38Z" fill="#dff5f8" opacity="0.4"/>
+    <path d="M24 41L31 36L28.5 45L30 52L22 49Z" fill="#3f84a3" opacity="0.5"/>
+    <path d="M9 43L17 38L24 41L22 49L12.5 51.5Z" fill="#8fcddb" opacity="0.5"/>
+    <!-- facet lines and hairline cracks through the clear ice -->
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17 38L24 41L30 52M24 41L31 36M17 38L9.5 36.5M20.5 31.5L17 38" stroke="#ffffff" stroke-width="0.6" opacity="0.7"/>
+      <path d="M12 48L16 45.5L15.5 42L19 40" stroke="#2f6f8a" stroke-width="0.6" opacity="0.7"/>
+      <path d="M26 33L24.5 36.5L27 38.5" stroke="#2f6f8a" stroke-width="0.5" opacity="0.6"/>
+    </g>
+    <!-- trapped gas bubbles -->
+    <g>
+      <circle cx="14" cy="42" r="1.5" fill="#d8f3f6" stroke="#4f93ad" stroke-width="0.5"/><circle cx="13.5" cy="41.4" r="0.4" fill="#ffffff"/>
+      <circle cx="22" cy="47" r="1" fill="#d8f3f6" stroke="#4f93ad" stroke-width="0.5"/><circle cx="21.7" cy="46.6" r="0.3" fill="#ffffff"/>
+      <circle cx="26" cy="41" r="0.8" fill="#d8f3f6" stroke="#4f93ad" stroke-width="0.4"/>
+      <circle cx="18.5" cy="35" r="0.6" fill="#ffffff" opacity="0.8"/>
+    </g>
+    <!-- crust lip around the window: lit on top-left, shaded on bottom-right -->
+    <path d="M8 34L14 29.5L20.5 31.5L26.5 29L31 36" fill="none" stroke="#e9f2f6" stroke-width="0.9" opacity="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M31 36L28.5 45L30 52L20 55L12.5 51.5L9 43L8 34" fill="none" stroke="#56636e" stroke-width="1" opacity="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- dust strata on the left crust and the shaded right face -->
+    <g fill="none" stroke-linecap="round">
+      <path d="M5 28C9 30 12 27.5 15 29" stroke="#5c6670" stroke-width="1" opacity="0.5"/>
+      <path d="M5 56C9 53 12 55.5 16 53" stroke="#5c6670" stroke-width="1.6" opacity="0.5"/>
+      <path d="M31 40C33 42 34 46 33.4 50M32.6 48C34 52 33.6 56 34.4 58.6" stroke="#8e8174" stroke-width="1.3" opacity="0.55"/>
+      <path d="M40 38C46 37 50 39 60 35" stroke="#2f3a4a" stroke-width="1.6" opacity="0.55"/>
+      <path d="M38 47C44 46 48 49 54 46.5" stroke="#9a8c7e" stroke-width="1.2" opacity="0.4"/>
+      <path d="M41 54C46 53 50 55 53 53.6" stroke="#2f3a4a" stroke-width="1.3" opacity="0.5"/>
+    </g>
+    <!-- grit and pocks on the faces -->
+    <g fill="#55616b" opacity="0.7"><circle cx="9" cy="51" r="0.7"/><circle cx="33" cy="33" r="0.6"/><circle cx="25" cy="57" r="0.8"/><circle cx="33" cy="52" r="0.7"/><circle cx="35.5" cy="43" r="0.6"/><circle cx="7" cy="31" r="0.5"/></g>
+    <g fill="#2c3646" opacity="0.7"><circle cx="47" cy="43" r="0.8"/><circle cx="43" cy="52" r="0.6"/><circle cx="56" cy="30" r="0.6"/><circle cx="41" cy="33" r="0.5"/></g>
+    <!-- chipped bottom-right corner: clear ice in shade -->
+    <path d="M60.5 38L57 46L58 50L52 55L46 56.6L50 50L54 44Z" fill="url(#ic-clear2)"/>
+    <path d="M54 44L50 50L46 56.6M57 46L54 44L60.5 38" fill="none" stroke="#9fdbe6" stroke-width="0.6" opacity="0.7" stroke-linejoin="round"/>
+    <path d="M60.5 38L54 44L50 50" fill="none" stroke="#c6eef3" stroke-width="0.9" opacity="0.7" stroke-linecap="round"/>
+    <!-- stencilled haul mark on the right face, skewed to sit on it, worn through in places -->
+    <g transform="translate(40.8 40) skewY(-18) scale(0.86)" opacity="0.72">
+      <path fill="#d98a3a" shape-rendering="crispEdges" d="M0 0h4v1h-4zM0 4h4v1h-4zM1.5 1h1v3h-1z"/>
+      <path fill="#d98a3a" shape-rendering="crispEdges" d="M5.5 0h4v1h-4zM5.5 1h1v3h-1zM5.5 4h4v1h-4z"/>
+      <path fill="#d98a3a" shape-rendering="crispEdges" d="M11 0h4v1h-4zM11 1h1v3h-1zM11 2h3v1h-3zM11 4h4v1h-4z"/>
+    </g>
+    <g fill="#434f63" opacity="0.75"><circle cx="43.6" cy="39.8" r="0.8"/><circle cx="52.4" cy="37.6" r="0.7"/><circle cx="49" cy="43" r="0.5"/></g>
+    <!-- rime dendrites on the top face -->
+    <g fill="none" stroke="#ffffff" stroke-width="0.5" stroke-linecap="round" opacity="0.85">
+      <path d="M31 17.4V20.2M29.6 18.8H32.4M30 17.8L32 19.8M32 17.8L30 19.8"/>
+      <path d="M43 14.6V16.8M41.9 15.7H44.1"/>
+      <path d="M21 21.4V23.4M20 22.4H22"/>
+    </g>
+    <!-- bounce light from the cold floor along the bottom-right edge -->
+    <path d="M60 40L56.6 48L51.6 54.4L44 56.4L36.6 59" fill="none" stroke="#7fb4d0" stroke-width="1.1" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- a soft sheen across the shaded face, and frost along the lit top edges -->
+    <path d="M38 33L50 27L50 31L38 38Z" fill="#c6eef3" opacity="0.14"/>
+    <path d="M37.6 31L36 59" fill="none" stroke="#9fb1c4" stroke-width="0.8" opacity="0.5"/>
+    <g fill="#f4fbfd" opacity="0.9"><circle cx="16.5" cy="11.5" r="0.7"/><circle cx="21" cy="8.6" r="0.6"/><circle cx="27" cy="6.8" r="0.7"/><circle cx="37" cy="5.6" r="0.6"/><circle cx="9" cy="22" r="0.6"/><circle cx="19" cy="26" r="0.5"/><circle cx="13" cy="14" r="0.5"/></g>
+  </g>
+  <!-- glints on the clear ice -->
+  <path d="M15.6 31.4V34.6M14 33H17.2" stroke="#ffffff" stroke-width="0.8" stroke-linecap="round"/>
+  <path d="M50.4 9.6V12M49.2 10.8H51.6" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round"/>
+  <!-- ridges: lit along the top-left, creased along the shaded edges -->
+  <path d="M4 35L6 24L11 15L15 10L24 7L32 5L42 4" fill="none" stroke="#f2fafc" stroke-width="1.1" opacity="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M6 24L19 27L38 30L59 18" fill="none" stroke="#5b6873" stroke-width="0.8" opacity="0.8" stroke-linejoin="round"/>
+  <path d="M38 30L36 60" fill="none" stroke="#3a4656" stroke-width="0.9" opacity="0.8"/>
+  <path d="M19 27L38 30" fill="none" stroke="#e6f1f5" stroke-width="0.6" opacity="0.55"/>
+  <!-- a drip hanging from the lower edge -->
+  <path d="M46.6 56.4C47 57.8 46.8 58.6 46.6 59.2C46.2 58.4 46.2 57.2 46.6 56.4Z" fill="#bfe3e6" stroke="#3f7f86" stroke-width="0.4"/>
+  <path d="M6 24L11 15L15 10L24 7L32 5L42 4L50 6.5L55 11L59 18L60 30L60.5 40L57 48L52 55L44 57L36 60L26 59L17 57L9 52L5 46L4 35Z" fill="none" stroke="#3d4856" stroke-width="1.2" stroke-linejoin="round"/>
+</svg>

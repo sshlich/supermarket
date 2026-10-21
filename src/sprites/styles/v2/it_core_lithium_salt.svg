@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="ls-tub" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f7f5ee"/>
+      <stop offset="0.3" stop-color="#e8e6df"/>
+      <stop offset="0.7" stop-color="#c2c6c9"/>
+      <stop offset="1" stop-color="#8e96a2"/>
+    </linearGradient>
+    <linearGradient id="ls-lid" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6f9bd6"/>
+      <stop offset="0.35" stop-color="#4a78b8"/>
+      <stop offset="1" stop-color="#2a4678"/>
+    </linearGradient>
+    <linearGradient id="ls-label" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c2d0ba"/>
+      <stop offset="0.45" stop-color="#a8b8a0"/>
+      <stop offset="1" stop-color="#718269"/>
+    </linearGradient>
+    <clipPath id="ls-bodyclip"><path d="M6 12L7.6 25.6A8.4 2.6 0 0 0 24.4 25.6L26 12Z"/></clipPath>
+  </defs>
+  <!-- a screw-top tub of lithium salt: white tub, sage label (LI and a charge bolt), ribbed blue lid, caked salt crusting the seam, a hard lump and grains at its foot -->
+  <ellipse cx="17" cy="28.8" rx="11.5" ry="2" fill="#120e18" opacity="0.4"/>
+  <path d="M6 12L7.6 25.6A8.4 2.6 0 0 0 24.4 25.6L26 12Z" fill="url(#ls-tub)" stroke="#6a727c" stroke-width="1" stroke-linejoin="round"/>
+  <g clip-path="url(#ls-bodyclip)">
+    <path d="M6.5 17.2A9.6 2.6 0 0 0 25.5 17.2L25.1 23.6A8.8 2.5 0 0 1 7.5 23.6Z" fill="url(#ls-label)"/>
+    <path d="M6.5 17.2A9.6 2.6 0 0 0 25.5 17.2M7.5 23.6A8.8 2.5 0 0 0 25.1 23.6" fill="none" stroke="#56654f" stroke-width="0.7" opacity="0.9"/>
+    <path d="M6.6 18.2A9.4 2.5 0 0 0 25.4 18.2" fill="none" stroke="#dfe8d9" stroke-width="0.5" opacity="0.7"/>
+    <path fill="#3b4a38" shape-rendering="crispEdges" d="M9.5 19.4h1v1h-1zM9.5 20.4h1v1h-1zM9.5 21.4h1v1h-1zM9.5 22.4h1v1h-1zM10.5 22.4h1v1h-1zM11.5 22.4h1v1h-1zM13.5 19.4h1v1h-1zM14.5 19.4h1v1h-1zM15.5 19.4h1v1h-1zM14.5 20.4h1v1h-1zM14.5 21.4h1v1h-1zM13.5 22.4h1v1h-1zM14.5 22.4h1v1h-1zM15.5 22.4h1v1h-1z"/>
+    <path d="M22.4 18.6L19 22.2H21.2L20 25.4L24 21.2H21.9Z" fill="#e0b43a" stroke="#8a6410" stroke-width="0.5" stroke-linejoin="round"/>
+    <path d="M22 19.6L20.2 21.9" stroke="#fbe08a" stroke-width="0.5" stroke-linecap="round"/>
+    <path d="M8.2 13.4L9.6 24.2" fill="none" stroke="#ffffff" stroke-width="1.3" opacity="0.8" stroke-linecap="round"/>
+    <path d="M24.6 14L23.4 25" fill="none" stroke="#5b6572" stroke-width="1.6" opacity="0.28" stroke-linecap="round"/>
+    <path d="M7 27.2A9 2.5 0 0 0 25 27.2" fill="none" stroke="#6a727c" stroke-width="0.8" opacity="0.5"/>
+  </g>
+  <path d="M4.5 7A11.5 3 0 0 1 27.5 7L27.5 12A11.5 3 0 0 1 4.5 12Z" fill="url(#ls-lid)" stroke="#223a66" stroke-width="1.1" stroke-linejoin="round"/>
+  <g stroke="#223a66" stroke-width="0.5" opacity="0.7">
+    <path d="M6.6 9.6V13.4M8.8 10.4V14.2M11 10.9V14.7M13.2 11.1V15M15.4 11.2V15.1M17.6 11.2V15.1M19.8 11.1V15M22 10.9V14.7M24.2 10.4V14.2M26.2 9.6V13.4"/>
+  </g>
+  <ellipse cx="16" cy="7" rx="11.5" ry="3" fill="#5b88c8" stroke="#223a66" stroke-width="1"/>
+  <ellipse cx="16" cy="7" rx="8.4" ry="1.9" fill="none" stroke="#2a4678" stroke-width="0.6" opacity="0.75"/>
+  <path d="M7.6 6.2A8.6 1.9 0 0 1 13 4.9" fill="none" stroke="#a9c9f0" stroke-width="0.8" opacity="0.85" stroke-linecap="round"/>
+  <path d="M5.2 8.2A11 2.8 0 0 0 7.6 10" fill="none" stroke="#a9c9f0" stroke-width="0.6" opacity="0.7" stroke-linecap="round"/>
+  <path d="M16.6 15L18 14.2L19.6 14.8L21 13.9L22.6 14.6L24.2 13.8L26 14.2L27.2 14.4L26.4 15.9L25 16.4L23.8 17.4L22.2 16.8L20.8 17.7L19.4 17L18 17.2Z" fill="#f2f0e8" stroke="#8f959b" stroke-width="0.7" stroke-linejoin="round"/>
+  <path d="M18 14.2L19.6 14.8L19 16L17.4 15.6ZM21 13.9L22.6 14.6L21.8 15.8L20.4 15.2ZM24.2 13.8L26 14.2L25.4 15.4L23.8 15Z" fill="#ffffff" opacity="0.9"/>
+  <path d="M23.8 17.4L22.2 16.8L20.8 17.7L22.2 18.2ZM19.4 17L18 17.2L18.8 18.4Z" fill="#c7cbce"/>
+  <path d="M25.4 16.2L26.4 15.9L26 17.2Z M19.8 17.6L21 17.9L20.2 19.4Z M23.6 17.6L24.6 17.4L24 18.8Z" fill="#e4e3db" stroke="#8f959b" stroke-width="0.4" stroke-linejoin="round"/>
+  <g fill="#fbfaf4"><circle cx="12.2" cy="6.6" r="0.4"/><circle cx="19" cy="8.1" r="0.35"/><circle cx="22.6" cy="6.1" r="0.35"/><circle cx="15" cy="8.6" r="0.3"/><circle cx="20.4" cy="5.4" r="0.3"/></g>
+  <path d="M7.7 26.1A8.3 2.5 0 0 0 24.3 26.1" fill="none" stroke="#8a929c" stroke-width="0.5" opacity="0.6"/>
+  <path d="M9.6 14.6L11 14.2M12 15.4L14 15" stroke="#9aa0a6" stroke-width="0.5" opacity="0.6" stroke-linecap="round"/>
+  <path d="M24.6 29L25.2 26.6L27.2 25.4L29.4 26.4L30 28.4L28.6 29.6Z" fill="#ecebe3" stroke="#8a9096" stroke-width="0.8" stroke-linejoin="round"/>
+  <path d="M27.2 25.4L29.4 26.4L30 28.4L28.6 29.6L27.6 27.6Z" fill="#b9bdc2"/>
+  <path d="M25.6 27.2L27.2 26" stroke="#ffffff" stroke-width="0.6" stroke-linecap="round"/>
+  <g fill="#f4f2ea"><circle cx="3.6" cy="29.2" r="0.6"/><circle cx="5.4" cy="30.2" r="0.5"/><circle cx="1.8" cy="30.4" r="0.45"/><circle cx="13" cy="30.4" r="0.5"/><circle cx="22" cy="30.4" r="0.55"/><circle cx="23.4" cy="29.6" r="0.4"/></g>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="sc-wall" x1="0" y1="0" x2="1" y2="0.3">
+      <stop offset="0" stop-color="#f0eee4"/>
+      <stop offset="0.5" stop-color="#d6d2c4"/>
+      <stop offset="1" stop-color="#a6a292"/>
+    </linearGradient>
+    <linearGradient id="sc-top" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#fdfcf7"/>
+      <stop offset="0.6" stop-color="#ebe8dc"/>
+      <stop offset="1" stop-color="#c9c5b5"/>
+    </linearGradient>
+    <clipPath id="sc-t"><ellipse cx="16" cy="13" rx="13" ry="6.2"/></clipPath>
+  </defs>
+  <!-- a pressed cake of tank-scraped salt: a thick puck with layered crust on its flank, rust-brown water stains, a raised press lip round a dish of little cubic crystals, crystal clumps on the rim, a corner broken off to show the coarse inside, the chip lying beside it -->
+  <ellipse cx="17.5" cy="28.6" rx="13.5" ry="2" fill="#14111a" opacity=".42"/>
+  <path d="M3 13A13 6.2 0 0 1 29 13L29 16.8L26.2 17.6L26.8 19.8L23.8 20.6L24.6 23.4L21.8 24.6L22.8 27.5A13 6.2 0 0 1 3 22.2Z" fill="url(#sc-wall)"/>
+  <path d="M24.2 27.1A13 6.2 0 0 1 3 22.2L3 20.2A13 6.2 0 0 0 22 25.8Z" fill="#76725f" opacity=".3"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M3.4 17.8C8 20.2 12 18 16 19.4C20 20.8 24 19.2 26.6 18.6M3.2 21.6C8 23.4 12 21.6 16 23C19 24 21.6 23.2 23.2 22.6" stroke="#8f8b7b" stroke-width=".7" opacity=".7"/>
+    <path d="M3.4 18.7C8 21.1 12 18.9 16 20.3C20 21.7 24 20.1 26.4 19.5" stroke="#fdfcf7" stroke-width=".5" opacity=".7"/>
+    <path d="M8 19.8L7.8 23.8M14.5 20.6L14.8 25.4M20.4 20.6L20.2 24.6" stroke="#b8935f" stroke-width=".9" opacity=".5"/>
+  </g>
+  <ellipse cx="16" cy="13" rx="13" ry="6.2" fill="url(#sc-top)"/>
+  <g clip-path="url(#sc-t)">
+    <ellipse cx="16" cy="13" rx="10.4" ry="4.6" fill="none" stroke="#b4b09f" stroke-width=".9"/>
+    <ellipse cx="15.7" cy="12.6" rx="10.4" ry="4.6" fill="none" stroke="#fffefa" stroke-width=".7" opacity=".85"/>
+    <path d="M9 10.5C12 9 15 9.4 17 10.6C19 12 18 14 15 14.2C12 14.4 8 13 9 10.5Z" fill="#c9a36c" opacity=".22"/>
+    <path d="M17 15.6C20 15 23 15.8 24 17" fill="none" stroke="#b8935f" stroke-width="1.1" opacity=".3" stroke-linecap="round"/>
+    <path d="M7.4 13.6C9 16.6 14 17.8 18 17.2M24 15.2C25.2 14 25.6 12.2 25 10.8M9 11C10 9.6 12 9 14 9" fill="none" stroke="#a8a493" stroke-width=".5" opacity=".55" stroke-linecap="round"/>
+  </g>
+  <path d="M6.9 11L4.3 11.6L3.5 9.4L6.1 8.8ZM26.3 9.6L23.5 9.8L23.3 7.6L26.1 7.4ZM29.6 12.1L27.3 12.9L26.4 11.1L28.7 10.3ZM12.8 10.5L9.8 10L10.4 7.7L13.3 8.2ZM18.8 17.8L16.8 18L16.6 16.3L18.6 16.2ZM13.9 13.9L11.5 14.4L10.9 12.4L13.3 11.9ZM19.3 14L16.4 14.5L15.8 12.2L18.6 11.7ZM9.8 12.5L7.9 12.8L7.5 11.2L9.5 11ZM11 17.6L8.4 17.4L8.7 15.3L11.3 15.5Z" fill="#f8f6ee" stroke="#a09c8b" stroke-width=".4" stroke-linejoin="round"/>
+  <path d="M6.1 8.8L6.9 11L4.3 11.6M26.1 7.4L26.3 9.6L23.5 9.8M28.7 10.3L29.6 12.1L27.3 12.9M13.3 8.2L12.8 10.5L9.8 10M18.6 16.2L18.8 17.8L16.8 18M13.3 11.9L13.9 13.9L11.5 14.4M18.6 11.7L19.3 14L16.4 14.5M9.5 11L9.8 12.5L7.9 12.8M11.3 15.5L11 17.6L8.4 17.4" fill="none" stroke="#fff" stroke-width=".5" opacity=".95" stroke-linecap="round"/>
+  <path d="M4.3 11.6L3.5 9.4L6.1 8.8M23.5 9.8L23.3 7.6L26.1 7.4M27.3 12.9L26.4 11.1L28.7 10.3M9.8 10L10.4 7.7L13.3 8.2M16.8 18L16.6 16.3L18.6 16.2M11.5 14.4L10.9 12.4L13.3 11.9M16.4 14.5L15.8 12.2L18.6 11.7M7.9 12.8L7.5 11.2L9.5 11M8.4 17.4L8.7 15.3L11.3 15.5" fill="none" stroke="#9a9684" stroke-width=".5" opacity=".7" stroke-linecap="round"/>
+  <!-- the broken face inside the chipped corner -->
+  <path d="M29 16.8L26.2 17.6L26.8 19.8L23.8 20.6L24.6 23.4L21.8 24.6L22.8 27.5L20.4 27L19.4 25L21.8 23.8L21 21.4L23.8 20.4L23.4 18.6Z" fill="#dedacb"/>
+  <path d="M25 19.2h.01M22.6 22.2h.01M24 22.6h.01M21.4 24.4h.01M23 24.8h.01M22.2 19.8h.01" stroke="#fff" stroke-width=".9" stroke-linecap="round"/>
+  <path d="M24 21h.01M21.8 23h.01M22.4 26h.01" stroke="#a09c8b" stroke-width=".7" stroke-linecap="round"/>
+  <path d="M23.4 18.6L23.8 20.4L21 21.4L21.8 23.8L19.4 25L20.4 27" fill="none" stroke="#7a766a" stroke-width=".7" opacity=".6" stroke-linejoin="round"/>
+  <path d="M3 13A13 6.2 0 0 1 29 13L29 16.8L26.2 17.6L26.8 19.8L23.8 20.6L24.6 23.4L21.8 24.6L22.8 27.5A13 6.2 0 0 1 3 22.2Z" fill="none" stroke="#6b675a" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M3.6 14C3.6 16.5 3.6 19 3.8 21.2" fill="none" stroke="#fff" stroke-width=".9" opacity=".75" stroke-linecap="round"/>
+  <path d="M6 9.7C8 8.3 10.5 7.5 13 7.3" fill="none" stroke="#fff" stroke-width=".9" opacity=".9" stroke-linecap="round"/>
+  <path d="M25.8 28.3L28.2 26.3L30.4 27.6L29.2 29.6L26.4 29.8Z" fill="#e8e4d6" stroke="#6b675a" stroke-width=".8" stroke-linejoin="round"/>
+  <path d="M26.4 28L28.3 26.8L29.8 27.6" fill="none" stroke="#fff" stroke-width=".5" opacity=".9" stroke-linecap="round"/>
+  <path d="M14.2 10.8h1.8M15.1 9.9v1.8M20.8 14.6h1.6M21.6 13.8v1.6" stroke="#fff" stroke-width=".5" stroke-linecap="round" opacity=".95"/>
+</svg>

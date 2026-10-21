@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<defs>
+<linearGradient id="fa-body" gradientUnits="userSpaceOnUse" x1="2.8" y1="0" x2="24" y2="0"><stop offset="0" stop-color="#dfe3e6"/><stop offset="0.25" stop-color="#b0b5b9"/><stop offset="0.7" stop-color="#7a8085"/><stop offset="1" stop-color="#565b5f"/></linearGradient>
+<linearGradient id="fa-band" gradientUnits="userSpaceOnUse" x1="2.8" y1="0" x2="24" y2="0"><stop offset="0" stop-color="#f0b080"/><stop offset="0.25" stop-color="#d9803c"/><stop offset="0.7" stop-color="#a4522b"/><stop offset="1" stop-color="#6e3418"/></linearGradient>
+<linearGradient id="fa-rim" gradientUnits="userSpaceOnUse" x1="3" y1="4" x2="24" y2="17"><stop offset="0" stop-color="#f2f4f5"/><stop offset="0.5" stop-color="#b4b9bd"/><stop offset="1" stop-color="#70757a"/></linearGradient>
+<radialGradient id="fa-dome" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#f0f2f3"/><stop offset="0.5" stop-color="#a1a6ab"/><stop offset="1" stop-color="#5f6468"/></radialGradient>
+<radialGradient id="fa-cop" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#f0b886"/><stop offset="0.5" stop-color="#c1763f"/><stop offset="1" stop-color="#7a4020"/></radialGradient>
+</defs>
+<!-- a battered tin of bolts and rivets: rolled rim, stencilled orange band, heaped hex bolts, nuts, rivet domes and a washer, strays on the bench -->
+<ellipse cx="16.4" cy="27.6" rx="14" ry="3.2" fill="#0e0b13" opacity="0.32"/>
+<path d="M2.8 13V25.8A10.6 4.3 0 0 0 24 25.8V13Z" fill="url(#fa-body)" stroke="#34383c" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M2.8 17A10.6 4.3 0 0 0 24 17V23.4A10.6 4.3 0 0 1 2.8 23.4Z" fill="url(#fa-band)" stroke="#5a2c10" stroke-width="0.7" stroke-linejoin="round"/>
+<path d="M3.4 14.4V24.8" stroke="#ffffff" stroke-width="0.9" opacity="0.5" stroke-linecap="round"/>
+<path d="M19.4 16.8V26.4" stroke="#34383c" stroke-width="0.6" opacity="0.45"/>
+<path d="M10.9 26.9V22.7L12.4 24.5L13.9 22.7V26.9M15.6 22.7H17.6V24.8H15.6ZM15.6 24.8H17.6V26.9H15.6Z" fill="none" stroke="#5a2c10" stroke-width="0.9" opacity="0.8" stroke-linejoin="miter"/>
+<ellipse cx="13.4" cy="13" rx="10.6" ry="4.3" fill="url(#fa-rim)" stroke="#34383c" stroke-width="1.1"/>
+<ellipse cx="13.4" cy="13.2" rx="8.7" ry="3" fill="#3a3e42" stroke="#2a2d30" stroke-width="0.7"/>
+<!-- heap -->
+<g stroke-linejoin="round">
+<circle cx="7.8" cy="11.6" r="2.6" fill="#b4b9bd" stroke="#34383c" stroke-width="0.7"/>
+<path d="M10.7 7.5L4.7 4.3L3.7 6.1L9.7 9.3Z" fill="#8d9297" stroke="#34383c" stroke-width="0.6"/><path d="M9.8 7L8.8 8.8M8.4 6.3L7.5 8.1M7.1 5.6L6.1 7.4M5.8 4.9L4.8 6.7" stroke="#4a4e52" stroke-width="0.4"/>
+<polygon points="13.2,9.1 11,11 8,10.3 7.2,7.7 9.4,5.8 12.4,6.5" fill="#a1a6ab" stroke="#34383c" stroke-width="0.7"/>
+<circle cx="20.4" cy="10.8" r="2.5" fill="url(#fa-cop)" stroke="#4a2410" stroke-width="0.6"/>
+<polygon points="18.7,9.9 16.7,11.9 13.6,11.4 12.5,8.9 14.5,6.9 17.6,7.4" fill="#c9cdd0" stroke="#34383c" stroke-width="0.7"/>
+<circle cx="12.4" cy="13.4" r="2.3" fill="url(#fa-dome)" stroke="#34383c" stroke-width="0.6"/>
+<circle cx="19.4" cy="14.2" r="2.1" fill="url(#fa-dome)" stroke="#34383c" stroke-width="0.6"/>
+</g>
+<circle cx="7.8" cy="11.6" r="1.1" fill="#3a3e42"/>
+<circle cx="10.2" cy="8.4" r="1.7" fill="none" stroke="#e8ebed" stroke-width="0.5" opacity="0.7"/>
+<circle cx="15.6" cy="9.4" r="1.4" fill="#2a2d30"/><path d="M14.4 10.4A1.4 1.4 0 0 0 16.8 10.6" fill="none" stroke="#e8ebed" stroke-width="0.4" opacity="0.8"/>
+<circle cx="20" cy="10.2" r="0.55" fill="#ffffff" opacity="0.85"/><circle cx="11.7" cy="12.7" r="0.6" fill="#ffffff" opacity="0.9"/><circle cx="18.8" cy="13.5" r="0.5" fill="#ffffff" opacity="0.85"/>
+<!-- front lip over the heap -->
+<path d="M2.8 13A10.6 4.3 0 0 0 24 13L22.4 13.1A9 3.3 0 0 1 4.4 13.1Z" fill="url(#fa-rim)" stroke="#34383c" stroke-width="0.9" stroke-linejoin="round"/>
+<path d="M4.6 14.2A9.4 3.6 0 0 0 9 16.4" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.8" stroke-linecap="round"/>
+<!-- strays -->
+<path d="M23.9 26.1L16.5 28L17.1 30.2L24.5 28.3Z" fill="#8d9297" stroke="#34383c" stroke-width="0.6" stroke-linejoin="round"/><path d="M22.2 26.5L22.8 28.7M20.8 26.9L21.3 29.1M19.3 27.3L19.9 29.5M17.9 27.7L18.4 29.9" stroke="#4a4e52" stroke-width="0.4"/>
+<polygon points="27.6,27.8 25.7,29.8 22.8,29.4 21.6,27 23.5,25 26.4,25.4" fill="#c9cdd0" stroke="#34383c" stroke-width="0.7" stroke-linejoin="round"/>
+<circle cx="24.6" cy="27.4" r="1.5" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.8"/>
+<ellipse cx="28.4" cy="23.4" rx="2.4" ry="0.9" fill="#0e0b13" opacity="0.3"/><circle cx="27.6" cy="21" r="2.1" fill="url(#fa-cop)" stroke="#4a2410" stroke-width="0.6"/><circle cx="26.9" cy="20.3" r="0.55" fill="#ffffff" opacity="0.8"/>
+<g fill="#c9cdd0" opacity="0.8"><rect x="17" y="24.2" width="1.4" height="0.7"/><rect x="6.2" y="23.4" width="0.9" height="0.7"/></g>
+<circle cx="5.6" cy="26.4" r="0.5" fill="#a4522b" opacity="0.75"/>
+</svg>

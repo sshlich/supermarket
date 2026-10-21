@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<defs>
+<linearGradient id="wr-w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a95f30"/><stop offset="0.5" stop-color="#8a4a22"/><stop offset="1" stop-color="#5e3014"/></linearGradient>
+<linearGradient id="wr-x" gradientUnits="userSpaceOnUse" x1="2" y1="0" x2="29" y2="0"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.35" stop-color="#ffffff" stop-opacity="0"/><stop offset="0.75" stop-color="#2a1208" stop-opacity="0.1"/><stop offset="1" stop-color="#2a1208" stop-opacity="0.45"/></linearGradient>
+<linearGradient id="wr-t" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#efe3b4"/><stop offset="0.55" stop-color="#d4c183"/><stop offset="1" stop-color="#a99555"/></linearGradient>
+<clipPath id="wr-h"><ellipse cx="15.6" cy="13.4" rx="6.5" ry="4.8"/></clipPath>
+</defs>
+<!-- a hank of bare copper wire lying flat: seven turns wound round, three layers high so the side wall shows, tied with a strip of cloth tape, the free end flicked out at the front and cut bright; the hole shows the far inner wall and then the floor -->
+<ellipse cx="17.6" cy="21.8" rx="13.4" ry="3.6" fill="#0e0b13" opacity="0.3"/>
+<path d="M1.3 13.4A14.3 10.4 0 0 0 29.9 13.4V17A14.3 10.4 0 0 1 1.3 17Z" fill="url(#wr-w)" stroke="#4a2410" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M1.3 13.4A14.3 10.4 0 0 0 29.9 13.4V17A14.3 10.4 0 0 1 1.3 17Z" fill="url(#wr-x)"/>
+<path d="M1.5 14.6A14.1 10.3 0 0 0 29.7 14.6M1.5 15.8A14.1 10.3 0 0 0 29.7 15.8" fill="none" stroke="#4a2410" stroke-width="0.7" opacity="0.8"/>
+<path d="M12 24A13.9 10.2 0 0 1 1.9 15.9M12 25.2A13.9 10.2 0 0 1 1.9 17.1" fill="none" stroke="#e6a46a" stroke-width="0.5" opacity="0.55"/>
+<path clip-path="url(#wr-h)" fill-rule="evenodd" fill="#7a3f1c" d="M0 0H32V32H0ZM9.1 17a6.5 4.8 0 1 0 12.9 0a6.5 4.8 0 1 0 -12.9 0Z"/>
+<g fill="none">
+<path d="M2.3 13.3a13.4 9.7 0 1 0 26.8 0a13.4 9.7 0 1 0 -26.8 0" stroke="#4a2410" stroke-width="2.3"/>
+<path d="M2.3 13.3a13.4 9.7 0 1 0 26.8 0a13.4 9.7 0 1 0 -26.8 0" stroke="#c97f45" stroke-width="1.4"/>
+<path d="M3.2 13.4a12.4 9 0 1 0 24.8 0a12.4 9 0 1 0 -24.8 0" stroke="#4a2410" stroke-width="2"/>
+<path d="M3.2 13.4a12.4 9 0 1 0 24.8 0a12.4 9 0 1 0 -24.8 0" stroke="#b96d38" stroke-width="1.4"/>
+<path d="M4.1 13.4a11.4 8.3 0 1 0 22.8 0a11.4 8.3 0 1 0 -22.8 0" stroke="#4a2410" stroke-width="2"/>
+<path d="M4.1 13.4a11.4 8.3 0 1 0 22.8 0a11.4 8.3 0 1 0 -22.8 0" stroke="#c97f45" stroke-width="1.4"/>
+<path d="M5 13.5a10.4 7.6 0 1 0 20.8 0a10.4 7.6 0 1 0 -20.8 0" stroke="#4a2410" stroke-width="2"/>
+<path d="M5 13.5a10.4 7.6 0 1 0 20.8 0a10.4 7.6 0 1 0 -20.8 0" stroke="#b96d38" stroke-width="1.4"/>
+<path d="M6 13.6a9.4 6.9 0 1 0 18.8 0a9.4 6.9 0 1 0 -18.8 0" stroke="#4a2410" stroke-width="2"/>
+<path d="M6 13.6a9.4 6.9 0 1 0 18.8 0a9.4 6.9 0 1 0 -18.8 0" stroke="#c97f45" stroke-width="1.4"/>
+<path d="M7 13.6a8.4 6.2 0 1 0 16.8 0a8.4 6.2 0 1 0 -16.8 0" stroke="#4a2410" stroke-width="2"/>
+<path d="M7 13.6a8.4 6.2 0 1 0 16.8 0a8.4 6.2 0 1 0 -16.8 0" stroke="#b96d38" stroke-width="1.4"/>
+<path d="M8 13.6a7.4 5.5 0 1 0 14.8 0a7.4 5.5 0 1 0 -14.8 0" stroke="#4a2410" stroke-width="2"/>
+<path d="M8 13.6a7.4 5.5 0 1 0 14.8 0a7.4 5.5 0 1 0 -14.8 0" stroke="#c97f45" stroke-width="1.4"/>
+<path d="M2.3 12.4A13.4 9.7 0 0 1 13.8 3.7M3.4 11.6A12.4 9 0 0 1 13.2 4.5M4.6 11A11.4 8.3 0 0 1 12.7 5.4M5.8 10.6A10.4 7.6 0 0 1 12.4 6.3M7.1 10.2A9.4 6.9 0 0 1 12.1 7.1M8.5 10A8.4 6.2 0 0 1 12.1 7.9M9.8 10A7.4 5.5 0 0 1 12.2 8.6" stroke="#e9ab74" stroke-width="0.6" opacity="0.9" stroke-linecap="round"/>
+<path d="M28.9 14.6A13.4 9.7 0 0 1 18.5 22.8M27.9 14.6A12.4 9 0 0 1 18.1 22.2M26.8 14.6A11.4 8.3 0 0 1 17.8 21.6M25.7 14.6A10.4 7.6 0 0 1 17.6 21M24.7 14.5A9.4 6.9 0 0 1 17.3 20.3M23.7 14.5A8.4 6.2 0 0 1 17.1 19.7M22.7 14.4A7.4 5.5 0 0 1 16.9 19" stroke="#8a4a22" stroke-width="0.65" opacity="0.75" stroke-linecap="round"/>
+</g>
+<path d="M14.9 23.8V27.4A14.3 10.4 0 0 1 10.9 26.8V23.2L13.5 18L15.3 18.3Z" fill="url(#wr-t)" stroke="#6a5524" stroke-width="0.6" stroke-linejoin="round"/>
+<path d="M15.2 24L15.6 18.5" stroke="#f1e6b8" stroke-width="0.6" opacity="0.8"/>
+<path d="M12.5 20.9L14.3 22.2" stroke="#7a3d1e" stroke-width="0.9" stroke-linecap="round" opacity="0.8"/>
+<path d="M21.9 22C24.9 28 28.9 28.5 29.2 27.6" fill="none" stroke="#4a2410" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M21.9 22C24.9 28 28.9 28.5 29.2 27.6" fill="none" stroke="#c1763f" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M22.5 23.2C24.9 27.4 28.3 27.8 27.2 27" fill="none" stroke="#e6a46a" stroke-width="0.5" opacity="0.8"/>
+<circle cx="29.2" cy="27.6" r="0.7" fill="#f6d2a4"/>
+<g fill="#4a2410" opacity="0.5"><circle cx="9.4" cy="19.6" r="0.4"/><circle cx="21.8" cy="21.4" r="0.5"/><circle cx="12" cy="4.9" r="0.35"/></g>
+<g fill="#5f8f7a" opacity="0.7"><circle cx="24.6" cy="9.4" r="0.45"/><circle cx="25.4" cy="10.2" r="0.3"/></g>
+</svg>

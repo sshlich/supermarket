@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="br-race" gradientUnits="userSpaceOnUse" x1="5.199999999999999" y1="4.9" x2="23.2" y2="22.9"><stop offset="0" stop-color="#eef1f3"/><stop offset="0.3" stop-color="#bcc1c5"/><stop offset="0.65" stop-color="#8d9297"/><stop offset="1" stop-color="#666b70"/></linearGradient>
+        <linearGradient id="br-side" gradientUnits="userSpaceOnUse" x1="20.2" y1="19.9" x2="26.599999999999998" y2="26.3"><stop offset="0" stop-color="#7d8388"/><stop offset="1" stop-color="#3b4044"/></linearGradient>
+    <linearGradient id="br-seal" gradientUnits="userSpaceOnUse" x1="6.199999999999999" y1="5.9" x2="22.2" y2="21.9"><stop offset="0" stop-color="#8a3622"/><stop offset="0.45" stop-color="#b04a2c"/><stop offset="1" stop-color="#cf6b42"/></linearGradient>
+    <linearGradient id="br-inner" gradientUnits="userSpaceOnUse" x1="8.2" y1="7.9" x2="20.2" y2="19.9"><stop offset="0" stop-color="#f2f4f6"/><stop offset="0.4" stop-color="#b4b9bd"/><stop offset="1" stop-color="#6f7479"/></linearGradient>
+    <clipPath id="br-sealclip"><circle cx="14.2" cy="13.9" r="9.3"/></clipPath>
+  </defs>
+  <!-- a sealed ball bearing on its edge: bevelled outer race, red rubber seal with stamped marks and amber grease, proud inner race, lit bore, an inspection dab and rust -->
+  <ellipse cx="17.8" cy="30" rx="11" ry="1.5" fill="#0e0b13" opacity="0.32"/>
+  <circle cx="17.599999999999998" cy="17.3" r="12" fill="#3b4044" stroke="#2a2d30" stroke-width="1.1"/>
+  <path d="M5.7 22.4L9.1 25.8A12 12 0 0 0 26.1 8.8L22.7 5.4Z" fill="url(#br-side)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M5.7 22.4L9.1 25.8A12 12 0 0 0 26.1 8.8L22.7 5.4Z" fill="url(#br-side)"/>
+  <!-- outer race: bevel then flat face -->
+  <circle cx="14.2" cy="13.9" r="12" fill="url(#br-race)" stroke="#2a2d30" stroke-width="1.1"/>
+  <circle cx="14.2" cy="13.9" r="10.5" fill="url(#br-race)" stroke="#5f6468" stroke-width="0.6"/>
+  <!-- seal recess: shadow of the race falls on its upper left, light catches the wall at the lower right -->
+  <circle cx="14.2" cy="13.9" r="9.5" fill="#4a2a1d"/>
+  <circle cx="14.2" cy="13.9" r="9.3" fill="url(#br-seal)"/>
+  <g clip-path="url(#br-sealclip)"><circle cx="15.799999999999999" cy="15.5" r="9.3" fill="none" stroke="#3d1a10" stroke-width="2" opacity="0.38"/></g>
+  <path d="M20.8 20.5A9.3 9.3 0 0 1 11.8 22.9" fill="none" stroke="#f1a373" stroke-width="0.8" opacity="0.8" stroke-linecap="round"/>
+  <circle cx="14.2" cy="13.9" r="7.7" fill="none" stroke="#7a3320" stroke-width="0.5" opacity="0.7"/>
+  <path d="M7.4 10A7.9 7.9 0 0 1 8.3 8.6M8.9 8A7.9 7.9 0 0 1 9.3 7.7M10 7.2A7.9 7.9 0 0 1 12.3 6.2M13.1 6.1A7.9 7.9 0 0 1 13.6 6M14.5 6A7.9 7.9 0 0 1 16.9 6.5" fill="none" stroke="#f6d9b8" stroke-width="0.7" opacity="0.7" stroke-linecap="round"/>
+  <!-- grease: an amber smear squeezed out where the seal meets the inner race, and a bead of it on the seal lip -->
+  <path d="M19.6 11.7Q22.4 16.5 18.2 20.5Q15.2 22.1 11.2 20.3L10.8 18.3Q16.2 19.9 18.4 15.9Q18.8 13.9 18.4 12.5Z" fill="#e6b44c"/>
+  <path d="M20.8 14.9Q20.4 18.3 17.6 20.1" fill="none" stroke="#fbe08a" stroke-width="0.7" opacity="0.9" stroke-linecap="round"/>
+  <circle cx="12" cy="20.9" r="0.9" fill="#e6b44c"/>
+  <!-- inner race (proud of the seal) with its own shadow on the seal -->
+  <circle cx="14.899999999999999" cy="14.6" r="6.1" fill="#2b140d" opacity="0.3"/>
+  <circle cx="14.2" cy="13.9" r="5.9" fill="url(#br-inner)" stroke="#2a2d30" stroke-width="0.9"/>
+  <circle cx="14.2" cy="13.9" r="4.7" fill="none" stroke="#7b8085" stroke-width="0.5" opacity="0.8"/>
+  <!-- bore: far wall lit -->
+  <circle cx="14.2" cy="13.9" r="3.7" fill="#a0a6ab" stroke="#2a2d30" stroke-width="0.7"/>
+  <circle cx="13.5" cy="13.200000000000001" r="3.1" fill="#1d1b24"/>
+  <path d="M16.4 15.5A3.3 3.3 0 0 1 13.7 17.2" fill="none" stroke="#e9edef" stroke-width="0.6" opacity="0.8" stroke-linecap="round"/>
+  <!-- highlights -->
+  <path d="M4.8 8.5A10.8 10.8 0 0 1 10.8 3.6" fill="none" stroke="#ffffff" stroke-width="1.3" opacity="0.85" stroke-linecap="round"/>
+  <path d="M9.5 11.3A5.3 5.3 0 0 1 12.6 8.9" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.85" stroke-linecap="round"/>
+  <path d="M25.3 9.3A12 12 0 0 1 21.6 4.5" fill="none" stroke="#d6dbdf" stroke-width="0.7" opacity="0.7" stroke-linecap="round"/>
+  <!-- inspection dab and rust -->
+  <path d="M19 4.6q1.6 -0.4 2.4 0.7q0.3 1.3 -1 1.6q-1.7 0.1 -1.4 -2.3z" fill="#4a78b8" stroke="#2c4d80" stroke-width="0.4"/>
+  <g fill="#a4522b" opacity="0.75"><circle cx="4" cy="17.3" r="0.7"/><circle cx="24" cy="20.3" r="0.5"/><circle cx="20.6" cy="24.9" r="0.6"/></g>
+  <g fill="#454a4f" opacity="0.6"><circle cx="8.2" cy="22.7" r="0.4"/><circle cx="23" cy="20.9" r="0.4"/></g>
+</svg>

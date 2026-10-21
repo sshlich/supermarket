@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<defs>
+<linearGradient id="pf-collar" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8db8e6"/><stop offset="0.3" stop-color="#5f8fc8"/><stop offset="0.75" stop-color="#3c6699"/><stop offset="1" stop-color="#2d517e"/></linearGradient>
+<linearGradient id="pf-collarh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8db8e6"/><stop offset="0.3" stop-color="#5f8fc8"/><stop offset="0.75" stop-color="#3c6699"/><stop offset="1" stop-color="#2d517e"/></linearGradient>
+<clipPath id="pf-clip"><path d="M5.5 8V18.7A9 9 0 0 0 14.5 27.7H25V16.7H19.2A2.7 2.7 0 0 1 16.5 14V8Z"/></clipPath>
+</defs>
+<!-- a printed pipe elbow standing on its bench: one seamless blue polymer bend with a fat collar at each open port (bore showing),
+fine print layer lines on the body, a stamped bore size, a bubble of stringing at the crook -->
+<path d="M5.5 8V18.7A9 9 0 0 0 14.5 27.7H25V16.7H19.2A2.7 2.7 0 0 1 16.5 14V8Z" fill="#0e0b13" opacity="0.3" transform="translate(1.8 1.6)"/>
+<ellipse cx="27" cy="30" rx="3.2" ry="0.9" fill="#0e0b13" opacity="0.3"/>
+<path d="M5.5 8V18.7A9 9 0 0 0 14.5 27.7H25V16.7H19.2A2.7 2.7 0 0 1 16.5 14V8Z" fill="#2f527f" stroke="#1b2f4d" stroke-width="1.1" stroke-linejoin="round"/>
+<g clip-path="url(#pf-clip)" fill="none">
+<path d="M11 8V18.7A3.5 3.5 0 0 0 14.5 22.2H25" stroke="#40699c" stroke-width="10" transform="translate(-0.4 -0.4)"/>
+<path d="M11 8V18.7A3.5 3.5 0 0 0 14.5 22.2H25" stroke="#4f7fb8" stroke-width="7.6" transform="translate(-0.9 -0.9)"/>
+<path d="M11 8V18.7A3.5 3.5 0 0 0 14.5 22.2H25" stroke="#6b9ad0" stroke-width="4.6" transform="translate(-1.5 -1.5)"/>
+<path d="M11 8V18.7A3.5 3.5 0 0 0 14.5 22.2H25" stroke="#93bbe8" stroke-width="2.2" transform="translate(-2 -2)" opacity="0.85"/>
+<path d="M11 8V18.7A3.5 3.5 0 0 0 14.5 22.2H25" stroke="#e6f1fc" stroke-width="0.8" stroke-linecap="round" transform="translate(-2.4 -2.4)" opacity="0.8"/>
+<path d="M5.5 8H16.5M5.5 9.4H16.5M5.5 10.8H16.5M5.5 12.2H16.5M5.5 13.6H16.5M5.5 15H16.5M5.5 16.4H16.5M5.5 17.8H25M5.5 19.2H25M5.7 20.6H25M6.1 22H25M6.8 23.4H25M7.9 24.8H25M9.5 26.2H25" stroke="#1b2f4d" stroke-width="0.35" opacity="0.3"/>
+</g>
+<path fill="#17284a" opacity="0.45" shape-rendering="crispEdges" d="M9.6 12.4h2.1v0.7h-2.1zM11 13.1h0.7v0.7h-0.7zM9.6 13.8h2.1v0.7h-2.1zM9.6 14.5h0.7v0.7h-0.7zM9.6 15.2h2.1v0.7h-2.1zM12.4 12.4h2.1v0.7h-2.1zM12.4 13.1h0.7v0.7h-0.7zM12.4 13.8h2.1v0.7h-2.1zM13.8 14.5h0.7v0.7h-0.7zM12.4 15.2h2.1v0.7h-2.1z"/>
+<!-- top collar and its bore -->
+<path d="M3.8 4.6V8.6A7.2 2.5 0 0 0 18.2 8.6V4.6Z" fill="url(#pf-collar)" stroke="#1b2f4d" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M4.2 6.6A7.2 2.5 0 0 0 17.8 6.6" fill="none" stroke="#1b2f4d" stroke-width="0.6" opacity="0.6"/>
+<ellipse cx="11" cy="4.6" rx="7.2" ry="2.6" fill="#8db8e6" stroke="#1b2f4d" stroke-width="1.1"/>
+<ellipse cx="11" cy="4.8" rx="4.9" ry="1.7" fill="#14223c"/>
+<path d="M6.6 5.4Q11 7.4 15.4 5.4" fill="none" stroke="#5d8cc4" stroke-width="0.6" opacity="0.8"/>
+<path d="M5 3.6Q6.6 2.1 9.4 2.1" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-linecap="round" opacity="0.85"/>
+<!-- right collar and its bore -->
+<path d="M23.4 15.3H27.4A2.4 6.9 0 0 1 27.4 29.1H23.4Z" fill="url(#pf-collarh)" stroke="#1b2f4d" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M25.4 15.7V28.7" stroke="#1b2f4d" stroke-width="0.6" opacity="0.6"/>
+<ellipse cx="27.6" cy="22.2" rx="2.4" ry="6.9" fill="#4c7cb4" stroke="#1b2f4d" stroke-width="1.1"/>
+<ellipse cx="27.7" cy="22.2" rx="1.35" ry="4.7" fill="#14223c"/>
+<path d="M24.2 16.6Q25.4 15.8 27 15.7" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-linecap="round" opacity="0.85"/>
+<g fill="#cfe4fa" opacity="0.8"><circle cx="8.6" cy="22.4" r="0.5"/><circle cx="12.4" cy="19.6" r="0.4"/></g>
+<g fill="#16284a" opacity="0.6"><circle cx="13.6" cy="25.4" r="0.5"/><circle cx="17.2" cy="24.2" r="0.4"/><circle cx="21.2" cy="26" r="0.4"/></g>
+<path d="M17.6 16.4C18 14.6 19.8 13.8 21 14.6S21.6 16 20.4 16" fill="none" stroke="#9fc4ee" stroke-width="0.4" opacity="0.8" stroke-linecap="round"/>
+</svg>

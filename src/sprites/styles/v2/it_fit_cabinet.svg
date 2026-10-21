@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+<defs>
+<linearGradient id="cab-body" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b9bec2"/><stop offset="0.5" stop-color="#9aa0a5"/><stop offset="1" stop-color="#70767b"/></linearGradient>
+<linearGradient id="cab-top" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d4d8db"/><stop offset="0.6" stop-color="#b4b9bd"/><stop offset="1" stop-color="#8d9297"/></linearGradient>
+<linearGradient id="cab-hood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d3d7da"/><stop offset="0.3" stop-color="#a5abb0"/><stop offset="0.75" stop-color="#777d82"/><stop offset="1" stop-color="#5a5f64"/></linearGradient>
+<linearGradient id="cab-hoodx" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/><stop offset="0.25" stop-color="#ffffff" stop-opacity="0"/><stop offset="0.8" stop-color="#1c1f22" stop-opacity="0"/><stop offset="1" stop-color="#1c1f22" stop-opacity="0.3"/></linearGradient>
+<linearGradient id="cab-int" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a3036"/><stop offset="1" stop-color="#454d55"/></linearGradient>
+<linearGradient id="cab-shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e0b13" stop-opacity="0.6"/><stop offset="1" stop-color="#0e0b13" stop-opacity="0"/></linearGradient>
+<linearGradient id="cab-rail" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d2d6d9"/><stop offset="0.35" stop-color="#a5abb0"/><stop offset="1" stop-color="#5f6468"/></linearGradient>
+<linearGradient id="cab-ring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f6f7"/><stop offset="0.5" stop-color="#b4b9bd"/><stop offset="1" stop-color="#6d7378"/></linearGradient>
+<linearGradient id="cab-wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c99a5e"/><stop offset="1" stop-color="#8a5a30"/></linearGradient>
+<linearGradient id="cab-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6f9ad2"/><stop offset="1" stop-color="#2f5287"/></linearGradient>
+<linearGradient id="cab-tin" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d6dbe0"/><stop offset="0.4" stop-color="#8e98a6"/><stop offset="1" stop-color="#4e5864"/></linearGradient>
+<clipPath id="cab-clipL"><rect x="15" y="55.5" width="16" height="6" rx="1"/></clipPath>
+<clipPath id="cab-clipR"><rect x="65" y="55.5" width="16" height="6" rx="1"/></clipPath>
+<clipPath id="cab-clipI"><rect x="12" y="31" width="72" height="48"/></clipPath>
+</defs>
+<!-- a steel storage cabinet, raised front view: a lit top slab, a rolled-shutter drum across the head, a roller grate pulled
+     half down on its guide rails with a hazard-striped bottom bar and a fat ring pull, and the cabinet's deep dark insides
+     showing below (a wood crate, a tin, a blue polymer box); vented kick plate, bolted feet, rust at the corners -->
+<ellipse cx="49" cy="92.4" rx="40" ry="2.6" fill="#0e0b13" opacity="0.4"/>
+<g fill="#4a4f54" stroke="#2a2d30" stroke-width="0.9" stroke-linejoin="round"><rect x="10" y="85" width="12" height="6" rx="1"/><rect x="74" y="85" width="12" height="6" rx="1"/></g>
+<path d="M11 85.6H21M75 85.6H85" stroke="#8d9297" stroke-width="0.6" opacity="0.7"/>
+<!-- body -->
+<rect x="5" y="13" width="86" height="74" rx="2.5" fill="url(#cab-body)" stroke="#2a2d30" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M6.3 85.5V15M6.3 15H9" fill="none" stroke="#e8ecee" stroke-width="0.9" opacity="0.6" stroke-linecap="round"/>
+<path d="M89.8 15V85" fill="none" stroke="#3a3f44" stroke-width="0.9" opacity="0.5"/>
+<!-- top slab -->
+<path d="M6 14L10 6.8Q10.3 6 11.2 6H84.8Q85.7 6 86 6.8L90 14Z" fill="url(#cab-top)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M11 7.4H85" stroke="#ffffff" stroke-width="0.8" opacity="0.75" stroke-linecap="round"/>
+<path d="M7.4 12.6H88.6" stroke="#5f6468" stroke-width="0.7" opacity="0.5"/>
+<ellipse cx="70" cy="10.2" rx="3.4" ry="1.2" fill="none" stroke="#6b4423" stroke-width="0.7" opacity="0.4"/>
+<path d="M66.4 10.6Q70 12 73.4 9.6" fill="none" stroke="#6b4423" stroke-width="0.5" opacity="0.3"/>
+<!-- roller drum / hood -->
+<rect x="3.5" y="16.5" width="89" height="13" rx="4.5" fill="url(#cab-hood)" stroke="#2a2d30" stroke-width="1.1" stroke-linejoin="round"/>
+<rect x="3.5" y="16.5" width="89" height="13" rx="4.5" fill="url(#cab-hoodx)"/>
+<path d="M9 18.3H87" stroke="#ffffff" stroke-width="0.9" opacity="0.7" stroke-linecap="round"/>
+<path d="M8 27.6H88" stroke="#3a3f44" stroke-width="0.7" opacity="0.6"/>
+<g stroke="#4a4f54" stroke-width="0.6" opacity="0.7"><path d="M13 17.6V28.4M83 17.6V28.4"/></g>
+<g stroke-linejoin="round"><circle cx="8.3" cy="23" r="2.3" fill="#6b7278" stroke="#3a3f44" stroke-width="0.7"/><circle cx="87.7" cy="23" r="2.3" fill="#6b7278" stroke="#3a3f44" stroke-width="0.7"/></g>
+<path d="M7.2 23H9.4M86.6 23H88.8" stroke="#2a2d30" stroke-width="0.8"/>
+<circle cx="7.6" cy="22.3" r="0.5" fill="#e8ecee"/><circle cx="87" cy="22.3" r="0.5" fill="#e8ecee"/>
+<g fill="#2a2d30" opacity="0.85"><rect x="17" y="19.6" width="2.4" height="6.4" rx="1.2"/><rect x="21" y="19.6" width="2.4" height="6.4" rx="1.2"/><rect x="25" y="19.6" width="2.4" height="6.4" rx="1.2"/><rect x="29" y="19.6" width="2.4" height="6.4" rx="1.2"/></g>
+<g fill="#d6dbde" opacity="0.5"><rect x="17" y="25.6" width="2.4" height="0.5"/><rect x="21" y="25.6" width="2.4" height="0.5"/><rect x="25" y="25.6" width="2.4" height="0.5"/><rect x="29" y="25.6" width="2.4" height="0.5"/></g>
+<!-- masking tape label on the drum -->
+<path d="M51 18.8L73.8 18.4L74.1 27L51.3 27.4Z" fill="#ece6d8" stroke="#b9ad94" stroke-width="0.6" stroke-linejoin="round"/>
+<path d="M51 18.8L73.8 18.4" stroke="#ffffff" stroke-width="0.5" opacity="0.8"/>
+<path fill="#3a4350" shape-rendering="crispEdges" d="M54.4 20.4h1.2v1.2h-1.2zM55.6 20.4h1.2v1.2h-1.2zM54.4 21.6h1.2v1.2h-1.2zM56.8 21.6h1.2v1.2h-1.2zM54.4 22.8h1.2v1.2h-1.2zM55.6 22.8h1.2v1.2h-1.2zM54.4 24h1.2v1.2h-1.2zM56.8 24h1.2v1.2h-1.2zM54.4 25.2h1.2v1.2h-1.2zM55.6 25.2h1.2v1.2h-1.2zM59.2 22.8h1.2v1.2h-1.2zM60.4 22.8h1.2v1.2h-1.2zM61.6 22.8h1.2v1.2h-1.2zM64 20.4h1.2v1.2h-1.2zM65.2 20.4h1.2v1.2h-1.2zM66.4 20.4h1.2v1.2h-1.2zM64 21.6h1.2v1.2h-1.2zM66.4 21.6h1.2v1.2h-1.2zM64 22.8h1.2v1.2h-1.2zM66.4 22.8h1.2v1.2h-1.2zM64 24h1.2v1.2h-1.2zM66.4 24h1.2v1.2h-1.2zM64 25.2h1.2v1.2h-1.2zM65.2 25.2h1.2v1.2h-1.2zM66.4 25.2h1.2v1.2h-1.2zM68.8 20.4h1.2v1.2h-1.2zM70 20.4h1.2v1.2h-1.2zM71.2 20.4h1.2v1.2h-1.2zM71.2 21.6h1.2v1.2h-1.2zM71.2 22.8h1.2v1.2h-1.2zM71.2 24h1.2v1.2h-1.2zM71.2 25.2h1.2v1.2h-1.2z"/>
+<path d="M54.4 26.2H72" stroke="#b9ad94" stroke-width="0.5"/>
+<!-- opening: frame, dark insides -->
+<rect x="5" y="29.4" width="86" height="4.4" fill="url(#cab-shade)" opacity="0.55"/>
+<rect x="9" y="29.6" width="78" height="51" rx="1" fill="#565b60" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+<rect x="12" y="31" width="72" height="48" fill="url(#cab-int)"/>
+<g clip-path="url(#cab-clipI)">
+<path d="M36 31V79M60 31V79" stroke="#6b7278" stroke-width="0.6" opacity="0.28"/>
+<path d="M12 31V79" stroke="#0e0b13" stroke-width="2" opacity="0.35"/>
+<path d="M84 31V79" stroke="#8d9297" stroke-width="1" opacity="0.4"/>
+<!-- the floor of the cabinet -->
+<rect x="12" y="76.4" width="72" height="3" fill="#6d7378"/>
+<path d="M12 76.4H84" stroke="#c9cdd0" stroke-width="0.7" opacity="0.7"/>
+<!-- wood crate -->
+<g stroke-linejoin="round"><rect x="16" y="65.4" width="19" height="11.4" rx="0.8" fill="url(#cab-wood)" stroke="#4a2c14" stroke-width="0.8"/></g>
+<path d="M16.6 69.2H34.4M16.6 72.9H34.4" stroke="#4a2c14" stroke-width="0.6" opacity="0.8"/>
+<path d="M16.8 66.4H34.2" stroke="#e6c48e" stroke-width="0.6" opacity="0.7"/>
+<g fill="#8d9297" stroke="#3a3f44" stroke-width="0.5"><rect x="16" y="65.4" width="3.4" height="3.4"/><rect x="31.6" y="65.4" width="3.4" height="3.4"/><rect x="16" y="73.4" width="3.4" height="3.4"/><rect x="31.6" y="73.4" width="3.4" height="3.4"/></g>
+<!-- bottle and blue box -->
+<g stroke-linejoin="round"><path d="M38 76.6V70.6Q38 69.4 39 69.4V66.2H41.4V69.4Q42.4 69.4 42.4 70.6V76.6Z" fill="#a6d2c8" stroke="#2f4a46" stroke-width="0.6"/><path d="M39.1 70.4V75.6" stroke="#ffffff" stroke-width="0.7" opacity="0.8" stroke-linecap="round"/><rect x="38.9" y="64.8" width="2.8" height="1.6" rx="0.5" fill="#a4522b"/>
+<rect x="61" y="66.6" width="20" height="10.2" rx="1.6" fill="url(#cab-blue)" stroke="#223d63" stroke-width="0.8"/></g>
+<path d="M62.4 68.2H79.6" stroke="#b5d0f0" stroke-width="0.6" opacity="0.7"/>
+<rect x="66.5" y="70.4" width="9" height="2" rx="1" fill="#223d63"/>
+<!-- shade under the grate and its bar -->
+<rect x="12" y="55.4" width="72" height="14" fill="url(#cab-shade)" opacity="0.8"/>
+</g>
+<!-- guide rails -->
+<g stroke="#2a2d30" stroke-width="0.8"><rect x="12" y="31" width="3.2" height="48" fill="#8d9297"/><rect x="80.8" y="31" width="3.2" height="48" fill="#6b7278"/></g>
+<path d="M12.7 31.6V78.4" stroke="#e8ecee" stroke-width="0.6" opacity="0.65"/>
+<path d="M14.2 31.6V78.4M82.6 31.6V78.4" stroke="#2a2d30" stroke-width="0.5" opacity="0.7"/>
+<!-- grate -->
+<rect x="15" y="31" width="66" height="25.4" fill="#1f2327"/>
+<g><rect x="15" y="31.2" width="66" height="2.2" fill="#aab1b7"/><rect x="15" y="36.2" width="66" height="2.2" fill="#aab1b7"/><rect x="15" y="41.2" width="66" height="2.2" fill="#aab1b7"/><rect x="15" y="46.2" width="66" height="2.2" fill="#aab1b7"/><rect x="15" y="51.2" width="66" height="2.2" fill="#aab1b7"/></g>
+<path d="M17 33.4h1.8v2.8h-1.8zM23 33.4h1.8v2.8h-1.8zM29 33.4h1.8v2.8h-1.8zM35 33.4h1.8v2.8h-1.8zM41 33.4h1.8v2.8h-1.8zM47 33.4h1.8v2.8h-1.8zM53 33.4h1.8v2.8h-1.8zM59 33.4h1.8v2.8h-1.8zM65 33.4h1.8v2.8h-1.8zM71 33.4h1.8v2.8h-1.8zM77 33.4h1.8v2.8h-1.8zM20 38.4h1.8v2.8h-1.8zM26 38.4h1.8v2.8h-1.8zM32 38.4h1.8v2.8h-1.8zM38 38.4h1.8v2.8h-1.8zM44 38.4h1.8v2.8h-1.8zM50 38.4h1.8v2.8h-1.8zM56 38.4h1.8v2.8h-1.8zM62 38.4h1.8v2.8h-1.8zM68 38.4h1.8v2.8h-1.8zM74 38.4h1.8v2.8h-1.8zM17 43.4h1.8v2.8h-1.8zM23 43.4h1.8v2.8h-1.8zM29 43.4h1.8v2.8h-1.8zM35 43.4h1.8v2.8h-1.8zM41 43.4h1.8v2.8h-1.8zM47 43.4h1.8v2.8h-1.8zM53 43.4h1.8v2.8h-1.8zM59 43.4h1.8v2.8h-1.8zM65 43.4h1.8v2.8h-1.8zM71 43.4h1.8v2.8h-1.8zM77 43.4h1.8v2.8h-1.8zM20 48.4h1.8v2.8h-1.8zM26 48.4h1.8v2.8h-1.8zM32 48.4h1.8v2.8h-1.8zM38 48.4h1.8v2.8h-1.8zM44 48.4h1.8v2.8h-1.8zM50 48.4h1.8v2.8h-1.8zM56 48.4h1.8v2.8h-1.8zM62 48.4h1.8v2.8h-1.8zM68 48.4h1.8v2.8h-1.8zM74 48.4h1.8v2.8h-1.8zM17 53.4h1.8v2.8h-1.8zM23 53.4h1.8v2.8h-1.8zM29 53.4h1.8v2.8h-1.8zM35 53.4h1.8v2.8h-1.8zM41 53.4h1.8v2.8h-1.8zM47 53.4h1.8v2.8h-1.8zM53 53.4h1.8v2.8h-1.8zM59 53.4h1.8v2.8h-1.8zM65 53.4h1.8v2.8h-1.8zM71 53.4h1.8v2.8h-1.8zM77 53.4h1.8v2.8h-1.8z" fill="#8f969c"/>
+<path d="M15 31.7H81M15 36.7H81M15 41.7H81M15 46.7H81M15 51.7H81" stroke="#e8ecee" stroke-width="0.6" opacity="0.65" fill="none"/>
+<path d="M15 33.1H81M15 38.1H81M15 43.1H81M15 48.1H81M15 53.1H81" stroke="#5f6468" stroke-width="0.6" opacity="0.8" fill="none"/>
+<rect x="15" y="31" width="66" height="9" fill="url(#cab-shade)" opacity="0.7"/>
+<g fill="#a4522b" opacity="0.6"><rect x="30" y="37.2" width="1.8" height="2.8"/><rect x="63" y="47.2" width="1.8" height="2.8"/><rect x="21" y="52.2" width="1.8" height="2.8"/></g>
+<!-- bottom bar -->
+<rect x="13.6" y="55.5" width="68.8" height="6.2" rx="1.6" fill="url(#cab-rail)" stroke="#2a2d30" stroke-width="1" stroke-linejoin="round"/>
+<g clip-path="url(#cab-clipL)"><rect x="15" y="55.5" width="16" height="6" fill="#e0b43a"/><path d="M7 61.5L10 61.5L15 55.5L12 55.5ZM13 61.5L16 61.5L21 55.5L18 55.5ZM19 61.5L22 61.5L27 55.5L24 55.5ZM25 61.5L28 61.5L33 55.5L30 55.5ZM31 61.5L34 61.5L39 55.5L36 55.5ZM37 61.5L40 61.5L45 55.5L42 55.5Z" fill="#3a3f44"/></g>
+<g clip-path="url(#cab-clipR)"><rect x="65" y="55.5" width="16" height="6" fill="#e0b43a"/><path d="M57 61.5L60 61.5L65 55.5L62 55.5ZM63 61.5L66 61.5L71 55.5L68 55.5ZM69 61.5L72 61.5L77 55.5L74 55.5ZM75 61.5L78 61.5L83 55.5L80 55.5ZM81 61.5L84 61.5L89 55.5L86 55.5ZM87 61.5L90 61.5L95 55.5L92 55.5Z" fill="#3a3f44"/></g>
+<path d="M14.8 56.6H81.2" stroke="#ffffff" stroke-width="0.6" opacity="0.7"/>
+<g fill="#4a4f54" opacity="0.9"><circle cx="35" cy="58.6" r="0.9"/><circle cx="61" cy="58.6" r="0.9"/></g>
+<!-- lug and ring pull -->
+<path d="M43 61.2H53V64.4Q53 65.4 52 65.4H44Q43 65.4 43 64.4Z" fill="#9aa0a5" stroke="#2a2d30" stroke-width="0.9" stroke-linejoin="round"/>
+<circle cx="48" cy="63.2" r="1.3" fill="#1f2327"/>
+<circle cx="48" cy="69" r="5.3" fill="none" stroke="#2a2d30" stroke-width="3.8"/>
+<circle cx="48" cy="69" r="5.3" fill="none" stroke="url(#cab-ring)" stroke-width="2.3"/>
+<path d="M43.9 66.3A5.3 5.3 0 0 1 48 63.7" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.85" stroke-linecap="round"/>
+<path d="M52.3 72.6Q55 75 56.4 73.4" fill="none" stroke="#d6cdb8" stroke-width="0.5"/>
+<g transform="rotate(14 57 75)"><rect x="54.4" y="72.8" width="6.4" height="5" rx="0.6" fill="#ece6d8" stroke="#b9ad94" stroke-width="0.5"/><path d="M55.6 74.6H59.6M55.6 76H58.4" stroke="#8a7c55" stroke-width="0.45"/><circle cx="55.5" cy="73.8" r="0.5" fill="#b9ad94"/></g>
+<!-- kick plate -->
+<rect x="9" y="81" width="78" height="4.6" rx="1" fill="#6d7378" stroke="#3a3f44" stroke-width="0.7"/>
+<path d="M10 81.8H86" stroke="#c9cdd0" stroke-width="0.5" opacity="0.55"/>
+<g fill="#2a2d30"><rect x="14" y="82.6" width="1.6" height="2.4" rx="0.5"/><rect x="17.2" y="82.6" width="1.6" height="2.4" rx="0.5"/><rect x="20.4" y="82.6" width="1.6" height="2.4" rx="0.5"/><rect x="23.6" y="82.6" width="1.6" height="2.4" rx="0.5"/></g>
+<path fill="#2a2d30" shape-rendering="crispEdges" d="M58 82.3h0.7v0.7h-0.7zM58.7 82.3h0.7v0.7h-0.7zM59.4 82.3h0.7v0.7h-0.7zM58 83h0.7v0.7h-0.7zM58 83.7h0.7v0.7h-0.7zM58.7 83.7h0.7v0.7h-0.7zM59.4 83.7h0.7v0.7h-0.7zM59.4 84.4h0.7v0.7h-0.7zM58 85.1h0.7v0.7h-0.7zM58.7 85.1h0.7v0.7h-0.7zM59.4 85.1h0.7v0.7h-0.7zM60.8 82.3h0.7v0.7h-0.7zM61.5 82.3h0.7v0.7h-0.7zM62.2 82.3h0.7v0.7h-0.7zM61.5 83h0.7v0.7h-0.7zM61.5 83.7h0.7v0.7h-0.7zM61.5 84.4h0.7v0.7h-0.7zM61.5 85.1h0.7v0.7h-0.7zM63.6 82.3h0.7v0.7h-0.7zM64.3 82.3h0.7v0.7h-0.7zM65 82.3h0.7v0.7h-0.7zM63.6 83h0.7v0.7h-0.7zM63.6 83.7h0.7v0.7h-0.7zM64.3 83.7h0.7v0.7h-0.7zM63.6 84.4h0.7v0.7h-0.7zM63.6 85.1h0.7v0.7h-0.7zM64.3 85.1h0.7v0.7h-0.7zM65 85.1h0.7v0.7h-0.7zM66.4 82.3h0.7v0.7h-0.7zM67.1 82.3h0.7v0.7h-0.7zM67.8 82.3h0.7v0.7h-0.7zM66.4 83h0.7v0.7h-0.7zM66.4 83.7h0.7v0.7h-0.7zM67.1 83.7h0.7v0.7h-0.7zM66.4 84.4h0.7v0.7h-0.7zM66.4 85.1h0.7v0.7h-0.7zM67.1 85.1h0.7v0.7h-0.7zM67.8 85.1h0.7v0.7h-0.7zM69.2 82.3h0.7v0.7h-0.7zM69.2 83h0.7v0.7h-0.7zM69.2 83.7h0.7v0.7h-0.7zM69.2 84.4h0.7v0.7h-0.7zM69.2 85.1h0.7v0.7h-0.7zM69.9 85.1h0.7v0.7h-0.7zM70.6 85.1h0.7v0.7h-0.7zM72 83.7h0.7v0.7h-0.7zM72.7 83.7h0.7v0.7h-0.7zM73.4 83.7h0.7v0.7h-0.7zM74.8 82.3h0.7v0.7h-0.7zM75.5 82.3h0.7v0.7h-0.7zM76.2 82.3h0.7v0.7h-0.7zM76.2 83h0.7v0.7h-0.7zM74.8 83.7h0.7v0.7h-0.7zM75.5 83.7h0.7v0.7h-0.7zM76.2 83.7h0.7v0.7h-0.7zM76.2 84.4h0.7v0.7h-0.7zM74.8 85.1h0.7v0.7h-0.7zM75.5 85.1h0.7v0.7h-0.7zM76.2 85.1h0.7v0.7h-0.7z"/>
+<!-- rivets, rust, wear -->
+<g stroke="#4a4f54" stroke-width="0.5"><circle cx="7.1" cy="38" r="1.2" fill="#c9cdd0"/><circle cx="88.9" cy="38" r="1.2" fill="#9aa0a5"/><circle cx="7.1" cy="56" r="1.2" fill="#c9cdd0"/><circle cx="88.9" cy="56" r="1.2" fill="#9aa0a5"/><circle cx="7.1" cy="83" r="1.2" fill="#c9cdd0"/><circle cx="88.9" cy="83" r="1.2" fill="#9aa0a5"/></g>
+<g fill="#ffffff" opacity="0.8"><circle cx="6.7" cy="37.6" r="0.4"/><circle cx="6.7" cy="55.6" r="0.4"/><circle cx="6.7" cy="82.6" r="0.4"/></g>
+<path d="M6 80L10 80.4L11 86L6.4 86.4Z" fill="#a4522b" opacity="0.55"/>
+<path d="M7.8 82L8.6 86M9.6 83L9.9 86" stroke="#7a3d1e" stroke-width="0.5" opacity="0.7"/>
+<path d="M80 85.6L89.6 85.2L90 82.4L84 83.4Z" fill="#7a3d1e" opacity="0.45"/>
+<path d="M85.4 49L88.6 52L87 55Z" fill="#3a3f44" opacity="0.35"/>
+<path d="M85.4 49L88.4 51.4" stroke="#e8ecee" stroke-width="0.5" opacity="0.6"/>
+<g stroke="#e8ecee" stroke-width="0.5" opacity="0.5" stroke-linecap="round"><path d="M70 41L78 39.4" /><path d="M20 62L26 61"/></g>
+<g fill="#3a3f44" opacity="0.5"><circle cx="30" cy="84" r="0.4"/><circle cx="54" cy="83" r="0.5"/><circle cx="74" cy="82.8" r="0.4"/><circle cx="48" cy="15.4" r="0.4"/></g>
+</svg>

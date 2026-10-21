@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<defs>
+<linearGradient id="vi-gl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f4fcfd" stop-opacity="0.85"/><stop offset="0.25" stop-color="#cdeef0" stop-opacity="0.72"/><stop offset="0.7" stop-color="#a9dade" stop-opacity="0.62"/><stop offset="1" stop-color="#5fa4ac" stop-opacity="0.75"/></linearGradient>
+<linearGradient id="vi-cork" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e2bb86"/><stop offset="0.35" stop-color="#c99a5e"/><stop offset="0.75" stop-color="#a9733f"/><stop offset="1" stop-color="#6b4423"/></linearGradient>
+<linearGradient id="vi-lab" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f6f1e4"/><stop offset="0.5" stop-color="#ece6d8"/><stop offset="1" stop-color="#b9ad94"/></linearGradient>
+<clipPath id="vi-tc"><path d="M-5.8 -6.6L-5.8 8.2A5.8 5.8 0 0 0 5.8 8.2L5.8 -6.6Z"/></clipPath>
+</defs>
+<!-- an empty stoppered glass vial lying diagonally: a thick-rimmed pale tube with a rounded foot, a tapered cork stopper, a paper label with ruled lines, graduation ticks, a bright streak down the lit side, and one amber dried drop left in the foot; the cork pits and the label is a little grubby -->
+<g transform="translate(2.1 2.5) translate(16 16.8) rotate(45)" fill="#0e0b13" opacity="0.3"><path d="M-5.8 -6.6L-5.8 8.2A5.8 5.8 0 0 0 5.8 8.2L5.8 -6.6Z"/><path d="M-4.4 -13.2L4.4 -13.2Q5.3 -13.2 5.1 -12.4L4.4 -7.6L-4.4 -7.6L-5.1 -12.4Q-5.3 -13.2 -4.4 -13.2Z"/><path d="M-6.6 -7.8L6.6 -7.8Q7.2 -7.8 7.2 -7.2L7.2 -6.8Q7.2 -6.2 6.6 -6.2L-6.6 -6.2Q-7.2 -6.2 -7.2 -6.8L-7.2 -7.2Q-7.2 -7.8 -6.6 -7.8Z"/></g>
+<g transform="translate(16 16.8) rotate(45)">
+<path d="M-5.8 -6.6L-5.8 8.2A5.8 5.8 0 0 0 5.8 8.2L5.8 -6.6Z" fill="url(#vi-gl)"/>
+<g clip-path="url(#vi-tc)">
+<path d="M-4.2 -6.8L4.2 -6.8L3.8 -3.6L-3.8 -3.6Z" fill="#a9733f" opacity="0.85"/><path d="M-4.2 -6.8L-4.1 -3.8" stroke="#e2bb86" stroke-width="0.7" opacity="0.8"/>
+<path d="M-4.7 -6.6L-4.7 8.2A4.7 4.7 0 0 0 4.7 8.2L4.7 -6.6" fill="none" stroke="#3f7f86" stroke-width="0.5" opacity="0.7"/>
+<ellipse cx="-0.6" cy="11.4" rx="3" ry="1.5" fill="#d9a84a" opacity="0.65"/><ellipse cx="-1.6" cy="10.9" rx="0.9" ry="0.45" fill="#fbe08a" opacity="0.9"/>
+</g>
+<path d="M-5.8 -1.2Q0 0.2 5.8 -1.2L5.8 4.6Q0 6 -5.8 4.6Z" fill="url(#vi-lab)" stroke="#8a7f68" stroke-width="0.5" stroke-linejoin="round"/>
+<path d="M-4.4 0.7Q0 1.9 4.4 0.7M-4.4 2.4Q0 3.6 2.4 2.9" fill="none" stroke="#2f4358" stroke-width="0.45" opacity="0.8" stroke-linecap="round"/>
+<path d="M-5.4 4.1Q0 5.5 5.4 4.1" stroke="#c0392b" stroke-width="0.5" opacity="0.8" fill="none"/>
+<path d="M5.8 -4.8L3.9 -4.8M5.8 -3.2L4.8 -3.2M5.8 -1.6L3.9 -1.6M5.8 6.4L4.8 6.4M5.8 8L3.9 8" stroke="#2c6a72" stroke-width="0.5" opacity="0.8"/>
+<path d="M-5.8 -6.6L-5.8 8.2A5.8 5.8 0 0 0 5.8 8.2L5.8 -6.6Z" fill="none" stroke="#3f7f86" stroke-width="1" stroke-linejoin="round"/>
+<path d="M-3.8 -4.4L-3.8 -2.2M-3.8 5.2L-3.8 8" stroke="#ffffff" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+<path d="M4 -4L4 -1.2" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round" opacity="0.5"/>
+<path d="M-4 9.6A4.3 4.3 0 0 0 -1.8 12.4" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-linecap="round" opacity="0.85"/>
+<path d="M-6.6 -7.8L6.6 -7.8Q7.2 -7.8 7.2 -7.2L7.2 -6.8Q7.2 -6.2 6.6 -6.2L-6.6 -6.2Q-7.2 -6.2 -7.2 -6.8L-7.2 -7.2Q-7.2 -7.8 -6.6 -7.8Z" fill="#a8d6da" stroke="#3f7f86" stroke-width="0.8" stroke-linejoin="round"/>
+<path d="M-6.4 -7.3L-2 -7.3" stroke="#ffffff" stroke-width="0.6" opacity="0.95" stroke-linecap="round"/>
+<path d="M-4.4 -13.2L4.4 -13.2Q5.3 -13.2 5.1 -12.4L4.4 -7.6L-4.4 -7.6L-5.1 -12.4Q-5.3 -13.2 -4.4 -13.2Z" fill="url(#vi-cork)" stroke="#4a2c18" stroke-width="0.9" stroke-linejoin="round"/>
+<path d="M-4.6 -12.7L-4 -8.4" stroke="#f0d3a4" stroke-width="0.8" opacity="0.8" stroke-linecap="round"/>
+<g fill="#6b4423" opacity="0.7"><ellipse cx="-0.8" cy="-11.4" rx="0.7" ry="0.4"/><ellipse cx="1.8" cy="-9.6" rx="0.55" ry="0.3"/><ellipse cx="-2.4" cy="-9.2" rx="0.45" ry="0.28"/><ellipse cx="3" cy="-12" rx="0.45" ry="0.28"/></g>
+<path d="M-3.4 -13L2.8 -13" stroke="#fbe9c4" stroke-width="0.5" opacity="0.8"/>
+</g>
+</svg>

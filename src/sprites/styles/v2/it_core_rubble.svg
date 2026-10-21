@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="rb-sack" x1="0.1" y1="0.05" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#cfc9b8"/>
+      <stop offset="0.45" stop-color="#a39d8e"/>
+      <stop offset="0.8" stop-color="#7b7669"/>
+      <stop offset="1" stop-color="#5f5b50"/>
+    </linearGradient>
+    <linearGradient id="rb-wire" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b4b9bd"/>
+      <stop offset="0.5" stop-color="#8d9297"/>
+      <stop offset="1" stop-color="#5f6468"/>
+    </linearGradient>
+    <radialGradient id="rb-lump" cx="0.33" cy="0.28" r="0.85">
+      <stop offset="0" stop-color="#f3eedf" stop-opacity=".55"/>
+      <stop offset="0.6" stop-color="#cfc9b8" stop-opacity=".15"/>
+      <stop offset="1" stop-color="#3a372d" stop-opacity=".3"/>
+    </radialGradient>
+    <clipPath id="rb-c"><path d="M26 12.5C23.5 13.2 20.8 15.6 19 17.5C17.2 19.4 13.6 24.2 12 27C10.4 29.8 7.3 36 6.5 39C5.7 42 5.1 47.7 5.5 50C5.9 52.3 7.6 55.7 9.5 57C11.4 58.3 16.6 59.5 20 60C23.4 60.5 32.1 60.9 36 60.8C39.9 60.7 47.1 60.3 50 59.5C52.9 58.7 57.2 56.4 58.5 54.5C59.8 52.6 60.1 47.7 60 45C59.9 42.3 58.7 36.7 57.5 34C56.3 31.3 52.8 26.7 51 24.5C49.2 22.3 45.6 18.6 44 17C42.4 15.4 40.8 13.1 38.5 12.5C36.2 11.9 28.5 11.9 26 12.5Z"/></clipPath>
+  </defs>
+  <!-- a heavy slumped sack of swept-up rubble: woven sacking, stitched seam, stencilled DOCK, lumps pushing through, wire-twist neck, a split spilling concrete, brick, a hazard-striped panel shard, rebar and old fibre-pad fluff -->
+  <path d="M3 60.5C14 63.5 50 63.5 62 59.5C58 57.5 46 58.5 32 58.5C18 58.5 8 58.5 3 60.5Z" fill="#14111a" opacity=".45"/>
+  <path d="M26 12.5C23.5 13.2 20.8 15.6 19 17.5C17.2 19.4 13.6 24.2 12 27C10.4 29.8 7.3 36 6.5 39C5.7 42 5.1 47.7 5.5 50C5.9 52.3 7.6 55.7 9.5 57C11.4 58.3 16.6 59.5 20 60C23.4 60.5 32.1 60.9 36 60.8C39.9 60.7 47.1 60.3 50 59.5C52.9 58.7 57.2 56.4 58.5 54.5C59.8 52.6 60.1 47.7 60 45C59.9 42.3 58.7 36.7 57.5 34C56.3 31.3 52.8 26.7 51 24.5C49.2 22.3 45.6 18.6 44 17C42.4 15.4 40.8 13.1 38.5 12.5C36.2 11.9 28.5 11.9 26 12.5Z" fill="url(#rb-sack)"/>
+  <g clip-path="url(#rb-c)">
+    <path d="M4 14h58M4 18.4h58M4 22.8h58M4 27.2h58M4 31.6h58M4 36h58M4 40.4h58M4 44.8h58M4 49.2h58M4 53.6h58M4 58h58" stroke="#4a463c" stroke-width=".5" opacity=".13"/>
+    <path d="M5 40L8 27L19 17L26 12L24 30L18 46L15 60L5 58Z" fill="#efeadb" opacity=".2"/>
+    <path d="M48 20L58 34L60 47L58 56L44 62L40 50L48 36Z" fill="#2f2b22" opacity=".28"/>
+    <path d="M4 52C20 56 44 56 62 50L62 64L4 64Z" fill="#2f2b22" opacity=".26"/>
+    <path d="M17 38L22 30L31 28L35 34L32 43L22 46Z" fill="url(#rb-lump)"/><path d="M17 38L22 30L31 28" fill="none" stroke="#f3eedf" stroke-width=".9" opacity=".7" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 28L35 34L32 43L22 46" fill="none" stroke="#3a372d" stroke-width="1.1" opacity=".42" stroke-linecap="round" stroke-linejoin="round"/><path d="M38 22L45 20L50 27L47 34L40 33Z" fill="url(#rb-lump)"/><path d="M38 22L45 20L50 27" fill="none" stroke="#f3eedf" stroke-width=".9" opacity=".7" stroke-linecap="round" stroke-linejoin="round"/><path d="M50 27L47 34L40 33" fill="none" stroke="#3a372d" stroke-width="1.1" opacity=".42" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 46L15 42L21 47L19 54L11 54Z" fill="url(#rb-lump)"/><path d="M10 46L15 42L21 47" fill="none" stroke="#f3eedf" stroke-width=".9" opacity=".7" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 47L19 54L11 54" fill="none" stroke="#3a372d" stroke-width="1.1" opacity=".42" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 48L35 45L39 50L35 56L29 55Z" fill="url(#rb-lump)"/><path d="M28 48L35 45L39 50" fill="none" stroke="#f3eedf" stroke-width=".9" opacity=".7" stroke-linecap="round" stroke-linejoin="round"/><path d="M39 50L35 56L29 55" fill="none" stroke="#3a372d" stroke-width="1.1" opacity=".42" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.5 24L16 60" stroke="#4a463c" stroke-width=".7" opacity=".55"/>
+    <path d="M14 27L17 27.8M14 32L17 32.8M14 37L17 37.8M14 42L17 42.8M14 47L17 47.8M14 52L17 52.8" stroke="#e6e0d0" stroke-width=".7" opacity=".7"/>
+    <path d="M24 31L25 34.5M40 20L39 23.5" stroke="#4a463c" stroke-width=".7" opacity=".45" stroke-linecap="round"/>
+    <g opacity=".72"><path fill="#3a372f" d="M18 21.5h3.2v1.6h-3.2zM18 23.1h1.6v1.6h-1.6zM21.2 23.1h1.6v1.6h-1.6zM18 24.7h1.6v1.6h-1.6zM21.2 24.7h1.6v1.6h-1.6zM18 26.3h1.6v1.6h-1.6zM21.2 26.3h1.6v1.6h-1.6zM18 27.9h3.2v1.6h-3.2zM24.4 21.5h4.8v1.6h-4.8zM24.4 23.1h1.6v1.6h-1.6zM27.6 23.1h1.6v1.6h-1.6zM24.4 24.7h1.6v1.6h-1.6zM27.6 24.7h1.6v1.6h-1.6zM24.4 26.3h1.6v1.6h-1.6zM27.6 26.3h1.6v1.6h-1.6zM24.4 27.9h4.8v1.6h-4.8zM30.8 21.5h4.8v1.6h-4.8zM30.8 23.1h1.6v1.6h-1.6zM30.8 24.7h1.6v1.6h-1.6zM30.8 26.3h1.6v1.6h-1.6zM30.8 27.9h4.8v1.6h-4.8zM37.2 21.5h1.6v1.6h-1.6zM40.4 21.5h1.6v1.6h-1.6zM37.2 23.1h1.6v1.6h-1.6zM40.4 23.1h1.6v1.6h-1.6zM37.2 24.7h3.2v1.6h-3.2zM37.2 26.3h1.6v1.6h-1.6zM40.4 26.3h1.6v1.6h-1.6zM37.2 27.9h1.6v1.6h-1.6zM40.4 27.9h1.6v1.6h-1.6z"/></g>
+    <ellipse cx="14" cy="55" rx="6" ry="2.6" fill="#d9d4c4" opacity=".22"/>
+    <path d="M12 34h.01M22 52h.01M46 38h.01M9 48h.01M40 58h.01M52 30h.01M28 40h.01M33 22h.01M18 31h.01" stroke="#3d392f" stroke-width=".9" stroke-linecap="round" opacity=".5"/>
+  </g>
+  <path d="M26 12.5C23.5 13.2 20.8 15.6 19 17.5C17.2 19.4 13.6 24.2 12 27C10.4 29.8 7.3 36 6.5 39C5.7 42 5.1 47.7 5.5 50C5.9 52.3 7.6 55.7 9.5 57C11.4 58.3 16.6 59.5 20 60C23.4 60.5 32.1 60.9 36 60.8C39.9 60.7 47.1 60.3 50 59.5C52.9 58.7 57.2 56.4 58.5 54.5C59.8 52.6 60.1 47.7 60 45C59.9 42.3 58.7 36.7 57.5 34C56.3 31.3 52.8 26.7 51 24.5C49.2 22.3 45.6 18.6 44 17C42.4 15.4 40.8 13.1 38.5 12.5C36.2 11.9 28.5 11.9 26 12.5Z" fill="none" stroke="#3a372d" stroke-width="1.3" stroke-linejoin="round"/>
+  <path d="M7 44C6.5 37 9.5 30 14 24C17 20 20 18 24 14.5" fill="none" stroke="#efeadb" stroke-width="1.1" opacity=".5" stroke-linecap="round"/>
+  <!-- the split, low on the right, and the spill -->
+  <path d="M41 41L46 39.5L50 43L54 44L53 49L56 53L50 55L47 51L43 48Z" fill="#41392d" stroke="#241f17" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M41 41L46 39.5L50 43L54 44" fill="none" stroke="#e6e0d0" stroke-width=".9" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M43 48L47 51L50 55L56 53" fill="none" stroke="#2f2b22" stroke-width="1.2" opacity=".6" stroke-linecap="round"/>
+  <path d="M40.5 41.5L38.5 40M42 40.5L41.5 38.5M47 39L47.5 37.2M54.5 44.5L56.5 44M55 52.5L57 52" stroke="#d8d2c0" stroke-width=".6" opacity=".85" stroke-linecap="round"/>
+  <path d="M46 46L50 44.5L53 47L51.5 50.5L47.5 50Z" fill="#a9a597"/><path d="M49.6 47.6L46 46L50 44.5ZM49.6 47.6L47.5 50L46 46Z" fill="#d2cdbe"/><path d="M49.6 47.6L53 47L51.5 50.5ZM49.6 47.6L51.5 50.5L47.5 50Z" fill="#77736a"/><path d="M46 46L50 44.5L53 47L51.5 50.5L47.5 50Z" fill="none" stroke="#37342b" stroke-width="0.7" stroke-linejoin="round"/>
+  <path d="M43.5 44C42 45 42.5 47 44.5 47.5C46 48.5 47.5 47.5 47 46C48 44.5 46 43 43.5 44Z" fill="#d9ccae" stroke="#8a7d60" stroke-width=".6"/>
+  <path d="M42.5 44.5L41.5 43.5M43.5 48L42.5 49M46.5 48.5L47 49.8" stroke="#cdbf9c" stroke-width=".5" stroke-linecap="round"/>
+  <ellipse cx="49" cy="61.5" rx="13.5" ry="2.2" fill="#d2cdbe" opacity=".3"/>
+  <path d="M33.5 61.5L35 57.5L42.5 56L44 60.5Z" fill="#d8d3c4"/><path d="M38.8 58.9L33.5 61.5L35 57.5ZM38.8 58.9L35 57.5L42.5 56Z" fill="#f3efe4"/><path d="M38.8 58.9L42.5 56L44 60.5ZM38.8 58.9L44 60.5L33.5 61.5Z" fill="#a09b8e"/><path d="M33.5 61.5L35 57.5L42.5 56L44 60.5Z" fill="none" stroke="#3f3b32" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M37.5 57L40 56.6L39 60.4L36.2 60.8Z" fill="#d9a82e"/>
+  <path d="M35 58.5h.01M42.2 57.8h.01" stroke="#7a7568" stroke-width=".9" stroke-linecap="round"/>
+  <path d="M41 59L45 56L50 57.5L49.5 62L42 62.5Z" fill="#8f5c45"/><path d="M45.5 59.4L41 59L45 56ZM45.5 59.4L42 62.5L41 59Z" fill="#b9805f"/><path d="M45.5 59.4L50 57.5L49.5 62ZM45.5 59.4L49.5 62L42 62.5Z" fill="#5f3b2b"/><path d="M41 59L45 56L50 57.5L49.5 62L42 62.5Z" fill="none" stroke="#33200f" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M49 55.5L53 52L59 53L61.5 58L59 62L51 62Z" fill="#a9a597"/><path d="M55.4 57.1L49 55.5L53 52ZM55.4 57.1L53 52L59 53ZM55.4 57.1L51 62L49 55.5Z" fill="#d2cdbe"/><path d="M55.4 57.1L59 53L61.5 58ZM55.4 57.1L61.5 58L59 62ZM55.4 57.1L59 62L51 62Z" fill="#77736a"/><path d="M49 55.5L53 52L59 53L61.5 58L59 62L51 62Z" fill="none" stroke="#37342b" stroke-width="1" stroke-linejoin="round"/>
+  <path d="M52.5 55C54 53.5 56 53.2 57 54" fill="none" stroke="#fff" stroke-width=".6" opacity=".55" stroke-linecap="round"/>
+  <path d="M54 53L58 47" stroke="#3a1f10" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M54 53L58 47" stroke="#8d9297" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="M57.2 48.2L58 47" stroke="#a4522b" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="M44.5 63h.01M33 62.5h.01M62.5 61h.01M62 55h.01M38 63h.01" stroke="#8c877b" stroke-width=".9" stroke-linecap="round" opacity=".8"/>
+  <!-- neck, ruffle and wire -->
+  <path d="M25 13.5L22.5 6.5L26.5 9L28.5 4.5L31.5 8.5L34.5 4L36.5 9L40.5 6.5L38.5 13.5Z" fill="#b5af9f" stroke="#3a372d" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M26.5 12L25.5 8.5M30 12L30 7.5M34.5 12L35.5 7.5M38 12L38.5 8.5" stroke="#6f6a5e" stroke-width=".6" opacity=".8"/>
+  <path d="M24.5 9L28 5.5" stroke="#efeadb" stroke-width=".8" opacity=".6" stroke-linecap="round"/>
+  <path d="M24.2 13.8C28 15.2 36 15.2 39.6 13.8L39.8 11.8C36 13.2 28 13.2 24 11.8Z" fill="url(#rb-wire)" stroke="#2a2d30" stroke-width=".9" stroke-linejoin="round"/>
+  <path d="M26 12.6L27.2 14.5M29 13L30 14.8M32 13L33 14.8M35 12.8L36 14.6" stroke="#2a2d30" stroke-width=".6" opacity=".7"/>
+  <path d="M39.5 12.5C42.5 11.5 44 10 43.5 8.5M39.2 13.5C42 14 44.5 13 45 11.5" fill="none" stroke="#8d9297" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="M39.5 12.5C42.5 11.5 44 10 43.5 8.5" fill="none" stroke="#c9cdd0" stroke-width=".4" stroke-linecap="round"/>
+</svg>

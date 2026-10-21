@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- a blank memory card: the family slate body with the cut corner and five gold contacts in a dark slot; no label, just the empty label field outlined by dashes and the word BLANK stencilled faint; the lock slider is down (orange) because a blank card is a copy target and never copyable -->
+  <defs>
+    <linearGradient id="bk-bd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6a6984"/><stop offset="0.45" stop-color="#4d4c5e"/><stop offset="1" stop-color="#34333f"/></linearGradient>
+    <linearGradient id="bk-au" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbe08a"/><stop offset="0.5" stop-color="#e0b43a"/><stop offset="1" stop-color="#a97a14"/></linearGradient>
+  </defs>
+  <path d="M6.5 2.5H22L28 8.5V27Q28 29.5 25.5 29.5H6.5Q4 29.5 4 27V5Q4 2.5 6.5 2.5Z" transform="translate(0.9 1)" fill="#1e1c26"/>
+  <path d="M6.5 2.5H22L28 8.5V27Q28 29.5 25.5 29.5H6.5Q4 29.5 4 27V5Q4 2.5 6.5 2.5Z" fill="url(#bk-bd)" stroke="#17151d" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M5 5.5Q5 3.5 7 3.5H15L5 14Z" fill="#ffffff" opacity="0.07"/>
+  <path d="M5.2 27V5.2Q5.2 3.7 6.7 3.7H21.6L27 9.1" fill="none" stroke="#c9c8e2" stroke-width="0.6" opacity="0.5" stroke-linecap="round"/>
+  <path d="M27 10V26.8Q27 28.4 25.4 28.4H7" fill="none" stroke="#17151d" stroke-width="0.7" opacity="0.45" stroke-linecap="round"/>
+  <rect x="6.2" y="4.6" width="14.4" height="6.4" rx="0.9" fill="#14121a" opacity="0.6"/>
+  <g fill="url(#bk-au)" stroke="#8a6210" stroke-width="0.3"><rect x="7" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="9.7" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="12.4" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="15.1" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="17.8" y="5.2" width="2.2" height="5.2" rx="0.4"/></g>
+  <path d="M7.3 5.6V9.6M10 5.6V9.6M12.7 5.6V9.6M15.4 5.6V9.6M18.1 5.6V9.6" stroke="#fff6c8" stroke-width="0.4" opacity="0.6"/>
+  <rect x="4.3" y="13.4" width="1.8" height="5.8" rx="0.5" fill="#14121a"/>
+  <rect x="4.5" y="16.2" width="1.4" height="2.8" rx="0.4" fill="#e08a3a" stroke="#9a5420" stroke-width="0.3"/>
+  
+  <rect x="6.6" y="12.6" width="18.8" height="14.8" rx="1.3" fill="#14121a" opacity="0.32"/>
+  <rect x="6.6" y="12.6" width="18.8" height="14.8" rx="1.3" fill="none" stroke="#9a98b4" stroke-width="0.4" opacity="0.5" stroke-dasharray="1.6 1"/>
+  <path fill="#9a98b4" opacity="0.75" d="M10 18.6h1.2v0.6h-1.2zM10 19.2h0.6v2.4h-0.6zM11.2 19.2h0.6v0.6h-0.6zM10.6 19.8h0.6v0.6h-0.6zM11.2 20.4h0.6v0.6h-0.6zM10.6 21h0.6v0.6h-0.6zM12.4 18.6h0.6v3h-0.6zM13 21h1.2v0.6h-1.2zM14.8 18.6h1.8v0.6h-1.8zM14.8 19.2h0.6v2.4h-0.6zM16 19.2h0.6v2.4h-0.6zM15.4 19.8h0.6v0.6h-0.6zM17.2 18.6h1.2v0.6h-1.2zM17.2 19.2h0.6v2.4h-0.6zM18.4 19.2h0.6v2.4h-0.6zM19.6 18.6h0.6v3h-0.6zM20.8 18.6h0.6v1.2h-0.6zM20.2 19.8h0.6v0.6h-0.6zM20.8 20.4h0.6v1.2h-0.6z"/>
+  <path d="M8.2 24.8H23.6" stroke="#9a98b4" stroke-width="0.4" opacity="0.4"/><circle cx="21.4" cy="21.8" r="0.5" fill="#8c8aa8" opacity="0.5"/>
+  
+  <g fill="#c9c8e2" opacity="0.5"><circle cx="24.2" cy="11" r="0.4"/><circle cx="21.8" cy="3.8" r="0.3"/></g><path d="M23.6 6.6L25.4 8.2" stroke="#17151d" stroke-width="0.4" opacity="0.5" stroke-linecap="round"/>
+</svg>

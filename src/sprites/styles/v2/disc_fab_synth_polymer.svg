@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="sy-sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c92a1"/><stop offset="0.5" stop-color="#666c7b"/><stop offset="1" stop-color="#474c5a"/></linearGradient>
+    <linearGradient id="sy-wn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a80c2"/><stop offset="0.55" stop-color="#2d5a93"/><stop offset="1" stop-color="#21426f"/></linearGradient>
+    <linearGradient id="sy-pp" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#f6f1e5"/><stop offset="1" stop-color="#e0d8c3"/></linearGradient>
+    <linearGradient id="sy-au" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbe08a"/><stop offset="0.55" stop-color="#e0b43a"/><stop offset="1" stop-color="#a97a14"/></linearGradient>
+    <radialGradient id="sy-warm" cx="0.8" cy="1" r="0.8"><stop offset="0" stop-color="#e0883a" stop-opacity="0.6"/><stop offset="1" stop-color="#e0883a" stop-opacity="0"/></radialGradient>
+  </defs>
+  <!-- a recipe card, polymer synthesis P-7: cream recipe-card label with a blue header, a conical flask of warm orange liquid with a hexagon ring and bubbles, heat shimmer beside it and a warm flush on the plastic -->
+  <path d="M6 2.5H22.5L29 9V27Q29 29.5 26.5 29.5H5.5Q3 29.5 3 27V5.5Q3 2.5 6 2.5Z" transform="translate(0.9 1)" fill="#0b0810" opacity="0.35"/>
+  <path d="M6 2.5H22.5L29 9V27Q29 29.5 26.5 29.5H5.5Q3 29.5 3 27V5.5Q3 2.5 6 2.5Z" fill="url(#sy-sh)" stroke="#23252d" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M6.2 3.7H22.2L27.9 9.4M4.2 6.2V26.6" fill="none" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+  <path d="M27.9 10.6V26.6Q27.9 28.3 26.2 28.3H6.5" fill="none" stroke="#000000" stroke-width="0.7" stroke-linecap="round" opacity="0.3"/>
+  <path d="M6 2.5H22.5L29 9V27Q29 29.5 26.5 29.5H5.5Q3 29.5 3 27V5.5Q3 2.5 6 2.5Z" fill="url(#sy-warm)"/>
+  <rect x="6" y="3.6" width="16" height="6.4" rx="0.8" fill="#23252c"/>
+  <path d="M7 4.4h2.2v5H7zM10 4.4h2.2v5H10zM13 4.4h2.2v5H13zM16 4.4h2.2v5H16zM19 4.4h2.2v5H19z" fill="#e0b43a"/>
+  <path d="M7 4.4h0.7v5H7zM10 4.4h0.7v5H10zM13 4.4h0.7v5H13zM16 4.4h0.7v5H16zM19 4.4h0.7v5H19z" fill="#fbe08a"/>
+  <path d="M8.6 4.4h0.6v5H8.6zM11.6 4.4h0.6v5H11.6zM14.6 4.4h0.6v5H14.6zM17.6 4.4h0.6v5H17.6zM20.6 4.4h0.6v5H20.6z" fill="#a97a14"/>
+  <rect x="1.9" y="10.4" width="2.5" height="4.2" rx="0.6" fill="#c9ced6" stroke="#23252d" stroke-width="0.5"/>
+  <path d="M2.5 11V14" stroke="#ffffff" stroke-width="0.4" opacity="0.8"/>
+  <rect x="5.5" y="12.2" width="21" height="15.3" rx="1.2" fill="url(#sy-pp)" stroke="#a89c82" stroke-width="0.6"/>
+  <path d="M5.5 15.8V13.4Q5.5 12.2 6.7 12.2H25.3Q26.5 12.2 26.5 13.4V15.8Z" fill="#3f6fb5"/>
+  <path d="M6.4 12.8H25.6" stroke="#6f9bd8" stroke-width="0.5" opacity="0.8"/>
+  <path d="M5.5 15.8H26.5" stroke="#2a4f85" stroke-width="0.6"/>
+  <path d="M7.35 13.2v1.5M8.35 14.2v1.5M7.1 13.45h1.5M7.1 15.45h1.5M7.85 14.2v0.5M9.85 14.2v1.5M9.35 13.2v1M10.35 13.2v1M11.35 13.2v2.5M12.35 13.7v2M11.85 13.2v0.5M13.85 13.2v2.5M13.1 13.45h1.5M15.35 13.2v2.5M16.35 13.2v2.5M15.85 14.2v0.5M19.35 13.2v2.5M20.35 13.2v1.5M19.85 13.2v0.5M19.85 14.2v0.5M21.1 14.45h1.5M24.35 13.2v2.5M23.1 13.45h1.5" fill="none" stroke="#f4f8ff" stroke-width="0.5"/>
+  
+  <path d="M14.5 16.8H17.5V20L22.4 25.4Q23 26.6 21.8 26.6H10.2Q9 26.6 9.6 25.4L14.5 20Z" fill="#cfeaec" fill-opacity="0.55" stroke="#3f7f86" stroke-width="0.7" stroke-linejoin="round"/>
+  <path d="M11.6 23.2H20.4L22.4 25.4Q23 26.6 21.8 26.6H10.2Q9 26.6 9.6 25.4Z" fill="#e0883a"/>
+  <path d="M10.6 25H21.4" stroke="#ffc07a" stroke-width="0.5" opacity="0.8"/>
+  <path d="M16 22.2L17.9 23.3V25.5L16 26.6L14.1 25.5V23.3Z" fill="none" stroke="#7a3d1e" stroke-width="0.5" opacity="0.85"/>
+  <circle cx="13.2" cy="23.6" r="0.6" fill="#f4b06a"/><circle cx="18.4" cy="21.4" r="0.55" fill="#e0883a"/><circle cx="16" cy="19.2" r="0.45" fill="#e0883a" opacity="0.9"/>
+  <path d="M14.9 17.4V20" stroke="#ffffff" stroke-width="0.6" opacity="0.85" stroke-linecap="round"/>
+  <rect x="14.1" y="16.2" width="5" height="1" rx="0.5" fill="#8ab6bc" stroke="#3f7f86" stroke-width="0.35"/>
+  <path d="M23.2 17.6Q24.2 18.8 23.2 20Q22.2 21.2 23.2 22.4M25.2 18.8Q26.2 20 25.2 21.2" fill="none" stroke="#e0883a" stroke-width="0.6" stroke-linecap="round" opacity="0.85"/>
+  <path d="M6.8 26.6H8.6M6.8 25.2H8.6" stroke="#b9ad94" stroke-width="0.4" opacity="0.8"/>
+  
+  <path d="M24.2 6.4L27 9.2M25.6 11.2L27.4 13.2" stroke="#ffffff" stroke-width="0.3" opacity="0.18" stroke-linecap="round"/>
+  <g fill="#23252d" opacity="0.55"><circle cx="8" cy="28.2" r="0.35"/><circle cx="25.6" cy="10.8" r="0.3"/><circle cx="4.4" cy="22" r="0.3"/></g>
+</svg>

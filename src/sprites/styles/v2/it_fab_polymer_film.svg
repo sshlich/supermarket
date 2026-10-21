@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<defs>
+<linearGradient id="pf-roll" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6fcfe" stop-opacity="0.92"/><stop offset="0.4" stop-color="#d4eaf1" stop-opacity="0.78"/><stop offset="1" stop-color="#8db3c6" stop-opacity="0.82"/></linearGradient>
+<linearGradient id="pf-face" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4fbfd" stop-opacity="0.95"/><stop offset="1" stop-color="#b5d3df" stop-opacity="0.85"/></linearGradient>
+<linearGradient id="pf-tail" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6f5fa" stop-opacity="0.78"/><stop offset="0.6" stop-color="#c3deea" stop-opacity="0.62"/><stop offset="1" stop-color="#9cc0d2" stop-opacity="0.6"/></linearGradient>
+<linearGradient id="pf-core" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dcb987"/><stop offset="0.5" stop-color="#c29c66"/><stop offset="1" stop-color="#8a6a40"/></linearGradient>
+<linearGradient id="pf-cast" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a4660" stop-opacity="0.5"/><stop offset="1" stop-color="#2a4660" stop-opacity="0"/></linearGradient>
+<clipPath id="pf-clip"><path d="M14 6H50A5.4 15 0 0 1 50 36H14Z"/></clipPath>
+</defs>
+<!-- a roll of clear polymer film lying on its side: a cardboard core showing through tight wound layers, a paper label and a band of
+blue tape, the loose film run off the bottom and lying across the bench in soft creases, one corner folded back -->
+<path d="M13 33L51 33L57.6 54.6C54 57 52 60.4 47 60C42 59.2 40 62 34 60.8C28 59.6 24 62 18 60C14 58.6 11 59.4 8.6 57.4Z" fill="#0e0b13" opacity="0.26" transform="translate(1.6 1.6)"/>
+<path d="M13 33L51 33L57.6 54.6C54 57 52 60.4 47 60C42 59.2 40 62 34 60.8C28 59.6 24 62 18 60C14 58.6 11 59.4 8.6 57.4Z" fill="url(#pf-tail)" stroke="#6f8ca0" stroke-width="1" stroke-linejoin="round"/>
+<path d="M13.5 35L50.5 35L50.5 41C40 43 24 43 13.5 41Z" fill="url(#pf-cast)"/>
+<path d="M14 36L11 52.5L9.6 57M14.6 36L12.6 50" fill="none" stroke="#ffffff" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>
+<path d="M17 43.5C24 46 31 44 40 47.5M15 51C22 49.4 28 53.4 38 51.2M33 55.6C40 54 46 57 52 54.4" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+<path d="M18 45C25 47.4 32 45.4 41 49M16 52.6C23 51 29 55 39 52.8" fill="none" stroke="#6f8ca0" stroke-width="0.45" stroke-linecap="round" opacity="0.55"/>
+<path d="M44 38L54 40L52 49Z" fill="#ffffff" opacity="0.18"/>
+<path fill="#4d7a98" opacity="0.65" shape-rendering="crispEdges" d="M15.4 55.4h2.25v0.75h-2.25zM15.4 56.15h0.75v0.75h-0.75zM16.9 56.15h0.75v0.75h-0.75zM15.4 56.9h2.25v0.75h-2.25zM15.4 57.65h0.75v0.75h-0.75zM15.4 58.4h0.75v0.75h-0.75zM18.4 55.4h2.25v0.75h-2.25zM18.4 56.15h0.75v0.75h-0.75zM18.4 56.9h1.5v0.75h-1.5zM18.4 57.65h0.75v0.75h-0.75zM18.4 58.4h0.75v0.75h-0.75zM21.4 56.9h2.25v0.75h-2.25zM24.4 55.4h2.25v0.75h-2.25zM24.4 56.15h0.75v0.75h-0.75zM24.4 56.9h2.25v0.75h-2.25zM25.9 57.65h0.75v0.75h-0.75zM24.4 58.4h2.25v0.75h-2.25zM27.4 55.4h2.25v0.75h-2.25zM27.4 56.15h0.75v0.75h-0.75zM28.9 56.15h0.75v0.75h-0.75zM27.4 56.9h0.75v0.75h-0.75zM28.9 56.9h0.75v0.75h-0.75zM27.4 57.65h0.75v0.75h-0.75zM28.9 57.65h0.75v0.75h-0.75zM27.4 58.4h2.25v0.75h-2.25z"/>
+<!-- the corner folded back -->
+<path d="M57.6 54.6L56.4 44.6L47.4 59.9C52 60.4 54.4 57.4 57.6 54.6Z" fill="#0e0b13" opacity="0.18" transform="translate(-0.4 1.1)"/>
+<path d="M57.6 54.6L56.4 44.6L47.4 59.9Z" fill="#f0f9fc" fill-opacity="0.92" stroke="#6f8ca0" stroke-width="0.8" stroke-linejoin="round"/>
+<path d="M56 46.6L48.6 58" stroke="#a6c5d4" stroke-width="0.5" opacity="0.8"/>
+<path d="M56.8 49.6L53 55.4" stroke="#ffffff" stroke-width="0.6" stroke-linecap="round" opacity="0.9"/>
+<!-- the roll: core behind the film, the film body, its right end -->
+<path d="M14 15.6H50V26.4H14Z" fill="url(#pf-core)" opacity="0.8"/>
+<path d="M14 6H50A5.4 15 0 0 1 50 36H14Z" fill="url(#pf-roll)" stroke="#5d7d91" stroke-width="1.1" stroke-linejoin="round"/>
+<g clip-path="url(#pf-clip)">
+<path d="M17 10.4H46M19 13.6H42" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" opacity="0.8"/>
+<path d="M22 31.4H48" stroke="#4d7a98" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+<path d="M16 8.2H22M26 8.2H33" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round" opacity="0.9"/>
+<path d="M30 17C32 19 31 22 33 24M38 14C40 17 39 20 41 22" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.5"/>
+<!-- tape band round the roll -->
+<path d="M44.4 5.6A5.4 15 0 0 1 44.4 36.4L48.4 36.4A5.4 15 0 0 1 48.4 5.6Z" fill="#6a8aa8" fill-opacity="0.9" stroke="#3f5a78" stroke-width="0.6"/>
+<path d="M45 8A5.4 15 0 0 1 45 18" fill="none" stroke="#cfe0ee" stroke-width="0.8" opacity="0.8" stroke-linecap="round"/>
+</g>
+<!-- paper label stuck on the roll -->
+<path d="M22.4 18.4L35.6 18.4L35.6 28L22.4 28Z" fill="#0e0b13" opacity="0.2" transform="translate(0.8 1)"/>
+<path d="M22.4 18.4L35.6 18.4L35.6 28L22.4 28Z" fill="#ece6d8" stroke="#b9ad94" stroke-width="0.6" stroke-linejoin="round"/>
+<path fill="#3a3328" opacity="0.85" shape-rendering="crispEdges" d="M24 20h2.4v0.8h-2.4zM24 20.8h0.8v0.8h-0.8zM25.6 20.8h0.8v0.8h-0.8zM24 21.6h2.4v0.8h-2.4zM24 22.4h0.8v0.8h-0.8zM24 23.2h0.8v0.8h-0.8zM27.2 20h2.4v0.8h-2.4zM27.2 20.8h0.8v0.8h-0.8zM27.2 21.6h1.6v0.8h-1.6zM27.2 22.4h0.8v0.8h-0.8zM27.2 23.2h0.8v0.8h-0.8zM30.4 21.6h2.4v0.8h-2.4zM33.6 20h2.4v0.8h-2.4zM33.6 20.8h0.8v0.8h-0.8zM33.6 21.6h2.4v0.8h-2.4zM35.2 22.4h0.8v0.8h-0.8zM33.6 23.2h2.4v0.8h-2.4zM36.8 20h2.4v0.8h-2.4zM36.8 20.8h0.8v0.8h-0.8zM38.4 20.8h0.8v0.8h-0.8zM36.8 21.6h0.8v0.8h-0.8zM38.4 21.6h0.8v0.8h-0.8zM36.8 22.4h0.8v0.8h-0.8zM38.4 22.4h0.8v0.8h-0.8zM36.8 23.2h2.4v0.8h-2.4z"/>
+<path d="M24 24.4H34M24 26.2H31" stroke="#a99d84" stroke-width="0.4"/>
+<path d="M33.6 24.2L35.6 24.2L35.6 26.8" fill="none" stroke="#c0564a" stroke-width="0.7"/>
+<!-- left end: wound layers, the loose end's step, the cardboard core standing proud -->
+<ellipse cx="14" cy="21" rx="5.4" ry="15" fill="url(#pf-face)" stroke="#5d7d91" stroke-width="1.1"/>
+<g fill="none" stroke="#6f8ca0" stroke-width="0.4" opacity="0.55"><ellipse cx="14" cy="21" rx="2.3" ry="6.4"/><ellipse cx="14" cy="21" rx="2.7" ry="7.6"/><ellipse cx="14" cy="21" rx="3.1" ry="8.7"/><ellipse cx="14" cy="21" rx="3.5" ry="9.9"/><ellipse cx="14" cy="21" rx="4" ry="11"/><ellipse cx="14" cy="21" rx="4.4" ry="12.2"/><ellipse cx="14" cy="21" rx="4.8" ry="13.3"/><ellipse cx="14" cy="21" rx="5.2" ry="14.5"/></g>
+<g fill="none" stroke="#ffffff" stroke-width="0.35" opacity="0.7"><ellipse cx="13.5" cy="20.5" rx="3.3" ry="9.2"/><ellipse cx="13.5" cy="20.5" rx="4.5" ry="12.4"/></g>
+<path d="M11.7 34.4Q13 35.6 14.6 35.9" fill="none" stroke="#3f5a78" stroke-width="0.7" stroke-linecap="round" opacity="0.8"/>
+<path d="M10.4 12Q9.4 17 9.8 21" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.85"/>
+<path d="M14 15.6H11.2V26.4H14A2 5.4 0 0 0 14 15.6Z" fill="url(#pf-core)"/>
+<ellipse cx="11.2" cy="21" rx="2" ry="5.4" fill="#d7b27c" stroke="#6a4c28" stroke-width="0.9"/>
+<ellipse cx="11.4" cy="21" rx="1.1" ry="3.9" fill="#2e2418"/>
+<path d="M10.4 17.4Q10 21 10.4 24.6" fill="none" stroke="#ffffff" stroke-width="0.4" opacity="0.5"/>
+</svg>

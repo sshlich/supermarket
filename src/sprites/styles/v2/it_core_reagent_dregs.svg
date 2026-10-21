@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="dg-liq" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9a5088"/>
+      <stop offset="0.5" stop-color="#6b3560"/>
+      <stop offset="1" stop-color="#3f1f3c"/>
+    </linearGradient>
+    <linearGradient id="dg-cork" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#d9ac6c"/>
+      <stop offset="0.5" stop-color="#b98348"/>
+      <stop offset="1" stop-color="#7d4f28"/>
+    </linearGradient>
+    <linearGradient id="dg-wax" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d46a5e"/>
+      <stop offset="0.5" stop-color="#a23c38"/>
+      <stop offset="1" stop-color="#6a2220"/>
+    </linearGradient>
+    <clipPath id="dg-in"><path d="M7 16.8C7 14.4 9.4 13.6 15.3 13.9C21 13.6 23.6 14.4 23.6 16.8L23.6 27.2C23.6 27.9 23 28.3 22.2 28.3L8.4 28.3C7.6 28.3 7 27.9 7 27.2Z"/></clipPath>
+  </defs>
+  <!-- a stoppered vial of dark chemical dregs: murky magenta liquid over a sediment layer, a cork under red wax, a hazard label, a spilled puddle -->
+  <ellipse cx="17" cy="29.8" rx="13" ry="1.7" fill="#14111a" opacity=".45"/>
+  <path d="M23 28.4C24.5 27.4 28 27.4 30 28.4C30.2 29.6 28.6 30.4 26.6 30.4C24.8 30.4 23 29.8 23 28.4Z" fill="#6b3560" stroke="#3f1f3c" stroke-width=".6"/>
+  <path d="M25 28.4C26 28 27.6 28 28.6 28.4" stroke="#d58bc2" stroke-width=".5" opacity=".7" stroke-linecap="round" fill="none"/>
+  <path d="M12.2 7L18.4 7L18.4 10.2C18.4 12.2 24.8 12.6 24.8 17L24.8 27.2C24.8 28.6 23.6 29.4 22.4 29.4L8.2 29.4C7 29.4 5.8 28.6 5.8 27.2L5.8 17C5.8 12.6 12.2 12.2 12.2 10.2Z" fill="#bfe3e6" fill-opacity=".42"/>
+  <g clip-path="url(#dg-in)">
+    <rect x="6" y="13.6" width="19" height="16" fill="url(#dg-liq)"/>
+    <path d="M6 14C10 12.6 20 12.6 25 14L25 17.2C20 16.2 10 16.2 6 17.2Z" fill="#d79ac6" opacity=".4"/>
+    <path d="M7 24C11 22 14 25.5 18 23.8C21 22.6 23 23.4 24 23L24 30L7 30Z" fill="#2c1530" opacity=".5"/>
+    <path d="M7 26.2C11 25 14 27 18 26C21 25.2 23 25.8 24 25.4L24 30L7 30Z" fill="#26122a" opacity=".6"/>
+    <path d="M9.4 19.6C12 18.2 15 19.8 17.4 18.8" fill="none" stroke="#c985b6" stroke-width="1.2" opacity=".45" stroke-linecap="round"/>
+    <path d="M10 22h.01M13.5 20.8h.01M19.5 21.2h.01M16 23h.01M21.5 24.5h.01M11.5 25h.01M8.6 19.6h.01" stroke="#b46aa0" stroke-width=".8" stroke-linecap="round" opacity=".7"/>
+    <path d="M14.4 28.2L16 26.6L18 27.4L17.2 28.6Z" fill="#e4b4d6" stroke="#8a4a7c" stroke-width=".4" stroke-linejoin="round"/>
+    <path d="M20 28.2L21.4 26.8L22.6 27.8L21.8 28.6Z" fill="#c78ab8" opacity=".9"/>
+  </g>
+  <circle cx="10" cy="15.6" r="1.1" fill="#e9c4de" fill-opacity=".6" stroke="#fff" stroke-width=".4" stroke-opacity=".8"/>
+  <circle cx="13.2" cy="15" r=".7" fill="#e9c4de" fill-opacity=".6" stroke="#fff" stroke-width=".3" stroke-opacity=".8"/>
+  <circle cx="20.4" cy="15.2" r=".9" fill="#e9c4de" fill-opacity=".6" stroke="#fff" stroke-width=".4" stroke-opacity=".8"/>
+  <!-- paper label with a warning mark -->
+  <path d="M7.2 18.6L12.8 19.6L18.4 18.6L18.4 24.6L12.8 25.6L7.2 24.6Z" fill="#ece6d8" stroke="#8c836e" stroke-width=".6" stroke-linejoin="round"/>
+  <path d="M7.6 19.2L12.8 20.2L18 19.2" stroke="#fff" stroke-width=".5" opacity=".8" fill="none"/>
+  <path d="M12.8 20.4L15.7 24.6L9.9 24.6Z" fill="#e8a93a" stroke="#4a2646" stroke-width=".7" stroke-linejoin="round"/>
+  <path d="M12.8 21.9V23.2M12.8 24h.01" stroke="#4a2646" stroke-width=".8" stroke-linecap="round"/>
+  <path d="M16.2 22.6C17 22.2 18 22.8 18.4 23.6L18.4 24.6L16 24.6Z" fill="#5a2f4f" opacity=".5"/>
+  <path d="M12.2 7L18.4 7L18.4 10.2C18.4 12.2 24.8 12.6 24.8 17L24.8 27.2C24.8 28.6 23.6 29.4 22.4 29.4L8.2 29.4C7 29.4 5.8 28.6 5.8 27.2L5.8 17C5.8 12.6 12.2 12.2 12.2 10.2Z" fill="none" stroke="#3f7f86" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M7.4 17.2L7.4 27" stroke="#fff" stroke-width="1.1" opacity=".8" stroke-linecap="round"/>
+  <path d="M13.2 10.4C12.8 11.8 11 12.8 9.4 13.8" stroke="#fff" stroke-width=".8" opacity=".7" stroke-linecap="round" fill="none"/>
+  <path d="M23.4 18.5L23.4 27" stroke="#2a5c63" stroke-width=".8" opacity=".5" stroke-linecap="round"/>
+  <path d="M24.4 22.5C25 24 24.6 26.2 25.2 27.6" stroke="#6b3560" stroke-width=".9" opacity=".7" stroke-linecap="round" fill="none"/>
+  <!-- cork and wax seal -->
+  <path d="M12.4 2.8L18.4 2.8L17.8 7.6L13 7.6Z" fill="url(#dg-cork)" stroke="#4a2e14" stroke-width=".9" stroke-linejoin="round"/>
+  <path d="M12.4 2.8L18.4 2.8" stroke="#f0cc90" stroke-width=".8" opacity=".9"/>
+  <path d="M11 7.8C11 6.6 12.6 6.2 15.3 6.2C18 6.2 19.6 6.6 19.6 7.8C19.6 9 18.8 9.5 18.8 10.6C18.8 11.8 17.6 11.9 17.4 10.6C17.2 9.8 16.6 9.6 15.8 9.8C15 10 14.4 11.8 13.4 11.4C12.6 11 13.2 9.8 12.4 9.6C11.5 9.4 11 8.8 11 7.8Z" fill="url(#dg-wax)" stroke="#4a1614" stroke-width=".8" stroke-linejoin="round"/>
+  <path d="M11.8 7.2C12.8 6.7 14 6.6 15 6.7" stroke="#f4a096" stroke-width=".7" opacity=".8" stroke-linecap="round" fill="none"/>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="hv-sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8c92a1"/><stop offset="0.5" stop-color="#666c7b"/><stop offset="1" stop-color="#474c5a"/></linearGradient>
+    <linearGradient id="hv-wn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a80c2"/><stop offset="0.55" stop-color="#2d5a93"/><stop offset="1" stop-color="#21426f"/></linearGradient>
+    <linearGradient id="hv-pp" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#f6f1e5"/><stop offset="1" stop-color="#e0d8c3"/></linearGradient>
+    <linearGradient id="hv-au" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbe08a"/><stop offset="0.55" stop-color="#e0b43a"/><stop offset="1" stop-color="#a97a14"/></linearGradient>
+    
+  </defs>
+  <!-- a data card, heavy structural blueprints: grey polymer body with gold contacts, a blueprint sheet showing an I-beam drawn in oblique view (flanges, web, rivets) and a red CONCERN USE stamp -->
+  <path d="M6 2.5H22.5L29 9V27Q29 29.5 26.5 29.5H5.5Q3 29.5 3 27V5.5Q3 2.5 6 2.5Z" transform="translate(0.9 1)" fill="#0b0810" opacity="0.35"/>
+  <path d="M6 2.5H22.5L29 9V27Q29 29.5 26.5 29.5H5.5Q3 29.5 3 27V5.5Q3 2.5 6 2.5Z" fill="url(#hv-sh)" stroke="#23252d" stroke-width="1.1" stroke-linejoin="round"/>
+  <path d="M6.2 3.7H22.2L27.9 9.4M4.2 6.2V26.6" fill="none" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+  <path d="M27.9 10.6V26.6Q27.9 28.3 26.2 28.3H6.5" fill="none" stroke="#000000" stroke-width="0.7" stroke-linecap="round" opacity="0.3"/>
+  
+  <rect x="6" y="3.6" width="16" height="6.4" rx="0.8" fill="#23252c"/>
+  <path d="M7 4.4h2.2v5H7zM10 4.4h2.2v5H10zM13 4.4h2.2v5H13zM16 4.4h2.2v5H16zM19 4.4h2.2v5H19z" fill="#e0b43a"/>
+  <path d="M7 4.4h0.7v5H7zM10 4.4h0.7v5H10zM13 4.4h0.7v5H13zM16 4.4h0.7v5H16zM19 4.4h0.7v5H19z" fill="#fbe08a"/>
+  <path d="M8.6 4.4h0.6v5H8.6zM11.6 4.4h0.6v5H11.6zM14.6 4.4h0.6v5H14.6zM17.6 4.4h0.6v5H17.6zM20.6 4.4h0.6v5H20.6z" fill="#a97a14"/>
+  <rect x="1.9" y="10.4" width="2.5" height="4.2" rx="0.6" fill="#c9ced6" stroke="#23252d" stroke-width="0.5"/>
+  <path d="M2.5 11V14" stroke="#ffffff" stroke-width="0.4" opacity="0.8"/>
+  <rect x="5.5" y="12.2" width="21" height="15.3" rx="1.2" fill="url(#hv-wn)" stroke="#16305a" stroke-width="0.8"/>
+  <path d="M9 12.2v15.3M12.5 12.2v15.3M16 12.2v15.3M19.5 12.2v15.3M23 12.2v15.3M5.5 15.7h21M5.5 19.2h21M5.5 22.7h21M5.5 26.2h21" stroke="#d3e6fb" stroke-width="0.35" opacity="0.2" fill="none"/>
+  <path d="M6.3 26.7V13H25.7" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  
+  <path d="M7.2 17.8L15.2 17.8L20.4 14.8L12.4 14.8Z" fill="#ffffff" stroke="#a9c6e6" stroke-width="0.4" stroke-linejoin="round"/>
+  <path d="M15.2 17.8L15.2 20.1L20.4 17.1L20.4 14.8Z" fill="#a9c6e6" stroke="#274a7c" stroke-width="0.4" stroke-linejoin="round"/>
+  <path d="M12.5 20.1L12.5 23.7L17.7 20.7L17.7 17.1Z" fill="#7f9fc6" stroke="#274a7c" stroke-width="0.4" stroke-linejoin="round"/>
+  <path d="M12.5 23.7L15.2 23.7L20.4 20.7L17.7 20.7Z" fill="#eaf4fd" stroke="#a9c6e6" stroke-width="0.4" stroke-linejoin="round"/>
+  <path d="M15.2 23.7L15.2 26L20.4 23L20.4 20.7Z" fill="#7f9fc6" stroke="#274a7c" stroke-width="0.4" stroke-linejoin="round"/>
+  <path d="M7.2 17.8H15.2V20.1H12.5V23.7H15.2V26H7.2V23.7H9.9V20.1H7.2Z" fill="#eaf4fd" stroke="#a9c6e6" stroke-width="0.5" stroke-linejoin="round"/>
+  <path d="M7.9 18.5H14.6M10.6 20.700000000000003V23.099999999999998" stroke="#ffffff" stroke-width="0.5" opacity="0.9" fill="none"/>
+  <g fill="#274a7c"><circle cx="8.7" cy="19" r="0.45"/><circle cx="13.7" cy="19" r="0.45"/><circle cx="8.7" cy="24.8" r="0.45"/><circle cx="13.7" cy="24.8" r="0.45"/></g>
+  <g transform="rotate(-9 23 24.6)" opacity="0.88"><rect x="19.4" y="22.4" width="7" height="4.4" rx="0.4" fill="none" stroke="#e05a3a" stroke-width="0.6"/><path d="M20.55 23.55v2.5M21.55 23.55v2.5M21.05 25.55v0.5M22.55 23.55v1.5M23.55 24.55v1.5M22.3 23.8h1.5M22.3 25.8h1.5M23.05 24.55v0.5M24.55 23.55v2.5M24.3 23.8h1.5M24.3 25.8h1.5M25.05 24.55v0.5" fill="none" stroke="#e05a3a" stroke-width="0.5"/></g>
+  
+  <path d="M24.2 6.4L27 9.2M25.6 11.2L27.4 13.2" stroke="#ffffff" stroke-width="0.3" opacity="0.18" stroke-linecap="round"/>
+  <g fill="#23252d" opacity="0.55"><circle cx="8" cy="28.2" r="0.35"/><circle cx="25.6" cy="10.8" r="0.3"/><circle cx="4.4" cy="22" r="0.3"/></g>
+</svg>

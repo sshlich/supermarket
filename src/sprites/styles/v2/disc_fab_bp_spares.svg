@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="sp-sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#626672"/><stop offset="0.5" stop-color="#454852"/><stop offset="1" stop-color="#2f323a"/></linearGradient>
+    <linearGradient id="sp-mt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9aa1a8"/><stop offset="0.14" stop-color="#eceff2"/><stop offset="0.5" stop-color="#b8bec5"/><stop offset="0.82" stop-color="#d9dde1"/><stop offset="1" stop-color="#868d94"/></linearGradient>
+    <linearGradient id="sp-md" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a4733"/><stop offset="1" stop-color="#2a2019"/></linearGradient>
+    <linearGradient id="sp-pp" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#f6f1e5"/><stop offset="1" stop-color="#e0d8c3"/></linearGradient>
+    <linearGradient id="sp-wn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a80c2"/><stop offset="0.55" stop-color="#2d5a93"/><stop offset="1" stop-color="#21426f"/></linearGradient>
+  </defs>
+  <!-- blueprint floppy FAB-3 SPARES: same shell and band, window with gears and a spring, title scrawled in marker -->
+  <!-- the shell: a dark polymer 3.5-inch floppy, label side up, cut corner top right, lit from the top left -->
+  <path d="M7 3L52 3L61 12L61 57Q61 61 57 61L7 61Q3 61 3 57L3 7Q3 3 7 3Z" transform="translate(1.2 1.4)" fill="#0b0810" opacity="0.35"/>
+  <path d="M7 3L52 3L61 12L61 57Q61 61 57 61L7 61Q3 61 3 57L3 7Q3 3 7 3Z" fill="url(#sp-sh)" stroke="#15161a" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M7.4 4.6H51.6L59.6 12.6M4.6 8V56" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.32"/>
+  <path d="M59.6 14.5V57Q59.6 59.6 57 59.6H9" fill="none" stroke="#000000" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+  <path d="M7.5 9.4L10.8 6.8V12Z" fill="#17181c" opacity="0.7"/>
+  <path d="M10.8 12L7.5 9.4" stroke="#ffffff" stroke-width="0.4" opacity="0.25"/>
+  <path d="M52.1 17.9v4M50.1 18.3h2.4M50.1 19.9h2.4M50.1 21.5h2.4M54.5 21.1v0.8M56.9 17.9v2.4M58.5 19.5v2.4M56.5 18.3h2.4M56.5 21.5h2.4M57.7 19.5v0.8" fill="none" stroke="#000000" stroke-width="0.8" opacity="0.35"/>
+  <path d="M51.6 17.4v4M49.6 17.8h2.4M49.6 19.4h2.4M49.6 21h2.4M54 20.6v0.8M56.4 17.4v2.4M58 19v2.4M56 17.8h2.4M56 21h2.4M57.2 19v0.8" fill="none" stroke="#aab0be" stroke-width="0.8" opacity="0.5"/>
+  <path d="M50.2 25.6L56.4 23.6M52 27.4L57.6 26.2M48.6 55.4L55.4 53.6" stroke="#ffffff" stroke-width="0.4" opacity="0.16" stroke-linecap="round"/>
+  <g fill="#15161a" opacity="0.5"><circle cx="56.2" cy="21.4" r="0.45"/><circle cx="6" cy="46" r="0.4"/><circle cx="57" cy="43" r="0.35"/></g>
+  <!-- metal shutter in its recess, the disc itself showing through the window -->
+  <rect x="14" y="3" width="34" height="26.5" fill="#17181c" opacity="0.45"/>
+  <path d="M14 29.5H48" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+  <path d="M17 3H45V25.2Q45 26.7 43.5 26.7H18.5Q17 26.7 17 25.2Z" fill="url(#sp-mt)" stroke="#4a5057" stroke-width="0.8" stroke-linejoin="round"/>
+  <g stroke="#ffffff" stroke-width="0.35" opacity="0.4"><path d="M18 6.5H31"/><path d="M18 9.5H31"/><path d="M18 12.5H31"/><path d="M18 15.5H31"/><path d="M18 18.5H31"/><path d="M18 21.5H31"/><path d="M42 8.5H44.2"/><path d="M42 12H44.2"/></g>
+  <path d="M17.6 23.3H44.4" stroke="#6b7178" stroke-width="0.7" opacity="0.8"/>
+  <path d="M17.6 24H44.4" stroke="#ffffff" stroke-width="0.4" opacity="0.5"/>
+  <rect x="32.5" y="5.8" width="8.4" height="15.6" rx="1.3" fill="url(#sp-md)" stroke="#3a3f46" stroke-width="0.7"/>
+  <path d="M34.2 7.2V20" stroke="#9a7a55" stroke-width="0.8" opacity="0.5"/>
+  <path d="M33.4 8.2C35.5 8 37.5 8 39.9 8.4" stroke="#ffffff" stroke-width="0.5" opacity="0.25" fill="none"/>
+  <circle cx="19.6" cy="25" r="0.55" fill="#5a6067"/><circle cx="42.8" cy="25" r="0.55" fill="#5a6067"/>
+  <!-- the label pocket, the write-protect slot (bottom left) and the density hole (bottom right) -->
+  <rect x="10" y="29" width="44" height="30.4" rx="1.6" fill="#24262d"/>
+  <path d="M11 59.4H53" stroke="#ffffff" stroke-width="0.5" opacity="0.28" fill="none"/>
+  <rect x="5.2" y="50.4" width="4.4" height="6.8" rx="0.5" fill="#101114"/>
+  <rect x="5.6" y="50.8" width="3.6" height="3.2" rx="0.4" fill="#d0d5da" stroke="#6b7178" stroke-width="0.4"/><path d="M6 51.2H8.8" stroke="#ffffff" stroke-width="0.4" opacity="0.8"/>
+  <rect x="54.4" y="52.4" width="4.2" height="4.2" rx="0.4" fill="#101114"/>
+  <path d="M54.6 56.6H58.6" stroke="#ffffff" stroke-width="0.4" opacity="0.3"/>
+  <!-- the label: cream paper, a coloured header band with the maker and number in print -->
+  <rect x="11.5" y="30.2" width="41" height="27.8" rx="1.2" fill="url(#sp-pp)"/>
+  <path d="M11.5 36.8V31.4Q11.5 30.2 12.7 30.2H51.3Q52.5 30.2 52.5 31.4V36.8Z" fill="#3f6fb5"/>
+  <path d="M12.4 30.9H51.6" stroke="#6f9bd8" stroke-width="0.6" opacity="0.8"/>
+  <path d="M11.5 36.8H52.5" stroke="#2a4f85" stroke-width="0.7"/>
+  <path d="M13.75 31.75v3.5M13.4 32.1h2.1M14.45 33.15v0.7M16.55 31.75v3.5M17.95 31.75v3.5M17.25 31.75v0.7M17.25 34.55v0.7M19.35 31.75v3.5M20.75 31.75v3.5M20.05 34.55v0.7M22.15 31.75v3.5M23.55 32.45v2.8M22.85 31.75v0.7M24.95 31.75v3.5M26.35 32.45v2.1M25.65 31.75v0.7M25.65 34.55v0.7M27.75 31.75v3.5M29.15 31.75v1.4M29.15 33.85v1.4M28.45 31.75v0.7M28.45 33.15v0.7M31.25 33.15v2.1M30.55 31.75v1.4M31.95 31.75v1.4M36.15 31.75v3.5M35.8 32.1h2.1M36.85 33.15v0.7M38.95 31.75v3.5M40.35 31.75v3.5M39.65 31.75v0.7M39.65 33.15v0.7M41.75 31.75v3.5M42.45 31.75v0.7M42.45 33.15v0.7M42.45 34.55v0.7M43.15 32.45v0.7M43.15 33.85v0.7M44.2 33.5h2.1M48.75 31.75v3.5M47 32.1h2.1M47 33.5h2.1M47 34.9h2.1" fill="none" stroke="#f4f8ff" stroke-width="0.7"/>
+  <rect x="13.2" y="39" width="15.8" height="17.2" rx="1.2" fill="url(#sp-wn)" stroke="#16305a" stroke-width="0.8"/>
+  <path d="M17.2 39v17.2M21.2 39v17.2M25.2 39v17.2M13.2 43h15.8M13.2 47h15.8M13.2 51h15.8M13.2 55h15.8" stroke="#d3e6fb" stroke-width="0.4" opacity="0.2" fill="none"/>
+  <path d="M14 55.4V39.8H28.2" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.3"/>
+  
+  <path d="M23.2 46.1L24.3 46.6L24 48.3L22.7 48.3L22.5 48.8L22.1 49.2L22.6 50.4L21.1 51.3L20.2 50.5L19.7 50.6L19.2 50.7L18.7 51.8L17 51.5L17 50.2L16.5 50L16.1 49.6L14.9 50.1L14 48.6L14.8 47.7L14.7 47.2L14.6 46.7L13.5 46.2L13.8 44.5L15.1 44.5L15.3 44L15.7 43.6L15.2 42.4L16.7 41.5L17.6 42.3L18.1 42.2L18.6 42.1L19.1 41L20.8 41.3L20.8 42.6L21.3 42.8L21.7 43.2L22.9 42.7L23.8 44.2L23 45.1L23.1 45.6ZM20.6 46.4A1.7 1.7 0 1 0 17.2 46.4A1.7 1.7 0 1 0 20.6 46.4Z" fill="#eaf4fd" stroke="#a9c6e6" stroke-width="0.5" fill-rule="evenodd"/>
+  <circle cx="18.9" cy="46.4" r="2.9" fill="none" stroke="#a9c6e6" stroke-width="0.4"/>
+  <path d="M15.6 43.4A4.7 4.7 0 0 1 19.6 41.8" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.8" stroke-linecap="round"/>
+  <path d="M27.7 52.7L28.5 53.1L28.1 54.2L27.3 54.1L27 54.3L26.8 54.6L26.8 55.4L25.6 55.7L25.3 54.9L25 54.8L24.7 54.7L23.9 55.2L23.1 54.3L23.7 53.6L23.6 53.3L23.5 52.9L22.7 52.5L23.1 51.4L23.9 51.5L24.2 51.3L24.4 51L24.4 50.2L25.6 49.9L25.9 50.7L26.2 50.8L26.5 50.9L27.3 50.4L28.1 51.3L27.5 52L27.6 52.3ZM26.4 52.8A0.8 0.8 0 1 0 24.8 52.8A0.8 0.8 0 1 0 26.4 52.8Z" fill="#eaf4fd" stroke="#a9c6e6" stroke-width="0.5" fill-rule="evenodd"/>
+  <path d="M25 40.6L28.2 41.6L24.8 42.8L28.2 44L24.8 45.2L28.2 46.4L25 47.4" fill="none" stroke="#eaf4fd" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round"/>
+  
+  <g fill="none" stroke="#1d2540" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity="0.92"><path d="M2.9 1C2.2 -0.2 -0.2 0.1 0.1 1.7C0.3 3 3 3 2.9 4.7C2.8 6.4 0.3 6.5 -0.1 5.3" transform="translate(31.6 40.1) rotate(-4 1.3 2.8) scale(0.88)"/><path d="M0.3 6.4V0.2H1.7C3.1 0.2 3.1 3.4 1.6 3.4H0.4" transform="translate(34.8 39.7) rotate(3 1.3 2.8) scale(0.88)"/><path d="M-0.1 6.4L1.5 0.1L3.1 6.4M0.5 4.2H2.6" transform="translate(37.9 40.1) rotate(-3 1.3 2.8) scale(0.88)"/><path d="M0.3 6.4V0.2H1.7C3.1 0.2 3.1 3.4 1.6 3.4H0.4M1.5 3.5L3 6.4" transform="translate(41.3 39.7) rotate(4 1.3 2.8) scale(0.88)"/><path d="M3 0.3H0.3V6.3H3M0.3 3.2H2.4" transform="translate(44.8 40.1) rotate(-2 1.3 2.8) scale(0.88)"/><path d="M2.9 1C2.2 -0.2 -0.2 0.1 0.1 1.7C0.3 3 3 3 2.9 4.7C2.8 6.4 0.3 6.5 -0.1 5.3" transform="translate(47.7 39.8) rotate(5 1.3 2.8) scale(0.88)"/><path d="M31.6 46.9C36 46.2 44 47.2 51.2 46.3" stroke-width="0.7"/></g>
+  <path d="M31.4 45.7H51.4" stroke="#b9ad94" stroke-width="0.5"/>
+  <path d="M31.65 48.8v2.5M32.15 48.8v0.5M32.15 49.8v0.5M32.15 50.8v0.5M32.65 49.3v0.5M32.65 50.3v0.5M33.65 48.8v2.5M34.65 48.8v1M34.65 50.3v1M34.15 48.8v0.5M34.15 49.8v0.5M35.65 48.8v2.5M36.65 48.8v2.5M36.15 48.8v0.5M36.15 49.8v0.5M37.65 48.8v2.5M37.4 49.05h1.5M37.4 51.05h1.5M39.65 48.8v2.5M40.65 48.8v1M40.65 50.3v1M40.15 49.8v0.5M41.65 48.8v2.5M41.4 49.05h1.5M41.4 51.05h1.5M42.15 49.8v0.5M44.15 48.8v2.5M43.4 49.05h1.5" fill="none" stroke="#5b6b88" stroke-width="0.5"/><path d="M31.65 51.7v1.5M32.65 52.7v1.5M31.4 51.95h1.5M31.4 53.95h1.5M32.15 52.7v0.5M33.65 51.7v2.5M34.65 51.7v1.5M34.15 51.7v0.5M34.15 52.7v0.5M35.65 51.7v2.5M36.65 51.7v1M36.65 53.2v1M36.15 51.7v0.5M36.15 52.7v0.5M38.15 51.7v2.5M37.4 51.95h1.5M37.4 53.95h1.5M39.65 51.7v2.5M40.65 52.2v2M40.15 51.7v0.5M41.65 51.7v2.5M42.65 52.7v1.5M41.4 51.95h1.5M42.15 53.7v0.5" fill="none" stroke="#5b6b88" stroke-width="0.5"/><path d="M31.65 54.6v2.5M32.65 55.6v1.5M31.4 54.85h1.5M32.15 56.6v0.5M33.65 54.6v2.5M33.4 54.85h1.5M33.4 56.85h1.5M34.15 55.6v0.5M35.65 54.6v2.5M36.65 54.6v2.5M36.15 54.6v0.5M36.15 55.6v0.5M37.65 54.6v2.5M38.65 54.6v1M38.65 56.1v1M38.15 54.6v0.5M38.15 55.6v0.5" fill="none" stroke="#5b6b88" stroke-width="0.5"/>
+  
+  <rect x="11.5" y="30.2" width="41" height="27.8" rx="1.2" fill="none" stroke="#a89c82" stroke-width="0.5" opacity="0.8"/>
+  
+</svg>

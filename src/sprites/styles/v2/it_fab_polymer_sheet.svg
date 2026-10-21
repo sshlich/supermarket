@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<defs>
+<linearGradient id="ps-face" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9ea9b5"/><stop offset="0.5" stop-color="#85909d"/><stop offset="1" stop-color="#65717e"/></linearGradient>
+<linearGradient id="ps-edge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5c6773"/><stop offset="1" stop-color="#434d58"/></linearGradient>
+<linearGradient id="ps-hot" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9a6a4a"/><stop offset="1" stop-color="#6b4a38"/></linearGradient>
+<linearGradient id="ps-warm" x1="0" y1="0" x2="1" y2="1"><stop offset="0.35" stop-color="#ff9a4a" stop-opacity="0"/><stop offset="1" stop-color="#ff9a4a" stop-opacity="0.34"/></linearGradient>
+<linearGradient id="ps-sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset="0.5" stop-color="#ffffff" stop-opacity="0.24"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+<radialGradient id="ps-dent" cx="0.35" cy="0.35" r="0.8"><stop offset="0" stop-color="#4d5864" stop-opacity="0.5"/><stop offset="0.6" stop-color="#85909d" stop-opacity="0"/><stop offset="1" stop-color="#ffffff" stop-opacity="0.5"/></radialGradient>
+<clipPath id="ps-clip"><path d="M3.8 7.4L47.2 5L54.5 11.1L56.7 49L55.2 50.6L6.3 53.3L4.7 51.9L4.7 38.4L3 26.5L2.3 9Z"/></clipPath>
+</defs>
+<!-- a slab of grey polymer sheet fresh off the extruder: a thick pressed slab with a snipped corner and a hand-trimmed left edge,
+long die lines, a warm flush and a glowing cut edge on the right, a stencilled run mark with an arrow, a taped stock label,
+a thumb-print smudge, a dent and heat haze rising off the top -->
+<path d="M3.8 7.4L47.2 5L54.5 11.1L56.7 49L55.2 50.6L6.3 53.3L4.7 51.9L4.7 38.4L3 26.5L2.3 9Z" fill="#0e0b13" opacity="0.28" transform="translate(4 5.2)"/>
+<path d="M3.8 7.4L47.2 5L54.5 11.1L56.7 49L55.2 50.6L6.3 53.3L4.7 51.9L4.7 38.4L3 26.5L2.3 9Z" fill="#2a323a" stroke="#2a323a" stroke-width="2.2" stroke-linejoin="round" transform="translate(1.3 1.7)"/>
+<path d="M54.5 11.1L56.7 49L59.3 52.4L57.1 14.5Z" fill="url(#ps-hot)"/><path d="M56.7 49L55.2 50.6L57.8 54L59.3 52.4Z" fill="url(#ps-hot)"/><path d="M55.2 50.6L6.3 53.3L8.9 56.7L57.8 54Z" fill="url(#ps-edge)"/><path d="M6.3 53.3L4.7 51.9L7.3 55.3L8.9 56.7Z" fill="url(#ps-edge)"/>
+<path d="M3.8 7.4L47.2 5L54.5 11.1L56.7 49L55.2 50.6L6.3 53.3L4.7 51.9L4.7 38.4L3 26.5L2.3 9Z" fill="url(#ps-face)"/>
+<g clip-path="url(#ps-clip)">
+<path d="M4.5 11.4L32.8 9.7M36.1 9.6L52.4 8.7M9.2 14.6L34.2 13.2M40.3 12.8L52.6 12.3M7.1 18.1L31.2 16.9M33.5 16.7L52.8 15.6M9.9 21.4L22.3 20.7M29.9 20.3L53 19.1M10.7 24.8L38.8 23.2M42.8 23L53.2 22.4M7.2 28.5L25.8 27.4M33.4 27L53.4 26M6 32L21.4 31.2M26.5 30.9L44.9 29.7M6.2 35.5L23.4 34.4M29.4 34.2L53.8 32.8M8.4 38.8L24.1 37.8M28.6 37.7L45.3 36.7M50.9 36.4L54 36.4M11.4 42.1L34.1 40.9M39.1 40.5L54.1 39.8M8.8 45.7L32.9 44.2M38.4 44L54.3 43.1M11.4 49L38.9 47.3M45.8 47.1L54.5 46.5" stroke="#6a7683" stroke-width="0.4" opacity="0.32" fill="none" stroke-linecap="round"/>
+<path d="M4.5 12.1L32.8 10.4M36.1 10.3L52.4 9.4M9.2 15.3L34.2 13.9M40.3 13.5L52.6 13M7.1 18.8L31.2 17.6M33.5 17.4L52.8 16.3M9.9 22.1L22.3 21.4M29.9 21L53 19.8M10.7 25.5L38.8 23.9M42.8 23.7L53.2 23.1M7.2 29.2L25.8 28.1M33.4 27.7L53.4 26.7M6 32.7L21.4 31.9M26.5 31.6L44.9 30.4M6.2 36.2L23.4 35.1M29.4 34.9L53.8 33.5M8.4 39.5L24.1 38.5M28.6 38.4L45.3 37.4M50.9 37.1L54 37.1M11.4 42.8L34.1 41.6M39.1 41.2L54.1 40.5M8.8 46.4L32.9 44.9M38.4 44.7L54.3 43.8M11.4 49.7L38.9 48M45.8 47.8L54.5 47.2" stroke="#d3dbe2" stroke-width="0.35" opacity="0.22" fill="none" stroke-linecap="round"/>
+<path d="M16 -4L32 -4L8 70L-8 70Z" fill="url(#ps-sheen)" opacity="0.7"/>
+<rect x="0" y="0" width="64" height="64" fill="url(#ps-warm)"/>
+<!-- a raised bead round the rim -->
+<path d="M3.8 7.4L47.2 5L54.5 11.1L56.7 49L55.2 50.6L6.3 53.3L4.7 51.9L4.7 38.4L3 26.5L2.3 9Z" fill="none" stroke="#e6edf2" stroke-width="2.2" opacity="0.5" transform="translate(1 1)"/>
+<path d="M3.8 7.4L47.2 5L54.5 11.1L56.7 49L55.2 50.6L6.3 53.3L4.7 51.9L4.7 38.4L3 26.5L2.3 9Z" fill="none" stroke="#424c58" stroke-width="2.2" opacity="0.4" transform="translate(-1 -1)"/>
+</g>
+<path d="M3.8 7.4L47.2 5L54.5 11.1L56.7 49L55.2 50.6L6.3 53.3L4.7 51.9L4.7 38.4L3 26.5L2.3 9Z" fill="none" stroke="#343e49" stroke-width="1.1" stroke-linejoin="round"/>
+<!-- heat haze rising off the fresh sheet -->
+<g fill="none" stroke="#f0d8c4" stroke-width="0.55" stroke-linecap="round" opacity="0.4"><path d="M33.6 5.4C32 4 35 3 33.6 1.4"/><path d="M40 4.8C38.4 3.6 41.4 2.6 40 1.2"/><path d="M46.6 5.6C45.2 4.2 48 3.2 46.8 1.6"/></g>
+<!-- thumb print, dent, scratches -->
+<g fill="none" stroke="#ffffff" stroke-width="0.35" opacity="0.28" transform="rotate(-25 44 40)"><ellipse cx="44" cy="40" rx="5.4" ry="3.6"/><ellipse cx="44" cy="40" rx="4" ry="2.6"/><ellipse cx="44" cy="40" rx="2.6" ry="1.6"/><ellipse cx="44" cy="40" rx="1.2" ry="0.7"/></g>
+<ellipse cx="33" cy="30" rx="3.8" ry="2.7" fill="url(#ps-dent)"/>
+<path d="M22 27L31 22.5M46 21L53 25" stroke="#4d5864" stroke-width="0.5" opacity="0.7" fill="none"/><path d="M22.4 27.8L31.4 23.3M46.4 21.8L53.4 25.8" stroke="#e8eef2" stroke-width="0.4" opacity="0.6" fill="none"/>
+<!-- the run mark, pressed into the face, and the extrusion arrow -->
+<g transform="translate(0.6 0.7)"><path fill="#d8e0e6" opacity="0.5" shape-rendering="crispEdges" d="M10 12.4h3v1h-3zM10 13.4h1v1h-1zM12 13.4h1v1h-1zM10 14.4h3v1h-3zM10 15.4h1v1h-1zM10 16.4h1v1h-1zM14 12.4h3v1h-3zM14 13.4h1v1h-1zM14 14.4h3v1h-3zM16 15.4h1v1h-1zM14 16.4h3v1h-3zM18 14.4h3v1h-3zM22 12.4h1v1h-1zM24 12.4h1v1h-1zM22 13.4h1v1h-1zM24 13.4h1v1h-1zM22 14.4h3v1h-3zM24 15.4h1v1h-1zM24 16.4h1v1h-1z"/></g>
+<path fill="#3f4a56" opacity="0.8" shape-rendering="crispEdges" d="M10 12.4h3v1h-3zM10 13.4h1v1h-1zM12 13.4h1v1h-1zM10 14.4h3v1h-3zM10 15.4h1v1h-1zM10 16.4h1v1h-1zM14 12.4h3v1h-3zM14 13.4h1v1h-1zM14 14.4h3v1h-3zM16 15.4h1v1h-1zM14 16.4h3v1h-3zM18 14.4h3v1h-3zM22 12.4h1v1h-1zM24 12.4h1v1h-1zM22 13.4h1v1h-1zM24 13.4h1v1h-1zM22 14.4h3v1h-3zM24 15.4h1v1h-1zM24 16.4h1v1h-1z"/>
+<path d="M28.6 14.3H33.4V13L36.2 15.2L33.4 17.4V16.1H28.6Z" fill="#3f4a56" opacity="0.7"/>
+<g fill="#3f4a56" opacity="0.5"><circle cx="48" cy="12" r="0.5"/><circle cx="52" cy="47" r="0.45"/><circle cx="22" cy="34" r="0.4"/><circle cx="38" cy="48" r="0.5"/><circle cx="12" cy="30" r="0.4"/></g>
+<path d="M6.4 50L8.4 48.6M6.2 45.6L7.2 44.8M25 52L28.4 51.6" stroke="#dfe6eb" stroke-width="0.6" stroke-linecap="round" opacity="0.7"/>
+<!-- the taped stock label -->
+<path d="M9 39.2L26 38.2L26.6 48.7L9.6 49.6Z" fill="#0e0b13" opacity="0.25" transform="translate(1 1.2)"/>
+<path d="M9 39.2L26 38.2L26.6 48.7L9.6 49.6Z" fill="#ece6d8" stroke="#b9ad94" stroke-width="0.6" stroke-linejoin="round"/>
+<path d="M10.8 43.3L24.7 42.5M10.9 45.3L20.4 44.7" stroke="#a99d84" stroke-width="0.4" fill="none"/><path d="M11 47.1L11.1 48.7M12.1 47L12.2 48.6M12.9 47L13 48.6M14.5 46.9L14.6 48.5M15.9 46.8L16 48.4M16.7 46.7L16.8 48.3M18.5 46.6L18.6 48.2M19.9 46.6L20 48.2M21.7 46.5L21.8 48.1" stroke="#3a3328" stroke-width="0.5" fill="none"/><path d="M10.7 41.7L16.2 41.4" stroke="#c0564a" stroke-width="0.8" fill="none"/>
+<path d="M12 38.2L23 37.6L23.1 40L12.1 40.6Z" fill="#e9c768" opacity="0.85" stroke="#b8963c" stroke-width="0.4"/>
+</svg>

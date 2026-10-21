@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="cu-mal" cx="0.34" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#7fd6a4"/>
+      <stop offset="0.5" stop-color="#2f9e6c"/>
+      <stop offset="1" stop-color="#17583e"/>
+    </radialGradient>
+    <radialGradient id="cu-mal2" cx="0.34" cy="0.3" r="0.85">
+      <stop offset="0" stop-color="#4fb985"/>
+      <stop offset="0.55" stop-color="#1f7a54"/>
+      <stop offset="1" stop-color="#0f4631"/>
+    </radialGradient>
+    <linearGradient id="cu-rock" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#a5a6a1"/>
+      <stop offset="0.5" stop-color="#7e7f79"/>
+      <stop offset="1" stop-color="#4f504b"/>
+    </linearGradient>
+    <clipPath id="cu-clip"><path d="M7 38L5 31L7 26L12 19L17 15L20 11.5L27 9L31 6.5L38 7.5L43 7L49 9.5L53 13L55 16.5L59 21L60 27L59.5 34L58 40L57 45L53 50L50 53L44 55L40 58.5L33 58L27 59.5L21 57L16 56L11 52.5L9 48L7.5 43Z"/></clipPath>
+  </defs>
+  <!-- a lump of copper ore: grey host rock in worn facets, a crust of fused green malachite domes growing from a crack, verdigris streaking
+       below it, native-copper wire and shards in the lit upper face, quartz grains and pits -->
+  <ellipse cx="34" cy="60.4" rx="23" ry="2.2" fill="#120e18" opacity="0.4"/>
+  <path d="M7 38L5 31L7 26L12 19L17 15L20 11.5L27 9L31 6.5L38 7.5L43 7L49 9.5L53 13L55 16.5L59 21L60 27L59.5 34L58 40L57 45L53 50L50 53L44 55L40 58.5L33 58L27 59.5L21 57L16 56L11 52.5L9 48L7.5 43Z" fill="url(#cu-rock)"/>
+  <g clip-path="url(#cu-clip)">
+    <!-- rock facets: lit upper left, shaded lower right -->
+    <path d="M5 28L12 19L20 11.5L31 6.5L30 22L14 27Z" fill="#c9c8c0" opacity="0.7"/>
+    <path d="M31 6.5L43 7L53 13L47 22L30 22Z" fill="#aeaea7" opacity="0.65"/>
+    <path d="M53 13L60 21L60 34L49 32L47 22Z" fill="#6c6d67" opacity="0.8"/>
+    <path d="M5 28L14 27L15 40L6 40Z" fill="#9d9d96" opacity="0.7"/>
+    <path d="M14 27L30 22L47 22L49 32L40 42L22 42L15 40Z" fill="#898a84" opacity="0.45"/>
+    <path d="M6 40L15 40L22 42L27 60L14 56L8 48Z" fill="#6d6e68" opacity="0.7"/>
+    <path d="M22 42L40 42L40 58.5L27 60Z" fill="#50514c" opacity="0.7"/>
+    <path d="M49 32L60 34L57 45L50 53L40 58.5L40 42Z" fill="#3f403c" opacity="0.8"/>
+    <!-- worn facet seams and cracks -->
+    <path d="M30 22L31 7M14 27L30 22L47 22L53 13M47 22L49 32L60 34M49 32L40 42L22 42L15 40L14 27M15 40L6 40M22 42L27 59M40 42L40 58" fill="none" stroke="#33342f" stroke-width="0.6" opacity="0.4" stroke-linejoin="round"/>
+    <path d="M14.6 28L30.4 23M31.4 8L30.6 22.6" fill="none" stroke="#e6e5dc" stroke-width="0.7" opacity="0.5"/>
+    <path d="M44 8C45 11 43.4 13 45 16C46 18 45 20 47 22" fill="none" stroke="#2f302c" stroke-width="0.6" opacity="0.5" stroke-linecap="round"/>
+    <path d="M56 38C54 40 55 43 53 45" fill="none" stroke="#2f302c" stroke-width="0.6" opacity="0.5" stroke-linecap="round"/>
+    <!-- verdigris stain streaking down from the crust and along the crack -->
+    <g fill="#3aa874" opacity="0.3">
+      <path d="M26 44C24 48 24.6 53 23 58L27 59C28 54 29 49 30 45Z"/>
+      <path d="M44 48C44.6 52 43 55 41 58L46 56C47 53 47 50 47 47Z"/>
+      <path d="M13 26C17 25.4 22 24.4 26 24.6C24 27 19 28.4 14 28.4Z"/>
+    </g>
+    <!-- mica and grit speckle -->
+    <g fill="#d9d8cf" opacity="0.7"><circle cx="18" cy="31" r="0.5"/><circle cx="25" cy="16" r="0.5"/><circle cx="38" cy="18" r="0.5"/><circle cx="12" cy="40" r="0.5"/><circle cx="54" cy="28" r="0.4"/><circle cx="36" cy="26" r="0.4"/><circle cx="50" cy="19" r="0.4"/></g>
+    <g fill="#2c2d29" opacity="0.6"><circle cx="22" cy="24" r="0.5"/><circle cx="33" cy="24" r="0.5"/><circle cx="46" cy="27" r="0.5"/><circle cx="14" cy="46" r="0.5"/><circle cx="55" cy="35" r="0.5"/><circle cx="18" cy="52" r="0.5"/><circle cx="51" cy="21" r="0.4"/></g>
+  </g>
+  <!-- the malachite crust: a fused mass of domes (dark base discs make the scalloped edge), then lit domes, back to front -->
+  <g fill="#103a2a">
+    <circle cx="27" cy="37" r="4.1"/><circle cx="33" cy="33.5" r="4.5"/><circle cx="40" cy="32.4" r="5.1"/><circle cx="47" cy="35.6" r="4.3"/><circle cx="51" cy="41" r="3.9"/>
+    <circle cx="23" cy="44" r="4.5"/><circle cx="30" cy="42" r="5.5"/><circle cx="38" cy="40" r="6"/><circle cx="46" cy="42.4" r="5.3"/>
+    <circle cx="26.5" cy="50" r="4.7"/><circle cx="33" cy="48.5" r="6.1"/><circle cx="41" cy="48" r="5.5"/><circle cx="48" cy="49.5" r="4.3"/><circle cx="22" cy="52.4" r="3.1"/><circle cx="38" cy="54" r="3.9"/><circle cx="30" cy="55" r="3.5"/>
+    <circle cx="19.5" cy="40" r="2.4"/><circle cx="53.4" cy="46" r="2.5"/><circle cx="35" cy="29.2" r="2.5"/>
+  </g>
+  <g>
+    <circle cx="27" cy="37" r="3.2" fill="url(#cu-mal)"/><circle cx="33" cy="33.5" r="3.6" fill="url(#cu-mal)"/><circle cx="40" cy="32.4" r="4.2" fill="url(#cu-mal)"/><circle cx="47" cy="35.6" r="3.4" fill="url(#cu-mal2)"/><circle cx="51" cy="41" r="3" fill="url(#cu-mal2)"/>
+    <circle cx="23" cy="44" r="3.6" fill="url(#cu-mal)"/><circle cx="30" cy="42" r="4.6" fill="url(#cu-mal)"/><circle cx="38" cy="40" r="5.1" fill="url(#cu-mal)"/><circle cx="46" cy="42.4" r="4.4" fill="url(#cu-mal2)"/>
+    <circle cx="26.5" cy="50" r="3.8" fill="url(#cu-mal)"/><circle cx="33" cy="48.5" r="5.2" fill="url(#cu-mal)"/><circle cx="41" cy="48" r="4.6" fill="url(#cu-mal2)"/><circle cx="48" cy="49.5" r="3.4" fill="url(#cu-mal2)"/><circle cx="22" cy="52.4" r="2.2" fill="url(#cu-mal2)"/><circle cx="38" cy="54" r="3" fill="url(#cu-mal2)"/><circle cx="30" cy="55" r="2.6" fill="url(#cu-mal2)"/>
+    <circle cx="19.5" cy="40" r="1.5" fill="url(#cu-mal)"/><circle cx="53.4" cy="46" r="1.6" fill="url(#cu-mal2)"/><circle cx="35" cy="29.2" r="1.6" fill="url(#cu-mal)"/>
+  </g>
+  <!-- banded growth rings, light then dark: the silky stripe of malachite -->
+  <g fill="none" stroke-width="0.45">
+    <g stroke="#8be0b0" opacity="0.65"><circle cx="38" cy="40" r="3.4"/><circle cx="33" cy="48.5" r="3.4"/><circle cx="30" cy="42" r="2.8"/><circle cx="40" cy="32.4" r="2.5"/><circle cx="41" cy="48" r="2.7"/><circle cx="23" cy="44" r="2"/><circle cx="46" cy="42.4" r="2.5"/></g>
+    <g stroke="#124a34" opacity="0.7"><circle cx="38" cy="40" r="1.9"/><circle cx="33" cy="48.5" r="1.8"/><circle cx="30" cy="42" r="1.4"/><circle cx="41" cy="48" r="1.3"/><circle cx="46" cy="42.4" r="1.2"/></g>
+  </g>
+  <!-- silky sheen: soft pale flecks on the lit shoulders only -->
+  <g fill="#d6fbe6" opacity="0.85">
+    <ellipse cx="36.4" cy="37.8" rx="1.3" ry="0.8" transform="rotate(-30 36.4 37.8)"/><ellipse cx="31.6" cy="46.4" rx="1.3" ry="0.8" transform="rotate(-30 31.6 46.4)"/><ellipse cx="28.4" cy="40.2" rx="0.9" ry="0.6" transform="rotate(-30 28.4 40.2)"/><ellipse cx="38.6" cy="30.6" rx="1" ry="0.6" transform="rotate(-30 38.6 30.6)"/><ellipse cx="21.8" cy="42.4" rx="0.8" ry="0.5" transform="rotate(-30 21.8 42.4)"/><ellipse cx="25.4" cy="48.6" rx="0.8" ry="0.5" transform="rotate(-30 25.4 48.6)"/><ellipse cx="39.6" cy="46.6" rx="0.8" ry="0.5" transform="rotate(-30 39.6 46.6)"/>
+  </g>
+  <!-- native copper: branching wire in the lit upper face, and bright shards -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 27L15.4 24L14.6 21L18.6 20.2L20.4 17L24.6 17.4L26 14" stroke="#8a4a22" stroke-width="1.5"/>
+    <path d="M18.6 20.2L22 22.6L25 21.4" stroke="#8a4a22" stroke-width="1.2"/>
+    <path d="M20.4 17L19.6 13.6" stroke="#8a4a22" stroke-width="1"/>
+    <path d="M12 26.4L15.4 23.4L14.6 20.4L18.6 19.6L20.4 16.4L24.6 16.8L26 13.4" stroke="#c1763f" stroke-width="1"/>
+    <path d="M18.6 19.6L22 22L25 20.8" stroke="#c1763f" stroke-width="0.7"/>
+    <path d="M20.4 16.4L19.6 13" stroke="#c1763f" stroke-width="0.6"/>
+    <path d="M12.4 25.8L15.2 23.2M19 19.2L20.2 16.6" stroke="#f2bd86" stroke-width="0.4"/>
+  </g>
+  <g stroke="#6b3716" stroke-width="0.4" stroke-linejoin="round">
+    <path d="M36 15.6L40.6 12.4L42 16.6Z" fill="#c1763f"/>
+    <path d="M36 15.6L40.6 12.4L40.2 14.6Z" fill="#e6a46a" stroke="none"/>
+    <path d="M45.4 18L49 17L48 20.6Z" fill="#b56a36"/>
+    <path d="M15 34.4L19 32.6L18 36Z" fill="#b56a36"/>
+    <path d="M15 34.4L19 32.6L17.4 33.8Z" fill="#e6a46a" stroke="none"/>
+    <path d="M50 26.4L53.4 26L52.2 29Z" fill="#a85f2e"/>
+    <path d="M39.4 22.4L42 21.6L41 24Z" fill="#c1763f"/>
+    <path d="M11 41.6L14 40.2L13.6 43Z" fill="#a85f2e"/>
+  </g>
+  <!-- quartz grains and pits in the grey rock -->
+  <g fill="#ecebe2" opacity="0.85"><path d="M22 18.4L24 17.6L24.4 19L22.6 19.6Z"/><path d="M42 26L43.6 25.4L44 26.8L42.4 27.2Z"/><path d="M9.6 33L11.2 32.2L11.8 33.6L10.2 34.2Z"/><path d="M53 20L54.4 19.6L54.6 20.8L53.2 21Z"/></g>
+  <g fill="#2f302c" opacity="0.7"><ellipse cx="31" cy="14" rx="1.3" ry="0.8"/><ellipse cx="53.6" cy="31" rx="1.1" ry="0.7"/><ellipse cx="10" cy="46" rx="1.2" ry="0.8"/><ellipse cx="20" cy="31" rx="0.9" ry="0.6"/><ellipse cx="56" cy="42" rx="1" ry="0.7"/></g>
+  <!-- lit rim top-left, outline -->
+  <path d="M7 38L5 31L7 26L12 19L17 15L20 11.5L27 9L31 6.5L38 7.5L43 7" fill="none" stroke="#e6e5dc" stroke-width="1" opacity="0.65" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M7 38L5 31L7 26L12 19L17 15L20 11.5L27 9L31 6.5L38 7.5L43 7L49 9.5L53 13L55 16.5L59 21L60 27L59.5 34L58 40L57 45L53 50L50 53L44 55L40 58.5L33 58L27 59.5L21 57L16 56L11 52.5L9 48L7.5 43Z" fill="none" stroke="#2a2b27" stroke-width="1.2" stroke-linejoin="round"/>
+  <!-- loose chips at the foot -->
+  <path d="M2.4 58.4L5.6 55L10 57L8.6 60.4Z" fill="#8a8b86" stroke="#2a2b27" stroke-width="0.8" stroke-linejoin="round"/>
+  <path d="M2.4 58.4L5.6 55L7.4 56L4.4 59.2Z" fill="#b5b5ae"/>
+  <path d="M53 59.6L56.6 56.6L60.4 58.4L58 61Z" fill="#6f706a" stroke="#2a2b27" stroke-width="0.8" stroke-linejoin="round"/>
+  <path d="M53 59.6L56.6 56.6L58 57.6L55 60Z" fill="#a4a59e"/>
+  <path d="M56 58.4L57.8 57.4L59 58.6L57.2 59.6Z" fill="#2f9e6c"/><path d="M56.6 58.2L57.8 57.6" stroke="#8be0b0" stroke-width="0.4"/>
+</svg>

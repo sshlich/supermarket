@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- memory card, medicine: white label, red header, gold trim; a DNA helix and a sprout (regrowth); lock up = copyable; gold foil seal = licensed -->
+<defs>
+<linearGradient id="rg-sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#686c78"/><stop offset="0.45" stop-color="#4a4d58"/><stop offset="1" stop-color="#2f323d"/></linearGradient>
+<linearGradient id="rg-au" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbe08a"/><stop offset="0.5" stop-color="#e0b43a"/><stop offset="1" stop-color="#a97a14"/></linearGradient>
+<radialGradient id="rg-fg" cx="0.32" cy="0.28" r="0.85"><stop offset="0" stop-color="#fff2b0"/><stop offset="0.5" stop-color="#e8bd3e"/><stop offset="1" stop-color="#a87812"/></radialGradient>
+</defs>
+<path d="M6.5 2.5H22L28 8.5V27Q28 29.5 25.5 29.5H6.5Q4 29.5 4 27V5Q4 2.5 6.5 2.5Z" transform="translate(0.9 1)" fill="#14121a" opacity="0.45"/>
+<path d="M6.5 2.5H22L28 8.5V27Q28 29.5 25.5 29.5H6.5Q4 29.5 4 27V5Q4 2.5 6.5 2.5Z" fill="url(#rg-sh)" stroke="#17151d" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M5.2 27V5.2Q5.2 3.7 6.7 3.7H21.6L27 9.1" fill="none" stroke="#c9c8e2" stroke-width="0.6" opacity="0.5" stroke-linecap="round"/>
+<path d="M27 10V26.8Q27 28.4 25.4 28.4H7" fill="none" stroke="#17151d" stroke-width="0.7" opacity="0.45" stroke-linecap="round"/>
+<rect x="6.2" y="4.6" width="14.4" height="6.4" rx="0.9" fill="#14121a" opacity="0.6"/>
+<g fill="url(#rg-au)" stroke="#8a6210" stroke-width="0.3"><rect x="7" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="9.7" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="12.4" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="15.1" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="17.8" y="5.2" width="2.2" height="5.2" rx="0.4"/></g>
+<path d="M7.3 5.6V9.6M10 5.6V9.6M12.7 5.6V9.6M15.4 5.6V9.6M18.1 5.6V9.6" stroke="#fff6c8" stroke-width="0.4" opacity="0.6"/>
+<rect x="4.3" y="13.4" width="1.8" height="5.8" rx="0.5" fill="#14121a"/><rect x="4.5" y="13.7" width="1.4" height="2.8" rx="0.4" fill="#9096a6"/>
+<rect x="6.8" y="12.2" width="18.4" height="15.4" rx="1.4" fill="#14121a" opacity="0.4"/>
+<path d="M8 11.8H24.2Q25.2 11.8 25.2 12.8V26Q25.2 27 24.2 27H8Q7 27 7 26V12.8Q7 11.8 8 11.8Z" fill="#f3efe3" stroke="#a99d84" stroke-width="0.4"/><path d="M7.4 26.4H24.8" stroke="#d8d0bb" stroke-width="0.8"/>
+<path d="M8 11.8H24.2Q25.2 11.8 25.2 12.8V14.8H7V12.8Q7 11.8 8 11.8Z" fill="#c4413a"/><path d="M7 14.7H25.2" stroke="#7d201c" stroke-width="0.6"/><path d="M8.2 12.3H24" stroke="#e8736a" stroke-width="0.5" opacity="0.8"/>
+<rect x="7.5" y="12.3" width="17.2" height="14.2" rx="0.6" fill="none" stroke="#d8b24a" stroke-width="0.4" opacity="0.8"/>
+<g transform="translate(12.6 21.3) rotate(26) scale(0.74)" fill="none" stroke-linecap="round"><g><path d="M0 -7.4c-4 .4 -4 3.3 0 3.7M0 0c-4 .4 -4 3.3 0 3.7" stroke="#144a66" stroke-width="1.85"/><path d="M0 -7.4c-4 .4 -4 3.3 0 3.7M0 0c-4 .4 -4 3.3 0 3.7" stroke="#3a9ac2" stroke-width="0.95"/><path d="M0 -3.7c-4 .4 -4 3.3 0 3.7M0 3.7c-4 .4 -4 3.3 0 3.7" stroke="#7d201c" stroke-width="1.85"/><path d="M0 -3.7c-4 .4 -4 3.3 0 3.7M0 3.7c-4 .4 -4 3.3 0 3.7" stroke="#d6453c" stroke-width="0.95"/></g><path d="M-2.4 -6.3h4.8M-2.4 -4.8h4.8M-2.4 -2.6h4.8M-2.4 -1.1h4.8M-2.4 1.1h4.8M-2.4 2.6h4.8M-2.4 4.8h4.8M-2.4 6.3h4.8" stroke="#5a5a68" stroke-width="0.9" opacity="0.9"/><g><path d="M0 -7.4c4 .4 4 3.3 0 3.7M0 0c4 .4 4 3.3 0 3.7" stroke="#7d201c" stroke-width="1.85"/><path d="M0 -7.4c4 .4 4 3.3 0 3.7M0 0c4 .4 4 3.3 0 3.7" stroke="#d6453c" stroke-width="0.95"/><path d="M0 -3.7c4 .4 4 3.3 0 3.7M0 3.7c4 .4 4 3.3 0 3.7" stroke="#144a66" stroke-width="1.85"/><path d="M0 -3.7c4 .4 4 3.3 0 3.7M0 3.7c4 .4 4 3.3 0 3.7" stroke="#3a9ac2" stroke-width="0.95"/></g></g>
+<g transform="translate(20.8 18.4)"><path d="M0 2.4V0.2" stroke="#2c5a1a" stroke-width="0.8" stroke-linecap="round"/><path d="M0 0.6C0.2-1.2 1.4-2 3-2C3-0.4 2 0.7 0 0.6Z" fill="#7cc048" stroke="#2c5a1a" stroke-width="0.5" stroke-linejoin="round"/><path d="M0 1C-0.2-0.5-1-1.2-2.4-1.2C-2.4 0.1-1.6 1.1 0 1Z" fill="#4f9a32" stroke="#2c5a1a" stroke-width="0.5" stroke-linejoin="round"/></g>
+<g transform="translate(23.7 24)"><circle cx="0.7" cy="0.8" r="3.7" fill="#000000" opacity="0.3"/>
+<polygon points="0,-3.9 1.02,-3.14 2.29,-3.16 2.67,-1.94 3.71,-1.21 3.3,0 3.71,1.21 2.67,1.94 2.29,3.16 1.02,3.14 0,3.9 -1.02,3.14 -2.29,3.16 -2.67,1.94 -3.71,1.21 -3.3,0 -3.71,-1.21 -2.67,-1.94 -2.29,-3.16 -1.02,-3.14" fill="url(#rg-fg)" stroke="#8a6210" stroke-width="0.5" stroke-linejoin="round"/>
+<circle r="2.6" fill="none" stroke="#fff0b0" stroke-width="0.4" opacity="0.85"/>
+<path d="M0-1.5V1.5M-1.5 0H1.5" stroke="#8a6210" stroke-width="1.1" stroke-linecap="round"/><path d="M-0.2-1.5V1.3M-1.5-0.2H1.3" stroke="#fff3bc" stroke-width="0.4" stroke-linecap="round" opacity="0.8"/>
+<path d="M-2.9-1.2Q-2.4-2.4-1.2-2.9" fill="none" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round" opacity="0.9"/></g>
+</svg>

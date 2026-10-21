@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+<defs>
+<linearGradient id="cr-r" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9cc0e0"/><stop offset=".4" stop-color="#6f98c2"/><stop offset="1" stop-color="#4d749d"/></linearGradient>
+<linearGradient id="cr-l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7aa3cb"/><stop offset="1" stop-color="#4b719a"/></linearGradient>
+<linearGradient id="cr-w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5f88b1"/><stop offset=".6" stop-color="#4c7299"/><stop offset="1" stop-color="#37587c"/></linearGradient>
+<linearGradient id="cr-b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#37587d"/><stop offset="1" stop-color="#4a73a0"/></linearGradient>
+<linearGradient id="cr-f" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a5d85"/><stop offset="1" stop-color="#2f5075"/></linearGradient>
+<linearGradient id="cr-a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2a4766"/><stop offset="1" stop-color="#335377"/></linearGradient>
+<linearGradient id="cr-d" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5b86b2"/><stop offset="1" stop-color="#6f9bc6"/></linearGradient>
+<linearGradient id="cr-s" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1c3046" stop-opacity=".55"/><stop offset="1" stop-color="#1c3046" stop-opacity="0"/></linearGradient>
+<linearGradient id="cr-t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c3046" stop-opacity=".5"/><stop offset="1" stop-color="#1c3046" stop-opacity="0"/></linearGradient>
+<clipPath id="cr-o"><path d="M11.5 8.5H84.5Q88 8.5 88 12V32Q88 35.5 84.5 35.5H11.5Q8 35.5 8 32V12Q8 8.5 11.5 8.5Z"/></clipPath>
+</defs>
+<!-- a ribbed polymer crate from above and the front: grip scallops in the rim, an open tub with a ribbed, slotted floor, a tapering front with raised ribs, a pill handhold and a peeling ward label -->
+<path d="M7 59.4H90.6L88.4 62.4H10Z" fill="#0e0b13" opacity=".34"/>
+<path d="M4 36H92L88.6 55Q88 59 84 59H12Q8 59 7.4 55Z" fill="url(#cr-w)" stroke="#1e3248" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M73.2 47.6V55.4M80.2 47.6V55.4M87.2 47.6V55.4" stroke="#1c3046" opacity=".28" stroke-width="2.8" stroke-linecap="round"/>
+<path d="M72 47.6V55.4M79 47.6V55.4M86 47.6V55.4" stroke="#2c4a6a" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M72 47.6V55.4M79 47.6V55.4M86 47.6V55.4" stroke="#6e98c2" stroke-width="2.6" stroke-linecap="round"/>
+<path d="M71.1 48V55.2M78.1 48V55.2M85.1 48V55.2" stroke="#cfe4f5" stroke-width=".7" opacity=".75" stroke-linecap="round"/>
+<rect x="30" y="47.4" width="36" height="7.2" rx="3.6" fill="#1c3046"/>
+<rect x="31" y="48.2" width="34" height="4.6" rx="2.3" fill="#2a4766"/>
+<path d="M32.5 54.3Q48 55.6 63.5 54.3" fill="none" stroke="#9cc3e4" stroke-width=".9" opacity=".75" stroke-linecap="round"/>
+<path d="M8.6 56.4H87.4" stroke="#27425f" stroke-width=".8" opacity=".7"/>
+<path d="M9 57.4H87.2" stroke="#8db4d8" stroke-width=".5" opacity=".35"/>
+<path d="M9 8.5H87Q93 8.5 93 14.5V38.5Q93 44.5 87 44.5H9Q3 44.5 3 38.5V14.5Q3 8.5 9 8.5Z" fill="url(#cr-l)" stroke="#1e3248" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M11.5 8.5H84.5Q88 8.5 88 12V32Q88 35.5 84.5 35.5H11.5Q8 35.5 8 32V12Q8 8.5 11.5 8.5Z" fill="#2a4766"/>
+<g clip-path="url(#cr-o)">
+<rect x="8" y="8.5" width="80" height="7.5" fill="url(#cr-b)"/>
+<path d="M8 8.5L14 15.5V37H8Z" fill="url(#cr-a)"/>
+<path d="M88 8.5L82 15.5V37H88Z" fill="url(#cr-d)"/>
+<rect x="14" y="15.5" width="68" height="22" fill="url(#cr-f)"/>
+<rect x="14" y="15.5" width="14" height="22" fill="url(#cr-s)"/>
+<rect x="14" y="15.5" width="68" height="6" fill="url(#cr-t)"/>
+<path d="M23 15.5V37M31.5 15.5V37M40 15.5V37M48.5 15.5V37M57 15.5V37M65.5 15.5V37M74 15.5V37" stroke="#4f7aa6" stroke-width="2.4"/>
+<path d="M22.1 15.5V37M30.6 15.5V37M39.1 15.5V37M47.6 15.5V37M56.1 15.5V37M64.7 15.5V37M73.2 15.5V37" stroke="#8fb7dc" stroke-width=".7" opacity=".55"/>
+<path d="M23.9 15.5V37M32.4 15.5V37M40.9 15.5V37M49.4 15.5V37M57.9 15.5V37M66.3 15.5V37M74.8 15.5V37" stroke="#1e3550" stroke-width=".7" opacity=".8"/>
+<path d="M25.8 19.8h3M25.6 27.8h3.2M34.3 19.8h3M34.1 27.8h3.2M42.8 19.8h3M42.6 27.8h3.2M51.3 19.8h3M51.1 27.8h3.2M59.8 19.8h3M59.6 27.8h3.2M68.3 19.8h3M68.2 27.8h3.2" stroke="#16283c" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M14 15.5V37M82 15.5V37H14V15.5H82" fill="none" stroke="#1c3046" stroke-width=".6" opacity=".7"/>
+<path d="M82 16V37" stroke="#9cc3e4" stroke-width=".6" opacity=".5"/>
+</g>
+<path d="M9 4H87Q93 4 93 10V34Q93 40 87 40H9Q3 40 3 34V10Q3 4 9 4ZM11.5 8.5H84.5Q88 8.5 88 12V32Q88 35.5 84.5 35.5H11.5Q8 35.5 8 32V12Q8 8.5 11.5 8.5Z" fill="url(#cr-r)" fill-rule="evenodd" stroke="#1e3248" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M11.5 8.5H84.5Q88 8.5 88 12V32Q88 35.5 84.5 35.5H11.5Q8 35.5 8 32V12Q8 8.5 11.5 8.5Z" fill="none" stroke="#1e3248" stroke-width=".7" opacity=".8"/>
+<path d="M6.6 17V25M89.4 17V25" stroke="#1c3046" stroke-width="6" stroke-linecap="round"/>
+<path d="M5 25.2Q6.6 26.5 8.6 25.2M87.4 25.2Q89.4 26.5 91 25.2" fill="none" stroke="#9cc3e4" stroke-width=".7" opacity=".7" stroke-linecap="round"/>
+<path d="M9 5.6H86M4.2 11V31" stroke="#e6f1fb" stroke-width=".9" opacity=".7" stroke-linecap="round"/>
+<path d="M7 41.2H60" stroke="#a9cdee" stroke-width=".7" opacity=".6" stroke-linecap="round"/>
+<g transform="rotate(-2 18 51)">
+<rect x="9.2" y="47.3" width="19.6" height="11" rx=".8" fill="#0e0b13" opacity=".28"/>
+<rect x="8.4" y="46.4" width="19.6" height="11" rx=".8" fill="#ece6d8" stroke="#b9ad94" stroke-width=".6"/>
+<path d="M13.2 48.6h2.4v1.6h1.6v2.4h-1.6v1.6h-2.4v-1.6h-1.6v-2.4h1.6z" fill="#c8402f"/>
+<path fill="#4a4338" d="M17.8 48.7h0.55v2.75h-0.55zM18.9 48.7h0.55v2.75h-0.55zM20 48.7h1.65v0.55h-1.65zM22.2 48.7h1.65v0.55h-1.65zM24.4 48.7h1.1v0.55h-1.1zM20 49.25h0.55v2.2h-0.55zM21.1 49.25h0.55v2.2h-0.55zM22.2 49.25h0.55v2.2h-0.55zM23.3 49.25h0.55v0.55h-0.55zM24.4 49.25h0.55v2.2h-0.55zM25.5 49.25h0.55v1.65h-0.55zM18.35 49.8h0.55v1.1h-0.55zM20.55 49.8h0.55v0.55h-0.55zM22.75 49.8h0.55v0.55h-0.55zM23.3 50.35h0.55v1.1h-0.55zM24.95 50.9h0.55v0.55h-0.55z"/>
+<path d="M17.8 52.4H25.6M17.8 54.1H23.4" stroke="#b9ad94" stroke-width=".7"/>
+<path d="M28 57.4L24.6 57.4L28 54Z" fill="#cfc7b3" stroke="#b9ad94" stroke-width=".4"/>
+</g>
+<path fill="#1e3248" opacity=".5" d="M64 41.4h1.8v0.6h-1.8zM66.4 41.4h1.8v0.6h-1.8zM68.8 41.4h1.2v0.6h-1.2zM73.6 41.4h1.8v0.6h-1.8zM76 41.4h1.8v0.6h-1.8zM78.4 41.4h1.8v0.6h-1.8zM64 42h0.6v2.4h-0.6zM66.4 42h0.6v2.4h-0.6zM67.6 42h0.6v2.4h-0.6zM68.8 42h0.6v2.4h-0.6zM70 42h0.6v0.6h-0.6zM73.6 42h0.6v2.4h-0.6zM77.2 42h0.6v1.2h-0.6zM78.4 42h0.6v2.4h-0.6zM79.6 42h0.6v2.4h-0.6zM64.6 42.6h0.6v0.6h-0.6zM67 42.6h0.6v0.6h-0.6zM69.4 42.6h0.6v0.6h-0.6zM71.2 42.6h1.8v0.6h-1.8zM76 42.6h1.2v0.6h-1.2zM70 43.2h0.6v0.6h-0.6zM76 43.2h0.6v1.2h-0.6zM69.4 43.8h0.6v0.6h-0.6zM74.2 43.8h1.2v0.6h-1.2zM76.6 43.8h1.2v0.6h-1.2zM79 43.8h0.6v0.6h-0.6z"/>
+<path d="M44 42.9L48 42.2M84 43.2L87 42.4M24 42.6L27 42M80 6.4L84 6.1M13 6.9L16 6.7" stroke="#cfe2f3" stroke-width=".5" opacity=".7" stroke-linecap="round"/>
+<path d="M60 56.4Q66 57.6 72 56.6" stroke="#1c3046" stroke-width="1" opacity=".3" stroke-linecap="round" fill="none"/>
+<g fill="#1c3046" opacity=".55"><circle cx="40" cy="44" r=".45"/><circle cx="62" cy="33" r=".4"/><circle cx="20" cy="30" r=".45"/></g>
+</svg>

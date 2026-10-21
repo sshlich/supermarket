@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<!-- memory card, medicine: white label, red header; a green-and-white capsule (antibiotic); lock up = copyable; gold foil seal = licensed -->
+<defs>
+<linearGradient id="ab-sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#686c78"/><stop offset="0.45" stop-color="#4a4d58"/><stop offset="1" stop-color="#2f323d"/></linearGradient>
+<linearGradient id="ab-au" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbe08a"/><stop offset="0.5" stop-color="#e0b43a"/><stop offset="1" stop-color="#a97a14"/></linearGradient>
+<radialGradient id="ab-fg" cx="0.32" cy="0.28" r="0.85"><stop offset="0" stop-color="#fff2b0"/><stop offset="0.5" stop-color="#e8bd3e"/><stop offset="1" stop-color="#a87812"/></radialGradient>
+<linearGradient id="ab-cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7ed59a"/><stop offset="0.5" stop-color="#3fa465"/><stop offset="1" stop-color="#26784a"/></linearGradient>
+<linearGradient id="ab-cw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="0.55" stop-color="#ece6d6"/><stop offset="1" stop-color="#bdb399"/></linearGradient>
+</defs>
+<path d="M6.5 2.5H22L28 8.5V27Q28 29.5 25.5 29.5H6.5Q4 29.5 4 27V5Q4 2.5 6.5 2.5Z" transform="translate(0.9 1)" fill="#14121a" opacity="0.45"/>
+<path d="M6.5 2.5H22L28 8.5V27Q28 29.5 25.5 29.5H6.5Q4 29.5 4 27V5Q4 2.5 6.5 2.5Z" fill="url(#ab-sh)" stroke="#17151d" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M5.2 27V5.2Q5.2 3.7 6.7 3.7H21.6L27 9.1" fill="none" stroke="#c9c8e2" stroke-width="0.6" opacity="0.5" stroke-linecap="round"/>
+<path d="M27 10V26.8Q27 28.4 25.4 28.4H7" fill="none" stroke="#17151d" stroke-width="0.7" opacity="0.45" stroke-linecap="round"/>
+<rect x="6.2" y="4.6" width="14.4" height="6.4" rx="0.9" fill="#14121a" opacity="0.6"/>
+<g fill="url(#ab-au)" stroke="#8a6210" stroke-width="0.3"><rect x="7" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="9.7" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="12.4" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="15.1" y="5.2" width="2.2" height="5.2" rx="0.4"/><rect x="17.8" y="5.2" width="2.2" height="5.2" rx="0.4"/></g>
+<path d="M7.3 5.6V9.6M10 5.6V9.6M12.7 5.6V9.6M15.4 5.6V9.6M18.1 5.6V9.6" stroke="#fff6c8" stroke-width="0.4" opacity="0.6"/>
+<rect x="4.3" y="13.4" width="1.8" height="5.8" rx="0.5" fill="#14121a"/><rect x="4.5" y="13.7" width="1.4" height="2.8" rx="0.4" fill="#9096a6"/>
+<rect x="6.8" y="12.2" width="18.4" height="15.4" rx="1.4" fill="#14121a" opacity="0.4"/>
+<path d="M8 11.8H24.2Q25.2 11.8 25.2 12.8V26Q25.2 27 24.2 27H8Q7 27 7 26V12.8Q7 11.8 8 11.8Z" fill="#f3efe3" stroke="#a99d84" stroke-width="0.4"/><path d="M7.4 26.4H24.8" stroke="#d8d0bb" stroke-width="0.8"/>
+<path d="M8 11.8H24.2Q25.2 11.8 25.2 12.8V14.8H7V12.8Q7 11.8 8 11.8Z" fill="#c4413a"/><path d="M7 14.7H25.2" stroke="#7d201c" stroke-width="0.6"/><path d="M8.2 12.3H24" stroke="#e8736a" stroke-width="0.5" opacity="0.8"/>
+<g transform="translate(13.8 21.5) rotate(-34) scale(0.92)">
+<ellipse cx="0.6" cy="3.5" rx="7.2" ry="1" fill="#26302a" opacity="0.2"/>
+<path d="M0-3.1H-4.2A3.1 3.1 0 0 0-4.2 3.1H0Z" fill="url(#ab-cg)" stroke="#1e5a38" stroke-width="0.7" stroke-linejoin="round"/>
+<path d="M0-3.1H4.2A3.1 3.1 0 0 1 4.2 3.1H0Z" fill="url(#ab-cw)" stroke="#7a7058" stroke-width="0.7" stroke-linejoin="round"/>
+<path d="M-4.6-2.1H-1" stroke="#d6ffe2" stroke-width="0.8" stroke-linecap="round" opacity="0.85"/><path d="M0.8-2.1H4.2" stroke="#ffffff" stroke-width="0.8" stroke-linecap="round" opacity="0.9"/><path d="M0-3.1V3.1" stroke="#1e5a38" stroke-width="0.5" opacity="0.6"/></g>
+<circle cx="9.4" cy="18.4" r="0.9" fill="#bfe3e6" stroke="#3f7f86" stroke-width="0.4"/><circle cx="11.2" cy="16.8" r="0.6" fill="#bfe3e6" stroke="#3f7f86" stroke-width="0.35"/><circle cx="20" cy="17.6" r="0.7" fill="#bfe3e6" stroke="#3f7f86" stroke-width="0.35"/>
+<g transform="translate(23.7 24)"><circle cx="0.7" cy="0.8" r="3.7" fill="#000000" opacity="0.3"/>
+<polygon points="0,-3.9 1.02,-3.14 2.29,-3.16 2.67,-1.94 3.71,-1.21 3.3,0 3.71,1.21 2.67,1.94 2.29,3.16 1.02,3.14 0,3.9 -1.02,3.14 -2.29,3.16 -2.67,1.94 -3.71,1.21 -3.3,0 -3.71,-1.21 -2.67,-1.94 -2.29,-3.16 -1.02,-3.14" fill="url(#ab-fg)" stroke="#8a6210" stroke-width="0.5" stroke-linejoin="round"/>
+<circle r="2.6" fill="none" stroke="#fff0b0" stroke-width="0.4" opacity="0.85"/>
+<path d="M0-1.5V1.5M-1.5 0H1.5" stroke="#8a6210" stroke-width="1.1" stroke-linecap="round"/><path d="M-0.2-1.5V1.3M-1.5-0.2H1.3" stroke="#fff3bc" stroke-width="0.4" stroke-linecap="round" opacity="0.8"/>
+<path d="M-2.9-1.2Q-2.4-2.4-1.2-2.9" fill="none" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round" opacity="0.9"/></g>
+</svg>

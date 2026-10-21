@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <radialGradient id="nf-foil" cx="0.3" cy="0.3" r="0.9">
+      <stop offset="0" stop-color="#f4f8fa"/>
+      <stop offset="0.5" stop-color="#c9d2d8"/>
+      <stop offset="1" stop-color="#8794a0"/>
+    </radialGradient>
+    <linearGradient id="nf-gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbe08a"/>
+      <stop offset="0.5" stop-color="#e0b43a"/>
+      <stop offset="1" stop-color="#a97a14"/>
+    </linearGradient>
+    <clipPath id="nf-bc"><path d="M13 12C8.6 13.6 5 18.4 5.4 23C5.8 27.4 10.6 29.4 16 29.4C21.4 29.4 26 28 26.6 23.6C27.2 18.6 23.8 14 19 12Z"/></clipPath>
+  </defs>
+  <!-- a sealed twist of crinkled foil, nicked open low on the belly where gold-bright flakes leak out -->
+  <ellipse cx="16.6" cy="29.3" rx="11.5" ry="1.7" fill="#120e18" opacity="0.4"/>
+  <path d="M13 12C8.6 13.6 5 18.4 5.4 23C5.8 27.4 10.6 29.4 16 29.4C21.4 29.4 26 28 26.6 23.6C27.2 18.6 23.8 14 19 12Z" fill="url(#nf-foil)"/>
+  <g clip-path="url(#nf-bc)">
+    <path d="M13 12L8.5 15.5L11 19Z" fill="#f4f8fa"/>
+    <path d="M8.5 15.5L5.4 21L11 19ZM13 12L11 19L15.4 17Z" fill="#e3eaef"/>
+    <path d="M5.4 21L6.6 27L13 24L11 19Z" fill="#b9c4cd"/>
+    <path d="M13 12H19L20.4 18.2L15.4 17Z" fill="#cdd6dc"/>
+    <path d="M11 19L15.4 17L16.4 23L13 24ZM13 24L16.4 23L19.6 25L16 30H8Z" fill="#a4b0ba"/>
+    <path d="M15.4 17L20.4 18.2L19.6 25L16.4 23Z" fill="#c2ccd4"/>
+    <path d="M19 12L23.8 14.6L20.4 18.2ZM20.4 18.2L24 22.4L19.6 25Z" fill="#94a1ac"/>
+    <path d="M23.8 14.6L27 20L24 22.4L20.4 18.2ZM19.6 25L24 22.4L27 24L26 30H16Z" fill="#76828e"/>
+    <path d="M13 12L11 19L5.4 21M11 19L13 24L6.6 27M15.4 17L11 19M15.4 17L16.4 23L13 24M15.4 17L20.4 18.2L19 12M20.4 18.2L19.6 25L16.4 23M20.4 18.2L23.8 14.6M20.4 18.2L24 22.4L27 20M19.6 25L24 22.4" fill="none" stroke="#5e6a76" stroke-width="0.4" opacity="0.5" stroke-linejoin="round"/>
+    <path d="M12.4 13.4L9.2 15.6M9 16.6L6.4 20.4M12 20L12.8 22.6M15.8 18.4L18.8 19M14 25.6L17.6 26.6" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.8" stroke-linecap="round"/>
+    <ellipse cx="20" cy="23.6" rx="5.5" ry="3.8" fill="#e0b43a" opacity="0.28"/>
+  </g>
+  <path d="M16.6 19.4L19.6 17.6L21.4 19.2L23.6 18L25 20.4L24.2 22.6L25.6 25L22.6 26.6L20 25.6L17.6 26.4L17.8 23.2Z" fill="#7a5818" stroke="#3c2a0c" stroke-width="0.6" stroke-linejoin="round"/>
+  <path d="M19.6 17.6L21.4 19.2L23.6 18L25 20.4L25.6 18.4L24.4 16.4L21.8 16Z" fill="#e4ebef" stroke="#6e7a86" stroke-width="0.5" stroke-linejoin="round"/>
+  <g stroke="#7a5410" stroke-width="0.4" stroke-linejoin="round">
+    <path d="M17.4 24.6L19.2 22L21.6 23.2L20.6 25.8Z" fill="url(#nf-gold)"/>
+    <path d="M19.4 20.4L22 19.6L22.8 21.8L20.4 22.4ZM21.2 24.2L23.4 24.4L22.6 26L20.8 25.6Z" fill="#fbe08a"/>
+    <path d="M22.2 22.2L24.4 21.2L25 23.6L23 24.4ZM17.6 21L18.8 19.6L19.8 21L18.6 22Z" fill="#e0b43a"/>
+    <path d="M23.4 19.4L24.6 19.8L24.2 21L23 20.6Z" fill="#a97a14"/>
+  </g>
+  <path d="M13.2 12.4L13.8 7.4H18.2L18.8 12.4C16.4 13.2 15.6 13.2 13.2 12.4Z" fill="#b4c0c9" stroke="#4e5a66" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M13.6 8.8L18.4 7.6M13.4 10.4L18.6 8.8M13.2 12L18.8 10.4" fill="none" stroke="#5e6a76" stroke-width="0.6" opacity="0.8" stroke-linecap="round"/>
+  <path d="M13.8 7.6L10.6 4.6L12.6 4L12.2 2.2L14.6 3.6L15.6 1.8L17.2 3.8L19.2 2.4L19.4 4.4L21.8 4.4L20 6L18.2 7.6Z" fill="#d6dee4" stroke="#4e5a66" stroke-width="0.9" stroke-linejoin="round"/>
+  <path d="M14.6 3.6L15.4 7.4M17.2 3.8L16.6 7.4M19.2 2.4L17.4 7.2M12.6 4L14 7.4" fill="none" stroke="#6e7a86" stroke-width="0.5" opacity="0.8" stroke-linecap="round"/>
+  <path d="M10.8 4.8L12.8 4.2L12.4 2.6M15 3.6L15.7 2.2" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M13 12C8.6 13.6 5 18.4 5.4 23C5.8 27.4 10.6 29.4 16 29.4C21.4 29.4 26 28 26.6 23.6C27.2 18.6 23.8 14 19 12" fill="none" stroke="#4e5a66" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M12.4 13.4C9.2 15.2 6.4 18.6 6.4 22.4" fill="none" stroke="#ffffff" stroke-width="0.9" opacity="0.85" stroke-linecap="round"/>
+  <g stroke="#7a5410" stroke-width="0.5" stroke-linejoin="round">
+    <path d="M21.6 27.6L24.4 26.4L26.6 28.4L24 29.8ZM3 29.6L5 28.2L7 29.6L5 31Z" fill="url(#nf-gold)"/>
+    <path d="M25.6 29.4L27.8 28.2L30.2 29.2L28.4 30.8ZM12.4 30.4L13.8 29.9L14 30.9L12.6 31.1Z" fill="#fbe08a"/>
+    <path d="M22.4 30.4L24.2 29.6L25.6 30.6L23.8 31.2ZM26.8 27L28.8 26.2L29.8 27.8L27.8 28.4ZM8.8 30.4L10.4 29.4L11.8 30.4L10.2 31.2Z" fill="#e0b43a"/>
+  </g>
+  <g stroke="#fff6c8" stroke-width="0.7" stroke-linecap="round">
+    <path d="M28.4 24.2V27.2M26.9 25.7H29.9M7.4 26.2V28M6.5 27.1H8.3"/>
+    <path d="M23 13.6V15M22.3 14.3H23.7M22.6 28L24 27.2" stroke-width="0.5"/>
+  </g>
+  <path d="M9.4 14.2V16.8M8.1 15.5H10.7" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round"/>
+</svg>

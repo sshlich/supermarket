@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Lamp blueprints floppy: family shell and shutter; yellow paper label (violet band LUMEN WORKS) with a blueprint panel and a glowing bulb with rays; write-protect hole open = copyable -->
+  <defs>
+    <linearGradient id="lp-sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#65647e"/><stop offset="0.45" stop-color="#4b4a5b"/><stop offset="1" stop-color="#33323f"/></linearGradient>
+    <linearGradient id="lp-mt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9aa1a8"/><stop offset="0.12" stop-color="#e6e9ec"/><stop offset="0.5" stop-color="#b6bcc3"/><stop offset="0.82" stop-color="#d6dade"/><stop offset="1" stop-color="#8a9198"/></linearGradient>
+    <linearGradient id="lp-md" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a4938"/><stop offset="1" stop-color="#22190f"/></linearGradient>
+    <linearGradient id="lp-pp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2d870"/><stop offset="1" stop-color="#dfb946"/></linearGradient>
+    <linearGradient id="lp-bd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7c6cae"/><stop offset="1" stop-color="#5b4d8c"/></linearGradient>
+  </defs>
+  <path d="M6.5 3.5H50.5L59.5 12.5V57Q59.5 59.5 57 59.5H6.5Q4 59.5 4 57V6Q4 3.5 6.5 3.5Z" transform="translate(1.3 1.5)" fill="#1e1c26"/>
+  <path d="M6.5 3.5H50.5L59.5 12.5V57Q59.5 59.5 57 59.5H6.5Q4 59.5 4 57V6Q4 3.5 6.5 3.5Z" fill="url(#lp-sh)" stroke="#17151d" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M5 6.5Q5 4.5 7 4.5H13.2V26L5 31Z" fill="#ffffff" opacity="0.07"/>
+  <path d="M5.3 57V6.2Q5.3 4.7 6.8 4.7H50.1L58.4 13" fill="none" stroke="#c9c8e2" stroke-width="0.7" opacity="0.5" stroke-linecap="round"/>
+  <path d="M58.6 14V56.8Q58.6 58.5 57 58.5H7" fill="none" stroke="#17151d" stroke-width="0.8" opacity="0.45" stroke-linecap="round"/>
+  <path d="M51.4 5.6L58.3 12.5" stroke="#d6d5ee" stroke-width="0.6" opacity="0.35"/>
+  <path d="M7.6 9.2L10.6 6.8V11.6Z" fill="#17151d" opacity="0.7"/><path d="M7.9 8.3L10.3 6.4" stroke="#b9b8d2" stroke-width="0.5" opacity="0.4"/>
+  <rect x="13.2" y="3.5" width="33.6" height="24.6" fill="#0d0b12" opacity="0.28"/>
+  <path d="M13.2 28.1H46.8" stroke="#c9c8e2" stroke-width="0.5" opacity="0.28"/>
+  <rect x="16" y="3.5" width="28.2" height="22.6" rx="0.9" fill="url(#lp-mt)" stroke="#555c64" stroke-width="0.7"/>
+  <g stroke="#ffffff" stroke-width="0.35" opacity="0.4"><path d="M17 6.5H43"/><path d="M17 9.5H30"/><path d="M17 12.5H30"/><path d="M17 15.5H30"/><path d="M17 18.5H30"/><path d="M17 21.5H43"/></g>
+  <rect x="31" y="6.6" width="8.8" height="16" rx="1.1" fill="url(#lp-md)" stroke="#43484f" stroke-width="0.7"/>
+  <path d="M32.4 8.2V21" stroke="#9a7a58" stroke-width="0.8" opacity="0.55"/><path d="M38.2 8V12" stroke="#caa77a" stroke-width="0.5" opacity="0.35"/>
+  <path d="M30.6 6.2H39.6" stroke="#ffffff" stroke-width="0.5" opacity="0.55"/>
+  <path d="M16.9 4.2V25.4" stroke="#555c64" stroke-width="0.8" opacity="0.6"/>
+  <circle cx="23.6" cy="11" r="1.5" fill="#2f343a" stroke="#f2f5f7" stroke-width="0.5" opacity="0.9"/><circle cx="23.2" cy="10.6" r="0.5" fill="#7b838b"/>
+  <rect x="20" y="16" width="7.6" height="4.4" rx="1.2" fill="#aab1b8" stroke="#7b838b" stroke-width="0.5"/><path d="M20.8 16.7H26.6" stroke="#ffffff" stroke-width="0.5" opacity="0.7"/>
+  <path d="M16 25.1H44.2" stroke="#6d747c" stroke-width="0.8"/><path d="M16.8 24.3H43.4" stroke="#ffffff" stroke-width="0.5" opacity="0.6"/>
+  <path d="M26 7.4L29.6 9.6M35 24.1L39.4 22.7" stroke="#ffffff" stroke-width="0.4" opacity="0.5"/>
+  <g fill="#a4522b"><circle cx="42.6" cy="23.8" r="0.6" opacity="0.8"/><circle cx="41.3" cy="24.4" r="0.4" opacity="0.7"/><circle cx="43.4" cy="22.6" r="0.35" opacity="0.7"/></g>
+  <rect x="9.8" y="28.8" width="44.4" height="28.4" rx="1.8" fill="#000000" opacity="0.2"/>
+  <path d="M10.4 28.8H53.6" stroke="#17151d" stroke-width="0.6" opacity="0.6"/><path d="M10.4 57.2H53.6" stroke="#c9c8e2" stroke-width="0.5" opacity="0.3"/>
+  <rect x="4.9" y="50.6" width="4.3" height="5.8" rx="0.5" fill="#14121a"/>
+  <rect x="5.1" y="50.9" width="3.9" height="2" rx="0.4" fill="#8a8c98" stroke="#5a5c68" stroke-width="0.4"/>
+  <rect x="54.8" y="50.6" width="4.3" height="5.8" rx="0.5" fill="#14121a"/><path d="M55.2 50.8H58.8" stroke="#8d8ca6" stroke-width="0.4" opacity="0.5"/>
+  <rect x="11.6" y="30.7" width="42" height="25.9" rx="1.3" fill="#0d0b12" opacity="0.4"/>
+  
+  <rect x="11" y="30" width="42" height="26" rx="1.3" fill="url(#lp-pp)" stroke="#8a6d1c" stroke-width="0.5"/>
+  <path d="M11 36.8V31.3Q11 30 12.3 30H51.7Q53 30 53 31.3V36.8Z" fill="url(#lp-bd)"/>
+  <path d="M11.6 30.6H52.4" stroke="#d0c8ee" stroke-width="0.5" opacity="0.6"/><path d="M11 36.8H53" stroke="#352c58" stroke-width="0.5"/>
+  <path fill="#f3ecd6" d="M13.2 31.5h0.9v4.5h-0.9zM14.1 35.1h1.8v0.9h-1.8zM16.8 31.5h0.9v4.5h-0.9zM18.6 31.5h0.9v4.5h-0.9zM17.7 35.1h0.9v0.9h-0.9zM20.4 31.5h0.9v4.5h-0.9zM22.2 31.5h0.9v4.5h-0.9zM21.3 32.4h0.9v1.8h-0.9zM24 31.5h2.7v0.9h-2.7zM24 32.4h0.9v3.6h-0.9zM24.9 33.3h0.9v0.9h-0.9zM24.9 35.1h1.8v0.9h-1.8zM27.6 31.5h1.8v0.9h-1.8zM27.6 32.4h0.9v3.6h-0.9zM29.4 32.4h0.9v3.6h-0.9zM34.8 31.5h0.9v4.5h-0.9zM36.6 31.5h0.9v4.5h-0.9zM35.7 33.3h0.9v1.8h-0.9zM38.4 31.5h2.7v0.9h-2.7zM38.4 32.4h0.9v3.6h-0.9zM40.2 32.4h0.9v3.6h-0.9zM39.3 35.1h0.9v0.9h-0.9zM42 31.5h2.7v0.9h-2.7zM42 32.4h0.9v3.6h-0.9zM43.8 32.4h0.9v0.9h-0.9zM42.9 33.3h0.9v0.9h-0.9zM43.8 34.2h0.9v1.8h-0.9zM45.6 31.5h0.9v4.5h-0.9zM47.4 31.5h0.9v1.8h-0.9zM46.5 33.3h0.9v0.9h-0.9zM47.4 34.2h0.9v1.8h-0.9zM49.2 31.5h2.7v0.9h-2.7zM49.2 32.4h0.9v1.8h-0.9zM50.1 33.3h1.8v0.9h-1.8zM51 34.2h0.9v1.8h-0.9zM49.2 35.1h1.8v0.9h-1.8z"/>
+  <rect x="12" y="38.3" width="40" height="10.6" fill="#2e2b4a" stroke="#4e4968" stroke-width="0.4"/>
+  <g stroke="#48436e" stroke-width="0.35"><path d="M16 38.3V48.9M20 38.3V48.9M24 38.3V48.9M28 38.3V48.9M32 38.3V48.9M36 38.3V48.9M40 38.3V48.9M44 38.3V48.9M48 38.3V48.9"/><path d="M12 41.3H52M12 44.3H52M12 47.3H52"/></g>
+  <g stroke="#ffd95a" stroke-width="0.9" stroke-linecap="round"><path d="M25.6 41.6L21.4 40.2"/><path d="M25 43.8H19.6"/><path d="M25.6 46L21.4 47.4"/><path d="M38.4 41.6L42.6 40.2"/><path d="M39 43.8H44.4"/><path d="M38.4 46L42.6 47.4"/></g>
+  <path d="M13.6 41.2H17M46.6 41.2H50.2" stroke="#ffd95a" stroke-width="0.5" opacity="0.5" stroke-linecap="round"/>
+  <circle cx="32" cy="43.4" r="3.6" fill="#ffe27a" stroke="#fff4c4" stroke-width="0.6"/>
+  <circle cx="32" cy="43.4" r="2.2" fill="#fff6d0" opacity="0.7"/>
+  <path d="M30.7 45.6V43.6M33.3 45.6V43.6M30.7 43.6Q31.3 42.2 32 43.6Q32.7 42.2 33.3 43.6" fill="none" stroke="#c1763f" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M30 46.4H34L33.6 47.4H30.4Z" fill="#aab1b8" stroke="#5a6067" stroke-width="0.4" stroke-linejoin="round"/><path d="M30.4 48.4H33.6" stroke="#8794a0" stroke-width="0.9" stroke-linecap="round"/>
+  <path d="M29.6 41.2Q30.4 40.2 31.6 40" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.8" stroke-linecap="round"/>
+  <path fill="#4a3a10" d="M12.6 50.4h0.95v4.75h-0.95zM13.55 54.2h1.9v0.95h-1.9zM16.4 52.3h2.85v0.95h-2.85zM21.15 50.4h0.95v4.75h-0.95zM20.2 51.35h0.95v0.95h-0.95zM20.2 54.2h0.95v0.95h-0.95zM22.1 54.2h0.95v0.95h-0.95zM27.8 50.4h0.95v4.75h-0.95zM28.75 54.2h1.9v0.95h-1.9zM31.6 50.4h2.85v0.95h-2.85zM31.6 51.35h0.95v3.8h-0.95zM33.5 51.35h0.95v3.8h-0.95zM32.55 52.3h0.95v0.95h-0.95zM35.4 50.4h0.95v4.75h-0.95zM37.3 50.4h0.95v4.75h-0.95zM36.35 51.35h0.95v1.9h-0.95zM39.2 50.4h2.85v0.95h-2.85zM39.2 51.35h0.95v3.8h-0.95zM41.1 51.35h0.95v1.9h-0.95zM40.15 52.3h0.95v0.95h-0.95zM43 50.4h2.85v0.95h-2.85zM43 51.35h0.95v1.9h-0.95zM43.95 52.3h1.9v0.95h-1.9zM44.9 53.25h0.95v1.9h-0.95zM43 54.2h1.9v0.95h-1.9z"/>
+  <path d="M13 55.5H51" stroke="#b9983a" stroke-width="0.4"/>
+  <g fill="#8a6d1c" opacity="0.45"><circle cx="44" cy="52.6" r="0.4"/><circle cx="50.6" cy="54" r="0.4"/></g>
+  <path fill="#17151d" opacity="0.5" d="M50.6 19.6h1v5h-1zM52.6 19.6h1v5h-1zM51.6 21.6h1v1h-1zM54.6 19.6h2v1h-2zM54.6 20.6h1v4h-1zM56.6 20.6h1v3h-1zM55.6 23.6h1v1h-1z"/><path fill="#8c8ba8" opacity="0.7" d="M50.3 19.3h1v5h-1zM52.3 19.3h1v5h-1zM51.3 21.3h1v1h-1zM54.3 19.3h2v1h-2zM54.3 20.3h1v4h-1zM56.3 20.3h1v3h-1zM55.3 23.3h1v1h-1z"/>
+  <g fill="#9f9ebb" opacity="0.55"><circle cx="48.5" cy="7.5" r="0.45"/><circle cx="52.5" cy="10.5" r="0.35"/><circle cx="7.5" cy="45" r="0.4"/></g>
+</svg>

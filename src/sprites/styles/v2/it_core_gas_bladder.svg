@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64">
+  <defs>
+    <linearGradient id="gb-rail"><stop offset="0" stop-color="#f0f4f6"/><stop offset="0.4" stop-color="#c9d2d8"/><stop offset="1" stop-color="#7d8a96"/></linearGradient>
+    <radialGradient id="gb-bag" gradientUnits="userSpaceOnUse" cx="11" cy="22" r="40"><stop offset="0" stop-color="#d4e8a2"/><stop offset="0.4" stop-color="#a8c86a"/><stop offset="1" stop-color="#4a6a2a"/></radialGradient>
+    <radialGradient id="gb-lobe"><stop offset="0" stop-color="#f1fad0" stop-opacity="0.85"/><stop offset="1" stop-color="#f1fad0" stop-opacity="0"/></radialGradient>
+    <linearGradient id="gb-brass"><stop offset="0" stop-color="#fbe08a"/><stop offset="0.5" stop-color="#e0b43a"/><stop offset="1" stop-color="#8a6212"/></linearGradient>
+    <linearGradient id="gb-web" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8a14f"/><stop offset="1" stop-color="#9a5a22"/></linearGradient>
+  </defs>
+  <!-- gas bladder: a tight lime pillow of gas with a welded rim, pinched into lobes by two webbing straps in an alloy carry frame; brass valve, stencil, warning sticker, stitched patch -->
+  <g stroke-linejoin="round" stroke-linecap="round">
+  <ellipse cx="16" cy="61.2" rx="13" ry="2" fill="#0b0810" opacity="0.32"/>
+  <path d="M2.6 58h3v3.4h-3zM26.4 58h3v3.4h-3z" fill="#2e2d33" stroke="#17161a" stroke-width="0.6"/>
+  <g fill="url(#gb-rail)" stroke="#4b5560" stroke-width="0.9">
+    <rect x="2.4" y="1.6" width="3.4" height="58" rx="1.4"/><rect x="26.2" y="1.6" width="3.4" height="58" rx="1.4"/>
+    <rect x="2.4" y="1.6" width="27.2" height="3.2" rx="1.4"/><rect x="2.4" y="55.8" width="27.2" height="3.4" rx="1.4"/>
+  </g>
+  <rect x="9" y="1.1" width="14" height="4.2" rx="1.6" fill="#35343b" stroke="#17161a" stroke-width="0.7"/>
+  <path d="M11 2V4.4M13 2V4.4M15 2V4.4M17 2V4.4M19 2V4.4M21 2V4.4" stroke="#5a5962" stroke-width="0.5"/>
+  <path d="M3.4 3.6V58" stroke="#ffffff" stroke-width="0.7" opacity="0.7"/>
+  <path d="M4.1 13h.01M27.9 13h.01M4.1 52h.01M27.9 52h.01" stroke="#4b5560" stroke-width="1.6"/><path d="M4.1 13h.01M27.9 13h.01M4.1 52h.01M27.9 52h.01" stroke="#a7b1ba" stroke-width="0.8"/>
+  <path d="M18.7 8.4C20.1 9.1 20.8 11 22.2 12.6C23.6 14.2 26.7 16 27.1 18C27.5 20 24.3 21.9 24.4 24.4C24.5 26.9 27.7 29.9 27.7 33C27.7 36.1 24.5 40 24.4 42.8C24.4 45.6 27.5 48 27.3 50C27.2 52 25 53.8 23.6 55C22.2 56.2 20.8 56.9 19.1 57.3C17.3 57.7 14.8 57.7 13.1 57.3C11.4 56.9 10.1 56.2 8.8 55C7.5 53.8 5.5 52 5.3 50C5.2 48 8.1 45.6 8 42.8C8 40 4.9 36.1 4.9 33C4.9 29.9 7.9 26.9 8 24.4C8.1 21.9 5.2 20 5.5 18C5.9 16 8.9 14.2 10.2 12.6C11.5 11 12.1 9.1 13.5 8.4C14.9 7.7 17.2 7.7 18.7 8.4Z" fill="#8fae52" stroke="#34501c" stroke-width="1.2"/>
+  <path d="M18.7 8.4C20.1 9.1 20.8 11 22.2 12.6C23.6 14.2 26.7 16 27.1 18C27.5 20 24.3 21.9 24.4 24.4C24.5 26.9 27.7 29.9 27.7 33C27.7 36.1 24.5 40 24.4 42.8C24.4 45.6 27.5 48 27.3 50C27.2 52 25 53.8 23.6 55C22.2 56.2 20.8 56.9 19.1 57.3C17.3 57.7 14.8 57.7 13.1 57.3C11.4 56.9 10.1 56.2 8.8 55C7.5 53.8 5.5 52 5.3 50C5.2 48 8.1 45.6 8 42.8C8 40 4.9 36.1 4.9 33C4.9 29.9 7.9 26.9 8 24.4C8.1 21.9 5.2 20 5.5 18C5.9 16 8.9 14.2 10.2 12.6C11.5 11 12.1 9.1 13.5 8.4C14.9 7.7 17.2 7.7 18.7 8.4Z" transform="translate(16 33) scale(0.88 0.97) translate(-16 -33)" fill="url(#gb-bag)" stroke="#4a6a2a" stroke-width="0.6"/>
+  <ellipse cx="13" cy="17.4" rx="7" ry="4.6" fill="url(#gb-lobe)"/><ellipse cx="12.6" cy="33.6" rx="7.4" ry="5.4" fill="url(#gb-lobe)"/><ellipse cx="12.2" cy="49.6" rx="7" ry="4.6" fill="url(#gb-lobe)" opacity="0.8"/>
+  <path d="M8.4 21.6Q10.4 20.6 12.6 21.4M7.6 19.8Q9 19 10.4 19.4M25 21.4Q22.8 20.4 20.4 21.2M8.2 29.6Q10.2 30.4 12.2 29.6M24.6 29.8Q22.4 30.8 20.6 30M8.4 39.4Q10.4 38.4 12.6 39.2M24.8 39.2Q22.6 38.4 20.4 39.2M8.6 47.6Q10.4 48.4 12.6 47.8M24.6 47.6Q22.6 48.4 20.4 47.8" fill="none" stroke="#34501c" stroke-width="0.6" opacity="0.55"/>
+  <path d="M7.6 31.4Q6.8 35 8 38.6M8 15.6Q7.6 17.4 8.4 18.8M8 48.2Q7.6 51 9.2 53.4" fill="none" stroke="#f7fcdc" stroke-width="0.9" opacity="0.7"/>
+  <path d="M2 22.2Q16 24.6 30 22.2V26.8Q16 29.2 2 26.8Z" fill="url(#gb-web)" stroke="#5a3010" stroke-width="0.8"/>
+  <path d="M3 24.6Q16 27 29 24.6" fill="none" stroke="#f3cf8f" stroke-width="0.5" stroke-dasharray="1.2 0.9"/>
+  <path d="M3 22.7Q16 25.1 29 22.7" fill="none" stroke="#f6c682" stroke-width="0.5" opacity="0.7"/>
+  <path d="M2.2 27.1Q16 29.5 29.8 27.1" fill="none" stroke="#17161a" stroke-width="1.4" opacity="0.2"/>
+  <path d="M2 40.6Q16 43 30 40.6V45.2Q16 47.6 2 45.2Z" fill="url(#gb-web)" stroke="#5a3010" stroke-width="0.8"/>
+  <path d="M3 43Q16 45.4 29 43" fill="none" stroke="#f3cf8f" stroke-width="0.5" stroke-dasharray="1.2 0.9"/>
+  <path d="M3 41.1Q16 43.5 29 41.1" fill="none" stroke="#f6c682" stroke-width="0.5" opacity="0.7"/>
+  <path d="M2.2 45.5Q16 47.9 29.8 45.5" fill="none" stroke="#17161a" stroke-width="1.4" opacity="0.2"/>
+  <rect x="20.4" y="23.4" width="5.4" height="5.4" rx="1" fill="#c9d2d8" stroke="#4b5560" stroke-width="0.8"/><rect x="21.8" y="24.8" width="2.6" height="2.6" fill="#6a7681"/>
+  <path d="M22 28.8L21.4 33.6L23.6 34.4L25.2 33.2L24.8 29Z" fill="url(#gb-web)" stroke="#5a3010" stroke-width="0.7"/>
+  <rect x="20.4" y="41.8" width="5.4" height="5.4" rx="1" fill="#c9d2d8" stroke="#4b5560" stroke-width="0.8"/><rect x="21.8" y="43.2" width="2.6" height="2.6" fill="#6a7681"/>
+  <path d="M22.2 47.4L21.6 51.2L24 51.8L25 50.8L24.6 47.6Z" fill="url(#gb-web)" stroke="#5a3010" stroke-width="0.7"/>
+  <path fill="#2f4a1a" opacity="0.8" d="M10.6 31.4h3v1h-3zM10.6 32.4h1v1h-1zM10.6 33.4h1v1h-1zM12.6 33.4h1v1h-1zM10.6 34.4h1v1h-1zM12.6 34.4h1v1h-1zM10.6 35.4h3v1h-3zM14.6 31.4h3v1h-3zM14.6 32.4h1v1h-1zM16.6 32.4h1v1h-1zM14.6 33.4h3v1h-3zM14.6 34.4h1v1h-1zM16.6 34.4h1v1h-1zM14.6 35.4h1v1h-1zM16.6 35.4h1v1h-1zM18.6 31.4h3v1h-3zM18.6 32.4h1v1h-1zM18.6 33.4h3v1h-3zM20.6 34.4h1v1h-1zM18.6 35.4h3v1h-3z"/>
+  <path d="M16 13.2L19.6 19.4H12.4Z" fill="#e8c03a" stroke="#3a2c0a" stroke-width="0.7"/><path d="M16 15.2V17.4" stroke="#2a2008" stroke-width="0.9"/><circle cx="16" cy="18.5" r="0.45" fill="#2a2008"/>
+  <g transform="rotate(-8 12 52)"><rect x="8.4" y="49.2" width="7.2" height="5.4" rx="0.8" fill="#b7a27c" stroke="#5f5033" stroke-width="0.6"/><rect x="9.4" y="50.2" width="5.2" height="3.4" fill="none" stroke="#5f5033" stroke-width="0.4" stroke-dasharray="0.8 0.6"/><path d="M8.8 49.6H15.2" stroke="#e6d9b8" stroke-width="0.5"/></g>
+  <rect x="12" y="9.2" width="8" height="2.4" rx="1" fill="url(#gb-brass)" stroke="#5a400a" stroke-width="0.7"/>
+  <rect x="13.4" y="5.6" width="5.2" height="4" fill="url(#gb-brass)" stroke="#5a400a" stroke-width="0.7"/>
+  <path d="M12.6 7.6H19.4" stroke="#5a400a" stroke-width="0.6"/>
+  <rect x="18.6" y="6.4" width="4.2" height="2" rx="0.6" fill="url(#gb-brass)" stroke="#5a400a" stroke-width="0.6"/><rect x="22.6" y="5.8" width="2" height="3.2" rx="0.8" fill="#5a8a3a" stroke="#2a4418" stroke-width="0.6"/>
+  <ellipse cx="16" cy="5.2" rx="4.6" ry="1.6" fill="#b5432f" stroke="#4a1810" stroke-width="0.7"/><path d="M12.4 4.8Q16 3.2 19.6 4.8" fill="none" stroke="#f0a090" stroke-width="0.5" opacity="0.9"/>
+  <path d="M12.6 8.8V9.4" stroke="#fff6c8" stroke-width="0.5"/>
+  </g>
+</svg>

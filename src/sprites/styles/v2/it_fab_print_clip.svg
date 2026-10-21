@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<defs>
+<linearGradient id="pc-face" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7a95a"/><stop offset="0.5" stop-color="#e08a3a"/><stop offset="1" stop-color="#b86420"/></linearGradient>
+<linearGradient id="pc-wall" gradientUnits="userSpaceOnUse" x1="0" y1="2" x2="0" y2="22"><stop offset="0" stop-color="#fbc886"/><stop offset="1" stop-color="#e8964a"/></linearGradient>
+<linearGradient id="pc-top" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fcc888"/><stop offset="1" stop-color="#e8924a"/></linearGradient>
+<linearGradient id="pc-front" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cf7528"/><stop offset="1" stop-color="#9a4e16"/></linearGradient>
+<clipPath id="pc-wallclip"><path d="M26.5 10.4L25.7 8.4A10.2 10.2 0 0 0 18.6 2.3L18.6 8.6A5.8 5.8 0 0 1 21.9 11.1A5.8 5.8 0 0 1 11.3 15.3A5.8 5.8 0 0 1 14.6 8.9L14.6 2.1A10.2 10.2 0 0 0 6.7 16L7.5 18A10.2 10.2 0 0 0 26.5 10.4Z"/></clipPath>
+<clipPath id="pc-padtop"><path d="M2.6 20.6L5 25.4L30 25.4L27.6 20.6Z"/></clipPath>
+</defs>
+<!-- a printed snap clip standing on its foot pad: an open C-ring, mouth narrower than the bore with little barbs so a cable snaps in,
+two screw holes in the pad; printed layer lines show on the walls, a wisp of stray filament by the foot -->
+<path d="M4 29.6L31 29.6Q31.6 30.8 30 31.2L5.6 31.2Q3.6 30.8 4 29.6Z" fill="#0e0b13" opacity="0.3"/>
+<path d="M2.6 20.6L5 25.4L5 28.6Q5 29.4 5.8 29.4L29.2 29.4Q30 29.4 30 28.6L30 25.4L27.6 20.6Z" fill="#5a2a0e" stroke="#5a2a0e" stroke-width="2.2" stroke-linejoin="round"/>
+<path d="M5 25.4L30 25.4L30 28.6Q30 29.4 29.2 29.4L5.8 29.4Q5 29.4 5 28.6Z" fill="url(#pc-front)"/>
+<path d="M2.6 20.6L5 25.4L5 28.6L2.6 24.4Z" fill="#f5a95b"/>
+<path d="M2.6 20.6L5 25.4L30 25.4L27.6 20.6Z" fill="url(#pc-top)"/>
+<g clip-path="url(#pc-padtop)"><path d="M15.9 5.9A10.2 10.2 0 1 0 22.5 5.9L21.4 6.9L21.6 8.7L20.7 9.5L22.2 10.6A5.8 5.8 0 1 1 16.2 10.6L17.7 9.5L16.8 8.7L17 6.9Z" fill="#8a4210" opacity="0.3"/>
+<ellipse cx="7.4" cy="23.1" rx="2" ry="1.15" fill="#3a1a08"/><ellipse cx="26.6" cy="23.1" rx="2" ry="1.15" fill="#3a1a08"/>
+<path d="M5.6 23.9Q7.4 24.7 9.2 23.6M24.8 23.9Q26.6 24.7 28.4 23.6" fill="none" stroke="#ffe0b4" stroke-width="0.5" opacity="0.7"/></g>
+<path d="M26.5 10.4L25.7 8.4A10.2 10.2 0 0 0 18.6 2.3L18.6 8.6A5.8 5.8 0 0 1 21.9 11.1A5.8 5.8 0 0 1 11.3 15.3A5.8 5.8 0 0 1 14.6 8.9L14.6 2.1A10.2 10.2 0 0 0 6.7 16L7.5 18A10.2 10.2 0 0 0 26.5 10.4Z" fill="#5a2a0e" stroke="#5a2a0e" stroke-width="2.2" stroke-linejoin="round"/>
+<path d="M26.5 10.4L25.7 8.4A10.2 10.2 0 0 0 18.6 2.3L18.6 8.6A5.8 5.8 0 0 1 21.9 11.1A5.8 5.8 0 0 1 11.3 15.3A5.8 5.8 0 0 1 14.6 8.9L14.6 2.1A10.2 10.2 0 0 0 6.7 16L7.5 18A10.2 10.2 0 0 0 26.5 10.4Z" fill="url(#pc-wall)"/>
+<g clip-path="url(#pc-wallclip)"><path d="M3 1H31M3 2.1H31M3 3.2H31M3 4.3H31M3 5.4H31M3 6.5H31M3 7.6H31M3 8.7H31M3 9.8H31M3 10.9H31M3 12H31M3 13.1H31M3 14.2H31M3 15.3H31M3 16.4H31M3 17.5H31M3 18.6H31M3 19.7H31M3 20.8H31M3 21.9H31M3 23H31M3 24.1H31M3 25.2H31" stroke="#a85a1c" stroke-width="0.35" opacity="0.5"/></g>
+<path d="M13.7 4.5A10.2 10.2 0 1 0 20.3 4.5L19.2 5.5L19.4 7.3L18.5 8.1L20 9.2A5.8 5.8 0 1 1 14 9.2L15.5 8.1L14.6 7.3L14.8 5.5Z" fill="url(#pc-face)"/>
+<path d="M13.7 4.5A10.2 10.2 0 1 0 20.3 4.5L19.2 5.5L19.4 7.3L18.5 8.1L20 9.2A5.8 5.8 0 1 1 14 9.2L15.5 8.1L14.6 7.3L14.8 5.5Z" fill="none" stroke="#8a4614" stroke-width="0.8" stroke-linejoin="round"/>
+<path d="M9.1 18.4A8.9 8.9 0 0 1 11 7.6" fill="none" stroke="#ffe2b8" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>
+<path d="M24.2 16.5A7.6 7.6 0 0 1 18.3 21.7" fill="none" stroke="#7a3a12" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+<path d="M13.4 20.4A7.2 7.2 0 0 1 9.9 15.5" fill="none" stroke="#ffe2b8" stroke-width="0.5" stroke-linecap="round" opacity="0.5"/>
+<path d="M26.4 22.2C27.8 20.6 29.4 21.4 28.6 22.6S28.6 24.2 30.4 23.2" fill="none" stroke="#f2a85a" stroke-width="0.5" stroke-linecap="round"/><path d="M26.6 21.9C27.8 20.9 28.8 21.2 29 21.6" fill="none" stroke="#fff0d4" stroke-width="0.2" opacity="0.8"/>
+<path d="M7 26.6H12M16 26.6H23M26 26.6H28.6M7 27.7H11M15 27.7H20M24 27.7H28.6" stroke="#8a4614" stroke-width="0.3" opacity="0.5"/>
+</svg>

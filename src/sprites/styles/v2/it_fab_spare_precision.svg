@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
+<defs>
+<linearGradient id="pr-bag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9f9fb" stop-opacity="0.78"/><stop offset="0.5" stop-color="#bfe3e6" stop-opacity="0.55"/><stop offset="1" stop-color="#86c3cc" stop-opacity="0.65"/></linearGradient>
+<linearGradient id="pr-crimp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4fcfc"/><stop offset="1" stop-color="#b3d6da"/></linearGradient>
+<linearGradient id="pr-gear" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f8fa"/><stop offset="0.5" stop-color="#c9d2d8"/><stop offset="1" stop-color="#8794a0"/></linearGradient>
+<linearGradient id="pr-steel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d6dadd"/><stop offset="0.5" stop-color="#a1a6ab"/><stop offset="1" stop-color="#6d7277"/></linearGradient>
+<linearGradient id="pr-poly" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b9c6d3"/><stop offset="0.5" stop-color="#8f9eaf"/><stop offset="1" stop-color="#697c91"/></linearGradient>
+<radialGradient id="pr-ball" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#ffffff"/><stop offset="0.5" stop-color="#c3c8cc"/><stop offset="1" stop-color="#7a8085"/></radialGradient>
+<radialGradient id="pr-gold" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#fbe08a"/><stop offset="0.6" stop-color="#e0b43a"/><stop offset="1" stop-color="#a97a14"/></radialGradient>
+</defs>
+<!-- a precision spare: a clear heat-sealed sleeve (hang hole left, gold ring-grade roundel right) holding a spring, an alloy gear, a ball bearing in a gold cage and a polymer seal -->
+<path d="M6 7Q3 7 3 10V25Q3 28 6 28H58Q61 28 61 25V10Q61 7 58 7Z" fill="#0e0b13" opacity="0.22" transform="translate(1.6 1.6)"/>
+<path d="M6.5 4.5H57.5Q62 4.5 62 9V23Q62 27.5 57.5 27.5H6.5Q2 27.5 2 23V9Q2 4.5 6.5 4.5Z" fill="url(#pr-bag)"/>
+<!-- spring -->
+<ellipse cx="15.2" cy="21.4" rx="6.4" ry="2" fill="#0e0b13" opacity="0.2" transform="rotate(-20 15.2 21.4)"/>
+<path fill="none" stroke="#2f3438" stroke-width="2.9" stroke-linecap="round" stroke-linejoin="round" d="M13.3 22.1L12.3 21.1L11 18.9L10.3 16.7L10.8 15.6M15.4 20.6L14.5 19.6L13.2 17.5L12.5 15.2L13 14.1M17.6 19.1L16.6 18.1L15.3 16L14.7 13.7L15.1 12.6M19.8 17.6L18.8 16.7L17.5 14.5L16.8 12.2L17.3 11.1"/><path fill="none" stroke="#6d7882" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M13.3 22.1L12.3 21.1L11 18.9L10.3 16.7L10.8 15.6M15.4 20.6L14.5 19.6L13.2 17.5L12.5 15.2L13 14.1M17.6 19.1L16.6 18.1L15.3 16L14.7 13.7L15.1 12.6M19.8 17.6L18.8 16.7L17.5 14.5L16.8 12.2L17.3 11.1"/><path fill="none" stroke="#2f3438" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round" d="M9.7 16.3L10.2 16.5L11.3 17.5L12.5 19.1L13.3 20.7L13.5 21.8L13.1 22M10.5 15.7L11.4 15.7L12.8 16.5L14.2 18L15.2 19.5L15.6 20.4L15.3 20.5M12.7 14.3L13.6 14.2L14.9 15L16.3 16.5L17.4 18L17.7 18.9L17.4 19M14.9 12.8L15.8 12.7L17.1 13.6L18.5 15L19.5 16.5L19.9 17.4L19.6 17.5M17.1 11.3L17.8 11.3L19 12.3L20.1 13.9L21 15.5L21.1 16.6L20.9 16.9"/><path fill="none" stroke="#9aa5af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M9.7 16.3L10.2 16.5L11.3 17.5L12.5 19.1L13.3 20.7L13.5 21.8L13.1 22M10.5 15.7L11.4 15.7L12.8 16.5L14.2 18L15.2 19.5L15.6 20.4L15.3 20.5M12.7 14.3L13.6 14.2L14.9 15L16.3 16.5L17.4 18L17.7 18.9L17.4 19M14.9 12.8L15.8 12.7L17.1 13.6L18.5 15L19.5 16.5L19.9 17.4L19.6 17.5M17.1 11.3L17.8 11.3L19 12.3L20.1 13.9L21 15.5L21.1 16.6L20.9 16.9"/><path fill="none" stroke="#eef3f6" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" d="M9.4 16L9.9 16.2L11 17.2L12.2 18.8L13 20.4L13.2 21.5L12.8 21.6M10.2 15.4L11.1 15.3L12.5 16.2L13.9 17.6L14.9 19.1L15.3 20.1L15 20.1M12.4 13.9L13.3 13.9L14.6 14.7L16 16.2L17.1 17.6L17.5 18.6L17.1 18.7M14.6 12.5L15.5 12.4L16.8 13.2L18.2 14.7L19.2 16.2L19.6 17.1L19.3 17.2M16.8 11L17.5 11L18.7 12L19.8 13.6L20.7 15.2L20.8 16.3L20.6 16.5"/>
+<!-- gear -->
+<g transform="translate(26.6 16.4) scale(0.95) translate(-26.6 -16.4)">
+<ellipse cx="27.6" cy="19" rx="5.6" ry="4.4" fill="#0e0b13" opacity="0.2"/>
+<path d="M25 14.3L25.5 13.1L27.7 13.1L28.2 14.3L27.8 14.2L29 13.4L30.8 14.6L30.4 15.8L30.1 15.5L31.6 15.5L32.3 17.4L31.1 18.2L31.1 17.8L32.3 18.6L31.6 20.5L30.1 20.5L30.4 20.2L30.8 21.4L29 22.6L27.8 21.8L28.2 21.7L27.7 22.9L25.5 22.9L25 21.7L25.4 21.8L24.2 22.6L22.4 21.4L22.8 20.2L23.1 20.5L21.6 20.5L20.9 18.6L22.1 17.8L22.1 18.2L20.9 17.4L21.6 15.5L23.1 15.5L22.8 15.8L22.4 14.6L24.2 13.4L25.4 14.2Z" fill="#6d7a86" stroke="#3b4752" stroke-width="0.6" stroke-linejoin="round"/>
+<path d="M25 12.7L25.5 11.5L27.7 11.5L28.2 12.7L27.8 12.6L29 11.8L30.8 13L30.4 14.2L30.1 13.9L31.6 13.9L32.3 15.8L31.1 16.6L31.1 16.2L32.3 17L31.6 18.9L30.1 18.9L30.4 18.6L30.8 19.8L29 21L27.8 20.2L28.2 20.1L27.7 21.3L25.5 21.3L25 20.1L25.4 20.2L24.2 21L22.4 19.8L22.8 18.6L23.1 18.9L21.6 18.9L20.9 17L22.1 16.2L22.1 16.6L20.9 15.8L21.6 13.9L23.1 13.9L22.8 14.2L22.4 13L24.2 11.8L25.4 12.6Z" fill="url(#pr-gear)" stroke="#4b5864" stroke-width="0.55" stroke-linejoin="round"/>
+<ellipse cx="26.6" cy="16.4" rx="3.5" ry="3.1" fill="none" stroke="#8794a0" stroke-width="0.6"/>
+<ellipse cx="26.6" cy="16.4" rx="1.9" ry="1.65" fill="#1b1723" stroke="#3b4752" stroke-width="0.6"/>
+<path d="M22.8 14.6A4.2 3.7 0 0 1 26 12.8" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-linecap="round" opacity="0.9"/>
+</g>
+<!-- bearing -->
+<g transform="translate(38.2 16.4) scale(0.95) translate(-38.2 -16.4)">
+<ellipse cx="39" cy="18.8" rx="5.7" ry="4.6" fill="#0e0b13" opacity="0.2"/>
+<path d="M32.5 16.4A5.7 5 0 0 0 43.9 16.4L43.9 18.1A5.7 5 0 0 1 32.5 18.1Z" fill="#6d7277" stroke="#2a2d30" stroke-width="0.8" stroke-linejoin="round"/>
+<ellipse cx="38.2" cy="16.4" rx="5.7" ry="5" fill="url(#pr-steel)" stroke="#2a2d30" stroke-width="0.8"/>
+<ellipse cx="38.2" cy="16.4" rx="4.55" ry="4" fill="none" stroke="#e0b43a" stroke-width="1.2" opacity="0.95"/>
+<ellipse cx="38.2" cy="16.4" rx="4.55" ry="4" fill="none" stroke="#a97a14" stroke-width="0.4"/>
+<circle cx="42.5" cy="17.6" r="1.1" fill="url(#pr-ball)" stroke="#4a4f54" stroke-width="0.35"/><circle cx="39.9" cy="20.1" r="1.1" fill="url(#pr-ball)" stroke="#4a4f54" stroke-width="0.35"/><circle cx="35.9" cy="19.9" r="1.1" fill="url(#pr-ball)" stroke="#4a4f54" stroke-width="0.35"/><circle cx="33.7" cy="17" r="1.1" fill="url(#pr-ball)" stroke="#4a4f54" stroke-width="0.35"/><circle cx="34.9" cy="13.7" r="1.1" fill="url(#pr-ball)" stroke="#4a4f54" stroke-width="0.35"/><circle cx="38.5" cy="12.4" r="1.1" fill="url(#pr-ball)" stroke="#4a4f54" stroke-width="0.35"/><circle cx="42" cy="14.1" r="1.1" fill="url(#pr-ball)" stroke="#4a4f54" stroke-width="0.35"/>
+<ellipse cx="38.2" cy="16.4" rx="3" ry="2.6" fill="url(#pr-steel)" stroke="#3f4448" stroke-width="0.6"/>
+<ellipse cx="38.2" cy="16.4" rx="1.8" ry="1.5" fill="#1b1723" stroke="#3f4448" stroke-width="0.5"/>
+<path d="M33.6 14.2A5 4.4 0 0 1 36.8 11.9" fill="none" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round" opacity="0.85"/>
+</g>
+<!-- seal -->
+<g transform="translate(49.8 16.4) scale(0.94) translate(-49.8 -16.4)">
+<ellipse cx="50.6" cy="18.6" rx="5.4" ry="4.4" fill="#0e0b13" opacity="0.2"/>
+<path d="M44.3 16.4A5.5 4.9 0 0 0 55.3 16.4L55.3 17.9A5.5 4.9 0 0 1 44.3 17.9Z" fill="#5c6c7d" stroke="#2f3944" stroke-width="0.8" stroke-linejoin="round"/>
+<ellipse cx="49.8" cy="16.4" rx="5.5" ry="4.9" fill="url(#pr-poly)" stroke="#2f3944" stroke-width="0.8"/>
+<ellipse cx="49.8" cy="16.4" rx="3.9" ry="3.4" fill="none" stroke="#4f5f70" stroke-width="1.8"/>
+<ellipse cx="49.6" cy="16.1" rx="3.9" ry="3.4" fill="none" stroke="#a9b8c7" stroke-width="1"/>
+<ellipse cx="49.8" cy="16.4" rx="2.3" ry="2" fill="#1b1723" stroke="#2f3944" stroke-width="0.6"/>
+<path d="M45.4 14.6A4.6 4 0 0 1 48.6 12.2" fill="none" stroke="#ffffff" stroke-width="0.7" stroke-linecap="round" opacity="0.85"/>
+<ellipse cx="53.4" cy="13.5" rx="0.8" ry="0.6" fill="#6a8aa8" stroke="#3f5f7f" stroke-width="0.3"/>
+</g>
+<!-- the sleeve: print, glare, crimps -->
+<path fill="#3f7f86" opacity="0.6" d="M20.4 24.2h0.6v1.8h-0.6zM21.6 24.2h1.2v1.8h-1.2zM23.4 24.2h0.6v1.8h-0.6zM24.6 24.2h0.9v1.8h-0.9zM26.1 24.2h0.6v1.8h-0.6zM27.3 24.2h1.4v1.8h-1.4zM29.3 24.2h0.6v1.8h-0.6zM30.5 24.2h0.9v1.8h-0.9zM32 24.2h1.2v1.8h-1.2zM33.8 24.2h0.6v1.8h-0.6z"/>
+<path d="M9 5.9H40" stroke="#ffffff" stroke-width="1.1" stroke-linecap="round" opacity="0.85"/>
+<path d="M44 5.9H55" stroke="#ffffff" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+<path d="M9.2 26.2H54" stroke="#3f7f86" stroke-width="0.6" opacity="0.5" stroke-linecap="round"/>
+<path d="M18 8.6L12.6 23.6" stroke="#ffffff" stroke-width="0.9" opacity="0.28" stroke-linecap="round"/>
+<path d="M7.6 4.5V27.5M56.6 4.5V27.5" stroke="#5f8a98" stroke-width="0.6" opacity="0.7"/>
+<path d="M6.5 4.5Q2 4.5 2 9V23Q2 27.5 6.5 27.5H7.6V4.5Z" fill="url(#pr-crimp)" stroke="#5f8a98" stroke-width="1" stroke-linejoin="round"/>
+<path d="M56.6 4.5H57.5Q62 4.5 62 9V23Q62 27.5 57.5 27.5H56.6Z" fill="url(#pr-crimp)" stroke="#5f8a98" stroke-width="1" stroke-linejoin="round"/>
+<g stroke="#5f8a98" stroke-width="0.45" opacity="0.7"><path d="M3.4 6V26M4.6 5.6V26.4M5.8 5.2V26.8M58 5.2V26.8M59.2 5.6V26.4M60.4 6V26"/></g>
+<ellipse cx="4.9" cy="16" rx="1.2" ry="2.3" fill="#1b1723" stroke="#5f8a98" stroke-width="0.7"/>
+<path d="M2.6 6.4Q4 5.4 6 5.4" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.9" stroke-linecap="round"/>
+<circle cx="59.2" cy="16" r="2.7" fill="url(#pr-gold)" stroke="#8a6410" stroke-width="0.6"/>
+<path d="M59.2 14.2L59.7 15.5L61 15.6L60 16.5L60.3 17.8L59.2 17.1L58.1 17.8L58.4 16.5L57.4 15.6L58.7 15.5Z" fill="#a97a14" opacity="0.85"/>
+<path d="M57.4 14.6A2.5 2.5 0 0 1 59 13.4" fill="none" stroke="#fff6d0" stroke-width="0.5" stroke-linecap="round"/>
+<path d="M6.5 4.5H57.5Q62 4.5 62 9V23Q62 27.5 57.5 27.5H6.5Q2 27.5 2 23V9Q2 4.5 6.5 4.5Z" fill="none" stroke="#5f8a98" stroke-width="1.1" stroke-linejoin="round"/>
+</svg>

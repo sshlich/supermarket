@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<defs>
+<linearGradient id="hs-top" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f7f9"/><stop offset="0.5" stop-color="#d0d9de"/><stop offset="1" stop-color="#a6b2bc"/></linearGradient>
+<linearGradient id="hs-lw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e6edf1"/><stop offset="1" stop-color="#b3bfc8"/></linearGradient>
+<linearGradient id="hs-rw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8794a0"/><stop offset="1" stop-color="#5d6a76"/></linearGradient>
+<linearGradient id="hs-fw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a3afb9"/><stop offset="0.55" stop-color="#8794a0"/><stop offset="1" stop-color="#66737f"/></linearGradient>
+<linearGradient id="hs-lid" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fa7dc"/><stop offset="0.5" stop-color="#4a78b8"/><stop offset="1" stop-color="#2f5287"/></linearGradient>
+<radialGradient id="hs-post" cx="0.35" cy="0.3" r="0.8"><stop offset="0" stop-color="#f4f7f9"/><stop offset="0.55" stop-color="#a9b4bd"/><stop offset="1" stop-color="#66727d"/></radialGradient>
+<radialGradient id="hs-led" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffe3a6" stop-opacity="0.9"/><stop offset="0.5" stop-color="#e08a3a" stop-opacity="0.45"/><stop offset="1" stop-color="#e08a3a" stop-opacity="0"/></radialGradient>
+</defs>
+<!-- a device housing, raised front view: a pale light-alloy shell (lit top rim, a lit left wall, a dark right wall, a front wall with
+     vent slits, a rating plate and a port), a blue polymer lid notched round four screw posts, a sticker and a status LED -->
+<ellipse cx="34" cy="60.6" rx="28.5" ry="2.4" fill="#0e0b13" opacity="0.35"/>
+<path d="M8.5 9L3.2 22V56Q3.2 60 7 60L8 43Z" fill="url(#hs-lw)"/>
+<path d="M55.5 9L60.8 22V56Q60.8 60 57 60L56 43Z" fill="url(#hs-rw)"/>
+<path d="M8 43H56L60.8 56Q60.8 60 57 60H7Q3.2 60 3.2 56Z" fill="url(#hs-fw)"/>
+<path d="M4.6 56.4Q4.6 58.6 7 58.6H57Q59.4 58.6 59.4 56.4L59.6 55.6H4.4Z" fill="#5d6a76" opacity="0.55"/>
+<path d="M4.4 55.6H59.6" stroke="#e6edf1" stroke-width="0.6" opacity="0.5"/>
+<rect x="8" y="5" width="48" height="38" rx="4.5" fill="url(#hs-top)"/>
+<path d="M9.2 44.1H54.8" stroke="#dfe6ea" stroke-width="0.8" opacity="0.7" stroke-linecap="round"/>
+<!-- front wall: vent slits, rating plate, port -->
+<g fill="#38424d"><rect x="12" y="47" width="1.5" height="6.6" rx="0.7"/><rect x="15.2" y="47" width="1.5" height="6.6" rx="0.7"/><rect x="18.4" y="47" width="1.5" height="6.6" rx="0.7"/><rect x="21.6" y="47" width="1.5" height="6.6" rx="0.7"/></g>
+<g fill="#c9d2d8" opacity="0.6"><rect x="12" y="53" width="1.5" height="0.7"/><rect x="15.2" y="53" width="1.5" height="0.7"/><rect x="18.4" y="53" width="1.5" height="0.7"/><rect x="21.6" y="53" width="1.5" height="0.7"/></g>
+<rect x="26.2" y="46.6" width="10.4" height="7.2" rx="1" fill="#dfe6ea" stroke="#5d6a76" stroke-width="0.6"/>
+<path fill="#2f3842" d="M28.5 48.3h2.7v0.9h-2.7zM28.5 49.2h0.9v0.9h-0.9zM28.5 50.1h2.7v0.9h-2.7zM30.3 51h0.9v0.9h-0.9zM28.5 51.9h2.7v0.9h-2.7zM32.1 48.3h2.7v0.9h-2.7zM33.9 49.2h0.9v0.9h-0.9zM33.9 50.1h0.9v0.9h-0.9zM33.9 51h0.9v0.9h-0.9zM33.9 51.9h0.9v0.9h-0.9z"/>
+<rect x="28.4" y="52.4" width="6" height="0.6" fill="#a6b2bc"/>
+<rect x="40" y="46.8" width="12.5" height="7" rx="2.2" fill="#a9b4bd" stroke="#4a5560" stroke-width="0.7"/>
+<rect x="41.4" y="48.1" width="9.7" height="4.4" rx="1.4" fill="#262c33"/>
+<g fill="#e0b43a"><rect x="43" y="49.6" width="1" height="2.2"/><rect x="45" y="49.6" width="1" height="2.2"/><rect x="47" y="49.6" width="1" height="2.2"/><rect x="49" y="49.6" width="1" height="2.2"/></g>
+<!-- the lid, scalloped round the four screw posts: dark bevel, then the glossy face -->
+<path d="M17.1 7.5H46.9A5 5 0 0 0 53.5 14.1V33.9A5 5 0 0 0 46.9 40.5H17.1A5 5 0 0 0 10.5 33.9V14.1A5 5 0 0 0 17.1 7.5Z" fill="#2f5287" stroke="#223d63" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M19 9H45A6.5 6.5 0 0 0 52 16V32A6.5 6.5 0 0 0 45 39H19A6.5 6.5 0 0 0 12 32V16A6.5 6.5 0 0 0 19 9Z" fill="url(#hs-lid)" stroke="#3b64a0" stroke-width="0.6" stroke-linejoin="round"/>
+<path d="M12 31V16A6.5 6.5 0 0 0 19 9H44" fill="none" stroke="#b5d0f0" stroke-width="0.9" opacity="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M52 17V32A6.5 6.5 0 0 1 45 39H20" fill="none" stroke="#223d63" stroke-width="0.9" opacity="0.6" stroke-linejoin="round" stroke-linecap="round"/>
+<!-- vents, LED, sticker, grip ridges -->
+<g fill="#223d63" opacity="0.8"><rect x="23.5" y="12" width="8" height="1.1" rx="0.5"/><rect x="23.5" y="14.3" width="8" height="1.1" rx="0.5"/></g>
+<circle cx="38.4" cy="13.4" r="4" fill="url(#hs-led)"/>
+<circle cx="38.4" cy="13.4" r="1.4" fill="#f4a64a" stroke="#7a4a1a" stroke-width="0.5"/>
+<circle cx="37.9" cy="12.9" r="0.45" fill="#fff4d8"/>
+<rect x="18.5" y="19.2" width="27" height="10" rx="0.8" fill="#ece6d8" stroke="#b9ad94" stroke-width="0.6"/>
+<path d="M18.5 19.2H45.5" stroke="#fff" stroke-width="0.5" opacity="0.8"/>
+<path fill="#3a4350" d="M20.6 21.2h2v1h-2zM20.6 22.2h1v1h-1zM22.6 22.2h1v1h-1zM20.6 23.2h1v1h-1zM22.6 23.2h1v1h-1zM20.6 24.2h1v1h-1zM22.6 24.2h1v1h-1zM20.6 25.2h2v1h-2zM24.6 21.2h3v1h-3zM24.6 22.2h1v1h-1zM24.6 23.2h2v1h-2zM24.6 24.2h1v1h-1zM24.6 25.2h3v1h-3zM28.6 21.2h1v1h-1zM30.6 21.2h1v1h-1zM28.6 22.2h1v1h-1zM30.6 22.2h1v1h-1zM28.6 23.2h1v1h-1zM30.6 23.2h1v1h-1zM28.6 24.2h1v1h-1zM30.6 24.2h1v1h-1zM29.6 25.2h1v1h-1zM32.6 23.2h3v1h-3zM36.6 21.2h1v1h-1zM38.6 21.2h1v1h-1zM36.6 22.2h1v1h-1zM38.6 22.2h1v1h-1zM36.6 23.2h3v1h-3zM38.6 24.2h1v1h-1zM38.6 25.2h1v1h-1z"/>
+<g fill="#3a4350"><rect x="42.2" y="21.2" width="0.7" height="5"/><rect x="43.5" y="21.2" width="1.2" height="5"/></g>
+<path d="M20.6 27.7H40" stroke="#b9ad94" stroke-width="0.6"/>
+<path d="M45.5 25.4L44.4 29.2H45.5Z" fill="#d6cdb8"/>
+<path d="M36.6 33.4H42.6L43 43.4H36.2Z" fill="#c9433a" stroke="#7a2a22" stroke-width="0.6" stroke-linejoin="round"/>
+<path d="M37.2 34L36.9 42.8" stroke="#f1a59a" stroke-width="0.6" opacity="0.8"/>
+<path d="M38.8 38.6L41.4 36.6M38.7 41.2L41.6 39" stroke="#f4e3dc" stroke-width="0.7" opacity="0.8" stroke-linecap="round"/>
+<g stroke="#223d63" stroke-width="0.9" stroke-linecap="round" opacity="0.7"><path d="M22 32.6H31"/><path d="M22 34.6H31"/><path d="M22 36.6H31"/></g>
+<g stroke="#b5d0f0" stroke-width="0.5" stroke-linecap="round" opacity="0.55"><path d="M22 33.3H31"/><path d="M22 35.3H31"/><path d="M22 37.3H31"/></g>
+<!-- the four screw posts -->
+<g stroke="#4a5560" stroke-width="0.8">
+<circle cx="12.5" cy="9.5" r="3.4" fill="url(#hs-post)"/><circle cx="51.5" cy="9.5" r="3.4" fill="url(#hs-post)"/><circle cx="12.5" cy="38.5" r="3.4" fill="url(#hs-post)"/><circle cx="51.5" cy="38.5" r="3.4" fill="url(#hs-post)"/>
+</g>
+<g stroke="#3a4350" stroke-width="0.8" stroke-linecap="round"><path d="M10.9 9.5H14.1M12.5 7.9V11.1"/><path d="M49.9 9.5H53.1M51.5 7.9V11.1"/><path d="M10.9 38.5H14.1M12.5 36.9V40.1"/><path d="M49.9 38.5H53.1M51.5 36.9V40.1"/></g>
+<g fill="#ffffff" opacity="0.85"><circle cx="11.1" cy="8" r="0.55"/><circle cx="50.1" cy="8" r="0.55"/><circle cx="11.1" cy="37" r="0.55"/><circle cx="50.1" cy="37" r="0.55"/></g>
+<g fill="#a4522b" opacity="0.75"><circle cx="53" cy="40" r="0.7"/><circle cx="14" cy="10.8" r="0.5"/></g>
+<!-- wear: lit rim, scratches, a dent, grime -->
+<path d="M13 5.9H51" stroke="#ffffff" stroke-width="0.9" opacity="0.85" stroke-linecap="round"/>
+<path d="M8.9 12V37" stroke="#ffffff" stroke-width="0.6" opacity="0.6" stroke-linecap="round"/>
+<path d="M9.4 6.9L8.2 8.2" stroke="#ffffff" stroke-width="1" opacity="0.7" stroke-linecap="round"/>
+<g stroke="#8794a0" stroke-width="0.5" opacity="0.7" stroke-linecap="round"><path d="M24 41.6L29 40.6"/><path d="M33.5 42L38 41.2"/></g>
+<path d="M53.2 55.6L58 55.6L59.3 58.2L55 58.6Z" fill="#4c5762" opacity="0.6"/>
+<g fill="#5d6a76" opacity="0.55"><circle cx="30" cy="57.2" r="0.5"/><circle cx="20.5" cy="57.6" r="0.4"/><circle cx="44" cy="57" r="0.5"/><circle cx="54" cy="8" r="0.4"/></g>
+<rect x="8" y="5" width="48" height="38" rx="4.5" fill="none" stroke="#3d4650" stroke-width="0.9" stroke-linejoin="round"/>
+<path d="M8.5 9L3.2 22V56Q3.2 60 7 60H57Q60.8 60 60.8 56V22L55.5 9M8 43L3.2 56M56 43L60.8 56" fill="none" stroke="#3d4650" stroke-width="1.1" stroke-linejoin="round"/>
+</svg>

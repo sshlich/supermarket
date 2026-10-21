@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<defs>
+<linearGradient id="sc-shell" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#686c78"/><stop offset=".42" stop-color="#4a4d58"/><stop offset="1" stop-color="#2b2d35"/></linearGradient>
+<linearGradient id="sc-metal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8794a0"/><stop offset=".13" stop-color="#eef3f6"/><stop offset=".5" stop-color="#c9d2d8"/><stop offset=".82" stop-color="#dde4e9"/><stop offset="1" stop-color="#8794a0"/></linearGradient>
+<linearGradient id="sc-media" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6b4f35"/><stop offset="1" stop-color="#2a2016"/></linearGradient>
+<linearGradient id="sc-paper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0f4f3"/><stop offset=".55" stop-color="#d7e0e0"/><stop offset="1" stop-color="#b9c8ca"/></linearGradient>
+<linearGradient id="sc-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#42a6b2"/><stop offset=".55" stop-color="#27838f"/><stop offset="1" stop-color="#195a67"/></linearGradient>
+<linearGradient id="sc-tower" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c3e3e8"/><stop offset=".35" stop-color="#76afba"/><stop offset="1" stop-color="#386976"/></linearGradient>
+<linearGradient id="sc-can" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e6ebee"/><stop offset=".4" stop-color="#a1a8ae"/><stop offset="1" stop-color="#5f6468"/></linearGradient>
+<linearGradient id="sc-puck" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#cfc6e6"/><stop offset=".5" stop-color="#a99dc9"/><stop offset="1" stop-color="#7a6ca0"/></linearGradient>
+</defs>
+<!-- SCRUBBER PROFILES floppy (recipe, life domain): blue-teal band, ladle mark, cool grey paper printed as a gas-sorting table with
+     three columns: DEEP (strip tower with a granule bed), PUCK (stacked sorbent pucks, regeneration loop), CANDLE (steel oxygen
+     candle with a spark); pixel captions, a pen ring round PUCK, a smudge, a stencilled bay serial -->
+<!-- floppy family body: charcoal shell, cut corner, steel shutter + mylar window, recessed label bay, open write-protect hole (copyable) -->
+<path d="M7.9 5.6L53.4 5.6L61.4 13.6L61.4 59.1C61.4 60.6 60.4 61.6 58.9 61.6L7.9 61.6C6.4 61.6 5.4 60.6 5.4 59.1L5.4 8.1C5.4 6.6 6.4 5.6 7.9 5.6Z" fill="#000000" opacity=".3"/>
+<path d="M6.5 4L52 4L60 12L60 57.5C60 59 59 60 57.5 60L6.5 60C5 60 4 59 4 57.5L4 6.5C4 5 5 4 6.5 4Z" fill="url(#sc-shell)" stroke="#15161b" stroke-width="1.1" stroke-linejoin="round"/>
+<path d="M6.6 5.3H51.6L58.8 12.5M5.3 6.8V57" fill="none" stroke="#a4a9ba" stroke-width=".7" opacity=".4" stroke-linecap="round"/>
+<path d="M7 58.7H57.4C58.2 58.7 58.7 58.2 58.7 57.4V13.2" fill="none" stroke="#0c0d10" stroke-width=".8" opacity=".45"/>
+<rect x="14.5" y="4.8" width="36" height="22.6" rx=".8" fill="#0d0e12" opacity=".34"/>
+<path d="M14.8 27.9H50.4" stroke="#b9bfd0" stroke-width=".6" opacity=".3"/>
+<path d="M7.4 10.2L10.7 7.7L10.7 12.7Z" fill="#14151a" opacity=".7"/><path d="M10.9 8L10.9 12.4" stroke="#9aa0b2" stroke-width=".4" opacity=".5"/>
+<rect x="18.6" y="5.2" width="26" height="22.8" rx=".8" fill="#000000" opacity=".28"/>
+<rect x="17.4" y="3.8" width="26" height="22.6" rx=".8" fill="url(#sc-metal)" stroke="#56626e" stroke-width=".7"/>
+<path d="M19.6 7H31M19.6 10H31M19.6 13H31M19.6 16H31M19.6 19H31M19.6 22H42M41.2 7H42" stroke="#ffffff" stroke-width=".35" opacity=".38"/>
+<path d="M19.8 4.4L19.8 25.6" stroke="#56626e" stroke-width=".8" opacity=".55"/><path d="M20.7 4.4L20.7 25.6" stroke="#ffffff" stroke-width=".5" opacity=".5"/>
+<rect x="32.8" y="6.8" width="8" height="15.6" rx="1" fill="url(#sc-media)" stroke="#3b4048" stroke-width=".7"/>
+<path d="M34.2 8.6L34.2 20.4" stroke="#a98660" stroke-width=".8" opacity=".5" stroke-linecap="round"/><path d="M33.4 7.7H40" stroke="#14100c" stroke-width=".7" opacity=".55"/>
+<path d="M17.8 24.6H43" stroke="#56626e" stroke-width=".8" opacity=".6"/><path d="M18 25.5H43" stroke="#ffffff" stroke-width=".5" opacity=".5"/>
+<circle cx="22.4" cy="22.6" r=".7" fill="#7b8792"/><circle cx="41.2" cy="24" r=".45" fill="#a4522b" opacity=".8"/>
+<path d="M43.5 4L43.5 26.4" stroke="#56626e" stroke-width=".6" opacity=".55"/>
+<rect x="10.4" y="29" width="43.2" height="29.4" rx="1.8" fill="#0d0e12" opacity=".4"/>
+<path d="M11 58.6H52.6C53.4 58.6 53.9 58.1 53.9 57.3" fill="none" stroke="#b9bfd0" stroke-width=".6" opacity=".35"/>
+<g fill="none" stroke-linecap="round"><path d="M46 14.6L57.6 20.4M47.4 18L57 22.8M12.4 15L13.4 24.8M8.4 36.6L6.6 45.6" stroke="#c9cedd" stroke-width=".4" opacity=".5"/>
+<path d="M46.8 15.2L56.8 20.2" stroke="#0c0d10" stroke-width=".35" opacity=".5"/></g>
+<g fill="#e7eaf3" opacity=".09"><ellipse cx="25" cy="14.6" rx="3.6" ry="2.2"/><ellipse cx="27.6" cy="12" rx="1.8" ry="1.1"/></g>
+<path fill="none" stroke="#c7ccdb" stroke-width=".5" opacity=".6" d="M6.8 16.5h1.5m-1.5 .5h.5m-.5 .5h1.5m-.5 .5h.5m-1.5 .5h1.5m.5 -2h1.5m-1.5 .5h.5m-.5 .5h.5m-.5 .5h.5m-.5 .5h1.5m.5 -1h1.5m.75 -1.25v2.5m.5 -2.5v.5m0 1.5v.5m.5 -2.5v2.5m.75 -2.25h1.5m-.5 .5h.5m-1.5 .5h1.5m-1.5 .5h.5m-.5 .5h1.5"/>
+<!-- label: cool grey paper, blue-teal band -->
+<rect x="11.8" y="30.4" width="40.4" height="27" rx="1.2" fill="url(#sc-paper)" stroke="#718d92" stroke-width=".5"/>
+<path d="M13 30.4H51C51.7 30.4 52.2 30.9 52.2 31.6V37.8H11.8V31.6C11.8 30.9 12.3 30.4 13 30.4Z" fill="url(#sc-band)"/>
+<path d="M13 30.9H51" stroke="#c3f0f4" stroke-width=".6" opacity=".55"/><path d="M11.8 37.8H52.2" stroke="#0e3f4a" stroke-width=".6" opacity=".6"/>
+<path fill="none" stroke="#f2fdfd" stroke-width=".9" d="M13.8 32.2h2.7m-2.7 .9h.9m-.9 .9h2.7m-.9 .9h.9m-2.7 .9h2.7m.9 -3.6h2.7m-2.7 .9h.9m-.9 .9h.9m-.9 .9h.9m-.9 .9h2.7m1.35 -4.05v4.5m.9 -4.5v.9m0 .9v.9m.9 -2.7v1.8m0 .9v1.8m1.8 -4.5v4.5m.9 -.9v.9m.9 -4.5v4.5m1.8 -4.5v4.5m.9 -4.5v.9m0 .9v.9m0 .9v.9m.9 -3.6v.9m0 .9v.9m1.8 -3.6v4.5m.9 -4.5v.9m0 .9v.9m0 .9v.9m.9 -3.6v.9m0 .9v.9m1.35 -3.15h2.7m-2.7 .9h.9m-.9 .9h1.8m-1.8 .9h.9m-.9 .9h2.7m1.35 -4.05v4.5m.9 -4.5v.9m0 .9v.9m.9 -2.7v1.8m0 .9v1.8"/>
+<path d="M47.6 33.9C48.6 33.2 49.6 32.2 50.7 31.4" fill="none" stroke="#f2fdfd" stroke-width=".9" stroke-linecap="round"/><circle cx="51" cy="31.3" r=".7" fill="none" stroke="#f2fdfd" stroke-width=".5"/>
+<path d="M43.6 33.2H47.6C47.6 35.2 46.4 36 45.6 36C44.8 36 43.6 35.2 43.6 33.2Z" fill="#f2fdfd"/><ellipse cx="45.6" cy="33.3" rx="2" ry=".6" fill="#195a67" opacity=".8"/>
+<!-- the table -->
+<rect x="25.3" y="38.4" width="13.4" height="18.6" fill="#8fb4bb" opacity=".22"/>
+<g stroke="#7f9ea5" stroke-width=".5"><path d="M25.3 38.4V57M38.7 38.4V57M12 52.3H52M12 56.3H52"/></g>
+<!-- DEEP: strip tower with a window on the granule bed, flow arrow -->
+<ellipse cx="18.8" cy="51.6" rx="4.6" ry=".7" fill="#143d46" opacity=".3"/>
+<rect x="17.6" y="39.4" width="1.8" height="1.6" fill="#b5bcc2" stroke="#4d5358" stroke-width=".4"/>
+<path d="M15.4 41.8V49.8Q15.4 51.2 18.5 51.2Q21.6 51.2 21.6 49.8V41.8Z" fill="url(#sc-tower)" stroke="#1f4a55" stroke-width=".9" stroke-linejoin="round"/>
+<ellipse cx="18.5" cy="41.8" rx="3.1" ry="1.1" fill="#d3eef1" stroke="#1f4a55" stroke-width=".8"/>
+<rect x="16.5" y="43.8" width="4" height="5.2" rx=".6" fill="#26454d" stroke="#1a343b" stroke-width=".4"/>
+<g fill="#d8cdf0"><circle cx="17.5" cy="45" r=".6"/><circle cx="19.4" cy="44.6" r=".5"/><circle cx="18.3" cy="46.4" r=".6"/><circle cx="19.8" cy="47.2" r=".5"/><circle cx="17.3" cy="47.8" r=".5"/><circle cx="18.9" cy="48.4" r=".4"/></g>
+<path d="M15.7 42.6V49.6" stroke="#ffffff" stroke-width=".7" stroke-linecap="round" opacity=".6"/>
+<path d="M24 40.2V47.4" stroke="#1d6a74" stroke-width="1" stroke-linecap="round"/><path d="M22.5 46.4L24 49L25.5 46.4Z" fill="#1d6a74" stroke="#1d6a74" stroke-width=".5" stroke-linejoin="round"/>
+<!-- PUCK: a stack of two sorbent pucks, regeneration loop -->
+<ellipse cx="32.4" cy="51.6" rx="5.6" ry=".7" fill="#143d46" opacity=".3"/>
+<path d="M27.4 45.6V49.7Q27.4 51.4 32 51.4Q36.6 51.4 36.6 49.7V45.6Z" fill="url(#sc-puck)" stroke="#4a3f6c" stroke-width=".9" stroke-linejoin="round"/>
+<path d="M27.5 47.7Q27.6 49.4 32 49.4Q36.4 49.4 36.5 47.7" fill="none" stroke="#4a3f6c" stroke-width=".8"/>
+<ellipse cx="32" cy="45.6" rx="4.6" ry="1.7" fill="#f0eaf8" stroke="#4a3f6c" stroke-width=".9"/>
+<ellipse cx="32" cy="45.7" rx="1.7" ry=".6" fill="#3a3158"/>
+<path d="M28.4 45.3Q29.6 44.5 31 44.3M27.9 46.4V49" stroke="#ffffff" stroke-width=".6" stroke-linecap="round" fill="none" opacity=".75"/>
+<path d="M28.7 43.4A3.4 3 0 1 1 35.2 43.2" fill="none" stroke="#1d6a74" stroke-width="1.1" stroke-linecap="round"/><path d="M33.4 42.3H37L35.2 44.5Z" fill="#1d6a74" stroke="#1d6a74" stroke-width=".5" stroke-linejoin="round"/>
+<!-- CANDLE: steel can, red band, chlorate stick, a spark -->
+<ellipse cx="46" cy="51.6" rx="4.6" ry=".7" fill="#143d46" opacity=".3"/>
+<path d="M42.4 46.2V50Q42.4 51.5 45.8 51.5Q49.2 51.5 49.2 50V46.2Z" fill="url(#sc-can)" stroke="#2a2d30" stroke-width=".9" stroke-linejoin="round"/>
+<path d="M42.5 48.4Q42.5 49.6 45.8 49.6Q49.1 49.6 49.1 48.4V47.2Q49.1 48.5 45.8 48.5Q42.5 48.5 42.5 47.2Z" fill="#b5432f"/>
+<ellipse cx="45.8" cy="46.2" rx="3.4" ry="1.1" fill="#d2d8dc" stroke="#2a2d30" stroke-width=".8"/>
+<rect x="44.7" y="43.4" width="2.2" height="2.8" rx=".5" fill="#f3ecd9" stroke="#8a7f66" stroke-width=".5"/>
+<path d="M43.1 47V50" stroke="#ffffff" stroke-width=".7" stroke-linecap="round" opacity=".7"/>
+<path d="M45.8 38.8L46.7 41L48.8 40.8L47.4 42.4L48.2 43.4L45.8 42.6L43.4 43.4L44.2 42.4L42.8 40.8L44.9 41Z" fill="#f08a2a" stroke="#a8480e" stroke-width=".4" stroke-linejoin="round"/>
+<path d="M45.8 40.2L46.4 41.8L45.8 42.4L45.2 41.8Z" fill="#ffe27a"/>
+<g fill="none" stroke="#27838f" stroke-width=".4"><circle cx="49.6" cy="40.6" r=".6"/><circle cx="50.6" cy="43" r=".5"/></g>
+<!-- captions in pixel print -->
+<path fill="none" stroke="#25555c" stroke-width=".5" d="M15.05 52.85v2.5m.5 -2.5v.5m0 1.5v.5m.5 -2v1.5m.75 -1.75h1.5m-1.5 .5h.5m-.5 .5h1m-1 .5h.5m-.5 .5h1.5m.5 -2h1.5m-1.5 .5h.5m-.5 .5h1m-1 .5h.5m-.5 .5h1.5m.75 -2.25v2.5m.5 -2.5v.5m0 .5v.5m.5 -1.5v1.5"/>
+<path fill="none" stroke="#25555c" stroke-width=".5" d="M28.55 52.85v2.5m.5 -2.5v.5m0 .5v.5m.5 -1.5v1.5m1 -1.5v2.5m.5 -.5v.5m.5 -2.5v2.5m.75 -2.25h1.5m-1.5 .5h.5m-.5 .5h.5m-.5 .5h.5m-.5 .5h1.5m.75 -2.25v2.5m.5 -1.5v.5m.5 -1.5v1m0 .5v1"/>
+<path fill="none" stroke="#25555c" stroke-width=".5" d="M39.8 53.1h1.5m-1.5 .5h.5m-.5 .5h.5m-.5 .5h.5m-.5 .5h1.5m.75 -2.25v2.5m.5 -2.5v.5m0 .5v.5m.5 -1.5v2.5m1 -2.5v2.5m.5 -2.5v.5m.5 0v2m1 -2.5v2.5m.5 -2.5v.5m0 1.5v.5m.5 -2v1.5m1 -2v2.5m.5 -.5v.5m.5 -.5v.5m.75 -2.25h1.5m-1.5 .5h.5m-.5 .5h1m-1 .5h.5m-.5 .5h1.5"/>
+<path d="M26.5 54.2Q26.4 52.4 31.6 52.3Q37.8 52.4 37.7 54.2Q37.6 55.8 32 55.8Q27.6 55.8 26.9 55" fill="none" stroke="#2e3f72" stroke-width=".5" stroke-linecap="round" opacity=".8"/>
+<path d="M12.6 55.4q1 -.7 2 0q1 .7 2 -.1q1 -.7 2 0" fill="none" stroke="#2e3f72" stroke-width=".4" stroke-linecap="round" opacity=".6"/>
+<circle cx="49.4" cy="55" r="2.6" fill="none" stroke="#a68a46" stroke-width=".6" opacity=".25"/>
+<path d="M45 57L52 49.6M13 50L16 45" stroke="#ffffff" stroke-width=".3" opacity=".4"/>
+<rect x="5.6" y="51.4" width="3.8" height="5.8" rx=".5" fill="#0c0d10"/>
+<rect x="5.9" y="51.6" width="3.2" height="2.4" rx=".4" fill="#a7adb8" stroke="#6c7280" stroke-width=".3"/><path d="M6.2 51.9H8.8" stroke="#ffffff" stroke-width=".4" opacity=".7"/>
+<rect x="54.6" y="51.4" width="3.8" height="5.8" rx=".5" fill="#0c0d10"/><path d="M54.9 57H58.1" stroke="#9aa0b2" stroke-width=".4" opacity=".4"/>
+<g fill="#0c0d10" opacity=".55"><circle cx="55.6" cy="34.4" r=".5"/><circle cx="7.2" cy="44" r=".4"/></g>
+</svg>

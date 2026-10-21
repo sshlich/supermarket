@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<defs>
+<linearGradient id="gm-sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#626672"/><stop offset="0.5" stop-color="#454852"/><stop offset="1" stop-color="#2f323a"/></linearGradient>
+<linearGradient id="gm-mt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9aa1a8"/><stop offset="0.14" stop-color="#eceff2"/><stop offset="0.5" stop-color="#b8bec5"/><stop offset="0.82" stop-color="#d9dde1"/><stop offset="1" stop-color="#868d94"/></linearGradient>
+<linearGradient id="gm-md" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a4733"/><stop offset="1" stop-color="#2a2019"/></linearGradient>
+<linearGradient id="gm-pp" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#f6f1e5"/><stop offset="1" stop-color="#e0d8c3"/></linearGradient>
+<linearGradient id="gm-hd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f6ec0"/><stop offset="0.5" stop-color="#6a47a0"/><stop offset="1" stop-color="#4c3079"/></linearGradient>
+<linearGradient id="gm-wn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4effa"/><stop offset="0.6" stop-color="#ded3ee"/><stop offset="1" stop-color="#c3b4dc"/></linearGradient>
+<linearGradient id="gm-co" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9674c8"/><stop offset="0.5" stop-color="#6a47a0"/><stop offset="1" stop-color="#47306f"/></linearGradient>
+</defs>
+<!-- GARMENTS floppy (lux, recipe): same dark shell, a lavender window with a purple double-breasted coat (gold buttons, stitched seams) and a needle left in the hem; right column CUT / SEW with a dashed cut line -->
+<!-- the shell: a dark polymer 3.5-inch floppy, label side up, cut corner top right, lit from the top left -->
+<path d="M7 3L52 3L61 12L61 57Q61 61 57 61L7 61Q3 61 3 57L3 7Q3 3 7 3Z" transform="translate(1.2 1.4)" fill="#0b0810" opacity="0.35"/>
+<path d="M7 3L52 3L61 12L61 57Q61 61 57 61L7 61Q3 61 3 57L3 7Q3 3 7 3Z" fill="url(#gm-sh)" stroke="#15161a" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M7.4 4.6H51.6L59.6 12.6M4.6 8V56" fill="none" stroke="#ffffff" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.32"/>
+<path d="M59.6 14.5V57Q59.6 59.6 57 59.6H9" fill="none" stroke="#000000" stroke-width="0.9" stroke-linecap="round" opacity="0.3"/>
+<path d="M7.5 9.4L10.8 6.8V12Z" fill="#17181c" opacity="0.7"/>
+<path d="M10.8 12L7.5 9.4" stroke="#ffffff" stroke-width="0.4" opacity="0.25"/>
+<g stroke="#000000" stroke-width="1" shape-rendering="crispEdges" fill="none" opacity="0.35"><path d="M50.9 18.4h6" stroke-dasharray="1 1 1 1 2"/><path d="M50.9 19.4h7" stroke-dasharray="1 1 1 1 1 1 1"/><path d="M50.9 20.4h7" stroke-dasharray="3 1 1 1 1"/><path d="M50.9 21.4h7" stroke-dasharray="1 1 1 1 1 1 1"/><path d="M50.9 22.4h6" stroke-dasharray="1 1 1 1 2"/></g>
+<g stroke="#aab0be" stroke-width="1" shape-rendering="crispEdges" fill="none" opacity="0.5"><path d="M50.4 17.9h6" stroke-dasharray="1 1 1 1 2"/><path d="M50.4 18.9h7" stroke-dasharray="1 1 1 1 1 1 1"/><path d="M50.4 19.9h7" stroke-dasharray="3 1 1 1 1"/><path d="M50.4 20.9h7" stroke-dasharray="1 1 1 1 1 1 1"/><path d="M50.4 21.9h6" stroke-dasharray="1 1 1 1 2"/></g>
+<g fill="#15161a" opacity="0.5"><circle cx="56.2" cy="26.4" r="0.45"/><circle cx="6" cy="46" r="0.4"/><circle cx="57" cy="43" r="0.35"/></g>
+<path d="M50.6 40.6L58 38M52 47L57.4 45.8M6 21L8.6 17.6" stroke="#ffffff" stroke-width="0.4" opacity="0.26" stroke-linecap="round"/>
+<rect x="14" y="3" width="34" height="26.5" fill="#17181c" opacity="0.45"/>
+<path d="M14 29.5H48" stroke="#ffffff" stroke-width="0.5" opacity="0.2"/>
+<path d="M17 3H45V25.2Q45 26.7 43.5 26.7H18.5Q17 26.7 17 25.2Z" fill="url(#gm-mt)" stroke="#4a5057" stroke-width="0.8" stroke-linejoin="round"/>
+<g stroke="#ffffff" stroke-width="0.35" opacity="0.4"><path d="M18 6.5H31"/><path d="M18 9.5H31"/><path d="M18 12.5H31"/><path d="M18 15.5H31"/><path d="M18 18.5H31"/><path d="M18 21.5H31"/><path d="M42 8.5H44.2"/><path d="M42 12H44.2"/></g>
+<path d="M17.6 23.3H44.4" stroke="#6b7178" stroke-width="0.7" opacity="0.8"/>
+<path d="M17.6 24H44.4" stroke="#ffffff" stroke-width="0.4" opacity="0.5"/>
+<rect x="32.5" y="5.8" width="8.4" height="15.6" rx="1.3" fill="url(#gm-md)" stroke="#3a3f46" stroke-width="0.7"/>
+<path d="M34.2 7.2V20" stroke="#9a7a55" stroke-width="0.8" opacity="0.5"/>
+<path d="M33.4 8.2C35.5 8 37.5 8 39.9 8.4" stroke="#ffffff" stroke-width="0.5" opacity="0.25" fill="none"/>
+<circle cx="19.6" cy="25" r="0.55" fill="#5a6067"/><circle cx="42.8" cy="25" r="0.55" fill="#5a6067"/>
+<rect x="10" y="29" width="44" height="30.4" rx="1.6" fill="#24262d"/>
+<path d="M11 59.4H53" stroke="#ffffff" stroke-width="0.5" opacity="0.28" fill="none"/>
+<rect x="5.2" y="50.4" width="4.4" height="6.8" rx="0.5" fill="#101114"/>
+<rect x="5.6" y="50.8" width="3.6" height="3.2" rx="0.4" fill="#d0d5da" stroke="#6b7178" stroke-width="0.4"/><path d="M6 51.2H8.8" stroke="#ffffff" stroke-width="0.4" opacity="0.8"/>
+<rect x="54.4" y="52.4" width="4.2" height="4.2" rx="0.4" fill="#101114"/>
+<path d="M54.6 56.6H58.6" stroke="#ffffff" stroke-width="0.4" opacity="0.3"/>
+<rect x="11.5" y="30.2" width="41" height="27.8" rx="1.2" fill="url(#gm-pp)"/>
+<path d="M11.5 36.8V31.4Q11.5 30.2 12.7 30.2H51.3Q52.5 30.2 52.5 31.4V36.8Z" fill="url(#gm-hd)"/>
+<path d="M12.4 30.9H51.6" stroke="#b79ae0" stroke-width="0.6" opacity="0.8"/>
+<path d="M11.5 36.8H52.5" stroke="#a97a14" stroke-width="0.7"/><path d="M11.5 36.2H52.5" stroke="#e0b43a" stroke-width="0.35" opacity="0.8"/>
+<g stroke="#fbe08a" stroke-width="0.8" shape-rendering="crispEdges" fill="none"><path d="M13.4 31.9h24.8" stroke-dasharray="2.4 0.8 2.4 0.8 2.4 0.8 0.8 0.8 0.8 0.8 2.4 0.8 1.6 1.6 2.4 0.8 2.4"/><path d="M13.4 32.7h23.2" stroke-dasharray="0.8 2.4 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 2.4 0.8 0.8 2.4 0.8 0.8 0.8 1.6 0.8 1.6 0.8"/><path d="M13.4 33.5h24.8" stroke-dasharray="0.8 0.8 0.8 0.8 2.4 0.8 1.6 1.6 2.4 0.8 1.6 1.6 0.8 0.8 0.8 1.6 0.8 1.6 2.4"/><path d="M13.4 34.3h24.8" stroke-dasharray="0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 2.4 0.8 0.8 0.8 1.6 0.8 3.2 0.8"/><path d="M13.4 35.1h24.8" stroke-dasharray="2.4 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 2.4 0.8 0.8 0.8 0.8 1.6 0.8 1.6 2.4"/></g>
+<g><path d="M50.8 31.3L48.4 33.5" stroke="#a97a14" stroke-width="1.5" stroke-linecap="round"/><path d="M50.8 31.3L48.4 33.5" stroke="#fbe08a" stroke-width="0.8" stroke-linecap="round"/><circle cx="47.2" cy="34.3" r="1.7" fill="#e0b43a" stroke="#a97a14" stroke-width="0.6"/><path d="M46.2 33.6Q46.8 33 47.6 33.1" fill="none" stroke="#fff3bc" stroke-width="0.5" stroke-linecap="round"/></g>
+<rect x="13.2" y="39" width="16" height="17.2" rx="1.2" fill="url(#gm-wn)" stroke="#a97a14" stroke-width="0.8"/>
+<path d="M14 55.4V39.8H28.4" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.75"/>
+<path d="M14.4 55.6H28.6V40.4" fill="none" stroke="#7a58b0" stroke-width="0.4" opacity="0.35"/>
+<g transform="translate(21.2 47.6)">
+<polygon points="-3.4,-6.9 0,-4.4 3.4,-6.9 6.2,-5.4 7,3 4.6,3.6 4.4,-1.2 4.2,7.2 -4.2,7.2 -4.4,-1.2 -4.6,3.6 -7,3 -6.2,-5.4" fill="#000000" opacity="0.2" transform="translate(0.6 0.7)"/>
+<polygon points="-3.4,-6.9 0,-4.4 3.4,-6.9 6.2,-5.4 7,3 4.6,3.6 4.4,-1.2 4.2,7.2 -4.2,7.2 -4.4,-1.2 -4.6,3.6 -7,3 -6.2,-5.4" fill="url(#gm-co)" stroke="#2f1f4d" stroke-width="0.8" stroke-linejoin="round"/>
+<polygon points="-3.4,-6.9 0,-4.4 -1.4,-1.4 -4,-3.6" fill="#a98fd6" stroke="#2f1f4d" stroke-width="0.5" stroke-linejoin="round"/>
+<polygon points="3.4,-6.9 0,-4.4 1.4,-1.4 4,-3.6" fill="#6a47a0" stroke="#2f1f4d" stroke-width="0.5" stroke-linejoin="round"/>
+<path d="M0 -4.4V7.2" stroke="#2f1f4d" stroke-width="0.5"/>
+<path d="M-4.4 -1.2L-4.6 3.6M4.4 -1.2L4.6 3.6" stroke="#2f1f4d" stroke-width="0.4" opacity="0.7"/>
+<path d="M-5.9 -5.2L-3.5 -6.4" stroke="#d8c8f0" stroke-width="0.7" stroke-linecap="round" opacity="0.8"/>
+<g fill="#e0b43a" stroke="#8a6210" stroke-width="0.35"><circle cx="-1.5" cy="0.6" r="0.75"/><circle cx="1.5" cy="0.6" r="0.75"/><circle cx="-1.5" cy="3.6" r="0.75"/><circle cx="1.5" cy="3.6" r="0.75"/></g>
+<path d="M-1.8 0.3L-1.4 0.2M1.2 0.3L1.6 0.2M-1.8 3.3L-1.4 3.2M1.2 3.3L1.6 3.2" stroke="#fff3bc" stroke-width="0.35"/>
+<path d="M-3.6 5.9H-0.4" stroke="#e0b43a" stroke-width="0.55" stroke-dasharray="0.9 0.7"/>
+<g stroke="#d8c8f0" stroke-width="0.35" stroke-dasharray="0.8 0.6" fill="none" opacity="0.75"><path d="M3.4 -1.4V1.6M-3.4 -1.4V1.6M-5.7 -4.4L-6.3 2.2"/></g>
+<!-- the needle still in the hem, its gold thread trailing -->
+<path d="M7.2 8.2C8 6.4 6.2 5.8 5.4 6.6" fill="none" stroke="#e0b43a" stroke-width="0.6" stroke-linecap="round"/>
+<path d="M0.2 6.9L6.2 5.3" stroke="#6b7178" stroke-width="1.1" stroke-linecap="round"/><path d="M0.4 6.8L6.0 5.3" stroke="#e9edf0" stroke-width="0.6" stroke-linecap="round"/>
+<ellipse cx="6.2" cy="5.3" rx="0.55" ry="0.8" transform="rotate(-15 6.2 5.3)" fill="#3a3f46"/>
+</g>
+<g stroke="#b9ad94" stroke-width="0.5"><path d="M31.4 47.4H51.6"/><path d="M31.4 57H51.6"/></g>
+<g stroke="#3a2866" stroke-width="1.3" shape-rendering="crispEdges" fill="none"><path d="M31.6 40h14.3" stroke-dasharray="3.9 1.3 1.3 1.3 1.3 1.3 3.9"/><path d="M31.6 41.3h13" stroke-dasharray="1.3 3.9 1.3 1.3 1.3 2.6 1.3"/><path d="M31.6 42.6h13" stroke-dasharray="1.3 3.9 1.3 1.3 1.3 2.6 1.3"/><path d="M31.6 43.9h13" stroke-dasharray="1.3 3.9 1.3 1.3 1.3 2.6 1.3"/><path d="M31.6 45.3h13" stroke-dasharray="3.9 1.3 3.9 2.6 1.3"/></g>
+<path d="M31.6 48.4H51.6" stroke="#b5432f" stroke-width="0.7" stroke-dasharray="1.4 1"/>
+<g stroke="#3a2866" stroke-width="1.3" shape-rendering="crispEdges" fill="none"><path d="M31.6 50.6h18.2" stroke-dasharray="3.9 1.3 3.9 1.3 1.3 3.9 2.6"/><path d="M31.6 51.9h19.5" stroke-dasharray="1.3 3.9 1.3 1.3 1.3 1.3 1.3 3.9 1.3 1.3 1.3"/><path d="M31.6 53.3h19.5" stroke-dasharray="2.6 2.6 1.3 1.3 1.3 1.3 1.3 3.9 1.3 1.3 1.3"/><path d="M31.6 54.5h19.5" stroke-dasharray="1.3 3.9 1.3 1.3 1.3 1.3 1.3 3.9 1.3 1.3 1.3"/><path d="M31.6 55.9h18.2" stroke-dasharray="1.3 3.9 3.9 1.3 3.9 1.3 2.6"/></g>
+<g fill="none" stroke="#6b7178" stroke-width="0.6" stroke-linecap="round"><path d="M47.2 39.6L50.4 44.2M50.4 39.6L47.2 44.2"/><circle cx="47" cy="45.2" r="1"/><circle cx="50.6" cy="45.2" r="1"/></g>
+<g fill="#8a7a5a" opacity="0.55"><circle cx="30.3" cy="43.6" r="0.35"/><circle cx="39.6" cy="57.1" r="0.3"/><circle cx="12.6" cy="57.1" r="0.35"/><circle cx="41.2" cy="38.6" r="0.3"/></g>
+<path d="M12.4 57.4L16 57.6" stroke="#ffffff" stroke-width="0.4" opacity="0.6"/>
+<rect x="11.5" y="30.2" width="41" height="27.8" rx="1.2" fill="none" stroke="#a89c82" stroke-width="0.5" opacity="0.8"/>
+</svg>
