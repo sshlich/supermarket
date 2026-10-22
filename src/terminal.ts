@@ -5,6 +5,7 @@
 
 import { arrive, deal, dealt, deckOf, greeting, isPackage, offerOf, open as canDeal, priceFor, residentOf, takes, TAGS, unpack, type Customer, type Role } from './customers.ts'
 import { esc } from './html.ts'
+import { finish, scripted } from './story.ts'
 import { shop } from './sound.ts'
 import { contents, find, footfall, inSpace, moveInto, pull, under, worth, type Counter, type Item, type State } from './world.ts'
 
@@ -182,7 +183,10 @@ async function wipe(): Promise<boolean> {
 }
 /** A new line forms when the door opens. */
 // ponytail: the line is 3 to 7 at random, plus a few for a full window; who comes leans towards the needs on the counter and in the window (`pull`, world.ts). Reputation and the street later.
-const newLine = () => { const s = h.state(), w = pull(s); return Array.from({ length: 3 + Math.floor(Math.random() * 5) + footfall(s) }, () => arrive(++talk.n, Math.random, w)) }
+const newLine = () => {
+  const s = h.state(), w = pull(s), told = scripted(s, s.day ?? 1, () => ++talk.n) // the story's people first, then the street
+  return [...told, ...Array.from({ length: Math.max(2, 3 + Math.floor(Math.random() * 5) + footfall(s) - told.length) }, () => arrive(++talk.n, Math.random, w))]
+}
 /** A seller or trader puts down what they brought on the outside counter, one thing after another; a seller then names a price for the lot. */
 function unload(c: Customer) {
   const s = h.state()
@@ -250,7 +254,8 @@ function doDeal() {
   const r = deal(c, offered, s.cash ?? 0, theirs)
   talk.met = c.role === 'trader' ? r.met : []
   if (r.done) dealt(c, r)
-  talk.log.push({ who: 'you', text: DEAL[c.role].label }, { who: 'them', name: c.name, text: r.say })
+  const thanks = r.done && c.beat ? finish(s, c) : undefined // a scripted one is done at their first deal
+  talk.log.push({ who: 'you', text: DEAL[c.role].label }, { who: 'them', name: c.name, text: r.say }, ...(thanks ? [{ who: 'them' as const, name: c.name, text: thanks }] : []))
   renderTerm({ type: true })
   if (!r.done) return
   // what they take leaves; what you got slides across from the outside counter to the inside one (what fits)

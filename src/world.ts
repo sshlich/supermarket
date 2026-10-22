@@ -149,7 +149,7 @@ export interface Win { id: number; x: number; y: number; folded?: boolean; full?
  * `sleep`); `night` the line is over and the evening has begun (outside.ts); `out` you are out at a site, with `left` searches;
  * `energy` what you have left today to start machine jobs by hand (machines.ts; full when missing).
  */
-export interface State { items: Item[]; next: number; windows?: Win[]; cash?: number; day?: number; orders?: Order[]; web?: WebData; mail?: Mail[]; night?: boolean; out?: Out; energy?: number }
+export interface State { items: Item[]; next: number; windows?: Win[]; cash?: number; day?: number; orders?: Order[]; web?: WebData; mail?: Mail[]; night?: boolean; out?: Out; energy?: number; story?: Record<string, number> }
 /** A machine's overnight job: the recipe (or a generic job), the nights still to go, and what will come out of it. */
 export interface Work { recipe: string; nights: number; outs: { id: string; n: number }[] }
 /** Out tonight (outside.ts): at which place, how many searches are left, and at a shop what it buys. */
@@ -612,7 +612,7 @@ export function settle(s: State): State {
   const orders = (Array.isArray(s.orders) ? s.orders : []).map(o => ({ ...o, goods: (o.goods ?? []).filter(g => KINDS[g?.kind]) })).filter(o => o.goods.length && Number.isFinite(o.at))
   const energy = Number.isFinite(Number(s.energy)) && s.energy !== undefined ? { energy: Math.max(0, Number(s.energy)) } : {}
   const night = s.night === true || !!s.out ? { night: true } : {}, gone = s.out && typeof s.out.site === 'string' ? { out: { site: s.out.site, left: Math.max(0, Math.round(Number(s.out.left)) || 0), ...(s.out.buys && typeof s.out.buys === 'object' ? { buys: s.out.buys } : {}) } } : {}
-  return { items: out, next, windows, cash: Math.max(0, Math.round(Number(s.cash ?? START_CASH)) || 0), day: Math.max(1, Math.round(Number(s.day)) || 1), ...night, ...gone, ...energy, ...(orders.length ? { orders } : {}), ...(s.web && typeof s.web === 'object' ? { web: s.web } : {}), ...(Array.isArray(s.mail) ? { mail: s.mail.filter(m => m && Number.isInteger(m.id) && (!m.job || m.job.wants?.every(x => KINDS[x.kind]))) } : {}) }
+  return { items: out, next, windows, cash: Math.max(0, Math.round(Number(s.cash ?? START_CASH)) || 0), day: Math.max(1, Math.round(Number(s.day)) || 1), ...night, ...gone, ...energy, ...(orders.length ? { orders } : {}), ...(s.story && typeof s.story === 'object' ? { story: s.story } : {}), ...(s.web && typeof s.web === 'object' ? { web: s.web } : {}), ...(Array.isArray(s.mail) ? { mail: s.mail.filter(m => m && Number.isInteger(m.id) && (!m.job || m.job.wants?.every(x => KINDS[x.kind]))) } : {}) }
 }
 
 /**

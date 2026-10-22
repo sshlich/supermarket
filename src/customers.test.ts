@@ -124,3 +124,25 @@ const pill = { id: 13, tags: ['need_medicine'], worth: 2 }
   assert.equal(picked([op], ['valuable'])[0].worth, worth(s, pc) - worth(s, disc))
 }
 console.log('customers ok')
+
+// The story's people (story.ts): day 1 brings Pim's overstock and Wren, in that order, and a one-off does not come twice; Mara
+// keeps coming from day 2 until she is served; her locket and Pim's ore wait for the deals they follow.
+{
+  const { scripted, finish } = await import('./story.ts')
+  const { start } = await import('./world.ts')
+  let n = 0
+  const s = start(), id = () => ++n
+  const d1 = scripted(s, 1, id)
+  assert.deepEqual(d1.map(c => c.beat), ['pim_overstock', 'wren_payday'])
+  assert.equal(d1[0].role, 'seller'); assert.equal(d1[0].goods.length, 5); assert.ok(d1[1].wants.length === 1 && d1[1].budget === 30)
+  assert.deepEqual(scripted(s, 1, id), [], 'a one-off does not come twice')
+  assert.deepEqual(scripted(s, 2, id).map(c => c.beat), ['mara_water', 'skip_fence'])
+  assert.deepEqual(scripted(s, 3, id).map(c => c.beat), ['mara_water', 'corvin_inspector'], 'Pim waits until the overstock is bought')
+  finish(s, d1[0])
+  assert.ok(scripted(s, 4, id).some(c => c.beat === 'pim_regular'), 'Pim comes back once his overstock was bought')
+  const mara = scripted(s, 5, id).find(c => c.beat === 'mara_water')!
+  assert.ok(mara, 'Mara comes until she is served')
+  assert.ok(finish(s, mara)?.includes('Fair price'))
+  assert.ok(scripted(s, 6, id).some(c => c.beat === 'mara_locket'), 'her locket comes once she is served')
+  console.log('story ok')
+}

@@ -29,7 +29,7 @@ export interface Goods { kind: string; props?: Record<string, string>; fill?: Fi
  * much short of their own goods' worth a trader will settle for (you cover the rest in cash). `here`: they have stepped up
  * to the counter (unloaded and said hello), so a reload does not do it twice, nor leave it undone. `who`: the resident they are.
  */
-export interface Customer { id: number; name: string; who?: string; role: Role; wants: string[]; rate: number; goods: Goods[]; brought: number[]; ask: number; budget: number | null; got: string[]; dealt?: boolean; slack?: number; here?: boolean }
+export interface Customer { id: number; name: string; who?: string; line?: string; beat?: string; role: Role; wants: string[]; rate: number; goods: Goods[]; brought: number[]; ask: number; budget: number | null; got: string[]; dealt?: boolean; slack?: number; here?: boolean }
 
 const NAMES = ['Mara', 'Odell', 'Pim', 'Ines', 'Tobias', 'Wren', 'Hollis', 'Bea', 'Corvin', 'Dot', 'Ansel', 'Yuki']
 const pick = <T>(list: T[], rand: () => number) => list[Math.floor(rand() * list.length)]
@@ -42,7 +42,7 @@ export const MIX: Record<Role, number> = { buyer: 0.4, seller: 0.4, trader: 0.2 
  */
 export const MARKUP = [0.1, 0.4]
 const NOBLE = 1 + MARKUP[0] + 0.8 * (MARKUP[1] - MARKUP[0])
-export const noble = (c: Customer) => c.role === 'buyer' && c.rate >= NOBLE - 1e-9
+export const noble = (c: Customer) => c.role === 'buyer' && !c.line && c.rate >= NOBLE - 1e-9 // (a scripted person speaks their own words)
 
 /** The residents who come to a stall in phase 1 (the game has no phases yet), the one a customer is, and their deck. */
 const CAST = RESIDENTS.filter(r => r.phase_from === 'phase_1')
@@ -137,7 +137,7 @@ const talkOf = (c: Customer) => noble(c) ? TALK.noble : TALK.plain
 
 /** Their first words: a line of their own (their resident's), then a seller's price for the lot, or what they came for. A noble greets you properly. */
 export function greeting(c: Customer): string {
-  const lines = residentOf(c)?.lines ?? [], line = lines.length ? lines[c.id % lines.length] : 'Hello.'
+  const lines = residentOf(c)?.lines ?? [], line = c.line ?? (lines.length ? lines[c.id % lines.length] : 'Hello.')
   if (c.role === 'seller') return c.brought.length ? `${line} ${c.ask}$ for the lot.` : 'No room on your counter for my things.'
   if (c.role === 'trader') return c.brought.length ? `${line} I'll swap these for ${wanted(c)}.` : 'No room on your counter for my things.'
   return talkOf(c).hello(c, line)

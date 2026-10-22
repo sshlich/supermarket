@@ -547,6 +547,19 @@ smelter is still the old furnace (real-time fire, see furnace.ts); the computer 
   (herbs, greens); the fab hall loading bay buys bars, sheet, wire and parts at 75% at night.
 - Not yet: hand recipes (`mach_hands`), modify and do recipes, the copier, statuses (jammed, hot), automation.
 
+## Story: scripted encounters and people who return (2026-10-21)
+
+`data/station/story.json` (read by `src/story.ts`): beats, each a named person who comes on a set day with set goods and words,
+put at the front of that day's line before the random ones (`scripted`, called from `newLine` in terminal.ts). Day 1 is the
+same for every stall: **Pim** (a dock hauler) sells his overstock of rations and beans for about 45% of its worth, then **Wren**
+(a smelter hand) comes on payday for whatever your stock serves most, paying 35% over. After that: **Mara** (a bunk tenant) comes
+from day 2 with six credits and asks for water, every day until she is served; **Skip** the fence sells a zippo and a lighter
+cheap; **Corvin** (a clerk) wants parts for the inspector and pays well, until served; Pim comes again as a regular with ore once
+you bought his overstock, and Mara returns with her mother's locket once you served her. A beat is done at its first deal
+(`story` in the saved state: 1 has come, 2 done); a one-off never comes twice, a beat marked `again` comes each day until done,
+and `after` holds a beat back until another is done. A scripted person says their own line (no noble talk) and, after the deal,
+their `thanks`. Not yet: gifts, branching, beats that follow your shelves or the night, beats chosen by your class.
+
 ## The window: an advertising space (2026-10-21)
 
 A pane of glass (12x3, a teal rim, a `window` dial to its left) above the counters (`glass` in `PLACES`, world.ts). It takes goods
