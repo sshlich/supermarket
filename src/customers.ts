@@ -60,8 +60,10 @@ const weighted = <T>(list: T[], w: (x: T) => number, rand: () => number) => { le
 export function arrive(id: number, rand: () => number = Math.random, weights?: Record<string, number>, lean?: (kind: string) => number): Customer {
   const r = rand()
   const role: Role = r < MIX.buyer ? 'buyer' : r < MIX.buyer + MIX.seller ? 'seller' : 'trader'
+  // a resident who comes to buy leans towards the shop that has what their list needs out (the window, the counter): the mean pull over their needs
+  const liked = (x: (typeof CAST)[number]) => { if (role === 'seller' || !weights) return 1; const ns = x.buys.map(k => KINDS[k]?.need ?? '').filter(n => n in TAGS); return ns.length ? ns.reduce((a, n) => a + (weights[n] ?? 1), 0) / ns.length : 1 }
   const deals = (x: (typeof CAST)[number]) => x.contraband === 'sells' || x.contraband === 'both' // a fence, a scavenger: contraband among what they bring
-  const res = weighted(CAST.filter(x => x.roles[role] > 0 && (role === 'buyer' || x.sells.some(k => bringable(k, deals(x))))), x => x.roles[role], rand)
+  const res = weighted(CAST.filter(x => x.roles[role] > 0 && (role === 'buyer' || x.sells.some(k => bringable(k, deals(x))))), x => x.roles[role] * liked(x), rand)
   const wants: string[] = []
   if (role !== 'seller') {
     const pool = [...new Set(res.buys.map(k => KINDS[k]?.need ?? '').filter(n => n in TAGS))]

@@ -151,7 +151,9 @@ function groundHtml() {
 }
 /** The two counters above the field: the outside one (what customers bring), then the inside one (what you sell), close together. */
 function countersHtml() {
-  return `<div class="counters">${(Object.keys(COUNTERS) as Counter[]).map(c => `<div class="counter">${dialHtml(c)}<div class="grid" data-grid data-space="${c}" data-w="${COUNTERS[c].w}" data-h="${COUNTERS[c].h}" style="--w:${COUNTERS[c].w};--h:${COUNTERS[c].h}">${inSpace(s, { at: c }).map(itemHtml).join('')}</div></div>`).join('')}</div>`
+  const { w, h } = PLACES.glass
+  const window_ = `<div class="counter shopwin"><div class="dial" title="The window: what is out draws the people who need it. Shown, not sold."><small>window</small><em>${inSpace(s, { at: 'glass' }).length ? `${inSpace(s, { at: 'glass' }).length} out` : 'empty'}</em></div><div class="grid" data-grid data-space="glass" data-w="${w}" data-h="${h}" style="--w:${w};--h:${h}">${inSpace(s, { at: 'glass' }).map(itemHtml).join('')}</div></div>`
+  return `<div class="counters">${window_}${(Object.keys(COUNTERS) as Counter[]).map(c => `<div class="counter">${dialHtml(c)}<div class="grid" data-grid data-space="${c}" data-w="${COUNTERS[c].w}" data-h="${COUNTERS[c].h}" style="--w:${COUNTERS[c].w};--h:${COUNTERS[c].h}">${inSpace(s, { at: c }).map(itemHtml).join('')}</div></div>`).join('')}</div>`
 }
 
 /** One open container: a window floating over the page, its insides a small grid for each of its slots. */

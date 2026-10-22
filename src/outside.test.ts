@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { accepts, applyDrop, intoHost, lift, planDrop, inSpace, KINDS, PRESETS, settle, sleep, spawn, start, worn, type Item, type Space, type State } from './world.ts'
+import { footfall, pull, accepts, applyDrop, intoHost, lift, planDrop, inSpace, KINDS, PRESETS, settle, sleep, spawn, start, worn, type Item, type Space, type State } from './world.ts'
 import { barred, floorFor, GEAR, goHome, goOut, inHands, nightsLeft, search, searchesFor, shopOf, SHOPS, siteOf, SITES, trade } from './outside.ts'
 
 const ducts = siteOf('site_spine_ducts')!, bunks = siteOf('site_dark_bunks')!
@@ -200,4 +200,20 @@ for (const p of PRESETS) {
   applyDrop(s, k, q)
   assert.equal(inSpace(s, { host: pack.id, slot: 0 }).length, 5)
   assert.equal(intoHost(s, lift(s, spawn(s, 'it_core_ore_iron')!.id)!, pack.id), null, 'then it is full')
+}
+
+// The window: it takes goods (not machines or boxes); what is out in it and on the inside counter pulls, the window twice as hard; a full window brings more people
+{
+  const s = start()
+  const food = spawn(s, 'it_food_bread', { at: 'glass' }), med = spawn(s, 'it_med_bandage', { at: 'inside' })
+  assert.ok(food && med)
+  assert.ok(accepts(s, food!, { at: 'glass' }), 'window takes bread')
+  assert.ok(!accepts(s, spawn(s, 'mach_terminal')!, { at: 'glass' }), 'window refuses a machine')
+  assert.ok(!accepts(s, spawn(s, 'box_s')!, { at: 'glass' }), 'window refuses a box')
+  const w = pull(s)
+  assert.ok(w[KINDS.it_food_bread.need!] > w[KINDS.it_med_bandage.need!], 'the window pulls harder than the counter')
+  assert.equal(footfall(s), 0)
+  for (let i = 0; i < 6; i++) spawn(s, 'it_food_seed_greens', { at: 'glass' })
+  assert.equal(footfall(s), 2, 'a full window brings two more')
+  console.log('window ok')
 }

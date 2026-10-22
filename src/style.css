@@ -154,7 +154,7 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 
 /* money: a black dial on the main screen, left of the field, green terminal digits and a $ at the end */
 /* left of the field, level with its top: the money, the day under it, then the trash */
-.lside { position: absolute; right: 100%; top: calc(8 * var(--cell) + 19px); margin-right: 18px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; font: 11px/1.5 ui-monospace, 'SF Mono', Menlo, monospace; }
+.lside { position: absolute; right: 100%; top: calc(11 * var(--cell) + 35px); margin-right: 18px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; font: 11px/1.5 ui-monospace, 'SF Mono', Menlo, monospace; }
 .cash { padding: 7px 12px 6px; border-radius: 3px; background: #030504;
   box-shadow: inset 0 0 0 1px #1d2a20; font: 600 22px/1 ui-monospace, 'SF Mono', Menlo, monospace; letter-spacing: .08em;
   color: #4ae07a; text-shadow: 0 0 6px rgba(74, 224, 122, .55); white-space: nowrap;
@@ -767,3 +767,6 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .daydial.energy { color: #e8c86a; }
 
 .counters.ground { --rim: #a06f4b; } /* the ground out at night: the field's copper rim */
+.shopwin { --rim: #5f8f9a; margin-bottom: 13px; } /* the window: a pane of glass, cool against the brass counters */
+.shopwin .grid { background-color: #1b2830; background-image: linear-gradient(to right, #2c4350 1px, transparent 1px), linear-gradient(to bottom, #2c4350 1px, transparent 1px); }
+.stage.away .lside { top: calc(8 * var(--cell) + 19px); } /* out at night the ground stands where the counters were: no window above it */

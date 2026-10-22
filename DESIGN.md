@@ -547,6 +547,17 @@ smelter is still the old furnace (real-time fire, see furnace.ts); the computer 
   (herbs, greens); the fab hall loading bay buys bars, sheet, wire and parts at 75% at night.
 - Not yet: hand recipes (`mach_hands`), modify and do recipes, the copier, statuses (jammed, hot), automation.
 
+## The window: an advertising space (2026-10-21)
+
+A pane of glass (12x3, a teal rim, a `window` dial to its left) above the counters (`glass` in `PLACES`, world.ts). It takes goods
+(not boxes, machines or furniture; a fixture tagged `glass` is made for it) and is the shop's advert: what is out draws the
+people who need it. A thing in the window pulls twice as hard as one on the inside counter (`pull`: +0.2 weight on its need,
+x2 in the window, +0.2 on the counter), and a resident who comes to buy is picked by the mean pull over what their list needs
+(`liked` in `arrive`, customers.ts); a full window brings people too (`footfall`: one more for every three things in it, at
+most two, on top of the line's 3 to 7). Things in the window are shown, not sold: take one down to the counter to sell it.
+Not yet (ideas): fixtures that give bonuses while in the window (a coin tray, a lamp), printed ads (scanned from items or a
+disc image), reputation per deck, and a bigger or better window as an upgrade.
+
 ## The night outside: the map, sites, shops, a pack and one tool (2026-10-19)
 
 The night of `STATION.md` 8b (`outside.ts`), from the station data's `data/station/outside.json` (the sim plays the same file):

@@ -6,7 +6,7 @@
 import { arrive, deal, dealt, deckOf, greeting, isPackage, offerOf, open as canDeal, priceFor, residentOf, takes, TAGS, unpack, type Customer, type Role } from './customers.ts'
 import { esc } from './html.ts'
 import { shop } from './sound.ts'
-import { contents, find, inSpace, moveInto, under, worth, type Counter, type Item, type State } from './world.ts'
+import { contents, find, footfall, inSpace, moveInto, pull, under, worth, type Counter, type Item, type State } from './world.ts'
 
 /** What the terminal needs from the page. */
 export interface Hooks {
@@ -181,8 +181,8 @@ async function wipe(): Promise<boolean> {
   return true
 }
 /** A new line forms when the door opens. */
-// ponytail: line length is random (3 to 7) for now; it should come from something in the game later (reputation, stock, the street)
-const newLine = () => Array.from({ length: 3 + Math.floor(Math.random() * 5) }, () => arrive(++talk.n))
+// ponytail: the line is 3 to 7 at random, plus a few for a full window; who comes leans towards the needs on the counter and in the window (`pull`, world.ts). Reputation and the street later.
+const newLine = () => { const s = h.state(), w = pull(s); return Array.from({ length: 3 + Math.floor(Math.random() * 5) + footfall(s) }, () => arrive(++talk.n, Math.random, w)) }
 /** A seller or trader puts down what they brought on the outside counter, one thing after another; a seller then names a price for the lot. */
 function unload(c: Customer) {
   const s = h.state()

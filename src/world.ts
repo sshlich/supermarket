@@ -22,8 +22,8 @@ export const COUNTERS: Record<Counter, { w: number; h: number }> = { outside: { 
  * tonight's finds turn up. The hands are **flex slots**: each holds one thing, whatever its size (its `x` is which hand), so
  * `hand` is two slots wide and one deep.
  */
-export type Place = Counter | 'trash' | 'dock' | 'back' | 'hand' | 'site'
-export const PLACES: Record<Place, { w: number; h: number }> = { ...COUNTERS, trash: { w: 5, h: 6 }, dock: { w: 8, h: 6 }, back: { w: 3, h: 3 }, hand: { w: 2, h: 1 }, site: { w: 8, h: 8 } }
+export type Place = Counter | 'trash' | 'dock' | 'back' | 'hand' | 'site' | 'glass'
+export const PLACES: Record<Place, { w: number; h: number }> = { ...COUNTERS, trash: { w: 5, h: 6 }, dock: { w: 8, h: 6 }, back: { w: 3, h: 3 }, hand: { w: 2, h: 1 }, site: { w: 8, h: 8 }, glass: { w: 12, h: 3 } }
 const isPlace = (c: unknown): c is Place => typeof c === 'string' && Object.hasOwn(PLACES, c)
 /** Is it a place of flex slots (the hands): one thing a slot, any size? */
 export const isFlex = (sp: Space) => !!sp && 'at' in sp && sp.at === 'hand'
@@ -298,6 +298,19 @@ export const under = (s: State, id: number, ids: number[]) => chain(s, id).some(
 /** How many containers deep this item goes, itself included (0 for something that holds nothing). */
 const height = (s: State, it: Item, seen = new Set<number>()): number => isContainer(it.kind) && !seen.has(it.id) ? (seen.add(it.id), 1 + Math.max(0, ...contents(s, it.id).map(o => height(s, o, seen)))) : 0
 
+/**
+ * The window (`glass`) and the inside counter are the shop's advert: what is out draws the people who need it. A thing in the
+ * window pulls twice as hard as one on the counter. The weight each need gets in tomorrow's line (1 with nothing out), and how
+ * many more people come for a full window (one for every three things in it, at most two). Things in the window are shown, not sold.
+ */
+export const GLASS_PULL = 2, PULL_STEP = 0.2
+export function pull(s: State): Record<string, number> {
+  const w: Record<string, number> = {}
+  for (const [at, k] of [['inside', 1], ['glass', GLASS_PULL]] as const) for (const it of inSpace(s, { at })) { const n = KINDS[it.kind]?.need; if (n) w[n] = (w[n] ?? 1) + PULL_STEP * k }
+  return w
+}
+export const footfall = (s: State) => Math.min(2, Math.floor(inSpace(s, { at: 'glass' }).length / 3))
+
 /** The pack on your back, if there is one. */
 export const worn = (s: State) => inSpace(s, { at: 'back' })[0] as Item | undefined
 /** Out at a site, only the ground there, your hands and the inside of the pack on your back are within reach. */
@@ -320,6 +333,7 @@ export function accepts(s: State, it: Item, sp: Space): boolean {
     if (isSlot(sp) && it.sale !== undefined && !it.bought && (s.cash ?? 0) < it.sale) return false
   }
   if (at === 'site') return !!s.out
+  if (at === 'glass') { const tg = look(it).tags; return !isBox(it) && (!tg.includes('fixture') || tg.includes('glass')) } // the window shows goods, not machines, furniture or parcels (a fixture tagged `glass` is made for it)
   if (at === 'back') return look(it).tags.includes('pack') && inSpace(s, sp).every(o => o.id === it.id)
   if (at === 'hand') return freeFlex(s, sp, it) !== null // anything, while a hand is free
   if (!isSlot(sp)) return sp?.at !== 'dock' || isBox(it) // the dock takes boxes, to ship
