@@ -747,7 +747,7 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .bin.body .grid { --rim: #4a4234; background-color: #1a1712; }
 .body-slot small { display: block; margin-bottom: 3px; color: #a89c80; font-size: 10px; }
 .bin.body .dock-note { flex-basis: 100%; margin-top: 0; color: #a89c80; }
-.stage.away .counters, .stage.away .field { opacity: .28; filter: grayscale(.7); pointer-events: none; transition: opacity .4s; }
+.stage.away .field { opacity: .28; filter: grayscale(.7); pointer-events: none; transition: opacity .4s; }
 .night-sub { margin-top: 4px; color: #8a8494; letter-spacing: .1em; text-transform: uppercase; font-size: 10px; }
 .shop-row { box-shadow: 0 0 0 1px #3a4440; }
 .bin.site.shop { box-shadow: 0 0 0 2px #4a6050; }
@@ -765,3 +765,5 @@ body.dragging, body.dragging .item { cursor: grabbing; }
 .mach-go .term-btn { padding: 2px 8px; font-size: 10px; }
 .mach-miss { color: #a8806a; }
 .daydial.energy { color: #e8c86a; }
+
+.counters.ground { --rim: #a06f4b; } /* the ground out at night: the field's copper rim */

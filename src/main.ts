@@ -144,6 +144,11 @@ function paintDials() {
   for (const at of Object.keys(COUNTERS) as Counter[]) app.querySelector(`[data-dial="${at}"]`)?.replaceWith(Object.assign(document.createElement('template'), { innerHTML: dialHtml(at) }).content)
 }
 
+/** Out at a site or shop: the ground, drawn like the field (same cells and rim) but empty and smaller, with no dials, where the counters are. */
+function groundHtml() {
+  const { w, h } = PLACES.site
+  return `<div class="counters ground"><div class="counter"><div class="grid" data-grid data-space="site" data-w="${w}" data-h="${h}" style="--w:${w};--h:${h}">${inSpace(s, { at: 'site' }).map(itemHtml).join('')}</div></div></div>`
+}
 /** The two counters above the field: the outside one (what customers bring), then the inside one (what you sell), close together. */
 function countersHtml() {
   return `<div class="counters">${(Object.keys(COUNTERS) as Counter[]).map(c => `<div class="counter">${dialHtml(c)}<div class="grid" data-grid data-space="${c}" data-w="${COUNTERS[c].w}" data-h="${COUNTERS[c].h}" style="--w:${COUNTERS[c].w};--h:${COUNTERS[c].h}">${inSpace(s, { at: c }).map(itemHtml).join('')}</div></div>`).join('')}</div>`
@@ -363,7 +368,7 @@ function keepFocus(draw: () => void) {
 function render(from = rects()) {
   document.querySelectorAll('.hl').forEach(el => el.remove()) // lights belong to a drag; none may outlive it
   setClock(app)
-  keepFocus(() => app.innerHTML = `<div class="stage${s.out ? ' away' : ''}"><div class="center">${countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side"${s.night ? ' hidden' : ''}>${sideHtml()}</aside>${s.night ? `<aside class="outing">${nightHtml()}</aside>` : ''}<aside class="lside">${cashHtml()}${dayHtml()}${energyHtml()}${trashHtml()}${dockHtml()}${youHtml()}</aside></div></div>${windowsHtml()}`)
+  keepFocus(() => app.innerHTML = `<div class="stage${s.out ? ' away' : ''}"><div class="center">${s.out ? groundHtml() : countersHtml()}<div class="field"><div class="grid" data-grid data-space="field" data-w="${W}" data-h="${H}" style="--w:${W};--h:${H}">${inSpace(s, null).map(itemHtml).join('')}</div></div><div class="toast" data-toast></div><aside class="side"${s.night ? ' hidden' : ''}>${sideHtml()}</aside>${s.night ? `<aside class="outing">${nightHtml()}</aside>` : ''}<aside class="lside">${cashHtml()}${dayHtml()}${energyHtml()}${trashHtml()}${dockHtml()}${youHtml()}</aside></div></div>${windowsHtml()}`)
   typeOn() // a line being typed carries on in the new terminal
   showToast()
   if (hoverId !== null) showTip()
@@ -838,17 +843,15 @@ function flexHtml(it: Item) {
  */
 function nightHtml() {
   const site = siteOf(s.out?.site), store = shopOf(s.out?.site)
-  const { w, h } = PLACES.site
-  const ground = (cls: string) => `<div class="bin ${cls}"><div class="grid" data-grid data-space="site" data-w="${w}" data-h="${h}" style="--w:${w};--h:${h}">${inSpace(s, { at: 'site' }).map(itemHtml).join('')}</div></div>`
   if (site && s.out) {
     const left = s.out.left
     return `<div class="night-head"><b>${esc(site.name)}</b><small>${esc(site.deck)} · night of day ${s.day ?? 1}</small></div><p class="night-desc">${esc(site.desc)}</p>
-      ${ground('site')}<small class="dock-note">drag what you want into your pack; what is left here stays here</small>
+      <small class="dock-note">drag the finds from the ground (the grid above the field) into your pack; what is left here stays here</small>
       <div class="night-acts"><button class="term-btn" data-search${left ? '' : ' disabled'}>search <small>${left} left</small></button><button class="term-btn" data-home>go home and sleep</button></div>`
   }
   if (store && s.out) {
     return `<div class="night-head"><b>${esc(store.name)}</b><small>${esc(store.deck)} · night of day ${s.day ?? 1}</small></div><p class="night-desc">${esc(store.desc)}</p>
-      ${ground('site shop')}<small class="dock-note">their counter: take a thing into your pack to buy it (back out, it is theirs again); lay one of yours down to sell it to them${buysText(store.buys) ? `: they buy ${buysText(store.buys)}` : ''}</small>
+      <small class="dock-note">their counter (the grid above the field): take a thing into your pack to buy it (back out, it is theirs again); lay one of yours down to sell it to them${buysText(store.buys) ? `: they buy ${buysText(store.buys)}` : ''}</small>
       <div class="night-acts"><button class="term-btn" data-home>go home and sleep</button></div>`
   }
   const lockText = (x: (typeof SITES)[number]) => x.lock ? ` · needs ${a(KINDS[x.lock.tool].name)}${x.lock.consume ? ' (used up)' : ''}` : ''
