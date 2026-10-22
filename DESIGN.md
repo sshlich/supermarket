@@ -596,7 +596,7 @@ pick, so a reload before it shows the cards again.
   `hand` tool), read by `start()` in `world.ts`. The sim still plays the file's `things` (the company issue).
 - **Smelter** (30$): the furnace, 4 copper and 4 iron ore, 6 coal, a lighter; a wrench in hand (the slag heap +2).
   **Deli** (40$): a cheddar wheel, 2 salami, 3 bread, a knife. **Mail order** (20$): the wired terminal, the printer, paper,
-  boxes, a tape gun, bread and bandages for the first orders. **Scavenger** (70$): cutters and a wrench, a torch in hand.
+  boxes, a tape gun, bread and bandages for the first orders. **Scavenger** (50$): cutters and a wrench, a torch in hand, and a life: gloves, a mask refill, a ration, a water ration, a bandage, a spare cell and some salvage from the last trip (scrap, duct junk, spent filters). Also **Clinic orderly** (40$: chem bench, first-aid and dressings, a loupe in hand), **Grower** (35$: hydro tray, work light, seeds) and **Tinker** (40$: workbench, circuits and parts, a soldering iron in hand); the first three each got a few more things of their trade.
   The pack is on your back in all of them.
 
 ## Shelves that show what is on them, and one clock (2026-10-14)

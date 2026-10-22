@@ -112,7 +112,7 @@
     {
       "id": "smelter",
       "name": "Smelter",
-      "line": "A furnace off the Works, ore to melt and coal to melt it with. Two lumps make a bar, and anyone who wants metal buys bars.",
+      "line": "A furnace off the Works, ore to melt and coal to melt it with. Two lumps make a bar, and anyone who wants metal buys bars. Gloves and a spare liner for the hot work, a ration for the long shifts.",
       "credits": 30,
       "hand": "it_fab_wrench",
       "things": [
@@ -135,13 +135,29 @@
         {
           "id": "it_lux_lighter",
           "qty": 1
+        },
+        {
+          "id": "it_lux_gloves",
+          "qty": 1
+        },
+        {
+          "id": "it_fab_crucible_liner",
+          "qty": 1
+        },
+        {
+          "id": "it_core_scrap_iron",
+          "qty": 2
+        },
+        {
+          "id": "it_food_ration_bar",
+          "qty": 2
         }
       ]
     },
     {
       "id": "deli",
       "name": "Deli",
-      "line": "A knife, bread, a cheese wheel and salami. Cut them and close sandwiches: a closed one is worth half again its parts.",
+      "line": "A knife, bread, a cheese wheel and salami. Cut them and close sandwiches: a closed one is worth half again its parts. Coffee and crackers for the regulars, a cloth to wipe the counter.",
       "credits": 40,
       "things": [
         {
@@ -159,13 +175,29 @@
         {
           "id": "it_fab_knife",
           "qty": 1
+        },
+        {
+          "id": "it_food_coffee",
+          "qty": 2
+        },
+        {
+          "id": "it_food_crackers",
+          "qty": 2
+        },
+        {
+          "id": "it_food_cheese_wedge",
+          "qty": 1
+        },
+        {
+          "id": "it_lux_cloth",
+          "qty": 1
         }
       ]
     },
     {
       "id": "mail",
       "name": "Mail order",
-      "line": "The company issue: a wired terminal, a printer and paper, boxes and a tape gun. Orders come by mail every morning; ship them from the dock.",
+      "line": "The company issue: a wired terminal, a printer and paper, boxes and a tape gun. Orders come by mail every morning; ship them from the dock. Slips and tape for the first parcels.",
       "credits": 20,
       "things": [
         {
@@ -199,14 +231,26 @@
         {
           "id": "it_med_bandage",
           "qty": 2
+        },
+        {
+          "id": "it_tech_slip",
+          "qty": 3
+        },
+        {
+          "id": "it_mach_tape",
+          "qty": 2
+        },
+        {
+          "id": "it_mach_label_roll",
+          "qty": 1
         }
       ]
     },
     {
       "id": "scavenger",
       "name": "Scavenger",
-      "line": "A torch in your hand, cutters and a wrench: the dark bunks, the cableway and the sealed hatches are open to you at night. No stock, more cash.",
-      "credits": 70,
+      "line": "A torch in your hand, cutters and a wrench: the dark bunks, the cableway and the sealed hatches are open to you at night. You live off the Spine: gloves, a mask refill for the scrubber bay, a ration and a bandage, and a little salvage from the last trip.",
+      "credits": 50,
       "hand": "it_tech_torch",
       "things": [
         {
@@ -215,6 +259,168 @@
         },
         {
           "id": "it_fab_wrench",
+          "qty": 1
+        },
+        {
+          "id": "it_lux_gloves",
+          "qty": 1
+        },
+        {
+          "id": "it_life_mask_refill",
+          "qty": 1
+        },
+        {
+          "id": "it_tech_cell_s",
+          "qty": 1
+        },
+        {
+          "id": "it_food_ration_bar",
+          "qty": 1
+        },
+        {
+          "id": "it_life_water_ration",
+          "qty": 1
+        },
+        {
+          "id": "it_med_bandage",
+          "qty": 1
+        },
+        {
+          "id": "it_core_scrap_mixed",
+          "qty": 3
+        },
+        {
+          "id": "it_core_scrap_copper",
+          "qty": 2
+        },
+        {
+          "id": "it_core_duct_junk",
+          "qty": 2
+        },
+        {
+          "id": "it_core_filter_husks",
+          "qty": 2
+        }
+      ]
+    },
+    {
+      "id": "medic",
+      "name": "Clinic orderly",
+      "line": "A chem bench and a loupe from the clinic back room. Dressings and a first-aid kit for anyone who walks in hurting, and the back room's scraps are yours to search at night.",
+      "credits": 40,
+      "hand": "it_fab_loupe",
+      "things": [
+        {
+          "id": "mach_chem_bench",
+          "qty": 1
+        },
+        {
+          "id": "it_med_first_aid_kit",
+          "qty": 1
+        },
+        {
+          "id": "it_med_bandage",
+          "qty": 3
+        },
+        {
+          "id": "it_med_gauze",
+          "qty": 2
+        },
+        {
+          "id": "it_med_antiseptic",
+          "qty": 2
+        },
+        {
+          "id": "it_med_painkiller",
+          "qty": 2
+        },
+        {
+          "id": "it_med_ethanol",
+          "qty": 1
+        },
+        {
+          "id": "it_lux_gloves",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "grower",
+      "name": "Grower",
+      "line": "A hydro tray, a work light and seed: greens, beans and potatoes. Nothing sells today, everything sells in a week, and the tray feeds you in between.",
+      "credits": 35,
+      "things": [
+        {
+          "id": "mach_hydro_tray",
+          "qty": 1
+        },
+        {
+          "id": "it_tech_work_light",
+          "qty": 1
+        },
+        {
+          "id": "it_life_water_jug",
+          "qty": 1
+        },
+        {
+          "id": "it_life_nutrient",
+          "qty": 1
+        },
+        {
+          "id": "it_food_seed_greens",
+          "qty": 2
+        },
+        {
+          "id": "it_food_seed_beans",
+          "qty": 2
+        },
+        {
+          "id": "it_food_seed_potato",
+          "qty": 2
+        },
+        {
+          "id": "it_food_ration_bar",
+          "qty": 1
+        }
+      ]
+    },
+    {
+      "id": "tinker",
+      "name": "Tinker",
+      "line": "A workbench and a soldering iron in your hand. Circuits, cable and switches to mend into gadgets, and the junked terminals are yours to strip at night.",
+      "credits": 40,
+      "hand": "it_tech_soldering_iron",
+      "things": [
+        {
+          "id": "mach_bench",
+          "qty": 1
+        },
+        {
+          "id": "it_tech_circuit",
+          "qty": 2
+        },
+        {
+          "id": "it_tech_cable",
+          "qty": 2
+        },
+        {
+          "id": "it_tech_switch",
+          "qty": 2
+        },
+        {
+          "id": "it_tech_lamp",
+          "qty": 1
+        },
+        {
+          "id": "it_fab_fasteners",
+          "qty": 2
+        },
+        {
+          "id": "it_tech_cell_m",
+          "qty": 1
+        },
+        {
+          "id": "it_fab_pliers",
           "qty": 1
         }
       ]
