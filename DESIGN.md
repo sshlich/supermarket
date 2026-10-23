@@ -553,8 +553,8 @@ smelter is still the old furnace (real-time fire, see furnace.ts); the computer 
 put at the front of that day's line before the random ones (`scripted`, called from `newLine` in terminal.ts). Day 1 is the
 same for every stall: **Pim** (a dock hauler) sells his overstock of rations and beans for about 45% of its worth, then **Wren**
 (a smelter hand) comes on payday for whatever your stock serves most, paying 35% over. After that: **Mara** (a bunk tenant) comes
-from day 2 with six credits and asks for water, every day until she is served; **Skip** the fence sells a zippo and a lighter
-cheap; **Corvin** (a clerk) wants parts for the inspector and pays well, until served; Pim comes again as a regular with ore once
+from day 2 with six credits and asks for water, every day until she is served; **Skip** the fence sells contraband
+cheap (dream tabs, crank, blotter, black resin and a refillable lighter: fire is contraband on the station); **Corvin** (a clerk) wants parts for the inspector and pays well, until served; Pim comes again as a regular with ore once
 you bought his overstock, and Mara returns with her mother's locket once you served her. A beat is done at its first deal
 (`story` in the saved state: 1 has come, 2 done); a one-off never comes twice, a beat marked `again` comes each day until done,
 and `after` holds a beat back until another is done. A scripted person says their own line (no noble talk) and, after the deal,

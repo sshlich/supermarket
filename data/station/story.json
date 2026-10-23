@@ -1,26 +1,107 @@
 {
   "notes": "Scripted encounters: named people who come on a set day with set goods and words, some of them again and again until you serve them. `need`: 'auto' is the need your own stock serves most. `rate`: what a buyer pays over worth, or the fraction of worth a seller asks for the lot. `after`: another beat that must be done first. `again`: they keep coming each day until the deal is done. `gift`: what they leave you after the deal. `thanks`: what they say after it.",
   "beats": [
-    { "id": "pim_overstock", "day": 1, "who": "res_hauler", "name": "Pim", "role": "seller",
-      "goods": ["it_food_ration_bar", "it_food_ration_bar", "it_food_ration_bar", "it_food_tin_beans", "it_food_tin_beans"], "rate": 0.45,
-      "line": "Tug came in heavy and the dock store won't take the overflow. Take it off my hands before the shift bell." },
-    { "id": "wren_payday", "day": 1, "who": "res_smelterhand", "name": "Wren", "role": "buyer", "need": "auto", "budget": 30, "rate": 1.35,
+    {
+      "id": "pim_overstock",
+      "day": 1,
+      "who": "res_hauler",
+      "name": "Pim",
+      "role": "seller",
+      "goods": [
+        "it_food_ration_bar",
+        "it_food_ration_bar",
+        "it_food_ration_bar",
+        "it_food_tin_beans",
+        "it_food_tin_beans"
+      ],
+      "rate": 0.45,
+      "line": "Tug came in heavy and the dock store won't take the overflow. Take it off my hands before the shift bell."
+    },
+    {
+      "id": "wren_payday",
+      "day": 1,
+      "who": "res_smelterhand",
+      "name": "Wren",
+      "role": "buyer",
+      "need": "auto",
+      "budget": 30,
+      "rate": 1.35,
       "line": "Foundry paid out today. I'll pay over for anything that doesn't taste of slag.",
-      "thanks": "Worth the walk. I'll tell the shift where the good counter is." },
-    { "id": "mara_water", "day": 2, "who": "res_bunker", "name": "Mara", "role": "buyer", "need": "need_water", "budget": 6, "rate": 1, "again": true,
+      "thanks": "Worth the walk. I'll tell the shift where the good counter is."
+    },
+    {
+      "id": "mara_water",
+      "day": 2,
+      "who": "res_bunker",
+      "name": "Mara",
+      "role": "buyer",
+      "need": "need_water",
+      "budget": 6,
+      "rate": 1,
+      "again": true,
       "line": "The recycler on our bunk row is rationing again. Six credits is all I have left.",
-      "thanks": "Fair price, and no sneer about it. I won't forget a counter like that." },
-    { "id": "skip_fence", "day": 2, "who": "res_fence", "name": "Skip", "role": "seller",
-      "goods": ["it_lux_zippo", "it_lux_lighter"], "rate": 0.3,
-      "line": "Fell off a tug. Not that it was ever on one. Nobody asked, nobody told." },
-    { "id": "corvin_inspector", "day": 3, "who": "res_clerk", "name": "Corvin", "role": "buyer", "need": "need_parts", "budget": 70, "rate": 1.5, "again": true,
+      "thanks": "Fair price, and no sneer about it. I won't forget a counter like that."
+    },
+    {
+      "id": "skip_fence",
+      "day": 2,
+      "who": "res_fence",
+      "name": "Skip",
+      "role": "seller",
+      "goods": [
+        "it_med_dream_tab",
+        "it_med_dream_tab",
+        "it_med_dream_tab",
+        "it_med_crank",
+        "it_med_blotter",
+        "it_med_black_resin",
+        "it_lux_zippo"
+      ],
+      "rate": 0.35,
+      "line": "Fell off a tug. Not that it was ever on one. Dream tabs for the bunks, crank for the foundry, and the flame is the real thing. Fire's worth three times what it burns."
+    },
+    {
+      "id": "corvin_inspector",
+      "day": 3,
+      "who": "res_clerk",
+      "name": "Corvin",
+      "role": "buyer",
+      "need": "need_parts",
+      "budget": 70,
+      "rate": 1.5,
+      "again": true,
       "line": "The deck inspector walks through at third bell. I need real parts on the books, and I pay for the paperwork.",
-      "thanks": "Receipts in order. You're on my list of reliable stalls." },
-    { "id": "pim_regular", "day": 3, "who": "res_hauler", "name": "Pim", "role": "seller", "after": "pim_overstock",
-      "goods": ["it_core_ore_iron", "it_core_ore_iron", "it_core_ore_iron", "it_core_ore_copper", "it_core_ore_copper"], "rate": 0.6,
-      "line": "You took the overflow without haggling. Here's the next run's ore at a regular's price." },
-    { "id": "mara_locket", "day": 4, "who": "res_bunker", "name": "Mara", "role": "seller", "after": "mara_water",
-      "goods": ["it_lux_locket"], "rate": 0.2,
-      "line": "My mother's locket. It's the only thing worth anything I own, and you were fair to me. It should be somewhere kind." }
+      "thanks": "Receipts in order. You're on my list of reliable stalls."
+    },
+    {
+      "id": "pim_regular",
+      "day": 3,
+      "who": "res_hauler",
+      "name": "Pim",
+      "role": "seller",
+      "after": "pim_overstock",
+      "goods": [
+        "it_core_ore_iron",
+        "it_core_ore_iron",
+        "it_core_ore_iron",
+        "it_core_ore_copper",
+        "it_core_ore_copper"
+      ],
+      "rate": 0.6,
+      "line": "You took the overflow without haggling. Here's the next run's ore at a regular's price."
+    },
+    {
+      "id": "mara_locket",
+      "day": 4,
+      "who": "res_bunker",
+      "name": "Mara",
+      "role": "seller",
+      "after": "mara_water",
+      "goods": [
+        "it_lux_locket"
+      ],
+      "rate": 0.2,
+      "line": "My mother's locket. It's the only thing worth anything I own, and you were fair to me. It should be somewhere kind."
+    }
   ]
 }
