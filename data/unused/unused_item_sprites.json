@@ -4,678 +4,775 @@
   "resource": null,
   "w": 58,
   "h": 40,
-  "png": "sprites/unused_items/sharedassets1.assets/sec_card.png"
+  "png": "sprites/unused_items/sharedassets1.assets/sec_card.png",
+  "blank": false
  },
  {
   "name": "pouch_medical",
   "resource": "items/items_container",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_container/pouch_medical.png"
+  "png": "sprites/unused_items/items_items_container/pouch_medical.png",
+  "blank": true
  },
  {
   "name": "mining_system",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/mining_system.png"
+  "png": "sprites/unused_items/items_items_ship/mining_system.png",
+  "blank": true
  },
  {
   "name": "energy_credit",
   "resource": "items/itematlas",
   "w": 16,
   "h": 32,
-  "png": "sprites/unused_items/items_itematlas/energy_credit.png"
+  "png": "sprites/unused_items/items_itematlas/energy_credit.png",
+  "blank": true
  },
  {
   "name": "pill_bottle",
   "resource": "items/items_medical",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_medical/pill_bottle.png"
+  "png": "sprites/unused_items/items_items_medical/pill_bottle.png",
+  "blank": true
  },
  {
   "name": "engine",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/engine.png"
+  "png": "sprites/unused_items/items_items_ship/engine.png",
+  "blank": true
  },
  {
   "name": "items_medical_12",
   "resource": "items/items_medical",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_medical/items_medical_12.png"
+  "png": "sprites/unused_items/items_items_medical/items_medical_12.png",
+  "blank": false
  },
  {
   "name": "raw_meat",
   "resource": "items/items_food",
   "w": 48,
   "h": 32,
-  "png": "sprites/unused_items/items_items_food/raw_meat.png"
+  "png": "sprites/unused_items/items_items_food/raw_meat.png",
+  "blank": false
  },
  {
   "name": "pillbottle1",
   "resource": "items/items_medical",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_medical/pillbottle1.png"
+  "png": "sprites/unused_items/items_items_medical/pillbottle1.png",
+  "blank": true
  },
  {
   "name": "hydroponic_system",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/hydroponic_system.png"
+  "png": "sprites/unused_items/items_items_ship/hydroponic_system.png",
+  "blank": true
  },
  {
   "name": "pouch_hydration",
   "resource": "items/items_container",
   "w": 48,
   "h": 64,
-  "png": "sprites/unused_items/items_items_container/pouch_hydration.png"
+  "png": "sprites/unused_items/items_items_container/pouch_hydration.png",
+  "blank": true
  },
  {
   "name": "organ_lung_left",
   "resource": "items/items_organ",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_items_organ/organ_lung_left.png"
+  "png": "sprites/unused_items/items_items_organ/organ_lung_left.png",
+  "blank": false
  },
  {
   "name": "armor_lining",
   "resource": "items/items_armor",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_armor/armor_lining.png"
+  "png": "sprites/unused_items/items_items_armor/armor_lining.png",
+  "blank": true
  },
  {
   "name": "salvage_system",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/salvage_system.png"
+  "png": "sprites/unused_items/items_items_ship/salvage_system.png",
+  "blank": true
  },
  {
   "name": "steel_sheet_rough",
   "resource": "items/items_construction",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_construction/steel_sheet_rough.png"
+  "png": "sprites/unused_items/items_items_construction/steel_sheet_rough.png",
+  "blank": true
  },
  {
   "name": "storage_bay",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/storage_bay.png"
+  "png": "sprites/unused_items/items_items_ship/storage_bay.png",
+  "blank": false
  },
  {
   "name": "oxycodone_pill_bottle",
   "resource": "items/items_medical",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_medical/oxycodone_pill_bottle.png"
+  "png": "sprites/unused_items/items_items_medical/oxycodone_pill_bottle.png",
+  "blank": true
  },
  {
   "name": "injector_pouch",
   "resource": "items/items_container",
   "w": 32,
   "h": 48,
-  "png": "sprites/unused_items/items_items_container/injector_pouch.png"
+  "png": "sprites/unused_items/items_items_container/injector_pouch.png",
+  "blank": true
  },
  {
   "name": "shotgun_grip",
   "resource": "items/itematlas",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_itematlas/shotgun_grip.png"
+  "png": "sprites/unused_items/items_itematlas/shotgun_grip.png",
+  "blank": true
  },
  {
   "name": "pouch_injector_large",
   "resource": "items/items_container",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_container/pouch_injector_large.png"
+  "png": "sprites/unused_items/items_items_container/pouch_injector_large.png",
+  "blank": true
  },
  {
   "name": "makeshift_hull",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/makeshift_hull.png"
+  "png": "sprites/unused_items/items_items_ship/makeshift_hull.png",
+  "blank": true
  },
  {
   "name": "hemostatic_agent",
   "resource": "items/items_medical",
   "w": 16,
   "h": 32,
-  "png": "sprites/unused_items/items_items_medical/hemostatic_agent.png"
+  "png": "sprites/unused_items/items_items_medical/hemostatic_agent.png",
+  "blank": true
  },
  {
   "name": "titan_armor10l",
   "resource": "items/items_armor",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_armor/titan_armor10l.png"
+  "png": "sprites/unused_items/items_items_armor/titan_armor10l.png",
+  "blank": true
  },
  {
   "name": "box_nail",
   "resource": "items/items_material",
   "w": 48,
   "h": 32,
-  "png": "sprites/unused_items/items_items_material/box_nail.png"
+  "png": "sprites/unused_items/items_items_material/box_nail.png",
+  "blank": true
  },
  {
   "name": "magnum_revolver",
   "resource": "items/items_weapons_ranged_antique",
   "w": 64,
   "h": 32,
-  "png": "sprites/unused_items/items_items_weapons_ranged_antique/magnum_revolver.png"
+  "png": "sprites/unused_items/items_items_weapons_ranged_antique/magnum_revolver.png",
+  "blank": true
  },
  {
   "name": "titan_armor9",
   "resource": "items/items_armor",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_armor/titan_armor9.png"
+  "png": "sprites/unused_items/items_items_armor/titan_armor9.png",
+  "blank": true
  },
  {
   "name": "revolver_short_tac",
   "resource": "items/items_sec",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_sec/revolver_short_tac.png"
+  "png": "sprites/unused_items/items_items_sec/revolver_short_tac.png",
+  "blank": false
  },
  {
   "name": "molotov_cocktail",
   "resource": "items/itematlas",
   "w": 32,
   "h": 80,
-  "png": "sprites/unused_items/items_itematlas/molotov_cocktail.png"
+  "png": "sprites/unused_items/items_itematlas/molotov_cocktail.png",
+  "blank": true
  },
  {
   "name": "organ_heart",
   "resource": "items/items_organ",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_items_organ/organ_heart.png"
+  "png": "sprites/unused_items/items_items_organ/organ_heart.png",
+  "blank": false
  },
  {
   "name": "bioprinter_system",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/bioprinter_system.png"
+  "png": "sprites/unused_items/items_items_ship/bioprinter_system.png",
+  "blank": true
  },
  {
   "name": "large_storage_bay",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/large_storage_bay.png"
+  "png": "sprites/unused_items/items_items_ship/large_storage_bay.png",
+  "blank": true
  },
  {
   "name": "m16_receiver",
   "resource": "items/items_weapons_ranged_antique",
   "w": 176,
   "h": 48,
-  "png": "sprites/unused_items/items_items_weapons_ranged_antique/m16_receiver.png"
+  "png": "sprites/unused_items/items_items_weapons_ranged_antique/m16_receiver.png",
+  "blank": true
  },
  {
   "name": "lunch_box",
   "resource": "items/items_container",
   "w": 64,
   "h": 48,
-  "png": "sprites/unused_items/items_items_container/lunch_box.png"
+  "png": "sprites/unused_items/items_items_container/lunch_box.png",
+  "blank": true
  },
  {
   "name": "soap",
   "resource": "items/items_amenities",
   "w": 32,
   "h": 16,
-  "png": "sprites/unused_items/items_items_amenities/soap.png"
+  "png": "sprites/unused_items/items_items_amenities/soap.png",
+  "blank": true
  },
  {
   "name": "organ_liver",
   "resource": "items/items_organ",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_items_organ/organ_liver.png"
+  "png": "sprites/unused_items/items_items_organ/organ_liver.png",
+  "blank": false
  },
  {
   "name": "simple_backpack_modular_medium",
   "resource": "items/items_backpack2",
   "w": 64,
   "h": 80,
-  "png": "sprites/unused_items/items_items_backpack2/simple_backpack_modular_medium.png"
+  "png": "sprites/unused_items/items_items_backpack2/simple_backpack_modular_medium.png",
+  "blank": true
  },
  {
   "name": "pouch_general_large",
   "resource": "items/items_container",
   "w": 48,
   "h": 64,
-  "png": "sprites/unused_items/items_items_container/pouch_general_large.png"
+  "png": "sprites/unused_items/items_items_container/pouch_general_large.png",
+  "blank": true
  },
  {
   "name": "sec_card",
   "resource": "items/itematlas",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_itematlas/sec_card.png"
+  "png": "sprites/unused_items/items_itematlas/sec_card.png",
+  "blank": true
  },
  {
   "name": "simple_backpack_modular_large",
   "resource": "items/items_backpack2",
   "w": 64,
   "h": 80,
-  "png": "sprites/unused_items/items_items_backpack2/simple_backpack_modular_large.png"
+  "png": "sprites/unused_items/items_items_backpack2/simple_backpack_modular_large.png",
+  "blank": true
  },
  {
   "name": "armored_hull",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/armored_hull.png"
+  "png": "sprites/unused_items/items_items_ship/armored_hull.png",
+  "blank": true
  },
  {
   "name": "simple_backpack_modular",
   "resource": "items/items_backpack2",
   "w": 64,
   "h": 64,
-  "png": "sprites/unused_items/items_items_backpack2/simple_backpack_modular.png"
+  "png": "sprites/unused_items/items_items_backpack2/simple_backpack_modular.png",
+  "blank": true
  },
  {
   "name": "water_recycler_full",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/water_recycler_full.png"
+  "png": "sprites/unused_items/items_items_ship/water_recycler_full.png",
+  "blank": true
  },
  {
   "name": "cardboard_box",
   "resource": "items/itematlas",
   "w": 128,
   "h": 128,
-  "png": "sprites/unused_items/items_itematlas/cardboard_box.png"
+  "png": "sprites/unused_items/items_itematlas/cardboard_box.png",
+  "blank": true
  },
  {
   "name": "water_jug",
   "resource": "items/items_food",
   "w": 64,
   "h": 96,
-  "png": "sprites/unused_items/items_items_food/water_jug.png"
+  "png": "sprites/unused_items/items_items_food/water_jug.png",
+  "blank": true
  },
  {
   "name": "revolver_short",
   "resource": "items/items_sec",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_sec/revolver_short.png"
+  "png": "sprites/unused_items/items_items_sec/revolver_short.png",
+  "blank": true
  },
  {
   "name": "wrench_orange",
   "resource": "items/items_construction",
   "w": 32,
   "h": 96,
-  "png": "sprites/unused_items/items_items_construction/wrench_orange.png"
+  "png": "sprites/unused_items/items_items_construction/wrench_orange.png",
+  "blank": true
  },
  {
   "name": "titan_armor10h",
   "resource": "items/items_armor",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_armor/titan_armor10h.png"
+  "png": "sprites/unused_items/items_items_armor/titan_armor10h.png",
+  "blank": true
  },
  {
   "name": "civilian_hull",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/civilian_hull.png"
+  "png": "sprites/unused_items/items_items_ship/civilian_hull.png",
+  "blank": true
  },
  {
   "name": "ocutol_pill_bottle",
   "resource": "items/items_medical",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_medical/ocutol_pill_bottle.png"
+  "png": "sprites/unused_items/items_items_medical/ocutol_pill_bottle.png",
+  "blank": true
  },
  {
   "name": "intel_tan",
   "resource": "items/items_misc",
   "w": 48,
   "h": 32,
-  "png": "sprites/unused_items/items_items_misc/intel_tan.png"
+  "png": "sprites/unused_items/items_items_misc/intel_tan.png",
+  "blank": true
  },
  {
   "name": "fixalin_pill_bottle",
   "resource": "items/items_medical",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_medical/fixalin_pill_bottle.png"
+  "png": "sprites/unused_items/items_items_medical/fixalin_pill_bottle.png",
+  "blank": true
  },
  {
   "name": "nutrifruit",
   "resource": "items/items_hydroponic_plant",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_items_hydroponic_plant/nutrifruit.png"
+  "png": "sprites/unused_items/items_items_hydroponic_plant/nutrifruit.png",
+  "blank": false
  },
  {
   "name": "kotton_plant",
   "resource": "items/items_hydroponic_plant",
   "w": 16,
   "h": 32,
-  "png": "sprites/unused_items/items_items_hydroponic_plant/kotton_plant.png"
+  "png": "sprites/unused_items/items_items_hydroponic_plant/kotton_plant.png",
+  "blank": false
  },
  {
   "name": "coin",
   "resource": "items/itematlas",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_itematlas/coin.png"
+  "png": "sprites/unused_items/items_itematlas/coin.png",
+  "blank": true
  },
  {
   "name": "spectral_analyser",
   "resource": "items/items_tool",
   "w": 32,
   "h": 48,
-  "png": "sprites/unused_items/items_items_tool/spectral_analyser.png"
+  "png": "sprites/unused_items/items_items_tool/spectral_analyser.png",
+  "blank": true
  },
  {
   "name": "energy_credit_counterfeit",
   "resource": "items/itematlas",
   "w": 16,
   "h": 32,
-  "png": "sprites/unused_items/items_itematlas/energy_credit_counterfeit.png"
+  "png": "sprites/unused_items/items_itematlas/energy_credit_counterfeit.png",
+  "blank": true
  },
  {
   "name": "pouch_general",
   "resource": "items/items_container",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_container/pouch_general.png"
+  "png": "sprites/unused_items/items_items_container/pouch_general.png",
+  "blank": true
  },
  {
   "name": "canteen",
   "resource": "items/items_food",
   "w": 32,
   "h": 48,
-  "png": "sprites/unused_items/items_items_food/canteen.png"
+  "png": "sprites/unused_items/items_items_food/canteen.png",
+  "blank": true
  },
  {
   "name": "organ_kidney_left",
   "resource": "items/items_organ",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_items_organ/organ_kidney_left.png"
+  "png": "sprites/unused_items/items_items_organ/organ_kidney_left.png",
+  "blank": false
  },
  {
   "name": "exotic_matter_cell",
   "resource": "items/itematlas",
   "w": 32,
   "h": 16,
-  "png": "sprites/unused_items/items_itematlas/exotic_matter_cell.png"
+  "png": "sprites/unused_items/items_itematlas/exotic_matter_cell.png",
+  "blank": true
  },
  {
   "name": "nutrifruit_seed_packet",
   "resource": "items/items_hydroponic_plant",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_items_hydroponic_plant/nutrifruit_seed_packet.png"
+  "png": "sprites/unused_items/items_items_hydroponic_plant/nutrifruit_seed_packet.png",
+  "blank": false
  },
  {
   "name": "mentor_contract",
   "resource": "items/itematlas",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_itematlas/mentor_contract.png"
+  "png": "sprites/unused_items/items_itematlas/mentor_contract.png",
+  "blank": true
  },
  {
   "name": "shotgun",
   "resource": "items/itematlas",
   "w": 160,
   "h": 32,
-  "png": "sprites/unused_items/items_itematlas/shotgun.png"
+  "png": "sprites/unused_items/items_itematlas/shotgun.png",
+  "blank": true
  },
  {
   "name": "kotton_fabric",
   "resource": "items/items_armor",
   "w": 48,
   "h": 16,
-  "png": "sprites/unused_items/items_items_armor/kotton_fabric.png"
+  "png": "sprites/unused_items/items_items_armor/kotton_fabric.png",
+  "blank": false
  },
  {
   "name": "nav_system",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/nav_system.png"
+  "png": "sprites/unused_items/items_items_ship/nav_system.png",
+  "blank": true
  },
  {
   "name": "trash_pile",
   "resource": "items/itematlas",
   "w": 96,
   "h": 160,
-  "png": "sprites/unused_items/items_itematlas/trash_pile.png"
+  "png": "sprites/unused_items/items_itematlas/trash_pile.png",
+  "blank": true
  },
  {
   "name": "small_raw_meat",
   "resource": "items/items_food",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_items_food/small_raw_meat.png"
+  "png": "sprites/unused_items/items_items_food/small_raw_meat.png",
+  "blank": false
  },
  {
   "name": "heavy_duty_hull",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/heavy_duty_hull.png"
+  "png": "sprites/unused_items/items_items_ship/heavy_duty_hull.png",
+  "blank": true
  },
  {
   "name": "first_aid_box",
   "resource": "items/items_medical",
   "w": 96,
   "h": 64,
-  "png": "sprites/unused_items/items_items_medical/first_aid_box.png"
+  "png": "sprites/unused_items/items_items_medical/first_aid_box.png",
+  "blank": true
  },
  {
   "name": "c4",
   "resource": "items/itematlas",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_itematlas/c4.png"
+  "png": "sprites/unused_items/items_itematlas/c4.png",
+  "blank": false
  },
  {
   "name": "revolver_long",
   "resource": "items/items_sec",
   "w": 80,
   "h": 48,
-  "png": "sprites/unused_items/items_items_sec/revolver_long.png"
+  "png": "sprites/unused_items/items_items_sec/revolver_long.png",
+  "blank": true
  },
  {
   "name": "titan_armor10s",
   "resource": "items/items_armor",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_armor/titan_armor10s.png"
+  "png": "sprites/unused_items/items_items_armor/titan_armor10s.png",
+  "blank": true
  },
  {
   "name": "medical_system",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/medical_system.png"
+  "png": "sprites/unused_items/items_items_ship/medical_system.png",
+  "blank": true
  },
  {
   "name": "simple_backpack",
   "resource": "items/items_backpack2",
   "w": 48,
   "h": 64,
-  "png": "sprites/unused_items/items_items_backpack2/simple_backpack.png"
+  "png": "sprites/unused_items/items_items_backpack2/simple_backpack.png",
+  "blank": false
  },
  {
   "name": "flashbang",
   "resource": "items/itematlas",
   "w": 32,
   "h": 48,
-  "png": "sprites/unused_items/items_itematlas/flashbang.png"
+  "png": "sprites/unused_items/items_itematlas/flashbang.png",
+  "blank": true
  },
  {
   "name": "visual_book",
   "resource": "items/itematlas",
   "w": 32,
   "h": 48,
-  "png": "sprites/unused_items/items_itematlas/visual_book.png"
+  "png": "sprites/unused_items/items_itematlas/visual_book.png",
+  "blank": true
  },
  {
   "name": "ammo_box",
   "resource": "items/items_sec",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_items_sec/ammo_box.png"
+  "png": "sprites/unused_items/items_items_sec/ammo_box.png",
+  "blank": false
  },
  {
   "name": "shotgun_stock",
   "resource": "items/itematlas",
   "w": 64,
   "h": 32,
-  "png": "sprites/unused_items/items_itematlas/shotgun_stock.png"
+  "png": "sprites/unused_items/items_itematlas/shotgun_stock.png",
+  "blank": true
  },
  {
   "name": "intel_blue",
   "resource": "items/items_misc",
   "w": 48,
   "h": 32,
-  "png": "sprites/unused_items/items_items_misc/intel_blue.png"
+  "png": "sprites/unused_items/items_items_misc/intel_blue.png",
+  "blank": true
  },
  {
   "name": "frag",
   "resource": "items/itematlas",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_itematlas/frag.png"
+  "png": "sprites/unused_items/items_itematlas/frag.png",
+  "blank": true
  },
  {
   "name": "pillbottle2",
   "resource": "items/items_medical",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_medical/pillbottle2.png"
+  "png": "sprites/unused_items/items_items_medical/pillbottle2.png",
+  "blank": true
  },
  {
   "name": "glock_receiver2",
   "resource": "items/items_weapons_ranged_antique",
   "w": 64,
   "h": 48,
-  "png": "sprites/unused_items/items_items_weapons_ranged_antique/glock_receiver2.png"
+  "png": "sprites/unused_items/items_items_weapons_ranged_antique/glock_receiver2.png",
+  "blank": true
  },
  {
   "name": "oxycodone_pill",
   "resource": "items/items_medical",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_medical/oxycodone_pill.png"
+  "png": "sprites/unused_items/items_items_medical/oxycodone_pill.png",
+  "blank": false
  },
  {
   "name": "box_tea_bag",
   "resource": "items/items_amenities",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_amenities/box_tea_bag.png"
+  "png": "sprites/unused_items/items_items_amenities/box_tea_bag.png",
+  "blank": true
  },
  {
   "name": "items_medical_11",
   "resource": "items/items_medical",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_medical/items_medical_11.png"
+  "png": "sprites/unused_items/items_items_medical/items_medical_11.png",
+  "blank": true
  },
  {
   "name": "heavy_handmade_pistol_s",
   "resource": "items/items_sec",
   "w": 80,
   "h": 48,
-  "png": "sprites/unused_items/items_items_sec/heavy_handmade_pistol_s.png"
+  "png": "sprites/unused_items/items_items_sec/heavy_handmade_pistol_s.png",
+  "blank": true
  },
  {
   "name": "organ_transport_box",
   "resource": "items/items_container",
   "w": 48,
   "h": 64,
-  "png": "sprites/unused_items/items_items_container/organ_transport_box.png"
+  "png": "sprites/unused_items/items_items_container/organ_transport_box.png",
+  "blank": true
  },
  {
   "name": "cig_black",
   "resource": "items/items_amenities",
   "w": 32,
   "h": 32,
-  "png": "sprites/unused_items/items_items_amenities/cig_black.png"
+  "png": "sprites/unused_items/items_items_amenities/cig_black.png",
+  "blank": true
  },
  {
   "name": "safe",
   "resource": "items/items_furniture",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_furniture/safe.png"
+  "png": "sprites/unused_items/items_items_furniture/safe.png",
+  "blank": true
  },
  {
   "name": "nutrifruit_seed",
   "resource": "items/items_hydroponic_plant",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_hydroponic_plant/nutrifruit_seed.png"
+  "png": "sprites/unused_items/items_items_hydroponic_plant/nutrifruit_seed.png",
+  "blank": false
  },
  {
   "name": "armor_conditioner_system",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_ship/armor_conditioner_system.png"
+  "png": "sprites/unused_items/items_items_ship/armor_conditioner_system.png",
+  "blank": true
  },
  {
   "name": "items_medical_10",
   "resource": "items/items_medical",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_medical/items_medical_10.png"
+  "png": "sprites/unused_items/items_items_medical/items_medical_10.png",
+  "blank": true
  },
  {
   "name": "mp9_receiver",
   "resource": "items/items_weapons_ranged_antique",
   "w": 64,
   "h": 48,
-  "png": "sprites/unused_items/items_items_weapons_ranged_antique/mp9_receiver.png"
+  "png": "sprites/unused_items/items_items_weapons_ranged_antique/mp9_receiver.png",
+  "blank": true
  },
  {
   "name": "bicarsole_pill_bottle",
   "resource": "items/items_medical",
   "w": 16,
   "h": 16,
-  "png": "sprites/unused_items/items_items_medical/bicarsole_pill_bottle.png"
+  "png": "sprites/unused_items/items_items_medical/bicarsole_pill_bottle.png",
+  "blank": true
  },
  {
   "name": "mirage_generator",
   "resource": "items/itematlas",
   "w": 64,
   "h": 48,
-  "png": "sprites/unused_items/items_itematlas/mirage_generator.png"
+  "png": "sprites/unused_items/items_itematlas/mirage_generator.png",
+  "blank": true
  },
  {
   "name": "titan_armor",
   "resource": "items/items_armor",
   "w": 48,
   "h": 48,
-  "png": "sprites/unused_items/items_items_armor/titan_armor.png"
+  "png": "sprites/unused_items/items_items_armor/titan_armor.png",
+  "blank": true
  },
  {
   "name": "codebook",
   "resource": "items/itematlas",
   "w": 32,
   "h": 48,
-  "png": "sprites/unused_items/items_itematlas/codebook.png"
+  "png": "sprites/unused_items/items_itematlas/codebook.png",
+  "blank": true
  }
 ]

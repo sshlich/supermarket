@@ -116,8 +116,8 @@ report["dead_classes"] = sorted(c for c, v in classes.items()
                                 if v["referenced_by"] == 0 and c not in attached and not REFLECTED & set(bases(c)))
 
 # G. art and sound nobody uses
-report["orphan_sprites"] = [{k: s[k] for k in ("name", "resource", "w", "h", "png")} for s in sprites if s.get("png", "").startswith("sprites/orphan/")]
-report["unused_item_sprites"] = [{k: s[k] for k in ("name", "resource", "w", "h", "png")} for s in sprites if s.get("png", "").startswith("sprites/unused_items/")]
+report["orphan_sprites"] = [{k: s.get(k) for k in ("name", "resource", "w", "h", "png", "blank")} for s in sprites if s.get("png", "").startswith("sprites/orphan/")]
+report["unused_item_sprites"] = [{k: s.get(k) for k in ("name", "resource", "w", "h", "png", "blank")} for s in sprites if s.get("png", "").startswith("sprites/unused_items/")]
 report["audio_unused"] = [c for c in audio if not c["scene_ref"] and not c["name_in_code"] and not c["id_in_code"]]
 
 # H. strings: keys never named in code, minus ones the code builds (prefix + id + suffix)
@@ -171,12 +171,18 @@ md += [f"## Space / raid prototype leftovers ({len(legacy)} classes)", "",
 md += [f"| {r['class']} | {r['base']} | {r['referenced_by']} | {r['attached_in_scene']} | {esc(r['lines'][0] if r['lines'] else '')} |"
        for r in report["legacy_prototype_classes"]]
 md += ["", f"## Dead classes ({len(report['dead_classes'])})", "", ", ".join(f"`{c}`" for c in report["dead_classes"]), ""]
-md += [f"## Orphan art ({len(report['orphan_sprites'])} sprites, PNGs in `data/assets/sprites/orphan/`)", ""]
-by_atlas = collections.defaultdict(list)
-for s in report["orphan_sprites"]:
-    by_atlas[s["resource"]].append(s["name"])
-md += [f"- **{a}**: {', '.join(ns)}" for a, ns in sorted(by_atlas.items())]
-md += ["", f"Sprites belonging to unused items: {len(report['unused_item_sprites'])} in `data/assets/sprites/unused_items/`. "
+orph_art = [s for s in report["orphan_sprites"] if not s["blank"]]
+orph_blank = [s for s in report["orphan_sprites"] if s["blank"]]
+md += [f"## Orphan art ({len(report['orphan_sprites'])} sprites, PNGs in `data/assets/sprites/orphan/`)", "",
+       "Many cut sprites keep their slice rectangle in the atlas while the pixels underneath were wiped (alpha <= 3). "
+       "Those are listed separately as empty slices; their names are all that is left.", ""]
+for title, group in ((f"With art ({len(orph_art)})", orph_art), (f"Empty slices, art wiped ({len(orph_blank)})", orph_blank)):
+    by_atlas = collections.defaultdict(list)
+    for s in group:
+        by_atlas[s["resource"]].append(s["name"])
+    md += [f"### {title}", ""] + [f"- **{a}**: {', '.join(ns)}" for a, ns in sorted(by_atlas.items())] + [""]
+ui = report["unused_item_sprites"]
+md += [f"Sprites belonging to unused items: {len(ui)} in `data/assets/sprites/unused_items/`, of which {sum(1 for s in ui if s['blank'])} are empty slices. "
        "Runtime-built variants (fill levels, sizes) are in `data/assets/sprites/orphan_variants/`.", ""]
 md += [f"## Unused audio ({len(report['audio_unused'])})", "", ", ".join(f"`{c['name']}`" for c in report["audio_unused"]), ""]
 by_table = collections.defaultdict(list)

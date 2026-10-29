@@ -4,804 +4,919 @@
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_wire_right_upper.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_wire_right_upper.png",
+  "blank": false
  },
  {
   "name": "chemforge_r",
   "resource": "items/items_tool",
   "w": 48,
   "h": 48,
-  "png": "sprites/orphan/items_items_tool/chemforge_r.png"
+  "png": "sprites/orphan/items_items_tool/chemforge_r.png",
+  "blank": true
  },
  {
   "name": "small_water_bottle",
   "resource": "items/items_food",
   "w": 16,
   "h": 48,
-  "png": "sprites/orphan/items_items_food/small_water_bottle.png"
+  "png": "sprites/orphan/items_items_food/small_water_bottle.png",
+  "blank": true
  },
  {
   "name": "intel_yellow",
   "resource": "items/items_misc",
   "w": 48,
   "h": 32,
-  "png": "sprites/orphan/items_items_misc/intel_yellow.png"
+  "png": "sprites/orphan/items_items_misc/intel_yellow.png",
+  "blank": true
  },
  {
   "name": "peanut_butter_purple",
   "resource": "items/items_food",
   "w": 32,
   "h": 48,
-  "png": "sprites/orphan/items_items_food/peanut_butter_purple.png"
+  "png": "sprites/orphan/items_items_food/peanut_butter_purple.png",
+  "blank": true
  },
  {
   "name": "stanag_10_mod",
   "resource": "items/items_weapons_ranged_antique",
   "w": 32,
   "h": 16,
-  "png": "sprites/orphan/items_items_weapons_ranged_antique/stanag_10_mod.png"
+  "png": "sprites/orphan/items_items_weapons_ranged_antique/stanag_10_mod.png",
+  "blank": true
  },
  {
   "name": "rm_reinforced_panel",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_reinforced_panel.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_reinforced_panel.png",
+  "blank": false
  },
  {
   "name": "injector_pure_white",
   "resource": "items/items_medical",
   "w": 64,
   "h": 16,
-  "png": "sprites/orphan/items_items_medical/injector_pure_white.png"
+  "png": "sprites/orphan/items_items_medical/injector_pure_white.png",
+  "blank": true
  },
  {
   "name": "peanut_butter",
   "resource": "items/items_food",
   "w": 32,
   "h": 48,
-  "png": "sprites/orphan/items_items_food/peanut_butter.png"
+  "png": "sprites/orphan/items_items_food/peanut_butter.png",
+  "blank": true
  },
  {
   "name": "intel_red",
   "resource": "items/items_misc",
   "w": 48,
   "h": 32,
-  "png": "sprites/orphan/items_items_misc/intel_red.png"
+  "png": "sprites/orphan/items_items_misc/intel_red.png",
+  "blank": true
  },
  {
   "name": "slider_button",
   "resource": "window/elements_inner",
   "w": 10,
   "h": 22,
-  "png": "sprites/orphan/window_elements_inner/slider_button.png"
+  "png": "sprites/orphan/window_elements_inner/slider_button.png",
+  "blank": false
  },
  {
   "name": "items_aquaculture_1",
   "resource": "items/items_aquaculture",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_aquaculture/items_aquaculture_1.png"
+  "png": "sprites/orphan/items_items_aquaculture/items_aquaculture_1.png",
+  "blank": false
  },
  {
   "name": "rm_wire_vertical_lower",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_wire_vertical_lower.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_wire_vertical_lower.png",
+  "blank": false
  },
  {
   "name": "rm_machine_medium",
   "resource": "items/items_broken_machine",
   "w": 48,
   "h": 48,
-  "png": "sprites/orphan/items_items_broken_machine/rm_machine_medium.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_machine_medium.png",
+  "blank": false
  },
  {
   "name": "rm_screw_set",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_screw_set.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_screw_set.png",
+  "blank": false
  },
  {
   "name": "peanut_butter_orange",
   "resource": "items/items_food",
   "w": 32,
   "h": 48,
-  "png": "sprites/orphan/items_items_food/peanut_butter_orange.png"
+  "png": "sprites/orphan/items_items_food/peanut_butter_orange.png",
+  "blank": true
  },
  {
   "name": "items_hydroponic_plant_1",
   "resource": "items/items_hydroponic_plant",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_hydroponic_plant/items_hydroponic_plant_1.png"
+  "png": "sprites/orphan/items_items_hydroponic_plant/items_hydroponic_plant_1.png",
+  "blank": false
  },
  {
   "name": "rat_xxl_m",
   "resource": "items/items_husbandry",
   "w": 64,
   "h": 32,
-  "png": "sprites/orphan/items_items_husbandry/rat_xxl_m.png"
+  "png": "sprites/orphan/items_items_husbandry/rat_xxl_m.png",
+  "blank": false
  },
  {
   "name": "ally",
   "resource": "items/itematlas",
   "w": 80,
   "h": 80,
-  "png": "sprites/orphan/items_itematlas/ally.png"
+  "png": "sprites/orphan/items_itematlas/ally.png",
+  "blank": true
  },
  {
   "name": "nuts",
   "resource": "items/itematlas",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_itematlas/nuts.png"
+  "png": "sprites/orphan/items_itematlas/nuts.png",
+  "blank": true
  },
  {
   "name": "water_bottle",
   "resource": "items/items_food",
   "w": 16,
   "h": 64,
-  "png": "sprites/orphan/items_items_food/water_bottle.png"
+  "png": "sprites/orphan/items_items_food/water_bottle.png",
+  "blank": true
  },
  {
   "name": "healing_bandage",
   "resource": "items/items_medical",
   "w": 26,
   "h": 31,
-  "png": "sprites/orphan/items_items_medical/healing_bandage.png"
+  "png": "sprites/orphan/items_items_medical/healing_bandage.png",
+  "blank": true
  },
  {
   "name": "rm_machine_large",
   "resource": "items/items_broken_machine",
   "w": 64,
   "h": 48,
-  "png": "sprites/orphan/items_items_broken_machine/rm_machine_large.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_machine_large.png",
+  "blank": false
  },
  {
   "name": "rm_wire_left_lower",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_wire_left_lower.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_wire_left_lower.png",
+  "blank": false
  },
  {
   "name": "stanag_20_mod",
   "resource": "items/items_weapons_ranged_antique",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_ranged_antique/stanag_20_mod.png"
+  "png": "sprites/orphan/items_items_weapons_ranged_antique/stanag_20_mod.png",
+  "blank": true
  },
  {
   "name": "jar_empty",
   "resource": "items/items_medical",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_medical/jar_empty.png"
+  "png": "sprites/orphan/items_items_medical/jar_empty.png",
+  "blank": true
  },
  {
   "name": "small_water_bottle_full",
   "resource": "items/items_food",
   "w": 16,
   "h": 48,
-  "png": "sprites/orphan/items_items_food/small_water_bottle_full.png"
+  "png": "sprites/orphan/items_items_food/small_water_bottle_full.png",
+  "blank": true
  },
  {
   "name": "dna_disk_green_empty",
   "resource": "items/items_hydroponic_plant",
   "w": 32,
   "h": 16,
-  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_green_empty.png"
+  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_green_empty.png",
+  "blank": false
  },
  {
   "name": "water_off",
   "resource": "items/items_sign",
   "w": 64,
   "h": 32,
-  "png": "sprites/orphan/items_items_sign/water_off.png"
+  "png": "sprites/orphan/items_items_sign/water_off.png",
+  "blank": true
  },
  {
   "name": "peanut_butter_red",
   "resource": "items/items_food",
   "w": 32,
   "h": 48,
-  "png": "sprites/orphan/items_items_food/peanut_butter_red.png"
+  "png": "sprites/orphan/items_items_food/peanut_butter_red.png",
+  "blank": true
  },
  {
   "name": "example",
   "resource": "items/items_organ",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_organ/example.png"
+  "png": "sprites/orphan/items_items_organ/example.png",
+  "blank": false
  },
  {
   "name": "dna_disk_blue_empty",
   "resource": "items/items_hydroponic_plant",
   "w": 32,
   "h": 16,
-  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_blue_empty.png"
+  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_blue_empty.png",
+  "blank": false
  },
  {
   "name": "sci_module",
   "resource": "items/items_tool",
   "w": 32,
   "h": 16,
-  "png": "sprites/orphan/items_items_tool/sci_module.png"
+  "png": "sprites/orphan/items_items_tool/sci_module.png",
+  "blank": false
  },
  {
   "name": "rat_xxl_f",
   "resource": "items/items_husbandry",
   "w": 64,
   "h": 32,
-  "png": "sprites/orphan/items_items_husbandry/rat_xxl_f.png"
+  "png": "sprites/orphan/items_items_husbandry/rat_xxl_f.png",
+  "blank": false
  },
  {
   "name": "rds_view",
   "resource": "items/items_mod",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_mod/rds_view.png"
+  "png": "sprites/orphan/items_items_mod/rds_view.png",
+  "blank": false
  },
  {
   "name": "items_weapons_ranged_antique_2",
   "resource": "items/items_weapons_ranged_antique",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_2.png"
+  "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_2.png",
+  "blank": true
  },
  {
   "name": "peanut_butter_gray",
   "resource": "items/items_food",
   "w": 32,
   "h": 48,
-  "png": "sprites/orphan/items_items_food/peanut_butter_gray.png"
+  "png": "sprites/orphan/items_items_food/peanut_butter_gray.png",
+  "blank": true
  },
  {
   "name": "stick_grenade",
   "resource": "items/itematlas",
   "w": 16,
   "h": 64,
-  "png": "sprites/orphan/items_itematlas/stick_grenade.png"
+  "png": "sprites/orphan/items_itematlas/stick_grenade.png",
+  "blank": true
  },
  {
   "name": "items_sign_1",
   "resource": "items/items_sign",
   "w": 96,
   "h": 32,
-  "png": "sprites/orphan/items_items_sign/items_sign_1.png"
+  "png": "sprites/orphan/items_items_sign/items_sign_1.png",
+  "blank": false
  },
  {
   "name": "jar_orange",
   "resource": "items/items_medical",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_medical/jar_orange.png"
+  "png": "sprites/orphan/items_items_medical/jar_orange.png",
+  "blank": true
  },
  {
   "name": "10mm_mag_smg_box_view",
   "resource": "items/items_mod",
   "w": 16,
   "h": 32,
-  "png": "sprites/orphan/items_items_mod/10mm_mag_smg_box_view.png"
+  "png": "sprites/orphan/items_items_mod/10mm_mag_smg_box_view.png",
+  "blank": false
  },
  {
   "name": "rm_card_swiper_lock",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 32,
-  "png": "sprites/orphan/items_items_broken_machine/rm_card_swiper_lock.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_card_swiper_lock.png",
+  "blank": false
  },
  {
   "name": "rat_xxl_f_d",
   "resource": "items/items_husbandry",
   "w": 64,
   "h": 32,
-  "png": "sprites/orphan/items_items_husbandry/rat_xxl_f_d.png"
+  "png": "sprites/orphan/items_items_husbandry/rat_xxl_f_d.png",
+  "blank": false
  },
  {
   "name": "dna_disk_red_empty",
   "resource": "items/items_hydroponic_plant",
   "w": 32,
   "h": 16,
-  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_red_empty.png"
+  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_red_empty.png",
+  "blank": false
  },
  {
   "name": "screen_dark",
   "resource": "window/elements_inner",
   "w": 48,
   "h": 16,
-  "png": "sprites/orphan/window_elements_inner/screen_dark.png"
+  "png": "sprites/orphan/window_elements_inner/screen_dark.png",
+  "blank": false
  },
  {
   "name": "blue_serum",
   "resource": "items/items_medical",
   "w": 16,
   "h": 32,
-  "png": "sprites/orphan/items_items_medical/blue_serum.png"
+  "png": "sprites/orphan/items_items_medical/blue_serum.png",
+  "blank": false
  },
  {
   "name": "rm_component_background",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_component_background.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_component_background.png",
+  "blank": false
  },
  {
   "name": "safes",
   "resource": "items/items_furniture",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_furniture/safes.png"
+  "png": "sprites/orphan/items_items_furniture/safes.png",
+  "blank": true
  },
  {
   "name": "water_bottle_full",
   "resource": "items/items_food",
   "w": 16,
   "h": 64,
-  "png": "sprites/orphan/items_items_food/water_bottle_full.png"
+  "png": "sprites/orphan/items_items_food/water_bottle_full.png",
+  "blank": true
  },
  {
   "name": "improvised_stunprod",
   "resource": "items/items_weapons_melee",
   "w": 192,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_melee/improvised_stunprod.png"
+  "png": "sprites/orphan/items_items_weapons_melee/improvised_stunprod.png",
+  "blank": true
  },
  {
   "name": "rm_wire_horizontal",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_wire_horizontal.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_wire_horizontal.png",
+  "blank": false
  },
  {
   "name": "rm_access_panel",
   "resource": "items/items_broken_machine",
   "w": 48,
   "h": 48,
-  "png": "sprites/orphan/items_items_broken_machine/rm_access_panel.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_access_panel.png",
+  "blank": false
  },
  {
   "name": "large_water_bottle_full",
   "resource": "items/items_food",
   "w": 32,
   "h": 64,
-  "png": "sprites/orphan/items_items_food/large_water_bottle_full.png"
+  "png": "sprites/orphan/items_items_food/large_water_bottle_full.png",
+  "blank": true
  },
  {
   "name": "rm_background",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_background.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_background.png",
+  "blank": false
  },
  {
   "name": "rm_disarm2",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_disarm2.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_disarm2.png",
+  "blank": false
  },
  {
   "name": "soda_2l",
   "resource": "items/items_food",
   "w": 32,
   "h": 80,
-  "png": "sprites/orphan/items_items_food/soda_2l.png"
+  "png": "sprites/orphan/items_items_food/soda_2l.png",
+  "blank": true
  },
  {
   "name": "improvised_stunprod_unloaded",
   "resource": "items/items_weapons_melee",
   "w": 192,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_melee/improvised_stunprod_unloaded.png"
+  "png": "sprites/orphan/items_items_weapons_melee/improvised_stunprod_unloaded.png",
+  "blank": true
  },
  {
   "name": "fireaxe",
   "resource": "items/items_weapons_melee",
   "w": 112,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_melee/fireaxe.png"
+  "png": "sprites/orphan/items_items_weapons_melee/fireaxe.png",
+  "blank": true
  },
  {
   "name": "rm_disarm4",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_disarm4.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_disarm4.png",
+  "blank": false
  },
  {
   "name": "borderOld",
   "resource": "window/borderold",
   "w": 88,
   "h": 34,
-  "png": "sprites/orphan/window_borderold/borderOld.png"
+  "png": "sprites/orphan/window_borderold/borderOld.png",
+  "blank": false
  },
  {
   "name": "border-export",
   "resource": "window/border-export",
   "w": 88,
   "h": 34,
-  "png": "sprites/orphan/window_border-export/border-export.png"
+  "png": "sprites/orphan/window_border-export/border-export.png",
+  "blank": false
  },
  {
   "name": "rm_screw_base",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_screw_base.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_screw_base.png",
+  "blank": false
  },
  {
   "name": "wrench",
   "resource": "items/itematlas",
   "w": 32,
   "h": 96,
-  "png": "sprites/orphan/items_itematlas/wrench.png"
+  "png": "sprites/orphan/items_itematlas/wrench.png",
+  "blank": true
  },
  {
   "name": "items_weapons_ranged_antique_4",
   "resource": "items/items_weapons_ranged_antique",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_4.png"
+  "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_4.png",
+  "blank": true
  },
  {
   "name": "items_food_burger",
   "resource": "items/items_food",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_food/items_food_burger.png"
+  "png": "sprites/orphan/items_items_food/items_food_burger.png",
+  "blank": true
  },
  {
   "name": "improvised_spear",
   "resource": "items/items_weapons_melee",
   "w": 224,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_melee/improvised_spear.png"
+  "png": "sprites/orphan/items_items_weapons_melee/improvised_spear.png",
+  "blank": true
  },
  {
   "name": "rm_disarm3",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_disarm3.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_disarm3.png",
+  "blank": false
  },
  {
   "name": "rm_wire_horizontal_right",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_wire_horizontal_right.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_wire_horizontal_right.png",
+  "blank": false
  },
  {
   "name": "rm_access_panel_base",
   "resource": "items/items_broken_machine",
   "w": 48,
   "h": 48,
-  "png": "sprites/orphan/items_items_broken_machine/rm_access_panel_base.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_access_panel_base.png",
+  "blank": false
  },
  {
   "name": "sandal_weapon",
   "resource": "items/items_weapons_melee",
   "w": 48,
   "h": 64,
-  "png": "sprites/orphan/items_items_weapons_melee/sandal_weapon.png"
+  "png": "sprites/orphan/items_items_weapons_melee/sandal_weapon.png",
+  "blank": false
  },
  {
   "name": "dna_disk_purple_empty",
   "resource": "items/items_hydroponic_plant",
   "w": 32,
   "h": 16,
-  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_purple_empty.png"
+  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_purple_empty.png",
+  "blank": false
  },
  {
   "name": "items_weapons_ranged_antique_3",
   "resource": "items/items_weapons_ranged_antique",
   "w": 64,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_3.png"
+  "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_3.png",
+  "blank": true
  },
  {
   "name": "case_front",
   "resource": "items/beer_case",
   "w": 80,
   "h": 64,
-  "png": "sprites/orphan/items_beer_case/case_front.png"
+  "png": "sprites/orphan/items_beer_case/case_front.png",
+  "blank": false
  },
  {
   "name": "items_weapons_ranged_antique_0",
   "resource": "items/items_weapons_ranged_antique",
   "w": 160,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_0.png"
+  "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_0.png",
+  "blank": true
  },
  {
   "name": "rm_access_panel_small",
   "resource": "items/items_broken_machine",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_broken_machine/rm_access_panel_small.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_access_panel_small.png",
+  "blank": false
  },
  {
   "name": "items_weapons_ranged_antique_1",
   "resource": "items/items_weapons_ranged_antique",
   "w": 64,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_1.png"
+  "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_1.png",
+  "blank": true
  },
  {
   "name": "dumping_ground_pile",
   "resource": "items/items_ship",
   "w": 96,
   "h": 48,
-  "png": "sprites/orphan/items_items_ship/dumping_ground_pile.png"
+  "png": "sprites/orphan/items_items_ship/dumping_ground_pile.png",
+  "blank": false
  },
  {
   "name": "case",
   "resource": "items/beer_case",
   "w": 80,
   "h": 64,
-  "png": "sprites/orphan/items_beer_case/case.png"
+  "png": "sprites/orphan/items_beer_case/case.png",
+  "blank": false
  },
  {
   "name": "items_food_bag_of_flour",
   "resource": "items/items_food",
   "w": 32,
   "h": 48,
-  "png": "sprites/orphan/items_items_food/items_food_bag_of_flour.png"
+  "png": "sprites/orphan/items_items_food/items_food_bag_of_flour.png",
+  "blank": true
  },
  {
   "name": "smoke_grenade_green",
   "resource": "items/itematlas",
   "w": 32,
   "h": 64,
-  "png": "sprites/orphan/items_itematlas/smoke_grenade_green.png"
+  "png": "sprites/orphan/items_itematlas/smoke_grenade_green.png",
+  "blank": true
  },
  {
   "name": "long_pipe",
   "resource": "items/items_weapons_melee",
   "w": 192,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_melee/long_pipe.png"
+  "png": "sprites/orphan/items_items_weapons_melee/long_pipe.png",
+  "blank": true
  },
  {
   "name": "rm_card_swiper",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 32,
-  "png": "sprites/orphan/items_items_broken_machine/rm_card_swiper.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_card_swiper.png",
+  "blank": false
  },
  {
   "name": "rm_wire_right_lower",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_wire_right_lower.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_wire_right_lower.png",
+  "blank": false
  },
  {
   "name": "peanut_butter_blue",
   "resource": "items/items_food",
   "w": 32,
   "h": 48,
-  "png": "sprites/orphan/items_items_food/peanut_butter_blue.png"
+  "png": "sprites/orphan/items_items_food/peanut_butter_blue.png",
+  "blank": true
  },
  {
   "name": "stanag_30_mod",
   "resource": "items/items_weapons_ranged_antique",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_ranged_antique/stanag_30_mod.png"
+  "png": "sprites/orphan/items_items_weapons_ranged_antique/stanag_30_mod.png",
+  "blank": true
  },
  {
   "name": "rm_wire_vertical_upper",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_wire_vertical_upper.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_wire_vertical_upper.png",
+  "blank": false
  },
  {
   "name": "rm_access_panel_base_small",
   "resource": "items/items_broken_machine",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_broken_machine/rm_access_panel_base_small.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_access_panel_base_small.png",
+  "blank": false
  },
  {
   "name": "rm_anti_tamper",
   "resource": "items/items_broken_machine",
   "w": 48,
   "h": 32,
-  "png": "sprites/orphan/items_items_broken_machine/rm_anti_tamper.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_anti_tamper.png",
+  "blank": false
  },
  {
   "name": "water_recycler_empty",
   "resource": "items/items_ship",
   "w": 48,
   "h": 48,
-  "png": "sprites/orphan/items_items_ship/water_recycler_empty.png"
+  "png": "sprites/orphan/items_items_ship/water_recycler_empty.png",
+  "blank": true
  },
  {
   "name": "dna_disk_orange_empty",
   "resource": "items/items_hydroponic_plant",
   "w": 32,
   "h": 16,
-  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_orange_empty.png"
+  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_orange_empty.png",
+  "blank": false
  },
  {
   "name": "rat_xxl_m_d",
   "resource": "items/items_husbandry",
   "w": 64,
   "h": 32,
-  "png": "sprites/orphan/items_items_husbandry/rat_xxl_m_d.png"
+  "png": "sprites/orphan/items_items_husbandry/rat_xxl_m_d.png",
+  "blank": false
  },
  {
   "name": "bullet_nato_556",
   "resource": "items/items_weapons_ranged_antique",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_weapons_ranged_antique/bullet_nato_556.png"
+  "png": "sprites/orphan/items_items_weapons_ranged_antique/bullet_nato_556.png",
+  "blank": true
  },
  {
   "name": "case_back",
   "resource": "items/beer_case",
   "w": 80,
   "h": 64,
-  "png": "sprites/orphan/items_beer_case/case_back.png"
+  "png": "sprites/orphan/items_beer_case/case_back.png",
+  "blank": false
  },
  {
   "name": "jar_green",
   "resource": "items/items_medical",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_medical/jar_green.png"
+  "png": "sprites/orphan/items_items_medical/jar_green.png",
+  "blank": true
  },
  {
   "name": "badge",
   "resource": "items/items_misc",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_misc/badge.png"
+  "png": "sprites/orphan/items_items_misc/badge.png",
+  "blank": true
  },
  {
   "name": "jar_pink",
   "resource": "items/items_medical",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_medical/jar_pink.png"
+  "png": "sprites/orphan/items_items_medical/jar_pink.png",
+  "blank": true
  },
  {
   "name": "highlight_white",
   "resource": "window/background",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/window_background/highlight_white.png"
+  "png": "sprites/orphan/window_background/highlight_white.png",
+  "blank": false
  },
  {
   "name": "medical_pouch",
   "resource": "items/items_medical",
   "w": 64,
   "h": 48,
-  "png": "sprites/orphan/items_items_medical/medical_pouch.png"
+  "png": "sprites/orphan/items_items_medical/medical_pouch.png",
+  "blank": true
  },
  {
   "name": "dna_disk_orange_full",
   "resource": "items/items_hydroponic_plant",
   "w": 32,
   "h": 16,
-  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_orange_full.png"
+  "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_orange_full.png",
+  "blank": false
  },
  {
   "name": "fireaxe_big",
   "resource": "items/items_weapons_melee",
   "w": 128,
   "h": 32,
-  "png": "sprites/orphan/items_items_weapons_melee/fireaxe_big.png"
+  "png": "sprites/orphan/items_items_weapons_melee/fireaxe_big.png",
+  "blank": true
  },
  {
   "name": "rm_wire_horizontal_left",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_wire_horizontal_left.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_wire_horizontal_left.png",
+  "blank": false
  },
  {
   "name": "rm_structural_panel",
   "resource": "items/items_broken_machine",
   "w": 48,
   "h": 32,
-  "png": "sprites/orphan/items_items_broken_machine/rm_structural_panel.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_structural_panel.png",
+  "blank": false
  },
  {
   "name": "handmade_smg",
   "resource": "items/items_sec",
   "w": 80,
   "h": 48,
-  "png": "sprites/orphan/items_items_sec/handmade_smg.png"
+  "png": "sprites/orphan/items_items_sec/handmade_smg.png",
+  "blank": true
  },
  {
   "name": "chemforge_b",
   "resource": "items/items_tool",
   "w": 48,
   "h": 48,
-  "png": "sprites/orphan/items_items_tool/chemforge_b.png"
+  "png": "sprites/orphan/items_items_tool/chemforge_b.png",
+  "blank": true
  },
  {
   "name": "purple_serum",
   "resource": "items/items_medical",
   "w": 16,
   "h": 32,
-  "png": "sprites/orphan/items_items_medical/purple_serum.png"
+  "png": "sprites/orphan/items_items_medical/purple_serum.png",
+  "blank": false
  },
  {
   "name": "rm_wire_vertical",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_wire_vertical.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_wire_vertical.png",
+  "blank": false
  },
  {
   "name": "rm_disarm1",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_disarm1.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_disarm1.png",
+  "blank": false
  },
  {
   "name": "screen_light",
   "resource": "window/elements_inner",
   "w": 48,
   "h": 16,
-  "png": "sprites/orphan/window_elements_inner/screen_light.png"
+  "png": "sprites/orphan/window_elements_inner/screen_light.png",
+  "blank": false
  },
  {
   "name": "slider_background",
   "resource": "window/elements_inner",
   "w": 16,
   "h": 6,
-  "png": "sprites/orphan/window_elements_inner/slider_background.png"
+  "png": "sprites/orphan/window_elements_inner/slider_background.png",
+  "blank": false
  },
  {
   "name": "10mm_mag_high_view",
   "resource": "items/items_mod",
   "w": 16,
   "h": 14,
-  "png": "sprites/orphan/items_items_mod/10mm_mag_high_view.png"
+  "png": "sprites/orphan/items_items_mod/10mm_mag_high_view.png",
+  "blank": false
  },
  {
   "name": "rm_machine_small",
   "resource": "items/items_broken_machine",
   "w": 32,
   "h": 48,
-  "png": "sprites/orphan/items_items_broken_machine/rm_machine_small.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_machine_small.png",
+  "blank": false
  },
  {
   "name": "rm_wire_left_upper",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/items_items_broken_machine/rm_wire_left_upper.png"
+  "png": "sprites/orphan/items_items_broken_machine/rm_wire_left_upper.png",
+  "blank": false
  },
  {
   "name": "playd",
   "resource": "window/elements_inner",
   "w": 16,
   "h": 16,
-  "png": "sprites/orphan/window_elements_inner/playd.png"
+  "png": "sprites/orphan/window_elements_inner/playd.png",
+  "blank": false
  },
  {
   "name": "bread_loaf",
   "resource": "items/items_food",
   "w": 64,
   "h": 48,
-  "png": "sprites/orphan/items_items_food/bread_loaf.png"
+  "png": "sprites/orphan/items_items_food/bread_loaf.png",
+  "blank": true
  },
  {
   "name": "jar_blue",
   "resource": "items/items_medical",
   "w": 32,
   "h": 32,
-  "png": "sprites/orphan/items_items_medical/jar_blue.png"
+  "png": "sprites/orphan/items_items_medical/jar_blue.png",
+  "blank": true
  }
 ]

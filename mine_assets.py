@@ -155,8 +155,11 @@ for s in sprites:
     rel = f"sprites/{folder}/{(s['resource'] or s['file']).replace('/', '_')}/{s['name']}.png"
     os.makedirs(os.path.dirname(OUT + rel), exist_ok=True)
     try:
-        byname[s["file"]].objects[s["path_id"]].read().image.save(OUT + rel)
+        im = byname[s["file"]].objects[s["path_id"]].read().image
+        im.save(OUT + rel)
         s["png"] = rel
+        # many cut items keep their slice rectangle while the atlas pixels underneath were wiped (alpha <= ~3)
+        s["blank"] = im.convert("RGBA").getchannel("A").getextrema()[1] < 16
         exported.append(s)
     except Exception as e:
         s["png_error"] = str(e)

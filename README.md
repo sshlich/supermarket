@@ -22,7 +22,7 @@ Three sources:
 | `data/assets/loot_tables.json` | all 13 vanilla loot tables and 2 table groups with probabilities, plus the scene wiring |
 | `data/assets/attached_scripts.json` | every MonoBehaviour class and which scene/asset file attaches it |
 | `data/assets/sprites.json`, `audio.json` | every sprite/clip and whether code, the AudioDirectory or a scene object references it |
-| `data/assets/sprites/` | PNGs: `orphan/` (art nothing uses), `unused_items/` (art of cut items), `orphan_variants/` (fill levels and sizes built at runtime) |
+| `data/assets/sprites/` | PNGs: `orphan/` (art nothing uses), `unused_items/` (art of cut items), `orphan_variants/` (fill levels and sizes built at runtime); `blank: true` in the JSON marks wiped slices |
 | `data/static/` | code cross-reference: `registered_ids.json`, `list_factories.json` (callers), `classes.json`, `loc_unreferenced.json`, `code_sprite_refs.json` |
 | `data/unused/` | one JSON per section of `UNUSED.md` |
 | `data/paper/` | the 4 built-in Paper documents |
@@ -43,9 +43,12 @@ Three sources:
 - **Disabled loot:** `sup_keycard` and `sci_keycard` sit in `accessCardTable` switched off.
 - **Unreachable live items:** 35 registered items that nothing references, e.g. MBS Nerve Gas, Test Gizmo, Box Dispenser,
   Blank Module, Streamlining Module, Attachable Extended Barrel, Old Lottery Ticket and 9 unused perks.
-- **Art:** 115 orphan sprites (the ruined-machine minigame parts, XXL rats, peanut butter in five colors, sandal weapon,
-  improvised spear, fire axe, STANAG mags, handmade SMG...) and 97 sprites of cut items. All 276 audio clips are wired
-  to something (AudioDirectory, a scene AudioSource or a component field), so no audio is unused.
+- **Wiped art:** the developers erased the pixels of most cut items from the sprite atlases but left the slice
+  rectangles in place, so the names survive with nothing under them. 78 of the 97 sprites belonging to cut items are
+  empty slices like that; the transplant organs, a tactical revolver and the security card are among the 19 that kept art.
+- **Orphan art:** 63 sprites with real art that nothing references (the complete ruined-machine minigame, XXL rats,
+  empty DNA disks, a sandal weapon, a beer case), plus 52 more empty slices (peanut butter colors, fire axe, STANAG mags,
+  handmade SMG...). All 276 audio clips are wired to something, so no audio is unused.
 
 Every "unused" claim is a lead, not proof: IDs that the code assembles from parts at runtime can look unreferenced.
 The runtime dump and the scene and asset checks remove most of those false positives, and `UNUSED.md` says which check each entry failed.

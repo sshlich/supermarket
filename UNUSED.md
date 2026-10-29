@@ -780,30 +780,42 @@ The game grew out of a space-trading prototype. `Space*Trigger` events are still
 
 ## Orphan art (115 sprites, PNGs in `data/assets/sprites/orphan/`)
 
+Many cut sprites keep their slice rectangle in the atlas while the pixels underneath were wiped (alpha <= 3). Those are listed separately as empty slices; their names are all that is left.
+
+### With art (63)
+
 - **items/beer_case**: case_front, case, case_back
-- **items/itematlas**: ally, nuts, stick_grenade, wrench, smoke_grenade_green
 - **items/items_aquaculture**: items_aquaculture_1
 - **items/items_broken_machine**: rm_wire_right_upper, rm_reinforced_panel, rm_wire_vertical_lower, rm_machine_medium, rm_screw_set, rm_machine_large, rm_wire_left_lower, rm_card_swiper_lock, rm_component_background, rm_wire_horizontal, rm_access_panel, rm_background, rm_disarm2, rm_disarm4, rm_screw_base, rm_disarm3, rm_wire_horizontal_right, rm_access_panel_base, rm_access_panel_small, rm_card_swiper, rm_wire_right_lower, rm_wire_vertical_upper, rm_access_panel_base_small, rm_anti_tamper, rm_wire_horizontal_left, rm_structural_panel, rm_wire_vertical, rm_disarm1, rm_machine_small, rm_wire_left_upper
-- **items/items_food**: small_water_bottle, peanut_butter_purple, peanut_butter, peanut_butter_orange, water_bottle, small_water_bottle_full, peanut_butter_red, peanut_butter_gray, water_bottle_full, large_water_bottle_full, soda_2l, items_food_burger, items_food_bag_of_flour, peanut_butter_blue, bread_loaf
-- **items/items_furniture**: safes
 - **items/items_husbandry**: rat_xxl_m, rat_xxl_f, rat_xxl_f_d, rat_xxl_m_d
 - **items/items_hydroponic_plant**: items_hydroponic_plant_1, dna_disk_green_empty, dna_disk_blue_empty, dna_disk_red_empty, dna_disk_purple_empty, dna_disk_orange_empty, dna_disk_orange_full
-- **items/items_medical**: injector_pure_white, healing_bandage, jar_empty, jar_orange, blue_serum, jar_green, jar_pink, medical_pouch, purple_serum, jar_blue
-- **items/items_misc**: intel_yellow, intel_red, badge
+- **items/items_medical**: blue_serum, purple_serum
 - **items/items_mod**: rds_view, 10mm_mag_smg_box_view, 10mm_mag_high_view
 - **items/items_organ**: example
-- **items/items_sec**: handmade_smg
-- **items/items_ship**: dumping_ground_pile, water_recycler_empty
-- **items/items_sign**: water_off, items_sign_1
-- **items/items_tool**: chemforge_r, sci_module, chemforge_b
-- **items/items_weapons_melee**: improvised_stunprod, improvised_stunprod_unloaded, fireaxe, improvised_spear, sandal_weapon, long_pipe, fireaxe_big
-- **items/items_weapons_ranged_antique**: stanag_10_mod, stanag_20_mod, items_weapons_ranged_antique_2, items_weapons_ranged_antique_4, items_weapons_ranged_antique_3, items_weapons_ranged_antique_0, items_weapons_ranged_antique_1, stanag_30_mod, bullet_nato_556
+- **items/items_ship**: dumping_ground_pile
+- **items/items_sign**: items_sign_1
+- **items/items_tool**: sci_module
+- **items/items_weapons_melee**: sandal_weapon
 - **window/background**: highlight_white
 - **window/border-export**: border-export
 - **window/borderold**: borderOld
 - **window/elements_inner**: slider_button, screen_dark, screen_light, slider_background, playd
 
-Sprites belonging to unused items: 97 in `data/assets/sprites/unused_items/`. Runtime-built variants (fill levels, sizes) are in `data/assets/sprites/orphan_variants/`.
+### Empty slices, art wiped (52)
+
+- **items/itematlas**: ally, nuts, stick_grenade, wrench, smoke_grenade_green
+- **items/items_food**: small_water_bottle, peanut_butter_purple, peanut_butter, peanut_butter_orange, water_bottle, small_water_bottle_full, peanut_butter_red, peanut_butter_gray, water_bottle_full, large_water_bottle_full, soda_2l, items_food_burger, items_food_bag_of_flour, peanut_butter_blue, bread_loaf
+- **items/items_furniture**: safes
+- **items/items_medical**: injector_pure_white, healing_bandage, jar_empty, jar_orange, jar_green, jar_pink, medical_pouch, jar_blue
+- **items/items_misc**: intel_yellow, intel_red, badge
+- **items/items_sec**: handmade_smg
+- **items/items_ship**: water_recycler_empty
+- **items/items_sign**: water_off
+- **items/items_tool**: chemforge_r, chemforge_b
+- **items/items_weapons_melee**: improvised_stunprod, improvised_stunprod_unloaded, fireaxe, improvised_spear, long_pipe, fireaxe_big
+- **items/items_weapons_ranged_antique**: stanag_10_mod, stanag_20_mod, items_weapons_ranged_antique_2, items_weapons_ranged_antique_4, items_weapons_ranged_antique_3, items_weapons_ranged_antique_0, items_weapons_ranged_antique_1, stanag_30_mod, bullet_nato_556
+
+Sprites belonging to unused items: 97 in `data/assets/sprites/unused_items/`, of which 78 are empty slices. Runtime-built variants (fill levels, sizes) are in `data/assets/sprites/orphan_variants/`.
 
 ## Unused audio (0)
 

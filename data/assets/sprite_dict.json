@@ -1,0 +1,122 @@
+[
+ {
+  "key": "default",
+  "sprite": "lower",
+  "reachable": true
+ },
+ {
+  "key": "defaultp",
+  "sprite": "lower_p",
+  "reachable": true
+ },
+ {
+  "key": "pink",
+  "sprite": "sec",
+  "reachable": true
+ },
+ {
+  "key": "pinkp",
+  "sprite": "sec_p",
+  "reachable": false
+ },
+ {
+  "key": "dark",
+  "sprite": "bm",
+  "reachable": true
+ },
+ {
+  "key": "darkp",
+  "sprite": "bm_p",
+  "reachable": false
+ },
+ {
+  "key": "med",
+  "sprite": "med",
+  "reachable": false
+ },
+ {
+  "key": "medp",
+  "sprite": "med_p",
+  "reachable": false
+ },
+ {
+  "key": "sec",
+  "sprite": "sec",
+  "reachable": true
+ },
+ {
+  "key": "secp",
+  "sprite": "sec_p",
+  "reachable": false
+ },
+ {
+  "key": "sci",
+  "sprite": "dialogue_bubble_science",
+  "reachable": false
+ },
+ {
+  "key": "scip",
+  "sprite": "bubble_sci_p",
+  "reachable": false
+ },
+ {
+  "key": "eng",
+  "sprite": "eng",
+  "reachable": false
+ },
+ {
+  "key": "engp",
+  "sprite": "eng_p",
+  "reachable": false
+ },
+ {
+  "key": "blue",
+  "sprite": "cmd",
+  "reachable": true
+ },
+ {
+  "key": "bluep",
+  "sprite": "cmd_point",
+  "reachable": false
+ },
+ {
+  "key": "green",
+  "sprite": "rev",
+  "reachable": true
+ },
+ {
+  "key": "greenp",
+  "sprite": "rev_p",
+  "reachable": false
+ },
+ {
+  "key": "greenrev",
+  "sprite": "rev",
+  "reachable": true
+ },
+ {
+  "key": "greenrevp",
+  "sprite": "rev_p",
+  "reachable": false
+ },
+ {
+  "key": "upper",
+  "sprite": "ul",
+  "reachable": true
+ },
+ {
+  "key": "upperp",
+  "sprite": "ul_p",
+  "reachable": false
+ },
+ {
+  "key": "tourist",
+  "sprite": "ul",
+  "reachable": false
+ },
+ {
+  "key": "touristp",
+  "sprite": "ul_p",
+  "reachable": false
+ }
+]
