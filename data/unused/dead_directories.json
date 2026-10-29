@@ -1,0 +1,51 @@
+[
+ {
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "entries": 41,
+  "attached_in_scene": false,
+  "named_in_code": false,
+  "registered_at_runtime": false
+ },
+ {
+  "directory": "CombatAbilityEffectPermanentDirectory",
+  "entries": 5,
+  "attached_in_scene": false,
+  "named_in_code": false,
+  "registered_at_runtime": false
+ },
+ {
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "entries": 55,
+  "attached_in_scene": false,
+  "named_in_code": false,
+  "registered_at_runtime": false
+ },
+ {
+  "directory": "NpcCharacterItemDirectory",
+  "entries": 22,
+  "attached_in_scene": false,
+  "named_in_code": false,
+  "registered_at_runtime": false
+ },
+ {
+  "directory": "PlayerCharacterItemDirectory",
+  "entries": 4,
+  "attached_in_scene": false,
+  "named_in_code": false,
+  "registered_at_runtime": false
+ },
+ {
+  "directory": "StandardCombatAbilityDirectory",
+  "entries": 44,
+  "attached_in_scene": false,
+  "named_in_code": false,
+  "registered_at_runtime": false
+ },
+ {
+  "directory": "UnusedDirectory",
+  "entries": 59,
+  "attached_in_scene": false,
+  "named_in_code": false,
+  "registered_at_runtime": false
+ }
+]

@@ -1,0 +1,38 @@
+{
+  "JunkPile": {
+    "$type": "ExpeditionPoi",
+    "id": "junk_pile",
+    "displayName": "Worthless Junk Pile",
+    "actionDisplay": "I try scavenging the worthless junk pile...",
+    "value": 10,
+    "danger": 10,
+    "lootTable": "junkTable",
+    "isRepeatable": true,
+    "poiType": "Scavenge",
+    "successChance": 85
+  },
+  "FreshScrapPile": {
+    "$type": "ExpeditionPoi",
+    "id": "fresh_scrap_pile",
+    "displayName": "Fresh Scrap Pile",
+    "actionDisplay": "I try scavenging the fresh scrap pile...",
+    "value": 40,
+    "danger": 10,
+    "lootTableGroup": "dumpingGroundFreshTG",
+    "isRepeatable": true,
+    "poiType": "Scavenge",
+    "successChance": 85
+  },
+  "ScrapPile": {
+    "$type": "ExpeditionPoi",
+    "id": "scrap_pile",
+    "displayName": "Scrap Pile",
+    "actionDisplay": "I try scavenging the scrap pile...",
+    "value": 20,
+    "danger": 10,
+    "lootTableGroup": "dumpingGroundTG",
+    "isRepeatable": true,
+    "poiType": "Scavenge",
+    "successChance": 85
+  }
+}

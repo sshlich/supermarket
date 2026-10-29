@@ -1,0 +1,1422 @@
+{
+  "AllPerkDefinitions": [
+    {
+      "$type": "StartingPerk",
+      "id": "saving",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "bad_lease",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "convict",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "model_citizen"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "model_citizen",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "convict"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "well_connected",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "public_enemy"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "alert",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "sawyer_crew",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "diplomatic",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "intimidating",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "side_street",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "prime_real_estate"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "nicotine_addiction",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "narcotic_addiction",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "alcohol_addiction",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "secret_admirer",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "colorful_character",
+      "cost": 1,
+      "maxSlot": 3,
+      "incompatiblePerks": [],
+      "type": "NEUTRAL",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "blackmail",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "blabbermouth",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "minimalist",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "ascetic"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "sentinel",
+      "cost": -3,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "agoraphobia",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "speedy"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "welfare_program",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "banned_commissary"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "proficient_scavenger",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "maimed"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "revolution_sympathizer",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "gambling_addiction",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "tapehead",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "vending",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "short_sleeper",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "working_pipes",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "illiterate",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "prime_real_estate",
+      "cost": 0,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "side_street"
+      ],
+      "type": "NEUTRAL",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "degenerative_osteoarthritis",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "maimed"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "known_snitch",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "handy",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "public_enemy",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "well_connected"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "ascetic",
+      "cost": -4,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "minimalist"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "maimed",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "proficient_scavenger",
+        "degenerative_osteoarthritis",
+        "careful_scavenger"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "wild_favorite",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "wild_bad_side"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "wild_bad_side",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "wild_favorite"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "aug_menace",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEUTRAL",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "lucky",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "unlucky"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "unlucky",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "lucky"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "tinkerer",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "careful_scavenger",
+      "cost": 0,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "maimed"
+      ],
+      "type": "NEUTRAL",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "sycophant",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "awful_negotiator",
+      "cost": -3,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "banned_commissary",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "welfare_program"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "hoarder",
+      "cost": 0,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEUTRAL",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "makeshift_reactor",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEUTRAL",
+      "mindEditable": false
+    }
+  ],
+  "AllPerkDefinitionsWithMods": [
+    {
+      "$type": "StartingPerk",
+      "id": "saving",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "bad_lease",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "convict",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "model_citizen"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "model_citizen",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "convict"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "well_connected",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "public_enemy"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "alert",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "sawyer_crew",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "diplomatic",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "intimidating",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "side_street",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "prime_real_estate"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "nicotine_addiction",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "narcotic_addiction",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "alcohol_addiction",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "secret_admirer",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "colorful_character",
+      "cost": 1,
+      "maxSlot": 3,
+      "incompatiblePerks": [],
+      "type": "NEUTRAL",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "blackmail",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "blabbermouth",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "minimalist",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "ascetic"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "sentinel",
+      "cost": -3,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "agoraphobia",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "speedy"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "welfare_program",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "banned_commissary"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "proficient_scavenger",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "maimed"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "revolution_sympathizer",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "gambling_addiction",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "tapehead",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "vending",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "short_sleeper",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "working_pipes",
+      "cost": 2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "illiterate",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "prime_real_estate",
+      "cost": 0,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "side_street"
+      ],
+      "type": "NEUTRAL",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "degenerative_osteoarthritis",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "maimed"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "known_snitch",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "handy",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "public_enemy",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "well_connected"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "ascetic",
+      "cost": -4,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "minimalist"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "maimed",
+      "cost": -2,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "proficient_scavenger",
+        "degenerative_osteoarthritis",
+        "careful_scavenger"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "wild_favorite",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "wild_bad_side"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "wild_bad_side",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "wild_favorite"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "aug_menace",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEUTRAL",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "lucky",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "unlucky"
+      ],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "unlucky",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "lucky"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "tinkerer",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "careful_scavenger",
+      "cost": 0,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "maimed"
+      ],
+      "type": "NEUTRAL",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "sycophant",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "POSITIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "awful_negotiator",
+      "cost": -3,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEGATIVE",
+      "mindEditable": true
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "banned_commissary",
+      "cost": -1,
+      "maxSlot": 0,
+      "incompatiblePerks": [
+        "welfare_program"
+      ],
+      "type": "NEGATIVE",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "hoarder",
+      "cost": 0,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEUTRAL",
+      "mindEditable": false
+    },
+    {
+      "$type": "StartingPerk",
+      "id": "makeshift_reactor",
+      "cost": 1,
+      "maxSlot": 0,
+      "incompatiblePerks": [],
+      "type": "NEUTRAL",
+      "mindEditable": false
+    }
+  ],
+  "Saving": {
+    "$type": "StartingPerk",
+    "id": "saving",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "BadLease": {
+    "$type": "StartingPerk",
+    "id": "bad_lease",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  },
+  "Convict": {
+    "$type": "StartingPerk",
+    "id": "convict",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "model_citizen"
+    ],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  },
+  "ModelCitizen": {
+    "$type": "StartingPerk",
+    "id": "model_citizen",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "convict"
+    ],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "WellConnected": {
+    "$type": "StartingPerk",
+    "id": "well_connected",
+    "cost": 2,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "public_enemy"
+    ],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "Sycophant": {
+    "$type": "StartingPerk",
+    "id": "sycophant",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "AwfulNegotiator": {
+    "$type": "StartingPerk",
+    "id": "awful_negotiator",
+    "cost": -3,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEGATIVE",
+    "mindEditable": true
+  },
+  "PublicEnemy": {
+    "$type": "StartingPerk",
+    "id": "public_enemy",
+    "cost": -2,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "well_connected"
+    ],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  },
+  "Alert": {
+    "$type": "StartingPerk",
+    "id": "alert",
+    "cost": 2,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": true
+  },
+  "SawyerCrew": {
+    "$type": "StartingPerk",
+    "id": "sawyer_crew",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "Diplomatic": {
+    "$type": "StartingPerk",
+    "id": "diplomatic",
+    "cost": 2,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": true
+  },
+  "Intimidating": {
+    "$type": "StartingPerk",
+    "id": "intimidating",
+    "cost": 2,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": true
+  },
+  "SideStreet": {
+    "$type": "StartingPerk",
+    "id": "side_street",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "prime_real_estate"
+    ],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  },
+  "NicotineAddiction": {
+    "$type": "StartingPerk",
+    "id": "nicotine_addiction",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEGATIVE",
+    "mindEditable": true
+  },
+  "NarcoticAddiction": {
+    "$type": "StartingPerk",
+    "id": "narcotic_addiction",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEGATIVE",
+    "mindEditable": true
+  },
+  "AlcoholAddiction": {
+    "$type": "StartingPerk",
+    "id": "alcohol_addiction",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEGATIVE",
+    "mindEditable": true
+  },
+  "SecretAdmirer": {
+    "$type": "StartingPerk",
+    "id": "secret_admirer",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "ColorfulCharacter": {
+    "$type": "StartingPerk",
+    "id": "colorful_character",
+    "cost": 1,
+    "maxSlot": 3,
+    "incompatiblePerks": [],
+    "type": "NEUTRAL",
+    "mindEditable": false
+  },
+  "Blackmail": {
+    "$type": "StartingPerk",
+    "id": "blackmail",
+    "cost": -2,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  },
+  "Blabbermouth": {
+    "$type": "StartingPerk",
+    "id": "blabbermouth",
+    "cost": -2,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEGATIVE",
+    "mindEditable": true
+  },
+  "Minimalist": {
+    "$type": "StartingPerk",
+    "id": "minimalist",
+    "cost": -2,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "ascetic"
+    ],
+    "type": "NEGATIVE",
+    "mindEditable": true
+  },
+  "Ascetic": {
+    "$type": "StartingPerk",
+    "id": "ascetic",
+    "cost": -4,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "minimalist"
+    ],
+    "type": "NEGATIVE",
+    "mindEditable": true
+  },
+  "Sentinel": {
+    "$type": "StartingPerk",
+    "id": "sentinel",
+    "cost": -3,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  },
+  "Agoraphobia": {
+    "$type": "StartingPerk",
+    "id": "agoraphobia",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "speedy"
+    ],
+    "type": "NEGATIVE",
+    "mindEditable": true
+  },
+  "WelfareProgram": {
+    "$type": "StartingPerk",
+    "id": "welfare_program",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "banned_commissary"
+    ],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "MakeshiftReactor": {
+    "$type": "StartingPerk",
+    "id": "makeshift_reactor",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEUTRAL",
+    "mindEditable": false
+  },
+  "Hoarder": {
+    "$type": "StartingPerk",
+    "id": "hoarder",
+    "cost": 0,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEUTRAL",
+    "mindEditable": false
+  },
+  "BannedCommissary": {
+    "$type": "StartingPerk",
+    "id": "banned_commissary",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "welfare_program"
+    ],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  },
+  "ProficientScavenger": {
+    "$type": "StartingPerk",
+    "id": "proficient_scavenger",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "maimed"
+    ],
+    "type": "POSITIVE",
+    "mindEditable": true
+  },
+  "CarefulScavenger": {
+    "$type": "StartingPerk",
+    "id": "careful_scavenger",
+    "cost": 0,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "maimed"
+    ],
+    "type": "NEUTRAL",
+    "mindEditable": true
+  },
+  "Maimed": {
+    "$type": "StartingPerk",
+    "id": "maimed",
+    "cost": -2,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "proficient_scavenger",
+      "degenerative_osteoarthritis",
+      "careful_scavenger"
+    ],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  },
+  "RevolutionSympathizer": {
+    "$type": "StartingPerk",
+    "id": "revolution_sympathizer",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "GamblingAddiction": {
+    "$type": "StartingPerk",
+    "id": "gambling_addiction",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEGATIVE",
+    "mindEditable": true
+  },
+  "Tapehead": {
+    "$type": "StartingPerk",
+    "id": "tapehead",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "WildFavorite": {
+    "$type": "StartingPerk",
+    "id": "wild_favorite",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "wild_bad_side"
+    ],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "WildBadSide": {
+    "$type": "StartingPerk",
+    "id": "wild_bad_side",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "wild_favorite"
+    ],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  },
+  "AugMenace": {
+    "$type": "StartingPerk",
+    "id": "aug_menace",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEUTRAL",
+    "mindEditable": false
+  },
+  "Lucky": {
+    "$type": "StartingPerk",
+    "id": "lucky",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "unlucky"
+    ],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "Unlucky": {
+    "$type": "StartingPerk",
+    "id": "unlucky",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "lucky"
+    ],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  },
+  "Handy": {
+    "$type": "StartingPerk",
+    "id": "handy",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "Tinkerer": {
+    "$type": "StartingPerk",
+    "id": "tinkerer",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "VendingMachine": {
+    "$type": "StartingPerk",
+    "id": "vending",
+    "cost": 2,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "ShortSleeper": {
+    "$type": "StartingPerk",
+    "id": "short_sleeper",
+    "cost": 1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": true
+  },
+  "WorkingPipes": {
+    "$type": "StartingPerk",
+    "id": "working_pipes",
+    "cost": 2,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "POSITIVE",
+    "mindEditable": false
+  },
+  "Illiterate": {
+    "$type": "StartingPerk",
+    "id": "illiterate",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEGATIVE",
+    "mindEditable": true
+  },
+  "PrimeRealEstate": {
+    "$type": "StartingPerk",
+    "id": "prime_real_estate",
+    "cost": 0,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "side_street"
+    ],
+    "type": "NEUTRAL",
+    "mindEditable": false
+  },
+  "DegenerativeOsteoarthritis": {
+    "$type": "StartingPerk",
+    "id": "degenerative_osteoarthritis",
+    "cost": -1,
+    "maxSlot": 0,
+    "incompatiblePerks": [
+      "maimed"
+    ],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  },
+  "KnownSnitch": {
+    "$type": "StartingPerk",
+    "id": "known_snitch",
+    "cost": -2,
+    "maxSlot": 0,
+    "incompatiblePerks": [],
+    "type": "NEGATIVE",
+    "mindEditable": false
+  }
+}

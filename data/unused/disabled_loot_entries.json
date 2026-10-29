@@ -1,0 +1,18 @@
+[
+ {
+  "table": "accessCardTable",
+  "value": "sup_keycard",
+  "probability": 0.0,
+  "enabled": false,
+  "weight": 0,
+  "units": 1
+ },
+ {
+  "table": "accessCardTable",
+  "value": "sci_keycard",
+  "probability": 0.0,
+  "enabled": false,
+  "weight": 0,
+  "units": 1
+ }
+]

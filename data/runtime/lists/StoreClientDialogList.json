@@ -1,0 +1,3013 @@
+{
+  "MentorAfterhoursDialog": {
+    "$type": "Dialogue",
+    "title": "The Mentor",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "I've been watching, you're doing well.",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 5,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "The Mentor",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "Once you close the shop for the day...",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 5,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "The Mentor",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "You should have time to go outside before going to sleep.",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 5,
+        "isMainDialog": false,
+        "nextDialogue": {
+          "$type": "Dialogue",
+          "title": "The Mentor",
+          "text": {
+            "$type": "RichTextBuilder",
+            "maxCharWidth": 100,
+            "defaultStyle": [
+              " ",
+              "▏",
+              "▎",
+              "▍",
+              "▌",
+              "▋",
+              "▊",
+              "▉",
+              "█"
+            ],
+            "defaultStyleVertical": [
+              "⠀",
+              "▁",
+              "▂",
+              "▃",
+              "▄",
+              "▅",
+              "▆",
+              "▇",
+              "█"
+            ],
+            "defaultStyleOldSchool": [
+              ".",
+              "\\",
+              "|"
+            ]
+          },
+          "plainText": "You still remember the way to the Dumping Grounds right?",
+          "seenTimes": 0,
+          "forceDisabled": false,
+          "forceHidden": false,
+          "isDummyChoiceDialogue": false,
+          "endActionDelay": 1.1,
+          "isEndActionExecuted": false,
+          "priority": 5,
+          "isMainDialog": false,
+          "nextDialogue": {
+            "$type": "Dialogue",
+            "title": "The Mentor",
+            "text": {
+              "$type": "RichTextBuilder",
+              "maxCharWidth": 100,
+              "defaultStyle": "…Char[]",
+              "defaultStyleVertical": "…Char[]",
+              "defaultStyleOldSchool": "…Char[]"
+            },
+            "plainText": "Going out at night takes time.",
+            "seenTimes": 0,
+            "forceDisabled": false,
+            "forceHidden": false,
+            "isDummyChoiceDialogue": false,
+            "endActionDelay": 1.1,
+            "isEndActionExecuted": false,
+            "priority": 5,
+            "isMainDialog": false,
+            "nextDialogue": {
+              "$type": "Dialogue",
+              "title": "The Mentor",
+              "text": "…RichTextBuilder",
+              "plainText": "You won't open as early the next day, and you'll miss a customer.",
+              "seenTimes": 0,
+              "forceDisabled": false,
+              "forceHidden": false,
+              "isDummyChoiceDialogue": false,
+              "endActionDelay": 1.1,
+              "isEndActionExecuted": false,
+              "priority": 5,
+              "isMainDialog": false,
+              "nextDialogue": "…Dialogue",
+              "choices": "…List`1"
+            },
+            "choices": []
+          },
+          "choices": []
+        },
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  },
+  "MentorIntroDialog": {
+    "$type": "Dialogue",
+    "title": "The Mentor",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Hey, just dropping by to see your first day.",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 5,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "The Mentor",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "Looks like you are all set.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 5,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "The Mentor",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "Listen, I got this for you",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 5,
+        "isMainDialog": false,
+        "nextDialogue": {
+          "$type": "Dialogue",
+          "title": "The Mentor",
+          "text": {
+            "$type": "RichTextBuilder",
+            "maxCharWidth": 100,
+            "defaultStyle": [
+              " ",
+              "▏",
+              "▎",
+              "▍",
+              "▌",
+              "▋",
+              "▊",
+              "▉",
+              "█"
+            ],
+            "defaultStyleVertical": [
+              "⠀",
+              "▁",
+              "▂",
+              "▃",
+              "▄",
+              "▅",
+              "▆",
+              "▇",
+              "█"
+            ],
+            "defaultStyleOldSchool": [
+              ".",
+              "\\",
+              "|"
+            ]
+          },
+          "plainText": "*He pulls some notes from his jacket pocket and places them on the counter.*",
+          "seenTimes": 0,
+          "forceDisabled": false,
+          "forceHidden": false,
+          "isDummyChoiceDialogue": false,
+          "endAction": "fn:<>c.<MentorIntroDialog>b__14_0",
+          "endActionDelay": 1.1,
+          "isEndActionExecuted": false,
+          "priority": 5,
+          "isMainDialog": false,
+          "nextDialogue": {
+            "$type": "Dialogue",
+            "title": "The Mentor",
+            "text": {
+              "$type": "RichTextBuilder",
+              "maxCharWidth": 100,
+              "defaultStyle": "…Char[]",
+              "defaultStyleVertical": "…Char[]",
+              "defaultStyleOldSchool": "…Char[]"
+            },
+            "plainText": "Just some things I wouldn't want you to forget.",
+            "seenTimes": 0,
+            "forceDisabled": false,
+            "forceHidden": false,
+            "isDummyChoiceDialogue": false,
+            "endActionDelay": 1.1,
+            "isEndActionExecuted": false,
+            "priority": 5,
+            "isMainDialog": false,
+            "nextDialogue": {
+              "$type": "Dialogue",
+              "title": "The Mentor",
+              "text": "…RichTextBuilder",
+              "plainText": "Remember to keep both sides of the counter clear, ok?",
+              "seenTimes": 0,
+              "forceDisabled": false,
+              "forceHidden": false,
+              "isDummyChoiceDialogue": false,
+              "endActionDelay": 1.1,
+              "isEndActionExecuted": false,
+              "priority": 5,
+              "isMainDialog": false,
+              "nextDialogue": "…Dialogue",
+              "choices": "…List`1"
+            },
+            "choices": []
+          },
+          "choices": []
+        },
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  },
+  "MentorIntroDialog2": {
+    "$type": "Dialogue",
+    "title": "The Mentor",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Hello.",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 5,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "The Mentor",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "I've got some useful information for you.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 5,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "The Mentor",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "Word is that a mining expedition is coming back tomorrow...",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 5,
+        "isMainDialog": false,
+        "nextDialogue": {
+          "$type": "Dialogue",
+          "title": "The Mentor",
+          "text": {
+            "$type": "RichTextBuilder",
+            "maxCharWidth": 100,
+            "defaultStyle": [
+              " ",
+              "▏",
+              "▎",
+              "▍",
+              "▌",
+              "▋",
+              "▊",
+              "▉",
+              "█"
+            ],
+            "defaultStyleVertical": [
+              "⠀",
+              "▁",
+              "▂",
+              "▃",
+              "▄",
+              "▅",
+              "▆",
+              "▇",
+              "█"
+            ],
+            "defaultStyleOldSchool": [
+              ".",
+              "\\",
+              "|"
+            ]
+          },
+          "plainText": "So the market will be flush with Materials.",
+          "seenTimes": 0,
+          "forceDisabled": false,
+          "forceHidden": false,
+          "isDummyChoiceDialogue": false,
+          "endActionDelay": 1.1,
+          "isEndActionExecuted": false,
+          "priority": 5,
+          "isMainDialog": false,
+          "nextDialogue": {
+            "$type": "Dialogue",
+            "title": "The Mentor",
+            "text": {
+              "$type": "RichTextBuilder",
+              "maxCharWidth": 100,
+              "defaultStyle": "…Char[]",
+              "defaultStyleVertical": "…Char[]",
+              "defaultStyleOldSchool": "…Char[]"
+            },
+            "plainText": "Prices will fall, for a while, while supply outweighs demand.",
+            "seenTimes": 0,
+            "forceDisabled": false,
+            "forceHidden": false,
+            "isDummyChoiceDialogue": false,
+            "endActionDelay": 1.1,
+            "isEndActionExecuted": false,
+            "priority": 5,
+            "isMainDialog": false,
+            "nextDialogue": {
+              "$type": "Dialogue",
+              "title": "The Mentor",
+              "text": "…RichTextBuilder",
+              "plainText": "Try to take advantage of this information.",
+              "seenTimes": 0,
+              "forceDisabled": false,
+              "forceHidden": false,
+              "isDummyChoiceDialogue": false,
+              "endActionDelay": 1.1,
+              "isEndActionExecuted": false,
+              "priority": 5,
+              "isMainDialog": false,
+              "nextDialogue": "…Dialogue",
+              "choices": "…List`1"
+            },
+            "choices": []
+          },
+          "choices": []
+        },
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  },
+  "SecurityDialogInspectionCleared": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "You are all clear.",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 7,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "CLIENT",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "Thank you for your cooperation.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endAction": "fn:<>c.<SecurityDialogInspectionCleared>b__16_0",
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 7,
+      "isMainDialog": false,
+      "choices": []
+    },
+    "choices": []
+  },
+  "SecurityDialogInspectionWarning": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "I found low level contraband.",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 7,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "CLIENT",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "I'll let you off with a warning.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 7,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "CLIENT",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "Don't let me see that again.",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endAction": "fn:<>c.<SecurityDialogInspectionWarning>b__17_0",
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 7,
+        "isMainDialog": false,
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  },
+  "SecurityDialogInspectionSeizure": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Looks like there's some contraband.",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 7,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "CLIENT",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "They will be seized.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 7,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "CLIENT",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "Have a secure shift.",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endAction": "fn:<>c.<SecurityDialogInspectionSeizure>b__18_0",
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 7,
+        "isMainDialog": false,
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  },
+  "SecurityDialogInspectionSeizureStolen": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Looks like there's some stolen items.",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 7,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "CLIENT",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "They will be seized.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 7,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "CLIENT",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "Have a secure shift.",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endAction": "fn:<>c.<SecurityDialogInspectionSeizureStolen>b__19_0",
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 7,
+        "isMainDialog": false,
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  },
+  "SecurityDialogOnContrabandOnCounter": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "That is contraband!",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 6,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "CLIENT",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "Step aside, I will be conducting an full inspection.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 6,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "CLIENT",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "...",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 6,
+        "isMainDialog": false,
+        "nextDialogue": {
+          "$type": "Dialogue",
+          "title": "CLIENT",
+          "text": {
+            "$type": "RichTextBuilder",
+            "maxCharWidth": 100,
+            "defaultStyle": [
+              " ",
+              "▏",
+              "▎",
+              "▍",
+              "▌",
+              "▋",
+              "▊",
+              "▉",
+              "█"
+            ],
+            "defaultStyleVertical": [
+              "⠀",
+              "▁",
+              "▂",
+              "▃",
+              "▄",
+              "▅",
+              "▆",
+              "▇",
+              "█"
+            ],
+            "defaultStyleOldSchool": [
+              ".",
+              "\\",
+              "|"
+            ]
+          },
+          "plainText": "...",
+          "seenTimes": 0,
+          "forceDisabled": false,
+          "forceHidden": false,
+          "isDummyChoiceDialogue": false,
+          "endAction": "fn:<>c.<SecurityDialogOnContrabandOnCounter>b__20_0",
+          "endActionDelay": 1.1,
+          "isEndActionExecuted": false,
+          "priority": 6,
+          "isMainDialog": false,
+          "choices": []
+        },
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  },
+  "SecurityDialogOnStolenOnCounter": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "That is stolen!",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 6,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "CLIENT",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "Step aside, I will be conducting an full inspection.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 6,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "CLIENT",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "...",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 6,
+        "isMainDialog": false,
+        "nextDialogue": {
+          "$type": "Dialogue",
+          "title": "CLIENT",
+          "text": {
+            "$type": "RichTextBuilder",
+            "maxCharWidth": 100,
+            "defaultStyle": [
+              " ",
+              "▏",
+              "▎",
+              "▍",
+              "▌",
+              "▋",
+              "▊",
+              "▉",
+              "█"
+            ],
+            "defaultStyleVertical": [
+              "⠀",
+              "▁",
+              "▂",
+              "▃",
+              "▄",
+              "▅",
+              "▆",
+              "▇",
+              "█"
+            ],
+            "defaultStyleOldSchool": [
+              ".",
+              "\\",
+              "|"
+            ]
+          },
+          "plainText": "...",
+          "seenTimes": 0,
+          "forceDisabled": false,
+          "forceHidden": false,
+          "isDummyChoiceDialogue": false,
+          "endAction": "fn:<>c.<SecurityDialogOnStolenOnCounter>b__21_0",
+          "endActionDelay": 1.1,
+          "isEndActionExecuted": false,
+          "priority": 6,
+          "isMainDialog": false,
+          "choices": []
+        },
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  },
+  "SecurityDialogInspectionLastLine": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Open your cargo hold and step aside.",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "startAction": "fn:<>c__DisplayClass22_0.<SecurityDialogInspectionLastLine>b__0",
+    "endAction": "fn:<>c.<SecurityDialogInspectionLastLine>b__22_1",
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 5,
+    "isMainDialog": false,
+    "choices": [
+      {
+        "$type": "ValueTuple`3",
+        "Item1": {
+          "$type": "GameItemElement",
+          "handler": "TreeNodeRender:Item unknown Node",
+          "inner": "TreeNodeRender:Node",
+          "fakeInner": "TreeNodeRender:Node",
+          "middle": "TreeNodeRender:Node",
+          "rotator": "TreeNodeRender:Node",
+          "background": "TreeNodeRender:Node",
+          "fakeMiddle": "TreeNodeRender:Node",
+          "fakeRotator": "TreeNodeRender:Node",
+          "fakeBackground": "TreeNodeRender:Node",
+          "tempShape": {
+            "$type": "GridShapeBuilder",
+            "minX": 0,
+            "minY": 0,
+            "flipped": false,
+            "orientation": 0,
+            "width": 1,
+            "height": 1,
+            "outside": 0
+          },
+          "shape": {
+            "$type": "GridShapeBuilder",
+            "minX": 0,
+            "minY": 0,
+            "flipped": false,
+            "orientation": 0,
+            "width": 1,
+            "height": 1,
+            "outside": 0
+          },
+          "modifiedShape": {
+            "$type": "GridShapeBuilder",
+            "minX": 0,
+            "minY": 0,
+            "flipped": false,
+            "orientation": 0,
+            "width": 1,
+            "height": 1,
+            "outside": 0
+          },
+          "modifiedXOrigin": 0,
+          "modifiedYOrigin": 0,
+          "state": {
+            "$type": "TagSystem",
+            "dict": {
+              "IS_OWNED_TAG": "ref:IS_OWNED_TAG"
+            }
+          },
+          "modifiedState": {
+            "$type": "TagSystem",
+            "dict": {
+              "IS_OWNED_TAG": "ref:IS_OWNED_TAG"
+            }
+          },
+          "identifier": "yes",
+          "uniqueId": 0,
+          "name": "[Accept Inspection]",
+          "shortDescription": "",
+          "longDescription": "",
+          "flavorText": "",
+          "unitCount": 1,
+          "unitValue": 0,
+          "lateUnitValue": 0,
+          "unitBaseValue": 0,
+          "backupUnitValue": 0,
+          "forceDisableActivate": false,
+          "forceDisableUse": false,
+          "activateDefault": true,
+          "isCombatBackpack": false,
+          "spritePath": "unknown",
+          "spriteAtlasPath": "Items/itematlas",
+          "spriteChanged": false,
+          "useSpriteFromMod": false,
+          "isDebugMenu": false,
+          "soundDragStart": "move_item_default",
+          "soundContainerOpen": "light_click",
+          "itemFeatures": [],
+          "itemTypes": [],
+          "bonusAccuracy": 0,
+          "effects": [],
+          "triggerOverwatch": false,
+          "canUseOutsideCombat": true,
+          "mayInventoryAddItemFunc": "fn:<>c.<TransformItemChoice>b__6_3",
+          "mayInventoryRemoveItemFunc": "fn:<>c.<TransformItemChoice>b__6_5",
+          "mayStackItemFunc": "fn:<>c.<TransformItemChoice>b__6_2",
+          "maxSlotAddItemFunc": "fn:<>c.<TransformItemChoice>b__6_4",
+          "onSlotAddItemFunc": "fn:GameItem.<.ctor>b__177_0",
+          "mayActivateSlotItemFunc": "fn:<>c.<TransformItemChoice>b__6_0",
+          "canActivateSlotItemFunc": "fn:<>c.<TransformItemChoice>b__6_1"
+        },
+        "Item2": {
+          "$type": "Dialogue",
+          "title": "CLIENT",
+          "text": {
+            "$type": "RichTextBuilder",
+            "maxCharWidth": 100,
+            "defaultStyle": [
+              " ",
+              "▏",
+              "▎",
+              "▍",
+              "▌",
+              "▋",
+              "▊",
+              "▉",
+              "█"
+            ],
+            "defaultStyleVertical": [
+              "⠀",
+              "▁",
+              "▂",
+              "▃",
+              "▄",
+              "▅",
+              "▆",
+              "▇",
+              "█"
+            ],
+            "defaultStyleOldSchool": [
+              ".",
+              "\\",
+              "|"
+            ]
+          },
+          "plainText": "[Accept Inspection.]",
+          "seenTimes": 0,
+          "forceDisabled": false,
+          "forceHidden": false,
+          "isDummyChoiceDialogue": false,
+          "endActionDelay": 1.1,
+          "isEndActionExecuted": false,
+          "priority": 5,
+          "isMainDialog": false,
+          "nextDialogue": {
+            "$type": "Dialogue",
+            "title": "CLIENT",
+            "text": {
+              "$type": "RichTextBuilder",
+              "maxCharWidth": 100,
+              "defaultStyle": "…Char[]",
+              "defaultStyleVertical": "…Char[]",
+              "defaultStyleOldSchool": "…Char[]"
+            },
+            "plainText": "...",
+            "seenTimes": 0,
+            "forceDisabled": false,
+            "forceHidden": false,
+            "isDummyChoiceDialogue": false,
+            "endActionDelay": 1.1,
+            "isEndActionExecuted": false,
+            "priority": 5,
+            "isMainDialog": false,
+            "nextDialogue": {
+              "$type": "Dialogue",
+              "title": "CLIENT",
+              "text": "…RichTextBuilder",
+              "plainText": "...",
+              "seenTimes": 0,
+              "forceDisabled": false,
+              "forceHidden": false,
+              "isDummyChoiceDialogue": false,
+              "endAction": "fn:<>c__DisplayClass22_0.<SecurityDialogInspectionLastLine>b__3",
+              "endActionDelay": 1.1,
+              "isEndActionExecuted": false,
+              "priority": 5,
+              "isMainDialog": false,
+              "choices": "…List`1"
+            },
+            "choices": []
+          },
+          "choices": []
+        },
+        "Item3": "fn:<>c.<SecurityDialogInspectionLastLine>b__22_2"
+      }
+    ]
+  },
+  "SecurityDialogInspectionArrest": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "What is this?",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 7,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "CLIENT",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "You are under arrest for possession of Contraband.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endAction": "fn:<>c.<SecurityDialogInspectionArrest>b__24_0",
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 7,
+      "isMainDialog": false,
+      "choices": []
+    },
+    "choices": []
+  },
+  "SecurityDialogInspectionGrace": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "What is this?",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 7,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "CLIENT",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "I would have you arrested for this.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 7,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "CLIENT",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "But looks like you have friends in high places.",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 7,
+        "isMainDialog": false,
+        "nextDialogue": {
+          "$type": "Dialogue",
+          "title": "CLIENT",
+          "text": {
+            "$type": "RichTextBuilder",
+            "maxCharWidth": 100,
+            "defaultStyle": [
+              " ",
+              "▏",
+              "▎",
+              "▍",
+              "▌",
+              "▋",
+              "▊",
+              "▉",
+              "█"
+            ],
+            "defaultStyleVertical": [
+              "⠀",
+              "▁",
+              "▂",
+              "▃",
+              "▄",
+              "▅",
+              "▆",
+              "▇",
+              "█"
+            ],
+            "defaultStyleOldSchool": [
+              ".",
+              "\\",
+              "|"
+            ]
+          },
+          "plainText": "Next time you won't be so lucky.",
+          "seenTimes": 0,
+          "forceDisabled": false,
+          "forceHidden": false,
+          "isDummyChoiceDialogue": false,
+          "endAction": "fn:<>c.<SecurityDialogInspectionGrace>b__25_0",
+          "endActionDelay": 1.1,
+          "isEndActionExecuted": false,
+          "priority": 7,
+          "isMainDialog": false,
+          "choices": []
+        },
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  },
+  "SecurityOnShowLowLevel": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Keep it low profile.",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 5,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "CLIENT",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "We tolerate it, doesn't make it legal.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endAction": "fn:<>c.<SecurityOnShowLowLevel>b__26_0",
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 5,
+      "isMainDialog": false,
+      "choices": []
+    },
+    "choices": []
+  },
+  "SecurityOnShowLowLevelBad": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Why would you show that to me?",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endAction": "fn:<>c.<SecurityOnShowLowLevelBad>b__27_0",
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 5,
+    "isMainDialog": false,
+    "choices": []
+  },
+  "ClientArrestDialog": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Hey, what's the meaning of this?",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 7,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "SEC",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "Just cooperate, and this will be over soon.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endAction": "fn:<>c.<ClientArrestDialog>b__35_0",
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 7,
+      "isMainDialog": false,
+      "choices": []
+    },
+    "choices": []
+  },
+  "ClientAlarmInitialReactionDialog": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Hmm?",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 6,
+    "isMainDialog": false,
+    "choices": []
+  },
+  "ClientArrestDialogCriminal": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "DON'T SHOOT.",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 5,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "SEC",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "We have some questions for you. Let's go.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endAction": "fn:<>c.<ClientArrestDialogCriminal>b__37_0",
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 5,
+      "isMainDialog": false,
+      "choices": []
+    },
+    "choices": []
+  },
+  "WildNetworkContinue": {
+    "$type": "Dialogue",
+    "title": "CLIENT",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Let me explain something to you.",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 5,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "CLIENT",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "This little sector of ours is an ecosystem.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 5,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "CLIENT",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "Take too much without giving anything back...",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 5,
+        "isMainDialog": false,
+        "nextDialogue": {
+          "$type": "Dialogue",
+          "title": "CLIENT",
+          "text": {
+            "$type": "RichTextBuilder",
+            "maxCharWidth": 100,
+            "defaultStyle": [
+              " ",
+              "▏",
+              "▎",
+              "▍",
+              "▌",
+              "▋",
+              "▊",
+              "▉",
+              "█"
+            ],
+            "defaultStyleVertical": [
+              "⠀",
+              "▁",
+              "▂",
+              "▃",
+              "▄",
+              "▅",
+              "▆",
+              "▇",
+              "█"
+            ],
+            "defaultStyleOldSchool": [
+              ".",
+              "\\",
+              "|"
+            ]
+          },
+          "plainText": "The balance is broken and everything collapses.",
+          "seenTimes": 0,
+          "forceDisabled": false,
+          "forceHidden": false,
+          "isDummyChoiceDialogue": false,
+          "endActionDelay": 1.1,
+          "isEndActionExecuted": false,
+          "priority": 5,
+          "isMainDialog": false,
+          "nextDialogue": {
+            "$type": "Dialogue",
+            "title": "CLIENT",
+            "text": {
+              "$type": "RichTextBuilder",
+              "maxCharWidth": 100,
+              "defaultStyle": "…Char[]",
+              "defaultStyleVertical": "…Char[]",
+              "defaultStyleOldSchool": "…Char[]"
+            },
+            "plainText": "I am willing to do you some favors and, in return...",
+            "seenTimes": 0,
+            "forceDisabled": false,
+            "forceHidden": false,
+            "isDummyChoiceDialogue": false,
+            "endActionDelay": 1.1,
+            "isEndActionExecuted": false,
+            "priority": 5,
+            "isMainDialog": false,
+            "nextDialogue": {
+              "$type": "Dialogue",
+              "title": "CLIENT",
+              "text": "…RichTextBuilder",
+              "plainText": "You look out for the Lower Levels from time to time.",
+              "seenTimes": 0,
+              "forceDisabled": false,
+              "forceHidden": false,
+              "isDummyChoiceDialogue": false,
+              "endActionDelay": 1.1,
+              "isEndActionExecuted": false,
+              "priority": 5,
+              "isMainDialog": false,
+              "nextDialogue": "…Dialogue",
+              "choices": "…List`1"
+            },
+            "choices": []
+          },
+          "choices": []
+        },
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  },
+  "SecAugDialog": {
+    "$type": "Dialogue",
+    "title": "SEC",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Damn it! The Aug is gone again?!",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 5,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "SEC",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "If you see an Aug again,",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 5,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "SEC",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "You better shoot it on sight!",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 5,
+        "isMainDialog": false,
+        "nextDialogue": {
+          "$type": "Dialogue",
+          "title": "SEC",
+          "text": {
+            "$type": "RichTextBuilder",
+            "maxCharWidth": 100,
+            "defaultStyle": [
+              " ",
+              "▏",
+              "▎",
+              "▍",
+              "▌",
+              "▋",
+              "▊",
+              "▉",
+              "█"
+            ],
+            "defaultStyleVertical": [
+              "⠀",
+              "▁",
+              "▂",
+              "▃",
+              "▄",
+              "▅",
+              "▆",
+              "▇",
+              "█"
+            ],
+            "defaultStyleOldSchool": [
+              ".",
+              "\\",
+              "|"
+            ]
+          },
+          "plainText": "They hacked into our comms.",
+          "seenTimes": 0,
+          "forceDisabled": false,
+          "forceHidden": false,
+          "isDummyChoiceDialogue": false,
+          "endActionDelay": 1.1,
+          "isEndActionExecuted": false,
+          "priority": 5,
+          "isMainDialog": false,
+          "nextDialogue": {
+            "$type": "Dialogue",
+            "title": "SEC",
+            "text": {
+              "$type": "RichTextBuilder",
+              "maxCharWidth": 100,
+              "defaultStyle": "…Char[]",
+              "defaultStyleVertical": "…Char[]",
+              "defaultStyleOldSchool": "…Char[]"
+            },
+            "plainText": "Alright, stay safe.",
+            "seenTimes": 0,
+            "forceDisabled": false,
+            "forceHidden": false,
+            "isDummyChoiceDialogue": false,
+            "endAction": "fn:<>c.<SecAugDialog>b__39_0",
+            "endActionDelay": 1.1,
+            "isEndActionExecuted": false,
+            "priority": 5,
+            "isMainDialog": false,
+            "choices": []
+          },
+          "choices": []
+        },
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  },
+  "MentorShotgunDialog": {
+    "$type": "Dialogue",
+    "title": "The Mentor",
+    "text": {
+      "$type": "RichTextBuilder",
+      "maxCharWidth": 100,
+      "defaultStyle": [
+        " ",
+        "▏",
+        "▎",
+        "▍",
+        "▌",
+        "▋",
+        "▊",
+        "▉",
+        "█"
+      ],
+      "defaultStyleVertical": [
+        "⠀",
+        "▁",
+        "▂",
+        "▃",
+        "▄",
+        "▅",
+        "▆",
+        "▇",
+        "█"
+      ],
+      "defaultStyleOldSchool": [
+        ".",
+        "\\",
+        "|"
+      ]
+    },
+    "plainText": "Hey, have you seen the news?",
+    "seenTimes": 0,
+    "forceDisabled": false,
+    "forceHidden": false,
+    "isDummyChoiceDialogue": false,
+    "endActionDelay": 1.1,
+    "isEndActionExecuted": false,
+    "priority": 5,
+    "isMainDialog": false,
+    "nextDialogue": {
+      "$type": "Dialogue",
+      "title": "The Mentor",
+      "text": {
+        "$type": "RichTextBuilder",
+        "maxCharWidth": 100,
+        "defaultStyle": [
+          " ",
+          "▏",
+          "▎",
+          "▍",
+          "▌",
+          "▋",
+          "▊",
+          "▉",
+          "█"
+        ],
+        "defaultStyleVertical": [
+          "⠀",
+          "▁",
+          "▂",
+          "▃",
+          "▄",
+          "▅",
+          "▆",
+          "▇",
+          "█"
+        ],
+        "defaultStyleOldSchool": [
+          ".",
+          "\\",
+          "|"
+        ]
+      },
+      "plainText": "Something's wrong with the new brain implants they just released.",
+      "seenTimes": 0,
+      "forceDisabled": false,
+      "forceHidden": false,
+      "isDummyChoiceDialogue": false,
+      "endActionDelay": 1.1,
+      "isEndActionExecuted": false,
+      "priority": 5,
+      "isMainDialog": false,
+      "nextDialogue": {
+        "$type": "Dialogue",
+        "title": "The Mentor",
+        "text": {
+          "$type": "RichTextBuilder",
+          "maxCharWidth": 100,
+          "defaultStyle": [
+            " ",
+            "▏",
+            "▎",
+            "▍",
+            "▌",
+            "▋",
+            "▊",
+            "▉",
+            "█"
+          ],
+          "defaultStyleVertical": [
+            "⠀",
+            "▁",
+            "▂",
+            "▃",
+            "▄",
+            "▅",
+            "▆",
+            "▇",
+            "█"
+          ],
+          "defaultStyleOldSchool": [
+            ".",
+            "\\",
+            "|"
+          ]
+        },
+        "plainText": "Apparently the AI inside those implant went rogue and were able to take over their host.",
+        "seenTimes": 0,
+        "forceDisabled": false,
+        "forceHidden": false,
+        "isDummyChoiceDialogue": false,
+        "endActionDelay": 1.1,
+        "isEndActionExecuted": false,
+        "priority": 5,
+        "isMainDialog": false,
+        "nextDialogue": {
+          "$type": "Dialogue",
+          "title": "The Mentor",
+          "text": {
+            "$type": "RichTextBuilder",
+            "maxCharWidth": 100,
+            "defaultStyle": [
+              " ",
+              "▏",
+              "▎",
+              "▍",
+              "▌",
+              "▋",
+              "▊",
+              "▉",
+              "█"
+            ],
+            "defaultStyleVertical": [
+              "⠀",
+              "▁",
+              "▂",
+              "▃",
+              "▄",
+              "▅",
+              "▆",
+              "▇",
+              "█"
+            ],
+            "defaultStyleOldSchool": [
+              ".",
+              "\\",
+              "|"
+            ]
+          },
+          "plainText": "Those taken over by the implants are being referred as Augs.",
+          "seenTimes": 0,
+          "forceDisabled": false,
+          "forceHidden": false,
+          "isDummyChoiceDialogue": false,
+          "endActionDelay": 1.1,
+          "isEndActionExecuted": false,
+          "priority": 5,
+          "isMainDialog": false,
+          "nextDialogue": {
+            "$type": "Dialogue",
+            "title": "The Mentor",
+            "text": {
+              "$type": "RichTextBuilder",
+              "maxCharWidth": 100,
+              "defaultStyle": "…Char[]",
+              "defaultStyleVertical": "…Char[]",
+              "defaultStyleOldSchool": "…Char[]"
+            },
+            "plainText": "They are pretending to be normal while kidnapping and augmenting more people.",
+            "seenTimes": 0,
+            "forceDisabled": false,
+            "forceHidden": false,
+            "isDummyChoiceDialogue": false,
+            "endActionDelay": 1.1,
+            "isEndActionExecuted": false,
+            "priority": 5,
+            "isMainDialog": false,
+            "nextDialogue": {
+              "$type": "Dialogue",
+              "title": "The Mentor",
+              "text": "…RichTextBuilder",
+              "plainText": "Here, I got this for you. Don't worry, I already handled the paperworks.",
+              "seenTimes": 0,
+              "forceDisabled": false,
+              "forceHidden": false,
+              "isDummyChoiceDialogue": false,
+              "endAction": "fn:<>c.<MentorShotgunDialog>b__41_0",
+              "endActionDelay": 1.1,
+              "isEndActionExecuted": false,
+              "priority": 5,
+              "isMainDialog": false,
+              "nextDialogue": "…Dialogue",
+              "choices": "…List`1"
+            },
+            "choices": []
+          },
+          "choices": []
+        },
+        "choices": []
+      },
+      "choices": []
+    },
+    "choices": []
+  }
+}

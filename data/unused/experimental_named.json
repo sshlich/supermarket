@@ -1,0 +1,217 @@
+[
+ {
+  "id": "dev_damage",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false
+ },
+ {
+  "id": "dev_damage_all",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:39"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false
+ },
+ {
+  "id": "experimental_injector_black",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false
+ },
+ {
+  "id": "experimental_injector_green",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false
+ },
+ {
+  "id": "experimental_injector_purple",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false
+ },
+ {
+  "id": "experimental_injector_red",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false
+ },
+ {
+  "id": "experimental_injector_white",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:29"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false
+ },
+ {
+  "id": "lottery_ticket_old",
+  "directory": "AmenitiesItemDirectory",
+  "type": "GameItem",
+  "name": "Old Lottery Ticket",
+  "value": 1,
+  "desc": "A worthless ticket from the Lower Levels Lottery. No winning numbers, just faded hope.",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true
+ },
+ {
+  "id": "lou_old_orders",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Old Republic Orders",
+  "value": "0",
+  "desc": "A yellowed, brittle sheet. It looks like it has been folded and unfolded many times. It's a written order addressed to Lou, dated years ago. A faded Republic seal is still visible at the top.",
+  "code_refs": [
+   "LouToyBoxHelper:18",
+   "LouToyBoxHelper:40"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": true
+ },
+ {
+  "id": "sign_household",
+  "directory": "ToolDirectory",
+  "type": "GameItem",
+  "name": "Household Item Neon Sign",
+  "value": "100",
+  "desc": "Place it in the display case to attract customer that will sell Household Good",
+  "code_refs": [
+   "NewGameData:147",
+   "ShowcaseHelper:246",
+   "ShowcaseHelper:248",
+   "ShowcaseHelper:248",
+   "StoreClientList:1068"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": true
+ },
+ {
+  "id": "sold_save_bag",
+  "directory": "ContainerItemDirectory",
+  "type": "GameItem",
+  "name": "Hidden Save Bag",
+  "value": "0",
+  "desc": "",
+  "code_refs": [
+   "ItemSpawnerHiddenList:6",
+   "PlayerStore:856"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": true
+ },
+ {
+  "id": "test_gizmo",
+  "directory": "FurnitureItemDirectory",
+  "type": "GameItem",
+  "name": "Test Gizmo",
+  "value": 0,
+  "desc": "",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true
+ },
+ {
+  "id": "test_water",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DebugPanel:1561"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false
+ },
+ {
+  "id": "test_water2",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DebugPanel:1562"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false
+ },
+ {
+  "id": "test_water3",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DebugPanel:1563"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false
+ },
+ {
+  "id": "water_test_container",
+  "directory": "AmenitiesItemDirectory",
+  "type": "GameItem",
+  "name": "Water Testing Kit",
+  "value": 1,
+  "desc": "A small bottle of color strips used to test water quality.",
+  "code_refs": [
+   "AmenitiesItemDirectory:155",
+   "PreBuiltItemHelper:121"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": true
+ },
+ {
+  "id": "water_test_strip",
+  "directory": "AmenitiesItemDirectory",
+  "type": "GameItem",
+  "name": "Water Testing Strip",
+  "value": 3,
+  "desc": "A testing strip used to accurately determine the quality of a water sample.",
+  "code_refs": [
+   "GeneralHelper:39",
+   "PreBuiltItemHelper:124"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": true
+ }
+]

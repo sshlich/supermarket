@@ -1,0 +1,102 @@
+{
+  "MartialLaw": {
+    "$type": "FactionStatus",
+    "identifier": "martial_law",
+    "displayName": "Martial Law",
+    "duration": 6,
+    "description": "Martial Law has been declared on the station, giving Security significantly more power by suspending individual rights and freedoms.",
+    "strengthModifier": -7,
+    "orderModifier": 5,
+    "happinessModifier": -3
+  },
+  "SecurityCrackdown": {
+    "$type": "FactionStatus",
+    "identifier": "security_crackdown",
+    "displayName": "Security Crackdown",
+    "duration": 2,
+    "description": "Security has launched a station-wide crackdown, increasing detentions and searches, but stretching resources thin.",
+    "strengthModifier": -14,
+    "orderModifier": 8,
+    "happinessModifier": -4
+  },
+  "SecurityCheckpoint": {
+    "$type": "FactionStatus",
+    "identifier": "security_checkpoint",
+    "displayName": "Security Checkpoint",
+    "duration": 4,
+    "description": "Security has set up checkpoints on the station, slowing down movement through key areas.",
+    "strengthModifier": -3,
+    "orderModifier": 3,
+    "happinessModifier": -1
+  },
+  "SecurityBudgetCut": {
+    "$type": "FactionStatus",
+    "identifier": "security_budget_cut",
+    "displayName": "Security Budget Cut",
+    "duration": 5,
+    "description": "Security is facing budget cuts, reducing their resource, which embolden criminal on the Station.",
+    "strengthModifier": -3,
+    "orderModifier": -3,
+    "happinessModifier": 0
+  },
+  "SecurityBudgetIncrease": {
+    "$type": "FactionStatus",
+    "identifier": "security_budget_increase",
+    "displayName": "Security Budget Increase",
+    "duration": 5,
+    "description": "Security has received a budget increase, causing some criminals to lay low.",
+    "strengthModifier": 3,
+    "orderModifier": 3,
+    "happinessModifier": 0
+  },
+  "ReducedPatrol": {
+    "$type": "FactionStatus",
+    "identifier": "reduced_patrol",
+    "displayName": "Reduced Patrol",
+    "duration": 5,
+    "description": "Security has reduced patrol coverage, leading to increased criminal activity and disorder.",
+    "strengthModifier": 1,
+    "orderModifier": -2,
+    "happinessModifier": 0
+  },
+  "ExtraPatrol": {
+    "$type": "FactionStatus",
+    "identifier": "extra_patrol",
+    "displayName": "Extra Patrol",
+    "duration": 5,
+    "description": "Security has increased patrol coverage, discouraging criminal activity and improving order.",
+    "strengthModifier": -1,
+    "orderModifier": 2,
+    "happinessModifier": 2
+  },
+  "SurveillanceUpgrade": {
+    "$type": "FactionStatus",
+    "identifier": "surveillance_upgrade",
+    "displayName": "Surveillance Upgrade",
+    "duration": -1,
+    "description": "New surveillance systems have been installed, improving security response times and reducing criminal activity.",
+    "strengthModifier": 0,
+    "orderModifier": 2,
+    "happinessModifier": 0
+  },
+  "EmergencyLockdown": {
+    "$type": "FactionStatus",
+    "identifier": "emergency_lockdown",
+    "displayName": "Emergency Lockdown",
+    "duration": 2,
+    "description": "An emergency lockdown has been initiated, cutting off movement and forcing order, at a heavy cost to resources.",
+    "strengthModifier": -15,
+    "orderModifier": 30,
+    "happinessModifier": -8
+  },
+  "TacticalDeployment": {
+    "$type": "FactionStatus",
+    "identifier": "tactical_deployment",
+    "displayName": "ERT Deployment",
+    "duration": 4,
+    "description": "Security has deployed Emergency Response Teams, increasing security presence and maintaining order.",
+    "strengthModifier": -5,
+    "orderModifier": 5,
+    "happinessModifier": 2
+  }
+}

@@ -1,0 +1,8819 @@
+{
+ "AbilityItemHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ItemSelectHandler"
+  ]
+ },
+ "AchievementTracker": {
+  "base": "MonoBehaviour",
+  "referenced_by": 13,
+  "users": [
+   "AppraisalServiceHelper",
+   "LabelerElement",
+   "MachineChemFinisher",
+   "ModuleEffectHelper",
+   "NewGameData",
+   "PlantList",
+   "PlayerStore",
+   "ScratcherHelper",
+   "StartOfDayUIManager",
+   "StoreClientList"
+  ]
+ },
+ "ActionQueue": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "ArmorHelper",
+   "CombatAbilityEffectInstantDirectory",
+   "CombatEntity",
+   "CombatManager",
+   "CombatMaster",
+   "EffectHelper",
+   "GCIHelper",
+   "GameCharacterItem",
+   "RaidManager"
+  ]
+ },
+ "AdvButtonElement": {
+  "base": "SelectableElement",
+  "referenced_by": 0,
+  "users": []
+ },
+ "AdvCalendarUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 7,
+  "users": [
+   "CalendarEventElement",
+   "EmporiumEntry",
+   "MindReprogrammerHelper",
+   "StartOfDayUIManager",
+   "StoreCalendar",
+   "StoreCreditDisplay",
+   "StoreUIManager"
+  ]
+ },
+ "AdvancedContentSizeFitter": {
+  "base": "ContentSizeFitter",
+  "referenced_by": 0,
+  "users": []
+ },
+ "AdvancedHorizontalFlowLayoutGroup": {
+  "base": "LayoutGroup",
+  "referenced_by": 0,
+  "users": []
+ },
+ "AdvancedHorizontalLayoutGroup": {
+  "base": "LayoutGroup",
+  "referenced_by": 0,
+  "users": []
+ },
+ "AfterhourActiveEvent": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "AfterhourEvents",
+   "AfterhourLocationState"
+  ]
+ },
+ "AfterhourDebug": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "AfterhourEffect": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "AfterhourDebug",
+   "AfterhourEventDefinition",
+   "ModHelper"
+  ]
+ },
+ "AfterhourEffectPolarity": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "AfterhourEffect",
+   "AfterhourEventDefinition",
+   "ModHelper",
+   "VanillaAfterhourEvents"
+  ]
+ },
+ "AfterhourEventDefinition": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "AfterhourDebug",
+   "AfterhourEvents",
+   "AfterhourLocation",
+   "CustomUIAfterhourEventsPanel",
+   "ModHelper",
+   "TransitUI",
+   "VanillaAfterhourEvents"
+  ]
+ },
+ "AfterhourEventTone": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "AfterhourEventDefinition",
+   "ModHelper",
+   "TransitUI",
+   "VanillaAfterhourEvents"
+  ]
+ },
+ "AfterhourEvents": {
+  "base": null,
+  "referenced_by": 11,
+  "users": [
+   "AfterhourDebug",
+   "AfterhourEventDefinition",
+   "AfterhourLocation",
+   "CustomUIAfterhourEventsPanel",
+   "DrJacksonLocation",
+   "ModHelper",
+   "PlayerStore",
+   "StoreClientList",
+   "StoreClientUniqueList",
+   "TransitUI"
+  ]
+ },
+ "AfterhourLocation": {
+  "base": null,
+  "referenced_by": 14,
+  "users": [
+   "AfterhourDebug",
+   "AfterhourEvents",
+   "CommissaryData",
+   "CommissaryLocation",
+   "CustomUIAfterhourEventsPanel",
+   "DelegateAfterhourLocation",
+   "DrJacksonLocation",
+   "DumpingGroundLocation",
+   "MapUIManager",
+   "ModHelper"
+  ]
+ },
+ "AfterhourLocationState": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "AfterhourEvents",
+   "AfterhourLocation",
+   "MapUIManager",
+   "PlayerStore"
+  ]
+ },
+ "AfterhourWeekday": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "AfterhourEventDefinition",
+   "ModHelper",
+   "VanillaAfterhourEvents"
+  ]
+ },
+ "AgableHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "WineHelper"
+  ]
+ },
+ "AmenitiesItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "AmenitiesManager": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "GameItem"
+  ]
+ },
+ "AmmoBoxHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "PlayerStore",
+   "StoreClient",
+   "UnusedDirectory"
+  ]
+ },
+ "AnimalCage": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "GameItemElement",
+   "HusbandryDirectory",
+   "HusbandryHelper",
+   "MachineAutoButcher",
+   "MaterialDirectory",
+   "NetworkUpgradeList",
+   "NewGameData"
+  ]
+ },
+ "AnimalMarkHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameItemElement",
+   "HusbandryDirectory",
+   "MachineAutoButcher"
+  ]
+ },
+ "AnimalSpecies": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "GeneticHelper",
+   "HusbandryHelper",
+   "MachineFeedDispenser",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "AnimationUtils": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "AppGemstoneHelper": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "AppHandHelper": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "AppraisalItemRegistry",
+   "DebugPanel",
+   "GameItemElement",
+   "MiscItemDirectory",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "AppHandUI": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "InspectionUIManager"
+  ]
+ },
+ "AppNavHelper": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "AppraisalGuildInteractionEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "AppraisalHelper": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "AppGemstoneHelper",
+   "AppHandHelper",
+   "AppNavHelper",
+   "AppraisalServiceHelper",
+   "GameItemElement",
+   "MiscItemDirectory",
+   "PlasmaHelper",
+   "PreBuiltItemHelper",
+   "RibwichHelper"
+  ]
+ },
+ "AppraisalItemRegistry": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "AppraisalHelper",
+   "AppraisalItemType",
+   "AppraisalItemsWindow",
+   "AppraisalRankHelper",
+   "ModHelper",
+   "StoreClientListAppraisal"
+  ]
+ },
+ "AppraisalItemType": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "AppraisalHelper",
+   "AppraisalItemRegistry",
+   "AppraisalItemsWindow",
+   "AppraisalRankHelper",
+   "ModHelper",
+   "StoreClientListAppraisal"
+  ]
+ },
+ "AppraisalItemsWindow": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "AppraisalRankHelper"
+  ]
+ },
+ "AppraisalRankHelper": {
+  "base": null,
+  "referenced_by": 10,
+  "users": [
+   "AppraisalItemsWindow",
+   "AppraisalServiceHelper",
+   "GameItemElement",
+   "ItemContextHandler",
+   "MiscItemDirectory",
+   "ModHelper",
+   "ShowcaseHelper",
+   "StoreClientListAppraisal",
+   "StoreClientManager",
+   "StoreShutterButton"
+  ]
+ },
+ "AppraisalSentEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "AppraisalServiceHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "InspectionUIManager"
+  ]
+ },
+ "AquacultureHelper": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "AnimalMarkHelper",
+   "AquacultureItems",
+   "DebugPanel",
+   "GameItemElement",
+   "HusbandryHelper",
+   "MachineAutoButcher",
+   "MachineFeedDispenser",
+   "MachineRAS",
+   "MedsItemDirectory"
+  ]
+ },
+ "AquacultureItems": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "AquacultureHelper",
+   "DebugPanel",
+   "FishSpecies",
+   "HusbandryDirectory",
+   "NetworkUpgradeList",
+   "NewGameData",
+   "StoreClientListSpec"
+  ]
+ },
+ "Arm": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "StoreUIManager"
+  ]
+ },
+ "ArmorHelper": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "ArmorItemDirectory",
+   "ContainerItemDirectory",
+   "GameCharacterItem",
+   "GameItem",
+   "Loadout",
+   "ShipHelper",
+   "UnusedDirectory"
+  ]
+ },
+ "ArmorItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "AudioAsset": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "AudioDirectory"
+  ]
+ },
+ "AudioDirectory": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "AudioManager",
+   "ModLoader",
+   "StoreUISounds"
+  ]
+ },
+ "AudioHelper": {
+  "base": null,
+  "referenced_by": 65,
+  "users": [
+   "AmenitiesItemDirectory",
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AppraisalRankHelper",
+   "AquacultureHelper",
+   "AquacultureItems",
+   "ArmorItemDirectory",
+   "BannerLocationElement",
+   "BookHelper",
+   "ConstructionItemDirectory"
+  ]
+ },
+ "AudioManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 65,
+  "users": [
+   "AdvButtonElement",
+   "AmenitiesItemDirectory",
+   "AnimalMarkHelper",
+   "AquacultureHelper",
+   "AudioDirectory",
+   "AudioHelper",
+   "BlackLampHelper",
+   "ButtonElement",
+   "CurrentConverterHelper",
+   "DebrisHelper"
+  ]
+ },
+ "AugHelper": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "PlayerStore",
+   "StoreClientDialogList",
+   "StoreClientList",
+   "StoreClientManager",
+   "StoreUIManager"
+  ]
+ },
+ "AugScanner": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GameItemElement",
+   "MiscItemDirectory"
+  ]
+ },
+ "BannerLocationElement": {
+  "base": "SelectableElement",
+  "referenced_by": 1,
+  "users": [
+   "OverlayHandler"
+  ]
+ },
+ "BargainButton": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "BargainUIManager"
+  ]
+ },
+ "BargainPanelDock": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "BargainUIManager"
+  ]
+ },
+ "BargainPanelFrame": {
+  "base": "TabletSkin",
+  "referenced_by": 1,
+  "users": [
+   "BargainUIManager"
+  ]
+ },
+ "BargainType": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "BargainButton",
+   "BargainUIManager"
+  ]
+ },
+ "BargainUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 6,
+  "users": [
+   "BargainButton",
+   "NegociationUIManager",
+   "Shotgun",
+   "StoreClient",
+   "StoreReputation",
+   "StoreSecButton"
+  ]
+ },
+ "BarterCondition": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "BarterOffer",
+   "BarterOfferList",
+   "ExchangeBarter",
+   "ExchangeList"
+  ]
+ },
+ "BarterHelper": {
+  "base": null,
+  "referenced_by": 12,
+  "users": [
+   "GameItem",
+   "GameItemElement",
+   "SpaceButcherTrigger",
+   "SpaceDistressSignalTrigger",
+   "SpaceDrugShipTrigger",
+   "SpaceFuelTankerTrigger",
+   "SpaceMiningShipTrigger",
+   "SpaceNutrifruitShopTrigger",
+   "SpaceRefugeeTrigger",
+   "SpaceRepairShipTrigger"
+  ]
+ },
+ "BarterOffer": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "BarterOfferList",
+   "SerpicoStoryline",
+   "StoreClient",
+   "StoreClientListBarter",
+   "StoreClientListUnused",
+   "StoreClientUniqueList"
+  ]
+ },
+ "BarterOfferList": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "SerpicoStoryline",
+   "StoreClientListBarter",
+   "StoreClientUniqueList"
+  ]
+ },
+ "BarterResult": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "BarterOffer",
+   "PlayerStore",
+   "ProcurementData",
+   "StoreClientListBarter",
+   "StoreClientListProcurement",
+   "StoreClientListUnused"
+  ]
+ },
+ "Base": {
+  "base": "GraphNodeStorage",
+  "referenced_by": 3,
+  "users": [
+   "HydroponicHelper",
+   "UnusedDirectory",
+   "WaterHelper"
+  ]
+ },
+ "BetaGenerator": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "BlackLampHelper": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "GameItemElement",
+   "MiscItemDirectory",
+   "PlayerStore",
+   "ShowcaseHelper"
+  ]
+ },
+ "BookHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "MiscItemDirectory",
+   "PaperBookRegistry",
+   "PaperUIManager"
+  ]
+ },
+ "BoxMullerGenerator": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "BusinessPermitBoughtEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "ButtonElement": {
+  "base": "SelectableElement",
+  "referenced_by": 10,
+  "users": [
+   "DirectoryUtils",
+   "GridPixelElement",
+   "MachineryContainerUtils",
+   "MenuScene",
+   "OverlayHandler",
+   "RaidScene",
+   "ShipScene",
+   "StationMachinerieHelper",
+   "StationMachinery",
+   "UnusedDirectory"
+  ]
+ },
+ "ButtonTextColor": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "RunSummaryUI"
+  ]
+ },
+ "CalendarDayElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "AdvCalendarUIManager"
+  ]
+ },
+ "CalendarEventElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "CalendarDayElement"
+  ]
+ },
+ "Cancelable": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "ItemMouseDragHandler",
+   "ItemMultiSelectHandler",
+   "ItemSelectHandler",
+   "OverlayHandler",
+   "QuickChooseHandler",
+   "WindowsHandler"
+  ]
+ },
+ "CanteenHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "FoodItemHelper",
+   "GameItemElement",
+   "Survival"
+  ]
+ },
+ "CassetteHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GameItemElement",
+   "MiscItemDirectory"
+  ]
+ },
+ "CharacterGameAction": {
+  "base": "GameAction",
+  "referenced_by": 1,
+  "users": [
+   "GameCharacterItem"
+  ]
+ },
+ "CharacterItemDirectory": {
+  "base": "Directory<GameCharacterItem>",
+  "referenced_by": 4,
+  "users": [
+   "DirectoryCombatEntity",
+   "DirectoryMaster",
+   "NpcCharacterItemDirectory",
+   "PlayerCharacterItemDirectory"
+  ]
+ },
+ "ChemFinishElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "ChemFinisherUIManager"
+  ]
+ },
+ "ChemFinisherRecipe": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "ChemFinisherUIManager",
+   "MachineChemFinisher",
+   "MedsItemDirectory"
+  ]
+ },
+ "ChemFinisherUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "ChemFinishElement",
+   "EmporiumEntry",
+   "MachineChemFinisher"
+  ]
+ },
+ "ChemScannerEffect": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "ChemScannerUIManager"
+  ]
+ },
+ "ChemScannerUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "EmporiumEntry",
+   "MedsItemDirectory",
+   "StoreUIManager"
+  ]
+ },
+ "ChemicalCompositionHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "HydroponicDirectory",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "ChemicalFeedbackHelper": {
+  "base": null,
+  "referenced_by": 8,
+  "users": [
+   "ChemScannerUIManager",
+   "MedsItemDirectory",
+   "SecData",
+   "SoldItem",
+   "StoreClientListSpec",
+   "StoreUIManager",
+   "VendingMachineHelper",
+   "WaterHelper"
+  ]
+ },
+ "ChemicalHelper": {
+  "base": null,
+  "referenced_by": 15,
+  "users": [
+   "AmenitiesItemDirectory",
+   "ChemFinisherRecipe",
+   "ChemicalCompositionHelper",
+   "ChemicalProductHelper",
+   "HusbandryDirectory",
+   "HydroponicDirectory",
+   "MachineBlender",
+   "MachineChemFinisher",
+   "MedsItemDirectory",
+   "PlantTraitList"
+  ]
+ },
+ "ChemicalProductHelper": {
+  "base": null,
+  "referenced_by": 10,
+  "users": [
+   "AchievementTracker",
+   "ChemScannerUIManager",
+   "ChemicalFeedbackHelper",
+   "ExchangeList",
+   "HealthData",
+   "ItemFeature",
+   "MachineChemFinisher",
+   "MedsItemDirectory",
+   "StoreClient",
+   "StoreClientListTierSubstance"
+  ]
+ },
+ "CigaretteUI": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "InspectionUIManager"
+  ]
+ },
+ "ClientCanExposeFunc": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "StoreClient",
+   "StoreClientList",
+   "StoreClientListStory",
+   "StoreClientListTier",
+   "StoreClientListUnused",
+   "StoreClientListWanted"
+  ]
+ },
+ "ClientSpriteVariety": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "SpriteDict",
+   "StoreClient"
+  ]
+ },
+ "ClienteleUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "EmporiumEntry",
+   "PlayerStore",
+   "StoreClienteleDisplay"
+  ]
+ },
+ "ColoredPixelElement": {
+  "base": "PixelElement",
+  "referenced_by": 0,
+  "users": []
+ },
+ "CombatAI": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "CharacterItemDirectory",
+   "CombatEntity",
+   "DirectoryCombatAI",
+   "DirectoryCombatEntity",
+   "GameCharacterItem"
+  ]
+ },
+ "CombatAIHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "CombatAI",
+   "DirectoryCombatAI",
+   "Loadout"
+  ]
+ },
+ "CombatAbility": {
+  "base": null,
+  "referenced_by": 13,
+  "users": [
+   "CombatAbilityDirectory",
+   "CombatEntity",
+   "CombatManager",
+   "CombatMaster",
+   "CustomGameAction",
+   "DirectoryCombatAI",
+   "DirectoryMaster",
+   "ExplosiveItemDirectory",
+   "GameCharacterItem",
+   "GameItem"
+  ]
+ },
+ "CombatAbilityDirectory": {
+  "base": "Directory<CombatAbility>",
+  "referenced_by": 2,
+  "users": [
+   "DirectoryMaster",
+   "StandardCombatAbilityDirectory"
+  ]
+ },
+ "CombatAbilityEffect": {
+  "base": "TagSystem",
+  "referenced_by": 27,
+  "users": [
+   "AbilityItemHelper",
+   "CharacterItemDirectory",
+   "CombatAbility",
+   "CombatAbilityEffectDirectory",
+   "CombatAbilityEffectInstantDirectory",
+   "CombatAbilityEffectPermanentDirectory",
+   "CombatAbilityEffectStandardDirectory",
+   "CombatEntity",
+   "CombatManager",
+   "CustomGameAction"
+  ]
+ },
+ "CombatAbilityEffectDirectory": {
+  "base": "Directory<CombatAbilityEffect>",
+  "referenced_by": 5,
+  "users": [
+   "CombatAbilityEffectInstantDirectory",
+   "CombatAbilityEffectPermanentDirectory",
+   "CombatAbilityEffectStandardDirectory",
+   "DirectoryMaster",
+   "PerkDirectory"
+  ]
+ },
+ "CombatAbilityEffectInstantDirectory": {
+  "base": "CombatAbilityEffectDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "CombatAbilityEffectPermanentDirectory": {
+  "base": "CombatAbilityEffectDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "CombatAbilityEffectStandardDirectory": {
+  "base": "CombatAbilityEffectDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "CombatEndedUIController": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "CombatEntity": {
+  "base": null,
+  "referenced_by": 21,
+  "users": [
+   "AbilityItemHelper",
+   "CharacterItemDirectory",
+   "CombatAI",
+   "CombatAIHelper",
+   "CombatAbilityEffect",
+   "CombatAbilityEffectInstantDirectory",
+   "CombatAbilityEffectPermanentDirectory",
+   "CombatAbilityEffectStandardDirectory",
+   "CombatManager",
+   "CombatMaster"
+  ]
+ },
+ "CombatEntityBuilder": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "CombatEntityStat": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "CombatEvent": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "CombatEventHandler",
+   "DirectoryCombatEvent"
+  ]
+ },
+ "CombatEventHandler": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "CombatManager",
+   "TurnManager"
+  ]
+ },
+ "CombatLog": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "ArmorHelper",
+   "CombatAbilityEffectInstantDirectory",
+   "CombatEntity",
+   "CombatManager",
+   "CombatMaster",
+   "DirectoryCombatEvent",
+   "EffectHelper",
+   "GameCharacterItem",
+   "UnusedDirectory"
+  ]
+ },
+ "CombatManager": {
+  "base": null,
+  "referenced_by": 12,
+  "users": [
+   "CombatAI",
+   "CombatAIHelper",
+   "CombatAbilityEffect",
+   "CombatAbilityEffectInstantDirectory",
+   "CombatEntity",
+   "CombatEvent",
+   "CombatEventHandler",
+   "CombatMaster",
+   "DirectoryCombatAI",
+   "DirectoryCombatAbilityEffect"
+  ]
+ },
+ "CombatManagerMono": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "CombatManager"
+  ]
+ },
+ "CombatMaster": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "RaidManager"
+  ]
+ },
+ "CombatParty": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "CombatManager",
+   "CombatMaster"
+  ]
+ },
+ "CommissaryData": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "CommissaryUIManager",
+   "GunOrderData",
+   "PlayerStore",
+   "StoreClientList",
+   "StoreClientManager"
+  ]
+ },
+ "CommissaryElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "CommissaryUIManager"
+  ]
+ },
+ "CommissaryItemData": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "CommissaryData",
+   "StoreClientList"
+  ]
+ },
+ "CommissaryLocation": {
+  "base": "AfterhourLocation",
+  "referenced_by": 1,
+  "users": [
+   "AfterhourLocation"
+  ]
+ },
+ "CommissaryUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 5,
+  "users": [
+   "CommissaryElement",
+   "CommissaryLocation",
+   "DebugPanel",
+   "MapUIManager",
+   "PhoneDialogList"
+  ]
+ },
+ "CommonTooltipHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GameItemElement",
+   "ShipItemDirectory"
+  ]
+ },
+ "ConfigEntry": {
+  "base": "ConfigEntry",
+  "referenced_by": 2,
+  "users": [
+   "ModConfig",
+   "ModConfigWindow"
+  ]
+ },
+ "ConfirmPanelUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "MainMenuUIController",
+   "ModUIManager",
+   "StoreUIManager"
+  ]
+ },
+ "Confirmable": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "QuickChooseHandler"
+  ]
+ },
+ "ConfrontEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "ConstHelper": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "ConstructionItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ConsumableHelper": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "AmenitiesItemDirectory",
+   "FoodItemDirectory",
+   "MedsItemDirectory",
+   "WineHelper"
+  ]
+ },
+ "ContactElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "PhoneBookUIManager"
+  ]
+ },
+ "ContainerHelper": {
+  "base": null,
+  "referenced_by": 29,
+  "users": [
+   "AmenitiesItemDirectory",
+   "ContainerItemDirectory",
+   "DirectoryUtils",
+   "EmporiumEntry",
+   "EquipmentHelper",
+   "GameItemElement",
+   "HusbandryDirectory",
+   "LockHelper",
+   "MachineAlarm",
+   "MachineBlender"
+  ]
+ },
+ "ContainerItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ContrabandHelper": {
+  "base": null,
+  "referenced_by": 36,
+  "users": [
+   "AmenitiesItemDirectory",
+   "AmmoBoxHelper",
+   "ChemicalFeedbackHelper",
+   "ContainerItemDirectory",
+   "EmporiumEntry",
+   "ExchangeList",
+   "ExplosiveItemDirectory",
+   "GameItem",
+   "GameItemElement",
+   "GunFrameHelper"
+  ]
+ },
+ "CorporateSheet": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "CounterMoveChild": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "CraftingCustomFilter": {
+  "base": "CraftingFilter",
+  "referenced_by": 2,
+  "users": [
+   "CraftingRecipe",
+   "UnusedDirectory"
+  ]
+ },
+ "CraftingFilter": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "CraftingCustomFilter",
+   "CraftingIdentifierFilter",
+   "CraftingRecipe",
+   "CraftingRecipeManager",
+   "CraftingTagsFilter",
+   "UnusedDirectory"
+  ]
+ },
+ "CraftingHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "UnusedDirectory"
+  ]
+ },
+ "CraftingIdentifierFilter": {
+  "base": "CraftingFilter",
+  "referenced_by": 3,
+  "users": [
+   "Base",
+   "CraftingRecipe",
+   "UnusedDirectory"
+  ]
+ },
+ "CraftingRecipe": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "Base",
+   "CraftingHelper",
+   "CraftingRecipeManager",
+   "GameItem",
+   "RecipeManager",
+   "UnusedDirectory",
+   "VendingRecipeManager"
+  ]
+ },
+ "CraftingRecipeManager": {
+  "base": "RecipeManager",
+  "referenced_by": 2,
+  "users": [
+   "CraftingHelper",
+   "UnusedDirectory"
+  ]
+ },
+ "CraftingTagsFilter": {
+  "base": "CraftingFilter",
+  "referenced_by": 3,
+  "users": [
+   "CraftingRecipe",
+   "CraftingRecipeManager",
+   "UnusedDirectory"
+  ]
+ },
+ "Creature": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "HumanCreature"
+  ]
+ },
+ "CreditsFrame": {
+  "base": "NewGamePanelFrame",
+  "referenced_by": 2,
+  "users": [
+   "CreditsUI",
+   "CustomUIManager"
+  ]
+ },
+ "CreditsUI": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "CustomUIManager",
+   "MainMenuUIController"
+  ]
+ },
+ "CultureBootstrap": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "CurrentConverterHelper": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "GameItemElement",
+   "MachineTurboBoosterAdv",
+   "MaterialDirectory",
+   "MiscItemDirectory",
+   "ModuleHelper",
+   "PlayerStore",
+   "PowerHelper",
+   "StoreClientList",
+   "StoreService"
+  ]
+ },
+ "CustomEventHandler": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "TreeNodeRender"
+  ]
+ },
+ "CustomGameAction": {
+  "base": "GameAction",
+  "referenced_by": 0,
+  "users": []
+ },
+ "CustomUIAfterhourEventsPanel": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "CustomUIDebugPanel"
+  ]
+ },
+ "CustomUIBuilder": {
+  "base": null,
+  "referenced_by": 23,
+  "users": [
+   "AfterhourLocation",
+   "AppraisalItemsWindow",
+   "CommissaryLocation",
+   "CustomUIAfterhourEventsPanel",
+   "CustomUIDebugPanel",
+   "CustomUIDebugWindows",
+   "CustomUIItemSpawner",
+   "CustomUIManager",
+   "CustomUIWindowFrame",
+   "DelegateAfterhourLocation"
+  ]
+ },
+ "CustomUICanvasAnchor": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "CustomUIManager"
+  ]
+ },
+ "CustomUIDebugPanel": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "CustomUIAfterhourEventsPanel",
+   "ModHelper",
+   "StoreUIManager"
+  ]
+ },
+ "CustomUIDebugWindows": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "CustomUIDebugPanel",
+   "CustomUIManager",
+   "DebugPanel"
+  ]
+ },
+ "CustomUIDragForwarder": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "CustomUIDebugPanel"
+  ]
+ },
+ "CustomUIElement": {
+  "base": null,
+  "referenced_by": 17,
+  "users": [
+   "CustomUIAfterhourEventsPanel",
+   "CustomUIBuilder",
+   "CustomUIDebugPanel",
+   "CustomUIDebugWindows",
+   "CustomUIItemSpawner",
+   "CustomUIManager",
+   "CustomUIWindow",
+   "DumpingGroundLocation",
+   "GameOptionUIManager",
+   "HopperHelper"
+  ]
+ },
+ "CustomUIItemSpawner": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "CustomUIDebugPanel",
+   "DebugHandler"
+  ]
+ },
+ "CustomUIMachineryStyle": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "CustomUIManager"
+  ]
+ },
+ "CustomUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 40,
+  "users": [
+   "AppraisalItemsWindow",
+   "BargainUIManager",
+   "CreditsUI",
+   "CustomUIAfterhourEventsPanel",
+   "CustomUIBuilder",
+   "CustomUICanvasAnchor",
+   "CustomUIDebugPanel",
+   "CustomUIDebugWindows",
+   "CustomUIElement",
+   "CustomUIItemSpawner"
+  ]
+ },
+ "CustomUIProgressBar": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "CustomUIElement",
+   "CustomUIMachineryStyle"
+  ]
+ },
+ "CustomUITooltipTrigger": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "CustomUIElement",
+   "CustomUIManager",
+   "NewGameDifficultyUI",
+   "NewGameUIElements"
+  ]
+ },
+ "CustomUIWindow": {
+  "base": null,
+  "referenced_by": 28,
+  "users": [
+   "AppraisalItemsWindow",
+   "BargainUIManager",
+   "CreditsUI",
+   "CustomUIAfterhourEventsPanel",
+   "CustomUIBuilder",
+   "CustomUIDebugPanel",
+   "CustomUIDebugWindows",
+   "CustomUIItemSpawner",
+   "CustomUIManager",
+   "CustomUIWindowFrame"
+  ]
+ },
+ "CustomUIWindowFrame": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "CustomUIMachineryStyle",
+   "CustomUIManager",
+   "CustomUIWindow",
+   "PaperEditorInspect"
+  ]
+ },
+ "CustomerReportedEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "DebrisHelper": {
+  "base": null,
+  "referenced_by": 8,
+  "users": [
+   "GameItemElement",
+   "InventorySortHelper",
+   "MeleeWeaponItemDirectory",
+   "MiscItemDirectory",
+   "PlayerStore",
+   "StartingPerkContent",
+   "StoreService",
+   "ToolDirectory"
+  ]
+ },
+ "Debug": {
+  "base": null,
+  "referenced_by": 201,
+  "users": [
+   "AchievementTracker",
+   "AfterhourEventDefinition",
+   "AfterhourEvents",
+   "AfterhourLocation",
+   "AmmoBoxHelper",
+   "AppraisalHelper",
+   "AppraisalItemRegistry",
+   "AppraisalItemType",
+   "AppraisalItemsWindow",
+   "AppraisalServiceHelper"
+  ]
+ },
+ "DebugHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 1,
+  "users": [
+   "DebugPanel"
+  ]
+ },
+ "DebugOwnershipToggleMode": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "DebugPanel",
+   "EmporiumEntry"
+  ]
+ },
+ "DebugPanel": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "CustomUIDebugPanel",
+   "GameItem"
+  ]
+ },
+ "DelayedAnimatorEnable": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "DelegateAfterhourLocation": {
+  "base": "AfterhourLocation",
+  "referenced_by": 1,
+  "users": [
+   "ModHelper"
+  ]
+ },
+ "Deque": {
+  "base": "IDeque<T>",
+  "referenced_by": 1,
+  "users": [
+   "ActionQueue"
+  ]
+ },
+ "DevConsoleStripper": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "DevMode": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "DevTools": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "CustomUIDebugPanel",
+   "DevConsoleStripper",
+   "StoreUIManager"
+  ]
+ },
+ "DialogBubbleList": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "StoreUIManager"
+  ]
+ },
+ "DialogBubbleWidth": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "DialogChoiceBubble": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "DialogUIManager",
+   "DialoguePhoneUIManager"
+  ]
+ },
+ "DialogSettingUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "StoreClientDialogList"
+  ]
+ },
+ "DialogUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 46,
+  "users": [
+   "AmmoBoxHelper",
+   "AppraisalServiceHelper",
+   "BargainUIManager",
+   "ChemScannerUIManager",
+   "ContrabandHelper",
+   "DialogChoiceBubble",
+   "DialoguePhoneUIManager",
+   "EmporiumOption",
+   "InspectionUIManager",
+   "ItemFeatureUI"
+  ]
+ },
+ "Dialogue": {
+  "base": null,
+  "referenced_by": 61,
+  "users": [
+   "AmmoBoxHelper",
+   "AppraisalHelper",
+   "AppraisalServiceHelper",
+   "AugHelper",
+   "BargainUIManager",
+   "ChemicalProductHelper",
+   "DialogUIManager",
+   "DialogueHandler",
+   "DialoguePhoneUIManager",
+   "DurabilityHelper"
+  ]
+ },
+ "DialogueHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 0,
+  "users": []
+ },
+ "DialoguePhoneUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "DialogChoiceBubble",
+   "EmporiumOption",
+   "PhoneUIManager",
+   "StoreUIManager"
+  ]
+ },
+ "Difficulty": {
+  "base": null,
+  "referenced_by": 20,
+  "users": [
+   "AchievementTracker",
+   "AppraisalRankHelper",
+   "AugHelper",
+   "CustomUIManager",
+   "EndOfDayUIManager",
+   "ItemFeatureList",
+   "LoanPanelUIManager",
+   "MenuManager",
+   "ModHelper",
+   "NetworkUpgrade"
+  ]
+ },
+ "DifficultyRules": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "Difficulty",
+   "ModHelper",
+   "PlayerStore",
+   "StoreService"
+  ]
+ },
+ "Directory": {
+  "base": "MonoBehaviour",
+  "referenced_by": 19,
+  "users": [
+   "CharacterItemDirectory",
+   "CombatAbilityDirectory",
+   "CombatAbilityEffectDirectory",
+   "CustomUIDebugPanel",
+   "CustomUIItemSpawner",
+   "DirectoryMaster",
+   "ItemDirectory",
+   "LogWriter",
+   "ModConfig",
+   "ModHelper"
+  ]
+ },
+ "DirectoryCombatAI": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "NpcCharacterItemDirectory"
+  ]
+ },
+ "DirectoryCombatAbilityEffect": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "DirectoryCombatEntity": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "NpcCharacterItemDirectory",
+   "PlayerCharacterItemDirectory"
+  ]
+ },
+ "DirectoryCombatEvent": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "CombatAbilityEffectInstantDirectory",
+   "DirectoryCombatAbilityEffect"
+  ]
+ },
+ "DirectoryEntry": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "CombatAbility",
+   "CombatAbilityDirectory",
+   "CombatAbilityEffect",
+   "CombatEntity",
+   "Directory",
+   "DirectoryMaster",
+   "GameCharacterItem",
+   "GameItem",
+   "TagState"
+  ]
+ },
+ "DirectoryMaster": {
+  "base": null,
+  "referenced_by": 149,
+  "users": [
+   "AppraisalRankHelper",
+   "AugHelper",
+   "CharacterItemDirectory",
+   "CombatAI",
+   "CombatEntity",
+   "CombatManager",
+   "CommissaryData",
+   "ContrabandHelper",
+   "CraftingRecipe",
+   "CustomUIDebugPanel"
+  ]
+ },
+ "DirectoryUtils": {
+  "base": null,
+  "referenced_by": 8,
+  "users": [
+   "AmenitiesItemDirectory",
+   "ContainerItemDirectory",
+   "IntelUnusedHelper",
+   "MiscItemDirectory",
+   "ShipItemDirectory",
+   "ShipSystemDirectory",
+   "StationMachinery",
+   "UnusedDirectory"
+  ]
+ },
+ "DrJacksonLocation": {
+  "base": "AfterhourLocation",
+  "referenced_by": 1,
+  "users": [
+   "AfterhourLocation"
+  ]
+ },
+ "DropDirectory": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "DropTableDirectory",
+   "DropTableFournitureDirectory",
+   "EnemyFactory",
+   "RoomFactory",
+   "ShipHelper",
+   "SpaceCargoPodTrigger"
+  ]
+ },
+ "DropTable": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "DropDirectory",
+   "DropTableDirectory",
+   "DropTableFournitureDirectory",
+   "Drops"
+  ]
+ },
+ "DropTableDirectory": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "DropDirectory",
+   "DropTableFournitureDirectory"
+  ]
+ },
+ "DropTableFournitureDirectory": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "DropDirectory"
+  ]
+ },
+ "DropTableItem": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "DropDirectory",
+   "DropTable"
+  ]
+ },
+ "DropdownLocalizer": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "Drops": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "DropDirectory",
+   "DropTableFournitureDirectory",
+   "RoomFactory"
+  ]
+ },
+ "DumpingGroundLocation": {
+  "base": "AfterhourLocation",
+  "referenced_by": 1,
+  "users": [
+   "AfterhourLocation"
+  ]
+ },
+ "DurabilityHelper": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "AmenitiesItemDirectory",
+   "GameItemElement",
+   "ItemFeature",
+   "NetworkUpgradeList",
+   "NewGameData",
+   "PlantTraitList",
+   "PreBuiltItemHelper",
+   "StoreClientUniqueList",
+   "WaterHelper"
+  ]
+ },
+ "EffectHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "GameCharacterItem"
+  ]
+ },
+ "EmporiumAnalytics": {
+  "base": null,
+  "referenced_by": 13,
+  "users": [
+   "AppraisalServiceHelper",
+   "ContrabandHelper",
+   "EmporiumOption",
+   "EndOfDayUIManager",
+   "EscapeUIManager",
+   "InspectionUIManager",
+   "MainMenuUIController",
+   "PlayerStore",
+   "StoreClientDialogList",
+   "StoreClientList"
+  ]
+ },
+ "EmporiumAudioPlayer": {
+  "base": "MonoBehaviour",
+  "referenced_by": 63,
+  "users": [
+   "AdvCalendarUIManager",
+   "AnimalCage",
+   "BargainUIManager",
+   "ChemFinisherUIManager",
+   "ChemScannerUIManager",
+   "ClienteleUIManager",
+   "CommissaryUIManager",
+   "CurrentConverterHelper",
+   "CustomUIDebugPanel",
+   "EndOfDayUIManager"
+  ]
+ },
+ "EmporiumEntry": {
+  "base": "MonoBehaviour",
+  "referenced_by": 92,
+  "users": [
+   "AchievementTracker",
+   "AppraisalRankHelper",
+   "AppraisalServiceHelper",
+   "AudioManager",
+   "BargainUIManager",
+   "BarterOffer",
+   "BlackLampHelper",
+   "ChemicalHelper",
+   "ClienteleUIManager",
+   "CommissaryData"
+  ]
+ },
+ "EmporiumOption": {
+  "base": "MonoBehaviour",
+  "referenced_by": 25,
+  "users": [
+   "DialogSettingUIManager",
+   "DialogUIManager",
+   "DialoguePhoneUIManager",
+   "EmporiumAnalytics",
+   "EmporiumEntry",
+   "EscapeUIManager",
+   "GameOptionRegistry",
+   "GameOptionUIManager",
+   "InventorySortHelper",
+   "ItemContextHandler"
+  ]
+ },
+ "EmporiumRTSController": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "Interactable",
+   "InteractableUI",
+   "ItemFeatureUI",
+   "ItemTypeUIElement"
+  ]
+ },
+ "EmporiumScreen": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "EmptyAction": {
+  "base": "GameAction",
+  "referenced_by": 7,
+  "users": [
+   "ArmorHelper",
+   "CombatAbilityEffectInstantDirectory",
+   "CombatEntity",
+   "CombatManager",
+   "EffectHelper",
+   "GameCharacterItem",
+   "RaidManager"
+  ]
+ },
+ "EmptyActionHandler": {
+  "base": "InputActionHandler",
+  "referenced_by": 16,
+  "users": [
+   "DebugHandler",
+   "DialogueHandler",
+   "ItemContextHandler",
+   "ItemDefaultActivateHandler",
+   "ItemMouseDoubleClickHandler",
+   "ItemMouseDragHandler",
+   "ItemMouseHandler",
+   "ItemMultiSelectHandler",
+   "ItemQuickTransferAltHandler",
+   "ItemQuickTransferAltHandler1"
+  ]
+ },
+ "EmptyPixelElement": {
+  "base": "PixelElement",
+  "referenced_by": 1,
+  "users": [
+   "RaidScene"
+  ]
+ },
+ "EndOfDayTabletFrame": {
+  "base": "TabletFrame",
+  "referenced_by": 1,
+  "users": [
+   "EndOfDayUIManager"
+  ]
+ },
+ "EndOfDayUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 5,
+  "users": [
+   "MapUIManager",
+   "ServiceElement",
+   "StoreBedroll",
+   "StoreUIManager",
+   "TutorialUIManager"
+  ]
+ },
+ "EnemyFactory": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "SchematicCorridor",
+   "SchematicStandard",
+   "StationGeneration"
+  ]
+ },
+ "EnergyType": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ThingContainer"
+  ]
+ },
+ "EquipmentDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "EquipmentHelper": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "CurrentConverterHelper",
+   "GameItemElement",
+   "HypertechBatteryHelper",
+   "ModuleHelper",
+   "UnusedDirectory"
+  ]
+ },
+ "EscapeUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "StoreUIManager",
+   "StoreUISounds"
+  ]
+ },
+ "EventData": {
+  "base": null,
+  "referenced_by": 35,
+  "users": [
+   "EventTrigger",
+   "EventTriggerManager",
+   "NewBehaviourScript",
+   "OverlayHandler",
+   "ShipManager",
+   "ShipScene",
+   "SpaceAsteroidTrigger",
+   "SpaceBanditTrigger",
+   "SpaceBattleTrigger",
+   "SpaceButcherTrigger"
+  ]
+ },
+ "EventListCosmetic": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "NewsUIManager",
+   "StoreEventManager"
+  ]
+ },
+ "EventListInnate": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "AdvCalendarUIManager"
+  ]
+ },
+ "EventListNormal": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "DebugPanel",
+   "GunOrderDebug",
+   "StoreClientDialogList",
+   "StoreClientListInformation",
+   "StoreClientListInformationDialog",
+   "StoreClientListStory",
+   "StoreEventManager"
+  ]
+ },
+ "EventListSpecial": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StoreEventManager"
+  ]
+ },
+ "EventListThreat": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "EventListUnique": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "StoreClientListWanted",
+   "StoreClientUniqueList",
+   "StoreEventManager"
+  ]
+ },
+ "EventTrigger": {
+  "base": "PriorityTrigger",
+  "referenced_by": 31,
+  "users": [
+   "EventTriggerManager",
+   "NewBehaviourScript",
+   "SpaceAsteroidTrigger",
+   "SpaceBanditTrigger",
+   "SpaceBattleTrigger",
+   "SpaceButcherTrigger",
+   "SpaceCargoConvoyTrigger",
+   "SpaceCargoPodTrigger",
+   "SpaceDebrisFieldTrigger",
+   "SpaceDistressSignalFakeTrigger"
+  ]
+ },
+ "EventTriggerManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "TurnManager"
+  ]
+ },
+ "EventUnused": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "ExchangeBarter": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "ExchangeList",
+   "ExchangeManager"
+  ]
+ },
+ "ExchangeElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "ExchangeUIManager"
+  ]
+ },
+ "ExchangeList": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ExchangeManager"
+  ]
+ },
+ "ExchangeManager": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "PlayerStore"
+  ]
+ },
+ "ExchangeUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "EmporiumEntry",
+   "MiscItemDirectory",
+   "StoreUIManager"
+  ]
+ },
+ "Expedition": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "ExpeditionAccident",
+   "ExpeditionData",
+   "ExpeditionPoi",
+   "ExpeditionPoiList",
+   "Hireling"
+  ]
+ },
+ "ExpeditionAccident": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "Expedition"
+  ]
+ },
+ "ExpeditionData": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "PlayerStore"
+  ]
+ },
+ "ExpeditionHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "Expedition",
+   "ExpeditionData",
+   "StoreClientListSpec"
+  ]
+ },
+ "ExpeditionLocation": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "Expedition",
+   "ExpeditionData",
+   "ExpeditionLocationList"
+  ]
+ },
+ "ExpeditionLocationList": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ExpeditionData"
+  ]
+ },
+ "ExpeditionPoi": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "Expedition",
+   "ExpeditionLocation",
+   "ExpeditionPoiList"
+  ]
+ },
+ "ExpeditionPoiList": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ExpeditionLocation"
+  ]
+ },
+ "ExplosiveItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "FactionStatus": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "FactionStatusList"
+  ]
+ },
+ "FactionStatusList": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "FeedbackBox": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "FishDiet": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "AquacultureHelper",
+   "FishSpecies"
+  ]
+ },
+ "FishSpecies": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "AquacultureHelper",
+   "AquacultureItems",
+   "DebugPanel",
+   "HusbandryDirectory",
+   "NetworkUpgradeList",
+   "NewGameData",
+   "StoreClientListSpec"
+  ]
+ },
+ "FishStage": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "AquacultureHelper",
+   "DebugPanel",
+   "FishSpecies"
+  ]
+ },
+ "FontLoader": {
+  "base": "MonoBehaviour",
+  "referenced_by": 21,
+  "users": [
+   "BargainUIManager",
+   "CreditsUI",
+   "CustomUIElement",
+   "CustomUIMachineryStyle",
+   "CustomUIManager",
+   "EndOfDayUIManager",
+   "LoadGameUI",
+   "NegociationUIManager",
+   "NewGameCommonButton",
+   "NewGameDifficultyUI"
+  ]
+ },
+ "FoodItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 2,
+  "users": [
+   "FoodItemHelper",
+   "HydroponicDirectory"
+  ]
+ },
+ "FoodItemHelper": {
+  "base": null,
+  "referenced_by": 14,
+  "users": [
+   "AquacultureHelper",
+   "AquacultureItems",
+   "ChemicalCompositionHelper",
+   "FoodItemDirectory",
+   "GameItemElement",
+   "GutterflowPelletHelper",
+   "HydroponicDirectory",
+   "IndustrialFishFeedHelper",
+   "MachineAutoButcher",
+   "MachineFeedDispenser"
+  ]
+ },
+ "FuelUI": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "InspectionUIManager"
+  ]
+ },
+ "FurnitureItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "GCIHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "SpaceMedicTrigger"
+  ]
+ },
+ "GameAction": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "ActionQueue",
+   "CharacterGameAction",
+   "CustomGameAction",
+   "EmptyAction",
+   "ItemGameAction"
+  ]
+ },
+ "GameCharacterItem": {
+  "base": "GameItemElement",
+  "referenced_by": 74,
+  "users": [
+   "AbilityItemHelper",
+   "ArmorHelper",
+   "BarterHelper",
+   "CanteenHelper",
+   "CharacterGameAction",
+   "CharacterItemDirectory",
+   "CombatAI",
+   "CombatAIHelper",
+   "CombatAbilityEffectInstantDirectory",
+   "CombatManager"
+  ]
+ },
+ "GameCharacterRaidInventory": {
+  "base": "GameInventory",
+  "referenced_by": 3,
+  "users": [
+   "RaidManager",
+   "RaidScene",
+   "Room"
+  ]
+ },
+ "GameExitEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "GameGridInventory": {
+  "base": "GameInventory",
+  "referenced_by": 61,
+  "users": [
+   "AmmoBoxHelper",
+   "AnimalCage",
+   "AquacultureHelper",
+   "Base",
+   "CraftingHelper",
+   "DebrisHelper",
+   "DebugPanel",
+   "DirectoryUtils",
+   "DrJacksonLocation",
+   "EmporiumEntry"
+  ]
+ },
+ "GameGridScrollableInventory": {
+  "base": "GameInventory",
+  "referenced_by": 8,
+  "users": [
+   "Base",
+   "GameCharacterItem",
+   "ItemMouseDragHandler",
+   "ItemMouseHandler",
+   "MenuManager",
+   "OverlayHandler",
+   "RaidScene",
+   "Scenario"
+  ]
+ },
+ "GameInventory": {
+  "base": "GameInventoryFunc",
+  "referenced_by": 136,
+  "users": [
+   "AmenitiesItemDirectory",
+   "AmmoBoxHelper",
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AppraisalRankHelper",
+   "AquacultureHelper",
+   "AquacultureItems",
+   "ArmorHelper",
+   "Base",
+   "BlackLampHelper"
+  ]
+ },
+ "GameInventoryFunc": {
+  "base": "TagSystem",
+  "referenced_by": 1,
+  "users": [
+   "GameInventory"
+  ]
+ },
+ "GameItem": {
+  "base": "GameItemFunc",
+  "referenced_by": 367,
+  "users": [
+   "AbilityItemHelper",
+   "AchievementTracker",
+   "AgableHelper",
+   "AmenitiesItemDirectory",
+   "AmenitiesManager",
+   "AmmoBoxHelper",
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AppGemstoneHelper",
+   "AppHandHelper"
+  ]
+ },
+ "GameItemElement": {
+  "base": "GameItem",
+  "referenced_by": 33,
+  "users": [
+   "AquacultureHelper",
+   "ChemicalHelper",
+   "CustomUIItemSpawner",
+   "EmporiumEntry",
+   "EventData",
+   "GameCharacterItem",
+   "GameItem",
+   "GraphUtils",
+   "GunOrderData",
+   "HopperHelper"
+  ]
+ },
+ "GameItemFunc": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "GameItem"
+  ]
+ },
+ "GameMaster": {
+  "base": "MonoBehaviour",
+  "referenced_by": 66,
+  "users": [
+   "AmenitiesManager",
+   "Base",
+   "CharacterItemDirectory",
+   "CombatManager",
+   "DebugHandler",
+   "DialogueHandler",
+   "EventData",
+   "EventTriggerManager",
+   "ExplosiveItemDirectory",
+   "GCIHelper"
+  ]
+ },
+ "GameOptionRegistry": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GameOptionUIManager",
+   "ModHelper"
+  ]
+ },
+ "GameOptionUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "CustomUIManager",
+   "EmporiumOption",
+   "GameOptionRegistry",
+   "StoreUIManager"
+  ]
+ },
+ "GameOverEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "GameOverUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "EndOfDayUIManager",
+   "PlayerStore",
+   "StoreUIManager"
+  ]
+ },
+ "GameSlotInventory": {
+  "base": "GameInventory",
+  "referenced_by": 52,
+  "users": [
+   "AmenitiesItemDirectory",
+   "AnimalCage",
+   "AquacultureHelper",
+   "AugScanner",
+   "CraftingHelper",
+   "DirectoryUtils",
+   "EmporiumEntry",
+   "EquipmentDirectory",
+   "EquipmentHelper",
+   "ExpeditionHelper"
+  ]
+ },
+ "GeneralHelper": {
+  "base": null,
+  "referenced_by": 123,
+  "users": [
+   "AmenitiesItemDirectory",
+   "AmmoBoxHelper",
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AppraisalItemType",
+   "AppraisalRankHelper",
+   "AquacultureHelper",
+   "AquacultureItems",
+   "BargainUIManager",
+   "BlackLampHelper"
+  ]
+ },
+ "GenericClientMono": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "StoreClientMono",
+   "StoreUIManager"
+  ]
+ },
+ "GenericConfirmationUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 6,
+  "users": [
+   "AmenitiesItemDirectory",
+   "MachineFeedDispenser",
+   "MapUIManager",
+   "MaterialDirectory",
+   "PlayerStore",
+   "WineHelper"
+  ]
+ },
+ "GeneticHelper": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "HusbandryHelper",
+   "Liquid",
+   "PreBuiltItemHelper",
+   "StoreClientListSpec"
+  ]
+ },
+ "GraphHandler": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "PixelWindow"
+  ]
+ },
+ "GraphNodeStorage": {
+  "base": null,
+  "referenced_by": 38,
+  "users": [
+   "AnimalCage",
+   "AppraisalRankHelper",
+   "AquacultureHelper",
+   "Base",
+   "ContrabandHelper",
+   "CraftingRecipe",
+   "Expedition",
+   "GameCharacterRaidInventory",
+   "GameGridInventory",
+   "GameGridScrollableInventory"
+  ]
+ },
+ "GraphNodeWindow": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameItem",
+   "GraphHandler",
+   "PixelWindow"
+  ]
+ },
+ "GraphUtils": {
+  "base": null,
+  "referenced_by": 148,
+  "users": [
+   "AbilityItemHelper",
+   "AmenitiesManager",
+   "AmmoBoxHelper",
+   "AnimalCage",
+   "AppraisalRankHelper",
+   "AquacultureHelper",
+   "ArmorHelper",
+   "Base",
+   "CanteenHelper",
+   "CharacterItemDirectory"
+  ]
+ },
+ "GridPixelElement": {
+  "base": "PixelElement",
+  "referenced_by": 17,
+  "users": [
+   "AnimalCage",
+   "CraftingHelper",
+   "DirectoryUtils",
+   "FurnitureItemDirectory",
+   "GameCharacterItem",
+   "GunModHelper",
+   "ItemContextHandler",
+   "MachineHelper",
+   "MachineRAS",
+   "MachineryStyle"
+  ]
+ },
+ "GridShape": {
+  "base": null,
+  "referenced_by": 24,
+  "users": [
+   "AquacultureHelper",
+   "CharacterItemDirectory",
+   "DebrisHelper",
+   "DebugPanel",
+   "FoodItemDirectory",
+   "GameCharacterRaidInventory",
+   "GameGridInventory",
+   "GameGridScrollableInventory",
+   "GameInventory",
+   "GameInventoryFunc"
+  ]
+ },
+ "GridShapeBuilder": {
+  "base": "GridShape",
+  "referenced_by": 19,
+  "users": [
+   "AquacultureHelper",
+   "DebrisHelper",
+   "DebugPanel",
+   "GameCharacterRaidInventory",
+   "GameGridInventory",
+   "GameGridScrollableInventory",
+   "GameItem",
+   "GameItemElement",
+   "GameSlotInventory",
+   "GunModDirectory"
+  ]
+ },
+ "GunFactory": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "EnemyFactory"
+  ]
+ },
+ "GunFrameHelper": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "GunHelper",
+   "GunsItemDirectory",
+   "MachinePrinter",
+   "MaterialDirectory"
+  ]
+ },
+ "GunHelper": {
+  "base": null,
+  "referenced_by": 19,
+  "users": [
+   "EmporiumEntry",
+   "GameItemElement",
+   "GeneralHelper",
+   "GunFrameHelper",
+   "GunModHelper",
+   "GunOrderData",
+   "GunOrderRequirement",
+   "GunsItemDirectory",
+   "MachinePrinter",
+   "MaterialDirectory"
+  ]
+ },
+ "GunModDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "GunModHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameItemElement",
+   "GunModDirectory",
+   "GunsItemDirectory"
+  ]
+ },
+ "GunOrderData": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "GunOrderDebug",
+   "GunOrderRequirement",
+   "NegociationUIManager",
+   "ShowcaseHelper",
+   "StoreClient",
+   "StoreClientListGun"
+  ]
+ },
+ "GunOrderDebug": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "GunOrderRequirement": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GunOrderData",
+   "NegociationUIManager"
+  ]
+ },
+ "GunmodPosition": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "GunsItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "GutterflowPelletHelper": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "AquacultureHelper",
+   "AquacultureItems",
+   "GameItemElement",
+   "HusbandryDirectory",
+   "HusbandryHelper",
+   "MachineFeedDispenser"
+  ]
+ },
+ "HandnoteUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "EmporiumEntry",
+   "MiscItemDirectory"
+  ]
+ },
+ "HealthData": {
+  "base": null,
+  "referenced_by": 14,
+  "users": [
+   "ConsumableHelper",
+   "ContrabandHelper",
+   "DebugPanel",
+   "GameItem",
+   "LiquidLuckHelper",
+   "LotteryHelper",
+   "MiscItemDirectory",
+   "PaperBookRegistry",
+   "PlayerStore",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "HighlightManager": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "ItemContextHandler",
+   "ItemDefaultActivateHandler",
+   "ItemMouseDragHandler",
+   "ItemMouseHandler",
+   "ItemSelectHandler"
+  ]
+ },
+ "Hireling": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "Expedition",
+   "ExpeditionData",
+   "HirelingListUnique",
+   "StoreClient",
+   "StoreClientListSpec",
+   "StoreClientManager"
+  ]
+ },
+ "HirelingListUnique": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ExpeditionData"
+  ]
+ },
+ "HopperHelper": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "GameGridInventory",
+   "GameGridScrollableInventory",
+   "GameItemElement",
+   "ItemPinHelper",
+   "PlayerStore",
+   "StoreUIManager",
+   "ToolDirectory"
+  ]
+ },
+ "HorizontalStackPixelElement": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "HullHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "ShipHelper",
+   "ShipManager",
+   "UnusedDirectory"
+  ]
+ },
+ "HumanCreature": {
+  "base": "Creature",
+  "referenced_by": 0,
+  "users": []
+ },
+ "HusbandryDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "HusbandryHelper": {
+  "base": null,
+  "referenced_by": 12,
+  "users": [
+   "AquacultureHelper",
+   "GameItemElement",
+   "HusbandryDirectory",
+   "MachineAutoButcher",
+   "MachineFeedDispenser",
+   "MaterialDirectory",
+   "MedsItemDirectory",
+   "MeleeWeaponItemDirectory",
+   "ModuleHelper",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "HydroponicDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "HydroponicHelper": {
+  "base": null,
+  "referenced_by": 12,
+  "users": [
+   "GameItem",
+   "GameItemElement",
+   "HydroponicDirectory",
+   "MachineDnaManipulator",
+   "MachineHydroponic",
+   "MeleeWeaponItemDirectory",
+   "PlantAnalyserUIManager",
+   "PlantGeneticsHelper",
+   "PlantHarvest",
+   "PlantList"
+  ]
+ },
+ "HypertechBatteryHelper": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "GameItemElement",
+   "MachineTurboBoosterAdv",
+   "MaterialDirectory",
+   "MiscItemDirectory",
+   "PowerHelper"
+  ]
+ },
+ "IClickable": {
+  "base": null,
+  "referenced_by": 29,
+  "users": [
+   "FeedbackBox",
+   "IHoldClickable",
+   "Interactable",
+   "NegociationTarget",
+   "NewsPaper",
+   "Shotgun",
+   "StoreBedroll",
+   "StoreBell",
+   "StoreCalendar",
+   "StoreClientMono"
+  ]
+ },
+ "IControlable": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "RTSController"
+  ]
+ },
+ "IDeque": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "Deque"
+  ]
+ },
+ "IDoubleClickable": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "Interactable"
+  ]
+ },
+ "IHoldClickable": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "Interactable",
+   "Shotgun",
+   "StoreBell",
+   "StoreDismissButton",
+   "StoreSecButton"
+  ]
+ },
+ "IMod": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "LoadedMod",
+   "ModLoader"
+  ]
+ },
+ "IPointerDoubleClickHandler": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "TreeNodeRender"
+  ]
+ },
+ "IconProvider": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "LoadGameUI",
+   "NewGameSpecializationUI",
+   "RunSummaryUI",
+   "SaveUIManager"
+  ]
+ },
+ "IdleAnimator": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "DebugPanel",
+   "GenericClientMono",
+   "StoreClientMono"
+  ]
+ },
+ "IndicatorElement": {
+  "base": "PixelElement",
+  "referenced_by": 2,
+  "users": [
+   "FurnitureItemDirectory",
+   "PushButtonElement"
+  ]
+ },
+ "IndustrialFishFeedHelper": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "AquacultureHelper",
+   "GameItemElement",
+   "HusbandryDirectory",
+   "HusbandryHelper",
+   "MachineFeedDispenser"
+  ]
+ },
+ "IngesterHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameItemElement",
+   "HusbandryDirectory",
+   "HusbandryHelper"
+  ]
+ },
+ "IngotPurityHelper": {
+  "base": null,
+  "referenced_by": 8,
+  "users": [
+   "GameItemElement",
+   "MachineFurnace",
+   "MachinePrinter",
+   "MaterialDirectory",
+   "NegociationHelper",
+   "PreBuiltItemHelper",
+   "UnusedDirectory",
+   "WaterTankHelper"
+  ]
+ },
+ "InjectorUI": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "InspectionUIManager"
+  ]
+ },
+ "InputActionHandler": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "EmptyActionHandler",
+   "InputActionManager"
+  ]
+ },
+ "InputActionManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 9,
+  "users": [
+   "InputActionHandler",
+   "ItemContextHandler",
+   "ItemDefaultActivateHandler",
+   "ItemMouseDragHandler",
+   "ItemMultiSelectHandler",
+   "ItemQuickTransferAltHandler",
+   "ItemQuickTransferAltHandler1",
+   "ItemQuickTransferHandler",
+   "ItemSelectHandler"
+  ]
+ },
+ "InsBerryUI": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "InspectionUIManager"
+  ]
+ },
+ "InsCigaretteHelper": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "AmenitiesItemDirectory",
+   "GameItemElement",
+   "InspectionUIManager",
+   "ItemFeature",
+   "PreBuiltItemHelper",
+   "StoreClientUniqueList"
+  ]
+ },
+ "InsInjectorHelper": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "ClientCanExposeFunc",
+   "GameItemElement",
+   "InspectionUIManager",
+   "MedsItemDirectory",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "InsStampHelper": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "GameItemElement",
+   "InspectionUIManager",
+   "MiscItemDirectory",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "InspectableHelper": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "AmenitiesItemDirectory",
+   "ChemScannerUIManager",
+   "GameItemElement",
+   "InsCigaretteHelper",
+   "InsInjectorHelper",
+   "InsStampHelper",
+   "WaterScannerUIManager",
+   "WaterStripUIManager",
+   "WineDirectory"
+  ]
+ },
+ "InspectionBribeEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "InspectionUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 11,
+  "users": [
+   "ChemScannerUIManager",
+   "InsCigaretteHelper",
+   "InsInjectorHelper",
+   "InsStampHelper",
+   "InspectableHelper",
+   "ItemFeatureUI",
+   "PlayerStore",
+   "StoreUIManager",
+   "ToolDirectory",
+   "WaterScannerUIManager"
+  ]
+ },
+ "InspectorArrivedEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "IntExtensions": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "IntelHelper": {
+  "base": null,
+  "referenced_by": 8,
+  "users": [
+   "IntelUnusedHelper",
+   "MiscItemDirectory",
+   "NewGameData",
+   "PlayerStore",
+   "StartingPerkContent",
+   "StoreClientDialogList",
+   "StoreClientListStory",
+   "StoreShutterButton"
+  ]
+ },
+ "IntelUnusedHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "UnusedDirectory"
+  ]
+ },
+ "Interactable": {
+  "base": "MonoBehaviour",
+  "referenced_by": 9,
+  "users": [
+   "DrJacksonLocation",
+   "EmporiumEntry",
+   "InteractableUI",
+   "LocHelper",
+   "LocSmartStringHelper",
+   "RTSController",
+   "StoreDoor",
+   "TabletButton",
+   "TooltipContainer"
+  ]
+ },
+ "InteractableUI": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "Interactable",
+   "RTSController"
+  ]
+ },
+ "InventorySortHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ItemContextHandler"
+  ]
+ },
+ "InvokeFuncExtensions": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "GameCharacterItem",
+   "GameCharacterRaidInventory",
+   "GameGridInventory",
+   "GameGridScrollableInventory",
+   "GameItem",
+   "GameSlotInventory",
+   "MachineHelper"
+  ]
+ },
+ "ItemBehaviourManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "ItemMouseDragHandler",
+   "ItemMultiSelectHandler",
+   "ItemSelectHandler"
+  ]
+ },
+ "ItemCategory": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "ItemCondition": {
+  "base": null,
+  "referenced_by": 11,
+  "users": [
+   "ChemicalProductHelper",
+   "GunHelper",
+   "GutterflowPelletHelper",
+   "HealthData",
+   "IngotPurityHelper",
+   "ItemConditionList",
+   "ItemFeature",
+   "ItemFeatureList",
+   "LabelerElement",
+   "LabelerUIManager"
+  ]
+ },
+ "ItemConditionActionList": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ItemCondition"
+  ]
+ },
+ "ItemConditionList": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "ChemicalProductHelper",
+   "ClientCanExposeFunc",
+   "IngotPurityHelper",
+   "ItemFeatureList",
+   "LabelerElement",
+   "LabelerHelper",
+   "LabelerUIManager",
+   "VendingFountainHelper",
+   "WaterFeatureHelper"
+  ]
+ },
+ "ItemContextHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 4,
+  "users": [
+   "EmporiumEntry",
+   "MenuScene",
+   "RaidScene",
+   "ShipScene"
+  ]
+ },
+ "ItemDefaultActivateHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 4,
+  "users": [
+   "EmporiumEntry",
+   "MenuScene",
+   "RaidScene",
+   "ShipScene"
+  ]
+ },
+ "ItemDirectory": {
+  "base": "Directory<GameItem>",
+  "referenced_by": 75,
+  "users": [
+   "AmenitiesItemDirectory",
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AquacultureItems",
+   "ArmorItemDirectory",
+   "CombatAbilityDirectory",
+   "ConstructionItemDirectory",
+   "ContainerItemDirectory",
+   "CustomUIItemSpawner",
+   "DebrisHelper"
+  ]
+ },
+ "ItemFeature": {
+  "base": null,
+  "referenced_by": 37,
+  "users": [
+   "BargainUIManager",
+   "BarterCondition",
+   "ChemScannerUIManager",
+   "ChemicalHelper",
+   "ChemicalProductHelper",
+   "ClientCanExposeFunc",
+   "DurabilityHelper",
+   "GameItem",
+   "GunHelper",
+   "GutterflowPelletHelper"
+  ]
+ },
+ "ItemFeatureHelper": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "AnimalCage",
+   "NetworkUpgradeList",
+   "NewGameData",
+   "PreBuiltItemHelper",
+   "SerpicoStoryline",
+   "StartingPerkContent",
+   "StoreClientUniqueList"
+  ]
+ },
+ "ItemFeatureList": {
+  "base": null,
+  "referenced_by": 30,
+  "users": [
+   "BargainUIManager",
+   "ContrabandHelper",
+   "GameItem",
+   "GunFrameHelper",
+   "GunHelper",
+   "GunOrderData",
+   "GunsItemDirectory",
+   "HealthData",
+   "InspectableHelper",
+   "ItemFeatureHelper"
+  ]
+ },
+ "ItemFeatureUI": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "NegociationUIManager"
+  ]
+ },
+ "ItemGameAction": {
+  "base": "GameAction",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ItemInsertRemoveBehaviour": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "ItemMouseDoubleClickHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 8,
+  "users": [
+   "EmporiumEntry",
+   "ItemContextHandler",
+   "ItemSelectHandler",
+   "MachineStorageCoordinator",
+   "MenuScene",
+   "OverlayHandler",
+   "RaidScene",
+   "ShipScene"
+  ]
+ },
+ "ItemMouseDragHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 10,
+  "users": [
+   "DebugOwnershipToggleMode",
+   "EmporiumEntry",
+   "ItemContextHandler",
+   "ItemMouseDoubleClickHandler",
+   "MenuScene",
+   "QuickChooseHandler",
+   "RaidScene",
+   "ShipScene",
+   "StoreUIManager",
+   "WaterFeatureHelper"
+  ]
+ },
+ "ItemMouseHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 4,
+  "users": [
+   "EmporiumEntry",
+   "MenuScene",
+   "RaidScene",
+   "ShipScene"
+  ]
+ },
+ "ItemMultiSelectHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 4,
+  "users": [
+   "EmporiumEntry",
+   "MachineryTabs",
+   "StoreUIManager",
+   "WaterFeatureHelper"
+  ]
+ },
+ "ItemOfInterestAcquisitionEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "ItemPinHelper": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "GameItem",
+   "GameItemElement",
+   "InventorySortHelper",
+   "ItemContextHandler",
+   "ItemDefaultActivateHandler",
+   "ItemMouseDoubleClickHandler",
+   "ItemMouseDragHandler",
+   "ItemMultiSelectHandler",
+   "StoreUIManager"
+  ]
+ },
+ "ItemQuickTransferAltHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumEntry"
+  ]
+ },
+ "ItemQuickTransferAltHandler1": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ItemQuickTransferHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 4,
+  "users": [
+   "EmporiumEntry",
+   "MenuScene",
+   "RaidScene",
+   "ShipScene"
+  ]
+ },
+ "ItemSelectHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 9,
+  "users": [
+   "EmporiumEntry",
+   "ItemContextHandler",
+   "ItemMouseDoubleClickHandler",
+   "MenuScene",
+   "QuickChooseHandler",
+   "RaidScene",
+   "ShipScene",
+   "StoreUIManager",
+   "ToolboxHelper"
+  ]
+ },
+ "ItemShapeModifier": {
+  "base": "GridShapeBuilder",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ItemSpawner": {
+  "base": null,
+  "referenced_by": 36,
+  "users": [
+   "AnimalCage",
+   "AquacultureHelper",
+   "AquacultureItems",
+   "BarterOfferList",
+   "DebrisHelper",
+   "DebugPanel",
+   "Expedition",
+   "ExpeditionData",
+   "ExpeditionHelper",
+   "ExpeditionPoi"
+  ]
+ },
+ "ItemSpawnerHiddenList": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "CustomUIItemSpawner"
+  ]
+ },
+ "ItemSpriteModifier": {
+  "base": null,
+  "referenced_by": 12,
+  "users": [
+   "EmporiumEntry",
+   "GameInventoryFunc",
+   "GameItemElement",
+   "GameItemFunc",
+   "GunModDirectory",
+   "LiquidLuckHelper",
+   "MachineHydroponic",
+   "MachineRecharger",
+   "MachineWineRack",
+   "UnusedDirectory"
+  ]
+ },
+ "ItemStateModifier": {
+  "base": "TagState",
+  "referenced_by": 5,
+  "users": [
+   "GameInventory",
+   "GameInventoryFunc",
+   "GameItem",
+   "GameItemFunc",
+   "UnusedDirectory"
+  ]
+ },
+ "ItemTargetBehaviour": {
+  "base": "PriorityTrigger",
+  "referenced_by": 2,
+  "users": [
+   "ItemBehaviourManager",
+   "OrganBehavior"
+  ]
+ },
+ "ItemTooltipHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 7,
+  "users": [
+   "EmporiumEntry",
+   "HopperHelper",
+   "ItemPinHelper",
+   "MachineStorageCoordinator",
+   "MenuScene",
+   "RaidScene",
+   "ShipScene"
+  ]
+ },
+ "ItemTypeUIElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ItemUseBehaviour": {
+  "base": "PriorityTrigger",
+  "referenced_by": 1,
+  "users": [
+   "ItemBehaviourManager"
+  ]
+ },
+ "KeyBindHelper": {
+  "base": null,
+  "referenced_by": 14,
+  "users": [
+   "DialogueHandler",
+   "EmporiumOption",
+   "GameOptionRegistry",
+   "GameOptionUIManager",
+   "InputActionManager",
+   "ItemContextHandler",
+   "ItemMouseDoubleClickHandler",
+   "ItemMouseDragHandler",
+   "ItemPinHelper",
+   "ItemQuickTransferAltHandler"
+  ]
+ },
+ "KeyItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "LabelerBlueUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "EmporiumEntry",
+   "StorageExpansionHelper",
+   "StoreUIManager",
+   "ToolDirectory"
+  ]
+ },
+ "LabelerElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "LabelerUIManager"
+  ]
+ },
+ "LabelerHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameItemElement",
+   "LabelerUIManager",
+   "ToolDirectory"
+  ]
+ },
+ "LabelerUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "EmporiumEntry",
+   "LabelerHelper"
+  ]
+ },
+ "LeaveToMainMenuEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "LetterboxBars": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "LetterboxManager"
+  ]
+ },
+ "LetterboxManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 12,
+  "users": [
+   "CustomUIManager",
+   "EmporiumEntry",
+   "EmporiumOption",
+   "GraphUtils",
+   "PerkUIController",
+   "PixelWindow",
+   "SplashTextManager",
+   "StoreUIManager",
+   "TooltipManager",
+   "UIDragHandler"
+  ]
+ },
+ "LevelListLoot": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "Liquid": {
+  "base": null,
+  "referenced_by": 19,
+  "users": [
+   "AquacultureHelper",
+   "ChemScannerUIManager",
+   "ChemicalFeedbackHelper",
+   "ChemicalHelper",
+   "ChemicalProductHelper",
+   "DirectoryUtils",
+   "EnergyType",
+   "IngesterHelper",
+   "LiquidLuckHelper",
+   "MachineEvaporator"
+  ]
+ },
+ "LiquidContainerHelper": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "CanteenHelper",
+   "FoodItemHelper",
+   "GameItem",
+   "ShipHelper",
+   "StationMachinery",
+   "Survival",
+   "UnusedDirectory"
+  ]
+ },
+ "LiquidLuckHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "FoodItemDirectory",
+   "HealthData"
+  ]
+ },
+ "LoadGameEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "LoadGameFrame": {
+  "base": "NewGamePanelFrame",
+  "referenced_by": 2,
+  "users": [
+   "CustomUIManager",
+   "LoadGameUI"
+  ]
+ },
+ "LoadGameUI": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "CustomUIManager",
+   "MainMenuUIController"
+  ]
+ },
+ "LoadedMod": {
+  "base": null,
+  "referenced_by": 19,
+  "users": [
+   "CustomUIManager",
+   "GameItem",
+   "GameItemElement",
+   "ModConfigWindow",
+   "ModEnableCheck",
+   "ModHelper",
+   "ModHook",
+   "ModLoader",
+   "ModLootFile",
+   "ModSecurityDebug"
+  ]
+ },
+ "Loadout": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "EnemyFactory"
+  ]
+ },
+ "LoanPanelUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "UnusedDirectory"
+  ]
+ },
+ "LocGenderHelper": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "AquacultureHelper",
+   "ChemicalFeedbackHelper",
+   "DialogUIManager",
+   "DialoguePhoneUIManager",
+   "HusbandryHelper",
+   "StoreClientInstance"
+  ]
+ },
+ "LocHelper": {
+  "base": null,
+  "referenced_by": 260,
+  "users": [
+   "AdvCalendarUIManager",
+   "AgableHelper",
+   "AmenitiesItemDirectory",
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AnimalSpecies",
+   "AppraisalHelper",
+   "AppraisalItemsWindow",
+   "AppraisalRankHelper",
+   "AppraisalServiceHelper"
+  ]
+ },
+ "LocSmartStringDebug": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "LocSmartStringHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "LocSmartStringDebug"
+  ]
+ },
+ "LocalObjectEnabler": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "LocalizedLines": {
+  "base": "IReadOnlyList<string>",
+  "referenced_by": 12,
+  "users": [
+   "AugHelper",
+   "PreBuiltItemHelper",
+   "StoreClientDialogList",
+   "StoreClientListAppraisal",
+   "StoreClientListEvent",
+   "StoreClientListGun",
+   "StoreClientListInformation",
+   "StoreClientListSpec",
+   "StoreClientListTierSubstance",
+   "StoreClientListTierWeapon"
+  ]
+ },
+ "LockHelper": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "AmmoBoxHelper",
+   "ContainerItemDirectory",
+   "GameItemElement",
+   "LouToyBoxHelper",
+   "MiscItemDirectory",
+   "PlayerStore",
+   "PreBuiltItemHelper",
+   "StoreClient",
+   "StoreClientList"
+  ]
+ },
+ "LogUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "EmporiumEntry",
+   "MiscItemDirectory",
+   "StoreUISounds"
+  ]
+ },
+ "LogWriter": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "LootDebug": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "LootEntry": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "LootDebug",
+   "LootRegistry",
+   "ModHelper",
+   "ModLootFile"
+  ]
+ },
+ "LootRegistry": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "DebrisHelper",
+   "LootDebug",
+   "ModHelper",
+   "ModLootFile",
+   "ScavHelper",
+   "TableGroupMaster",
+   "TableMaster"
+  ]
+ },
+ "LootRollContext": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "LootRegistry",
+   "ModHook"
+  ]
+ },
+ "LootTable": {
+  "base": "ScriptableObject",
+  "referenced_by": 4,
+  "users": [
+   "LootRegistry",
+   "TableEntry",
+   "TableGroup",
+   "TableMaster"
+  ]
+ },
+ "LotteryHelper": {
+  "base": null,
+  "referenced_by": 13,
+  "users": [
+   "AmenitiesItemDirectory",
+   "DebugPanel",
+   "GameItemElement",
+   "HealthData",
+   "MiscItemDirectory",
+   "PreBuiltItemHelper",
+   "ScratchInput",
+   "ScratcherHelper",
+   "ScratcherUIManager",
+   "StartingPerkContent"
+  ]
+ },
+ "LouBombHelper": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "CustomUIDebugPanel",
+   "ExplosiveItemDirectory",
+   "PlayerStore",
+   "StoreClientManager"
+  ]
+ },
+ "LouToyBoxHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "MiscItemDirectory",
+   "StoreClientListWanted"
+  ]
+ },
+ "MachineAlarm": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "ModuleDirectory",
+   "PlayerStore",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "MachineAutoButcher": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "AnimalCage",
+   "AquacultureHelper",
+   "GameItemElement",
+   "HusbandryDirectory",
+   "HusbandryHelper",
+   "MachineRAS"
+  ]
+ },
+ "MachineBlender": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "MachineChemFinisher",
+   "MachineHeatingPlate"
+  ]
+ },
+ "MachineBottlePrinter": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "MaterialDirectory",
+   "ModuleHelper"
+  ]
+ },
+ "MachineBoxDispenser": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "FurnitureItemDirectory"
+  ]
+ },
+ "MachineBrokenHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "PlayerStore",
+   "PreBuiltItemHelper",
+   "ToolDirectory"
+  ]
+ },
+ "MachineCassettePlayer": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "AudioManager",
+   "CassetteHelper",
+   "FurnitureItemDirectory"
+  ]
+ },
+ "MachineChemFinisher": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement"
+  ]
+ },
+ "MachineDealMaker": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "MachineDesequencer": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement"
+  ]
+ },
+ "MachineDnaManipulator": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "ItemMouseDragHandler",
+   "ModuleDirectory",
+   "PlantGeneticsHelper",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "MachineEvaporator": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "FurnitureItemDirectory",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "MachineFeedDispenser": {
+  "base": null,
+  "referenced_by": 8,
+  "users": [
+   "AnimalCage",
+   "AquacultureHelper",
+   "DebugPanel",
+   "GameItemElement",
+   "HusbandryDirectory",
+   "HusbandryHelper",
+   "MachineAutoButcher",
+   "MachineRAS"
+  ]
+ },
+ "MachineFridge": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "DebugPanel",
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "MaterialDirectory",
+   "ModuleHelper",
+   "PlayerStore"
+  ]
+ },
+ "MachineFurnace": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "FurnitureItemDirectory",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "MachineHeatingPlate": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement"
+  ]
+ },
+ "MachineHelper": {
+  "base": null,
+  "referenced_by": 54,
+  "users": [
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AquacultureHelper",
+   "AugScanner",
+   "CraftingHelper",
+   "EmporiumEntry",
+   "EquipmentDirectory",
+   "ExpeditionHelper",
+   "FurnitureItemDirectory",
+   "GunModHelper"
+  ]
+ },
+ "MachineHydroponic": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "HydroponicHelper",
+   "PlantTraitList",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "MachineMeatCulture": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "MachineMoistureFarm": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "MachinePrinter": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "FurnitureItemDirectory",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "MachineProgressHelper": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "GameItemElement",
+   "HydroponicHelper",
+   "MachineDesequencer",
+   "MachineDnaManipulator",
+   "MachineHydroponic",
+   "MachinePrinter",
+   "ModuleDirectory"
+  ]
+ },
+ "MachineProjector": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "MachinePurifier": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "MachineRAS": {
+  "base": null,
+  "referenced_by": 10,
+  "users": [
+   "AquacultureHelper",
+   "DebugPanel",
+   "GameItemElement",
+   "HusbandryDirectory",
+   "MachineAutoButcher",
+   "MaterialDirectory",
+   "ModuleHelper",
+   "SpriteHelper",
+   "StoreClientList",
+   "StoreClientListSpec"
+  ]
+ },
+ "MachineRecharger": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "FurnitureItemDirectory"
+  ]
+ },
+ "MachineStorageCoordinator": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "HopperHelper",
+   "ItemPinHelper",
+   "StoreUIManager"
+  ]
+ },
+ "MachineTurboBoosterAdv": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameItemElement",
+   "PlayerStore",
+   "ToolDirectory"
+  ]
+ },
+ "MachineWineRack": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "FurnitureItemDirectory",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "MachineryButton": {
+  "base": "SelectableElement",
+  "referenced_by": 16,
+  "users": [
+   "AnimalCage",
+   "CraftingHelper",
+   "MachineAutoButcher",
+   "MachineBlender",
+   "MachineBottlePrinter",
+   "MachineBoxDispenser",
+   "MachineCassettePlayer",
+   "MachineChemFinisher",
+   "MachineDealMaker",
+   "MachineFeedDispenser"
+  ]
+ },
+ "MachineryContainer": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "GridPixelElement",
+   "MachineryContainerUtils",
+   "MachineryIntake",
+   "MachineryPanel",
+   "MachineryStack",
+   "MachineryTabs",
+   "PixelWindow"
+  ]
+ },
+ "MachineryContainerUtils": {
+  "base": null,
+  "referenced_by": 10,
+  "users": [
+   "GridPixelElement",
+   "MachineryButton",
+   "MachineryIntake",
+   "MachineryLabel",
+   "MachineryPanel",
+   "MachineryPanelRow",
+   "MachineryStack",
+   "MachineryTabs",
+   "MachineryText",
+   "PixelWindow"
+  ]
+ },
+ "MachineryHelper": {
+  "base": null,
+  "referenced_by": 24,
+  "users": [
+   "EquipmentHelper",
+   "GameItemElement",
+   "MachineAlarm",
+   "MachineDealMaker",
+   "MachineDesequencer",
+   "MachineDnaManipulator",
+   "MachineEvaporator",
+   "MachineFridge",
+   "MachineFurnace",
+   "MachineHelper"
+  ]
+ },
+ "MachineryIntake": {
+  "base": "PixelElement",
+  "referenced_by": 9,
+  "users": [
+   "AnimalCage",
+   "GunModHelper",
+   "MachineAutoButcher",
+   "MachineHelper",
+   "MachineRAS",
+   "MachineryStack",
+   "MachineryStyle",
+   "MachineryTabs",
+   "StorageExpansionHelper"
+  ]
+ },
+ "MachineryLabel": {
+  "base": "PixelElement",
+  "referenced_by": 3,
+  "users": [
+   "MachineryPanel",
+   "ToolDirectory",
+   "ToolboxHelper"
+  ]
+ },
+ "MachineryPanel": {
+  "base": "PixelElement",
+  "referenced_by": 11,
+  "users": [
+   "AnimalCage",
+   "CraftingHelper",
+   "GunModHelper",
+   "HusbandryDirectory",
+   "MachineHelper",
+   "MachineRAS",
+   "MachineryPanelRow",
+   "MachineryStyle",
+   "ToolboxHelper",
+   "VendingFountainHelper"
+  ]
+ },
+ "MachineryPanelRow": {
+  "base": "PixelElement",
+  "referenced_by": 8,
+  "users": [
+   "CraftingHelper",
+   "EmporiumEntry",
+   "GunModHelper",
+   "MachineHeatingPlate",
+   "MachineHelper",
+   "PixelWindow",
+   "StorageExpansionHelper",
+   "ToolboxHelper"
+  ]
+ },
+ "MachineryProgressBar": {
+  "base": "PixelElement",
+  "referenced_by": 0,
+  "users": []
+ },
+ "MachineryRadioButton": {
+  "base": "SelectableElement",
+  "referenced_by": 3,
+  "users": [
+   "MachineAutoButcher",
+   "MachineryRadioGroup",
+   "MachineryRadioList"
+  ]
+ },
+ "MachineryRadioGroup": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "MachineryRadioButton",
+   "MachineryRadioList"
+  ]
+ },
+ "MachineryRadioList": {
+  "base": "MachineryStack",
+  "referenced_by": 3,
+  "users": [
+   "AnimalMarkHelper",
+   "MachineAutoButcher",
+   "MachineHeatingPlate"
+  ]
+ },
+ "MachineryRangeSlider": {
+  "base": "PixelElement",
+  "referenced_by": 1,
+  "users": [
+   "MachineAutoButcher"
+  ]
+ },
+ "MachinerySlider": {
+  "base": "PixelElement",
+  "referenced_by": 2,
+  "users": [
+   "MachineAutoButcher",
+   "MachineFeedDispenser"
+  ]
+ },
+ "MachineryStack": {
+  "base": "PixelElement",
+  "referenced_by": 8,
+  "users": [
+   "MachineAutoButcher",
+   "MachineBottlePrinter",
+   "MachineCassettePlayer",
+   "MachineChemFinisher",
+   "MachineFeedDispenser",
+   "MachineHeatingPlate",
+   "MachineryRadioList",
+   "MachineryStyle"
+  ]
+ },
+ "MachineryStorageOwner": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "GridPixelElement",
+   "MachineryContainer",
+   "MachineryContainerUtils",
+   "MachineryIntake",
+   "MachineryPanel",
+   "MachineryPanelRow",
+   "MachineryStack",
+   "MachineryTabs",
+   "PixelWindow"
+  ]
+ },
+ "MachineryStyle": {
+  "base": null,
+  "referenced_by": 20,
+  "users": [
+   "AnimalMarkHelper",
+   "CustomUIMachineryStyle",
+   "GameSlotInventory",
+   "HopperHelper",
+   "MachineAutoButcher",
+   "MachineHelper",
+   "MachineryButton",
+   "MachineryIntake",
+   "MachineryLabel",
+   "MachineryPanel"
+  ]
+ },
+ "MachineryTabs": {
+  "base": "PixelElement",
+  "referenced_by": 6,
+  "users": [
+   "GameItem",
+   "ItemMultiSelectHandler",
+   "MachineAutoButcher",
+   "MachineryStyle",
+   "ShipSystemDirectory",
+   "StorageExpansionHelper"
+  ]
+ },
+ "MachineryText": {
+  "base": "PixelElement",
+  "referenced_by": 7,
+  "users": [
+   "MachineAutoButcher",
+   "MachineCassettePlayer",
+   "MachineChemFinisher",
+   "MachineFeedDispenser",
+   "MachineHeatingPlate",
+   "VendingFountainHelper",
+   "VendingMachineHelper"
+  ]
+ },
+ "MachineryWidget": {
+  "base": null,
+  "referenced_by": 8,
+  "users": [
+   "MachineryButton",
+   "MachineryContainerUtils",
+   "MachineryProgressBar",
+   "MachineryRadioButton",
+   "MachineryRangeSlider",
+   "MachinerySlider",
+   "MachineryStack",
+   "MachineryText"
+  ]
+ },
+ "MagnifyingGlassMono": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "CounterMoveChild"
+  ]
+ },
+ "MainMenuUIController": {
+  "base": "MonoBehaviour",
+  "referenced_by": 11,
+  "users": [
+   "EmporiumOption",
+   "LoadGameUI",
+   "ModUIManager",
+   "NewGameDifficultyUI",
+   "NewGamePerksUI",
+   "NewGameSpecializationUI",
+   "NewGameUIElements",
+   "PerkUIController",
+   "SaveSlotElement",
+   "SaveUIManager"
+  ]
+ },
+ "MapUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 21,
+  "users": [
+   "CommissaryLocation",
+   "DrJacksonLocation",
+   "DumpingGroundLocation",
+   "EmporiumAnalytics",
+   "EmporiumEntry",
+   "GraphUtils",
+   "HopperHelper",
+   "ItemQuickTransferAltHandler",
+   "ItemQuickTransferAltHandler1",
+   "ItemQuickTransferHandler"
+  ]
+ },
+ "MaterialDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "MatterConstants": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "MatterData": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "MatterConstants"
+  ]
+ },
+ "MatterType": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "MatterConstants",
+   "ThingConstants"
+  ]
+ },
+ "MedicalHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "MedsItemDirectory",
+   "UnusedDirectory"
+  ]
+ },
+ "MedsItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 1,
+  "users": [
+   "StoreClientListWanted"
+  ]
+ },
+ "MeleeWeaponItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 1,
+  "users": [
+   "UnusedDirectory"
+  ]
+ },
+ "MenuManager": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "GameMaster"
+  ]
+ },
+ "MenuScene": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GameMaster",
+   "MenuManager"
+  ]
+ },
+ "MetaHelper": {
+  "base": null,
+  "referenced_by": 27,
+  "users": [
+   "BarterHelper",
+   "CalendarDayElement",
+   "CalendarEventElement",
+   "DialogUIManager",
+   "DialoguePhoneUIManager",
+   "EmporiumAudioPlayer",
+   "EmporiumEntry",
+   "EquipmentHelper",
+   "FoodItemHelper",
+   "IntelUnusedHelper"
+  ]
+ },
+ "MindReprogrammerHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameItemElement",
+   "MaterialDirectory",
+   "ToolDirectory"
+  ]
+ },
+ "MiningHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "SpaceAsteroidTrigger"
+  ]
+ },
+ "MiscItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ModCapability": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "ModLoader",
+   "ModScanner",
+   "ModSecurityDebug",
+   "ModTrust",
+   "ModUIManager"
+  ]
+ },
+ "ModConfig": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "ConfigEntry",
+   "ModConfigWindow",
+   "ModHelper",
+   "ModUIManager"
+  ]
+ },
+ "ModConfigWindow": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ModUIManager"
+  ]
+ },
+ "ModElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "ModUIManager"
+  ]
+ },
+ "ModEnableCheck": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "ModLoader",
+   "ModUIManager"
+  ]
+ },
+ "ModFingerprint": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "LoadedMod",
+   "ModEnableCheck",
+   "ModLoader",
+   "ModScanner",
+   "ModSecurityDebug",
+   "ModTrust"
+  ]
+ },
+ "ModHelper": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "AppraisalHelper",
+   "Difficulty",
+   "ModLoader",
+   "PaperBookRegistry",
+   "PaperEditorFiles",
+   "PaperUI"
+  ]
+ },
+ "ModHook": {
+  "base": "MonoBehaviour",
+  "referenced_by": 16,
+  "users": [
+   "AfterhourEvents",
+   "EmporiumEntry",
+   "LootRegistry",
+   "MapUIManager",
+   "ModConfigWindow",
+   "ModInternal",
+   "ModItemDirectory",
+   "ModLoader",
+   "NetworkUpgrade",
+   "NewGameData"
+  ]
+ },
+ "ModInternal": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "GameItemElement"
+  ]
+ },
+ "ModItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 2,
+  "users": [
+   "ModHook",
+   "PaperBookRegistry"
+  ]
+ },
+ "ModListVerdict": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "LoadedMod",
+   "ModEnableCheck",
+   "ModLoader",
+   "ModTrustList",
+   "ModUIManager"
+  ]
+ },
+ "ModLoader": {
+  "base": "MonoBehaviour",
+  "referenced_by": 18,
+  "users": [
+   "CustomUIDebugPanel",
+   "CustomUIManager",
+   "GameItem",
+   "GameItemElement",
+   "ModConfig",
+   "ModHelper",
+   "ModLootFile",
+   "ModScanner",
+   "ModSecurityDebug",
+   "ModSourceHelper"
+  ]
+ },
+ "ModLog": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "ModLootEntryJson": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "ModLootFile",
+   "ModLootListJson",
+   "ModLootPatchJson"
+  ]
+ },
+ "ModLootFile": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ModLoader"
+  ]
+ },
+ "ModLootFileJson": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ModLootFile"
+  ]
+ },
+ "ModLootListJson": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "ModLootFile",
+   "ModLootFileJson"
+  ]
+ },
+ "ModLootPatchJson": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "ModLootFile",
+   "ModLootFileJson"
+  ]
+ },
+ "ModManifest": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "IMod",
+   "LoadedMod",
+   "ModFingerprint",
+   "ModLoader",
+   "ModLog",
+   "ModSecurityDebug",
+   "ModUIManager"
+  ]
+ },
+ "ModRowHoverTooltip": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "ModUIManager"
+  ]
+ },
+ "ModScanFinding": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "ModScanResult",
+   "ModScanner",
+   "ModSecurityDebug"
+  ]
+ },
+ "ModScanResult": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "LoadedMod",
+   "ModEnableCheck",
+   "ModLoader",
+   "ModScanner",
+   "ModSecurityDebug"
+  ]
+ },
+ "ModScanner": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "ModLoader",
+   "ModSecurityDebug"
+  ]
+ },
+ "ModSecurityDebug": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ModScanner"
+  ]
+ },
+ "ModSource": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "LoadedMod",
+   "ModLoader",
+   "ModTrust",
+   "ModUIManager",
+   "PaperEditorFiles",
+   "PaperEditorWindow"
+  ]
+ },
+ "ModSourceHelper": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "GameItemElement",
+   "ModHook",
+   "StoreClientListDict",
+   "StoreUIManager"
+  ]
+ },
+ "ModTrust": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "ModLoader",
+   "ModScanner",
+   "ModSecurityDebug",
+   "ModUIManager"
+  ]
+ },
+ "ModTrustList": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "ModLoader",
+   "ModScanner",
+   "ModSecurityDebug",
+   "ModUIManager"
+  ]
+ },
+ "ModTrustRecord": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "LoadedMod",
+   "ModLoader",
+   "ModScanner",
+   "ModSecurityDebug",
+   "ModTrust",
+   "ModUIManager"
+  ]
+ },
+ "ModTrustState": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "LoadedMod",
+   "ModLoader",
+   "ModTrust",
+   "ModUIManager"
+  ]
+ },
+ "ModUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "MainMenuUIController",
+   "ModElement"
+  ]
+ },
+ "ModWarningUI": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ModUIManager"
+  ]
+ },
+ "ModWorkshop": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "ModLoader",
+   "ModSecurityDebug",
+   "ModUIManager"
+  ]
+ },
+ "ModuleDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ModuleEffectHelper": {
+  "base": null,
+  "referenced_by": 14,
+  "users": [
+   "DebugPanel",
+   "MachineAlarm",
+   "MachineDealMaker",
+   "MachineDesequencer",
+   "MachineEvaporator",
+   "MachineFurnace",
+   "MachineHelper",
+   "MachineMoistureFarm",
+   "MachinePrinter",
+   "MachineProjector"
+  ]
+ },
+ "ModuleHelper": {
+  "base": null,
+  "referenced_by": 25,
+  "users": [
+   "ContainerHelper",
+   "GameItemElement",
+   "HydroponicHelper",
+   "MachineAlarm",
+   "MachineBlender",
+   "MachineBrokenHelper",
+   "MachineDealMaker",
+   "MachineDesequencer",
+   "MachineDnaManipulator",
+   "MachineEvaporator"
+  ]
+ },
+ "MultiEventHandler": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "TreeNodeRender"
+  ]
+ },
+ "MultiPageUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "EmporiumEntry",
+   "MiscItemDirectory",
+   "StoreUIManager"
+  ]
+ },
+ "NavDiskHelper": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "NewBehaviourScript",
+   "SpaceAsteroidTrigger",
+   "SpaceFuelTankerTrigger",
+   "UnusedDirectory"
+  ]
+ },
+ "NavigationHelper": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "GameMaster",
+   "NavDiskHelper",
+   "OverlayHandler",
+   "ShipManager",
+   "ShipScene",
+   "SpaceDistressSignalTrigger"
+  ]
+ },
+ "NegociationData": {
+  "base": null,
+  "referenced_by": 16,
+  "users": [
+   "EventListNormal",
+   "GunOrderData",
+   "ItemFeature",
+   "ItemTypeUIElement",
+   "NegociationElement",
+   "NegociationUIManager",
+   "NewsUIElement",
+   "OperationListBM",
+   "OperationListLL",
+   "OperationListRev"
+  ]
+ },
+ "NegociationElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 5,
+  "users": [
+   "EmporiumRTSController",
+   "ItemFeatureUI",
+   "ItemTypeUIElement",
+   "NewsUIElement",
+   "StoreScale"
+  ]
+ },
+ "NegociationHelper": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "NegociationTarget": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "NegociationUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 19,
+  "users": [
+   "AppraisalServiceHelper",
+   "AugHelper",
+   "BargainUIManager",
+   "CommissaryData",
+   "DrJacksonLocation",
+   "EmporiumEntry",
+   "InspectionUIManager",
+   "ItemFeature",
+   "MapUIManager",
+   "PlayerStore"
+  ]
+ },
+ "NegotiationTabletFrame": {
+  "base": "TabletFrame",
+  "referenced_by": 1,
+  "users": [
+   "NegociationUIManager"
+  ]
+ },
+ "NetworkElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "WildUIManager"
+  ]
+ },
+ "NetworkUpgrade": {
+  "base": null,
+  "referenced_by": 40,
+  "users": [
+   "ContrabandHelper",
+   "CurrentConverterHelper",
+   "DebugPanel",
+   "EmporiumAnalytics",
+   "EmporiumEntry",
+   "EndOfDayUIManager",
+   "FurnitureItemDirectory",
+   "LocHelper",
+   "LocSmartStringHelper",
+   "MachineRecharger"
+  ]
+ },
+ "NetworkUpgradeLayout": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "WildNetworkUI"
+  ]
+ },
+ "NetworkUpgradeList": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "NetworkUpgrade",
+   "SecData",
+   "StoreService"
+  ]
+ },
+ "NewBehaviourScript": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "NewGameCheckbox": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "NewGameDifficultyFrame",
+   "NewGameDifficultyUI"
+  ]
+ },
+ "NewGameCommonButton": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "LoadGameFrame",
+   "LoadGameUI"
+  ]
+ },
+ "NewGameData": {
+  "base": "MonoBehaviour",
+  "referenced_by": 25,
+  "users": [
+   "BarterOfferList",
+   "Difficulty",
+   "EmporiumAnalytics",
+   "EmporiumEntry",
+   "EscapeUIManager",
+   "IconProvider",
+   "LoadGameUI",
+   "MainMenuUIController",
+   "ModHelper",
+   "NewGameDifficultyUI"
+  ]
+ },
+ "NewGameDifficultyFrame": {
+  "base": "NewGamePanelFrame",
+  "referenced_by": 2,
+  "users": [
+   "CustomUIManager",
+   "NewGameDifficultyUI"
+  ]
+ },
+ "NewGameDifficultyUI": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "CustomUIManager",
+   "MainMenuUIController"
+  ]
+ },
+ "NewGamePanelFrame": {
+  "base": "MonoBehaviour",
+  "referenced_by": 8,
+  "users": [
+   "CreditsFrame",
+   "LoadGameFrame",
+   "NewGameCommonButton",
+   "NewGameDifficultyFrame",
+   "NewGamePerkTooltip",
+   "NewGamePerksFrame",
+   "NewGameSpecializationFrame",
+   "NewGameUIElements"
+  ]
+ },
+ "NewGamePerkTooltip": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "NewGamePerksFrame",
+   "NewGamePerksUI"
+  ]
+ },
+ "NewGamePerksFrame": {
+  "base": "NewGamePanelFrame",
+  "referenced_by": 3,
+  "users": [
+   "CustomUIManager",
+   "NewGamePerksUI",
+   "RunSummaryUI"
+  ]
+ },
+ "NewGamePerksUI": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "CustomUIManager",
+   "MainMenuUIController",
+   "ModHelper",
+   "NewGameDifficultyUI"
+  ]
+ },
+ "NewGameSpecializationFrame": {
+  "base": "NewGamePanelFrame",
+  "referenced_by": 3,
+  "users": [
+   "CustomUIManager",
+   "NewGameSpecializationUI",
+   "RunSummaryUI"
+  ]
+ },
+ "NewGameSpecializationUI": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "CustomUIManager",
+   "MainMenuUIController",
+   "ModHelper",
+   "NewGamePerksUI",
+   "PerkUIController"
+  ]
+ },
+ "NewGameStartedEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "NewGameStyle": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "CreditsUI",
+   "LoadGameUI",
+   "NewGameCommonButton",
+   "NewGameDifficultyUI",
+   "NewGamePerkTooltip",
+   "NewGamePerksUI",
+   "NewGameSpecializationUI",
+   "NewGameUIElements",
+   "RunSummaryUI"
+  ]
+ },
+ "NewGameUIElements": {
+  "base": null,
+  "referenced_by": 8,
+  "users": [
+   "CreditsUI",
+   "LoadGameUI",
+   "NewGameCommonButton",
+   "NewGameDifficultyUI",
+   "NewGamePerkTooltip",
+   "NewGamePerksUI",
+   "NewGameSpecializationUI",
+   "RunSummaryUI"
+  ]
+ },
+ "NewsPaper": {
+  "base": "TooltipInterface",
+  "referenced_by": 0,
+  "users": []
+ },
+ "NewsUIElement": {
+  "base": "NegociationElement",
+  "referenced_by": 1,
+  "users": [
+   "NewsUIManager"
+  ]
+ },
+ "NewsUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "MiscItemDirectory",
+   "NewsPaper",
+   "StoreUIManager",
+   "StoreUISounds"
+  ]
+ },
+ "NightLog": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "AugHelper",
+   "ExchangeManager",
+   "PlayerStore",
+   "StartingPerkContent",
+   "StoreEventManager",
+   "StoreOperationManager",
+   "StorePhoneClient"
+  ]
+ },
+ "NotebookElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "EmporiumRTSController",
+   "ItemFeatureUI",
+   "NotebookUIManager"
+  ]
+ },
+ "NotebookUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 5,
+  "users": [
+   "ItemFeature",
+   "PlayerStore",
+   "StoreNotebook",
+   "StoreUIManager",
+   "StoreUISounds"
+  ]
+ },
+ "NpcCharacterItemDirectory": {
+  "base": "CharacterItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "OnInspectedEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "OnSleepEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "OperationListBM": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GunOrderDebug",
+   "StoreOperationManager"
+  ]
+ },
+ "OperationListLL": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StoreOperationManager"
+  ]
+ },
+ "OperationListRev": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StoreOperationManager"
+  ]
+ },
+ "OperationListSec": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StoreOperationManager"
+  ]
+ },
+ "OperationListUL": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StoreOperationManager"
+  ]
+ },
+ "OrganBehavior": {
+  "base": "ItemTargetBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "OrganDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "OrganHelper": {
+  "base": "MonoBehaviour",
+  "referenced_by": 5,
+  "users": [
+   "GameCharacterItem",
+   "GameItem",
+   "GameItemElement",
+   "MenuManager",
+   "UnusedDirectory"
+  ]
+ },
+ "OverlayHandler": {
+  "base": "MonoBehaviour",
+  "referenced_by": 54,
+  "users": [
+   "ActionQueue",
+   "BarterHelper",
+   "CombatLog",
+   "CraftingHelper",
+   "DebugHandler",
+   "EventTriggerManager",
+   "GameCharacterItem",
+   "GameCharacterRaidInventory",
+   "GameGridInventory",
+   "GameGridScrollableInventory"
+  ]
+ },
+ "OverlayHelper": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "Dialogue",
+   "EmporiumEntry",
+   "EventData",
+   "MenuScene",
+   "OverlayHandler",
+   "RaidScene",
+   "ShipScene"
+  ]
+ },
+ "OverworldPOI": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "NavDiskHelper",
+   "NavigationHelper",
+   "OverlayHandler",
+   "OverworldSpace",
+   "OverworldStation",
+   "ShipManager"
+  ]
+ },
+ "OverworldSpace": {
+  "base": "OverworldPOI",
+  "referenced_by": 30,
+  "users": [
+   "NavDiskHelper",
+   "NavigationHelper",
+   "NewBehaviourScript",
+   "SpaceAsteroidTrigger",
+   "SpaceBanditTrigger",
+   "SpaceBattleTrigger",
+   "SpaceButcherTrigger",
+   "SpaceCargoConvoyTrigger",
+   "SpaceCargoPodTrigger",
+   "SpaceDebrisFieldTrigger"
+  ]
+ },
+ "OverworldStation": {
+  "base": "OverworldPOI",
+  "referenced_by": 8,
+  "users": [
+   "NavDiskHelper",
+   "NavigationHelper",
+   "SchematicStandard",
+   "ShipManager",
+   "TestTraderStationEventTrigger",
+   "TraderStationBlockadeTrigger",
+   "TraderStationFreeportTrigger",
+   "TraderStationInspectionTrigger"
+  ]
+ },
+ "PCUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 5,
+  "users": [
+   "EmporiumEntry",
+   "StorePC",
+   "StoreRequest",
+   "StoreRequestElement",
+   "StoreStation"
+  ]
+ },
+ "PaperAction": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "PaperElementData"
+  ]
+ },
+ "PaperAssetCatalog": {
+  "base": "ScriptableObject",
+  "referenced_by": 3,
+  "users": [
+   "CustomUIManager",
+   "PaperAssets",
+   "PaperEditorWindow"
+  ]
+ },
+ "PaperAssets": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "CustomUIManager",
+   "PaperEditor",
+   "PaperEditorInspect",
+   "PaperEditorSpritePicker",
+   "PaperEditorValidation",
+   "PaperEditorWindow",
+   "PaperUI"
+  ]
+ },
+ "PaperBookData": {
+  "base": null,
+  "referenced_by": 11,
+  "users": [
+   "ModHelper",
+   "PaperAssets",
+   "PaperBookRegistry",
+   "PaperEditor",
+   "PaperEditorFiles",
+   "PaperEditorHistory",
+   "PaperEditorValidation",
+   "PaperEditorWindow",
+   "PaperJson",
+   "PaperStarters"
+  ]
+ },
+ "PaperBookRegistry": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "CustomUIDebugPanel",
+   "ModHelper",
+   "ModLoader",
+   "PaperDebugCommands",
+   "PaperEditor",
+   "PaperEditorWindow"
+  ]
+ },
+ "PaperDebugCommands": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "PaperEditor": {
+  "base": "MonoBehaviour",
+  "referenced_by": 7,
+  "users": [
+   "CustomUIDebugPanel",
+   "PaperDebugCommands",
+   "PaperEditorFiles",
+   "PaperEditorInspect",
+   "PaperEditorOverlay",
+   "PaperEditorValidation",
+   "PaperEditorWindow"
+  ]
+ },
+ "PaperEditorFiles": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "PaperEditor",
+   "PaperEditorValidation",
+   "PaperEditorWindow"
+  ]
+ },
+ "PaperEditorHistory": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "PaperEditor"
+  ]
+ },
+ "PaperEditorInspect": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "PaperEditor",
+   "PaperEditorWindow"
+  ]
+ },
+ "PaperEditorOverlay": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "PaperEditor"
+  ]
+ },
+ "PaperEditorSpritePicker": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "CustomUIDebugPanel",
+   "PaperEditorWindow"
+  ]
+ },
+ "PaperEditorValidation": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "PaperEditorWindow"
+  ]
+ },
+ "PaperEditorWindow": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "PaperDebugCommands",
+   "PaperEditor",
+   "PaperEditorFiles",
+   "PaperEditorInspect"
+  ]
+ },
+ "PaperElementData": {
+  "base": null,
+  "referenced_by": 12,
+  "users": [
+   "PaperBookData",
+   "PaperEditor",
+   "PaperEditorFiles",
+   "PaperEditorInspect",
+   "PaperEditorOverlay",
+   "PaperEditorValidation",
+   "PaperEditorWindow",
+   "PaperJson",
+   "PaperPageData",
+   "PaperStarters"
+  ]
+ },
+ "PaperElementType": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "PaperEditorValidation",
+   "PaperEditorWindow"
+  ]
+ },
+ "PaperImageFit": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "PaperEditorValidation",
+   "PaperEditorWindow"
+  ]
+ },
+ "PaperItemData": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "PaperBookData",
+   "PaperBookRegistry",
+   "PaperEditor",
+   "PaperEditorWindow"
+  ]
+ },
+ "PaperJson": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "ModHelper",
+   "PaperBookData",
+   "PaperBookRegistry",
+   "PaperEditor",
+   "PaperEditorFiles",
+   "PaperEditorHistory",
+   "PaperElementData",
+   "PaperStarters",
+   "PaperUI"
+  ]
+ },
+ "PaperLineArrow": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "PaperEditorValidation",
+   "PaperEditorWindow"
+  ]
+ },
+ "PaperPageData": {
+  "base": null,
+  "referenced_by": 8,
+  "users": [
+   "PaperBookData",
+   "PaperEditor",
+   "PaperEditorFiles",
+   "PaperEditorValidation",
+   "PaperEditorWindow",
+   "PaperJson",
+   "PaperStarters",
+   "PaperUI"
+  ]
+ },
+ "PaperPanelFocusStamp": {
+  "base": "MonoBehaviour",
+  "referenced_by": 10,
+  "users": [
+   "ChemScannerUIManager",
+   "CustomUIManager",
+   "EndOfDayUIManager",
+   "NegociationUIManager",
+   "PaperUI",
+   "PlantAnalyserUIManager",
+   "StoreUIManager",
+   "UIDragHandler",
+   "WaterScannerUIManager",
+   "WaterStripUIManager"
+  ]
+ },
+ "PaperSpriteEffects": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "PaperUI"
+  ]
+ },
+ "PaperStarters": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "PaperBookData",
+   "PaperEditor",
+   "PaperEditorWindow",
+   "PaperUI"
+  ]
+ },
+ "PaperTemplateData": {
+  "base": null,
+  "referenced_by": 8,
+  "users": [
+   "PaperBookData",
+   "PaperEditor",
+   "PaperEditorFiles",
+   "PaperEditorValidation",
+   "PaperEditorWindow",
+   "PaperJson",
+   "PaperStarters",
+   "PaperUI"
+  ]
+ },
+ "PaperTextStyle": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "PaperEditorInspect",
+   "PaperEditorOverlay",
+   "PaperEditorValidation",
+   "PaperEditorWindow",
+   "PaperUI"
+  ]
+ },
+ "PaperUI": {
+  "base": null,
+  "referenced_by": 14,
+  "users": [
+   "CustomUIDebugPanel",
+   "ModHelper",
+   "ModHook",
+   "PaperAssetCatalog",
+   "PaperAssets",
+   "PaperBookRegistry",
+   "PaperDebugCommands",
+   "PaperEditor",
+   "PaperEditorFiles",
+   "PaperEditorOverlay"
+  ]
+ },
+ "PaperUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 17,
+  "users": [
+   "AppraisalItemsWindow",
+   "EmporiumEntry",
+   "ExchangeUIManager",
+   "HandnoteUIManager",
+   "IntelUnusedHelper",
+   "LoanPanelUIManager",
+   "MapUIManager",
+   "MiscItemDirectory",
+   "MultiPageUIManager",
+   "PaperUI"
+  ]
+ },
+ "PaperUIPanel": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "PaperUI"
+  ]
+ },
+ "PerkDirectory": {
+  "base": "CombatAbilityEffectDirectory",
+  "referenced_by": 2,
+  "users": [
+   "CombatAbilityEffect",
+   "GameCharacterItem"
+  ]
+ },
+ "PerkElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "ReputationElement"
+  ]
+ },
+ "PerkIconEntry": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StartingPerkIconLoader"
+  ]
+ },
+ "PerkUIController": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "AdvCalendarUIManager",
+   "MainMenuUIController",
+   "MindReprogrammerHelper",
+   "StartingPerkElement"
+  ]
+ },
+ "PermitHelper": {
+  "base": null,
+  "referenced_by": 11,
+  "users": [
+   "DirectoryMaster",
+   "ExchangeList",
+   "GameItem",
+   "MiscItemDirectory",
+   "NewGameData",
+   "PlayerStore",
+   "StoreClientList",
+   "StoreClientListSecurity",
+   "StoreClientListSpec",
+   "StoreClientManager"
+  ]
+ },
+ "PhoneBookUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "PhoneUIManager"
+  ]
+ },
+ "PhoneButton": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "PhoneUIManager"
+  ]
+ },
+ "PhoneClientList": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "StorePhoneClient"
+  ]
+ },
+ "PhoneDialogList": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "PhoneClientList",
+   "StorePhoneClient"
+  ]
+ },
+ "PhoneUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 7,
+  "users": [
+   "ContactElement",
+   "DialoguePhoneUIManager",
+   "EmporiumEntry",
+   "PhoneButton",
+   "PhoneDialogList",
+   "StorePhoneObject",
+   "StoreUIManager"
+  ]
+ },
+ "PixelElement": {
+  "base": null,
+  "referenced_by": 43,
+  "users": [
+   "ColoredPixelElement",
+   "CraftingHelper",
+   "EmptyPixelElement",
+   "GameCharacterRaidInventory",
+   "GameGridInventory",
+   "GameGridScrollableInventory",
+   "GameItemElement",
+   "GameSlotInventory",
+   "GridPixelElement",
+   "IndicatorElement"
+  ]
+ },
+ "PixelPerfectHorizontalLayoutGroup": {
+  "base": "HorizontalLayoutGroup",
+  "referenced_by": 0,
+  "users": []
+ },
+ "PixelWindow": {
+  "base": "PixelElement",
+  "referenced_by": 76,
+  "users": [
+   "AmenitiesItemDirectory",
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AugScanner",
+   "ContainerItemDirectory",
+   "CraftingHelper",
+   "DirectoryUtils",
+   "EmporiumEntry",
+   "EquipmentDirectory",
+   "FurnitureItemDirectory"
+  ]
+ },
+ "PlantAnalyserUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "EmporiumEntry",
+   "HydroponicDirectory"
+  ]
+ },
+ "PlantDefinition": {
+  "base": null,
+  "referenced_by": 8,
+  "users": [
+   "DebugPanel",
+   "HydroponicHelper",
+   "PlantGeneticsHelper",
+   "PlantHarvestContext",
+   "PlantList",
+   "PlantRegistry",
+   "PlantTrait",
+   "PlantTraitList"
+  ]
+ },
+ "PlantGeneticsHelper": {
+  "base": null,
+  "referenced_by": 14,
+  "users": [
+   "AmenitiesItemDirectory",
+   "DebugPanel",
+   "GameItemElement",
+   "HydroponicDirectory",
+   "HydroponicHelper",
+   "MachineDnaManipulator",
+   "PlantHarvest",
+   "PlantList",
+   "PlantTrait",
+   "PlantTraitContext"
+  ]
+ },
+ "PlantGeneticsText": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "MachineDnaManipulator",
+   "ModuleDirectory",
+   "PlantGeneticsHelper",
+   "PlantStat",
+   "PlantTrait",
+   "PlantTraitList",
+   "PlantWaterQuality"
+  ]
+ },
+ "PlantHarvest": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "HydroponicHelper",
+   "PlantGeneticsHelper",
+   "PlantHarvestContext",
+   "PlantList"
+  ]
+ },
+ "PlantHarvestContext": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "HydroponicHelper",
+   "PlantDefinition",
+   "PlantGeneticsHelper",
+   "PlantHarvest",
+   "PlantList",
+   "PlantTraitContext"
+  ]
+ },
+ "PlantList": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "CustomUIDebugPanel",
+   "HydroponicDirectory",
+   "PlantGeneticsHelper",
+   "PlantRegistry",
+   "StoreClientManager",
+   "StoreEventManager"
+  ]
+ },
+ "PlantRegistry": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "DebugPanel",
+   "HydroponicHelper",
+   "PlantGeneticsHelper",
+   "PlantList"
+  ]
+ },
+ "PlantStat": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "PlantGeneticsHelper"
+  ]
+ },
+ "PlantTrait": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "MachineDnaManipulator",
+   "PlantGeneticsHelper",
+   "PlantTraitContext",
+   "PlantTraitList",
+   "PlantTraitRegistry"
+  ]
+ },
+ "PlantTraitContext": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "PlantGeneticsHelper",
+   "PlantTrait",
+   "PlantTraitList"
+  ]
+ },
+ "PlantTraitList": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "DebugPanel",
+   "PlantList",
+   "PlantTraitRegistry",
+   "PlayerStore"
+  ]
+ },
+ "PlantTraitRegistry": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "DebugPanel",
+   "MachineDnaManipulator",
+   "PlantGeneticsHelper",
+   "PlantTraitList"
+  ]
+ },
+ "PlantWaterQuality": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "PlantTraitList"
+  ]
+ },
+ "PlasmaHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "AppraisalItemRegistry",
+   "InspectionUIManager",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "PlayerAbilityItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 1,
+  "users": [
+   "TechnicianBackpackDirectory"
+  ]
+ },
+ "PlayerCharacterItemDirectory": {
+  "base": "CharacterItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "PlayerStore": {
+  "base": null,
+  "referenced_by": 196,
+  "users": [
+   "AchievementTracker",
+   "AdvCalendarUIManager",
+   "AfterhourEvents",
+   "AfterhourLocation",
+   "AmenitiesItemDirectory",
+   "AmmoBoxHelper",
+   "AppHandHelper",
+   "AppraisalHelper",
+   "AppraisalItemRegistry",
+   "AppraisalItemsWindow"
+  ]
+ },
+ "PowerHelper": {
+  "base": null,
+  "referenced_by": 34,
+  "users": [
+   "AquacultureHelper",
+   "AugScanner",
+   "CraftingRecipe",
+   "CurrentConverterHelper",
+   "DropDirectory",
+   "FurnitureItemDirectory",
+   "GameItem",
+   "GameItemElement",
+   "HypertechBatteryHelper",
+   "MachineAlarm"
+  ]
+ },
+ "PreBuildChemHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "DebugPanel",
+   "MaterialDirectory"
+  ]
+ },
+ "PreBuiltItemHelper": {
+  "base": null,
+  "referenced_by": 37,
+  "users": [
+   "AppraisalItemRegistry",
+   "AppraisalServiceHelper",
+   "BarterOfferList",
+   "ChemicalFeedbackHelper",
+   "DebugPanel",
+   "ExchangeList",
+   "IngotPurityHelper",
+   "IntelHelper",
+   "ItemSpawner",
+   "LockHelper"
+  ]
+ },
+ "PriceHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GeneralHelper",
+   "PlayerStore"
+  ]
+ },
+ "PriorityTrigger": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "EventTrigger",
+   "EventTriggerManager",
+   "ItemBehaviourManager",
+   "ItemTargetBehaviour",
+   "ItemUseBehaviour"
+  ]
+ },
+ "ProcurementData": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClient",
+   "StoreClientListProcurement"
+  ]
+ },
+ "PropulsionHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameItemElement",
+   "OverlayHandler",
+   "OverlayHelper"
+  ]
+ },
+ "PushButtonElement": {
+  "base": "PixelElement",
+  "referenced_by": 1,
+  "users": [
+   "FurnitureItemDirectory"
+  ]
+ },
+ "QuickChooseHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 1,
+  "users": [
+   "ItemMultiSelectHandler"
+  ]
+ },
+ "RNG": {
+  "base": null,
+  "referenced_by": 121,
+  "users": [
+   "AfterhourEvents",
+   "AmmoBoxHelper",
+   "AppHandHelper",
+   "AppNavHelper",
+   "AppraisalHelper",
+   "AppraisalServiceHelper",
+   "AquacultureHelper",
+   "ArmorHelper",
+   "AugHelper",
+   "BargainUIManager"
+  ]
+ },
+ "RTSController": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "EmporiumRTSController",
+   "Interactable",
+   "InteractableUI",
+   "ItemFeatureUI"
+  ]
+ },
+ "RaidAnimation": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "RaidManager": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameMaster",
+   "ShipScene",
+   "TurnManager"
+  ]
+ },
+ "RaidScene": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "DialogueHandler",
+   "GameMaster",
+   "RaidManager"
+  ]
+ },
+ "RandomClientPool": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientList",
+   "StoreClientManager"
+  ]
+ },
+ "RatTrap": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "HusbandryDirectory"
+  ]
+ },
+ "ReactorHelper": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "EndOfDayUIManager",
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "MaterialDirectory",
+   "ModuleHelper",
+   "PlayerStore",
+   "StoreClientList"
+  ]
+ },
+ "RecipeManager": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "CraftingRecipeManager",
+   "GameItem",
+   "VendingRecipeManager"
+  ]
+ },
+ "RecipeSelectHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 1,
+  "users": [
+   "OverlayHandler"
+  ]
+ },
+ "RecordUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "EmporiumEntry",
+   "MiscItemDirectory"
+  ]
+ },
+ "RecorderUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 7,
+  "users": [
+   "DialogUIManager",
+   "DialoguePhoneUIManager",
+   "EmporiumEntry",
+   "EndOfDayUIManager",
+   "StoreRecorder",
+   "StoreUIManager",
+   "StoreUISounds"
+  ]
+ },
+ "RefineFlowLayoutGroup": {
+  "base": "LayoutGroup",
+  "referenced_by": 0,
+  "users": []
+ },
+ "RenderHandler": {
+  "base": "MonoBehaviour",
+  "referenced_by": 192,
+  "users": [
+   "AbilityItemHelper",
+   "AdvButtonElement",
+   "AgableHelper",
+   "AmenitiesManager",
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AppHandHelper",
+   "AppraisalHelper",
+   "AppraisalRankHelper",
+   "AquacultureHelper"
+  ]
+ },
+ "RepublicLogoUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "MiscItemDirectory"
+  ]
+ },
+ "ReputationElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "ReputationUIManager"
+  ]
+ },
+ "ReputationUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 8,
+  "users": [
+   "CommissaryUIManager",
+   "EmporiumEntry",
+   "FeedbackBox",
+   "LotteryHelper",
+   "PerkElement",
+   "ReputationElement",
+   "StoreReputation",
+   "StoreUIManager"
+  ]
+ },
+ "ResolutionLocalizer": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ResponseList": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "EmporiumEntry",
+   "StoreResponse"
+  ]
+ },
+ "RibwichHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "AppraisalItemRegistry",
+   "GameItemElement",
+   "PreBuiltItemHelper"
+  ]
+ },
+ "RibwichUI": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "InspectionUIManager"
+  ]
+ },
+ "RichTableBuilder": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "RichTextBuilder"
+  ]
+ },
+ "RichText": {
+  "base": null,
+  "referenced_by": 16,
+  "users": [
+   "AdvButtonElement",
+   "ButtonElement",
+   "GameItemElement",
+   "GameSlotInventory",
+   "MachineDnaManipulator",
+   "MachineHelper",
+   "MachineryButton",
+   "MachineryRadioButton",
+   "OverlayHandler",
+   "RichTextBuilder"
+  ]
+ },
+ "RichTextBuilder": {
+  "base": null,
+  "referenced_by": 151,
+  "users": [
+   "AbilityItemHelper",
+   "AdvButtonElement",
+   "AgableHelper",
+   "AmenitiesManager",
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AppHandHelper",
+   "AppraisalHelper",
+   "AppraisalRankHelper",
+   "AquacultureHelper"
+  ]
+ },
+ "RichTextElement": {
+  "base": "PixelElement",
+  "referenced_by": 7,
+  "users": [
+   "DirectoryUtils",
+   "ItemContextHandler",
+   "MenuScene",
+   "OverlayHandler",
+   "OverlayHelper",
+   "RaidScene",
+   "ShipScene"
+  ]
+ },
+ "RichTextGenerator": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "ItemMouseDragHandler"
+  ]
+ },
+ "Room": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "RaidManager",
+   "RoomFactory",
+   "SchematicCorridor",
+   "SchematicStandard",
+   "Station",
+   "StationGeneration",
+   "UnusedDirectory"
+  ]
+ },
+ "RoomFactory": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "Schematic",
+   "SchematicCorridor",
+   "SchematicStandard",
+   "StationGeneration"
+  ]
+ },
+ "RuinedMachineDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "RunStats": {
+  "base": null,
+  "referenced_by": 13,
+  "users": [
+   "AugHelper",
+   "ContrabandHelper",
+   "CustomUIDebugPanel",
+   "PlayerStore",
+   "RunSummaryUI",
+   "ScavHelper",
+   "StoreClientDialogList",
+   "StoreClientList",
+   "StoreClientUniqueList",
+   "VendingFountainHelper"
+  ]
+ },
+ "RunSummaryUI": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GameOverUIManager",
+   "StoreUIManager"
+  ]
+ },
+ "SalvageHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "UnusedDirectory"
+  ]
+ },
+ "SalvageSystemHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "NewBehaviourScript"
+  ]
+ },
+ "SaveFiles": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "LoadGameUI",
+   "NewGameDifficultyUI",
+   "NewGamePerksUI",
+   "PerkUIController",
+   "PlayerStore",
+   "SaveSlotElement",
+   "SaveUIManager"
+  ]
+ },
+ "SaveHistoryEntry": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "LoadGameUI",
+   "SaveFiles"
+  ]
+ },
+ "SaveItemNode": {
+  "base": "ISerializationCallbackReceiver",
+  "referenced_by": 2,
+  "users": [
+   "SaveManager",
+   "SaveState"
+  ]
+ },
+ "SaveManager": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "GameMaster",
+   "HopperHelper",
+   "MachineFeedDispenser",
+   "MenuScene",
+   "PlayerStore",
+   "ShipManager"
+  ]
+ },
+ "SavePreviewData": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "LoadGameUI",
+   "PlayerStore",
+   "SaveFiles",
+   "SaveUIManager"
+  ]
+ },
+ "SaveSlotElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "SaveUIManager"
+  ]
+ },
+ "SaveState": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "PlayerStore",
+   "SaveManager"
+  ]
+ },
+ "SaveUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "LoadGameUI",
+   "MainMenuUIController",
+   "PlayerStore",
+   "SaveFiles"
+  ]
+ },
+ "ScavHelper": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "AmenitiesItemDirectory",
+   "DumpingGroundLocation",
+   "GameItemElement",
+   "MapUIManager",
+   "MaterialDirectory",
+   "ModuleHelper"
+  ]
+ },
+ "Scenario": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "MenuManager",
+   "MenuScene",
+   "NewGameSpecializationFrame"
+  ]
+ },
+ "SceneSwitcher": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "Schematic": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "OverworldStation",
+   "SchematicCorridor",
+   "SchematicStandard"
+  ]
+ },
+ "SchematicCorridor": {
+  "base": "Schematic",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SchematicStandard": {
+  "base": "Schematic",
+  "referenced_by": 2,
+  "users": [
+   "OverworldStation",
+   "Schematic"
+  ]
+ },
+ "ScratchFlake": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "ScratchInput"
+  ]
+ },
+ "ScratchInput": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "ScratcherUIManager",
+   "UIDragHandler"
+  ]
+ },
+ "ScratchMaskInit": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ScratcherHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameItemElement",
+   "MiscItemDirectory",
+   "ScratcherUIManager"
+  ]
+ },
+ "ScratcherUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "MiscItemDirectory",
+   "ScratchInput"
+  ]
+ },
+ "ScrollElement": {
+  "base": "PixelElement",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ScrollableRichTextElement": {
+  "base": "PixelElement",
+  "referenced_by": 4,
+  "users": [
+   "CraftingHelper",
+   "MenuScene",
+   "OverlayHandler",
+   "RaidScene"
+  ]
+ },
+ "SecData": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "PlayerStore",
+   "RecordUIManager",
+   "RunSummaryUI",
+   "StoreClientListSecurity",
+   "VendingFountainHelper"
+  ]
+ },
+ "SecuredContainerHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GameItemElement",
+   "UnusedDirectory"
+  ]
+ },
+ "SecuritySlip": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "PaperUIManager"
+  ]
+ },
+ "SelectableButtonElement": {
+  "base": "SelectableElement",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SelectableElement": {
+  "base": "PixelElement",
+  "referenced_by": 8,
+  "users": [
+   "AdvButtonElement",
+   "BannerLocationElement",
+   "ButtonElement",
+   "MachineryButton",
+   "MachineryContainerUtils",
+   "MachineryRadioButton",
+   "SelectableButtonElement",
+   "SelectableElementHandler"
+  ]
+ },
+ "SelectableElementHandler": {
+  "base": "EmptyActionHandler",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SerpicoStoryline": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "DumpingGroundLocation",
+   "StoreClientManager"
+  ]
+ },
+ "ServiceElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ShareholderHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientListSupplier",
+   "StoreShutterButton"
+  ]
+ },
+ "ShipHelper": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "MachineryHelper",
+   "MenuManager",
+   "ShipItemDirectory",
+   "UnusedDirectory"
+  ]
+ },
+ "ShipItemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ShipManager": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "GameMaster",
+   "OverlayHelper",
+   "ShipScene",
+   "TurnManager"
+  ]
+ },
+ "ShipScene": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "CraftingHelper",
+   "GameMaster",
+   "ShipManager"
+  ]
+ },
+ "ShipSystemDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "Shotgun": {
+  "base": "TooltipInterface",
+  "referenced_by": 8,
+  "users": [
+   "DebugPanel",
+   "EnemyFactory",
+   "GunFactory",
+   "PlayerStore",
+   "StartingPerkContent",
+   "StoreClientDialogList",
+   "StoreClientListSecurity",
+   "UnusedDirectory"
+  ]
+ },
+ "ShowcaseHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "ClienteleUIManager",
+   "StoreClientManager",
+   "ToolDirectory"
+  ]
+ },
+ "SimpleAnimator": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SimpleSpriteAnimator": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SlotMarker": {
+  "base": null,
+  "referenced_by": 116,
+  "users": [
+   "AmenitiesItemDirectory",
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AppraisalRankHelper",
+   "AquacultureHelper",
+   "AquacultureItems",
+   "ArmorHelper",
+   "Base",
+   "BlackLampHelper",
+   "CanteenHelper"
+  ]
+ },
+ "SmoothMouseMovement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SoldItem": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "ChemicalFeedbackHelper",
+   "LocGenderHelper",
+   "PlayerStore",
+   "SecData",
+   "StoreClientListSpec",
+   "StoreRequest",
+   "VendingMachineHelper"
+  ]
+ },
+ "SpaceAsteroidTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceBanditTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceBattleHelper": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "NewBehaviourScript",
+   "SpaceAsteroidTrigger",
+   "SpaceBanditTrigger",
+   "SpaceBattleTrigger",
+   "SpaceDistressSignalFakeTrigger"
+  ]
+ },
+ "SpaceBattleTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceButcherTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceCargoConvoyTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceCargoPodTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceDebrisFieldTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceDistressSignalFakeTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceDistressSignalTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceDrugShipTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceExampleTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceFuelTankerTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceGhostShipTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceInvadersText": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceMedicTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceMerchantTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceMiningShipTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceNavySupplyTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceNutrifruitShopTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceRefugeeTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceRepairShipTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceSalvageShipTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceScalperTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpaceSpaTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SplashTextManager": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "ArmorHelper",
+   "CombatAbilityEffectInstantDirectory",
+   "CombatEntity",
+   "CombatManager",
+   "GameCharacterItem"
+  ]
+ },
+ "SpriteAnimationHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GameItemElement",
+   "SpriteAnimationManager"
+  ]
+ },
+ "SpriteAnimationManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "SpriteDict": {
+  "base": "MonoBehaviour",
+  "referenced_by": 32,
+  "users": [
+   "AugHelper",
+   "CustomUIDebugWindows",
+   "CustomUIManager",
+   "DebugPanel",
+   "GenericClientMono",
+   "MapUIManager",
+   "PlayerStore",
+   "SerpicoStoryline",
+   "StoreClientList",
+   "StoreClientListAppraisal"
+  ]
+ },
+ "SpriteHelper": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "AquacultureHelper",
+   "ChemicalHelper",
+   "MachineEvaporator",
+   "MiscItemDirectory",
+   "PlayerStore",
+   "StoreVendingMachine",
+   "VendingMachineHelper",
+   "WaterFeatureHelper",
+   "WaterHelper"
+  ]
+ },
+ "SpritePixelElement": {
+  "base": "PixelElement",
+  "referenced_by": 4,
+  "users": [
+   "MenuScene",
+   "OverlayHandler",
+   "RaidScene",
+   "ShipScene"
+  ]
+ },
+ "StampUI": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "InspectionUIManager"
+  ]
+ },
+ "StandardCombatAbilityDirectory": {
+  "base": "CombatAbilityDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StartOfDayUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "EmporiumEntry",
+   "EndOfDayUIManager"
+  ]
+ },
+ "StartingPerk": {
+  "base": null,
+  "referenced_by": 41,
+  "users": [
+   "AdvCalendarUIManager",
+   "AugHelper",
+   "BargainUIManager",
+   "CommissaryLocation",
+   "DumpingGroundLocation",
+   "EmporiumAnalytics",
+   "EmporiumEntry",
+   "EndOfDayUIManager",
+   "ExchangeList",
+   "GameItem"
+  ]
+ },
+ "StartingPerkContent": {
+  "base": null,
+  "referenced_by": 21,
+  "users": [
+   "AnimalCage",
+   "AugHelper",
+   "CurrentConverterHelper",
+   "EmporiumEntry",
+   "HusbandryHelper",
+   "HypertechBatteryHelper",
+   "MachineBottlePrinter",
+   "MachineFridge",
+   "MachineRAS",
+   "ModuleDirectory"
+  ]
+ },
+ "StartingPerkElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "AdvCalendarUIManager",
+   "MindReprogrammerHelper",
+   "PerkUIController"
+  ]
+ },
+ "StartingPerkIconLoader": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "MindReprogrammerHelper",
+   "NewGamePerksUI",
+   "RunSummaryUI",
+   "StartingPerkElement"
+  ]
+ },
+ "StartingPerkList": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "DebugPanel",
+   "MindReprogrammerHelper",
+   "ModHelper",
+   "NewGamePerksUI",
+   "PerkUIController",
+   "StartingPerk"
+  ]
+ },
+ "StartingPerkSelectedEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "StartingScenario": {
+  "base": null,
+  "referenced_by": 10,
+  "users": [
+   "IconProvider",
+   "LoadGameUI",
+   "MainMenuUIController",
+   "ModHelper",
+   "NewGameData",
+   "NewGameDifficultyUI",
+   "NewGameSpecializationUI",
+   "NewGameStyle",
+   "RunSummaryUI",
+   "SaveUIManager"
+  ]
+ },
+ "StaticClass": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "Station": {
+  "base": null,
+  "referenced_by": 16,
+  "users": [
+   "FactionStatusList",
+   "NpcCharacterItemDirectory",
+   "OverworldStation",
+   "RaidManager",
+   "RoomFactory",
+   "RunSummaryUI",
+   "Schematic",
+   "SchematicCorridor",
+   "SchematicStandard",
+   "StationGeneration"
+  ]
+ },
+ "StationFeature": {
+  "base": "TagSystem",
+  "referenced_by": 3,
+  "users": [
+   "Schematic",
+   "SchematicStandard",
+   "Station"
+  ]
+ },
+ "StationGeneration": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "StationMachinerieHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StationMachinery"
+  ]
+ },
+ "StationMachinery": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StealPixelElement": {
+  "base": "PixelElement",
+  "referenced_by": 3,
+  "users": [
+   "MenuScene",
+   "RaidScene",
+   "ShipScene"
+  ]
+ },
+ "SteamManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "AchievementTracker",
+   "LocHelper",
+   "ModWorkshop"
+  ]
+ },
+ "StolenHelper": {
+  "base": null,
+  "referenced_by": 10,
+  "users": [
+   "ContainerItemDirectory",
+   "ContrabandHelper",
+   "GameItem",
+   "GameItemElement",
+   "LockHelper",
+   "PlayerStore",
+   "ShowcaseHelper",
+   "StoreClient",
+   "StoreClientUniqueList",
+   "StoreReputation"
+  ]
+ },
+ "StorageExpansionHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameItemElement",
+   "SaveManager",
+   "ShipSystemDirectory"
+  ]
+ },
+ "StoreBedroll": {
+  "base": "TooltipInterface",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreBell": {
+  "base": "TooltipInterface",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreBookData": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "BookHelper",
+   "PaperUIManager",
+   "PlayerStore"
+  ]
+ },
+ "StoreCalendar": {
+  "base": "TooltipInterface",
+  "referenced_by": 1,
+  "users": [
+   "StoreUIManager"
+  ]
+ },
+ "StoreClient": {
+  "base": null,
+  "referenced_by": 66,
+  "users": [
+   "AmmoBoxHelper",
+   "AppraisalServiceHelper",
+   "AugHelper",
+   "AugScanner",
+   "BargainUIManager",
+   "BarterOffer",
+   "ClientCanExposeFunc",
+   "ClientSpriteVariety",
+   "CustomUIDebugWindows",
+   "DialogUIManager"
+  ]
+ },
+ "StoreClientCounter": {
+  "base": "TooltipInterface",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreClientData": {
+  "base": null,
+  "referenced_by": 11,
+  "users": [
+   "CustomUIDebugPanel",
+   "LouBombHelper",
+   "MapUIManager",
+   "PlayerStore",
+   "ResponseList",
+   "SerpicoStoryline",
+   "StoreClientList",
+   "StoreClientListWanted",
+   "StoreClientManager",
+   "StoreClientUniqueList"
+  ]
+ },
+ "StoreClientDialogList": {
+  "base": null,
+  "referenced_by": 11,
+  "users": [
+   "ContrabandHelper",
+   "PlayerStore",
+   "StoreClient",
+   "StoreClientList",
+   "StoreClientListGun",
+   "StoreClientListStory",
+   "StoreClientUniqueList",
+   "StoreShutterButton",
+   "StoreUIManager",
+   "WildNetworkUI"
+  ]
+ },
+ "StoreClientFactionSetup": {
+  "base": null,
+  "referenced_by": 21,
+  "users": [
+   "SerpicoStoryline",
+   "StoreClientList",
+   "StoreClientListAppraisal",
+   "StoreClientListBarter",
+   "StoreClientListCartel",
+   "StoreClientListChurch",
+   "StoreClientListEvent",
+   "StoreClientListGun",
+   "StoreClientListMinor",
+   "StoreClientListMorning"
+  ]
+ },
+ "StoreClientInstance": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "AchievementTracker",
+   "AugHelper",
+   "AugScanner",
+   "MapUIManager",
+   "PlayerStore",
+   "StoreClient",
+   "StoreClientUniqueList",
+   "StoreShutterButton",
+   "StoreUIManager"
+  ]
+ },
+ "StoreClientItem": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreClientList": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "DebugPanel",
+   "DrJacksonLocation",
+   "MapUIManager",
+   "StoreClientListDict",
+   "StoreClientListSupplier",
+   "StoreClientListWanted",
+   "StoreClientManager",
+   "StoreClientUniqueList",
+   "StoreEventActionDict"
+  ]
+ },
+ "StoreClientListAppraisal": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "AppraisalRankHelper",
+   "DebugPanel",
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListBarter": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "StoreClientList",
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListCartel": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListChurch": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListCommand": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreClientListDict": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "BlackLampHelper",
+   "ClienteleUIManager",
+   "CustomUIDebugWindows",
+   "PlayerStore",
+   "ShowcaseHelper",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListEvent": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientListDict",
+   "StoreEventActionDict"
+  ]
+ },
+ "StoreClientListGun": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "CustomUIDebugPanel",
+   "DebugPanel",
+   "GunOrderDebug",
+   "NegociationUIManager",
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListInformation": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListInformationDialog": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StoreClientListInformation"
+  ]
+ },
+ "StoreClientListMinor": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "PlayerStore",
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListMorning": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "PlayerStore"
+  ]
+ },
+ "StoreClientListProcurement": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreClientListRev": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "DebugPanel",
+   "StoreClientList",
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListSecurity": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListShortage": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListSpec": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "ChemicalFeedbackHelper",
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListStory": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "DebugPanel",
+   "PlayerStore",
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListSupplier": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListSurplus": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListTier": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListTierSubstance": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientListDict",
+   "StoreEventActionDict"
+  ]
+ },
+ "StoreClientListTierWeapon": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StoreClientListDict"
+  ]
+ },
+ "StoreClientListUnused": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreClientListWanted": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "CustomUIDebugPanel",
+   "DebugPanel",
+   "LouBombHelper",
+   "PlayerStore",
+   "RunSummaryUI",
+   "StoreClientListDict",
+   "StoreClientManager"
+  ]
+ },
+ "StoreClientListWater": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StoreClientListDict"
+  ]
+ },
+ "StoreClientManager": {
+  "base": null,
+  "referenced_by": 11,
+  "users": [
+   "AppraisalRankHelper",
+   "ClientSpriteVariety",
+   "CustomUIDebugWindows",
+   "LouBombHelper",
+   "ModHook",
+   "PlayerStore",
+   "SerpicoStoryline",
+   "ShowcaseHelper",
+   "StartingPerkContent",
+   "StoreClientList"
+  ]
+ },
+ "StoreClientMono": {
+  "base": "MonoBehaviour",
+  "referenced_by": 5,
+  "users": [
+   "BargainUIManager",
+   "CustomUIDebugWindows",
+   "MapUIManager",
+   "PlayerStore",
+   "StoreUIManager"
+  ]
+ },
+ "StoreClientUniqueList": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "CustomUIDebugPanel",
+   "SerpicoStoryline",
+   "StoreClientListDict",
+   "StoreClientManager",
+   "StoreEventActionDict"
+  ]
+ },
+ "StoreClienteleDisplay": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreComputer": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreCreditDisplay": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "StoreUIManager"
+  ]
+ },
+ "StoreDate": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreDebugBell": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreDismissButton": {
+  "base": "TooltipInterface",
+  "referenced_by": 1,
+  "users": [
+   "StoreUISounds"
+  ]
+ },
+ "StoreDoor": {
+  "base": "TooltipInterface",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreEvent": {
+  "base": null,
+  "referenced_by": 29,
+  "users": [
+   "CalendarDayElement",
+   "CalendarEventElement",
+   "CommissaryData",
+   "DebugPanel",
+   "EventListCosmetic",
+   "EventListInnate",
+   "EventListNormal",
+   "EventListSpecial",
+   "EventListThreat",
+   "EventListUnique"
+  ]
+ },
+ "StoreEventActionDict": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreClientManager",
+   "StoreEvent"
+  ]
+ },
+ "StoreEventBlueprint": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "StoreEventManager",
+   "StoreOperationManager"
+  ]
+ },
+ "StoreEventManager": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "CalendarEventElement",
+   "CurrentConverterHelper",
+   "GunOrderDebug",
+   "StoreClientListShortage",
+   "StoreClientListSurplus",
+   "StoreStation"
+  ]
+ },
+ "StoreGlass": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "PlayerStore",
+   "StoreUIManager"
+  ]
+ },
+ "StoreLamp": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreMagnifyingGlass": {
+  "base": "TooltipInterface",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreMagnifyingWindow": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreNotebook": {
+  "base": "TooltipInterface",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreOperationManager": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StoreStation"
+  ]
+ },
+ "StorePC": {
+  "base": "TooltipInterface",
+  "referenced_by": 1,
+  "users": [
+   "PCUIManager"
+  ]
+ },
+ "StorePhoneClient": {
+  "base": null,
+  "referenced_by": 11,
+  "users": [
+   "ContactElement",
+   "NetworkUpgradeList",
+   "PhoneBookUIManager",
+   "PhoneClientList",
+   "PhoneDialogList",
+   "PhoneUIManager",
+   "PlayerStore",
+   "StoreClientDialogList",
+   "StoreClientListSupplier",
+   "StoreClientListWanted"
+  ]
+ },
+ "StorePhoneObject": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StorePhysical": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StorePoster": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "ContrabandHelper",
+   "EmporiumEntry",
+   "NetworkUpgradeList",
+   "PlayerStore"
+  ]
+ },
+ "StoreRecorder": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreReputation": {
+  "base": null,
+  "referenced_by": 54,
+  "users": [
+   "AchievementTracker",
+   "AmmoBoxHelper",
+   "AugHelper",
+   "BargainUIManager",
+   "BlackLampHelper",
+   "ChemicalFeedbackHelper",
+   "ChemicalProductHelper",
+   "ContrabandHelper",
+   "CustomUIDebugPanel",
+   "DebugPanel"
+  ]
+ },
+ "StoreReputationPerk": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "PerkElement",
+   "ReputationElement",
+   "ReputationUIManager",
+   "ShowcaseHelper",
+   "StoreClientListCartel",
+   "StoreReputation"
+  ]
+ },
+ "StoreRequest": {
+  "base": null,
+  "referenced_by": 10,
+  "users": [
+   "DebugPanel",
+   "NetworkUpgradeList",
+   "PCUIManager",
+   "PlayerStore",
+   "StoreEvent",
+   "StoreEventActionDict",
+   "StoreEventManager",
+   "StoreRequestElement",
+   "StoreRequestList",
+   "StoreStation"
+  ]
+ },
+ "StoreRequestElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "PCUIManager"
+  ]
+ },
+ "StoreRequestList": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "DebugPanel",
+   "NetworkUpgradeList",
+   "StoreEventActionDict",
+   "StoreRequest"
+  ]
+ },
+ "StoreResponse": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "EmporiumEntry",
+   "MapUIManager",
+   "ResponseList",
+   "StoreDoor",
+   "ToolDirectory"
+  ]
+ },
+ "StoreScale": {
+  "base": "NegociationElement",
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreSecButton": {
+  "base": "TooltipInterface",
+  "referenced_by": 3,
+  "users": [
+   "StoreClientMono",
+   "StoreUIManager",
+   "StoreUISounds"
+  ]
+ },
+ "StoreService": {
+  "base": null,
+  "referenced_by": 13,
+  "users": [
+   "CurrentConverterHelper",
+   "DebrisHelper",
+   "EmporiumAnalytics",
+   "EndOfDayUIManager",
+   "NetworkUpgradeList",
+   "NewGameData",
+   "PlayerStore",
+   "ServiceElement",
+   "StoreClientListCartel",
+   "StoreClientListStory"
+  ]
+ },
+ "StoreServiceSheet": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StoreService"
+  ]
+ },
+ "StoreShutterButton": {
+  "base": "TooltipInterface",
+  "referenced_by": 4,
+  "users": [
+   "DebugPanel",
+   "EndOfDayUIManager",
+   "MapUIManager",
+   "StoreUISounds"
+  ]
+ },
+ "StoreSoundPlayer": {
+  "base": "MonoBehaviour",
+  "referenced_by": 5,
+  "users": [
+   "EmporiumEntry",
+   "EmporiumOption",
+   "GameOverUIManager",
+   "MapUIManager",
+   "ModHelper"
+  ]
+ },
+ "StoreStation": {
+  "base": null,
+  "referenced_by": 65,
+  "users": [
+   "AchievementTracker",
+   "AdvCalendarUIManager",
+   "AfterhourEvents",
+   "AppraisalRankHelper",
+   "AugHelper",
+   "CalendarDayElement",
+   "ClientSpriteVariety",
+   "CommissaryData",
+   "ContrabandHelper",
+   "CurrentConverterHelper"
+  ]
+ },
+ "StoreTablet": {
+  "base": "TooltipInterface",
+  "referenced_by": 1,
+  "users": [
+   "DrJacksonLocation"
+  ]
+ },
+ "StoreTransferButton": {
+  "base": "TooltipInterface",
+  "referenced_by": 1,
+  "users": [
+   "StoreUISounds"
+  ]
+ },
+ "StoreUI": {
+  "base": "MonoBehaviour",
+  "referenced_by": 8,
+  "users": [
+   "CustomUICanvasAnchor",
+   "CustomUIManager",
+   "EmporiumEntry",
+   "EscapeUIManager",
+   "NegociationUIManager",
+   "PaperUI",
+   "PaperUIManager",
+   "StoreUIManager"
+  ]
+ },
+ "StoreUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 65,
+  "users": [
+   "Arm",
+   "AugHelper",
+   "BargainUIManager",
+   "ContrabandHelper",
+   "CustomUICanvasAnchor",
+   "CustomUIDebugPanel",
+   "CustomUIDebugWindows",
+   "CustomUIManager",
+   "DebugOwnershipToggleMode",
+   "DebugPanel"
+  ]
+ },
+ "StoreUISounds": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "StoreVendingFountain": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "PlayerStore",
+   "VendingFountainHelper"
+  ]
+ },
+ "StoreVendingMachine": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "PlayerStore",
+   "VendingMachineHelper"
+  ]
+ },
+ "StoryHelper": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "Survival": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "GCIHelper",
+   "GameCharacterItem",
+   "ShipHelper",
+   "TutorialTrigger"
+  ]
+ },
+ "TMPIconHover": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "GameOptionUIManager",
+   "MachineryText",
+   "ModConfigWindow"
+  ]
+ },
+ "TMPInputFieldLocalizer": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "CustomUIElement",
+   "NewGameUIElements"
+  ]
+ },
+ "TMPLocalizer": {
+  "base": "MonoBehaviour",
+  "referenced_by": 11,
+  "users": [
+   "CustomUIManager",
+   "NewGamePanelFrame",
+   "NewGameUIElements",
+   "PaperUI",
+   "RunSummaryUI",
+   "TabletSkin",
+   "TabletUI",
+   "TransitFrame",
+   "TransitUI",
+   "WildNetworkFrame"
+  ]
+ },
+ "TableEntry": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "LootRegistry",
+   "TableMaster"
+  ]
+ },
+ "TableGroup": {
+  "base": "ScriptableObject",
+  "referenced_by": 1,
+  "users": [
+   "TableGroupEntry"
+  ]
+ },
+ "TableGroupEntry": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "LootRegistry",
+   "TableGroupMaster"
+  ]
+ },
+ "TableGroupMaster": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "ExpeditionPoi",
+   "ItemSpawner"
+  ]
+ },
+ "TableMaster": {
+  "base": "MonoBehaviour",
+  "referenced_by": 6,
+  "users": [
+   "BarterOfferList",
+   "ExpeditionLocation",
+   "ExpeditionPoi",
+   "ItemSpawner",
+   "LootRegistry",
+   "StoreClientList"
+  ]
+ },
+ "TabletButton": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "BargainUIManager",
+   "EndOfDayUIManager",
+   "NegociationUIManager",
+   "TabletUI"
+  ]
+ },
+ "TabletCheckbox": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "EndOfDayUIManager",
+   "TabletUI"
+  ]
+ },
+ "TabletFrame": {
+  "base": "TabletSkin",
+  "referenced_by": 3,
+  "users": [
+   "EndOfDayTabletFrame",
+   "NegotiationTabletFrame",
+   "TabletUI"
+  ]
+ },
+ "TabletListRow": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "NegociationUIManager",
+   "TabletUI"
+  ]
+ },
+ "TabletScrollRect": {
+  "base": "ScrollRect",
+  "referenced_by": 0,
+  "users": []
+ },
+ "TabletSkin": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "BargainPanelFrame",
+   "TabletFrame",
+   "TabletUI"
+  ]
+ },
+ "TabletStyle": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "BargainUIManager",
+   "EndOfDayUIManager",
+   "NegociationUIManager",
+   "TabletButton",
+   "TabletUI"
+  ]
+ },
+ "TabletTooltipTrigger": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "TabletUI"
+  ]
+ },
+ "TabletUI": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "BargainUIManager",
+   "EndOfDayUIManager",
+   "NegociationUIManager"
+  ]
+ },
+ "TagElement": {
+  "base": "PixelElement",
+  "referenced_by": 3,
+  "users": [
+   "DirectoryUtils",
+   "FurnitureItemDirectory",
+   "OverlayHandler"
+  ]
+ },
+ "TagState": {
+  "base": "DirectoryEntry",
+  "referenced_by": 166,
+  "users": [
+   "AgableHelper",
+   "AmenitiesItemDirectory",
+   "AmmoBoxHelper",
+   "AnimalCage",
+   "AnimalMarkHelper",
+   "AppHandHelper",
+   "AppNavHelper",
+   "AppraisalHelper",
+   "AquacultureHelper",
+   "AquacultureItems"
+  ]
+ },
+ "TagSystem": {
+  "base": null,
+  "referenced_by": 21,
+  "users": [
+   "CharacterItemDirectory",
+   "CombatAbilityDirectory",
+   "CombatAbilityEffect",
+   "CombatAbilityEffectDirectory",
+   "Directory",
+   "GameCharacterRaidInventory",
+   "GameGridInventory",
+   "GameGridScrollableInventory",
+   "GameInventory",
+   "GameInventoryFunc"
+  ]
+ },
+ "TechnicianBackpackDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "TechnicianBackpackHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "GameItemElement",
+   "TechnicianBackpackDirectory",
+   "UnusedDirectory"
+  ]
+ },
+ "TestCoinEventTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "TestTraderStationEventTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "TextBubble": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "DialogUIManager",
+   "DialoguePhoneUIManager"
+  ]
+ },
+ "ThingConstants": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ThingContainer": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "TiconderogaCharacters": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "StationGeneration"
+  ]
+ },
+ "ToggleAppearanceHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GameItemElement",
+   "ShipSystemDirectory"
+  ]
+ },
+ "ToolDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "ToolboxHelper": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "GameItemElement",
+   "MaterialDirectory",
+   "StoreUIManager",
+   "ToolDirectory"
+  ]
+ },
+ "TooltipContainer": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "DrJacksonLocation",
+   "EmporiumEntry",
+   "TMPLocalizer"
+  ]
+ },
+ "TooltipInterface": {
+  "base": "MonoBehaviour",
+  "referenced_by": 16,
+  "users": [
+   "NewsPaper",
+   "Shotgun",
+   "StoreBedroll",
+   "StoreBell",
+   "StoreCalendar",
+   "StoreClientCounter",
+   "StoreDismissButton",
+   "StoreDoor",
+   "StoreMagnifyingGlass",
+   "StoreNotebook"
+  ]
+ },
+ "TooltipListener": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "GameItemElement",
+   "GameSlotInventory",
+   "ItemTooltipHandler",
+   "SelectableElement"
+  ]
+ },
+ "TooltipManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 8,
+  "users": [
+   "BargainButton",
+   "HopperHelper",
+   "ItemPinHelper",
+   "MachineStorageCoordinator",
+   "ModRowHoverTooltip",
+   "TMPIconHover",
+   "TabletTooltipTrigger",
+   "TooltipContainer"
+  ]
+ },
+ "TooltipUseHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "ItemSelectHandler",
+   "RichTextGenerator"
+  ]
+ },
+ "TradeSheet": {
+  "base": null,
+  "referenced_by": 15,
+  "users": [
+   "SpaceButcherTrigger",
+   "SpaceDistressSignalTrigger",
+   "SpaceDrugShipTrigger",
+   "SpaceFuelTankerTrigger",
+   "SpaceMedicTrigger",
+   "SpaceMerchantTrigger",
+   "SpaceMiningShipTrigger",
+   "SpaceNutrifruitShopTrigger",
+   "SpaceRefugeeTrigger",
+   "SpaceRepairShipTrigger"
+  ]
+ },
+ "TraderFactory": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "SchematicStandard"
+  ]
+ },
+ "TraderStationBlockadeTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "TraderStationFreeportTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "TraderStationInspectionTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "TransitCardView": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "TransitUI"
+  ]
+ },
+ "TransitClickSwallow": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "TransitUI"
+  ]
+ },
+ "TransitFrame": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "TransitUI"
+  ]
+ },
+ "TransitHoverRelay": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "TransitUI"
+  ]
+ },
+ "TransitStyle": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "TransitUI"
+  ]
+ },
+ "TransitUI": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "MapUIManager",
+   "TransitCardView"
+  ]
+ },
+ "TreeNodeRender": {
+  "base": "MonoBehaviour",
+  "referenced_by": 50,
+  "users": [
+   "AdvButtonElement",
+   "BannerLocationElement",
+   "ButtonElement",
+   "ColoredPixelElement",
+   "CustomEventHandler",
+   "EmptyPixelElement",
+   "GameCharacterItem",
+   "GameCharacterRaidInventory",
+   "GameGridInventory",
+   "GameGridScrollableInventory"
+  ]
+ },
+ "TurnManager": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "GameMaster",
+   "OverlayHelper"
+  ]
+ },
+ "TutorialDebug": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "TutorialTrigger": {
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "users": []
+ },
+ "TutorialUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 33,
+  "users": [
+   "BargainUIManager",
+   "BarterOfferList",
+   "ClienteleUIManager",
+   "DialogUIManager",
+   "DialoguePhoneUIManager",
+   "EmporiumEntry",
+   "EmporiumOption",
+   "EndOfDayUIManager",
+   "ItemContextHandler",
+   "ItemMultiSelectHandler"
+  ]
+ },
+ "TypeElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "TypeHelper": {
+  "base": null,
+  "referenced_by": 11,
+  "users": [
+   "BarterOfferList",
+   "ClienteleUIManager",
+   "CommonTooltipHelper",
+   "ItemFeature",
+   "NegociationUIManager",
+   "ShowcaseHelper",
+   "StoreClientList",
+   "StoreClientListGun",
+   "StoreClientManager",
+   "StoreEvent"
+  ]
+ },
+ "UIController": {
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "users": []
+ },
+ "UIDragHandler": {
+  "base": "MonoBehaviour",
+  "referenced_by": 15,
+  "users": [
+   "CounterMoveChild",
+   "CustomUIBuilder",
+   "CustomUIDebugPanel",
+   "CustomUIDragForwarder",
+   "CustomUIMachineryStyle",
+   "CustomUIWindowFrame",
+   "EmporiumEntry",
+   "ItemMouseDragHandler",
+   "ItemMultiSelectHandler",
+   "ItemTooltipHandler"
+  ]
+ },
+ "UIFamilyLayer": {
+  "base": null,
+  "referenced_by": 4,
+  "users": [
+   "EmporiumEntry",
+   "PaperPanelFocusStamp",
+   "PixelWindow",
+   "StoreUIManager"
+  ]
+ },
+ "UIHelper": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "MindReprogrammerHelper",
+   "NewGamePerkTooltip",
+   "PerkUIController",
+   "ReputationUIManager",
+   "StartingPerkElement",
+   "TooltipManager"
+  ]
+ },
+ "UISettings": {
+  "base": "MonoBehaviour",
+  "referenced_by": 28,
+  "users": [
+   "AdvButtonElement",
+   "BannerLocationElement",
+   "ButtonElement",
+   "CraftingHelper",
+   "GameCharacterRaidInventory",
+   "GameGridInventory",
+   "GameGridScrollableInventory",
+   "GameItem",
+   "GameItemElement",
+   "GameSlotInventory"
+  ]
+ },
+ "UniqueItemHelper": {
+  "base": null,
+  "referenced_by": 3,
+  "users": [
+   "InsCigaretteHelper",
+   "InsInjectorHelper",
+   "StoreClientUniqueList"
+  ]
+ },
+ "UnusedDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "UseCountHelper": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "AmenitiesItemDirectory",
+   "GameItemElement",
+   "HusbandryDirectory",
+   "ModuleDirectory",
+   "ModuleHelper",
+   "NewGameData",
+   "PlayerStore",
+   "StoreClientUniqueList",
+   "UnusedDirectory"
+  ]
+ },
+ "VanillaAfterhourEvents": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "AfterhourEvents",
+   "NetworkUpgradeList"
+  ]
+ },
+ "VendingFountainHelper": {
+  "base": null,
+  "referenced_by": 7,
+  "users": [
+   "DebugPanel",
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "NetworkUpgradeList",
+   "StoreClientList",
+   "StoreVendingFountain",
+   "VendingMachineHelper"
+  ]
+ },
+ "VendingMachineHelper": {
+  "base": null,
+  "referenced_by": 12,
+  "users": [
+   "DebugPanel",
+   "FurnitureItemDirectory",
+   "GameItemElement",
+   "MaterialDirectory",
+   "ModuleHelper",
+   "NetworkUpgradeList",
+   "PlayerStore",
+   "StartingPerkContent",
+   "StoreClientList",
+   "StoreRequest"
+  ]
+ },
+ "VendingRecipeManager": {
+  "base": "RecipeManager",
+  "referenced_by": 2,
+  "users": [
+   "CraftingHelper",
+   "UnusedDirectory"
+  ]
+ },
+ "VerboseLog": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "CustomUIDebugPanel",
+   "Debug"
+  ]
+ },
+ "Walker": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "WalkerManager"
+  ]
+ },
+ "WalkerManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "Walker"
+  ]
+ },
+ "WantedElement": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "WantedUIManager"
+  ]
+ },
+ "WantedNotReportedEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "WantedUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "PlayerStore",
+   "WantedElement"
+  ]
+ },
+ "WaterFeatureHelper": {
+  "base": null,
+  "referenced_by": 26,
+  "users": [
+   "AquacultureHelper",
+   "ChemScannerUIManager",
+   "ChemicalHelper",
+   "ClientCanExposeFunc",
+   "GameItemElement",
+   "ItemConditionList",
+   "ItemFeature",
+   "LabelerElement",
+   "MachineEvaporator",
+   "MachinePurifier"
+  ]
+ },
+ "WaterHelper": {
+  "base": null,
+  "referenced_by": 39,
+  "users": [
+   "AmenitiesItemDirectory",
+   "AquacultureHelper",
+   "ChemFinisherRecipe",
+   "ChemScannerUIManager",
+   "ChemicalHelper",
+   "ClientCanExposeFunc",
+   "DebugPanel",
+   "FoodItemDirectory",
+   "GameItem",
+   "GameItemElement"
+  ]
+ },
+ "WaterLiquidHelper": {
+  "base": null,
+  "referenced_by": 0,
+  "users": []
+ },
+ "WaterPremadeHelper": {
+  "base": null,
+  "referenced_by": 9,
+  "users": [
+   "DebugPanel",
+   "LiquidLuckHelper",
+   "NetworkUpgradeList",
+   "StoreClientList",
+   "StoreClientListEvent",
+   "StoreClientListStory",
+   "StoreClientListUnused",
+   "StoreClientListWater",
+   "WaterHelper"
+  ]
+ },
+ "WaterScannerUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 4,
+  "users": [
+   "AmenitiesItemDirectory",
+   "ChemScannerUIManager",
+   "EmporiumEntry",
+   "StoreUIManager"
+  ]
+ },
+ "WaterStripUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "AmenitiesItemDirectory",
+   "EmporiumEntry"
+  ]
+ },
+ "WaterTankHelper": {
+  "base": null,
+  "referenced_by": 2,
+  "users": [
+   "AmenitiesItemDirectory",
+   "MaterialDirectory"
+  ]
+ },
+ "WaterTestHelper": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "AmenitiesItemDirectory"
+  ]
+ },
+ "WildNetworkFrame": {
+  "base": "MonoBehaviour",
+  "referenced_by": 2,
+  "users": [
+   "CustomUIManager",
+   "WildNetworkUI"
+  ]
+ },
+ "WildNetworkSlot": {
+  "base": "MonoBehaviour",
+  "referenced_by": 6,
+  "users": [
+   "LoadGameUI",
+   "NewGameCommonButton",
+   "NewGameDifficultyUI",
+   "NewGamePerksUI",
+   "NewGameSpecializationUI",
+   "WildNetworkUI"
+  ]
+ },
+ "WildNetworkStyle": {
+  "base": null,
+  "referenced_by": 1,
+  "users": [
+   "WildNetworkUI"
+  ]
+ },
+ "WildNetworkUI": {
+  "base": null,
+  "referenced_by": 18,
+  "users": [
+   "CreditsUI",
+   "CustomUIManager",
+   "DebugPanel",
+   "EmporiumEntry",
+   "LoadGameUI",
+   "ModHelper",
+   "NegociationUIManager",
+   "NewGameCommonButton",
+   "NewGameDifficultyUI",
+   "NewGamePerkTooltip"
+  ]
+ },
+ "WildUIManager": {
+  "base": "MonoBehaviour",
+  "referenced_by": 3,
+  "users": [
+   "EmporiumEntry",
+   "NetworkElement",
+   "StoreUIManager"
+  ]
+ },
+ "WildUIOpenedEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "WildUpgradePurchasedEvent": {
+  "base": "Event",
+  "referenced_by": 1,
+  "users": [
+   "EmporiumAnalytics"
+  ]
+ },
+ "WindowStyle": {
+  "base": null,
+  "referenced_by": 5,
+  "users": [
+   "CraftingHelper",
+   "DirectoryUtils",
+   "EmporiumEntry",
+   "MachineHelper",
+   "PixelWindow"
+  ]
+ },
+ "WindowsHandler": {
+  "base": "MonoBehaviour",
+  "referenced_by": 20,
+  "users": [
+   "EmporiumEntry",
+   "GraphUtils",
+   "ItemMouseDragHandler",
+   "ItemMultiSelectHandler",
+   "ItemQuickTransferAltHandler",
+   "ItemQuickTransferAltHandler1",
+   "ItemQuickTransferHandler",
+   "ItemSelectHandler",
+   "MachineStorageCoordinator",
+   "MenuScene"
+  ]
+ },
+ "WineDirectory": {
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "users": []
+ },
+ "WineHelper": {
+  "base": null,
+  "referenced_by": 6,
+  "users": [
+   "DebugPanel",
+   "GameItemElement",
+   "MachineWineRack",
+   "NetworkUpgradeList",
+   "PlantList",
+   "WineDirectory"
+  ]
+ },
+ "ZoomFollower": {
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "users": [
+   "BargainUIManager"
+  ]
+ }
+}

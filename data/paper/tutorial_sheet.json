@@ -1,0 +1,31 @@
+{
+  "id": "tutorial_sheet",
+  "title": "Tutorial sheet",
+  "background": "tutorial_sheet",
+  "width": 440,
+  "height": 640,
+  "chrome": [
+    { "type": "button", "id": "close", "action": "close", "x": 203, "y": 2.5, "w": 14, "h": 15 },
+    { "type": "button", "id": "zoom", "action": "zoom", "x": 179.5, "y": 3.5, "w": 14, "h": 15 }
+  ],
+  "templates": [
+    {
+      "id": "tutorial_page",
+      "elements": [
+        { "type": "text", "id": "title", "slot": "title", "text": "Title", "style": "title", "align": "center", "wrap": false, "x": 16, "y": 20, "w": 188, "h": 18 },
+        { "type": "flow", "id": "body_flow", "x": 16, "y": 46, "w": 188, "h": 250, "spacing": 4 },
+        { "type": "text", "id": "body", "slot": "body", "flow": "body_flow", "text": "Body text.", "style": "body", "autoHeight": true, "w": 0, "h": 0 }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "Sheet",
+      "template": "tutorial_page",
+      "slots": {
+        "title": "How it works",
+        "body": "A single sheet: one page, close and zoom buttons, no page flipping."
+      }
+    }
+  ]
+}

@@ -1,0 +1,3380 @@
+[
+ {
+  "name": "AMB_Station_Ambience",
+  "file": "sharedassets1.assets",
+  "seconds": 644.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "bedroll",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Bladed_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "blade_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "spaceship_jump",
+  "file": "sharedassets1.assets",
+  "seconds": 3.0,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "shuttle_jump"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_button3",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "effect1",
+    "identifier": "effect_button3"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "04 - Deluge - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 220.8,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track11"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Tiny_Metal_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "tiny_metal_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "injector_use",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "injector_use"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "02 - The Wailing - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 215.7,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track9l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "pistol_shot_combined",
+  "file": "sharedassets1.assets",
+  "seconds": 0.8,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "pistol_fire"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Tiny_Metal_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "tiny_metal_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "Typewriter sound 1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "ump_fire",
+  "file": "sharedassets1.assets",
+  "seconds": 2.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "ump_fire"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "03 - Long Star River - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 214.6,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track10l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "sound_effects_wounds_blood1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.8,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "wound_blood1"
+   }
+  ],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "02 - The Wailing - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 215.7,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track9d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "NOTIF_NAV_READY",
+  "file": "sharedassets1.assets",
+  "seconds": 1.1,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "NOTIF_NAV_READY"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "injector_move",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "injector_move"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Gun_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "gun_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "OPEN_CASE_PLASTIC",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "OPEN_CASE_PLASTIC"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "shutter_open3s",
+  "file": "sharedassets1.assets",
+  "seconds": 3.0,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "pill_bottle_pop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "pill_bottle_pop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Open_Machine_Light",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "open_machine_light"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "05 - Spellsinger Radio Edition - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 198.2,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track12d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "03 - Long Star River - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 214.6,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track10"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Full_Plastic_Bottle_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "full_plastic_bottle_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "Glock Pistol Gun Shooting",
+  "file": "sharedassets1.assets",
+  "seconds": 5.8,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "pistol_burst"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Small_Gun_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "small_gun_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Meaty_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "meaty_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "body_collapse_floor",
+  "file": "sharedassets1.assets",
+  "seconds": 0.8,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "body_collapse_floor"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "ratchet",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Scanner_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "scanner_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Drain_Water",
+  "file": "sharedassets1.assets",
+  "seconds": 2.1,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "dump_water"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "05 - Spellsinger Radio Edition - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 198.2,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track12"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "shotgun_fire",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "shotgun_fire"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "pistol_reload_light",
+  "file": "sharedassets1.assets",
+  "seconds": 3.0,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "pistol_reload_light"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "move_armour",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "armour_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "swallow_pill",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "swallow_pill"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Solid_Metal_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "solid_metal_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "shotgun_fire",
+  "file": "sharedassets1.assets",
+  "seconds": 6.5,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "shotgun_fire2"
+   }
+  ],
+  "id_in_code": false,
+  "name_in_code": true
+ },
+ {
+  "name": "AMB_Dr_Jackson_Ambience",
+  "file": "sharedassets1.assets",
+  "seconds": 300.0,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Tsash_Can_Open",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "trash_open"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Scanner_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "scanner_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#2 Datasphere - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 185.0,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track2d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "Typewriter sound 3",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "POUR_WATER",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "POUR_WATER"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "sound_effects_assslap",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "ass_slap"
+   }
+  ],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "can_move2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "can_move2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "eat",
+  "file": "sharedassets1.assets",
+  "seconds": 0.8,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "eat"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Glass_Item_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "glass_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Small_Metal_Machinery_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "small_machine_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Dosier_Close",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "close_dossier"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#2 Datasphere - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 185.0,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track2l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "interface_click",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "interface_click"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Faucet_Use",
+  "file": "sharedassets1.assets",
+  "seconds": 1.3,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "use_faucet"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "rat_happy",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "rat_happy"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Glass_Item_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "glass_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Gun_Mod_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "gun_mod_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Vial_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "glass_vial_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "smg_reload",
+  "file": "sharedassets1.assets",
+  "seconds": 2.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "smg_reload"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "#6 Spaceflight - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 180.7,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track6d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Empty_Plastic_Bottle_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "empty_plastic_bottle_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "moddingPlastic2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "moddingPlastic2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_button4",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "effect1",
+    "identifier": "effect_button4"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "02 - The Wailing - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 215.7,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track9"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "lamp_click",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "#7 Dark Matter - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 199.4,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track7l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Craton_Box_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "carton_box_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "OPEN_CASE_PLASTIC1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "OPEN_CASE_PLASTIC1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "phone_calling",
+  "file": "sharedassets1.assets",
+  "seconds": 7.5,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "01 - A Bao A Qu - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 200.0,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track8"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "AMB_Dumps_Ambience",
+  "file": "sharedassets1.assets",
+  "seconds": 300.0,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Module_Remove",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "module_remove"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "box_click",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Bottle_Pour",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "pour_water2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Vial_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "glass_vial_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Plastic_Container_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "plastic_container_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_book_pickup",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "effect1",
+    "identifier": "effect_book_pickup"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "soft_blunt_impact",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "blunt_impact"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Leafy_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "leafy_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Metal_Machinery_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "metal_machine_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "01 - A Bao A Qu - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 200.0,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track8d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Carton_Box_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "carton_box_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#5 Afterglow - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 190.7,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track5l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Gun_Mod_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "gun_mod_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Small_Module_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "small_module_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "mp9_fire",
+  "file": "sharedassets1.assets",
+  "seconds": 1.1,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "mp9_fire"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "CLOSE_CASE_PLASTIC1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "CLOSE_CASE_PLASTIC1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Empty_Plastic_Bottle_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "empty_plastic_bottle_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Trash_Can_Close",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "trash_close"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "new_soft_click",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Textile_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "textile_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "07 - Junkyard Jockey - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 191.7,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track14l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "click_light",
+  "file": "sharedassets1.assets",
+  "seconds": 0.0,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "light_click"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "can_move1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "can_move1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Battery_Insert",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "battery_insert"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "moddingPlastic1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "moddingPlastic1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "#7 Dark Matter - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 199.4,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track7"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#2 Datasphere - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 165.0,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Solid_Metal_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "solid_metal_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "cocking2-1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "cocking2-1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Battery_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "battery_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Battery_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "battery_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Scanner_Use",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "scanner_activate"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Use_Bandage",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "use_bandage"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "scratch",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "scratch"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "debris_short",
+  "file": "sharedassets1.assets",
+  "seconds": 1.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "debris"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#7 Dark Matter - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 199.4,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track7d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "03 - Long Star River - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 214.6,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track10d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "PING_SONAR2",
+  "file": "sharedassets1.assets",
+  "seconds": 1.9,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "PING_SONAR2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Plastic_Vial_Open",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "plastic_vial_open"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Module_Install",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "module_insert"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Tape_Insert",
+  "file": "sharedassets1.assets",
+  "seconds": 0.8,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "cassette_insert"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Full_Plastic_Bottle_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "full_plastic_bottle_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Battery_Remove",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "battery_removed"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "labeler",
+  "file": "sharedassets1.assets",
+  "seconds": 0.7,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": true
+ },
+ {
+  "name": "pump_action",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "pump_action"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "pouch_close",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "pouch_close"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "cash_register",
+  "file": "sharedassets1.assets",
+  "seconds": 5.1,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "backpack_move2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "backpack_move2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "WELD",
+  "file": "sharedassets1.assets",
+  "seconds": 2.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "WELD"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Paper_Sheet_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "paper_sheet_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "metal_snap",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "AMB_Comissionary_Ambience",
+  "file": "sharedassets1.assets",
+  "seconds": 300.0,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "food_drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "food_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "soda_open",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "soda_open"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "Station_Ambience_004",
+  "file": "sharedassets1.assets",
+  "seconds": 644.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "#6 Spaceflight - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 180.7,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track6l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "wirecutter",
+  "file": "sharedassets1.assets",
+  "seconds": 0.7,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": true
+ },
+ {
+  "name": "06 - Golden Lotus - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 206.4,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track13"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "pouch_move1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "pouch_move1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Step_Left",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Textile_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "textile_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "armour_drag2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "armour_drag2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Plastic_Card_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.0,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "plastic_card_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_button2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "effect1",
+    "identifier": "effect_button2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "gunshot",
+  "file": "sharedassets1.assets",
+  "seconds": 1.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "gunshot"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "water_bottle_open",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "water_bottle_open"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Plastic_Machinery_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "plastic_machinery_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "rat_kill",
+  "file": "sharedassets1.assets",
+  "seconds": 0.8,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "rat_kill"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Soft_Plastic_Item_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "soft_plastic_item_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "06 - Golden Lotus - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 206.4,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track13l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "click_vintage",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "click_vintage"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "shutter_door_closed",
+  "file": "sharedassets1.assets",
+  "seconds": 1.8,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "phone_wrong_number",
+  "file": "sharedassets1.assets",
+  "seconds": 1.3,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Module_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "module_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "cloth2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "cloth_move2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Book_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "book_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "phone_getting_hang",
+  "file": "sharedassets1.assets",
+  "seconds": 0.7,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Heavy_Gun_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "heavy_gun_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_button1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "effect1",
+    "identifier": "effect_button1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Carton_Card_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "carton_card_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#5 Afterglow - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 190.7,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track5"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "07 - Junkyard Jockey - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 191.7,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track14d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "perfume_spray",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "perfume_spray"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Bladed_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "blade_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "cocking2-2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "cocking2-2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "move_item",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "move_item_default"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "zipper2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "zipper"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#4 Stardust - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 146.5,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track4d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#5 Afterglow - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 190.7,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track5d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Book_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "book_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Water_Filter_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "water_filter_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Plastic_Card_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "plastic_card_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "04 - Deluge - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 220.8,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track11l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_book_drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "effect1",
+    "identifier": "effect_book_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "PING_SONAR",
+  "file": "sharedassets1.assets",
+  "seconds": 1.5,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "PING_SONAR"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "writing2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "debris_impact_short2",
+  "file": "sharedassets1.assets",
+  "seconds": 1.1,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "debris_impact2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "MINING_DRILL",
+  "file": "sharedassets1.assets",
+  "seconds": 3.8,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "MINING_DRILL"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Metal_Scrap_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "scrap_metal_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "phone_client_pickup",
+  "file": "sharedassets1.assets",
+  "seconds": 0.7,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Dosier_Open",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "open_dossier"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "injector_select",
+  "file": "sharedassets1.assets",
+  "seconds": 0.8,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "injector_select"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Module_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "module_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "knife_select",
+  "file": "sharedassets1.assets",
+  "seconds": 1.0,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "knife_select"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Produce_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "produce_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "bandage_use",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "bandage_use"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Tiny_Item_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "tiny_item_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Tape_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "cassette_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "shutter_close3s",
+  "file": "sharedassets1.assets",
+  "seconds": 3.4,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "debris_impact_short",
+  "file": "sharedassets1.assets",
+  "seconds": 1.1,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "debris_impact"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#1 Main Theme - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 166.7,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track1l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "01 - A Bao A Qu - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 200.0,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track8l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#6 Spaceflight - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 180.7,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track6"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#4 Stardust - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 146.5,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track4"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Gun_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "gun_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "mp9_select",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "mp9_select"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Tape_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "cassette_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Soft_Plastic_Item_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "soft_plastic_item_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "07 - Junkyard Jockey - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 191.7,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track14"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "rat_drop",
+  "file": "sharedassets1.assets",
+  "seconds": 1.0,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "rat_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "backpack_move1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "backpack_move1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "modding2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "modding2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "pouch_open",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "pouch_open"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "pistol_move2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "pistol_move2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "#3 High Stakes - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 181.3,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track3l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "sound_fail",
+  "file": "sharedassets1.assets",
+  "seconds": 4.5,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Plastic_Vial_Close",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "plastic_vial_close"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "alarm2",
+  "file": "sharedassets1.assets",
+  "seconds": 1.1,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "pouch_move2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.7,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "pouch_move2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Plastic_Container_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "plastic_container_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Use_Water_Filter",
+  "file": "sharedassets1.assets",
+  "seconds": 0.8,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "use_water_filter"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "countdown",
+  "file": "sharedassets1.assets",
+  "seconds": 6.0,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "countdown"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "shotgun_cock",
+  "file": "sharedassets1.assets",
+  "seconds": 1.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "shotgun_cock"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "beat_coin",
+  "file": "sharedassets1.assets",
+  "seconds": 2.6,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "cross",
+  "file": "sharedassets1.assets",
+  "seconds": 1.1,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "phone_pickup",
+  "file": "sharedassets1.assets",
+  "seconds": 0.8,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "pistol_move1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "pistol_move1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SHIP_UNDOCK",
+  "file": "sharedassets1.assets",
+  "seconds": 2.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "SHIP_UNDOCK"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "welder",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": true
+ },
+ {
+  "name": "close_door",
+  "file": "sharedassets1.assets",
+  "seconds": 1.1,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "close_door"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "rat_pickup",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "rat_pickup"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "modding1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.7,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "modding1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Open_Machine",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "open_machine"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_paper_drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "effect1",
+    "identifier": "effect_paper_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "Turbo",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "turbo"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "pageflip",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Close_Machine_Light",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "close_machine_light"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#1 Main Theme - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 166.7,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track1d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "phone_drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Carton_Card_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "carton_card_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#3 High Stakes - Pristine",
+  "file": "sharedassets1.assets",
+  "seconds": 181.3,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track3"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "06 - Golden Lotus - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 206.4,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track13d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "new_bell",
+  "file": "sharedassets1.assets",
+  "seconds": 1.5,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Heavy_Gun_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "heavy_gun_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "blender",
+  "file": "sharedassets1.assets",
+  "seconds": 2.2,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "blender"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Step_Right",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "negative_beep",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "plastic_unwrap",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "unwrap"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "Typewriter sound 2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Metal_Machinery_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "metal_machine_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "pourOut",
+  "file": "sharedassets1.assets",
+  "seconds": 1.7,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "soft_airlock",
+  "file": "sharedassets1.assets",
+  "seconds": 1.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "soft_airlock"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "airlock_close_new",
+  "file": "sharedassets1.assets",
+  "seconds": 2.0,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Small_Gun_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "small_gun_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "airlock_open_new",
+  "file": "sharedassets1.assets",
+  "seconds": 1.5,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "ratcher2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Produce_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "produce_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Paper_Sheet_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "paper_sheet_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Plastic_Machinery_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "plastic_machinery_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#4 Stardust - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 146.5,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track4l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "drink",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "drink"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Leafy_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "leafy_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Tiny_Item_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "tiny_item_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "#3 High Stakes - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 181.3,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track3d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "05 - Spellsinger Radio Edition - Slightly Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 198.2,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track12l"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "food_can_open",
+  "file": "sharedassets1.assets",
+  "seconds": 1.1,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "food_can_open"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "knife_stabs",
+  "file": "sharedassets1.assets",
+  "seconds": 1.0,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "knife_stab"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "cloth1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "cloth_move1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "pill",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "drag_pill"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "food_drag2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "food_drag2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Water_Filter_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "water_filter_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "shotgun_pump",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "shotgun_pump"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "zipper3",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "zipper3"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Alarm_Siren",
+  "file": "sharedassets1.assets",
+  "seconds": 4.0,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "alarm_siren"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "pistol_select",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "pistol_select"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "explosionImpact",
+  "file": "sharedassets1.assets",
+  "seconds": 16.1,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "explosionDebris"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_paper_pickup",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "effect1",
+    "identifier": "effect_paper_pickup"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "grenade_explosion",
+  "file": "sharedassets1.assets",
+  "seconds": 2.6,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "grenade_explosion"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Close_Machine",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "close_machine"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Small_Metal_Machinery_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "small_machine_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "shuttle_arrive",
+  "file": "sharedassets1.assets",
+  "seconds": 3.7,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "shuttle_arrive"
+   }
+  ],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "injector_move2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "injector_move2"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Small_Module_Drag",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "small_module_drag"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "grenade_pull_pin",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "grenade_pin"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SHIP_DOCK",
+  "file": "sharedassets1.assets",
+  "seconds": 2.3,
+  "directory_ids": [
+   {
+    "array": "audioAsset2",
+    "identifier": "SHIP_DOCK"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "04 - Deluge - Very Degraded",
+  "file": "sharedassets1.assets",
+  "seconds": 220.8,
+  "directory_ids": [
+   {
+    "array": "music2",
+    "identifier": "track11d"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "pistol_reload",
+  "file": "sharedassets1.assets",
+  "seconds": 1.1,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "pistol_reload"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "SFX_Metal_Scrap_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "scrap_metal_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Tape_Remove",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [
+   {
+    "array": "item1",
+    "identifier": "cassette_remove"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "writing",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Meaty_Drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "item2",
+    "identifier": "meaty_drop"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "apple_bite",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "apple_bite"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": true
+ },
+ {
+  "name": "#1 Main Theme - Pristine",
+  "file": "sharedassets0.assets",
+  "seconds": 166.7,
+  "directory_ids": [
+   {
+    "array": "music",
+    "identifier": "track1"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Click(Light switch)",
+  "file": "sharedassets0.assets",
+  "seconds": 0.2,
+  "directory_ids": [
+   {
+    "array": "effect1",
+    "identifier": "effect_light_switch"
+   }
+  ],
+  "id_in_code": true,
+  "name_in_code": false
+ }
+]

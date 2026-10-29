@@ -1,0 +1,14 @@
+{
+  "Juan": {
+    "$type": "Hireling",
+    "id": "hireling_juan",
+    "displayName": "Juan",
+    "spriteId": "wanted7",
+    "health": 100,
+    "maxHealth": 100,
+    "courage": 0,
+    "baseCost": 80,
+    "state": "Normal",
+    "status": "Available"
+  }
+}

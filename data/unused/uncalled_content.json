@@ -1,0 +1,681 @@
+[
+ {
+  "factory": "BarterOfferList.CreateBarterFoodTutorial",
+  "returns": "BarterOffer",
+  "identifier": null,
+  "lines": [
+   "Barter for: {0}"
+  ]
+ },
+ {
+  "factory": "EventListCosmetic.Example",
+  "returns": "StoreEvent",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "EventListCosmetic.NewDepartementHead",
+  "returns": "StoreEvent",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "EventListCosmetic.DepartementHeadMissing",
+  "returns": "StoreEvent",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "EventListCosmetic.DepartementHeadFoundDead",
+  "returns": "StoreEvent",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "EventListCosmetic.DepartementHeadAssasinated",
+  "returns": "StoreEvent",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "EventListCosmetic.DepartementHeadFired",
+  "returns": "StoreEvent",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "EventListThreat.StationBlockaded",
+  "returns": "StoreEvent",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "EventListThreat.PirateRaid",
+  "returns": "StoreEvent",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "EventListThreat.RepublicMarineArrived",
+  "returns": "StoreEvent",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "FactionStatusList.SecurityCrackdown",
+  "returns": "FactionStatus",
+  "identifier": "security_crackdown",
+  "lines": [
+   "Security Crackdown"
+  ]
+ },
+ {
+  "factory": "FactionStatusList.SecurityCheckpoint",
+  "returns": "FactionStatus",
+  "identifier": "security_checkpoint",
+  "lines": [
+   "Security Checkpoint"
+  ]
+ },
+ {
+  "factory": "FactionStatusList.SecurityBudgetIncrease",
+  "returns": "FactionStatus",
+  "identifier": "security_budget_increase",
+  "lines": [
+   "Security Budget Increase"
+  ]
+ },
+ {
+  "factory": "FactionStatusList.ReducedPatrol",
+  "returns": "FactionStatus",
+  "identifier": "reduced_patrol",
+  "lines": [
+   "Reduced Patrol"
+  ]
+ },
+ {
+  "factory": "FactionStatusList.ExtraPatrol",
+  "returns": "FactionStatus",
+  "identifier": "extra_patrol",
+  "lines": [
+   "Extra Patrol"
+  ]
+ },
+ {
+  "factory": "FactionStatusList.SurveillanceUpgrade",
+  "returns": "FactionStatus",
+  "identifier": "surveillance_upgrade",
+  "lines": [
+   "Surveillance Upgrade"
+  ]
+ },
+ {
+  "factory": "FactionStatusList.EmergencyLockdown",
+  "returns": "FactionStatus",
+  "identifier": "emergency_lockdown",
+  "lines": [
+   "Emergency Lockdown"
+  ]
+ },
+ {
+  "factory": "FactionStatusList.TacticalDeployment",
+  "returns": "FactionStatus",
+  "identifier": "tactical_deployment",
+  "lines": [
+   "ERT Deployment"
+  ]
+ },
+ {
+  "factory": "ItemFeatureList.SupplierDiscount",
+  "returns": "ItemFeature",
+  "identifier": "supplierDiscount",
+  "lines": [
+   "Supplier Discount"
+  ]
+ },
+ {
+  "factory": "ItemFeatureList.StampCounterfeit",
+  "returns": "ItemFeature",
+  "identifier": "realCounterfeit",
+  "lines": []
+ },
+ {
+  "factory": "ItemFeatureList.StampFakeCounterfeit",
+  "returns": "ItemFeature",
+  "identifier": "fakeCounterfeit",
+  "lines": []
+ },
+ {
+  "factory": "ItemFeatureList.ReplicaFeature",
+  "returns": "ItemFeature",
+  "identifier": "replica",
+  "lines": []
+ },
+ {
+  "factory": "ItemFeatureList.CreateModuleFeature",
+  "returns": "ItemFeature",
+  "identifier": "module_",
+  "lines": []
+ },
+ {
+  "factory": "OperationListUL.FoodDrive",
+  "returns": "StoreEvent",
+  "identifier": "ul_food_drive",
+  "lines": [
+   "Food Aid Distributed!",
+   "Food Drive",
+   "In a rare gesture of goodwill, Command has distributed rations and food packages across Lower Levels neighborhoods. The initiative eases tensions but some view it as a propaganda tactic."
+  ]
+ },
+ {
+  "factory": "PhoneClientList.CreateTestClient",
+  "returns": "StorePhoneClient",
+  "identifier": null,
+  "lines": [
+   "Unknown"
+  ]
+ },
+ {
+  "factory": "PhoneClientList.CreateSecPhoneClient",
+  "returns": "StorePhoneClient",
+  "identifier": null,
+  "lines": [
+   "Security Phone Operator"
+  ]
+ },
+ {
+  "factory": "PhoneClientList.CreateCommissaryPhone",
+  "returns": "StorePhoneClient",
+  "identifier": null,
+  "lines": [
+   "Commissary Automated Phone System"
+  ]
+ },
+ {
+  "factory": "StartingPerkList.AllPerkDefinitionsWithMods",
+  "returns": "List<StartingPerk>",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "StoreClientDialogList.CreateOutOfBudgetDialogue",
+  "returns": "Dialogue",
+  "identifier": null,
+  "lines": [
+   "This is out of my budget.",
+   "This is out of my budget, I got {0} Credits left."
+  ]
+ },
+ {
+  "factory": "StoreClientDialogList.SecurityOnShowLowLevelBad",
+  "returns": "Dialogue",
+  "identifier": null,
+  "lines": [
+   "Why would you show that to me?"
+  ]
+ },
+ {
+  "factory": "StoreClientListInformation.CreateBeggerInformation",
+  "returns": "StoreClient",
+  "identifier": "beggerInformation",
+  "lines": [
+   "Beggar",
+   "Hello, I have information that might interest you",
+   "But it's not for free",
+   "All food market price will crash for a few days afterward",
+   "Good choice",
+   "Listen up,",
+   "word on the street is that",
+   "in 3 days, one of the large Nutrifruit farm is going to harvest.",
+   "That's it, see you around."
+  ]
+ },
+ {
+  "factory": "StoreClientListProcurement.CreateNurseProcurementOffer",
+  "returns": "StoreClient",
+  "identifier": "nurseProcurementOffer",
+  "lines": [
+   "Nurse",
+   "Hello, my clinic is in need of blood supply.",
+   "Can you supply 5 Blood Bags in 3 days?",
+   "We are willing to pay 100 credits",
+   "Good.",
+   "See you in 3 days"
+  ]
+ },
+ {
+  "factory": "StoreClientListProcurement.CreateMachinistProcurementOffer",
+  "returns": "StoreClient",
+  "identifier": "machinistProcurementOffer",
+  "lines": [
+   "Machinist",
+   "Hey there, I'm working on a project and need some supplies.",
+   "Can you get 3 Metal Ingots in 4 days?",
+   "I'll pay ",
+   "Great, I'll be back.",
+   "See you in 4 days."
+  ]
+ },
+ {
+  "factory": "StoreClientListStory.CreateOffDutyOfficerBeer",
+  "returns": "StoreClient",
+  "identifier": "offDutyOfficerStoryBeer",
+  "lines": [
+   "Off Duty Officer",
+   "Hey, got any beer?",
+   "I got {0} Credits to spend."
+  ]
+ },
+ {
+  "factory": "StoreClientListStory.CreateLoanClerkEarly",
+  "returns": "StoreClient",
+  "identifier": "loanClerk0",
+  "lines": [
+   "Loan Clerk",
+   "Hello, I am from the First Bank on the Upper Levels",
+   "I just want to let you know",
+   "that your building has been listed for sale",
+   "and we might be interested to help you buy it.",
+   "The building is listed at 40000 Credits.",
+   "But with our mortgage, you will be able to afford it sooner",
+   "I will return to give you more detail",
+   "once you have more cash on hand for the down payment."
+  ]
+ },
+ {
+  "factory": "StoreClientListStory.CreateLoanClerk",
+  "returns": "StoreClient",
+  "identifier": "loanClerk1",
+  "lines": [
+   "Loan Clerk",
+   "Hello, I am from the First Bank on the Upper Levels",
+   "According to our research,",
+   "you are running a successful business here",
+   "and your landlord has listed your building for sale",
+   "At 40000 Credits.",
+   "We are ready to offer you a mortgage to assist you.",
+   "If you are interested in buying your building.",
+   "Here are the details.",
+   "Take a look.",
+   "Due to the risk of lending money in the Lower Levels",
+   "we require 20% as down payment at 8000 Credits",
+   "Your yearly interest rate is 75%."
+  ]
+ },
+ {
+  "factory": "StoreClientListStory.CreateLoanClerk2",
+  "returns": "StoreClient",
+  "identifier": "loanClerk2",
+  "lines": [
+   "Loan Clerk",
+   "Hello, I am the loan clerk from the First Bank",
+   "we spoke last week.",
+   "Are you now interested to buy your building",
+   "and take out a mortgage with us?"
+  ]
+ },
+ {
+  "factory": "StoreClientListSupplier.CreateThiefLuxurySeller",
+  "returns": "StoreClient",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "StoreClientListTier.GetRandomT1Client",
+  "returns": "StoreClient",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "StoreClientListTierWeapon.GetRandomT1WeaponClient",
+  "returns": "StoreClient",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "StoreClientListTierWeapon.GetRandomT2WeaponClient",
+  "returns": "StoreClient",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "StoreClientListTierWeapon.GetRandomT3WeaponClient",
+  "returns": "StoreClient",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "StoreClientListUnused.CreateBilly1",
+  "returns": "StoreClient",
+  "identifier": "billy1",
+  "lines": [
+   "Billy",
+   "Sorry, can't help.",
+   "Go get a job.",
+   "Hello, I am Billy",
+   "Can you please spare some food?",
+   "I don't have any money.",
+   "I guess the economy is tough on small business too.",
+   "Thank anyway.",
+   "This is not a charity.",
+   "Fine, I'll be back.",
+   "Thank you!!",
+   "Have a great day!!!"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateBilly2",
+  "returns": "StoreClient",
+  "identifier": "billy2",
+  "lines": [
+   "Billy",
+   "Hello, I am back",
+   "I am here to buy some equipments.",
+   "it's for my new job!",
+   "You got a job?",
+   "It's in security.",
+   "I need a flashlight",
+   "and some kind of weapon.",
+   "If you don't have any,",
+   "I'll find it somewhere else.",
+   "That's good.",
+   "Deal.",
+   "Wish me luck for my first day!"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateBilly3",
+  "returns": "StoreClient",
+  "identifier": "billy3",
+  "lines": [
+   "Billy",
+   "Hello, It's me, Billy!",
+   "I got some stuffs for sale.",
+   "Where did you get this?",
+   "It's a bonus from work.",
+   "You gonna take it or what?",
+   "Deal.",
+   "See you around!"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateBillySecOfficier",
+  "returns": "StoreClient",
+  "identifier": "billy3Officier",
+  "lines": [
+   "Security Officer",
+   "Hello merchant.",
+   "We are looking for a suspect,",
+   "who robbed the Upper Level Medbay storage earlier.",
+   "Have you seen anyone suspicious, selling meds?",
+   "Deal.",
+   "See you around!"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateRevManifesto",
+  "returns": "StoreClient",
+  "identifier": "revManifesto",
+  "lines": [
+   "Revolutionary",
+   "Hello friend.",
+   "Does your landlord raise your rent every week?",
+   "You know that the clinics here barely have the essential medicine.",
+   "While the Upper Levels are trying to extend their lifespan.",
+   "We break our backs just to survive, yet somehow, it is never enough.",
+   "This isn't bad luck. It's injustice.",
+   "The MegaCorps are milking us dry.",
+   "Station Command does nothing to help us.",
+   "And Security? They uphold the law, which mean protecting the status quo.",
+   "They have so much, yet they share so little.",
+   "But there are more of us than there are of them. ",
+   "Together, we could change things.",
+   "Here, take this. Read it when you have a quiet moment.",
+   "You snitched on me?",
+   "You can't arrest me! I didn't do anything illegal!",
+   "How about inciting a riot?",
+   "You are coming with us!"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateAddictTrailer",
+  "returns": "StoreClient",
+  "identifier": "addictGeneralTrailer",
+  "lines": [
+   "Addict",
+   "Hey man, do you have anything to take the edge off?",
+   "<i>*SPASM*</i>",
+   "Oxymore, Dream dust, anything.",
+   "I said I want to barter these for drugs",
+   "Do you have some or not?!",
+   "That's the stuff!"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateTrailerShadyBuyer",
+  "returns": "StoreClient",
+  "identifier": "shadyBuyerStory",
+  "lines": [
+   "Shady Buyer",
+   "Hey man, do you have anything to take the edge off?",
+   "<i>*SPASM*</i>",
+   "Oxymore, Dream dust, anything.",
+   "I said I want to barter these for drugs",
+   "Do you have some or not?!",
+   "Excellent"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateDebugClient",
+  "returns": "StoreClient",
+  "identifier": "debug_client",
+  "lines": [
+   "Debug Client",
+   "Hello,"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateDebugClient2",
+  "returns": "StoreClient",
+  "identifier": "debug_client",
+  "lines": [
+   "Debug Client",
+   "Hello,"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateDebugStamp",
+  "returns": "StoreClient",
+  "identifier": "debug_client",
+  "lines": [
+   "Debug Client",
+   "Hello,"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateButcherClient",
+  "returns": "StoreClient",
+  "identifier": "butcher",
+  "lines": [
+   "Butcher"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateTrailerCodewordClient",
+  "returns": "StoreClient",
+  "identifier": "codewordClientTrailer",
+  "lines": [
+   "???",
+   "The true flower has bloom in the edge of the night."
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateTrailerGunBuyer",
+  "returns": "StoreClient",
+  "identifier": "gunBuyerTrader",
+  "lines": [
+   "Militiaman",
+   "You got guns?",
+   "I need them without serial numbers",
+   "Sorry, Can't help you."
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateTrailerChemist",
+  "returns": "StoreClient",
+  "identifier": "trailerChemist",
+  "lines": [
+   "Lower Levels Chemist",
+   "I just cooked up a new batch.",
+   "You want some?"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateTrailerWeaponSeller",
+  "returns": "StoreClient",
+  "identifier": "trailerWeaponSeller",
+  "lines": [
+   "Lower Levels Dealer",
+   "I got your message."
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateTrailerCultist",
+  "returns": "StoreClient",
+  "identifier": "cultistTrailer",
+  "lines": [
+   "Cultist",
+   "<i>Greeting shopkeeper.</i>",
+   "<i>We require more blood.</i>"
+  ]
+ },
+ {
+  "factory": "StoreClientListUnused.CreateTrailerGreytide",
+  "returns": "StoreClient",
+  "identifier": "greytide",
+  "lines": [
+   "Lower Levels Citizen",
+   "How much I can get for these?"
+  ]
+ },
+ {
+  "factory": "StoreClientListWater.GetRandomWaterSupplier",
+  "returns": "StoreClient",
+  "identifier": null,
+  "lines": []
+ },
+ {
+  "factory": "StoreClientUniqueList.GrandpaChengIntro",
+  "returns": "StoreClient",
+  "identifier": "grandpa_cheng_intro",
+  "lines": [
+   "Grandpa Cheng",
+   "Ah, new shop in the area. Good.",
+   "Too many people, too few good shops.",
+   "I am Grandpa Cheng, I also run a small store in The Sector.",
+   "I am supposed to get a food shipment from my supplier yesterday,",
+   "but they are late.",
+   "Some of my customers cannot wait. Orphans. Old workers.",
+   "So I would like to buy food from you that I will resell in my store.",
+   "Same price as I always sell them.",
+   "Which means... I will lose money today.",
+   "I can't raise prices, or someone will starve.",
+   "So you got any food?"
+  ]
+ },
+ {
+  "factory": "StoreClientUniqueList.GrandpaChengReferral",
+  "returns": "StoreClient",
+  "identifier": "grandpa_cheng_referral",
+  "lines": [
+   "Lower Level Citizen",
+   "Hello, Grandpa Cheng sent me here.",
+   "I am looking to buy some meds.",
+   "Grandpa Cheng usually have some expired but still usable meds.",
+   "And his prices are always fair.",
+   "Sometime, he even sell them on credit for people who can't pay.",
+   "Credit! In the Lower Levels! can you believe that?",
+   "But he is out of stock right now.",
+   "So he told me to come to you."
+  ]
+ },
+ {
+  "factory": "StoreClientUniqueList.GrandpaCheng2",
+  "returns": "StoreClient",
+  "identifier": "grandpa_cheng_2",
+  "lines": [
+   "Grandpa Cheng",
+   "Hello, it's me.",
+   "My water purifier broke down last night.",
+   "I've had it for many years, it's an old stubborn machine.",
+   "Just like me, I guess.",
+   "My supplier suggested I replace it with a new one.",
+   "He also suggested I should not be the one maintaining it.",
+   "I guess he is telling me to retire.",
+   "I am tired, but my customers depend on me.",
+   "Besides, It's not like I can afford it.",
+   "Anyway, do you have any materials I can use to fix it?"
+  ]
+ },
+ {
+  "factory": "StoreClientUniqueList.GrandpaCheng3",
+  "returns": "StoreClient",
+  "identifier": "grandpa_cheng_3",
+  "lines": [
+   "Grandpa Cheng",
+   "Hello, it's me. <i>*cough*</i>",
+   "I got some stuff to sell.",
+   "Sometimes people donate things to me, as a way to thank me I guess.",
+   "Someone even left me Luxury Items in my trash can!",
+   "Over time, I accumulated stuffs that won't interest my usual customers.",
+   "Want to take a look? <i>*cough*</i>"
+  ]
+ },
+ {
+  "factory": "StoreClientUniqueList.SawyerGrandpaCheng",
+  "returns": "StoreClient",
+  "identifier": "sawyer_grandpa_cheng",
+  "lines": [
+   "Sawyer",
+   "Hello, it's Sawyer.",
+   "You know Grandpa Cheng right?",
+   "The old man gave me food when I was a street urchin.",
+   "I would starved if it wasn't for him.",
+   "I heard he has been opening his store late",
+   "and having less stock recently.",
+   "To be honest, I am worried about him.",
+   "Keep an eye on him, will you?"
+  ]
+ },
+ {
+  "factory": "StoreClientUniqueList.GrandpaChengIll",
+  "returns": "StoreClient",
+  "identifier": "grandpa_cheng_ill",
+  "lines": [
+   "Grandpa Cheng",
+   "Hello, it's me. <i>*cough*</i>",
+   "I got a favor to ask.",
+   "I am diagnosed with an illness.",
+   "It's possible to treat it, but the treatment might kill me at my age.",
+   "So I have decided to forgo treatment.",
+   "I am selling the store and donating my savings to Lower Levels charities.",
+   "I would loved finding someone to take over my store,",
+   "but I doubt anyone would want it with my margins.",
+   "I got some leftover food items, Can you donate them to the food banks for me?"
+  ]
+ },
+ {
+  "factory": "StoreClientUniqueList.WildGrandpaCheng",
+  "returns": "StoreClient",
+  "identifier": "wild_grandpa_cheng",
+  "lines": [
+   "Joe Wild",
+   "Hello there,",
+   "I got some sad news.",
+   "I believe you know Grandpa Cheng?",
+   "He passed away last night in his sleep.",
+   "He was a good man, a true pillar of the Lower Levels community.",
+   "I got something for you to remember him by."
+  ]
+ }
+]

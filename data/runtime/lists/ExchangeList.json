@@ -1,0 +1,420 @@
+{
+  "FilterBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "filter_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "water_filter",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "water_filter",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "water_filter",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 1,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<FilterBarter>b__0_0",
+    "isPromotional": false
+  },
+  "ModuleBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "module_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "MODULE",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "MODULE",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 1,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<ModuleBarter>b__3_0",
+    "isPromotional": false
+  },
+  "DreamDustBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "dream_dust_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "dream_dust",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "dream_dust",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 2,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<DreamDustBarter>b__4_0",
+    "isPromotional": false
+  },
+  "CommandKeycardBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "commandKeycardBarter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "cmd_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 1,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<CommandKeycardBarter>b__5_0",
+    "isPromotional": false
+  },
+  "PoisonBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "poison_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "POISON",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "POISON",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 1,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<PoisonBarter>b__6_0",
+    "isPromotional": false
+  },
+  "BulletBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "bullet_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "AMMUNITION",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "AMMUNITION",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 1,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<BulletBarter>b__7_0",
+    "isPromotional": false
+  },
+  "SmugglerBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "smuggler_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "smuggler_bay",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "pink_injector",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "pink_injector",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "pink_injector",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "pink_injector",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "pink_injector",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "pink_injector",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "pink_injector",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "pink_injector",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 10,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<SmugglerBarter>b__8_0",
+    "isPromotional": false
+  },
+  "ImprovedDreamDustBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "improved_dream_dust_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "dream_dust",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "dream_dust",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "dream_dust",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "dream_dust",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 4,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<ImprovedDreamDustBarter>b__9_0",
+    "isPromotional": true
+  },
+  "SecCrateBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "sec_crate_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "sec_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "sec_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "sec_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 2,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<SecCrateBarter>b__13_0",
+    "isPromotional": true
+  },
+  "MedCrateBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "med_crate_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "med_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "med_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "med_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "med_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 8,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<MedCrateBarter>b__14_0",
+    "isPromotional": true
+  },
+  "EngCrateBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "eng_crate_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "eng_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "eng_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "eng_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "eng_keycard",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 2,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<EngCrateBarter>b__15_0",
+    "isPromotional": true
+  },
+  "SeedBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "seed_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "SEED",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "SEED",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "SEED",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "SEED",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "SEED",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 2,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<SeedBarter>b__16_0",
+    "isPromotional": true
+  },
+  "BMRepBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "bm_rep_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "scav_token",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 2,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<BMRepBarter>b__17_0",
+    "isPromotional": true
+  },
+  "ImmunivaxBarter": {
+    "$type": "ExchangeBarter",
+    "identifier": "immunivax_barter",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "pink_injector",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      },
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "pink_injector",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      }
+    ],
+    "priority": 1,
+    "barterCounterPerNight": 1,
+    "currentBarterCounter": 0,
+    "onAccept": "fn:<>c.<ImmunivaxBarter>b__18_0",
+    "isPromotional": true
+  }
+}

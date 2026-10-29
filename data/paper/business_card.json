@@ -1,0 +1,33 @@
+{
+  "id": "business_card",
+  "title": "Business card",
+  "background": "business_card_template",
+  "width": 400,
+  "height": 250,
+  "zoomable": false,
+  "chrome": [
+    { "type": "button", "id": "close", "action": "close", "x": 183, "y": 2, "w": 14, "h": 15 }
+  ],
+  "templates": [
+    {
+      "id": "card_front",
+      "elements": [
+        { "type": "text", "id": "name", "slot": "name", "text": "Name", "style": "title", "align": "center", "wrap": false, "x": 12, "y": 14, "w": 176, "h": 16 },
+        { "type": "text", "id": "role", "slot": "role", "text": "Role", "style": "body", "align": "center", "wrap": false, "x": 12, "y": 32, "w": 176, "h": 12 },
+        { "type": "flow", "id": "contact_flow", "x": 12, "y": 62, "w": 176, "h": 50, "spacing": 2, "align": "center" },
+        { "type": "text", "id": "contact", "slot": "contact", "flow": "contact_flow", "text": "Contact", "style": "body", "align": "center", "autoHeight": true, "w": 0, "h": 0 }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "Front",
+      "template": "card_front",
+      "slots": {
+        "name": "Jane Doe",
+        "role": "Independent broker",
+        "contact": "Deck 4, bay 12\nAsk for Jane"
+      }
+    }
+  ]
+}

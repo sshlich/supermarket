@@ -1,0 +1,17 @@
+{
+  "id": "blank",
+  "title": "Blank notebook",
+  "background": "notebook_manual",
+  "width": 628,
+  "height": 804,
+  "chrome": [
+    { "type": "button", "id": "close", "action": "close", "x": 297, "y": 2.5, "w": 14, "h": 15 },
+    { "type": "button", "id": "zoom", "action": "zoom", "x": 273.5, "y": 3.5, "w": 14, "h": 15 },
+    { "type": "button", "id": "flip_left", "action": "flip_left", "x": 124, "y": 380, "w": 16, "h": 16 },
+    { "type": "button", "id": "flip_right", "action": "flip_right", "x": 176, "y": 380.5, "w": 14, "h": 15 },
+    { "type": "text", "id": "page_indicator", "action": "page_indicator", "style": "page_number", "align": "center", "valign": "middle", "wrap": false, "x": 140.5, "y": 374, "w": 33, "h": 25 }
+  ],
+  "pages": [
+    { "name": "Page 1" }
+  ]
+}

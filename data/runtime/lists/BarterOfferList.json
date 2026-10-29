@@ -1,0 +1,87 @@
+{
+  "CreateAddictBarter": {
+    "$type": "BarterOffer",
+    "barterTextBody": "Barter for: Oxymore Injector",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "pink_injector",
+        "requiredItemTag": "",
+        "blacklistedConditionId": []
+      }
+    ],
+    "acceptedResponse": "Oh yea, that's the stuff!",
+    "deniedResponse": "",
+    "isFreeReward": false,
+    "offerSets": [
+      "fn:<>c.<CreateAddictBarter>b__0_0",
+      "fn:<>c.<CreateAddictBarter>b__0_1",
+      "fn:<>c.<CreateAddictBarter>b__0_2"
+    ],
+    "currentSetIndex": 0
+  },
+  "CreateAddictGeneralBarter": {
+    "$type": "BarterOffer",
+    "barterTextBody": "Barter for: Narcotic",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "NARCOTIC",
+        "blacklistedConditionId": [
+          "starch_grade",
+          "junk_grade"
+        ]
+      }
+    ],
+    "acceptedResponse": "Oh yea, that's the stuff!",
+    "deniedResponse": "",
+    "isFreeReward": false,
+    "offerSets": [
+      "fn:<>c.<CreateAddictGeneralBarter>b__1_0",
+      "fn:<>c.<CreateAddictGeneralBarter>b__1_1",
+      "fn:<>c.<CreateAddictGeneralBarter>b__1_2",
+      "fn:<>c.<CreateAddictGeneralBarter>b__1_8"
+    ],
+    "currentSetIndex": 0
+  },
+  "CreateBarterFoodTutorial": {
+    "$type": "BarterOffer",
+    "onInstance": "fn:<>c.<CreateBarterFoodTutorial>b__2_0",
+    "barterTextBody": "Barter for: Food",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "FOOD",
+        "blacklistedConditionId": []
+      }
+    ],
+    "acceptedResponse": "",
+    "deniedResponse": "",
+    "isFreeReward": false,
+    "offerSets": [],
+    "currentSetIndex": 0
+  },
+  "CreateBarterFoodMultiOffer": {
+    "$type": "BarterOffer",
+    "barterTextBody": "Barter for: Food",
+    "conditions": [
+      {
+        "$type": "BarterCondition",
+        "requiredItemId": "",
+        "requiredItemTag": "FOOD",
+        "blacklistedConditionId": []
+      }
+    ],
+    "acceptedResponse": "",
+    "deniedResponse": "",
+    "isFreeReward": false,
+    "offerSets": [
+      "fn:<>c.<CreateBarterFoodMultiOffer>b__3_0",
+      "fn:<>c.<CreateBarterFoodMultiOffer>b__3_1",
+      "fn:<>c.<CreateBarterFoodMultiOffer>b__3_2"
+    ],
+    "currentSetIndex": 0
+  }
+}

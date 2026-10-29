@@ -1,0 +1,23 @@
+{
+  "DumpingGrounds": {
+    "$type": "ExpeditionLocation",
+    "id": "dumping_grounds",
+    "displayName": "Dumping Grounds",
+    "description": "An expansive junkyard filled with discarded scrap.",
+    "dangerRating": 1,
+    "footTraffic": 5,
+    "legality": 5,
+    "possibleDanger": [
+      "Hostile Scavengers",
+      "Toxic Waste",
+      "Mechanical Traps"
+    ],
+    "possibleLoot": [
+      "Scrap Metal",
+      "Old Electronics",
+      "Rare Components"
+    ],
+    "isUnlocked": true,
+    "POITable": "POI_dumpingGround"
+  }
+}

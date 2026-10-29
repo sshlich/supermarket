@@ -1,0 +1,209 @@
+{
+  "CreateTestResponse": {
+    "$type": "StoreResponse",
+    "identifier": "test_response",
+    "title": "Test Response",
+    "closable": true,
+    "choices": [
+      {
+        "$type": "ValueTuple`2",
+        "Item1": {
+          "$type": "GameItemElement",
+          "handler": "TreeNodeRender:Item unknown Node",
+          "inner": "TreeNodeRender:Node",
+          "fakeInner": "TreeNodeRender:Node",
+          "middle": "TreeNodeRender:Node",
+          "rotator": "TreeNodeRender:Node",
+          "background": "TreeNodeRender:Node",
+          "fakeMiddle": "TreeNodeRender:Node",
+          "fakeRotator": "TreeNodeRender:Node",
+          "fakeBackground": "TreeNodeRender:Node",
+          "tempShape": {
+            "$type": "GridShapeBuilder",
+            "minX": 0,
+            "minY": 0,
+            "flipped": false,
+            "orientation": 0,
+            "width": 1,
+            "height": 1,
+            "outside": 0
+          },
+          "shape": {
+            "$type": "GridShapeBuilder",
+            "minX": 0,
+            "minY": 0,
+            "flipped": false,
+            "orientation": 0,
+            "width": 1,
+            "height": 1,
+            "outside": 0
+          },
+          "modifiedShape": {
+            "$type": "GridShapeBuilder",
+            "minX": 0,
+            "minY": 0,
+            "flipped": false,
+            "orientation": 0,
+            "width": 1,
+            "height": 1,
+            "outside": 0
+          },
+          "modifiedXOrigin": 0,
+          "modifiedYOrigin": 0,
+          "state": {
+            "$type": "TagSystem",
+            "dict": {
+              "IS_OWNED_TAG": "ref:IS_OWNED_TAG"
+            }
+          },
+          "modifiedState": {
+            "$type": "TagSystem",
+            "dict": {
+              "IS_OWNED_TAG": "ref:IS_OWNED_TAG"
+            }
+          },
+          "identifier": "trade",
+          "uniqueId": 0,
+          "name": "(Trade) See what they have to offer.",
+          "shortDescription": "",
+          "longDescription": "",
+          "flavorText": "",
+          "unitCount": 1,
+          "unitValue": 0,
+          "lateUnitValue": 0,
+          "unitBaseValue": 0,
+          "backupUnitValue": 0,
+          "forceDisableActivate": false,
+          "forceDisableUse": false,
+          "activateDefault": true,
+          "isCombatBackpack": false,
+          "spritePath": "unknown",
+          "spriteAtlasPath": "Items/itematlas",
+          "spriteChanged": false,
+          "useSpriteFromMod": false,
+          "isDebugMenu": false,
+          "soundDragStart": "move_item_default",
+          "soundContainerOpen": "light_click",
+          "itemFeatures": [],
+          "itemTypes": [],
+          "bonusAccuracy": 0,
+          "effects": [],
+          "triggerOverwatch": false,
+          "canUseOutsideCombat": true,
+          "mayInventoryAddItemFunc": "fn:<>c.<TransformItemChoice>b__6_3",
+          "mayInventoryRemoveItemFunc": "fn:<>c.<TransformItemChoice>b__6_5",
+          "mayStackItemFunc": "fn:<>c.<TransformItemChoice>b__6_2",
+          "maxSlotAddItemFunc": "fn:<>c.<TransformItemChoice>b__6_4",
+          "onSlotAddItemFunc": "fn:GameItem.<.ctor>b__177_0",
+          "mayActivateSlotItemFunc": "fn:<>c.<TransformItemChoice>b__6_0",
+          "canActivateSlotItemFunc": "fn:<>c.<TransformItemChoice>b__6_1"
+        },
+        "Item2": "fn:<>c.<CreateTestResponse>b__0_0"
+      }
+    ]
+  },
+  "CreateAfterhoursResponse": {
+    "$type": "StoreResponse",
+    "identifier": "afterhours_response",
+    "title": "Select a Backpack To Take",
+    "closable": true,
+    "choices": [
+      {
+        "$type": "ValueTuple`2",
+        "Item1": {
+          "$type": "GameItemElement",
+          "handler": "TreeNodeRender:Item unknown Node",
+          "inner": "TreeNodeRender:Node",
+          "fakeInner": "TreeNodeRender:Node",
+          "middle": "TreeNodeRender:Node",
+          "rotator": "TreeNodeRender:Node",
+          "background": "TreeNodeRender:Node",
+          "fakeMiddle": "TreeNodeRender:Node",
+          "fakeRotator": "TreeNodeRender:Node",
+          "fakeBackground": "TreeNodeRender:Node",
+          "tempShape": {
+            "$type": "GridShapeBuilder",
+            "minX": 0,
+            "minY": 0,
+            "flipped": false,
+            "orientation": 0,
+            "width": 1,
+            "height": 1,
+            "outside": 0
+          },
+          "shape": {
+            "$type": "GridShapeBuilder",
+            "minX": 0,
+            "minY": 0,
+            "flipped": false,
+            "orientation": 0,
+            "width": 3,
+            "height": 3,
+            "outside": 0
+          },
+          "modifiedShape": {
+            "$type": "GridShapeBuilder",
+            "minX": 0,
+            "minY": 0,
+            "flipped": false,
+            "orientation": 0,
+            "width": 3,
+            "height": 3,
+            "outside": 0
+          },
+          "modifiedXOrigin": 0,
+          "modifiedYOrigin": 0,
+          "state": {
+            "$type": "TagSystem",
+            "dict": {
+              "IS_OWNED_TAG": "ref:IS_OWNED_TAG"
+            }
+          },
+          "modifiedState": {
+            "$type": "TagSystem",
+            "dict": {
+              "IS_OWNED_TAG": "ref:IS_OWNED_TAG"
+            }
+          },
+          "identifier": "plastic_bag",
+          "identifierName": "TYPE-STRING_plastic_bag",
+          "uniqueId": 104,
+          "name": "Go Outside Without A Backpack",
+          "shortDescription": "",
+          "longDescription": "",
+          "flavorText": "",
+          "unitCount": 1,
+          "unitValue": 0,
+          "lateUnitValue": 0,
+          "unitBaseValue": 0,
+          "backupUnitValue": 0,
+          "forceDisableActivate": false,
+          "forceDisableUse": false,
+          "activateDefault": true,
+          "isCombatBackpack": false,
+          "spritePath": "bag",
+          "spriteAtlasPath": "Items/items_container",
+          "spriteChanged": false,
+          "useSpriteFromMod": false,
+          "isDebugMenu": false,
+          "soundDragStart": "move_item_default",
+          "soundContainerOpen": "light_click",
+          "itemFeatures": [],
+          "itemTypes": [],
+          "bonusAccuracy": 0,
+          "effects": [],
+          "triggerOverwatch": false,
+          "canUseOutsideCombat": true,
+          "mayInventoryAddItemFunc": "fn:<>c.<TransformItemChoice>b__6_3",
+          "mayInventoryRemoveItemFunc": "fn:<>c.<TransformItemChoice>b__6_5",
+          "mayStackItemFunc": "fn:<>c.<TransformItemChoice>b__6_2",
+          "maxSlotAddItemFunc": "fn:<>c.<TransformItemChoice>b__6_4",
+          "onSlotAddItemFunc": "fn:GameItem.<.ctor>b__177_0",
+          "mayActivateSlotItemFunc": "fn:<>c.<TransformItemChoice>b__6_0",
+          "canActivateSlotItemFunc": "fn:<>c.<TransformItemChoice>b__6_1"
+        },
+        "Item2": "fn:<>c__DisplayClass1_0.<CreateAfterhoursResponse>b__0"
+      }
+    ]
+  }
+}

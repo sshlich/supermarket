@@ -1,0 +1,118 @@
+{
+  "Riot": {
+    "$type": "StoreEvent",
+    "eventType": "NORMALE",
+    "eventArea": "ALL",
+    "identifier": "ll_riot",
+    "newsName": "Riots Break Out!",
+    "displayName": "Lower Levels Riot",
+    "newsDescription": "Due to recent event, crowds of Lower Levels citizens erupt into violent riots across the Lower Levels. Shops are looted, Security outposts attacked, and chaos spreads quickly. Food and Weapon are in high demands.",
+    "cooldown": 8,
+    "duration": 1,
+    "totalDuration": 0,
+    "startDay": -1,
+    "currentDay": 0,
+    "isPermanent": false,
+    "isHidden": false,
+    "isDurationVisible": false,
+    "negociationDatas": [
+      {
+        "$type": "NegociationData",
+        "itemType": "FOOD",
+        "value": 30,
+        "publicDisplay": "Riots Break Out!",
+        "identifier": "93efb893-4380-444e-b0d1-14368f536680",
+        "reason": "Lower Levels Riot"
+      },
+      {
+        "$type": "NegociationData",
+        "itemType": "WEAPON",
+        "value": 50,
+        "publicDisplay": "Riots Break Out!",
+        "identifier": "c18f7f49-1af1-4300-98c2-52a24d948ded",
+        "reason": "Lower Levels Riot"
+      },
+      {
+        "$type": "NegociationData",
+        "itemType": "AMMUNITION",
+        "value": 50,
+        "publicDisplay": "Riots Break Out!",
+        "identifier": "e769af24-3467-4af5-bad1-7cc272154895",
+        "reason": "Lower Levels Riot"
+      }
+    ],
+    "addClientFromEventActionId": "ll_riotaddClientAction",
+    "importance": 7,
+    "IsPriority": false,
+    "imcompatibleEvents": [],
+    "IsKnown": false,
+    "isHiddenFromNewsPaper": false,
+    "isFactionOperation": false,
+    "sourceFaction": "",
+    "civilUnrestMod": -40,
+    "upperLevelFriendlinessMod": 0,
+    "secPowerMod": 0,
+    "revPowerMod": 10,
+    "bmPowerMod": 0,
+    "isLockDown": false,
+    "isBlockByLockDown": true
+  },
+  "WorkerStrike": {
+    "$type": "StoreEvent",
+    "eventType": "NORMALE",
+    "eventArea": "ALL",
+    "identifier": "ll_worker_strike",
+    "newsName": "Workers on Strike!",
+    "displayName": "Worker Strike",
+    "newsDescription": "Due to recent events, disgruntled Lower Level workers have gone on strike. Food and water supplies are being disrupted.",
+    "cooldown": 5,
+    "duration": 3,
+    "totalDuration": 0,
+    "startDay": -1,
+    "currentDay": 0,
+    "isPermanent": false,
+    "isHidden": false,
+    "isDurationVisible": false,
+    "negociationDatas": [
+      {
+        "$type": "NegociationData",
+        "itemType": "WATER",
+        "value": 40,
+        "publicDisplay": "Workers on Strike!",
+        "identifier": "21764110-544e-42fb-b030-a21e1660c215",
+        "reason": "Worker Strike"
+      },
+      {
+        "$type": "NegociationData",
+        "itemType": "WATER_RATION",
+        "value": 40,
+        "publicDisplay": "Workers on Strike!",
+        "identifier": "089b0fdc-56b9-490b-95e7-aded73af11e4",
+        "reason": "Worker Strike"
+      },
+      {
+        "$type": "NegociationData",
+        "itemType": "FOOD",
+        "value": 40,
+        "publicDisplay": "Workers on Strike!",
+        "identifier": "b3d8884c-b518-4124-a1dd-b9f52dcaf956",
+        "reason": "Worker Strike"
+      }
+    ],
+    "addClientFromEventActionId": "ll_worker_strikeaddClientAction",
+    "importance": 6,
+    "IsPriority": false,
+    "imcompatibleEvents": [],
+    "IsKnown": false,
+    "isHiddenFromNewsPaper": false,
+    "isFactionOperation": false,
+    "sourceFaction": "",
+    "civilUnrestMod": 20,
+    "upperLevelFriendlinessMod": 0,
+    "secPowerMod": 0,
+    "revPowerMod": 5,
+    "bmPowerMod": 0,
+    "isLockDown": false,
+    "isBlockByLockDown": true
+  }
+}

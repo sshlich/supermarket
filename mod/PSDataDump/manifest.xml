@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+  <ID>ps_datadump</ID>
+  <Name>PS Data Dump</Name>
+  <Author>sshlich</Author>
+  <ModVersion>1.0</ModVersion>
+  <Description>Writes every registered item, ability, loot table, registry and list factory to ModData/ps_datadump as JSON when a game loads.</Description>
+  <GameVersions>
+    <Version>0.46</Version>
+  </GameVersions>
+  <Prerequisites />
+  <Assemblies>
+    <Assembly>PSDataDump.dll</Assembly>
+  </Assemblies>
+  <Capabilities>
+    <Capability>reflection-external</Capability>
+  </Capabilities>
+</Manifest>

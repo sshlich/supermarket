@@ -1,0 +1,734 @@
+{
+ "tables": {
+  "POI_dumpingGround": [
+   {
+    "value": "junk_pile",
+    "probability": 0.4,
+    "enabled": true,
+    "weight": 120,
+    "units": 1
+   },
+   {
+    "value": "fresh_scrap_pile",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 45,
+    "units": 1
+   },
+   {
+    "value": "scrap_pile",
+    "probability": 0.45,
+    "enabled": true,
+    "weight": 135,
+    "units": 1
+   }
+  ],
+  "accessCardTable": [
+   {
+    "value": "sup_keycard",
+    "probability": 0.0,
+    "enabled": false,
+    "weight": 0,
+    "units": 1
+   },
+   {
+    "value": "ser_keycard",
+    "probability": 0.3,
+    "enabled": true,
+    "weight": 208,
+    "units": 1
+   },
+   {
+    "value": "sci_keycard",
+    "probability": 0.0,
+    "enabled": false,
+    "weight": 0,
+    "units": 1
+   },
+   {
+    "value": "med_keycard",
+    "probability": 0.2,
+    "enabled": true,
+    "weight": 139,
+    "units": 1
+   },
+   {
+    "value": "eng_keycard",
+    "probability": 0.2,
+    "enabled": true,
+    "weight": 139,
+    "units": 1
+   },
+   {
+    "value": "sec_keycard",
+    "probability": 0.2,
+    "enabled": true,
+    "weight": 139,
+    "units": 1
+   },
+   {
+    "value": "cmd_keycard",
+    "probability": 0.1,
+    "enabled": true,
+    "weight": 70,
+    "units": 1
+   }
+  ],
+  "allModuleTable": [
+   {
+    "value": "system_module_corrupt",
+    "probability": 0.1175,
+    "enabled": true,
+    "weight": 117,
+    "units": 1
+   },
+   {
+    "value": "system_module_ruined",
+    "probability": 0.1175,
+    "enabled": true,
+    "weight": 117,
+    "units": 1
+   },
+   {
+    "value": "system_module_performance",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 150,
+    "units": 1
+   },
+   {
+    "value": "system_module_efficiancy",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 150,
+    "units": 1
+   },
+   {
+    "value": "system_module_quality",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 150,
+    "units": 1
+   },
+   {
+    "value": "system_module_overclock",
+    "probability": 0.1,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "system_module_fineness",
+    "probability": 0.1,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "system_module_eco",
+    "probability": 0.1,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "system_capped_neural_core",
+    "probability": 0.01,
+    "enabled": true,
+    "weight": 10,
+    "units": 1
+   },
+   {
+    "value": "system_uncapped_neural_core",
+    "probability": 0.005,
+    "enabled": true,
+    "weight": 5,
+    "units": 1
+   }
+  ],
+  "dumpingGroundMedical": [
+   {
+    "value": "bandage_item",
+    "probability": 0.3333,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "hemostatic_bandage_item",
+    "probability": 0.3333,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "topical_bandage_item",
+    "probability": 0.3333,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   }
+  ],
+  "householdTable": [
+   {
+    "value": "caffeine_pill",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "toothpaste",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "water_filter",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "shampoo",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "paper_towel",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "toilet_paper",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "full_water_test_strip_box",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "full_water_purification_tablet_box",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   }
+  ],
+  "junkTable": [
+   {
+    "value": "junk",
+    "probability": 0.85,
+    "enabled": true,
+    "weight": 317,
+    "units": 1
+   },
+   {
+    "value": "glass_shard",
+    "probability": 0.03,
+    "enabled": true,
+    "weight": 11,
+    "units": 1
+   },
+   {
+    "value": "system_module_ruined",
+    "probability": 0.03,
+    "enabled": true,
+    "weight": 11,
+    "units": 1
+   },
+   {
+    "value": "pipe_weapon",
+    "probability": 0.03,
+    "enabled": true,
+    "weight": 11,
+    "units": 1
+   },
+   {
+    "value": "empty_beer_bottle",
+    "probability": 0.03,
+    "enabled": true,
+    "weight": 11,
+    "units": 1
+   },
+   {
+    "value": "scratcher",
+    "probability": 0.03,
+    "enabled": true,
+    "weight": 11,
+    "units": 1
+   }
+  ],
+  "makeshiftWeaponTable": [
+   {
+    "value": "glass_shard_shiv",
+    "probability": 0.25,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "box_cutter",
+    "probability": 0.25,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "kitchen_knife",
+    "probability": 0.25,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "pipe_weapon",
+    "probability": 0.25,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   }
+  ],
+  "materialTable": [
+   {
+    "value": "scrap_metal",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "nuts_metal",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "flux_agent",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "printer_plastic",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "wire",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "gun_part",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "common_electronic",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "kotton_fabric",
+    "probability": 0.125,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   }
+  ],
+  "medicalTable": [
+   {
+    "value": "pink_injector",
+    "probability": 0.1,
+    "enabled": true,
+    "weight": 70,
+    "units": 1
+   },
+   {
+    "value": "smelling_salt",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 105,
+    "units": 1
+   },
+   {
+    "value": "bandage_item",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 105,
+    "units": 1
+   },
+   {
+    "value": "hemostatic_bandage_item",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 105,
+    "units": 1
+   },
+   {
+    "value": "topical_bandage_item",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 105,
+    "units": 1
+   },
+   {
+    "value": "salve",
+    "probability": 0.1,
+    "enabled": true,
+    "weight": 70,
+    "units": 1
+   },
+   {
+    "value": "rubbing_alcohol",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 105,
+    "units": 1
+   },
+   {
+    "value": "surgery_tool",
+    "probability": 0.05,
+    "enabled": true,
+    "weight": 35,
+    "units": 1
+   }
+  ],
+  "packedFoodTable": [
+   {
+    "value": "galaxy_blend",
+    "probability": 0.0818,
+    "enabled": true,
+    "weight": 106,
+    "units": 1
+   },
+   {
+    "value": "energy_drink",
+    "probability": 0.0818,
+    "enabled": true,
+    "weight": 106,
+    "units": 1
+   },
+   {
+    "value": "soda_red",
+    "probability": 0.0818,
+    "enabled": true,
+    "weight": 106,
+    "units": 1
+   },
+   {
+    "value": "cat_bar",
+    "probability": 0.0818,
+    "enabled": true,
+    "weight": 106,
+    "units": 1
+   },
+   {
+    "value": "li_eat_snackbar",
+    "probability": 0.0818,
+    "enabled": true,
+    "weight": 106,
+    "units": 1
+   },
+   {
+    "value": "red_beer",
+    "probability": 0.0818,
+    "enabled": true,
+    "weight": 106,
+    "units": 1
+   },
+   {
+    "value": "processed_milk",
+    "probability": 0.0818,
+    "enabled": true,
+    "weight": 106,
+    "units": 1
+   },
+   {
+    "value": "processed_juice",
+    "probability": 0.0818,
+    "enabled": true,
+    "weight": 106,
+    "units": 1
+   },
+   {
+    "value": "processed_meat",
+    "probability": 0.0818,
+    "enabled": true,
+    "weight": 106,
+    "units": 1
+   },
+   {
+    "value": "zerochew",
+    "probability": 0.0818,
+    "enabled": true,
+    "weight": 106,
+    "units": 1
+   },
+   {
+    "value": "cup_noodle",
+    "probability": 0.0818,
+    "enabled": true,
+    "weight": 106,
+    "units": 1
+   },
+   {
+    "value": "nudka",
+    "probability": 0.05,
+    "enabled": true,
+    "weight": 65,
+    "units": 1
+   },
+   {
+    "value": "beis_icecream",
+    "probability": 0.05,
+    "enabled": true,
+    "weight": 65,
+    "units": 1
+   }
+  ],
+  "t1moduleTable": [
+   {
+    "value": "random_performance_module",
+    "probability": 0.3333,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "random_efficiency_module",
+    "probability": 0.3333,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "random_quality_module",
+    "probability": 0.3333,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   }
+  ],
+  "t2moduleTable": [
+   {
+    "value": "system_module_performance",
+    "probability": 0.3333,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "system_module_eco",
+    "probability": 0.3333,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "system_module_fineness",
+    "probability": 0.3333,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   }
+  ],
+  "toolTable": [
+   {
+    "value": "screwdriver",
+    "probability": 0.1667,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "wire_cutter",
+    "probability": 0.1667,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "module_extractor",
+    "probability": 0.1667,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "welder",
+    "probability": 0.1667,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "turbo_booster",
+    "probability": 0.1667,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   },
+   {
+    "value": "crowbar",
+    "probability": 0.1667,
+    "enabled": true,
+    "weight": 100,
+    "units": 1
+   }
+  ]
+ },
+ "groups": {
+  "dumpingGroundFreshTG": [
+   {
+    "value": "householdTable",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 76,
+    "units": 1
+   },
+   {
+    "value": "makeshiftWeaponTable",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 76,
+    "units": 1
+   },
+   {
+    "value": "packedFoodTable",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 76,
+    "units": 1
+   },
+   {
+    "value": "materialTable",
+    "probability": 0.4,
+    "enabled": true,
+    "weight": 201,
+    "units": 1
+   },
+   {
+    "value": "toolTable",
+    "probability": 0.1,
+    "enabled": true,
+    "weight": 50,
+    "units": 1
+   },
+   {
+    "value": "t1moduleTable",
+    "probability": 0.05,
+    "enabled": true,
+    "weight": 25,
+    "units": 1
+   }
+  ],
+  "dumpingGroundTG": [
+   {
+    "value": "junkTable",
+    "probability": 0.65,
+    "enabled": true,
+    "weight": 523,
+    "units": 1
+   },
+   {
+    "value": "materialTable",
+    "probability": 0.15,
+    "enabled": true,
+    "weight": 122,
+    "units": 1
+   },
+   {
+    "value": "t1moduleTable",
+    "probability": 0.01,
+    "enabled": true,
+    "weight": 8,
+    "units": 1
+   },
+   {
+    "value": "t2moduleTable",
+    "probability": 0.005,
+    "enabled": true,
+    "weight": 4,
+    "units": 1
+   },
+   {
+    "value": "toolTable",
+    "probability": 0.02,
+    "enabled": true,
+    "weight": 16,
+    "units": 1
+   },
+   {
+    "value": "householdTable",
+    "probability": 0.0475,
+    "enabled": true,
+    "weight": 38,
+    "units": 1
+   },
+   {
+    "value": "makeshiftWeaponTable",
+    "probability": 0.02,
+    "enabled": true,
+    "weight": 16,
+    "units": 1
+   },
+   {
+    "value": "packedFoodTable",
+    "probability": 0.0475,
+    "enabled": true,
+    "weight": 38,
+    "units": 1
+   },
+   {
+    "value": "dumpingGroundMedical",
+    "probability": 0.05,
+    "enabled": true,
+    "weight": 40,
+    "units": 1
+   }
+  ]
+ },
+ "scene_table_ids": {
+  "POI_dumpingGround": "POI_dumpingGround",
+  "junkTable": "junkTable",
+  "accessCardTable": "accessCardTable",
+  "allModuleTable": "allModuleTable",
+  "makeshiftWeaponTable": "makeshiftWeaponTable",
+  "materialTable": "materialTable",
+  "householdTable": "householdTable",
+  "packedFoodTable": "packedFoodTable",
+  "t1moduleTable": "t1moduleTable",
+  "t2moduleTable": "t2moduleTable",
+  "toolTable": "toolTable",
+  "medicalTable": "medicalTable",
+  "dumpingGroundMedical": "dumpingGroundMedical"
+ },
+ "scene_group_ids": {
+  "dumpingGroundTG": "dumpingGroundTG",
+  "dumpingGroundFreshTG": "dumpingGroundFreshTG"
+ }
+}

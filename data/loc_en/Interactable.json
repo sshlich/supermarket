@@ -1,0 +1,14 @@
+{
+ "door_leave_store": "Leave the Store",
+ "door_too_late": "It's too late to go anywhere now...",
+ "door_day_not_over": "You can't leave the Store until the day is over!",
+ "door_crackdown": "You can't leave the Store during a crackdown!",
+ "door_wounded": "You can't leave the Store while you have major wounds!",
+ "ui_open_clientele_interface": "Open the Phone Interface",
+ "vending_fountain_tooltip": "Water Vending Machine",
+ "vending_machine_tooltip": "Vending Machine",
+ "magnifying_screen": "Customer Viewport",
+ "door_agoraphobia": "You can't leave the store due to your agoraphobia!",
+ "door_agoraphobia_rest": "Your agoraphobia keeps you in the Store! Rest here {0} more nights before going out again.",
+ "door_agoraphobia_rest_last": "Your agoraphobia keeps you in the Store! You can go out again tomorrow."
+}

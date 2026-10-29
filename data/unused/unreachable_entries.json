@@ -1,0 +1,3593 @@
+[
+ {
+  "id": "cassette11",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [
+   "DebugPanel:1291"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "dev/test only"
+ },
+ {
+  "id": "cassette12",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [
+   "DebugPanel:1292"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "dev/test only"
+ },
+ {
+  "id": "cassette13",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [
+   "DebugPanel:1293"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "dev/test only"
+ },
+ {
+  "id": "cassette14",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [
+   "DebugPanel:1294"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "dev/test only"
+ },
+ {
+  "id": "bandage_stop_bleed",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:36"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "bandage_stop_light_bleed",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "baseball_bat_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "blood_red_heal",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:425"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "blue_stim_heal",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:418"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "blunt_melee_stun",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:34",
+   "StandardCombatAbilityDirectory:35"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "c4_breaching_damage",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "c4_damage",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DirectoryCombatEvent:51"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "cleaver_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "combat_knife_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "combat_machete_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "combat_scavenge",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:6"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "crowbar_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "dev_damage_all",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:39"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "energy_hand_canon_charged",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "energy_hand_canon_normal",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "event_c4_effect",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:10"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "fireaxe_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "fireaxe_big_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "frag_damage",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:9"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "glock_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:13",
+   "StandardCombatAbilityDirectory:14"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "hatchet_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "knife_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "laser_autocanon_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "TechnicianBackpackDirectory:52"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "lead_pipe_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "mass_heal",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "medical_assist_stun_reduce",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:47"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "null",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:57",
+   "PaperEditorFiles:119",
+   "PaperEditorFiles:215",
+   "PlayerAbilityItemDirectory:51",
+   "StandardCombatAbilityDirectory:5"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "red_stim_heal",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:384",
+   "MedsItemDirectory:405",
+   "StandardCombatAbilityDirectory:22",
+   "StandardCombatAbilityDirectory:26"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "smelling_salt_stun_remove",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "stop_bleed",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:37"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "storm_effect",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DirectoryCombatEvent:78"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "stun_baton_damage",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:18"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "ump_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:15",
+   "TechnicianBackpackDirectory:42",
+   "TechnicianBackpackDirectory:62",
+   "TechnicianBackpackDirectory:72"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "wait",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MenuManager:78",
+   "PlayerAbilityItemDirectory:109"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "weapon_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:20",
+   "StandardCombatAbilityDirectory:20",
+   "UnusedDirectory:1546",
+   "UnusedDirectory:1639"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "white_stim_heal",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:376",
+   "MedsItemDirectory:403",
+   "StandardCombatAbilityDirectory:25",
+   "StandardCombatAbilityDirectory:26"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_consume_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_consume_heal",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_laceration_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_scratch_attack",
+  "directory": "CombatAbilityEffectInstantDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "dead",
+  "directory": "CombatAbilityEffectPermanentDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "GameCharacterItem:809"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "dehydration",
+  "directory": "CombatAbilityEffectPermanentDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "CombatAbilityEffectPermanentDirectory:13",
+   "Survival:55"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "extreme_dehydration",
+  "directory": "CombatAbilityEffectPermanentDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "CombatAbilityEffectPermanentDirectory:7",
+   "Survival:50"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "thirsty",
+  "directory": "CombatAbilityEffectPermanentDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "CombatAbilityEffectPermanentDirectory:19",
+   "DebugPanel:636",
+   "PlantList:50",
+   "PlantList:72",
+   "PlantTraitList:21"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "well_hydrated",
+  "directory": "CombatAbilityEffectPermanentDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "CombatAbilityEffectPermanentDirectory:25",
+   "Survival:65"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "aloe_vera_heal",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:1079"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "antitoxin",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "CombatAbilityEffectStandardDirectory:36",
+   "CombatAbilityEffectStandardDirectory:37",
+   "GameCharacterItem:1007",
+   "MedsItemDirectory:392"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "berserk_effect",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "bicarsole_heal",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:28",
+   "UnusedDirectory:1743"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "bleed_heavy",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "CombatAbilityEffectInstantDirectory:61",
+   "CombatAbilityEffectInstantDirectory:82",
+   "DirectoryCombatAI:452",
+   "DirectoryCombatAbilityEffect:343",
+   "EffectHelper:13"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "bleed_light",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "CombatAbilityEffectInstantDirectory:60",
+   "CombatAbilityEffectInstantDirectory:71",
+   "CombatAbilityEffectInstantDirectory:81",
+   "DirectoryCombatAI:452",
+   "DirectoryCombatAbilityEffect:342"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "blood_red_max_health",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:424"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "brace_dodge_buff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:48"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "brace_priority_decrease",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:48"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "c4_breaching_stun",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "coagulent",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "CombatAbilityEffectStandardDirectory:30",
+   "GameCharacterItem:1000",
+   "StandardCombatAbilityDirectory:37"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "combat_stim_acc_buff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:397",
+   "StandardCombatAbilityDirectory:21"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "combat_stim_cc_buff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:398",
+   "StandardCombatAbilityDirectory:21"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "diversion_priority_increase",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "PlayerAbilityItemDirectory:81",
+   "StandardCombatAbilityDirectory:43"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "fixalin_dodge",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:1766"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "fixalin_speed",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:1767",
+   "UnusedDirectory:1778",
+   "UnusedDirectory:1790"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "flashbang_stun",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:8"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "green_stim_heal",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:391",
+   "MedsItemDirectory:404",
+   "StandardCombatAbilityDirectory:24",
+   "StandardCombatAbilityDirectory:26"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "lifeweed_accuracy",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:786"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "lifeweed_heal",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:785"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "mark_dodge_debuff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DirectoryCombatAI:415",
+   "StandardCombatAbilityDirectory:40",
+   "StandardCombatAbilityDirectory:46"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "mark_priority_increase",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:40",
+   "StandardCombatAbilityDirectory:46"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "mirage_dodge",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:38"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "molotov_cocktail_burn",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:721",
+   "UnusedDirectory:879"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "mushroom_death_resist",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "ocutol_acc",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:1754"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "ocutol_critical",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:1755"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "overwatch_effect",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DirectoryCombatAI:386",
+   "PlayerAbilityItemDirectory:114",
+   "StandardCombatAbilityDirectory:16"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "red_stim_bleed",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "CombatAbilityEffectInstantDirectory:83",
+   "GameCharacterItem:1000",
+   "MedsItemDirectory:385",
+   "MedsItemDirectory:406",
+   "StandardCombatAbilityDirectory:22"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "retaliate_effect",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DirectoryCombatAI:386",
+   "StandardCombatAbilityDirectory:17"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "smoke_accuracy",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:7"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "spa_acc",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "SpaceSpaTrigger:37",
+   "SpaceSpaTrigger:50"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "spa_cc",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "SpaceSpaTrigger:38",
+   "SpaceSpaTrigger:51"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "spa_dodge",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "SpaceSpaTrigger:52"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "spa_heal",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "SpaceSpaTrigger:36"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "spa_heal2",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "SpaceSpaTrigger:49"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "spa_max_hp",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "SpaceSpaTrigger:53"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "spotter_accuracy_buff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "PlayerAbilityItemDirectory:88",
+   "StandardCombatAbilityDirectory:44"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "stun_baton_stun",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:18"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "take_aim_acc_buff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:45"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "take_aim_crit_chance_buff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:45"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "take_aim_dodge_debuff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:45"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "take_aim_reaction_buff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "taser_stun",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "StandardCombatAbilityDirectory:19"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "taunt_effect",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_empower_effect",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DirectoryCombatAI:209",
+   "DirectoryCombatAI:228",
+   "DirectoryCombatAI:252"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_healing_spray_heal",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_irritant_acc_debuff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_knockdown_stun",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_mark_dodge_debuff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_mark_priority_increase",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_prey_acc_buff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DirectoryCombatAI:214"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_prey_dodge_debuff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_toxin_attack",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_warcry_acc_buff",
+  "directory": "CombatAbilityEffectStandardDirectory",
+  "type": "CombatAbilityEffect",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "deserter_combat_medic",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:197"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "deserter_marine",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:186",
+   "EnemyFactory:191",
+   "EnemyFactory:203"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "guard_marine",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:168",
+   "EnemyFactory:174"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "merchant",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "LocGenderHelper:91",
+   "NavigationHelper:136",
+   "NavigationHelper:143",
+   "SpaceButcherTrigger:21",
+   "SpaceDistressSignalTrigger:20"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "pirate_chief",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:288",
+   "EnemyFactory:303"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "pirate_rookie",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:240",
+   "EnemyFactory:243",
+   "EnemyFactory:246",
+   "EnemyFactory:255",
+   "EnemyFactory:258"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "pirate_veteran",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:273",
+   "EnemyFactory:306",
+   "EnemyFactory:309",
+   "EnemyFactory:312"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "raider_boss",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:91"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "raider_junker",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:120",
+   "EnemyFactory:124",
+   "EnemyFactory:156"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "raider_marine",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:150"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "raider_marine_overwatch",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:61"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "raider_marine_sadistic",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:64",
+   "EnemyFactory:134",
+   "EnemyFactory:137",
+   "EnemyFactory:146"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "raider_medic",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "raider_medic_murderous",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:79"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "raider_scav",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:102",
+   "EnemyFactory:106",
+   "EnemyFactory:110"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "raider_scav_murderous",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:76",
+   "EnemyFactory:82"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "raider_technician",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:58"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "raider_technician_murderous",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:73"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_brewer",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_drone",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:213",
+   "EnemyFactory:218"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_herald",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:224"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "xeno_hunter",
+  "directory": "NpcCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "EnemyFactory:230"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "albert",
+  "directory": "PlayerCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MenuManager:24"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "benjamin",
+  "directory": "PlayerCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MenuManager:38"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "charlotte",
+  "directory": "PlayerCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MenuManager:51"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "daniel",
+  "directory": "PlayerCharacterItemDirectory",
+  "type": "GameCharacterItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MenuManager:67"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "bandage_ability",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "bicarsole_pill",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DirectoryCombatAI:299",
+   "DropDirectory:74",
+   "DropDirectory:124",
+   "DropTableDirectory:133",
+   "DropTableDirectory:377"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "brace_ability",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "combat_scav",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:2089"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "combat_stim",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "dev_damage",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "diversion_ability",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "double_tap_attack",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "experimental_injector_black",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "experimental_injector_green",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "experimental_injector_purple",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "experimental_injector_red",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "experimental_injector_white",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:29"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "flashbang",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "food",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "frag_grenade",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DirectoryCombatAI:356",
+   "DirectoryCombatAI:388",
+   "DirectoryCombatAI:396",
+   "DropTableDirectory:74",
+   "Loadout:11"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "glock_attack_ability",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "glock_attack_ability2",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:1615"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "mark",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "mark_ability",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "medical_assist_ability",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "medical_proficiency",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MenuManager:63",
+   "StationGeneration:196"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "medical_proficiency_2",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "mirage_generator",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": "100",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:77",
+   "MenuManager:43",
+   "TradeSheet:60",
+   "UnusedDirectory:806",
+   "UnusedDirectory:823"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "mp9_attack_ability",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:1562"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "nothing",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "MedsItemDirectory:450"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "overwatch",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DirectoryCombatAI:278",
+   "DirectoryCombatAI:349",
+   "DirectoryCombatAI:404",
+   "Loadout:5",
+   "Loadout:102"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "retaliate",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DirectoryCombatAI:317",
+   "MenuManager:31"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "spotter_ability",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "stop_block_bleed",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "take_aim_ability",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "taser",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "ump_attack_ability",
+  "directory": "StandardCombatAbilityDirectory",
+  "type": "CombatAbility",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:1580",
+   "UnusedDirectory:1598"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "aloe_vera",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "10",
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:759",
+   "UnusedDirectory:760"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "aloe_vera_gel",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "7",
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "ammo_box",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "1",
+  "desc": null,
+  "code_refs": [
+   "AmmoBoxHelper:91",
+   "ItemContextHandler:375",
+   "MachineBoxDispenser:18",
+   "UnusedDirectory:1009"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "antique_grenade",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "40",
+  "desc": null,
+  "code_refs": [
+   "StoreClientListUnused:408",
+   "StoreClientListUnused:409",
+   "StoreClientListUnused:410",
+   "StoreClientListUnused:411"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "armor_titan10",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "50",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:94",
+   "Loadout:16",
+   "Loadout:86",
+   "Loadout:109",
+   "Loadout:129"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "armor_titan10h",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "90",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:96",
+   "TradeSheet:32"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "armor_titan10l",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "150",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:95",
+   "TradeSheet:28"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "armor_titan10s",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "120",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:97",
+   "TradeSheet:36"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "armor_titan9",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "100",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:93",
+   "TradeSheet:40"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "backpack_large_modular",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "280",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:86",
+   "DropTableDirectory:345",
+   "TradeSheet:296",
+   "TradeSheet:409",
+   "TradeSheet:456"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "backpack_medium_modular",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "130",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:83",
+   "DropTableDirectory:342",
+   "TradeSheet:292",
+   "TradeSheet:405",
+   "TradeSheet:452"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "backpack_small_modular",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "60",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:79",
+   "DropTableDirectory:338",
+   "MenuManager:47",
+   "StationGeneration:96",
+   "TradeSheet:288"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "bicarsole_pill_bottle",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "1",
+  "desc": null,
+  "code_refs": [
+   "DropDirectory:123",
+   "UnusedDirectory:218"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "box_nail",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "18",
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:476"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "codebook",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "0",
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:1038"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "exotic_fuel",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "5",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:268",
+   "PropulsionHelper:13",
+   "PropulsionHelper:27",
+   "SalvageSystemHelper:16",
+   "SalvageSystemHelper:24"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "firstaid_box",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "15",
+  "desc": null,
+  "code_refs": [
+   "DropDirectory:161",
+   "PreBuiltItemHelper:1179",
+   "ShipHelper:1052",
+   "ShipItemDirectory:48"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "fixalin_pill_bottle",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "1",
+  "desc": null,
+  "code_refs": [
+   "DropDirectory:147",
+   "UnusedDirectory:242"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "heavy_handmade_pistol_s",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "GunHelper:538",
+   "GunHelper:547",
+   "UnusedDirectory:1153"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "hemostatic_agent",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "10",
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:1054",
+   "UnusedDirectory:1089"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "inspection_book",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "0",
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "large_storage_bay",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "300",
+  "desc": null,
+  "code_refs": [
+   "ShipHelper:1035",
+   "UnusedDirectory:747"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "loan_contract",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "0",
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "lockpicks",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "20",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:309",
+   "UnusedDirectory:453"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "lootbox_large",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "lootbox_medium",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "NewBehaviourScript:52",
+   "SpaceAsteroidTrigger:44",
+   "SpaceCargoPodTrigger:27",
+   "SpaceNavySupplyTrigger:30",
+   "SpaceNutrifruitShopTrigger:38"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "lootbox_small",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "molotov_cocktail",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "35",
+  "desc": null,
+  "code_refs": [
+   "GameCharacterItem:897",
+   "UnusedDirectory:709"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "ocutol_pill_bottle",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "1",
+  "desc": null,
+  "code_refs": [
+   "DropDirectory:140",
+   "UnusedDirectory:230"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "organ_heart",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "300",
+  "desc": null,
+  "code_refs": [
+   "OrganHelper:290",
+   "UnusedDirectory:924"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "organ_kidney",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "1",
+  "desc": null,
+  "code_refs": [
+   "OrganHelper:247",
+   "OrganHelper:292",
+   "OrganHelper:294"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "organ_liver",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "1",
+  "desc": null,
+  "code_refs": [
+   "OrganHelper:293",
+   "UnusedDirectory:952"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "organ_lung",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "1",
+  "desc": null,
+  "code_refs": [
+   "OrganHelper:200",
+   "OrganHelper:289",
+   "OrganHelper:291"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "organ_transport_container",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "500",
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "oxycodone_pill_bottle",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "1",
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:280"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "phagimycin_pill_bottle",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "1",
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "pill_bottle",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "1",
+  "desc": null,
+  "code_refs": [
+   "DropDirectory:81",
+   "DropTableDirectory:141",
+   "StationGeneration:320",
+   "UnusedDirectory:207"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "pouch_general",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "30",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:348",
+   "StationGeneration:47",
+   "UnusedDirectory:396"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "pouch_general_large",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "50",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:349",
+   "ShipItemDirectory:82",
+   "ShipItemDirectory:83",
+   "ShipItemDirectory:87",
+   "ShipItemDirectory:88"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "pouch_hydration",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "85",
+  "desc": null,
+  "code_refs": [
+   "DropTableDirectory:87",
+   "DropTableDirectory:350",
+   "TradeSheet:64",
+   "UnusedDirectory:423"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "pouch_injector",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "25",
+  "desc": null,
+  "code_refs": [
+   "DropDirectory:82",
+   "DropTableDirectory:144",
+   "DropTableDirectory:346"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "pouch_injector_large",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "25",
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:348"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "pouch_injector_large_double",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "25",
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:364"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "pouch_medical",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "40",
+  "desc": null,
+  "code_refs": [
+   "DropDirectory:110",
+   "DropTableDirectory:347",
+   "UnusedDirectory:380"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "revolver_long",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:961"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "revolver_short",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:975"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "revolver_short_tac",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "GunHelper:552",
+   "GunHelper:558",
+   "PreBuiltItemHelper:1967",
+   "UnusedDirectory:989"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "safe",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "225",
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:733",
+   "UnusedDirectory:2435",
+   "UnusedDirectory:2444",
+   "UnusedDirectory:2453",
+   "UnusedDirectory:2463"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "sec_card",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "0",
+  "desc": null,
+  "code_refs": [
+   "UnusedDirectory:890"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "spectral_analyser",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "50",
+  "desc": null,
+  "code_refs": [
+   "ToolDirectory:167",
+   "UnusedDirectory:629"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "steel_sheet",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "8",
+  "desc": null,
+  "code_refs": [
+   "Base:41",
+   "Base:52",
+   "DropDirectory:213",
+   "DropDirectory:223",
+   "DropDirectory:251"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "technician_backpack",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "150",
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "test_water",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DebugPanel:1561"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "test_water2",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DebugPanel:1562"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "test_water3",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": null,
+  "desc": null,
+  "code_refs": [
+   "DebugPanel:1563"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "trash_pile",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "0",
+  "desc": null,
+  "code_refs": [
+   "MachineryHelper:519",
+   "UnusedDirectory:491"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "unlicensed_phagimycin_pill_bottle",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "1",
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "wrench_orange",
+  "directory": "UnusedDirectory",
+  "type": "GameItem",
+  "name": null,
+  "value": "30",
+  "desc": null,
+  "code_refs": [
+   "Base:40",
+   "Base:51",
+   "DropDirectory:250",
+   "DropDirectory:264",
+   "UnusedDirectory:10"
+  ],
+  "loot_tables": [],
+  "registered_at_runtime": false,
+  "why": "directory never loaded"
+ },
+ {
+  "id": "lottery_ticket_old",
+  "directory": "AmenitiesItemDirectory",
+  "type": "GameItem",
+  "name": "Old Lottery Ticket",
+  "value": 1,
+  "desc": "A worthless ticket from the Lower Levels Lottery. No winning numbers, just faded hope.",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "box_dispenser",
+  "directory": "FurnitureItemDirectory",
+  "type": "GameItem",
+  "name": "Box Dispenser",
+  "value": "250",
+  "desc": "",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "test_gizmo",
+  "directory": "FurnitureItemDirectory",
+  "type": "GameItem",
+  "name": "Test Gizmo",
+  "value": 0,
+  "desc": "",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "barrel",
+  "directory": "GunModDirectory",
+  "type": "GameItem",
+  "name": "Attachable Extended Barrel",
+  "value": "60",
+  "desc": "A multi-caliber extended barrel that improve bullet velocity and accuracy.",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "restricted_medical",
+  "directory": "MaterialDirectory",
+  "type": "GameItem",
+  "name": "Medical Supplies (Restricted)",
+  "value": 0,
+  "desc": "",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "canister_mbs",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "MBS Nerve Gas",
+  "value": "400",
+  "desc": "A highly toxic chemical weapon designed to disrupt the nervous system. Symptoms include: Respiratory failure, Convulsions, Loss of bodily functions, Unconsciousness and Death.",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette10l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette11l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette12l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette13l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette14l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette1l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette2l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette3l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette4l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette5l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette6l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette7l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette8l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "cassette9l",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Music Cassette - ",
+  "value": "35",
+  "desc": "Music Cassette - ",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "rev_codeword",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Codeword List",
+  "value": 0,
+  "desc": "An inconspicuous slip of paper with a hastily written key for the code used by revolutionaries.",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "sci_keycard",
+  "directory": "MiscItemDirectory",
+  "type": "GameItem",
+  "name": "Disposable Keycard (Research)",
+  "value": "100",
+  "desc": "A single-use keycard for Research and Development. Can open locks that require Science Department access.",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "blank_module",
+  "directory": "ModuleDirectory",
+  "type": "GameItem",
+  "name": "Blank Module",
+  "value": "60",
+  "desc": "A blank module. With the right machine, this could rewrite this into something useful.",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "node_small",
+  "directory": "ModuleDirectory",
+  "type": "GameItem",
+  "name": "Node (Small)",
+  "value": "50",
+  "desc": "A specialized circuit that can provide or receive bonuses from adjacent Modules when installed in certain Machines.",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "system_module_streamlining",
+  "directory": "ModuleDirectory",
+  "type": "GameItem",
+  "name": "Streamlining Module",
+  "value": "125",
+  "desc": "",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "perk_annoying",
+  "directory": "PerkDirectory",
+  "type": "CombatAbilityEffect",
+  "name": "Annoying",
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "perk_center_mass_acc_buff",
+  "directory": "PerkDirectory",
+  "type": "CombatAbilityEffect",
+  "name": "Center Mass",
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "perk_center_mass_cc_debuff",
+  "directory": "PerkDirectory",
+  "type": "CombatAbilityEffect",
+  "name": "Center Mass",
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "perk_discret",
+  "directory": "PerkDirectory",
+  "type": "CombatAbilityEffect",
+  "name": "Inconspicuous",
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "perk_healthy",
+  "directory": "PerkDirectory",
+  "type": "CombatAbilityEffect",
+  "name": "Picture of Health",
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "perk_phagophobia",
+  "directory": "PerkDirectory",
+  "type": "CombatAbilityEffect",
+  "name": "Medical Phagophobia",
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "perk_sickly",
+  "directory": "PerkDirectory",
+  "type": "CombatAbilityEffect",
+  "name": "Poor Constitution",
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "perk_tenacious",
+  "directory": "PerkDirectory",
+  "type": "CombatAbilityEffect",
+  "name": "Tenacious",
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "perk_trypanophobia",
+  "directory": "PerkDirectory",
+  "type": "CombatAbilityEffect",
+  "name": "Trypanophobia",
+  "value": null,
+  "desc": null,
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ },
+ {
+  "id": "sign_berry",
+  "directory": "ToolDirectory",
+  "type": "GameItem",
+  "name": "item_sign_berry_name",
+  "value": "100",
+  "desc": "",
+  "code_refs": [],
+  "loot_tables": [],
+  "registered_at_runtime": true,
+  "why": "no code refs"
+ }
+]

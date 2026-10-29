@@ -1,0 +1,1981 @@
+{
+ "Items/items_amenities/skincare_cream": [
+  "AmenitiesItemDirectory:55"
+ ],
+ "Items/items_amenities/box_tampon": [
+  "AmenitiesItemDirectory:68"
+ ],
+ "Items/items_amenities/pack_condom": [
+  "AmenitiesItemDirectory:82"
+ ],
+ "Items/items_amenities/cig_red": [
+  "AmenitiesItemDirectory:94"
+ ],
+ "Items/items_amenities/shampoo": [
+  "AmenitiesItemDirectory:110"
+ ],
+ "Items/items_amenities/toothpaste": [
+  "AmenitiesItemDirectory:121"
+ ],
+ "Items/items_amenities/paper_towel": [
+  "AmenitiesItemDirectory:132"
+ ],
+ "Items/items_amenities/toilet_paper": [
+  "AmenitiesItemDirectory:141"
+ ],
+ "Items/items_amenities/water_test_container": [
+  "AmenitiesItemDirectory:155"
+ ],
+ "Items/items_amenities/strip_new": [
+  "AmenitiesItemDirectory:172"
+ ],
+ "Items/items_amenities/strip_used": [
+  "AmenitiesItemDirectory:200"
+ ],
+ "Items/items_amenities/uv": [
+  "AmenitiesItemDirectory:219"
+ ],
+ "Items/items_amenities/aquascan": [
+  "AmenitiesItemDirectory:247"
+ ],
+ "Items/items_amenities/metal_scanner": [
+  "AmenitiesItemDirectory:281"
+ ],
+ "Items/items_amenities/genetic_scanner": [
+  "AmenitiesItemDirectory:295"
+ ],
+ "Items/items_amenities/water_tablet_container": [
+  "AmenitiesItemDirectory:342"
+ ],
+ "Items/items_amenities/water_tablet": [
+  "AmenitiesItemDirectory:359"
+ ],
+ "Items/items_hydroponic_plant/nutrient_tablet": [
+  "AmenitiesItemDirectory:375"
+ ],
+ "Items/items_hydroponic_plant/nutrient_tablet_container": [
+  "AmenitiesItemDirectory:393"
+ ],
+ "Items/items_armor/kotton_fabric": [
+  "AmenitiesItemDirectory:409",
+  "UnusedDirectory:1261"
+ ],
+ "Items/items_amenities/water_filter": [
+  "AmenitiesItemDirectory:429",
+  "AmenitiesItemDirectory:560",
+  "MachineRAS:127"
+ ],
+ "Items/items_amenities/water_filter_adv": [
+  "AmenitiesItemDirectory:449"
+ ],
+ "Items/items_amenities/portable_water_purifier": [
+  "AmenitiesItemDirectory:474"
+ ],
+ "Items/items_hydroponic_plant/hydroreed_filter": [
+  "AmenitiesItemDirectory:531"
+ ],
+ "Items/water_container4/pitcher": [
+  "AmenitiesItemDirectory:554"
+ ],
+ "Items/items_amenities/lottery": [
+  "AmenitiesItemDirectory:569"
+ ],
+ "Items/items_amenities/lottery_old": [
+  "AmenitiesItemDirectory:589",
+  "LotteryHelper:468"
+ ],
+ "Items/items_amenities/perfume1": [
+  "AmenitiesItemDirectory:612"
+ ],
+ "Items/items_misc/eleanor_perfume": [
+  "AmenitiesItemDirectory:666"
+ ],
+ "Items/items_amenities/perfume2": [
+  "AmenitiesItemDirectory:682"
+ ],
+ "Items/items_sec/ammo_box_packed": [
+  "AmmoBoxHelper:44"
+ ],
+ "Items/items_sec/ap_ammo_box_packed": [
+  "AmmoBoxHelper:49"
+ ],
+ "Items/items_sec/nl_ammo_box_packed": [
+  "AmmoBoxHelper:52"
+ ],
+ "Items/items_sec/ammo_box": [
+  "AmmoBoxHelper:91",
+  "UnusedDirectory:1009"
+ ],
+ "Items/items_husbandry/animal_cage": [
+  "AnimalCage:55"
+ ],
+ "Items/items_husbandry/animal_feeder": [
+  "AnimalCage:130",
+  "MachineFeedDispenser:67",
+  "MachineRAS:130"
+ ],
+ "Items/items_husbandry/marking_pen": [
+  "AnimalMarkHelper:142"
+ ],
+ "Items/items_medical/bandage_fish": [
+  "AquacultureItems:279"
+ ],
+ "Items/items_armor/armor_lining": [
+  "ArmorItemDirectory:10",
+  "UnusedDirectory:2143",
+  "UnusedDirectory:2175",
+  "UnusedDirectory:2682"
+ ],
+ "Items/items_sign/black_lamp": [
+  "BlackLampHelper:86",
+  "MiscItemDirectory:1254"
+ ],
+ "Items/items_construction/nuts_metal_pile": [
+  "ConstructionItemDirectory:12"
+ ],
+ "Items/items_container/eleanor_box": [
+  "ContainerItemDirectory:33"
+ ],
+ "Items/items_backpack2/simple_backpack": [
+  "ContainerItemDirectory:56",
+  "ContainerItemDirectory:68",
+  "ContainerItemDirectory:77",
+  "ContainerItemDirectory:86",
+  "ContainerItemDirectory:95",
+  "ContainerItemDirectory:104",
+  "EquipmentDirectory:27",
+  "UnusedDirectory:110",
+  "UnusedDirectory:122",
+  "UnusedDirectory:134"
+ ],
+ "Items/items_backpack2/simple_backpack_medium": [
+  "ContainerItemDirectory:115",
+  "EmporiumEntry:1867"
+ ],
+ "Items/items_backpack2/simple_backpack_medium_military": [
+  "ContainerItemDirectory:128"
+ ],
+ "Items/items_backpack2/simple_backpack_large": [
+  "ContainerItemDirectory:143"
+ ],
+ "Items/items_backpack2/simple_backpack_large_military": [
+  "ContainerItemDirectory:156"
+ ],
+ "Items/items_backpack2/fanny_pack": [
+  "ContainerItemDirectory:171"
+ ],
+ "Items/items_backpack2/satchel": [
+  "ContainerItemDirectory:187"
+ ],
+ "Items/items_backpack2/junor_backpack1": [
+  "ContainerItemDirectory:203"
+ ],
+ "Items/items_backpack2/junor_backpack2": [
+  "ContainerItemDirectory:216"
+ ],
+ "Items/items_hydroponic_plant/nutrifruit_seed_packet": [
+  "ContainerItemDirectory:229",
+  "UnusedDirectory:146"
+ ],
+ "Items/items_container/sec_box": [
+  "ContainerItemDirectory:249"
+ ],
+ "Items/items_container/eng_box": [
+  "ContainerItemDirectory:263"
+ ],
+ "Items/items_container/med_box": [
+  "ContainerItemDirectory:277"
+ ],
+ "Items/items_container/evidence_box": [
+  "ContainerItemDirectory:291"
+ ],
+ "Items/items_container/service_box": [
+  "ContainerItemDirectory:306"
+ ],
+ "Items/beer_case/beer_case_0": [
+  "ContainerItemDirectory:320"
+ ],
+ "Items/beer_case/beer_case_": [
+  "ContainerItemDirectory:342"
+ ],
+ "Items/itematlas/energy_credit": [
+  "CraftingHelper:160",
+  "EquipmentHelper:110",
+  "StationMachinery:20",
+  "StationMachinery:140",
+  "UnusedDirectory:98",
+  "UnusedDirectory:2428"
+ ],
+ "Items/items_material/scrap_metal": [
+  "DirectoryUtils:130",
+  "MaterialDirectory:180"
+ ],
+ "Items/items_medical/injector_background": [
+  "DirectoryUtils:439",
+  "DirectoryUtils:442",
+  "DirectoryUtils:445"
+ ],
+ "Items/items_container/pouch": [
+  "EmporiumEntry:1865",
+  "EmporiumEntry:1870"
+ ],
+ "Items/items_container/expedition_box": [
+  "EquipmentDirectory:11"
+ ],
+ "Items/items_weapons_melee/crowbar": [
+  "EquipmentDirectory:22",
+  "EquipmentDirectory:23",
+  "MeleeWeaponItemDirectory:116"
+ ],
+ "Items/itematlas/small_smoke": [
+  "ExplosiveItemDirectory:14"
+ ],
+ "Items/itematlas/c4": [
+  "ExplosiveItemDirectory:39",
+  "ExplosiveItemDirectory:58",
+  "ExplosiveItemDirectory:70",
+  "LouBombHelper:14",
+  "UnusedDirectory:2077"
+ ],
+ "Items/itematlas/small_flash": [
+  "ExplosiveItemDirectory:82"
+ ],
+ "Items/items_food/beis_icecream": [
+  "FoodItemDirectory:55"
+ ],
+ "Items/items_food/items_food_pilk_alt": [
+  "FoodItemDirectory:68"
+ ],
+ "Items/items_food/items_food_juice": [
+  "FoodItemDirectory:81"
+ ],
+ "Items/items_food/processed_meat": [
+  "FoodItemDirectory:94"
+ ],
+ "Items/items_food/hot_sauce": [
+  "FoodItemDirectory:107"
+ ],
+ "Items/items_food/water_bottle_full_premium": [
+  "FoodItemDirectory:117",
+  "StationMachinery:19",
+  "StationMachinery:139"
+ ],
+ "Items/items_food/red_beer": [
+  "FoodItemDirectory:129"
+ ],
+ "Items/items_food/empty_beer_bottle": [
+  "FoodItemDirectory:156"
+ ],
+ "Items/water_container3/normal": [
+  "FoodItemDirectory:166"
+ ],
+ "Items/water_container3/small": [
+  "FoodItemDirectory:176"
+ ],
+ "Items/water_container3/mini": [
+  "FoodItemDirectory:186"
+ ],
+ "Items/items_medical/med_bottle_red": [
+  "FoodItemDirectory:196"
+ ],
+ "Items/items_medical/med_bottle_blue": [
+  "FoodItemDirectory:208"
+ ],
+ "Items/items_medical/med_bottle_violet": [
+  "FoodItemDirectory:220"
+ ],
+ "Items/items_medical/med_bottle_orange": [
+  "FoodItemDirectory:231"
+ ],
+ "Items/items_medical/med_bottle_small_pink": [
+  "FoodItemDirectory:243"
+ ],
+ "Items/water_container3/1ml": [
+  "FoodItemDirectory:254"
+ ],
+ "Items/water_container3/5ml": [
+  "FoodItemDirectory:265"
+ ],
+ "Items/water_container3/25ml": [
+  "FoodItemDirectory:275"
+ ],
+ "Items/water_container3/50ml": [
+  "FoodItemDirectory:285"
+ ],
+ "Items/water_container3/100ml": [
+  "FoodItemDirectory:295"
+ ],
+ "Items/water_container3/large": [
+  "FoodItemDirectory:305"
+ ],
+ "Items/water_container4/xl": [
+  "FoodItemDirectory:315",
+  "MachineBlender:53",
+  "MachineChemFinisher:149",
+  "MachineEvaporator:154",
+  "MachineHeatingPlate:202",
+  "MachineHydroponic:209",
+  "MachineMoistureFarm:29",
+  "MachinePurifier:41",
+  "VendingFountainHelper:50",
+  "VendingFountainHelper:51",
+  "VendingFountainHelper:52"
+ ],
+ "Items/items_food/items_food_soda_red": [
+  "FoodItemDirectory:325"
+ ],
+ "Items/items_food/energy_drink": [
+  "FoodItemDirectory:338"
+ ],
+ "Items/items_food/nudka": [
+  "FoodItemDirectory:350"
+ ],
+ "Items/items_food/juice_pouch": [
+  "FoodItemDirectory:376"
+ ],
+ "Items/items_food/cat_bar": [
+  "FoodItemDirectory:389"
+ ],
+ "Items/items_food/li_eat_snackbar": [
+  "FoodItemDirectory:402"
+ ],
+ "Items/items_food/cheese": [
+  "FoodItemDirectory:416",
+  "RatTrap:18"
+ ],
+ "Items/items_food/raw_meat": [
+  "FoodItemDirectory:429",
+  "MachineMeatCulture:10",
+  "UnusedDirectory:2641"
+ ],
+ "Items/items_food/small_raw_meat": [
+  "FoodItemDirectory:447",
+  "UnusedDirectory:2193"
+ ],
+ "Items/items_food/morsel": [
+  "FoodItemDirectory:464"
+ ],
+ "Items/items_food/morsel_small": [
+  "FoodItemDirectory:479"
+ ],
+ "Items/items_food/fat_meat": [
+  "FoodItemDirectory:494"
+ ],
+ "Items/items_food/meat_scrap": [
+  "FoodItemDirectory:505"
+ ],
+ "Items/items_food/cup_noodle": [
+  "FoodItemDirectory:514"
+ ],
+ "Items/items_food/water_ration": [
+  "FoodItemDirectory:534"
+ ],
+ "Items/items_food/water_ration_small": [
+  "FoodItemDirectory:546"
+ ],
+ "Items/items_module/core": [
+  "FurnitureItemDirectory:44",
+  "VendingFountainHelper:29",
+  "VendingMachineHelper:73"
+ ],
+ "Items/items_tool/powerblock": [
+  "FurnitureItemDirectory:97",
+  "FurnitureItemDirectory:108"
+ ],
+ "Items/items_tool/powerblock_on": [
+  "FurnitureItemDirectory:111"
+ ],
+ "Items/items_mod/special_mod": [
+  "GunModDirectory:60",
+  "GunModDirectory:84",
+  "GunModDirectory:96",
+  "GunModDirectory:108",
+  "GunModDirectory:121",
+  "GunModDirectory:133"
+ ],
+ "Items/items_mod/special_mod1": [
+  "GunModDirectory:72"
+ ],
+ "Items/items_mod/rds_item": [
+  "GunModDirectory:145"
+ ],
+ "Items/items_mod/rds_makeshift_item": [
+  "GunModDirectory:191"
+ ],
+ "Items/items_mod/silencer_item": [
+  "GunModDirectory:238"
+ ],
+ "Items/items_mod/silencer2_item": [
+  "GunModDirectory:314"
+ ],
+ "Items/items_mod/bottle_item": [
+  "GunModDirectory:390"
+ ],
+ "Items/items_mod/barrel_item": [
+  "GunModDirectory:467"
+ ],
+ "Items/items_mod/compensator_item": [
+  "GunModDirectory:504"
+ ],
+ "Items/items_mod/laser_item": [
+  "GunModDirectory:580"
+ ],
+ "Items/items_mod/laser2_item": [
+  "GunModDirectory:626"
+ ],
+ "Items/items_mod/laser_toy_item": [
+  "GunModDirectory:672"
+ ],
+ "Items/items_mod/bipod_item": [
+  "GunModDirectory:719"
+ ],
+ "Items/items_mod/gl_item": [
+  "GunModDirectory:742"
+ ],
+ "Items/items_mod/grip_item": [
+  "GunModDirectory:765"
+ ],
+ "Items/items_mod/10mm_mag_item": [
+  "GunModDirectory:809"
+ ],
+ "Items/items_mod/10mm_mag_high_item": [
+  "GunModDirectory:840"
+ ],
+ "Items/items_mod/10mm_mag_ext_item": [
+  "GunModDirectory:871"
+ ],
+ "Items/items_mod/10mm_mag_smg_item": [
+  "GunModDirectory:916"
+ ],
+ "Items/items_mod/10mm_mag_smg_high_item": [
+  "GunModDirectory:940"
+ ],
+ "Items/items_mod/10mm_mag_smg_box_item": [
+  "GunModDirectory:964"
+ ],
+ "Items/items_mod/22_mag_item": [
+  "GunModDirectory:1002"
+ ],
+ "Items/items_mod/22_mag_high_item": [
+  "GunModDirectory:1033"
+ ],
+ "Items/items_mod/22_mag_ext_item": [
+  "GunModDirectory:1064"
+ ],
+ "Items/items_mod/stock_item": [
+  "GunModDirectory:1109"
+ ],
+ "Items/items_mod/short_stock_item": [
+  "GunModDirectory:1155"
+ ],
+ "Items/items_weapons_ranged_energy/handmade_pistol_frame": [
+  "GunsItemDirectory:28"
+ ],
+ "Items/items_weapons_ranged_energy/heavy_handmade_pistol_frame": [
+  "GunsItemDirectory:38"
+ ],
+ "Items/items_weapons_ranged_energy/printed_gun": [
+  "GunsItemDirectory:58"
+ ],
+ "Items/items_weapons_ranged_energy/handmade_pistol": [
+  "GunsItemDirectory:94"
+ ],
+ "Items/items_weapons_ranged_energy/heavy_handmade_pistol": [
+  "GunsItemDirectory:130"
+ ],
+ "Items/items_weapons_ranged_energy/glock_receiver": [
+  "GunsItemDirectory:166"
+ ],
+ "Items/items_weapons_ranged_antique/heavy_smg": [
+  "GunsItemDirectory:201"
+ ],
+ "Items/items_weapons_ranged_antique/shotgun": [
+  "GunsItemDirectory:236"
+ ],
+ "Items/items_weapons_ranged_energy/stun_gun": [
+  "GunsItemDirectory:262"
+ ],
+ "Items/items_weapons_ranged_energy/revolver": [
+  "GunsItemDirectory:275"
+ ],
+ "Items/items_sec/light_pistol_ammo": [
+  "GunsItemDirectory:293"
+ ],
+ "Items/items_sec/light_pistol_ammo_p": [
+  "GunsItemDirectory:313"
+ ],
+ "Items/items_sec/light_pistol_ammo_nl": [
+  "GunsItemDirectory:333"
+ ],
+ "Items/items_sec/heavy_pistol_ammo": [
+  "GunsItemDirectory:352"
+ ],
+ "Items/items_sec/heavy_pistol_ammo_p": [
+  "GunsItemDirectory:372"
+ ],
+ "Items/items_sec/heavy_pistol_ammo_nl": [
+  "GunsItemDirectory:392"
+ ],
+ "Items/items_sec/tazer": [
+  "GunsItemDirectory:411"
+ ],
+ "Items/items_aquaculture/fish_food": [
+  "GutterflowPelletHelper:38"
+ ],
+ "Items/items_husbandry/vacuum_robot": [
+  "HusbandryDirectory:61"
+ ],
+ "Items/items_husbandry/feces_small": [
+  "HusbandryDirectory:154"
+ ],
+ "Items/items_husbandry/feces": [
+  "HusbandryDirectory:166"
+ ],
+ "Items/items_husbandry/feces_large": [
+  "HusbandryDirectory:178"
+ ],
+ "Items/items_husbandry/rat_s_m": [
+  "HusbandryDirectory:190"
+ ],
+ "Items/items_medical/red_serum": [
+  "HusbandryDirectory:199"
+ ],
+ "Items/items_medical/green_serum": [
+  "HusbandryDirectory:224"
+ ],
+ "Items/items_hydroponic_plant/nutrifruit": [
+  "HydroponicDirectory:26",
+  "UnusedDirectory:769"
+ ],
+ "Items/items_hydroponic_plant/kotton_plant": [
+  "HydroponicDirectory:43",
+  "PreBuiltItemHelper:1781",
+  "UnusedDirectory:1396"
+ ],
+ "Items/items_hydroponic_plant/nutrifruit_seed": [
+  "HydroponicDirectory:55",
+  "MachineDnaManipulator:556",
+  "MachineHydroponic:198",
+  "UnusedDirectory:793",
+  "UnusedDirectory:1386",
+  "UnusedDirectory:2158"
+ ],
+ "Items/items_hydroponic_plant/kotton_plant_seed": [
+  "HydroponicDirectory:73"
+ ],
+ "Items/items_hydroponic_plant/dream_cap_seed": [
+  "HydroponicDirectory:85"
+ ],
+ "Items/items_hydroponic_plant/coffee_bean": [
+  "HydroponicDirectory:96"
+ ],
+ "Items/items_hydroponic_plant/dream_cap": [
+  "HydroponicDirectory:111",
+  "PreBuiltItemHelper:1699"
+ ],
+ "Items/items_hydroponic_plant/meal_cap": [
+  "HydroponicDirectory:125",
+  "PreBuiltItemHelper:1705"
+ ],
+ "Items/items_hydroponic_plant/nightmare_cap": [
+  "HydroponicDirectory:137"
+ ],
+ "Items/items_hydroponic_plant/plant_analyser": [
+  "HydroponicDirectory:152"
+ ],
+ "Items/items_hydroponic_plant/fillerweed_seed": [
+  "HydroponicDirectory:184"
+ ],
+ "Items/items_hydroponic_plant/fillerweed": [
+  "HydroponicDirectory:195",
+  "PreBuiltItemHelper:1800"
+ ],
+ "Items/items_hydroponic_plant/hydroreed_seed": [
+  "HydroponicDirectory:209"
+ ],
+ "Items/items_hydroponic_plant/dna_disk_black_empty": [
+  "HydroponicDirectory:220",
+  "MachineDnaManipulator:570"
+ ],
+ "Items/items_hydroponic_plant/bloomberry_seed": [
+  "HydroponicDirectory:230"
+ ],
+ "Items/items_aquaculture/fish_food2": [
+  "IndustrialFishFeedHelper:30"
+ ],
+ "Items/items_misc/intel_blue": [
+  "IntelUnusedHelper:58",
+  "IntelUnusedHelper:69",
+  "IntelUnusedHelper:80",
+  "IntelUnusedHelper:91",
+  "IntelUnusedHelper:102",
+  "IntelUnusedHelper:113",
+  "IntelUnusedHelper:124",
+  "IntelUnusedHelper:135",
+  "IntelUnusedHelper:146",
+  "IntelUnusedHelper:157",
+  "UnusedDirectory:2026",
+  "UnusedDirectory:2035"
+ ],
+ "Items/itematlas/page2": [
+  "IntelUnusedHelper:210"
+ ],
+ "Items/items_misc/keycard11": [
+  "KeyItemDirectory:9"
+ ],
+ "Items/items_misc/keycard21": [
+  "KeyItemDirectory:18"
+ ],
+ "Items/items_misc/keycard14": [
+  "KeyItemDirectory:27"
+ ],
+ "Items/items_misc/keycard24": [
+  "KeyItemDirectory:36"
+ ],
+ "Items/items_misc/liquid_luck_bottle": [
+  "LiquidLuckHelper:34"
+ ],
+ "Items/items_misc/aug_id_guide": [
+  "LouToyBoxHelper:28",
+  "MiscItemDirectory:510"
+ ],
+ "Items/items_tool/postit": [
+  "MachineAlarm:15",
+  "MachineDealMaker:16",
+  "MachineEvaporator:59",
+  "MachineFurnace:17",
+  "MachineHelper:343",
+  "MachineMoistureFarm:31",
+  "MachinePrinter:79",
+  "MachineProjector:15",
+  "MachinePurifier:39",
+  "MiscItemDirectory:1272"
+ ],
+ "Items/items_tool/alarm_system": [
+  "MachineAlarm:16",
+  "MachineAlarm:63",
+  "MachineAlarm:80",
+  "MachineAlarm:85"
+ ],
+ "Items/items_tool/alarm_system_r": [
+  "MachineAlarm:59",
+  "MachineAlarm:76"
+ ],
+ "Items/items_tool2/gibber": [
+  "MachineAutoButcher:315",
+  "MachineAutoButcher:771"
+ ],
+ "Items/items_tool2/blender": [
+  "MachineBlender:10",
+  "MachineBlender:17"
+ ],
+ "Items/items_tool2/blender_b": [
+  "MachineBlender:13"
+ ],
+ "Items/items_tool/bottle_printer": [
+  "MachineBottlePrinter:25",
+  "MachineBoxDispenser:7"
+ ],
+ "Items/items_broken_machine/broken_alarm": [
+  "MachineBrokenHelper:19",
+  "PreBuiltItemHelper:1822"
+ ],
+ "Items/items_broken_machine/broken_furnace": [
+  "MachineBrokenHelper:23",
+  "PreBuiltItemHelper:1835"
+ ],
+ "Items/items_broken_machine/broken_moisture_farm": [
+  "MachineBrokenHelper:27",
+  "PreBuiltItemHelper:1883"
+ ],
+ "Items/items_furniture/cassette_player": [
+  "MachineCassettePlayer:41"
+ ],
+ "Items/items_tool2/chem_finisher": [
+  "MachineChemFinisher:19",
+  "MachineChemFinisher:26"
+ ],
+ "Items/items_tool2/chem_finisher_b": [
+  "MachineChemFinisher:22"
+ ],
+ "Items/items_tool/dealmaker": [
+  "MachineDealMaker:17"
+ ],
+ "Items/items_tool/sec_module": [
+  "MachineDesequencer:26",
+  "ModuleDirectory:364"
+ ],
+ "Items/items_misc/blank_card": [
+  "MachineDesequencer:28",
+  "MiscItemDirectory:1187"
+ ],
+ "Items/items_misc/sec_keycard": [
+  "MachineDesequencer:37",
+  "MiscItemDirectory:1044"
+ ],
+ "Items/items_tool/desequencer": [
+  "MachineDesequencer:48",
+  "MachineDesequencer:159",
+  "MachineDesequencer:164"
+ ],
+ "Items/items_misc/blank_card_wip": [
+  "MachineDesequencer:117"
+ ],
+ "Items/items_tool/desequencer_r": [
+  "MachineDesequencer:155"
+ ],
+ "Items/items_hydroponic_plant/dna_manipulator": [
+  "MachineDnaManipulator:122"
+ ],
+ "Items/items_hydroponic_plant/dna_disk_black_full": [
+  "MachineDnaManipulator:530"
+ ],
+ "Items/items_tool2/evaporator": [
+  "MachineEvaporator:15",
+  "MachineEvaporator:33"
+ ],
+ "Items/items_tool2/evaporator_b": [
+  "MachineEvaporator:29"
+ ],
+ "Items/items_ship/fridge": [
+  "MachineFridge:65"
+ ],
+ "Items/items_tool2/furnace": [
+  "MachineFurnace:31"
+ ],
+ "Items/items_tool2/heating_plate": [
+  "MachineHeatingPlate:32",
+  "MachineHeatingPlate:39"
+ ],
+ "Items/items_tool2/heating_plate_b": [
+  "MachineHeatingPlate:35"
+ ],
+ "Items/items_tool/battery100": [
+  "MachineHelper:45",
+  "MiscItemDirectory:145",
+  "PowerHelper:318"
+ ],
+ "Items/items_hydroponic_plant/hydroponic": [
+  "MachineHydroponic:33"
+ ],
+ "Items/items_machine/meat_culture_machine": [
+  "MachineMeatCulture:12",
+  "UnusedDirectory:2393",
+  "UnusedDirectory:2406",
+  "UnusedDirectory:2643"
+ ],
+ "Items/items_tool/moisture_farm": [
+  "MachineMoistureFarm:32",
+  "MachineMoistureFarm:82",
+  "MachineMoistureFarm:86",
+  "MachineMoistureFarm:96",
+  "MachineMoistureFarm:107"
+ ],
+ "Items/items_tool/moisture_farm_w": [
+  "MachineMoistureFarm:92",
+  "MachineMoistureFarm:103"
+ ],
+ "Items/items_tool/printer_chip_pistol": [
+  "MachinePrinter:80",
+  "ModuleDirectory:449",
+  "ModuleDirectory:462",
+  "ModuleDirectory:737"
+ ],
+ "Items/items_tool2/printer_off": [
+  "MachinePrinter:81",
+  "MachinePrinter:207"
+ ],
+ "Items/items_tool2/printer_on": [
+  "MachinePrinter:151",
+  "MachinePrinter:162"
+ ],
+ "Items/items_tool2/projector": [
+  "MachineProjector:16"
+ ],
+ "Items/items_tool2/purifier": [
+  "MachinePurifier:42",
+  "MachinePurifier:109"
+ ],
+ "Items/items_tool2/purifier_w": [
+  "MachinePurifier:105"
+ ],
+ "Items/items_aquaculture/ras_empty": [
+  "MachineRAS:101"
+ ],
+ "Items/items_aquaculture/ras_tank": [
+  "MachineRAS:122",
+  "MachineRAS:240"
+ ],
+ "Items/items_tool/recharger_base": [
+  "MachineRecharger:20"
+ ],
+ "Items/items_tool/storage_coordinator": [
+  "MachineStorageCoordinator:153"
+ ],
+ "Items/items_tool/turbo_booster_adv_ready": [
+  "MachineTurboBoosterAdv:167"
+ ],
+ "Items/items_tool/turbo_booster_adv_charging": [
+  "MachineTurboBoosterAdv:171"
+ ],
+ "Items/items_tool/turbo_booster_adv": [
+  "MachineTurboBoosterAdv:175",
+  "ToolDirectory:395"
+ ],
+ "Items/items_winemaking/wine_rack": [
+  "MachineWineRack:27"
+ ],
+ "Items/items_material/metal_ingot": [
+  "MaterialDirectory:35"
+ ],
+ "Items/items_material/chemical1": [
+  "MaterialDirectory:96"
+ ],
+ "Items/items_material/chemical2": [
+  "MaterialDirectory:138"
+ ],
+ "Items/items_material/med1": [
+  "MaterialDirectory:162"
+ ],
+ "Items/items_material/med2": [
+  "MaterialDirectory:172"
+ ],
+ "Items/items_material/scrap_metal_2": [
+  "MaterialDirectory:266"
+ ],
+ "Items/items_material/ore1": [
+  "MaterialDirectory:288"
+ ],
+ "Items/items_material/ore2": [
+  "MaterialDirectory:300"
+ ],
+ "Items/items_material/electronic1": [
+  "MaterialDirectory:310"
+ ],
+ "Items/items_material/electronic2": [
+  "MaterialDirectory:338"
+ ],
+ "Items/items_material/electronic3": [
+  "MaterialDirectory:349"
+ ],
+ "Items/items_construction/wire": [
+  "MaterialDirectory:376"
+ ],
+ "Items/items_material/printer_plastic": [
+  "MaterialDirectory:387"
+ ],
+ "Items/items_material/gun_part": [
+  "MaterialDirectory:416"
+ ],
+ "Items/items_material/nuclear_waste": [
+  "MaterialDirectory:448"
+ ],
+ "Items/items_material/flux_agent": [
+  "MaterialDirectory:461"
+ ],
+ "Items/items_material/flux_agent_advanced": [
+  "MaterialDirectory:473"
+ ],
+ "Items/items_medical/items_medical_15": [
+  "MedsItemDirectory:53"
+ ],
+ "Items/items_medical/pill1": [
+  "MedsItemDirectory:69"
+ ],
+ "Items/items_medical/pill2": [
+  "MedsItemDirectory:80"
+ ],
+ "Items/items_medical/items_medical_12": [
+  "MedsItemDirectory:93",
+  "UnusedDirectory:1763"
+ ],
+ "Items/items_medical/oxycodone_pill": [
+  "MedsItemDirectory:110",
+  "UnusedDirectory:1775",
+  "UnusedDirectory:1787"
+ ],
+ "Items/items_medical/zerochew": [
+  "MedsItemDirectory:131"
+ ],
+ "Items/items_medical/smelling_salt": [
+  "MedsItemDirectory:147"
+ ],
+ "Items/items_medical/blood_bag": [
+  "MedsItemDirectory:161"
+ ],
+ "Items/items_medical/blue_blood_bag": [
+  "MedsItemDirectory:174"
+ ],
+ "Items/items_medical/dream_dust": [
+  "MedsItemDirectory:190"
+ ],
+ "Items/items_medical/nightmare_dust": [
+  "MedsItemDirectory:209"
+ ],
+ "Items/items_medical/cafeine_pill": [
+  "MedsItemDirectory:225"
+ ],
+ "Items/items_medical/salve": [
+  "MedsItemDirectory:241"
+ ],
+ "Items/items_medical/black_bottle": [
+  "MedsItemDirectory:252"
+ ],
+ "Items/items_medical/bandage_small": [
+  "MedsItemDirectory:262"
+ ],
+ "Items/items_medical/hemostatic_bandage_small": [
+  "MedsItemDirectory:283"
+ ],
+ "Items/items_medical/topical_bandage_small": [
+  "MedsItemDirectory:305"
+ ],
+ "Items/items_medical/injector_purple_large": [
+  "MedsItemDirectory:326"
+ ],
+ "Items/items_medical/injector_black": [
+  "MedsItemDirectory:341"
+ ],
+ "Items/items_amenities/chem_scanner": [
+  "MedsItemDirectory:465"
+ ],
+ "Items/items_tool/surgery_toolkit": [
+  "MedsItemDirectory:489"
+ ],
+ "Items/items_weapons_melee/glass_shard_shiv": [
+  "MeleeWeaponItemDirectory:26"
+ ],
+ "Items/items_weapons_melee/skinning_knife": [
+  "MeleeWeaponItemDirectory:40"
+ ],
+ "Items/items_weapons_melee/combat_knife_2": [
+  "MeleeWeaponItemDirectory:53"
+ ],
+ "Items/items_weapons_melee/box_cutter": [
+  "MeleeWeaponItemDirectory:65"
+ ],
+ "Items/items_weapons_melee/kitchen_cleaver": [
+  "MeleeWeaponItemDirectory:79"
+ ],
+ "Items/items_weapons_melee/kitchen_knife": [
+  "MeleeWeaponItemDirectory:91"
+ ],
+ "Items/items_weapons_melee/combat_machete": [
+  "MeleeWeaponItemDirectory:104"
+ ],
+ "Items/items_weapons_melee/hatchet": [
+  "MeleeWeaponItemDirectory:130"
+ ],
+ "Items/items_weapons_melee/pipe": [
+  "MeleeWeaponItemDirectory:145"
+ ],
+ "Items/items_weapons_melee/stun_baton": [
+  "MeleeWeaponItemDirectory:159"
+ ],
+ "Items/items_tool/battery_ext100": [
+  "MiscItemDirectory:157",
+  "PowerHelper:349"
+ ],
+ "Items/items_tool2/sbattery100": [
+  "MiscItemDirectory:169",
+  "PowerHelper:380"
+ ],
+ "Items/items_tool/battery_dis100": [
+  "MiscItemDirectory:196"
+ ],
+ "Items/items_tool2/current_converter": [
+  "MiscItemDirectory:210"
+ ],
+ "Items/items_tool2/battery_hyp": [
+  "MiscItemDirectory:221"
+ ],
+ "Items/items_weapons_melee/glass_shard": [
+  "MiscItemDirectory:232"
+ ],
+ "Items/items_misc/intel_sec": [
+  "MiscItemDirectory:245"
+ ],
+ "Items/items_misc/flashlight3": [
+  "MiscItemDirectory:263"
+ ],
+ "Items/itematlas/newspaper": [
+  "MiscItemDirectory:273"
+ ],
+ "Items/itematlas/tutorial_book": [
+  "MiscItemDirectory:298",
+  "MiscItemDirectory:315"
+ ],
+ "Items/itematlas/tutorial_book_full": [
+  "MiscItemDirectory:309"
+ ],
+ "Items/itematlas/tutorial_page": [
+  "MiscItemDirectory:324"
+ ],
+ "Items/items_misc/guide0": [
+  "MiscItemDirectory:350"
+ ],
+ "Items/items_misc/guide1": [
+  "MiscItemDirectory:370"
+ ],
+ "Items/items_misc/manual5": [
+  "MiscItemDirectory:390"
+ ],
+ "Items/items_misc/manual1": [
+  "MiscItemDirectory:410"
+ ],
+ "Items/items_misc/manual4": [
+  "MiscItemDirectory:430"
+ ],
+ "Items/items_misc/book1": [
+  "MiscItemDirectory:450"
+ ],
+ "Items/items_misc/book3": [
+  "MiscItemDirectory:470"
+ ],
+ "Items/items_misc/book2": [
+  "MiscItemDirectory:490"
+ ],
+ "Items/items_misc/guide5": [
+  "MiscItemDirectory:528"
+ ],
+ "Items/items_misc/guide3": [
+  "MiscItemDirectory:548"
+ ],
+ "Items/items_misc/republic_logo_checker": [
+  "MiscItemDirectory:568"
+ ],
+ "Items/itematlas/cigarette_color_guide": [
+  "MiscItemDirectory:587"
+ ],
+ "Items/items_misc/deed": [
+  "MiscItemDirectory:605",
+  "MiscItemDirectory:624",
+  "MiscItemDirectory:643"
+ ],
+ "Items/itematlas/slip": [
+  "MiscItemDirectory:656"
+ ],
+ "Items/items_misc/slip": [
+  "MiscItemDirectory:687"
+ ],
+ "Items/items_misc/handnote": [
+  "MiscItemDirectory:702",
+  "MiscItemDirectory:1321"
+ ],
+ "Items/items_misc/card_wild": [
+  "MiscItemDirectory:735"
+ ],
+ "Items/items_misc/card_brewer": [
+  "MiscItemDirectory:753"
+ ],
+ "Items/items_misc/card_mining": [
+  "MiscItemDirectory:771"
+ ],
+ "Items/items_misc/card_pharma": [
+  "MiscItemDirectory:789"
+ ],
+ "Items/items_misc/card_chem": [
+  "MiscItemDirectory:807"
+ ],
+ "Items/items_misc/card_rev": [
+  "MiscItemDirectory:825"
+ ],
+ "Items/items_misc/permit_gun_1": [
+  "MiscItemDirectory:843"
+ ],
+ "Items/items_misc/permit_gun_2": [
+  "MiscItemDirectory:856"
+ ],
+ "Items/items_misc/permit_gun_3": [
+  "MiscItemDirectory:869"
+ ],
+ "Items/items_misc/sec_slip": [
+  "MiscItemDirectory:882"
+ ],
+ "Items/itematlas/paper_wanted": [
+  "MiscItemDirectory:899"
+ ],
+ "Items/dossier/dossier_0": [
+  "MiscItemDirectory:924",
+  "SpriteHelper:137"
+ ],
+ "Items/items_furniture/trashcan0": [
+  "MiscItemDirectory:957",
+  "SpriteHelper:158"
+ ],
+ "Items/items_furniture/drain": [
+  "MiscItemDirectory:984"
+ ],
+ "Items/items_furniture/faucet": [
+  "MiscItemDirectory:995"
+ ],
+ "Items/items_misc/book4": [
+  "MiscItemDirectory:1007"
+ ],
+ "Items/items_misc/book5": [
+  "MiscItemDirectory:1025"
+ ],
+ "Items/items_misc/sci_card": [
+  "MiscItemDirectory:1065"
+ ],
+ "Items/items_misc/command_keycard": [
+  "MiscItemDirectory:1086"
+ ],
+ "Items/items_misc/med_card": [
+  "MiscItemDirectory:1107"
+ ],
+ "Items/items_misc/eng_card": [
+  "MiscItemDirectory:1127"
+ ],
+ "Items/items_misc/ser_card": [
+  "MiscItemDirectory:1147"
+ ],
+ "Items/items_misc/sup_card": [
+  "MiscItemDirectory:1167"
+ ],
+ "Items/items_sec/canister_nerve": [
+  "MiscItemDirectory:1199"
+ ],
+ "Items/items_misc/food_stamp": [
+  "MiscItemDirectory:1211"
+ ],
+ "Items/itematlas/scav_medal": [
+  "MiscItemDirectory:1243"
+ ],
+ "Items/items_misc/exchange_directive": [
+  "MiscItemDirectory:1282"
+ ],
+ "Items/items_food/ribwich": [
+  "MiscItemDirectory:1337"
+ ],
+ "Items/items_misc/the_coin": [
+  "MiscItemDirectory:1348"
+ ],
+ "Items/items_misc/scratch": [
+  "MiscItemDirectory:1363"
+ ],
+ "Items/items_misc/scratch_stack": [
+  "MiscItemDirectory:1385"
+ ],
+ "Items/items_ship/plasma_fuel_cell": [
+  "MiscItemDirectory:1417"
+ ],
+ "Items/items_inspectable/hand_steel": [
+  "MiscItemDirectory:1427"
+ ],
+ "Items/items_container/bag": [
+  "MiscItemDirectory:1437"
+ ],
+ "Items/items_module/aug_chip": [
+  "MiscItemDirectory:1445"
+ ],
+ "Items/items_tool/aug_scanner": [
+  "MiscItemDirectory:1456"
+ ],
+ "Items/items_module/module_white": [
+  "ModuleDirectory:137"
+ ],
+ "Items/items_module/module_red": [
+  "ModuleDirectory:148"
+ ],
+ "Items/items_module/module_green": [
+  "ModuleDirectory:158"
+ ],
+ "Items/items_module/module_yellow": [
+  "ModuleDirectory:168"
+ ],
+ "Items/items_module/module_red_2": [
+  "ModuleDirectory:178",
+  "ModuleDirectory:282"
+ ],
+ "Items/items_module/module_green_2": [
+  "ModuleDirectory:188",
+  "ModuleDirectory:291"
+ ],
+ "Items/items_module/module_green_3": [
+  "ModuleDirectory:198"
+ ],
+ "Items/items_module/module_yellow_2": [
+  "ModuleDirectory:208",
+  "ModuleDirectory:264"
+ ],
+ "Items/items_module/module_ruined": [
+  "ModuleDirectory:218"
+ ],
+ "Items/items_module/module_corrupt": [
+  "ModuleDirectory:229"
+ ],
+ "Items/items_module/module_black_5": [
+  "ModuleDirectory:240"
+ ],
+ "Items/items_module/module_black_4": [
+  "ModuleDirectory:252"
+ ],
+ "Items/items_module/module_blue_2": [
+  "ModuleDirectory:273"
+ ],
+ "Items/items_tool/cmd_module": [
+  "ModuleDirectory:347"
+ ],
+ "Items/items_tool/med_module": [
+  "ModuleDirectory:381"
+ ],
+ "Items/items_tool/eng_module": [
+  "ModuleDirectory:398"
+ ],
+ "Items/items_tool/sup_module": [
+  "ModuleDirectory:415"
+ ],
+ "Items/items_tool/ser_module": [
+  "ModuleDirectory:432"
+ ],
+ "Items/items_tool/printer_chip2": [
+  "ModuleDirectory:475",
+  "ModuleDirectory:488",
+  "ModuleDirectory:501",
+  "ModuleDirectory:514"
+ ],
+ "Items/items_tool/printer_chip4": [
+  "ModuleDirectory:527",
+  "ModuleDirectory:540",
+  "ModuleDirectory:553",
+  "ModuleDirectory:605",
+  "ModuleDirectory:618",
+  "ModuleDirectory:631"
+ ],
+ "Items/items_tool/printer_chip3": [
+  "ModuleDirectory:566",
+  "ModuleDirectory:579",
+  "ModuleDirectory:592"
+ ],
+ "Items/items_module/farm_module6": [
+  "ModuleDirectory:644"
+ ],
+ "Items/items_module/long_module1": [
+  "ModuleDirectory:655",
+  "ModuleDirectory:665",
+  "ModuleDirectory:675",
+  "ModuleDirectory:685",
+  "ModuleDirectory:695",
+  "ModuleDirectory:798"
+ ],
+ "Items/items_tool/printer_chip6": [
+  "ModuleDirectory:704"
+ ],
+ "Items/items_module/long_module2": [
+  "ModuleDirectory:725"
+ ],
+ "Items/items_module/long_module3": [
+  "ModuleDirectory:779",
+  "ModuleDirectory:850"
+ ],
+ "Items/items_module/farm_module_l7": [
+  "ModuleDirectory:817"
+ ],
+ "Items/items_module/farm_module_l8": [
+  "ModuleDirectory:839"
+ ],
+ "Items/items_module/farm_module_l6": [
+  "ModuleDirectory:861"
+ ],
+ "Items/items_module/farm_module_l5": [
+  "ModuleDirectory:872"
+ ],
+ "Items/items_module/farm_module5": [
+  "ModuleDirectory:883"
+ ],
+ "Items/items_module/farm_module_l4": [
+  "ModuleDirectory:895"
+ ],
+ "Items/items_module/farm_module_l2": [
+  "ModuleDirectory:906"
+ ],
+ "Items/items_module/farm_module_l1": [
+  "ModuleDirectory:917"
+ ],
+ "Items/items_module/module_extractor": [
+  "ModuleDirectory:928"
+ ],
+ "Items/items_module/module_extractor_adv": [
+  "ModuleDirectory:953"
+ ],
+ "Items/items_module/hydro_upgrade_kit": [
+  "ModuleDirectory:973"
+ ],
+ "Items/items_module/chem_module": [
+  "ModuleDirectory:994"
+ ],
+ "Items/items_module/node_s": [
+  "ModuleDirectory:1005"
+ ],
+ "Items/items_module/node_m": [
+  "ModuleDirectory:1015"
+ ],
+ "Items/items_construction/steel_sheet_rough": [
+  "OrganHelper:171",
+  "OrganHelper:183",
+  "OrganHelper:218",
+  "OrganHelper:230",
+  "ShipHelper:844",
+  "ShipHelper:858",
+  "ShipHelper:872",
+  "ShipHelper:883",
+  "ShipHelper:894",
+  "ShipHelper:905",
+  "ShipHelper:916",
+  "ShipHelper:927",
+  "ShipHelper:938",
+  "ShipHelper:949",
+  "UnusedDirectory:617"
+ ],
+ "Items/items_organ/organ_lung_left": [
+  "OrganHelper:204",
+  "UnusedDirectory:934"
+ ],
+ "Items/items_organ/organ_lung_right": [
+  "OrganHelper:208"
+ ],
+ "Items/items_organ/organ_kidney_left": [
+  "OrganHelper:251",
+  "UnusedDirectory:943"
+ ],
+ "Items/items_organ/organ_kidney_right": [
+  "OrganHelper:255"
+ ],
+ "Items/items_hydroponic_plant/hydroreed_p": [
+  "PlantList:246"
+ ],
+ "Items/items_tool/battery80": [
+  "PowerHelper:322"
+ ],
+ "Items/items_tool/battery60": [
+  "PowerHelper:326"
+ ],
+ "Items/items_tool/battery40": [
+  "PowerHelper:330"
+ ],
+ "Items/items_tool/battery20": [
+  "PowerHelper:334"
+ ],
+ "Items/items_tool/battery10": [
+  "PowerHelper:338"
+ ],
+ "Items/items_tool/battery0": [
+  "PowerHelper:342"
+ ],
+ "Items/items_tool/battery_ext80": [
+  "PowerHelper:353"
+ ],
+ "Items/items_tool/battery_ext60": [
+  "PowerHelper:357"
+ ],
+ "Items/items_tool/battery_ext40": [
+  "PowerHelper:361"
+ ],
+ "Items/items_tool/battery_ext20": [
+  "PowerHelper:365"
+ ],
+ "Items/items_tool/battery_ext10": [
+  "PowerHelper:369"
+ ],
+ "Items/items_tool/battery_ext0": [
+  "PowerHelper:373"
+ ],
+ "Items/items_tool2/sbattery80": [
+  "PowerHelper:384"
+ ],
+ "Items/items_tool2/sbattery60": [
+  "PowerHelper:388"
+ ],
+ "Items/items_tool2/sbattery40": [
+  "PowerHelper:392"
+ ],
+ "Items/items_tool2/sbattery20": [
+  "PowerHelper:396"
+ ],
+ "Items/items_tool2/sbattery10": [
+  "PowerHelper:400"
+ ],
+ "Items/items_tool2/sbattery0": [
+  "PowerHelper:404"
+ ],
+ "Items/items_hydroponic_plant/nutrifruit_s": [
+  "PreBuiltItemHelper:1662"
+ ],
+ "Items/items_hydroponic_plant/nutrifruit_l": [
+  "PreBuiltItemHelper:1674"
+ ],
+ "Items/items_hydroponic_plant/nutrifruit_xl": [
+  "PreBuiltItemHelper:1687"
+ ],
+ "Items/items_hydroponic_plant/dream_cap_l": [
+  "PreBuiltItemHelper:1723"
+ ],
+ "Items/items_hydroponic_plant/meal_cap_l": [
+  "PreBuiltItemHelper:1729"
+ ],
+ "Items/items_hydroponic_plant/dream_cap_s": [
+  "PreBuiltItemHelper:1747"
+ ],
+ "Items/items_hydroponic_plant/meal_cap_s": [
+  "PreBuiltItemHelper:1753"
+ ],
+ "Items/items_hydroponic_plant/kotton_plant_s": [
+  "PreBuiltItemHelper:1771"
+ ],
+ "Items/items_hydroponic_plant/kotton_plant_l": [
+  "PreBuiltItemHelper:1791"
+ ],
+ "Items/items_hydroponic_plant/fillerweed_s": [
+  "PreBuiltItemHelper:1809"
+ ],
+ "Portraits/Unknown/Idle": [
+  "RaidScene:491"
+ ],
+ "Items/items_husbandry/mouse_trap": [
+  "RatTrap:10",
+  "RatTrap:59"
+ ],
+ "Items/items_husbandry/mouse_trap_cheese": [
+  "RatTrap:43"
+ ],
+ "Items/items_husbandry/mouse_trap_m": [
+  "RatTrap:49"
+ ],
+ "Items/items_husbandry/mouse_trap_f": [
+  "RatTrap:53"
+ ],
+ "Items/items_ship/makeshift_reactor": [
+  "ReactorHelper:54"
+ ],
+ "Items/items_ship/light_dropship": [
+  "ShipItemDirectory:28"
+ ],
+ "Items/items_medical/first_aid_box": [
+  "ShipItemDirectory:47",
+  "UnusedDirectory:196"
+ ],
+ "Ships/TransportMedical/Background": [
+  "ShipItemDirectory:62"
+ ],
+ "Items/items_container/pouch_general_large": [
+  "ShipItemDirectory:83",
+  "ShipItemDirectory:88",
+  "UnusedDirectory:411"
+ ],
+ "Ships/military_transport_ship/Background": [
+  "ShipItemDirectory:121"
+ ],
+ "Ships/utility_ship/Background": [
+  "ShipItemDirectory:183"
+ ],
+ "Ships/refugee_ship/Background": [
+  "ShipItemDirectory:243"
+ ],
+ "Items/items_ship/storage_bay": [
+  "ShipSystemDirectory:27",
+  "ShipSystemDirectory:44",
+  "UnusedDirectory:2100"
+ ],
+ "Items/items_ship/storage_bay_large": [
+  "ShipSystemDirectory:61"
+ ],
+ "Items/items_ship/storage_bay_gun": [
+  "ShipSystemDirectory:78"
+ ],
+ "Items/items_ship/storage_bay_chem": [
+  "ShipSystemDirectory:96"
+ ],
+ "Items/items_tool2/machine_bay0": [
+  "ShipSystemDirectory:115"
+ ],
+ "Items/items_tool2/machine_bay": [
+  "ShipSystemDirectory:144",
+  "ShipSystemDirectory:150"
+ ],
+ "Items/items_tool2/machine_bay_ext": [
+  "ShipSystemDirectory:160"
+ ],
+ "Items/items_tool2/hypertech_bay": [
+  "ShipSystemDirectory:196"
+ ],
+ "Items/items_ship/smuggler_bay": [
+  "ShipSystemDirectory:230"
+ ],
+ "Items/items_ship/smuggler_bay_large": [
+  "ShipSystemDirectory:255"
+ ],
+ "Items/items_ship/smuggler_bay_mini": [
+  "ShipSystemDirectory:280"
+ ],
+ "Items/dossier/dossier_1": [
+  "SpriteHelper:141"
+ ],
+ "Items/dossier/dossier_2": [
+  "SpriteHelper:145"
+ ],
+ "Items/dossier/dossier_3": [
+  "SpriteHelper:149"
+ ],
+ "Items/items_furniture/trashcan25": [
+  "SpriteHelper:162"
+ ],
+ "Items/items_furniture/trashcan50": [
+  "SpriteHelper:166"
+ ],
+ "Items/items_furniture/trashcan75": [
+  "SpriteHelper:170"
+ ],
+ "Items/items_furniture/trashcan100": [
+  "SpriteHelper:174"
+ ],
+ "Items/items_machine/automatic_meat_processor": [
+  "StationMachinery:18",
+  "StationMachinery:136",
+  "UnusedDirectory:2539",
+  "UnusedDirectory:2576"
+ ],
+ "Items/items_tool2/storage_bay_expansion_kit": [
+  "StorageExpansionHelper:28"
+ ],
+ "Items/itematlas/coin": [
+  "TechnicianBackpackDirectory:9",
+  "TechnicianBackpackDirectory:17",
+  "TechnicianBackpackDirectory:25",
+  "TechnicianBackpackDirectory:33",
+  "TechnicianBackpackDirectory:41",
+  "TechnicianBackpackDirectory:51",
+  "TechnicianBackpackDirectory:61",
+  "TechnicianBackpackDirectory:71",
+  "UnusedDirectory:1949",
+  "UnusedDirectory:1958"
+ ],
+ "Items/items_tool/screwdriver_s": [
+  "ToolDirectory:45",
+  "ToolboxHelper:34",
+  "ToolboxHelper:156",
+  "ToolboxHelper:160"
+ ],
+ "Items/items_tool2/toolbox_old": [
+  "ToolDirectory:83"
+ ],
+ "Items/items_tool/welder_s": [
+  "ToolDirectory:97"
+ ],
+ "Items/items_tool/wirecutter": [
+  "ToolDirectory:117"
+ ],
+ "Items/items_tool/spectral_analyser": [
+  "ToolDirectory:167",
+  "UnusedDirectory:629"
+ ],
+ "Items/items_tool/labeler": [
+  "ToolDirectory:187"
+ ],
+ "Items/items_tool/labeler_blue": [
+  "ToolDirectory:207"
+ ],
+ "Items/items_tool/magnifier": [
+  "ToolDirectory:229"
+ ],
+ "Items/items_sign/material_sign": [
+  "ToolDirectory:249",
+  "ToolDirectory:347"
+ ],
+ "Items/items_sign/hiring_sign": [
+  "ToolDirectory:260"
+ ],
+ "Items/items_sign/gun_sign": [
+  "ToolDirectory:270"
+ ],
+ "Items/items_sign/gun_sign2": [
+  "ToolDirectory:281"
+ ],
+ "Items/items_sign/water_sign": [
+  "ToolDirectory:292"
+ ],
+ "Items/items_sign/food_sign": [
+  "ToolDirectory:303"
+ ],
+ "Items/items_sign/medical_sign": [
+  "ToolDirectory:314"
+ ],
+ "Items/items_sign/household_sign": [
+  "ToolDirectory:325"
+ ],
+ "Items/items_sign/luxury_sign": [
+  "ToolDirectory:336"
+ ],
+ "Items/items_sign/berry_sign": [
+  "ToolDirectory:358"
+ ],
+ "Items/items_tool/turbo_booster": [
+  "ToolDirectory:367"
+ ],
+ "Items/items_tool2/turbo_booster_hypertech": [
+  "ToolDirectory:478"
+ ],
+ "Items/items_tool/mind_reprogrammer": [
+  "ToolDirectory:532"
+ ],
+ "Items/items_backpack/satchel": [
+  "UnusedDirectory:91"
+ ],
+ "Items/items_container/organ_transport_box": [
+  "UnusedDirectory:160"
+ ],
+ "Items/itematlas/cardboard_box": [
+  "UnusedDirectory:188",
+  "UnusedDirectory:2416",
+  "UnusedDirectory:2503",
+  "UnusedDirectory:2519"
+ ],
+ "Items/items_medical/pill_bottle": [
+  "UnusedDirectory:207"
+ ],
+ "Items/items_medical/bicarsole_pill_bottle": [
+  "UnusedDirectory:218"
+ ],
+ "Items/items_medical/ocutol_pill_bottle": [
+  "UnusedDirectory:230"
+ ],
+ "Items/items_medical/fixalin_pill_bottle": [
+  "UnusedDirectory:242"
+ ],
+ "Items/items_medical/pillbottle1": [
+  "UnusedDirectory:254"
+ ],
+ "Items/items_medical/pillbottle2": [
+  "UnusedDirectory:267"
+ ],
+ "Items/items_medical/oxycodone_pill_bottle": [
+  "UnusedDirectory:280"
+ ],
+ "Items/items_food/bear_paw_box": [
+  "UnusedDirectory:294"
+ ],
+ "Items/items_container/lunch_box": [
+  "UnusedDirectory:307"
+ ],
+ "Items/items_container/injector_pouch": [
+  "UnusedDirectory:320",
+  "UnusedDirectory:334",
+  "UnusedDirectory:652",
+  "UnusedDirectory:671",
+  "UnusedDirectory:672",
+  "UnusedDirectory:693",
+  "UnusedDirectory:694"
+ ],
+ "Items/items_container/pouch_injector_large": [
+  "UnusedDirectory:348"
+ ],
+ "Items/items_container/pouch_injector_large_double": [
+  "UnusedDirectory:364"
+ ],
+ "Items/items_container/pouch_medical": [
+  "UnusedDirectory:380"
+ ],
+ "Items/items_container/pouch_general": [
+  "UnusedDirectory:396"
+ ],
+ "Items/items_container/pouch_hydration": [
+  "UnusedDirectory:423"
+ ],
+ "Items/itematlas/mentor_contract": [
+  "UnusedDirectory:435"
+ ],
+ "Items/items_misc/lockpicks": [
+  "UnusedDirectory:453"
+ ],
+ "Items/itematlas/exotic_matter_cell": [
+  "UnusedDirectory:463",
+  "UnusedDirectory:2135"
+ ],
+ "Items/items_material/box_nail": [
+  "UnusedDirectory:476"
+ ],
+ "Items/itematlas/trash_pile": [
+  "UnusedDirectory:491"
+ ],
+ "Items/items_construction/wrench_orange": [
+  "UnusedDirectory:606"
+ ],
+ "Items/items_backpack2/simple_backpack_modular": [
+  "UnusedDirectory:651"
+ ],
+ "Items/items_backpack2/simple_backpack_modular_medium": [
+  "UnusedDirectory:670"
+ ],
+ "Items/items_backpack2/simple_backpack_modular_large": [
+  "UnusedDirectory:692"
+ ],
+ "Items/itematlas/molotov_cocktail": [
+  "UnusedDirectory:709"
+ ],
+ "Items/items_furniture/safe": [
+  "UnusedDirectory:733",
+  "UnusedDirectory:2435",
+  "UnusedDirectory:2444",
+  "UnusedDirectory:2453",
+  "UnusedDirectory:2463",
+  "UnusedDirectory:2473",
+  "UnusedDirectory:2483",
+  "UnusedDirectory:2493"
+ ],
+ "Items/items_ship/large_storage_bay": [
+  "UnusedDirectory:747"
+ ],
+ "Items/items_hydroponic_plant/aloe_vera": [
+  "UnusedDirectory:759"
+ ],
+ "Items/itematlas/mirage_generator": [
+  "UnusedDirectory:806",
+  "UnusedDirectory:1273"
+ ],
+ "Items/itematlas/frag": [
+  "UnusedDirectory:832",
+  "UnusedDirectory:845"
+ ],
+ "Items/itematlas/small_incendiary": [
+  "UnusedDirectory:867"
+ ],
+ "Items/itematlas/sec_card": [
+  "UnusedDirectory:890"
+ ],
+ "Items/itematlas/visual_book": [
+  "UnusedDirectory:910"
+ ],
+ "Items/items_organ/organ_heart": [
+  "UnusedDirectory:924"
+ ],
+ "Items/items_organ/organ_liver": [
+  "UnusedDirectory:952"
+ ],
+ "Items/items_sec/revolver_long": [
+  "UnusedDirectory:961"
+ ],
+ "Items/items_sec/revolver_short": [
+  "UnusedDirectory:975"
+ ],
+ "Items/items_sec/revolver_short_tac": [
+  "UnusedDirectory:989"
+ ],
+ "Items/itematlas/codebook": [
+  "UnusedDirectory:1038"
+ ],
+ "Items/items_medical/hemostatic_agent": [
+  "UnusedDirectory:1054",
+  "UnusedDirectory:1089"
+ ],
+ "Items/water_container/water_test1": [
+  "UnusedDirectory:1114",
+  "UnusedDirectory:1127",
+  "UnusedDirectory:1140"
+ ],
+ "Items/items_sec/heavy_handmade_pistol_s": [
+  "UnusedDirectory:1153"
+ ],
+ "Items/items_armor/titan_armor": [
+  "UnusedDirectory:1173"
+ ],
+ "Items/items_armor/titan_armor10l": [
+  "UnusedDirectory:1185"
+ ],
+ "Items/items_armor/titan_armor10h": [
+  "UnusedDirectory:1197"
+ ],
+ "Items/items_armor/titan_armor10s": [
+  "UnusedDirectory:1209"
+ ],
+ "Items/items_armor/titan_armor9": [
+  "UnusedDirectory:1221"
+ ],
+ "Items/items_amenities/box_tea_bag": [
+  "UnusedDirectory:1233"
+ ],
+ "Items/items_amenities/cig_black": [
+  "UnusedDirectory:1241"
+ ],
+ "Items/items_amenities/soap": [
+  "UnusedDirectory:1251"
+ ],
+ "Items/items_hydroponic_plant/nutrifruit_crate": [
+  "UnusedDirectory:1333"
+ ],
+ "Items/items_packaged_food/nutrifruit_packaged": [
+  "UnusedDirectory:1364"
+ ],
+ "Items/items_weapons_ranged_antique/m16_receiver": [
+  "UnusedDirectory:1536"
+ ],
+ "Items/items_weapons_ranged_antique/mp9_receiver": [
+  "UnusedDirectory:1553"
+ ],
+ "Items/items_weapons_ranged_antique/ump_receiver": [
+  "UnusedDirectory:1571"
+ ],
+ "Items/items_weapons_ranged_antique/magnum_revolver": [
+  "UnusedDirectory:1589"
+ ],
+ "Items/items_weapons_ranged_antique/glock_receiver2": [
+  "UnusedDirectory:1606"
+ ],
+ "Items/itematlas/shotgun": [
+  "UnusedDirectory:1629"
+ ],
+ "Items/itematlas/shotgun_stock": [
+  "UnusedDirectory:1654"
+ ],
+ "Items/itematlas/shotgun_grip": [
+  "UnusedDirectory:1714"
+ ],
+ "Items/items_medical/items_medical_11": [
+  "UnusedDirectory:1740"
+ ],
+ "Items/items_medical/items_medical_10": [
+  "UnusedDirectory:1751"
+ ],
+ "Items/itematlas/energy_credit_counterfeit": [
+  "UnusedDirectory:1972"
+ ],
+ "Items/connections/wall": [
+  "UnusedDirectory:1982"
+ ],
+ "Items/connections/stripped_wall": [
+  "UnusedDirectory:1991"
+ ],
+ "Items/connections/wall_mold": [
+  "UnusedDirectory:1999",
+  "UnusedDirectory:2007",
+  "UnusedDirectory:2018"
+ ],
+ "Items/items_misc/intel_tan": [
+  "UnusedDirectory:2049",
+  "UnusedDirectory:2065"
+ ],
+ "Items/items_ship/nav_system": [
+  "UnusedDirectory:2114",
+  "UnusedDirectory:2310",
+  "UnusedDirectory:2356",
+  "UnusedDirectory:2369",
+  "UnusedDirectory:2382"
+ ],
+ "Items/items_ship/engine": [
+  "UnusedDirectory:2130"
+ ],
+ "Items/items_ship/hydroponic_system": [
+  "UnusedDirectory:2155"
+ ],
+ "Items/items_ship/armor_conditioner_system": [
+  "UnusedDirectory:2173"
+ ],
+ "Items/items_ship/bioprinter_system": [
+  "UnusedDirectory:2191"
+ ],
+ "Items/items_ship/water_recycler_full": [
+  "UnusedDirectory:2210"
+ ],
+ "Items/items_food/water_jug": [
+  "UnusedDirectory:2212"
+ ],
+ "Items/items_food/canteen": [
+  "UnusedDirectory:2213"
+ ],
+ "Items/items_ship/medical_system": [
+  "UnusedDirectory:2229"
+ ],
+ "Items/items_ship/makeshift_hull": [
+  "UnusedDirectory:2244"
+ ],
+ "Items/items_ship/civilian_hull": [
+  "UnusedDirectory:2261"
+ ],
+ "Items/items_ship/heavy_duty_hull": [
+  "UnusedDirectory:2277"
+ ],
+ "Items/items_ship/armored_hull": [
+  "UnusedDirectory:2293"
+ ],
+ "Items/items_ship/mining_system": [
+  "UnusedDirectory:2326"
+ ],
+ "Items/items_ship/salvage_system": [
+  "UnusedDirectory:2341"
+ ],
+ "Items/items_machine/industrial_fridge": [
+  "UnusedDirectory:2424"
+ ],
+ "Items/items_machine/recycler": [
+  "UnusedDirectory:2612"
+ ],
+ "Items/items_machine/armor_conditionner": [
+  "UnusedDirectory:2679"
+ ],
+ "Items/items_machine/speaker": [
+  "UnusedDirectory:2710"
+ ],
+ "Items/items_machine/battery_hub": [
+  "UnusedDirectory:2719"
+ ],
+ "Items/items_machine/power_analyser": [
+  "UnusedDirectory:2728"
+ ],
+ "Items/items_vending/fountain0": [
+  "VendingFountainHelper:45"
+ ],
+ "Items/items_vending/vending0": [
+  "VendingMachineHelper:87"
+ ],
+ "Items/items_amenities/strip0": [
+  "WaterStripUIManager:61"
+ ],
+ "Items/items_amenities/strip1": [
+  "WaterStripUIManager:66"
+ ],
+ "Items/items_amenities/strip2": [
+  "WaterStripUIManager:71"
+ ],
+ "Items/items_amenities/strip3": [
+  "WaterStripUIManager:76"
+ ],
+ "Items/items_amenities/strip4": [
+  "WaterStripUIManager:81"
+ ],
+ "Items/items_amenities/strip5": [
+  "WaterStripUIManager:86"
+ ],
+ "Items/items_tool2/water_tank": [
+  "WaterTankHelper:77"
+ ],
+ "Items/items_winemaking/yeast": [
+  "WineDirectory:15"
+ ],
+ "Items/items_winemaking/superyeast": [
+  "WineDirectory:26"
+ ],
+ "Items/items_winemaking/illegal_yeast": [
+  "WineDirectory:37"
+ ],
+ "Items/items_winemaking/yeast_gen": [
+  "WineDirectory:49"
+ ],
+ "Items/items_winemaking/fermentation_airlock": [
+  "WineDirectory:61"
+ ],
+ "Items/items_winemaking/wine_bottle": [
+  "WineDirectory:71",
+  "WineHelper:422"
+ ],
+ "Items/items_winemaking/wine_berry": [
+  "WineDirectory:82"
+ ],
+ "Items/items_winemaking/wine_fermenting": [
+  "WineHelper:539"
+ ],
+ "Items/items_winemaking/bottle": [
+  "WineHelper:572"
+ ],
+ "Items/items_winemaking/bottle2": [
+  "WineHelper:590"
+ ]
+}

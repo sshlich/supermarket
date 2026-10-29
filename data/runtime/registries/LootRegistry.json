@@ -1,0 +1,14 @@
+{
+  "VANILLA_TOTAL_WEIGHT": 1000.0,
+  "LOG": "[LootRegistry] ",
+  "vanillaTables": {},
+  "vanillaGroups": {},
+  "tables": {},
+  "groups": {},
+  "journal": [],
+  "warned": [],
+  "dirty": false,
+  "vanillaEverLoaded": false,
+  "tablesLoadedThisScene": false,
+  "groupsLoadedThisScene": false
+}

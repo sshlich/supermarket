@@ -1,0 +1,36 @@
+{
+  "id": "guide",
+  "title": "Appraisal guide (notebook)",
+  "background": "notebook_manual",
+  "width": 628,
+  "height": 804,
+  "chrome": [
+    { "type": "button", "id": "close", "action": "close", "x": 297, "y": 2.5, "w": 14, "h": 15 },
+    { "type": "button", "id": "zoom", "action": "zoom", "x": 273.5, "y": 3.5, "w": 14, "h": 15 },
+    { "type": "button", "id": "flip_left", "action": "flip_left", "x": 124, "y": 380, "w": 16, "h": 16 },
+    { "type": "button", "id": "flip_right", "action": "flip_right", "x": 176, "y": 380.5, "w": 14, "h": 15 },
+    { "type": "text", "id": "page_indicator", "action": "page_indicator", "style": "page_number", "align": "center", "valign": "middle", "wrap": false, "x": 140.5, "y": 374, "w": 33, "h": 25 }
+  ],
+  "templates": [
+    {
+      "id": "guide_page",
+      "elements": [
+        { "type": "image", "id": "logo", "sprite": "guide_logo", "x": 18.5, "y": 22, "w": 283, "h": 116, "locked": true },
+        { "type": "text", "id": "header", "slot": "header", "text": "Station Trade Commission", "style": "header", "align": "center", "wrap": false, "x": 72, "y": 34, "w": 173, "h": 20 },
+        { "type": "text", "id": "title", "slot": "title", "text": "Appraisal Guide", "style": "title", "align": "center", "wrap": false, "x": 28, "y": 49, "w": 262, "h": 21 },
+        { "type": "flow", "id": "body_flow", "x": 35, "y": 86, "w": 253, "h": 290, "spacing": 4 },
+        { "type": "text", "id": "body", "slot": "body", "flow": "body_flow", "text": "Body text.", "style": "body", "autoHeight": true, "w": 0, "h": 0 }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "Page 1",
+      "template": "guide_page",
+      "slots": {
+        "title": "My Appraisal Guide",
+        "body": "Describe what the item is and what makes a good one.\n\nAdd illustrations with the Image tool and captions in the caption style."
+      }
+    }
+  ]
+}

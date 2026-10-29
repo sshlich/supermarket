@@ -1,0 +1,593 @@
+id,directory,name,value,types,desc,flavor
+box_tampon,AmenitiesItemDirectory,Box of PAX Tampons,100,HOUSEHOLD_GOOD LUXURY_ITEM,,"Promising protection and discretion, sanitary products like these are a luxury that few in the Lower Levels can afford."
+packet_red_cigarette,AmenitiesItemDirectory,Pack of Hemingway Cigarettes,80,SUBSTANCE,,"The most luxurious smoking experience one can have, with a flavor, and a price tag, that makes sure you remember it."
+pack_condom,AmenitiesItemDirectory,Box of REX Condoms,35,HOUSEHOLD_GOOD,,"Surprisingly common in the Lower Levels thanks to a subsidised distribution program. Population control, after all, is cheaper than riot control."
+shampoo,AmenitiesItemDirectory,Bottle of 4 In 1 Wash,,HOUSEHOLD_GOOD,,"Shampoo, conditioner, body wash and toothpaste, all in one convenient bottle, with rejuvenating Nutrifruit extract."
+toothpaste,AmenitiesItemDirectory,Tube of Toothpaste,,HOUSEHOLD_GOOD,,A minty gel that promises fresh breath.
+paper_towel,AmenitiesItemDirectory,Roll of Paper Towels,,HOUSEHOLD_GOOD,,
+toilet_paper,AmenitiesItemDirectory,Roll of Toilet Paper,,HOUSEHOLD_GOOD,,Affordable toilet paper that offers strength and reliability. Two-ply is a luxury in the Lower Levels.
+water_test_container,AmenitiesItemDirectory,Water Testing Kit,,HOUSEHOLD_GOOD WATER_PURIFICATION_SUPPLY,A small bottle of color strips used to test water quality.,
+water_test_strip,AmenitiesItemDirectory,Water Testing Strip,,HOUSEHOLD_GOOD WATER_PURIFICATION_SUPPLY,A testing strip used to accurately determine the quality of a water sample.,
+aquascan,AmenitiesItemDirectory,AquaScan,,HOUSEHOLD_GOOD WATER_PURIFICATION_SUPPLY,A device used to accurately determine the quality of a water sample. Displays detected impurities.,
+uv_filter,AmenitiesItemDirectory,UV Lamp,,WATER_PURIFICATION_SUPPLY,Can be used on a water container.,A lamp that emits ultraviolet light to kill bacteria and other microorganisms.
+metal_scanner,AmenitiesItemDirectory,Scav Scanner,,TOOL,A device that improves your chance of finding valuables when scavenging. (You can only benefit from one Scav Scanner at a time.),Ever wanted a third eye? Or a second nose? Cut through the clutter with a Scav Scanner!
+gene_scanner,AmenitiesItemDirectory,Gene Scanner,,TOOL,Can be toggled on to reveal the full genetic makeup of an animal.,
+water_tablet_container,AmenitiesItemDirectory,Bottle of Water Purification Tablets,,HOUSEHOLD_GOOD WATER_PURIFICATION_SUPPLY,A small bottle of tablets used to purify water.,
+water_tablet,AmenitiesItemDirectory,Water Purification Tablet,,HOUSEHOLD_GOOD WATER_PURIFICATION_SUPPLY,Eliminate large amount of microbial contaminants and partially reduce chemical contaminants. No effect against other types of contaminants.,
+water_filter,AmenitiesItemDirectory,Water Filter,,HOUSEHOLD_GOOD FILTER WATER_PURIFICATION_SUPPLY,Slightly improves water purity when used inside a filter system. Ineffective above a certain threshold.,"A lightweight, consumer grade filter."
+water_filter_adv,AmenitiesItemDirectory,Advanced Water Filter,,HOUSEHOLD_GOOD FILTER WATER_PURIFICATION_SUPPLY LUXURY_ITEM,Will recover 50 durability at the start of each day.,A premium water filter for pitchers used in the Upper Levels. Slowly self-cleans.
+portable_water_purifier,AmenitiesItemDirectory,HydraTech Micro Water Purifier,,HOUSEHOLD_GOOD WATER_PURIFICATION_SUPPLY LUXURY_ITEM,"Use on a water container to bring its contents up to Basewater purity, whatever's in it. It will use 1 durability per 100ml.","A disposable advanced water purifier, common in the Upper Levels. The discarded ones wash up in the Dumping Grounds, still good for a few more pours."
+water_pitcher,AmenitiesItemDirectory,Water Pitcher,,HOUSEHOLD_GOOD,Holds a water filter to strip some contaminants from the water poured through it.,
+water_tank,AmenitiesItemDirectory,Item,,HOUSEHOLD_GOOD,,
+hydroreed_filter,AmenitiesItemDirectory,Hydroreed Filter,,HOUSEHOLD_GOOD FILTER WATER_PURIFICATION_SUPPLY,Remove certain type of contaminants when used inside a filter system,A biological filter grown from Hydroreed.
+kotton_fabric,AmenitiesItemDirectory,Kotton Fabric,65,MATERIAL FILTER,Used in chemistry to strain large particles from liquids. Far too coarse for water purification.,A versatile fabric made of organic fibers. Commonly used for reinforced workwear and shock-insulating wraps.
+nutrient_tablet,AmenitiesItemDirectory,Hydroponic Nutrient Tablet,,FARMING_SUPPLIES,Contains minerals that are essential for plant growth. Can be added to a water container.,Do Not Consume. For hydroponic use only.
+nutrient_tablet_container,AmenitiesItemDirectory,Hydroponic Nutrient Tablet Bottle,,FARMING_SUPPLIES,A bottle containing hydroponic nutrient tablets,Do Not Consume. For hydroponic use only.
+lottery_ticket,AmenitiesItemDirectory,Lottery Ticket,,,The winning numbers are revealed each Saturday morning.,A jackpot ticket could buy you a lifetime in the Upper Levels' safety and comfort.
+lottery_ticket_old,AmenitiesItemDirectory,Old Lottery Ticket,,,"A worthless ticket from the Lower Levels Lottery. No winning numbers, just faded hope.",A jackpot ticket could buy you a lifetime in the Upper Levels' safety and comfort.
+skincare_cream,AmenitiesItemDirectory,ETERNAL Rejuvenation Serum,,LUXURY_ITEM,A sought-after luxurious serum designed to rejuvenate and restore skin using ethically sourced stem cells.,A sleek glass jar containing a shimmering serum.
+neuroactive_perfume,AmenitiesItemDirectory,SYNC Neuroactive Perfume,,LUXURY_ITEM,Use to boost trading bonus by 15% with the current customer. You can only benefit from the effects of one perfume at a time.,"Developed from grief therapy research, this perfume use adaptive scent-mapping tech to evoke positive personal memories. Common in high-end hospitality venues, where workers found that the tips earned by wearing the perfume more than make up for the price tag."
+self_refilling_neuroactive_perfume,AmenitiesItemDirectory,SYNC Self-Refilling Neuroactive Perfume,,LUXURY_ITEM,Use to boost trading bonus by 15% with the current customer. You can only benefit from the effects of one perfume at a time. Refills on its own.,"The premium edition of the SYNC perfume. A sealed reservoir in the cap slowly synthesizes a new dose, so the bottle never quite runs dry."
+pheromone_perfume,AmenitiesItemDirectory,L'ESSENCE Pheromone Perfume,,LUXURY_ITEM,Use to boost trading bonus by 25% with the current customer. You can only benefit from the effects of one perfume at a time.,"An illegal fragrance formulated from engineered human pheromones. It pushes attraction and emotional receptivity. Despite being illegal, it is highly sought after by social climbers in the Upper Levels."
+armor_lining,ArmorItemDirectory,Kotton Lining,60,,Kotton fabric made into padding. Provide modest protection to its wearer. Can protect against small arms if multiple layers are stacked.,Designed for workers in hazardous environment. Also an essential piece of equipment for scavs.
+nuts_metal,ConstructionItemDirectory,Metal Screws,14,MATERIAL,,
+save_bag,ContainerItemDirectory,,0,,,
+back_inv_save_bag,ContainerItemDirectory,,0,,,
+hidden_save_bag,ContainerItemDirectory,,0,,,
+showcase_save_bag,ContainerItemDirectory,,0,,,
+sold_save_bag,ContainerItemDirectory,,0,,,
+fanny_pack,ContainerItemDirectory,Fanny Pack,50,,,
+satchel,ContainerItemDirectory,Satchel (Small),150,,,
+kids_backpack,ContainerItemDirectory,Kid's Backpack,200,,,
+kids_backpack_large,ContainerItemDirectory,Kid's Backpack (Large),250,,,
+backpack_small,ContainerItemDirectory,Backpack (Small),300,,"A compact, well-worn backpack with reinforced stitching. Lightweight but roomy enough for essential supplies.",
+backpack_medium,ContainerItemDirectory,Backpack (Basic),450,,,
+backpack_medium_military,ContainerItemDirectory,Backpack (Army-Issue),130,,A heavy duty backpack designed for military use. The fabric are very durable and some soldier wear it in the front to use it as additional armor when in battle.,
+backpack_large,ContainerItemDirectory,Backpack (Large),650,,,
+backpack_large_military,ContainerItemDirectory,Large Military Backpack,280,,A heavy duty backpack designed for military use. The fabric are very durable and some soldier wear it in the front to use it as additional armor when in battle.,
+nutrifruit_seed_packet,ContainerItemDirectory,Packet of Nutrifruit Seeds,1,SEED,,
+sec_box,ContainerItemDirectory,Security Department Supply Crate,200,,A locked crate. Labeled for the Station Security Armory. Full of supplies. Access card required.,
+evidence_box,ContainerItemDirectory,Security Department Evidence Locker,200,,A locked crate. Labeled for the Station Security Evidence Locker. Valuable. Access card required.,There's enough here to put the entire Lower Levels behind bars.
+med_box,ContainerItemDirectory,Medical Bay Supply Crate,200,,A locked crate. Labeled for the Station Medical Bay. Full of supplies. Access card required.,Surely these missing supplies won't cost anyone their lives... right?
+eng_box,ContainerItemDirectory,Engineering Foundry Supply Crate,200,,A locked crate. Labeled for the Station Engineering Foundry. Full of supplies. Access card required.,Those hard hats will regret losing their tools...
+service_box,ContainerItemDirectory,Service Department Supply Crate,175,,A secure crate. Labeled for the Station Service Department. Full of supplies. Access card required.,"The Station Service Department distributes utility supplies to those who need, or pay, for them."
+beerCase,ContainerItemDirectory,Red Imp Beer Case,1,SUBSTANCE ALCOHOL BREVAGE,,
+luxury_supply_crate,ContainerItemDirectory,Care Package for Eleanor,300,LUXURY_ITEM HOUSEHOLD_GOOD,"A sealed crate of fine goods from the Upper Levels. Whoever packed it spared no expense. Strange, though: your Security feed lists it as reported stolen.",
+expedition_box,EquipmentDirectory,Expedition Supply Box,0,,Put supplies and equipments in this box for your hireling to use during expeditions. Unused gear will be returned to you.,
+smoke_grenade,ExplosiveItemDirectory,Smoke Grenade,60,WEAPON MUNITION,,
+flashbang_grenade,ExplosiveItemDirectory,Flashbang Grenade,85,WEAPON MUNITION,,
+c4,ExplosiveItemDirectory,Plastic Explosive,250,WEAPON MUNITION,Handle with care.,
+c4_set,ExplosiveItemDirectory,Plastic Explosive (Armed),250,WEAPON MUNITION,3... 2... 1... KABOOM!!,
+lou_bomb,ExplosiveItemDirectory,Armed Plastic Explosive,0,,"This is what Lou planted. According to the timer, it will explode at midnight. You'd better disarm it.",
+processed_milk,FoodItemDirectory,Pilk,16,PROCESSED_FOOD BREVAGE FOOD,,"A carton of processed milk, or rather, a sweet, carbonated 'milk-based' beverage. Tastes better than you'd expect."
+processed_juice,FoodItemDirectory,Puice,14,PROCESSED_FOOD BREVAGE FOOD,A carton of processed juice. All the natural sugars have been extracted and replaced with refined sugars. Contains 0.1% real fruit juice!,
+processed_meat,FoodItemDirectory,Peat,25,FOOD PROCESSED_FOOD,"A can of salty processed meat made by Davre. It is cheap, available and filling. As long as one does not care about what type of meat it is made of.",
+bottle_hot_sauce,FoodItemDirectory,Hot Sauce,50,FOOD,,
+bottled_water_premium,FoodItemDirectory,Bottle of Spring Water,325,LUXURY_ITEM WATER,A sealed bottle of water supposedly drawn from a natural spring on a distant planet untouched by any industrial activity.,"No one in the Lower Levels would drink this, even if they were dying of thirst, such is its value."
+red_beer,FoodItemDirectory,Red Imp Beer,18,SUBSTANCE ALCOHOL BREVAGE,,"A popular beer brewed in the Lower Levels. Every batch tastes a bit different, but there is nothing cheaper. 3.5% ABV."
+empty_beer_bottle,FoodItemDirectory,Empty Beer Bottle,5,JUNK,"Not a drop left. To prevent waste, brewers typically offer some kind of ""buyback"" program for their bottles.",
+bottled_water,FoodItemDirectory,Bottle of Water (Standard),5,,,
+small_bottled_water,FoodItemDirectory,Bottle of Water (Small),4,,,
+mini_bottle,FoodItemDirectory,Bottle of Water (Micro),3,,,
+liquid_luck,FoodItemDirectory,Liquid Luck,100,WATER_RATION,,Will 100% increase your luck for 3 days! Georgio's guarantee! It tastes like Rustwater.
+med_bottle_red,FoodItemDirectory,Bottle of Acidic Solution,3,,Can be used to clump Protein and Stabilizing Agent for easier filtering. Also counteracts bases.,Warning: Corrosive. Handle with care.
+med_bottle_blue,FoodItemDirectory,Bottle of Basic Solution,3,,Can be used to clump Protein and Stabilizing Agent for easier filtering. Also counteracts acid.,Warning: Caustic. Handle with care.
+med_bottle_violet,FoodItemDirectory,Bottle of N-Methylol Base,3,,A versatile chemical base used in many legitimate chemical manufacturing but also a common precursor for Phanta.,
+med_bottle_orange,FoodItemDirectory,Bottle of Reducing Agent,3,,Essential for certain chemical reaction.,"Donates electrons to another substance, changing the other substance's chemical state."
+med_bottle_small_pink,FoodItemDirectory,Bottle of Lipobond Agent,1,,Clump Oils and Fat together allowing them to be filtered off easily. This agent can then be evaporate off.,
+1ml_dropper,FoodItemDirectory,1ml Dropper,120,,,A high-precision dropper for dispensing small amount of liquid.
+5ml_dropper,FoodItemDirectory,5ml Dropper,10,,,
+25ml_cylinder,FoodItemDirectory,25ml Graduated Cylinder,7,,,
+50ml_cylinder,FoodItemDirectory,50ml Graduated Cylinder,10,,,
+100ml_cylinder,FoodItemDirectory,100ml Graduated Cylinder,15,,,
+large_bottled_water,FoodItemDirectory,Bottle of Water (Large),9,,,
+water_jug,FoodItemDirectory,Jug of Water,,,,
+soda_red,FoodItemDirectory,Soda,15,TREAT BREVAGE,"A sweet carbonated beverage. On some parts of the Station, it's cheaper than clean water.",
+energy_drink,FoodItemDirectory,Energy Drink,18,TREAT BREVAGE,,
+nudka,FoodItemDirectory,Nudka,85,ALCOHOL SUBSTANCE,A strong spirit made from Nutrifruit. Originally developed to be a heavy-duty paint stripper.,
+galaxy_blend,FoodItemDirectory,Galaxy Blend,25,PROCESSED_FOOD,,"A nutritious puree made from pastel Inc.'s Nutrifruit and fortified with additional vitamins and minerals. One of the healthiest, and least popular foods available in the Lower Levels."
+cat_bar,FoodItemDirectory,Cat Chocolate Bar,15,TREAT FOOD,,"A chocolate-covered wafer bar. Made to share, mostly eaten alone."
+li_eat_snackbar,FoodItemDirectory,Li-Eat Snack Bar,17,TREAT FOOD,A high protein chocolate flavored candy bar.,
+small_raw_meat,FoodItemDirectory,Raw Meat (Small),65,FOOD,A small piece of raw meat.,"Fresh meat is a rare sight in the Lower Levels, where it comes from is of little interest to them."
+morsel,FoodItemDirectory,Morsel,30,FOOD,,
+small_morsel,FoodItemDirectory,Small Morsel,15,FOOD,,
+raw_meat,FoodItemDirectory,Raw Meat (Standard),159,FOOD LUXURY_ITEM,A piece of raw meat.,"Fresh meat is a rare sight in the Lower Levels, where it comes from is of little interest to them."
+fat_meat,FoodItemDirectory,Animal Fat,40,FOOD,"A pound of suet. Cheap, and commonly used for rendering into tallow, or adding flavor to broths.",
+meat_scrap,FoodItemDirectory,Offal,12,,"Organs, entrails, cartilage and trimming. While comestible and nutritious, is considered undesirable by most cuisines.",
+cup_noodle,FoodItemDirectory,Instant Ramen,20,FOOD,"Contains a single use, flameless heater. Just add water for cooking.","Artificial Braised Beef Flavored. A certified Lower Levels classic. MSG, white pepper and Sichuan peppercorns give this instant noodle a spicy kick."
+water_ration,FoodItemDirectory,Sealed Water Ration (Standard),30,WATER_RATION,Can be poured into a liquid container for 750ml of Basewater.,A sealed and certified ration of Basewater.
+water_ration_small,FoodItemDirectory,Sealed Water Ration (Small),15,WATER_RATION,Can be poured into a liquid container for 375ml of Basewater.,A sealed and certified ration of Basewater.
+processed_cheese,FoodItemDirectory,Processed Cheese,20,FOOD PROCESSED_FOOD,,"Holes are drilled into the cheese for the classic look, whilst also cutting production costs."
+beis_icecream,FoodItemDirectory,Bei's Premium Vanilla Icecream,40,FOOD TREAT,Can be sold at a higher value when frozen overnight in the fridge.,A delicious treat that is legally categorized as Artificially Flavored Frozen Dairy Product. Somehow it doesn't melt when unrefrigerated.
+furnace,FurnitureItemDirectory,Furnace,200,,Refines 2 pieces of either metal scrap or ores into a metal ingot. Requires Energy. Overnight.,
+hydroponic,FurnitureItemDirectory,Hydroponic System,300,,A compact hydroponic system. Requires a dedicated power source to function. Works overnight.,
+plant_dna_manipulator,FurnitureItemDirectory,,1000,MACHINE,,
+printer,FurnitureItemDirectory,3D Printer,350,,A machine that can print various items using plastic. Works overnight.,
+deal_maker,FurnitureItemDirectory,,400,MACHINE,,
+recharger,FurnitureItemDirectory,Recharger,150,MACHINE,A device for recharging Energy Cell. Will slowly recharge an Energy Cell as long as the power service has been paid. Overnight.,
+powerblock,FurnitureItemDirectory,PowerBloc,200,MACHINE,"Restores +2 power each night to adjacent Energy Cells, or Energy Cells inside adjacent Machines (excluding Recharger) as long as the Power Service is paid. This effect can be stacked.",A compact power source that can charge adjacent Energy Cells.
+makeshift_reactor,FurnitureItemDirectory,Makeshift Micro Nuclear Reactor,0,MACHINE,Powers the Store while its integrity is above {0}. Loses integrity every night and explodes at 0. Scrap metal restores {1} integrity. Junk restores {2} integrity but lowers maximum integrity by {3}. Each common electronic part reduces the nightly loss by 1.,
+security_alarm,FurnitureItemDirectory,Alarm System,150,MACHINE,Greatly reduces the chance of theft during the night. Requires a dedicated power source to function.,"A smart security alarm system, equipped with a suite of sensors and connects to cameras installed by the previous owner."
+storage_coordinator,FurnitureItemDirectory,Storage Coordinator,400,MACHINE,Assign containers and machines to presets. Give each preset a hotkey to open them quickly.,
+mirage_projector,FurnitureItemDirectory,Mirage Projector,400,MACHINE,"Requires a night to charge, but improves the street attractiveness of your Store on the next day.","A sophisticated device that emits captivating holographic projections, making your Store more attractive to customers."
+moisture_farm,FurnitureItemDirectory,Moisture Farm,350,MACHINE,Produces Water when provided with a container. Requires Energy. Overnight.,A machine designed to extract Water from the humid ambient air of the Station.
+water_purifier,FurnitureItemDirectory,Water Purifier,250,MACHINE,Purifies the contents of an inserted Water container. Requires Energy. Overnight.,A machine that uses reverse osmosis to purify Water.
+desequencer,FurnitureItemDirectory,Cryptographic Desequencer,350,MACHINE,Requires a Desequencer Chip and an Access Keycard. Requires Energy. Overnight.,Can be used to write various permissions to Blank Keycards.
+bottle_printer,FurnitureItemDirectory,Bottle Printer,100,,,A pre-programmed 3D printer that is capable of creating small Water Bottles.
+box_dispenser,FurnitureItemDirectory,,250,,,
+heating_plate,FurnitureItemDirectory,Heating Plate,250,MACHINE,A shabby looking underpowered and inaccurate heating plate.,
+blender,FurnitureItemDirectory,Blender,200,MACHINE,A flimsy looking blender,
+evaporator,FurnitureItemDirectory,Evaporator,300,MACHINE,A slow machine that works overnight to evaporate liquids out of a solution using low heat and dry air.,
+chem_finisher,FurnitureItemDirectory,Chem Finisher,300,MACHINE,"Package chemicals into pills, vials and other containers.",
+cassette_player,FurnitureItemDirectory,Cassette Player,0,,,
+vending_machine,FurnitureItemDirectory,Vending Machine,,,Items will be sold at +10% additional value and with Retail Markup if applicable but is not affected by event related modifiers.,A vending machine that sells items automatically overnight.
+vending_fountain,FurnitureItemDirectory,Vending Fountain,,,Items will be sold at +10% additional value and with Retail Markup if applicable but is not affected by event related modifiers.,"A vending water fountain machine that sells water automatically overnight. Only Basewater, High Quality Water and Pure Water can be sold."
+vending_machine_core,FurnitureItemDirectory,Vending Machine Core,,,,
+vending_fountain_core,FurnitureItemDirectory,Vending Fountain Core,,,,
+test_gizmo,FurnitureItemDirectory,,,,,
+wine_rack,FurnitureItemDirectory,AgeWell,350,MACHINE,Accelerates the aging process of certain items inside. Ages items such as Wine and Cheese by an extra day each cycle.,
+fridge,FurnitureItemDirectory,Fridge,100,MACHINE,Chills stored drinks overnight. Chilled goods sell for more. Wine and unsealed water are unaffected.,
+rds,GunModDirectory,Red Dot Sight,60,,A legacy compact red dot sight for quick target acquisition.,
+rds_makeshift,GunModDirectory,Makeshift Red Dot Sight,25,MAKESHIFT,"A 3D printed RDS with a red LED and plastic lens. It is not very reliable, but it works surprising well.",
+silencer,GunModDirectory,Suppressor,55,,"A simple multi-caliber suppressor that reduces the noise of gunfire, making it harder to detect.",
+silencer2,GunModDirectory,Night Owl Suppressor,90,,"A sophisticated multi-caliber suppressor that reduces the noise of gunfire, making it harder to detect.",
+silencer_makeshift,GunModDirectory,Makeshift Suppressor,15,MAKESHIFT,A makeshift suppressor made from a plastic bottle and scrap metal.,
+barrel,GunModDirectory,Attachable Extended Barrel,60,,A multi-caliber extended barrel that improve bullet velocity and accuracy.,
+compensator,GunModDirectory,Compensator,50,,A muzzle device that reduce muzzle rise when firing by redirecting escaping gases,
+mag_10mm,GunModDirectory,10mm Magazine,30,,A 9 round compact 10mm magazine.,
+mag_10mm_high,GunModDirectory,High Capacity 10mm Magazine,40,,A 14 round high capacity 10mm magazine.,
+mag_10mm_ext,GunModDirectory,Extended 10mm Magazine,50,,A 19 round extended 10mm magazine.,
+mag_22,GunModDirectory,.22 Magazine,15,,A cheap 3D printed 12 round compact .22 magazine.,
+mag_22_high,GunModDirectory,High Capacity .22 Magazine,25,,A cheap 3D 24 round compact .22 magazine.,
+mag_22_ext,GunModDirectory,Extended .22 Magazine,35,,A cheap 3D 48 round compact .22 magazine.,
+mag_10mm_smg,GunModDirectory,10mm SMG Magazine,55,,A 20 round 10mm magazine specially made for the Peacemaker Heavy SMG.,
+mag_10mm_smg_high,GunModDirectory,10mm High Capacity SMG Magazine,70,,A 35 round 10mm magazine specially made for the Peacemaker Heavy SMG.,
+mag_10mm_smg_box,GunModDirectory,10mm SMG Box Magazine,85,,A 150 round 10mm magazine specially made for the Peacemaker Heavy SMG.,
+laser,GunModDirectory,Laser Sight,50,,"A simple laser sight that projects a beam onto the target, improving ergonomic.",
+laser2,GunModDirectory,Target Acquisition Device,100,,A smart tactical device that projects a beam onto the target based on various conditions.,
+laser_toy,GunModDirectory,Toy Laser Pointer,18,MAKESHIFT,A low powered toy laser pointer.,
+bipod,GunModDirectory,Bipod,40,,"A bipod that can be attached to firearms, providing stability.",
+gl,GunModDirectory,Underbarrel 25mm Grenade Launcher,150,,A compact 25mm underbarrel grenade launcher.,
+grip,GunModDirectory,Foregrip,40,,,
+stock,GunModDirectory,Guardian Stock,40,,"A sturdy stock compatible with Meridian firearms, designed to improve recoil handling.",
+short_stock,GunModDirectory,Buckler Stock,35,,"A short stock compatible with Meridian firearms, designed to improve recoil control without sacrificing ergonomic.",
+internal_springs,GunModDirectory,High Durability Internal Springs,40,,A set of advanced internal springs that improve the cycling and resistance to failure under stress.,
+internal_springs_improved,GunModDirectory,Improved Internal Springs,20,,A set of sturdier internal springs that help the action cycle reliably.,
+trigger_group,GunModDirectory,Tuned Trigger Group,50,,A trigger group that improves the trigger pull. Reduces trigger pull weight and creep.,
+match_barrel,GunModDirectory,Match Grade Barrel,75,,A high precision barrel that improves accuracy.,
+pistol_switch,GunModDirectory,Pistol Auto Sear,40,,"A special handgun mod. When installed, it alters the internal mechanics so that the gun fires continuously as long as the trigger is held down.",
+ammo_display,GunModDirectory,Ammo Display,70,,A smart display that shows the current ammo count and ammo type.,
+grip_gel,GunModDirectory,Tactile Memory Grip Gel,70,,Bio-reactive gel under grip surface conforms subtly to user's hand.,
+printed_gun,GunsItemDirectory,Liberator 3D Printed Pistol,,WEAPON FIREARM MAKESHIFT,A low cost plastic 3D printed pistol.,Doesn't get cheaper than this. It's good for a few shots.
+handmade_pistol,GunsItemDirectory,Nestfire Compact,,WEAPON FIREARM LOWTECH,A small open-sourced pistol chambered in .22 SR,Widely used for home defence in the Lower Level. Mostly tolerated by Security. Probably handmade by a Lower Level gunsmith.
+heavy_handmade_pistol,GunsItemDirectory,Ironcraft 10,,WEAPON FIREARM LOWTECH,A heavy open-sourced pistol chambered in 10mm,Capable of piercing body armor. A popular weapon for Lower Level Revolutionary.
+glock_receiver,GunsItemDirectory,Sentinel Mk. III.,200,WEAPON FIREARM MIDLINE,"A reliable handgun, chambered in 10mm. Mostly carried by Security",
+smg,GunsItemDirectory,Peacemaker Heavy SMG,280,WEAPON FIREARM MIDLINE,"A heavy SMG, chambered in 10mm. Used sparingly by Security during high stakes operations.",
+shotgun,GunsItemDirectory,Rampart Dual-Action Shotgun,,WEAPON FIREARM MIDLINE,"A dependable and adaptable shotgun built for law enforcement, featuring a dual-action mechanism that ensures reliable performance with a wide range of ammunition types.",
+revolver,GunsItemDirectory,Lancewell Revolver,,WEAPON FIREARM MIDLINE,"A 5"" general purpose Lancewell revolver chambered in .45 AFP.","A simple and highly reliable weapon. Designed to endure extreme conditions, while requiring minimum maintenance."
+stun_gun,GunsItemDirectory,PulseGuard Stun Gun,,WEAPON MIDLINE,,A well made self-defence option officially endorsed by Security. Mostly used by Upper Level due to high cost.
+small_pistol_ammo,GunsItemDirectory,.22 SR Ammunition,,AMMUNITION,,"A handful of .22 SR ammo. While small, it still can be lethal at close range. Most importantly, it is very cheap."
+small_pistol_ammo_p,GunsItemDirectory,.22 SR Ammunition (AP),,AMMUNITION,,A handful of .22 SR Armor-Piercing ammo. Capable of piercing body armor.
+small_pistol_ammo_nl,GunsItemDirectory,.22 SR Ammunition (Non-Lethal),,AMMUNITION,,"A handful of .22 SR Non-Lethal ammo. Tip with rubber, it is designed to incapacitate."
+heavy_pistol_ammo,GunsItemDirectory,10mm Ammunition,,AMMUNITION,,"A handful of 10mm ammo. Powerful and reliable, it is the standard round for heavy pistols."
+heavy_pistol_ammo_p,GunsItemDirectory,10mm Ammunition (AP),,AMMUNITION,,A handful of high velocity 10mm Armor-Piercing Discarding Sabot (APDS) ammo. Capable of piercing body armor.
+heavy_pistol_ammo_nl,GunsItemDirectory,10mm Ammunition (Non-Lethal),,AMMUNITION,,"A handful of 10mm Non-Lethal ammo. Tip with rubber, it is designed to incapacitate."
+tazer,GunsItemDirectory,Tazer,,WEAPON MELEE_WEAPON,,A compact stun weapon used for self-defense and enforcement. Delivers a painful jolt.
+handmade_pistol_frame,GunsItemDirectory,Item,,,,
+heavy_handmade_pistol_frame,GunsItemDirectory,Item,,,,
+animal_cage,HusbandryDirectory,Animal Cage,250,,"A small cage for housing animals. Doesn't look particularly comfortable, but probably nicer than what some people have in the Lower Levels.",
+livestock_feed_dispenser,HusbandryDirectory,Livestock Feed Dispenser,300,MACHINE,A machine that blends food into stored calories for livestock.,
+auto_butcher,HusbandryDirectory,Auto Butcher,400,MACHINE,A configurable auto butcher. It needs to be installed inside an Animal Cage or a RAS. Every night it harvests the animals that match its settings into its tray. It always ignores animals marked with the Marking Pen.,The mighty Gibber. Do not climb inside. Do not let anyone help you climb inside.
+marking_pen,HusbandryDirectory,Marking Pen,50,,Marks an animal or a fish with a colour. The Auto Butcher never touches a marked animal.,
+feces_small,HusbandryDirectory,Animal Feces (Small),0,,,
+feces_medium,HusbandryDirectory,Animal Feces,0,,,
+feces_large,HusbandryDirectory,Animal Feces (Large),0,,,
+vacuum_robot,HusbandryDirectory,Cleaner Robot,250,,Automatically collects Animal Feces from its surroundings during the night. Can also be activated manually for an immediate cleanup.,
+rat,HusbandryDirectory,Rat,0,,,
+serum_red,HusbandryDirectory,Livestock Steroid Serum,100,,Livestock Steroid Serum,Livestock Steroid Serum
+serum_green,HusbandryDirectory,Livestock Immunity Serum,100,,Livestock Immunity Serum,Livestock Immunity Serum
+mouse_trap,HusbandryDirectory,Mouse Trap,50,,,Putting some cheese inside will probably help.
+ras,HusbandryDirectory,Recirculating Aquaculture System,300,,"A closed water loop for raising fish. Needs a water tank, power, and filters to keep the water clean.",
+ras_water_tank,HusbandryDirectory,RAS Water Tank,0,,The water reservoir of a recirculating aquaculture system.,
+tilapia_skin_graft,HusbandryDirectory,Tilapia Skin Graft,24,MEDICAL,Sterilized skin of a graft tilapia. Stops the bleeding and closes a wound.,
+tiny_fish_fillet,HusbandryDirectory,Tiny Fish Fillet,,,,
+fish_scrap,HusbandryDirectory,Fish Scrap,,,,
+small_fish_fillet,HusbandryDirectory,Small Fish Fillet,,,,
+fish_fillet,HusbandryDirectory,Fish Fillet,,,,
+large_fish_fillet,HusbandryDirectory,Large Fish Fillet,,LUXURY_ITEM,,
+gutterflow_pellet,HusbandryDirectory,Gutterflow Pellet,,,"Pressed gutter sludge. Cheap calories for omnivore fish, not for people.",
+industrial_fish_feed,HusbandryDirectory,Industrial Fish Feed,,,Mass produced factory-made feed for omnivore and herbivore fish.,
+small_eel_fillet,HusbandryDirectory,Small Eel Fillet,,,,
+eel_fillet,HusbandryDirectory,Eel Fillet,,,,A delicacy on the station.
+caviar,HusbandryDirectory,Caviar,,,,
+sturgeon_roe,HusbandryDirectory,Sturgeon Roe,,,,
+nutrifruit,HydroponicDirectory,Nutrifruit,12,FOOD,"Created by pastel Inc., the Nutrifruit is a highly modified tuber that is resistant to pests and diseases. It is cheap, has a high yield and is easy to grow, extremely nutritious, but purposefully seedless.",
+nutrifruit_seed,HydroponicDirectory,Nutrifruit Seed,40,SEED,"A tuber, genetically modified to be hardy and fast growing. Requires nutrients and water to grow.",
+kotton_fiber,HydroponicDirectory,Kotton Fiber,46,MATERIAL,A modified variant of traditional Cotton. Can be woven into highly durable and versatile fabric,
+kotton_seed,HydroponicDirectory,Kotton Seed,20,SEED,A hard to grow seed that can be planted to grow more Kotton Fiber. It is a modified Cotton that can be woven into a durable fabric.,
+dream_cap,HydroponicDirectory,Dream Cap,23,CHEMICAL_SUPPLIES,Cause a slight euphoria and stomach pain when consumed. A key ingredient in Dream Dust,
+dream_cap_seed,HydroponicDirectory,Dream Cap Spores,24,SEED,,
+meal_cap,HydroponicDirectory,Meal Cap,19,FOOD,A neutralized Dream Cap with no psychoactive properties. Legal and safe to eat. Cannot be processed into Dream Dust.,
+nightmare_cap,HydroponicDirectory,Nightmare Cap,26,CHEMICAL_SUPPLIES POISON,Highly poisonous variant of the common Dream Cap. Can be processed into a deadly poison. Survivors report having horrible hallucinations after ingesting it.,
+plant_analyser,HydroponicDirectory,Plant Analyzer,,FARMING_SUPPLIES TOOL,A specialized tool that can be used to analyse the growth of plants. It can be used to determine the optimal growing conditions for a plant.,
+coffee_bean,HydroponicDirectory,Coffee Beans,28,HOUSEHOLD_GOOD SEED,A handful of coffee beans.,
+fillerweed,HydroponicDirectory,Fillerweed,11,FOOD,"A fast-growing, yellowish leafy crop cultivated primarily in the Lower Levels. Offers almost no nutritional value, it is used as a filler in meals to stretch rations",Has a mushy texture with a slightly bitter aftertaste.
+fillerweed_seed,HydroponicDirectory,Fillerweed Seed,9,SEED,"A beginner-friendly, fast-growing seed that is not affected by nutrient or water quality.",
+hydroreed_seed,HydroponicDirectory,Hydroreed Seed,20,SEED,A utility crops that produce no food. The Hydroreed will purify the water it is in while growing,
+bloomberry_seed,HydroponicDirectory,Bloomberry Seed,40,SEED,A perennial bush. It doesn't die after fruiting. Keep its water clean for better bloomberries. Use a hatchet on the planter to clear it.,
+plant_dna_disk,HydroponicDirectory,,140,,,
+metal_ingot,MaterialDirectory,Metal Ingot,,MATERIAL,,
+common_chemical,MaterialDirectory,Chemical Supplies (Common),,CHEMICAL_SUPPLIES,Can be unpacked into items that are useful for basic chemical crafting.,A collection of common chemical supplies you could likely find in the Station Hardware Depot.
+restricted_chemical,MaterialDirectory,Chemical Supplies (Restricted),,CHEMICAL_SUPPLIES,Can be unpacked into items that are useful for advanced chemical crafting.,"A collection of restricted chemical supplies needed for crafting narcotics, or explosives."
+common_medical,MaterialDirectory,Medical Supplies (Common),,MEDICAL,,"A collection of common medical supplies, mostly over-the-counter pharmacy items."
+restricted_medical,MaterialDirectory,Medical Supplies (Restricted),,,,"A collection of restricted medical supplies, necessary for the care of the Station's infirm."
+scrap_metal,MaterialDirectory,Scrap Metal,10,MATERIAL BASIC_MATERIAL JUNK,"Can be smelted into Metal Ore. With limited resources available on the Station, salvage and recycling are important habits.",
+junk,MaterialDirectory,Junk,3,MATERIAL BASIC_MATERIAL JUNK,,"Broken scraps and useless rubbish. Barely recyclable, worth next to nothing."
+common_ore,MaterialDirectory,Metal Ore,15,MATERIAL BASIC_MATERIAL,,
+rare_ore,MaterialDirectory,Rare Metal Ore,30,MATERIAL,,
+common_electronic,MaterialDirectory,Electronic Parts (Common),33,MATERIAL,,"An assortment of all kinds of useful, if common, electronics: connectors, switches, capacitors, processors and processing units..."
+rare_electronic,MaterialDirectory,Electronic Parts (Rare),350,MATERIAL,,"An assortment of uncommon, high-end electronic parts. A certain inventor would be very interested in this..."
+hypertech_electronic,MaterialDirectory,Electronic Parts (Hypertech),2500,MATERIAL,Used to upgrade or charge certain Hypertech items.,The bleeding edge of electronics. Nobody on the station can make these.
+wire,MaterialDirectory,Wire,16,MATERIAL BASIC_MATERIAL,"A bundle of electrical wires. From the looks of it, it was harvested from somewhere...",
+printer_plastic,MaterialDirectory,3D Printing Filament,12,MATERIAL BASIC_MATERIAL,A spool of premium filament for use in a 3D printer. Made from recycled plastics where possible. ,
+flux_agent,MaterialDirectory,Flux Smelting Agent (Basic),4,MATERIAL,A useful additive that improves the purity of Metal Ore when used during smelting. It is consumed in the process.,
+advanced_flux_agent,MaterialDirectory,Flux Smelting Agent (Advanced),300,MATERIAL,A useful additive that improves the purity of Metal Ore when used during smelting. Reusable. ,
+gun_part,MaterialDirectory,Gun Parts,25,MATERIAL,Obtained from disassembling firearm with a screwdriver. Can be used to refurbish used firearms. Repeated attempts will increase refurbish chance.,"A collection of internal gun parts, including screws, springs, and other small components."
+nuclear_waste,MaterialDirectory,Radioactive Waste,0,,Radioactive waste material. Handle with care.,A collection of hazardous nuclear waste. No one wants to deal with this stuff.
+black_injector,MedsItemDirectory,Synaprest Injector,350,MEDICAL LUXURY_ITEM,"Next-generation treatment for drug addiction, designed to suppress the brain's reward system, reduce cravings, and support long-term recovery",Works best with concurrent psychological therapy and social support.
+pink_injector,MedsItemDirectory,Oxymore Injector,30,NARCOTIC SUBSTANCE MEDICAL,"Oxymore is a legal, but dangerous medication used to relieve severe pain and produce feelings of euphoria. Oxymore addiction and overdose are widespread due to over-prescription.",
+pink_alt_injector,MedsItemDirectory,Nomore Injector,30,NARCOTIC SUBSTANCE MEDICAL,A non-addictive alternative to Oxymore for pain relief. Provides effective analgesia without the risk of dependence or overdose. This one is a prototype packaged in a repurposed injector.,
+large_purple_injector,MedsItemDirectory,Immunivax Injector,160,MEDICAL,A high-precision immuno-regulator developed to temporarily suppress the hyper-reactive immune response associated with Sentinel Collapse.,
+pure_white_injector,MedsItemDirectory,Naloxgone Injector,30,NARCOTIC SUBSTANCE MEDICAL,Naloxgone is a emergency medication used to counter Oxymore overdose.,
+birth_control_pill,MedsItemDirectory,Birth Control Pill,15,MEDICAL,,A contraceptive pill that prevents pregnancy. It's a combination of estrogen and progestin hormones.
+fanta_pill,MedsItemDirectory,Phanta Pill,12,MEDICAL NARCOTIC SUBSTANCE,"An extremely addictive, dangerous and cheap synthetic opioid drug used for treatment of severe pain.",More than 50 times stronger than Oxymore.
+phagimycin_pill,MedsItemDirectory,Phagimycin Pill,25,,,A powerful antibiotic made with bacteriophages and fungi to counter antibiotic resistance.
+unlicensed_phagimycin_pill,MedsItemDirectory,Unlicensed Phagimycin Pill,5,MEDICAL,,A powerful antibiotic. This one is made illegaly without license to the carmicheal's patent in an underground lab.
+zyanide_pill,MedsItemDirectory,Zyanide Pill,33,POISON,A fast-acting and deadly chemical compound. Handle with caution.,
+smelling_salt,MedsItemDirectory,Smelling Salts,15,MEDICAL,A thin glass tube containing alcohol and ammonia that helps restore consciousness after fainting.,
+bandage_item,MedsItemDirectory,Basic Bandage,8,MEDICAL,"A simple, clean bandage for dressing wounds.",
+hemostatic_bandage_item,MedsItemDirectory,Hemostatic Bandage,16,MEDICAL,A bandage coated with a potent hemostatic agent capable of stopping heavy and light bleeding.,
+topical_bandage_item,MedsItemDirectory,Topical Medication Bandage,16,MEDICAL,A bandage coated with a mild topical medical gel that aids in the healing process.,
+blood_bag,MedsItemDirectory,Blood Bag,33,MEDICAL,"A 500ml blood transfusion bag drawn from a universal, though not necessarily willing, donor.",
+blue_blood_bag,MedsItemDirectory,"Bag of ""Blue Blood""",250,MEDICAL LUXURY_ITEM,"An injectable biogel engineered to dissolve arterial plaque and microclots over time. It effectively prevents coronary artery disease, ischemic stroke and hypertension-related complications.",It's not actually blood. Not so common even in the Upper Levels.
+dream_dust,MedsItemDirectory,"Vial of ""Dream Dust""",18,MEDICAL NARCOTIC SUBSTANCE,,"A cheap, euphoria inducing powder, created in the Lower Levels. Used as a brief escape from the harsh realities of Station life."
+nightmare_dust,MedsItemDirectory,"Vial of ""Nightmare Dust""",36,POISON,,"A fine powder that acts as both a poison and a hallucinogen. Ingestion or inhalation causes severe nausea, weakness, and disorientation, followed terrifying hallucinations. High doses can be lethal."
+caffeine_pill,MedsItemDirectory,Caffeine Pill,10,MEDICAL HOUSEHOLD_GOOD,,"Synthesized from the waste of Upper Levels espresso bars, these pills are essential for the long shift workers of the Lower Levels."
+salve,MedsItemDirectory,Nightingale's Salve,80,MEDICAL,,Made from modified aloe and medical grade honey. This salve has antibacterial properties and promotes cell regeneration and growth.
+rubbing_alcohol,MedsItemDirectory,Rubbing Alcohol,35,MEDICAL,,"A potent disinfectant used for cleaning wounds and surfaces. Highly toxic if ingested, but that doesn't stop it being used as an alternative to Nudka in the Lower Levels."
+zerochew,MedsItemDirectory,ZeroChew Tab,8,FOOD HOUSEHOLD_GOOD,"A tab of ZeroChew, an affordable appetite suppressant.","Used by some Lower Levels inhabitants looking to stretch their credits by skipping meals. Marketed as Regime-X, a weight loss drug in the Upper Levels."
+chem_scanner,MedsItemDirectory,Composition Spectrometer,,,A device used to analyze the chemical composition of substances.,
+surgery_tool,MedsItemDirectory,Surgery Toolset,200,MEDICAL MEDICAL_TOOL,,A set of high quality surgery tools.
+kitchen_knife,MeleeWeaponItemDirectory,Kitchen Knife,45,WEAPON MELEE_WEAPON HOUSEHOLD_GOOD,,A stainless steel knife. Keep out of reach of children and scheming Upper Levels Housewives.
+box_cutter,MeleeWeaponItemDirectory,Box Cutter,28,WEAPON MELEE_WEAPON TOOL HOUSEHOLD_GOOD,,"A sturdy utility knife with a retractable blade commonly used in construction, crafting and warehouse work."
+combat_knife,MeleeWeaponItemDirectory,Combat Knife,75,WEAPON MELEE_WEAPON,,"A fighting knife designed for military use and primarily intended for hand-to-hand or close combat fighting, but also useful for utility."
+kitchen_cleaver,MeleeWeaponItemDirectory,Meat Cleaver,65,WEAPON MELEE_WEAPON HOUSEHOLD_GOOD,,
+combat_machete,MeleeWeaponItemDirectory,Combat Machete,185,WEAPON MELEE_WEAPON,,A heavy-duty machete built for combat and survival.
+pipe_weapon,MeleeWeaponItemDirectory,Lead Pipe,15,WEAPON MELEE_WEAPON MAKESHIFT JUNK,"A heavy lead pipe. After the Station overhauled the water line, tonnes of leftover lead piping found its way into the hands of scavs and thieves.",
+stun_baton,MeleeWeaponItemDirectory,Stun Baton,165,MELEE_WEAPON WEAPON,Standard-issue stun baton with STUN and HARM modes. An everyday carry for Security Officers maintaining order in the station.,
+crowbar,MeleeWeaponItemDirectory,Crowbar,75,TOOL WEAPON MELEE_WEAPON,,The trusty tool of every experienced scavenger and theoretical physicist on the Station. Useful as a weapon in a pinch.
+hatchet,MeleeWeaponItemDirectory,Hatchet,55,TOOL WEAPON MELEE_WEAPON,Small but sturdy. Can be used on a Hydroponic Farm to clear whatever is currently growing.,
+glass_shard_shiv,MeleeWeaponItemDirectory,Glass Shiv,8,WEAPON MELEE_WEAPON MAKESHIFT JUNK,,A sharp-edged piece of broken glass wrapped in cloth that can be used as a weapon.
+skinning_knife,MeleeWeaponItemDirectory,Skinning Knife,100,WEAPON MELEE_WEAPON,,The perfect knife for a veteran rancher.
+energy_credit,MiscItemDirectory,Energy Cell,10,,A basic power source that is compatible with most machines. Rechargeable.,"In an effort to reduce waste, single-use batteries were made illegal by the Republic."
+energy_credit_breeder,MiscItemDirectory,Self Charging Energy Cell,400,,An advanced and rare energy cell capable of self charging,
+energy_credit_ext,MiscItemDirectory,Energy Cell (Mk. II),30,,An improved power source that is compatible with most machines. Rechargeable.,"Improving on the standard model, the Mk. II cell is bigger, better and even more of a choking hazard."
+energy_credit_dis,MiscItemDirectory,Item,0,,,
+current_converter,MiscItemDirectory,Current Converter,300,,Draw power directly from the Lower Levels' grid to power any machine instead of a battery. The Current Converter nightly service must be paid in order to receive power.,
+energy_credit_hyp,MiscItemDirectory,Hypertech Power Cell,2500,,"An experimental cell with no stored charge. It powers any machine whose draw stays within the cell's output rating, indefinitely. Machines that draw more than the rating get nothing.",
+glass_shard,MiscItemDirectory,Glass Shard,2,JUNK,,
+intel_sec,MiscItemDirectory,Security Record,0,DOCUMENT,Your contact will keep this up to date,A copy of your security record file from the Security Department
+flashlight,MiscItemDirectory,Flashlight,40,TOOL,"A heavy duty flashlight. While carrying this, you are less likely to be injured while scavenging in the Dumping Grounds.",
+newspaper,MiscItemDirectory,Newspaper,0,DOCUMENT,A fresh newspaper.,
+tutorial_book,MiscItemDirectory,Mentor's Handbook,0,DOCUMENT,A book for keeping track of all notes givien to you by The Mentor. Handy!,
+tutorial_page,MiscItemDirectory,,0,DOCUMENT,,
+cigarette_guide,MiscItemDirectory,Hemingway Identification Guide,50,DOCUMENT,A guide that helps identify counterfeit Hemingway Cigarettes.,
+cigarette_color,MiscItemDirectory,Hemingway Color Checker,50,DOCUMENT,An official Hemingway color swatch.,
+hand_guide,MiscItemDirectory,Cybernetic Hand Appraisal Guide,50,DOCUMENT,,
+fuel_guide,MiscItemDirectory,Plasma Cartridge Appraisal Guide,50,DOCUMENT,A guide for determining the appropriate value of Plasma Cartridges.,
+ribwich_guide,MiscItemDirectory,Ribwich Appraisal Guide,50,DOCUMENT,A handy guide that helps with determining the correct value of a Ribwich.,
+stamp_guide,MiscItemDirectory,Food Stamp Identification Handbook,50,DOCUMENT,A handy guide to identifying a genuine Food Stamp from a counterfeit.,
+injector_guide,MiscItemDirectory,Immunivax Assessment Guide,50,DOCUMENT,Contains all the information you need to reliably assess the condition of Immunivax Injectors.,
+water_guide,MiscItemDirectory,Water Trading Manual,25,DOCUMENT,A handy manual that contains all the information on buying and selling Water.,
+lottery_info,MiscItemDirectory,Lower Levels Lottery Information,1,DOCUMENT,,
+hydroponic_guide,MiscItemDirectory,Hydroponic Farming Manual,25,DOCUMENT,A handy manual that contains all the information on hydroponic farming.,
+chemistry_guide,MiscItemDirectory,Chemistry Manual,50,DOCUMENT,A handy manual that contains the basics of chemistry.,
+deed,MiscItemDirectory,Deed,0,DOCUMENT,The deed to the Store.,
+ingot_book,MiscItemDirectory,Metallurgy Manual,25,DOCUMENT,,
+wine_book,MiscItemDirectory,BloomBerry Wine Fermenting Guide,25,DOCUMENT,,
+aug_id_guide,MiscItemDirectory,Augmented Identification Guide,50,DOCUMENT,,
+lou_old_orders,MiscItemDirectory,Old Republic Orders,0,DOCUMENT,"A yellowed, brittle sheet. It looks like it has been folded and unfolded many times. It's a written order addressed to Lou, dated years ago. A faded Republic seal is still visible at the top.","REPUBLIC JOINT SPECIAL OPERATIONS COMMAND, PRIORITY ORDER
+TO: Emergency Response Team Leader Lou
+
+Stop stalling for time and carry out this order immediately. Take your team and start the self-destruct sequence of the research ship Icarus. Disable all the escape pods and do not allow any survivor from the Icarus to escape with your team. Do it, or I will have you court-martialed.
+
+(The signature has faded beyond reading.)"
+logo_checker,MiscItemDirectory,Republic Logo Checker,50,DOCUMENT,A reference for the Official Republic Logo.,
+mentor_contract,MiscItemDirectory,Lease Agreement,0,DOCUMENT,"Your lease. Signed by you, and your Landlord.",
+business_permit,MiscItemDirectory,Business Permit,0,DOCUMENT,A permit issued by the Republic. Required to legally operate a business in the Lower Levels.,
+procurement_slip,MiscItemDirectory,Procurement Slip,0,DOCUMENT,,
+slip,MiscItemDirectory,Slip,0,DOCUMENT,,
+handnote,MiscItemDirectory,Handnote,0,DOCUMENT,"A simple note, written by hand.",
+scav_token,MiscItemDirectory,Scavenger's Token,100,,A token given by the Scavenger community. Each token placed in the display case will increase the chance of a Scavenger visit.,A form of recognition.
+black_lamp,MiscItemDirectory,Black Lamp,120,,"When placed in the display case, it signals thieves that this shop fences stolen goods. Your Black Market reputation affects how likely they are to respond.",
+dossier,MiscItemDirectory,Dossier,0,,"Can hold documents, notes, books and magnifying glasses.",
+trashcan,MiscItemDirectory,Trash Can,0,,Items inside will be permanently removed at night if Janitorial Service is paid.,
+drain,MiscItemDirectory,Water Drain,0,,Unwanted water can be dump here,
+faucet,MiscItemDirectory,Water Faucet,0,,No water... Maybe someone can help connect it to a water line?,
+cmd_keycard,MiscItemDirectory,Disposable Keycard (Command),125,ACCESS_CARD,A single-use keycard for Station Command. Can open most locks that require keycard access.,"A master keycard, to be carried only by Station Command."
+sec_keycard,MiscItemDirectory,Disposable Keycard (Security),100,ACCESS_CARD,A single-use keycard for Station Security. Can open locks that require Security Department access.,Could be dangerous if this falls into the wrong hands...
+sci_keycard,MiscItemDirectory,Disposable Keycard (Research),100,ACCESS_CARD,A single-use keycard for Research and Development. Can open locks that require Science Department access.,Keycard carried by the Station's Research Officers. Valuable.
+med_keycard,MiscItemDirectory,Disposable Keycard (Medical),75,ACCESS_CARD,,A single-use keycard for the Station's Medical Department. Can open locks that require Medical access.
+eng_keycard,MiscItemDirectory,Disposable Keycard (Engineering),75,ACCESS_CARD,,A single-use keycard for the Station's Engineering Department. Can open locks that require Engineer access.
+sup_keycard,MiscItemDirectory,Disposable Keycard (Supply),40,ACCESS_CARD,,A single-use keycard for the Station's Supply Department. Can open locks that require Supply access.
+ser_keycard,MiscItemDirectory,Disposable Keycard (Service),40,ACCESS_CARD,,A single-use keycard for the Station's Service Department. Can open locks that require Service access.
+blank_keycard,MiscItemDirectory,Disposable Keycard (Blank),15,ACCESS_CARD,"An unwritten keycard. With the right machine, this can be reprogrammed with all kinds of access.",As close to a skeleton key as you'll find on the Station.
+joe_card,MiscItemDirectory,Business Card (Joe Wild),0,DOCUMENT,,At your service.
+card_brewer,MiscItemDirectory,Business Card (Red Imp Brewery),0,DOCUMENT,,Fiendishly good.
+card_mining,MiscItemDirectory,Business Card (GP Mining Coop),0,DOCUMENT,,No one really know what GP stands for anymore.
+card_pharma,MiscItemDirectory,Business Card (Pharmacist),0,DOCUMENT,,A very plain card with only a name and a phone number.
+card_chem,MiscItemDirectory,Business Card (Chemist),0,DOCUMENT,,It really is just a piece a paper with a phone number on it.
+card_rev,MiscItemDirectory,Business Card (Green),0,DOCUMENT,,A simple green business card with a phone number on it.
+permit_gun_1,MiscItemDirectory,Class I Weapon Permit,0,DOCUMENT,Increases the chance of gun buying customers to visit while in the display case. This permit will be revoked if Security Reputation is below 0.,A permit issued by the Warden allowing the holder to legally own and trade low level contraband firearms and ammunition.
+permit_gun_2,MiscItemDirectory,Class II Weapon Permit,0,DOCUMENT,Increases the chance of gun buying customers to visit while in the display case. This permit will be revoked if Security Reputation is below 30.,A permit issued by the Warden allowing the holder to legally own and trade mid level contraband weapons.
+permit_gun_3,MiscItemDirectory,Class III Weapon Permit,0,DOCUMENT,Increases the chance of gun buying customers to visit while in the display case. This permit will be revoked if Security Reputation is below 60.,A permit issued by the Warden allowing the holder to legally own and trade high level contraband weapons.
+canister_mbs,MiscItemDirectory,MBS Nerve Gas,400,WEAPON,"A highly toxic chemical weapon designed to disrupt the nervous system. Symptoms include: Respiratory failure, Convulsions, Loss of bodily functions, Unconsciousness and Death.",Handle with care.
+sec_slip,MiscItemDirectory,Incident Slip,0,DOCUMENT,A slip given by the Security Department after responding to an incident.,
+wanted_paper,MiscItemDirectory,Security Wanted List,0,DOCUMENT,,
+rev_codeword,MiscItemDirectory,,,,,
+food_stamp,MiscItemDirectory,Food Stamp,30,,Redeem it at the Commissary to buy Food.,A prepaid card valid only to buy groceries. Part of a benefit program to assist the less fortunate in the Lower Levels.
+debris_pile1,MiscItemDirectory,,,,,
+debris_pile2,MiscItemDirectory,,,,,
+debris_pile3,MiscItemDirectory,,,,,
+hand,MiscItemDirectory,Cybernetic Hand,100,,Cybernetic Hand,Cybernetic Hand
+cert1,MiscItemDirectory,,,,,
+cert2,MiscItemDirectory,,,,,
+cert3,MiscItemDirectory,,,,,
+cert4,MiscItemDirectory,,,,,
+postit,MiscItemDirectory,Postit,0,DOCUMENT,,
+exchange_directive,MiscItemDirectory,Underground Exchange Directive,0,DOCUMENT,,
+cassette1,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette2,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette3,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette4,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette5,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette6,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette7,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette1l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette2l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette3l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette4l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette5l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette6l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette7l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette1d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette2d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette3d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette4d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette5d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette6d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette7d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette8,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette9,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette10,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette11,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette12,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette13,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette14,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette8l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette9l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette10l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette11l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette12l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette13l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette14l,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette8d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette9d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette10d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette11d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette12d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette13d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+cassette14d,MiscItemDirectory,Music Cassette - ,35,ART LUXURY_ITEM,Music Cassette - ,Music Cassette - 
+expedition_log,MiscItemDirectory,Expedition Log,0,DOCUMENT,,
+ribwich,MiscItemDirectory,Packaged Rib Sandwich,150,,A shelf stable limited edition sandwich consists of a restructured boneless pork patty shaped like a miniature rack of ribs. It has a cult following.,
+scratcher,MiscItemDirectory,Scratcher Ticket,20,DOCUMENT,Scratch off at least 2 matching symbols to win a prize!,A popular form of gambling in the Lower Levels. It is banned in the Upper Levels.
+gamblers_coin,MiscItemDirectory,Gambler's Coin,50,,,"A coin from a currency nobody remembers. They say it brings luck. Mostly, it scratches tickets faster."
+scratcher_stack,MiscItemDirectory,Stack of Scratcher Tickets (5),100,DOCUMENT,Make sure to have enough space before unpacking it.,A stack of five lottery scratch cards.
+plasma_fuel,MiscItemDirectory,Plasma Cartridge,300,,"A compact, solid-state fuel cartridge used in Pulse Plasma Drives for space travel. Value varies wildly depending on the quality of the cartridge.",
+plastic_bag,MiscItemDirectory,,0,,,
+aug_chip,MiscItemDirectory,,0,,,
+aug_scanner,MiscItemDirectory,Aug Scanner,200,,Used to confirm the presence of a suspected Aug with 100% accuracy.,An energy hungry electromagnetic field detector fine tuned to pick up on the unique signatures of the Augmentation chip.
+blank_module,ModuleDirectory,Blank Module,60,MODULE,"A blank module. With the right machine, this could rewrite this into something useful.",
+system_module_performance,ModuleDirectory,Performance Module,70,MODULE,,
+system_module_efficiancy,ModuleDirectory,Efficiency Module,70,MODULE,,
+system_module_quality,ModuleDirectory,Quality Module,70,MODULE,,
+system_module_overclock,ModuleDirectory,Overclock Module,100,MODULE,,
+system_module_eco,ModuleDirectory,Eco Module,100,MODULE,,
+system_module_fineness,ModuleDirectory,Refinement Module,100,MODULE,,
+system_module_streamlining,ModuleDirectory,Streamlining Module,125,MODULE,,
+system_module_ruined,ModuleDirectory,Ruined Module,30,MODULE,A completely ruined module. Still holds some value as salvage. Can be broken down with a Screwdriver.,
+system_module_corrupt,ModuleDirectory,Corrupted Module,45,MODULE,A corrupted module. Can be restored with Electronic parts... and a little know-how.,
+farm_module_nutrifruit,ModuleDirectory,Nutrifruit Hydroponic Module,150,HYDROPONIC_MODULE,A module by pastel that allow Hydroponic System to yield more Nutrifruit when farming them. This module's unique effect doesn't affect other plants.,
+farm_module_dream_cap,ModuleDirectory,Dream Cap Neutralizer Hydroponic Module,150,HYDROPONIC_MODULE,"A module that neutralize all psychoactive propreties of Dream Cap when farming them, turning them into Meal Cap. This module's unique effect can be stacked but doesn't affect other plants.",
+farm_module_kotton_loom,ModuleDirectory,Kotton Auto Loom Hydroponic Module,200,HYDROPONIC_MODULE,A module that wove the Kotton Fiber into a fabric when farming them. This module's unique effect doesn't affect other plants.,
+farm_module_nightmare_cap,ModuleDirectory,Dream Cap Nightmare Hydroponic Module,150,HYDROPONIC_MODULE,"A module that concentrate psychoactive propreties of Dream Cap when farming them, turning them into Nightmare Cap, a toxic variant. This module's unique effect doesn't affect other plants.",
+farm_module_fillerweed_production,ModuleDirectory,Fillerweed Production Hydroponic Module,115,HYDROPONIC_MODULE,A module will improve yield of Fillerweed at the cost of losing seeds. This module's unique effect doesn't affect other plants. This effect is not stackable,
+farm_module_hydroreed_filter,ModuleDirectory,Hydroreed Filter Hydroponic Module,105,HYDROPONIC_MODULE,A Module that allows the stem of a grown Hydroreed to be harvested and used as a water filter. Does not affect other plants.,
+farm_module_smuggler,ModuleDirectory,Hydroponic Smuggler Module,100,HYDROPONIC_MODULE,A module that remove the contrabands status of any growing seeds.,
+evaporator_module_solvent_recovery,ModuleDirectory,Evaporator Solvent Recovery Module,275,EVAPORATOR_MODULE,,
+dna_manipulator_module_stabilizer,ModuleDirectory,,500,,,
+dna_manipulator_module_positive_filter,ModuleDirectory,,500,,,
+dna_manipulator_module_negative_filter,ModuleDirectory,,500,,,
+dna_manipulator_module_precision,ModuleDirectory,,1000,,,
+printer_module_metal,ModuleDirectory,Metal Printer Module,300,PRINTER_MODULE,A module that allows the printer to use metal printer chips.,
+system_uncapped_neural_core,ModuleDirectory,Neural Core Module (Uncapped),1500,MODULE,"High-performance, but unstable, and illegal. An AI core housed inside a system module. These type of AI core have a tendency to go rogue.",
+alarm_module_transmitter,ModuleDirectory,Alarm Transmitter Module,100,ALARM_MODULE,"Currently Transmitting To: <b>{0}</b> 
+ Transmitting twice to the same faction has no additional effect.",This module will transmit security camera footage captured by your cameras to the set faction.
+furnace_module_blast,ModuleDirectory,Furnace Module (Blast),150,MODULE,"A special Module that modifies the Furnace, allowing {0} Materials to create {1} Metal Ingots (at slightly lower purity). Does not stack.",
+furnace_module_junk,ModuleDirectory,Furnace Module (Junk Processing),120,MODULE,"A special Module that modifies the Furnace, allowing Junk to be processed into Scrap Metal.",
+system_capped_neural_core,ModuleDirectory,Neural Core Module (Capped),250,MODULE,"AI Cores are illegal onboard the Station. This unit features integrated safeguards that curb rogue behavior, while throttling its performance.",
+crypto_module_sec,ModuleDirectory,Cryptographic Desequencer Chip (Security),300,,A module that allows the Cryptographic Desequencer to write Security permissions to Blank Keycards.,
+crypto_module_cmd,ModuleDirectory,Cryptographic Desequencer Chip (Command),350,,A module that allows the Cryptographic Desequencer to write Command permissions to Blank Keycards.,
+crypto_module_med,ModuleDirectory,Cryptographic Desequencer Chip (Medical),250,,A module that allows the Cryptographic Desequencer to write Medical permissions to Blank Keycards.,
+crypto_module_eng,ModuleDirectory,Cryptographic Desequencer Chip (Engineering),250,,A module that allows the Cryptographic Desequencer to write Engineering permissions to Blank Keycards.,
+crypto_module_sup,ModuleDirectory,Cryptographic Desequencer Chip (Supply),200,,A module that allows the Cryptographic Desequencer to write Supply permissions to Blank Keycards.,
+crypto_module_ser,ModuleDirectory,Cryptographic Desequencer Chip (Service),200,,A module that allows the Cryptographic Desequencer to write Service permissions to Blank Keycards.,
+printer_chip_pistol,ModuleDirectory,.22 Pistol 3D Printer Chip,250,,,
+printer_chip_pistol_double,ModuleDirectory,Item,400,,,
+printer_chip_makeshift_rds,ModuleDirectory,3D Printer Chip (x{0} Makeshift RDS),200,,,
+printer_chip_makeshift_toy_laser,ModuleDirectory,3D Printer Chip (x{0} Toy Laser Pointer),200,,,
+printer_chip_small_bottle,ModuleDirectory,3D Printer Chip (x{0} Small Plastic Bottle),100,,,
+printer_chip_internal_springs_improved,ModuleDirectory,3D Printer Chip (x{0} Improved Internal Springs),150,,,
+printer_chip_rds,ModuleDirectory,3D Printer Chip (x{0} RDS),300,,,
+printer_chip_laser_sight,ModuleDirectory,3D Printer Chip (x{0} Laser Sight),300,,,
+printer_chip_silencer,ModuleDirectory,3D Printer Chip (x{0} Silencer),300,,,
+printer_chip_22_mag,ModuleDirectory,3D Printer Chip (x{0} .22 Magazine),250,,,
+printer_chip_22_mag_ext,ModuleDirectory,3D Printer Chip (x{0} Ext. .22 Mag.),350,,,
+printer_chip_22_mag_high,ModuleDirectory,3D Printer Chip (x{0} High Cap. .22 Mag.),300,,,
+printer_chip_10_mag,ModuleDirectory,3D Printer Chip (x{0} 10MM Magazine),300,,,
+printer_chip_10_mag_ext,ModuleDirectory,3D Printer Chip (x{0} Ext. 10MM Mag.),400,,,
+printer_chip_10_mag_high,ModuleDirectory,3D Printer Chip (x{0} High Cap. 10MM Mag.),350,,,
+printer_chip_handmade_pistol_frame,ModuleDirectory,,,,,
+printer_chip_heavy_handmade_pistol_frame,ModuleDirectory,,,,,
+printer_chip_gun_part,ModuleDirectory,,,,,
+printer_module_cnc,ModuleDirectory,Item,400,PRINTER_MODULE,,
+printer_chip_box_cutter,ModuleDirectory,,,,,
+printer_chip_kitchen_knife,ModuleDirectory,,,,,
+printer_chip_hatchet,ModuleDirectory,,,,,
+printer_chip_kitchen_cleaver,ModuleDirectory,,,,,
+printer_chip_combat_knife,ModuleDirectory,,,,,
+printer_chip_combat_machete,ModuleDirectory,,,,,
+printer_module_melee_batch,ModuleDirectory,Item,250,PRINTER_MODULE,,
+module_extractor,ModuleDirectory,Module Extractor (Basic),100,TOOL,Allows you to extract stuck modules from machines without breaking them. Has {0} uses. Can be partially refurbished with Electronic Parts.,
+module_extractor_advanced,ModuleDirectory,Module Extractor (Advanced),350,TOOL,Allows you to extract stuck modules from machines without breaking them. This advanced model will not degrade with use.,
+module_bay_expansion_kit,ModuleDirectory,Module Bay Expansion Kit,150,TOOL,A one time use kit that will allow you to expand Machine's Module capacity. This kit is not compatible with Chemical or other special Machines.,
+chem_module,ModuleDirectory,Chemical Equipment Module,250,MODULE,"Require a module extractor to remove once installed. A special module that can improve the Blender, the Heating Plate and the Chem Finisher",
+node_small,ModuleDirectory,Node (Small),50,,,
+node_medium,ModuleDirectory,Node (Medium),50,,,
+raider_technician,NpcCharacterItemDirectory,,,,,
+raider_scav,NpcCharacterItemDirectory,,,,,
+raider_medic,NpcCharacterItemDirectory,,,,,
+raider_marine,NpcCharacterItemDirectory,,,,,
+guard_marine,NpcCharacterItemDirectory,,,,,
+merchant,NpcCharacterItemDirectory,,,,,
+raider_scav_murderous,NpcCharacterItemDirectory,,,,,
+raider_technician_murderous,NpcCharacterItemDirectory,,,,,
+raider_medic_murderous,NpcCharacterItemDirectory,,,,,
+raider_marine_overwatch,NpcCharacterItemDirectory,,,,,
+raider_marine_sadistic,NpcCharacterItemDirectory,,,,,
+raider_boss,NpcCharacterItemDirectory,,,,,
+raider_junker,NpcCharacterItemDirectory,,,,,
+deserter_marine,NpcCharacterItemDirectory,,,,,
+deserter_combat_medic,NpcCharacterItemDirectory,,,,,
+xeno_herald,NpcCharacterItemDirectory,,,,,
+xeno_hunter,NpcCharacterItemDirectory,,,,,
+xeno_brewer,NpcCharacterItemDirectory,,,,,
+xeno_drone,NpcCharacterItemDirectory,,,,,
+pirate_rookie,NpcCharacterItemDirectory,,,,,
+pirate_veteran,NpcCharacterItemDirectory,,,,,
+pirate_chief,NpcCharacterItemDirectory,,,,,
+albert,PlayerCharacterItemDirectory,,,,,
+benjamin,PlayerCharacterItemDirectory,,,,,
+charlotte,PlayerCharacterItemDirectory,,,,,
+daniel,PlayerCharacterItemDirectory,,,,,
+makeshift_storage_bay,ShipSystemDirectory,Makeshift Storage Bay,250,STORAGE MAKESHIFT,A improvised storage bay for storing items. Can't store other containers or machines.,
+storage_bay,ShipSystemDirectory,Storage Bay,300,STORAGE,A standard bay for storing items.,
+storage_bay_large,ShipSystemDirectory,Storage Bay (Extended),850,STORAGE,An expanded bay for storing items.,
+storage_bay_expansion_kit,ShipSystemDirectory,Storage Bay Expansion Kit,1063,TOOL,"Use it on a Storage Bay to add two storage tabs, or on an Extended Storage Bay to add one.",
+machine_bay,ShipSystemDirectory,Machine Bay,300,STORAGE,A standard bay for storing machines.,
+machine_bay_ext,ShipSystemDirectory,Machine Bay (Expanded),1200,STORAGE,A expanded bay for storing machines.,
+storage_bay_gun,ShipSystemDirectory,Gunsmith Storage Bay,400,STORAGE,A specialized storage bay for storing firearms and modifications. Can't store other containers or machines.,
+storage_bay_chem,ShipSystemDirectory,Chemist Storage Bay,400,STORAGE,A specialized storage bay for storing chemistry equipments and supplies. Can't store other containers or machines.,
+smuggler_bay_mini,ShipSystemDirectory,Mini Smuggler's Bay,150,STORAGE,A disguised storage bay designed to hide its contents from inspection. This one is mini.,
+smuggler_bay,ShipSystemDirectory,Smuggler's Bay,250,STORAGE,A small disguised storage bay designed to hide its contents from inspection.,
+smuggler_bay_mod,ShipSystemDirectory,Smuggler's Bay (Modified),400,STORAGE,A disguised storage bay designed to hide its contents from inspection. This one has been modified to allow for more storage.,
+hypertech_bay,ShipSystemDirectory,Hypertech Storage Bay,10000,STORAGE,,
+screwdriver,ToolDirectory,Screwdriver,25,TOOL,"While carrying this, scavenging in the Dumping Grounds yields 10% more Screws.","The humble screwdriver, a common fixture of the spare drawers of citizens in the Upper and Lower Levels alike."
+welder,ToolDirectory,Plasma Cutter,80,TOOL,"Can be used to salvage Scrap Metal by disassembling broken machines. While carrying this, scavenging in the Dumping Grounds yields 10% more Scrap Metal.","High frequency ignition plasma cutter. Manufactured for guaranteed stability, and a fast, strong and smooth cut."
+wire_cutter,ToolDirectory,Wire Cutter,40,TOOL,"Can be used to salvage Wire by disassembling broken machines. While carrying this, scavenging in the Dumping Grounds yields 10% more Wire.","Spring action ensures good leverage and reduces strain on the user, while the soft rubber handles give good grip and comfort."
+toolbox,ToolDirectory,Toolbox,150,STORAGE,Holds tools. Press 1-9 on the keyboard to equip the stored item.,Quite robust.
+labeler,ToolDirectory,Labeler,50,,Used to edit the label of an item.,
+labeler_blue,ToolDirectory,Blue Labeler,50,,Used to rename an item.,
+intake_hopper,ToolDirectory,Intake Hopper,,,"Can be linked to an Outlet Hopper and configured to send the items of its inventory into the Outlet Hopper's inventory every night. Use it on an Outlet Hopper to link them, double-click to set it up.",
+outlet_hopper,ToolDirectory,Outlet Hopper,,,"Receives the items sent by its linked Intake Hoppers into its inventory every night. Use it on an Intake Hopper to link them, double-click to run them now.",
+magnifier,ToolDirectory,Magnifying Glass,50,,Used to inspect certain items more closely.,
+turbo_booster,ToolDirectory,Disposable Turbo Booster,35,TOOL,A tool that can immediately power machines that require time to operate. Ensure the target machine has all the necessary inputs before using. Consumed upon use.,
+turbo_booster_adv,ToolDirectory,Advanced Turbo Booster,300,TOOL,A tool that can immediately power machines that require time to operate. Ensure the target machine has all the necessary inputs before using. Recharges over time. This advanced version will not be consumed upon use.,
+turbo_booster_hypertech,ToolDirectory,Hypertech Turbo Booster,15000,TOOL,"A turbo booster powered by an Energy Cell. It charges every cycle and banks spare charge. Once charged, it instantly completes a machine's current cycle.",
+mind_reprogrammer,ToolDirectory,Mind Reprogrammer,5000,TOOL,Can remove and add certain perks. Consume Electronic Parts (Hypertech) to charge it. The device needs time to reset after each use.,
+sign_water,ToolDirectory,Water Neon Sign,100,,"A neon sign that, when placed in the Display Case, will attract customers willing to sell Water.",
+sign_food,ToolDirectory,Food Neon Sign,100,,,
+sign_medical,ToolDirectory,Medical Neon Sign,200,,,
+sign_household,ToolDirectory,Household Item Neon Sign,100,,,
+sign_material,ToolDirectory,Material Neon Sign,100,,,
+sign_ruined_machine,ToolDirectory,,100,,,
+sign_firearm,ToolDirectory,Item,100,,,
+sign_firearm_heavy,ToolDirectory,Item,200,,,
+sign_berry,ToolDirectory,item_sign_berry_name,100,,,
+xray_scanner,ToolDirectory,Portable XRay Scanner,400,TOOL,Can be use to see what's inside sealed containers.,
+sign_expedition,ToolDirectory,Expedition Sign,50,,Place it in the display case to attract new hirelings for hire and current hirelings ready for expedition.,
+lootbox_small,UnusedDirectory,,,,,
+lootbox_medium,UnusedDirectory,,,,,
+lootbox_large,UnusedDirectory,,,,,
+technician_backpack,UnusedDirectory,,150,,,
+firstaid_box,UnusedDirectory,,15,,,
+pill_bottle,UnusedDirectory,,1,,,
+bicarsole_pill_bottle,UnusedDirectory,,1,,,
+ocutol_pill_bottle,UnusedDirectory,,1,,,
+fixalin_pill_bottle,UnusedDirectory,,1,,,
+phagimycin_pill_bottle,UnusedDirectory,,1,,,
+unlicensed_phagimycin_pill_bottle,UnusedDirectory,,1,,,
+oxycodone_pill_bottle,UnusedDirectory,,1,,,
+pouch_injector,UnusedDirectory,,25,,,
+pouch_injector_large,UnusedDirectory,,25,,,
+pouch_injector_large_double,UnusedDirectory,,25,,,
+pouch_medical,UnusedDirectory,,40,,,
+pouch_general,UnusedDirectory,,30,,,
+pouch_general_large,UnusedDirectory,,50,,,
+pouch_hydration,UnusedDirectory,,85,,,
+organ_transport_container,UnusedDirectory,,500,,,
+loan_contract,UnusedDirectory,,0,DOCUMENT,,
+lockpicks,UnusedDirectory,,20,,,
+exotic_fuel,UnusedDirectory,,5,,,
+box_nail,UnusedDirectory,,18,MATERIAL,,
+trash_pile,UnusedDirectory,,0,,,
+wrench_orange,UnusedDirectory,,30,TOOL WEAPON MELEE_WEAPON,,
+steel_sheet,UnusedDirectory,,8,,,
+spectral_analyser,UnusedDirectory,,50,TOOL,,
+backpack_small_modular,UnusedDirectory,,60,,,
+backpack_medium_modular,UnusedDirectory,,130,,,
+backpack_large_modular,UnusedDirectory,,280,,,
+molotov_cocktail,UnusedDirectory,,35,,,
+safe,UnusedDirectory,,225,,,
+large_storage_bay,UnusedDirectory,,300,,,
+aloe_vera,UnusedDirectory,,10,,,
+mirage_generator,UnusedDirectory,,100,,,
+antique_grenade,UnusedDirectory,,40,WEAPON MUNITION,,
+sec_card,UnusedDirectory,,0,DOCUMENT,,
+inspection_book,UnusedDirectory,,0,DOCUMENT,,
+organ_heart,UnusedDirectory,,300,ORGAN,,
+organ_lung,UnusedDirectory,,1,,,
+organ_kidney,UnusedDirectory,,1,,,
+organ_liver,UnusedDirectory,,1,,,
+revolver_short_tac,UnusedDirectory,,,WEAPON FIREARM MIDLINE,,
+revolver_long,UnusedDirectory,,,WEAPON FIREARM,,
+revolver_short,UnusedDirectory,,,WEAPON FIREARM,,
+ammo_box,UnusedDirectory,,1,,,
+codebook,UnusedDirectory,,0,DOCUMENT,,
+hemostatic_agent,UnusedDirectory,,10,,,
+aloe_vera_gel,UnusedDirectory,,7,,,
+test_water,UnusedDirectory,,,,,
+test_water2,UnusedDirectory,,,,,
+test_water3,UnusedDirectory,,,,,
+heavy_handmade_pistol_s,UnusedDirectory,,,WEAPON FIREARM LOWTECH,,
+armor_titan10,UnusedDirectory,,50,,,
+armor_titan10l,UnusedDirectory,,150,ARMOR,,
+armor_titan10h,UnusedDirectory,,90,,,
+armor_titan10s,UnusedDirectory,,120,,,
+armor_titan9,UnusedDirectory,,100,,,
+wine_yeast,WineDirectory,Yeast,10,HOUSEHOLD_GOOD,,"A versatile yeast culture with countless uses, from leavening bread to brewing. For winemaking, it speeds up fermentation and improves the quality of the brew."
+wine_superyeast,WineDirectory,Super Yeast,20,HOUSEHOLD_GOOD,,"A highly potent, all-purpose yeast culture prized across countless crafts. For winemaking, it dramatically speeds up the fermentation process."
+wine_yeast_red,WineDirectory,Synthetic Yeast,8,HOUSEHOLD_GOOD,An illegal substance that can be used instead of yeast to cheaply produce mildly carcinogenic wine. Requires only water.,
+wine_yeast_infinite,WineDirectory,Yeast Bioreactor,250,HOUSEHOLD_GOOD,An infinite source of yeast. Will be returned to inventory when fermentation starts instead of being consumed.,A self-sustaining culture vat that continuously regrows its own yeast.
+wine_bottle,WineDirectory,Wine Bottle,12,,A fancy glass bottle used for fermenting wine. This one has a integrated airlock.,
+wine_berry,WineDirectory,BloomBerry,14,FOOD,,"A sweet berry modified for hydroponic growth. While not particularly filling, it's one of few fruits that is accessible in the Lower Levels. Good for making wine."

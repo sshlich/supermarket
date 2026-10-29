@@ -1,0 +1,7165 @@
+{
+ "BarterOfferList.CreateAddictBarter": {
+  "returns": "BarterOffer",
+  "line": 5,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListBarter:11"
+  ]
+ },
+ "BarterOfferList.CreateAddictGeneralBarter": {
+  "returns": "BarterOffer",
+  "line": 56,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListBarter:37"
+  ]
+ },
+ "BarterOfferList.CreateBarterFoodTutorial": {
+  "returns": "BarterOffer",
+  "line": 245,
+  "callers": 0,
+  "call_sites": []
+ },
+ "BarterOfferList.CreateBarterFoodMultiOffer": {
+  "returns": "BarterOffer",
+  "line": 280,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListBarter:66",
+   "StoreClientListBarter:307"
+  ]
+ },
+ "BarterOfferList.CreateFreeRewardChoice": {
+  "returns": "BarterOffer",
+  "line": 306,
+  "callers": 2,
+  "call_sites": [
+   "SerpicoStoryline:397",
+   "StoreClientUniqueList:1997"
+  ]
+ },
+ "EventListCosmetic.Example": {
+  "returns": "StoreEvent",
+  "line": 3,
+  "callers": 0,
+  "call_sites": []
+ },
+ "EventListCosmetic.AllQuiet": {
+  "returns": "StoreEvent",
+  "line": 15,
+  "callers": 1,
+  "call_sites": [
+   "NewsUIManager:116"
+  ]
+ },
+ "EventListCosmetic.ScheduledEletricalMaintenance": {
+  "returns": "StoreEvent",
+  "line": 30,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:34",
+   "StoreEventManager:56",
+   "StoreEventManager:56"
+  ]
+ },
+ "EventListCosmetic.NutrifruitGrow": {
+  "returns": "StoreEvent",
+  "line": 45,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:49",
+   "StoreEventManager:57",
+   "StoreEventManager:57"
+  ]
+ },
+ "EventListCosmetic.PeatContent": {
+  "returns": "StoreEvent",
+  "line": 60,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:64",
+   "StoreEventManager:58",
+   "StoreEventManager:58"
+  ]
+ },
+ "EventListCosmetic.RecyclingAwarenessCampaign": {
+  "returns": "StoreEvent",
+  "line": 75,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:79",
+   "StoreEventManager:59",
+   "StoreEventManager:59"
+  ]
+ },
+ "EventListCosmetic.ArtistShowcase": {
+  "returns": "StoreEvent",
+  "line": 90,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:94",
+   "StoreEventManager:60",
+   "StoreEventManager:60"
+  ]
+ },
+ "EventListCosmetic.MaintenanceCrewStrike": {
+  "returns": "StoreEvent",
+  "line": 105,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:109",
+   "StoreEventManager:61",
+   "StoreEventManager:61"
+  ]
+ },
+ "EventListCosmetic.TechDemoDay": {
+  "returns": "StoreEvent",
+  "line": 120,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:124",
+   "StoreEventManager:62",
+   "StoreEventManager:62"
+  ]
+ },
+ "EventListCosmetic.NewTransitLine": {
+  "returns": "StoreEvent",
+  "line": 135,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:139",
+   "StoreEventManager:63",
+   "StoreEventManager:63"
+  ]
+ },
+ "EventListCosmetic.WaterFountainUnveiled": {
+  "returns": "StoreEvent",
+  "line": 150,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:154",
+   "StoreEventManager:64",
+   "StoreEventManager:64"
+  ]
+ },
+ "EventListCosmetic.CommunityGardenExpansion": {
+  "returns": "StoreEvent",
+  "line": 165,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:169",
+   "StoreEventManager:65",
+   "StoreEventManager:65"
+  ]
+ },
+ "EventListCosmetic.ArtContestHeld": {
+  "returns": "StoreEvent",
+  "line": 180,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:184",
+   "StoreEventManager:66",
+   "StoreEventManager:66"
+  ]
+ },
+ "EventListCosmetic.CulturalCelebration": {
+  "returns": "StoreEvent",
+  "line": 195,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:199",
+   "StoreEventManager:67",
+   "StoreEventManager:67"
+  ]
+ },
+ "EventListCosmetic.RoutineSpacewalkTraining": {
+  "returns": "StoreEvent",
+  "line": 210,
+  "callers": 3,
+  "call_sites": [
+   "EventListCosmetic:214",
+   "StoreEventManager:68",
+   "StoreEventManager:68"
+  ]
+ },
+ "EventListCosmetic.NewDepartementHead": {
+  "returns": "StoreEvent",
+  "line": 225,
+  "callers": 0,
+  "call_sites": []
+ },
+ "EventListCosmetic.DepartementHeadMissing": {
+  "returns": "StoreEvent",
+  "line": 237,
+  "callers": 0,
+  "call_sites": []
+ },
+ "EventListCosmetic.DepartementHeadFoundDead": {
+  "returns": "StoreEvent",
+  "line": 249,
+  "callers": 0,
+  "call_sites": []
+ },
+ "EventListCosmetic.DepartementHeadAssasinated": {
+  "returns": "StoreEvent",
+  "line": 261,
+  "callers": 0,
+  "call_sites": []
+ },
+ "EventListCosmetic.DepartementHeadFired": {
+  "returns": "StoreEvent",
+  "line": 273,
+  "callers": 0,
+  "call_sites": []
+ },
+ "EventListInnate.CreateRentDayEvent": {
+  "returns": "StoreEvent",
+  "line": 3,
+  "callers": 3,
+  "call_sites": [
+   "AdvCalendarUIManager:163",
+   "AdvCalendarUIManager:168",
+   "AdvCalendarUIManager:173"
+  ]
+ },
+ "EventListInnate.CreateMortgagePaymentEvent": {
+  "returns": "StoreEvent",
+  "line": 21,
+  "callers": 3,
+  "call_sites": [
+   "AdvCalendarUIManager:181",
+   "AdvCalendarUIManager:186",
+   "AdvCalendarUIManager:191"
+  ]
+ },
+ "EventListInnate.CreateCartelVisitEvent": {
+  "returns": "StoreEvent",
+  "line": 39,
+  "callers": 3,
+  "call_sites": [
+   "AdvCalendarUIManager:203",
+   "AdvCalendarUIManager:208",
+   "AdvCalendarUIManager:213"
+  ]
+ },
+ "EventListNormal.CreateNutrifruitHarvest": {
+  "returns": "StoreEvent",
+  "line": 3,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:499",
+   "StoreClientListInformation:61",
+   "StoreClientListInformationDialog:43"
+  ]
+ },
+ "EventListNormal.CreateBadNutrifruitHarvest": {
+  "returns": "StoreEvent",
+  "line": 18,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:38"
+  ]
+ },
+ "EventListNormal.CreateBadNutrifruitHarvestDuration": {
+  "returns": "StoreEvent",
+  "line": 23,
+  "callers": 2,
+  "call_sites": [
+   "EventListNormal:20",
+   "StoreClientListInformationDialog:57"
+  ]
+ },
+ "EventListNormal.CreateSeedHeist": {
+  "returns": "StoreEvent",
+  "line": 40,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:37"
+  ]
+ },
+ "EventListNormal.CreateCounterfeitMedicalSuppliesDiscovered": {
+  "returns": "StoreEvent",
+  "line": 57,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:44"
+  ]
+ },
+ "EventListNormal.CreateCounterfeitMedicalSuppliesDiscoveredDuration": {
+  "returns": "StoreEvent",
+  "line": 62,
+  "callers": 2,
+  "call_sites": [
+   "EventListNormal:59",
+   "StoreClientListInformationDialog:92"
+  ]
+ },
+ "EventListNormal.CreateWaterTreatmentPlantBreakdown": {
+  "returns": "StoreEvent",
+  "line": 79,
+  "callers": 2,
+  "call_sites": [
+   "DebugPanel:312",
+   "StoreEventManager:39"
+  ]
+ },
+ "EventListNormal.CreateWaterTreatmentPlantBreakdownDuration": {
+  "returns": "StoreEvent",
+  "line": 84,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:501",
+   "EventListNormal:81",
+   "StoreClientListInformationDialog:203"
+  ]
+ },
+ "EventListNormal.CreateScheduledTreatmentPlantMaintenance": {
+  "returns": "StoreEvent",
+  "line": 103,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:40"
+  ]
+ },
+ "EventListNormal.CreateScheduledTreatmentPlantMaintenanceDuration": {
+  "returns": "StoreEvent",
+  "line": 108,
+  "callers": 1,
+  "call_sites": [
+   "EventListNormal:105"
+  ]
+ },
+ "EventListNormal.CreateMinerReturnFromIceAsteroid": {
+  "returns": "StoreEvent",
+  "line": 127,
+  "callers": 2,
+  "call_sites": [
+   "DebugPanel:317",
+   "StoreEventManager:41"
+  ]
+ },
+ "EventListNormal.CreateMinerReturnFromIceAsteroidDuration": {
+  "returns": "StoreEvent",
+  "line": 132,
+  "callers": 2,
+  "call_sites": [
+   "EventListNormal:129",
+   "StoreClientListInformationDialog:219"
+  ]
+ },
+ "EventListNormal.CreateLowerLevelMobJustice": {
+  "returns": "StoreEvent",
+  "line": 151,
+  "callers": 2,
+  "call_sites": [
+   "GunOrderDebug:41",
+   "StoreEventManager:42"
+  ]
+ },
+ "EventListNormal.CreateStoreRoomExcavated": {
+  "returns": "StoreEvent",
+  "line": 169,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:36"
+  ]
+ },
+ "EventListNormal.CreateStoreRoomExcavatedDuration": {
+  "returns": "StoreEvent",
+  "line": 174,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:500",
+   "EventListNormal:171",
+   "StoreClientListInformationDialog:140"
+  ]
+ },
+ "EventListNormal.CreateMiningExpeditionReturn": {
+  "returns": "StoreEvent",
+  "line": 190,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:498",
+   "StoreClientDialogList:215",
+   "StoreEventManager:35"
+  ]
+ },
+ "EventListNormal.CreateMiningExpeditionReturnDuration": {
+  "returns": "StoreEvent",
+  "line": 195,
+  "callers": 2,
+  "call_sites": [
+   "EventListNormal:192",
+   "StoreClientListInformationDialog:187"
+  ]
+ },
+ "EventListNormal.CreateConstructionProject": {
+  "returns": "StoreEvent",
+  "line": 211,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:34"
+  ]
+ },
+ "EventListNormal.CreateMeteorShower": {
+  "returns": "StoreEvent",
+  "line": 226,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListStory:775"
+  ]
+ },
+ "EventListNormal.CreatePowerShortage": {
+  "returns": "StoreEvent",
+  "line": 241,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:45"
+  ]
+ },
+ "EventListNormal.SchedulePowerPlantMaintenance": {
+  "returns": "StoreEvent",
+  "line": 255,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:46"
+  ]
+ },
+ "EventListNormal.StationWideBlackout": {
+  "returns": "StoreEvent",
+  "line": 271,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:47"
+  ]
+ },
+ "EventListNormal.CruiseShipDocked": {
+  "returns": "StoreEvent",
+  "line": 289,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:33"
+  ]
+ },
+ "EventListNormal.CreateOxymoreWave": {
+  "returns": "StoreEvent",
+  "line": 306,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:43"
+  ]
+ },
+ "EventListSpecial.LotteryDraw": {
+  "returns": "StoreEvent",
+  "line": 3,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:348"
+  ]
+ },
+ "EventListThreat.StationBlockaded": {
+  "returns": "StoreEvent",
+  "line": 3,
+  "callers": 0,
+  "call_sites": []
+ },
+ "EventListThreat.PirateRaid": {
+  "returns": "StoreEvent",
+  "line": 15,
+  "callers": 0,
+  "call_sites": []
+ },
+ "EventListThreat.RepublicMarineArrived": {
+  "returns": "StoreEvent",
+  "line": 27,
+  "callers": 0,
+  "call_sites": []
+ },
+ "EventListUnique.Wanted3CapturedEvent": {
+  "returns": "StoreEvent",
+  "line": 3,
+  "callers": 2,
+  "call_sites": [
+   "EventListUnique:7",
+   "StoreClientListWanted:306"
+  ]
+ },
+ "EventListUnique.CreateLouAdmiralAssassinated": {
+  "returns": "StoreEvent",
+  "line": 17,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListWanted:872"
+  ]
+ },
+ "EventListUnique.CreateEleanorLeakNews": {
+  "returns": "StoreEvent",
+  "line": 33,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientUniqueList:1673"
+  ]
+ },
+ "EventListUnique.CreateEvidenceLockerBreakIn": {
+  "returns": "StoreEvent",
+  "line": 49,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventManager:340"
+  ]
+ },
+ "ExchangeList.FilterBarter": {
+  "returns": "ExchangeBarter",
+  "line": 14,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:31"
+  ]
+ },
+ "ExchangeList.ModuleBarter": {
+  "returns": "ExchangeBarter",
+  "line": 45,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:32"
+  ]
+ },
+ "ExchangeList.DreamDustBarter": {
+  "returns": "ExchangeBarter",
+  "line": 104,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:33"
+  ]
+ },
+ "ExchangeList.CommandKeycardBarter": {
+  "returns": "ExchangeBarter",
+  "line": 223,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:34"
+  ]
+ },
+ "ExchangeList.PoisonBarter": {
+  "returns": "ExchangeBarter",
+  "line": 250,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:35"
+  ]
+ },
+ "ExchangeList.BulletBarter": {
+  "returns": "ExchangeBarter",
+  "line": 291,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:36"
+  ]
+ },
+ "ExchangeList.SmugglerBarter": {
+  "returns": "ExchangeBarter",
+  "line": 345,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:37"
+  ]
+ },
+ "ExchangeList.ImprovedDreamDustBarter": {
+  "returns": "ExchangeBarter",
+  "line": 368,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:39"
+  ]
+ },
+ "ExchangeList.SecCrateBarter": {
+  "returns": "ExchangeBarter",
+  "line": 579,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:40"
+  ]
+ },
+ "ExchangeList.MedCrateBarter": {
+  "returns": "ExchangeBarter",
+  "line": 600,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:41"
+  ]
+ },
+ "ExchangeList.EngCrateBarter": {
+  "returns": "ExchangeBarter",
+  "line": 621,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:42"
+  ]
+ },
+ "ExchangeList.SeedBarter": {
+  "returns": "ExchangeBarter",
+  "line": 642,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:43"
+  ]
+ },
+ "ExchangeList.BMRepBarter": {
+  "returns": "ExchangeBarter",
+  "line": 663,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:44"
+  ]
+ },
+ "ExchangeList.ImmunivaxBarter": {
+  "returns": "ExchangeBarter",
+  "line": 685,
+  "callers": 1,
+  "call_sites": [
+   "ExchangeManager:45"
+  ]
+ },
+ "ExpeditionLocationList.DumpingGrounds": {
+  "returns": "ExpeditionLocation",
+  "line": 5,
+  "callers": 1,
+  "call_sites": [
+   "ExpeditionData:18"
+  ]
+ },
+ "ExpeditionPoiList.CreateExpeditionPoi": {
+  "returns": "ExpeditionPoi",
+  "line": 22,
+  "callers": 1,
+  "call_sites": [
+   "ExpeditionLocation:27"
+  ]
+ },
+ "ExpeditionPoiList.JunkPile": {
+  "returns": "ExpeditionPoi",
+  "line": 32,
+  "callers": 1,
+  "call_sites": [
+   "ExpeditionPoiList:10"
+  ]
+ },
+ "ExpeditionPoiList.FreshScrapPile": {
+  "returns": "ExpeditionPoi",
+  "line": 48,
+  "callers": 1,
+  "call_sites": [
+   "ExpeditionPoiList:14"
+  ]
+ },
+ "ExpeditionPoiList.ScrapPile": {
+  "returns": "ExpeditionPoi",
+  "line": 64,
+  "callers": 1,
+  "call_sites": [
+   "ExpeditionPoiList:18"
+  ]
+ },
+ "FactionStatusList.MartialLaw": {
+  "returns": "FactionStatus",
+  "line": 3,
+  "callers": 3,
+  "call_sites": [
+   "EventUnused:132",
+   "OperationListSec:78",
+   "StoreOperationManager:35"
+  ]
+ },
+ "FactionStatusList.SecurityCrackdown": {
+  "returns": "FactionStatus",
+  "line": 17,
+  "callers": 0,
+  "call_sites": []
+ },
+ "FactionStatusList.SecurityCheckpoint": {
+  "returns": "FactionStatus",
+  "line": 31,
+  "callers": 0,
+  "call_sites": []
+ },
+ "FactionStatusList.SecurityBudgetCut": {
+  "returns": "FactionStatus",
+  "line": 45,
+  "callers": 2,
+  "call_sites": [
+   "EventUnused:169",
+   "EventUnused:173"
+  ]
+ },
+ "FactionStatusList.SecurityBudgetIncrease": {
+  "returns": "FactionStatus",
+  "line": 58,
+  "callers": 0,
+  "call_sites": []
+ },
+ "FactionStatusList.ReducedPatrol": {
+  "returns": "FactionStatus",
+  "line": 71,
+  "callers": 0,
+  "call_sites": []
+ },
+ "FactionStatusList.ExtraPatrol": {
+  "returns": "FactionStatus",
+  "line": 84,
+  "callers": 0,
+  "call_sites": []
+ },
+ "FactionStatusList.SurveillanceUpgrade": {
+  "returns": "FactionStatus",
+  "line": 98,
+  "callers": 0,
+  "call_sites": []
+ },
+ "FactionStatusList.EmergencyLockdown": {
+  "returns": "FactionStatus",
+  "line": 111,
+  "callers": 0,
+  "call_sites": []
+ },
+ "FactionStatusList.TacticalDeployment": {
+  "returns": "FactionStatus",
+  "line": 125,
+  "callers": 0,
+  "call_sites": []
+ },
+ "HirelingListUnique.Juan": {
+  "returns": "Hireling",
+  "line": 3,
+  "callers": 2,
+  "call_sites": [
+   "ExpeditionData:44",
+   "HirelingListUnique:8"
+  ]
+ },
+ "ItemConditionList.CreateFreeFree": {
+  "returns": "ItemCondition",
+  "line": 147,
+  "callers": 3,
+  "call_sites": [
+   "ItemConditionList:85",
+   "ItemFeatureList:163",
+   "ItemFeatureList:163"
+  ]
+ },
+ "ItemConditionList.CreateFreeNormal": {
+  "returns": "ItemCondition",
+  "line": 158,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:86"
+  ]
+ },
+ "ItemConditionList.CreateExpired": {
+  "returns": "ItemCondition",
+  "line": 169,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:25"
+  ]
+ },
+ "ItemConditionList.CreateNonExpired": {
+  "returns": "ItemCondition",
+  "line": 180,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:26"
+  ]
+ },
+ "ItemConditionList.CreateDented": {
+  "returns": "ItemCondition",
+  "line": 191,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:19"
+  ]
+ },
+ "ItemConditionList.CreateNonDented": {
+  "returns": "ItemCondition",
+  "line": 202,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:20"
+  ]
+ },
+ "ItemConditionList.CreateOpenBox": {
+  "returns": "ItemCondition",
+  "line": 214,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:7"
+  ]
+ },
+ "ItemConditionList.CreateFactorySealed": {
+  "returns": "ItemCondition",
+  "line": 225,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:8"
+  ]
+ },
+ "ItemConditionList.CreateRustFree": {
+  "returns": "ItemCondition",
+  "line": 236,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:13"
+  ]
+ },
+ "ItemConditionList.CreateRusted": {
+  "returns": "ItemCondition",
+  "line": 248,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:14"
+  ]
+ },
+ "ItemConditionList.CreatePerfectQualityIngot": {
+  "returns": "ItemCondition",
+  "line": 259,
+  "callers": 2,
+  "call_sites": [
+   "IngotPurityHelper:43",
+   "ItemConditionList:31"
+  ]
+ },
+ "ItemConditionList.CreateVeryHighQualityIngot": {
+  "returns": "ItemCondition",
+  "line": 270,
+  "callers": 2,
+  "call_sites": [
+   "IngotPurityHelper:47",
+   "ItemConditionList:32"
+  ]
+ },
+ "ItemConditionList.CreateHighQualityIngot": {
+  "returns": "ItemCondition",
+  "line": 281,
+  "callers": 2,
+  "call_sites": [
+   "IngotPurityHelper:51",
+   "ItemConditionList:33"
+  ]
+ },
+ "ItemConditionList.CreateFairQualityIngot": {
+  "returns": "ItemCondition",
+  "line": 292,
+  "callers": 2,
+  "call_sites": [
+   "IngotPurityHelper:55",
+   "ItemConditionList:34"
+  ]
+ },
+ "ItemConditionList.CreateLowQualityIngot": {
+  "returns": "ItemCondition",
+  "line": 303,
+  "callers": 2,
+  "call_sites": [
+   "IngotPurityHelper:59",
+   "ItemConditionList:35"
+  ]
+ },
+ "ItemConditionList.CreateVeryLowQualityIngot": {
+  "returns": "ItemCondition",
+  "line": 314,
+  "callers": 2,
+  "call_sites": [
+   "IngotPurityHelper:63",
+   "ItemConditionList:36"
+  ]
+ },
+ "ItemConditionList.CreatePureWater": {
+  "returns": "ItemCondition",
+  "line": 325,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:41"
+  ]
+ },
+ "ItemConditionList.CreateHighQualityWater": {
+  "returns": "ItemCondition",
+  "line": 337,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:42"
+  ]
+ },
+ "ItemConditionList.CreateBaseWater": {
+  "returns": "ItemCondition",
+  "line": 349,
+  "callers": 5,
+  "call_sites": [
+   "ItemConditionList:43",
+   "WaterFeatureHelper:180",
+   "WaterFeatureHelper:181",
+   "WaterFeatureHelper:192",
+   "WaterFeatureHelper:193"
+  ]
+ },
+ "ItemConditionList.CreateGhostWater": {
+  "returns": "ItemCondition",
+  "line": 361,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:44"
+  ]
+ },
+ "ItemConditionList.CreateRustWater": {
+  "returns": "ItemCondition",
+  "line": 373,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:45"
+  ]
+ },
+ "ItemConditionList.CreateGutterflow": {
+  "returns": "ItemCondition",
+  "line": 385,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:46"
+  ]
+ },
+ "ItemConditionList.CreateFoodVeryFresh": {
+  "returns": "ItemCondition",
+  "line": 397,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:51"
+  ]
+ },
+ "ItemConditionList.CreateFoodFresh": {
+  "returns": "ItemCondition",
+  "line": 408,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:52"
+  ]
+ },
+ "ItemConditionList.CreateFoodStale": {
+  "returns": "ItemCondition",
+  "line": 419,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:53"
+  ]
+ },
+ "ItemConditionList.CreateFoodSpoiled": {
+  "returns": "ItemCondition",
+  "line": 430,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:54"
+  ]
+ },
+ "ItemConditionList.CreateCounterfeitCigarette": {
+  "returns": "ItemCondition",
+  "line": 441,
+  "callers": 6,
+  "call_sites": [
+   "ItemConditionList:59",
+   "ItemFeatureList:908",
+   "ItemFeatureList:917",
+   "ItemFeatureList:917",
+   "ItemFeatureList:926",
+   "ItemFeatureList:962"
+  ]
+ },
+ "ItemConditionList.CreateGenuineCigarette": {
+  "returns": "ItemCondition",
+  "line": 456,
+  "callers": 6,
+  "call_sites": [
+   "ItemConditionList:60",
+   "ItemFeatureList:899",
+   "ItemFeatureList:899",
+   "ItemFeatureList:908",
+   "ItemFeatureList:926",
+   "ItemFeatureList:962"
+  ]
+ },
+ "ItemConditionList.CreateCounterfeitStamp": {
+  "returns": "ItemCondition",
+  "line": 471,
+  "callers": 4,
+  "call_sites": [
+   "ItemConditionList:65",
+   "ItemFeatureList:944",
+   "ItemFeatureList:953",
+   "ItemFeatureList:953"
+  ]
+ },
+ "ItemConditionList.CreateGenuineStamp": {
+  "returns": "ItemCondition",
+  "line": 486,
+  "callers": 4,
+  "call_sites": [
+   "ItemConditionList:66",
+   "ItemFeatureList:935",
+   "ItemFeatureList:935",
+   "ItemFeatureList:944"
+  ]
+ },
+ "ItemConditionList.CreateCounterfeitInjector": {
+  "returns": "ItemCondition",
+  "line": 500,
+  "callers": 3,
+  "call_sites": [
+   "ItemConditionList:71",
+   "ItemFeatureList:975",
+   "ItemFeatureList:981"
+  ]
+ },
+ "ItemConditionList.CreateUnusableInjector": {
+  "returns": "ItemCondition",
+  "line": 515,
+  "callers": 6,
+  "call_sites": [
+   "InsInjectorHelper:160",
+   "ItemConditionList:73",
+   "ItemFeatureList:977",
+   "ItemFeatureList:983",
+   "PreBuiltItemHelper:1466",
+   "PreBuiltItemHelper:1478"
+  ]
+ },
+ "ItemConditionList.CreateExpiredInjector": {
+  "returns": "ItemCondition",
+  "line": 530,
+  "callers": 6,
+  "call_sites": [
+   "InsInjectorHelper:167",
+   "ItemConditionList:72",
+   "ItemFeatureList:976",
+   "ItemFeatureList:982",
+   "PreBuiltItemHelper:1452",
+   "PreBuiltItemHelper:1476"
+  ]
+ },
+ "ItemConditionList.CreateGenuineInjector": {
+  "returns": "ItemCondition",
+  "line": 545,
+  "callers": 3,
+  "call_sites": [
+   "ItemConditionList:74",
+   "ItemFeatureList:974",
+   "ItemFeatureList:980"
+  ]
+ },
+ "ItemConditionList.CreateModuleNormal": {
+  "returns": "ItemCondition",
+  "line": 560,
+  "callers": 1,
+  "call_sites": [
+   "ItemConditionList:79"
+  ]
+ },
+ "ItemConditionList.CreateShabby": {
+  "returns": "ItemCondition",
+  "line": 571,
+  "callers": 2,
+  "call_sites": [
+   "ItemFeatureList:1040",
+   "ItemFeatureList:1041"
+  ]
+ },
+ "ItemConditionList.CreateSecondHand": {
+  "returns": "ItemCondition",
+  "line": 582,
+  "callers": 2,
+  "call_sites": [
+   "ItemFeatureList:1052",
+   "ItemFeatureList:1053"
+  ]
+ },
+ "ItemConditionList.CreateModuleStuck": {
+  "returns": "ItemCondition",
+  "line": 593,
+  "callers": 3,
+  "call_sites": [
+   "ItemConditionList:80",
+   "ItemFeatureList:1025",
+   "ItemFeatureList:1026"
+  ]
+ },
+ "ItemConditionList.CreateEquipementConditionNew": {
+  "returns": "ItemCondition",
+  "line": 604,
+  "callers": 3,
+  "call_sites": [
+   "ItemConditionList:91",
+   "ItemFeatureList:998",
+   "ItemFeatureList:999"
+  ]
+ },
+ "ItemConditionList.CreateEquipementConditionExcellent": {
+  "returns": "ItemCondition",
+  "line": 615,
+  "callers": 3,
+  "call_sites": [
+   "ItemConditionList:92",
+   "ItemFeatureList:1002",
+   "ItemFeatureList:1003"
+  ]
+ },
+ "ItemConditionList.CreateEquipementConditionGood": {
+  "returns": "ItemCondition",
+  "line": 626,
+  "callers": 3,
+  "call_sites": [
+   "ItemConditionList:93",
+   "ItemFeatureList:1006",
+   "ItemFeatureList:1007"
+  ]
+ },
+ "ItemConditionList.CreateEquipementConditionFair": {
+  "returns": "ItemCondition",
+  "line": 637,
+  "callers": 3,
+  "call_sites": [
+   "ItemConditionList:94",
+   "ItemFeatureList:1010",
+   "ItemFeatureList:1011"
+  ]
+ },
+ "ItemConditionList.CreateEquipementConditionPoor": {
+  "returns": "ItemCondition",
+  "line": 648,
+  "callers": 3,
+  "call_sites": [
+   "ItemConditionList:95",
+   "ItemFeatureList:1014",
+   "ItemFeatureList:1015"
+  ]
+ },
+ "ItemConditionList.CreateReplica": {
+  "returns": "ItemCondition",
+  "line": 659,
+  "callers": 2,
+  "call_sites": [
+   "ItemConditionList:100",
+   "ItemFeatureList:1064"
+  ]
+ },
+ "ItemConditionList.CreateNonReplica": {
+  "returns": "ItemCondition",
+  "line": 670,
+  "callers": 2,
+  "call_sites": [
+   "ItemConditionList:101",
+   "ItemFeatureList:1065"
+  ]
+ },
+ "ItemConditionList.CreateLabPure": {
+  "returns": "ItemCondition",
+  "line": 682,
+  "callers": 2,
+  "call_sites": [
+   "ChemicalProductHelper:118",
+   "ItemConditionList:106"
+  ]
+ },
+ "ItemConditionList.CreatePharmaGrade": {
+  "returns": "ItemCondition",
+  "line": 693,
+  "callers": 2,
+  "call_sites": [
+   "ChemicalProductHelper:122",
+   "ItemConditionList:107"
+  ]
+ },
+ "ItemConditionList.CreateNearPharma": {
+  "returns": "ItemCondition",
+  "line": 704,
+  "callers": 2,
+  "call_sites": [
+   "ChemicalProductHelper:126",
+   "ItemConditionList:108"
+  ]
+ },
+ "ItemConditionList.CreateStreetStandard": {
+  "returns": "ItemCondition",
+  "line": 715,
+  "callers": 2,
+  "call_sites": [
+   "ChemicalProductHelper:130",
+   "ItemConditionList:109"
+  ]
+ },
+ "ItemConditionList.CreateCutProduct": {
+  "returns": "ItemCondition",
+  "line": 726,
+  "callers": 2,
+  "call_sites": [
+   "ChemicalProductHelper:134",
+   "ItemConditionList:110"
+  ]
+ },
+ "ItemConditionList.CreateJunkGrade": {
+  "returns": "ItemCondition",
+  "line": 737,
+  "callers": 2,
+  "call_sites": [
+   "ChemicalProductHelper:138",
+   "ItemConditionList:111"
+  ]
+ },
+ "ItemConditionList.CreateStarchGrade": {
+  "returns": "ItemCondition",
+  "line": 748,
+  "callers": 2,
+  "call_sites": [
+   "ChemicalProductHelper:142",
+   "ItemConditionList:112"
+  ]
+ },
+ "ItemConditionList.CreateMasterVintage": {
+  "returns": "ItemCondition",
+  "line": 759,
+  "callers": 2,
+  "call_sites": [
+   "ItemConditionList:117",
+   "ItemFeatureList:1200"
+  ]
+ },
+ "ItemConditionList.CreateReserve": {
+  "returns": "ItemCondition",
+  "line": 770,
+  "callers": 2,
+  "call_sites": [
+   "ItemConditionList:118",
+   "ItemFeatureList:1200"
+  ]
+ },
+ "ItemConditionList.CreateProductionWine": {
+  "returns": "ItemCondition",
+  "line": 781,
+  "callers": 2,
+  "call_sites": [
+   "ItemConditionList:119",
+   "ItemFeatureList:1200"
+  ]
+ },
+ "ItemConditionList.CreateHomebrew": {
+  "returns": "ItemCondition",
+  "line": 792,
+  "callers": 2,
+  "call_sites": [
+   "ItemConditionList:120",
+   "ItemFeatureList:1202"
+  ]
+ },
+ "ItemConditionList.CreateBucketBrew": {
+  "returns": "ItemCondition",
+  "line": 803,
+  "callers": 2,
+  "call_sites": [
+   "ItemConditionList:121",
+   "ItemFeatureList:1203"
+  ]
+ },
+ "ItemConditionList.CreateUndrinkable": {
+  "returns": "ItemCondition",
+  "line": 814,
+  "callers": 2,
+  "call_sites": [
+   "ItemConditionList:122",
+   "ItemFeatureList:1204"
+  ]
+ },
+ "ItemFeatureList.Discount": {
+  "returns": "ItemFeature",
+  "line": 146,
+  "callers": 12,
+  "call_sites": [
+   "BargainType:3",
+   "BargainUIManager:352",
+   "BargainUIManager:422",
+   "BargainUIManager:514",
+   "BargainUIManager:527",
+   "BargainUIManager:543",
+   "BargainUIManager:1188",
+   "BargainUIManager:1236",
+   "BargainUIManager:1268",
+   "BarterHelper:123",
+   "GameItem:2014",
+   "GameItem:2099"
+  ]
+ },
+ "ItemFeatureList.FreeFeature": {
+  "returns": "ItemFeature",
+  "line": 160,
+  "callers": 5,
+  "call_sites": [
+   "StoreClientListEvent:529",
+   "StoreClientUniqueList:1915",
+   "StoreClientUniqueList:2727",
+   "StoreClientUniqueList:2733",
+   "StoreClientUniqueList:2739"
+  ]
+ },
+ "ItemFeatureList.RetailMarkUp": {
+  "returns": "ItemFeature",
+  "line": 170,
+  "callers": 1,
+  "call_sites": [
+   "GameItem:2052"
+  ]
+ },
+ "ItemFeatureList.VendingMachineBonus": {
+  "returns": "ItemFeature",
+  "line": 184,
+  "callers": 2,
+  "call_sites": [
+   "VendingFountainHelper:286",
+   "VendingMachineHelper:174"
+  ]
+ },
+ "ItemFeatureList.Donation": {
+  "returns": "ItemFeature",
+  "line": 198,
+  "callers": 2,
+  "call_sites": [
+   "ItemFeatureList:143",
+   "SpaceMedicTrigger:18"
+  ]
+ },
+ "ItemFeatureList.NeuroActivePerfumeSelling": {
+  "returns": "ItemFeature",
+  "line": 212,
+  "callers": 1,
+  "call_sites": [
+   "GameItem:2056"
+  ]
+ },
+ "ItemFeatureList.NeuroActivePerfumeBuying": {
+  "returns": "ItemFeature",
+  "line": 226,
+  "callers": 2,
+  "call_sites": [
+   "GameItem:2006",
+   "GameItem:2091"
+  ]
+ },
+ "ItemFeatureList.PheromonePerfumeSelling": {
+  "returns": "ItemFeature",
+  "line": 240,
+  "callers": 1,
+  "call_sites": [
+   "GameItem:2060"
+  ]
+ },
+ "ItemFeatureList.PheromonePerfumeBuying": {
+  "returns": "ItemFeature",
+  "line": 254,
+  "callers": 2,
+  "call_sites": [
+   "GameItem:2010",
+   "GameItem:2095"
+  ]
+ },
+ "ItemFeatureList.StolenBonusBuying": {
+  "returns": "ItemFeature",
+  "line": 276,
+  "callers": 1,
+  "call_sites": [
+   "StolenHelper:190"
+  ]
+ },
+ "ItemFeatureList.StolenBonusBuyingHigh": {
+  "returns": "ItemFeature",
+  "line": 290,
+  "callers": 1,
+  "call_sites": [
+   "StolenHelper:186"
+  ]
+ },
+ "ItemFeatureList.StolenBonusBuyingMid": {
+  "returns": "ItemFeature",
+  "line": 304,
+  "callers": 1,
+  "call_sites": [
+   "StolenHelper:182"
+  ]
+ },
+ "ItemFeatureList.StolenBonusBuyingLow": {
+  "returns": "ItemFeature",
+  "line": 318,
+  "callers": 1,
+  "call_sites": [
+   "StolenHelper:178"
+  ]
+ },
+ "ItemFeatureList.AddictionBuyPenalty": {
+  "returns": "ItemFeature",
+  "line": 332,
+  "callers": 3,
+  "call_sites": [
+   "GameItem:1998",
+   "GameItem:2083",
+   "HealthData:470"
+  ]
+ },
+ "ItemFeatureList.AddictionSellPenalty": {
+  "returns": "ItemFeature",
+  "line": 346,
+  "callers": 2,
+  "call_sites": [
+   "GameItem:2064",
+   "HealthData:474"
+  ]
+ },
+ "ItemFeatureList.AwfulNegotiatorBuyPenalty": {
+  "returns": "ItemFeature",
+  "line": 360,
+  "callers": 2,
+  "call_sites": [
+   "GameItem:2002",
+   "GameItem:2087"
+  ]
+ },
+ "ItemFeatureList.AwfulNegotiatorSellPenalty": {
+  "returns": "ItemFeature",
+  "line": 374,
+  "callers": 1,
+  "call_sites": [
+   "GameItem:2068"
+  ]
+ },
+ "ItemFeatureList.ConfrontSucessDiscount": {
+  "returns": "ItemFeature",
+  "line": 388,
+  "callers": 1,
+  "call_sites": [
+   "InspectableHelper:23"
+  ]
+ },
+ "ItemFeatureList.ContrabandLowMarkUp": {
+  "returns": "ItemFeature",
+  "line": 401,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:851"
+  ]
+ },
+ "ItemFeatureList.ContrabandMidMarkUp": {
+  "returns": "ItemFeature",
+  "line": 415,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:855"
+  ]
+ },
+ "ItemFeatureList.ContrabandHighMarkUp": {
+  "returns": "ItemFeature",
+  "line": 429,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:859"
+  ]
+ },
+ "ItemFeatureList.ContrabandCriticalMarkUp": {
+  "returns": "ItemFeature",
+  "line": 443,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:863"
+  ]
+ },
+ "ItemFeatureList.RestrictedLowMarkUp": {
+  "returns": "ItemFeature",
+  "line": 457,
+  "callers": 1,
+  "call_sites": [
+   "PermitHelper:132"
+  ]
+ },
+ "ItemFeatureList.RestrictedMidMarkUp": {
+  "returns": "ItemFeature",
+  "line": 471,
+  "callers": 1,
+  "call_sites": [
+   "PermitHelper:136"
+  ]
+ },
+ "ItemFeatureList.RestrictedHighMarkUp": {
+  "returns": "ItemFeature",
+  "line": 485,
+  "callers": 1,
+  "call_sites": [
+   "PermitHelper:140"
+  ]
+ },
+ "ItemFeatureList.SupplierDiscount": {
+  "returns": "ItemFeature",
+  "line": 499,
+  "callers": 0,
+  "call_sites": []
+ },
+ "ItemFeatureList.Pourboire": {
+  "returns": "ItemFeature",
+  "line": 513,
+  "callers": 1,
+  "call_sites": [
+   "GameItem:2072"
+  ]
+ },
+ "ItemFeatureList.DiscountedBuy": {
+  "returns": "ItemFeature",
+  "line": 527,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:126"
+  ]
+ },
+ "ItemFeatureList.MerchantDiscountBuy": {
+  "returns": "ItemFeature",
+  "line": 541,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:127"
+  ]
+ },
+ "ItemFeatureList.DiscountedBuy20": {
+  "returns": "ItemFeature",
+  "line": 555,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:128"
+  ]
+ },
+ "ItemFeatureList.DiscountedBuy30": {
+  "returns": "ItemFeature",
+  "line": 569,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:129"
+  ]
+ },
+ "ItemFeatureList.DiscountedLowContraband": {
+  "returns": "ItemFeature",
+  "line": 583,
+  "callers": 3,
+  "call_sites": [
+   "ItemFeatureList:139",
+   "StoreClientList:1293",
+   "StoreClientListWanted:416"
+  ]
+ },
+ "ItemFeatureList.DiscountedMidContraband": {
+  "returns": "ItemFeature",
+  "line": 597,
+  "callers": 3,
+  "call_sites": [
+   "ItemFeatureList:140",
+   "StoreClientList:1297",
+   "StoreClientListWanted:420"
+  ]
+ },
+ "ItemFeatureList.DiscountedHighContraband": {
+  "returns": "ItemFeature",
+  "line": 611,
+  "callers": 3,
+  "call_sites": [
+   "ItemFeatureList:141",
+   "StoreClientList:1301",
+   "StoreClientListWanted:424"
+  ]
+ },
+ "ItemFeatureList.DiscountedCriticalContraband": {
+  "returns": "ItemFeature",
+  "line": 625,
+  "callers": 3,
+  "call_sites": [
+   "ItemFeatureList:142",
+   "StoreClientList:1305",
+   "StoreClientListWanted:428"
+  ]
+ },
+ "ItemFeatureList.DiscountedBuy25": {
+  "returns": "ItemFeature",
+  "line": 639,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:130"
+  ]
+ },
+ "ItemFeatureList.DiscountedBuy50": {
+  "returns": "ItemFeature",
+  "line": 653,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:131"
+  ]
+ },
+ "ItemFeatureList.DiscountedBuy100": {
+  "returns": "ItemFeature",
+  "line": 667,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:132"
+  ]
+ },
+ "ItemFeatureList.DiscountedBuy200": {
+  "returns": "ItemFeature",
+  "line": 681,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:133"
+  ]
+ },
+ "ItemFeatureList.DiscountedBuy400": {
+  "returns": "ItemFeature",
+  "line": 695,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:134"
+  ]
+ },
+ "ItemFeatureList.PremiumBuy": {
+  "returns": "ItemFeature",
+  "line": 709,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:135"
+  ]
+ },
+ "ItemFeatureList.InventorMarkup": {
+  "returns": "ItemFeature",
+  "line": 723,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientList:470"
+  ]
+ },
+ "ItemFeatureList.InventorEventPrice": {
+  "returns": "ItemFeature",
+  "line": 742,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientList:479"
+  ]
+ },
+ "ItemFeatureList.ScalperMarkup": {
+  "returns": "ItemFeature",
+  "line": 760,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListSpec:845"
+  ]
+ },
+ "ItemFeatureList.PremiumBuy15": {
+  "returns": "ItemFeature",
+  "line": 783,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:136"
+  ]
+ },
+ "ItemFeatureList.PremiumBuyHypertech": {
+  "returns": "ItemFeature",
+  "line": 797,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:137"
+  ]
+ },
+ "ItemFeatureList.RetailMarkupBuy": {
+  "returns": "ItemFeature",
+  "line": 811,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureList:138"
+  ]
+ },
+ "ItemFeatureList.DiscountBuy15": {
+  "returns": "ItemFeature",
+  "line": 825,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:477",
+   "StoreClientList:1225"
+  ]
+ },
+ "ItemFeatureList.DiscountSell50": {
+  "returns": "ItemFeature",
+  "line": 839,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientList:3740"
+  ]
+ },
+ "ItemFeatureList.FirstTimeDiscount": {
+  "returns": "ItemFeature",
+  "line": 853,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientListStory:1301",
+   "StoreClientListStory:1308",
+   "StoreClientListStory:1378",
+   "StoreClientListStory:1392"
+  ]
+ },
+ "ItemFeatureList.VarietyBuyerBonus": {
+  "returns": "ItemFeature",
+  "line": 868,
+  "callers": 1,
+  "call_sites": [
+   "StoreClient:860"
+  ]
+ },
+ "ItemFeatureList.TouristTax": {
+  "returns": "ItemFeature",
+  "line": 882,
+  "callers": 1,
+  "call_sites": [
+   "StoreClient:878"
+  ]
+ },
+ "ItemFeatureList.CigaretteAuthenticity": {
+  "returns": "ItemFeature",
+  "line": 896,
+  "callers": 3,
+  "call_sites": [
+   "PreBuiltItemHelper:1198",
+   "PreBuiltItemHelper:1244",
+   "PreBuiltItemHelper:1266"
+  ]
+ },
+ "ItemFeatureList.CigaretteFakeAuthenticity": {
+  "returns": "ItemFeature",
+  "line": 905,
+  "callers": 5,
+  "call_sites": [
+   "PreBuiltItemHelper:1206",
+   "PreBuiltItemHelper:1230",
+   "PreBuiltItemHelper:1261",
+   "StoreClientUniqueList:261",
+   "StoreClientUniqueList:266"
+  ]
+ },
+ "ItemFeatureList.CigaretteCounterfeit": {
+  "returns": "ItemFeature",
+  "line": 914,
+  "callers": 3,
+  "call_sites": [
+   "PreBuiltItemHelper:1214",
+   "PreBuiltItemHelper:1250",
+   "PreBuiltItemHelper:1256"
+  ]
+ },
+ "ItemFeatureList.CigaretteFakeCounterfeit": {
+  "returns": "ItemFeature",
+  "line": 923,
+  "callers": 2,
+  "call_sites": [
+   "PreBuiltItemHelper:1222",
+   "PreBuiltItemHelper:1271"
+  ]
+ },
+ "ItemFeatureList.StampAuthenticity": {
+  "returns": "ItemFeature",
+  "line": 932,
+  "callers": 4,
+  "call_sites": [
+   "PreBuiltItemHelper:1368",
+   "PreBuiltItemHelper:1420",
+   "PreBuiltItemHelper:1429",
+   "PreBuiltItemHelper:1439"
+  ]
+ },
+ "ItemFeatureList.StampFakeAuthenticity": {
+  "returns": "ItemFeature",
+  "line": 941,
+  "callers": 1,
+  "call_sites": [
+   "PreBuiltItemHelper:1394"
+  ]
+ },
+ "ItemFeatureList.StampCounterfeit": {
+  "returns": "ItemFeature",
+  "line": 950,
+  "callers": 0,
+  "call_sites": []
+ },
+ "ItemFeatureList.StampFakeCounterfeit": {
+  "returns": "ItemFeature",
+  "line": 959,
+  "callers": 0,
+  "call_sites": []
+ },
+ "ItemFeatureList.InjectorFeature": {
+  "returns": "ItemFeature",
+  "line": 968,
+  "callers": 5,
+  "call_sites": [
+   "PreBuiltItemHelper:1446",
+   "PreBuiltItemHelper:1453",
+   "PreBuiltItemHelper:1460",
+   "PreBuiltItemHelper:1467",
+   "PreBuiltItemHelper:1480"
+  ]
+ },
+ "ItemFeatureList.EquipementConditionFeature": {
+  "returns": "ItemFeature",
+  "line": 989,
+  "callers": 3,
+  "call_sites": [
+   "GunFrameHelper:21",
+   "GunHelper:465",
+   "MachinePrinter:300"
+  ]
+ },
+ "ItemFeatureList.ModuleStuckFeature": {
+  "returns": "ItemFeature",
+  "line": 1021,
+  "callers": 1,
+  "call_sites": [
+   "ModuleHelper:513"
+  ]
+ },
+ "ItemFeatureList.ShabbyFeature": {
+  "returns": "ItemFeature",
+  "line": 1035,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureHelper:5"
+  ]
+ },
+ "ItemFeatureList.SecondHandFeature": {
+  "returns": "ItemFeature",
+  "line": 1047,
+  "callers": 1,
+  "call_sites": [
+   "ItemFeatureHelper:18"
+  ]
+ },
+ "ItemFeatureList.ReplicaFeature": {
+  "returns": "ItemFeature",
+  "line": 1059,
+  "callers": 0,
+  "call_sites": []
+ },
+ "ItemFeatureList.CreateModuleFeature": {
+  "returns": "ItemFeature",
+  "line": 1070,
+  "callers": 0,
+  "call_sites": []
+ },
+ "ItemFeatureList.BargainDiscount": {
+  "returns": "ItemFeature",
+  "line": 1082,
+  "callers": 1,
+  "call_sites": [
+   "BargainUIManager:775"
+  ]
+ },
+ "ItemFeatureList.BargainMarkup": {
+  "returns": "ItemFeature",
+  "line": 1096,
+  "callers": 1,
+  "call_sites": [
+   "BargainUIManager:818"
+  ]
+ },
+ "ItemFeatureList.BlackmailDiscount": {
+  "returns": "ItemFeature",
+  "line": 1110,
+  "callers": 1,
+  "call_sites": [
+   "BargainUIManager:911"
+  ]
+ },
+ "ItemFeatureList.BlackmailMarkup": {
+  "returns": "ItemFeature",
+  "line": 1124,
+  "callers": 1,
+  "call_sites": [
+   "BargainUIManager:915"
+  ]
+ },
+ "ItemFeatureList.BargainBuyingMarkup": {
+  "returns": "ItemFeature",
+  "line": 1138,
+  "callers": 1,
+  "call_sites": [
+   "BargainUIManager:978"
+  ]
+ },
+ "ItemFeatureList.BargainBuyingDiscount": {
+  "returns": "ItemFeature",
+  "line": 1152,
+  "callers": 1,
+  "call_sites": [
+   "BargainUIManager:1011"
+  ]
+ },
+ "ItemFeatureList.ThreatenDiscount": {
+  "returns": "ItemFeature",
+  "line": 1166,
+  "callers": 1,
+  "call_sites": [
+   "BargainUIManager:1053"
+  ]
+ },
+ "ItemFeatureList.ThreatenMarkup": {
+  "returns": "ItemFeature",
+  "line": 1180,
+  "callers": 1,
+  "call_sites": [
+   "BargainUIManager:1057"
+  ]
+ },
+ "ItemFeatureList.CreateWineQualityFeature": {
+  "returns": "ItemFeature",
+  "line": 1194,
+  "callers": 1,
+  "call_sites": [
+   "WineHelper:560"
+  ]
+ },
+ "ModTrustList.Fetch": {
+  "returns": "IEnumerator",
+  "line": 184,
+  "callers": 3,
+  "call_sites": [
+   "ModLoader:155",
+   "ModSecurityDebug:139",
+   "ModTrustList:198"
+  ]
+ },
+ "ModTrustList.Check": {
+  "returns": "ModListVerdict",
+  "line": 277,
+  "callers": 16,
+  "call_sites": [
+   "InputActionHandler:131",
+   "InputActionManager:87",
+   "LocHelper:32",
+   "ModLoader:278",
+   "ModLoader:399",
+   "ModLoader:559",
+   "NewBehaviourScript:76",
+   "PaperEditorWindow:19",
+   "SpaceAsteroidTrigger:70",
+   "SpaceFuelTankerTrigger:42",
+   "SpaceNavySupplyTrigger:51",
+   "SpaceNutrifruitShopTrigger:52",
+   "StationGeneration:152",
+   "StoreBookData:37",
+   "StoreClientManager:1431"
+  ]
+ },
+ "NetworkUpgradeList.CreateBrewer": {
+  "returns": "NetworkUpgrade",
+  "line": 591,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:394"
+  ]
+ },
+ "NetworkUpgradeList.CreateChemist": {
+  "returns": "NetworkUpgrade",
+  "line": 602,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:398"
+  ]
+ },
+ "NetworkUpgradeList.CreatePharma": {
+  "returns": "NetworkUpgrade",
+  "line": 613,
+  "callers": 3,
+  "call_sites": [
+   "NetworkUpgrade:402",
+   "PhoneClientList:128",
+   "StorePhoneClient:158"
+  ]
+ },
+ "NetworkUpgradeList.CreateMiner": {
+  "returns": "NetworkUpgrade",
+  "line": 624,
+  "callers": 6,
+  "call_sites": [
+   "NetworkUpgrade:406",
+   "StoreClientList:9",
+   "StoreClientList:39",
+   "StoreClientList:1450",
+   "StoreClientListDict:87",
+   "StoreEventActionDict:151"
+  ]
+ },
+ "NetworkUpgradeList.CreateBrewerShareholder": {
+  "returns": "NetworkUpgrade",
+  "line": 647,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:410"
+  ]
+ },
+ "NetworkUpgradeList.CreateMinerShareholder": {
+  "returns": "NetworkUpgrade",
+  "line": 652,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:414"
+  ]
+ },
+ "NetworkUpgradeList.CreateChemistShareholder": {
+  "returns": "NetworkUpgrade",
+  "line": 657,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:418"
+  ]
+ },
+ "NetworkUpgradeList.CreatePharmaShareholder": {
+  "returns": "NetworkUpgrade",
+  "line": 662,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:422"
+  ]
+ },
+ "NetworkUpgradeList.CreateLandlordGrace": {
+  "returns": "NetworkUpgrade",
+  "line": 667,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:426"
+  ]
+ },
+ "NetworkUpgradeList.CreatePrisonGrace": {
+  "returns": "NetworkUpgrade",
+  "line": 680,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:430"
+  ]
+ },
+ "NetworkUpgradeList.CreateInspectionInformation": {
+  "returns": "NetworkUpgrade",
+  "line": 691,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:434"
+  ]
+ },
+ "NetworkUpgradeList.CreateFixer": {
+  "returns": "NetworkUpgrade",
+  "line": 701,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:438"
+  ]
+ },
+ "NetworkUpgradeList.CreateFixer2": {
+  "returns": "NetworkUpgrade",
+  "line": 711,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:442"
+  ]
+ },
+ "NetworkUpgradeList.CreateFixer3": {
+  "returns": "NetworkUpgrade",
+  "line": 724,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:446"
+  ]
+ },
+ "NetworkUpgradeList.CreateEvidenceRemoval": {
+  "returns": "NetworkUpgrade",
+  "line": 737,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:450"
+  ]
+ },
+ "NetworkUpgradeList.CreateBuyReferal": {
+  "returns": "NetworkUpgrade",
+  "line": 748,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:454"
+  ]
+ },
+ "NetworkUpgradeList.CreateSellReferal": {
+  "returns": "NetworkUpgrade",
+  "line": 759,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:458"
+  ]
+ },
+ "NetworkUpgradeList.CreateCriminelNetwork": {
+  "returns": "NetworkUpgrade",
+  "line": 769,
+  "callers": 3,
+  "call_sites": [
+   "NetworkUpgrade:462",
+   "StoreService:76",
+   "StoreServiceSheet:89"
+  ]
+ },
+ "NetworkUpgradeList.CreatePowerHijack": {
+  "returns": "NetworkUpgrade",
+  "line": 780,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:466"
+  ]
+ },
+ "NetworkUpgradeList.CreateCommercialPower": {
+  "returns": "NetworkUpgrade",
+  "line": 790,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:470"
+  ]
+ },
+ "NetworkUpgradeList.CreateShowcaseI": {
+  "returns": "NetworkUpgrade",
+  "line": 800,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:474"
+  ]
+ },
+ "NetworkUpgradeList.CreateShowcaseII": {
+  "returns": "NetworkUpgrade",
+  "line": 811,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:478"
+  ]
+ },
+ "NetworkUpgradeList.CreateGutterflowTap": {
+  "returns": "NetworkUpgrade",
+  "line": 823,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:482"
+  ]
+ },
+ "NetworkUpgradeList.CreateRustwaterTap": {
+  "returns": "NetworkUpgrade",
+  "line": 835,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:486"
+  ]
+ },
+ "NetworkUpgradeList.CreateRuinedMachineUnlock": {
+  "returns": "NetworkUpgrade",
+  "line": 847,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:490"
+  ]
+ },
+ "NetworkUpgradeList.CreateRetiredFarmerUnlock": {
+  "returns": "NetworkUpgrade",
+  "line": 859,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:494"
+  ]
+ },
+ "NetworkUpgradeList.CreateRetiredGunsmithUnlock": {
+  "returns": "NetworkUpgrade",
+  "line": 870,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:498"
+  ]
+ },
+ "NetworkUpgradeList.CreateGunPermitI": {
+  "returns": "NetworkUpgrade",
+  "line": 881,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:502"
+  ]
+ },
+ "NetworkUpgradeList.CreateGunPermitII": {
+  "returns": "NetworkUpgrade",
+  "line": 892,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:506"
+  ]
+ },
+ "NetworkUpgradeList.CreateGunPermitIII": {
+  "returns": "NetworkUpgrade",
+  "line": 904,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:510"
+  ]
+ },
+ "NetworkUpgradeList.CreateRetiredChemistUnlock": {
+  "returns": "NetworkUpgrade",
+  "line": 916,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:514"
+  ]
+ },
+ "NetworkUpgradeList.CreateRetiredRancherUnlock": {
+  "returns": "NetworkUpgrade",
+  "line": 927,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:518"
+  ]
+ },
+ "NetworkUpgradeList.CreateWaterTraderUnlock": {
+  "returns": "NetworkUpgrade",
+  "line": 938,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:522"
+  ]
+ },
+ "NetworkUpgradeList.CreatePlantDnaUnlock": {
+  "returns": "NetworkUpgrade",
+  "line": 950,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:538"
+  ]
+ },
+ "NetworkUpgradeList.CreateDossierUpgrade": {
+  "returns": "NetworkUpgrade",
+  "line": 962,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:542"
+  ]
+ },
+ "NetworkUpgradeList.CreateTrashcanUpgrade": {
+  "returns": "NetworkUpgrade",
+  "line": 972,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:546"
+  ]
+ },
+ "NetworkUpgradeList.CreateVendingMachineUpgrade": {
+  "returns": "NetworkUpgrade",
+  "line": 982,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:550"
+  ]
+ },
+ "NetworkUpgradeList.CreateVendingFountainUpgrade": {
+  "returns": "NetworkUpgrade",
+  "line": 993,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:554"
+  ]
+ },
+ "NetworkUpgradeList.CreateAquacultureIIUnlock": {
+  "returns": "NetworkUpgrade",
+  "line": 1004,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:534"
+  ]
+ },
+ "NetworkUpgradeList.CreateAquacultureUnlock": {
+  "returns": "NetworkUpgrade",
+  "line": 1016,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:530"
+  ]
+ },
+ "NetworkUpgradeList.CreateWinemakerUnlock": {
+  "returns": "NetworkUpgrade",
+  "line": 1029,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:526"
+  ]
+ },
+ "NetworkUpgradeList.CreateMarketplaceRequestsUnlock": {
+  "returns": "NetworkUpgrade",
+  "line": 1040,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:558"
+  ]
+ },
+ "NetworkUpgradeList.CreateJacksonInvestment1": {
+  "returns": "NetworkUpgrade",
+  "line": 1051,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:562"
+  ]
+ },
+ "NetworkUpgradeList.CreateJacksonSpecialStock": {
+  "returns": "NetworkUpgrade",
+  "line": 1061,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:570"
+  ]
+ },
+ "NetworkUpgradeList.CreateJacksonInvestment2": {
+  "returns": "NetworkUpgrade",
+  "line": 1074,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:566"
+  ]
+ },
+ "NetworkUpgradeList.CreateRenovation1": {
+  "returns": "NetworkUpgrade",
+  "line": 1086,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:574"
+  ]
+ },
+ "NetworkUpgradeList.CreateRenovation2": {
+  "returns": "NetworkUpgrade",
+  "line": 1096,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:578"
+  ]
+ },
+ "NetworkUpgradeList.CreateRenovation3": {
+  "returns": "NetworkUpgrade",
+  "line": 1107,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:582"
+  ]
+ },
+ "NetworkUpgradeList.CreateHypertechSmugglerReferral": {
+  "returns": "NetworkUpgrade",
+  "line": 1119,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:586"
+  ]
+ },
+ "NetworkUpgradeList.CreateEndorsement1": {
+  "returns": "NetworkUpgrade",
+  "line": 1134,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:590"
+  ]
+ },
+ "NetworkUpgradeList.CreateEndorsement2": {
+  "returns": "NetworkUpgrade",
+  "line": 1142,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:594"
+  ]
+ },
+ "NetworkUpgradeList.CreateEndorsement3": {
+  "returns": "NetworkUpgrade",
+  "line": 1150,
+  "callers": 1,
+  "call_sites": [
+   "NetworkUpgrade:598"
+  ]
+ },
+ "OperationListBM.GangWar": {
+  "returns": "StoreEvent",
+  "line": 3,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:40"
+  ]
+ },
+ "OperationListBM.IllegalWeaponShipment": {
+  "returns": "StoreEvent",
+  "line": 22,
+  "callers": 2,
+  "call_sites": [
+   "GunOrderDebug:41",
+   "StoreOperationManager:41"
+  ]
+ },
+ "OperationListLL.Riot": {
+  "returns": "StoreEvent",
+  "line": 3,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:36"
+  ]
+ },
+ "OperationListLL.WorkerStrike": {
+  "returns": "StoreEvent",
+  "line": 23,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:37"
+  ]
+ },
+ "OperationListRev.MobilizationSecret": {
+  "returns": "StoreEvent",
+  "line": 3,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:26"
+  ]
+ },
+ "OperationListRev.Mobilization": {
+  "returns": "StoreEvent",
+  "line": 21,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:27"
+  ]
+ },
+ "OperationListRev.RaidUpperLevel": {
+  "returns": "StoreEvent",
+  "line": 42,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:28"
+  ]
+ },
+ "OperationListRev.RaidSecurity": {
+  "returns": "StoreEvent",
+  "line": 61,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:29"
+  ]
+ },
+ "OperationListSec.IncreasePatrols": {
+  "returns": "StoreEvent",
+  "line": 3,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:30"
+  ]
+ },
+ "OperationListSec.Crackdown": {
+  "returns": "StoreEvent",
+  "line": 22,
+  "callers": 2,
+  "call_sites": [
+   "FactionStatusList:22",
+   "StoreOperationManager:31"
+  ]
+ },
+ "OperationListSec.RaidBlackMarket": {
+  "returns": "StoreEvent",
+  "line": 39,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:32"
+  ]
+ },
+ "OperationListSec.RaidRevolution": {
+  "returns": "StoreEvent",
+  "line": 60,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:33"
+  ]
+ },
+ "OperationListSec.MartialLaw": {
+  "returns": "StoreEvent",
+  "line": 78,
+  "callers": 3,
+  "call_sites": [
+   "EventUnused:132",
+   "FactionStatusList:3",
+   "StoreOperationManager:35"
+  ]
+ },
+ "OperationListSec.BudgetIncrease": {
+  "returns": "StoreEvent",
+  "line": 98,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:34"
+  ]
+ },
+ "OperationListUL.MedicalAid": {
+  "returns": "StoreEvent",
+  "line": 3,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:38"
+  ]
+ },
+ "OperationListUL.FoodDrive": {
+  "returns": "StoreEvent",
+  "line": 22,
+  "callers": 0,
+  "call_sites": []
+ },
+ "OperationListUL.HouseholdRelief": {
+  "returns": "StoreEvent",
+  "line": 41,
+  "callers": 1,
+  "call_sites": [
+   "StoreOperationManager:39"
+  ]
+ },
+ "PhoneClientList.CreateTestClient": {
+  "returns": "StorePhoneClient",
+  "line": 76,
+  "callers": 0,
+  "call_sites": []
+ },
+ "PhoneClientList.CreateSecPhoneClient": {
+  "returns": "StorePhoneClient",
+  "line": 85,
+  "callers": 0,
+  "call_sites": []
+ },
+ "PhoneClientList.CreateCommissaryPhone": {
+  "returns": "StorePhoneClient",
+  "line": 95,
+  "callers": 0,
+  "call_sites": []
+ },
+ "PhoneClientList.CreateWildClient": {
+  "returns": "StorePhoneClient",
+  "line": 106,
+  "callers": 1,
+  "call_sites": [
+   "StorePhoneClient:146"
+  ]
+ },
+ "PhoneClientList.CreateRedImpRep": {
+  "returns": "StorePhoneClient",
+  "line": 116,
+  "callers": 1,
+  "call_sites": [
+   "StorePhoneClient:150"
+  ]
+ },
+ "PhoneClientList.CreatePharma": {
+  "returns": "StorePhoneClient",
+  "line": 128,
+  "callers": 3,
+  "call_sites": [
+   "NetworkUpgrade:402",
+   "NetworkUpgradeList:613",
+   "StorePhoneClient:158"
+  ]
+ },
+ "PhoneClientList.CreateMining": {
+  "returns": "StorePhoneClient",
+  "line": 140,
+  "callers": 1,
+  "call_sites": [
+   "StorePhoneClient:154"
+  ]
+ },
+ "PhoneClientList.CreateChem": {
+  "returns": "StorePhoneClient",
+  "line": 152,
+  "callers": 1,
+  "call_sites": [
+   "StorePhoneClient:162"
+  ]
+ },
+ "PhoneClientList.CreateRevMerchant": {
+  "returns": "StorePhoneClient",
+  "line": 164,
+  "callers": 1,
+  "call_sites": [
+   "StorePhoneClient:166"
+  ]
+ },
+ "PhoneDialogList.BugDialog": {
+  "returns": "Dialogue",
+  "line": 49,
+  "callers": 6,
+  "call_sites": [
+   "PhoneClientList:29",
+   "PhoneClientList:39",
+   "PhoneClientList:49",
+   "PhoneClientList:54",
+   "PhoneClientList:63",
+   "StorePhoneClient:83"
+  ]
+ },
+ "PhoneDialogList.PhoneDialogTest": {
+  "returns": "Dialogue",
+  "line": 60,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:12"
+  ]
+ },
+ "PhoneDialogList.PhoneDialogSec": {
+  "returns": "Dialogue",
+  "line": 75,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:16"
+  ]
+ },
+ "PhoneDialogList.CommissaryPhoneDialog": {
+  "returns": "Dialogue",
+  "line": 107,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:68"
+  ]
+ },
+ "PhoneDialogList.PhoneWild": {
+  "returns": "Dialogue",
+  "line": 120,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:20"
+  ]
+ },
+ "PhoneDialogList.RedImpRepIntro": {
+  "returns": "Dialogue",
+  "line": 152,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:26"
+  ]
+ },
+ "PhoneDialogList.RedImpRepRegular": {
+  "returns": "Dialogue",
+  "line": 175,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:27"
+  ]
+ },
+ "PhoneDialogList.RedImpRepCooldown": {
+  "returns": "Dialogue",
+  "line": 227,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:28"
+  ]
+ },
+ "PhoneDialogList.ChemistIntro": {
+  "returns": "Dialogue",
+  "line": 243,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:60"
+  ]
+ },
+ "PhoneDialogList.ChemistRegular": {
+  "returns": "Dialogue",
+  "line": 267,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:61"
+  ]
+ },
+ "PhoneDialogList.ChemistCooldown": {
+  "returns": "Dialogue",
+  "line": 318,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:62"
+  ]
+ },
+ "PhoneDialogList.MiningIntro": {
+  "returns": "Dialogue",
+  "line": 332,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:46"
+  ]
+ },
+ "PhoneDialogList.MiningRegular": {
+  "returns": "Dialogue",
+  "line": 358,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:47"
+  ]
+ },
+ "PhoneDialogList.MiningCooldown": {
+  "returns": "Dialogue",
+  "line": 409,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:48"
+  ]
+ },
+ "PhoneDialogList.PharmaIntro": {
+  "returns": "Dialogue",
+  "line": 428,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:36"
+  ]
+ },
+ "PhoneDialogList.PharmaRegular": {
+  "returns": "Dialogue",
+  "line": 458,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:37"
+  ]
+ },
+ "PhoneDialogList.PharmaCooldown": {
+  "returns": "Dialogue",
+  "line": 510,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:38"
+  ]
+ },
+ "PhoneDialogList.GenericCooldown": {
+  "returns": "Dialogue",
+  "line": 525,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:72"
+  ]
+ },
+ "PhoneDialogList.RevMerchantPhoneDialog": {
+  "returns": "Dialogue",
+  "line": 536,
+  "callers": 1,
+  "call_sites": [
+   "PhoneClientList:72"
+  ]
+ },
+ "ResponseList.CreateTestResponse": {
+  "returns": "StoreResponse",
+  "line": 6,
+  "callers": 1,
+  "call_sites": [
+   "EmporiumEntry:1687"
+  ]
+ },
+ "ResponseList.CreateAfterhoursResponse": {
+  "returns": "StoreResponse",
+  "line": 20,
+  "callers": 1,
+  "call_sites": [
+   "StoreResponse:16"
+  ]
+ },
+ "StartingPerkList.GetModPerk": {
+  "returns": "StartingPerk",
+  "line": 289,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerk:105",
+   "StartingPerk:119"
+  ]
+ },
+ "StartingPerkList.AllPerkDefinitions": {
+  "returns": "List<StartingPerk>",
+  "line": 305,
+  "callers": 3,
+  "call_sites": [
+   "MindReprogrammerHelper:198",
+   "StartingPerkList:258",
+   "StartingPerkList:362"
+  ]
+ },
+ "StartingPerkList.AllPerkDefinitionsWithMods": {
+  "returns": "List<StartingPerk>",
+  "line": 360,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StartingPerkList.Saving": {
+  "returns": "StartingPerk",
+  "line": 367,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:199",
+   "StartingPerkList:309"
+  ]
+ },
+ "StartingPerkList.BadLease": {
+  "returns": "StartingPerk",
+  "line": 377,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:200",
+   "StartingPerkList:310"
+  ]
+ },
+ "StartingPerkList.Convict": {
+  "returns": "StartingPerk",
+  "line": 387,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:201",
+   "StartingPerkList:311"
+  ]
+ },
+ "StartingPerkList.ModelCitizen": {
+  "returns": "StartingPerk",
+  "line": 398,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:202",
+   "StartingPerkList:312"
+  ]
+ },
+ "StartingPerkList.WellConnected": {
+  "returns": "StartingPerk",
+  "line": 409,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:203",
+   "StartingPerkList:313"
+  ]
+ },
+ "StartingPerkList.Sycophant": {
+  "returns": "StartingPerk",
+  "line": 420,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:233",
+   "StartingPerkList:352"
+  ]
+ },
+ "StartingPerkList.AwfulNegotiator": {
+  "returns": "StartingPerk",
+  "line": 430,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:234",
+   "StartingPerkList:353"
+  ]
+ },
+ "StartingPerkList.PublicEnemy": {
+  "returns": "StartingPerk",
+  "line": 441,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:204",
+   "StartingPerkList:342"
+  ]
+ },
+ "StartingPerkList.Alert": {
+  "returns": "StartingPerk",
+  "line": 452,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:205",
+   "StartingPerkList:314"
+  ]
+ },
+ "StartingPerkList.SawyerCrew": {
+  "returns": "StartingPerk",
+  "line": 463,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:206",
+   "StartingPerkList:315"
+  ]
+ },
+ "StartingPerkList.Diplomatic": {
+  "returns": "StartingPerk",
+  "line": 473,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:207",
+   "StartingPerkList:316"
+  ]
+ },
+ "StartingPerkList.Intimidating": {
+  "returns": "StartingPerk",
+  "line": 484,
+  "callers": 3,
+  "call_sites": [
+   "MenuManager:118",
+   "StartingPerkList:208",
+   "StartingPerkList:317"
+  ]
+ },
+ "StartingPerkList.SideStreet": {
+  "returns": "StartingPerk",
+  "line": 495,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:209",
+   "StartingPerkList:318"
+  ]
+ },
+ "StartingPerkList.NicotineAddiction": {
+  "returns": "StartingPerk",
+  "line": 506,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:210",
+   "StartingPerkList:319"
+  ]
+ },
+ "StartingPerkList.NarcoticAddiction": {
+  "returns": "StartingPerk",
+  "line": 517,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:211",
+   "StartingPerkList:320"
+  ]
+ },
+ "StartingPerkList.AlcoholAddiction": {
+  "returns": "StartingPerk",
+  "line": 528,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:191",
+   "StartingPerkList:212",
+   "StartingPerkList:321"
+  ]
+ },
+ "StartingPerkList.SecretAdmirer": {
+  "returns": "StartingPerk",
+  "line": 539,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:213",
+   "StartingPerkList:322"
+  ]
+ },
+ "StartingPerkList.ColorfulCharacter": {
+  "returns": "StartingPerk",
+  "line": 549,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:214",
+   "StartingPerkList:323"
+  ]
+ },
+ "StartingPerkList.Blackmail": {
+  "returns": "StartingPerk",
+  "line": 560,
+  "callers": 17,
+  "call_sites": [
+   "BargainType:7",
+   "BargainUIManager:376",
+   "BargainUIManager:432",
+   "BargainUIManager:490",
+   "BargainUIManager:496",
+   "BargainUIManager:518",
+   "BargainUIManager:555",
+   "BargainUIManager:556",
+   "BargainUIManager:887",
+   "BargainUIManager:1204",
+   "BargainUIManager:1216",
+   "BargainUIManager:1225",
+   "BargainUIManager:1240",
+   "BargainUIManager:1282",
+   "BargainUIManager:1325"
+  ]
+ },
+ "StartingPerkList.Blabbermouth": {
+  "returns": "StartingPerk",
+  "line": 570,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:216",
+   "StartingPerkList:325"
+  ]
+ },
+ "StartingPerkList.Minimalist": {
+  "returns": "StartingPerk",
+  "line": 581,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:217",
+   "StartingPerkList:326"
+  ]
+ },
+ "StartingPerkList.Ascetic": {
+  "returns": "StartingPerk",
+  "line": 593,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:218",
+   "StartingPerkList:343"
+  ]
+ },
+ "StartingPerkList.Sentinel": {
+  "returns": "StartingPerk",
+  "line": 605,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:219",
+   "StartingPerkList:327"
+  ]
+ },
+ "StartingPerkList.Agoraphobia": {
+  "returns": "StartingPerk",
+  "line": 615,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:245",
+   "StartingPerkList:328"
+  ]
+ },
+ "StartingPerkList.WelfareProgram": {
+  "returns": "StartingPerk",
+  "line": 627,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:220",
+   "StartingPerkList:329"
+  ]
+ },
+ "StartingPerkList.MakeshiftReactor": {
+  "returns": "StartingPerk",
+  "line": 638,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:237",
+   "StartingPerkList:356"
+  ]
+ },
+ "StartingPerkList.Hoarder": {
+  "returns": "StartingPerk",
+  "line": 648,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:236",
+   "StartingPerkList:355"
+  ]
+ },
+ "StartingPerkList.BannedCommissary": {
+  "returns": "StartingPerk",
+  "line": 658,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:235",
+   "StartingPerkList:354"
+  ]
+ },
+ "StartingPerkList.ProficientScavenger": {
+  "returns": "StartingPerk",
+  "line": 669,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:221",
+   "StartingPerkList:330"
+  ]
+ },
+ "StartingPerkList.CarefulScavenger": {
+  "returns": "StartingPerk",
+  "line": 681,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:232",
+   "StartingPerkList:351"
+  ]
+ },
+ "StartingPerkList.Maimed": {
+  "returns": "StartingPerk",
+  "line": 693,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:222",
+   "StartingPerkList:344"
+  ]
+ },
+ "StartingPerkList.RevolutionSympathizer": {
+  "returns": "StartingPerk",
+  "line": 704,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:244",
+   "StartingPerkList:331"
+  ]
+ },
+ "StartingPerkList.GamblingAddiction": {
+  "returns": "StartingPerk",
+  "line": 714,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:223",
+   "StartingPerkList:332"
+  ]
+ },
+ "StartingPerkList.Tapehead": {
+  "returns": "StartingPerk",
+  "line": 725,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:224",
+   "StartingPerkList:333"
+  ]
+ },
+ "StartingPerkList.WildFavorite": {
+  "returns": "StartingPerk",
+  "line": 735,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:226",
+   "StartingPerkList:345"
+  ]
+ },
+ "StartingPerkList.WildBadSide": {
+  "returns": "StartingPerk",
+  "line": 746,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:227",
+   "StartingPerkList:346"
+  ]
+ },
+ "StartingPerkList.AugMenace": {
+  "returns": "StartingPerk",
+  "line": 757,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:228",
+   "StartingPerkList:347"
+  ]
+ },
+ "StartingPerkList.Lucky": {
+  "returns": "StartingPerk",
+  "line": 767,
+  "callers": 3,
+  "call_sites": [
+   "Hireling:28",
+   "StartingPerkList:229",
+   "StartingPerkList:348"
+  ]
+ },
+ "StartingPerkList.Unlucky": {
+  "returns": "StartingPerk",
+  "line": 778,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:230",
+   "StartingPerkList:349"
+  ]
+ },
+ "StartingPerkList.Handy": {
+  "returns": "StartingPerk",
+  "line": 789,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:225",
+   "StartingPerkList:341"
+  ]
+ },
+ "StartingPerkList.Tinkerer": {
+  "returns": "StartingPerk",
+  "line": 799,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:231",
+   "StartingPerkList:350"
+  ]
+ },
+ "StartingPerkList.VendingMachine": {
+  "returns": "StartingPerk",
+  "line": 809,
+  "callers": 4,
+  "call_sites": [
+   "FurnitureItemDirectory:32",
+   "StartingPerkList:243",
+   "StartingPerkList:334",
+   "VendingMachineHelper:78"
+  ]
+ },
+ "StartingPerkList.ShortSleeper": {
+  "returns": "StartingPerk",
+  "line": 819,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:239",
+   "StartingPerkList:335"
+  ]
+ },
+ "StartingPerkList.WorkingPipes": {
+  "returns": "StartingPerk",
+  "line": 830,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:240",
+   "StartingPerkList:336"
+  ]
+ },
+ "StartingPerkList.Illiterate": {
+  "returns": "StartingPerk",
+  "line": 840,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:241",
+   "StartingPerkList:337"
+  ]
+ },
+ "StartingPerkList.PrimeRealEstate": {
+  "returns": "StartingPerk",
+  "line": 851,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:242",
+   "StartingPerkList:338"
+  ]
+ },
+ "StartingPerkList.DegenerativeOsteoarthritis": {
+  "returns": "StartingPerk",
+  "line": 862,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:246",
+   "StartingPerkList:339"
+  ]
+ },
+ "StartingPerkList.KnownSnitch": {
+  "returns": "StartingPerk",
+  "line": 873,
+  "callers": 2,
+  "call_sites": [
+   "StartingPerkList:247",
+   "StartingPerkList:340"
+  ]
+ },
+ "StoreClientDialogList.GetRandomDialogAccepted": {
+  "returns": "Dialogue",
+  "line": 20,
+  "callers": 2,
+  "call_sites": [
+   "StoreClient:550",
+   "StoreClientList:3531"
+  ]
+ },
+ "StoreClientDialogList.GetRandomDialogDone": {
+  "returns": "Dialogue",
+  "line": 32,
+  "callers": 1,
+  "call_sites": [
+   "StoreClient:551"
+  ]
+ },
+ "StoreClientDialogList.CreateOutOfBudgetDialogue": {
+  "returns": "Dialogue",
+  "line": 39,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientDialogList.CreateAlreadyBoughtDialog": {
+  "returns": "Dialogue",
+  "line": 58,
+  "callers": 1,
+  "call_sites": [
+   "PlayerStore:2945"
+  ]
+ },
+ "StoreClientDialogList.CreateNoContrabandDialog": {
+  "returns": "Dialogue",
+  "line": 68,
+  "callers": 1,
+  "call_sites": [
+   "PlayerStore:2950"
+  ]
+ },
+ "StoreClientDialogList.CreateDefaultAllDoneDialog": {
+  "returns": "Dialogue",
+  "line": 78,
+  "callers": 1,
+  "call_sites": [
+   "StoreClient:571"
+  ]
+ },
+ "StoreClientDialogList.CreateShutterDownClose": {
+  "returns": "Dialogue",
+  "line": 90,
+  "callers": 1,
+  "call_sites": [
+   "StoreShutterButton:224"
+  ]
+ },
+ "StoreClientDialogList.CreateAfterBuyingFromClientDialog": {
+  "returns": "Dialogue",
+  "line": 111,
+  "callers": 1,
+  "call_sites": [
+   "StoreClient:582"
+  ]
+ },
+ "StoreClientDialogList.CreateAfterSellingToClientDialog": {
+  "returns": "Dialogue",
+  "line": 119,
+  "callers": 1,
+  "call_sites": [
+   "StoreClient:578"
+  ]
+ },
+ "StoreClientDialogList.MentorAfterhoursDialog": {
+  "returns": "Dialogue",
+  "line": 134,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListStory:14"
+  ]
+ },
+ "StoreClientDialogList.MentorIntroDialog": {
+  "returns": "Dialogue",
+  "line": 160,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListStory:27"
+  ]
+ },
+ "StoreClientDialogList.MentorIntroDialog2": {
+  "returns": "Dialogue",
+  "line": 197,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListStory:40"
+  ]
+ },
+ "StoreClientDialogList.SecurityDialogInspectionCleared": {
+  "returns": "Dialogue",
+  "line": 221,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:253"
+  ]
+ },
+ "StoreClientDialogList.SecurityDialogInspectionWarning": {
+  "returns": "Dialogue",
+  "line": 233,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:241"
+  ]
+ },
+ "StoreClientDialogList.SecurityDialogInspectionSeizure": {
+  "returns": "Dialogue",
+  "line": 247,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:231"
+  ]
+ },
+ "StoreClientDialogList.SecurityDialogInspectionSeizureStolen": {
+  "returns": "Dialogue",
+  "line": 261,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:236"
+  ]
+ },
+ "StoreClientDialogList.SecurityDialogOnContrabandOnCounter": {
+  "returns": "Dialogue",
+  "line": 275,
+  "callers": 3,
+  "call_sites": [
+   "StoreClient:1001",
+   "StoreClient:1019",
+   "StoreClient:1037"
+  ]
+ },
+ "StoreClientDialogList.SecurityDialogOnStolenOnCounter": {
+  "returns": "Dialogue",
+  "line": 291,
+  "callers": 3,
+  "call_sites": [
+   "StoreClient:1006",
+   "StoreClient:1024",
+   "StoreClient:1042"
+  ]
+ },
+ "StoreClientDialogList.SecurityDialogInspectionLastLine": {
+  "returns": "Dialogue",
+  "line": 307,
+  "callers": 2,
+  "call_sites": [
+   "StoreClient:1049",
+   "StoreClientList:2785"
+  ]
+ },
+ "StoreClientDialogList.SecurityDialogInspectionFine": {
+  "returns": "Dialogue",
+  "line": 350,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:226"
+  ]
+ },
+ "StoreClientDialogList.SecurityDialogInspectionArrest": {
+  "returns": "Dialogue",
+  "line": 404,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:220"
+  ]
+ },
+ "StoreClientDialogList.SecurityDialogInspectionGrace": {
+  "returns": "Dialogue",
+  "line": 417,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:216"
+  ]
+ },
+ "StoreClientDialogList.SecurityOnShowLowLevel": {
+  "returns": "Dialogue",
+  "line": 434,
+  "callers": 1,
+  "call_sites": [
+   "ContrabandHelper:552"
+  ]
+ },
+ "StoreClientDialogList.SecurityOnShowLowLevelBad": {
+  "returns": "Dialogue",
+  "line": 444,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientDialogList.ClientArrestDialog": {
+  "returns": "Dialogue",
+  "line": 472,
+  "callers": 1,
+  "call_sites": [
+   "StoreUIManager:948"
+  ]
+ },
+ "StoreClientDialogList.ClientAlarmInitialReactionDialog": {
+  "returns": "Dialogue",
+  "line": 484,
+  "callers": 1,
+  "call_sites": [
+   "PlayerStore:3340"
+  ]
+ },
+ "StoreClientDialogList.ClientArrestDialogCriminal": {
+  "returns": "Dialogue",
+  "line": 492,
+  "callers": 1,
+  "call_sites": [
+   "StoreUIManager:944"
+  ]
+ },
+ "StoreClientDialogList.WildNetworkContinue": {
+  "returns": "Dialogue",
+  "line": 503,
+  "callers": 2,
+  "call_sites": [
+   "WildNetworkUI:138",
+   "WildUIManager:79"
+  ]
+ },
+ "StoreClientDialogList.SecAugDialog": {
+  "returns": "Dialogue",
+  "line": 532,
+  "callers": 1,
+  "call_sites": [
+   "StoreUIManager:925"
+  ]
+ },
+ "StoreClientDialogList.SecShootoutDialog": {
+  "returns": "Dialogue",
+  "line": 551,
+  "callers": 1,
+  "call_sites": [
+   "StoreUIManager:917"
+  ]
+ },
+ "StoreClientDialogList.MentorShotgunDialog": {
+  "returns": "Dialogue",
+  "line": 591,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListStory:1513"
+  ]
+ },
+ "StoreClientList.GetRandomClientPool": {
+  "returns": "RandomClientPool",
+  "line": 79,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:233"
+  ]
+ },
+ "StoreClientList.CreateSpacerClientFood": {
+  "returns": "StoreClient",
+  "line": 91,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientList:12",
+   "StoreClientList:115",
+   "StoreClientListDict:11"
+  ]
+ },
+ "StoreClientList.CreateTrailerSpacerFoodClient": {
+  "returns": "StoreClient",
+  "line": 113,
+  "callers": 1,
+  "call_sites": [
+   "DebugPanel:1340"
+  ]
+ },
+ "StoreClientList.CreateUpperLowerVisitor": {
+  "returns": "StoreClient",
+  "line": 120,
+  "callers": 4,
+  "call_sites": [
+   "DebugPanel:1608",
+   "StoreClientList:28",
+   "StoreClientListDict:15",
+   "StoreClientManager:1011"
+  ]
+ },
+ "StoreClientList.CreateUpperLowerVisitorLuxury": {
+  "returns": "StoreClient",
+  "line": 141,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientList:28",
+   "StoreClientList:162",
+   "StoreClientListDict:19"
+  ]
+ },
+ "StoreClientList.CreateDiscerningShopper": {
+  "returns": "StoreClient",
+  "line": 160,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:23",
+   "StoreClientManager:1254"
+  ]
+ },
+ "StoreClientList.CreatePoisonBuyer": {
+  "returns": "StoreClient",
+  "line": 171,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:35"
+  ]
+ },
+ "StoreClientList.CreateSpacerClientFoodVariety": {
+  "returns": "StoreClient",
+  "line": 191,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:13",
+   "StoreClientListDict:39"
+  ]
+ },
+ "StoreClientList.CreateSpacerClientAmenityVariety": {
+  "returns": "StoreClient",
+  "line": 213,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:14",
+   "StoreClientListDict:43"
+  ]
+ },
+ "StoreClientList.CreateJunker": {
+  "returns": "StoreClient",
+  "line": 235,
+  "callers": 4,
+  "call_sites": [
+   "DirectoryCombatEntity:124",
+   "NpcCharacterItemDirectory:17",
+   "StoreClientList:15",
+   "StoreClientListDict:47"
+  ]
+ },
+ "StoreClientList.CreateJunkerSellOnly": {
+  "returns": "StoreClient",
+  "line": 303,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:51",
+   "StoreClientManager:995"
+  ]
+ },
+ "StoreClientList.CreateFarmerClientStandard": {
+  "returns": "StoreClient",
+  "line": 338,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:39",
+   "StoreClientListDict:55"
+  ]
+ },
+ "StoreClientList.CreateStampSeller": {
+  "returns": "StoreClient",
+  "line": 398,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientList:20",
+   "StoreClientListDict:59",
+   "StoreClientManager:1064",
+   "StoreClientManager:1069"
+  ]
+ },
+ "StoreClientList.CreateInventor": {
+  "returns": "StoreClient",
+  "line": 428,
+  "callers": 5,
+  "call_sites": [
+   "MapUIManager:450",
+   "StoreClientListDict:63",
+   "StoreClientManager:1040",
+   "StoreClientManager:1071",
+   "StoreClientManager:1400"
+  ]
+ },
+ "StoreClientList.CreateInventorStorage": {
+  "returns": "StoreClient",
+  "line": 1176,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:235",
+   "StoreClientManager:1947"
+  ]
+ },
+ "StoreClientList.CreateMerchant": {
+  "returns": "StoreClient",
+  "line": 1232,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientList:8",
+   "StoreClientListDict:67",
+   "StoreClientManager:476",
+   "StoreClientManager:496"
+  ]
+ },
+ "StoreClientList.CreateShadyMerchant": {
+  "returns": "StoreClient",
+  "line": 1265,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:25",
+   "StoreClientListDict:71"
+  ]
+ },
+ "StoreClientList.CreateShadyPharmacist": {
+  "returns": "StoreClient",
+  "line": 1315,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientList:10",
+   "StoreClientList:39",
+   "StoreClientListDict:75",
+   "StoreClientManager:1075"
+  ]
+ },
+ "StoreClientList.CreateScrapper": {
+  "returns": "StoreClient",
+  "line": 1365,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientListDict:79",
+   "StoreClientListDict:739",
+   "StoreClientListTier:9",
+   "StoreClientListTier:585"
+  ]
+ },
+ "StoreClientList.CreateLowerLevelChemist": {
+  "returns": "StoreClient",
+  "line": 1397,
+  "callers": 6,
+  "call_sites": [
+   "StoreClientList:11",
+   "StoreClientList:39",
+   "StoreClientList:1392",
+   "StoreClientList:1394",
+   "StoreClientListDict:83",
+   "StoreClientManager:1045"
+  ]
+ },
+ "StoreClientList.CreateMiner": {
+  "returns": "StoreClient",
+  "line": 1450,
+  "callers": 6,
+  "call_sites": [
+   "NetworkUpgrade:406",
+   "NetworkUpgradeList:624",
+   "StoreClientList:9",
+   "StoreClientList:39",
+   "StoreClientListDict:87",
+   "StoreEventActionDict:151"
+  ]
+ },
+ "StoreClientList.GetScavGreetingLines": {
+  "returns": "List<string>",
+  "line": 1510,
+  "callers": 5,
+  "call_sites": [
+   "StoreClientList:1555",
+   "StoreClientList:1870",
+   "StoreClientList:1920",
+   "StoreClientList:1967",
+   "StoreClientListSupplier:590"
+  ]
+ },
+ "StoreClientList.GetScavOfferLines": {
+  "returns": "List<string>",
+  "line": 1527,
+  "callers": 5,
+  "call_sites": [
+   "StoreClientList:1556",
+   "StoreClientList:1871",
+   "StoreClientList:1921",
+   "StoreClientList:1968",
+   "StoreClientListSupplier:591"
+  ]
+ },
+ "StoreClientList.CreateScavGeneral": {
+  "returns": "StoreClient",
+  "line": 1544,
+  "callers": 10,
+  "call_sites": [
+   "StoreClientList:16",
+   "StoreClientList:1918",
+   "StoreClientList:1943",
+   "StoreClientListDict:91",
+   "StoreClientListDict:1128",
+   "StoreClientManager:522",
+   "StoreClientManager:1005",
+   "StoreClientManager:1031",
+   "StoreClientManager:1060",
+   "StoreClientManager:1070"
+  ]
+ },
+ "StoreClientList.CreateScavCrate": {
+  "returns": "StoreClient",
+  "line": 1859,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:17",
+   "StoreClientListDict:95"
+  ]
+ },
+ "StoreClientList.CreateTrailerScavGeneral": {
+  "returns": "StoreClient",
+  "line": 1916,
+  "callers": 1,
+  "call_sites": [
+   "DebugPanel:1335"
+  ]
+ },
+ "StoreClientList.CreateTrailerAug": {
+  "returns": "StoreClient",
+  "line": 1941,
+  "callers": 1,
+  "call_sites": [
+   "DebugPanel:1575"
+  ]
+ },
+ "StoreClientList.CreateInsScav": {
+  "returns": "StoreClient",
+  "line": 1955,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:23",
+   "StoreClientListDict:99"
+  ]
+ },
+ "StoreClientList.CreateThief": {
+  "returns": "StoreClient",
+  "line": 2045,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientList:25",
+   "StoreClientListDict:103",
+   "StoreClientManager:1077",
+   "StoreClientManager:1241"
+  ]
+ },
+ "StoreClientList.CreatePettyThief": {
+  "returns": "StoreClient",
+  "line": 2227,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientList:25",
+   "StoreClientListDict:107",
+   "StoreClientManager:1266"
+  ]
+ },
+ "StoreClientList.CreateFoodThief": {
+  "returns": "StoreClient",
+  "line": 2300,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:26",
+   "StoreClientListDict:111"
+  ]
+ },
+ "StoreClientList.CreateSupplier": {
+  "returns": "StoreClient",
+  "line": 2487,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:115",
+   "StoreClientManager:1390"
+  ]
+ },
+ "StoreClientList.CreateSupplierIntro": {
+  "returns": "StoreClient",
+  "line": 2507,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:119",
+   "StoreClientManager:1386"
+  ]
+ },
+ "StoreClientList.CreateWaterSeller": {
+  "returns": "StoreClient",
+  "line": 2529,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:18",
+   "StoreClientListDict:123"
+  ]
+ },
+ "StoreClientList.CreateLandlordClient": {
+  "returns": "StoreClient",
+  "line": 2608,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:1330",
+   "StoreClientListDict:127",
+   "StoreClientManager:498"
+  ]
+ },
+ "StoreClientList.CreateLandlordVendingMachineClient": {
+  "returns": "StoreClient",
+  "line": 2704,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1716"
+  ]
+ },
+ "StoreClientList.CreateInspectionClient": {
+  "returns": "StoreClient",
+  "line": 2766,
+  "callers": 7,
+  "call_sites": [
+   "DebugPanel:1596",
+   "StoreClientList:2802",
+   "StoreClientListWanted:1503",
+   "StoreClientManager:677",
+   "StoreClientManager:681",
+   "StoreClientManager:723",
+   "StoreEventActionDict:178"
+  ]
+ },
+ "StoreClientList.CreateTrailerInspectionClient": {
+  "returns": "StoreClient",
+  "line": 2800,
+  "callers": 1,
+  "call_sites": [
+   "DebugPanel:1345"
+  ]
+ },
+ "StoreClientList.CreateScavBlood": {
+  "returns": "StoreClient",
+  "line": 2807,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:19",
+   "StoreClientListDict:131"
+  ]
+ },
+ "StoreClientList.CreateLoanSharkIntro": {
+  "returns": "StoreClient",
+  "line": 2870,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:135",
+   "StoreClientManager:894"
+  ]
+ },
+ "StoreClientList.CreateLoanShark2": {
+  "returns": "StoreClient",
+  "line": 2906,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:139",
+   "StoreClientManager:502"
+  ]
+ },
+ "StoreClientList.CreateLoanSharkCollect": {
+  "returns": "StoreClient",
+  "line": 3004,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:143",
+   "StoreClientManager:478"
+  ]
+ },
+ "StoreClientList.CreateMercBuyer": {
+  "returns": "StoreClient",
+  "line": 3111,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:21",
+   "StoreClientListDict:147"
+  ]
+ },
+ "StoreClientList.CreateGunsmith": {
+  "returns": "StoreClient",
+  "line": 3135,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:155",
+   "StoreClientManager:1232"
+  ]
+ },
+ "StoreClientList.CreateLowerLevelRareMerchant": {
+  "returns": "StoreClient",
+  "line": 3206,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:183",
+   "StoreClientManager:1228"
+  ]
+ },
+ "StoreClientList.CreateRareLowerLevelChemist": {
+  "returns": "StoreClient",
+  "line": 3248,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:187",
+   "StoreClientManager:1236"
+  ]
+ },
+ "StoreClientList.CreateSecSurplusMerchant": {
+  "returns": "StoreClient",
+  "line": 3322,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:191",
+   "StoreClientManager:1218"
+  ]
+ },
+ "StoreClientList.CreateSecRequisitionOfficer": {
+  "returns": "StoreClient",
+  "line": 3513,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:1600",
+   "StoreClientListDict:195",
+   "StoreClientManager:1222"
+  ]
+ },
+ "StoreClientList.CreateCluelessTouristBuyer": {
+  "returns": "StoreClient",
+  "line": 3536,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientList:28",
+   "StoreClientListDict:199",
+   "StoreEventActionDict:222"
+  ]
+ },
+ "StoreClientList.CreateBrokeUpperLevel": {
+  "returns": "StoreClient",
+  "line": 3577,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:29",
+   "StoreClientListDict:203"
+  ]
+ },
+ "StoreClientList.CreateTouristWeaponSouvenirBuyer": {
+  "returns": "StoreClient",
+  "line": 3646,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:207",
+   "StoreEventActionDict:228"
+  ]
+ },
+ "StoreClientList.CreateTouristJunkSouvenirBuyer": {
+  "returns": "StoreClient",
+  "line": 3679,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:211",
+   "StoreEventActionDict:234"
+  ]
+ },
+ "StoreClientList.CreateFoodBankBuyer": {
+  "returns": "StoreClient",
+  "line": 3717,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:22",
+   "StoreClientListDict:215"
+  ]
+ },
+ "StoreClientList.CreateCriminalBuyerThief": {
+  "returns": "StoreClient",
+  "line": 3748,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:219",
+   "StoreClientManager:569"
+  ]
+ },
+ "StoreClientList.CreateCriminelMerc": {
+  "returns": "StoreClient",
+  "line": 3774,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:223",
+   "StoreClientManager:573"
+  ]
+ },
+ "StoreClientList.CreateUpperLevelCharity": {
+  "returns": "StoreClient",
+  "line": 3802,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:227",
+   "StoreClientManager:1258"
+  ]
+ },
+ "StoreClientList.CreateLotteryRep": {
+  "returns": "StoreClient",
+  "line": 3852,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:231",
+   "StoreClientManager:806"
+  ]
+ },
+ "StoreClientList.CreateFlexiBuyer": {
+  "returns": "StoreClient",
+  "line": 3926,
+  "callers": 6,
+  "call_sites": [
+   "StoreClientManager:1012",
+   "StoreClientManager:1018",
+   "StoreClientManager:1025",
+   "StoreClientManager:1038",
+   "StoreClientManager:1659",
+   "StoreClientManager:1663"
+  ]
+ },
+ "StoreClientList.CreateBusinessPermit": {
+  "returns": "StoreClient",
+  "line": 4006,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:830"
+  ]
+ },
+ "StoreClientList.CreateAugMed": {
+  "returns": "StoreClient",
+  "line": 4207,
+  "callers": 6,
+  "call_sites": [
+   "DebugPanel:1579",
+   "DebugPanel:1580",
+   "DebugPanel:1581",
+   "DebugPanel:1582",
+   "StoreClientManager:2095",
+   "StoreClientManager:2139"
+  ]
+ },
+ "StoreClientList.CreateAugMaterial": {
+  "returns": "StoreClient",
+  "line": 4225,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:2143"
+  ]
+ },
+ "StoreClientListAppraisal.CreateAppraisal1": {
+  "returns": "StoreClient",
+  "line": 11,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:239",
+   "StoreClientManager:1049"
+  ]
+ },
+ "StoreClientListAppraisal.CreateAppraisalRandom": {
+  "returns": "StoreClient",
+  "line": 31,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:1350",
+   "DebugPanel:1485",
+   "StoreClientListDict:243"
+  ]
+ },
+ "StoreClientListAppraisal.CreatePromotionOffer": {
+  "returns": "StoreClient",
+  "line": 54,
+  "callers": 2,
+  "call_sites": [
+   "AppraisalRankHelper:239",
+   "StoreClientListDict:31"
+  ]
+ },
+ "StoreClientListBarter.CreateAddict": {
+  "returns": "StoreClient",
+  "line": 3,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:247",
+   "StoreClientManager:1076"
+  ]
+ },
+ "StoreClientListBarter.CreateAddictGeneral": {
+  "returns": "StoreClient",
+  "line": 28,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientList:8",
+   "StoreClientListDict:251",
+   "StoreClientManager:698"
+  ]
+ },
+ "StoreClientListBarter.CreateBasicFoodBarterTutorial": {
+  "returns": "StoreClient",
+  "line": 58,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:255",
+   "StoreClientManager:1024"
+  ]
+ },
+ "StoreClientListBarter.CreateAddictBlood": {
+  "returns": "StoreClient",
+  "line": 91,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:259"
+  ]
+ },
+ "StoreClientListBarter.CreateScavBarter": {
+  "returns": "StoreClient",
+  "line": 140,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:263"
+  ]
+ },
+ "StoreClientListBarter.CreateLowerLevelChemistBarter": {
+  "returns": "StoreClient",
+  "line": 237,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListBarter:232",
+   "StoreClientListBarter:234",
+   "StoreClientListDict:267"
+  ]
+ },
+ "StoreClientListBarter.CreateNormalFoodBarter": {
+  "returns": "StoreClient",
+  "line": 299,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:8",
+   "StoreClientListDict:271"
+  ]
+ },
+ "StoreClientListCartel.CreateCartelIntro": {
+  "returns": "StoreClient",
+  "line": 15,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListDict:1011",
+   "StoreClientListDict:1022",
+   "StoreClientManager:693"
+  ]
+ },
+ "StoreClientListCartel.CreateCartelSec": {
+  "returns": "StoreClient",
+  "line": 74,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1015",
+   "StoreClientManager:697"
+  ]
+ },
+ "StoreClientListCartel.CreateCartelSecSnitched": {
+  "returns": "StoreClient",
+  "line": 108,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListCartel:92",
+   "StoreClientListDict:1019"
+  ]
+ },
+ "StoreClientListCartel.CreateCartelHandlerCheckin": {
+  "returns": "StoreClient",
+  "line": 145,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1023",
+   "StoreClientManager:706"
+  ]
+ },
+ "StoreClientListCartel.CreateCartelHandlerWeekly": {
+  "returns": "StoreClient",
+  "line": 224,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1027",
+   "StoreClientManager:710"
+  ]
+ },
+ "StoreClientListCartel.CreateCartelWoundedSoldier": {
+  "returns": "StoreClient",
+  "line": 535,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1031",
+   "StoreClientManager:714"
+  ]
+ },
+ "StoreClientListCartel.CreateShadyFarmer": {
+  "returns": "StoreClient",
+  "line": 557,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1035",
+   "StoreClientManager:1701"
+  ]
+ },
+ "StoreClientListCartel.CreateDealer": {
+  "returns": "StoreClient",
+  "line": 604,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListDict:1039",
+   "StoreClientManager:702",
+   "StoreClientManager:1705"
+  ]
+ },
+ "StoreClientListChurch.CreateUniquePreacher": {
+  "returns": "StoreClient",
+  "line": 3,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1098"
+  ]
+ },
+ "StoreClientListChurch.CreateUniquePreacher2": {
+  "returns": "StoreClient",
+  "line": 31,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1106"
+  ]
+ },
+ "StoreClientListChurch.CreateChurchAbby1": {
+  "returns": "StoreClient",
+  "line": 55,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1102"
+  ]
+ },
+ "StoreClientListChurch.CreateChurchAbby2": {
+  "returns": "StoreClient",
+  "line": 86,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1110"
+  ]
+ },
+ "StoreClientListChurch.CreateChurchAbby3": {
+  "returns": "StoreClient",
+  "line": 115,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1114"
+  ]
+ },
+ "StoreClientListChurch.CreateChurchAbby4": {
+  "returns": "StoreClient",
+  "line": 142,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1118"
+  ]
+ },
+ "StoreClientListChurch.CreateChurchAbby5": {
+  "returns": "StoreClient",
+  "line": 165,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1122"
+  ]
+ },
+ "StoreClientListChurch.CreateChurchUniqueEngineer": {
+  "returns": "StoreClient",
+  "line": 200,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1126"
+  ]
+ },
+ "StoreClientListChurch.CreateChurchUniqueEngineer2": {
+  "returns": "StoreClient",
+  "line": 223,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1134"
+  ]
+ },
+ "StoreClientListChurch.CreateChurchAbbyEnding": {
+  "returns": "StoreClient",
+  "line": 252,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1130"
+  ]
+ },
+ "StoreClientListDict.CreateStoreClient": {
+  "returns": "StoreClient",
+  "line": 1118,
+  "callers": 6,
+  "call_sites": [
+   "CustomUIDebugWindows:327",
+   "PlayerStore:1413",
+   "ShowcaseHelper:369",
+   "ShowcaseHelper:427",
+   "StoreClientManager:275",
+   "StoreClientManager:1294"
+  ]
+ },
+ "StoreClientListEvent.CreateIceMiner": {
+  "returns": "StoreClient",
+  "line": 31,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:275",
+   "StoreEventActionDict:124"
+  ]
+ },
+ "StoreClientListEvent.CreateForeman": {
+  "returns": "StoreClient",
+  "line": 65,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListDict:279",
+   "StoreEventActionDict:160",
+   "StoreEventActionDict:169"
+  ]
+ },
+ "StoreClientListEvent.CreateScavengerHouseholdClient": {
+  "returns": "StoreClient",
+  "line": 83,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:283",
+   "StoreEventActionDict:142"
+  ]
+ },
+ "StoreClientListEvent.CreatePanicBuyerClient": {
+  "returns": "StoreClient",
+  "line": 135,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:287",
+   "StoreEventActionDict:99"
+  ]
+ },
+ "StoreClientListEvent.CreateCorporateBuyerClient": {
+  "returns": "StoreClient",
+  "line": 178,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:291",
+   "StoreEventActionDict:105"
+  ]
+ },
+ "StoreClientListEvent.CreateGenericWaterBuyer": {
+  "returns": "StoreClient",
+  "line": 225,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:295",
+   "StoreEventActionDict:115"
+  ]
+ },
+ "StoreClientListEvent.CreateFoodBuyerClient": {
+  "returns": "StoreClient",
+  "line": 264,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:299",
+   "StoreEventActionDict:70"
+  ]
+ },
+ "StoreClientListEvent.CreatePharmacistClient": {
+  "returns": "StoreClient",
+  "line": 283,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:303",
+   "StoreEventActionDict:88"
+  ]
+ },
+ "StoreClientListEvent.CreateFarmerSeedClient": {
+  "returns": "StoreClient",
+  "line": 302,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:307",
+   "StoreEventActionDict:79"
+  ]
+ },
+ "StoreClientListEvent.CreateLynchingCitizen": {
+  "returns": "StoreClient",
+  "line": 336,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:311",
+   "StoreEventActionDict:133"
+  ]
+ },
+ "StoreClientListEvent.CreatePowerEventLLBuyer": {
+  "returns": "StoreClient",
+  "line": 368,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:319",
+   "StoreEventActionDict:187"
+  ]
+ },
+ "StoreClientListEvent.CreatePowerMaintenanceEventLLBuyer": {
+  "returns": "StoreClient",
+  "line": 401,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:323",
+   "StoreEventActionDict:196"
+  ]
+ },
+ "StoreClientListEvent.CreatePowerEventULBuyer": {
+  "returns": "StoreClient",
+  "line": 431,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:327",
+   "StoreEventActionDict:205"
+  ]
+ },
+ "StoreClientListEvent.CreatePanickedShopkeeperBuyer": {
+  "returns": "StoreClient",
+  "line": 461,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:331",
+   "StoreEventActionDict:210"
+  ]
+ },
+ "StoreClientListEvent.CreateClinicVolunteerClient": {
+  "returns": "StoreClient",
+  "line": 495,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:315",
+   "StoreEventActionDict:246"
+  ]
+ },
+ "StoreClientListGun.CreateLLGunBuyer": {
+  "returns": "StoreClient",
+  "line": 43,
+  "callers": 8,
+  "call_sites": [
+   "CustomUIDebugPanel:292",
+   "GunOrderDebug:16",
+   "GunOrderDebug:30",
+   "StoreClientListDict:159",
+   "StoreClientListGun:38",
+   "StoreClientListGun:40",
+   "StoreClientManager:520",
+   "StoreClientManager:537"
+  ]
+ },
+ "StoreClientListGun.CreateMercGunBuyer": {
+  "returns": "StoreClient",
+  "line": 69,
+  "callers": 6,
+  "call_sites": [
+   "CustomUIDebugPanel:296",
+   "GunOrderDebug:15",
+   "GunOrderDebug:33",
+   "StoreClientListDict:163",
+   "StoreClientListGun:64",
+   "StoreClientListGun:66"
+  ]
+ },
+ "StoreClientListGun.CreateULBuyer": {
+  "returns": "StoreClient",
+  "line": 95,
+  "callers": 7,
+  "call_sites": [
+   "CustomUIDebugPanel:300",
+   "GunOrderDebug:17",
+   "GunOrderDebug:36",
+   "StoreClientListDict:167",
+   "StoreClientListGun:90",
+   "StoreClientListGun:92",
+   "StoreClientListGun:118"
+  ]
+ },
+ "StoreClientListGun.CreateStoryGunBuyer": {
+  "returns": "StoreClient",
+  "line": 116,
+  "callers": 1,
+  "call_sites": [
+   "DebugPanel:1313"
+  ]
+ },
+ "StoreClientListGun.GetRandomBasicOrder": {
+  "returns": "GunOrderData",
+  "line": 144,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientListGun:40",
+   "StoreClientListGun:329",
+   "StoreClientListGun:455",
+   "StoreClientListGun:582"
+  ]
+ },
+ "StoreClientListGun.GetRandomMidOrder": {
+  "returns": "GunOrderData",
+  "line": 164,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListGun:66"
+  ]
+ },
+ "StoreClientListGun.GetRandomHighOrder": {
+  "returns": "GunOrderData",
+  "line": 183,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListGun:92"
+  ]
+ },
+ "StoreClientListGun.CreateDeliveryFollowUp": {
+  "returns": "Dialogue",
+  "line": 221,
+  "callers": 1,
+  "call_sites": [
+   "NegociationUIManager:1380"
+  ]
+ },
+ "StoreClientListGun.CreateLLGunSeller": {
+  "returns": "StoreClient",
+  "line": 321,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:171",
+   "StoreClientManager:530"
+  ]
+ },
+ "StoreClientListGun.CreateMercGunSeller": {
+  "returns": "StoreClient",
+  "line": 447,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:175"
+  ]
+ },
+ "StoreClientListGun.CreateULGunSeller": {
+  "returns": "StoreClient",
+  "line": 574,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:179"
+  ]
+ },
+ "StoreClientListInformation.CreateBeggerInformation": {
+  "returns": "StoreClient",
+  "line": 45,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListInformation.CreateShadyCustomer": {
+  "returns": "StoreClient",
+  "line": 84,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientListDict:335",
+   "StoreClientManager:1085",
+   "StoreClientManager:1371",
+   "StoreClientManager:1376"
+  ]
+ },
+ "StoreClientListMinor.CreateClientFromId": {
+  "returns": "StoreClient",
+  "line": 48,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1499"
+  ]
+ },
+ "StoreClientListMinor.CreateStationEngineer": {
+  "returns": "StoreClient",
+  "line": 58,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientListDict:339",
+   "StoreClientListDict:751",
+   "StoreClientListMinor:23",
+   "StoreClientListTier:661"
+  ]
+ },
+ "StoreClientListMinor.CreateMinerMinor": {
+  "returns": "StoreClient",
+  "line": 90,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:343",
+   "StoreClientListMinor:24"
+  ]
+ },
+ "StoreClientListMinor.CreateNurse1": {
+  "returns": "StoreClient",
+  "line": 115,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:347",
+   "StoreClientListMinor:25"
+  ]
+ },
+ "StoreClientListMinor.CreateNurse2": {
+  "returns": "StoreClient",
+  "line": 149,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:351",
+   "StoreClientListMinor:37"
+  ]
+ },
+ "StoreClientListMinor.CreateScavWater": {
+  "returns": "StoreClient",
+  "line": 178,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:355",
+   "StoreClientListMinor:26"
+  ]
+ },
+ "StoreClientListMinor.CreateScavHaul": {
+  "returns": "StoreClient",
+  "line": 221,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:359",
+   "StoreClientListMinor:27"
+  ]
+ },
+ "StoreClientListMinor.CreatePatrolOfficer": {
+  "returns": "StoreClient",
+  "line": 262,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:363",
+   "StoreClientListMinor:28"
+  ]
+ },
+ "StoreClientListMinor.CreateWounded": {
+  "returns": "StoreClient",
+  "line": 295,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:367",
+   "StoreClientListMinor:29"
+  ]
+ },
+ "StoreClientListMinor.CreateUpperLevelVisitor": {
+  "returns": "StoreClient",
+  "line": 322,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:371",
+   "StoreClientListMinor:30"
+  ]
+ },
+ "StoreClientListMinor.CreateMinorMerc": {
+  "returns": "StoreClient",
+  "line": 365,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:375",
+   "StoreClientListMinor:31"
+  ]
+ },
+ "StoreClientListMinor.CreateAnnoyedEngineer": {
+  "returns": "StoreClient",
+  "line": 397,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:379",
+   "StoreClientListMinor:32"
+  ]
+ },
+ "StoreClientListMinor.CreateSalvagePilot": {
+  "returns": "StoreClient",
+  "line": 452,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:383",
+   "StoreClientListMinor:33"
+  ]
+ },
+ "StoreClientListMinor.CreateSickLowers": {
+  "returns": "StoreClient",
+  "line": 485,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:387",
+   "StoreClientListMinor:34"
+  ]
+ },
+ "StoreClientListMinor.CreateLowerLevelElder": {
+  "returns": "StoreClient",
+  "line": 516,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:391",
+   "StoreClientListMinor:35"
+  ]
+ },
+ "StoreClientListMinor.CreateOldScav": {
+  "returns": "StoreClient",
+  "line": 545,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:395",
+   "StoreClientListMinor:36"
+  ]
+ },
+ "StoreClientListMinor.CreateLover": {
+  "returns": "StoreClient",
+  "line": 626,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:399",
+   "StoreClientListMinor:38"
+  ]
+ },
+ "StoreClientListMinor.CreateFarmerMinor": {
+  "returns": "StoreClient",
+  "line": 663,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:403",
+   "StoreClientListMinor:39"
+  ]
+ },
+ "StoreClientListMinor.CreateLotteryWinner": {
+  "returns": "StoreClient",
+  "line": 689,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:407",
+   "StoreClientListMinor:40"
+  ]
+ },
+ "StoreClientListMinor.CreatePeatClient": {
+  "returns": "StoreClient",
+  "line": 717,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:411",
+   "StoreClientListMinor:41"
+  ]
+ },
+ "StoreClientListMinor.CreateConspiracyClient": {
+  "returns": "StoreClient",
+  "line": 747,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:415",
+   "StoreClientListMinor:42"
+  ]
+ },
+ "StoreClientListMinor.CreateUpperLevelServant": {
+  "returns": "StoreClient",
+  "line": 796,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:419",
+   "StoreClientListMinor:43"
+  ]
+ },
+ "StoreClientListMinor.CreateRadioactiveWasteCustomer": {
+  "returns": "StoreClient",
+  "line": 830,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:423",
+   "StoreClientListMinor:44"
+  ]
+ },
+ "StoreClientListMorning.CreateMobLeader": {
+  "returns": "StoreClient",
+  "line": 3,
+  "callers": 1,
+  "call_sites": [
+   "PlayerStore:1226"
+  ]
+ },
+ "StoreClientListMorning.CreateSecLeader": {
+  "returns": "StoreClient",
+  "line": 26,
+  "callers": 1,
+  "call_sites": [
+   "PlayerStore:1235"
+  ]
+ },
+ "StoreClientListMorning.CreateULHitman": {
+  "returns": "StoreClient",
+  "line": 47,
+  "callers": 1,
+  "call_sites": [
+   "PlayerStore:1240"
+  ]
+ },
+ "StoreClientListMorning.CreateCartelRetired": {
+  "returns": "StoreClient",
+  "line": 65,
+  "callers": 1,
+  "call_sites": [
+   "PlayerStore:1245"
+  ]
+ },
+ "StoreClientListProcurement.CreateNurseProcurementOffer": {
+  "returns": "StoreClient",
+  "line": 3,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListProcurement.CreateMachinistProcurementOffer": {
+  "returns": "StoreClient",
+  "line": 72,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListRev.CreateRevRaider": {
+  "returns": "StoreClient",
+  "line": 5,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1274"
+  ]
+ },
+ "StoreClientListRev.CreateRevQuartermaster": {
+  "returns": "StoreClient",
+  "line": 159,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1270"
+  ]
+ },
+ "StoreClientListRev.CreateRevolutionaryBuyer": {
+  "returns": "StoreClient",
+  "line": 207,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientList:31",
+   "StoreClientListDict:151"
+  ]
+ },
+ "StoreClientListRev.CreateRevSupplyBuyerTrailer": {
+  "returns": "StoreClient",
+  "line": 228,
+  "callers": 1,
+  "call_sites": [
+   "DebugPanel:1604"
+  ]
+ },
+ "StoreClientListSecurity.CreateSecurityOfficer": {
+  "returns": "StoreClient",
+  "line": 23,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientListDict:427",
+   "StoreClientListDict:431",
+   "StoreClientListDict:435",
+   "StoreClientListDict:439"
+  ]
+ },
+ "StoreClientListSecurity.CreateRevokePermitOfficer": {
+  "returns": "StoreClient",
+  "line": 139,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientListDict:443",
+   "StoreClientManager:898",
+   "StoreClientManager:902",
+   "StoreClientManager:906"
+  ]
+ },
+ "StoreClientListSecurity.CreateAugAllClearOfficer": {
+  "returns": "StoreClient",
+  "line": 173,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:2101"
+  ]
+ },
+ "StoreClientListShortage.CreateFoodShortageClient": {
+  "returns": "StoreClient",
+  "line": 3,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1063",
+   "StoreClientManager:1434"
+  ]
+ },
+ "StoreClientListShortage.CreateMedicalShortageClient": {
+  "returns": "StoreClient",
+  "line": 27,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1071",
+   "StoreClientManager:1438"
+  ]
+ },
+ "StoreClientListShortage.CreateSubstanceShortageClient": {
+  "returns": "StoreClient",
+  "line": 51,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1075",
+   "StoreClientManager:1442"
+  ]
+ },
+ "StoreClientListShortage.CreateWeaponArmorShortageClient": {
+  "returns": "StoreClient",
+  "line": 75,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1079",
+   "StoreClientManager:1450"
+  ]
+ },
+ "StoreClientListShortage.CreateMaterialShortageClient": {
+  "returns": "StoreClient",
+  "line": 100,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1067",
+   "StoreClientManager:1446"
+  ]
+ },
+ "StoreClientListSpec.CreateRetiredGunsmith": {
+  "returns": "StoreClient",
+  "line": 31,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:447",
+   "StoreClientManager:1678"
+  ]
+ },
+ "StoreClientListSpec.CreateRetiredFarmer": {
+  "returns": "StoreClient",
+  "line": 230,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:451",
+   "StoreClientManager:1684"
+  ]
+ },
+ "StoreClientListSpec.CreateRetiredAquafarmer": {
+  "returns": "StoreClient",
+  "line": 343,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:459",
+   "StoreClientManager:1697"
+  ]
+ },
+ "StoreClientListSpec.CreateRetiredRancher": {
+  "returns": "StoreClient",
+  "line": 422,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:455",
+   "StoreClientManager:1693"
+  ]
+ },
+ "StoreClientListSpec.CreateRetiredWaterMerchant": {
+  "returns": "StoreClient",
+  "line": 494,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:467",
+   "StoreClientManager:1673"
+  ]
+ },
+ "StoreClientListSpec.CreateRetiredWinemaker": {
+  "returns": "StoreClient",
+  "line": 538,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:475",
+   "StoreClientManager:1688"
+  ]
+ },
+ "StoreClientListSpec.CreateRetiredJunker": {
+  "returns": "StoreClient",
+  "line": 589,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:471",
+   "StoreClientManager:1669"
+  ]
+ },
+ "StoreClientListSpec.CreateRetiredJunkerIntro": {
+  "returns": "StoreClient",
+  "line": 629,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:479"
+  ]
+ },
+ "StoreClientListSpec.CreateRetiredChemist": {
+  "returns": "StoreClient",
+  "line": 673,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:483",
+   "StoreClientManager:1709"
+  ]
+ },
+ "StoreClientListSpec.CreateBlackmailerIntro": {
+  "returns": "StoreClient",
+  "line": 772,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1908"
+  ]
+ },
+ "StoreClientListSpec.CreateScalper": {
+  "returns": "StoreClient",
+  "line": 812,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:27",
+   "StoreClientManager:861"
+  ]
+ },
+ "StoreClientListSpec.CreateBlackmailer": {
+  "returns": "StoreClient",
+  "line": 868,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1912"
+  ]
+ },
+ "StoreClientListSpec.CreateChemicalFeedbackClient": {
+  "returns": "StoreClient",
+  "line": 962,
+  "callers": 1,
+  "call_sites": [
+   "ChemicalFeedbackHelper:463"
+  ]
+ },
+ "StoreClientListSpec.CreateChemicalReturningClient": {
+  "returns": "StoreClient",
+  "line": 1038,
+  "callers": 1,
+  "call_sites": [
+   "ChemicalFeedbackHelper:468"
+  ]
+ },
+ "StoreClientListSpec.CreateHirelingClient": {
+  "returns": "StoreClient",
+  "line": 1093,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:2075"
+  ]
+ },
+ "StoreClientListSpec.CreateHirelingClientReturn": {
+  "returns": "StoreClient",
+  "line": 1116,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:2070"
+  ]
+ },
+ "StoreClientListStory.CreateMentorAfterhours": {
+  "returns": "StoreClient",
+  "line": 5,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:511",
+   "StoreClientManager:998"
+  ]
+ },
+ "StoreClientListStory.CreateMentorClient": {
+  "returns": "StoreClient",
+  "line": 18,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:487",
+   "StoreClientManager:987"
+  ]
+ },
+ "StoreClientListStory.CreateMentorClientEventTip": {
+  "returns": "StoreClient",
+  "line": 31,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:491",
+   "StoreClientManager:1032"
+  ]
+ },
+ "StoreClientListStory.CreateMentorClientVisualInspection": {
+  "returns": "StoreClient",
+  "line": 44,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:495",
+   "StoreClientManager:1002"
+  ]
+ },
+ "StoreClientListStory.CreateMentorClientOutro": {
+  "returns": "StoreClient",
+  "line": 83,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:499",
+   "StoreClientManager:1082"
+  ]
+ },
+ "StoreClientListStory.CreateMentorDisplayCase": {
+  "returns": "StoreClient",
+  "line": 110,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:503",
+   "StoreClientManager:1020"
+  ]
+ },
+ "StoreClientListStory.CreateMentorDisplayCaseReminder": {
+  "returns": "StoreClient",
+  "line": 157,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:507",
+   "StoreClientManager:1647"
+  ]
+ },
+ "StoreClientListStory.CreateJanitorIntroduction": {
+  "returns": "StoreClient",
+  "line": 183,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:515",
+   "StoreClientManager:1056"
+  ]
+ },
+ "StoreClientListStory.CreateJanitorUndergroundExchangeIntroduction": {
+  "returns": "StoreClient",
+  "line": 218,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:519",
+   "StoreClientManager:757"
+  ]
+ },
+ "StoreClientListStory.CreateJanitorUndergroundExchangeIntroductionFence": {
+  "returns": "StoreClient",
+  "line": 258,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListDict:523",
+   "StoreClientManager:516",
+   "StoreClientManager:736"
+  ]
+ },
+ "StoreClientListStory.CreateInsuranceIntroduction": {
+  "returns": "StoreClient",
+  "line": 294,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:1318",
+   "StoreClientListDict:527",
+   "StoreClientManager:1013"
+  ]
+ },
+ "StoreClientListStory.CreateNetworkIntroduction": {
+  "returns": "StoreClient",
+  "line": 332,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:531",
+   "StoreClientManager:1030"
+  ]
+ },
+ "StoreClientListStory.CreateUpgradeReminder": {
+  "returns": "StoreClient",
+  "line": 366,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:535",
+   "StoreClientManager:1618"
+  ]
+ },
+ "StoreClientListStory.CreateNetworkReminder": {
+  "returns": "StoreClient",
+  "line": 389,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:539",
+   "StoreClientManager:1632"
+  ]
+ },
+ "StoreClientListStory.CreateWildBailout": {
+  "returns": "StoreClient",
+  "line": 417,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:543",
+   "StoreClientManager:934"
+  ]
+ },
+ "StoreClientListStory.CreateMarketplaceIntro": {
+  "returns": "StoreClient",
+  "line": 446,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:547"
+  ]
+ },
+ "StoreClientListStory.CreateWildDeedVisit": {
+  "returns": "StoreClient",
+  "line": 477,
+  "callers": 1,
+  "call_sites": [
+   "PlayerStore:3861"
+  ]
+ },
+ "StoreClientListStory.CreateFoodSellerStory": {
+  "returns": "StoreClient",
+  "line": 513,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:551",
+   "StoreClientManager:988"
+  ]
+ },
+ "StoreClientListStory.CreateWantedBait": {
+  "returns": "StoreClient",
+  "line": 550,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:555"
+  ]
+ },
+ "StoreClientListStory.CreateSecWantedIntroduction": {
+  "returns": "StoreClient",
+  "line": 569,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:559",
+   "StoreClientManager:991"
+  ]
+ },
+ "StoreClientListStory.CreateSecWantedIntroduction2": {
+  "returns": "StoreClient",
+  "line": 615,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:563",
+   "StoreClientManager:1044"
+  ]
+ },
+ "StoreClientListStory.CreateFoodSellerStory2": {
+  "returns": "StoreClient",
+  "line": 645,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:567",
+   "StoreClientManager:997"
+  ]
+ },
+ "StoreClientListStory.CreateFoodSellerStory3": {
+  "returns": "StoreClient",
+  "line": 672,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:571",
+   "StoreClientManager:1037"
+  ]
+ },
+ "StoreClientListStory.CreateStoryScrapSeller": {
+  "returns": "StoreClient",
+  "line": 700,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:575",
+   "StoreClientManager:1017"
+  ]
+ },
+ "StoreClientListStory.CreateStoryCigaretteVendor": {
+  "returns": "StoreClient",
+  "line": 732,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListDict:579",
+   "StoreClientListStory:755",
+   "StoreClientManager:1003"
+  ]
+ },
+ "StoreClientListStory.CreateStoryCigaretteVendorTrailer": {
+  "returns": "StoreClient",
+  "line": 753,
+  "callers": 1,
+  "call_sites": [
+   "DebugPanel:1308"
+  ]
+ },
+ "StoreClientListStory.CreateLuckyScavStory": {
+  "returns": "StoreClient",
+  "line": 760,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:583",
+   "StoreClientManager:1065"
+  ]
+ },
+ "StoreClientListStory.CreateStoryAppraisalBoard": {
+  "returns": "StoreClient",
+  "line": 781,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListDict:587",
+   "StoreClientManager:541",
+   "StoreClientManager:1039"
+  ]
+ },
+ "StoreClientListStory.CreateStoryAppraisalBoard2": {
+  "returns": "StoreClient",
+  "line": 861,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:591"
+  ]
+ },
+ "StoreClientListStory.CreateStoryCigaretteVendor2": {
+  "returns": "StoreClient",
+  "line": 930,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:595",
+   "StoreClientManager:1010"
+  ]
+ },
+ "StoreClientListStory.CreateStoryWaterVendor": {
+  "returns": "StoreClient",
+  "line": 949,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:599"
+  ]
+ },
+ "StoreClientListStory.CreateStoryWaterBuyer": {
+  "returns": "StoreClient",
+  "line": 969,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:603"
+  ]
+ },
+ "StoreClientListStory.CreateStoryWaterBuyer2": {
+  "returns": "StoreClient",
+  "line": 1015,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:607"
+  ]
+ },
+ "StoreClientListStory.CreateFoodBuyerStory": {
+  "returns": "StoreClient",
+  "line": 1062,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:611",
+   "StoreClientManager:989"
+  ]
+ },
+ "StoreClientListStory.CreateOffDutyOfficier": {
+  "returns": "StoreClient",
+  "line": 1091,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:615",
+   "StoreClientManager:1046"
+  ]
+ },
+ "StoreClientListStory.CreateOffDutyOfficerBeer": {
+  "returns": "StoreClient",
+  "line": 1117,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListStory.CreateFoodBuyerStory2": {
+  "returns": "StoreClient",
+  "line": 1136,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:619",
+   "StoreClientManager:990"
+  ]
+ },
+ "StoreClientListStory.CreateLoanClerkEarly": {
+  "returns": "StoreClient",
+  "line": 1164,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListStory.CreateLoanClerk": {
+  "returns": "StoreClient",
+  "line": 1193,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListStory.CreateLoanClerk2": {
+  "returns": "StoreClient",
+  "line": 1232,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListStory.CreateInventorIntro": {
+  "returns": "StoreClient",
+  "line": 1253,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:623",
+   "StoreClientManager:1026"
+  ]
+ },
+ "StoreClientListStory.CreateInventorModuleIntro": {
+  "returns": "StoreClient",
+  "line": 1349,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:627",
+   "StoreClientManager:810"
+  ]
+ },
+ "StoreClientListStory.CreateMentorSecRecord": {
+  "returns": "StoreClient",
+  "line": 1415,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:631",
+   "StoreClientManager:983"
+  ]
+ },
+ "StoreClientListStory.CreateMentorPermit": {
+  "returns": "StoreClient",
+  "line": 1448,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:814"
+  ]
+ },
+ "StoreClientListStory.CreateBrokenMachineIntroduction": {
+  "returns": "StoreClient",
+  "line": 1480,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:635",
+   "StoreClientManager:1654"
+  ]
+ },
+ "StoreClientListStory.CreateMentorShotgun": {
+  "returns": "StoreClient",
+  "line": 1504,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:818"
+  ]
+ },
+ "StoreClientListStory.CreateMentorBargainIntro": {
+  "returns": "StoreClient",
+  "line": 1517,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:639",
+   "StoreClientManager:1036"
+  ]
+ },
+ "StoreClientListSupplier.CreateCourrierBeer": {
+  "returns": "StoreClient",
+  "line": 14,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:643"
+  ]
+ },
+ "StoreClientListSupplier.CreateCourrierBeerFree": {
+  "returns": "StoreClient",
+  "line": 50,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:659"
+  ]
+ },
+ "StoreClientListSupplier.CreateCourrierMining": {
+  "returns": "StoreClient",
+  "line": 75,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:647"
+  ]
+ },
+ "StoreClientListSupplier.CreateCourrierMiningFree": {
+  "returns": "StoreClient",
+  "line": 117,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:663"
+  ]
+ },
+ "StoreClientListSupplier.CreateCourrierChem": {
+  "returns": "StoreClient",
+  "line": 146,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:651"
+  ]
+ },
+ "StoreClientListSupplier.CreateCourrierChemFree": {
+  "returns": "StoreClient",
+  "line": 194,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:667"
+  ]
+ },
+ "StoreClientListSupplier.CreateCourrierPharma": {
+  "returns": "StoreClient",
+  "line": 226,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:655"
+  ]
+ },
+ "StoreClientListSupplier.CreateCourrierPharmaFree": {
+  "returns": "StoreClient",
+  "line": 267,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:671"
+  ]
+ },
+ "StoreClientListSupplier.CreateScavFoodSeller": {
+  "returns": "StoreClient",
+  "line": 295,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1083",
+   "StoreClientManager:1019"
+  ]
+ },
+ "StoreClientListSupplier.CreateScavHouseholdSeller": {
+  "returns": "StoreClient",
+  "line": 300,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:1087"
+  ]
+ },
+ "StoreClientListSupplier.CreateScavMaterialSeller": {
+  "returns": "StoreClient",
+  "line": 305,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:1091"
+  ]
+ },
+ "StoreClientListSupplier.CreateScavMedSeller": {
+  "returns": "StoreClient",
+  "line": 310,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:1095"
+  ]
+ },
+ "StoreClientListSupplier.CreateScavGenericSeller": {
+  "returns": "StoreClient",
+  "line": 579,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientListSupplier:297",
+   "StoreClientListSupplier:302",
+   "StoreClientListSupplier:307",
+   "StoreClientListSupplier:312"
+  ]
+ },
+ "StoreClientListSupplier.CreateThiefFoodSeller": {
+  "returns": "StoreClient",
+  "line": 618,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:1099"
+  ]
+ },
+ "StoreClientListSupplier.CreateThiefHouseholdSeller": {
+  "returns": "StoreClient",
+  "line": 623,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:1103"
+  ]
+ },
+ "StoreClientListSupplier.CreateThiefMaterialSeller": {
+  "returns": "StoreClient",
+  "line": 628,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:1107"
+  ]
+ },
+ "StoreClientListSupplier.CreateThiefMedSeller": {
+  "returns": "StoreClient",
+  "line": 633,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:1111"
+  ]
+ },
+ "StoreClientListSupplier.CreateThiefLuxurySeller": {
+  "returns": "StoreClient",
+  "line": 638,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListSupplier.CreateThiefGenericSeller": {
+  "returns": "StoreClient",
+  "line": 829,
+  "callers": 5,
+  "call_sites": [
+   "StoreClientListSupplier:620",
+   "StoreClientListSupplier:625",
+   "StoreClientListSupplier:630",
+   "StoreClientListSupplier:635",
+   "StoreClientListSupplier:640"
+  ]
+ },
+ "StoreClientListSupplier.CreateHypertechSmuggler": {
+  "returns": "StoreClient",
+  "line": 869,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:463",
+   "StoreClientManager:579"
+  ]
+ },
+ "StoreClientListSurplus.CreateFoodSurplusClient": {
+  "returns": "StoreClient",
+  "line": 3,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1043",
+   "StoreClientManager:1458"
+  ]
+ },
+ "StoreClientListSurplus.CreateMedicalSurplusClient": {
+  "returns": "StoreClient",
+  "line": 55,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1051",
+   "StoreClientManager:1466"
+  ]
+ },
+ "StoreClientListSurplus.CreateSubstanceSurplusClient": {
+  "returns": "StoreClient",
+  "line": 157,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1055",
+   "StoreClientManager:1470"
+  ]
+ },
+ "StoreClientListSurplus.CreateWeaponArmorSurplusClient": {
+  "returns": "StoreClient",
+  "line": 247,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1059",
+   "StoreClientManager:1474"
+  ]
+ },
+ "StoreClientListSurplus.CreateMaterialSurplusClient": {
+  "returns": "StoreClient",
+  "line": 345,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1047",
+   "StoreClientManager:1462"
+  ]
+ },
+ "StoreClientListTier.GetRandomT1WaterClient": {
+  "returns": "StoreClient",
+  "line": 17,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListTier:15"
+  ]
+ },
+ "StoreClientListTier.GetRandomT1FoodClient": {
+  "returns": "StoreClient",
+  "line": 23,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListTier:15"
+  ]
+ },
+ "StoreClientListTier.GetRandomT1MedicalClient": {
+  "returns": "StoreClient",
+  "line": 29,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListTier:15"
+  ]
+ },
+ "StoreClientListTier.GetRandomT1MaterialClient": {
+  "returns": "StoreClient",
+  "line": 35,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListTier:15"
+  ]
+ },
+ "StoreClientListTier.GetRandomT1HouseholdClient": {
+  "returns": "StoreClient",
+  "line": 41,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListTier:15"
+  ]
+ },
+ "StoreClientListTier.CreateWaterScavenger": {
+  "returns": "StoreClient",
+  "line": 47,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:675"
+  ]
+ },
+ "StoreClientListTier.CreateThirstySpacer": {
+  "returns": "StoreClient",
+  "line": 104,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:679",
+   "StoreClientListTier:13"
+  ]
+ },
+ "StoreClientListTier.CreateHydrationSeeker": {
+  "returns": "StoreClient",
+  "line": 159,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:683",
+   "StoreClientListTier:13"
+  ]
+ },
+ "StoreClientListTier.CreateWaterShopper": {
+  "returns": "StoreClient",
+  "line": 212,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:687"
+  ]
+ },
+ "StoreClientListTier.CreateWaterStockPiler": {
+  "returns": "StoreClient",
+  "line": 269,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:691"
+  ]
+ },
+ "StoreClientListTier.GetRandomT1Client": {
+  "returns": "StoreClient",
+  "line": 329,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListTier.CreateScavFood": {
+  "returns": "StoreClient",
+  "line": 335,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListDict:695",
+   "StoreClientListTier:5",
+   "StoreClientManager:1004"
+  ]
+ },
+ "StoreClientListTier.CreateHungrySpacer": {
+  "returns": "StoreClient",
+  "line": 355,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:699",
+   "StoreClientListTier:5"
+  ]
+ },
+ "StoreClientListTier.CreateSpacerChef": {
+  "returns": "StoreClient",
+  "line": 375,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:703",
+   "StoreClientListTier:5"
+  ]
+ },
+ "StoreClientListTier.CreateExpeditionSupplier": {
+  "returns": "StoreClient",
+  "line": 398,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:707"
+  ]
+ },
+ "StoreClientListTier.CreateUpperPrivateChef": {
+  "returns": "StoreClient",
+  "line": 417,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:711"
+  ]
+ },
+ "StoreClientListTier.CreateInjuredSpacer": {
+  "returns": "StoreClient",
+  "line": 438,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:715",
+   "StoreClientListTier:7"
+  ]
+ },
+ "StoreClientListTier.CreateSickChildCaretaker": {
+  "returns": "StoreClient",
+  "line": 457,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:719",
+   "StoreClientListTier:7"
+  ]
+ },
+ "StoreClientListTier.CreateLowLevelDoctor": {
+  "returns": "StoreClient",
+  "line": 478,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:723",
+   "StoreClientListTier:7"
+  ]
+ },
+ "StoreClientListTier.CreateClinicNurse": {
+  "returns": "StoreClient",
+  "line": 511,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:727"
+  ]
+ },
+ "StoreClientListTier.CreateHospitalAdmin": {
+  "returns": "StoreClient",
+  "line": 539,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:731"
+  ]
+ },
+ "StoreClientListTier.CreateLowerRepairman": {
+  "returns": "StoreClient",
+  "line": 564,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListDict:735",
+   "StoreClientListTier:9",
+   "StoreClientManager:996"
+  ]
+ },
+ "StoreClientListTier.CreateScrapper": {
+  "returns": "StoreClient",
+  "line": 585,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientList:1365",
+   "StoreClientListDict:79",
+   "StoreClientListDict:739",
+   "StoreClientListTier:9"
+  ]
+ },
+ "StoreClientListTier.CreateMaintenanceWorker": {
+  "returns": "StoreClient",
+  "line": 611,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListDict:743",
+   "StoreClientListTier:9",
+   "StoreClientManager:1059"
+  ]
+ },
+ "StoreClientListTier.CreateLowerInventor": {
+  "returns": "StoreClient",
+  "line": 637,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:747"
+  ]
+ },
+ "StoreClientListTier.CreateStationEngineer": {
+  "returns": "StoreClient",
+  "line": 661,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientListDict:339",
+   "StoreClientListDict:751",
+   "StoreClientListMinor:23",
+   "StoreClientListMinor:58"
+  ]
+ },
+ "StoreClientListTier.CreateSpacerHousehold": {
+  "returns": "StoreClient",
+  "line": 684,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:755",
+   "StoreClientListTier:11"
+  ]
+ },
+ "StoreClientListTier.CreateYoungSpacer": {
+  "returns": "StoreClient",
+  "line": 703,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:759",
+   "StoreClientListTier:11"
+  ]
+ },
+ "StoreClientListTier.CreateFamilyMother": {
+  "returns": "StoreClient",
+  "line": 722,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:763",
+   "StoreClientListTier:11"
+  ]
+ },
+ "StoreClientListTier.CreateCitizen": {
+  "returns": "StoreClient",
+  "line": 744,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:767"
+  ]
+ },
+ "StoreClientListTier.CreateUpperMaid": {
+  "returns": "StoreClient",
+  "line": 762,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:771"
+  ]
+ },
+ "StoreClientListTierSubstance.CreateDesperateAddict": {
+  "returns": "StoreClient",
+  "line": 23,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:775",
+   "StoreEventActionDict:252"
+  ]
+ },
+ "StoreClientListTierSubstance.CreateWornOutSpacer": {
+  "returns": "StoreClient",
+  "line": 60,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:779"
+  ]
+ },
+ "StoreClientListTierSubstance.CreateUpperLevelHedonist": {
+  "returns": "StoreClient",
+  "line": 95,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:783"
+  ]
+ },
+ "StoreClientListTierWeapon.GetRandomT1WeaponClient": {
+  "returns": "StoreClient",
+  "line": 32,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListTierWeapon.GetRandomT2WeaponClient": {
+  "returns": "StoreClient",
+  "line": 38,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListTierWeapon.GetRandomT3WeaponClient": {
+  "returns": "StoreClient",
+  "line": 44,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListTierWeapon.CreateScavenger": {
+  "returns": "StoreClient",
+  "line": 50,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:787",
+   "StoreClientListTierWeapon:6"
+  ]
+ },
+ "StoreClientListTierWeapon.CreateSelfDefenseEnthusiast": {
+  "returns": "StoreClient",
+  "line": 91,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:791",
+   "StoreClientListTierWeapon:8"
+  ]
+ },
+ "StoreClientListTierWeapon.CreatePrivateSecurityContractor": {
+  "returns": "StoreClient",
+  "line": 129,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:795",
+   "StoreClientListTierWeapon:10"
+  ]
+ },
+ "StoreClientListUnused.CreateBilly1": {
+  "returns": "StoreClient",
+  "line": 3,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateBilly2": {
+  "returns": "StoreClient",
+  "line": 67,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateBilly3": {
+  "returns": "StoreClient",
+  "line": 103,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateBillySecOfficier": {
+  "returns": "StoreClient",
+  "line": 132,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateRevManifesto": {
+  "returns": "StoreClient",
+  "line": 157,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateAddictTrailer": {
+  "returns": "StoreClient",
+  "line": 206,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateTrailerShadyBuyer": {
+  "returns": "StoreClient",
+  "line": 235,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateDebugClient": {
+  "returns": "StoreClient",
+  "line": 264,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateDebugClient2": {
+  "returns": "StoreClient",
+  "line": 283,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateDebugStamp": {
+  "returns": "StoreClient",
+  "line": 303,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateButcherClient": {
+  "returns": "StoreClient",
+  "line": 321,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateTrailerCodewordClient": {
+  "returns": "StoreClient",
+  "line": 338,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateTrailerGunBuyer": {
+  "returns": "StoreClient",
+  "line": 354,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateTrailerChemist": {
+  "returns": "StoreClient",
+  "line": 372,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateTrailerWeaponSeller": {
+  "returns": "StoreClient",
+  "line": 395,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateTrailerCultist": {
+  "returns": "StoreClient",
+  "line": 418,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListUnused.CreateTrailerGreytide": {
+  "returns": "StoreClient",
+  "line": 434,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListWanted.CreateWanted1": {
+  "returns": "StoreClient",
+  "line": 34,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:799",
+   "StoreClientListWanted:11"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted1Return": {
+  "returns": "StoreClient",
+  "line": 75,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:803",
+   "StoreClientManager:786"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted2": {
+  "returns": "StoreClient",
+  "line": 133,
+  "callers": 4,
+  "call_sites": [
+   "CustomUIDebugPanel:362",
+   "StoreClientListDict:807",
+   "StoreClientListWanted:12",
+   "StoreClientManager:790"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted2Return": {
+  "returns": "StoreClient",
+  "line": 193,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:811",
+   "StoreClientManager:794"
+  ]
+ },
+ "StoreClientListWanted.CreateButcherNote": {
+  "returns": "GameItem",
+  "line": 230,
+  "callers": 1,
+  "call_sites": [
+   "PlayerStore:4056"
+  ]
+ },
+ "StoreClientListWanted.CreateSawyerButcherOffer": {
+  "returns": "StoreClient",
+  "line": 235,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:815",
+   "StoreClientManager:802"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted3": {
+  "returns": "StoreClient",
+  "line": 288,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListDict:819",
+   "StoreClientListWanted:13",
+   "StoreClientManager:1006"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted4": {
+  "returns": "StoreClient",
+  "line": 339,
+  "callers": 5,
+  "call_sites": [
+   "DebugPanel:1323",
+   "StoreClientListDict:823",
+   "StoreClientListWanted:14",
+   "StoreClientManager:527",
+   "StoreClientManager:1058"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted4Normal": {
+  "returns": "StoreClient",
+  "line": 392,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:827",
+   "StoreClientListWanted:15"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted5": {
+  "returns": "StoreClient",
+  "line": 481,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:831",
+   "StoreClientManager:766"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted5Morning": {
+  "returns": "StoreClient",
+  "line": 553,
+  "callers": 2,
+  "call_sites": [
+   "PlayerStore:1250",
+   "StoreClientListDict:835"
+  ]
+ },
+ "StoreClientListWanted.CreateLouBombVisit": {
+  "returns": "StoreClient",
+  "line": 602,
+  "callers": 2,
+  "call_sites": [
+   "LouBombHelper:120",
+   "StoreClientListDict:839"
+  ]
+ },
+ "StoreClientListWanted.CreateLouBoxDrop": {
+  "returns": "StoreClient",
+  "line": 636,
+  "callers": 3,
+  "call_sites": [
+   "CustomUIDebugPanel:376",
+   "StoreClientListDict:843",
+   "StoreClientManager:770"
+  ]
+ },
+ "StoreClientListWanted.CreateLouBoxCollect": {
+  "returns": "StoreClient",
+  "line": 670,
+  "callers": 3,
+  "call_sites": [
+   "CustomUIDebugPanel:380",
+   "StoreClientListDict:847",
+   "StoreClientManager:774"
+  ]
+ },
+ "StoreClientListWanted.CreateLouDisguise": {
+  "returns": "StoreClient",
+  "line": 745,
+  "callers": 3,
+  "call_sites": [
+   "CustomUIDebugPanel:384",
+   "StoreClientListDict:851",
+   "StoreClientManager:778"
+  ]
+ },
+ "StoreClientListWanted.CreateLouDemandCollect": {
+  "returns": "StoreClient",
+  "line": 835,
+  "callers": 3,
+  "call_sites": [
+   "CustomUIDebugPanel:388",
+   "StoreClientListDict:855",
+   "StoreClientManager:782"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted6": {
+  "returns": "StoreClient",
+  "line": 1010,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:859",
+   "StoreClientListWanted:16"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted6Supply": {
+  "returns": "StoreClient",
+  "line": 1102,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:863",
+   "StoreClientManager:915"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted6Finale": {
+  "returns": "StoreClient",
+  "line": 1191,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:867",
+   "StoreClientManager:915"
+  ]
+ },
+ "StoreClientListWanted.CreateLiFormulaNote": {
+  "returns": "GameItem",
+  "line": 1223,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListWanted:1206"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted7": {
+  "returns": "StoreClient",
+  "line": 1250,
+  "callers": 3,
+  "call_sites": [
+   "StoreClientListDict:871",
+   "StoreClientListWanted:17",
+   "StoreClientManager:761"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted8": {
+  "returns": "StoreClient",
+  "line": 1358,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:875",
+   "StoreClientListWanted:18"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted8Weekly": {
+  "returns": "StoreClient",
+  "line": 1405,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:883",
+   "StoreClientManager:798"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted8Return": {
+  "returns": "StoreClient",
+  "line": 1435,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:879",
+   "StoreClientManager:922"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted8Vandal": {
+  "returns": "StoreClient",
+  "line": 1471,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:887",
+   "StoreClientManager:886"
+  ]
+ },
+ "StoreClientListWanted.CreateWanted9": {
+  "returns": "StoreClient",
+  "line": 1501,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:891",
+   "StoreClientListWanted:19"
+  ]
+ },
+ "StoreClientListWater.GetRandomWaterSupplier": {
+  "returns": "StoreClient",
+  "line": 3,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientListWater.CreateWaterCompany": {
+  "returns": "StoreClient",
+  "line": 20,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:899",
+   "StoreClientListWater:11"
+  ]
+ },
+ "StoreClientListWater.CreateWaterSellScav": {
+  "returns": "StoreClient",
+  "line": 62,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:903",
+   "StoreClientListWater:17"
+  ]
+ },
+ "StoreClientListWater.CreateDishonestWaterSellScav": {
+  "returns": "StoreClient",
+  "line": 84,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:907",
+   "StoreClientListWater:15"
+  ]
+ },
+ "StoreClientListWater.CreateHonestWaterSeller": {
+  "returns": "StoreClient",
+  "line": 123,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:911",
+   "StoreClientListWater:7"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgioIntro": {
+  "returns": "StoreClient",
+  "line": 62,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:915",
+   "StoreClientManager:1733"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgioIntro2": {
+  "returns": "StoreClient",
+  "line": 107,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:919",
+   "StoreClientManager:1737"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgioBackpack": {
+  "returns": "StoreClient",
+  "line": 152,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:923",
+   "StoreClientManager:1741"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgioAssistance": {
+  "returns": "StoreClient",
+  "line": 186,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:927",
+   "StoreClientManager:1745"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgio2": {
+  "returns": "StoreClient",
+  "line": 240,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:931",
+   "StoreClientManager:1749"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgio3": {
+  "returns": "StoreClient",
+  "line": 285,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:935",
+   "StoreClientManager:1753"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgio4": {
+  "returns": "StoreClient",
+  "line": 333,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:947",
+   "StoreClientManager:1765"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgioLuckIntro": {
+  "returns": "StoreClient",
+  "line": 378,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:939",
+   "StoreClientManager:1757"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgioLuckSale": {
+  "returns": "StoreClient",
+  "line": 406,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:943",
+   "StoreClientManager:1761"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgioNuclearWaste": {
+  "returns": "StoreClient",
+  "line": 441,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:959",
+   "StoreClientManager:1774"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgioLoan": {
+  "returns": "StoreClient",
+  "line": 484,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:951",
+   "StoreClientManager:1769"
+  ]
+ },
+ "StoreClientUniqueList.CreateGeorgioLoanPayback": {
+  "returns": "StoreClient",
+  "line": 577,
+  "callers": 4,
+  "call_sites": [
+   "StoreClientListDict:955",
+   "StoreClientManager:464",
+   "StoreClientManager:484",
+   "StoreClientManager:875"
+  ]
+ },
+ "StoreClientUniqueList.CreateFoodieTourist": {
+  "returns": "StoreClient",
+  "line": 607,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:963",
+   "StoreClientManager:1078"
+  ]
+ },
+ "StoreClientUniqueList.CreateCaseEnjoyer": {
+  "returns": "StoreClient",
+  "line": 663,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:971",
+   "StoreClientManager:847"
+  ]
+ },
+ "StoreClientUniqueList.CreateCaseEnjoyerReturning": {
+  "returns": "StoreClient",
+  "line": 682,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:975",
+   "StoreClientManager:853"
+  ]
+ },
+ "StoreClientUniqueList.CreateFoodieTouristReturning": {
+  "returns": "StoreClient",
+  "line": 884,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientListDict:967"
+  ]
+ },
+ "StoreClientUniqueList.UniqueEvidenceSeller": {
+  "returns": "StoreClient",
+  "line": 922,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:979",
+   "StoreEventActionDict:61"
+  ]
+ },
+ "StoreClientUniqueList.CreateOfficerLunVisit": {
+  "returns": "StoreClient",
+  "line": 939,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:987",
+   "StoreClientManager:1782"
+  ]
+ },
+ "StoreClientUniqueList.CreateOfficerLunShot": {
+  "returns": "StoreClient",
+  "line": 981,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:991",
+   "StoreClientManager:1786"
+  ]
+ },
+ "StoreClientUniqueList.CreateLunCriminel": {
+  "returns": "StoreClient",
+  "line": 1042,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:995",
+   "StoreClientManager:1790"
+  ]
+ },
+ "StoreClientUniqueList.CreateOfficerLunBackOnDuty": {
+  "returns": "StoreClient",
+  "line": 1076,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:999",
+   "StoreClientManager:1794"
+  ]
+ },
+ "StoreClientUniqueList.CreateOfficerLunSurplus": {
+  "returns": "StoreClient",
+  "line": 1154,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1003",
+   "StoreClientManager:1798"
+  ]
+ },
+ "StoreClientUniqueList.CreateOfficerLunInspection": {
+  "returns": "StoreClient",
+  "line": 1198,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:1007",
+   "StoreClientManager:1802"
+  ]
+ },
+ "StoreClientUniqueList.EleanorIntro": {
+  "returns": "StoreClient",
+  "line": 1294,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:392",
+   "StoreClientManager:1810"
+  ]
+ },
+ "StoreClientUniqueList.Eleanor2": {
+  "returns": "StoreClient",
+  "line": 1324,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:396",
+   "StoreClientManager:1814"
+  ]
+ },
+ "StoreClientUniqueList.Eleanor3": {
+  "returns": "StoreClient",
+  "line": 1357,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:400",
+   "StoreClientManager:1818"
+  ]
+ },
+ "StoreClientUniqueList.Eleanor4": {
+  "returns": "StoreClient",
+  "line": 1393,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:412",
+   "StoreClientManager:1870"
+  ]
+ },
+ "StoreClientUniqueList.Eleanor5": {
+  "returns": "StoreClient",
+  "line": 1436,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:416",
+   "StoreClientManager:1874"
+  ]
+ },
+ "StoreClientUniqueList.Eleanor6": {
+  "returns": "StoreClient",
+  "line": 1497,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:420",
+   "StoreClientManager:1822"
+  ]
+ },
+ "StoreClientUniqueList.EleanorScav": {
+  "returns": "StoreClient",
+  "line": 1523,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:424",
+   "StoreClientManager:1826"
+  ]
+ },
+ "StoreClientUniqueList.Eleanor7": {
+  "returns": "StoreClient",
+  "line": 1539,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:428",
+   "StoreClientManager:1830"
+  ]
+ },
+ "StoreClientUniqueList.CreateEleanorThreat": {
+  "returns": "StoreClient",
+  "line": 1592,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:432",
+   "StoreClientManager:1834"
+  ]
+ },
+ "StoreClientUniqueList.Eleanor8": {
+  "returns": "StoreClient",
+  "line": 1630,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:436",
+   "StoreClientManager:1838"
+  ]
+ },
+ "StoreClientUniqueList.Eleanor9": {
+  "returns": "StoreClient",
+  "line": 1702,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:440",
+   "StoreClientManager:1842"
+  ]
+ },
+ "StoreClientUniqueList.CreateEleanorUncle": {
+  "returns": "StoreClient",
+  "line": 1896,
+  "callers": 3,
+  "call_sites": [
+   "CustomUIDebugPanel:404",
+   "StoreClientListDict:895",
+   "StoreClientManager:1855"
+  ]
+ },
+ "StoreClientUniqueList.EleanorWarned": {
+  "returns": "StoreClient",
+  "line": 1988,
+  "callers": 2,
+  "call_sites": [
+   "CustomUIDebugPanel:408",
+   "StoreClientManager:1866"
+  ]
+ },
+ "StoreClientUniqueList.Serpico1": {
+  "returns": "StoreClient",
+  "line": 2095,
+  "callers": 2,
+  "call_sites": [
+   "SerpicoStoryline:101",
+   "SerpicoStoryline:188"
+  ]
+ },
+ "StoreClientUniqueList.Serpico3": {
+  "returns": "StoreClient",
+  "line": 2127,
+  "callers": 2,
+  "call_sites": [
+   "SerpicoStoryline:105",
+   "SerpicoStoryline:188"
+  ]
+ },
+ "StoreClientUniqueList.Serpico4": {
+  "returns": "StoreClient",
+  "line": 2158,
+  "callers": 2,
+  "call_sites": [
+   "SerpicoStoryline:109",
+   "SerpicoStoryline:188"
+  ]
+ },
+ "StoreClientUniqueList.Serpico5": {
+  "returns": "StoreClient",
+  "line": 2188,
+  "callers": 1,
+  "call_sites": [
+   "SerpicoStoryline:113"
+  ]
+ },
+ "StoreClientUniqueList.Serpico6": {
+  "returns": "StoreClient",
+  "line": 2219,
+  "callers": 1,
+  "call_sites": [
+   "SerpicoStoryline:117"
+  ]
+ },
+ "StoreClientUniqueList.Serpico7": {
+  "returns": "StoreClient",
+  "line": 2269,
+  "callers": 1,
+  "call_sites": [
+   "SerpicoStoryline:146"
+  ]
+ },
+ "StoreClientUniqueList.Nellis1": {
+  "returns": "StoreClient",
+  "line": 2356,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1883"
+  ]
+ },
+ "StoreClientUniqueList.Nellis2": {
+  "returns": "StoreClient",
+  "line": 2397,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1887"
+  ]
+ },
+ "StoreClientUniqueList.Nellis3": {
+  "returns": "StoreClient",
+  "line": 2438,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1891"
+  ]
+ },
+ "StoreClientUniqueList.Nellis4": {
+  "returns": "StoreClient",
+  "line": 2466,
+  "callers": 1,
+  "call_sites": [
+   "StoreClientManager:1895"
+  ]
+ },
+ "StoreClientUniqueList.LandlordWholesale": {
+  "returns": "StoreClient",
+  "line": 2497,
+  "callers": 2,
+  "call_sites": [
+   "StoreClientListDict:983",
+   "StoreClientManager:753"
+  ]
+ },
+ "StoreClientUniqueList.GrandpaChengIntro": {
+  "returns": "StoreClient",
+  "line": 2526,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientUniqueList.GrandpaChengReferral": {
+  "returns": "StoreClient",
+  "line": 2565,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientUniqueList.GrandpaCheng2": {
+  "returns": "StoreClient",
+  "line": 2598,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientUniqueList.GrandpaCheng3": {
+  "returns": "StoreClient",
+  "line": 2635,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientUniqueList.SawyerGrandpaCheng": {
+  "returns": "StoreClient",
+  "line": 2666,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientUniqueList.GrandpaChengIll": {
+  "returns": "StoreClient",
+  "line": 2697,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreClientUniqueList.WildGrandpaCheng": {
+  "returns": "StoreClient",
+  "line": 2748,
+  "callers": 0,
+  "call_sites": []
+ },
+ "StoreRequestList.Blank": {
+  "returns": "StoreRequest",
+  "line": 13,
+  "callers": 2,
+  "call_sites": [
+   "PaperStarters:99",
+   "UnusedDirectory:2027"
+  ]
+ },
+ "StoreRequestList.MeteorLL": {
+  "returns": "StoreRequest",
+  "line": 27,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventActionDict:31"
+  ]
+ },
+ "StoreRequestList.MeteorUL": {
+  "returns": "StoreRequest",
+  "line": 42,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventActionDict:32"
+  ]
+ },
+ "StoreRequestList.MedShortageLL": {
+  "returns": "StoreRequest",
+  "line": 57,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventActionDict:14"
+  ]
+ },
+ "StoreRequestList.MedShortageUL": {
+  "returns": "StoreRequest",
+  "line": 74,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventActionDict:15"
+  ]
+ },
+ "StoreRequestList.MedShortageBM": {
+  "returns": "StoreRequest",
+  "line": 91,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventActionDict:16"
+  ]
+ },
+ "StoreRequestList.LLConstruction": {
+  "returns": "StoreRequest",
+  "line": 107,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:877",
+   "DebugPanel:1430",
+   "StoreEventActionDict:23"
+  ]
+ },
+ "StoreRequestList.BMConstruction": {
+  "returns": "StoreRequest",
+  "line": 123,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventActionDict:24"
+  ]
+ },
+ "StoreRequestList.LLSoupKitchen": {
+  "returns": "StoreRequest",
+  "line": 139,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventActionDict:54"
+  ]
+ },
+ "StoreRequestList.SecEvidence": {
+  "returns": "StoreRequest",
+  "line": 155,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventActionDict:39"
+  ]
+ },
+ "StoreRequestList.BMEvidence": {
+  "returns": "StoreRequest",
+  "line": 170,
+  "callers": 1,
+  "call_sites": [
+   "StoreEventActionDict:40"
+  ]
+ },
+ "StoreRequestList.RevOxymore": {
+  "returns": "StoreRequest",
+  "line": 190,
+  "callers": 1,
+  "call_sites": [
+   "StoreRequest:314"
+  ]
+ },
+ "StoreRequestList.RevScrapMetal": {
+  "returns": "StoreRequest",
+  "line": 208,
+  "callers": 1,
+  "call_sites": [
+   "StoreRequest:315"
+  ]
+ },
+ "StoreRequestList.RevSecCard": {
+  "returns": "StoreRequest",
+  "line": 224,
+  "callers": 1,
+  "call_sites": [
+   "StoreRequest:316"
+  ]
+ },
+ "StoreRequestList.RevPeat": {
+  "returns": "StoreRequest",
+  "line": 242,
+  "callers": 1,
+  "call_sites": [
+   "StoreRequest:317"
+  ]
+ },
+ "StoreRequestList.ULRareItemRequest": {
+  "returns": "StoreRequest",
+  "line": 258,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:871",
+   "DebugPanel:1424",
+   "StoreRequest:89"
+  ]
+ },
+ "StoreRequestList.ULRareItemCharityRequest": {
+  "returns": "StoreRequest",
+  "line": 276,
+  "callers": 1,
+  "call_sites": [
+   "StoreRequest:93"
+  ]
+ },
+ "StoreRequestList.LowerWorkerStayAwakeRequest": {
+  "returns": "StoreRequest",
+  "line": 294,
+  "callers": 1,
+  "call_sites": [
+   "StoreRequest:116"
+  ]
+ },
+ "StoreRequestList.GeorgioToiletPaper": {
+  "returns": "StoreRequest",
+  "line": 313,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:874",
+   "DebugPanel:1427",
+   "NetworkUpgradeList:421"
+  ]
+ },
+ "StoreRequestList.ButcherCleaver": {
+  "returns": "StoreRequest",
+  "line": 330,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:873",
+   "DebugPanel:1426",
+   "StoreRequest:130"
+  ]
+ },
+ "StoreRequestList.SawyerBeer": {
+  "returns": "StoreRequest",
+  "line": 347,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:879",
+   "DebugPanel:1432",
+   "StoreRequest:142"
+  ]
+ },
+ "StoreRequestList.LunSnackBar": {
+  "returns": "StoreRequest",
+  "line": 364,
+  "callers": 1,
+  "call_sites": [
+   "StoreRequest:134"
+  ]
+ },
+ "StoreRequestList.CrowbarSawyer": {
+  "returns": "StoreRequest",
+  "line": 381,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:872",
+   "DebugPanel:1425",
+   "StoreRequest:154"
+  ]
+ },
+ "StoreRequestList.EnergyDrinkJackson": {
+  "returns": "StoreRequest",
+  "line": 398,
+  "callers": 1,
+  "call_sites": [
+   "StoreRequest:146"
+  ]
+ },
+ "StoreRequestList.LandlordSpecial": {
+  "returns": "StoreRequest",
+  "line": 415,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:876",
+   "DebugPanel:1429",
+   "StoreRequest:138"
+  ]
+ },
+ "StoreRequestList.LandlordSpecial2": {
+  "returns": "StoreRequest",
+  "line": 432,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:875",
+   "DebugPanel:1428",
+   "StoreRequest:150"
+  ]
+ },
+ "StoreRequestList.LandlordSpecial3": {
+  "returns": "StoreRequest",
+  "line": 449,
+  "callers": 1,
+  "call_sites": [
+   "StoreRequest:162"
+  ]
+ },
+ "StoreRequestList.LunRetirementParty": {
+  "returns": "StoreRequest",
+  "line": 466,
+  "callers": 3,
+  "call_sites": [
+   "DebugPanel:878",
+   "DebugPanel:1431",
+   "StoreRequest:158"
+  ]
+ },
+ "StoreRequestList.UpperCitizenPetMeat": {
+  "returns": "StoreRequest",
+  "line": 483,
+  "callers": 1,
+  "call_sites": [
+   "StoreRequest:166"
+  ]
+ },
+ "StoreRequestList.MotherGalaxyBlend": {
+  "returns": "StoreRequest",
+  "line": 500,
+  "callers": 1,
+  "call_sites": [
+   "StoreRequest:126"
+  ]
+ }
+}

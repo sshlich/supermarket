@@ -1,0 +1,1066 @@
+{
+ "AchievementTracker": {
+  "level0": 1
+ },
+ "ActionDatabase": {
+  "resources.assets": 1
+ },
+ "AdvCalendarUIManager": {
+  "level1": 1
+ },
+ "AdvancedHorizontalFlowLayoutGroup": {
+  "level1": 2
+ },
+ "AmenitiesItemDirectory": {
+  "level1": 1
+ },
+ "AnimationsDatabase": {
+  "resources.assets": 2
+ },
+ "AppHandUI": {
+  "level1": 2
+ },
+ "Arm": {
+  "level1": 1
+ },
+ "ArmorItemDirectory": {
+  "level1": 1
+ },
+ "AudioDirectory": {
+  "level1": 1
+ },
+ "BargainButton": {
+  "level1": 16
+ },
+ "BargainPanelFrame": {
+  "sharedassets1.assets": 1
+ },
+ "BargainUIManager": {
+  "level1": 1
+ },
+ "Bloom": {
+  "sharedassets1.assets": 1
+ },
+ "BlurShaderController": {
+  "level0": 1
+ },
+ "BounceBehavior": {
+  "resources.assets": 1
+ },
+ "Button": {
+  "sharedassets1.assets": 15,
+  "sharedassets0.assets": 32,
+  "level0": 54,
+  "level1": 333
+ },
+ "ButtonTextColor": {
+  "sharedassets0.assets": 2,
+  "level0": 12,
+  "level1": 17
+ },
+ "CalendarDayElement": {
+  "sharedassets1.assets": 1,
+  "level1": 1
+ },
+ "CalendarEventElement": {
+  "sharedassets1.assets": 2,
+  "level1": 1
+ },
+ "CanvasScaler": {
+  "level0": 2,
+  "level1": 7
+ },
+ "ChemFinishElement": {
+  "sharedassets1.assets": 1,
+  "level1": 1
+ },
+ "ChemFinisherUIManager": {
+  "level1": 1
+ },
+ "ChemScannerEffect": {
+  "level1": 4
+ },
+ "ChemScannerUIManager": {
+  "level1": 1
+ },
+ "CigaretteUI": {
+  "level1": 2
+ },
+ "ClienteleUIManager": {
+  "level1": 1
+ },
+ "CommissaryElement": {
+  "level1": 7
+ },
+ "CommissaryUIManager": {
+  "level1": 1
+ },
+ "ConfirmPanelUIManager": {
+  "level0": 1,
+  "level1": 1
+ },
+ "ConstructionItemDirectory": {
+  "level1": 1
+ },
+ "ContactElement": {
+  "sharedassets1.assets": 1,
+  "level1": 1
+ },
+ "ContainerItemDirectory": {
+  "level1": 1
+ },
+ "ContentSizeFitter": {
+  "sharedassets1.assets": 3,
+  "sharedassets0.assets": 5,
+  "level0": 10,
+  "level1": 48
+ },
+ "CounterMoveChild": {
+  "level1": 8
+ },
+ "CreditsFrame": {
+  "sharedassets0.assets": 1
+ },
+ "CustomEventHandler": {
+  "level1": 1
+ },
+ "CustomUICanvasAnchor": {
+  "level0": 1,
+  "level1": 4
+ },
+ "CustomUIManager": {
+  "level0": 1
+ },
+ "CustomUIWindowFrame": {
+  "sharedassets1.assets": 4,
+  "sharedassets0.assets": 8
+ },
+ "DOTweenPath": {
+  "level1": 7
+ },
+ "DOTweenSettings": {
+  "resources.assets": 1
+ },
+ "DangleBehavior": {
+  "resources.assets": 1
+ },
+ "DebugHandler": {
+  "level1": 1
+ },
+ "DebugPanel": {
+  "level1": 1
+ },
+ "DelayedAnimatorEnable": {
+  "level1": 3
+ },
+ "DiagonalExpandAppearance": {
+  "resources.assets": 1
+ },
+ "DialogBubbleList": {
+  "level1": 1
+ },
+ "DialogBubbleWidth": {
+  "level1": 1
+ },
+ "DialogChoiceBubble": {
+  "level1": 6
+ },
+ "DialogSettingUIManager": {
+  "level1": 1
+ },
+ "DialogUIManager": {
+  "level1": 1
+ },
+ "DialogueHandler": {
+  "level1": 1
+ },
+ "DialoguePhoneUIManager": {
+  "level1": 1
+ },
+ "DraggableUI": {
+  "level0": 1
+ },
+ "DropdownLocalizer": {
+  "level0": 1,
+  "level1": 1
+ },
+ "DynamicCanvasScaler": {
+  "level0": 1
+ },
+ "ES3Defaults": {
+  "resources.assets": 1
+ },
+ "EmporiumAudioPlayer": {
+  "level1": 1
+ },
+ "EmporiumEntry": {
+  "level1": 1
+ },
+ "EmporiumOption": {
+  "level0": 1,
+  "level1": 1
+ },
+ "EmporiumRTSController": {
+  "level1": 1
+ },
+ "EndOfDayTabletFrame": {
+  "sharedassets1.assets": 1
+ },
+ "EndOfDayUIManager": {
+  "level1": 1
+ },
+ "EquipmentDirectory": {
+  "level1": 1
+ },
+ "EscapeUIManager": {
+  "level1": 1
+ },
+ "EventSystem": {
+  "level0": 1,
+  "level1": 1
+ },
+ "EventTrigger": {
+  "level0": 1,
+  "level1": 37
+ },
+ "EventTriggerManager": {
+  "level1": 1
+ },
+ "ExchangeElement": {
+  "level1": 14
+ },
+ "ExchangeUIManager": {
+  "level1": 1
+ },
+ "ExplosiveItemDirectory": {
+  "level1": 1
+ },
+ "FadeAppearance": {
+  "resources.assets": 1
+ },
+ "FadeBehavior": {
+  "resources.assets": 1
+ },
+ "FeedbackBox": {
+  "level1": 1
+ },
+ "FontLoader": {
+  "resources.assets": 1,
+  "level0": 1,
+  "level1": 1
+ },
+ "FoodItemDirectory": {
+  "level1": 1
+ },
+ "FuelUI": {
+  "level1": 2
+ },
+ "FurnitureItemDirectory": {
+  "level1": 1
+ },
+ "GUISkin": {
+  "unity default resources": 1
+ },
+ "GameMaster": {
+  "level1": 1
+ },
+ "GameOptionUIManager": {
+  "level0": 1,
+  "level1": 1
+ },
+ "GameOverUIManager": {
+  "level1": 1
+ },
+ "GenericClientMono": {
+  "level1": 2
+ },
+ "GenericConfirmationUIManager": {
+  "level1": 1
+ },
+ "GraphHandler": {
+  "level1": 1
+ },
+ "GraphicRaycaster": {
+  "level0": 2,
+  "level1": 6
+ },
+ "GridLayoutGroup": {
+  "level0": 2,
+  "level1": 8
+ },
+ "GridlyProjectSettings": {
+  "resources.assets": 1
+ },
+ "GunModDirectory": {
+  "level1": 1
+ },
+ "GunsItemDirectory": {
+  "level1": 1
+ },
+ "HandnoteUIManager": {
+  "level1": 1
+ },
+ "HorizontalExpandAppearance": {
+  "resources.assets": 1
+ },
+ "HorizontalLayoutGroup": {
+  "sharedassets1.assets": 2,
+  "sharedassets0.assets": 5,
+  "level0": 13,
+  "level1": 83
+ },
+ "HusbandryDirectory": {
+  "level1": 1
+ },
+ "HydroponicDirectory": {
+  "level1": 1
+ },
+ "IconProvider": {
+  "level0": 1
+ },
+ "IdleAnimator": {
+  "level1": 3
+ },
+ "Image": {
+  "sharedassets1.assets": 85,
+  "sharedassets0.assets": 140,
+  "level0": 222,
+  "level1": 1669
+ },
+ "InjectorUI": {
+  "level1": 2
+ },
+ "InputActionManager": {
+  "level1": 1
+ },
+ "InsBerryUI": {
+  "level1": 2
+ },
+ "InspectionUIManager": {
+  "level1": 1
+ },
+ "Interactable": {
+  "level0": 15,
+  "level1": 60
+ },
+ "InteractableUI": {
+  "sharedassets1.assets": 1,
+  "level1": 11
+ },
+ "ItemBehaviourManager": {
+  "level1": 1
+ },
+ "ItemContextHandler": {
+  "level1": 1
+ },
+ "ItemDefaultActivateHandler": {
+  "level1": 1
+ },
+ "ItemFeatureUI": {
+  "level1": 12
+ },
+ "ItemMouseDoubleClickHandler": {
+  "level1": 1
+ },
+ "ItemMouseDragHandler": {
+  "level1": 1
+ },
+ "ItemMouseHandler": {
+  "level1": 1
+ },
+ "ItemMultiSelectHandler": {
+  "level1": 1
+ },
+ "ItemQuickTransferAltHandler": {
+  "level1": 1
+ },
+ "ItemQuickTransferAltHandler1": {
+  "level1": 1
+ },
+ "ItemQuickTransferHandler": {
+  "level1": 1
+ },
+ "ItemSelectHandler": {
+  "level1": 1
+ },
+ "ItemTooltipHandler": {
+  "level1": 1
+ },
+ "ItemTypeUIElement": {
+  "level1": 7
+ },
+ "KeyItemDirectory": {
+  "level1": 1
+ },
+ "LabelerBlueUIManager": {
+  "level1": 1
+ },
+ "LabelerElement": {
+  "sharedassets1.assets": 1,
+  "level1": 1
+ },
+ "LabelerUIManager": {
+  "level1": 1
+ },
+ "LayoutElement": {
+  "sharedassets0.assets": 18,
+  "level0": 9,
+  "level1": 5
+ },
+ "LoadGameFrame": {
+  "sharedassets0.assets": 1
+ },
+ "LoanPanelUIManager": {
+  "level1": 1
+ },
+ "Locale": {
+  "resources.assets": 11,
+  "CAB-8c05f2bd072dd508d47ac839db6c8bb7": 11
+ },
+ "LocalizationSettings": {
+  "globalgamemanagers.assets": 1
+ },
+ "LocalizeStringEvent": {
+  "sharedassets1.assets": 38,
+  "sharedassets0.assets": 59,
+  "level0": 151,
+  "level1": 1056
+ },
+ "LogUIManager": {
+  "level1": 1
+ },
+ "LogWriter": {
+  "level1": 1
+ },
+ "LootTable": {
+  "sharedassets1.assets": 13
+ },
+ "MagnifyingGlassMono": {
+  "level1": 1
+ },
+ "MainMenuUIController": {
+  "level0": 1
+ },
+ "MapUIManager": {
+  "level1": 1
+ },
+ "Mask": {
+  "sharedassets1.assets": 3,
+  "sharedassets0.assets": 4,
+  "level0": 8,
+  "level1": 13
+ },
+ "MaterialDirectory": {
+  "level1": 1
+ },
+ "MedsItemDirectory": {
+  "level1": 1
+ },
+ "MeleeWeaponItemDirectory": {
+  "level1": 1
+ },
+ "MiscItemDirectory": {
+  "level1": 1
+ },
+ "ModElement": {
+  "sharedassets0.assets": 1
+ },
+ "ModHook": {
+  "level0": 1
+ },
+ "ModItemDirectory": {
+  "level1": 1
+ },
+ "ModLoader": {
+  "level0": 1
+ },
+ "ModUIManager": {
+  "level0": 1
+ },
+ "ModuleDirectory": {
+  "level1": 1
+ },
+ "MultiPageUIManager": {
+  "level1": 1
+ },
+ "NegociationTarget": {
+  "level1": 1
+ },
+ "NegociationUIManager": {
+  "level1": 1
+ },
+ "NegotiationTabletFrame": {
+  "sharedassets1.assets": 1
+ },
+ "NetworkElement": {
+  "level1": 37
+ },
+ "NewGameData": {
+  "level0": 1
+ },
+ "NewGameDifficultyFrame": {
+  "sharedassets0.assets": 1
+ },
+ "NewGamePerksFrame": {
+  "sharedassets0.assets": 1
+ },
+ "NewGameSpecializationFrame": {
+  "sharedassets0.assets": 1
+ },
+ "NewsUIElement": {
+  "level1": 10
+ },
+ "NewsUIManager": {
+  "level1": 1
+ },
+ "NotebookElement": {
+  "sharedassets1.assets": 1,
+  "level1": 1
+ },
+ "NotebookUIManager": {
+  "level1": 1
+ },
+ "OffsetAppearance": {
+  "resources.assets": 1
+ },
+ "OrganDirectory": {
+  "level1": 1
+ },
+ "Outlinable": {
+  "level0": 15,
+  "level1": 60
+ },
+ "Outliner": {
+  "level1": 2
+ },
+ "OverlayHandler": {
+  "level1": 1
+ },
+ "PCUIManager": {
+  "level1": 1
+ },
+ "PaperPanelFocusStamp": {
+  "sharedassets1.assets": 3
+ },
+ "PaperUIManager": {
+  "level1": 1
+ },
+ "PendulumBehavior": {
+  "resources.assets": 1
+ },
+ "PerkDirectory": {
+  "level1": 1
+ },
+ "PerkElement": {
+  "sharedassets1.assets": 2,
+  "level1": 1
+ },
+ "PerkUIController": {
+  "level0": 1,
+  "level1": 1
+ },
+ "PhoneBookUIManager": {
+  "level1": 1
+ },
+ "PhoneButton": {
+  "level1": 14
+ },
+ "PhoneUIManager": {
+  "level1": 1
+ },
+ "Physics2DRaycaster": {
+  "level1": 2
+ },
+ "PixelPerfectCamera": {
+  "level1": 2
+ },
+ "PixelPerfectHorizontalLayoutGroup": {
+  "level1": 28
+ },
+ "PlantAnalyserUIManager": {
+  "level1": 1
+ },
+ "PostProcessLayer": {
+  "level1": 1
+ },
+ "PostProcessProfile": {
+  "sharedassets1.assets": 1
+ },
+ "PostProcessResources": {
+  "sharedassets1.assets": 1
+ },
+ "PostProcessVolume": {
+  "level1": 1
+ },
+ "QuantumConsole": {
+  "level0": 1
+ },
+ "QuantumKeyConfig": {
+  "sharedassets0.assets": 1
+ },
+ "QuantumLocalization": {
+  "sharedassets0.assets": 1
+ },
+ "QuantumTheme": {
+  "sharedassets0.assets": 1
+ },
+ "QuickChooseHandler": {
+  "level1": 1
+ },
+ "RTSController": {
+  "level1": 1
+ },
+ "RainbowBehavior": {
+  "resources.assets": 1
+ },
+ "RandomDirectionAppearance": {
+  "resources.assets": 1
+ },
+ "RawImage": {
+  "level1": 3
+ },
+ "RecipeSelectHandler": {
+  "level1": 1
+ },
+ "RecordUIManager": {
+  "level1": 1
+ },
+ "RecorderUIManager": {
+  "level1": 1
+ },
+ "RectMask2D": {
+  "sharedassets1.assets": 5,
+  "sharedassets0.assets": 5,
+  "level0": 2,
+  "level1": 6
+ },
+ "RefineFlowLayoutGroup": {
+  "level1": 1
+ },
+ "RenderHandler": {
+  "level1": 1
+ },
+ "RepublicLogoUIManager": {
+  "level1": 1
+ },
+ "ReputationElement": {
+  "sharedassets1.assets": 1,
+  "level1": 1
+ },
+ "ReputationUIManager": {
+  "level1": 1
+ },
+ "ResizableUI": {
+  "level0": 1
+ },
+ "ResolutionLocalizer": {
+  "level0": 1,
+  "level1": 1
+ },
+ "RibwichUI": {
+  "level1": 3
+ },
+ "RotatingAppearance": {
+  "resources.assets": 1
+ },
+ "RotationBehavior": {
+  "resources.assets": 1
+ },
+ "RuinedMachineDirectory": {
+  "level1": 1
+ },
+ "SaveSlotElement": {
+  "sharedassets0.assets": 1,
+  "level0": 1
+ },
+ "SaveUIManager": {
+  "level0": 1
+ },
+ "ScratchFlake": {
+  "sharedassets1.assets": 1
+ },
+ "ScratchInput": {
+  "level1": 3
+ },
+ "ScratcherUIManager": {
+  "level1": 1
+ },
+ "ScrollRect": {
+  "sharedassets1.assets": 1,
+  "sharedassets0.assets": 7,
+  "level0": 8,
+  "level1": 8
+ },
+ "Scrollbar": {
+  "sharedassets1.assets": 4,
+  "sharedassets0.assets": 7,
+  "level0": 9,
+  "level1": 7
+ },
+ "SecuritySlip": {
+  "level1": 1
+ },
+ "SelectableElementHandler": {
+  "level1": 1
+ },
+ "ShakeBehavior": {
+  "resources.assets": 1
+ },
+ "SharedTableData": {
+  "resources.assets": 14,
+  "CAB-c95b58b33bf39379a25a480f51cebb00": 14
+ },
+ "ShipItemDirectory": {
+  "level1": 1
+ },
+ "ShipSystemDirectory": {
+  "level1": 1
+ },
+ "Shotgun": {
+  "level1": 1
+ },
+ "SimpleAnimator": {
+  "level1": 4
+ },
+ "SimpleSpriteAnimator": {
+  "sharedassets1.assets": 10,
+  "level1": 4
+ },
+ "SizeAppearance": {
+  "resources.assets": 1
+ },
+ "SizeBehavior": {
+  "resources.assets": 1
+ },
+ "SlideBehavior": {
+  "resources.assets": 1
+ },
+ "Slider": {
+  "sharedassets0.assets": 1,
+  "level0": 4,
+  "level1": 7
+ },
+ "SmoothMouseMovement": {
+  "level1": 1
+ },
+ "SpaceInvadersText": {
+  "level0": 1
+ },
+ "SpeedAction": {
+  "resources.assets": 1
+ },
+ "SpriteDict": {
+  "level1": 1
+ },
+ "StampUI": {
+  "level1": 2
+ },
+ "StandaloneInputModule": {
+  "level0": 1,
+  "level1": 1
+ },
+ "StartOfDayUIManager": {
+  "level1": 1
+ },
+ "StartingPerkElement": {
+  "sharedassets0.assets": 1
+ },
+ "StartingPerkIconLoader": {
+  "level0": 1,
+  "level1": 1
+ },
+ "StationMachinery": {
+  "level1": 1
+ },
+ "SteamManager": {
+  "level0": 1
+ },
+ "StoreBedroll": {
+  "level1": 1
+ },
+ "StoreBell": {
+  "level1": 1
+ },
+ "StoreCalendar": {
+  "level1": 1
+ },
+ "StoreClientCounter": {
+  "level1": 2
+ },
+ "StoreClientMono": {
+  "level1": 1
+ },
+ "StoreClienteleDisplay": {
+  "level1": 1
+ },
+ "StoreCreditDisplay": {
+  "level1": 1
+ },
+ "StoreDismissButton": {
+  "level1": 1
+ },
+ "StoreDoor": {
+  "level1": 1
+ },
+ "StoreGlass": {
+  "level1": 1
+ },
+ "StoreMagnifyingGlass": {
+  "level1": 1
+ },
+ "StoreMagnifyingWindow": {
+  "level1": 1
+ },
+ "StorePC": {
+  "level1": 1
+ },
+ "StorePhoneObject": {
+  "level1": 1
+ },
+ "StorePoster": {
+  "level1": 1
+ },
+ "StoreRecorder": {
+  "level1": 1
+ },
+ "StoreRequestElement": {
+  "sharedassets1.assets": 1,
+  "level1": 1
+ },
+ "StoreSecButton": {
+  "level1": 1
+ },
+ "StoreShutterButton": {
+  "level1": 1
+ },
+ "StoreSoundPlayer": {
+  "level1": 1
+ },
+ "StoreTablet": {
+  "level1": 1
+ },
+ "StoreTransferButton": {
+  "level1": 1
+ },
+ "StoreUI": {
+  "level1": 78
+ },
+ "StoreUIManager": {
+  "level1": 1
+ },
+ "StoreVendingFountain": {
+  "level1": 1
+ },
+ "StoreVendingMachine": {
+  "level1": 1
+ },
+ "StringTable": {
+  "resources.assets": 154,
+  "CAB-d2dee45bac5ffbf3a2b5400326a23235": 14,
+  "CAB-7d9effc7ccb66e86e40b90369e2f861c": 14,
+  "CAB-a0b08aa48bda8fd97a38eab98508d84d": 14,
+  "CAB-57d694baf3b86a0f6882e901d082aa0e": 14,
+  "CAB-60a6ec192bc8f36406c89f38e2a099f6": 14,
+  "CAB-6f9add9f2ceca597a42a11868c796942": 14,
+  "CAB-6cf237fb0e64836bc5c410c8d9bd1c76": 14,
+  "CAB-43b1df1c4713b55aaf0b33fa9497cab2": 14,
+  "CAB-1ad0e44066b915292408db9c8f3e8a6c": 14,
+  "CAB-4596632506d7e52e64cbece8d6cf61ad": 14,
+  "CAB-fa4887ef0d838e54d5a423d7afdf8a69": 14
+ },
+ "StringTableCollection": {
+  "resources.assets": 14
+ },
+ "StyleSheetScriptable": {
+  "resources.assets": 1
+ },
+ "SuggestionDisplay": {
+  "level0": 1
+ },
+ "SwingBehavior": {
+  "resources.assets": 1
+ },
+ "TAnimSoundWriter": {
+  "level1": 32
+ },
+ "TMPIconHover": {
+  "sharedassets0.assets": 2,
+  "level0": 2,
+  "level1": 21
+ },
+ "TMPInputFieldLocalizer": {
+  "level1": 1
+ },
+ "TMPLocalizer": {
+  "sharedassets1.assets": 38,
+  "sharedassets0.assets": 59,
+  "level0": 151,
+  "level1": 1056
+ },
+ "TMP_Dropdown": {
+  "sharedassets1.assets": 1,
+  "sharedassets0.assets": 2,
+  "level0": 4,
+  "level1": 3
+ },
+ "TMP_FontAsset": {
+  "sharedassets1.assets": 7,
+  "resources.assets": 1,
+  "sharedassets0.assets": 25
+ },
+ "TMP_InputField": {
+  "sharedassets0.assets": 2,
+  "level0": 1,
+  "level1": 4
+ },
+ "TMP_Settings": {
+  "resources.assets": 1
+ },
+ "TMP_SpriteAsset": {
+  "resources.assets": 2
+ },
+ "TMP_StyleSheet": {
+  "resources.assets": 1
+ },
+ "TableGroup": {
+  "sharedassets1.assets": 2
+ },
+ "TableGroupMaster": {
+  "level1": 1
+ },
+ "TableMaster": {
+  "level1": 1
+ },
+ "TabletScrollRect": {
+  "sharedassets1.assets": 3
+ },
+ "TargetStateListener": {
+  "level1": 32
+ },
+ "TechnicianBackpackDirectory": {
+  "level1": 1
+ },
+ "Text": {
+  "level0": 1
+ },
+ "TextAnimatorSettings": {
+  "resources.assets": 1
+ },
+ "TextAnimator_TMP": {
+  "level1": 32
+ },
+ "TextBubble": {
+  "level1": 38
+ },
+ "TextMeshProUGUI": {
+  "sharedassets1.assets": 40,
+  "sharedassets0.assets": 61,
+  "level0": 187,
+  "level1": 1255
+ },
+ "Toggle": {
+  "sharedassets1.assets": 1,
+  "sharedassets0.assets": 4,
+  "level0": 19,
+  "level1": 18
+ },
+ "ToggleGroup": {
+  "level1": 1
+ },
+ "ToolDirectory": {
+  "level1": 1
+ },
+ "TooltipContainer": {
+  "level0": 7,
+  "level1": 50
+ },
+ "TooltipManager": {
+  "level0": 1,
+  "level1": 1
+ },
+ "TransitFrame": {
+  "sharedassets1.assets": 1
+ },
+ "TreeNodeRender": {
+  "sharedassets1.assets": 2
+ },
+ "TutorialUIManager": {
+  "level1": 1
+ },
+ "TypeElement": {
+  "level1": 1
+ },
+ "TypewriterByCharacter": {
+  "level1": 32
+ },
+ "UIDragHandler": {
+  "sharedassets0.assets": 1,
+  "level1": 53
+ },
+ "UISettings": {
+  "level1": 1
+ },
+ "VerticalExpandAppearance": {
+  "resources.assets": 1
+ },
+ "VerticalLayoutGroup": {
+  "sharedassets1.assets": 7,
+  "sharedassets0.assets": 15,
+  "level0": 11,
+  "level1": 27
+ },
+ "Vignette": {
+  "sharedassets1.assets": 1
+ },
+ "WaitAnyInputAction": {
+  "resources.assets": 1
+ },
+ "WaitForAction": {
+  "resources.assets": 1
+ },
+ "Walker": {
+  "sharedassets1.assets": 10
+ },
+ "WalkerManager": {
+  "level1": 1
+ },
+ "WantedElement": {
+  "level1": 9
+ },
+ "WantedUIManager": {
+  "level1": 1
+ },
+ "WaterScannerUIManager": {
+  "level1": 1
+ },
+ "WaterStripUIManager": {
+  "level1": 1
+ },
+ "WaveBehavior": {
+  "resources.assets": 1
+ },
+ "WiggleBehavior": {
+  "resources.assets": 1
+ },
+ "WildNetworkFrame": {
+  "sharedassets0.assets": 1
+ },
+ "WildNetworkSlot": {
+  "sharedassets0.assets": 7
+ },
+ "WildUIManager": {
+  "level1": 1
+ },
+ "WindowsHandler": {
+  "level1": 1
+ },
+ "WineDirectory": {
+  "level1": 1
+ },
+ "ZoomFollower": {
+  "level1": 1
+ },
+ "ZoomUIController": {
+  "level0": 1
+ }
+}

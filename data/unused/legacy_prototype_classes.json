@@ -1,0 +1,630 @@
+[
+ {
+  "class": "CombatAI",
+  "base": null,
+  "referenced_by": 5,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatAIHelper",
+  "base": null,
+  "referenced_by": 3,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatAbility",
+  "base": null,
+  "referenced_by": 13,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatAbilityDirectory",
+  "base": "Directory<CombatAbility>",
+  "referenced_by": 2,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatAbilityEffect",
+  "base": "TagSystem",
+  "referenced_by": 27,
+  "attached_in_scene": false,
+  "lines": [
+   "DEFAULT EFFECT NAME"
+  ]
+ },
+ {
+  "class": "CombatAbilityEffectDirectory",
+  "base": "Directory<CombatAbilityEffect>",
+  "referenced_by": 5,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatAbilityEffectInstantDirectory",
+  "base": "CombatAbilityEffectDirectory",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatAbilityEffectPermanentDirectory",
+  "base": "CombatAbilityEffectDirectory",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatAbilityEffectStandardDirectory",
+  "base": "CombatAbilityEffectDirectory",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatEndedUIController",
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatEntity",
+  "base": null,
+  "referenced_by": 21,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatEntityBuilder",
+  "base": null,
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatEntityStat",
+  "base": null,
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatEvent",
+  "base": null,
+  "referenced_by": 2,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatEventHandler",
+  "base": null,
+  "referenced_by": 2,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatLog",
+  "base": null,
+  "referenced_by": 9,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatManager",
+  "base": null,
+  "referenced_by": 12,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatManagerMono",
+  "base": "MonoBehaviour",
+  "referenced_by": 1,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatMaster",
+  "base": null,
+  "referenced_by": 1,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "CombatParty",
+  "base": null,
+  "referenced_by": 2,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "Expedition",
+  "base": null,
+  "referenced_by": 5,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "ExpeditionAccident",
+  "base": null,
+  "referenced_by": 1,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "ExpeditionData",
+  "base": null,
+  "referenced_by": 1,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "ExpeditionHelper",
+  "base": null,
+  "referenced_by": 3,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "ExpeditionLocation",
+  "base": null,
+  "referenced_by": 3,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "ExpeditionLocationList",
+  "base": null,
+  "referenced_by": 1,
+  "attached_in_scene": false,
+  "lines": [
+   "Dumping Grounds"
+  ]
+ },
+ {
+  "class": "ExpeditionPoi",
+  "base": null,
+  "referenced_by": 3,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "ExpeditionPoiList",
+  "base": null,
+  "referenced_by": 1,
+  "attached_in_scene": false,
+  "lines": [
+   "Worthless Junk Pile",
+   "Fresh Scrap Pile",
+   "Scrap Pile"
+  ]
+ },
+ {
+  "class": "OverworldPOI",
+  "base": null,
+  "referenced_by": 6,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "OverworldSpace",
+  "base": "OverworldPOI",
+  "referenced_by": 30,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "OverworldStation",
+  "base": "OverworldPOI",
+  "referenced_by": 8,
+  "attached_in_scene": false,
+  "lines": [
+   "Trade Station"
+  ]
+ },
+ {
+  "class": "RaidAnimation",
+  "base": null,
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "RaidManager",
+  "base": null,
+  "referenced_by": 3,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "RaidScene",
+  "base": null,
+  "referenced_by": 3,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "ShipHelper",
+  "base": null,
+  "referenced_by": 4,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "ShipItemDirectory",
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "attached_in_scene": true,
+  "lines": [
+   "Sok-27C",
+   "This ship is the cargo variant of the Sok-27. A popular ship for young entreprising captain.",
+   "A-101 Albatross",
+   "An armored and armed troop transport used by the Republic Navy. Often loaded with marines and launched from larger carrier ship to conduct anti-piracy operation.",
+   "Type-54 Bian Yuan",
+   "An heavy duty utility ship made for mining and salvaging operation.",
+   "The Bus",
+   "A barely spaceworthy ship, weld together from cargo containers, empty fuel tanks and anything else they got their hands on."
+  ]
+ },
+ {
+  "class": "ShipManager",
+  "base": null,
+  "referenced_by": 4,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "ShipScene",
+  "base": null,
+  "referenced_by": 3,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "ShipSystemDirectory",
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "attached_in_scene": true,
+  "lines": [
+   "Makeshift Storage Bay",
+   "A improvised storage bay for storing items. Can't store other containers or machines.",
+   "Storage Bay",
+   "A standard bay for storing items.",
+   "Storage Bay (Extended)",
+   "An expanded bay for storing items.",
+   "Gunsmith Storage Bay",
+   "A specialized storage bay for storing firearms and modifications. Can't store other containers or machines.",
+   "Chemist Storage Bay",
+   "A specialized storage bay for storing chemistry equipments and supplies. Can't store other containers or machines.",
+   "Machine Bay",
+   "A standard bay for storing machines."
+  ]
+ },
+ {
+  "class": "SpaceAsteroidTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You have arrived to an large asteroid."
+  ]
+ },
+ {
+  "class": "SpaceBanditTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You have arrived near a unmarked military transport ship."
+  ]
+ },
+ {
+  "class": "SpaceBattleHelper",
+  "base": null,
+  "referenced_by": 5,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "SpaceBattleTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive in the middle of a massive space battle. Two fleets are attacking each other."
+  ]
+ },
+ {
+  "class": "SpaceButcherTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive near a cargo ship. You are immediatly contacted by a man wearing a stained apron and holding a butcher knife: ",
+   "Xeno Butcher (Energy Credit Only)"
+  ]
+ },
+ {
+  "class": "SpaceCargoConvoyTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive near a fleet of cargo ship. You can see ship of all kind and size. Some are armed and armored, other looks barely space worthy."
+  ]
+ },
+ {
+  "class": "SpaceCargoPodTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive near some cargo pod. For whatever reason they has been spaced and is drifting indefinetly."
+  ]
+ },
+ {
+  "class": "SpaceDebrisFieldTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You have arrived at a large debris field, it seems to be the remains of a massive space battle. Sadly, most of the debris seems to be to small to be scavanged"
+  ]
+ },
+ {
+  "class": "SpaceDistressSignalFakeTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You have arrived to the source of the distress signal, an heavily armed pirate ship. "
+  ]
+ },
+ {
+  "class": "SpaceDistressSignalTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You have arrived to the source of the distress signal, a small stationary cargo ship. ",
+   "Distressed Cargo (Credit & Fuel Only)"
+  ]
+ },
+ {
+  "class": "SpaceDrugShipTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive at the location of the broadcast. An inconspicuous cargo ship is the origin of the broadcast.",
+   "Drug Lab (Credit Only)"
+  ]
+ },
+ {
+  "class": "SpaceExampleTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "SpaceFuelTankerTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive near a large tanker ship transporting exotic fuel. You are immediately contacted by the tanker's captain who seems eager.",
+   "Dirt cheap fuel (Energy Credit Only)"
+  ]
+ },
+ {
+  "class": "SpaceGhostShipTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You have arrived at a small transport ship drifting aimlessly into the space. \\r\\n        The ship is not responding to your communication attempt. "
+  ]
+ },
+ {
+  "class": "SpaceInvadersText",
+  "base": "MonoBehaviour",
+  "referenced_by": 0,
+  "attached_in_scene": true,
+  "lines": []
+ },
+ {
+  "class": "SpaceMedicTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive near a large white ship.",
+   "Hippocrates Order Donation Box"
+  ]
+ },
+ {
+  "class": "SpaceMerchantTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive at a cargo ship. The captain contacts you and introduce themself as travelling merchant. They sell general supplies and are willing to buy all kind of items.",
+   "Travelling Merchant"
+  ]
+ },
+ {
+  "class": "SpaceMiningShipTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive at a small mining ship. It is equipped with a set of mining drill and behind it a large cargo hold.",
+   "Miner's Offload (Credit Only)"
+  ]
+ },
+ {
+  "class": "SpaceNavySupplyTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You have arrived at a lone autonomous supply ship with the Republic marking."
+  ]
+ },
+ {
+  "class": "SpaceNutrifruitShopTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You have arrived at a lone autonomous merchant drone ship with pastel inc.'s logo. The onboard ship AI have contacted you and offer to browse their wares while pitching about the quality of pastel's products.",
+   "pastel Drone Shop (Credit Only)"
+  ]
+ },
+ {
+  "class": "SpaceRefugeeTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You have arrived to a makeshift ship. They are a group of a spacers banding together trying to survive in the Subspace.",
+   "Makeshift Ship Barter"
+  ]
+ },
+ {
+  "class": "SpaceRepairShipTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive at a large repair ship. Aboard this ship, they have trained personnel and specialised equipments to repair any ship back to working order.",
+   "Repair Ship (Credit Only)"
+  ]
+ },
+ {
+  "class": "SpaceSalvageShipTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive at a small mining ship. It is equipped with cranes and robotic cutters and behind it a large cargo hold.",
+   "Scav's Offload (Credit Only)"
+  ]
+ },
+ {
+  "class": "SpaceScalperTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You arrive at a cargo ship. The captain contacts you and introduce themself as business man. They sell critially needed supplies at a premium price.",
+   "Travelling Merchant"
+  ]
+ },
+ {
+  "class": "SpaceSpaTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You have arrived at a leisure ship. \\r\\nYou are greeted over the comms by an over-friendly attendant whom inform you that they are operating a spa ship and that their package start at 100 Energy Credit. The attendant mentions health benefits with the usage of the spa."
+  ]
+ },
+ {
+  "class": "Station",
+  "base": null,
+  "referenced_by": 16,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "StationFeature",
+  "base": "TagSystem",
+  "referenced_by": 3,
+  "attached_in_scene": false,
+  "lines": [
+   "Energy Farm",
+   "Foundry",
+   "Nutrifruit Farm",
+   "Civil Unrest",
+   "Civil War",
+   "Fuel Shortage",
+   "Fuel Surplus",
+   "Food Shortage",
+   "Food Surplus",
+   "Med Shortage",
+   "Med Surplus",
+   "Blockade"
+  ]
+ },
+ {
+  "class": "StationGeneration",
+  "base": null,
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "Your dropship arrive to a Davre Food LTD Outpost Station, This station was originally build as a logistic hub to support the company's operation in the sector. The outpost has clearly been looted, hopefully there is still some thing left.",
+   "Your dropship arrive to Ticonderoga Station, a derelict super freighter converted into a trading station. You can't help but wonder if the thrusters still works. You see that only half of every lightbulb is powered on.",
+   "You see a girl spying on you behind some crates. She leaves as soon as she realized that she's spotted",
+   "I am Williams with Ticonderoga Security. If you need anything ask my boss Sergent Riggs.",
+   "Ticonderago was used to transport Nutrifruit products for pastel before it. When we got Jumped into the Subspace, the incident was just getting started. We explored the Subspace until our fuel run out hoping find a way to go back to civilisation. But we found nothing but emptiness.",
+   "Eventually, our fuel run out and we sat still in the Subspace. With the cargo we were transporting we had plenty of food. As time go by we made modification to make the ship more livable. We started to find other ships in the Subspace. The smaller ships didn't have much and most joined our crew in exchange for food and room",
+   "With the larger ships, we trade our Nutrifruit cargo for other things we need, specialy energy credit to run our electricals and spare parts to maintain our ship.",
+   "I am not in charge of the food supply here, but as far as I am concerned, we still have plenty to trade. Did you see the size of the station? It was one of the largest superfreighters to be build and all of it was filled with food.",
+   "pastel's food was designed for space travel. If properly stored in temperature and humidity controlled environment, the seal will keep the food fresh for a long long time.",
+   "Me? Sergent John Riggs. Before the Jump, I was a corporate marine for pastel guarding their ship or stations against pirates. Now I am Head of Security here. Frankly, my live here is better than before. The station is counting on my team to keep them safe.",
+   "Pirates, raiders... just like before the Jump. They are bolder than before because now, they are desperate.",
+   "Captain Church is the woman in charge here. She was the captain even before I started working on Ticonderoga. She never lead us astray."
+  ]
+ },
+ {
+  "class": "StationMachinerieHelper",
+  "base": null,
+  "referenced_by": 1,
+  "attached_in_scene": false,
+  "lines": []
+ },
+ {
+  "class": "StationMachinery",
+  "base": "ItemDirectory",
+  "referenced_by": 0,
+  "attached_in_scene": true,
+  "lines": [
+   "Paying Water Fountain",
+   "Water Fountain",
+   "Nutrition Paste Dispencer"
+  ]
+ },
+ {
+  "class": "TraderStationBlockadeTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   " You have arrived at a space station."
+  ]
+ },
+ {
+  "class": "TraderStationFreeportTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   " You have arrived at a space station."
+  ]
+ },
+ {
+  "class": "TraderStationInspectionTrigger",
+  "base": "EventTrigger",
+  "referenced_by": 0,
+  "attached_in_scene": false,
+  "lines": [
+   "You have arrived at a space station!"
+  ]
+ }
+]

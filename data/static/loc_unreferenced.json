@@ -1,0 +1,4939 @@
+{
+ "name_security_inspector_corpo": {
+  "table": "ClientName",
+  "text": "Corporate Security Inspector",
+  "maybe_built_from": []
+ },
+ "location_dumping_grounds": {
+  "table": "ClientName",
+  "text": "Dumping Grounds",
+  "maybe_built_from": []
+ },
+ "sec_shoot_bad_calling": {
+  "table": "Dialogue",
+  "text": "I am calling this in!",
+  "maybe_built_from": []
+ },
+ "sec_shoot_bad_radio": {
+  "table": "Dialogue",
+  "text": "<i>*Radio Chatters*</i>",
+  "maybe_built_from": []
+ },
+ "sec_shoot_bad_grace_0": {
+  "table": "Dialogue",
+  "text": "Alright, looks like you got friends in high places.",
+  "maybe_built_from": []
+ },
+ "sec_shoot_bad_grace_1": {
+  "table": "Dialogue",
+  "text": "We will let it slide for this time.",
+  "maybe_built_from": []
+ },
+ "sec_shoot_bad_grace_2": {
+  "table": "Dialogue",
+  "text": "Remember, that gun is only for shooting Augs.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t1_1": {
+  "table": "Dialogue",
+  "text": "Sure, that works for me.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t1_2": {
+  "table": "Dialogue",
+  "text": "No problem, the price is fine.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t2_1": {
+  "table": "Dialogue",
+  "text": "Acceptable. The cost is not important.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t2_2": {
+  "table": "Dialogue",
+  "text": "That is fine. Funds are not a concern.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t3_1": {
+  "table": "Dialogue",
+  "text": "Price is irrelevant to the objective. Proceeding.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t3_2": {
+  "table": "Dialogue",
+  "text": "Cost parameters are not a limiting constraint. Confirmed.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t4_1": {
+  "table": "Dialogue",
+  "text": "Resource acquisition takes priority over price. This unit accepts.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t4_2": {
+  "table": "Dialogue",
+  "text": "Monetary value is meaningless. The transaction will complete.",
+  "maybe_built_from": []
+ },
+ "telephone": {
+  "table": "Hint",
+  "text": "Telephone",
+  "maybe_built_from": []
+ },
+ "telephone_hover": {
+  "table": "Hint",
+  "text": "Call your contacts using the phone",
+  "maybe_built_from": []
+ },
+ "display_case": {
+  "table": "Hint",
+  "text": "Display Case",
+  "maybe_built_from": []
+ },
+ "display_case_hover": {
+  "table": "Hint",
+  "text": "Place items here to attract interested customers",
+  "maybe_built_from": []
+ },
+ "customer_counter_hover": {
+  "table": "Hint",
+  "text": "Shows the number of customers left in the line for the day",
+  "maybe_built_from": []
+ },
+ "customer_counter": {
+  "table": "Hint",
+  "text": "Customers Remaining",
+  "maybe_built_from": []
+ },
+ "negotiation_counter": {
+  "table": "Hint",
+  "text": "Negotiation Counter",
+  "maybe_built_from": []
+ },
+ "negotiation_counter_hover": {
+  "table": "Hint",
+  "text": "Place the item you want to buy or sell here and open the Negotiation Interface",
+  "maybe_built_from": []
+ },
+ "o_key": {
+  "table": "Hint",
+  "text": "Press O Letter Key to Hide/Show Hint Overlay",
+  "maybe_built_from": []
+ },
+ "start_day_hover": {
+  "table": "Hint",
+  "text": "You will not be able to end a day if there are important people still in line",
+  "maybe_built_from": []
+ },
+ "start_day": {
+  "table": "Hint",
+  "text": "Start/End Day",
+  "maybe_built_from": []
+ },
+ "call_customer_hover": {
+  "table": "Hint",
+  "text": "Call next customer forward or dismiss the current customer",
+  "maybe_built_from": []
+ },
+ "call_customer": {
+  "table": "Hint",
+  "text": "Call next customer",
+  "maybe_built_from": []
+ },
+ "negociation_interface_hover": {
+  "table": "Hint",
+  "text": "Items placed on the Negotiation Counter can be sold/bought via the Negotiation Interface",
+  "maybe_built_from": []
+ },
+ "negociation_interface": {
+  "table": "Hint",
+  "text": "Negotiation Interface",
+  "maybe_built_from": []
+ },
+ "recorder_hover": {
+  "table": "Hint",
+  "text": "Review past dialogue",
+  "maybe_built_from": []
+ },
+ "recorder": {
+  "table": "Hint",
+  "text": "Conversation Recorder",
+  "maybe_built_from": []
+ },
+ "sleeping_bag": {
+  "table": "Hint",
+  "text": "Sleeping Bag",
+  "maybe_built_from": []
+ },
+ "sleeping_bag_hover": {
+  "table": "Hint",
+  "text": "Sleep to End Day",
+  "maybe_built_from": []
+ },
+ "autosave": {
+  "table": "Hint",
+  "text": "The Game will AUTOSAVE after sleeping.",
+  "maybe_built_from": []
+ },
+ "close_overlay": {
+  "table": "Hint",
+  "text": "Close Overlay",
+  "maybe_built_from": []
+ },
+ "shortcuts": {
+  "table": "Hint",
+  "text": "Keyboard Shortcuts",
+  "maybe_built_from": []
+ },
+ "transfer_inv": {
+  "table": "Hint",
+  "text": "Quick Transfer to Inventory",
+  "maybe_built_from": []
+ },
+ "transfer_display": {
+  "table": "Hint",
+  "text": "Quick Transfer to Display Case",
+  "maybe_built_from": []
+ },
+ "transfer_trash": {
+  "table": "Hint",
+  "text": "Quick Transfer to Counter",
+  "maybe_built_from": []
+ },
+ "rotate_counter": {
+  "table": "Hint",
+  "text": "Rotate Item (Left)",
+  "maybe_built_from": []
+ },
+ "rotate_clock": {
+  "table": "Hint",
+  "text": "Rotate Item (Right)",
+  "maybe_built_from": []
+ },
+ "close_ui": {
+  "table": "Hint",
+  "text": "Close UI/ Open Main Menu",
+  "maybe_built_from": []
+ },
+ "skip_dialogue": {
+  "table": "Hint",
+  "text": "Skip Dialogue",
+  "maybe_built_from": []
+ },
+ "flip": {
+  "table": "Hint",
+  "text": "Flip Item",
+  "maybe_built_from": []
+ },
+ "click": {
+  "table": "Hint",
+  "text": "Click",
+  "maybe_built_from": []
+ },
+ "dragging_item": {
+  "table": "Hint",
+  "text": "Dragging Item",
+  "maybe_built_from": []
+ },
+ "reputation_interface": {
+  "table": "Hint",
+  "text": "Reputation Interface",
+  "maybe_built_from": []
+ },
+ "reputation_interface_hover": {
+  "table": "Hint",
+  "text": "Check your reputation with the factions",
+  "maybe_built_from": []
+ },
+ "ui_open_clientele_interface": {
+  "table": "UI",
+  "text": "Open the Clientele Interface",
+  "maybe_built_from": []
+ },
+ "vending_fountain_tooltip": {
+  "table": "Interactable",
+  "text": "Water Vending Machine",
+  "maybe_built_from": []
+ },
+ "vending_machine_tooltip": {
+  "table": "Interactable",
+  "text": "Vending Machine",
+  "maybe_built_from": []
+ },
+ "door_agoraphobia": {
+  "table": "Interactable",
+  "text": "You can't leave the store due to your agoraphobia!",
+  "maybe_built_from": []
+ },
+ "item_sign_water_desc": {
+  "table": "Item",
+  "text": "A neon sign that, when placed in the Display Case, will attract customers willing to sell Water.",
+  "maybe_built_from": []
+ },
+ "new_game": {
+  "table": "MainMenu",
+  "text": "New Game",
+  "maybe_built_from": []
+ },
+ "option": {
+  "table": "MainMenu",
+  "text": "Options",
+  "maybe_built_from": []
+ },
+ "exit_game": {
+  "table": "MainMenu",
+  "text": "Exit Game",
+  "maybe_built_from": []
+ },
+ "join_discord": {
+  "table": "MainMenu",
+  "text": "Join Our Discord!",
+  "maybe_built_from": []
+ },
+ "welcome_body": {
+  "table": "MainMenu",
+  "text": "Community feedback is invaluable to us. Join our Discord, become part of our community, and help shape the development of Probably Stolen.",
+  "maybe_built_from": []
+ },
+ "new_welcome": {
+  "table": "MainMenu",
+  "text": "Welcome",
+  "maybe_built_from": []
+ },
+ "new_hard_mode": {
+  "table": "MainMenu",
+  "text": "Hard Mode",
+  "maybe_built_from": []
+ },
+ "loading": {
+  "table": "MainMenu",
+  "text": "Loading...",
+  "maybe_built_from": []
+ },
+ "main_hard_mode_tooltip": {
+  "table": "MainMenu",
+  "text": "-No Retail Markup When Selling\n-Start Without Rent Grace\n-Certain Services Cost More\n-Rent Increases By Twice As Much",
+  "maybe_built_from": []
+ },
+ "main_wishlist_now": {
+  "table": "MainMenu",
+  "text": "Wishlist Now",
+  "maybe_built_from": []
+ },
+ "main_provide_feedback": {
+  "table": "MainMenu",
+  "text": "Provide Feedback",
+  "maybe_built_from": []
+ },
+ "main_menu_data_consent": {
+  "table": "MainMenu",
+  "text": "Help us improve the game by sharing anonymous gameplay data",
+  "maybe_built_from": []
+ },
+ "general_optional": {
+  "table": "MainMenu",
+  "text": "Optional",
+  "maybe_built_from": []
+ },
+ "general_or": {
+  "table": "MainMenu",
+  "text": "Or",
+  "maybe_built_from": []
+ },
+ "mods": {
+  "table": "MainMenu",
+  "text": "Mods",
+  "maybe_built_from": []
+ },
+ "general_select": {
+  "table": "MainMenu",
+  "text": "Select",
+  "maybe_built_from": []
+ },
+ "demo_notice": {
+  "table": "MainMenu",
+  "text": "The Probably Stolen playtest is over! Thanks for trying the game. The official demo is now available on Steam. Your save files will automatically transfer to the demo, which contains the latest version of the game.",
+  "maybe_built_from": []
+ },
+ "demo_notice_button": {
+  "table": "MainMenu",
+  "text": "Join the Demo",
+  "maybe_built_from": []
+ },
+ "placeholder": {
+  "table": "Mechanic",
+  "text": "placeholder",
+  "maybe_built_from": []
+ },
+ "mech_alarm_label_power_source": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_alarm_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_desequencer_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_evaporator_label_battery": {
+  "table": "Mechanic",
+  "text": "Battery",
+  "maybe_built_from": []
+ },
+ "mech_evaporator_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_furnace_label_battery": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_furnace_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_bottle_printer_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_bottle_printer_btn_start": {
+  "table": "Mechanic",
+  "text": "Start Print Process",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_prev": {
+  "table": "Mechanic",
+  "text": "<",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_play": {
+  "table": "Mechanic",
+  "text": "P",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_stop": {
+  "table": "Mechanic",
+  "text": "S",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_next": {
+  "table": "Mechanic",
+  "text": ">",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_vol_down": {
+  "table": "Mechanic",
+  "text": "-",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_vol_up": {
+  "table": "Mechanic",
+  "text": "+",
+  "maybe_built_from": []
+ },
+ "mech_turbo_booster_label_battery": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_projector_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_projector_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_printer_label_power": {
+  "table": "Mechanic",
+  "text": "Power",
+  "maybe_built_from": []
+ },
+ "mech_printer_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_moisture_farm_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_moisture_farm_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_purifier_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_purifier_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_vending_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_vending_tooltip_upgrade_attract": {
+  "table": "Mechanic",
+  "text": "Can be upgraded with Electronic Parts to increase attractiveness",
+  "maybe_built_from": []
+ },
+ "mech_vending_tooltip_upgrade_capacity": {
+  "table": "Mechanic",
+  "text": "Can be upgraded with Metal Ingot to increase capacity",
+  "maybe_built_from": []
+ },
+ "mech_fountain_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_fountain_tooltip_upgrade_attract": {
+  "table": "Mechanic",
+  "text": "Can be upgraded with Electronic Parts to increase attractiveness",
+  "maybe_built_from": []
+ },
+ "type_food": {
+  "table": "Mechanic",
+  "text": "Food",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "type_medical": {
+  "table": "Mechanic",
+  "text": "Medical",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "type_material": {
+  "table": "Mechanic",
+  "text": "Material",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "type_household_good": {
+  "table": "Mechanic",
+  "text": "Household Good",
+  "maybe_built_from": []
+ },
+ "type_substance": {
+  "table": "Mechanic",
+  "text": "Substance",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "type_weapon": {
+  "table": "Mechanic",
+  "text": "Weapon",
+  "maybe_built_from": []
+ },
+ "type_not_for_resale": {
+  "table": "Mechanic",
+  "text": "Not For Resale",
+  "maybe_built_from": []
+ },
+ "type_supply_crate": {
+  "table": "Mechanic",
+  "text": "Supply Crate",
+  "maybe_built_from": []
+ },
+ "type_tool": {
+  "table": "Mechanic",
+  "text": "Tool",
+  "maybe_built_from": []
+ },
+ "type_medical_tool": {
+  "table": "Mechanic",
+  "text": "Medical Tool",
+  "maybe_built_from": []
+ },
+ "type_all_type": {
+  "table": "Mechanic",
+  "text": "All Types",
+  "maybe_built_from": []
+ },
+ "type_all_type_except_contraband": {
+  "table": "Mechanic",
+  "text": "All Types Except Contraband",
+  "maybe_built_from": []
+ },
+ "type_contraband": {
+  "table": "Mechanic",
+  "text": "Contraband",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "type_restricted_1": {
+  "table": "Mechanic",
+  "text": "Restricted I",
+  "maybe_built_from": []
+ },
+ "type_restricted_2": {
+  "table": "Mechanic",
+  "text": "Restricted II",
+  "maybe_built_from": []
+ },
+ "type_restricted_3": {
+  "table": "Mechanic",
+  "text": "Restricted III",
+  "maybe_built_from": []
+ },
+ "type_makeshift": {
+  "table": "Mechanic",
+  "text": "Makeshift",
+  "maybe_built_from": []
+ },
+ "type_lowtech": {
+  "table": "Mechanic",
+  "text": "Low-Tech",
+  "maybe_built_from": []
+ },
+ "type_midline": {
+  "table": "Mechanic",
+  "text": "Midline",
+  "maybe_built_from": []
+ },
+ "type_highend": {
+  "table": "Mechanic",
+  "text": "High-End",
+  "maybe_built_from": []
+ },
+ "type_rare": {
+  "table": "Mechanic",
+  "text": "Rare",
+  "maybe_built_from": []
+ },
+ "type_luxury_item": {
+  "table": "Mechanic",
+  "text": "Luxury Item",
+  "maybe_built_from": []
+ },
+ "type_art": {
+  "table": "Mechanic",
+  "text": "Art",
+  "maybe_built_from": []
+ },
+ "type_water": {
+  "table": "Mechanic",
+  "text": "Water",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "type_water_ration": {
+  "table": "Mechanic",
+  "text": "Water Ration",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "type_medical_supplies": {
+  "table": "Mechanic",
+  "text": "Medical Supply",
+  "maybe_built_from": []
+ },
+ "type_farming_supplies": {
+  "table": "Mechanic",
+  "text": "Farming Supply",
+  "maybe_built_from": []
+ },
+ "type_chemical_supplies": {
+  "table": "Mechanic",
+  "text": "Chemical Supply",
+  "maybe_built_from": []
+ },
+ "type_fresh_food": {
+  "table": "Mechanic",
+  "text": "Fresh Food",
+  "maybe_built_from": []
+ },
+ "type_processed_food": {
+  "table": "Mechanic",
+  "text": "Processed Food",
+  "maybe_built_from": []
+ },
+ "type_treat": {
+  "table": "Mechanic",
+  "text": "Treat",
+  "maybe_built_from": []
+ },
+ "type_brevage": {
+  "table": "Mechanic",
+  "text": "Beverage",
+  "maybe_built_from": []
+ },
+ "type_document": {
+  "table": "Mechanic",
+  "text": "Document",
+  "maybe_built_from": []
+ },
+ "type_access_card": {
+  "table": "Mechanic",
+  "text": "Access Card",
+  "maybe_built_from": []
+ },
+ "type_seed": {
+  "table": "Mechanic",
+  "text": "Seed",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "type_basic_material": {
+  "table": "Mechanic",
+  "text": "Basic Material",
+  "maybe_built_from": []
+ },
+ "type_refined_material": {
+  "table": "Mechanic",
+  "text": "Refined Material",
+  "maybe_built_from": []
+ },
+ "type_energy_cell": {
+  "table": "Mechanic",
+  "text": "Energy Cell",
+  "maybe_built_from": []
+ },
+ "type_narcotic": {
+  "table": "Mechanic",
+  "text": "Narcotic",
+  "maybe_built_from": []
+ },
+ "type_poison": {
+  "table": "Mechanic",
+  "text": "Poison",
+  "maybe_built_from": []
+ },
+ "type_water_purification_supply": {
+  "table": "Mechanic",
+  "text": "Water Purification Supply",
+  "maybe_built_from": []
+ },
+ "type_oxygen_supply": {
+  "table": "Mechanic",
+  "text": "Oxygen Supply",
+  "maybe_built_from": []
+ },
+ "type_alcohol": {
+  "table": "Mechanic",
+  "text": "Alcohol",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "type_melee_weapon": {
+  "table": "Mechanic",
+  "text": "Melee Weapon",
+  "maybe_built_from": []
+ },
+ "type_firearm": {
+  "table": "Mechanic",
+  "text": "Firearm",
+  "maybe_built_from": []
+ },
+ "type_moddable": {
+  "table": "Mechanic",
+  "text": "Moddable",
+  "maybe_built_from": []
+ },
+ "type_ammunition": {
+  "table": "Mechanic",
+  "text": "Ammunition",
+  "maybe_built_from": []
+ },
+ "type_munition": {
+  "table": "Mechanic",
+  "text": "Munition",
+  "maybe_built_from": []
+ },
+ "type_gun_mod": {
+  "table": "Mechanic",
+  "text": "Gun Mod",
+  "maybe_built_from": []
+ },
+ "type_module": {
+  "table": "Mechanic",
+  "text": "Modules",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "type_node": {
+  "table": "Mechanic",
+  "text": "Node",
+  "maybe_built_from": []
+ },
+ "type_hydroponic_module": {
+  "table": "Mechanic",
+  "text": "Hydroponic Module",
+  "maybe_built_from": []
+ },
+ "type_alarm_module": {
+  "table": "Mechanic",
+  "text": "Alarm Module",
+  "maybe_built_from": []
+ },
+ "type_printer_module": {
+  "table": "Mechanic",
+  "text": "Printer Module",
+  "maybe_built_from": []
+ },
+ "type_evaporator_module": {
+  "table": "Mechanic",
+  "text": "Evaporator Module",
+  "maybe_built_from": []
+ },
+ "type_machine": {
+  "table": "Mechanic",
+  "text": "Machine",
+  "maybe_built_from": []
+ },
+ "type_organ": {
+  "table": "Mechanic",
+  "text": "Organ",
+  "maybe_built_from": []
+ },
+ "type_armor": {
+  "table": "Mechanic",
+  "text": "Armor",
+  "maybe_built_from": []
+ },
+ "type_filter": {
+  "table": "Mechanic",
+  "text": "Filter",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "type_lottery": {
+  "table": "Mechanic",
+  "text": "Lottery",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "ins_inj_correct_model": {
+  "table": "Mechanic",
+  "text": "Immunivax",
+  "maybe_built_from": []
+ },
+ "appraisal_packing_facility": {
+  "table": "Mechanic",
+  "text": "Packing Facility",
+  "maybe_built_from": []
+ },
+ "handler_btn_examine": {
+  "table": "Mechanic",
+  "text": "Examine",
+  "maybe_built_from": []
+ },
+ "mech_feeder_stored_cal": {
+  "table": "Mechanic",
+  "text": "Stored Calories:",
+  "maybe_built_from": []
+ },
+ "mech_husbandry_meat": {
+  "table": "Mechanic",
+  "text": "Meat",
+  "maybe_built_from": []
+ },
+ "mech_husbandry_other": {
+  "table": "Mechanic",
+  "text": "Other",
+  "maybe_built_from": []
+ },
+ "type_junk": {
+  "table": "Mechanic",
+  "text": "Junk",
+  "maybe_built_from": [
+   "type_"
+  ]
+ },
+ "mech_drag_insert_into_owned": {
+  "table": "Mechanic",
+  "text": "<b>Insert</b> {0} into {1}'s {2}",
+  "maybe_built_from": []
+ },
+ "mech_drag_give_to": {
+  "table": "Mechanic",
+  "text": "<b>Give</b> {0} to {1}",
+  "maybe_built_from": []
+ },
+ "mech_drag_cant_give": {
+  "table": "Mechanic",
+  "text": "Can't give {0} to {1}!",
+  "maybe_built_from": []
+ },
+ "mech_go_outside_counter_warning": {
+  "table": "Mechanic",
+  "text": "You should keep your counter clear to make sure you have enough space to bring back all the items you might acquire. Are you sure you want to go out?",
+  "maybe_built_from": []
+ },
+ "mech_dna_disk_name_uses": {
+  "table": "Mechanic",
+  "text": "{0} x{1}",
+  "maybe_built_from": []
+ },
+ "plant_trait_edible_name": {
+  "table": "Mechanic",
+  "text": "Edible",
+  "maybe_built_from": []
+ },
+ "plant_trait_edible_desc": {
+  "table": "Mechanic",
+  "text": "Everything this plant produces can be eaten.",
+  "maybe_built_from": []
+ },
+ "plant_trait_nutritious_name": {
+  "table": "Mechanic",
+  "text": "Nutritious",
+  "maybe_built_from": []
+ },
+ "plant_trait_nutrient_poor_name": {
+  "table": "Mechanic",
+  "text": "Nutrient-Poor",
+  "maybe_built_from": []
+ },
+ "plant_trait_fast_grower_name": {
+  "table": "Mechanic",
+  "text": "Fast Grower",
+  "maybe_built_from": []
+ },
+ "plant_trait_slow_grower_name": {
+  "table": "Mechanic",
+  "text": "Slow Grower",
+  "maybe_built_from": []
+ },
+ "plant_trait_bountiful_name": {
+  "table": "Mechanic",
+  "text": "Bountiful",
+  "maybe_built_from": []
+ },
+ "plant_trait_sparse_name": {
+  "table": "Mechanic",
+  "text": "Sparse",
+  "maybe_built_from": []
+ },
+ "plant_trait_delicious_name": {
+  "table": "Mechanic",
+  "text": "Delicious",
+  "maybe_built_from": []
+ },
+ "plant_trait_unappetizing_name": {
+  "table": "Mechanic",
+  "text": "Unappetizing",
+  "maybe_built_from": []
+ },
+ "plant_trait_drought_resistant_name": {
+  "table": "Mechanic",
+  "text": "Drought Resistant",
+  "maybe_built_from": []
+ },
+ "plant_trait_thirsty_name": {
+  "table": "Mechanic",
+  "text": "Thirsty",
+  "maybe_built_from": []
+ },
+ "plant_trait_hardy_name": {
+  "table": "Mechanic",
+  "text": "Hardy",
+  "maybe_built_from": []
+ },
+ "plant_trait_frail_name": {
+  "table": "Mechanic",
+  "text": "Frail",
+  "maybe_built_from": []
+ },
+ "plant_trait_fertile_name": {
+  "table": "Mechanic",
+  "text": "Fertile",
+  "maybe_built_from": []
+ },
+ "plant_trait_infertile_name": {
+  "table": "Mechanic",
+  "text": "Infertile",
+  "maybe_built_from": []
+ },
+ "plant_trait_simple_genome_name": {
+  "table": "Mechanic",
+  "text": "Simple Genome",
+  "maybe_built_from": []
+ },
+ "plant_trait_complex_genome_name": {
+  "table": "Mechanic",
+  "text": "Complex Genome",
+  "maybe_built_from": []
+ },
+ "plant_trait_perennial_name": {
+  "table": "Mechanic",
+  "text": "Perennial",
+  "maybe_built_from": []
+ },
+ "plant_trait_perennial_desc": {
+  "table": "Mechanic",
+  "text": "Survives its harvest and fruits again.",
+  "maybe_built_from": []
+ },
+ "plant_trait_purifying_name": {
+  "table": "Mechanic",
+  "text": "Purifying",
+  "maybe_built_from": []
+ },
+ "plant_trait_polluting_name": {
+  "table": "Mechanic",
+  "text": "Polluting",
+  "maybe_built_from": []
+ },
+ "plant_trait_dense_name": {
+  "table": "Mechanic",
+  "text": "Dense",
+  "maybe_built_from": []
+ },
+ "plant_trait_potent_name": {
+  "table": "Mechanic",
+  "text": "Potent",
+  "maybe_built_from": []
+ },
+ "plant_trait_weak_name": {
+  "table": "Mechanic",
+  "text": "Weak",
+  "maybe_built_from": []
+ },
+ "plant_stat_growth_speed": {
+  "table": "Mechanic",
+  "text": "Growth speed",
+  "maybe_built_from": []
+ },
+ "plant_stat_harvest_quantity": {
+  "table": "Mechanic",
+  "text": "Harvest quantity",
+  "maybe_built_from": []
+ },
+ "plant_stat_water_use": {
+  "table": "Mechanic",
+  "text": "Water use",
+  "maybe_built_from": []
+ },
+ "plant_stat_nutriment_range": {
+  "table": "Mechanic",
+  "text": "Nutriment tolerance",
+  "maybe_built_from": []
+ },
+ "plant_stat_contaminant_sensitivity": {
+  "table": "Mechanic",
+  "text": "Contaminant sensitivity",
+  "maybe_built_from": []
+ },
+ "plant_stat_plant_health": {
+  "table": "Mechanic",
+  "text": "Starting health",
+  "maybe_built_from": []
+ },
+ "plant_stat_calories": {
+  "table": "Mechanic",
+  "text": "Calories",
+  "maybe_built_from": []
+ },
+ "plant_stat_seed_yield": {
+  "table": "Mechanic",
+  "text": "Seed yield",
+  "maybe_built_from": []
+ },
+ "plant_stat_durability": {
+  "table": "Mechanic",
+  "text": "Harvest durability",
+  "maybe_built_from": []
+ },
+ "type_modified_seed": {
+  "table": "Mechanic",
+  "text": "Modified Seed",
+  "maybe_built_from": []
+ },
+ "mech_printer_tooltip_upgrade_output": {
+  "table": "Mechanic",
+  "text": "Output Inventory Size ({0}): {1}/{2}",
+  "maybe_built_from": []
+ },
+ "network_BREWER_title": {
+  "table": "NetworkUpgrade",
+  "text": "Red Imp Brewery",
+  "maybe_built_from": []
+ },
+ "network_BREWER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will introduce you to the sales representative of the Red Imp Brewery, allowing you immediate and consistent access to their beer supply. A business card will be given to you to contact this supplier.",
+  "maybe_built_from": []
+ },
+ "network_subtitle_Introduction": {
+  "table": "NetworkUpgrade",
+  "text": "Introduction",
+  "maybe_built_from": [
+   "network_subtitle_"
+  ]
+ },
+ "network_subtitle_Favor": {
+  "table": "NetworkUpgrade",
+  "text": "Favor",
+  "maybe_built_from": [
+   "network_subtitle_"
+  ]
+ },
+ "network_subtitle_Informant": {
+  "table": "NetworkUpgrade",
+  "text": "Informant",
+  "maybe_built_from": [
+   "network_subtitle_"
+  ]
+ },
+ "network_subtitle_Referral": {
+  "table": "NetworkUpgrade",
+  "text": "Referral",
+  "maybe_built_from": [
+   "network_subtitle_"
+  ]
+ },
+ "network_subtitle_Service": {
+  "table": "NetworkUpgrade",
+  "text": "Service",
+  "maybe_built_from": [
+   "network_subtitle_"
+  ]
+ },
+ "network_subtitle_Permit": {
+  "table": "NetworkUpgrade",
+  "text": "Permit",
+  "maybe_built_from": []
+ },
+ "network_subtitle_Supplier": {
+  "table": "NetworkUpgrade",
+  "text": "Supplier",
+  "maybe_built_from": [
+   "network_subtitle_"
+  ]
+ },
+ "network_CHEMIST_title": {
+  "table": "NetworkUpgrade",
+  "text": "Lower Levels Chemist",
+  "maybe_built_from": []
+ },
+ "network_CHEMIST_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will introduce you to a Lower Levels Chemist who produces cheap but illegal drugs for both recreational and medical uses. A business card will be given to you to contact this supplier.",
+  "maybe_built_from": []
+ },
+ "network_PHARMA_title": {
+  "table": "NetworkUpgrade",
+  "text": "Upper Level Pharmacist",
+  "maybe_built_from": []
+ },
+ "network_PHARMA_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will introduce you to the Inventory Manager for an unnamed Upper Levels Pharmacist, allowing you immediate and consistent access to legal, but hard to source, medications. A business card will be given to you to contact this supplier.",
+  "maybe_built_from": []
+ },
+ "network_MINER_title": {
+  "table": "NetworkUpgrade",
+  "text": "GP Mining Coop",
+  "maybe_built_from": []
+ },
+ "network_MINER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will introduce you to the leader of GP Mining Coop, who will allow you to order large amounts of mineral ores. A business card will be given to you to contact this supplier.",
+  "maybe_built_from": []
+ },
+ "network_LANDLORD_GRACE_title": {
+  "table": "NetworkUpgrade",
+  "text": "Rent Grace",
+  "maybe_built_from": []
+ },
+ "network_LANDLORD_GRACE_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will convince the Landlord that if you missed a rent payment, it's acceptable to pay the missing rent together with the next week's rent. This is a one time favor.",
+  "maybe_built_from": []
+ },
+ "network_LANDLORD_GRACE_already_bought": {
+  "table": "NetworkUpgrade",
+  "text": "You are already in the Landlord's good graces.",
+  "maybe_built_from": []
+ },
+ "network_SEC_GRACE_title": {
+  "table": "NetworkUpgrade",
+  "text": "Clemency",
+  "maybe_built_from": []
+ },
+ "network_SEC_GRACE_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will use his political influence to ensure that if a Security Inspector finds contraband that would normally result in imprisonment, you will instead be let off with a warning. This is a one time favor.",
+  "maybe_built_from": []
+ },
+ "network_SEC_GRACE_already_bought": {
+  "table": "NetworkUpgrade",
+  "text": "Wild has already performed this favor for you.",
+  "maybe_built_from": []
+ },
+ "network_INSPECTION_INFORMANT_title": {
+  "table": "NetworkUpgrade",
+  "text": "Inspection Early Warning Service",
+  "maybe_built_from": []
+ },
+ "network_INSPECTION_INFORMANT_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will introduce you to his informant within the Security Department. As long as you pay a nightly fee, the informant will notify you of any regular Security inspection. The informant won't be able to help with any surprise inspections.",
+  "maybe_built_from": []
+ },
+ "network_WILD_FIXER_title": {
+  "table": "NetworkUpgrade",
+  "text": "Wild's Fixers",
+  "maybe_built_from": []
+ },
+ "network_WILD_FIXER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will allow you to hire his fixers. As long as you pay a nightly fee, the fixers will silence witnesses and clean up evidence not yet collected by Security, lowering your suspected crime level at an increased rate.",
+  "maybe_built_from": []
+ },
+ "network_EVIDENCE_REMOVAL_title": {
+  "table": "NetworkUpgrade",
+  "text": "Evidence Removal",
+  "maybe_built_from": []
+ },
+ "network_EVIDENCE_REMOVAL_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will order his security contacts to destroy all collected evidence and tamper with any ongoing investigation against you. This favor has a cooldown of {0} days.",
+  "maybe_built_from": []
+ },
+ "network_BUY_REFERAL_title": {
+  "table": "NetworkUpgrade",
+  "text": "Buyer Referral Service",
+  "maybe_built_from": []
+ },
+ "network_BUY_REFERAL_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will agree to refer buyers from his network to your Store, if a nightly fee is paid. Additionally, more customers will be attracted to items in the display case.",
+  "maybe_built_from": []
+ },
+ "network_SELL_REFERAL_title": {
+  "table": "NetworkUpgrade",
+  "text": "Seller Referral Service",
+  "maybe_built_from": []
+ },
+ "network_SELL_REFERAL_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will agree to refer sellers from his network to your Store, if a nightly fee is paid.",
+  "maybe_built_from": []
+ },
+ "network_CRIMINEL_NETWORK_title": {
+  "table": "NetworkUpgrade",
+  "text": "Criminal Networking",
+  "maybe_built_from": []
+ },
+ "network_CRIMINEL_NETWORK_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will agree to refer high-budget contraband buyers from his network to your Store, if a nightly fee is paid. Using this service also grants you a small amount of Black Market reputation ({0} days cooldown)",
+  "maybe_built_from": []
+ },
+ "network_POWER_HIJACK_title": {
+  "table": "NetworkUpgrade",
+  "text": "Power Line Hijack",
+  "maybe_built_from": []
+ },
+ "network_POWER_HIJACK_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Your power will be supplied by a external solar panel owned by someone who (probably) doesn't need it. The nightly Power Service is now free.",
+  "maybe_built_from": []
+ },
+ "network_COMMERCIAL_POWER_title": {
+  "table": "NetworkUpgrade",
+  "text": "Commercial Grade Power Supply Unit",
+  "maybe_built_from": []
+ },
+ "network_COMMERCIAL_POWER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Your power supply unit will be upgraded to accommodate more power. The Recharger and PowerBloc will charge {0}% quicker.",
+  "maybe_built_from": []
+ },
+ "network_SHOWCASE_I_title": {
+  "table": "NetworkUpgrade",
+  "text": "Showcase Expansion I",
+  "maybe_built_from": []
+ },
+ "network_SHOWCASE_I_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Your showcase will be expanded to allow more items to be displayed. {0} more customers will be visiting to buy items from the Display Case per day.",
+  "maybe_built_from": []
+ },
+ "network_SHOWCASE_II_title": {
+  "table": "NetworkUpgrade",
+  "text": "Showcase Expansion II",
+  "maybe_built_from": []
+ },
+ "network_SHOWCASE_II_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Your showcase will be expanded even more. {0} additional customers will be visiting to buy item from the Display Case per day.",
+  "maybe_built_from": []
+ },
+ "network_GUTTERFLOW_TAP_title": {
+  "table": "NetworkUpgrade",
+  "text": "Gutterflow On Tap",
+  "maybe_built_from": []
+ },
+ "network_GUTTERFLOW_TAP_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will connect your water line to a sewer, allowing you access to unlimited Gutterflow. The purity of the water changes every day.",
+  "maybe_built_from": []
+ },
+ "network_RUSTWATER_TAP_title": {
+  "table": "NetworkUpgrade",
+  "text": "Rustwater On Tap",
+  "maybe_built_from": []
+ },
+ "network_RUSTWATER_TAP_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will connect your water line to an industrial discharge pipe, allowing you access to unlimited Rustwater. The purity of the water changes every day.",
+  "maybe_built_from": []
+ },
+ "network_RUINED_MACHINE_UNLOCK_title": {
+  "table": "NetworkUpgrade",
+  "text": "Ruined Machine Scrapping",
+  "maybe_built_from": []
+ },
+ "network_RUINED_MACHINE_UNLOCK_desc": {
+  "table": "NetworkUpgrade",
+  "text": "A Junker who will introduce you to scrapping ruined machines for parts will visit you the next day. (Unlocks Ruined Machine Content)",
+  "maybe_built_from": []
+ },
+ "network_RETIRED_FARMER_title": {
+  "table": "NetworkUpgrade",
+  "text": "Retired Farmer",
+  "maybe_built_from": []
+ },
+ "network_RETIRED_FARMER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Immediately receive a Hydroponic Starter Kit. A retired farmer will visit you the next day and, subsequently, once a week, selling seeds and hydroponic equipment. (Unlocks Advanced Farming Content.)",
+  "maybe_built_from": []
+ },
+ "network_RETIRED_GUNSMITH_title": {
+  "table": "NetworkUpgrade",
+  "text": "Retired Gunsmith",
+  "maybe_built_from": []
+ },
+ "network_RETIRED_GUNSMITH_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Immediately receive a Gunsmith Starter Kit. A retired gunsmith will visit you the next day and, subsequently, once a week, selling gun mods and ammo. (Unlocks Advanced Gunsmith Content.)",
+  "maybe_built_from": []
+ },
+ "network_GUN_PERMIT_I_title": {
+  "table": "NetworkUpgrade",
+  "text": "Weapon Permit I",
+  "maybe_built_from": []
+ },
+ "network_GUN_PERMIT_I_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will negotiate on your behalf to secure you a firearms permit usually reserved for Lower Level Merchants, allowing you to legally trade low level contraband firearms and ammunition. The permit will only be delivered after reaching at least {0} Security Reputation.",
+  "maybe_built_from": []
+ },
+ "network_GUN_PERMIT_II_title": {
+  "table": "NetworkUpgrade",
+  "text": "Weapon Permit II",
+  "maybe_built_from": []
+ },
+ "network_GUN_PERMIT_II_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will negotiate on your behalf to secure you a firearms permit usually reserved for Upper Level Merchants, allowing you to legally trade mid level contraband firearms and ammunition. The permit will only be delivered after reaching at least {0} Security Reputation.",
+  "maybe_built_from": []
+ },
+ "network_GUN_PERMIT_III_title": {
+  "table": "NetworkUpgrade",
+  "text": "Weapon Permit III",
+  "maybe_built_from": []
+ },
+ "network_GUN_PERMIT_III_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will negotiate on your behalf to secure you a weapon permit usually reserved for Station Security Quartermasters, allowing you to legally trade high level contraband firearms and ammunition. The permit will only be delivered after reaching at least {0} Security Reputation.",
+  "maybe_built_from": []
+ },
+ "network_RETIRED_CHEMIST_title": {
+  "table": "NetworkUpgrade",
+  "text": "Retired Chemist",
+  "maybe_built_from": []
+ },
+ "network_RETIRED_CHEMIST_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Immediately receive a Chemist Starter Kit. A retired chemist will visit you the next day and, subsequently, once a week, selling chemical supplies and equipment. (Unlocks Advanced Chemistry Content.)",
+  "maybe_built_from": []
+ },
+ "network_WATER_TRADER_title": {
+  "table": "NetworkUpgrade",
+  "text": "Water Trading",
+  "maybe_built_from": []
+ },
+ "network_WATER_TRADER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Immediately receive a Water Trading Starter Kit. A Water Trader will start visiting the Store. (Unlocks Water Trading Content.)",
+  "maybe_built_from": []
+ },
+ "network_MARKETPLACE_REQUESTS_title": {
+  "table": "NetworkUpgrade",
+  "text": "Marketplace Requests",
+  "maybe_built_from": []
+ },
+ "network_MARKETPLACE_REQUESTS_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will connect you with the Marketplace Request network, allowing you to browse and fulfill various requests from buyers. Rewards for requested items are usually higher than regular market value.",
+  "maybe_built_from": []
+ },
+ "network_JACKSON1_title": {
+  "table": "NetworkUpgrade",
+  "text": "Jackson Investment I",
+  "maybe_built_from": []
+ },
+ "network_JACKSON1_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will convince Dr. Jackson to accept a small investment from you, permanently increasing his budget, and the available stock when visiting him. Dr. Jackson will always have Modules in stock.",
+  "maybe_built_from": []
+ },
+ "network_JACKSON2_title": {
+  "table": "NetworkUpgrade",
+  "text": "Jackson Investment II",
+  "maybe_built_from": []
+ },
+ "network_JACKSON2_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will convince Dr. Jackson to accept another investment from you, permanently increasing his budget, and the available stock when visiting him. Dr. Jackson will always have additional Modules in stock.",
+  "maybe_built_from": []
+ },
+ "network_RENOVATION1_title": {
+  "table": "NetworkUpgrade",
+  "text": "Store Renovation I",
+  "maybe_built_from": []
+ },
+ "network_RENOVATION1_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will hire contractors to make modest renovations to the Store, improving its base attractiveness by {0} points.",
+  "maybe_built_from": []
+ },
+ "network_RENOVATION2_title": {
+  "table": "NetworkUpgrade",
+  "text": "Store Renovation II",
+  "maybe_built_from": []
+ },
+ "network_RENOVATION2_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will hire contractors to make substantial renovations to the Store, improving its base attractiveness by another {0} points.",
+  "maybe_built_from": []
+ },
+ "network_RENOVATION3_title": {
+  "table": "NetworkUpgrade",
+  "text": "Store Renovation III",
+  "maybe_built_from": []
+ },
+ "network_RENOVATION3_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will hire contractors to make transformative renovations to the Store, improving its base attractiveness by another {0} points.",
+  "maybe_built_from": []
+ },
+ "network_RETIRED_RANCHER_title": {
+  "table": "NetworkUpgrade",
+  "text": "Ranching",
+  "maybe_built_from": []
+ },
+ "network_RETIRED_RANCHER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will refer you to a Rat Rancher who will visit you once a week. Immediately receive a Rat Ranching Starter Kit. (Unlock Rancher Content)",
+  "maybe_built_from": []
+ },
+ "network_WINEMAKER_title": {
+  "table": "NetworkUpgrade",
+  "text": "Retired Winemaker",
+  "maybe_built_from": []
+ },
+ "network_WINEMAKER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Immediately receive a Winemaking Starter Kit. A retired winemaker will visit you the next day and, subsequently, once a week, selling winemaking supplies and equipment. (Unlocks Winemaking Content.)",
+  "maybe_built_from": []
+ },
+ "network_AQUACULTURE_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Wild will refer you to a retired aquafarmer who will visit you once a week, selling fish farming equipment and fertilized roe. Immediately receive an Aquaculture Starter Kit. (Unlocks Aquaculture Content.)",
+  "maybe_built_from": []
+ },
+ "network_AQUACULTURE_II_title": {
+  "table": "NetworkUpgrade",
+  "text": "Aquaculture II",
+  "maybe_built_from": []
+ },
+ "network_AQUACULTURE_II_desc": {
+  "table": "NetworkUpgrade",
+  "text": "The retired aquafarmer will also bring bigger, more profitable fish to raise on each visit. Immediately receive two young eels.",
+  "maybe_built_from": []
+ },
+ "network_PLANT_DNA_title": {
+  "table": "NetworkUpgrade",
+  "text": "Plant Genetics",
+  "maybe_built_from": []
+ },
+ "network_PLANT_DNA_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Immediately receive a DNA manipulator, a gene scanner and blank DNA data disks. Dr. Jackson will now keep DNA manipulation equipment in stock.",
+  "maybe_built_from": []
+ },
+ "network_DOSSIER_UPGRADE_title": {
+  "table": "NetworkUpgrade",
+  "text": "Upgraded Dossier",
+  "maybe_built_from": []
+ },
+ "network_DOSSIER_UPGRADE_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Expand the size of the dossier.",
+  "maybe_built_from": []
+ },
+ "network_TRASHCAN_UPGRADE_title": {
+  "table": "NetworkUpgrade",
+  "text": "Upgraded Trash Can",
+  "maybe_built_from": []
+ },
+ "network_TRASHCAN_UPGRADE_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Expand the size of the trash can.",
+  "maybe_built_from": []
+ },
+ "network_VENDING_MACHINE_title": {
+  "table": "NetworkUpgrade",
+  "text": "Vending Machine",
+  "maybe_built_from": []
+ },
+ "network_VENDING_MACHINE_desc": {
+  "table": "NetworkUpgrade",
+  "text": "A vending machine will be immediately installed in the store. Allowing goods to be sold during the night.",
+  "maybe_built_from": []
+ },
+ "network_VENDING_FOUNTAIN_title": {
+  "table": "NetworkUpgrade",
+  "text": "Vending Fountain",
+  "maybe_built_from": []
+ },
+ "network_VENDING_FOUNTAIN_desc": {
+  "table": "NetworkUpgrade",
+  "text": "A vending fountain will be immediately installed in the store. Allowing water to be sold during the night.",
+  "maybe_built_from": []
+ },
+ "network_BREWER_SHAREHOLDER_title": {
+  "table": "NetworkUpgrade",
+  "text": "Minor Shareholder: Red Imp Brewery",
+  "maybe_built_from": []
+ },
+ "network_BREWER_SHAREHOLDER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Buy a minor share of the Red Imp Brewery. Their courier's wholesale discount grows by {0}%, and every Thursday morning a dividend of {1} case of beer is waiting on the counter.",
+  "maybe_built_from": []
+ },
+ "network_MINER_SHAREHOLDER_title": {
+  "table": "NetworkUpgrade",
+  "text": "Minor Shareholder: GP Mining Coop",
+  "maybe_built_from": []
+ },
+ "network_MINER_SHAREHOLDER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Buy a minor share of the GP Mining Coop. Their courier's wholesale discount grows by {0}%, and every Friday morning a dividend of {1} ore is waiting on the counter.",
+  "maybe_built_from": []
+ },
+ "network_CHEMIST_SHAREHOLDER_title": {
+  "table": "NetworkUpgrade",
+  "text": "Minor Shareholder: Lower Levels Chemist",
+  "maybe_built_from": []
+ },
+ "network_CHEMIST_SHAREHOLDER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Buy a minor share of the Lower Levels Chemist's operation. Their courier's wholesale discount grows by {0}%, and every Saturday morning a dividend of {1} street grade Dream Dust is waiting on the counter.",
+  "maybe_built_from": []
+ },
+ "network_PHARMA_SHAREHOLDER_title": {
+  "table": "NetworkUpgrade",
+  "text": "Minor Shareholder: Upper Level Pharmacist",
+  "maybe_built_from": []
+ },
+ "network_PHARMA_SHAREHOLDER_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Buy a minor share of the Upper Level Pharmacist's practice. Their courier's wholesale discount grows by {0}%, and every Sunday morning a dividend of {1} Oxymore injectors is waiting on the counter.",
+  "maybe_built_from": []
+ },
+ "network_JACKSON_SPECIAL_STOCK_title": {
+  "table": "NetworkUpgrade",
+  "text": "Monday's Special Stock",
+  "maybe_built_from": []
+ },
+ "network_JACKSON_SPECIAL_STOCK_desc": {
+  "table": "NetworkUpgrade",
+  "text": "Dr. Jackson opens on Mondays for you alone, offering a special stock of rarer items at a premium.",
+  "maybe_built_from": []
+ },
+ "network_subtitle_Endorsement": {
+  "table": "NetworkUpgrade",
+  "text": "Endorsement",
+  "maybe_built_from": [
+   "network_subtitle_"
+  ]
+ },
+ "perk_saving_name": {
+  "table": "PerkTable",
+  "text": "Savings",
+  "maybe_built_from": []
+ },
+ "perk_saving_desc": {
+  "table": "PerkTable",
+  "text": "Start with an additional {0} Credits.",
+  "maybe_built_from": []
+ },
+ "perk_bad_lease_name": {
+  "table": "PerkTable",
+  "text": "Bad Lease",
+  "maybe_built_from": []
+ },
+ "perk_bad_lease_desc": {
+  "table": "PerkTable",
+  "text": "Your starting rent is increased by {0} Credits.",
+  "maybe_built_from": []
+ },
+ "perk_convict_name": {
+  "table": "PerkTable",
+  "text": "Convict",
+  "maybe_built_from": []
+ },
+ "perk_convict_desc": {
+  "table": "PerkTable",
+  "text": "Start with an additional {0} Security Reputation and will receive {1}% less reward for reporting customers on the Wanted List.",
+  "maybe_built_from": []
+ },
+ "perk_model_citizen_name": {
+  "table": "PerkTable",
+  "text": "Model Citizen",
+  "maybe_built_from": []
+ },
+ "perk_model_citizen_desc": {
+  "table": "PerkTable",
+  "text": "Start with an additional +{0} Security Reputation and will receive {1}% more reward for reporting customers on the Wanted List.",
+  "maybe_built_from": []
+ },
+ "perk_well_connected_name": {
+  "table": "PerkTable",
+  "text": "Well Connected",
+  "maybe_built_from": []
+ },
+ "perk_well_connected_desc": {
+  "table": "PerkTable",
+  "text": "Start with an additional {0} Reputation with all factions.",
+  "maybe_built_from": []
+ },
+ "perk_alert_name": {
+  "table": "PerkTable",
+  "text": "Vigilant",
+  "maybe_built_from": []
+ },
+ "perk_alert_desc": {
+  "table": "PerkTable",
+  "text": "You will never get robbed during the night.",
+  "maybe_built_from": []
+ },
+ "perk_sawyer_crew_name": {
+  "table": "PerkTable",
+  "text": "Sawyer's Crew",
+  "maybe_built_from": []
+ },
+ "perk_sawyer_crew_desc": {
+  "table": "PerkTable",
+  "text": "The Underground Exchange is available from the start. Janitorial Service is always free,  unless the Store is vandalized. Vandalism clean up cost is significantly reduced.",
+  "maybe_built_from": []
+ },
+ "perk_diplomatic_name": {
+  "table": "PerkTable",
+  "text": "Diplomatic",
+  "maybe_built_from": []
+ },
+ "perk_diplomatic_desc": {
+  "table": "PerkTable",
+  "text": "Reputation generated from trade is increased by {0}%.",
+  "maybe_built_from": []
+ },
+ "perk_intimidating_name": {
+  "table": "PerkTable",
+  "text": "Intimidating",
+  "maybe_built_from": []
+ },
+ "perk_intimidating_desc": {
+  "table": "PerkTable",
+  "text": "All committed crimes generate {0}% less available evidence.",
+  "maybe_built_from": []
+ },
+ "perk_side_street_name": {
+  "table": "PerkTable",
+  "text": "Side Street",
+  "maybe_built_from": []
+ },
+ "perk_side_street_desc": {
+  "table": "PerkTable",
+  "text": "You get one less random customer per day.",
+  "maybe_built_from": []
+ },
+ "perk_nicotine_addiction_name": {
+  "table": "PerkTable",
+  "text": "Nicotine Addiction",
+  "maybe_built_from": []
+ },
+ "perk_nicotine_addiction_desc": {
+  "table": "PerkTable",
+  "text": "You will suffer a trade penalty of {0}% if you don't consume nicotine regularly. The addiction can be cured.",
+  "maybe_built_from": []
+ },
+ "perk_narcotic_addiction_name": {
+  "table": "PerkTable",
+  "text": "Narcotic Addiction",
+  "maybe_built_from": []
+ },
+ "perk_narcotic_addiction_desc": {
+  "table": "PerkTable",
+  "text": "You will suffer a trade penalty of {0}% if you don't consume narcotics regularly. The addiction can be cured.",
+  "maybe_built_from": []
+ },
+ "perk_alcohol_addiction_name": {
+  "table": "PerkTable",
+  "text": "Alcohol Addiction",
+  "maybe_built_from": []
+ },
+ "perk_alcohol_addiction_desc": {
+  "table": "PerkTable",
+  "text": "You will suffer a trade penalty of {0}% if you don't consume alcohol regularly. The addiction can be cured.",
+  "maybe_built_from": []
+ },
+ "perk_secret_admirer_name": {
+  "table": "PerkTable",
+  "text": "Secret Admirer",
+  "maybe_built_from": []
+ },
+ "perk_secret_admirer_desc": {
+  "table": "PerkTable",
+  "text": "You will occasionally receive random items from a secret admirer when opening the Store.",
+  "maybe_built_from": []
+ },
+ "perk_colorful_character_name": {
+  "table": "PerkTable",
+  "text": "Colorful Character",
+  "maybe_built_from": []
+ },
+ "perk_colorful_character_desc": {
+  "table": "PerkTable",
+  "text": "Allows you to have {0} additional starting perk slots.",
+  "maybe_built_from": []
+ },
+ "perk_blackmail_name": {
+  "table": "PerkTable",
+  "text": "Blackmail",
+  "maybe_built_from": []
+ },
+ "perk_blackmail_desc": {
+  "table": "PerkTable",
+  "text": "You have a questionable past and a blackmailer is threatening to expose your secret. You will have to pay them a small weekly fee or they will expose you,  leading to a major one-time loss to your reputation across most factions.",
+  "maybe_built_from": []
+ },
+ "perk_blabbermouth_name": {
+  "table": "PerkTable",
+  "text": "Blabbermouth",
+  "maybe_built_from": []
+ },
+ "perk_blabbermouth_desc": {
+  "table": "PerkTable",
+  "text": "All committed crimes generate {0}% more available evidence. You will gain 50% less reputation with the Black Market and the Revolution.",
+  "maybe_built_from": []
+ },
+ "perk_unsubscribed_name": {
+  "table": "PerkTable",
+  "text": "Unsubscribed",
+  "maybe_built_from": []
+ },
+ "perk_unsubscribed_desc": {
+  "table": "PerkTable",
+  "text": "You will not receive the daily newspaper that informs you about ongoing events.",
+  "maybe_built_from": []
+ },
+ "perk_minimalist_name": {
+  "table": "PerkTable",
+  "text": "Minimalist",
+  "maybe_built_from": []
+ },
+ "perk_minimalist_desc": {
+  "table": "PerkTable",
+  "text": "Your main inventory is reduced 20x10 instead of 24x10.",
+  "maybe_built_from": []
+ },
+ "perk_sentinel_name": {
+  "table": "PerkTable",
+  "text": "Sentinel Collapse Disorder",
+  "maybe_built_from": []
+ },
+ "perk_sentinel_desc": {
+  "table": "PerkTable",
+  "text": "You suffer from a deadly, incurable auto-immune condition and must take a weekly Immunivax injection to stay alive. Start the game with 1 Immunivax Injector.",
+  "maybe_built_from": []
+ },
+ "perk_speedy_name": {
+  "table": "PerkTable",
+  "text": "Speedy",
+  "maybe_built_from": []
+ },
+ "perk_speedy_desc": {
+  "table": "PerkTable",
+  "text": "You can visit up to 2 after-hours locations every night.",
+  "maybe_built_from": []
+ },
+ "perk_agoraphobia_name": {
+  "table": "PerkTable",
+  "text": "Agoraphobia",
+  "maybe_built_from": []
+ },
+ "perk_welfare_program_name": {
+  "table": "PerkTable",
+  "text": "Welfare Program",
+  "maybe_built_from": []
+ },
+ "perk_welfare_program_desc": {
+  "table": "PerkTable",
+  "text": "The Commissary is available from the start.  On Mondays, you may receive Food Stamps depending on your total wealth.",
+  "maybe_built_from": []
+ },
+ "perk_proficient_scavenger_name": {
+  "table": "PerkTable",
+  "text": "Proficient Scavenger",
+  "maybe_built_from": []
+ },
+ "perk_proficient_scavenger_desc": {
+  "table": "PerkTable",
+  "text": "You can perform up to 2 additional Search actions in the Dumping Grounds every time you visit.",
+  "maybe_built_from": []
+ },
+ "perk_revolution_sympathizer_name": {
+  "table": "PerkTable",
+  "text": "Revolution Sympathizer",
+  "maybe_built_from": []
+ },
+ "perk_revolution_sympathizer_desc": {
+  "table": "PerkTable",
+  "text": "Start with an additional {0} Reputation with The Revolution. You will receive Marketplace Requests from The Revolution more frequently.",
+  "maybe_built_from": []
+ },
+ "perk_gambling_addiction_name": {
+  "table": "PerkTable",
+  "text": "Gambling Addiction",
+  "maybe_built_from": []
+ },
+ "perk_gambling_addiction_desc": {
+  "table": "PerkTable",
+  "text": "You will always buy some Lottery Tickets when possible. All lottery content is unlocked from the start. The addiction can be cured.",
+  "maybe_built_from": []
+ },
+ "perk_tapehead_name": {
+  "table": "PerkTable",
+  "text": "Tapehead",
+  "maybe_built_from": []
+ },
+ "perk_tapehead_desc": {
+  "table": "PerkTable",
+  "text": "You start with all music cassettes available inside the cassette player.",
+  "maybe_built_from": []
+ },
+ "perk_expedition_organizer_name": {
+  "table": "PerkTable",
+  "text": "Expedition Organizer",
+  "maybe_built_from": []
+ },
+ "perk_expedition_organizer_desc": {
+  "table": "PerkTable",
+  "text": "You can hire certain characters and organize expeditions. Unlock Expedition content from the start along with a Hireling.",
+  "maybe_built_from": []
+ },
+ "perk_vending_name": {
+  "table": "PerkTable",
+  "text": "Vending Machine",
+  "maybe_built_from": []
+ },
+ "perk_vending_desc": {
+  "table": "PerkTable",
+  "text": "Start with a vending machine installed in front of your store. Allow customers to purchase items automatically during after-hours.",
+  "maybe_built_from": []
+ },
+ "perk_short_sleeper_name": {
+  "table": "PerkTable",
+  "text": "Short Sleeper",
+  "maybe_built_from": []
+ },
+ "perk_short_sleeper_desc": {
+  "table": "PerkTable",
+  "text": "You won't miss out on any customers when going out during after-hours activities the night before.",
+  "maybe_built_from": []
+ },
+ "perk_working_pipes_name": {
+  "table": "PerkTable",
+  "text": "Working Pipes",
+  "maybe_built_from": []
+ },
+ "perk_working_pipes_desc": {
+  "table": "PerkTable",
+  "text": "You will start with the water lines already connected with unlimited Rustwater.",
+  "maybe_built_from": []
+ },
+ "perk_illiterate_name": {
+  "table": "PerkTable",
+  "text": "Illiterate",
+  "maybe_built_from": []
+ },
+ "perk_illiterate_desc": {
+  "table": "PerkTable",
+  "text": "You won't be able to read any guide.",
+  "maybe_built_from": []
+ },
+ "perk_prime_real_estate_name": {
+  "table": "PerkTable",
+  "text": "Prime Real Estate",
+  "maybe_built_from": []
+ },
+ "perk_prime_real_estate_desc": {
+  "table": "PerkTable",
+  "text": "1 more normal customer will visit everyday but starting rent cost {0} credit more. ",
+  "maybe_built_from": []
+ },
+ "perk_degenerative_osteoarthritis_name": {
+  "table": "PerkTable",
+  "text": "Degenerative Osteoarthritis",
+  "maybe_built_from": []
+ },
+ "perk_degenerative_osteoarthritis_desc": {
+  "table": "PerkTable",
+  "text": "Scavenging in the dumping ground works normally for the first week. After that, you lose 1 max scavenging attempt every week that passes. Once your max attempts fall below {0}, you can no longer scavenge at all. Normal shopkeepers start with {1} daily max attempts. Start with {2} additional topical medication bandages.",
+  "maybe_built_from": []
+ },
+ "perk_known_snitch_name": {
+  "table": "PerkTable",
+  "text": "Known Snitch",
+  "maybe_built_from": []
+ },
+ "perk_known_snitch_desc": {
+  "table": "PerkTable",
+  "text": "Customers from the wanted poster will never visit your store. Start with {0} reputation with the Revolution and the Black Market.",
+  "maybe_built_from": []
+ },
+ "perk_handy_name": {
+  "table": "PerkTable",
+  "text": "Handy",
+  "maybe_built_from": []
+ },
+ "perk_handy_desc": {
+  "table": "PerkTable",
+  "text": "Start with a shabby toolbox and a set of shabby tools: a screwdriver, a wire cutter, a crowbar and a plasma cutter.",
+  "maybe_built_from": []
+ },
+ "perk_public_enemy_name": {
+  "table": "PerkTable",
+  "text": "Public Enemy",
+  "maybe_built_from": []
+ },
+ "perk_public_enemy_desc": {
+  "table": "PerkTable",
+  "text": "Start with {0} Reputation with all factions.",
+  "maybe_built_from": []
+ },
+ "perk_ascetic_name": {
+  "table": "PerkTable",
+  "text": "Ascetic",
+  "maybe_built_from": []
+ },
+ "perk_ascetic_desc": {
+  "table": "PerkTable",
+  "text": "Your main inventory is reduced to {0}x10 instead of 24x10.",
+  "maybe_built_from": []
+ },
+ "perk_maimed_name": {
+  "table": "PerkTable",
+  "text": "Maimed",
+  "maybe_built_from": []
+ },
+ "perk_maimed_desc": {
+  "table": "PerkTable",
+  "text": "The Dumping Ground is not available. You cannot scavenge at all.",
+  "maybe_built_from": []
+ },
+ "perk_wild_favorite_name": {
+  "table": "PerkTable",
+  "text": "Wild's Favorite",
+  "maybe_built_from": []
+ },
+ "perk_wild_favorite_desc": {
+  "table": "PerkTable",
+  "text": "All upgrades from Wild's Network cost {0}% less. Insurance costs {1}% less.",
+  "maybe_built_from": []
+ },
+ "perk_wild_bad_side_name": {
+  "table": "PerkTable",
+  "text": "On Wild's Bad Side",
+  "maybe_built_from": []
+ },
+ "perk_wild_bad_side_desc": {
+  "table": "PerkTable",
+  "text": "All upgrades from Wild's Network cost {0}% more. Insurance costs {1}% more.",
+  "maybe_built_from": []
+ },
+ "perk_aug_menace_name": {
+  "table": "PerkTable",
+  "text": "Aug Menace",
+  "maybe_built_from": []
+ },
+ "perk_aug_menace_desc": {
+  "table": "PerkTable",
+  "text": "The Augmented content is unlocked at the start of the game. Earn {0}% more credits for killing an aug. The aug menace never ends, and letting too many augs get away ends the game on every difficulty.",
+  "maybe_built_from": []
+ },
+ "perk_lucky_name": {
+  "table": "PerkTable",
+  "text": "Lucky",
+  "maybe_built_from": []
+ },
+ "perk_lucky_desc": {
+  "table": "PerkTable",
+  "text": "Increases your luck. Probably.",
+  "maybe_built_from": []
+ },
+ "perk_unlucky_name": {
+  "table": "PerkTable",
+  "text": "Unlucky",
+  "maybe_built_from": []
+ },
+ "perk_unlucky_desc": {
+  "table": "PerkTable",
+  "text": "Decreases your luck. Probably.",
+  "maybe_built_from": []
+ },
+ "perk_agoraphobia_desc": {
+  "table": "PerkTable",
+  "text": "You are unable leave the Store to visit any after-hours locations.",
+  "maybe_built_from": []
+ },
+ "perk_tinkerer_name": {
+  "table": "PerkTable",
+  "text": "Tinkerer",
+  "maybe_built_from": []
+ },
+ "perk_tinkerer_desc": {
+  "table": "PerkTable",
+  "text": "When you upgrade an item, there is a {0}% chance the material used is not consumed.",
+  "maybe_built_from": []
+ },
+ "perk_careful_scavenger_name": {
+  "table": "PerkTable",
+  "text": "Careful Scavenger",
+  "maybe_built_from": []
+ },
+ "perk_careful_scavenger_desc": {
+  "table": "PerkTable",
+  "text": "You can perform {0} fewer actions in the Dumping Grounds every time you visit, but you never get injured while searching.",
+  "maybe_built_from": []
+ },
+ "perk_sycophant_name": {
+  "table": "PerkTable",
+  "text": "Sycophant",
+  "maybe_built_from": []
+ },
+ "perk_sycophant_desc": {
+  "table": "PerkTable",
+  "text": "Start with an additional +{0} Upper Levels Reputation. Reputation gained with the Upper Levels is increased by {1}%, and Upper Level customers have {2}% more budget.",
+  "maybe_built_from": []
+ },
+ "perk_awful_negotiator_name": {
+  "table": "PerkTable",
+  "text": "Awful Negotiator",
+  "maybe_built_from": []
+ },
+ "perk_awful_negotiator_desc": {
+  "table": "PerkTable",
+  "text": "You cannot bargain with customers, and you suffer a permanent trade penalty of {0}%.",
+  "maybe_built_from": []
+ },
+ "perk_banned_commissary_name": {
+  "table": "PerkTable",
+  "text": "Banned from the Commissary",
+  "maybe_built_from": []
+ },
+ "perk_banned_commissary_desc": {
+  "table": "PerkTable",
+  "text": "The Commissary is not available, and food stamps are never introduced.",
+  "maybe_built_from": []
+ },
+ "perk_hoarder_name": {
+  "table": "PerkTable",
+  "text": "Hoarder",
+  "maybe_built_from": []
+ },
+ "perk_hoarder_desc": {
+  "table": "PerkTable",
+  "text": "Start with three piles of immovable debris along the bottom of your inventory. Each pile can be removed.",
+  "maybe_built_from": []
+ },
+ "perk_makeshift_reactor_name": {
+  "table": "PerkTable",
+  "text": "Makeshift Reactor",
+  "maybe_built_from": []
+ },
+ "perk_makeshift_reactor_desc": {
+  "table": "PerkTable",
+  "text": "You are permanently disconnected from the station power grid and are not affected by blackouts. Start with an upgradable Makeshift Micro Nuclear Reactor sold to you by Dr. Jackson. It powers the Store but needs regular repairs.",
+  "maybe_built_from": []
+ },
+ "odin": {
+  "table": "PhoneDialogue",
+  "text": "Odin Haraldsson",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLREFERAL_name": {
+  "table": "RepPerkTable",
+  "text": "Referral",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLREFERAL_desc": {
+  "table": "RepPerkTable",
+  "text": "{0}% chance that {1} additional random customer will visit the Store per day.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLREFERAL_flavor": {
+  "table": "RepPerkTable",
+  "text": "Word travels fast in the Lower Levels. A satisfied customer is more than just a sale, they're your best advertisement.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLTIPS_name": {
+  "table": "RepPerkTable",
+  "text": "Word on the Street",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLTIPS_desc": {
+  "table": "RepPerkTable",
+  "text": "You will occasionally receive tips from the Lower Levels about upcoming events.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLTIPS_flavor": {
+  "table": "RepPerkTable",
+  "text": "The people of the Lower Levels have their ears to the ground. If they trust you, they'll keep you in the loop, too.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLRAREGOOD_name": {
+  "table": "RepPerkTable",
+  "text": "Rare Goods",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLRAREGOOD_desc": {
+  "table": "RepPerkTable",
+  "text": "New types of customers offering Rare or Contraband goods will start to visit your Store.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLRAREGOOD_flavor": {
+  "table": "RepPerkTable",
+  "text": "With the right connections, even the Lower Levels can offer up something worth your while.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLTIGHTLIPS_name": {
+  "table": "RepPerkTable",
+  "text": "Tight Lips",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLTIGHTLIPS_desc": {
+  "table": "RepPerkTable",
+  "text": "Selling Contraband to customers from the Lower Levels will only create {0:P0} of its value in available evidence.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLTIGHTLIPS_flavor": {
+  "table": "RepPerkTable",
+  "text": "You've earned their trust. They know you're good for it, and they're not going to rat you out.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLPILLAR_name": {
+  "table": "RepPerkTable",
+  "text": "Pillar of the Lower Levels",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLPILLAR_desc": {
+  "table": "RepPerkTable",
+  "text": "You will now receive {0}% discount from Joe Wild and Dr. Jackson.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLPILLAR_flavor": {
+  "table": "RepPerkTable",
+  "text": "You've earned the respect of the Lower Levels. Even other Lower Levels leaders recognize the good you do.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLPOORREVIEWS_name": {
+  "table": "RepPerkTable",
+  "text": "Poor Reviews",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLPOORREVIEWS_desc": {
+  "table": "RepPerkTable",
+  "text": "{0}% chance that {1} less random customer will visit your Store per day.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLPOORREVIEWS_flavor": {
+  "table": "RepPerkTable",
+  "text": "All it takes is a few dissatisfied customers, and your Reputation in the Lower Levels takes a hit.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLDISTRUSTED_name": {
+  "table": "RepPerkTable",
+  "text": "Mistrusted",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLDISTRUSTED_desc": {
+  "table": "RepPerkTable",
+  "text": "Customers from the Lower Levels will no longer sell you Contraband items.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLDISTRUSTED_flavor": {
+  "table": "RepPerkTable",
+  "text": "You are known throughout the Lower Levels as a liability. Those with contraband to sell will take it elsewhere.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLTARGET_name": {
+  "table": "RepPerkTable",
+  "text": "Marked",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLTARGET_desc": {
+  "table": "RepPerkTable",
+  "text": "You will be targeted more frequently by thieves. Insurance will now cost {0}x.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLTARGET_flavor": {
+  "table": "RepPerkTable",
+  "text": "Your poor reputation has put a target on your back. The Lower Levels never forget.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLAVOIDED_name": {
+  "table": "RepPerkTable",
+  "text": "Shunned",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLAVOIDED_desc": {
+  "table": "RepPerkTable",
+  "text": "All suppliers will refuse to take your calls. Dr. Jackson will no longer visit your Store, except under special circumstances.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLAVOIDED_flavor": {
+  "table": "RepPerkTable",
+  "text": "No one want to associate with you anymore. Fearing for their own reputation.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLLYNCH_name": {
+  "table": "RepPerkTable",
+  "text": "Mob Justice",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLLYNCH_desc": {
+  "table": "RepPerkTable",
+  "text": "A mob from the Lower Levels will attack your Store and lynch you.",
+  "maybe_built_from": []
+ },
+ "rep_perk_LLLYNCH_flavor": {
+  "table": "RepPerkTable",
+  "text": "The people of the Lower Levels have had enough, they'll take matters into their own hands.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_REQUISITION_name": {
+  "table": "RepPerkTable",
+  "text": "Requisition Order",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_REQUISITION_desc": {
+  "table": "RepPerkTable",
+  "text": "A Security Requisition Officer will occasionally visit your Store to purchase Food and Medical Supplies. Trading with them will increase your Reputation.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_REQUISITION_flavor": {
+  "table": "RepPerkTable",
+  "text": "Even Station Security has to get their supplies from someone. They will pay you a fair price.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_ALARM_IGNORED_name": {
+  "table": "RepPerkTable",
+  "text": "Must Be The Wind",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_ALARM_IGNORED_desc": {
+  "table": "RepPerkTable",
+  "text": "Security will not longer respond to your alarms.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_ALARM_IGNORED_flavor": {
+  "table": "RepPerkTable",
+  "text": "You've cried wolf one too many times, or maybe you're just not worth the trouble anymore. Either way, when things go south, you're on your own.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_WATCHLIST_name": {
+  "table": "RepPerkTable",
+  "text": "Watchlist",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_WATCHLIST_desc": {
+  "table": "RepPerkTable",
+  "text": "Security has added you on their watchlist. Any investigation on you will progress x{0} times faster.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_WATCHLIST_flavor": {
+  "table": "RepPerkTable",
+  "text": "Your notoriety has caught the eye of Station Security. Keep your head down, or lose it.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_PRIORITY_name": {
+  "table": "RepPerkTable",
+  "text": "Most Wanted",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_PRIORITY_desc": {
+  "table": "RepPerkTable",
+  "text": "Any investigation on you will progress x{0} times faster.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_PRIORITY_flavor": {
+  "table": "RepPerkTable",
+  "text": "Another day, another case file with your name on it on the desk of the Head of Station Security...",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_THOROUGH_INSPECTION_name": {
+  "table": "RepPerkTable",
+  "text": "No Stone Unturned",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_THOROUGH_INSPECTION_desc": {
+  "table": "RepPerkTable",
+  "text": "Security will no longer sent you lazy or shady inspectors. Additionally, inspections will be more frequent.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_THOROUGH_INSPECTION_flavor": {
+  "table": "RepPerkTable",
+  "text": "No more easy passes or conveniently blind inspectors. Every visit is now a full sweep.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_CONTRABAND_TOLERANCE_name": {
+  "table": "RepPerkTable",
+  "text": "No Quarter",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_CONTRABAND_TOLERANCE_desc": {
+  "table": "RepPerkTable",
+  "text": "Security will prosecute you to the maximum extent of the law regarding contraband found during inspection.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_CONTRABAND_TOLERANCE_flavor": {
+  "table": "RepPerkTable",
+  "text": "No more warnings. No more bribes. Even the smallest contraband could land you in serious trouble.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_IMMEDIATE_ARREST_name": {
+  "table": "RepPerkTable",
+  "text": "By Any Means",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_IMMEDIATE_ARREST_desc": {
+  "table": "RepPerkTable",
+  "text": "Security will immediately arrest and jail you, regardless of any evidence they have (or don't have).",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_IMMEDIATE_ARREST_flavor": {
+  "table": "RepPerkTable",
+  "text": "When they want you gone, the truth doesn't matter. They'll make sure the \"evidence\" says exactly what they need it to.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_PROTECTION_name": {
+  "table": "RepPerkTable",
+  "text": "Security Protection",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_PROTECTION_desc": {
+  "table": "RepPerkTable",
+  "text": "Due to your good Reputation with Security, Thieves are more reluctant to target your Store.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_PROTECTION_flavor": {
+  "table": "RepPerkTable",
+  "text": "Having the eyes of Station Security on you isn't always a bad thing.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_SURPLUS_name": {
+  "table": "RepPerkTable",
+  "text": "Security Surplus",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_SURPLUS_desc": {
+  "table": "RepPerkTable",
+  "text": "A Security Surplus Merchant will occasionally visit the Store.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_SURPLUS_flavor": {
+  "table": "RepPerkTable",
+  "text": "Station Security has agreed to sell you their decommissioned equipment, including weapons and armor.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_RELIABLE_VENDOR_name": {
+  "table": "RepPerkTable",
+  "text": "Reliable Vendor",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_RELIABLE_VENDOR_desc": {
+  "table": "RepPerkTable",
+  "text": "The Security Surplus Merchant will have improved wares, and Security customers will have {0}% more credits to spend.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_RELIABLE_VENDOR_flavor": {
+  "table": "RepPerkTable",
+  "text": "You've proven yourself to be a reliable vendor. Station Security is willing to do more business with you.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_VIP_name": {
+  "table": "RepPerkTable",
+  "text": "VIP",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_VIP_desc": {
+  "table": "RepPerkTable",
+  "text": "Due to your excellent Reputation with Security, Thieves will no longer target your Store. You will no longer be subject to inspection.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_VIP_flavor": {
+  "table": "RepPerkTable",
+  "text": "You're untouchable. Security has your back, and they're not going to let anyone mess with you.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_TRUSTED_name": {
+  "table": "RepPerkTable",
+  "text": "Trusted",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_TRUSTED_desc": {
+  "table": "RepPerkTable",
+  "text": "Inspections will be less frequent, and any investigations will progress slower. You will receive advanced warning of any impending Security Operation.",
+  "maybe_built_from": []
+ },
+ "rep_perk_SEC_TRUSTED_flavor": {
+  "table": "RepPerkTable",
+  "text": "Being trusted means less hassle from Security. Inspections are now few and far between.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_NETWORK_name": {
+  "table": "RepPerkTable",
+  "text": "Underground Network",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_NETWORK_desc": {
+  "table": "RepPerkTable",
+  "text": "You will receive advanced notice of most Black Market events.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_NETWORK_flavor": {
+  "table": "RepPerkTable",
+  "text": "It's who you know that matters.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_DISTRUSTED_name": {
+  "table": "RepPerkTable",
+  "text": "Blacklisted",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_DISTRUSTED_desc": {
+  "table": "RepPerkTable",
+  "text": "Customers from the Black Market will no longer sell you Contraband items. You are barred from the Underground Exchange. The Janitorial Service cost double.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_DISTRUSTED_flavor": {
+  "table": "RepPerkTable",
+  "text": "Your credits aren't worth a thing if nobody trusts you enough to sell.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_UNINSURABLE_name": {
+  "table": "RepPerkTable",
+  "text": "Uninsurable",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_UNINSURABLE_desc": {
+  "table": "RepPerkTable",
+  "text": "Insurance services will not longer be available to you.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_UNINSURABLE_flavor": {
+  "table": "RepPerkTable",
+  "text": "Due to your infamy with the Black Market, even Joe Wild can't insure you anymore. You're on your own now.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_SMALL_TIME_BROKER_name": {
+  "table": "RepPerkTable",
+  "text": "Small Time Broker",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_SMALL_TIME_BROKER_desc": {
+  "table": "RepPerkTable",
+  "text": "Petty Thieves have an increased chance of visiting your Store. Their wares will now improve with higher Black Market Reputation.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_SMALL_TIME_BROKER_flavor": {
+  "table": "RepPerkTable",
+  "text": "You are starting to build a reputation with the Black Market.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_HONOR_name": {
+  "table": "RepPerkTable",
+  "text": "Honor Amongst Thieves",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_HONOR_desc": {
+  "table": "RepPerkTable",
+  "text": "Reputation is lost with the Black Market at a rate of x{0}, regardless of your current Reputation.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_HONOR_flavor": {
+  "table": "RepPerkTable",
+  "text": "Trust is our currency.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_RELIABLE_name": {
+  "table": "RepPerkTable",
+  "text": "Safe Hands",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_RELIABLE_desc": {
+  "table": "RepPerkTable",
+  "text": "You are guaranteed a visit from a Thief once per week. All thieves will now offer improved wares.",
+  "maybe_built_from": []
+ },
+ "rep_perk_BM_RELIABLE_flavor": {
+  "table": "RepPerkTable",
+  "text": "The Thieves of the Black Market know you're good for it, and more are willing to deal with you.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_GOSSIP_name": {
+  "table": "RepPerkTable",
+  "text": "Gossipmonger",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_GOSSIP_desc": {
+  "table": "RepPerkTable",
+  "text": "You will receive advanced notice of most Upper Levels events.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_GOSSIP_flavor": {
+  "table": "RepPerkTable",
+  "text": "They never stop talking up there... sometimes they even say something useful.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_TIPS_name": {
+  "table": "RepPerkTable",
+  "text": "Pourboire",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_TIPS_desc": {
+  "table": "RepPerkTable",
+  "text": "You will receive {0}% bonus when selling items to customers from the Upper Levels.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_TIPS_flavor": {
+  "table": "RepPerkTable",
+  "text": "They don't haggle. They just drop a few extra credits and call it etiquette.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_CHARITY_name": {
+  "table": "RepPerkTable",
+  "text": "Upper Level Charity",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_CHARITY_desc": {
+  "table": "RepPerkTable",
+  "text": "A benefactor from the Upper Levels will occasionally donate goods to your Store.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_CHARITY_flavor": {
+  "table": "RepPerkTable",
+  "text": "Publicity stunts or genuine kindness? You won't argue with free goods.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_HOUSEHOLD_NAME_name": {
+  "table": "RepPerkTable",
+  "text": "Household Name",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_HOUSEHOLD_NAME_desc": {
+  "table": "RepPerkTable",
+  "text": "You have {0}% chance of receiving {1} additional daily customer from the Upper Levels.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_HOUSEHOLD_NAME_flavor": {
+  "table": "RepPerkTable",
+  "text": "Your Store has become the talk of the Upper Levels.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_TOP_REVIEW_name": {
+  "table": "RepPerkTable",
+  "text": "Rave Reviews",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_TOP_REVIEW_desc": {
+  "table": "RepPerkTable",
+  "text": "All customers from the Upper Levels have {0}% more credits to spend.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_TOP_REVIEW_flavor": {
+  "table": "RepPerkTable",
+  "text": "Your Store is the worst kept secret in the Upper Levels. Customers from the Upper Levels are willing to spend more when they visit.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_TOURISTTRAP_name": {
+  "table": "RepPerkTable",
+  "text": "Tourist Trap",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_TOURISTTRAP_desc": {
+  "table": "RepPerkTable",
+  "text": "Customers from the Upper Levels are less likely to visit your Store.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_TOURISTTRAP_flavor": {
+  "table": "RepPerkTable",
+  "text": "Upper Levels clients expect better. Lately, you're not delivering.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_PETITION_name": {
+  "table": "RepPerkTable",
+  "text": "Petition to Security",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_PETITION_desc": {
+  "table": "RepPerkTable",
+  "text": "You lose Reputation with Security {0}x faster and active investigations progress {1:P0} faster.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_PETITION_flavor": {
+  "table": "RepPerkTable",
+  "text": "Using their influence, the Upper Levels have petitioned Security to keep a closer eye on you.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_HITMAN_name": {
+  "table": "RepPerkTable",
+  "text": "Hired Hitman",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_HITMAN_desc": {
+  "table": "RepPerkTable",
+  "text": "A hit will be immediately placed on you by the Upper Levels.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_HITMAN_flavor": {
+  "table": "RepPerkTable",
+  "text": "A contract has been signed in a luxury suites above. You've made the wrong enemies.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_FRIEND_name": {
+  "table": "RepPerkTable",
+  "text": "Friend of the Revolution",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_FRIEND_desc": {
+  "table": "RepPerkTable",
+  "text": "You will receive advanced notice of most Revolution events.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_FRIEND_flavor": {
+  "table": "RepPerkTable",
+  "text": "The revolution will make sure you are not caught in the crossfire.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_HIT_name": {
+  "table": "RepPerkTable",
+  "text": "Hit list",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_HIT_desc": {
+  "table": "RepPerkTable",
+  "text": "A revolution hit squad will be immediately tasked with eliminating you.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_HIT_flavor": {
+  "table": "RepPerkTable",
+  "text": "You have been declared an enemy of the revolution. They will stop at nothing to see you gone.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_BLACKLISTED_name": {
+  "table": "RepPerkTable",
+  "text": "Blacklisted",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_BLACKLISTED_desc": {
+  "table": "RepPerkTable",
+  "text": "Customers sympathetic to the Revolution are less likely to visit your Store.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_BLACKLISTED_flavor": {
+  "table": "RepPerkTable",
+  "text": "Notice has been circulated among revolutionary cells, warning members to avoid doing business with you.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_REQUEST_name": {
+  "table": "RepPerkTable",
+  "text": "Revolution Marketplace Request",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_REQUEST_desc": {
+  "table": "RepPerkTable",
+  "text": "You will occasionally receive Marketplace Requests from various Revolution cells.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_REQUEST_flavor": {
+  "table": "RepPerkTable",
+  "text": "From each according to his ability, to each according to his needs.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_RAID_LOOT_name": {
+  "table": "RepPerkTable",
+  "text": "Raid Loot",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_RAID_LOOT_desc": {
+  "table": "RepPerkTable",
+  "text": "Members of the Revolution will occasionally visit to sell off their loot from raids. Prices will improve with higher Reputation.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_RAID_LOOT_flavor": {
+  "table": "RepPerkTable",
+  "text": "The liberation of people requires the liberation of supplies.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_QUARTERMASTER_name": {
+  "table": "RepPerkTable",
+  "text": "Revolution Quartermaster",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_QUARTERMASTER_desc": {
+  "table": "RepPerkTable",
+  "text": "A Revolution Quartermaster will occasionally visit your Store to sell Materials at a discount. The discount will improve with higher Reputation.",
+  "maybe_built_from": []
+ },
+ "rep_perk_REV_QUARTERMASTER_flavor": {
+  "table": "RepPerkTable",
+  "text": "Revolutions can't run on ideals alone. The Quartermaster sells cheap stock to quietly fund the next move.",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_RETIRED_name": {
+  "table": "RepPerkTable",
+  "text": "Forced Retirement",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_RETIRED_desc": {
+  "table": "RepPerkTable",
+  "text": "A Cartel Hitman has been dispatched to eliminate you.",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_RETIRED_flavor": {
+  "table": "RepPerkTable",
+  "text": "Sometimes what is best for the dog is to put it down.",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_INCREASED_STIPEND_name": {
+  "table": "RepPerkTable",
+  "text": "Increased Stipend",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_INCREASED_STIPEND_desc": {
+  "table": "RepPerkTable",
+  "text": "Your weekly stipend now scales with your Cartel Reputation.",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_INCREASED_STIPEND_flavor": {
+  "table": "RepPerkTable",
+  "text": "Don't mistake it for kindness, it's an investment.",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_RELIABLE_CHEMIST_name": {
+  "table": "RepPerkTable",
+  "text": "Reliable Chemist",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_RELIABLE_CHEMIST_desc": {
+  "table": "RepPerkTable",
+  "text": "Requesting additional Materials now costs {0}% of the usual Reputation.",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_RELIABLE_CHEMIST_flavor": {
+  "table": "RepPerkTable",
+  "text": "The Cartel will reward consistency, and service.",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_AUTHORIZED_EXIT_name": {
+  "table": "RepPerkTable",
+  "text": "Authorized Exit",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_AUTHORIZED_EXIT_desc": {
+  "table": "RepPerkTable",
+  "text": "Your handler will start to process your authorized exit from the Cartel.",
+  "maybe_built_from": []
+ },
+ "rep_perk_CARTEL_AUTHORIZED_EXIT_flavor": {
+  "table": "RepPerkTable",
+  "text": "You're lucky, not many get to leave without a body bag...",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_DISCERNING_TASTE_name": {
+  "table": "RepPerkTable",
+  "text": "Discerning Taste",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_DISCERNING_TASTE_desc": {
+  "table": "RepPerkTable",
+  "text": "While a Luxury Item is in your display case, you have {0}% chance each day of receiving an additional customer looking to buy Luxury Items. Rises with Reputation. This customer can only visit once every {1} days.",
+  "maybe_built_from": []
+ },
+ "rep_perk_UL_DISCERNING_TASTE_flavor": {
+  "table": "RepPerkTable",
+  "text": "Something expensive in a Lower Levels window? The Upper Levels will come down just to say they found it first.",
+  "maybe_built_from": []
+ },
+ "tuto_shutter": {
+  "table": "Tutorial",
+  "text": "Open the Shutter Door",
+  "maybe_built_from": []
+ },
+ "tuto_bell": {
+  "table": "Tutorial",
+  "text": "Call the Next Customer",
+  "maybe_built_from": []
+ },
+ "tuto_right_click": {
+  "table": "Tutorial",
+  "text": "Right Click on an item to display the Interact Menu",
+  "maybe_built_from": []
+ },
+ "tuto_read": {
+  "table": "Tutorial",
+  "text": "[Read] Note",
+  "maybe_built_from": []
+ },
+ "tuto_close": {
+  "table": "Tutorial",
+  "text": "Close the Store",
+  "maybe_built_from": []
+ },
+ "tuto_double_click": {
+  "table": "Tutorial",
+  "text": "You can also double click to Interact with an item",
+  "maybe_built_from": []
+ },
+ "tuto_drag": {
+  "table": "Tutorial",
+  "text": "Drag the Note into the Handbook to save it",
+  "maybe_built_from": []
+ },
+ "tuto_transfer": {
+  "table": "Tutorial",
+  "text": "Quick Transfer an item using CTRL + Click",
+  "maybe_built_from": []
+ },
+ "tuto_recorder": {
+  "table": "Tutorial",
+  "text": "Review dialogue using the Recorder",
+  "maybe_built_from": []
+ },
+ "tuto_dossier": {
+  "table": "Tutorial",
+  "text": "Store the Notebook inside the Dossier",
+  "maybe_built_from": []
+ },
+ "tuto_buy": {
+  "table": "Tutorial",
+  "text": "Ctrl-Click or Drag the item you wish to BUY to move it to the Negotiation Counter",
+  "maybe_built_from": []
+ },
+ "tuto_tablet": {
+  "table": "Tutorial",
+  "text": "Open the Tablet",
+  "maybe_built_from": []
+ },
+ "tuto_sell": {
+  "table": "Tutorial",
+  "text": "Ctrl-Click or Drag the item you wish to SELL to move it to the Negotiation Counter",
+  "maybe_built_from": []
+ },
+ "tuto_sleep": {
+  "table": "Tutorial",
+  "text": "Go to sleep",
+  "maybe_built_from": []
+ },
+ "tuto_transfer_all": {
+  "table": "Tutorial",
+  "text": "Transfer ALL",
+  "maybe_built_from": []
+ },
+ "tuto_barter": {
+  "table": "Tutorial",
+  "text": "[Barter]: Move the requested item to the Counter",
+  "maybe_built_from": []
+ },
+ "tuto_nightly_service": {
+  "table": "Tutorial",
+  "text": "Services Can Be Toggle On Or Off Every Night",
+  "maybe_built_from": []
+ },
+ "tuto_afterhour_activity": {
+  "table": "Tutorial",
+  "text": "Leave the Store",
+  "maybe_built_from": []
+ },
+ "tuto_display_case": {
+  "table": "Tutorial",
+  "text": "Place merchandise inside the Display Case to attract buyers before opening the shutter doors.",
+  "maybe_built_from": []
+ },
+ "tuto_clientele_ui": {
+  "table": "Tutorial",
+  "text": "Check the Clientele UI",
+  "maybe_built_from": []
+ },
+ "tuto_rep_ui": {
+  "table": "Tutorial",
+  "text": "Check your reputation",
+  "maybe_built_from": []
+ },
+ "tuto_bargain": {
+  "table": "Tutorial",
+  "text": "Open the Bargain Interface",
+  "maybe_built_from": []
+ },
+ "tuto_bargain2": {
+  "table": "Tutorial",
+  "text": "Using the Bargain Interface, you can demand more or offer better prices to customers, which can affect their budget and the amount of reputation gained while trading.",
+  "maybe_built_from": []
+ },
+ "tuto_advance_dialog": {
+  "table": "Tutorial",
+  "text": "Press Space to advance dialogue when ready",
+  "maybe_built_from": []
+ },
+ "tuto_drag_select": {
+  "table": "Tutorial",
+  "text": "Hold the left mouse button and drag to select multiple items.",
+  "maybe_built_from": []
+ },
+ "tuto_sort_menu": {
+  "table": "Tutorial",
+  "text": "Right-click an empty inventory slot to open the sorting menu.",
+  "maybe_built_from": []
+ },
+ "esc_resume": {
+  "table": "UI",
+  "text": "Resume",
+  "maybe_built_from": []
+ },
+ "esc_overlay": {
+  "table": "UI",
+  "text": "Tutorial Overlay (O)",
+  "maybe_built_from": []
+ },
+ "esc_options": {
+  "table": "UI",
+  "text": "Options",
+  "maybe_built_from": []
+ },
+ "esc_exit": {
+  "table": "UI",
+  "text": "Exit Game",
+  "maybe_built_from": []
+ },
+ "inte_credit_count": {
+  "table": "UI",
+  "text": "Your current Credit count",
+  "maybe_built_from": []
+ },
+ "inte_recorder": {
+  "table": "UI",
+  "text": "Recorder",
+  "maybe_built_from": []
+ },
+ "inte_feedback": {
+  "table": "UI",
+  "text": "Feedback Box",
+  "maybe_built_from": []
+ },
+ "inte_wanted": {
+  "table": "UI",
+  "text": "Wanted",
+  "maybe_built_from": []
+ },
+ "inte_sec_departement": {
+  "table": "UI",
+  "text": "Security Department",
+  "maybe_built_from": []
+ },
+ "inte_sec_profile": {
+  "table": "UI",
+  "text": "Profile",
+  "maybe_built_from": []
+ },
+ "inte_sec_name": {
+  "table": "UI",
+  "text": "NAME",
+  "maybe_built_from": []
+ },
+ "inte_sec_location": {
+  "table": "UI",
+  "text": "LOCATION",
+  "maybe_built_from": []
+ },
+ "inte_sec_occupation": {
+  "table": "UI",
+  "text": "OCCUPATION",
+  "maybe_built_from": []
+ },
+ "inte_sec_assigned_officer_note": {
+  "table": "UI",
+  "text": "ASSIGNED OFFICER'S NOTE",
+  "maybe_built_from": []
+ },
+ "inte_sec_crimes": {
+  "table": "UI",
+  "text": "SUSPECTED CRIMINAL ACTIVITIES",
+  "maybe_built_from": []
+ },
+ "inte_sec_shopkeeper": {
+  "table": "UI",
+  "text": "THE SHOPKEEPER",
+  "maybe_built_from": []
+ },
+ "inte_sec_lower_levels": {
+  "table": "UI",
+  "text": "LOWER LEVELS",
+  "maybe_built_from": []
+ },
+ "inte_sec_merchant": {
+  "table": "UI",
+  "text": "MERCHANT",
+  "maybe_built_from": []
+ },
+ "inte_sec_additional_info": {
+  "table": "UI",
+  "text": "ADDITIONAL INFORMATION",
+  "maybe_built_from": []
+ },
+ "inte_sec_recommended_action": {
+  "table": "UI",
+  "text": "RECOMMENDED ACTION",
+  "maybe_built_from": []
+ },
+ "inte_sec_assigned_officer": {
+  "table": "UI",
+  "text": "ASSIGNED CASE OFFICER",
+  "maybe_built_from": []
+ },
+ "inte_sec_active_op": {
+  "table": "UI",
+  "text": "ACTIVE OPERATION",
+  "maybe_built_from": []
+ },
+ "inte_sec_evidence_level": {
+  "table": "UI",
+  "text": "INVESTIGATION PROGRESS",
+  "maybe_built_from": []
+ },
+ "inte_sec_projected_sentance": {
+  "table": "UI",
+  "text": "EXPECTED SENTENCE",
+  "maybe_built_from": []
+ },
+ "inte_sec_confidential": {
+  "table": "UI",
+  "text": "///CONFIDENTIAL///DO NOT DISTRIBUTE///",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_name": {
+  "table": "UI",
+  "text": "SCRATCH 2 WIN",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_how_to_win": {
+  "table": "UI",
+  "text": "HOW 2 WIN",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_2_match": {
+  "table": "UI",
+  "text": "ANY 2 MATCH = 10 CREDITS",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_3_match": {
+  "table": "UI",
+  "text": "ANY 3 MATCH = 75 CREDITS",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_2_jackpot": {
+  "table": "UI",
+  "text": "NUTRIFRUIT 2 MATCH = 30 CREDITS",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_3_jackpot": {
+  "table": "UI",
+  "text": "NUTRIFRUIT 3 MATCH = 350 CREDITS",
+  "maybe_built_from": []
+ },
+ "ins_general_station_trade_commission": {
+  "table": "UI",
+  "text": "Station Trade Commission",
+  "maybe_built_from": []
+ },
+ "ins_cig_title": {
+  "table": "UI",
+  "text": "Hemingway Cigarette Authenticity Handbook",
+  "maybe_built_from": []
+ },
+ "ins_cig_intro": {
+  "table": "UI",
+  "text": "Counterfeit Hemingway Cigarettes are common on the station. Their value, as their quality, is significantly lower than genuine Hemingway cigarettes. ",
+  "maybe_built_from": []
+ },
+ "ins_general_lettering_issues": {
+  "table": "UI",
+  "text": "Lettering Issues",
+  "maybe_built_from": []
+ },
+ "ins_general_discernible_note": {
+  "table": "UI",
+  "text": "The differences should be obvious at a glance.",
+  "maybe_built_from": []
+ },
+ "ins_general_logo_issues": {
+  "table": "UI",
+  "text": "Logo Issues",
+  "maybe_built_from": []
+ },
+ "ins_general_color_issues": {
+  "table": "UI",
+  "text": "Color Issues",
+  "maybe_built_from": []
+ },
+ "ins_general_security_seal_issues": {
+  "table": "UI",
+  "text": "Security Seal Issues",
+  "maybe_built_from": []
+ },
+ "ins_cig_lettering_info": {
+  "table": "UI",
+  "text": "Spelling errors, misaligned text or uneven print quality on the pack, differences in color, font or missing lettering all indicate fraud.",
+  "maybe_built_from": []
+ },
+ "ins_general_correct": {
+  "table": "UI",
+  "text": "Genuine",
+  "maybe_built_from": []
+ },
+ "ins_general_incorrect_font": {
+  "table": "UI",
+  "text": "Incorrect Font",
+  "maybe_built_from": []
+ },
+ "ins_general_incorrect_spelling": {
+  "table": "UI",
+  "text": "Incorrect Spelling",
+  "maybe_built_from": []
+ },
+ "ins_cig_color_info": {
+  "table": "UI",
+  "text": "Utilise color card to compare",
+  "maybe_built_from": []
+ },
+ "ins_general_incorrect": {
+  "table": "UI",
+  "text": "Incorrect",
+  "maybe_built_from": []
+ },
+ "ins_general_incorrect_example": {
+  "table": "UI",
+  "text": "Incorrect Example",
+  "maybe_built_from": []
+ },
+ "ins_cig_seal_info": {
+  "table": "UI",
+  "text": "Hemingway Cigarettes are never sold without a security seal. If the security seal is missing or broken, the cigarette is a counterfeit.",
+  "maybe_built_from": []
+ },
+ "ins_stamp_title": {
+  "table": "UI",
+  "text": "Republic Food Stamp Authenticity Handbook",
+  "maybe_built_from": []
+ },
+ "ins_stamp_intro": {
+  "table": "UI",
+  "text": "As part of the Republic's very generous welfare initiative, Food Stamps are routinely distributed among the most needy in the Lower Levels. These can be used to buy essential items in stores backed by the Republic. Be warned, however: counterfeit Food Stamps are not unusual in the Lower Levels.",
+  "maybe_built_from": []
+ },
+ "ins_stamp_lettering_intro": {
+  "table": "UI",
+  "text": "Look for spelling errors, obvious misaligned text. Differences in color, font or missing lettering are also common in forgeries.",
+  "maybe_built_from": []
+ },
+ "ins_stamp_incorrect_logo_missing": {
+  "table": "UI",
+  "text": "(Incorrect if logo missing)",
+  "maybe_built_from": []
+ },
+ "ins_stamp_seal_intro": {
+  "table": "UI",
+  "text": "If the Food Stamp has a printed value of 160 Credits or higher, it will have a security seal. Food Stamps under 160 Credits will not have a security seal.",
+  "maybe_built_from": []
+ },
+ "ins_stamp_value": {
+  "table": "UI",
+  "text": "Stamp Value",
+  "maybe_built_from": []
+ },
+ "ins_stamp_value_intro": {
+  "table": "UI",
+  "text": "Food Stamps are ONLY issued with values of:\n40 Credits, 80 Credits,\n120 Credits, 160 Credits,\n200 Credits, 240 Credits",
+  "maybe_built_from": []
+ },
+ "ins_stamp_chip": {
+  "table": "UI",
+  "text": "Chip",
+  "maybe_built_from": []
+ },
+ "ins_stamp_chip_intro": {
+  "table": "UI",
+  "text": "All Food Stamps contain a chip. If the chip is missing or damaged, the Food Stamp is unusable, even if it is genuine. ",
+  "maybe_built_from": []
+ },
+ "ins_inj_title": {
+  "table": "UI",
+  "text": "Immunivax Injector User Handbook",
+  "maybe_built_from": []
+ },
+ "ins_inj_intro": {
+  "table": "UI",
+  "text": "A high-precision immuno-regulator developed to temporarily suppress the effects associated with the deadly auto-immune condition Sentinel Collapse.",
+  "maybe_built_from": []
+ },
+ "ins_inj_indicator_issues": {
+  "table": "UI",
+  "text": "Indicator Issues",
+  "maybe_built_from": []
+ },
+ "ins_general_example": {
+  "table": "UI",
+  "text": "Example:",
+  "maybe_built_from": []
+ },
+ "ins_inj_expired": {
+  "table": "UI",
+  "text": "Expired",
+  "maybe_built_from": []
+ },
+ "ins_inj_spent": {
+  "table": "UI",
+  "text": "Empty",
+  "maybe_built_from": []
+ },
+ "ins_inj_label_issues": {
+  "table": "UI",
+  "text": "Label Issues",
+  "maybe_built_from": []
+ },
+ "ins_inj_label_issues_sub": {
+  "table": "UI",
+  "text": "(Counterfeit if label is missing)",
+  "maybe_built_from": []
+ },
+ "ins_general_only_correct_case": {
+  "table": "UI",
+  "text": "Correct Case ONLY",
+  "maybe_built_from": []
+ },
+ "ins_inj_label_intro": {
+  "table": "UI",
+  "text": "Possible Errors:\n -Spelling\n -Missing Company Name\n -Missing Product Name\n -Significant Font Discrepancy",
+  "maybe_built_from": []
+ },
+ "ins_inj_serial_number_issues": {
+  "table": "UI",
+  "text": "Serial Number",
+  "maybe_built_from": []
+ },
+ "ins_inj_serial_number_intro": {
+  "table": "UI",
+  "text": "All Immunivax Injector MUST have a valid seven-digit serial number. The first three digits are the batch numbers. Valid range: 1250000-4559999.",
+  "maybe_built_from": []
+ },
+ "ins_inj_serial_number_intro2": {
+  "table": "UI",
+  "text": "Product Recall Notice (Batch Number): 250, 251, 301, 355, 385, 386, 421\n",
+  "maybe_built_from": []
+ },
+ "ins_inj_recalled_example": {
+  "table": "UI",
+  "text": "Recalled Example (UNUSABLE)",
+  "maybe_built_from": []
+ },
+ "ins_inj_body_issues": {
+  "table": "UI",
+  "text": "Body Issues",
+  "maybe_built_from": []
+ },
+ "ins_inj_body_intro": {
+  "table": "UI",
+  "text": "If any damaged such as clearly visible cracks can be seen on the injector. It is considered to be Unusable",
+  "maybe_built_from": []
+ },
+ "ins_inj_correct_main_colors": {
+  "table": "UI",
+  "text": "Correct Main Colors",
+  "maybe_built_from": []
+ },
+ "general_buy": {
+  "table": "UI",
+  "text": "Buy",
+  "maybe_built_from": []
+ },
+ "commissary_credit_count_title": {
+  "table": "UI",
+  "text": "Redeemed Commissary Token:",
+  "maybe_built_from": []
+ },
+ "commissary_redeem_all_food_stamp": {
+  "table": "UI",
+  "text": "Redeem Valid Food Stamps",
+  "maybe_built_from": []
+ },
+ "commissary_redeem_eligible_lottery": {
+  "table": "UI",
+  "text": "Redeem All Eligible Lottery",
+  "maybe_built_from": []
+ },
+ "rev_card_proverb": {
+  "table": "UI",
+  "text": "\"Power exists to uplift, not to oppress.\"",
+  "maybe_built_from": []
+ },
+ "general_confront": {
+  "table": "UI",
+  "text": "Confront",
+  "maybe_built_from": []
+ },
+ "general_match_label": {
+  "table": "UI",
+  "text": "Match Label",
+  "maybe_built_from": []
+ },
+ "chem_finisher_title": {
+  "table": "UI",
+  "text": "Chem Finisher",
+  "maybe_built_from": []
+ },
+ "deed_title": {
+  "table": "UI",
+  "text": "Deed of Ownership",
+  "maybe_built_from": []
+ },
+ "deed_body": {
+  "table": "UI",
+  "text": "This document certifies the holder as the lawful owner of the commercial property located at:\n\nLower Level, Sector 14\n\nThis deed hereby grants full ownership rights of the aforementioned property to the holder, effective immediately upon settlement of the debt as outlined in the Deeds of Agreement and upon full payment of the agreed purchase price.\n\nThe ownership of the property includes the following rights:\n\nRight to Operation and Management - Full control over, and assumed responsibility for, daily operations and activities.\nRight to Renovation or Alteration - Subject to applicable sector zoning laws and regulations.\nRight to Sell or Transfer - Subject to approval by the station’s governing authority and in accordance with all applicable rules and regulations.",
+  "maybe_built_from": []
+ },
+ "general_the_shopkeeper": {
+  "table": "UI",
+  "text": "The Shopkeeper",
+  "maybe_built_from": []
+ },
+ "general_the_landlord": {
+  "table": "UI",
+  "text": "The Landlord",
+  "maybe_built_from": []
+ },
+ "lease_title": {
+  "table": "UI",
+  "text": "Lease Agreement",
+  "maybe_built_from": []
+ },
+ "lease_body": {
+  "table": "UI",
+  "text": "SECTION 1: PARTIES\nThe Landlord: (\"Landlord\"),\nThe Shopkeeper: (\"Tenant\").\n\nSECTION 2: PREMISES\nThe Landlord leases to the Tenant for the operation of a commercial business, subject to the terms and conditions outlined herein.\n\nSECTION 3: RENTAL TERMS\nRent Amount: Undetermined        \nPayment Schedule: Every Seven Days\n\nSECTION 4: FAILURE TO PAY RENT\nIf Rent is not paid by the due date, the Tenant shall be granted a one-time grace period during the term of this Agreement. Any missed Rent will be added to the following week’s Rent. Failure to pay the full adjusted amount by the following due date will constitute a breach of this Agreement.\n\nEviction Clause: If the Tenant fails to pay Rent or the adjusted Rent as outlined, the Landlord reserves the right to terminate this agreement, and initiate eviction procedures as per Station Ordinances.\n\nSECTION 5: RENT ADJUSTMENT\nRent Increase: The Landlord retains the right to adjust the Rent by up to 5% of the current Rent amount for the subsequent week.",
+  "maybe_built_from": []
+ },
+ "lottery_title": {
+  "table": "UI",
+  "text": "Lower Levels Lottery Information",
+  "maybe_built_from": []
+ },
+ "lottery_intro": {
+  "table": "UI",
+  "text": "The Lower Levels Lottery is finally back! Your fortune starts with a single ticket. Grab yours now!",
+  "maybe_built_from": []
+ },
+ "lottery_how_title": {
+  "table": "UI",
+  "text": "How The Lottery Works",
+  "maybe_built_from": []
+ },
+ "lottery_how_intro": {
+  "table": "UI",
+  "text": "The Lottery winning numbers are drawn every Saturday morning. Winning Numbers will be announced in the newspaper.",
+  "maybe_built_from": []
+ },
+ "lottery_system_title": {
+  "table": "UI",
+  "text": "Lottery System",
+  "maybe_built_from": []
+ },
+ "lottery_system_intro": {
+  "table": "UI",
+  "text": "6 unique numbers from 1-49 will be drawn. You win prizes based on how many of your numbers match the six numbers drawn.",
+  "maybe_built_from": []
+ },
+ "lottery_system_example1": {
+  "table": "UI",
+  "text": "Example Winning Numbers",
+  "maybe_built_from": []
+ },
+ "lottery_system_example2": {
+  "table": "UI",
+  "text": "Example Ticket Numbers (3 Matching Numbers)",
+  "maybe_built_from": []
+ },
+ "lottery_prizes_intro": {
+  "table": "UI",
+  "text": "6 unique numbers from 1-49 will be drawn. You win prizes based on how many of your numbers match the six numbers drawn.",
+  "maybe_built_from": []
+ },
+ "lottery_match6": {
+  "table": "UI",
+  "text": "6/6 Matches (Jackpot)",
+  "maybe_built_from": []
+ },
+ "lottery_match5": {
+  "table": "UI",
+  "text": "5/6 Matches",
+  "maybe_built_from": []
+ },
+ "lottery_match4": {
+  "table": "UI",
+  "text": "4/6 Matches",
+  "maybe_built_from": []
+ },
+ "lottery_match3": {
+  "table": "UI",
+  "text": "3/6 Matches",
+  "maybe_built_from": []
+ },
+ "book_ribwich_title": {
+  "table": "UI",
+  "text": "Ribwich Appraisal Guide",
+  "maybe_built_from": []
+ },
+ "book_ribwich_base_value_title": {
+  "table": "UI",
+  "text": "Base Value",
+  "maybe_built_from": []
+ },
+ "book_ribwich_base_value_body": {
+  "table": "UI",
+  "text": "All Ribwichs start at 150 Credits. Different conditions can affect its price.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section1_title": {
+  "table": "UI",
+  "text": "1. Packaging, Counterfeit and Minimum Value",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_title": {
+  "table": "UI",
+  "text": "2. Production Date",
+  "maybe_built_from": []
+ },
+ "book_ribwich_intro": {
+  "table": "UI",
+  "text": "A limited edition sandwich from Davre. Now discontinued, it's price now steadly increasing due to people still eating it.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section1_body": {
+  "table": "UI",
+  "text": "If the plastic packaging is missing, torn open or counterfeit, the final value will always be 40 credits regardless of anything else. \nRibwichs can't have a final value lower than 40 credits, regardless of any condition.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_body": {
+  "table": "UI",
+  "text": "All Ribwichs will have their production date displayed on the packaging. The Ribwich were only ever produced on the following runs:",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_example": {
+  "table": "UI",
+  "text": "1st Production Run: January 425 - December 429\n2nd Production Run: January 432 - December 438",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_body4": {
+  "table": "UI",
+  "text": "The Ribwich produced on the very first month (01/425) and the very last month (12/438) are worth +50 Credits for historical reasons.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_body3": {
+  "table": "UI",
+  "text": "The first production run Ribwich were made using better material and are worth +80 Credits",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_body2": {
+  "table": "UI",
+  "text": "If the production date is missing, invalid or outside the range, then it is counterfeit.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_body": {
+  "table": "UI",
+  "text": "Davre used a number of facility to produce and package the Ribwich, some are known to have higher or lower quality control standard which can affect the Ribwich shelf life.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_title": {
+  "table": "UI",
+  "text": "3. Packing Facility",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_example": {
+  "table": "UI",
+  "text": "High Quality Packing Facility: 01, 02, 05, 08, 21, 34\nLow Quality Packing Facility: 07, 15, 18, 26, 31",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_body2": {
+  "table": "UI",
+  "text": "There's 35 total packing facilities that were used. If the packing facility number is missing or invalid, then the Ribwich is counterfeit.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_body3": {
+  "table": "UI",
+  "text": "Ribwich from the high quality packing facility are worth +50 Credits",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_body4": {
+  "table": "UI",
+  "text": "Ribwich from the low quality packing facility are worth -50 Credits",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_body5": {
+  "table": "UI",
+  "text": "Example of a genuine Ribwich from the second production run:",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section4_title": {
+  "table": "UI",
+  "text": "4. Deluxe Edition",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section4_body": {
+  "table": "UI",
+  "text": "Ribwich with sesame bun and extra pickles were also released along the normal Ribwich and was marketed as Deluxe Edition",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section4_example": {
+  "table": "UI",
+  "text": "The Deluxe edition ribwich must have both the sesame bun and extra pickles. if only one is present then it is counterfeit.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section4_body2": {
+  "table": "UI",
+  "text": "Valid deluxe edition are worth +300 Credits",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section5_title": {
+  "table": "UI",
+  "text": "5. Double Meat Patty",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section5_body": {
+  "table": "UI",
+  "text": "In rare instances, it has been reported that Davre’s packing machine malfunctioned and produced Ribwiches with two meat patties. These Ribwiches are typically removed and destroyed by the quality control team, making double-patty Ribwiches extremely rare.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section5_body2": {
+  "table": "UI",
+  "text": "Valid double patty Ribwich are worth +800 Credits",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section6_title": {
+  "table": "UI",
+  "text": "6. Davre Logo",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section6_body": {
+  "table": "UI",
+  "text": "All Ribwich must have the Davre Logo, if missing or incorrect, then it is counterfeit.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section7_title": {
+  "table": "UI",
+  "text": "7. Ribwich Logo",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section7_body": {
+  "table": "UI",
+  "text": "All 2nd production ribwich will have a Ribwich sticker, if missing or incorrect, then it is counterfeit. 1st production will not have the Ribwich sticker.",
+  "maybe_built_from": []
+ },
+ "book_fuel_name": {
+  "table": "UI",
+  "text": "Plasma Cartridge Appraisal Guide",
+  "maybe_built_from": []
+ },
+ "book_fuel_p1_body": {
+  "table": "UI",
+  "text": "Plasma Cartridges are the standard fuel of the the Pulse Plasma Drive, a common installation on small-to-medium spacecraft.\nA result of high demand and light regulation, Plasma Cartridges are manufactured in sweatshops and industrial laboratories both. Where a Plasma Cartridge is made will affect its quality.\n\nThis guide will provide everything you need to know to appraise the value of any Plasma Cartridge.",
+  "maybe_built_from": []
+ },
+ "book_fuel_p1_body2": {
+  "table": "UI",
+  "text": "ILLUSTRATION OF A PLASMA CARTRIDGE",
+  "maybe_built_from": []
+ },
+ "book_fuel_p1_body3": {
+  "table": "UI",
+  "text": "There are four common manufacturers on the Station:\n\n\t- Wild's Rides (\"WLD\"),\n\t- Republic Naval Requisition (\"RNR\"),\n\t- ZhongHua Shipbuilding (\"ZHS\"),\n\t- Ignition Lab (\"IGN\")",
+  "maybe_built_from": []
+ },
+ "book_fuel_p1_body4": {
+  "table": "UI",
+  "text": "Regardless of manufacturer or current condition, Plasma Cartridges have a base value of 300 Credits, and a minimum value of 90 Credits.",
+  "maybe_built_from": []
+ },
+ "book_fuel_p2_title": {
+  "table": "UI",
+  "text": "Cartridge Condition",
+  "maybe_built_from": []
+ },
+ "book_fuel_p2_body": {
+  "table": "UI",
+  "text": "The value of a Plasma Cartridge is determined by its condition. The condition is the total sum of the cartridges attributes.",
+  "maybe_built_from": []
+ },
+ "book_fuel_p2_example": {
+  "table": "UI",
+  "text": "Standard (No Change)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p2_example2": {
+  "table": "UI",
+  "text": "Light Wear (-45 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p2_example3": {
+  "table": "UI",
+  "text": "Heavy Wear (-90 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p3_title": {
+  "table": "UI",
+  "text": "Cartridge Condition",
+  "maybe_built_from": []
+ },
+ "book_fuel_p3_example": {
+  "table": "UI",
+  "text": "Cracked (-150 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p3_example2": {
+  "table": "UI",
+  "text": "Exposed Screws (-30 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p3_example3": {
+  "table": "UI",
+  "text": "Reinforced (+60 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p4_title": {
+  "table": "UI",
+  "text": "Plasma Color",
+  "maybe_built_from": []
+ },
+ "book_fuel_p4_body": {
+  "table": "UI",
+  "text": "The color of the plasma is the biggest indicator of quality.\nAny color not Standard or High-Grade is regarded as Low-Grade.",
+  "maybe_built_from": []
+ },
+ "book_fuel_p4_example": {
+  "table": "UI",
+  "text": "Standard (No Change)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p4_example2": {
+  "table": "UI",
+  "text": "Low Grade Example (-150 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p4_example3": {
+  "table": "UI",
+  "text": "High-Grade (+150 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_title": {
+  "table": "UI",
+  "text": "Cartridge Manufacturer",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m1_name": {
+  "table": "UI",
+  "text": "Wild's Rides (\"WLD\")",
+  "maybe_built_from": []
+ },
+ "book_fuel_possible_example": {
+  "table": "UI",
+  "text": "Possible Example",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m1_desc": {
+  "table": "UI",
+  "text": "WLD Plasma Cartridges are manufactured in the Lower Levels, and are highly variable in quality.\nPossible Cartridge Condition: Any\nPossible Color: Low-Grade, Standard\nSeal: Always",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m1_bonus": {
+  "table": "UI",
+  "text": "If ALL conditions match: +60 Credits",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m2_name": {
+  "table": "UI",
+  "text": "ZhongHua Shipbuilding (\"ZHS\")",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m2_desc": {
+  "table": "UI",
+  "text": "ZHS Plasma Cartidges have a more reasonable price point, but without compromising on quality.\n\nPossible Cartridge Condition: None or Reinforced\nPossible Color: Standard\nSeal: Always",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m2_bonus": {
+  "table": "UI",
+  "text": "If ALL conditions match: +120 Credits",
+  "maybe_built_from": []
+ },
+ "book_fuel_only_example": {
+  "table": "UI",
+  "text": "Correct Configuration",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m2_bonus": {
+  "table": "UI",
+  "text": "If ALL conditions match: +750 Credits",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m2_desc": {
+  "table": "UI",
+  "text": "A specialized R&D lab, IGN Plasma Cartridges are manufactured to the highest possible grade.\nPossible Cartridge Condition: None\nPossible Color:  High-Grade\nSeal: Always",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m2_name": {
+  "table": "UI",
+  "text": "Ignition Lab (\"IGN\")",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m1_bonus": {
+  "table": "UI",
+  "text": "If ALL conditions match: +120 Credits",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m1_desc": {
+  "table": "UI",
+  "text": "Funded by the Republic itself, RNR Plasma Cartridges are typically retrieved and recycled.\n\nPossible Cartridge Condition: Any, Except Cracks\nPossible Color: Standard\nSeal: Always",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m1_name": {
+  "table": "UI",
+  "text": "Republic Naval Requisition (\"RNR\")",
+  "maybe_built_from": []
+ },
+ "book_water_title": {
+  "table": "UI",
+  "text": "Water Trading Manual",
+  "maybe_built_from": []
+ },
+ "book_water_s1_title": {
+  "table": "UI",
+  "text": "1. Grading",
+  "maybe_built_from": []
+ },
+ "book_water_s1_body": {
+  "table": "UI",
+  "text": "The quality of water is determined by its purity:",
+  "maybe_built_from": []
+ },
+ "book_water_s1_pure_water": {
+  "table": "UI",
+  "text": "Pure Water (99.9%+)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_high_quality": {
+  "table": "UI",
+  "text": "High-Quality (99%-99.9%)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_basewater": {
+  "table": "UI",
+  "text": "Basewater (98%-99%)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_ghostwater": {
+  "table": "UI",
+  "text": "Ghostwater (96%-98%)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_rustwater": {
+  "table": "UI",
+  "text": "Rustwater (90%-96%)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_gutterflow": {
+  "table": "UI",
+  "text": "Gutterflow (90%-)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_safe_to_drink": {
+  "table": "UI",
+  "text": "Safe to drink",
+  "maybe_built_from": []
+ },
+ "book_water_s1_caution": {
+  "table": "UI",
+  "text": "Consume if necessary, prolonged use not advised",
+  "maybe_built_from": []
+ },
+ "book_water_s1_unsafe": {
+  "table": "UI",
+  "text": "Unsafe and risky for human consumption",
+  "maybe_built_from": []
+ },
+ "book_water_s1_toxic": {
+  "table": "UI",
+  "text": "Warning: Highly Toxic, Do Not Consume",
+  "maybe_built_from": []
+ },
+ "book_water_s2_title": {
+  "table": "UI",
+  "text": "2. Identification",
+  "maybe_built_from": []
+ },
+ "book_water_s2_body": {
+  "table": "UI",
+  "text": "Water sold on the station may not be labeled correctly, whether intentionally or not. Always verify water quality before purchase and consumption.",
+  "maybe_built_from": []
+ },
+ "book_water_s2_body2": {
+  "table": "UI",
+  "text": "A Water Testing Strip is a cheap and easy way to test the purity of water.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_title": {
+  "table": "UI",
+  "text": "3. Purification",
+  "maybe_built_from": []
+ },
+ "book_water_s3_body": {
+  "table": "UI",
+  "text": "Water on the station can contains multiple types of contaminants. Each method of purification is effective against only certain types of contaminants.\n\nIf repeated attempts do not improve the water's purity, your chosen purification method cannot remove the remaining contaminants in the water.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_body2": {
+  "table": "UI",
+  "text": "Water Purification Tablets reduce chemical contaminants first, then eliminate microbial contaminants with what remains. One tablet is enough for a large bottle of Rustwater; dirtier water may require several.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_body3": {
+  "table": "UI",
+  "text": "Water Filter: When installed inside a pitcher, it filters water as it is poured in.\nIt removes impurities, microplastics, and organic waste. Filters have limited durability.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_note": {
+  "table": "UI",
+  "text": "Using Purification Tablets and a Water Filter together should bring most water up to Basewater, or even High-Quality Water, depending on the initial purity. Heavily contaminated water may require several tablets.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_note2": {
+  "table": "UI",
+  "text": "To reach Pure Water, a dedicated Water Purifier with properly installed Modules is required.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_note3": {
+  "table": "UI",
+  "text": "Purifying Gutterflow using basic purification methods is not recommended, as it rapidly degrades Water Filter durability.",
+  "maybe_built_from": []
+ },
+ "book_water_s4_title": {
+  "table": "UI",
+  "text": "4. Types of Water",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body1": {
+  "table": "UI",
+  "text": "Hard to procure even for those living on the Upper Levels. Incredibly expensive and used primarily in sensitive environments like Hospitals and Laboratories. In Upper Levels societies, offering pure water to guests demonstrates high social status.",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body2": {
+  "table": "UI",
+  "text": "The standard on the Upper Levels. Safe for drinking, cooking, and most household uses, it is more accessible but still costly.",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body3": {
+  "table": "UI",
+  "text": "The standard for Lower Levels. Adequate for short-term use, but prolonged exposure can contribute to development of chronic disease.",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body4": {
+  "table": "UI",
+  "text": "Indistinguishable by eye from other higher quality water, yet unsafe to drink unfiltered. Ghostwater is most commonly used in farming and industry.\n<b>The sale of mislabeled Ghostwater is a common scam in the Lower Levels.</b>",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body5": {
+  "table": "UI",
+  "text": "Unsuitable for farming, and dangerous to drink.\n\t<b>Can be identified visually.</b>",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body6": {
+  "table": "UI",
+  "text": "Heavily contaminated and toxic. Seek immediate medical attention if consumed. \n\t<b>Can be visually identified.</b>",
+  "maybe_built_from": []
+ },
+ "book_water_s5_title": {
+  "table": "UI",
+  "text": "5. Common Water Trading Scams",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a1_title": {
+  "table": "UI",
+  "text": "Rustwater and Gutterflow",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a1_body": {
+  "table": "UI",
+  "text": "Rustwater and Gutterflow are harder to mislabel since they are visually distinguishable from other types of water by color.",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a2_title": {
+  "table": "UI",
+  "text": "Ghostwater",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a2_body": {
+  "table": "UI",
+  "text": "The sale of Ghostwater mislabeled as Basewater is a common scam in the Lower Levels. Selling large volume of mislabeled Ghostwater is a crime.",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a3_title": {
+  "table": "UI",
+  "text": "Customer Behaviour",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a3_body": {
+  "table": "UI",
+  "text": "Scavengers are typically too poor to carry a Water Testing Kit.\nSome Citizens of the Lower Levels and Scavengers will not buy Pure Water.\nTourists and Upper Level Citizens are often too oblivious to test the purity of the water they buy.\nCustomers requesting large amounts of water will typically carry a Water Testing Kit.",
+  "maybe_built_from": []
+ },
+ "book_farm_title": {
+  "table": "UI",
+  "text": "Hydroponic Farming Manual",
+  "maybe_built_from": []
+ },
+ "book_farm_s1_title": {
+  "table": "UI",
+  "text": "Quick Start Guide",
+  "maybe_built_from": []
+ },
+ "book_farm_s1_body": {
+  "table": "UI",
+  "text": "'1. Insert a filled water container with Ghostwater or Basewater.\n2. Add some Minerals to make sure there''s enough nutrient.\n3. Insert power source and seed.\n4. After a day or two, the farm should be ready for harvest.",
+  "maybe_built_from": []
+ },
+ "book_farm_s1_note": {
+  "table": "UI",
+  "text": "Add water and replace the energy cell as needed to ensure that hydroponic keep running!",
+  "maybe_built_from": []
+ },
+ "book_farm_s2_title": {
+  "table": "UI",
+  "text": "Tips for Novices Farmers",
+  "maybe_built_from": []
+ },
+ "book_farm_s2_body": {
+  "table": "UI",
+  "text": "Start learning hydroponic by farming Nutrifruit. It is genetically modified to be an easy to farm crop.\n\nMake sure to keep enough clean water and add a nutriment tablet to the water when the yield decrease.",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_title": {
+  "table": "UI",
+  "text": "Advanced Guide",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_water_title": {
+  "table": "UI",
+  "text": "Water Quality:",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_water_body": {
+  "table": "UI",
+  "text": "Certain contaminants can harm the plant's growth. Make sure to use water with a low concentration of contaminants, unless you farming a crop with particular needs. (NOTE: Minerals are NOT contaminants.)",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_nutrient_title": {
+  "table": "UI",
+  "text": "Nutrient:",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_nutrient_body": {
+  "table": "UI",
+  "text": "Plants require Minerals to grow. Too little or too much can have negative impact on the yield. Each plant has specific nutrient concentration tolerance. Usually, it's better to have too much Minerals than not enough.",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_analyser_title": {
+  "table": "UI",
+  "text": "Plant Anaylser:",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_analyser_body": {
+  "table": "UI",
+  "text": "Can be used on a seed to check its needs and their current health.",
+  "maybe_built_from": []
+ },
+ "book_chem_title": {
+  "table": "UI",
+  "text": "Chemistry 101 Guide",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_title": {
+  "table": "UI",
+  "text": "Tools and Machines",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s1_title": {
+  "table": "UI",
+  "text": "Chemical Supplies",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s1_body": {
+  "table": "UI",
+  "text": "Can be unpack to obtain various essential chemicals",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s2_title": {
+  "table": "UI",
+  "text": "Composition Spectrometer (Chem Scanner)",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s2_body": {
+  "table": "UI",
+  "text": "Use it on liquid container or chemical product to see their composition",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s3_title": {
+  "table": "UI",
+  "text": "Blender",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s3_body": {
+  "table": "UI",
+  "text": "Can be upgraded to improve extraction yield",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s4_title": {
+  "table": "UI",
+  "text": "Heating Plate",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s4_body": {
+  "table": "UI",
+  "text": "Can be upgraded to improve max temperature, temperature control and heating speed.",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s5_title": {
+  "table": "UI",
+  "text": "Evaporator",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s5_body": {
+  "table": "UI",
+  "text": "Work overnight to remove certain liquid such as water and alcohol. Use normal modules",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s6_title": {
+  "table": "UI",
+  "text": "Chem Finisher",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s6_body": {
+  "table": "UI",
+  "text": "Can be upgraded to reduce the amount of impurity introduced",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_module": {
+  "table": "UI",
+  "text": "Unlike other machines, most of the machine related to chemistry can only be upgraded with the special Chemical Equipment Module.",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_dream_dust": {
+  "table": "UI",
+  "text": "Dream Dust",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s1_body": {
+  "table": "UI",
+  "text": "- Attach a liquid container to the Blender\n- Add a few Dream Cap\n- Blend the ingredient to get Dream Cap Mush",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s2_body": {
+  "table": "UI",
+  "text": "- Take the container from the previous step\n- Insert it into the Heating Plate\n- Add solvent (Alcohol) equal to 3-6 time the volume of Dream Cap Mush\n- Heat the mixure to 40-60C to turn Dream Cap Mush into Dream Cap Extract",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s2_note": {
+  "table": "UI",
+  "text": "Do not overheat or Dream Cap will be destroyed",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s3_body": {
+  "table": "UI",
+  "text": "- (Optional) Filter the solution from the previous step with a Kotton Fabric as filter to remove large sized contaminants\n- Insert the container into the Evaporator\n- Make sure the Evaporator is powered with a Energy Cell\n- Wait until the next day for the Evaporator to work",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s4_title": {
+  "table": "UI",
+  "text": "Step 4: Packaging",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s4_body": {
+  "table": "UI",
+  "text": "- (REQUIRED) When all the water and alcohol has evaporated, insert the container into the Chem Finisher\n- Select Dream Dust as the recipe\n- Press the \"Output\" button \n- (Optional) Check purity with a Composition Spectrometer",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_caffeine_pill_recipe": {
+  "table": "UI",
+  "text": "Caffeine Pill Recipe",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s1_title": {
+  "table": "UI",
+  "text": "Step 1: Ingredient Prep",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s1_body": {
+  "table": "UI",
+  "text": "- Attach a liquid container to the Blender\n- Add a few Coffee Beans\n- Blend the ingredient to get Coffee Beans Mush",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s2_title": {
+  "table": "UI",
+  "text": "Step 2: Extraction",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s2_body": {
+  "table": "UI",
+  "text": "- Take the container from the previous step\n- Insert it into the Heating Plate\n- (Optional but Recommanded) Add solvent (Alcohol) equal to 3-6 time the volume of Coffee Bean Mush\n- Heat the mixure to a minimum of 80C",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s2_note": {
+  "table": "UI",
+  "text": "Note: Caffeine is very heat resistance",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s3_title": {
+  "table": "UI",
+  "text": "Step 3: Evaporation",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s3_body": {
+  "table": "UI",
+  "text": "- (Optional) Filter the solution from the previous step with a Kotton Fabric as filter to remove large sized contaminants\n- Insert the container into the Evaporator\n- Make sure the Evaporator is powered with a Energy Cell\n- Wait until the next day for the Evaporator to work",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s4_title": {
+  "table": "UI",
+  "text": "Step 4: Packaging",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s4_body": {
+  "table": "UI",
+  "text": "- (REQUIRED) When all the water and alcohol has evaporated, insert the container into the Chem Finisher\n- Select Caffeine Pill as the recipe\n- Press the \"Output\" button \n- (Optional) Check purity with a Composition Spectrometer",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_fanta_information": {
+  "table": "UI",
+  "text": "Phanta Pill Information",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_body": {
+  "table": "UI",
+  "text": "The precise recipe for Phanta remains a closely guarded secret. What follows is a compilation of publicly available information.",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s1_title": {
+  "table": "UI",
+  "text": "Base Ingredient",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s1_body": {
+  "table": "UI",
+  "text": "N-Methylol Base is a known precursor of Phanta. It can be found in Restricted Chemical Supplies",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s2_title": {
+  "table": "UI",
+  "text": "Preparation",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s2_body": {
+  "table": "UI",
+  "text": "The N-Methylol Base will contain a Stabilizing Agent to protect the chemical from degradation but also prevent chemical reaction. It must be somehow removed.",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s3_title": {
+  "table": "UI",
+  "text": "Reaction",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s3_body": {
+  "table": "UI",
+  "text": "We now need a substance that can donate electrons to the N-Methylol Base to transform it chemically into Phanta. \n\nWe suspect this process must also be done at high temperature requiring an upgraded Heating Plate",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s4_title": {
+  "table": "UI",
+  "text": "Packaging",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s4_body": {
+  "table": "UI",
+  "text": "After that, filter the solution and package it as usual.",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s3_note": {
+  "table": "UI",
+  "text": "WARNING: PHANTA WILL DEGRADE ABOVE 130°C",
+  "maybe_built_from": []
+ },
+ "book_chem_p5_chem_purity_rating": {
+  "table": "UI",
+  "text": "Chemistry Purity Rating",
+  "maybe_built_from": []
+ },
+ "book_chem_p5_body": {
+  "table": "UI",
+  "text": "Some customers will carry Chem Scanner to verify the labeled purity of your products.",
+  "maybe_built_from": []
+ },
+ "book_chem_pure_grade": {
+  "table": "UI",
+  "text": "Pure Grade (99%+)",
+  "maybe_built_from": []
+ },
+ "book_chem_pharma_grade": {
+  "table": "UI",
+  "text": "Pharma Grade (90-99%)",
+  "maybe_built_from": []
+ },
+ "book_chem_near_pharma_grade": {
+  "table": "UI",
+  "text": "Near Pharma (80-90%)",
+  "maybe_built_from": []
+ },
+ "book_chem_street_standard_grade": {
+  "table": "UI",
+  "text": "Street Standard (60-80%)",
+  "maybe_built_from": []
+ },
+ "book_chem_cut_product_grade": {
+  "table": "UI",
+  "text": "Cut Product (45-60%)",
+  "maybe_built_from": []
+ },
+ "book_chem_junk_grade": {
+  "table": "UI",
+  "text": "Junk Grade (30-45%)",
+  "maybe_built_from": []
+ },
+ "book_chem_starch_grade": {
+  "table": "UI",
+  "text": "Starch Grade (30%-)",
+  "maybe_built_from": []
+ },
+ "book_chem_val1": {
+  "table": "UI",
+  "text": "+135% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_chem_val2": {
+  "table": "UI",
+  "text": "+85% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_chem_val3": {
+  "table": "UI",
+  "text": "+40% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_chem_val4": {
+  "table": "UI",
+  "text": "No Price Modifier",
+  "maybe_built_from": []
+ },
+ "book_chem_val5": {
+  "table": "UI",
+  "text": "-45% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_chem_val6": {
+  "table": "UI",
+  "text": "-75% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_chem_val7": {
+  "table": "UI",
+  "text": "-95% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_ingot_title": {
+  "table": "UI",
+  "text": "Metallurgy Manual",
+  "maybe_built_from": []
+ },
+ "book_ingot_s1_title": {
+  "table": "UI",
+  "text": "1. Introduction",
+  "maybe_built_from": []
+ },
+ "book_ingot_s1_body": {
+  "table": "UI",
+  "text": "Metal Ingots can be smelted inside a Furnace using TWO pieces of either Scrap Metal or Metal Ore. They can have various levels of purity. The higher the purity, the more valuable the ingot will be.",
+  "maybe_built_from": []
+ },
+ "book_ingot_s2_title": {
+  "table": "UI",
+  "text": "2. Smelting",
+  "maybe_built_from": []
+ },
+ "book_ingot_s2_body": {
+  "table": "UI",
+  "text": "The purity of an ingot is determined by the materials used to smelt it. Using Scrap Metals will yield a lower purity, while using Metal Ores will yield a higher one. Additionally, Flux Agent can be added to the furnace to improve the purity, Any added agent will be consumed.\n\nThe Furnace requires a source of power. The smelting process happens overnight.",
+  "maybe_built_from": []
+ },
+ "calendar_calendar": {
+  "table": "UI",
+  "text": "Calendar",
+  "maybe_built_from": []
+ },
+ "calendar_nightly_report": {
+  "table": "UI",
+  "text": "Nightly Report",
+  "maybe_built_from": []
+ },
+ "calendar_status": {
+  "table": "UI",
+  "text": "Status",
+  "maybe_built_from": []
+ },
+ "calendar_display_case_hint": {
+  "table": "UI",
+  "text": "Remember to stock the Display Case!",
+  "maybe_built_from": []
+ },
+ "attrac_100": {
+  "table": "UI",
+  "text": "100: Merchandise inside the Display Case will not attract any additional customers",
+  "maybe_built_from": []
+ },
+ "attrac_200": {
+  "table": "UI",
+  "text": "200: One random normal customer will visit the Store each day",
+  "maybe_built_from": []
+ },
+ "attrac_250": {
+  "table": "UI",
+  "text": "250: +2 customers will visit the Store each day",
+  "maybe_built_from": []
+ },
+ "attrac_300": {
+  "table": "UI",
+  "text": "300: All customers will have 10% more Credits to spend",
+  "maybe_built_from": []
+ },
+ "attrac_400": {
+  "table": "UI",
+  "text": "400: Poor customers have lower chance of visiting the Store",
+  "maybe_built_from": []
+ },
+ "attrac_450": {
+  "table": "UI",
+  "text": "450: All customers will have 25% more Credits to spend",
+  "maybe_built_from": []
+ },
+ "attrac_500": {
+  "table": "UI",
+  "text": "500: +3 customers will visit the Store each day",
+  "maybe_built_from": []
+ },
+ "attrac_650": {
+  "table": "UI",
+  "text": "650: Poor customers have an even lower chance of visiting the Store",
+  "maybe_built_from": []
+ },
+ "attrac_750": {
+  "table": "UI",
+  "text": "750: All customers will have 75% more Credits to spend",
+  "maybe_built_from": []
+ },
+ "attrac_900": {
+  "table": "UI",
+  "text": "900: All customers will have 100% more Credits to spend",
+  "maybe_built_from": []
+ },
+ "calendar_active_perk": {
+  "table": "UI",
+  "text": "Active Perks",
+  "maybe_built_from": []
+ },
+ "phone_end": {
+  "table": "UI",
+  "text": "End",
+  "maybe_built_from": []
+ },
+ "ui_cant_afford": {
+  "table": "UI",
+  "text": "You can't afford all of the selected services...",
+  "maybe_built_from": []
+ },
+ "ui_endofday_total_cost": {
+  "table": "UI",
+  "text": "Total Cost    {0} Credits",
+  "maybe_built_from": []
+ },
+ "ui_endofday_current_balance": {
+  "table": "UI",
+  "text": "Current Balance    {0} Credits",
+  "maybe_built_from": []
+ },
+ "ui_endofday_new_balance": {
+  "table": "UI",
+  "text": "New Balance    {0} Credits",
+  "maybe_built_from": []
+ },
+ "ui_attractiveness_meter_base": {
+  "table": "UI",
+  "text": "Base",
+  "maybe_built_from": []
+ },
+ "ui_attractiveness_meter_trash": {
+  "table": "UI",
+  "text": "Trash",
+  "maybe_built_from": []
+ },
+ "ui_attractiveness_meter_projector": {
+  "table": "UI",
+  "text": "Projector",
+  "maybe_built_from": []
+ },
+ "ui_inspection_panel_confront_button": {
+  "table": "UI",
+  "text": "Confront",
+  "maybe_built_from": []
+ },
+ "ui_newspaper_title": {
+  "table": "UI",
+  "text": "The Bottomline Bulletin",
+  "maybe_built_from": []
+ },
+ "ui_newspaper_subtitle": {
+  "table": "UI",
+  "text": "Daily News",
+  "maybe_built_from": []
+ },
+ "ui_close_shutter_confirmation": {
+  "table": "UI",
+  "text": "Are you sure you want to close the Store?\n\nThere are still people waiting in line.",
+  "maybe_built_from": []
+ },
+ "ui_request_turn_item": {
+  "table": "UI",
+  "text": "Turn In Item",
+  "maybe_built_from": []
+ },
+ "ui_appraisal_send_estimate": {
+  "table": "UI",
+  "text": "Send Estimate",
+  "maybe_built_from": []
+ },
+ "ui_appraisal_customer_estimate": {
+  "table": "UI",
+  "text": "Customer's Estimate",
+  "maybe_built_from": []
+ },
+ "ui_nego_title_appraisal": {
+  "table": "UI",
+  "text": "Appraisal Service",
+  "maybe_built_from": []
+ },
+ "ui_nego_buying_items": {
+  "table": "UI",
+  "text": "Buying {0} Items",
+  "maybe_built_from": []
+ },
+ "ui_nego_selling_items": {
+  "table": "UI",
+  "text": "Selling {0} Items",
+  "maybe_built_from": []
+ },
+ "ui_nego_info_offer": {
+  "table": "UI",
+  "text": "Information Offer",
+  "maybe_built_from": []
+ },
+ "lottery_prizes_title": {
+  "table": "UI",
+  "text": "Lottery Prizes",
+  "maybe_built_from": []
+ },
+ "book_water_s1_warning": {
+  "table": "UI",
+  "text": "WARNING: IF CONSUMED GUTTERFLOW, SEEK IMMEDIATE MEDICAL ATTENTION",
+  "maybe_built_from": []
+ },
+ "commissary_lottery_redeem_notice": {
+  "table": "UI",
+  "text": "Redeem all winning lottery tickets into Credits (Not Commissary Tokens)",
+  "maybe_built_from": []
+ },
+ "ui_clientele": {
+  "table": "UI",
+  "text": "Clientele",
+  "maybe_built_from": []
+ },
+ "ui_clientele_buyers_merch": {
+  "table": "UI",
+  "text": "Expected Buyers From Displayed Merchandise",
+  "maybe_built_from": []
+ },
+ "ui_clientele_tooltip": {
+  "table": "UI",
+  "text": "Customers will appear depending on the conditions of the Store when the Shutter Door is opened.",
+  "maybe_built_from": []
+ },
+ "ui_clientele_normal_tooltip": {
+  "table": "UI",
+  "text": "The condition of your store will attract a number of random customers each day. Certain special items stored in the Display Case can influence which customers appear. Each of the following customers can appear once per day. Remaining slots will be filled with random customers.",
+  "maybe_built_from": []
+ },
+ "ui_clientele_merch_tooltip": {
+  "table": "UI",
+  "text": "Most merchandise stored inside the Display Case will attract buyers. Buyers' budget depend on the value of the stored merchandise.",
+  "maybe_built_from": []
+ },
+ "ui_info_variety": {
+  "table": "UI",
+  "text": "This customer will only buy each item once, but will pay a premium.",
+  "maybe_built_from": []
+ },
+ "ui_info_no_contraband": {
+  "table": "UI",
+  "text": "This customer will not accept any contraband.",
+  "maybe_built_from": []
+ },
+ "ui_info_security_team": {
+  "table": "UI",
+  "text": "This customer is part of Station Security. Showing them Stolen or Contraband items may have consequences.",
+  "maybe_built_from": []
+ },
+ "ui_info_store_attractiveness": {
+  "table": "UI",
+  "text": "Store Attractiveness is affected by how recently the Janitor cleaned the storefront, and by certain machines and upgrades.",
+  "maybe_built_from": []
+ },
+ "ui_info_reputation": {
+  "table": "UI",
+  "text": "Reputation with a faction can be gained by trading with their members. Trading with special customers grants increased reputation. Reporting a customer to Security may result in lost reputation with their faction.",
+  "maybe_built_from": []
+ },
+ "ui_info_labeler": {
+  "table": "UI",
+  "text": "Certain items can have labels, which can be edited. Use this to label items honestly, or to mislabel them and sell at a higher price. Beware: different customers are better or worse at spotting mislabeled goods. If you are caught selling an item worth less than its label, your reputation may take a hit.",
+  "maybe_built_from": []
+ },
+ "ui_info_inspection_genuine_claim": {
+  "table": "UI",
+  "text": "The customer claims this item is genuine and in working condition. Use this panel to confront them if you find any sign that it's counterfeit or broken. One issue is enough. If you are wrong, your reputation may take a hit.",
+  "maybe_built_from": []
+ },
+ "ui_info_inspection_counterfeit_claim": {
+  "table": "UI",
+  "text": "The customer is selling this item and claims it's counterfeit or broken. If you believe they're wrong, use this panel to say so. They will raise their asking price accordingly and grant you reputation.",
+  "maybe_built_from": []
+ },
+ "book_fuel_p7_example1": {
+  "table": "UI",
+  "text": "Base Value: +300\nCracks: -150\nReinforced: +60\nNo Manufacturer Bonus (Can't have cracks): +0 \n----------------------\n<b>Total: 210</b>",
+  "maybe_built_from": []
+ },
+ "book_fuel_p7_example2": {
+  "table": "UI",
+  "text": "Base Value: +300\nHeavy Wears: -90\nExposed Screws: -30\nLow Grade Color: -150\n------------------\nSubtotal: 30\n------------------\nThis item cannot go below 90\n<b>Final Value: 90</b>",
+  "maybe_built_from": []
+ },
+ "book_fuel_appraisal_example_title": {
+  "table": "UI",
+  "text": "Appraisal Example",
+  "maybe_built_from": []
+ },
+ "ui_dialog_window_title": {
+  "table": "UI",
+  "text": "Dialogue and Typewriter Settings",
+  "maybe_built_from": []
+ },
+ "ui_dialog_window_note": {
+  "table": "UI",
+  "text": "These settings can be changed at any time in the Game Options menu.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_offer_discount_info": {
+  "table": "UI",
+  "text": "Offer a discount when selling to this customer. Grants additional reputation on each item sold and increases customer budget.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_demand_discount_info": {
+  "table": "UI",
+  "text": "Demand a discount when buying from this customer. Costs reputation on each item bought if successful. Success depends on your faction reputation.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_add_markup_info": {
+  "table": "UI",
+  "text": "Charge extra when selling to this customer, reducing their total budget and costing additional reputation on each item sold. Success depends on your current reputation.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_offer_markup_info": {
+  "table": "UI",
+  "text": "Pay extra when buying from this customer. Grants additional reputation on each item purchased.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_blackmail_info": {
+  "table": "UI",
+  "text": "Threaten to report this customer to Security unless they offer better prices when trading. Always fails on non-criminal customers.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_threathen_info": {
+  "table": "UI",
+  "text": "Accuse this customer of being an Aug and threaten to shoot them, demanding better prices when trading. If attempted on a normal customer, the accusation will always fail and you will lose reputation.",
+  "maybe_built_from": []
+ },
+ "book_hand_intro": {
+  "table": "UI",
+  "text": "Cybernetic hands vary widely on the Station, and so do their prices. This guide will help determine the fair market value of any cybernetic hand.",
+  "maybe_built_from": []
+ },
+ "book_hand_p1_s1_title": {
+  "table": "UI",
+  "text": "Base Value and Minimum Value",
+  "maybe_built_from": []
+ },
+ "book_hand_p1_s1_body": {
+  "table": "UI",
+  "text": "All cybernetic hands start at 100 Credits. Various conditions can affect their price. Regardless of condition, the minimum value of a cybernetic hand is 50 Credits.",
+  "maybe_built_from": []
+ },
+ "book_hand_p1_s2_title": {
+  "table": "UI",
+  "text": "1. Material",
+  "maybe_built_from": []
+ },
+ "book_hand_aluminum": {
+  "table": "UI",
+  "text": "Aluminum Alloy",
+  "maybe_built_from": []
+ },
+ "book_hand_carbon": {
+  "table": "UI",
+  "text": "Carbon Composite",
+  "maybe_built_from": []
+ },
+ "book_hand_gold": {
+  "table": "UI",
+  "text": "Gold Plated",
+  "maybe_built_from": []
+ },
+ "book_hand_p2_s1_title": {
+  "table": "UI",
+  "text": "2. Condition",
+  "maybe_built_from": []
+ },
+ "book_hand_condition_none": {
+  "table": "UI",
+  "text": "None",
+  "maybe_built_from": []
+ },
+ "book_hand_condition_wears": {
+  "table": "UI",
+  "text": "Wears",
+  "maybe_built_from": []
+ },
+ "book_hand_condition_damages": {
+  "table": "UI",
+  "text": "Damages",
+  "maybe_built_from": []
+ },
+ "book_hand_p2_s2_title": {
+  "table": "UI",
+  "text": "3. Control Interface",
+  "maybe_built_from": []
+ },
+ "book_hand_control_neural_interface": {
+  "table": "UI",
+  "text": "Neural Interface",
+  "maybe_built_from": []
+ },
+ "book_hand_control_unspecified": {
+  "table": "UI",
+  "text": "Unspecified",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s1_title": {
+  "table": "UI",
+  "text": "4. Add-ons",
+  "maybe_built_from": []
+ },
+ "book_hand_addon_armored": {
+  "table": "UI",
+  "text": "Armored",
+  "maybe_built_from": []
+ },
+ "book_hand_addon_blade": {
+  "table": "UI",
+  "text": "Blade",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s1_body": {
+  "table": "UI",
+  "text": "Add-ons bonus are independent and each can apply.",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s2_title": {
+  "table": "UI",
+  "text": "5. Set Bonus",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s2_body": {
+  "table": "UI",
+  "text": "Specific combinations of cybernetic hands can increase their value.",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s2_body2": {
+  "table": "UI",
+  "text": "Tactical:\n- Carbon Composite\n- EMG+ or Neural Interface\n- No wear or damage\n- Armored and blade",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s2_body3": {
+  "table": "UI",
+  "text": "Deluxe:\n- Gold Plated\n- Neural Interface\n- No wear or damage\n- With or without any add-ons",
+  "maybe_built_from": []
+ },
+ "book_hand_examples": {
+  "table": "UI",
+  "text": "Examples",
+  "maybe_built_from": []
+ },
+ "book_hand_example1": {
+  "table": "UI",
+  "text": "Base: +100\nCarbon Composite: +50\nWear: -35\nEMG+: +45\nTotal: 160 Credits",
+  "maybe_built_from": []
+ },
+ "book_hand_example2": {
+  "table": "UI",
+  "text": "Base: +100\nDamage: -85\nUnspecified Control: -60\nSubtotal: -45 Credits\nCANNOT GO BELOW 50 CREDITS\nTotal: 50 Credits\n",
+  "maybe_built_from": []
+ },
+ "book_wine_p2_body1": {
+  "table": "UI",
+  "text": "Water quality affects wine quality. Use High Quality Water or Basewater. Pure Water lacks the minerals needed for fermentation. Lower grades of water will greatly reduce wine quality.",
+  "maybe_built_from": []
+ },
+ "book_wine_p2_body2": {
+  "table": "UI",
+  "text": "Standard yeast is optional but highly recommended. Without it, wild yeast from the air will ferment the wine instead, producing inconsistent results. Standard yeast also greatly accelerates fermentation.",
+  "maybe_built_from": []
+ },
+ "book_wine_p2_body3": {
+  "table": "UI",
+  "text": "Berry quality is the most important factor. One handful is enough for lower-grade wine. Two handfuls are necessary for high-grade wine. Avoid overripe, underripe, or moldy berries. The best berries for winemaking are usually smaller than normal.",
+  "maybe_built_from": []
+ },
+ "book_wine_p3_title": {
+  "table": "UI",
+  "text": "BloomBerry Identification",
+  "maybe_built_from": []
+ },
+ "book_wine_p3_s1": {
+  "table": "UI",
+  "text": "Normal",
+  "maybe_built_from": []
+ },
+ "book_wine_p3_s2": {
+  "table": "UI",
+  "text": "Underripe",
+  "maybe_built_from": []
+ },
+ "book_wine_p3_s3": {
+  "table": "UI",
+  "text": "Moldy",
+  "maybe_built_from": []
+ },
+ "book_wine_p3_s4": {
+  "table": "UI",
+  "text": "Small",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_section1_title": {
+  "table": "UI",
+  "text": "Visual Features",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_section2_title": {
+  "table": "UI",
+  "text": "Non-Visual Features",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_s1_b1": {
+  "table": "UI",
+  "text": "Unusual Pupils",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_s1_b2": {
+  "table": "UI",
+  "text": "Uncanny Expression",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_s1_b3": {
+  "table": "UI",
+  "text": "Visible Aug Chip",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_s2_b1": {
+  "table": "UI",
+  "text": "-Unnatural Stillness\n-Twitching\n-Outfit Not Matching Their Faction\n-Robotic vocabulary\n-Overly Formal Phrasing",
+  "maybe_built_from": []
+ },
+ "ui_exchange_perm": {
+  "table": "UI",
+  "text": "Permanent Exchanges",
+  "maybe_built_from": []
+ },
+ "ui_exchange_promo": {
+  "table": "UI",
+  "text": "Promotional Exchanges (Reset On Monday)",
+  "maybe_built_from": []
+ },
+ "ui_exchange_signature1": {
+  "table": "UI",
+  "text": "Chairman S.",
+  "maybe_built_from": []
+ },
+ "ui_exchange_signature2": {
+  "table": "UI",
+  "text": "Underground Exchange Authority",
+  "maybe_built_from": []
+ },
+ "ui_exchange_per_night": {
+  "table": "UI",
+  "text": "Once Per Night",
+  "maybe_built_from": []
+ },
+ "ui_exchange_any_condition": {
+  "table": "UI",
+  "text": "Any Condition",
+  "maybe_built_from": []
+ },
+ "ui_exchange_new": {
+  "table": "UI",
+  "text": "New",
+  "maybe_built_from": []
+ },
+ "ui_exchange_random": {
+  "table": "UI",
+  "text": "Random",
+  "maybe_built_from": []
+ },
+ "ui_exchange_random_legal_goods": {
+  "table": "UI",
+  "text": "Random Legal Goods",
+  "maybe_built_from": []
+ },
+ "ui_exchange_bm_rep": {
+  "table": "UI",
+  "text": "Blackmarket Reputation",
+  "maybe_built_from": []
+ },
+ "ui_thanks_demo": {
+  "table": "UI",
+  "text": "Thanks For Playing The Demo!",
+  "maybe_built_from": []
+ },
+ "ui_thanks_demo_content": {
+  "table": "UI",
+  "text": "Please consider wishlisting the game on Steam and filling out the feedback survey. It only takes 5 minutes and would help us make the game better!",
+  "maybe_built_from": []
+ },
+ "ui_mode_shoot": {
+  "table": "UI",
+  "text": "Shoot",
+  "maybe_built_from": []
+ },
+ "ui_mode_holster": {
+  "table": "UI",
+  "text": "Holster",
+  "maybe_built_from": []
+ },
+ "ui_mode_zoom": {
+  "table": "UI",
+  "text": "Zoom",
+  "maybe_built_from": []
+ },
+ "ui_mode_exit": {
+  "table": "UI",
+  "text": "Exit",
+  "maybe_built_from": []
+ },
+ "lottery_match2": {
+  "table": "UI",
+  "text": "2/6 Matches",
+  "maybe_built_from": []
+ },
+ "ui_wild_favor": {
+  "table": "UI",
+  "text": "Gaining Reputation with the Lower Levels or using nightly services unlocked through Joe Wild increases Wild Favor, which is spent first on Wild's upgrades.",
+  "maybe_built_from": []
+ },
+ "ui_quick_dial": {
+  "table": "UI",
+  "text": "Quick Dial",
+  "maybe_built_from": []
+ },
+ "network_ui_tab_Advanced": {
+  "table": "UI",
+  "text": "Advanced",
+  "maybe_built_from": [
+   "network_ui_tab_"
+  ]
+ }
+}

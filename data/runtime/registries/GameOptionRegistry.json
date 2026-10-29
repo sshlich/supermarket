@@ -1,0 +1,12 @@
+{
+  "SECTION_GAMEPLAY": "gameplay",
+  "SECTION_AUDIO": "audio",
+  "SECTION_DISPLAY": "display",
+  "SECTION_DIALOGUE": "dialogue",
+  "SECTION_KEYBIND": "keybind",
+  "OPTION_RESOLUTION": "resolution",
+  "OPTION_FULLSCREEN": "fullscreen",
+  "Sections": [],
+  "vanillaRegistered": false,
+  "monitorIs16by9": true
+}

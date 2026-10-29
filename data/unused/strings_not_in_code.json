@@ -1,0 +1,2987 @@
+{
+ "name_security_inspector_corpo": {
+  "table": "ClientName",
+  "text": "Corporate Security Inspector",
+  "maybe_built_from": []
+ },
+ "location_dumping_grounds": {
+  "table": "ClientName",
+  "text": "Dumping Grounds",
+  "maybe_built_from": []
+ },
+ "sec_shoot_bad_calling": {
+  "table": "Dialogue",
+  "text": "I am calling this in!",
+  "maybe_built_from": []
+ },
+ "sec_shoot_bad_radio": {
+  "table": "Dialogue",
+  "text": "<i>*Radio Chatters*</i>",
+  "maybe_built_from": []
+ },
+ "sec_shoot_bad_grace_0": {
+  "table": "Dialogue",
+  "text": "Alright, looks like you got friends in high places.",
+  "maybe_built_from": []
+ },
+ "sec_shoot_bad_grace_1": {
+  "table": "Dialogue",
+  "text": "We will let it slide for this time.",
+  "maybe_built_from": []
+ },
+ "sec_shoot_bad_grace_2": {
+  "table": "Dialogue",
+  "text": "Remember, that gun is only for shooting Augs.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t1_1": {
+  "table": "Dialogue",
+  "text": "Sure, that works for me.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t1_2": {
+  "table": "Dialogue",
+  "text": "No problem, the price is fine.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t2_1": {
+  "table": "Dialogue",
+  "text": "Acceptable. The cost is not important.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t2_2": {
+  "table": "Dialogue",
+  "text": "That is fine. Funds are not a concern.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t3_1": {
+  "table": "Dialogue",
+  "text": "Price is irrelevant to the objective. Proceeding.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t3_2": {
+  "table": "Dialogue",
+  "text": "Cost parameters are not a limiting constraint. Confirmed.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t4_1": {
+  "table": "Dialogue",
+  "text": "Resource acquisition takes priority over price. This unit accepts.",
+  "maybe_built_from": []
+ },
+ "dialog_bargain_aug_accept_t4_2": {
+  "table": "Dialogue",
+  "text": "Monetary value is meaningless. The transaction will complete.",
+  "maybe_built_from": []
+ },
+ "telephone": {
+  "table": "Hint",
+  "text": "Telephone",
+  "maybe_built_from": []
+ },
+ "telephone_hover": {
+  "table": "Hint",
+  "text": "Call your contacts using the phone",
+  "maybe_built_from": []
+ },
+ "display_case": {
+  "table": "Hint",
+  "text": "Display Case",
+  "maybe_built_from": []
+ },
+ "display_case_hover": {
+  "table": "Hint",
+  "text": "Place items here to attract interested customers",
+  "maybe_built_from": []
+ },
+ "customer_counter_hover": {
+  "table": "Hint",
+  "text": "Shows the number of customers left in the line for the day",
+  "maybe_built_from": []
+ },
+ "customer_counter": {
+  "table": "Hint",
+  "text": "Customers Remaining",
+  "maybe_built_from": []
+ },
+ "negotiation_counter": {
+  "table": "Hint",
+  "text": "Negotiation Counter",
+  "maybe_built_from": []
+ },
+ "negotiation_counter_hover": {
+  "table": "Hint",
+  "text": "Place the item you want to buy or sell here and open the Negotiation Interface",
+  "maybe_built_from": []
+ },
+ "o_key": {
+  "table": "Hint",
+  "text": "Press O Letter Key to Hide/Show Hint Overlay",
+  "maybe_built_from": []
+ },
+ "start_day_hover": {
+  "table": "Hint",
+  "text": "You will not be able to end a day if there are important people still in line",
+  "maybe_built_from": []
+ },
+ "start_day": {
+  "table": "Hint",
+  "text": "Start/End Day",
+  "maybe_built_from": []
+ },
+ "call_customer_hover": {
+  "table": "Hint",
+  "text": "Call next customer forward or dismiss the current customer",
+  "maybe_built_from": []
+ },
+ "call_customer": {
+  "table": "Hint",
+  "text": "Call next customer",
+  "maybe_built_from": []
+ },
+ "negociation_interface_hover": {
+  "table": "Hint",
+  "text": "Items placed on the Negotiation Counter can be sold/bought via the Negotiation Interface",
+  "maybe_built_from": []
+ },
+ "negociation_interface": {
+  "table": "Hint",
+  "text": "Negotiation Interface",
+  "maybe_built_from": []
+ },
+ "recorder_hover": {
+  "table": "Hint",
+  "text": "Review past dialogue",
+  "maybe_built_from": []
+ },
+ "recorder": {
+  "table": "Hint",
+  "text": "Conversation Recorder",
+  "maybe_built_from": []
+ },
+ "sleeping_bag": {
+  "table": "Hint",
+  "text": "Sleeping Bag",
+  "maybe_built_from": []
+ },
+ "sleeping_bag_hover": {
+  "table": "Hint",
+  "text": "Sleep to End Day",
+  "maybe_built_from": []
+ },
+ "autosave": {
+  "table": "Hint",
+  "text": "The Game will AUTOSAVE after sleeping.",
+  "maybe_built_from": []
+ },
+ "close_overlay": {
+  "table": "Hint",
+  "text": "Close Overlay",
+  "maybe_built_from": []
+ },
+ "shortcuts": {
+  "table": "Hint",
+  "text": "Keyboard Shortcuts",
+  "maybe_built_from": []
+ },
+ "transfer_inv": {
+  "table": "Hint",
+  "text": "Quick Transfer to Inventory",
+  "maybe_built_from": []
+ },
+ "transfer_display": {
+  "table": "Hint",
+  "text": "Quick Transfer to Display Case",
+  "maybe_built_from": []
+ },
+ "transfer_trash": {
+  "table": "Hint",
+  "text": "Quick Transfer to Counter",
+  "maybe_built_from": []
+ },
+ "rotate_counter": {
+  "table": "Hint",
+  "text": "Rotate Item (Left)",
+  "maybe_built_from": []
+ },
+ "rotate_clock": {
+  "table": "Hint",
+  "text": "Rotate Item (Right)",
+  "maybe_built_from": []
+ },
+ "close_ui": {
+  "table": "Hint",
+  "text": "Close UI/ Open Main Menu",
+  "maybe_built_from": []
+ },
+ "skip_dialogue": {
+  "table": "Hint",
+  "text": "Skip Dialogue",
+  "maybe_built_from": []
+ },
+ "flip": {
+  "table": "Hint",
+  "text": "Flip Item",
+  "maybe_built_from": []
+ },
+ "click": {
+  "table": "Hint",
+  "text": "Click",
+  "maybe_built_from": []
+ },
+ "dragging_item": {
+  "table": "Hint",
+  "text": "Dragging Item",
+  "maybe_built_from": []
+ },
+ "reputation_interface": {
+  "table": "Hint",
+  "text": "Reputation Interface",
+  "maybe_built_from": []
+ },
+ "reputation_interface_hover": {
+  "table": "Hint",
+  "text": "Check your reputation with the factions",
+  "maybe_built_from": []
+ },
+ "ui_open_clientele_interface": {
+  "table": "UI",
+  "text": "Open the Clientele Interface",
+  "maybe_built_from": []
+ },
+ "vending_fountain_tooltip": {
+  "table": "Interactable",
+  "text": "Water Vending Machine",
+  "maybe_built_from": []
+ },
+ "vending_machine_tooltip": {
+  "table": "Interactable",
+  "text": "Vending Machine",
+  "maybe_built_from": []
+ },
+ "door_agoraphobia": {
+  "table": "Interactable",
+  "text": "You can't leave the store due to your agoraphobia!",
+  "maybe_built_from": []
+ },
+ "item_sign_water_desc": {
+  "table": "Item",
+  "text": "A neon sign that, when placed in the Display Case, will attract customers willing to sell Water.",
+  "maybe_built_from": []
+ },
+ "new_game": {
+  "table": "MainMenu",
+  "text": "New Game",
+  "maybe_built_from": []
+ },
+ "option": {
+  "table": "MainMenu",
+  "text": "Options",
+  "maybe_built_from": []
+ },
+ "exit_game": {
+  "table": "MainMenu",
+  "text": "Exit Game",
+  "maybe_built_from": []
+ },
+ "join_discord": {
+  "table": "MainMenu",
+  "text": "Join Our Discord!",
+  "maybe_built_from": []
+ },
+ "welcome_body": {
+  "table": "MainMenu",
+  "text": "Community feedback is invaluable to us. Join our Discord, become part of our community, and help shape the development of Probably Stolen.",
+  "maybe_built_from": []
+ },
+ "new_welcome": {
+  "table": "MainMenu",
+  "text": "Welcome",
+  "maybe_built_from": []
+ },
+ "new_hard_mode": {
+  "table": "MainMenu",
+  "text": "Hard Mode",
+  "maybe_built_from": []
+ },
+ "loading": {
+  "table": "MainMenu",
+  "text": "Loading...",
+  "maybe_built_from": []
+ },
+ "main_hard_mode_tooltip": {
+  "table": "MainMenu",
+  "text": "-No Retail Markup When Selling\n-Start Without Rent Grace\n-Certain Services Cost More\n-Rent Increases By Twice As Much",
+  "maybe_built_from": []
+ },
+ "main_wishlist_now": {
+  "table": "MainMenu",
+  "text": "Wishlist Now",
+  "maybe_built_from": []
+ },
+ "main_provide_feedback": {
+  "table": "MainMenu",
+  "text": "Provide Feedback",
+  "maybe_built_from": []
+ },
+ "main_menu_data_consent": {
+  "table": "MainMenu",
+  "text": "Help us improve the game by sharing anonymous gameplay data",
+  "maybe_built_from": []
+ },
+ "general_optional": {
+  "table": "MainMenu",
+  "text": "Optional",
+  "maybe_built_from": []
+ },
+ "general_or": {
+  "table": "MainMenu",
+  "text": "Or",
+  "maybe_built_from": []
+ },
+ "mods": {
+  "table": "MainMenu",
+  "text": "Mods",
+  "maybe_built_from": []
+ },
+ "general_select": {
+  "table": "MainMenu",
+  "text": "Select",
+  "maybe_built_from": []
+ },
+ "demo_notice": {
+  "table": "MainMenu",
+  "text": "The Probably Stolen playtest is over! Thanks for trying the game. The official demo is now available on Steam. Your save files will automatically transfer to the demo, which contains the latest version of the game.",
+  "maybe_built_from": []
+ },
+ "demo_notice_button": {
+  "table": "MainMenu",
+  "text": "Join the Demo",
+  "maybe_built_from": []
+ },
+ "placeholder": {
+  "table": "Mechanic",
+  "text": "placeholder",
+  "maybe_built_from": []
+ },
+ "mech_alarm_label_power_source": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_alarm_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_desequencer_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_evaporator_label_battery": {
+  "table": "Mechanic",
+  "text": "Battery",
+  "maybe_built_from": []
+ },
+ "mech_evaporator_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_furnace_label_battery": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_furnace_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_bottle_printer_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_bottle_printer_btn_start": {
+  "table": "Mechanic",
+  "text": "Start Print Process",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_prev": {
+  "table": "Mechanic",
+  "text": "<",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_play": {
+  "table": "Mechanic",
+  "text": "P",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_stop": {
+  "table": "Mechanic",
+  "text": "S",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_next": {
+  "table": "Mechanic",
+  "text": ">",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_vol_down": {
+  "table": "Mechanic",
+  "text": "-",
+  "maybe_built_from": []
+ },
+ "mech_cassette_player_btn_vol_up": {
+  "table": "Mechanic",
+  "text": "+",
+  "maybe_built_from": []
+ },
+ "mech_turbo_booster_label_battery": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_projector_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_projector_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_printer_label_power": {
+  "table": "Mechanic",
+  "text": "Power",
+  "maybe_built_from": []
+ },
+ "mech_printer_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_moisture_farm_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_moisture_farm_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_purifier_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_purifier_label_note": {
+  "table": "Mechanic",
+  "text": "Note",
+  "maybe_built_from": []
+ },
+ "mech_vending_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_vending_tooltip_upgrade_attract": {
+  "table": "Mechanic",
+  "text": "Can be upgraded with Electronic Parts to increase attractiveness",
+  "maybe_built_from": []
+ },
+ "mech_vending_tooltip_upgrade_capacity": {
+  "table": "Mechanic",
+  "text": "Can be upgraded with Metal Ingot to increase capacity",
+  "maybe_built_from": []
+ },
+ "mech_fountain_label_power": {
+  "table": "Mechanic",
+  "text": "Power Source",
+  "maybe_built_from": []
+ },
+ "mech_fountain_tooltip_upgrade_attract": {
+  "table": "Mechanic",
+  "text": "Can be upgraded with Electronic Parts to increase attractiveness",
+  "maybe_built_from": []
+ },
+ "type_household_good": {
+  "table": "Mechanic",
+  "text": "Household Good",
+  "maybe_built_from": []
+ },
+ "type_weapon": {
+  "table": "Mechanic",
+  "text": "Weapon",
+  "maybe_built_from": []
+ },
+ "type_not_for_resale": {
+  "table": "Mechanic",
+  "text": "Not For Resale",
+  "maybe_built_from": []
+ },
+ "type_supply_crate": {
+  "table": "Mechanic",
+  "text": "Supply Crate",
+  "maybe_built_from": []
+ },
+ "type_tool": {
+  "table": "Mechanic",
+  "text": "Tool",
+  "maybe_built_from": []
+ },
+ "type_medical_tool": {
+  "table": "Mechanic",
+  "text": "Medical Tool",
+  "maybe_built_from": []
+ },
+ "type_all_type": {
+  "table": "Mechanic",
+  "text": "All Types",
+  "maybe_built_from": []
+ },
+ "type_all_type_except_contraband": {
+  "table": "Mechanic",
+  "text": "All Types Except Contraband",
+  "maybe_built_from": []
+ },
+ "type_restricted_1": {
+  "table": "Mechanic",
+  "text": "Restricted I",
+  "maybe_built_from": []
+ },
+ "type_restricted_2": {
+  "table": "Mechanic",
+  "text": "Restricted II",
+  "maybe_built_from": []
+ },
+ "type_restricted_3": {
+  "table": "Mechanic",
+  "text": "Restricted III",
+  "maybe_built_from": []
+ },
+ "type_makeshift": {
+  "table": "Mechanic",
+  "text": "Makeshift",
+  "maybe_built_from": []
+ },
+ "type_lowtech": {
+  "table": "Mechanic",
+  "text": "Low-Tech",
+  "maybe_built_from": []
+ },
+ "type_midline": {
+  "table": "Mechanic",
+  "text": "Midline",
+  "maybe_built_from": []
+ },
+ "type_highend": {
+  "table": "Mechanic",
+  "text": "High-End",
+  "maybe_built_from": []
+ },
+ "type_rare": {
+  "table": "Mechanic",
+  "text": "Rare",
+  "maybe_built_from": []
+ },
+ "type_luxury_item": {
+  "table": "Mechanic",
+  "text": "Luxury Item",
+  "maybe_built_from": []
+ },
+ "type_art": {
+  "table": "Mechanic",
+  "text": "Art",
+  "maybe_built_from": []
+ },
+ "type_medical_supplies": {
+  "table": "Mechanic",
+  "text": "Medical Supply",
+  "maybe_built_from": []
+ },
+ "type_farming_supplies": {
+  "table": "Mechanic",
+  "text": "Farming Supply",
+  "maybe_built_from": []
+ },
+ "type_chemical_supplies": {
+  "table": "Mechanic",
+  "text": "Chemical Supply",
+  "maybe_built_from": []
+ },
+ "type_fresh_food": {
+  "table": "Mechanic",
+  "text": "Fresh Food",
+  "maybe_built_from": []
+ },
+ "type_processed_food": {
+  "table": "Mechanic",
+  "text": "Processed Food",
+  "maybe_built_from": []
+ },
+ "type_treat": {
+  "table": "Mechanic",
+  "text": "Treat",
+  "maybe_built_from": []
+ },
+ "type_brevage": {
+  "table": "Mechanic",
+  "text": "Beverage",
+  "maybe_built_from": []
+ },
+ "type_document": {
+  "table": "Mechanic",
+  "text": "Document",
+  "maybe_built_from": []
+ },
+ "type_access_card": {
+  "table": "Mechanic",
+  "text": "Access Card",
+  "maybe_built_from": []
+ },
+ "type_basic_material": {
+  "table": "Mechanic",
+  "text": "Basic Material",
+  "maybe_built_from": []
+ },
+ "type_refined_material": {
+  "table": "Mechanic",
+  "text": "Refined Material",
+  "maybe_built_from": []
+ },
+ "type_energy_cell": {
+  "table": "Mechanic",
+  "text": "Energy Cell",
+  "maybe_built_from": []
+ },
+ "type_narcotic": {
+  "table": "Mechanic",
+  "text": "Narcotic",
+  "maybe_built_from": []
+ },
+ "type_poison": {
+  "table": "Mechanic",
+  "text": "Poison",
+  "maybe_built_from": []
+ },
+ "type_water_purification_supply": {
+  "table": "Mechanic",
+  "text": "Water Purification Supply",
+  "maybe_built_from": []
+ },
+ "type_oxygen_supply": {
+  "table": "Mechanic",
+  "text": "Oxygen Supply",
+  "maybe_built_from": []
+ },
+ "type_melee_weapon": {
+  "table": "Mechanic",
+  "text": "Melee Weapon",
+  "maybe_built_from": []
+ },
+ "type_firearm": {
+  "table": "Mechanic",
+  "text": "Firearm",
+  "maybe_built_from": []
+ },
+ "type_moddable": {
+  "table": "Mechanic",
+  "text": "Moddable",
+  "maybe_built_from": []
+ },
+ "type_ammunition": {
+  "table": "Mechanic",
+  "text": "Ammunition",
+  "maybe_built_from": []
+ },
+ "type_munition": {
+  "table": "Mechanic",
+  "text": "Munition",
+  "maybe_built_from": []
+ },
+ "type_gun_mod": {
+  "table": "Mechanic",
+  "text": "Gun Mod",
+  "maybe_built_from": []
+ },
+ "type_node": {
+  "table": "Mechanic",
+  "text": "Node",
+  "maybe_built_from": []
+ },
+ "type_hydroponic_module": {
+  "table": "Mechanic",
+  "text": "Hydroponic Module",
+  "maybe_built_from": []
+ },
+ "type_alarm_module": {
+  "table": "Mechanic",
+  "text": "Alarm Module",
+  "maybe_built_from": []
+ },
+ "type_printer_module": {
+  "table": "Mechanic",
+  "text": "Printer Module",
+  "maybe_built_from": []
+ },
+ "type_evaporator_module": {
+  "table": "Mechanic",
+  "text": "Evaporator Module",
+  "maybe_built_from": []
+ },
+ "type_machine": {
+  "table": "Mechanic",
+  "text": "Machine",
+  "maybe_built_from": []
+ },
+ "type_organ": {
+  "table": "Mechanic",
+  "text": "Organ",
+  "maybe_built_from": []
+ },
+ "type_armor": {
+  "table": "Mechanic",
+  "text": "Armor",
+  "maybe_built_from": []
+ },
+ "ins_inj_correct_model": {
+  "table": "Mechanic",
+  "text": "Immunivax",
+  "maybe_built_from": []
+ },
+ "appraisal_packing_facility": {
+  "table": "Mechanic",
+  "text": "Packing Facility",
+  "maybe_built_from": []
+ },
+ "handler_btn_examine": {
+  "table": "Mechanic",
+  "text": "Examine",
+  "maybe_built_from": []
+ },
+ "mech_feeder_stored_cal": {
+  "table": "Mechanic",
+  "text": "Stored Calories:",
+  "maybe_built_from": []
+ },
+ "mech_husbandry_meat": {
+  "table": "Mechanic",
+  "text": "Meat",
+  "maybe_built_from": []
+ },
+ "mech_husbandry_other": {
+  "table": "Mechanic",
+  "text": "Other",
+  "maybe_built_from": []
+ },
+ "mech_drag_insert_into_owned": {
+  "table": "Mechanic",
+  "text": "<b>Insert</b> {0} into {1}'s {2}",
+  "maybe_built_from": []
+ },
+ "mech_drag_give_to": {
+  "table": "Mechanic",
+  "text": "<b>Give</b> {0} to {1}",
+  "maybe_built_from": []
+ },
+ "mech_drag_cant_give": {
+  "table": "Mechanic",
+  "text": "Can't give {0} to {1}!",
+  "maybe_built_from": []
+ },
+ "mech_go_outside_counter_warning": {
+  "table": "Mechanic",
+  "text": "You should keep your counter clear to make sure you have enough space to bring back all the items you might acquire. Are you sure you want to go out?",
+  "maybe_built_from": []
+ },
+ "mech_dna_disk_name_uses": {
+  "table": "Mechanic",
+  "text": "{0} x{1}",
+  "maybe_built_from": []
+ },
+ "plant_stat_growth_speed": {
+  "table": "Mechanic",
+  "text": "Growth speed",
+  "maybe_built_from": []
+ },
+ "plant_stat_harvest_quantity": {
+  "table": "Mechanic",
+  "text": "Harvest quantity",
+  "maybe_built_from": []
+ },
+ "plant_stat_water_use": {
+  "table": "Mechanic",
+  "text": "Water use",
+  "maybe_built_from": []
+ },
+ "plant_stat_nutriment_range": {
+  "table": "Mechanic",
+  "text": "Nutriment tolerance",
+  "maybe_built_from": []
+ },
+ "plant_stat_contaminant_sensitivity": {
+  "table": "Mechanic",
+  "text": "Contaminant sensitivity",
+  "maybe_built_from": []
+ },
+ "plant_stat_plant_health": {
+  "table": "Mechanic",
+  "text": "Starting health",
+  "maybe_built_from": []
+ },
+ "plant_stat_calories": {
+  "table": "Mechanic",
+  "text": "Calories",
+  "maybe_built_from": []
+ },
+ "plant_stat_seed_yield": {
+  "table": "Mechanic",
+  "text": "Seed yield",
+  "maybe_built_from": []
+ },
+ "plant_stat_durability": {
+  "table": "Mechanic",
+  "text": "Harvest durability",
+  "maybe_built_from": []
+ },
+ "type_modified_seed": {
+  "table": "Mechanic",
+  "text": "Modified Seed",
+  "maybe_built_from": []
+ },
+ "mech_printer_tooltip_upgrade_output": {
+  "table": "Mechanic",
+  "text": "Output Inventory Size ({0}): {1}/{2}",
+  "maybe_built_from": []
+ },
+ "network_subtitle_Permit": {
+  "table": "NetworkUpgrade",
+  "text": "Permit",
+  "maybe_built_from": []
+ },
+ "odin": {
+  "table": "PhoneDialogue",
+  "text": "Odin Haraldsson",
+  "maybe_built_from": []
+ },
+ "tuto_shutter": {
+  "table": "Tutorial",
+  "text": "Open the Shutter Door",
+  "maybe_built_from": []
+ },
+ "tuto_bell": {
+  "table": "Tutorial",
+  "text": "Call the Next Customer",
+  "maybe_built_from": []
+ },
+ "tuto_right_click": {
+  "table": "Tutorial",
+  "text": "Right Click on an item to display the Interact Menu",
+  "maybe_built_from": []
+ },
+ "tuto_read": {
+  "table": "Tutorial",
+  "text": "[Read] Note",
+  "maybe_built_from": []
+ },
+ "tuto_close": {
+  "table": "Tutorial",
+  "text": "Close the Store",
+  "maybe_built_from": []
+ },
+ "tuto_double_click": {
+  "table": "Tutorial",
+  "text": "You can also double click to Interact with an item",
+  "maybe_built_from": []
+ },
+ "tuto_drag": {
+  "table": "Tutorial",
+  "text": "Drag the Note into the Handbook to save it",
+  "maybe_built_from": []
+ },
+ "tuto_transfer": {
+  "table": "Tutorial",
+  "text": "Quick Transfer an item using CTRL + Click",
+  "maybe_built_from": []
+ },
+ "tuto_recorder": {
+  "table": "Tutorial",
+  "text": "Review dialogue using the Recorder",
+  "maybe_built_from": []
+ },
+ "tuto_dossier": {
+  "table": "Tutorial",
+  "text": "Store the Notebook inside the Dossier",
+  "maybe_built_from": []
+ },
+ "tuto_buy": {
+  "table": "Tutorial",
+  "text": "Ctrl-Click or Drag the item you wish to BUY to move it to the Negotiation Counter",
+  "maybe_built_from": []
+ },
+ "tuto_tablet": {
+  "table": "Tutorial",
+  "text": "Open the Tablet",
+  "maybe_built_from": []
+ },
+ "tuto_sell": {
+  "table": "Tutorial",
+  "text": "Ctrl-Click or Drag the item you wish to SELL to move it to the Negotiation Counter",
+  "maybe_built_from": []
+ },
+ "tuto_sleep": {
+  "table": "Tutorial",
+  "text": "Go to sleep",
+  "maybe_built_from": []
+ },
+ "tuto_transfer_all": {
+  "table": "Tutorial",
+  "text": "Transfer ALL",
+  "maybe_built_from": []
+ },
+ "tuto_barter": {
+  "table": "Tutorial",
+  "text": "[Barter]: Move the requested item to the Counter",
+  "maybe_built_from": []
+ },
+ "tuto_nightly_service": {
+  "table": "Tutorial",
+  "text": "Services Can Be Toggle On Or Off Every Night",
+  "maybe_built_from": []
+ },
+ "tuto_afterhour_activity": {
+  "table": "Tutorial",
+  "text": "Leave the Store",
+  "maybe_built_from": []
+ },
+ "tuto_display_case": {
+  "table": "Tutorial",
+  "text": "Place merchandise inside the Display Case to attract buyers before opening the shutter doors.",
+  "maybe_built_from": []
+ },
+ "tuto_clientele_ui": {
+  "table": "Tutorial",
+  "text": "Check the Clientele UI",
+  "maybe_built_from": []
+ },
+ "tuto_rep_ui": {
+  "table": "Tutorial",
+  "text": "Check your reputation",
+  "maybe_built_from": []
+ },
+ "tuto_bargain": {
+  "table": "Tutorial",
+  "text": "Open the Bargain Interface",
+  "maybe_built_from": []
+ },
+ "tuto_bargain2": {
+  "table": "Tutorial",
+  "text": "Using the Bargain Interface, you can demand more or offer better prices to customers, which can affect their budget and the amount of reputation gained while trading.",
+  "maybe_built_from": []
+ },
+ "tuto_advance_dialog": {
+  "table": "Tutorial",
+  "text": "Press Space to advance dialogue when ready",
+  "maybe_built_from": []
+ },
+ "tuto_drag_select": {
+  "table": "Tutorial",
+  "text": "Hold the left mouse button and drag to select multiple items.",
+  "maybe_built_from": []
+ },
+ "tuto_sort_menu": {
+  "table": "Tutorial",
+  "text": "Right-click an empty inventory slot to open the sorting menu.",
+  "maybe_built_from": []
+ },
+ "esc_resume": {
+  "table": "UI",
+  "text": "Resume",
+  "maybe_built_from": []
+ },
+ "esc_overlay": {
+  "table": "UI",
+  "text": "Tutorial Overlay (O)",
+  "maybe_built_from": []
+ },
+ "esc_options": {
+  "table": "UI",
+  "text": "Options",
+  "maybe_built_from": []
+ },
+ "esc_exit": {
+  "table": "UI",
+  "text": "Exit Game",
+  "maybe_built_from": []
+ },
+ "inte_credit_count": {
+  "table": "UI",
+  "text": "Your current Credit count",
+  "maybe_built_from": []
+ },
+ "inte_recorder": {
+  "table": "UI",
+  "text": "Recorder",
+  "maybe_built_from": []
+ },
+ "inte_feedback": {
+  "table": "UI",
+  "text": "Feedback Box",
+  "maybe_built_from": []
+ },
+ "inte_wanted": {
+  "table": "UI",
+  "text": "Wanted",
+  "maybe_built_from": []
+ },
+ "inte_sec_departement": {
+  "table": "UI",
+  "text": "Security Department",
+  "maybe_built_from": []
+ },
+ "inte_sec_profile": {
+  "table": "UI",
+  "text": "Profile",
+  "maybe_built_from": []
+ },
+ "inte_sec_name": {
+  "table": "UI",
+  "text": "NAME",
+  "maybe_built_from": []
+ },
+ "inte_sec_location": {
+  "table": "UI",
+  "text": "LOCATION",
+  "maybe_built_from": []
+ },
+ "inte_sec_occupation": {
+  "table": "UI",
+  "text": "OCCUPATION",
+  "maybe_built_from": []
+ },
+ "inte_sec_assigned_officer_note": {
+  "table": "UI",
+  "text": "ASSIGNED OFFICER'S NOTE",
+  "maybe_built_from": []
+ },
+ "inte_sec_crimes": {
+  "table": "UI",
+  "text": "SUSPECTED CRIMINAL ACTIVITIES",
+  "maybe_built_from": []
+ },
+ "inte_sec_shopkeeper": {
+  "table": "UI",
+  "text": "THE SHOPKEEPER",
+  "maybe_built_from": []
+ },
+ "inte_sec_lower_levels": {
+  "table": "UI",
+  "text": "LOWER LEVELS",
+  "maybe_built_from": []
+ },
+ "inte_sec_merchant": {
+  "table": "UI",
+  "text": "MERCHANT",
+  "maybe_built_from": []
+ },
+ "inte_sec_additional_info": {
+  "table": "UI",
+  "text": "ADDITIONAL INFORMATION",
+  "maybe_built_from": []
+ },
+ "inte_sec_recommended_action": {
+  "table": "UI",
+  "text": "RECOMMENDED ACTION",
+  "maybe_built_from": []
+ },
+ "inte_sec_assigned_officer": {
+  "table": "UI",
+  "text": "ASSIGNED CASE OFFICER",
+  "maybe_built_from": []
+ },
+ "inte_sec_active_op": {
+  "table": "UI",
+  "text": "ACTIVE OPERATION",
+  "maybe_built_from": []
+ },
+ "inte_sec_evidence_level": {
+  "table": "UI",
+  "text": "INVESTIGATION PROGRESS",
+  "maybe_built_from": []
+ },
+ "inte_sec_projected_sentance": {
+  "table": "UI",
+  "text": "EXPECTED SENTENCE",
+  "maybe_built_from": []
+ },
+ "inte_sec_confidential": {
+  "table": "UI",
+  "text": "///CONFIDENTIAL///DO NOT DISTRIBUTE///",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_name": {
+  "table": "UI",
+  "text": "SCRATCH 2 WIN",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_how_to_win": {
+  "table": "UI",
+  "text": "HOW 2 WIN",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_2_match": {
+  "table": "UI",
+  "text": "ANY 2 MATCH = 10 CREDITS",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_3_match": {
+  "table": "UI",
+  "text": "ANY 3 MATCH = 75 CREDITS",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_2_jackpot": {
+  "table": "UI",
+  "text": "NUTRIFRUIT 2 MATCH = 30 CREDITS",
+  "maybe_built_from": []
+ },
+ "inte_scratcher_3_jackpot": {
+  "table": "UI",
+  "text": "NUTRIFRUIT 3 MATCH = 350 CREDITS",
+  "maybe_built_from": []
+ },
+ "ins_general_station_trade_commission": {
+  "table": "UI",
+  "text": "Station Trade Commission",
+  "maybe_built_from": []
+ },
+ "ins_cig_title": {
+  "table": "UI",
+  "text": "Hemingway Cigarette Authenticity Handbook",
+  "maybe_built_from": []
+ },
+ "ins_cig_intro": {
+  "table": "UI",
+  "text": "Counterfeit Hemingway Cigarettes are common on the station. Their value, as their quality, is significantly lower than genuine Hemingway cigarettes. ",
+  "maybe_built_from": []
+ },
+ "ins_general_lettering_issues": {
+  "table": "UI",
+  "text": "Lettering Issues",
+  "maybe_built_from": []
+ },
+ "ins_general_discernible_note": {
+  "table": "UI",
+  "text": "The differences should be obvious at a glance.",
+  "maybe_built_from": []
+ },
+ "ins_general_logo_issues": {
+  "table": "UI",
+  "text": "Logo Issues",
+  "maybe_built_from": []
+ },
+ "ins_general_color_issues": {
+  "table": "UI",
+  "text": "Color Issues",
+  "maybe_built_from": []
+ },
+ "ins_general_security_seal_issues": {
+  "table": "UI",
+  "text": "Security Seal Issues",
+  "maybe_built_from": []
+ },
+ "ins_cig_lettering_info": {
+  "table": "UI",
+  "text": "Spelling errors, misaligned text or uneven print quality on the pack, differences in color, font or missing lettering all indicate fraud.",
+  "maybe_built_from": []
+ },
+ "ins_general_correct": {
+  "table": "UI",
+  "text": "Genuine",
+  "maybe_built_from": []
+ },
+ "ins_general_incorrect_font": {
+  "table": "UI",
+  "text": "Incorrect Font",
+  "maybe_built_from": []
+ },
+ "ins_general_incorrect_spelling": {
+  "table": "UI",
+  "text": "Incorrect Spelling",
+  "maybe_built_from": []
+ },
+ "ins_cig_color_info": {
+  "table": "UI",
+  "text": "Utilise color card to compare",
+  "maybe_built_from": []
+ },
+ "ins_general_incorrect": {
+  "table": "UI",
+  "text": "Incorrect",
+  "maybe_built_from": []
+ },
+ "ins_general_incorrect_example": {
+  "table": "UI",
+  "text": "Incorrect Example",
+  "maybe_built_from": []
+ },
+ "ins_cig_seal_info": {
+  "table": "UI",
+  "text": "Hemingway Cigarettes are never sold without a security seal. If the security seal is missing or broken, the cigarette is a counterfeit.",
+  "maybe_built_from": []
+ },
+ "ins_stamp_title": {
+  "table": "UI",
+  "text": "Republic Food Stamp Authenticity Handbook",
+  "maybe_built_from": []
+ },
+ "ins_stamp_intro": {
+  "table": "UI",
+  "text": "As part of the Republic's very generous welfare initiative, Food Stamps are routinely distributed among the most needy in the Lower Levels. These can be used to buy essential items in stores backed by the Republic. Be warned, however: counterfeit Food Stamps are not unusual in the Lower Levels.",
+  "maybe_built_from": []
+ },
+ "ins_stamp_lettering_intro": {
+  "table": "UI",
+  "text": "Look for spelling errors, obvious misaligned text. Differences in color, font or missing lettering are also common in forgeries.",
+  "maybe_built_from": []
+ },
+ "ins_stamp_incorrect_logo_missing": {
+  "table": "UI",
+  "text": "(Incorrect if logo missing)",
+  "maybe_built_from": []
+ },
+ "ins_stamp_seal_intro": {
+  "table": "UI",
+  "text": "If the Food Stamp has a printed value of 160 Credits or higher, it will have a security seal. Food Stamps under 160 Credits will not have a security seal.",
+  "maybe_built_from": []
+ },
+ "ins_stamp_value": {
+  "table": "UI",
+  "text": "Stamp Value",
+  "maybe_built_from": []
+ },
+ "ins_stamp_value_intro": {
+  "table": "UI",
+  "text": "Food Stamps are ONLY issued with values of:\n40 Credits, 80 Credits,\n120 Credits, 160 Credits,\n200 Credits, 240 Credits",
+  "maybe_built_from": []
+ },
+ "ins_stamp_chip": {
+  "table": "UI",
+  "text": "Chip",
+  "maybe_built_from": []
+ },
+ "ins_stamp_chip_intro": {
+  "table": "UI",
+  "text": "All Food Stamps contain a chip. If the chip is missing or damaged, the Food Stamp is unusable, even if it is genuine. ",
+  "maybe_built_from": []
+ },
+ "ins_inj_title": {
+  "table": "UI",
+  "text": "Immunivax Injector User Handbook",
+  "maybe_built_from": []
+ },
+ "ins_inj_intro": {
+  "table": "UI",
+  "text": "A high-precision immuno-regulator developed to temporarily suppress the effects associated with the deadly auto-immune condition Sentinel Collapse.",
+  "maybe_built_from": []
+ },
+ "ins_inj_indicator_issues": {
+  "table": "UI",
+  "text": "Indicator Issues",
+  "maybe_built_from": []
+ },
+ "ins_general_example": {
+  "table": "UI",
+  "text": "Example:",
+  "maybe_built_from": []
+ },
+ "ins_inj_expired": {
+  "table": "UI",
+  "text": "Expired",
+  "maybe_built_from": []
+ },
+ "ins_inj_spent": {
+  "table": "UI",
+  "text": "Empty",
+  "maybe_built_from": []
+ },
+ "ins_inj_label_issues": {
+  "table": "UI",
+  "text": "Label Issues",
+  "maybe_built_from": []
+ },
+ "ins_inj_label_issues_sub": {
+  "table": "UI",
+  "text": "(Counterfeit if label is missing)",
+  "maybe_built_from": []
+ },
+ "ins_general_only_correct_case": {
+  "table": "UI",
+  "text": "Correct Case ONLY",
+  "maybe_built_from": []
+ },
+ "ins_inj_label_intro": {
+  "table": "UI",
+  "text": "Possible Errors:\n -Spelling\n -Missing Company Name\n -Missing Product Name\n -Significant Font Discrepancy",
+  "maybe_built_from": []
+ },
+ "ins_inj_serial_number_issues": {
+  "table": "UI",
+  "text": "Serial Number",
+  "maybe_built_from": []
+ },
+ "ins_inj_serial_number_intro": {
+  "table": "UI",
+  "text": "All Immunivax Injector MUST have a valid seven-digit serial number. The first three digits are the batch numbers. Valid range: 1250000-4559999.",
+  "maybe_built_from": []
+ },
+ "ins_inj_serial_number_intro2": {
+  "table": "UI",
+  "text": "Product Recall Notice (Batch Number): 250, 251, 301, 355, 385, 386, 421\n",
+  "maybe_built_from": []
+ },
+ "ins_inj_recalled_example": {
+  "table": "UI",
+  "text": "Recalled Example (UNUSABLE)",
+  "maybe_built_from": []
+ },
+ "ins_inj_body_issues": {
+  "table": "UI",
+  "text": "Body Issues",
+  "maybe_built_from": []
+ },
+ "ins_inj_body_intro": {
+  "table": "UI",
+  "text": "If any damaged such as clearly visible cracks can be seen on the injector. It is considered to be Unusable",
+  "maybe_built_from": []
+ },
+ "ins_inj_correct_main_colors": {
+  "table": "UI",
+  "text": "Correct Main Colors",
+  "maybe_built_from": []
+ },
+ "general_buy": {
+  "table": "UI",
+  "text": "Buy",
+  "maybe_built_from": []
+ },
+ "commissary_credit_count_title": {
+  "table": "UI",
+  "text": "Redeemed Commissary Token:",
+  "maybe_built_from": []
+ },
+ "commissary_redeem_all_food_stamp": {
+  "table": "UI",
+  "text": "Redeem Valid Food Stamps",
+  "maybe_built_from": []
+ },
+ "commissary_redeem_eligible_lottery": {
+  "table": "UI",
+  "text": "Redeem All Eligible Lottery",
+  "maybe_built_from": []
+ },
+ "rev_card_proverb": {
+  "table": "UI",
+  "text": "\"Power exists to uplift, not to oppress.\"",
+  "maybe_built_from": []
+ },
+ "general_confront": {
+  "table": "UI",
+  "text": "Confront",
+  "maybe_built_from": []
+ },
+ "general_match_label": {
+  "table": "UI",
+  "text": "Match Label",
+  "maybe_built_from": []
+ },
+ "chem_finisher_title": {
+  "table": "UI",
+  "text": "Chem Finisher",
+  "maybe_built_from": []
+ },
+ "deed_title": {
+  "table": "UI",
+  "text": "Deed of Ownership",
+  "maybe_built_from": []
+ },
+ "deed_body": {
+  "table": "UI",
+  "text": "This document certifies the holder as the lawful owner of the commercial property located at:\n\nLower Level, Sector 14\n\nThis deed hereby grants full ownership rights of the aforementioned property to the holder, effective immediately upon settlement of the debt as outlined in the Deeds of Agreement and upon full payment of the agreed purchase price.\n\nThe ownership of the property includes the following rights:\n\nRight to Operation and Management - Full control over, and assumed responsibility for, daily operations and activities.\nRight to Renovation or Alteration - Subject to applicable sector zoning laws and regulations.\nRight to Sell or Transfer - Subject to approval by the station’s governing authority and in accordance with all applicable rules and regulations.",
+  "maybe_built_from": []
+ },
+ "general_the_shopkeeper": {
+  "table": "UI",
+  "text": "The Shopkeeper",
+  "maybe_built_from": []
+ },
+ "general_the_landlord": {
+  "table": "UI",
+  "text": "The Landlord",
+  "maybe_built_from": []
+ },
+ "lease_title": {
+  "table": "UI",
+  "text": "Lease Agreement",
+  "maybe_built_from": []
+ },
+ "lease_body": {
+  "table": "UI",
+  "text": "SECTION 1: PARTIES\nThe Landlord: (\"Landlord\"),\nThe Shopkeeper: (\"Tenant\").\n\nSECTION 2: PREMISES\nThe Landlord leases to the Tenant for the operation of a commercial business, subject to the terms and conditions outlined herein.\n\nSECTION 3: RENTAL TERMS\nRent Amount: Undetermined        \nPayment Schedule: Every Seven Days\n\nSECTION 4: FAILURE TO PAY RENT\nIf Rent is not paid by the due date, the Tenant shall be granted a one-time grace period during the term of this Agreement. Any missed Rent will be added to the following week’s Rent. Failure to pay the full adjusted amount by the following due date will constitute a breach of this Agreement.\n\nEviction Clause: If the Tenant fails to pay Rent or the adjusted Rent as outlined, the Landlord reserves the right to terminate this agreement, and initiate eviction procedures as per Station Ordinances.\n\nSECTION 5: RENT ADJUSTMENT\nRent Increase: The Landlord retains the right to adjust the Rent by up to 5% of the current Rent amount for the subsequent week.",
+  "maybe_built_from": []
+ },
+ "lottery_title": {
+  "table": "UI",
+  "text": "Lower Levels Lottery Information",
+  "maybe_built_from": []
+ },
+ "lottery_intro": {
+  "table": "UI",
+  "text": "The Lower Levels Lottery is finally back! Your fortune starts with a single ticket. Grab yours now!",
+  "maybe_built_from": []
+ },
+ "lottery_how_title": {
+  "table": "UI",
+  "text": "How The Lottery Works",
+  "maybe_built_from": []
+ },
+ "lottery_how_intro": {
+  "table": "UI",
+  "text": "The Lottery winning numbers are drawn every Saturday morning. Winning Numbers will be announced in the newspaper.",
+  "maybe_built_from": []
+ },
+ "lottery_system_title": {
+  "table": "UI",
+  "text": "Lottery System",
+  "maybe_built_from": []
+ },
+ "lottery_system_intro": {
+  "table": "UI",
+  "text": "6 unique numbers from 1-49 will be drawn. You win prizes based on how many of your numbers match the six numbers drawn.",
+  "maybe_built_from": []
+ },
+ "lottery_system_example1": {
+  "table": "UI",
+  "text": "Example Winning Numbers",
+  "maybe_built_from": []
+ },
+ "lottery_system_example2": {
+  "table": "UI",
+  "text": "Example Ticket Numbers (3 Matching Numbers)",
+  "maybe_built_from": []
+ },
+ "lottery_prizes_intro": {
+  "table": "UI",
+  "text": "6 unique numbers from 1-49 will be drawn. You win prizes based on how many of your numbers match the six numbers drawn.",
+  "maybe_built_from": []
+ },
+ "lottery_match6": {
+  "table": "UI",
+  "text": "6/6 Matches (Jackpot)",
+  "maybe_built_from": []
+ },
+ "lottery_match5": {
+  "table": "UI",
+  "text": "5/6 Matches",
+  "maybe_built_from": []
+ },
+ "lottery_match4": {
+  "table": "UI",
+  "text": "4/6 Matches",
+  "maybe_built_from": []
+ },
+ "lottery_match3": {
+  "table": "UI",
+  "text": "3/6 Matches",
+  "maybe_built_from": []
+ },
+ "book_ribwich_title": {
+  "table": "UI",
+  "text": "Ribwich Appraisal Guide",
+  "maybe_built_from": []
+ },
+ "book_ribwich_base_value_title": {
+  "table": "UI",
+  "text": "Base Value",
+  "maybe_built_from": []
+ },
+ "book_ribwich_base_value_body": {
+  "table": "UI",
+  "text": "All Ribwichs start at 150 Credits. Different conditions can affect its price.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section1_title": {
+  "table": "UI",
+  "text": "1. Packaging, Counterfeit and Minimum Value",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_title": {
+  "table": "UI",
+  "text": "2. Production Date",
+  "maybe_built_from": []
+ },
+ "book_ribwich_intro": {
+  "table": "UI",
+  "text": "A limited edition sandwich from Davre. Now discontinued, it's price now steadly increasing due to people still eating it.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section1_body": {
+  "table": "UI",
+  "text": "If the plastic packaging is missing, torn open or counterfeit, the final value will always be 40 credits regardless of anything else. \nRibwichs can't have a final value lower than 40 credits, regardless of any condition.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_body": {
+  "table": "UI",
+  "text": "All Ribwichs will have their production date displayed on the packaging. The Ribwich were only ever produced on the following runs:",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_example": {
+  "table": "UI",
+  "text": "1st Production Run: January 425 - December 429\n2nd Production Run: January 432 - December 438",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_body4": {
+  "table": "UI",
+  "text": "The Ribwich produced on the very first month (01/425) and the very last month (12/438) are worth +50 Credits for historical reasons.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_body3": {
+  "table": "UI",
+  "text": "The first production run Ribwich were made using better material and are worth +80 Credits",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section2_body2": {
+  "table": "UI",
+  "text": "If the production date is missing, invalid or outside the range, then it is counterfeit.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_body": {
+  "table": "UI",
+  "text": "Davre used a number of facility to produce and package the Ribwich, some are known to have higher or lower quality control standard which can affect the Ribwich shelf life.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_title": {
+  "table": "UI",
+  "text": "3. Packing Facility",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_example": {
+  "table": "UI",
+  "text": "High Quality Packing Facility: 01, 02, 05, 08, 21, 34\nLow Quality Packing Facility: 07, 15, 18, 26, 31",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_body2": {
+  "table": "UI",
+  "text": "There's 35 total packing facilities that were used. If the packing facility number is missing or invalid, then the Ribwich is counterfeit.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_body3": {
+  "table": "UI",
+  "text": "Ribwich from the high quality packing facility are worth +50 Credits",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_body4": {
+  "table": "UI",
+  "text": "Ribwich from the low quality packing facility are worth -50 Credits",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section3_body5": {
+  "table": "UI",
+  "text": "Example of a genuine Ribwich from the second production run:",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section4_title": {
+  "table": "UI",
+  "text": "4. Deluxe Edition",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section4_body": {
+  "table": "UI",
+  "text": "Ribwich with sesame bun and extra pickles were also released along the normal Ribwich and was marketed as Deluxe Edition",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section4_example": {
+  "table": "UI",
+  "text": "The Deluxe edition ribwich must have both the sesame bun and extra pickles. if only one is present then it is counterfeit.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section4_body2": {
+  "table": "UI",
+  "text": "Valid deluxe edition are worth +300 Credits",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section5_title": {
+  "table": "UI",
+  "text": "5. Double Meat Patty",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section5_body": {
+  "table": "UI",
+  "text": "In rare instances, it has been reported that Davre’s packing machine malfunctioned and produced Ribwiches with two meat patties. These Ribwiches are typically removed and destroyed by the quality control team, making double-patty Ribwiches extremely rare.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section5_body2": {
+  "table": "UI",
+  "text": "Valid double patty Ribwich are worth +800 Credits",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section6_title": {
+  "table": "UI",
+  "text": "6. Davre Logo",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section6_body": {
+  "table": "UI",
+  "text": "All Ribwich must have the Davre Logo, if missing or incorrect, then it is counterfeit.",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section7_title": {
+  "table": "UI",
+  "text": "7. Ribwich Logo",
+  "maybe_built_from": []
+ },
+ "book_ribwich_section7_body": {
+  "table": "UI",
+  "text": "All 2nd production ribwich will have a Ribwich sticker, if missing or incorrect, then it is counterfeit. 1st production will not have the Ribwich sticker.",
+  "maybe_built_from": []
+ },
+ "book_fuel_name": {
+  "table": "UI",
+  "text": "Plasma Cartridge Appraisal Guide",
+  "maybe_built_from": []
+ },
+ "book_fuel_p1_body": {
+  "table": "UI",
+  "text": "Plasma Cartridges are the standard fuel of the the Pulse Plasma Drive, a common installation on small-to-medium spacecraft.\nA result of high demand and light regulation, Plasma Cartridges are manufactured in sweatshops and industrial laboratories both. Where a Plasma Cartridge is made will affect its quality.\n\nThis guide will provide everything you need to know to appraise the value of any Plasma Cartridge.",
+  "maybe_built_from": []
+ },
+ "book_fuel_p1_body2": {
+  "table": "UI",
+  "text": "ILLUSTRATION OF A PLASMA CARTRIDGE",
+  "maybe_built_from": []
+ },
+ "book_fuel_p1_body3": {
+  "table": "UI",
+  "text": "There are four common manufacturers on the Station:\n\n\t- Wild's Rides (\"WLD\"),\n\t- Republic Naval Requisition (\"RNR\"),\n\t- ZhongHua Shipbuilding (\"ZHS\"),\n\t- Ignition Lab (\"IGN\")",
+  "maybe_built_from": []
+ },
+ "book_fuel_p1_body4": {
+  "table": "UI",
+  "text": "Regardless of manufacturer or current condition, Plasma Cartridges have a base value of 300 Credits, and a minimum value of 90 Credits.",
+  "maybe_built_from": []
+ },
+ "book_fuel_p2_title": {
+  "table": "UI",
+  "text": "Cartridge Condition",
+  "maybe_built_from": []
+ },
+ "book_fuel_p2_body": {
+  "table": "UI",
+  "text": "The value of a Plasma Cartridge is determined by its condition. The condition is the total sum of the cartridges attributes.",
+  "maybe_built_from": []
+ },
+ "book_fuel_p2_example": {
+  "table": "UI",
+  "text": "Standard (No Change)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p2_example2": {
+  "table": "UI",
+  "text": "Light Wear (-45 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p2_example3": {
+  "table": "UI",
+  "text": "Heavy Wear (-90 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p3_title": {
+  "table": "UI",
+  "text": "Cartridge Condition",
+  "maybe_built_from": []
+ },
+ "book_fuel_p3_example": {
+  "table": "UI",
+  "text": "Cracked (-150 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p3_example2": {
+  "table": "UI",
+  "text": "Exposed Screws (-30 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p3_example3": {
+  "table": "UI",
+  "text": "Reinforced (+60 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p4_title": {
+  "table": "UI",
+  "text": "Plasma Color",
+  "maybe_built_from": []
+ },
+ "book_fuel_p4_body": {
+  "table": "UI",
+  "text": "The color of the plasma is the biggest indicator of quality.\nAny color not Standard or High-Grade is regarded as Low-Grade.",
+  "maybe_built_from": []
+ },
+ "book_fuel_p4_example": {
+  "table": "UI",
+  "text": "Standard (No Change)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p4_example2": {
+  "table": "UI",
+  "text": "Low Grade Example (-150 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p4_example3": {
+  "table": "UI",
+  "text": "High-Grade (+150 Credits)",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_title": {
+  "table": "UI",
+  "text": "Cartridge Manufacturer",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m1_name": {
+  "table": "UI",
+  "text": "Wild's Rides (\"WLD\")",
+  "maybe_built_from": []
+ },
+ "book_fuel_possible_example": {
+  "table": "UI",
+  "text": "Possible Example",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m1_desc": {
+  "table": "UI",
+  "text": "WLD Plasma Cartridges are manufactured in the Lower Levels, and are highly variable in quality.\nPossible Cartridge Condition: Any\nPossible Color: Low-Grade, Standard\nSeal: Always",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m1_bonus": {
+  "table": "UI",
+  "text": "If ALL conditions match: +60 Credits",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m2_name": {
+  "table": "UI",
+  "text": "ZhongHua Shipbuilding (\"ZHS\")",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m2_desc": {
+  "table": "UI",
+  "text": "ZHS Plasma Cartidges have a more reasonable price point, but without compromising on quality.\n\nPossible Cartridge Condition: None or Reinforced\nPossible Color: Standard\nSeal: Always",
+  "maybe_built_from": []
+ },
+ "book_fuel_p5_m2_bonus": {
+  "table": "UI",
+  "text": "If ALL conditions match: +120 Credits",
+  "maybe_built_from": []
+ },
+ "book_fuel_only_example": {
+  "table": "UI",
+  "text": "Correct Configuration",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m2_bonus": {
+  "table": "UI",
+  "text": "If ALL conditions match: +750 Credits",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m2_desc": {
+  "table": "UI",
+  "text": "A specialized R&D lab, IGN Plasma Cartridges are manufactured to the highest possible grade.\nPossible Cartridge Condition: None\nPossible Color:  High-Grade\nSeal: Always",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m2_name": {
+  "table": "UI",
+  "text": "Ignition Lab (\"IGN\")",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m1_bonus": {
+  "table": "UI",
+  "text": "If ALL conditions match: +120 Credits",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m1_desc": {
+  "table": "UI",
+  "text": "Funded by the Republic itself, RNR Plasma Cartridges are typically retrieved and recycled.\n\nPossible Cartridge Condition: Any, Except Cracks\nPossible Color: Standard\nSeal: Always",
+  "maybe_built_from": []
+ },
+ "book_fuel_p6_m1_name": {
+  "table": "UI",
+  "text": "Republic Naval Requisition (\"RNR\")",
+  "maybe_built_from": []
+ },
+ "book_water_title": {
+  "table": "UI",
+  "text": "Water Trading Manual",
+  "maybe_built_from": []
+ },
+ "book_water_s1_title": {
+  "table": "UI",
+  "text": "1. Grading",
+  "maybe_built_from": []
+ },
+ "book_water_s1_body": {
+  "table": "UI",
+  "text": "The quality of water is determined by its purity:",
+  "maybe_built_from": []
+ },
+ "book_water_s1_pure_water": {
+  "table": "UI",
+  "text": "Pure Water (99.9%+)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_high_quality": {
+  "table": "UI",
+  "text": "High-Quality (99%-99.9%)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_basewater": {
+  "table": "UI",
+  "text": "Basewater (98%-99%)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_ghostwater": {
+  "table": "UI",
+  "text": "Ghostwater (96%-98%)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_rustwater": {
+  "table": "UI",
+  "text": "Rustwater (90%-96%)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_gutterflow": {
+  "table": "UI",
+  "text": "Gutterflow (90%-)",
+  "maybe_built_from": []
+ },
+ "book_water_s1_safe_to_drink": {
+  "table": "UI",
+  "text": "Safe to drink",
+  "maybe_built_from": []
+ },
+ "book_water_s1_caution": {
+  "table": "UI",
+  "text": "Consume if necessary, prolonged use not advised",
+  "maybe_built_from": []
+ },
+ "book_water_s1_unsafe": {
+  "table": "UI",
+  "text": "Unsafe and risky for human consumption",
+  "maybe_built_from": []
+ },
+ "book_water_s1_toxic": {
+  "table": "UI",
+  "text": "Warning: Highly Toxic, Do Not Consume",
+  "maybe_built_from": []
+ },
+ "book_water_s2_title": {
+  "table": "UI",
+  "text": "2. Identification",
+  "maybe_built_from": []
+ },
+ "book_water_s2_body": {
+  "table": "UI",
+  "text": "Water sold on the station may not be labeled correctly, whether intentionally or not. Always verify water quality before purchase and consumption.",
+  "maybe_built_from": []
+ },
+ "book_water_s2_body2": {
+  "table": "UI",
+  "text": "A Water Testing Strip is a cheap and easy way to test the purity of water.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_title": {
+  "table": "UI",
+  "text": "3. Purification",
+  "maybe_built_from": []
+ },
+ "book_water_s3_body": {
+  "table": "UI",
+  "text": "Water on the station can contains multiple types of contaminants. Each method of purification is effective against only certain types of contaminants.\n\nIf repeated attempts do not improve the water's purity, your chosen purification method cannot remove the remaining contaminants in the water.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_body2": {
+  "table": "UI",
+  "text": "Water Purification Tablets reduce chemical contaminants first, then eliminate microbial contaminants with what remains. One tablet is enough for a large bottle of Rustwater; dirtier water may require several.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_body3": {
+  "table": "UI",
+  "text": "Water Filter: When installed inside a pitcher, it filters water as it is poured in.\nIt removes impurities, microplastics, and organic waste. Filters have limited durability.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_note": {
+  "table": "UI",
+  "text": "Using Purification Tablets and a Water Filter together should bring most water up to Basewater, or even High-Quality Water, depending on the initial purity. Heavily contaminated water may require several tablets.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_note2": {
+  "table": "UI",
+  "text": "To reach Pure Water, a dedicated Water Purifier with properly installed Modules is required.",
+  "maybe_built_from": []
+ },
+ "book_water_s3_note3": {
+  "table": "UI",
+  "text": "Purifying Gutterflow using basic purification methods is not recommended, as it rapidly degrades Water Filter durability.",
+  "maybe_built_from": []
+ },
+ "book_water_s4_title": {
+  "table": "UI",
+  "text": "4. Types of Water",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body1": {
+  "table": "UI",
+  "text": "Hard to procure even for those living on the Upper Levels. Incredibly expensive and used primarily in sensitive environments like Hospitals and Laboratories. In Upper Levels societies, offering pure water to guests demonstrates high social status.",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body2": {
+  "table": "UI",
+  "text": "The standard on the Upper Levels. Safe for drinking, cooking, and most household uses, it is more accessible but still costly.",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body3": {
+  "table": "UI",
+  "text": "The standard for Lower Levels. Adequate for short-term use, but prolonged exposure can contribute to development of chronic disease.",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body4": {
+  "table": "UI",
+  "text": "Indistinguishable by eye from other higher quality water, yet unsafe to drink unfiltered. Ghostwater is most commonly used in farming and industry.\n<b>The sale of mislabeled Ghostwater is a common scam in the Lower Levels.</b>",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body5": {
+  "table": "UI",
+  "text": "Unsuitable for farming, and dangerous to drink.\n\t<b>Can be identified visually.</b>",
+  "maybe_built_from": []
+ },
+ "book_water_s4_body6": {
+  "table": "UI",
+  "text": "Heavily contaminated and toxic. Seek immediate medical attention if consumed. \n\t<b>Can be visually identified.</b>",
+  "maybe_built_from": []
+ },
+ "book_water_s5_title": {
+  "table": "UI",
+  "text": "5. Common Water Trading Scams",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a1_title": {
+  "table": "UI",
+  "text": "Rustwater and Gutterflow",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a1_body": {
+  "table": "UI",
+  "text": "Rustwater and Gutterflow are harder to mislabel since they are visually distinguishable from other types of water by color.",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a2_title": {
+  "table": "UI",
+  "text": "Ghostwater",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a2_body": {
+  "table": "UI",
+  "text": "The sale of Ghostwater mislabeled as Basewater is a common scam in the Lower Levels. Selling large volume of mislabeled Ghostwater is a crime.",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a3_title": {
+  "table": "UI",
+  "text": "Customer Behaviour",
+  "maybe_built_from": []
+ },
+ "book_water_s5_a3_body": {
+  "table": "UI",
+  "text": "Scavengers are typically too poor to carry a Water Testing Kit.\nSome Citizens of the Lower Levels and Scavengers will not buy Pure Water.\nTourists and Upper Level Citizens are often too oblivious to test the purity of the water they buy.\nCustomers requesting large amounts of water will typically carry a Water Testing Kit.",
+  "maybe_built_from": []
+ },
+ "book_farm_title": {
+  "table": "UI",
+  "text": "Hydroponic Farming Manual",
+  "maybe_built_from": []
+ },
+ "book_farm_s1_title": {
+  "table": "UI",
+  "text": "Quick Start Guide",
+  "maybe_built_from": []
+ },
+ "book_farm_s1_body": {
+  "table": "UI",
+  "text": "'1. Insert a filled water container with Ghostwater or Basewater.\n2. Add some Minerals to make sure there''s enough nutrient.\n3. Insert power source and seed.\n4. After a day or two, the farm should be ready for harvest.",
+  "maybe_built_from": []
+ },
+ "book_farm_s1_note": {
+  "table": "UI",
+  "text": "Add water and replace the energy cell as needed to ensure that hydroponic keep running!",
+  "maybe_built_from": []
+ },
+ "book_farm_s2_title": {
+  "table": "UI",
+  "text": "Tips for Novices Farmers",
+  "maybe_built_from": []
+ },
+ "book_farm_s2_body": {
+  "table": "UI",
+  "text": "Start learning hydroponic by farming Nutrifruit. It is genetically modified to be an easy to farm crop.\n\nMake sure to keep enough clean water and add a nutriment tablet to the water when the yield decrease.",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_title": {
+  "table": "UI",
+  "text": "Advanced Guide",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_water_title": {
+  "table": "UI",
+  "text": "Water Quality:",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_water_body": {
+  "table": "UI",
+  "text": "Certain contaminants can harm the plant's growth. Make sure to use water with a low concentration of contaminants, unless you farming a crop with particular needs. (NOTE: Minerals are NOT contaminants.)",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_nutrient_title": {
+  "table": "UI",
+  "text": "Nutrient:",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_nutrient_body": {
+  "table": "UI",
+  "text": "Plants require Minerals to grow. Too little or too much can have negative impact on the yield. Each plant has specific nutrient concentration tolerance. Usually, it's better to have too much Minerals than not enough.",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_analyser_title": {
+  "table": "UI",
+  "text": "Plant Anaylser:",
+  "maybe_built_from": []
+ },
+ "book_farm_s3_analyser_body": {
+  "table": "UI",
+  "text": "Can be used on a seed to check its needs and their current health.",
+  "maybe_built_from": []
+ },
+ "book_chem_title": {
+  "table": "UI",
+  "text": "Chemistry 101 Guide",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_title": {
+  "table": "UI",
+  "text": "Tools and Machines",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s1_title": {
+  "table": "UI",
+  "text": "Chemical Supplies",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s1_body": {
+  "table": "UI",
+  "text": "Can be unpack to obtain various essential chemicals",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s2_title": {
+  "table": "UI",
+  "text": "Composition Spectrometer (Chem Scanner)",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s2_body": {
+  "table": "UI",
+  "text": "Use it on liquid container or chemical product to see their composition",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s3_title": {
+  "table": "UI",
+  "text": "Blender",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s3_body": {
+  "table": "UI",
+  "text": "Can be upgraded to improve extraction yield",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s4_title": {
+  "table": "UI",
+  "text": "Heating Plate",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s4_body": {
+  "table": "UI",
+  "text": "Can be upgraded to improve max temperature, temperature control and heating speed.",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s5_title": {
+  "table": "UI",
+  "text": "Evaporator",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s5_body": {
+  "table": "UI",
+  "text": "Work overnight to remove certain liquid such as water and alcohol. Use normal modules",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s6_title": {
+  "table": "UI",
+  "text": "Chem Finisher",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_s6_body": {
+  "table": "UI",
+  "text": "Can be upgraded to reduce the amount of impurity introduced",
+  "maybe_built_from": []
+ },
+ "book_chem_p1_module": {
+  "table": "UI",
+  "text": "Unlike other machines, most of the machine related to chemistry can only be upgraded with the special Chemical Equipment Module.",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_dream_dust": {
+  "table": "UI",
+  "text": "Dream Dust",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s1_body": {
+  "table": "UI",
+  "text": "- Attach a liquid container to the Blender\n- Add a few Dream Cap\n- Blend the ingredient to get Dream Cap Mush",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s2_body": {
+  "table": "UI",
+  "text": "- Take the container from the previous step\n- Insert it into the Heating Plate\n- Add solvent (Alcohol) equal to 3-6 time the volume of Dream Cap Mush\n- Heat the mixure to 40-60C to turn Dream Cap Mush into Dream Cap Extract",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s2_note": {
+  "table": "UI",
+  "text": "Do not overheat or Dream Cap will be destroyed",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s3_body": {
+  "table": "UI",
+  "text": "- (Optional) Filter the solution from the previous step with a Kotton Fabric as filter to remove large sized contaminants\n- Insert the container into the Evaporator\n- Make sure the Evaporator is powered with a Energy Cell\n- Wait until the next day for the Evaporator to work",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s4_title": {
+  "table": "UI",
+  "text": "Step 4: Packaging",
+  "maybe_built_from": []
+ },
+ "book_chem_p2_s4_body": {
+  "table": "UI",
+  "text": "- (REQUIRED) When all the water and alcohol has evaporated, insert the container into the Chem Finisher\n- Select Dream Dust as the recipe\n- Press the \"Output\" button \n- (Optional) Check purity with a Composition Spectrometer",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_caffeine_pill_recipe": {
+  "table": "UI",
+  "text": "Caffeine Pill Recipe",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s1_title": {
+  "table": "UI",
+  "text": "Step 1: Ingredient Prep",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s1_body": {
+  "table": "UI",
+  "text": "- Attach a liquid container to the Blender\n- Add a few Coffee Beans\n- Blend the ingredient to get Coffee Beans Mush",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s2_title": {
+  "table": "UI",
+  "text": "Step 2: Extraction",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s2_body": {
+  "table": "UI",
+  "text": "- Take the container from the previous step\n- Insert it into the Heating Plate\n- (Optional but Recommanded) Add solvent (Alcohol) equal to 3-6 time the volume of Coffee Bean Mush\n- Heat the mixure to a minimum of 80C",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s2_note": {
+  "table": "UI",
+  "text": "Note: Caffeine is very heat resistance",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s3_title": {
+  "table": "UI",
+  "text": "Step 3: Evaporation",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s3_body": {
+  "table": "UI",
+  "text": "- (Optional) Filter the solution from the previous step with a Kotton Fabric as filter to remove large sized contaminants\n- Insert the container into the Evaporator\n- Make sure the Evaporator is powered with a Energy Cell\n- Wait until the next day for the Evaporator to work",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s4_title": {
+  "table": "UI",
+  "text": "Step 4: Packaging",
+  "maybe_built_from": []
+ },
+ "book_chem_p3_s4_body": {
+  "table": "UI",
+  "text": "- (REQUIRED) When all the water and alcohol has evaporated, insert the container into the Chem Finisher\n- Select Caffeine Pill as the recipe\n- Press the \"Output\" button \n- (Optional) Check purity with a Composition Spectrometer",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_fanta_information": {
+  "table": "UI",
+  "text": "Phanta Pill Information",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_body": {
+  "table": "UI",
+  "text": "The precise recipe for Phanta remains a closely guarded secret. What follows is a compilation of publicly available information.",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s1_title": {
+  "table": "UI",
+  "text": "Base Ingredient",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s1_body": {
+  "table": "UI",
+  "text": "N-Methylol Base is a known precursor of Phanta. It can be found in Restricted Chemical Supplies",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s2_title": {
+  "table": "UI",
+  "text": "Preparation",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s2_body": {
+  "table": "UI",
+  "text": "The N-Methylol Base will contain a Stabilizing Agent to protect the chemical from degradation but also prevent chemical reaction. It must be somehow removed.",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s3_title": {
+  "table": "UI",
+  "text": "Reaction",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s3_body": {
+  "table": "UI",
+  "text": "We now need a substance that can donate electrons to the N-Methylol Base to transform it chemically into Phanta. \n\nWe suspect this process must also be done at high temperature requiring an upgraded Heating Plate",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s4_title": {
+  "table": "UI",
+  "text": "Packaging",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s4_body": {
+  "table": "UI",
+  "text": "After that, filter the solution and package it as usual.",
+  "maybe_built_from": []
+ },
+ "book_chem_p4_s3_note": {
+  "table": "UI",
+  "text": "WARNING: PHANTA WILL DEGRADE ABOVE 130°C",
+  "maybe_built_from": []
+ },
+ "book_chem_p5_chem_purity_rating": {
+  "table": "UI",
+  "text": "Chemistry Purity Rating",
+  "maybe_built_from": []
+ },
+ "book_chem_p5_body": {
+  "table": "UI",
+  "text": "Some customers will carry Chem Scanner to verify the labeled purity of your products.",
+  "maybe_built_from": []
+ },
+ "book_chem_pure_grade": {
+  "table": "UI",
+  "text": "Pure Grade (99%+)",
+  "maybe_built_from": []
+ },
+ "book_chem_pharma_grade": {
+  "table": "UI",
+  "text": "Pharma Grade (90-99%)",
+  "maybe_built_from": []
+ },
+ "book_chem_near_pharma_grade": {
+  "table": "UI",
+  "text": "Near Pharma (80-90%)",
+  "maybe_built_from": []
+ },
+ "book_chem_street_standard_grade": {
+  "table": "UI",
+  "text": "Street Standard (60-80%)",
+  "maybe_built_from": []
+ },
+ "book_chem_cut_product_grade": {
+  "table": "UI",
+  "text": "Cut Product (45-60%)",
+  "maybe_built_from": []
+ },
+ "book_chem_junk_grade": {
+  "table": "UI",
+  "text": "Junk Grade (30-45%)",
+  "maybe_built_from": []
+ },
+ "book_chem_starch_grade": {
+  "table": "UI",
+  "text": "Starch Grade (30%-)",
+  "maybe_built_from": []
+ },
+ "book_chem_val1": {
+  "table": "UI",
+  "text": "+135% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_chem_val2": {
+  "table": "UI",
+  "text": "+85% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_chem_val3": {
+  "table": "UI",
+  "text": "+40% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_chem_val4": {
+  "table": "UI",
+  "text": "No Price Modifier",
+  "maybe_built_from": []
+ },
+ "book_chem_val5": {
+  "table": "UI",
+  "text": "-45% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_chem_val6": {
+  "table": "UI",
+  "text": "-75% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_chem_val7": {
+  "table": "UI",
+  "text": "-95% of Base Value",
+  "maybe_built_from": []
+ },
+ "book_ingot_title": {
+  "table": "UI",
+  "text": "Metallurgy Manual",
+  "maybe_built_from": []
+ },
+ "book_ingot_s1_title": {
+  "table": "UI",
+  "text": "1. Introduction",
+  "maybe_built_from": []
+ },
+ "book_ingot_s1_body": {
+  "table": "UI",
+  "text": "Metal Ingots can be smelted inside a Furnace using TWO pieces of either Scrap Metal or Metal Ore. They can have various levels of purity. The higher the purity, the more valuable the ingot will be.",
+  "maybe_built_from": []
+ },
+ "book_ingot_s2_title": {
+  "table": "UI",
+  "text": "2. Smelting",
+  "maybe_built_from": []
+ },
+ "book_ingot_s2_body": {
+  "table": "UI",
+  "text": "The purity of an ingot is determined by the materials used to smelt it. Using Scrap Metals will yield a lower purity, while using Metal Ores will yield a higher one. Additionally, Flux Agent can be added to the furnace to improve the purity, Any added agent will be consumed.\n\nThe Furnace requires a source of power. The smelting process happens overnight.",
+  "maybe_built_from": []
+ },
+ "calendar_calendar": {
+  "table": "UI",
+  "text": "Calendar",
+  "maybe_built_from": []
+ },
+ "calendar_nightly_report": {
+  "table": "UI",
+  "text": "Nightly Report",
+  "maybe_built_from": []
+ },
+ "calendar_status": {
+  "table": "UI",
+  "text": "Status",
+  "maybe_built_from": []
+ },
+ "calendar_display_case_hint": {
+  "table": "UI",
+  "text": "Remember to stock the Display Case!",
+  "maybe_built_from": []
+ },
+ "attrac_100": {
+  "table": "UI",
+  "text": "100: Merchandise inside the Display Case will not attract any additional customers",
+  "maybe_built_from": []
+ },
+ "attrac_200": {
+  "table": "UI",
+  "text": "200: One random normal customer will visit the Store each day",
+  "maybe_built_from": []
+ },
+ "attrac_250": {
+  "table": "UI",
+  "text": "250: +2 customers will visit the Store each day",
+  "maybe_built_from": []
+ },
+ "attrac_300": {
+  "table": "UI",
+  "text": "300: All customers will have 10% more Credits to spend",
+  "maybe_built_from": []
+ },
+ "attrac_400": {
+  "table": "UI",
+  "text": "400: Poor customers have lower chance of visiting the Store",
+  "maybe_built_from": []
+ },
+ "attrac_450": {
+  "table": "UI",
+  "text": "450: All customers will have 25% more Credits to spend",
+  "maybe_built_from": []
+ },
+ "attrac_500": {
+  "table": "UI",
+  "text": "500: +3 customers will visit the Store each day",
+  "maybe_built_from": []
+ },
+ "attrac_650": {
+  "table": "UI",
+  "text": "650: Poor customers have an even lower chance of visiting the Store",
+  "maybe_built_from": []
+ },
+ "attrac_750": {
+  "table": "UI",
+  "text": "750: All customers will have 75% more Credits to spend",
+  "maybe_built_from": []
+ },
+ "attrac_900": {
+  "table": "UI",
+  "text": "900: All customers will have 100% more Credits to spend",
+  "maybe_built_from": []
+ },
+ "calendar_active_perk": {
+  "table": "UI",
+  "text": "Active Perks",
+  "maybe_built_from": []
+ },
+ "phone_end": {
+  "table": "UI",
+  "text": "End",
+  "maybe_built_from": []
+ },
+ "ui_cant_afford": {
+  "table": "UI",
+  "text": "You can't afford all of the selected services...",
+  "maybe_built_from": []
+ },
+ "ui_endofday_total_cost": {
+  "table": "UI",
+  "text": "Total Cost    {0} Credits",
+  "maybe_built_from": []
+ },
+ "ui_endofday_current_balance": {
+  "table": "UI",
+  "text": "Current Balance    {0} Credits",
+  "maybe_built_from": []
+ },
+ "ui_endofday_new_balance": {
+  "table": "UI",
+  "text": "New Balance    {0} Credits",
+  "maybe_built_from": []
+ },
+ "ui_attractiveness_meter_base": {
+  "table": "UI",
+  "text": "Base",
+  "maybe_built_from": []
+ },
+ "ui_attractiveness_meter_trash": {
+  "table": "UI",
+  "text": "Trash",
+  "maybe_built_from": []
+ },
+ "ui_attractiveness_meter_projector": {
+  "table": "UI",
+  "text": "Projector",
+  "maybe_built_from": []
+ },
+ "ui_inspection_panel_confront_button": {
+  "table": "UI",
+  "text": "Confront",
+  "maybe_built_from": []
+ },
+ "ui_newspaper_title": {
+  "table": "UI",
+  "text": "The Bottomline Bulletin",
+  "maybe_built_from": []
+ },
+ "ui_newspaper_subtitle": {
+  "table": "UI",
+  "text": "Daily News",
+  "maybe_built_from": []
+ },
+ "ui_close_shutter_confirmation": {
+  "table": "UI",
+  "text": "Are you sure you want to close the Store?\n\nThere are still people waiting in line.",
+  "maybe_built_from": []
+ },
+ "ui_request_turn_item": {
+  "table": "UI",
+  "text": "Turn In Item",
+  "maybe_built_from": []
+ },
+ "ui_appraisal_send_estimate": {
+  "table": "UI",
+  "text": "Send Estimate",
+  "maybe_built_from": []
+ },
+ "ui_appraisal_customer_estimate": {
+  "table": "UI",
+  "text": "Customer's Estimate",
+  "maybe_built_from": []
+ },
+ "ui_nego_title_appraisal": {
+  "table": "UI",
+  "text": "Appraisal Service",
+  "maybe_built_from": []
+ },
+ "ui_nego_buying_items": {
+  "table": "UI",
+  "text": "Buying {0} Items",
+  "maybe_built_from": []
+ },
+ "ui_nego_selling_items": {
+  "table": "UI",
+  "text": "Selling {0} Items",
+  "maybe_built_from": []
+ },
+ "ui_nego_info_offer": {
+  "table": "UI",
+  "text": "Information Offer",
+  "maybe_built_from": []
+ },
+ "lottery_prizes_title": {
+  "table": "UI",
+  "text": "Lottery Prizes",
+  "maybe_built_from": []
+ },
+ "book_water_s1_warning": {
+  "table": "UI",
+  "text": "WARNING: IF CONSUMED GUTTERFLOW, SEEK IMMEDIATE MEDICAL ATTENTION",
+  "maybe_built_from": []
+ },
+ "commissary_lottery_redeem_notice": {
+  "table": "UI",
+  "text": "Redeem all winning lottery tickets into Credits (Not Commissary Tokens)",
+  "maybe_built_from": []
+ },
+ "ui_clientele": {
+  "table": "UI",
+  "text": "Clientele",
+  "maybe_built_from": []
+ },
+ "ui_clientele_buyers_merch": {
+  "table": "UI",
+  "text": "Expected Buyers From Displayed Merchandise",
+  "maybe_built_from": []
+ },
+ "ui_clientele_tooltip": {
+  "table": "UI",
+  "text": "Customers will appear depending on the conditions of the Store when the Shutter Door is opened.",
+  "maybe_built_from": []
+ },
+ "ui_clientele_normal_tooltip": {
+  "table": "UI",
+  "text": "The condition of your store will attract a number of random customers each day. Certain special items stored in the Display Case can influence which customers appear. Each of the following customers can appear once per day. Remaining slots will be filled with random customers.",
+  "maybe_built_from": []
+ },
+ "ui_clientele_merch_tooltip": {
+  "table": "UI",
+  "text": "Most merchandise stored inside the Display Case will attract buyers. Buyers' budget depend on the value of the stored merchandise.",
+  "maybe_built_from": []
+ },
+ "ui_info_variety": {
+  "table": "UI",
+  "text": "This customer will only buy each item once, but will pay a premium.",
+  "maybe_built_from": []
+ },
+ "ui_info_no_contraband": {
+  "table": "UI",
+  "text": "This customer will not accept any contraband.",
+  "maybe_built_from": []
+ },
+ "ui_info_security_team": {
+  "table": "UI",
+  "text": "This customer is part of Station Security. Showing them Stolen or Contraband items may have consequences.",
+  "maybe_built_from": []
+ },
+ "ui_info_store_attractiveness": {
+  "table": "UI",
+  "text": "Store Attractiveness is affected by how recently the Janitor cleaned the storefront, and by certain machines and upgrades.",
+  "maybe_built_from": []
+ },
+ "ui_info_reputation": {
+  "table": "UI",
+  "text": "Reputation with a faction can be gained by trading with their members. Trading with special customers grants increased reputation. Reporting a customer to Security may result in lost reputation with their faction.",
+  "maybe_built_from": []
+ },
+ "ui_info_labeler": {
+  "table": "UI",
+  "text": "Certain items can have labels, which can be edited. Use this to label items honestly, or to mislabel them and sell at a higher price. Beware: different customers are better or worse at spotting mislabeled goods. If you are caught selling an item worth less than its label, your reputation may take a hit.",
+  "maybe_built_from": []
+ },
+ "ui_info_inspection_genuine_claim": {
+  "table": "UI",
+  "text": "The customer claims this item is genuine and in working condition. Use this panel to confront them if you find any sign that it's counterfeit or broken. One issue is enough. If you are wrong, your reputation may take a hit.",
+  "maybe_built_from": []
+ },
+ "ui_info_inspection_counterfeit_claim": {
+  "table": "UI",
+  "text": "The customer is selling this item and claims it's counterfeit or broken. If you believe they're wrong, use this panel to say so. They will raise their asking price accordingly and grant you reputation.",
+  "maybe_built_from": []
+ },
+ "book_fuel_p7_example1": {
+  "table": "UI",
+  "text": "Base Value: +300\nCracks: -150\nReinforced: +60\nNo Manufacturer Bonus (Can't have cracks): +0 \n----------------------\n<b>Total: 210</b>",
+  "maybe_built_from": []
+ },
+ "book_fuel_p7_example2": {
+  "table": "UI",
+  "text": "Base Value: +300\nHeavy Wears: -90\nExposed Screws: -30\nLow Grade Color: -150\n------------------\nSubtotal: 30\n------------------\nThis item cannot go below 90\n<b>Final Value: 90</b>",
+  "maybe_built_from": []
+ },
+ "book_fuel_appraisal_example_title": {
+  "table": "UI",
+  "text": "Appraisal Example",
+  "maybe_built_from": []
+ },
+ "ui_dialog_window_title": {
+  "table": "UI",
+  "text": "Dialogue and Typewriter Settings",
+  "maybe_built_from": []
+ },
+ "ui_dialog_window_note": {
+  "table": "UI",
+  "text": "These settings can be changed at any time in the Game Options menu.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_offer_discount_info": {
+  "table": "UI",
+  "text": "Offer a discount when selling to this customer. Grants additional reputation on each item sold and increases customer budget.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_demand_discount_info": {
+  "table": "UI",
+  "text": "Demand a discount when buying from this customer. Costs reputation on each item bought if successful. Success depends on your faction reputation.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_add_markup_info": {
+  "table": "UI",
+  "text": "Charge extra when selling to this customer, reducing their total budget and costing additional reputation on each item sold. Success depends on your current reputation.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_offer_markup_info": {
+  "table": "UI",
+  "text": "Pay extra when buying from this customer. Grants additional reputation on each item purchased.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_blackmail_info": {
+  "table": "UI",
+  "text": "Threaten to report this customer to Security unless they offer better prices when trading. Always fails on non-criminal customers.",
+  "maybe_built_from": []
+ },
+ "bargain_ui_threathen_info": {
+  "table": "UI",
+  "text": "Accuse this customer of being an Aug and threaten to shoot them, demanding better prices when trading. If attempted on a normal customer, the accusation will always fail and you will lose reputation.",
+  "maybe_built_from": []
+ },
+ "book_hand_intro": {
+  "table": "UI",
+  "text": "Cybernetic hands vary widely on the Station, and so do their prices. This guide will help determine the fair market value of any cybernetic hand.",
+  "maybe_built_from": []
+ },
+ "book_hand_p1_s1_title": {
+  "table": "UI",
+  "text": "Base Value and Minimum Value",
+  "maybe_built_from": []
+ },
+ "book_hand_p1_s1_body": {
+  "table": "UI",
+  "text": "All cybernetic hands start at 100 Credits. Various conditions can affect their price. Regardless of condition, the minimum value of a cybernetic hand is 50 Credits.",
+  "maybe_built_from": []
+ },
+ "book_hand_p1_s2_title": {
+  "table": "UI",
+  "text": "1. Material",
+  "maybe_built_from": []
+ },
+ "book_hand_aluminum": {
+  "table": "UI",
+  "text": "Aluminum Alloy",
+  "maybe_built_from": []
+ },
+ "book_hand_carbon": {
+  "table": "UI",
+  "text": "Carbon Composite",
+  "maybe_built_from": []
+ },
+ "book_hand_gold": {
+  "table": "UI",
+  "text": "Gold Plated",
+  "maybe_built_from": []
+ },
+ "book_hand_p2_s1_title": {
+  "table": "UI",
+  "text": "2. Condition",
+  "maybe_built_from": []
+ },
+ "book_hand_condition_none": {
+  "table": "UI",
+  "text": "None",
+  "maybe_built_from": []
+ },
+ "book_hand_condition_wears": {
+  "table": "UI",
+  "text": "Wears",
+  "maybe_built_from": []
+ },
+ "book_hand_condition_damages": {
+  "table": "UI",
+  "text": "Damages",
+  "maybe_built_from": []
+ },
+ "book_hand_p2_s2_title": {
+  "table": "UI",
+  "text": "3. Control Interface",
+  "maybe_built_from": []
+ },
+ "book_hand_control_neural_interface": {
+  "table": "UI",
+  "text": "Neural Interface",
+  "maybe_built_from": []
+ },
+ "book_hand_control_unspecified": {
+  "table": "UI",
+  "text": "Unspecified",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s1_title": {
+  "table": "UI",
+  "text": "4. Add-ons",
+  "maybe_built_from": []
+ },
+ "book_hand_addon_armored": {
+  "table": "UI",
+  "text": "Armored",
+  "maybe_built_from": []
+ },
+ "book_hand_addon_blade": {
+  "table": "UI",
+  "text": "Blade",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s1_body": {
+  "table": "UI",
+  "text": "Add-ons bonus are independent and each can apply.",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s2_title": {
+  "table": "UI",
+  "text": "5. Set Bonus",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s2_body": {
+  "table": "UI",
+  "text": "Specific combinations of cybernetic hands can increase their value.",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s2_body2": {
+  "table": "UI",
+  "text": "Tactical:\n- Carbon Composite\n- EMG+ or Neural Interface\n- No wear or damage\n- Armored and blade",
+  "maybe_built_from": []
+ },
+ "book_hand_p3_s2_body3": {
+  "table": "UI",
+  "text": "Deluxe:\n- Gold Plated\n- Neural Interface\n- No wear or damage\n- With or without any add-ons",
+  "maybe_built_from": []
+ },
+ "book_hand_examples": {
+  "table": "UI",
+  "text": "Examples",
+  "maybe_built_from": []
+ },
+ "book_hand_example1": {
+  "table": "UI",
+  "text": "Base: +100\nCarbon Composite: +50\nWear: -35\nEMG+: +45\nTotal: 160 Credits",
+  "maybe_built_from": []
+ },
+ "book_hand_example2": {
+  "table": "UI",
+  "text": "Base: +100\nDamage: -85\nUnspecified Control: -60\nSubtotal: -45 Credits\nCANNOT GO BELOW 50 CREDITS\nTotal: 50 Credits\n",
+  "maybe_built_from": []
+ },
+ "book_wine_p2_body1": {
+  "table": "UI",
+  "text": "Water quality affects wine quality. Use High Quality Water or Basewater. Pure Water lacks the minerals needed for fermentation. Lower grades of water will greatly reduce wine quality.",
+  "maybe_built_from": []
+ },
+ "book_wine_p2_body2": {
+  "table": "UI",
+  "text": "Standard yeast is optional but highly recommended. Without it, wild yeast from the air will ferment the wine instead, producing inconsistent results. Standard yeast also greatly accelerates fermentation.",
+  "maybe_built_from": []
+ },
+ "book_wine_p2_body3": {
+  "table": "UI",
+  "text": "Berry quality is the most important factor. One handful is enough for lower-grade wine. Two handfuls are necessary for high-grade wine. Avoid overripe, underripe, or moldy berries. The best berries for winemaking are usually smaller than normal.",
+  "maybe_built_from": []
+ },
+ "book_wine_p3_title": {
+  "table": "UI",
+  "text": "BloomBerry Identification",
+  "maybe_built_from": []
+ },
+ "book_wine_p3_s1": {
+  "table": "UI",
+  "text": "Normal",
+  "maybe_built_from": []
+ },
+ "book_wine_p3_s2": {
+  "table": "UI",
+  "text": "Underripe",
+  "maybe_built_from": []
+ },
+ "book_wine_p3_s3": {
+  "table": "UI",
+  "text": "Moldy",
+  "maybe_built_from": []
+ },
+ "book_wine_p3_s4": {
+  "table": "UI",
+  "text": "Small",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_section1_title": {
+  "table": "UI",
+  "text": "Visual Features",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_section2_title": {
+  "table": "UI",
+  "text": "Non-Visual Features",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_s1_b1": {
+  "table": "UI",
+  "text": "Unusual Pupils",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_s1_b2": {
+  "table": "UI",
+  "text": "Uncanny Expression",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_s1_b3": {
+  "table": "UI",
+  "text": "Visible Aug Chip",
+  "maybe_built_from": []
+ },
+ "ui_aug_guide_s2_b1": {
+  "table": "UI",
+  "text": "-Unnatural Stillness\n-Twitching\n-Outfit Not Matching Their Faction\n-Robotic vocabulary\n-Overly Formal Phrasing",
+  "maybe_built_from": []
+ },
+ "ui_exchange_perm": {
+  "table": "UI",
+  "text": "Permanent Exchanges",
+  "maybe_built_from": []
+ },
+ "ui_exchange_promo": {
+  "table": "UI",
+  "text": "Promotional Exchanges (Reset On Monday)",
+  "maybe_built_from": []
+ },
+ "ui_exchange_signature1": {
+  "table": "UI",
+  "text": "Chairman S.",
+  "maybe_built_from": []
+ },
+ "ui_exchange_signature2": {
+  "table": "UI",
+  "text": "Underground Exchange Authority",
+  "maybe_built_from": []
+ },
+ "ui_exchange_per_night": {
+  "table": "UI",
+  "text": "Once Per Night",
+  "maybe_built_from": []
+ },
+ "ui_exchange_any_condition": {
+  "table": "UI",
+  "text": "Any Condition",
+  "maybe_built_from": []
+ },
+ "ui_exchange_new": {
+  "table": "UI",
+  "text": "New",
+  "maybe_built_from": []
+ },
+ "ui_exchange_random": {
+  "table": "UI",
+  "text": "Random",
+  "maybe_built_from": []
+ },
+ "ui_exchange_random_legal_goods": {
+  "table": "UI",
+  "text": "Random Legal Goods",
+  "maybe_built_from": []
+ },
+ "ui_exchange_bm_rep": {
+  "table": "UI",
+  "text": "Blackmarket Reputation",
+  "maybe_built_from": []
+ },
+ "ui_thanks_demo": {
+  "table": "UI",
+  "text": "Thanks For Playing The Demo!",
+  "maybe_built_from": []
+ },
+ "ui_thanks_demo_content": {
+  "table": "UI",
+  "text": "Please consider wishlisting the game on Steam and filling out the feedback survey. It only takes 5 minutes and would help us make the game better!",
+  "maybe_built_from": []
+ },
+ "ui_mode_shoot": {
+  "table": "UI",
+  "text": "Shoot",
+  "maybe_built_from": []
+ },
+ "ui_mode_holster": {
+  "table": "UI",
+  "text": "Holster",
+  "maybe_built_from": []
+ },
+ "ui_mode_zoom": {
+  "table": "UI",
+  "text": "Zoom",
+  "maybe_built_from": []
+ },
+ "ui_mode_exit": {
+  "table": "UI",
+  "text": "Exit",
+  "maybe_built_from": []
+ },
+ "lottery_match2": {
+  "table": "UI",
+  "text": "2/6 Matches",
+  "maybe_built_from": []
+ },
+ "ui_wild_favor": {
+  "table": "UI",
+  "text": "Gaining Reputation with the Lower Levels or using nightly services unlocked through Joe Wild increases Wild Favor, which is spent first on Wild's upgrades.",
+  "maybe_built_from": []
+ },
+ "ui_quick_dial": {
+  "table": "UI",
+  "text": "Quick Dial",
+  "maybe_built_from": []
+ }
+}

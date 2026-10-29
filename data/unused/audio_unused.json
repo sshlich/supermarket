@@ -1,0 +1,366 @@
+[
+ {
+  "name": "AMB_Station_Ambience",
+  "file": "sharedassets1.assets",
+  "seconds": 644.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "bedroll",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "Typewriter sound 1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "sound_effects_wounds_blood1",
+  "file": "sharedassets1.assets",
+  "seconds": 0.8,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "wound_blood1"
+   }
+  ],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "shutter_open3s",
+  "file": "sharedassets1.assets",
+  "seconds": 3.0,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "ratchet",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "shotgun_fire",
+  "file": "sharedassets1.assets",
+  "seconds": 6.5,
+  "directory_ids": [
+   {
+    "array": "audioAsset3",
+    "identifier": "shotgun_fire2"
+   }
+  ],
+  "id_in_code": false,
+  "name_in_code": true
+ },
+ {
+  "name": "AMB_Dr_Jackson_Ambience",
+  "file": "sharedassets1.assets",
+  "seconds": 300.0,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "Typewriter sound 3",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "sound_effects_assslap",
+  "file": "sharedassets1.assets",
+  "seconds": 0.4,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "ass_slap"
+   }
+  ],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "lamp_click",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "phone_calling",
+  "file": "sharedassets1.assets",
+  "seconds": 7.5,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "AMB_Dumps_Ambience",
+  "file": "sharedassets1.assets",
+  "seconds": 300.0,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "box_click",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "new_soft_click",
+  "file": "sharedassets1.assets",
+  "seconds": 0.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "cash_register",
+  "file": "sharedassets1.assets",
+  "seconds": 5.1,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "metal_snap",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "AMB_Comissionary_Ambience",
+  "file": "sharedassets1.assets",
+  "seconds": 300.0,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "Station_Ambience_004",
+  "file": "sharedassets1.assets",
+  "seconds": 644.2,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Step_Left",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "shutter_door_closed",
+  "file": "sharedassets1.assets",
+  "seconds": 1.8,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "phone_wrong_number",
+  "file": "sharedassets1.assets",
+  "seconds": 1.3,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "phone_getting_hang",
+  "file": "sharedassets1.assets",
+  "seconds": 0.7,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "writing2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.5,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "phone_client_pickup",
+  "file": "sharedassets1.assets",
+  "seconds": 0.7,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "shutter_close3s",
+  "file": "sharedassets1.assets",
+  "seconds": 3.4,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "sound_fail",
+  "file": "sharedassets1.assets",
+  "seconds": 4.5,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "alarm2",
+  "file": "sharedassets1.assets",
+  "seconds": 1.1,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "beat_coin",
+  "file": "sharedassets1.assets",
+  "seconds": 2.6,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "cross",
+  "file": "sharedassets1.assets",
+  "seconds": 1.1,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "phone_pickup",
+  "file": "sharedassets1.assets",
+  "seconds": 0.8,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "pageflip",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "phone_drop",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "new_bell",
+  "file": "sharedassets1.assets",
+  "seconds": 1.5,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "SFX_Step_Right",
+  "file": "sharedassets1.assets",
+  "seconds": 0.3,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "negative_beep",
+  "file": "sharedassets1.assets",
+  "seconds": 0.6,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "Typewriter sound 2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.1,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "pourOut",
+  "file": "sharedassets1.assets",
+  "seconds": 1.7,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "airlock_close_new",
+  "file": "sharedassets1.assets",
+  "seconds": 2.0,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "airlock_open_new",
+  "file": "sharedassets1.assets",
+  "seconds": 1.5,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "ratcher2",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "shuttle_arrive",
+  "file": "sharedassets1.assets",
+  "seconds": 3.7,
+  "directory_ids": [
+   {
+    "array": "audioAsset",
+    "identifier": "shuttle_arrive"
+   }
+  ],
+  "id_in_code": false,
+  "name_in_code": false
+ },
+ {
+  "name": "writing",
+  "file": "sharedassets1.assets",
+  "seconds": 0.9,
+  "directory_ids": [],
+  "id_in_code": false,
+  "name_in_code": false
+ }
+]
