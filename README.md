@@ -43,8 +43,8 @@ Three sources:
 - **Disabled loot:** `sup_keycard` and `sci_keycard` sit in `accessCardTable` switched off.
 - **Unreachable live items:** 35 registered items that nothing references, e.g. MBS Nerve Gas, Test Gizmo, Box Dispenser,
   Blank Module, Streamlining Module, Attachable Extended Barrel, Old Lottery Ticket and 9 unused perks.
-- **Art:** 307 orphan sprites (peanut butter colors, stick and smoke grenades, fire axe, sandal weapon, STANAG mags,
-  handmade SMG, wine labels, broken-machine minigame pieces...) and 97 sprites of cut items. All 276 audio clips are wired
+- **Art:** 115 orphan sprites (the ruined-machine minigame parts, XXL rats, peanut butter in five colors, sandal weapon,
+  improvised spear, fire axe, STANAG mags, handmade SMG...) and 97 sprites of cut items. All 276 audio clips are wired
   to something (AudioDirectory, a scene AudioSource or a component field), so no audio is unused.
 
 Every "unused" claim is a lead, not proof: IDs that the code assembles from parts at runtime can look unreferenced.

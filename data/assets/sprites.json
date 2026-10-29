@@ -9215,8 +9215,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_red_25.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_red_25.png"
  },
  {
   "name": "cassette7",
@@ -9239,8 +9239,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_red_50.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_red_50.png"
  },
  {
   "name": "meat_fish_large1",
@@ -9287,8 +9287,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_75.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_blue_75.png"
  },
  {
   "name": "guide5",
@@ -9403,8 +9403,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_blue_90.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_blue_90.png"
  },
  {
   "name": "tilapia2",
@@ -9427,7 +9427,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "beer_case",
+  "variant_of": "beer_case_",
   "png": "sprites/orphan_variants/items_beer_case/beer_case_1.png"
  },
  {
@@ -9462,8 +9462,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_blue_90.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_blue_90.png"
  },
  {
   "name": "outside_right",
@@ -9510,8 +9510,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_outer/border_outside_top_rounded_new.png"
+  "variant_of": "border_outside_top_rounded",
+  "png": "sprites/orphan_variants/window_elements_outer/border_outside_top_rounded_new.png"
  },
  {
   "name": "100ml_blue_25",
@@ -9523,8 +9523,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_25.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_blue_25.png"
  },
  {
   "name": "chem_finisher_b",
@@ -9571,8 +9571,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_red_75.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_red_75.png"
  },
  {
   "name": "aug_scanner",
@@ -9678,8 +9678,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_blue_100.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_blue_100.png"
  },
  {
   "name": "battery_dis40",
@@ -9704,8 +9704,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_blue_10.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_blue_10.png"
  },
  {
   "name": "engine",
@@ -9741,8 +9741,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_red_50.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_red_50.png"
  },
  {
   "name": "medical_sign",
@@ -9822,8 +9822,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_blue_100.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_blue_100.png"
  },
  {
   "name": "injector_red",
@@ -9857,8 +9857,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_dark_50.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_dark_50.png"
  },
  {
   "name": "items_medical_12",
@@ -9988,8 +9988,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_25.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_dark_25.png"
  },
  {
   "name": "peanut_butter_purple",
@@ -10027,8 +10027,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_dark_25.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_dark_25.png"
  },
  {
   "name": "pitcher_blue_90",
@@ -10040,8 +10040,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_90.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_blue_90.png"
  },
  {
   "name": "down_d",
@@ -10125,8 +10125,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_dark_75.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_dark_75.png"
  },
  {
   "name": "ore2",
@@ -10149,8 +10149,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_10.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_dark_10.png"
  },
  {
   "name": "mini_dark_75",
@@ -10162,8 +10162,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_dark_75.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_dark_75.png"
  },
  {
   "name": "organ_lung_left",
@@ -10212,8 +10212,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_red_100.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_red_100.png"
  },
  {
   "name": "bottle5",
@@ -10238,8 +10238,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_100.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_dark_100.png"
  },
  {
   "name": "normal_blue_25",
@@ -10251,8 +10251,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_blue_25.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_blue_25.png"
  },
  {
   "name": "100ml_hl_100",
@@ -10277,8 +10277,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_red_75.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_red_75.png"
  },
  {
   "name": "strip5",
@@ -10301,8 +10301,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_10.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_dark_10.png"
  },
  {
   "name": "cassette_player",
@@ -10336,8 +10336,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_100.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_dark_100.png"
  },
  {
   "name": "rm_reinforced_panel",
@@ -10498,8 +10498,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_red_25.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_red_25.png"
  },
  {
   "name": "superyeast",
@@ -10559,8 +10559,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_red_10.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_red_10.png"
  },
  {
   "name": "heavy_handmade_pistol_frame",
@@ -10849,8 +10849,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/light_cyan.png"
+  "variant_of": "light",
+  "png": "sprites/orphan_variants/window_elements_inner/light_cyan.png"
  },
  {
   "name": "peanut_butter_orange",
@@ -10910,8 +10910,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_25.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_dark_25.png"
  },
  {
   "name": "dark_purple",
@@ -10923,8 +10923,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/dark_purple.png"
+  "variant_of": "dark",
+  "png": "sprites/orphan_variants/window_elements_inner/dark_purple.png"
  },
  {
   "name": "bottle_item",
@@ -11006,8 +11006,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_10.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_dark_10.png"
  },
  {
   "name": "med_bottle_orange",
@@ -11078,8 +11078,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_dark_10.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_dark_10.png"
  },
  {
   "name": "cassette9b",
@@ -11137,8 +11137,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_red_10.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_red_10.png"
  },
  {
   "name": "dna_disk_blue_full",
@@ -11360,8 +11360,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_blue_75.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_blue_75.png"
  },
  {
   "name": "small_hl_75",
@@ -11443,8 +11443,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/1ml_blue.png"
+  "variant_of": "1ml",
+  "png": "sprites/orphan_variants/items_water_container3/1ml_blue.png"
  },
  {
   "name": "mini_blue_50",
@@ -11456,8 +11456,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_blue_50.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_blue_50.png"
  },
  {
   "name": "strip_used",
@@ -11515,8 +11515,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_items_amenities/lottery_teared.png"
+  "variant_of": "lottery",
+  "png": "sprites/orphan_variants/items_items_amenities/lottery_teared.png"
  },
  {
   "name": "newspaper",
@@ -11539,8 +11539,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_blue_25.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_blue_25.png"
  },
  {
   "name": "steel_sheet_rough",
@@ -11698,8 +11698,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_items_broken_machine/broken_alarm_.png"
+  "variant_of": "broken_alarm",
+  "png": "sprites/orphan_variants/items_items_broken_machine/broken_alarm_.png"
  },
  {
   "name": "jar_empty",
@@ -11750,8 +11750,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_blue_50.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_blue_50.png"
  },
  {
   "name": "grip_item",
@@ -11796,8 +11796,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_items_broken_machine/broken_moisture_farm_.png"
+  "variant_of": "broken_moisture_farm",
+  "png": "sprites/orphan_variants/items_items_broken_machine/broken_moisture_farm_.png"
  },
  {
   "name": "shotgun_grip",
@@ -11868,8 +11868,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_red_100.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_red_100.png"
  },
  {
   "name": "storage_bay_large",
@@ -12080,8 +12080,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_75.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_blue_75.png"
  },
  {
   "name": "normal_dark_50",
@@ -12093,8 +12093,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_dark_50.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_dark_50.png"
  },
  {
   "name": "nudka",
@@ -12244,8 +12244,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_dark_10.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_dark_10.png"
  },
  {
   "name": "handmade_pistol_frame",
@@ -12603,8 +12603,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_50.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_blue_50.png"
  },
  {
   "name": "alarm_system_r",
@@ -12651,8 +12651,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_items_weapons_melee/combat_machete_old.png"
+  "variant_of": "combat_machete",
+  "png": "sprites/orphan_variants/items_items_weapons_melee/combat_machete_old.png"
  },
  {
   "name": "makeshift_hull",
@@ -12690,7 +12690,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "beer_case",
+  "variant_of": "beer_case_",
   "png": "sprites/orphan_variants/items_beer_case/beer_case_6.png"
  },
  {
@@ -12714,8 +12714,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_dark_10.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_dark_10.png"
  },
  {
   "name": "rat_xxl_f",
@@ -12880,8 +12880,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_red_75.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_red_75.png"
  },
  {
   "name": "special_mod",
@@ -12915,7 +12915,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "beer_case",
+  "variant_of": "beer_case_",
   "png": "sprites/orphan_variants/items_beer_case/beer_case_3.png"
  },
  {
@@ -13050,8 +13050,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_blue_75.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_blue_75.png"
  },
  {
   "name": "small_red_75",
@@ -13063,8 +13063,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_red_75.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_red_75.png"
  },
  {
   "name": "large_hl_100",
@@ -13179,8 +13179,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_red_10.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_red_10.png"
  },
  {
   "name": "items_sign_1",
@@ -13273,8 +13273,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_red_90.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_red_90.png"
  },
  {
   "name": "furnace_on",
@@ -13369,8 +13369,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_red_50.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_red_50.png"
  },
  {
   "name": "chemical2",
@@ -13404,8 +13404,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_red_100.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_red_100.png"
  },
  {
   "name": "battery60",
@@ -13428,8 +13428,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_blue_90.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_blue_90.png"
  },
  {
   "name": "50ml_blue_10",
@@ -13441,8 +13441,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_10.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_blue_10.png"
  },
  {
   "name": "jar_orange",
@@ -13500,8 +13500,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_dark_10.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_dark_10.png"
  },
  {
   "name": "hydro_upgrade_kit",
@@ -13537,8 +13537,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_red_10.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_red_10.png"
  },
  {
   "name": "xl_dark_100",
@@ -13550,8 +13550,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_dark_100.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_dark_100.png"
  },
  {
   "name": "machine_bay4",
@@ -13622,8 +13622,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/dark_cyan.png"
+  "variant_of": "dark",
+  "png": "sprites/orphan_variants/window_elements_inner/dark_cyan.png"
  },
  {
   "name": "wirecutter",
@@ -13716,8 +13716,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_dark_25.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_dark_25.png"
  },
  {
   "name": "nutrient_tablet",
@@ -13823,8 +13823,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/dark_red.png"
+  "variant_of": "dark",
+  "png": "sprites/orphan_variants/window_elements_inner/dark_red.png"
  },
  {
   "name": "10mm_mag_smg_box_view",
@@ -13860,7 +13860,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "module_green",
+  "variant_of": "module_green_2",
   "png": "sprites/orphan_variants/items_items_module/module_green_2_h.png"
  },
  {
@@ -13956,8 +13956,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_red_50.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_red_50.png"
  },
  {
   "name": "dark_green",
@@ -13969,8 +13969,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/dark_green.png"
+  "variant_of": "dark",
+  "png": "sprites/orphan_variants/window_elements_inner/dark_green.png"
  },
  {
   "name": "printer_chip3",
@@ -14028,8 +14028,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_red_100.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_red_100.png"
  },
  {
   "name": "25ml_dark_50",
@@ -14041,8 +14041,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_50.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_dark_50.png"
  },
  {
   "name": "battery_dis0",
@@ -14146,8 +14146,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_red_90.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_red_90.png"
  },
  {
   "name": "nl_ammo_box_packed",
@@ -14192,8 +14192,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_75.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_dark_75.png"
  },
  {
   "name": "broken_alarm",
@@ -14286,8 +14286,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_blue_10.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_blue_10.png"
  },
  {
   "name": "tilapia_small2",
@@ -14437,8 +14437,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_100.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_blue_100.png"
  },
  {
   "name": "rm_card_swiper_lock",
@@ -14612,8 +14612,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_dark_100.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_dark_100.png"
  },
  {
   "name": "battery80",
@@ -14704,8 +14704,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_dark_100.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_dark_100.png"
  },
  {
   "name": "screen_dark",
@@ -15040,8 +15040,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_red_100.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_red_100.png"
  },
  {
   "name": "armored_hull",
@@ -15077,8 +15077,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_50.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_blue_50.png"
  },
  {
   "name": "broken_furnace",
@@ -15193,8 +15193,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_red_50.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_red_50.png"
  },
  {
   "name": "border_top_button_x_select",
@@ -15331,8 +15331,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_10.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_blue_10.png"
  },
  {
   "name": "fish_food2",
@@ -15403,8 +15403,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_blue_75.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_blue_75.png"
  },
  {
   "name": "current_converter_off",
@@ -15486,8 +15486,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_25.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_red_25.png"
  },
  {
   "name": "ammo_box_packed",
@@ -15510,8 +15510,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_90.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_blue_90.png"
  },
  {
   "name": "simple_backpack_modular",
@@ -15549,8 +15549,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_dark_10.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_dark_10.png"
  },
  {
   "name": "previous_d",
@@ -15625,8 +15625,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_90.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_dark_90.png"
  },
  {
   "name": "smuggler_bay",
@@ -15745,7 +15745,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "beer_case",
+  "variant_of": "beer_case_",
   "png": "sprites/orphan_variants/items_beer_case/beer_case_7.png"
  },
  {
@@ -15758,8 +15758,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_90.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_blue_90.png"
  },
  {
   "name": "mouse_trap_f",
@@ -15830,8 +15830,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/light_purple.png"
+  "variant_of": "light",
+  "png": "sprites/orphan_variants/window_elements_inner/light_purple.png"
  },
  {
   "name": "large_red_25",
@@ -15843,8 +15843,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_red_25.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_red_25.png"
  },
  {
   "name": "med_bottle_violet",
@@ -15937,8 +15937,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/dark_orange.png"
+  "variant_of": "dark",
+  "png": "sprites/orphan_variants/window_elements_inner/dark_orange.png"
  },
  {
   "name": "turbo_booster_hypertech",
@@ -16042,8 +16042,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/1ml_dark.png"
+  "variant_of": "1ml",
+  "png": "sprites/orphan_variants/items_water_container3/1ml_dark.png"
  },
  {
   "name": "recharger_o",
@@ -16149,8 +16149,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_red_75.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_red_75.png"
  },
  {
   "name": "50ml_blue_50",
@@ -16162,8 +16162,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_50.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_blue_50.png"
  },
  {
   "name": "large_blue_25",
@@ -16175,8 +16175,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_blue_25.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_blue_25.png"
  },
  {
   "name": "wine_label5",
@@ -16214,8 +16214,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_red_50.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_red_50.png"
  },
  {
   "name": "rm_disarm2",
@@ -16314,8 +16314,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_dark_25.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_dark_25.png"
  },
  {
   "name": "heavy_smg",
@@ -16338,8 +16338,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_90.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_dark_90.png"
  },
  {
   "name": "vacuum_robot",
@@ -16489,8 +16489,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_100.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_blue_100.png"
  },
  {
   "name": "down_c",
@@ -17124,8 +17124,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_blue_25.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_blue_25.png"
  },
  {
   "name": "tazer",
@@ -17183,8 +17183,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_dark_100.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_dark_100.png"
  },
  {
   "name": "light_red",
@@ -17196,8 +17196,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/light_red.png"
+  "variant_of": "light",
+  "png": "sprites/orphan_variants/window_elements_inner/light_red.png"
  },
  {
   "name": "module_extractor",
@@ -17220,8 +17220,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_90.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_blue_90.png"
  },
  {
   "name": "shotgun",
@@ -17338,8 +17338,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_items_food/nutrichips_old.png"
+  "variant_of": "nutrichips",
+  "png": "sprites/orphan_variants/items_items_food/nutrichips_old.png"
  },
  {
   "name": "dna_disk_purple_full",
@@ -17480,8 +17480,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_90.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_red_90.png"
  },
  {
   "name": "meat_fish_large3",
@@ -17604,8 +17604,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_blue_100.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_blue_100.png"
  },
  {
   "name": "50ml_dark_75",
@@ -17617,8 +17617,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_75.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_dark_75.png"
  },
  {
   "name": "battery20",
@@ -17722,8 +17722,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_red_10.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_red_10.png"
  },
  {
   "name": "organ_kidney_left",
@@ -17807,8 +17807,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_red_10.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_red_10.png"
  },
  {
   "name": "pitcher_red_100",
@@ -17820,8 +17820,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_100.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_red_100.png"
  },
  {
   "name": "sbattery10",
@@ -17920,7 +17920,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "module_red",
+  "variant_of": "module_red_2",
   "png": "sprites/orphan_variants/items_items_module/module_red_2_s.png"
  },
  {
@@ -17944,8 +17944,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_75.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_dark_75.png"
  },
  {
   "name": "flashlight",
@@ -18114,8 +18114,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/light_yellow.png"
+  "variant_of": "light",
+  "png": "sprites/orphan_variants/window_elements_inner/light_yellow.png"
  },
  {
   "name": "meat_scrap",
@@ -18138,8 +18138,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_red_25.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_red_25.png"
  },
  {
   "name": "nutrifruit_seed_packet",
@@ -18164,8 +18164,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_25.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_blue_25.png"
  },
  {
   "name": "farm_module5",
@@ -18201,8 +18201,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_items_broken_machine/broken_furnace_.png"
+  "variant_of": "broken_furnace",
+  "png": "sprites/orphan_variants/items_items_broken_machine/broken_furnace_.png"
  },
  {
   "name": "sandal_weapon",
@@ -18363,8 +18363,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_100.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_blue_100.png"
  },
  {
   "name": "module_red",
@@ -18409,8 +18409,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_items_construction/steel_sheet_rough_large.png"
+  "variant_of": "steel_sheet_rough",
+  "png": "sprites/orphan_variants/items_items_construction/steel_sheet_rough_large.png"
  },
  {
   "name": "shotgun",
@@ -18435,8 +18435,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/1ml_red.png"
+  "variant_of": "1ml",
+  "png": "sprites/orphan_variants/items_water_container3/1ml_red.png"
  },
  {
   "name": "normal_blue_10",
@@ -18448,8 +18448,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_blue_10.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_blue_10.png"
  },
  {
   "name": "gl_item",
@@ -18531,8 +18531,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_red_90.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_red_90.png"
  },
  {
   "name": "screwdriver_s",
@@ -18577,8 +18577,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_dark_25.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_dark_25.png"
  },
  {
   "name": "nutrifruit_xl",
@@ -18601,8 +18601,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_red_90.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_red_90.png"
  },
  {
   "name": "small_hl_90",
@@ -18627,8 +18627,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_dark_90.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_dark_90.png"
  },
  {
   "name": "small_raw_xeno_meat",
@@ -18651,8 +18651,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_red_25.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_red_25.png"
  },
  {
   "name": "water_test_strip",
@@ -18710,8 +18710,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_90.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_dark_90.png"
  },
  {
   "name": "blank_card_wip",
@@ -18802,8 +18802,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_red_75.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_red_75.png"
  },
  {
   "name": "pitcher_red_50",
@@ -18815,8 +18815,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_50.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_red_50.png"
  },
  {
   "name": "liquid_luck_bottle",
@@ -18839,8 +18839,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_10.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_blue_10.png"
  },
  {
   "name": "roe3",
@@ -18863,8 +18863,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_blue_90.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_blue_90.png"
  },
  {
   "name": "farm_module1",
@@ -18900,8 +18900,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_100.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_dark_100.png"
  },
  {
   "name": "module_black_5",
@@ -18924,8 +18924,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_10.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_red_10.png"
  },
  {
   "name": "50ml_hl_90",
@@ -18998,8 +18998,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_dark_25.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_dark_25.png"
  },
  {
   "name": "rm_access_panel_small",
@@ -19024,8 +19024,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_blue_75.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_blue_75.png"
  },
  {
   "name": "trash_pile",
@@ -19155,8 +19155,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_red_90.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_red_90.png"
  },
  {
   "name": "farm_module_l3",
@@ -19181,8 +19181,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_blue_50.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_blue_50.png"
  },
  {
   "name": "dumping_ground_pile",
@@ -19244,8 +19244,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_blue_90.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_blue_90.png"
  },
  {
   "name": "beer_case_8",
@@ -19257,7 +19257,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "beer_case",
+  "variant_of": "beer_case_",
   "png": "sprites/orphan_variants/items_beer_case/beer_case_8.png"
  },
  {
@@ -19270,8 +19270,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_blue_75.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_blue_75.png"
  },
  {
   "name": "small_raw_meat",
@@ -19320,8 +19320,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_red_75.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_red_75.png"
  },
  {
   "name": "25ml_hl_25",
@@ -19381,8 +19381,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_dark_90.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_dark_90.png"
  },
  {
   "name": "juice_pouch_old",
@@ -19394,8 +19394,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_items_food/juice_pouch_old.png"
+  "variant_of": "juice_pouch",
+  "png": "sprites/orphan_variants/items_items_food/juice_pouch_old.png"
  },
  {
   "name": "expedition_box",
@@ -19551,8 +19551,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_items_tool/purifier_jug.png"
+  "variant_of": "purifier",
+  "png": "sprites/orphan_variants/items_items_tool/purifier_jug.png"
  },
  {
   "name": "injector_pink",
@@ -19691,8 +19691,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_dark_90.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_dark_90.png"
  },
  {
   "name": "vending0",
@@ -19774,7 +19774,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "beer_case",
+  "variant_of": "beer_case_",
   "png": "sprites/orphan_variants/items_beer_case/beer_case_4.png"
  },
  {
@@ -19846,8 +19846,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_blue_10.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_blue_10.png"
  },
  {
   "name": "button_disabled",
@@ -19881,8 +19881,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_dark_75.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_dark_75.png"
  },
  {
   "name": "long_module3",
@@ -19931,8 +19931,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_dark_50.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_dark_50.png"
  },
  {
   "name": "beer_case_5",
@@ -19944,7 +19944,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "beer_case",
+  "variant_of": "beer_case_",
   "png": "sprites/orphan_variants/items_beer_case/beer_case_5.png"
  },
  {
@@ -19968,8 +19968,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/dark_yellow.png"
+  "variant_of": "dark",
+  "png": "sprites/orphan_variants/window_elements_inner/dark_yellow.png"
  },
  {
   "name": "border_bottom_resizable_button",
@@ -19992,7 +19992,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "beer_case",
+  "variant_of": "beer_case_",
   "png": "sprites/orphan_variants/items_beer_case/beer_case_2.png"
  },
  {
@@ -20202,8 +20202,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_dark_90.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_dark_90.png"
  },
  {
   "name": "10mm_mag_smg_high_view",
@@ -20261,8 +20261,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_75.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_blue_75.png"
  },
  {
   "name": "medical_system",
@@ -20407,8 +20407,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_100.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_blue_100.png"
  },
  {
   "name": "machine_bay2",
@@ -20433,8 +20433,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_blue_100.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_blue_100.png"
  },
  {
   "name": "small_dark_50",
@@ -20446,8 +20446,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_dark_50.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_dark_50.png"
  },
  {
   "name": "large_red_75",
@@ -20459,8 +20459,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_red_75.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_red_75.png"
  },
  {
   "name": "injector_green",
@@ -20507,8 +20507,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/5ml_dark.png"
+  "variant_of": "5ml",
+  "png": "sprites/orphan_variants/items_water_container3/5ml_dark.png"
  },
  {
   "name": "rm_access_panel_base_small",
@@ -20662,8 +20662,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_75.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_red_75.png"
  },
  {
   "name": "flux_agent",
@@ -20752,8 +20752,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_dark_100.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_dark_100.png"
  },
  {
   "name": "rat_xl_m_d",
@@ -20997,7 +20997,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "module_red",
+  "variant_of": "module_red_2",
   "png": "sprites/orphan_variants/items_items_module/module_red_2_h.png"
  },
  {
@@ -21034,8 +21034,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_blue_25.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_blue_25.png"
  },
  {
   "name": "battery_dis10",
@@ -21084,8 +21084,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_red_90.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_red_90.png"
  },
  {
   "name": "debris_pile2",
@@ -21200,8 +21200,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_blue_100.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_blue_100.png"
  },
  {
   "name": "storage_bay_large2",
@@ -21320,8 +21320,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/light_orange.png"
+  "variant_of": "light",
+  "png": "sprites/orphan_variants/window_elements_inner/light_orange.png"
  },
  {
   "name": "glass_shard",
@@ -21416,8 +21416,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_red_50.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_red_50.png"
  },
  {
   "name": "border_white",
@@ -21475,8 +21475,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_25.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_dark_25.png"
  },
  {
   "name": "rat_xxl_m_d",
@@ -21536,8 +21536,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_25.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_blue_25.png"
  },
  {
   "name": "meat_fish_large2",
@@ -21689,8 +21689,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_dark_75.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_dark_75.png"
  },
  {
   "name": "labeler_blue",
@@ -21914,8 +21914,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_10.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_dark_10.png"
  },
  {
   "name": "frag",
@@ -21964,8 +21964,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_red_90.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_red_90.png"
  },
  {
   "name": "trashcan",
@@ -21999,8 +21999,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/5ml_blue.png"
+  "variant_of": "5ml",
+  "png": "sprites/orphan_variants/items_water_container3/5ml_blue.png"
  },
  {
   "name": "kotton_plant_seed",
@@ -22093,8 +22093,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_red_25.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_red_25.png"
  },
  {
   "name": "farm_module_l4",
@@ -22189,8 +22189,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_50.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_dark_50.png"
  },
  {
   "name": "wine_rack",
@@ -22281,7 +22281,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "rat",
+  "variant_of": "rat_s_m",
   "png": "sprites/orphan_variants/items_items_husbandry/rat_s_m_d.png"
  },
  {
@@ -22320,8 +22320,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/window_elements_inner/light_green.png"
+  "variant_of": "light",
+  "png": "sprites/orphan_variants/window_elements_inner/light_green.png"
  },
  {
   "name": "printer_chip1",
@@ -22368,8 +22368,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_items_food/water_jug_full.png"
+  "variant_of": "water_jug",
+  "png": "sprites/orphan_variants/items_items_food/water_jug_full.png"
  },
  {
   "name": "button_disabled_purple",
@@ -22561,8 +22561,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_items_food/li_eat_snackbar_unpack.png"
+  "variant_of": "li_eat_snackbar",
+  "png": "sprites/orphan_variants/items_items_food/li_eat_snackbar_unpack.png"
  },
  {
   "name": "dna_disk_orange_full",
@@ -22587,8 +22587,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_dark_90.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_dark_90.png"
  },
  {
   "name": "card_rev",
@@ -22648,8 +22648,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_10.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_blue_10.png"
  },
  {
   "name": "storage_coordinator",
@@ -22685,8 +22685,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_75.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_dark_75.png"
  },
  {
   "name": "items_medical_11",
@@ -22759,8 +22759,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/mini_blue_10.png"
+  "variant_of": "mini",
+  "png": "sprites/orphan_variants/items_water_container3/mini_blue_10.png"
  },
  {
   "name": "rat_s_m",
@@ -22912,7 +22912,7 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": "module_green",
+  "variant_of": "module_green_2",
   "png": "sprites/orphan_variants/items_items_module/module_green_2_s.png"
  },
  {
@@ -23028,8 +23028,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/large_blue_50.png"
+  "variant_of": "large",
+  "png": "sprites/orphan_variants/items_water_container3/large_blue_50.png"
  },
  {
   "name": "rat_s_f_d",
@@ -23089,8 +23089,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_red_25.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_red_25.png"
  },
  {
   "name": "safe",
@@ -23126,8 +23126,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_25.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_dark_25.png"
  },
  {
   "name": "chemforge_b",
@@ -23163,8 +23163,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_red_90.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_red_90.png"
  },
  {
   "name": "25ml_red_100",
@@ -23176,8 +23176,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_red_100.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_red_100.png"
  },
  {
   "name": "med_box_u",
@@ -23265,8 +23265,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_dark_75.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_dark_75.png"
  },
  {
   "name": "border_right_scrollbar",
@@ -23300,8 +23300,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_blue_50.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_blue_50.png"
  },
  {
   "name": "light_pistol_ammo",
@@ -23324,8 +23324,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_75.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_blue_75.png"
  },
  {
   "name": "outside",
@@ -23438,8 +23438,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_50.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_dark_50.png"
  },
  {
   "name": "red",
@@ -23475,8 +23475,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_red_10.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_red_10.png"
  },
  {
   "name": "battery_dis20",
@@ -23575,8 +23575,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/xl_dark_50.png"
+  "variant_of": "xl",
+  "png": "sprites/orphan_variants/items_water_container4/xl_dark_50.png"
  },
  {
   "name": "slider_background",
@@ -23634,8 +23634,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_100.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_dark_100.png"
  },
  {
   "name": "50ml_red_10",
@@ -23647,8 +23647,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/50ml_red_10.png"
+  "variant_of": "50ml",
+  "png": "sprites/orphan_variants/items_water_container3/50ml_red_10.png"
  },
  {
   "name": "normal_red_100",
@@ -23660,8 +23660,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/normal_red_100.png"
+  "variant_of": "normal",
+  "png": "sprites/orphan_variants/items_water_container3/normal_red_100.png"
  },
  {
   "name": "5ml_red",
@@ -23673,8 +23673,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/5ml_red.png"
+  "variant_of": "5ml",
+  "png": "sprites/orphan_variants/items_water_container3/5ml_red.png"
  },
  {
   "name": "black_lamp",
@@ -23948,8 +23948,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_50.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_blue_50.png"
  },
  {
   "name": "mini_hl_50",
@@ -23998,8 +23998,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_50.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_dark_50.png"
  },
  {
   "name": "small_red_100",
@@ -24011,8 +24011,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/small_red_100.png"
+  "variant_of": "small",
+  "png": "sprites/orphan_variants/items_water_container3/small_red_100.png"
  },
  {
   "name": "water_ration_small",
@@ -24324,8 +24324,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_red_25.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_red_25.png"
  },
  {
   "name": "module_red_t",
@@ -24411,8 +24411,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_90.png"
+  "variant_of": "25ml",
+  "png": "sprites/orphan_variants/items_water_container3/25ml_dark_90.png"
  },
  {
   "name": "printer_off",
@@ -24492,8 +24492,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container3/100ml_red_50.png"
+  "variant_of": "100ml",
+  "png": "sprites/orphan_variants/items_water_container3/100ml_red_50.png"
  },
  {
   "name": "hatchet",
@@ -24564,8 +24564,8 @@
   "code_ref": false,
   "name_in_code": false,
   "scene_ref": false,
-  "variant_of": null,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_25.png"
+  "variant_of": "pitcher",
+  "png": "sprites/orphan_variants/items_water_container4/pitcher_blue_25.png"
  },
  {
   "name": "short_stock_view",

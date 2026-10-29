@@ -7,67 +7,11 @@
   "png": "sprites/orphan/items_items_broken_machine/rm_wire_right_upper.png"
  },
  {
-  "name": "normal_red_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_red_25.png"
- },
- {
-  "name": "mini_red_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_red_50.png"
- },
- {
-  "name": "25ml_blue_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_75.png"
- },
- {
   "name": "chemforge_r",
   "resource": "items/items_tool",
   "w": 48,
   "h": 48,
   "png": "sprites/orphan/items_items_tool/chemforge_r.png"
- },
- {
-  "name": "large_blue_90",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_blue_90.png"
- },
- {
-  "name": "xl_blue_90",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_blue_90.png"
- },
- {
-  "name": "border_outside_top_rounded_new",
-  "resource": "window/elements_outer",
-  "w": 32,
-  "h": 8,
-  "png": "sprites/orphan/window_elements_outer/border_outside_top_rounded_new.png"
- },
- {
-  "name": "100ml_blue_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_25.png"
- },
- {
-  "name": "25ml_red_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_red_75.png"
  },
  {
   "name": "small_water_bottle",
@@ -77,53 +21,11 @@
   "png": "sprites/orphan/items_items_food/small_water_bottle.png"
  },
  {
-  "name": "large_blue_100",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_blue_100.png"
- },
- {
-  "name": "small_blue_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_blue_10.png"
- },
- {
-  "name": "small_red_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_red_50.png"
- },
- {
   "name": "intel_yellow",
   "resource": "items/items_misc",
   "w": 48,
   "h": 32,
   "png": "sprites/orphan/items_items_misc/intel_yellow.png"
- },
- {
-  "name": "mini_blue_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_blue_100.png"
- },
- {
-  "name": "large_dark_50",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_dark_50.png"
- },
- {
-  "name": "25ml_dark_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_25.png"
  },
  {
   "name": "peanut_butter_purple",
@@ -133,88 +35,11 @@
   "png": "sprites/orphan/items_items_food/peanut_butter_purple.png"
  },
  {
-  "name": "small_dark_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_dark_25.png"
- },
- {
-  "name": "pitcher_blue_90",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_90.png"
- },
- {
-  "name": "large_dark_75",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_dark_75.png"
- },
- {
-  "name": "25ml_dark_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_10.png"
- },
- {
-  "name": "mini_dark_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_dark_75.png"
- },
- {
   "name": "stanag_10_mod",
   "resource": "items/items_weapons_ranged_antique",
   "w": 32,
   "h": 16,
   "png": "sprites/orphan/items_items_weapons_ranged_antique/stanag_10_mod.png"
- },
- {
-  "name": "mini_red_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_red_100.png"
- },
- {
-  "name": "100ml_dark_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_100.png"
- },
- {
-  "name": "normal_blue_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_blue_25.png"
- },
- {
-  "name": "normal_red_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_red_75.png"
- },
- {
-  "name": "100ml_dark_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_10.png"
- },
- {
-  "name": "pitcher_dark_100",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_100.png"
  },
  {
   "name": "rm_reinforced_panel",
@@ -231,25 +56,11 @@
   "png": "sprites/orphan/items_items_medical/injector_pure_white.png"
  },
  {
-  "name": "50ml_red_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_red_25.png"
- },
- {
   "name": "peanut_butter",
   "resource": "items/items_food",
   "w": 32,
   "h": 48,
   "png": "sprites/orphan/items_items_food/peanut_butter.png"
- },
- {
-  "name": "mini_red_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_red_10.png"
  },
  {
   "name": "intel_red",
@@ -294,32 +105,11 @@
   "png": "sprites/orphan/items_items_broken_machine/rm_screw_set.png"
  },
  {
-  "name": "light_cyan",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/light_cyan.png"
- },
- {
   "name": "peanut_butter_orange",
   "resource": "items/items_food",
   "w": 32,
   "h": 48,
   "png": "sprites/orphan/items_items_food/peanut_butter_orange.png"
- },
- {
-  "name": "pitcher_dark_25",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_25.png"
- },
- {
-  "name": "dark_purple",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/dark_purple.png"
  },
  {
   "name": "items_hydroponic_plant_1",
@@ -329,32 +119,11 @@
   "png": "sprites/orphan/items_items_hydroponic_plant/items_hydroponic_plant_1.png"
  },
  {
-  "name": "50ml_dark_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_10.png"
- },
- {
   "name": "rat_xxl_m",
   "resource": "items/items_husbandry",
   "w": 64,
   "h": 32,
   "png": "sprites/orphan/items_items_husbandry/rat_xxl_m.png"
- },
- {
-  "name": "mini_dark_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_dark_10.png"
- },
- {
-  "name": "small_red_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_red_10.png"
  },
  {
   "name": "ally",
@@ -385,46 +154,11 @@
   "png": "sprites/orphan/items_items_medical/healing_bandage.png"
  },
  {
-  "name": "small_blue_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_blue_75.png"
- },
- {
-  "name": "1ml_blue",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/1ml_blue.png"
- },
- {
-  "name": "mini_blue_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_blue_50.png"
- },
- {
   "name": "rm_machine_large",
   "resource": "items/items_broken_machine",
   "w": 64,
   "h": 48,
   "png": "sprites/orphan/items_items_broken_machine/rm_machine_large.png"
- },
- {
-  "name": "lottery_teared",
-  "resource": "items/items_amenities",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_items_amenities/lottery_teared.png"
- },
- {
-  "name": "small_blue_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_blue_25.png"
  },
  {
   "name": "rm_wire_left_lower",
@@ -441,13 +175,6 @@
   "png": "sprites/orphan/items_items_weapons_ranged_antique/stanag_20_mod.png"
  },
  {
-  "name": "broken_alarm_",
-  "resource": "items/items_broken_machine",
-  "w": 48,
-  "h": 48,
-  "png": "sprites/orphan/items_items_broken_machine/broken_alarm_.png"
- },
- {
   "name": "jar_empty",
   "resource": "items/items_medical",
   "w": 32,
@@ -460,27 +187,6 @@
   "w": 16,
   "h": 48,
   "png": "sprites/orphan/items_items_food/small_water_bottle_full.png"
- },
- {
-  "name": "xl_blue_50",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_blue_50.png"
- },
- {
-  "name": "broken_moisture_farm_",
-  "resource": "items/items_broken_machine",
-  "w": 48,
-  "h": 48,
-  "png": "sprites/orphan/items_items_broken_machine/broken_moisture_farm_.png"
- },
- {
-  "name": "50ml_red_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_red_100.png"
  },
  {
   "name": "dna_disk_green_empty",
@@ -504,20 +210,6 @@
   "png": "sprites/orphan/items_items_food/peanut_butter_red.png"
  },
  {
-  "name": "100ml_blue_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_75.png"
- },
- {
-  "name": "normal_dark_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_dark_50.png"
- },
- {
   "name": "example",
   "resource": "items/items_organ",
   "w": 16,
@@ -532,39 +224,11 @@
   "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_blue_empty.png"
  },
  {
-  "name": "small_dark_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_dark_10.png"
- },
- {
   "name": "sci_module",
   "resource": "items/items_tool",
   "w": 32,
   "h": 16,
   "png": "sprites/orphan/items_items_tool/sci_module.png"
- },
- {
-  "name": "100ml_blue_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_50.png"
- },
- {
-  "name": "combat_machete_old",
-  "resource": "items/items_weapons_melee",
-  "w": 144,
-  "h": 32,
-  "png": "sprites/orphan/items_items_weapons_melee/combat_machete_old.png"
- },
- {
-  "name": "large_dark_10",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_dark_10.png"
  },
  {
   "name": "rat_xxl_f",
@@ -579,13 +243,6 @@
   "w": 16,
   "h": 16,
   "png": "sprites/orphan/items_items_mod/rds_view.png"
- },
- {
-  "name": "100ml_red_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_red_75.png"
  },
  {
   "name": "items_weapons_ranged_antique_2",
@@ -609,67 +266,11 @@
   "png": "sprites/orphan/items_itematlas/stick_grenade.png"
  },
  {
-  "name": "xl_blue_75",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_blue_75.png"
- },
- {
-  "name": "small_red_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_red_75.png"
- },
- {
-  "name": "normal_red_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_red_10.png"
- },
- {
   "name": "items_sign_1",
   "resource": "items/items_sign",
   "w": 96,
   "h": 32,
   "png": "sprites/orphan/items_items_sign/items_sign_1.png"
- },
- {
-  "name": "100ml_red_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_red_90.png"
- },
- {
-  "name": "large_red_50",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_red_50.png"
- },
- {
-  "name": "xl_red_100",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_red_100.png"
- },
- {
-  "name": "mini_blue_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_blue_90.png"
- },
- {
-  "name": "50ml_blue_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_10.png"
  },
  {
   "name": "jar_orange",
@@ -679,109 +280,11 @@
   "png": "sprites/orphan/items_items_medical/jar_orange.png"
  },
  {
-  "name": "normal_dark_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_dark_10.png"
- },
- {
-  "name": "25ml_red_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_red_10.png"
- },
- {
-  "name": "xl_dark_100",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_dark_100.png"
- },
- {
-  "name": "dark_cyan",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/dark_cyan.png"
- },
- {
-  "name": "mini_dark_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_dark_25.png"
- },
- {
-  "name": "dark_red",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/dark_red.png"
- },
- {
   "name": "10mm_mag_smg_box_view",
   "resource": "items/items_mod",
   "w": 16,
   "h": 32,
   "png": "sprites/orphan/items_items_mod/10mm_mag_smg_box_view.png"
- },
- {
-  "name": "normal_red_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_red_50.png"
- },
- {
-  "name": "dark_green",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/dark_green.png"
- },
- {
-  "name": "100ml_red_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_red_100.png"
- },
- {
-  "name": "25ml_dark_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_50.png"
- },
- {
-  "name": "25ml_red_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_red_90.png"
- },
- {
-  "name": "100ml_dark_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_75.png"
- },
- {
-  "name": "large_blue_10",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_blue_10.png"
- },
- {
-  "name": "25ml_blue_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_100.png"
  },
  {
   "name": "rm_card_swiper_lock",
@@ -803,20 +306,6 @@
   "w": 32,
   "h": 16,
   "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_red_empty.png"
- },
- {
-  "name": "mini_dark_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_dark_100.png"
- },
- {
-  "name": "small_dark_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_dark_100.png"
  },
  {
   "name": "screen_dark",
@@ -847,32 +336,11 @@
   "png": "sprites/orphan/items_items_furniture/safes.png"
  },
  {
-  "name": "large_red_100",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_red_100.png"
- },
- {
-  "name": "25ml_blue_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_50.png"
- },
- {
   "name": "water_bottle_full",
   "resource": "items/items_food",
   "w": 16,
   "h": 64,
   "png": "sprites/orphan/items_items_food/water_bottle_full.png"
- },
- {
-  "name": "xl_red_50",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_red_50.png"
  },
  {
   "name": "improvised_stunprod",
@@ -882,46 +350,11 @@
   "png": "sprites/orphan/items_items_weapons_melee/improvised_stunprod.png"
  },
  {
-  "name": "100ml_blue_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_10.png"
- },
- {
   "name": "rm_wire_horizontal",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
   "png": "sprites/orphan/items_items_broken_machine/rm_wire_horizontal.png"
- },
- {
-  "name": "mini_blue_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_blue_75.png"
- },
- {
-  "name": "pitcher_red_25",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_25.png"
- },
- {
-  "name": "50ml_blue_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_90.png"
- },
- {
-  "name": "xl_dark_10",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_dark_10.png"
  },
  {
   "name": "rm_access_panel",
@@ -938,81 +371,11 @@
   "png": "sprites/orphan/items_items_food/large_water_bottle_full.png"
  },
  {
-  "name": "pitcher_dark_90",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_90.png"
- },
- {
-  "name": "25ml_blue_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_90.png"
- },
- {
-  "name": "light_purple",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/light_purple.png"
- },
- {
-  "name": "large_red_25",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_red_25.png"
- },
- {
-  "name": "dark_orange",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/dark_orange.png"
- },
- {
   "name": "rm_background",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
   "png": "sprites/orphan/items_items_broken_machine/rm_background.png"
- },
- {
-  "name": "1ml_dark",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/1ml_dark.png"
- },
- {
-  "name": "mini_red_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_red_75.png"
- },
- {
-  "name": "50ml_blue_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_50.png"
- },
- {
-  "name": "large_blue_25",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_blue_25.png"
- },
- {
-  "name": "50ml_red_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_red_50.png"
  },
  {
   "name": "rm_disarm2",
@@ -1029,32 +392,11 @@
   "png": "sprites/orphan/items_items_food/soda_2l.png"
  },
  {
-  "name": "xl_dark_25",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_dark_25.png"
- },
- {
-  "name": "50ml_dark_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_90.png"
- },
- {
   "name": "improvised_stunprod_unloaded",
   "resource": "items/items_weapons_melee",
   "w": 192,
   "h": 32,
   "png": "sprites/orphan/items_items_weapons_melee/improvised_stunprod_unloaded.png"
- },
- {
-  "name": "100ml_blue_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_100.png"
  },
  {
   "name": "fireaxe",
@@ -1085,39 +427,11 @@
   "png": "sprites/orphan/window_border-export/border-export.png"
  },
  {
-  "name": "xl_blue_25",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_blue_25.png"
- },
- {
   "name": "rm_screw_base",
   "resource": "items/items_broken_machine",
   "w": 16,
   "h": 16,
   "png": "sprites/orphan/items_items_broken_machine/rm_screw_base.png"
- },
- {
-  "name": "large_dark_100",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_dark_100.png"
- },
- {
-  "name": "light_red",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/light_red.png"
- },
- {
-  "name": "100ml_blue_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_blue_90.png"
  },
  {
   "name": "wrench",
@@ -1127,39 +441,11 @@
   "png": "sprites/orphan/items_itematlas/wrench.png"
  },
  {
-  "name": "nutrichips_old",
-  "resource": "items/items_food",
-  "w": 32,
-  "h": 80,
-  "png": "sprites/orphan/items_items_food/nutrichips_old.png"
- },
- {
-  "name": "pitcher_red_90",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_90.png"
- },
- {
   "name": "items_weapons_ranged_antique_4",
   "resource": "items/items_weapons_ranged_antique",
   "w": 32,
   "h": 32,
   "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_4.png"
- },
- {
-  "name": "normal_blue_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_blue_100.png"
- },
- {
-  "name": "50ml_dark_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_75.png"
  },
  {
   "name": "items_food_burger",
@@ -1169,39 +455,11 @@
   "png": "sprites/orphan/items_items_food/items_food_burger.png"
  },
  {
-  "name": "large_red_10",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_red_10.png"
- },
- {
   "name": "improvised_spear",
   "resource": "items/items_weapons_melee",
   "w": 224,
   "h": 32,
   "png": "sprites/orphan/items_items_weapons_melee/improvised_spear.png"
- },
- {
-  "name": "100ml_red_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_red_10.png"
- },
- {
-  "name": "pitcher_red_100",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_100.png"
- },
- {
-  "name": "25ml_dark_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_75.png"
  },
  {
   "name": "rm_disarm3",
@@ -1225,34 +483,6 @@
   "png": "sprites/orphan/items_items_broken_machine/rm_access_panel_base.png"
  },
  {
-  "name": "light_yellow",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/light_yellow.png"
- },
- {
-  "name": "mini_red_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_red_25.png"
- },
- {
-  "name": "25ml_blue_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_25.png"
- },
- {
-  "name": "broken_furnace_",
-  "resource": "items/items_broken_machine",
-  "w": 48,
-  "h": 48,
-  "png": "sprites/orphan/items_items_broken_machine/broken_furnace_.png"
- },
- {
   "name": "sandal_weapon",
   "resource": "items/items_weapons_melee",
   "w": 48,
@@ -1267,74 +497,11 @@
   "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_purple_empty.png"
  },
  {
-  "name": "50ml_blue_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_100.png"
- },
- {
-  "name": "steel_sheet_rough_large",
-  "resource": "items/items_construction",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_items_construction/steel_sheet_rough_large.png"
- },
- {
-  "name": "1ml_red",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/1ml_red.png"
- },
- {
-  "name": "normal_blue_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_blue_10.png"
- },
- {
   "name": "items_weapons_ranged_antique_3",
   "resource": "items/items_weapons_ranged_antique",
   "w": 64,
   "h": 32,
   "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_3.png"
- },
- {
-  "name": "xl_red_90",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_red_90.png"
- },
- {
-  "name": "large_dark_25",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_dark_25.png"
- },
- {
-  "name": "mini_red_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_red_90.png"
- },
- {
-  "name": "small_dark_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_dark_90.png"
- },
- {
-  "name": "25ml_red_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_red_25.png"
  },
  {
   "name": "case_front",
@@ -1344,67 +511,11 @@
   "png": "sprites/orphan/items_beer_case/case_front.png"
  },
  {
-  "name": "100ml_dark_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_90.png"
- },
- {
-  "name": "xl_red_75",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_red_75.png"
- },
- {
-  "name": "pitcher_red_50",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_50.png"
- },
- {
-  "name": "25ml_blue_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_blue_10.png"
- },
- {
-  "name": "normal_blue_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_blue_90.png"
- },
- {
-  "name": "50ml_dark_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_100.png"
- },
- {
-  "name": "pitcher_red_10",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_10.png"
- },
- {
   "name": "items_weapons_ranged_antique_0",
   "resource": "items/items_weapons_ranged_antique",
   "w": 160,
   "h": 32,
   "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_0.png"
- },
- {
-  "name": "normal_dark_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_dark_25.png"
  },
  {
   "name": "rm_access_panel_small",
@@ -1414,32 +525,11 @@
   "png": "sprites/orphan/items_items_broken_machine/rm_access_panel_small.png"
  },
  {
-  "name": "large_blue_75",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_blue_75.png"
- },
- {
   "name": "items_weapons_ranged_antique_1",
   "resource": "items/items_weapons_ranged_antique",
   "w": 64,
   "h": 32,
   "png": "sprites/orphan/items_items_weapons_ranged_antique/items_weapons_ranged_antique_1.png"
- },
- {
-  "name": "small_red_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_red_90.png"
- },
- {
-  "name": "normal_blue_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_blue_50.png"
  },
  {
   "name": "dumping_ground_pile",
@@ -1449,53 +539,11 @@
   "png": "sprites/orphan/items_items_ship/dumping_ground_pile.png"
  },
  {
-  "name": "small_blue_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_blue_90.png"
- },
- {
-  "name": "normal_blue_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_blue_75.png"
- },
- {
-  "name": "50ml_red_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_red_75.png"
- },
- {
-  "name": "mini_dark_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_dark_90.png"
- },
- {
-  "name": "juice_pouch_old",
-  "resource": "items/items_food",
-  "w": 32,
-  "h": 32,
-  "png": "sprites/orphan/items_items_food/juice_pouch_old.png"
- },
- {
   "name": "case",
   "resource": "items/beer_case",
   "w": 80,
   "h": 64,
   "png": "sprites/orphan/items_beer_case/case.png"
- },
- {
-  "name": "purifier_jug",
-  "resource": "items/items_tool",
-  "w": 48,
-  "h": 48,
-  "png": "sprites/orphan/items_items_tool/purifier_jug.png"
  },
  {
   "name": "items_food_bag_of_flour",
@@ -1519,13 +567,6 @@
   "png": "sprites/orphan/items_items_weapons_melee/long_pipe.png"
  },
  {
-  "name": "xl_dark_90",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_dark_90.png"
- },
- {
   "name": "rm_card_swiper",
   "resource": "items/items_broken_machine",
   "w": 16,
@@ -1547,39 +588,11 @@
   "png": "sprites/orphan/items_items_food/peanut_butter_blue.png"
  },
  {
-  "name": "xl_blue_10",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_blue_10.png"
- },
- {
-  "name": "small_dark_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_dark_75.png"
- },
- {
   "name": "stanag_30_mod",
   "resource": "items/items_weapons_ranged_antique",
   "w": 32,
   "h": 32,
   "png": "sprites/orphan/items_items_weapons_ranged_antique/stanag_30_mod.png"
- },
- {
-  "name": "mini_dark_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_dark_50.png"
- },
- {
-  "name": "dark_yellow",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/dark_yellow.png"
  },
  {
   "name": "rm_wire_vertical_upper",
@@ -1589,55 +602,6 @@
   "png": "sprites/orphan/items_items_broken_machine/rm_wire_vertical_upper.png"
  },
  {
-  "name": "normal_dark_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_dark_90.png"
- },
- {
-  "name": "50ml_blue_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_75.png"
- },
- {
-  "name": "pitcher_blue_100",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_100.png"
- },
- {
-  "name": "small_blue_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_blue_100.png"
- },
- {
-  "name": "small_dark_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_dark_50.png"
- },
- {
-  "name": "large_red_75",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_red_75.png"
- },
- {
-  "name": "5ml_dark",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/5ml_dark.png"
- },
- {
   "name": "rm_access_panel_base_small",
   "resource": "items/items_broken_machine",
   "w": 32,
@@ -1645,46 +609,11 @@
   "png": "sprites/orphan/items_items_broken_machine/rm_access_panel_base_small.png"
  },
  {
-  "name": "pitcher_red_75",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_red_75.png"
- },
- {
-  "name": "normal_dark_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_dark_100.png"
- },
- {
   "name": "rm_anti_tamper",
   "resource": "items/items_broken_machine",
   "w": 48,
   "h": 32,
   "png": "sprites/orphan/items_items_broken_machine/rm_anti_tamper.png"
- },
- {
-  "name": "mini_blue_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_blue_25.png"
- },
- {
-  "name": "large_red_90",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_red_90.png"
- },
- {
-  "name": "xl_blue_100",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_blue_100.png"
  },
  {
   "name": "water_recycler_empty",
@@ -1701,27 +630,6 @@
   "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_orange_empty.png"
  },
  {
-  "name": "light_orange",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/light_orange.png"
- },
- {
-  "name": "25ml_red_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_red_50.png"
- },
- {
-  "name": "50ml_dark_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_25.png"
- },
- {
   "name": "rat_xxl_m_d",
   "resource": "items/items_husbandry",
   "w": 64,
@@ -1736,25 +644,11 @@
   "png": "sprites/orphan/items_items_weapons_ranged_antique/bullet_nato_556.png"
  },
  {
-  "name": "50ml_blue_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_blue_25.png"
- },
- {
   "name": "case_back",
   "resource": "items/beer_case",
   "w": 80,
   "h": 64,
   "png": "sprites/orphan/items_beer_case/case_back.png"
- },
- {
-  "name": "normal_dark_75",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_dark_75.png"
  },
  {
   "name": "jar_green",
@@ -1771,39 +665,11 @@
   "png": "sprites/orphan/items_items_misc/badge.png"
  },
  {
-  "name": "pitcher_dark_10",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_10.png"
- },
- {
-  "name": "50ml_red_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_red_90.png"
- },
- {
-  "name": "5ml_blue",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/5ml_blue.png"
- },
- {
   "name": "jar_pink",
   "resource": "items/items_medical",
   "w": 32,
   "h": 32,
   "png": "sprites/orphan/items_items_medical/jar_pink.png"
- },
- {
-  "name": "xl_red_25",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_red_25.png"
  },
  {
   "name": "highlight_white",
@@ -1813,27 +679,6 @@
   "png": "sprites/orphan/window_background/highlight_white.png"
  },
  {
-  "name": "pitcher_dark_50",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_50.png"
- },
- {
-  "name": "light_green",
-  "resource": "window/elements_inner",
-  "w": 6,
-  "h": 6,
-  "png": "sprites/orphan/window_elements_inner/light_green.png"
- },
- {
-  "name": "water_jug_full",
-  "resource": "items/items_food",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_items_food/water_jug_full.png"
- },
- {
   "name": "medical_pouch",
   "resource": "items/items_medical",
   "w": 64,
@@ -1841,25 +686,11 @@
   "png": "sprites/orphan/items_items_medical/medical_pouch.png"
  },
  {
-  "name": "li_eat_snackbar_unpack",
-  "resource": "items/items_food",
-  "w": 48,
-  "h": 16,
-  "png": "sprites/orphan/items_items_food/li_eat_snackbar_unpack.png"
- },
- {
   "name": "dna_disk_orange_full",
   "resource": "items/items_hydroponic_plant",
   "w": 32,
   "h": 16,
   "png": "sprites/orphan/items_items_hydroponic_plant/dna_disk_orange_full.png"
- },
- {
-  "name": "large_dark_90",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_dark_90.png"
  },
  {
   "name": "fireaxe_big",
@@ -1876,32 +707,11 @@
   "png": "sprites/orphan/items_items_broken_machine/rm_wire_horizontal_left.png"
  },
  {
-  "name": "pitcher_blue_10",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_10.png"
- },
- {
-  "name": "pitcher_dark_75",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_dark_75.png"
- },
- {
   "name": "rm_structural_panel",
   "resource": "items/items_broken_machine",
   "w": 48,
   "h": 32,
   "png": "sprites/orphan/items_items_broken_machine/rm_structural_panel.png"
- },
- {
-  "name": "mini_blue_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/mini_blue_10.png"
  },
  {
   "name": "handmade_smg",
@@ -1911,46 +721,11 @@
   "png": "sprites/orphan/items_items_sec/handmade_smg.png"
  },
  {
-  "name": "large_blue_50",
-  "resource": "items/water_container3",
-  "w": 32,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/large_blue_50.png"
- },
- {
-  "name": "small_red_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_red_25.png"
- },
- {
-  "name": "100ml_dark_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_25.png"
- },
- {
   "name": "chemforge_b",
   "resource": "items/items_tool",
   "w": 48,
   "h": 48,
   "png": "sprites/orphan/items_items_tool/chemforge_b.png"
- },
- {
-  "name": "normal_red_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_red_90.png"
- },
- {
-  "name": "25ml_red_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_red_100.png"
  },
  {
   "name": "purple_serum",
@@ -1974,53 +749,11 @@
   "png": "sprites/orphan/items_items_broken_machine/rm_disarm1.png"
  },
  {
-  "name": "xl_dark_75",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_dark_75.png"
- },
- {
-  "name": "small_blue_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_blue_50.png"
- },
- {
-  "name": "pitcher_blue_75",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_75.png"
- },
- {
-  "name": "50ml_dark_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_dark_50.png"
- },
- {
-  "name": "xl_red_10",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_red_10.png"
- },
- {
   "name": "screen_light",
   "resource": "window/elements_inner",
   "w": 48,
   "h": 16,
   "png": "sprites/orphan/window_elements_inner/screen_light.png"
- },
- {
-  "name": "xl_dark_50",
-  "resource": "items/water_container4",
-  "w": 64,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/xl_dark_50.png"
  },
  {
   "name": "slider_background",
@@ -2030,60 +763,11 @@
   "png": "sprites/orphan/window_elements_inner/slider_background.png"
  },
  {
-  "name": "25ml_dark_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_100.png"
- },
- {
-  "name": "50ml_red_10",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/50ml_red_10.png"
- },
- {
-  "name": "normal_red_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container3/normal_red_100.png"
- },
- {
-  "name": "5ml_red",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/5ml_red.png"
- },
- {
   "name": "10mm_mag_high_view",
   "resource": "items/items_mod",
   "w": 16,
   "h": 14,
   "png": "sprites/orphan/items_items_mod/10mm_mag_high_view.png"
- },
- {
-  "name": "pitcher_blue_50",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_50.png"
- },
- {
-  "name": "100ml_dark_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_dark_50.png"
- },
- {
-  "name": "small_red_100",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 48,
-  "png": "sprites/orphan/items_water_container3/small_red_100.png"
  },
  {
   "name": "rm_machine_small",
@@ -2100,25 +784,11 @@
   "png": "sprites/orphan/items_items_broken_machine/rm_wire_left_upper.png"
  },
  {
-  "name": "100ml_red_25",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_red_25.png"
- },
- {
   "name": "playd",
   "resource": "window/elements_inner",
   "w": 16,
   "h": 16,
   "png": "sprites/orphan/window_elements_inner/playd.png"
- },
- {
-  "name": "25ml_dark_90",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/25ml_dark_90.png"
  },
  {
   "name": "bread_loaf",
@@ -2128,24 +798,10 @@
   "png": "sprites/orphan/items_items_food/bread_loaf.png"
  },
  {
-  "name": "100ml_red_50",
-  "resource": "items/water_container3",
-  "w": 16,
-  "h": 32,
-  "png": "sprites/orphan/items_water_container3/100ml_red_50.png"
- },
- {
   "name": "jar_blue",
   "resource": "items/items_medical",
   "w": 32,
   "h": 32,
   "png": "sprites/orphan/items_items_medical/jar_blue.png"
- },
- {
-  "name": "pitcher_blue_25",
-  "resource": "items/water_container4",
-  "w": 48,
-  "h": 64,
-  "png": "sprites/orphan/items_water_container4/pitcher_blue_25.png"
  }
 ]

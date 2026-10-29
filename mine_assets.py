@@ -133,6 +133,11 @@ unused_sprite_keys = {k.lower() for k, sites in static.items()
 # ponytail: item->sprite link comes from the runtime dump when available (exported again by mine_report.py)
 exported = []
 referenced_names = {x['name'] for x in sprites if x['code_ref'] or x['name_in_code'] or x['scene_ref']}
+ref_by_res = collections.defaultdict(set)
+for x in sprites:
+    if x["resource"] and (x["code_ref"] or x["name_in_code"] or x["scene_ref"]):
+        ref_by_res[x["resource"]].add(x["name"])
+code_prefixes = {n for n in names_in_code if n.endswith("_") and len(n) > 2}
 for s in sprites:
     key = f"{s['resource']}/{s['name']}".lower() if s["resource"] else None
     orphan = s["resource"] and not s["code_ref"] and not s["name_in_code"] and not s["scene_ref"]
@@ -141,8 +146,11 @@ for s in sprites:
         continue
     # fill levels / sizes / frames are built at runtime ("vending" + 25): stem named in code (or by a referenced sprite) = variant
     stem = re.sub(r"(_?\d+|_[a-z]{1,2})+$", "", s["name"])
-    s["variant_of"] = stem if orphan and stem != s["name"] and (stem in names_in_code or stem + "_" in names_in_code
-                                                                  or any(n.startswith(stem) for n in referenced_names)) else None
+    # ...or the name extends a referenced sprite of the same atlas ("100ml" -> "100ml_blue_25"), or a "prefix_" literal ("dark_" + colour)
+    base = next((r for r in ref_by_res[s["resource"]] if s["name"].startswith(r + "_") or s["name"][len(r):].isdigit() and s["name"].startswith(r)), None) if orphan else None
+    pre = next((p for p in code_prefixes if s["name"].startswith(p)), None) if orphan else None
+    s["variant_of"] = base or pre or (stem if orphan and stem != s["name"] and (stem in names_in_code or stem + "_" in names_in_code
+                                                                  or any(n.startswith(stem) for n in referenced_names)) else None)
     folder = "unused_items" if unused else "orphan_variants" if s["variant_of"] else "orphan"
     rel = f"sprites/{folder}/{(s['resource'] or s['file']).replace('/', '_')}/{s['name']}.png"
     os.makedirs(os.path.dirname(OUT + rel), exist_ok=True)
