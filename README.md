@@ -26,6 +26,7 @@ Three sources:
 | `data/static/` | code cross-reference: `registered_ids.json`, `list_factories.json` (callers), `classes.json`, `loc_unreferenced.json`, `code_sprite_refs.json` |
 | `data/unused/` | one JSON per section of `UNUSED.md` |
 | `data/paper/` | the 4 built-in Paper documents |
+| `showcase/` | `back-room.html`, a self-contained page of the findings with the game's own art (`build.py` regenerates it) |
 
 ## Headline findings
 

@@ -1,0 +1,460 @@
+<title>Probably Stolen Back Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+@font-face { font-family: "Tandy2K"; src: url(data:font/ttf;base64,/*FONT*/) format("truetype"); font-display: block; }
+/* Layout: a walk from the shop floor into the back room. The store front, rebuilt from the game's own layers,
+   opens the page; each section after it is a drawer under the counter, floored with the inventory grid. */
+:root {
+  --night: #16141c;      /* the store after closing */
+  --panel: #1e2830;      /* tablet / drawer face */
+  --panel-2: #243139;
+  --line: #374850;
+  --grid: rgba(132, 160, 156, .09);
+  --ink: #e4e0d4;        /* body text */
+  --dim: #929d98;
+  --lamp: #f0d996;       /* the shop lamp */
+  --sage: #a9b5a2;       /* counter top */
+  --rust: #cf7444;       /* rust on the shutter rails */
+  --plum: #8e6f9c;       /* Nutrifruit poster */
+  --ok: #8fbf8a;
+  --bad: #e07a6a;
+  --pixel: "Tandy2K", "Courier New", ui-monospace, monospace;
+  --body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+body { background: var(--night); color: var(--ink); font: 400 17px/1.6 var(--body); margin: 0; }
+img.px, .px img { image-rendering: pixelated; image-rendering: crisp-edges; }
+a { color: var(--lamp); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--lamp); outline-offset: 2px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; }
+.pixel { font-family: var(--pixel); font-weight: 400; letter-spacing: 0; -webkit-font-smoothing: none; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+h2 { font: 400 32px/1.15 var(--pixel); color: var(--lamp); }
+h3 { font: 600 19px/1.3 var(--body); color: var(--ink); }
+p { margin: 0; max-width: 68ch; }
+.lede { font-size: 19px; color: var(--ink); }
+.muted { color: var(--dim); }
+code, .tag { font-family: var(--pixel); font-size: 16px; color: var(--sage); }
+.eyebrow { font: 400 16px/1 var(--pixel); color: var(--rust); letter-spacing: .06em; text-transform: uppercase; }
+
+/* sticky drawer index */
+nav.index { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--night) 92%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+nav.index .wrap { display: flex; gap: 4px 18px; overflow-x: auto; padding-block: 10px; scrollbar-width: none; }
+nav.index a { font: 400 16px/1 var(--pixel); color: var(--dim); text-decoration: none; white-space: nowrap; padding-block: 4px; }
+nav.index a:hover, nav.index a.on { color: var(--lamp); }
+
+/* hero: the store */
+.hero { padding-block: 28px 8px; }
+.scene { position: relative; width: 100%; aspect-ratio: 960 / 540; background: #0d0c11; overflow: hidden; border: 1px solid var(--line); }
+.scene img, .scene .clip { position: absolute; display: block; }
+.scene img { image-rendering: pixelated; }
+.scene .clip { overflow: hidden; }
+.scene .clip img { position: static; width: 100%; height: 100%; transition: transform 1.6s cubic-bezier(.6, .05, .3, 1); }
+.scene.open .clip img { transform: translateY(-90%); }
+.scene .goods img { transition: transform .2s; }
+.scene .goods img:hover { transform: translateY(-4%); }
+.scene-controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; align-items: center; }
+button.key { font: 400 16px/1 var(--pixel); color: var(--night); background: var(--sage); border: 0; padding: 10px 14px; cursor: pointer; box-shadow: 0 3px 0 #5d6a5b; }
+button.key:active { transform: translateY(2px); box-shadow: 0 1px 0 #5d6a5b; }
+button.key[aria-pressed="true"] { background: var(--lamp); box-shadow: 0 3px 0 #9b8650; }
+.scene-note { font: 400 16px/1.4 var(--pixel); color: var(--dim); }
+.title-block { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 28px 40px; padding-block: 34px 10px; align-items: start; }
+.title-block h1 { font: 400 clamp(40px, 7vw, 80px)/1 var(--pixel); color: var(--lamp); }
+.title-block h1 span { display: block; font-size: .5em; color: var(--rust); margin-bottom: 12px; }
+.title-block .lede { margin-top: 18px; }
+
+/* receipt */
+.receipt { background: #ece6d3; color: #2a2620; font: 400 16px/1.5 var(--pixel); padding: 20px 20px 26px; position: relative; max-width: 420px; justify-self: end; width: 100%;
+  --edge: radial-gradient(circle at 6px 0, transparent 6px, #ece6d3 6.5px); }
+.receipt::after { content: ""; position: absolute; left: 0; right: 0; bottom: -10px; height: 10px; background: var(--edge); background-size: 12px 10px; }
+.receipt .head { text-align: center; border-bottom: 1px dashed #8a8270; padding-bottom: 10px; margin-bottom: 10px; }
+.receipt .row { display: flex; gap: 8px; }
+.receipt .row span:first-child { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; }
+.receipt .row span:first-child::after { content: " ........................................"; color: #9a9280; }
+.receipt .row span:last-child { font-variant-numeric: tabular-nums; }
+.receipt .total { border-top: 1px dashed #8a8270; margin-top: 10px; padding-top: 10px; }
+
+/* drawers */
+section.drawer { padding-block: 64px 8px; scroll-margin-top: 48px; }
+.drawer-head { display: grid; gap: 12px; margin-bottom: 26px; }
+.drawer-head p { color: var(--ink); }
+.floor { background-color: var(--panel); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 24px 24px; border: 1px solid var(--line); }
+
+/* item cards */
+.items { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; padding: 12px; }
+.card { background: var(--panel-2); border: 1px solid var(--line); padding: 12px; display: grid; grid-template-rows: 112px auto auto 1fr; gap: 6px; min-width: 0; }
+.card .art { display: grid; place-items: center; background: #172026; border: 1px solid #2c3a41; }
+.card .art img { max-width: 100%; max-height: 104px; image-rendering: pixelated; }
+.ghost-box { border: 1px dashed #4f6268; max-width: 100%; display: grid; place-items: center; }
+.ghost-box span { font: 400 16px/1.1 var(--pixel); color: #5c6d72; padding: 2px; text-align: center; }
+.card .art .none { font: 400 16px/1.2 var(--pixel); color: #56656a; text-align: center; padding: 8px; }
+.card .name { font-weight: 600; line-height: 1.25; }
+.card .meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 8px; font: 400 16px/1.2 var(--pixel); color: var(--dim); }
+.card .meta code { min-width: 0; overflow-wrap: anywhere; }
+.card .meta .cr { white-space: nowrap; }
+.card .meta .cr { color: var(--lamp); }
+.card .desc { font-size: 14.5px; line-height: 1.45; color: var(--dim); }
+.card .desc i { color: #b7aec7; }
+
+/* injectors */
+.inj { display: grid; gap: 12px; padding: 12px; }
+.inj-row { display: grid; grid-template-columns: 88px minmax(0, 1.2fr) minmax(0, 1fr); gap: 18px; align-items: center; background: var(--panel-2); border: 1px solid var(--line); padding: 14px; }
+.inj-row .art { display: grid; place-items: center; height: 88px; background: #172026; border: 1px solid #2c3a41; }
+.inj-row .art img { image-rendering: pixelated; max-height: 80px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chip { font: 400 16px/1 var(--pixel); padding: 5px 8px; border: 1px solid var(--line); color: var(--sage); background: #19232a; }
+.chip.heal { color: var(--ok); border-color: #3d5a3d; }
+.chip.harm { color: var(--bad); border-color: #6a3a33; }
+.chip.void { color: var(--plum); border-color: #4e3f58; }
+.now { border-left: 1px dashed var(--line); padding-left: 18px; display: flex; gap: 12px; align-items: center; min-width: 0; }
+.now img { image-rendering: pixelated; width: 48px; }
+.now .lbl { font: 400 16px/1.2 var(--pixel); color: var(--dim); }
+
+/* customers */
+.cust { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 0; }
+.cast { border-right: 1px solid var(--line); padding: 12px; display: grid; gap: 14px; align-content: start; }
+.arc h4 { margin: 0 0 6px; font: 400 16px/1 var(--pixel); color: var(--rust); text-transform: uppercase; letter-spacing: .05em; }
+.arc .list { display: grid; gap: 4px; }
+.arc button { text-align: left; font: 500 15px/1.3 var(--body); color: var(--ink); background: transparent; border: 1px solid transparent; padding: 7px 9px; cursor: pointer; display: flex; justify-content: space-between; gap: 8px; }
+.arc button:hover { border-color: var(--line); }
+.arc button[aria-selected="true"] { background: var(--panel-2); border-color: var(--sage); }
+.arc button small { font: 400 16px/1 var(--pixel); color: var(--dim); align-self: center; }
+.stage { padding: 18px; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.stage-top { display: flex; gap: 18px; align-items: flex-end; flex-wrap: wrap; }
+.portrait { width: 288px; max-width: 100%; aspect-ratio: 288 / 211; background: radial-gradient(ellipse at 50% 120%, #3a4a50 0%, #1b2329 70%); border: 1px solid var(--line); display: grid; place-items: end center; overflow: hidden; }
+.portrait img { width: 100%; image-rendering: pixelated; }
+.portrait .ghost { font: 400 16px/1.3 var(--pixel); color: #5c6a6f; text-align: center; padding: 0 12px 22px; }
+.stage-top .who { display: grid; gap: 6px; min-width: 0; }
+.stage-top .who h3 { font: 400 26px/1.1 var(--pixel); color: var(--lamp); }
+.script { display: grid; gap: 8px; max-height: 520px; overflow-y: auto; padding-right: 6px; }
+.line { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 12px; padding: 8px 10px; background: #1a242a; border-left: 3px solid var(--line); }
+.line .sp { font: 400 16px/1.4 var(--pixel); color: var(--sage); overflow-wrap: anywhere; }
+.line.you { border-left-color: var(--lamp); background: #221f1a; }
+.line.you .sp { color: var(--lamp); }
+.line.choice { border-left-color: var(--rust); background: transparent; border: 1px dashed #5b4334; }
+.line.choice .sp { color: var(--rust); }
+
+/* faces */
+.faces { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; padding: 12px; }
+.face { background: var(--panel-2); border: 1px solid var(--line); display: grid; }
+.face .portrait { width: 100%; border: 0; border-bottom: 1px solid var(--line); }
+.face .cap { padding: 12px; display: grid; gap: 4px; }
+.face .cap b { font: 400 16px/1.2 var(--pixel); color: var(--lamp); font-weight: 400; }
+.face .cap span { font-size: 14.5px; color: var(--dim); line-height: 1.45; }
+
+/* transmissions */
+.tx { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 12px; padding: 12px; }
+.tx article { background: var(--panel-2); border: 1px solid var(--line); display: grid; align-content: start; min-width: 0; }
+.missing { aspect-ratio: 16 / 7; display: grid; place-items: center; text-align: center; padding: 10px; border-bottom: 1px solid var(--line);
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(0,0,0,.25) 0 2px, transparent 2px 5px), linear-gradient(160deg, #1d2a33, #121a20); }
+.missing span { font: 400 16px/1.4 var(--pixel); color: #6f8a8f; }
+.missing b { display: block; color: var(--rust); font-weight: 400; }
+.tx .body { padding: 14px; display: grid; gap: 10px; }
+.tx h3 { font: 400 20px/1.2 var(--pixel); color: var(--lamp); }
+.tx p { font-size: 15px; line-height: 1.5; }
+.tx ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.tx li { font: 400 16px/1.35 var(--pixel); color: var(--sage); padding-left: 18px; position: relative; }
+.tx li::before { content: ">"; position: absolute; left: 0; color: var(--rust); }
+.tx blockquote { margin: 0; font-size: 14.5px; color: var(--dim); border-left: 2px solid var(--line); padding-left: 10px; font-style: italic; }
+.tx .cls { font: 400 16px/1 var(--pixel); color: #5f6e72; }
+
+/* tables */
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 400 16px/1.2 var(--pixel); color: var(--dim); font-weight: 400; }
+td.num { font-family: var(--pixel); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pos { color: var(--ok); } .neg { color: var(--bad); }
+.pill { font: 400 16px/1 var(--pixel); padding: 3px 7px; border: 1px solid currentColor; white-space: nowrap; }
+.pill.hostile { color: var(--bad); } .pill.neutral { color: var(--sage); }
+.split { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 12px; }
+.split > div { min-width: 0; }
+
+/* loot */
+.loot td img { width: 32px; image-rendering: pixelated; vertical-align: middle; }
+.bar { height: 10px; background: #172026; border: 1px solid #2c3a41; width: 180px; max-width: 100%; }
+.bar i { display: block; height: 100%; background: var(--sage); }
+tr.off td { color: #6c7877; }
+tr.off .stamp { font: 400 16px/1 var(--pixel); color: var(--bad); border: 1px solid var(--bad); padding: 3px 6px; transform: rotate(-4deg); display: inline-block; }
+
+/* orphan wall */
+.filters { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 12px 0; }
+.filters button { font: 400 16px/1 var(--pixel); color: var(--dim); background: #19232a; border: 1px solid var(--line); padding: 6px 9px; cursor: pointer; }
+.filters button[aria-pressed="true"] { color: var(--night); background: var(--sage); border-color: var(--sage); }
+.wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; padding: 12px; }
+.tile { aspect-ratio: 1; display: grid; place-items: center; background: #172026; border: 1px solid #2c3a41; cursor: default; overflow: hidden; }
+.tile img { max-width: 92%; max-height: 92%; image-rendering: pixelated; }
+.tile:hover, .tile:focus-visible { border-color: var(--lamp); }
+.tile .ghost-box { width: var(--gw); aspect-ratio: var(--ga); max-height: 92%; }
+.tile.wiped { background: #141b20; }
+.readout { font: 400 16px/1.4 var(--pixel); color: var(--sage); padding: 0 12px 12px; min-height: 2.8em; }
+
+/* dead lines */
+.quotes { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; padding: 12px; }
+.quote { background: var(--panel-2); border: 1px solid var(--line); padding: 14px; display: grid; gap: 8px; }
+.quote p { font-size: 17px; }
+.quote code { font-size: 16px; color: #6f7f82; overflow-wrap: anywhere; }
+
+.prose { display: grid; gap: 14px; }
+.method { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.method div { background: var(--panel); border: 1px solid var(--line); padding: 16px; display: grid; gap: 8px; align-content: start; }
+.method b { font: 400 16px/1.2 var(--pixel); color: var(--lamp); font-weight: 400; }
+.method p { font-size: 15px; color: var(--dim); }
+footer { padding-block: 60px 50px; color: var(--dim); font-size: 14px; }
+footer p { max-width: 90ch; }
+
+@media (max-width: 860px) {
+  .title-block, .split { grid-template-columns: 1fr; }
+  .receipt { justify-self: start; }
+  .cust { grid-template-columns: 1fr; }
+  .cast { border-right: 0; border-bottom: 1px solid var(--line); }
+  .inj-row { grid-template-columns: 72px minmax(0, 1fr); }
+  .inj-row .now { grid-column: 1 / -1; border-left: 0; border-top: 1px dashed var(--line); padding: 12px 0 0; }
+}
+@media (max-width: 520px) {
+  h2 { font-size: 26px; }
+  .line { grid-template-columns: 1fr; gap: 2px; }
+  .items { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}
+</style>
+
+<nav class="index" aria-label="Sections">
+  <div class="wrap" id="nav"></div>
+</nav>
+
+<header class="wrap hero">
+  <div class="scene" id="scene" role="img" aria-label="The Probably Stolen shop counter, rebuilt from the game's background layers"></div>
+  <div class="scene-controls">
+    <button class="key" id="shutterBtn" aria-pressed="false">Open the shutter</button>
+    <button class="key" id="posterBtn" aria-pressed="false">Take down the poster</button>
+    <span class="scene-note">The store from level1, stacked from its 960×540 layers. The goods on the counter come from UnusedDirectory.</span>
+  </div>
+  <div class="title-block">
+    <div>
+      <h1><span>Probably Stolen v0.46D</span>The Back Room</h1>
+      <p class="lede">Everything the full release ships but never shows you. I pulled this out of the game in three passes: the decompiled code, the asset files read with type trees generated from the game's own DLLs, and a dump mod running inside the live game through the official modding harness.</p>
+      <p class="muted" style="margin-top:12px">Each find was checked against the code, the scenes and the running game. An ID the game assembles from parts can still slip through, so treat every entry as a strong lead.</p>
+    </div>
+    <div class="receipt" id="receipt" aria-label="Summary"></div>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<footer class="wrap">
+  <p>Sprites, portraits, scene layers and text are from Probably Stolen by Questing Goose Studio, extracted from a purchased copy for reference. The page font is Mx437 Tandy2K, which the game itself ships, from VileR's Ultimate Oldschool PC Font Pack (int10h.org, CC BY-SA 4.0). Raw data, scripts and the dump mod live on the <code>datamine/probably-stolen</code> branch of <a href="https://github.com/sshlich/supermarket/tree/datamine/probably-stolen" target="_blank" rel="noopener">sshlich/supermarket</a>.</p>
+</footer>
+
+<script>
+const D = /*DATA*/;
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+// game rich text: keep <i>, drop other tags
+const rich = s => esc(s).replace(/&lt;(\/?)i&gt;/g, "<$1i>").replace(/&lt;\/?[a-z]+(=[^&]*)?&gt;/gi, "");
+const img = (sp, alt, cls = "") => sp ? `<img class="px ${cls}" src="${sp.src}" width="${sp.w}" height="${sp.h}" alt="${esc(alt)}" loading="lazy">` : "";
+const S = D.stats;
+
+/* ---------- hero scene ---------- */
+(function scene() {
+  const el = $("#scene"), L = D.store, pct = (v, t) => (v / t * 100) + "%";
+  const place = (n, wrapClip) => {
+    const l = L[n]; if (!l) return null;
+    const style = `left:${pct(l.x, 960)};top:${pct(l.y, 540)};width:${pct(l.w, 960)};height:${pct(l.h, 540)}`;
+    if (wrapClip) { const d = document.createElement("div"); d.className = "clip"; d.style.cssText = style; d.innerHTML = `<img src="${l.src}" alt="">`; el.append(d); return d; }
+    const i = document.createElement("img"); i.src = l.src; i.alt = ""; i.style.cssText = style; i.dataset.layer = n; el.append(i); return i;
+  };
+  Object.keys(L).forEach(n => { const node = place(n, n === "shutter_door"); if (n === "poster_down" && node) node.hidden = true; });
+  // cut goods laid on the counter top (counter surface sits around y=300 of 540)
+  const goods = ["revolver_short_tac", "organ_heart", "ammo_box", "sec_card", "organ_liver", "organ_kidney"];
+  const g = document.createElement("div"); g.className = "goods"; el.append(g);
+  let x = 250;
+  goods.map(id => D.unused_directory.find(i => i.id === id)).filter(i => i && i.sprite && !i.sprite.blank).forEach(i => {
+    const s = i.sprite, w = s.w * 1.0, h = s.h * 1.0, im = document.createElement("img");
+    im.src = s.src; im.alt = i.name; im.title = i.name + " (UnusedDirectory)";
+    im.style.cssText = `left:${pct(x, 960)};top:${pct(312 - h, 540)};width:${pct(w, 960)};height:${pct(h, 540)}`;
+    g.append(im); x += w + 26;
+  });
+  $("#shutterBtn").onclick = e => { const on = el.classList.toggle("open"); e.currentTarget.setAttribute("aria-pressed", on); e.currentTarget.textContent = on ? "Close the shutter" : "Open the shutter"; };
+  $("#posterBtn").onclick = e => {
+    const down = e.currentTarget.getAttribute("aria-pressed") !== "true";
+    el.querySelector('[data-layer="poster"]').hidden = down; el.querySelector('[data-layer="poster_down"]').hidden = !down;
+    e.currentTarget.setAttribute("aria-pressed", down); e.currentTarget.textContent = down ? "Put the poster back" : "Take down the poster";
+  };
+})();
+
+/* ---------- receipt ---------- */
+$("#receipt").innerHTML = `<div class="head">PROBABLY STOLEN<br>BACK ROOM INVENTORY<br>BUILD 26284217 · 0.46D</div>` +
+  [["Directories never loaded", S.dead_directories], ["Unreachable entries", S.unreachable_entries], ["Cut customers & events", S.uncalled_content],
+   ["Space-prototype classes", S.legacy_prototype_classes], ["Dead classes", S.dead_classes], ["Orphan sprites with art", S.orphan_art], ["Orphan slices, art wiped", S.orphan_wiped],
+   ["Cut-item sprites wiped", S.wiped_item_sprites + " / " + S.unused_item_sprites], ["Loot entries switched off", S.disabled_loot_entries], ["Unused audio clips", S.audio_unused]]
+  .map(([k, v]) => `<div class="row"><span>${k}</span><span>${v}</span></div>`).join("") +
+  `<div class="total row"><span>Items read</span><span>${S.items}</span></div><div class="row"><span>Strings read</span><span>${S.strings}</span></div><div class="row"><span>Sprites read</span><span>${S.sprites}</span></div><div class="row"><span>Classes read</span><span>${S.classes}</span></div>`;
+
+/* ---------- sections ---------- */
+const sections = [];
+const section = (id, nav, eyebrow, title, intro, inner) => sections.push({ id, nav, html:
+  `<section class="drawer wrap" id="${id}"><div class="drawer-head"><div class="eyebrow">${eyebrow}</div><h2>${title}</h2>${intro.map(p => `<p>${p}</p>`).join("")}</div>${inner}</section>` });
+
+const ghost = (sp, scale = 2) => `<div class="ghost-box" style="width:${Math.min(sp.w * scale, 160)}px;aspect-ratio:${sp.w}/${sp.h}"><span>wiped</span></div>`;
+const card = i => `<div class="card"><div class="art">${!i.sprite ? `<div class="none">no sprite<br>${esc(i.id)}</div>` : i.sprite.blank ? ghost(i.sprite) : img(i.sprite, i.name)}</div>
+  <div class="name">${esc(i.name)}</div><div class="meta"><code>${esc(i.id)}</code>${i.value ? `<span class="cr">${esc(i.value)} cr</span>` : ""}</div>
+  <div class="desc">${rich(i.desc || i.flavor || "")}</div></div>`;
+
+// UnusedDirectory
+section("unused", "UnusedDirectory", "UnusedDirectory.cs · 59 entries · never instantiated",
+  "The developers' own junk drawer",
+  [`One item class is literally named <code>UnusedDirectory</code>. Item directories are components that register themselves when the store scene loads. This one is attached to no GameObject and named nowhere in the code, and the live dump confirms it never registers. Its items still have names, prices and descriptions that no player can get.`,
+   `Most of their art is gone. The developers erased the pixels from the sprite atlases but left each slice rectangle in place, so ${D.unused_directory.filter(i => i.sprite && i.sprite.blank).length} of these items point at an empty box. The dashed outlines below are those boxes, drawn at their real size. The ones with pictures are the survivors.`,
+   `Inside: lootboxes, prescription pill bottles, injector pouches, an organ transport container, four transplant organs, five Titanite armor plates, three Lancewell revolvers, a mirage generator, lockpicks and three "test water" bottles.`],
+  `<div class="floor items">${D.unused_directory.map(card).join("")}</div>`);
+
+// injectors
+const effChip = e => e.kind === "none" ? `<span class="chip void">effect: null</span>` :
+  e.kind === "heal" ? `<span class="chip heal">+${e.value} HP</span>` :
+  e.kind === "overtimeHeal" ? `<span class="chip heal">+${e.value} HP × ${e.turns} turns</span>` :
+  e.kind === "bleeding" ? `<span class="chip harm">bleed ${e.value} × ${e.turns} turns</span>` : `<span class="chip">${esc(e.kind)} ${e.value}</span>`;
+const release = { black: "black_injector", white: "pure_white_injector", purple: "large_purple_injector" };
+const injRows = D.injectors.map(j => {
+  const c = j.id.split("_").pop(), r = D.release_injectors.find(i => i.id === release[c]);
+  return `<div class="inj-row"><div class="art">${img(D.injector_art[c], c + " injector")}</div>
+    <div><h3>${esc(j.name)}</h3><p class="muted" style="font-size:15px">${j.desc ? `Description: <code>${esc(j.desc)}</code>` : "No description."} Combat ability, cooldown ${j.cooldown}.</p><div class="chips">${j.effects.map(effChip).join("")}</div></div>
+    <div class="now">${r ? `${img(r.sprite, r.name)}<div><div class="lbl">In the release</div><b>${esc(r.name)}</b><div class="muted" style="font-size:14px">${esc(r.value)} cr · <code>${esc(r.id)}</code></div></div>` : `<div class="lbl">No release item in this colour. The art still sits in the medical atlas.</div>`}</div></div>`;
+}).join("");
+section("injectors", "Injectors", "StandardCombatAbilityDirectory.cs · experimental_injector_*",
+  "Five experimental injectors",
+  [`Before it was a shop sim, the game had turn-based fights, and these were its battlefield stims. Red heals 55 and then makes you bleed for ten turns. Purple stacks every effect at once. Black has the description <code>???</code> and a single effect whose ID is the string <code>"null"</code>, presumably a mystery that was never written.`,
+   `In the release the colours reappear as pharmacy products, shown on the right: a black Synaprest, a white Naloxgone and a purple Immunivax injector. The combat versions sit in a directory that never loads.`],
+  `<div class="floor inj">${injRows}</div>`);
+
+// customers
+const arcs = [
+  ["Grandpa Cheng", c => /GrandpaCheng|Cheng/.test(c.factory)],
+  ["Loan Clerk", c => /LoanClerk/.test(c.factory)],
+  ["Billy", c => /Billy/.test(c.factory)],
+  ["Trailer-era clients", c => /Trailer|Addict/.test(c.factory)],
+  ["Others", () => true]];
+const taken = new Set(), grouped = arcs.map(([name, f]) => [name, D.customers.filter(c => !taken.has(c.factory) && f(c) && taken.add(c.factory))]);
+const custList = grouped.map(([name, cs]) => `<div class="arc"><h4>${name}</h4><div class="list" role="tablist">${cs.map(c =>
+  `<button role="tab" data-f="${esc(c.factory)}" aria-selected="false">${esc(c.name || c.id)}<small>${esc(c.factory.split(".")[1].replace(/^Create/, ""))}</small></button>`).join("")}</div></div>`).join("");
+section("customers", "Customers", "StoreClient factories nothing calls · " + D.customers.length + " scenes",
+  "Customers who never came in",
+  [`Every visitor at the counter is built by a factory method. These have complete scripts, choices and outcomes, and no code path ever calls them.`,
+   `The biggest is <b>Grandpa Cheng</b>, seven scenes long. He runs a small store in The Sector and buys your food at a loss so orphans and old workers can eat. His water purifier breaks, he starts coughing, Sawyer asks you to keep an eye on him, he turns down treatment and gives his savings to charity, and finally Joe Wild comes by to say he died in his sleep. His portrait is still in the build.`,
+   `<b>Billy</b> has a small arc of his own: he begs for food, comes back with a new job in security, then sells you his "bonus from work", just before a security officer arrives asking who robbed the Upper Level medbay. His portrait was removed. Eight more clients in <code>StoreClientListUnused</code> carry "Trailer" in their names, while six other Trailer-named clients are still live.`],
+  `<div class="floor cust"><div class="cast">${custList}</div><div class="stage" id="stage" role="tabpanel"></div></div>`);
+
+// faces
+const faceCaps = {
+  grandpa_cheng: ["grandpa_cheng", "Set only by the seven uncalled Cheng scenes, and listed in the dev panel's face viewer."],
+  trailer_rev2: ["trailer_rev2", "No line of code names this portrait."],
+  trailer_rev1: ["trailer_rev1, for comparison", "Its sibling is live: a gun buyer in StoreClientListGun still wears it."] };
+section("faces", "Faces", "sharedassets1 · 288×211 portraits",
+  "Faces without a story",
+  [`The build ships ${S.portraits} customer portraits. Generic customers draw theirs at random from pools like <code>maleLower</code> and <code>femaleSec</code>. Named characters set theirs by hand, and two of those hand-set faces lead nowhere.`],
+  `<div class="floor faces">${Object.entries(D.faces).map(([k, sp]) => `<figure class="face" style="margin:0"><div class="portrait">${img(sp, k)}</div><figcaption class="cap"><b>${faceCaps[k][0]}</b><span>${faceCaps[k][1]}</span></figcaption></figure>`).join("")}</div>`);
+
+// space
+const tx = D.space.map(s => `<article><div class="missing"><span>${s.image ? `<b>IMAGE NOT IN BUILD</b>${esc(s.image)}` : "<b>NO IMAGE SET</b>"}</span></div>
+  <div class="body"><div class="cls">${esc(s.cls)}</div><h3>${esc(s.title)}</h3>${s.lines.slice(0, 2).map(l => `<p>${rich(l)}</p>`).join("")}
+  ${s.choices.length ? `<ol>${s.choices.map(c => `<li>${rich(c)}</li>`).join("")}</ol>` : ""}${s.outcomes[0] ? `<blockquote>${rich(s.outcomes[0])}</blockquote>` : ""}</div></article>`).join("");
+section("space", "Space", "Space*Trigger.cs · TraderStation*Trigger.cs · " + D.space.length + " events",
+  "Transmissions from the space game",
+  [`Probably Stolen grew out of a space-trading prototype: fly a ship between points of interest, meet whoever is out there, trade or fight. ${S.legacy_prototype_classes} classes from it are still in the release. The event triggers below are created by reflection every time you play, but each one waits for <code>GameMaster.current.shipManager</code> to arrive somewhere. No scene contains the ship, so they never fire.`,
+   `Their text and choices survive intact. Every illustration they ask for (<code>event_ghost_ship</code>, <code>event_fleet_battle</code>, <code>event_butcher</code>…) was stripped from the build, so these frames are empty.`],
+  `<div class="floor tx">${tx}</div>`);
+
+// faction + threats
+const fRows = D.faction.map(f => `<tr><td><b>${esc(f.name)}</b><div class="muted" style="font-size:14px">${esc(f.desc)}</div></td><td class="num">${esc(f.days)} d</td>${["strength", "order", "happiness"].map(k => {
+  const v = f.mods[k]; return `<td class="num ${v > 0 ? "pos" : v < 0 ? "neg" : ""}">${v == null ? "·" : (v > 0 ? "+" : "") + v}</td>`; }).join("")}</tr>`).join("");
+section("faction", "Security", "FactionStatusList.cs · EventListThreat.cs",
+  "A security simulation that never switched on",
+  [`Eight station-wide security states are fully written, with durations and modifiers to Security's strength, public order and happiness. Nothing ever applies them. Three threat events (<code>${D.threats.join("</code>, <code>")}</code>) never got past the stub stage: a duration and an importance, with empty names and descriptions.`],
+  `<div class="floor tbl"><table><thead><tr><th>Status</th><th>Lasts</th><th>Strength</th><th>Order</th><th>Happiness</th></tr></thead><tbody>${fRows}</tbody></table></div>`);
+
+// combat
+const npcRows = D.npcs.map(n => `<tr><td><b>${esc(n.label)}</b><div><code>${esc(n.id)}</code></div></td><td><span class="pill ${n.side}">${n.side}</span></td><td class="muted">${esc(n.ai || "default")}</td></tr>`).join("");
+section("combat", "Combat", "NpcCharacterItemDirectory.cs · StandardCombatAbilityDirectory.cs · RaidManager.cs",
+  "The fight that never happens",
+  [`A whole raid-and-combat layer is still compiled in: 22 combatants with their own AI profiles, ${D.abilities.length} combat abilities and three effect directories. The combat scene (<code>RaidScene</code>) exists in code but not in any level, and none of these directories is attached to anything, so none of them register.`],
+  `<div class="split"><div class="floor tbl"><table><thead><tr><th>Combatant</th><th>Side</th><th>AI profile</th></tr></thead><tbody>${npcRows}</tbody></table></div>
+   <div class="floor" style="padding:14px"><div class="eyebrow" style="margin-bottom:10px">Abilities</div><div class="chips">${D.abilities.map(a => `<span class="chip">${esc(a)}</span>`).join("")}</div></div></div>`);
+
+// loot
+const kc = D.keycards.map(e => `<tr class="${e.enabled ? "" : "off"}"><td>${img(e.item.sprite, e.item.name)}</td><td><b>${esc(e.item.name)}</b><div><code>${esc(e.value)}</code></div></td>
+  <td class="num">${(e.probability * 100).toFixed(0)}%</td><td><div class="bar"><i style="width:${Math.min(100, e.probability / 0.3 * 100)}%"></i></div></td><td>${e.enabled ? "" : '<span class="stamp">OFF</span>'}</td></tr>`).join("");
+section("loot", "Loot", "sharedassets1 · LootTable accessCardTable",
+  "Switched off in the loot table",
+  [`Loot tables are RNGNeeds probability lists stored as assets: ${D.loot_counts.tables} tables and ${D.loot_counts.groups} groups that roll into each other at the Dumping Ground. In <code>accessCardTable</code>, two keycards are present but disabled with probability zero. Supply and Research cards can't drop, though their items and art are finished.`],
+  `<div class="floor tbl loot"><table><thead><tr><th></th><th>Card</th><th>Chance</th><th></th><th></th></tr></thead><tbody>${kc}</tbody></table></div>`);
+
+// unreachable live stock
+section("stock", "Stock", "Live directories · registered but referenced nowhere",
+  "Stock nobody can buy",
+  [`These items are in directories that do load, so they exist in every game, but no shop, customer, recipe, event or loot table ever produces them. Examples: MBS Nerve Gas (400 cr), a Test Gizmo, a Box Dispenser, an Attachable Extended Barrel, a Blank Module, and fourteen music cassettes with a stray "l" suffix that have no title.`,
+   `Nine perks are also defined and never offered: ${D.unused_perks.map(p => `<b>${esc(p.name)}</b>`).join(", ")}.`],
+  `<div class="floor items">${D.unreachable.map(card).join("")}</div>`);
+
+// orphan wall
+const atlases = Object.keys(D.orphans);
+section("art", "Art", "Resources sprite atlases · named by no code, scene or animation",
+  "Art on the cutting room floor",
+  [`${S.orphan_sprites} sprites sit in the game's item atlases with nothing pointing at them: no code string, no scene component, no animation frame. Sprites the code builds from parts (fill levels like <code>100ml_blue_25</code>, UI colours like <code>"dark_" + colour</code>) are already excluded. ${S.orphan_art} still have art; the other ${S.orphan_wiped} are wiped slices, drawn as dashed outlines.`,
+   `The best survivor is the <code>rm_</code> set: a complete ruined-machine minigame (access panels, card swiper, anti-tamper plate, screws, wire runs, four disarm stages) whose directory, <code>RuinedMachineDirectory</code>, has an empty <code>InitDirectory</code>. There are also XXL rats one size past the biggest live rat, a set of empty DNA disks, and a sandal used as a weapon. Wiped and gone: peanut butter in five colours, a fire axe, an improvised spear, STANAG magazines and a handmade SMG.`],
+  `<div class="floor"><div class="filters" id="filters"><button aria-pressed="false" data-a="*">all ${S.orphan_sprites}</button><button aria-pressed="true" data-a="+art">with art ${S.orphan_art}</button><button aria-pressed="false" data-a="+wiped">wiped ${S.orphan_wiped}</button>${atlases.map(a => `<button aria-pressed="false" data-a="${esc(a)}">${esc(a.replace(/^items_/, ""))} ${D.orphans[a].length}</button>`).join("")}</div>
+   <div class="wall" id="wall"></div><div class="readout" id="readout" aria-live="polite">Hover or focus a sprite to read its name.</div></div>`);
+
+// dead lines
+section("lines", "Lines", "String tables · keys never named in code",
+  "Lines nobody says",
+  [`The English string tables hold ${S.strings} strings. Most of the ones no code names are UI labels bound by scene components. These dialogue and name strings are the real leftovers: a security officer who lets a shooting slide because you have friends in high places, and the name of a Corporate Security Inspector that nothing uses.`],
+  `<div class="floor quotes">${D.dead_lines.map(l => `<div class="quote"><p>${rich(l.text)}</p><code>${esc(l.table)} · ${esc(l.key)}</code></div>`).join("")}</div>`);
+
+// method
+section("method", "Method", "How this was dug up", "Method and corrections",
+  [`The full release is a Mono build, so the game code decompiles to readable C#. A static pass matched every registered ID, factory method and class against every place in the code that could reach it. The asset pass read all ${S.sprites} sprites, ${S.audio} audio clips, the loot tables and every scene component, using type trees generated from the game's DLLs because the build ships without them.`],
+  `<div class="method">
+    <div><b>Dump mod</b><p>A small mod for the game's own harness walks <code>DirectoryMaster</code>, every *List factory and every registry when a save loads, and writes JSON through the sandboxed <code>ModHelper.WriteModDataFileText</code>. It confirmed which directories actually register (${S.live_directories} do) and produced ${S.list_factories} live client, event and perk objects.</p></div>
+    <div><b>Corrections along the way</b><p>The first pass reported 43 unused audio clips. Once every scene AudioSource and component field was counted, all ${S.audio} turned out to be in use. The orphan-sprite count fell from 310 to ${S.orphan_sprites} once runtime-built variants were recognised. Then the exported PNGs turned out to be mostly empty: the art had been wiped from the atlases, so every sprite is now checked for pixels.</p></div>
+    <div><b>Where it lives</b><p>Everything, including UNUSED.md, the scripts and the mod source, is on the <code>datamine/probably-stolen</code> branch, an orphan branch with no shared history.</p></div>
+  </div>`);
+
+$("#main").innerHTML = sections.map(s => s.html).join("");
+$("#nav").innerHTML = sections.map(s => `<a href="#${s.id}">${s.nav}</a>`).join("");
+
+/* customer stage */
+const stage = $("#stage");
+function showCustomer(f) {
+  const c = D.customers.find(x => x.factory === f); if (!c) return;
+  document.querySelectorAll(".arc button").forEach(b => b.setAttribute("aria-selected", b.dataset.f === f));
+  const portrait = c.portrait ? img(c.portrait, c.name) : `<div class="ghost">${c.sprite_name === "random face" ? "Random Lower Levels face" : c.sprite_name ? `Portrait <b>${esc(c.sprite_name)}</b><br>is not in the build` : "No portrait set"}</div>`;
+  stage.innerHTML = `<div class="stage-top"><div class="portrait">${portrait}</div><div class="who"><div class="eyebrow">${esc(c.factory)}</div><h3>${esc(c.name || c.id)}</h3>
+    <div class="chips">${c.intent ? `<span class="chip">${esc(c.intent.toLowerCase())}</span>` : ""}${c.budget ? `<span class="chip">budget ${c.budget} cr</span>` : ""}${c.id ? `<span class="chip">${esc(c.id)}</span>` : ""}</div></div></div>
+    <div class="script">${c.lines.map(l => `<div class="line ${l.who === "You" ? "you" : l.who === "choice" ? "choice" : ""}"><span class="sp">${l.who === "choice" ? "choice" : esc(l.who)}</span><span>${rich(l.text)}</span></div>`).join("")}</div>`;
+}
+document.querySelectorAll(".arc button").forEach(b => b.onclick = () => showCustomer(b.dataset.f));
+showCustomer((D.customers.find(c => /GrandpaChengIntro/.test(c.factory)) || D.customers[0]).factory);
+
+/* orphan wall */
+const wall = $("#wall"), readout = $("#readout");
+function fillWall(a) {
+  const all = atlases.flatMap(k => D.orphans[k].map(s => [k, s]));
+  const list = a === "*" ? all : a === "+art" ? all.filter(([, s]) => !s.blank) : a === "+wiped" ? all.filter(([, s]) => s.blank) : D.orphans[a].map(s => [a, s]);
+  wall.innerHTML = list.map(([k, s]) => `<div class="tile${s.blank ? " wiped" : ""}" tabindex="0" data-n="${esc(s.name)}" data-a="${esc(k)}" data-s="${s.w}×${s.h}${s.blank ? " · wiped" : ""}">${s.blank
+    ? `<div class="ghost-box" style="--gw:${Math.min(92, s.w / Math.max(s.w, s.h) * 92)}%;--ga:${s.w}/${s.h}"></div>` : `<img src="${s.src}" alt="${esc(s.name)}" loading="lazy">`}</div>`).join("");
+}
+fillWall("+art");
+$("#filters").onclick = e => { const b = e.target.closest("button"); if (!b) return; document.querySelectorAll("#filters button").forEach(x => x.setAttribute("aria-pressed", x === b)); fillWall(b.dataset.a); };
+const read = e => { const t = e.target.closest(".tile"); if (t) readout.textContent = `${t.dataset.n}  ·  ${t.dataset.a}  ·  ${t.dataset.s}px`; };
+wall.addEventListener("mouseover", read); wall.addEventListener("focusin", read);
+
+/* nav highlight */
+const links = [...document.querySelectorAll("#nav a")];
+const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) links.forEach(a => a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id)); }), { rootMargin: "-40% 0px -55% 0px" });
+document.querySelectorAll("section.drawer").forEach(s => io.observe(s));
+</script>
