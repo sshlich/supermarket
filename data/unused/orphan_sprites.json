@@ -2147,26 +2147,5 @@
   "w": 48,
   "h": 64,
   "png": "sprites/orphan/items_water_container4/pitcher_blue_25.png"
- },
- {
-  "name": "elements_outer",
-  "resource": "window/elements_outer",
-  "w": 213,
-  "h": 72,
-  "png": "sprites/orphan/window_elements_outer/elements_outer.png"
- },
- {
-  "name": "elements_inner",
-  "resource": "window/elements_inner",
-  "w": 481,
-  "h": 496,
-  "png": "sprites/orphan/window_elements_inner/elements_inner.png"
- },
- {
-  "name": "battery_bar",
-  "resource": "items/items_tool",
-  "w": 4,
-  "h": 10,
-  "png": "sprites/orphan/items_items_tool/battery_bar.png"
  }
 ]

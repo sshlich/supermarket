@@ -5,7 +5,8 @@
   "seconds": 644.2,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "bedroll",
@@ -13,7 +14,8 @@
   "seconds": 0.9,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Bladed_Drag",
@@ -26,7 +28,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "spaceship_jump",
@@ -39,7 +42,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_button3",
@@ -52,7 +56,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "04 - Deluge - Pristine",
@@ -65,7 +70,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Tiny_Metal_Drop",
@@ -78,7 +84,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "injector_use",
@@ -91,7 +98,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "02 - The Wailing - Slightly Degraded",
@@ -104,7 +112,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "pistol_shot_combined",
@@ -117,7 +126,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Tiny_Metal_Drag",
@@ -130,7 +140,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "Typewriter sound 1",
@@ -138,7 +149,8 @@
   "seconds": 0.2,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "ump_fire",
@@ -151,7 +163,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "03 - Long Star River - Slightly Degraded",
@@ -164,7 +177,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "sound_effects_wounds_blood1",
@@ -177,7 +191,8 @@
    }
   ],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "02 - The Wailing - Very Degraded",
@@ -190,7 +205,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "NOTIF_NAV_READY",
@@ -203,7 +219,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "injector_move",
@@ -216,7 +233,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Gun_Drag",
@@ -229,7 +247,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "OPEN_CASE_PLASTIC",
@@ -242,7 +261,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "shutter_open3s",
@@ -250,7 +270,8 @@
   "seconds": 3.0,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "pill_bottle_pop",
@@ -263,7 +284,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Open_Machine_Light",
@@ -276,7 +298,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "05 - Spellsinger Radio Edition - Very Degraded",
@@ -289,7 +312,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "03 - Long Star River - Pristine",
@@ -302,7 +326,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Full_Plastic_Bottle_Drag",
@@ -315,7 +340,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "Glock Pistol Gun Shooting",
@@ -328,7 +354,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Small_Gun_Drag",
@@ -341,7 +368,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Meaty_Drag",
@@ -354,7 +382,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "body_collapse_floor",
@@ -367,7 +396,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "ratchet",
@@ -375,7 +405,8 @@
   "seconds": 0.9,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Scanner_Drop",
@@ -388,7 +419,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Drain_Water",
@@ -401,7 +433,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "05 - Spellsinger Radio Edition - Pristine",
@@ -414,7 +447,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "shotgun_fire",
@@ -427,7 +461,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "pistol_reload_light",
@@ -440,7 +475,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "move_armour",
@@ -453,7 +489,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "swallow_pill",
@@ -466,7 +503,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Solid_Metal_Drag",
@@ -479,7 +517,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "shotgun_fire",
@@ -492,7 +531,8 @@
    }
   ],
   "id_in_code": false,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "AMB_Dr_Jackson_Ambience",
@@ -500,7 +540,8 @@
   "seconds": 300.0,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Tsash_Can_Open",
@@ -513,7 +554,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Scanner_Drag",
@@ -526,7 +568,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#2 Datasphere - Very Degraded",
@@ -539,7 +582,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "Typewriter sound 3",
@@ -547,7 +591,8 @@
   "seconds": 0.2,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "POUR_WATER",
@@ -560,7 +605,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "sound_effects_assslap",
@@ -573,7 +619,8 @@
    }
   ],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "can_move2",
@@ -586,7 +633,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "eat",
@@ -599,7 +647,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Glass_Item_Drag",
@@ -612,7 +661,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Small_Metal_Machinery_Drag",
@@ -625,7 +675,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Dosier_Close",
@@ -638,7 +689,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#2 Datasphere - Slightly Degraded",
@@ -651,7 +703,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "interface_click",
@@ -664,7 +717,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Faucet_Use",
@@ -677,7 +731,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "rat_happy",
@@ -690,7 +745,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Glass_Item_Drop",
@@ -703,7 +759,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Gun_Mod_Drop",
@@ -716,7 +773,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Vial_Drag",
@@ -729,7 +787,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "smg_reload",
@@ -742,7 +801,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "#6 Spaceflight - Very Degraded",
@@ -755,7 +815,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Empty_Plastic_Bottle_Drag",
@@ -768,7 +829,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "moddingPlastic2",
@@ -781,7 +843,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_button4",
@@ -794,7 +857,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "02 - The Wailing - Pristine",
@@ -807,7 +871,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "lamp_click",
@@ -815,7 +880,8 @@
   "seconds": 0.2,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#7 Dark Matter - Slightly Degraded",
@@ -828,7 +894,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Craton_Box_Drop",
@@ -841,7 +908,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "OPEN_CASE_PLASTIC1",
@@ -854,7 +922,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "phone_calling",
@@ -862,7 +931,8 @@
   "seconds": 7.5,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "01 - A Bao A Qu - Pristine",
@@ -875,7 +945,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "AMB_Dumps_Ambience",
@@ -883,7 +954,8 @@
   "seconds": 300.0,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Module_Remove",
@@ -896,7 +968,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "box_click",
@@ -904,7 +977,8 @@
   "seconds": 0.6,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Bottle_Pour",
@@ -917,7 +991,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Vial_Drop",
@@ -930,7 +1005,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Plastic_Container_Drag",
@@ -943,7 +1019,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_book_pickup",
@@ -956,7 +1033,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "soft_blunt_impact",
@@ -969,7 +1047,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Leafy_Drop",
@@ -982,7 +1061,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Metal_Machinery_Drag",
@@ -995,7 +1075,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "01 - A Bao A Qu - Very Degraded",
@@ -1008,7 +1089,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Carton_Box_Drag",
@@ -1021,7 +1103,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#5 Afterglow - Slightly Degraded",
@@ -1034,7 +1117,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Gun_Mod_Drag",
@@ -1047,7 +1131,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Small_Module_Drop",
@@ -1060,7 +1145,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "mp9_fire",
@@ -1073,7 +1159,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "CLOSE_CASE_PLASTIC1",
@@ -1086,7 +1173,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Empty_Plastic_Bottle_Drop",
@@ -1099,7 +1187,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Trash_Can_Close",
@@ -1112,7 +1201,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "new_soft_click",
@@ -1120,7 +1210,8 @@
   "seconds": 0.2,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Textile_Drag",
@@ -1133,7 +1224,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "07 - Junkyard Jockey - Slightly Degraded",
@@ -1146,7 +1238,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "click_light",
@@ -1159,7 +1252,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "can_move1",
@@ -1172,7 +1266,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Battery_Insert",
@@ -1185,7 +1280,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "moddingPlastic1",
@@ -1198,7 +1294,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "#7 Dark Matter - Pristine",
@@ -1211,7 +1308,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#2 Datasphere - Pristine",
@@ -1224,7 +1322,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Solid_Metal_Drop",
@@ -1237,7 +1336,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "cocking2-1",
@@ -1250,7 +1350,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Battery_Drag",
@@ -1263,7 +1364,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Battery_Drop",
@@ -1276,7 +1378,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Scanner_Use",
@@ -1289,7 +1392,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Use_Bandage",
@@ -1302,7 +1406,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "scratch",
@@ -1315,7 +1420,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "debris_short",
@@ -1328,7 +1434,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#7 Dark Matter - Very Degraded",
@@ -1341,7 +1448,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "03 - Long Star River - Very Degraded",
@@ -1354,7 +1462,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "PING_SONAR2",
@@ -1367,7 +1476,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Plastic_Vial_Open",
@@ -1380,7 +1490,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Module_Install",
@@ -1393,7 +1504,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Tape_Insert",
@@ -1406,7 +1518,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Full_Plastic_Bottle_Drop",
@@ -1419,7 +1532,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Battery_Remove",
@@ -1432,7 +1546,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "labeler",
@@ -1440,7 +1555,8 @@
   "seconds": 0.7,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "pump_action",
@@ -1453,7 +1569,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "pouch_close",
@@ -1466,7 +1583,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "cash_register",
@@ -1474,7 +1592,8 @@
   "seconds": 5.1,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "backpack_move2",
@@ -1487,7 +1606,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "WELD",
@@ -1500,7 +1620,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Paper_Sheet_Drop",
@@ -1513,7 +1634,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "metal_snap",
@@ -1521,7 +1643,8 @@
   "seconds": 0.3,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "AMB_Comissionary_Ambience",
@@ -1529,7 +1652,8 @@
   "seconds": 300.0,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "food_drag",
@@ -1542,7 +1666,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "soda_open",
@@ -1555,7 +1680,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "Station_Ambience_004",
@@ -1563,7 +1689,8 @@
   "seconds": 644.2,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#6 Spaceflight - Slightly Degraded",
@@ -1576,7 +1703,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "wirecutter",
@@ -1584,7 +1712,8 @@
   "seconds": 0.7,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "06 - Golden Lotus - Pristine",
@@ -1597,7 +1726,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "pouch_move1",
@@ -1610,7 +1740,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Step_Left",
@@ -1618,7 +1749,8 @@
   "seconds": 0.3,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Textile_Drop",
@@ -1631,7 +1763,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "armour_drag2",
@@ -1644,7 +1777,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Plastic_Card_Drop",
@@ -1657,7 +1791,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_button2",
@@ -1670,7 +1805,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "gunshot",
@@ -1683,7 +1819,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "water_bottle_open",
@@ -1696,7 +1833,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Plastic_Machinery_Drag",
@@ -1709,7 +1847,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "rat_kill",
@@ -1722,7 +1861,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Soft_Plastic_Item_Drop",
@@ -1735,7 +1875,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "06 - Golden Lotus - Slightly Degraded",
@@ -1748,7 +1889,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "click_vintage",
@@ -1761,7 +1903,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "shutter_door_closed",
@@ -1769,7 +1912,8 @@
   "seconds": 1.8,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "phone_wrong_number",
@@ -1777,7 +1921,8 @@
   "seconds": 1.3,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Module_Drag",
@@ -1790,7 +1935,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "cloth2",
@@ -1803,7 +1949,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Book_Drag",
@@ -1816,7 +1963,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "phone_getting_hang",
@@ -1824,7 +1972,8 @@
   "seconds": 0.7,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Heavy_Gun_Drop",
@@ -1837,7 +1986,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_button1",
@@ -1850,7 +2000,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Carton_Card_Drop",
@@ -1863,7 +2014,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#5 Afterglow - Pristine",
@@ -1876,7 +2028,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "07 - Junkyard Jockey - Very Degraded",
@@ -1889,7 +2042,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "perfume_spray",
@@ -1902,7 +2056,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Bladed_Drop",
@@ -1915,7 +2070,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "cocking2-2",
@@ -1928,7 +2084,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "move_item",
@@ -1941,7 +2098,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "zipper2",
@@ -1954,7 +2112,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#4 Stardust - Very Degraded",
@@ -1967,7 +2126,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#5 Afterglow - Very Degraded",
@@ -1980,7 +2140,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Book_Drop",
@@ -1993,7 +2154,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Water_Filter_Drag",
@@ -2006,7 +2168,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Plastic_Card_Drag",
@@ -2019,7 +2182,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "04 - Deluge - Slightly Degraded",
@@ -2032,7 +2196,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_book_drop",
@@ -2045,7 +2210,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "PING_SONAR",
@@ -2058,7 +2224,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "writing2",
@@ -2066,7 +2233,8 @@
   "seconds": 0.5,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "debris_impact_short2",
@@ -2079,7 +2247,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "MINING_DRILL",
@@ -2092,7 +2261,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Metal_Scrap_Drag",
@@ -2105,7 +2275,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "phone_client_pickup",
@@ -2113,7 +2284,8 @@
   "seconds": 0.7,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Dosier_Open",
@@ -2126,7 +2298,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "injector_select",
@@ -2139,7 +2312,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Module_Drop",
@@ -2152,7 +2326,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "knife_select",
@@ -2165,7 +2340,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Produce_Drop",
@@ -2178,7 +2354,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "bandage_use",
@@ -2191,7 +2368,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Tiny_Item_Drop",
@@ -2204,7 +2382,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Tape_Drop",
@@ -2217,7 +2396,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "shutter_close3s",
@@ -2225,7 +2405,8 @@
   "seconds": 3.4,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "debris_impact_short",
@@ -2238,7 +2419,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#1 Main Theme - Slightly Degraded",
@@ -2251,7 +2433,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "01 - A Bao A Qu - Slightly Degraded",
@@ -2264,7 +2447,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#6 Spaceflight - Pristine",
@@ -2277,7 +2461,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#4 Stardust - Pristine",
@@ -2290,7 +2475,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Gun_Drop",
@@ -2303,7 +2489,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "mp9_select",
@@ -2316,7 +2503,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Tape_Drag",
@@ -2329,7 +2517,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Soft_Plastic_Item_Drag",
@@ -2342,7 +2531,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "07 - Junkyard Jockey - Pristine",
@@ -2355,7 +2545,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "rat_drop",
@@ -2368,7 +2559,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "backpack_move1",
@@ -2381,7 +2573,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "modding2",
@@ -2394,7 +2587,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "pouch_open",
@@ -2407,7 +2601,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "pistol_move2",
@@ -2420,7 +2615,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "#3 High Stakes - Slightly Degraded",
@@ -2433,7 +2629,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "sound_fail",
@@ -2441,7 +2638,8 @@
   "seconds": 4.5,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Plastic_Vial_Close",
@@ -2454,7 +2652,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "alarm2",
@@ -2462,7 +2661,8 @@
   "seconds": 1.1,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "pouch_move2",
@@ -2475,7 +2675,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Plastic_Container_Drop",
@@ -2488,7 +2689,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Use_Water_Filter",
@@ -2501,7 +2703,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "countdown",
@@ -2514,7 +2717,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "shotgun_cock",
@@ -2527,7 +2731,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "beat_coin",
@@ -2535,7 +2740,8 @@
   "seconds": 2.6,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "cross",
@@ -2543,7 +2749,8 @@
   "seconds": 1.1,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "phone_pickup",
@@ -2551,7 +2758,8 @@
   "seconds": 0.8,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "pistol_move1",
@@ -2564,7 +2772,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SHIP_UNDOCK",
@@ -2577,7 +2786,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "welder",
@@ -2585,7 +2795,8 @@
   "seconds": 0.9,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "close_door",
@@ -2598,7 +2809,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "rat_pickup",
@@ -2611,7 +2823,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "modding1",
@@ -2624,7 +2837,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Open_Machine",
@@ -2637,7 +2851,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_paper_drop",
@@ -2650,7 +2865,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "Turbo",
@@ -2663,7 +2879,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "pageflip",
@@ -2671,7 +2888,8 @@
   "seconds": 0.6,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Close_Machine_Light",
@@ -2684,7 +2902,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#1 Main Theme - Very Degraded",
@@ -2697,7 +2916,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "phone_drop",
@@ -2705,7 +2925,8 @@
   "seconds": 0.6,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Carton_Card_Drag",
@@ -2718,7 +2939,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#3 High Stakes - Pristine",
@@ -2731,7 +2953,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "06 - Golden Lotus - Very Degraded",
@@ -2744,7 +2967,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "new_bell",
@@ -2752,7 +2976,8 @@
   "seconds": 1.5,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Heavy_Gun_Drag",
@@ -2765,7 +2990,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "blender",
@@ -2778,7 +3004,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Step_Right",
@@ -2786,7 +3013,8 @@
   "seconds": 0.3,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "negative_beep",
@@ -2794,7 +3022,8 @@
   "seconds": 0.6,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "plastic_unwrap",
@@ -2807,7 +3036,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "Typewriter sound 2",
@@ -2815,7 +3045,8 @@
   "seconds": 0.1,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Metal_Machinery_Drop",
@@ -2828,7 +3059,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "pourOut",
@@ -2836,7 +3068,8 @@
   "seconds": 1.7,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "soft_airlock",
@@ -2849,7 +3082,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "airlock_close_new",
@@ -2857,7 +3091,8 @@
   "seconds": 2.0,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Small_Gun_Drop",
@@ -2870,7 +3105,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "airlock_open_new",
@@ -2878,7 +3114,8 @@
   "seconds": 1.5,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "ratcher2",
@@ -2886,7 +3123,8 @@
   "seconds": 0.9,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Produce_Drag",
@@ -2899,7 +3137,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Paper_Sheet_Drag",
@@ -2912,7 +3151,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Plastic_Machinery_Drop",
@@ -2925,7 +3165,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#4 Stardust - Slightly Degraded",
@@ -2938,7 +3179,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "drink",
@@ -2951,7 +3193,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Leafy_Drag",
@@ -2964,7 +3207,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Tiny_Item_Drag",
@@ -2977,7 +3221,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "#3 High Stakes - Very Degraded",
@@ -2990,7 +3235,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "05 - Spellsinger Radio Edition - Slightly Degraded",
@@ -3003,7 +3249,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "food_can_open",
@@ -3016,7 +3263,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "knife_stabs",
@@ -3029,7 +3277,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "cloth1",
@@ -3042,7 +3291,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "pill",
@@ -3055,7 +3305,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "food_drag2",
@@ -3068,7 +3319,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Water_Filter_Drop",
@@ -3081,7 +3333,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "shotgun_pump",
@@ -3094,7 +3347,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "zipper3",
@@ -3107,7 +3361,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Alarm_Siren",
@@ -3120,7 +3375,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "pistol_select",
@@ -3133,7 +3389,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "explosionImpact",
@@ -3146,7 +3403,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_paper_pickup",
@@ -3159,7 +3417,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "grenade_explosion",
@@ -3172,7 +3431,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Close_Machine",
@@ -3185,7 +3445,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Small_Metal_Machinery_Drop",
@@ -3198,7 +3459,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "shuttle_arrive",
@@ -3211,7 +3473,8 @@
    }
   ],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "injector_move2",
@@ -3224,7 +3487,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Small_Module_Drag",
@@ -3237,7 +3501,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "grenade_pull_pin",
@@ -3250,7 +3515,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SHIP_DOCK",
@@ -3263,7 +3529,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "04 - Deluge - Very Degraded",
@@ -3276,7 +3543,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "pistol_reload",
@@ -3289,7 +3557,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "SFX_Metal_Scrap_Drop",
@@ -3302,7 +3571,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Tape_Remove",
@@ -3315,7 +3585,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "writing",
@@ -3323,7 +3594,8 @@
   "seconds": 0.9,
   "directory_ids": [],
   "id_in_code": false,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Meaty_Drop",
@@ -3336,7 +3608,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "apple_bite",
@@ -3349,7 +3622,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": true
+  "name_in_code": true,
+  "scene_ref": true
  },
  {
   "name": "#1 Main Theme - Pristine",
@@ -3362,7 +3636,8 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  },
  {
   "name": "SFX_Click(Light switch)",
@@ -3375,6 +3650,7 @@
    }
   ],
   "id_in_code": true,
-  "name_in_code": false
+  "name_in_code": false,
+  "scene_ref": true
  }
 ]

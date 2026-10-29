@@ -10,7 +10,39 @@ env = UnityPy.load(D)
 byname = {os.path.basename(n): f for n, f in env.files.items()}
 
 def target_file(af, file_id):
-    return af if file_id == 0 else byname.get(os.path.basename(af.externals[file_id - 1].path))
+    if file_id == 0:
+        return af
+    # generated type trees report some PPtrs (m_Script) with out-of-range file ids; treat them as unresolvable
+    return byname.get(os.path.basename(af.externals[file_id - 1].path)) if 0 < file_id <= len(af.externals) else None
+
+# MonoBehaviours ship without type trees; generate them from the game's Managed DLLs (TypeTreeGeneratorAPI)
+from UnityPy.helpers.TypeTreeGenerator import TypeTreeGenerator
+gen = TypeTreeGenerator("2021.3.45f2")
+gen.load_local_game("game/")
+env.typetree_generator = gen
+
+# 0. every object reference held by a scene/prefab object (components, ScriptableObjects, animation frames).
+#    SpriteAtlas is skipped: it lists every packed sprite whether used or not.
+REF_TYPES = {"MonoBehaviour", "AudioSource", "SpriteRenderer", "AnimationClip", "Animator", "ParticleSystemRenderer", "Material"}
+scene_refs = set()
+def walk(af, node):
+    if isinstance(node, dict):
+        if "m_PathID" in node and "m_FileID" in node and node["m_PathID"]:
+            tf = target_file(af, node["m_FileID"])
+            if tf is not None:
+                scene_refs.add((tf.name, node["m_PathID"]))
+        else:
+            for v in node.values():
+                walk(af, v)
+    elif isinstance(node, list):
+        for v in node:
+            walk(af, v)
+for o in env.objects:
+    if o.type.name in REF_TYPES:
+        try:
+            walk(o.assets_file, o.read_typetree())
+        except Exception:
+            pass
 
 # 1. MonoBehaviour -> script class, by parsing the fixed header (m_GameObject, m_Enabled, m_Script);
 #    the full read needs type trees this build does not ship.
@@ -57,7 +89,8 @@ for o in env.objects:
     key = f"{path}/{s.m_Name}".lower() if path else None
     sprites.append({"name": s.m_Name, "resource": path, "file": o.assets_file.name, "path_id": o.path_id,
                     "w": round(s.m_Rect.width), "h": round(s.m_Rect.height),
-                    "code_ref": bool(key and key in code_refs), "name_in_code": s.m_Name in names_in_code})
+                    "code_ref": bool(key and key in code_refs), "name_in_code": s.m_Name in names_in_code,
+                    "scene_ref": (o.assets_file.name, o.path_id) in scene_refs})
 json.dump(sprites, open(OUT + "sprites.json", "w"), indent=1)
 
 # 3. audio: AudioDirectory (one MonoBehaviour in level1) maps identifier -> clip in 8 serialized AudioAsset arrays;
@@ -88,7 +121,7 @@ for o in env.objects:
         ids_ = clip_ids.get((o.assets_file.name, o.path_id), [])
         clips.append({"name": c.m_Name, "file": o.assets_file.name, "seconds": round(c.m_Length, 1) if hasattr(c, "m_Length") else None,
                       "directory_ids": ids_, "id_in_code": any(i["identifier"] in names_in_code for i in ids_),
-                      "name_in_code": c.m_Name in names_in_code})
+                      "name_in_code": c.m_Name in names_in_code, "scene_ref": (o.assets_file.name, o.path_id) in scene_refs})
 json.dump(clips, open(OUT + "audio.json", "w"), indent=1)
 
 # 4. PNGs: Resources sprites never named anywhere in code, plus sprites of unreferenced / UnusedDirectory items
@@ -99,10 +132,10 @@ unused_sprite_keys = {k.lower() for k, sites in static.items()
 # sprite refs inside factories of unreferenced items: match by sprite name == id as a cheap proxy
 # ponytail: item->sprite link comes from the runtime dump when available (exported again by mine_report.py)
 exported = []
-referenced_names = {x['name'] for x in sprites if x['code_ref'] or x['name_in_code']}
+referenced_names = {x['name'] for x in sprites if x['code_ref'] or x['name_in_code'] or x['scene_ref']}
 for s in sprites:
     key = f"{s['resource']}/{s['name']}".lower() if s["resource"] else None
-    orphan = s["resource"] and not s["code_ref"] and not s["name_in_code"]
+    orphan = s["resource"] and not s["code_ref"] and not s["name_in_code"] and not s["scene_ref"]
     unused = key in unused_sprite_keys or s["name"] in unused_ids
     if not (orphan or unused):
         continue
@@ -123,15 +156,10 @@ json.dump(sprites, open(OUT + "sprites.json", "w"), indent=1)
 
 print(f"scripts attached {len(attached)}, sprites {len(sprites)} (resources {sum(1 for s in sprites if s['resource'])}, "
       f"orphan {sum(1 for s in exported if '/orphan/' in s['png'])}, variants {sum(1 for s in exported if '/orphan_variants/' in s['png'])}, "
-      f"unused-item {sum(1 for s in exported if '/unused_items/' in s['png'])}), audio {len(clips)} (not in AudioDirectory {sum(1 for c in clips if not c['directory_ids'])}, "
-      f"in directory but id never named in code {sum(1 for c in clips if c['directory_ids'] and not c['id_in_code'])})")
+      f"unused-item {sum(1 for s in exported if '/unused_items/' in s['png'])}), audio {len(clips)} "
+      f"(unreferenced {sum(1 for c in clips if not c['scene_ref'] and not c['name_in_code'] and not c['id_in_code'])})")
 
 # 5. loot tables (RNGNeeds ProbabilityList ScriptableObjects) and the scene wiring that names them.
-#    Needs type trees, generated from the game's Managed DLLs (TypeTreeGeneratorAPI).
-from UnityPy.helpers.TypeTreeGenerator import TypeTreeGenerator
-gen = TypeTreeGenerator("2021.3.45f2")
-gen.load_local_game("game/")
-env.typetree_generator = gen
 
 def pl_items(pl, value):
     return [{"value": value(i["m_Value"]), "probability": round(i["m_BaseProbability"], 4), "enabled": bool(i["m_Enabled"]),

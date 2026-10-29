@@ -118,7 +118,7 @@ report["dead_classes"] = sorted(c for c, v in classes.items()
 # G. art and sound nobody uses
 report["orphan_sprites"] = [{k: s[k] for k in ("name", "resource", "w", "h", "png")} for s in sprites if s.get("png", "").startswith("sprites/orphan/")]
 report["unused_item_sprites"] = [{k: s[k] for k in ("name", "resource", "w", "h", "png")} for s in sprites if s.get("png", "").startswith("sprites/unused_items/")]
-report["audio_unused"] = [c for c in audio if not c["directory_ids"] and not c["name_in_code"] or c["directory_ids"] and not c["id_in_code"]]
+report["audio_unused"] = [c for c in audio if not c["scene_ref"] and not c["name_in_code"] and not c["id_in_code"]]
 
 # H. strings: keys never named in code, minus ones the code builds (prefix + id + suffix)
 lit = set(re.findall(r'"([A-Za-z0-9_]+)"', "\n".join(files.values())))

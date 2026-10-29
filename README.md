@@ -21,7 +21,7 @@ Three sources:
 | `data/runtime/` | live dump: `directories/<EntryType>/<Directory>.json`, `lists/<Class>.json` (store clients, events, operations, perks, network upgrades...), `registries/` (difficulty, plants, traits, appraisal, paper, options) |
 | `data/assets/loot_tables.json` | all 13 vanilla loot tables and 2 table groups with probabilities, plus the scene wiring |
 | `data/assets/attached_scripts.json` | every MonoBehaviour class and which scene/asset file attaches it |
-| `data/assets/sprites.json`, `audio.json` | every sprite/clip and whether code or the AudioDirectory names it |
+| `data/assets/sprites.json`, `audio.json` | every sprite/clip and whether code, the AudioDirectory or a scene object references it |
 | `data/assets/sprites/` | PNGs: `orphan/` (art nothing uses), `unused_items/` (art of cut items), `orphan_variants/` (fill levels and sizes built at runtime) |
 | `data/static/` | code cross-reference: `registered_ids.json`, `list_factories.json` (callers), `classes.json`, `loc_unreferenced.json`, `code_sprite_refs.json` |
 | `data/unused/` | one JSON per section of `UNUSED.md` |
@@ -43,8 +43,9 @@ Three sources:
 - **Disabled loot:** `sup_keycard` and `sci_keycard` sit in `accessCardTable` switched off.
 - **Unreachable live items:** 35 registered items that nothing references, e.g. MBS Nerve Gas, Test Gizmo, Box Dispenser,
   Blank Module, Streamlining Module, Attachable Extended Barrel, Old Lottery Ticket and 9 unused perks.
-- **Art and audio:** 310 orphan sprites (peanut butter colors, stick and smoke grenades, fire axe, sandal weapon, STANAG mags,
-  handmade SMG, wine labels, broken-machine minigame pieces...), 97 sprites of cut items, and 43 audio clips nothing plays.
+- **Art:** 307 orphan sprites (peanut butter colors, stick and smoke grenades, fire axe, sandal weapon, STANAG mags,
+  handmade SMG, wine labels, broken-machine minigame pieces...) and 97 sprites of cut items. All 276 audio clips are wired
+  to something (AudioDirectory, a scene AudioSource or a component field), so no audio is unused.
 
 Every "unused" claim is a lead, not proof: IDs that the code assembles from parts at runtime can look unreferenced.
 The runtime dump and the scene and asset checks remove most of those false positives, and `UNUSED.md` says which check each entry failed.

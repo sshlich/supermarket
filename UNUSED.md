@@ -778,7 +778,7 @@ The game grew out of a space-trading prototype. `Space*Trigger` events are still
 
 `AdvButtonElement`, `AdvancedContentSizeFitter`, `AdvancedHorizontalLayoutGroup`, `AfterhourDebug`, `AnimationUtils`, `AppGemstoneHelper`, `AppNavHelper`, `BetaGenerator`, `BoxMullerGenerator`, `ColoredPixelElement`, `CombatAbilityEffectInstantDirectory`, `CombatAbilityEffectPermanentDirectory`, `CombatAbilityEffectStandardDirectory`, `CombatEndedUIController`, `CombatEntityBuilder`, `CombatEntityStat`, `ConstHelper`, `CorporateSheet`, `CultureBootstrap`, `CustomGameAction`, `DevConsoleStripper`, `DevMode`, `DirectoryCombatAbilityEffect`, `EmporiumScreen`, `EventListThreat`, `EventUnused`, `FactionStatusList`, `GunOrderDebug`, `GunmodPosition`, `HorizontalStackPixelElement`, `HumanCreature`, `IntExtensions`, `ItemCategory`, `ItemGameAction`, `ItemInsertRemoveBehaviour`, `ItemShapeModifier`, `LevelListLoot`, `LocSmartStringDebug`, `LocalObjectEnabler`, `LootDebug`, `MachineMeatCulture`, `MachineryProgressBar`, `MatterConstants`, `ModLog`, `NegociationHelper`, `NewsPaper`, `NpcCharacterItemDirectory`, `PaperDebugCommands`, `PlayerCharacterItemDirectory`, `RaidAnimation`, `SceneSwitcher`, `SchematicCorridor`, `ScratchMaskInit`, `ScrollElement`, `SelectableButtonElement`, `ServiceElement`, `SpriteAnimationManager`, `StandardCombatAbilityDirectory`, `StaticClass`, `StationGeneration`, `StoreClientItem`, `StoreClientListCommand`, `StoreClientListProcurement`, `StoreClientListUnused`, `StoreComputer`, `StoreDate`, `StoreDebugBell`, `StoreLamp`, `StoreNotebook`, `StorePhysical`, `StoreScale`, `StoreUISounds`, `StoryHelper`, `ThingConstants`, `ThingContainer`, `TutorialDebug`, `UIController`, `UnusedDirectory`, `WaterLiquidHelper`
 
-## Orphan art (310 sprites, PNGs in `data/assets/sprites/orphan/`)
+## Orphan art (307 sprites, PNGs in `data/assets/sprites/orphan/`)
 
 - **items/beer_case**: case_front, case, case_back
 - **items/itematlas**: ally, nuts, stick_grenade, wrench, smoke_grenade_green
@@ -797,7 +797,7 @@ The game grew out of a space-trading prototype. `Space*Trigger` events are still
 - **items/items_sec**: handmade_smg
 - **items/items_ship**: dumping_ground_pile, water_recycler_empty
 - **items/items_sign**: water_off, items_sign_1
-- **items/items_tool**: chemforge_r, sci_module, purifier_jug, chemforge_b, battery_bar
+- **items/items_tool**: chemforge_r, sci_module, purifier_jug, chemforge_b
 - **items/items_weapons_melee**: combat_machete_old, improvised_stunprod, improvised_stunprod_unloaded, fireaxe, improvised_spear, sandal_weapon, long_pipe, fireaxe_big
 - **items/items_weapons_ranged_antique**: stanag_10_mod, stanag_20_mod, items_weapons_ranged_antique_2, items_weapons_ranged_antique_4, items_weapons_ranged_antique_3, items_weapons_ranged_antique_0, items_weapons_ranged_antique_1, stanag_30_mod, bullet_nato_556
 - **items/water_container3**: normal_red_25, mini_red_50, 25ml_blue_75, large_blue_90, 100ml_blue_25, 25ml_red_75, large_blue_100, small_blue_10, small_red_50, mini_blue_100, large_dark_50, 25ml_dark_25, small_dark_25, large_dark_75, 25ml_dark_10, mini_dark_75, mini_red_100, 100ml_dark_100, normal_blue_25, normal_red_75, 100ml_dark_10, 50ml_red_25, mini_red_10, 50ml_dark_10, mini_dark_10, small_red_10, small_blue_75, 1ml_blue, mini_blue_50, small_blue_25, 50ml_red_100, 100ml_blue_75, normal_dark_50, small_dark_10, 100ml_blue_50, large_dark_10, 100ml_red_75, small_red_75, normal_red_10, 100ml_red_90, large_red_50, mini_blue_90, 50ml_blue_10, normal_dark_10, 25ml_red_10, mini_dark_25, normal_red_50, 100ml_red_100, 25ml_dark_50, 25ml_red_90, 100ml_dark_75, large_blue_10, 25ml_blue_100, mini_dark_100, small_dark_100, large_red_100, 25ml_blue_50, 100ml_blue_10, mini_blue_75, 50ml_blue_90, 25ml_blue_90, large_red_25, 1ml_dark, mini_red_75, 50ml_blue_50, large_blue_25, 50ml_red_50, 50ml_dark_90, 100ml_blue_100, large_dark_100, 100ml_blue_90, normal_blue_100, 50ml_dark_75, large_red_10, 100ml_red_10, 25ml_dark_75, mini_red_25, 25ml_blue_25, 50ml_blue_100, 1ml_red, normal_blue_10, large_dark_25, mini_red_90, small_dark_90, 25ml_red_25, 100ml_dark_90, 25ml_blue_10, normal_blue_90, 50ml_dark_100, normal_dark_25, large_blue_75, small_red_90, normal_blue_50, small_blue_90, normal_blue_75, 50ml_red_75, mini_dark_90, small_dark_75, mini_dark_50, normal_dark_90, 50ml_blue_75, small_blue_100, small_dark_50, large_red_75, 5ml_dark, normal_dark_100, mini_blue_25, large_red_90, 25ml_red_50, 50ml_dark_25, 50ml_blue_25, normal_dark_75, 50ml_red_90, 5ml_blue, large_dark_90, mini_blue_10, large_blue_50, small_red_25, 100ml_dark_25, normal_red_90, 25ml_red_100, small_blue_50, 50ml_dark_50, 25ml_dark_100, 50ml_red_10, normal_red_100, 5ml_red, 100ml_dark_50, small_red_100, 100ml_red_25, 25ml_dark_90, 100ml_red_50
@@ -805,14 +805,14 @@ The game grew out of a space-trading prototype. `Space*Trigger` events are still
 - **window/background**: highlight_white
 - **window/border-export**: border-export
 - **window/borderold**: borderOld
-- **window/elements_inner**: slider_button, light_cyan, dark_purple, dark_cyan, dark_red, dark_green, screen_dark, light_purple, dark_orange, light_red, light_yellow, dark_yellow, light_orange, light_green, screen_light, slider_background, playd, elements_inner
-- **window/elements_outer**: border_outside_top_rounded_new, elements_outer
+- **window/elements_inner**: slider_button, light_cyan, dark_purple, dark_cyan, dark_red, dark_green, screen_dark, light_purple, dark_orange, light_red, light_yellow, dark_yellow, light_orange, light_green, screen_light, slider_background, playd
+- **window/elements_outer**: border_outside_top_rounded_new
 
 Sprites belonging to unused items: 97 in `data/assets/sprites/unused_items/`. Runtime-built variants (fill levels, sizes) are in `data/assets/sprites/orphan_variants/`.
 
-## Unused audio (43)
+## Unused audio (0)
 
-`AMB_Station_Ambience`, `bedroll`, `Typewriter sound 1`, `sound_effects_wounds_blood1`, `shutter_open3s`, `ratchet`, `shotgun_fire`, `AMB_Dr_Jackson_Ambience`, `Typewriter sound 3`, `sound_effects_assslap`, `lamp_click`, `phone_calling`, `AMB_Dumps_Ambience`, `box_click`, `new_soft_click`, `cash_register`, `metal_snap`, `AMB_Comissionary_Ambience`, `Station_Ambience_004`, `SFX_Step_Left`, `shutter_door_closed`, `phone_wrong_number`, `phone_getting_hang`, `writing2`, `phone_client_pickup`, `shutter_close3s`, `sound_fail`, `alarm2`, `beat_coin`, `cross`, `phone_pickup`, `pageflip`, `phone_drop`, `new_bell`, `SFX_Step_Right`, `negative_beep`, `Typewriter sound 2`, `pourOut`, `airlock_close_new`, `airlock_open_new`, `ratcher2`, `shuttle_arrive`, `writing`
+
 
 ## Strings never named in code (597)
 
